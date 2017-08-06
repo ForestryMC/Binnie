@@ -17,7 +17,9 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import forestry.api.recipes.RecipeManagers;
 
 import binnie.Binnie;
-import binnie.botany.Botany;
+import binnie.Constants;
+import binnie.botany.modules.BotanyModuleUIDs;
+import binnie.botany.modules.ModuleDatabase;
 import binnie.core.BinnieCore;
 import binnie.core.IInitializable;
 import binnie.core.Mods;
@@ -29,6 +31,7 @@ import binnie.core.resource.BinnieSprite;
 import binnie.extratrees.ExtraTrees;
 import binnie.genetics.CreativeTabGenetics;
 import binnie.genetics.Genetics;
+import binnie.modules.ModuleManager;
 
 public class ModuleItems implements IInitializable {
 	public static BinnieSprite iconNight;
@@ -185,8 +188,8 @@ public class ModuleItems implements IInitializable {
 			'c', GeneticsItems.IntegratedCircuit.get(itemGenetics, 1), 'a', Mods.Forestry.item("portable_alyzer"), 'd', new ItemStack(Items.DIAMOND)
 		);
 
-		Item[] databases = {ExtraBeesIntegration.dictionary, ExtraTrees.items().itemDictionary, ExtraTrees.items().itemDictionaryLepi, Botany.database};
-		if (BinnieCore.isBotanyActive() && BinnieCore.isExtraBeesActive() && BinnieCore.isExtraTreesActive()) {
+		Item[] databases = {ExtraBeesIntegration.dictionary, ExtraTrees.items().itemDictionary, ExtraTrees.items().itemDictionaryLepi, ModuleDatabase.database};
+		if (ModuleManager.isEnabled(Constants.BOTANY_MOD_ID, BotanyModuleUIDs.DATABASE) && BinnieCore.isExtraBeesActive() && BinnieCore.isExtraTreesActive()) {
 			for (Item databaseA : databases) {
 				for (Item databaseB : databases) {
 					for (Item databaseC : databases) {

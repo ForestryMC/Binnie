@@ -25,18 +25,20 @@ import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.IMutation;
 import forestry.api.genetics.ISpeciesType;
 import forestry.core.genetics.SpeciesRoot;
+import forestry.core.genetics.alleles.AlleleHelper;
+import forestry.core.genetics.alleles.EnumAllele;
 
-import binnie.botany.Botany;
-import binnie.botany.api.EnumFlowerChromosome;
-import binnie.botany.api.EnumFlowerStage;
-import binnie.botany.api.IAlleleFlowerSpecies;
-import binnie.botany.api.IBotanistTracker;
-import binnie.botany.api.IColorMix;
-import binnie.botany.api.IFlower;
-import binnie.botany.api.IFlowerGenome;
-import binnie.botany.api.IFlowerMutation;
-import binnie.botany.api.IFlowerRoot;
-import binnie.botany.flower.TileEntityFlower;
+import binnie.botany.api.genetics.EnumFlowerChromosome;
+import binnie.botany.api.genetics.EnumFlowerStage;
+import binnie.botany.api.genetics.IAlleleFlowerSpecies;
+import binnie.botany.api.genetics.IBotanistTracker;
+import binnie.botany.api.genetics.IColorMix;
+import binnie.botany.api.genetics.IFlower;
+import binnie.botany.api.genetics.IFlowerGenome;
+import binnie.botany.api.genetics.IFlowerMutation;
+import binnie.botany.api.genetics.IFlowerRoot;
+import binnie.botany.modules.ModuleFlowers;
+import binnie.botany.tile.TileEntityFlower;
 
 public class FlowerRoot extends SpeciesRoot implements IFlowerRoot {
 	static final String UID = "rootFlowers";
@@ -97,11 +99,11 @@ public class FlowerRoot extends SpeciesRoot implements IFlowerRoot {
 	@Nullable
 	public EnumFlowerStage getType(ItemStack stack) {
 		Item item = stack.getItem();
-		if (Botany.flowerItem == item) {
+		if (ModuleFlowers.flowerItem == item) {
 			return EnumFlowerStage.SEED;
-		} else if (Botany.pollen == item) {
+		} else if (ModuleFlowers.pollen == item) {
 			return EnumFlowerStage.POLLEN;
-		} else if (Botany.seed == item) {
+		} else if (ModuleFlowers.seed == item) {
 			return EnumFlowerStage.SEED;
 		}
 		return null;
@@ -113,13 +115,13 @@ public class FlowerRoot extends SpeciesRoot implements IFlowerRoot {
 			return ItemStack.EMPTY;
 		}
 
-		Item flowerItem = Botany.flowerItem;
+		Item flowerItem = ModuleFlowers.flowerItem;
 		if (type == EnumFlowerStage.SEED) {
-			flowerItem = Botany.seed;
+			flowerItem = ModuleFlowers.seed;
 		} else if (type == EnumFlowerStage.POLLEN) {
-			flowerItem = Botany.pollen;
+			flowerItem = ModuleFlowers.pollen;
 		}
-		if (flowerItem != Botany.flowerItem) {
+		if (flowerItem != ModuleFlowers.flowerItem) {
 			((IFlower) flower).setAge(0);
 		}
 
@@ -189,7 +191,20 @@ public class FlowerRoot extends SpeciesRoot implements IFlowerRoot {
 
 	@Override
 	public IAllele[] getDefaultTemplate() {
-		return FlowerTemplates.getDefaultTemplate();
+		IAllele[] alleles = new IAllele[EnumFlowerChromosome.values().length];
+		AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.SPECIES, FlowerDefinition.Poppy.getSpecies());
+		AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.PRIMARY, EnumFlowerColor.Red.getFlowerColorAllele());
+		AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.SECONDARY, EnumFlowerColor.Red.getFlowerColorAllele());
+		AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.FERTILITY, EnumAllele.Fertility.NORMAL);
+		AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.TERRITORY, EnumAllele.Territory.AVERAGE);
+		AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.EFFECT, ModuleFlowers.alleleEffectNone);
+		AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.LIFESPAN, EnumAllele.Lifespan.NORMAL);
+		AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.TEMPERATURE_TOLERANCE, EnumAllele.Tolerance.NONE);
+		AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.HUMIDITY_TOLERANCE, EnumAllele.Tolerance.NONE);
+		AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.PH_TOLERANCE, EnumAllele.Tolerance.NONE);
+		AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.SAPPINESS, EnumAllele.Sappiness.AVERAGE);
+		AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.Green.getFlowerColorAllele());
+		return alleles;
 	}
 
 	@Override
@@ -281,7 +296,7 @@ public class FlowerRoot extends SpeciesRoot implements IFlowerRoot {
 	}
 
 	public boolean plant(World world, BlockPos pos, IFlower flower, GameProfile owner) {
-		boolean set = world.setBlockState(pos, Botany.flower.getDefaultState());
+		boolean set = world.setBlockState(pos, ModuleFlowers.flower.getDefaultState());
 		if (!set) {
 			return false;
 		}
@@ -318,7 +333,7 @@ public class FlowerRoot extends SpeciesRoot implements IFlowerRoot {
 			return;
 		}
 
-		world.setBlockState(pos.up(), Botany.flower.getDefaultState());
+		world.setBlockState(pos.up(), ModuleFlowers.flower.getDefaultState());
 		TileEntity flowerAbove = world.getTileEntity(pos.up());
 		if (flowerAbove != null && flowerAbove instanceof TileEntityFlower) {
 			((TileEntityFlower) flowerAbove).setSection(section + 1);

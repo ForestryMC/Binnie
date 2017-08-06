@@ -5,8 +5,8 @@ import java.util.Map;
 
 import net.minecraft.item.ItemStack;
 
-import binnie.botany.Botany;
 import binnie.botany.genetics.EnumFlowerColor;
+import binnie.botany.modules.ModuleCeramic;
 import binnie.core.block.TileEntityMetadata;
 import binnie.extratrees.api.IDesignMaterial;
 
@@ -31,7 +31,7 @@ public class CeramicColor implements IDesignMaterial {
 
 	@Override
 	public ItemStack getStack() {
-		return TileEntityMetadata.getItemStack(Botany.gardening().ceramic, color.ordinal());
+		return TileEntityMetadata.getItemStack(ModuleCeramic.ceramic, color.ordinal());
 	}
 
 	@Override

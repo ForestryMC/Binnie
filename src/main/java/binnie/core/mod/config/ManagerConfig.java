@@ -3,10 +3,7 @@ package binnie.core.mod.config;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 import net.minecraftforge.common.config.Configuration;
@@ -16,11 +13,9 @@ import binnie.core.ManagerBase;
 
 public class ManagerConfig extends ManagerBase {
 	private Map<Class<?>, Configuration> configurations;
-	private Map<AbstractMod, List<BinnieItemData>> itemIDs;
 
 	public ManagerConfig() {
 		this.configurations = new LinkedHashMap<>();
-		this.itemIDs = new HashMap<>();
 	}
 
 	public void registerConfiguration(final Class<?> cls, final AbstractMod mod) {
@@ -50,12 +45,5 @@ public class ManagerConfig extends ManagerBase {
 		}
 		config.save();
 		this.configurations.put(cls, config);
-	}
-
-	public void addItemID(final Integer configValue, final String configKey, final BinnieConfiguration configFile) {
-		if (!this.itemIDs.containsKey(configFile.mod)) {
-			this.itemIDs.put(configFile.mod, new ArrayList<>());
-		}
-		this.itemIDs.get(configFile.mod).add(new BinnieItemData(configValue + 256, configFile, configKey));
 	}
 }

@@ -7,11 +7,11 @@ import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IIndividual;
 
 import binnie.Binnie;
-import binnie.botany.api.EnumFlowerChromosome;
-import binnie.botany.api.EnumFlowerStage;
-import binnie.botany.api.IAlleleFlowerSpecies;
-import binnie.botany.api.IFlower;
-import binnie.botany.api.IFlowerGenome;
+import binnie.botany.api.genetics.EnumFlowerChromosome;
+import binnie.botany.api.genetics.EnumFlowerStage;
+import binnie.botany.api.genetics.IAlleleFlowerSpecies;
+import binnie.botany.api.genetics.IFlower;
+import binnie.botany.api.genetics.IFlowerGenome;
 import binnie.botany.core.BotanyCore;
 import binnie.core.gui.IWidget;
 import binnie.core.gui.controls.ControlText;

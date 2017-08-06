@@ -2,7 +2,6 @@ package binnie.botany.genetics;
 
 import javax.annotation.Nullable;
 import java.util.List;
-import java.util.Random;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
@@ -10,19 +9,18 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
 import forestry.api.arboriculture.EnumTreeChromosome;
-import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IChromosome;
 import forestry.core.genetics.Chromosome;
 import forestry.core.genetics.Individual;
 import forestry.core.utils.Translator;
 
-import binnie.botany.api.EnumFlowerChromosome;
-import binnie.botany.api.IAlleleFlowerSpecies;
-import binnie.botany.api.IColorMix;
-import binnie.botany.api.IFlower;
-import binnie.botany.api.IFlowerColor;
-import binnie.botany.api.IFlowerGenome;
-import binnie.botany.api.IFlowerMutation;
+import binnie.botany.api.genetics.EnumFlowerChromosome;
+import binnie.botany.api.genetics.IAlleleFlowerSpecies;
+import binnie.botany.api.genetics.IColorMix;
+import binnie.botany.api.genetics.IFlower;
+import binnie.botany.api.genetics.IFlowerColor;
+import binnie.botany.api.genetics.IFlowerGenome;
+import binnie.botany.api.genetics.IFlowerMutation;
 import binnie.botany.core.BotanyCore;
 import binnie.core.util.I18N;
 
@@ -36,31 +34,31 @@ public class Flower extends Individual implements IFlower {
 	private boolean wilting;
 	private boolean flowered;
 
-	public Flower(NBTTagCompound nbt) {
-		super(nbt);
+	public Flower(NBTTagCompound compound) {
+		super(compound);
 
-		if (nbt.hasKey("Age")) {
-			age = nbt.getInteger("Age");
+		if (compound.hasKey("Age")) {
+			age = compound.getInteger("Age");
 		} else {
 			age = 0;
 		}
 
-		wilting = nbt.hasKey("Wilt") && nbt.getBoolean("Wilt");
+		wilting = compound.hasKey("Wilt") && compound.getBoolean("Wilt");
 
-		if (nbt.hasKey("Flowered")) {
-			flowered = nbt.getBoolean("Flowered");
+		if (compound.hasKey("Flowered")) {
+			flowered = compound.getBoolean("Flowered");
 		} else {
 			flowered = age > 0;
 		}
 
-		if (nbt.hasKey("Genome")) {
-			genome = new FlowerGenome(nbt.getCompoundTag("Genome"));
+		if (compound.hasKey("Genome")) {
+			genome = new FlowerGenome(compound.getCompoundTag("Genome"));
 		} else {
 			genome = BotanyCore.getFlowerRoot().templateAsGenome(BotanyCore.getFlowerRoot().getDefaultTemplate());
 		}
 
-		if (nbt.hasKey("Mate")) {
-			mate = new FlowerGenome(nbt.getCompoundTag("Mate"));
+		if (compound.hasKey("Mate")) {
+			mate = new FlowerGenome(compound.getCompoundTag("Mate"));
 		}
 	}
 
@@ -102,44 +100,25 @@ public class Flower extends Individual implements IFlower {
 	}
 
 	@Override
-	public NBTTagCompound writeToNBT(NBTTagCompound nbttagcompound2) {
-		NBTTagCompound nbttagcompound = super.writeToNBT(nbttagcompound2);
-		nbttagcompound.setInteger("Age", age);
-		nbttagcompound.setBoolean("Wilt", wilting);
-		nbttagcompound.setBoolean("Flowered", flowered);
-		NBTTagCompound nbtGenome = new NBTTagCompound();
-		genome.writeToNBT(nbtGenome);
-		nbttagcompound.setTag("Genome", nbtGenome);
+	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+		super.writeToNBT(compound);
+		compound.setInteger("Age", age);
+		compound.setBoolean("Wilt", wilting);
+		compound.setBoolean("Flowered", flowered);
+		NBTTagCompound compoundGenome = new NBTTagCompound();
+		genome.writeToNBT(compoundGenome);
+		compound.setTag("Genome", compoundGenome);
 		if (mate != null) {
-			NBTTagCompound nbtMate = new NBTTagCompound();
-			mate.writeToNBT(nbtMate);
-			nbttagcompound.setTag("Mate", nbtMate);
+			NBTTagCompound compundMate = new NBTTagCompound();
+			mate.writeToNBT(compundMate);
+			compound.setTag("Mate", compundMate);
 		}
-		return nbttagcompound;
+		return compound;
 	}
 
 	@Override
 	public IFlowerGenome getGenome() {
 		return genome;
-	}
-
-	private IChromosome inheritChromosome(Random rand, IChromosome parentFirst, IChromosome parentSecond) {
-		IAllele choiceFirst;
-		if (rand.nextBoolean()) {
-			choiceFirst = parentFirst.getPrimaryAllele();
-		} else {
-			choiceFirst = parentFirst.getSecondaryAllele();
-		}
-		IAllele choiceSecond;
-		if (rand.nextBoolean()) {
-			choiceSecond = parentSecond.getPrimaryAllele();
-		} else {
-			choiceSecond = parentSecond.getSecondaryAllele();
-		}
-		if (rand.nextBoolean()) {
-			return new Chromosome(choiceFirst, choiceSecond);
-		}
-		return new Chromosome(choiceSecond, choiceFirst);
 	}
 
 	@Override
@@ -155,9 +134,9 @@ public class Flower extends Individual implements IFlower {
 
 	@Override
 	public IFlower copy() {
-		NBTTagCompound nbttagcompound = new NBTTagCompound();
-		writeToNBT(nbttagcompound);
-		return new Flower(nbttagcompound);
+		NBTTagCompound compound = new NBTTagCompound();
+		writeToNBT(compound);
+		return new Flower(compound);
 	}
 
 	@Override
@@ -229,17 +208,17 @@ public class Flower extends Individual implements IFlower {
 	private IChromosome[] mutateSpecies(World world, BlockPos pos, IFlowerGenome genomeFirst, IFlowerGenome genomeSecond) {
 		IChromosome[] parentFirst = genomeFirst.getChromosomes();
 		IChromosome[] parentSecond = genomeSecond.getChromosomes();
-		IAlleleFlowerSpecies alleleFrist;
+		IAlleleFlowerSpecies alleleFirst;
 		IAlleleFlowerSpecies alleleSecond;
 		IFlowerGenome genome0;
 		IFlowerGenome genome2;
 		if (world.rand.nextBoolean()) {
-			alleleFrist = (IAlleleFlowerSpecies) parentFirst[EnumTreeChromosome.SPECIES.ordinal()].getPrimaryAllele();
+			alleleFirst = (IAlleleFlowerSpecies) parentFirst[EnumTreeChromosome.SPECIES.ordinal()].getPrimaryAllele();
 			alleleSecond = (IAlleleFlowerSpecies) parentSecond[EnumTreeChromosome.SPECIES.ordinal()].getSecondaryAllele();
 			genome0 = genomeFirst;
 			genome2 = genomeSecond;
 		} else {
-			alleleFrist = (IAlleleFlowerSpecies) parentSecond[EnumTreeChromosome.SPECIES.ordinal()].getPrimaryAllele();
+			alleleFirst = (IAlleleFlowerSpecies) parentSecond[EnumTreeChromosome.SPECIES.ordinal()].getPrimaryAllele();
 			alleleSecond = (IAlleleFlowerSpecies) parentFirst[EnumTreeChromosome.SPECIES.ordinal()].getSecondaryAllele();
 			genome0 = genomeSecond;
 			genome2 = genomeFirst;
@@ -276,7 +255,7 @@ public class Flower extends Individual implements IFlower {
 
 		IChromosome[] template = null;
 		for (IFlowerMutation mutation2 : BotanyCore.getFlowerRoot().getMutations(true)) {
-			float chance = mutation2.getChance(world, pos, alleleFrist, alleleSecond, genome0, genome2);
+			float chance = mutation2.getChance(world, pos, alleleFirst, alleleSecond, genome0, genome2);
 			if (chance > 0.0f && world.rand.nextFloat() * 100.0f < chance && template == null) {
 				template = BotanyCore.getFlowerRoot().templateAsChromosomes(mutation2.getTemplate());
 			}

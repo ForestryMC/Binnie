@@ -11,9 +11,9 @@ import net.minecraft.util.IStringSerializable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.botany.Botany;
 import binnie.botany.genetics.EnumFlowerColor;
-import binnie.botany.items.BotanyItems;
+import binnie.botany.items.CeramicItems;
+import binnie.botany.modules.ModuleCeramic;
 import binnie.core.block.TileEntityMetadata;
 
 public enum CeramicBrickType implements IStringSerializable {
@@ -30,7 +30,7 @@ public enum CeramicBrickType implements IStringSerializable {
 				if (isMortar(stack)) {
 					++mortars;
 				} else {
-					if (stack.getItem() != Item.getItemFromBlock(Botany.gardening().ceramic)) {
+					if (stack.getItem() != Item.getItemFromBlock(ModuleCeramic.ceramic)) {
 						return ItemStack.EMPTY;
 					}
 					++blocks;
@@ -82,7 +82,7 @@ public enum CeramicBrickType implements IStringSerializable {
 				int a = 0;
 				int b = 0;
 				for (ItemStack stack4 : stacks) {
-					if (stack4.getItem() != Item.getItemFromBlock(Botany.gardening().ceramicBrick)) {
+					if (stack4.getItem() != Item.getItemFromBlock(ModuleCeramic.ceramicBrick)) {
 						return ItemStack.EMPTY;
 					}
 					CeramicBrickPair type4 = new CeramicBrickPair(stack4);
@@ -122,7 +122,7 @@ public enum CeramicBrickType implements IStringSerializable {
 			int altCounter = 0;
 			for (ItemStack stack2 : stacks) {
 				int alt = (altCounter != 0 && altCounter != 3) ? 1 : 0;
-				if (stack2.getItem() != Item.getItemFromBlock(Botany.gardening().ceramicBrick)) {
+				if (stack2.getItem() != Item.getItemFromBlock(ModuleCeramic.ceramicBrick)) {
 					return ItemStack.EMPTY;
 				}
 				CeramicBrickPair type = new CeramicBrickPair(stack2);
@@ -148,7 +148,7 @@ public enum CeramicBrickType implements IStringSerializable {
 			}
 			int[] colors = {-1, -1};
 			for (ItemStack stack2 : stacks) {
-				if (stack2.getItem() != Item.getItemFromBlock(Botany.gardening().ceramicBrick)) {
+				if (stack2.getItem() != Item.getItemFromBlock(ModuleCeramic.ceramicBrick)) {
 					return ItemStack.EMPTY;
 				}
 				CeramicBrickPair type2 = new CeramicBrickPair(stack2);
@@ -177,7 +177,7 @@ public enum CeramicBrickType implements IStringSerializable {
 			}
 			int[] colors = {-1, -1};
 			for (ItemStack stack2 : stacks) {
-				if (stack2.getItem() != Item.getItemFromBlock(Botany.gardening().ceramicBrick)) {
+				if (stack2.getItem() != Item.getItemFromBlock(ModuleCeramic.ceramicBrick)) {
 					return ItemStack.EMPTY;
 				}
 				CeramicBrickPair type2 = new CeramicBrickPair(stack2);
@@ -233,7 +233,7 @@ public enum CeramicBrickType implements IStringSerializable {
 
 	@SideOnly(Side.CLIENT)
 	@Nullable
-	TextureAtlasSprite[] sprites;
+	public TextureAtlasSprite[] sprites;
 
 	CeramicBrickType(String id) {
 		this.id = id;
@@ -290,7 +290,7 @@ public enum CeramicBrickType implements IStringSerializable {
 			int[] colors = {-1, -1};
 			for (int index2 = 0; index2 < stacks.size(); ++index2) {
 				ItemStack stack4 = stacks.get(index2);
-				if (stack4.getItem() != Item.getItemFromBlock(Botany.gardening().ceramicBrick)) {
+				if (stack4.getItem() != Item.getItemFromBlock(ModuleCeramic.ceramicBrick)) {
 					return ItemStack.EMPTY;
 				}
 
@@ -319,7 +319,7 @@ public enum CeramicBrickType implements IStringSerializable {
 	}
 
 	protected boolean isMortar(ItemStack stack) {
-		return stack.getItem() == Botany.gardening().misc && stack.getItemDamage() == BotanyItems.MORTAR.ordinal();
+		return stack.getItem() == ModuleCeramic.misc && stack.getItemDamage() == CeramicItems.MORTAR.ordinal();
 	}
 
 	@Override

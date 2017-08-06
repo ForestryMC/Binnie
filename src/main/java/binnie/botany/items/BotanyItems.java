@@ -5,7 +5,7 @@ import java.util.Locale;
 
 import net.minecraft.item.ItemStack;
 
-import binnie.botany.Botany;
+import binnie.botany.modules.ModuleGardening;
 import binnie.core.item.IItemMiscProvider;
 import binnie.core.util.I18N;
 
@@ -27,7 +27,9 @@ public enum BotanyItems implements IItemMiscProvider {
 
 	@Override
 	public void addInformation(List<String> tooltip) {
-		// ignored
+		if(this == MORTAR){
+			tooltip.add(I18N.localise("item.botany.mortar.tooltip"));
+		}
 	}
 
 	@Override
@@ -42,7 +44,7 @@ public enum BotanyItems implements IItemMiscProvider {
 
 	@Override
 	public ItemStack get(int size) {
-		return new ItemStack(Botany.gardening().misc, size, ordinal());
+		return new ItemStack(ModuleGardening.misc, size, ordinal());
 	}
 
 	@Override

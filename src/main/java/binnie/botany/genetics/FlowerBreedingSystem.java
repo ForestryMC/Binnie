@@ -15,9 +15,9 @@ import forestry.api.genetics.ISpeciesRoot;
 import forestry.api.genetics.ISpeciesType;
 
 import binnie.Binnie;
-import binnie.botany.api.EnumFlowerChromosome;
-import binnie.botany.api.EnumFlowerStage;
-import binnie.botany.api.IBotanistTracker;
+import binnie.botany.api.genetics.EnumFlowerChromosome;
+import binnie.botany.api.genetics.EnumFlowerStage;
+import binnie.botany.api.genetics.IBotanistTracker;
 import binnie.botany.core.BotanyCore;
 import binnie.core.genetics.BreedingSystem;
 import binnie.core.genetics.ForestryAllele;
@@ -94,42 +94,42 @@ public class FlowerBreedingSystem extends BreedingSystem {
 	public void addExtraAlleles(IChromosomeType chromosome, TreeSet<IAllele> alleles) {
 		switch ((EnumFlowerChromosome) chromosome) {
 			case FERTILITY:
-				for (ForestryAllele.Fertility a : ForestryAllele.Fertility.values()) {
-					alleles.add(a.getAllele());
+				for (ForestryAllele.Fertility fertility : ForestryAllele.Fertility.values()) {
+					alleles.add(fertility.getAllele());
 				}
 				break;
 
 			case LIFESPAN:
-				for (ForestryAllele.Lifespan a2 : ForestryAllele.Lifespan.values()) {
-					alleles.add(a2.getAllele());
+				for (ForestryAllele.Lifespan lifespan : ForestryAllele.Lifespan.values()) {
+					alleles.add(lifespan.getAllele());
 				}
 				break;
 
 			case HUMIDITY_TOLERANCE:
 			case PH_TOLERANCE:
 			case TEMPERATURE_TOLERANCE:
-				for (Tolerance a3 : Tolerance.values()) {
-					alleles.add(a3.getAllele());
+				for (Tolerance tolerance : Tolerance.values()) {
+					alleles.add(tolerance.getAllele());
 				}
 				break;
 
 			case PRIMARY:
 			case SECONDARY:
 			case STEM:
-				for (EnumFlowerColor a4 : EnumFlowerColor.values()) {
-					alleles.add(a4.getFlowerColorAllele());
+				for (EnumFlowerColor color : EnumFlowerColor.values()) {
+					alleles.add(color.getFlowerColorAllele());
 				}
 				break;
 
 			case SAPPINESS:
-				for (ForestryAllele.Sappiness a5 : ForestryAllele.Sappiness.values()) {
-					alleles.add(a5.getAllele());
+				for (ForestryAllele.Sappiness sappiness : ForestryAllele.Sappiness.values()) {
+					alleles.add(sappiness.getAllele());
 				}
 				break;
 
 			case TERRITORY:
-				for (ForestryAllele.Territory a6 : ForestryAllele.Territory.values()) {
-					alleles.add(a6.getAllele());
+				for (ForestryAllele.Territory territory : ForestryAllele.Territory.values()) {
+					alleles.add(territory.getAllele());
 				}
 				break;
 		}

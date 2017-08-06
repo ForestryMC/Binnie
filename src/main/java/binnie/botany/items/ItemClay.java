@@ -12,16 +12,14 @@ import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
 import forestry.core.items.IColoredItem;
 
-import binnie.botany.CreativeTabBotany;
 import binnie.botany.genetics.EnumFlowerColor;
 import binnie.core.util.I18N;
 
-public class ItemClay extends Item implements IColoredItem, IItemModelRegister {
+public class ItemClay extends ItemBotany implements IColoredItem, IItemModelRegister {
 	public ItemClay() {
+		super("clay");
 		setUnlocalizedName("botany.clay");
 		setHasSubtypes(true);
-		setCreativeTab(CreativeTabBotany.instance);
-		setRegistryName("clay");
 	}
 
 	@SideOnly(Side.CLIENT)

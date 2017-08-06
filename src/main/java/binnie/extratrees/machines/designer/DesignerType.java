@@ -2,8 +2,8 @@ package binnie.extratrees.machines.designer;
 
 import net.minecraft.item.ItemStack;
 
-import binnie.botany.Botany;
 import binnie.botany.ceramic.CeramicDesignSystem;
+import binnie.botany.modules.ModuleCeramic;
 import binnie.core.resource.IBinnieTexture;
 import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
@@ -65,7 +65,7 @@ public enum DesignerType {
 				return ExtraTrees.carpentry().blockPanel;
 			}
 			case Tileworker: {
-				return Botany.gardening().ceramicTile;
+				return ModuleCeramic.ceramicTile;
 			}
 			default: {
 				return ExtraTrees.carpentry().blockCarpentry;

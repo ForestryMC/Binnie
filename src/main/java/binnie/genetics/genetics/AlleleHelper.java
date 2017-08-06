@@ -11,9 +11,9 @@ import forestry.api.genetics.EnumTolerance;
 import forestry.api.genetics.IAllele;
 import forestry.core.genetics.alleles.EnumAllele;
 
-import binnie.botany.api.EnumAcidity;
-import binnie.botany.api.EnumMoisture;
-import binnie.botany.api.EnumSoilType;
+import binnie.botany.api.gardening.EnumAcidity;
+import binnie.botany.api.gardening.EnumMoisture;
+import binnie.botany.api.gardening.EnumSoilType;
 import binnie.botany.genetics.EnumFlowerColor;
 import binnie.core.util.I18N;
 

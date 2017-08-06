@@ -16,12 +16,16 @@ import forestry.api.core.IModelManager;
 public class ItemMisc extends ItemCore {
 	private IItemMiscProvider[] items;
 
-	public ItemMisc(final CreativeTabs tab, final IItemMiscProvider[] items) {
-		super("misc");
+	public ItemMisc(final CreativeTabs tab, final IItemMiscProvider[] items, String name) {
+		super(name);
 		this.setCreativeTab(tab);
 		this.setHasSubtypes(true);
-		this.setUnlocalizedName("misc");
+		this.setUnlocalizedName(name);
 		this.items = items;
+	}
+
+	public ItemMisc(CreativeTabs tab, final IItemMiscProvider[] items) {
+		this(tab, items, "misc");
 	}
 
 	@Override

@@ -445,14 +445,14 @@ public class ContainerCraftGUI extends Container {
 
 	protected IInventory getInventory(final InventoryType type) {
 		switch (type) {
-			case Machine: {
+			case MACHINE: {
 				IInventory inventory = this.window.getInventory();
 				Preconditions.checkState(inventory != null, "Window has no machine inventory: %s", this.window);
 				return inventory;
 			}
-			case Player:
+			case PLAYER:
 				return this.window.getPlayer().inventory;
-			case Window:
+			case WINDOW:
 				return this.window.getWindowInventory();
 			default:
 				throw new IllegalArgumentException("Unknown type: " + type);

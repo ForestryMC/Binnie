@@ -18,10 +18,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import forestry.api.genetics.IAlleleInteger;
 import forestry.api.genetics.IAlyzerPlugin;
 
-import binnie.botany.api.EnumFlowerChromosome;
-import binnie.botany.api.EnumFlowerStage;
-import binnie.botany.api.FlowerManager;
-import binnie.botany.api.IFlower;
+import binnie.botany.api.BotanyAPI;
+import binnie.botany.api.genetics.EnumFlowerChromosome;
+import binnie.botany.api.genetics.EnumFlowerStage;
+import binnie.botany.api.genetics.IFlower;
 import binnie.core.gui.geometry.Area;
 import binnie.core.gui.renderer.RenderUtil;
 import binnie.core.util.I18N;
@@ -69,7 +69,7 @@ public class FlowerAlyzerPlugin implements IAlyzerPlugin {
 		gui.mc.fontRendererObj.drawString(msg, guiLeft + xOffset, guiTop + lastTopOffset + margin, color);
 	}
 
-	public void drawChromosom(GuiScreen gui, EnumFlowerChromosome chromosome, IFlower flower) {
+	public void drawChromosome(GuiScreen gui, EnumFlowerChromosome chromosome, IFlower flower) {
 		drawLine(gui, COLUMN_0, StringUtils.capitalize(chromosome.getName()), 0xEEEEEE);
 		drawLine(gui, COLUMN_1, I18N.localise(flower.getGenome().getActiveAllele(chromosome).getUnlocalizedName()), 0xEEEEEE);
 		drawLine(gui, COLUMN_2, I18N.localise(flower.getGenome().getInactiveAllele(chromosome).getUnlocalizedName()), 0xEEEEEE);
@@ -86,7 +86,7 @@ public class FlowerAlyzerPlugin implements IAlyzerPlugin {
 		lastTopOffset = 10;
 		guiLeft = (gui.width - 246) / 2;
 		guiTop = (gui.height - 238) / 2;
-		IFlower flower = FlowerManager.flowerRoot.getMember(itemStack);
+		IFlower flower = BotanyAPI.flowerRoot.getMember(itemStack);
 		if (flower == null) {
 			return;
 		}
@@ -109,7 +109,7 @@ public class FlowerAlyzerPlugin implements IAlyzerPlugin {
 
 		guiTop += rowSize * 3;
 		for (EnumFlowerChromosome chromosom : firstPageChromosome) {
-			drawChromosom(gui, chromosom, flower);
+			drawChromosome(gui, chromosom, flower);
 
 		}
 
@@ -122,17 +122,17 @@ public class FlowerAlyzerPlugin implements IAlyzerPlugin {
 		guiLeft = (gui.width - 246) / 2;
 		guiTop = (gui.height - 238) / 2;
 
-		IFlower f = FlowerManager.flowerRoot.getMember(itemStack);
+		IFlower f = BotanyAPI.flowerRoot.getMember(itemStack);
 
 		for (EnumFlowerChromosome chromosome : secondPageColorChromosome) {
-			drawChromosom(gui, chromosome, f);
+			drawChromosome(gui, chromosome, f);
 			RenderUtil.drawSolidRect(new Area(guiLeft + COLUMN_1, guiTop + lastTopOffset + margin, 50, 10), ((IAlleleInteger) f.getGenome().getActiveAllele(chromosome)).getValue());
 			RenderUtil.drawSolidRect(new Area(guiLeft + COLUMN_2, guiTop + lastTopOffset + margin, 50, 10), ((IAlleleInteger) f.getGenome().getInactiveAllele(chromosome)).getValue());
 			newLine();
 		}
 
 		for (EnumFlowerChromosome chromosome : secondPageToleranceChromosome) {
-			drawChromosom(gui, chromosome, f);
+			drawChromosome(gui, chromosome, f);
 			newLine();
 		}
 

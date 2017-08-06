@@ -35,11 +35,14 @@ import forestry.api.lepidopterology.ButterflyManager;
 import forestry.api.lepidopterology.IButterflyRoot;
 
 import binnie.Binnie;
-import binnie.botany.api.IFlowerRoot;
+import binnie.Constants;
+import binnie.botany.api.genetics.IFlowerRoot;
 import binnie.botany.genetics.FlowerBreedingSystem;
-import binnie.botany.genetics.FlowerColorAllele;
+import binnie.botany.genetics.allele.AlleleFlowerColor;
+import binnie.botany.modules.BotanyModuleUIDs;
 import binnie.core.BinnieCore;
 import binnie.core.ManagerBase;
+import binnie.modules.ModuleManager;
 
 public class ManagerGenetics extends ManagerBase {
 	private final Map<ISpeciesRoot, BreedingSystem> BREEDING_SYSTEMS;
@@ -67,7 +70,7 @@ public class ManagerGenetics extends ManagerBase {
 		if (BinnieCore.isLepidopteryActive()) {
 			this.mothBreedingSystem = new MothBreedingSystem();
 		}
-		if (BinnieCore.isBotanyActive()) {
+		if (ModuleManager.isEnabled(Constants.BOTANY_MOD_ID, BotanyModuleUIDs.FLOWERS)) {
 			this.flowerBreedingSystem = new FlowerBreedingSystem();
 		}
 	}
@@ -176,22 +179,22 @@ public class ManagerGenetics extends ManagerBase {
 
 	private void loadAlleles() {
 		this.invalidChromosomeTypes.clear();
-		for (final ISpeciesRoot root : AlleleManager.alleleRegistry.getSpeciesRoot().values()) {
-			final BreedingSystem system = this.getSystem(root);
-			final Map<IChromosomeType, List<IAllele>> chromosomeMap = new LinkedHashMap<>();
-			for (final IChromosomeType chromosome : root.getKaryotype()) {
-				final TreeSet<IAllele> alleles = new TreeSet<>(new ComparatorAllele());
-				for (final IIndividual individual : root.getIndividualTemplates()) {
-					final IGenome genome = individual.getGenome();
-					final IAllele a1 = genome.getActiveAllele(chromosome);
-					final IAllele a2 = genome.getInactiveAllele(chromosome);
-					if (chromosome.getAlleleClass().isInstance(a1)) {
-						alleles.add(a1);
+		for (ISpeciesRoot root : AlleleManager.alleleRegistry.getSpeciesRoot().values()) {
+			BreedingSystem system = this.getSystem(root);
+			Map<IChromosomeType, List<IAllele>> chromosomeMap = new LinkedHashMap<>();
+			for (IChromosomeType chromosome : root.getKaryotype()) {
+				TreeSet<IAllele> alleles = new TreeSet<>(new ComparatorAllele());
+				for (IIndividual individual : root.getIndividualTemplates()) {
+					IGenome genome = individual.getGenome();
+					IAllele activeAllele = genome.getActiveAllele(chromosome);
+					IAllele inactiveAllele = genome.getInactiveAllele(chromosome);
+					if (chromosome.getAlleleClass().isInstance(activeAllele)) {
+						alleles.add(activeAllele);
 					}
-					if (!chromosome.getAlleleClass().isInstance(a2)) {
+					if (!chromosome.getAlleleClass().isInstance(inactiveAllele)) {
 						continue;
 					}
-					alleles.add(a2);
+					alleles.add(inactiveAllele);
 				}
 				system.addExtraAlleles(chromosome, alleles);
 				if (alleles.size() == 0) {
@@ -227,7 +230,7 @@ public class ManagerGenetics extends ManagerBase {
 			if (o1 instanceof IAlleleFloat && o2 instanceof IAlleleFloat) {
 				return Float.valueOf(((IAlleleFloat) o1).getValue()).compareTo(((IAlleleFloat) o2).getValue());
 			}
-			if (o1 instanceof IAlleleInteger && o2 instanceof IAlleleInteger && !(o1 instanceof FlowerColorAllele)) {
+			if (o1 instanceof IAlleleInteger && o2 instanceof IAlleleInteger && !(o1 instanceof AlleleFlowerColor)) {
 				return Integer.valueOf(((IAlleleInteger) o1).getValue()).compareTo(((IAlleleInteger) o2).getValue());
 			}
 			if (o1.getAlleleName() != null && o2.getAlleleName() != null) {

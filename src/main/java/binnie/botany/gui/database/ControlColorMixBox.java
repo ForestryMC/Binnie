@@ -1,6 +1,6 @@
 package binnie.botany.gui.database;
 
-import binnie.botany.api.IColorMix;
+import binnie.botany.api.genetics.IColorMix;
 import binnie.core.gui.IWidget;
 import binnie.core.gui.controls.listbox.ControlListBox;
 

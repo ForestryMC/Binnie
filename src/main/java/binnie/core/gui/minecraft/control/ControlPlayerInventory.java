@@ -19,18 +19,18 @@ public class ControlPlayerInventory extends Control {
 		this.slots = new ArrayList<>();
 		for (int row = 0; row < 3; ++row) {
 			for (int column = 0; column < 9; ++column) {
-				final ControlSlot slot = new ControlSlot.Builder(this, (wide ? 58 : 0) + column * 18, row * 18).assign(InventoryType.Player, 9 + column + row * 9);
+				final ControlSlot slot = new ControlSlot.Builder(this, (wide ? 58 : 0) + column * 18, row * 18).assign(InventoryType.PLAYER, 9 + column + row * 9);
 				this.slots.add(slot);
 			}
 		}
 		if (wide) {
 			for (int i1 = 0; i1 < 9; ++i1) {
-				final ControlSlot slot2 = new ControlSlot.Builder(this, i1 % 3 * 18, i1 / 3 * 18).assign(InventoryType.Player, i1);
+				final ControlSlot slot2 = new ControlSlot.Builder(this, i1 % 3 * 18, i1 / 3 * 18).assign(InventoryType.PLAYER, i1);
 				this.slots.add(slot2);
 			}
 		} else {
 			for (int i1 = 0; i1 < 9; ++i1) {
-				final ControlSlot slot2 = new ControlSlot.Builder(this, i1 * 18, 58).assign(InventoryType.Player, i1);
+				final ControlSlot slot2 = new ControlSlot.Builder(this, i1 * 18, 58).assign(InventoryType.PLAYER, i1);
 				this.slots.add(slot2);
 			}
 		}
@@ -45,7 +45,7 @@ public class ControlPlayerInventory extends Control {
 		this.slots = new ArrayList<>();
 		for (int row = 0; row < 6; ++row) {
 			for (int column = 0; column < 6; ++column) {
-				final ControlSlot slot = new ControlSlot.Builder(this, column * 18, row * 18).assign(InventoryType.Player,column + row * 6);
+				final ControlSlot slot = new ControlSlot.Builder(this, column * 18, row * 18).assign(InventoryType.PLAYER,column + row * 6);
 				this.slots.add(slot);
 			}
 		}

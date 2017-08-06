@@ -3,7 +3,7 @@ package binnie.botany.gui.database;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.botany.api.IColorMix;
+import binnie.botany.api.genetics.IColorMix;
 import binnie.core.gui.Attribute;
 import binnie.core.gui.CraftGUI;
 import binnie.core.gui.ITooltip;

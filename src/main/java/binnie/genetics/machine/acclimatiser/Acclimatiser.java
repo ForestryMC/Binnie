@@ -21,10 +21,13 @@ import forestry.api.genetics.ISpeciesRoot;
 import forestry.api.lepidopterology.EnumButterflyChromosome;
 
 import binnie.Binnie;
-import binnie.botany.api.EnumFlowerChromosome;
+import binnie.Constants;
+import binnie.botany.api.genetics.EnumFlowerChromosome;
+import binnie.botany.modules.BotanyModuleUIDs;
 import binnie.core.BinnieCore;
 import binnie.core.genetics.Tolerance;
 import binnie.core.liquid.FluidContainerType;
+import binnie.modules.ModuleManager;
 
 public class Acclimatiser {
 	public static final int[] SLOT_RESERVE = new int[]{0, 1, 2, 3};
@@ -93,7 +96,7 @@ public class Acclimatiser {
 			addTolerance(Binnie.GENETICS.getButterflyRoot().getUID(), EnumButterflyChromosome.HUMIDITY_TOLERANCE, ToleranceType.Humidity);
 			addTolerance(Binnie.GENETICS.getButterflyRoot().getUID(), EnumButterflyChromosome.TEMPERATURE_TOLERANCE, ToleranceType.Temperature);
 		}
-		if (BinnieCore.isBotanyActive()) {
+		if (ModuleManager.isEnabled(Constants.BOTANY_MOD_ID, BotanyModuleUIDs.FLOWERS)) {
 			addTolerance(Binnie.GENETICS.getFlowerRoot().getUID(), EnumFlowerChromosome.HUMIDITY_TOLERANCE, ToleranceType.Humidity);
 			addTolerance(Binnie.GENETICS.getFlowerRoot().getUID(), EnumFlowerChromosome.TEMPERATURE_TOLERANCE, ToleranceType.Temperature);
 			addTolerance(Binnie.GENETICS.getFlowerRoot().getUID(), EnumFlowerChromosome.PH_TOLERANCE, ToleranceType.PH);

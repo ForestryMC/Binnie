@@ -24,23 +24,23 @@ import forestry.core.genetics.alleles.AlleleHelper;
 import forestry.core.genetics.alleles.EnumAllele;
 
 import binnie.Constants;
-import binnie.botany.api.EnumAcidity;
-import binnie.botany.api.EnumFlowerChromosome;
-import binnie.botany.api.EnumFlowerStage;
-import binnie.botany.api.EnumMoisture;
-import binnie.botany.api.FlowerManager;
-import binnie.botany.api.IAlleleFlowerSpecies;
-import binnie.botany.api.IAlleleFlowerSpeciesBuilder;
-import binnie.botany.api.IFlower;
-import binnie.botany.api.IFlowerDefinition;
-import binnie.botany.api.IFlowerGenome;
-import binnie.botany.api.IFlowerMutationBuilder;
-import binnie.botany.api.IFlowerRoot;
-import binnie.botany.api.IFlowerType;
+import binnie.botany.api.BotanyAPI;
+import binnie.botany.api.gardening.EnumAcidity;
+import binnie.botany.api.gardening.EnumMoisture;
+import binnie.botany.api.genetics.EnumFlowerChromosome;
+import binnie.botany.api.genetics.EnumFlowerStage;
+import binnie.botany.api.genetics.IAlleleFlowerSpecies;
+import binnie.botany.api.genetics.IAlleleFlowerSpeciesBuilder;
+import binnie.botany.api.genetics.IFlower;
+import binnie.botany.api.genetics.IFlowerDefinition;
+import binnie.botany.api.genetics.IFlowerGenome;
+import binnie.botany.api.genetics.IFlowerMutationBuilder;
+import binnie.botany.api.genetics.IFlowerRoot;
+import binnie.botany.api.genetics.IFlowerType;
 import binnie.botany.core.BotanyCore;
 
 public enum FlowerDefinition implements IFlowerDefinition {
-	Dandelion("Dandelion", "taraxacum", "officinale", EnumFlowerType.Dandelion, EnumFlowerColor.Yellow) {
+	Dandelion("Dandelion", "taraxacum", "officinale", binnie.botany.genetics.EnumFlowerType.DANDELION, EnumFlowerColor.Yellow) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
 		}
@@ -59,7 +59,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			// vanilla
 		}
 	},
-	Poppy("Poppy", "papaver", "rhoeas", EnumFlowerType.Poppy, EnumFlowerColor.Red) {
+	Poppy("Poppy", "papaver", "rhoeas", binnie.botany.genetics.EnumFlowerType.POPPY, EnumFlowerColor.Red) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
 			flowerSpecies.setTemperature(EnumTemperature.WARM);
@@ -79,7 +79,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			// vanilla
 		}
 	},
-	Orchid("Orchid", "vanda", "coerulea", EnumFlowerType.Orchid, EnumFlowerColor.DeepSkyBlue) {
+	Orchid("Orchid", "vanda", "coerulea", binnie.botany.genetics.EnumFlowerType.ORCHID, EnumFlowerColor.DeepSkyBlue) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
 			flowerSpecies.setPH(EnumAcidity.ACID);
@@ -97,7 +97,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			// vanilla
 		}
 	},
-	Allium("Allium", "allium", "giganteum", EnumFlowerType.Allium, EnumFlowerColor.MediumPurple) {
+	Allium("Allium", "allium", "giganteum", binnie.botany.genetics.EnumFlowerType.ALLIUM, EnumFlowerColor.MediumPurple) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
 			flowerSpecies.setPH(EnumAcidity.ALKALINE);
@@ -115,7 +115,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			// vanilla
 		}
 	},
-	Bluet("Bluet", "houstonia", "caerulea", EnumFlowerType.Bluet, EnumFlowerColor.Lavender, EnumFlowerColor.Khaki) {
+	Bluet("Bluet", "houstonia", "caerulea", binnie.botany.genetics.EnumFlowerType.BLUET, EnumFlowerColor.Lavender, EnumFlowerColor.Khaki) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
 			flowerSpecies.setMoisture(EnumMoisture.DAMP);
@@ -134,7 +134,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			// vanilla
 		}
 	},
-	Tulip("Tulip", "tulipa", "agenensis", EnumFlowerType.Tulip, EnumFlowerColor.Violet) {
+	Tulip("Tulip", "tulipa", "agenensis", binnie.botany.genetics.EnumFlowerType.TULIP, EnumFlowerColor.Violet) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
 		}
@@ -152,7 +152,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			// vanilla
 		}
 	},
-	Daisy("Daisy", "leucanthemum", "vulgare", EnumFlowerType.Daisy, EnumFlowerColor.White, EnumFlowerColor.Yellow) {
+	Daisy("Daisy", "leucanthemum", "vulgare", binnie.botany.genetics.EnumFlowerType.DAISY, EnumFlowerColor.White, EnumFlowerColor.Yellow) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
 			flowerSpecies.setTemperature(EnumTemperature.WARM);
@@ -172,7 +172,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			// vanilla
 		}
 	},
-	Cornflower("Cornflower", "centaurea", "cyanus", EnumFlowerType.Cornflower, EnumFlowerColor.SkyBlue) {
+	Cornflower("Cornflower", "centaurea", "cyanus", binnie.botany.genetics.EnumFlowerType.CORNFLOWER, EnumFlowerColor.SkyBlue) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
 		}
@@ -191,7 +191,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			registerMutation(Dandelion, Tulip, 10);
 		}
 	},
-	Pansy("Pansy", "viola", "tricolor", EnumFlowerType.Pansy, EnumFlowerColor.Pink, EnumFlowerColor.Purple) {
+	Pansy("Pansy", "viola", "tricolor", binnie.botany.genetics.EnumFlowerType.PANSY, EnumFlowerColor.Pink, EnumFlowerColor.Purple) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
 			flowerSpecies.setPH(EnumAcidity.ACID);
@@ -210,7 +210,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			registerMutation(Tulip, Viola, 5);
 		}
 	},
-	Iris("Iris", "iris", "germanica", EnumFlowerType.Iris, EnumFlowerColor.LightGray, EnumFlowerColor.Purple) {
+	Iris("Iris", "iris", "germanica", binnie.botany.genetics.EnumFlowerType.IRIS, EnumFlowerColor.LightGray, EnumFlowerColor.Purple) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
 			flowerSpecies.setPH(EnumAcidity.ACID);
@@ -229,7 +229,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			registerMutation(Orchid, Viola, 10);
 		}
 	},
-	Lavender("Lavender", "Lavandula", "angustifolia", EnumFlowerType.Lavender, EnumFlowerColor.MediumOrchid) {
+	Lavender("Lavender", "Lavandula", "angustifolia", binnie.botany.genetics.EnumFlowerType.LAVENDER, EnumFlowerColor.MediumOrchid) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
 			flowerSpecies.setTemperature(EnumTemperature.WARM);
@@ -249,7 +249,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			registerMutation(Allium, Viola, 10);
 		}
 	},
-	Viola("Viola", "viola", "odorata", EnumFlowerType.Viola, EnumFlowerColor.MediumPurple, EnumFlowerColor.SlateBlue) {
+	Viola("Viola", "viola", "odorata", binnie.botany.genetics.EnumFlowerType.VIOLA, EnumFlowerColor.MediumPurple, EnumFlowerColor.SlateBlue) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
 			flowerSpecies.setPH(EnumAcidity.ACID);
@@ -267,7 +267,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			registerMutation(Orchid, Poppy, 15);
 		}
 	},
-	Daffodil("Daffodil", "narcissus", "pseudonarcissus", EnumFlowerType.Daffodil, EnumFlowerColor.Yellow, EnumFlowerColor.Gold) {
+	Daffodil("Daffodil", "narcissus", "pseudonarcissus", binnie.botany.genetics.EnumFlowerType.DAFFODIL, EnumFlowerColor.Yellow, EnumFlowerColor.Gold) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
 		}
@@ -284,7 +284,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			registerMutation(Dandelion, Poppy, 10);
 		}
 	},
-	Dahlia("Dahlia", "dahlia", "variabilis", EnumFlowerType.Dahlia, EnumFlowerColor.HotPink, EnumFlowerColor.DeepPink) {
+	Dahlia("Dahlia", "dahlia", "variabilis", binnie.botany.genetics.EnumFlowerType.DAHLIA, EnumFlowerColor.HotPink, EnumFlowerColor.DeepPink) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
 		}
@@ -302,7 +302,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			registerMutation(Daisy, Allium, 15);
 		}
 	},
-	Peony("Peony", "paeonia", "suffruticosa", EnumFlowerType.Peony, EnumFlowerColor.Thistle) {
+	Peony("Peony", "paeonia", "suffruticosa", binnie.botany.genetics.EnumFlowerType.PEONY, EnumFlowerColor.Thistle) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
 			flowerSpecies.setPH(EnumAcidity.ALKALINE);
@@ -322,7 +322,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			// vanilla
 		}
 	},
-	Rose("Rose", "rosa", "rubiginosa", EnumFlowerType.Rose, EnumFlowerColor.Red) {
+	Rose("ROSE", "rosa", "rubiginosa", binnie.botany.genetics.EnumFlowerType.ROSE, EnumFlowerColor.Red) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
 			flowerSpecies.setPH(EnumAcidity.ACID);
@@ -341,7 +341,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			// vanilla
 		}
 	},
-	Lilac("Lilac", "syringa", "vulgaris", EnumFlowerType.Lilac, EnumFlowerColor.Plum) {
+	Lilac("Lilac", "syringa", "vulgaris", binnie.botany.genetics.EnumFlowerType.LILAC, EnumFlowerColor.Plum) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
 			flowerSpecies.setPH(EnumAcidity.ALKALINE);
@@ -359,7 +359,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 		protected void registerMutations() {
 		}
 	},
-	Hydrangea("Hydrangea", "hydrangea", "macrophylla", EnumFlowerType.Hydrangea, EnumFlowerColor.DeepSkyBlue) {
+	Hydrangea("Hydrangea", "hydrangea", "macrophylla", binnie.botany.genetics.EnumFlowerType.HYDRANGEA, EnumFlowerColor.DeepSkyBlue) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
 			flowerSpecies.setMoisture(EnumMoisture.DAMP);
@@ -379,7 +379,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			registerMutation(Peony, Bluet, 10);
 		}
 	},
-	Foxglove("Foxglove", "digitalis", "purpurea", EnumFlowerType.Foxglove, EnumFlowerColor.HotPink) {
+	Foxglove("Foxglove", "digitalis", "purpurea", binnie.botany.genetics.EnumFlowerType.FOXGLOVE, EnumFlowerColor.HotPink) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
 		}
@@ -400,7 +400,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			// vanilla
 		}
 	},
-	Zinnia("Zinnia", "zinnia", "elegans", EnumFlowerType.Zinnia, EnumFlowerColor.MediumVioletRed, EnumFlowerColor.Yellow) {
+	Zinnia("Zinnia", "zinnia", "elegans", binnie.botany.genetics.EnumFlowerType.ZINNIA, EnumFlowerColor.MediumVioletRed, EnumFlowerColor.Yellow) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
 		}
@@ -419,7 +419,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			Zinnia.registerMutation(Dahlia, Marigold, 5);
 		}
 	},
-	Chrysanthemum("Chrysanthemum", "chrysanthemum", "\u00ef?? grandiflorum", EnumFlowerType.Mums, EnumFlowerColor.Violet) {
+	Chrysanthemum("Chrysanthemum", "chrysanthemum", "\u00ef?? grandiflorum", binnie.botany.genetics.EnumFlowerType.MUMS, EnumFlowerColor.Violet) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
 		}
@@ -439,7 +439,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			registerMutation(Geranium, Rose, 10);
 		}
 	},
-	Marigold("Marigold", "calendula", "officinalis", EnumFlowerType.Marigold, EnumFlowerColor.Gold, EnumFlowerColor.DarkOrange) {
+	Marigold("Marigold", "calendula", "officinalis", binnie.botany.genetics.EnumFlowerType.MARIGOLD, EnumFlowerColor.Gold, EnumFlowerColor.DarkOrange) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
 			flowerSpecies.setTemperature(EnumTemperature.WARM);
@@ -459,7 +459,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			registerMutation(Daisy, Dandelion, 10);
 		}
 	},
-	Geranium("Geranium", "geranium", "maderense", EnumFlowerType.Geranium, EnumFlowerColor.DeepPink) {
+	Geranium("Geranium", "geranium", "maderense", binnie.botany.genetics.EnumFlowerType.GERANIUM, EnumFlowerColor.DeepPink) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
 			flowerSpecies.setTemperature(EnumTemperature.WARM);
@@ -480,7 +480,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			registerMutation(Tulip, Orchid, 15);
 		}
 	},
-	Azalea("Azalea", "rhododendrons", "aurigeranum", EnumFlowerType.Azalea, EnumFlowerColor.HotPink) {
+	Azalea("Azalea", "rhododendrons", "aurigeranum", binnie.botany.genetics.EnumFlowerType.AZALEA, EnumFlowerColor.HotPink) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
 			flowerSpecies.setPH(EnumAcidity.ACID);
@@ -495,7 +495,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			registerMutation(Orchid, Geranium, 5);
 		}
 	},
-	Primrose("Primrose", "primula", "vulgaris", EnumFlowerType.Primrose, EnumFlowerColor.Red, EnumFlowerColor.Gold) {
+	Primrose("Primrose", "primula", "vulgaris", binnie.botany.genetics.EnumFlowerType.PRIMROSE, EnumFlowerColor.Red, EnumFlowerColor.Gold) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
 			flowerSpecies.setPH(EnumAcidity.ACID);
@@ -513,7 +513,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			registerMutation(Chrysanthemum, Auricula, 5);
 		}
 	},
-	Aster("Aster", "aster", "amellus", EnumFlowerType.Aster, EnumFlowerColor.MediumPurple, EnumFlowerColor.Goldenrod) {
+	Aster("Aster", "aster", "amellus", binnie.botany.genetics.EnumFlowerType.ASTER, EnumFlowerColor.MediumPurple, EnumFlowerColor.Goldenrod) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
 		}
@@ -529,7 +529,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			registerMutation(Daisy, Tulip, 10);
 		}
 	},
-	Carnation("Carnation", "dianthus", "caryophyllus", EnumFlowerType.Carnation, EnumFlowerColor.Crimson, EnumFlowerColor.White) {
+	Carnation("Carnation", "dianthus", "caryophyllus", binnie.botany.genetics.EnumFlowerType.CARNATION, EnumFlowerColor.Crimson, EnumFlowerColor.White) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
 			flowerSpecies.setPH(EnumAcidity.ALKALINE);
@@ -547,7 +547,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			registerMutation(Dianthus, Rose, 5);
 		}
 	},
-	Lily("Lily", "lilium", "auratum", EnumFlowerType.Lily, EnumFlowerColor.Pink, EnumFlowerColor.Gold) {
+	Lily("Lily", "lilium", "auratum", binnie.botany.genetics.EnumFlowerType.LILY, EnumFlowerColor.Pink, EnumFlowerColor.Gold) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
 			flowerSpecies.setTemperature(EnumTemperature.WARM);
@@ -567,7 +567,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			registerMutation(Tulip, Chrysanthemum, 5);
 		}
 	},
-	Yarrow("Yarrow", "achillea", "millefolium", EnumFlowerType.Yarrow, EnumFlowerColor.Yellow) {
+	Yarrow("Yarrow", "achillea", "millefolium", binnie.botany.genetics.EnumFlowerType.YARROW, EnumFlowerColor.Yellow) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
 			flowerSpecies.setPH(EnumAcidity.ACID);
@@ -587,7 +587,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			registerMutation(Dandelion, Orchid, 10);
 		}
 	},
-	Petunia("Petunia", "petunia", "\u00ef?? atkinsiana", EnumFlowerType.Petunia, EnumFlowerColor.MediumVioletRed, EnumFlowerColor.Thistle) {
+	Petunia("Petunia", "petunia", "\u00ef?? atkinsiana", binnie.botany.genetics.EnumFlowerType.Petunia, EnumFlowerColor.MediumVioletRed, EnumFlowerColor.Thistle) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
 			flowerSpecies.setTemperature(EnumTemperature.WARM);
@@ -606,7 +606,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			registerMutation(Tulip, Dahlia, 5);
 		}
 	},
-	Agapanthus("Agapanthus", "agapanthus", "praecox", EnumFlowerType.Agapanthus, EnumFlowerColor.DeepSkyBlue) {
+	Agapanthus("Agapanthus", "agapanthus", "praecox", binnie.botany.genetics.EnumFlowerType.AGAPANTHUS, EnumFlowerColor.DeepSkyBlue) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
 			flowerSpecies.setTemperature(EnumTemperature.WARM);
@@ -626,7 +626,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			registerMutation(Allium, Geranium, 5);
 		}
 	},
-	Fuchsia("Fuchsia", "fuchsia", "magellanica", EnumFlowerType.Fuchsia, EnumFlowerColor.DeepPink, EnumFlowerColor.MediumOrchid) {
+	Fuchsia("Fuchsia", "fuchsia", "magellanica", binnie.botany.genetics.EnumFlowerType.FUCHSIA, EnumFlowerColor.DeepPink, EnumFlowerColor.MediumOrchid) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
 			flowerSpecies.setTemperature(EnumTemperature.WARM);
@@ -646,7 +646,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			registerMutation(Foxglove, Dahlia, 5);
 		}
 	},
-	Dianthus("Dianthus", "dianthus", "barbatus", EnumFlowerType.Dianthus, EnumFlowerColor.Crimson, EnumFlowerColor.HotPink) {
+	Dianthus("Dianthus", "dianthus", "barbatus", binnie.botany.genetics.EnumFlowerType.DIANTHUS, EnumFlowerColor.Crimson, EnumFlowerColor.HotPink) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
 			flowerSpecies.setPH(EnumAcidity.ALKALINE);
@@ -667,7 +667,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			registerMutation(Tulip, Poppy, 15);
 		}
 	},
-	Forget("Forget-me-nots", "myosotis", "arvensis", EnumFlowerType.Forget, EnumFlowerColor.LightSteelBlue) {
+	Forget("Forget-me-nots", "myosotis", "arvensis", binnie.botany.genetics.EnumFlowerType.FORGET, EnumFlowerColor.LightSteelBlue) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
 			flowerSpecies.setPH(EnumAcidity.ACID);
@@ -686,7 +686,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			registerMutation(Orchid, Bluet, 10);
 		}
 	},
-	Anemone("Anemone", "anemone", "coronaria", EnumFlowerType.Anemone, EnumFlowerColor.Red, EnumFlowerColor.MistyRose) {
+	Anemone("Anemone", "anemone", "coronaria", binnie.botany.genetics.EnumFlowerType.ANEMONE, EnumFlowerColor.Red, EnumFlowerColor.MistyRose) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
 		}
@@ -705,7 +705,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			FlowerDefinition.Anemone.registerMutation(FlowerDefinition.Aquilegia, FlowerDefinition.Rose, 5);
 		}
 	},
-	Aquilegia("Aquilegia", "aquilegia", "vulgaris", EnumFlowerType.Aquilegia, EnumFlowerColor.SlateBlue, EnumFlowerColor.Thistle) {
+	Aquilegia("Aquilegia", "aquilegia", "vulgaris", binnie.botany.genetics.EnumFlowerType.AQUILEGIA, EnumFlowerColor.SlateBlue, EnumFlowerColor.Thistle) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
 		}
@@ -721,7 +721,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			registerMutation(Iris, Poppy, 5);
 		}
 	},
-	Edelweiss("Edelweiss", "leontopodium", "alpinum", EnumFlowerType.Edelweiss, EnumFlowerColor.White, EnumFlowerColor.Khaki) {
+	Edelweiss("Edelweiss", "leontopodium", "alpinum", binnie.botany.genetics.EnumFlowerType.EDELWEISS, EnumFlowerColor.White, EnumFlowerColor.Khaki) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
 			flowerSpecies.setPH(EnumAcidity.ALKALINE);
@@ -742,7 +742,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			FlowerDefinition.Edelweiss.registerMutation(FlowerDefinition.Peony, FlowerDefinition.Bluet, 5);
 		}
 	},
-	Scabious("Scabious", "scabiosa", "columbaria", EnumFlowerType.Scabious, EnumFlowerColor.RoyalBlue) {
+	Scabious("Scabious", "scabiosa", "columbaria", binnie.botany.genetics.EnumFlowerType.SCABIOUS, EnumFlowerColor.RoyalBlue) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
 		}
@@ -761,7 +761,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			registerMutation(Allium, Cornflower, 5);
 		}
 	},
-	Coneflower("Coneflower", "echinacea", "purpurea", EnumFlowerType.Coneflower, EnumFlowerColor.Violet, EnumFlowerColor.DarkOrange) {
+	Coneflower("Coneflower", "echinacea", "purpurea", binnie.botany.genetics.EnumFlowerType.CONEFLOWER, EnumFlowerColor.Violet, EnumFlowerColor.DarkOrange) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
 		}
@@ -778,7 +778,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			registerMutation(Tulip, Cornflower, 5);
 		}
 	},
-	Gaillardia("Gaillardia", "gaillardia", "aristata", EnumFlowerType.Gaillardia, EnumFlowerColor.DarkOrange, EnumFlowerColor.Yellow) {
+	Gaillardia("Gaillardia", "gaillardia", "aristata", binnie.botany.genetics.EnumFlowerType.GAILLARDIA, EnumFlowerColor.DarkOrange, EnumFlowerColor.Yellow) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
 			flowerSpecies.setMoisture(EnumMoisture.DAMP);
@@ -800,7 +800,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			registerMutation(Dandelion, Marigold, 5);
 		}
 	},
-	Auricula("Auricula", "primula", "auricula", EnumFlowerType.Auricula, EnumFlowerColor.Red, EnumFlowerColor.Yellow) {
+	Auricula("Auricula", "primula", "auricula", binnie.botany.genetics.EnumFlowerType.AURICULA, EnumFlowerColor.Red, EnumFlowerColor.Yellow) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
 			flowerSpecies.setPH(EnumAcidity.ACID);
@@ -820,7 +820,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			registerMutation(Poppy, Geranium, 10);
 		}
 	},
-	Camellia("Camellia", "camellia", "japonica", EnumFlowerType.Camellia, EnumFlowerColor.Crimson) {
+	Camellia("Camellia", "camellia", "japonica", binnie.botany.genetics.EnumFlowerType.CAMELLIA, EnumFlowerColor.Crimson) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
 			flowerSpecies.setPH(EnumAcidity.ACID);
@@ -840,7 +840,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			registerMutation(Hydrangea, Rose, 5);
 		}
 	},
-	Goldenrod("Goldenrod", "solidago", "canadensis", EnumFlowerType.Goldenrod, EnumFlowerColor.Gold) {
+	Goldenrod("Goldenrod", "solidago", "canadensis", binnie.botany.genetics.EnumFlowerType.GOLDENROD, EnumFlowerColor.Gold) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
 		}
@@ -858,7 +858,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			registerMutation(Lilac, Marigold, 10);
 		}
 	},
-	Althea("Althea", "althaea", "officinalis", EnumFlowerType.Althea, EnumFlowerColor.Thistle, EnumFlowerColor.MediumOrchid) {
+	Althea("Althea", "althaea", "officinalis", binnie.botany.genetics.EnumFlowerType.ALTHEA, EnumFlowerColor.Thistle, EnumFlowerColor.MediumOrchid) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
 			flowerSpecies.setTemperature(EnumTemperature.WARM);
@@ -879,7 +879,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			registerMutation(Hydrangea, Iris, 5);
 		}
 	},
-	Penstemon("Penstemon", "penstemon", "digitalis", EnumFlowerType.Penstemon, EnumFlowerColor.MediumOrchid, EnumFlowerColor.Thistle) {
+	Penstemon("Penstemon", "penstemon", "digitalis", binnie.botany.genetics.EnumFlowerType.PENSTEMON, EnumFlowerColor.MediumOrchid, EnumFlowerColor.Thistle) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
 			flowerSpecies.setMoisture(EnumMoisture.DRY);
@@ -901,7 +901,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			registerMutation(Peony, Lilac, 5);
 		}
 	},
-	Delphinium("Delphinium", "delphinium", "staphisagria", EnumFlowerType.Delphinium, EnumFlowerColor.DarkSlateBlue) {
+	Delphinium("Delphinium", "delphinium", "staphisagria", binnie.botany.genetics.EnumFlowerType.DELPHINIUM, EnumFlowerColor.DarkSlateBlue) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
 			flowerSpecies.setMoisture(EnumMoisture.DAMP);
@@ -922,7 +922,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			registerMutation(Lilac, Bluet, 5);
 		}
 	},
-	Hollyhock("Hollyhock", "Alcea", "rosea", EnumFlowerType.Hollyhock, EnumFlowerColor.Black, EnumFlowerColor.Gold) {
+	Hollyhock("Hollyhock", "Alcea", "rosea", binnie.botany.genetics.EnumFlowerType.HOLLYHOCK, EnumFlowerColor.Black, EnumFlowerColor.Gold) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
 		}
@@ -943,7 +943,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 
 	public static FlowerDefinition[] VALUES = values();
 	private final IAlleleFlowerSpecies species;
-	IFlowerType<EnumFlowerType> type;
+	IFlowerType<binnie.botany.genetics.EnumFlowerType> type;
 	String name;
 	String binomial;
 	String branchName;
@@ -954,19 +954,19 @@ public enum FlowerDefinition implements IFlowerDefinition {
 	private IAllele[] template;
 	private IFlowerGenome genome;
 
-	FlowerDefinition(String name, String branch, String binomial, IFlowerType<EnumFlowerType> type, EnumFlowerColor colour) {
+	FlowerDefinition(String name, String branch, String binomial, IFlowerType<binnie.botany.genetics.EnumFlowerType> type, EnumFlowerColor colour) {
 		this(name, branch, binomial, type, false, colour, colour);
 	}
 
-	FlowerDefinition(String name, String branch, String binomial, IFlowerType<EnumFlowerType> type, EnumFlowerColor primaryColor, EnumFlowerColor secondaryColor) {
+	FlowerDefinition(String name, String branch, String binomial, IFlowerType<binnie.botany.genetics.EnumFlowerType> type, EnumFlowerColor primaryColor, EnumFlowerColor secondaryColor) {
 		this(name, branch, binomial, type, true, primaryColor, secondaryColor);
 	}
 
-	FlowerDefinition(String name, String branch, String binomial, IFlowerType<EnumFlowerType> type, boolean isDominant, EnumFlowerColor colour) {
+	FlowerDefinition(String name, String branch, String binomial, IFlowerType<binnie.botany.genetics.EnumFlowerType> type, boolean isDominant, EnumFlowerColor colour) {
 		this(name, branch, binomial, type, isDominant, colour, colour);
 	}
 
-	FlowerDefinition(String name, String branch, String binomial, IFlowerType<EnumFlowerType> flowerType, boolean isDominant, EnumFlowerColor primaryColor, EnumFlowerColor secondaryColor) {
+	FlowerDefinition(String name, String branch, String binomial, IFlowerType<binnie.botany.genetics.EnumFlowerType> flowerType, boolean isDominant, EnumFlowerColor primaryColor, EnumFlowerColor secondaryColor) {
 		String uid = Constants.BOTANY_MOD_ID + ".flower" + this;
 		String unlocalizedDescription = "botany.description.flower" + this;
 		String unlocalizedName = "botany.flowers.species." + name;
@@ -979,7 +979,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 		this.primaryColor = primaryColor;
 		this.secondaryColor = secondaryColor;
 
-		IAlleleFlowerSpeciesBuilder speciesBuilder = FlowerManager.flowerFactory.createSpecies(uid, unlocalizedName, "Binnie's Mod Team", unlocalizedDescription, isDominant, getBranch(), binomial, flowerType);
+		IAlleleFlowerSpeciesBuilder speciesBuilder = BotanyAPI.flowerFactory.createSpecies(uid, unlocalizedName, "Binnie's Mod Team", unlocalizedDescription, isDominant, getBranch(), binomial, flowerType);
 		setSpeciesProperties(speciesBuilder);
 		species = speciesBuilder.build();
 		if (this.branch != null) {
@@ -1005,12 +1005,12 @@ public enum FlowerDefinition implements IFlowerDefinition {
 	}
 
 	public static void preInitFlowers() {
-		MinecraftForge.EVENT_BUS.post(new AlleleSpeciesRegisterEvent(FlowerManager.flowerRoot, IAlleleFlowerSpecies.class));
+		MinecraftForge.EVENT_BUS.post(new AlleleSpeciesRegisterEvent(BotanyAPI.flowerRoot, IAlleleFlowerSpecies.class));
 		for (FlowerDefinition def : values()) {
 			@SuppressWarnings("unchecked")
-			IFlowerType<EnumFlowerType> type = def.species.getType();
-			if (EnumFlowerType.highestSection < type.getSections()) {
-				EnumFlowerType.highestSection = type.getSections();
+			IFlowerType<binnie.botany.genetics.EnumFlowerType> type = def.species.getType();
+			if (binnie.botany.genetics.EnumFlowerType.highestSection < type.getSections()) {
+				binnie.botany.genetics.EnumFlowerType.highestSection = type.getSections();
 			}
 		}
 	}
@@ -1106,7 +1106,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 		markAllelesAsValid(EnumBeeChromosome.HUMIDITY_TOLERANCE, EnumFlowerChromosome.PH_TOLERANCE);
 		markAllelesAsValid(EnumTreeChromosome.SAPPINESS, EnumFlowerChromosome.SAPPINESS);
 
-		template = Arrays.copyOf(FlowerTemplates.getDefaultTemplate(), EnumFlowerChromosome.values().length);
+		template = Arrays.copyOf(BotanyAPI.flowerRoot.getDefaultTemplate(), EnumFlowerChromosome.values().length);
 		AlleleHelper.getInstance().set(template, EnumFlowerChromosome.SPECIES, species);
 		AlleleHelper.getInstance().set(template, EnumFlowerChromosome.TEMPERATURE_TOLERANCE, EnumAllele.Tolerance.BOTH_1);
 		AlleleHelper.getInstance().set(template, EnumFlowerChromosome.PRIMARY, primaryColor.getFlowerColorAllele());
@@ -1122,6 +1122,6 @@ public enum FlowerDefinition implements IFlowerDefinition {
 	}
 
 	protected final IFlowerMutationBuilder registerMutation(FlowerDefinition parent1, FlowerDefinition parent2, int chance) {
-		return FlowerManager.flowerFactory.createMutation(parent1.species, parent2.species, getTemplate(), chance);
+		return BotanyAPI.flowerFactory.createMutation(parent1.species, parent2.species, getTemplate(), chance);
 	}
 }

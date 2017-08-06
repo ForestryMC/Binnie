@@ -16,14 +16,15 @@ import forestry.api.genetics.ISpeciesRoot;
 import forestry.core.genetics.Genome;
 
 import binnie.Binnie;
-import binnie.botany.api.EnumAcidity;
-import binnie.botany.api.EnumFlowerChromosome;
-import binnie.botany.api.EnumMoisture;
-import binnie.botany.api.FlowerManager;
-import binnie.botany.api.IAlleleFlowerSpecies;
-import binnie.botany.api.IFlowerGenome;
-import binnie.botany.api.IFlowerType;
+import binnie.botany.api.BotanyAPI;
+import binnie.botany.api.gardening.EnumAcidity;
+import binnie.botany.api.gardening.EnumMoisture;
+import binnie.botany.api.genetics.EnumFlowerChromosome;
+import binnie.botany.api.genetics.IAlleleFlowerSpecies;
+import binnie.botany.api.genetics.IFlowerGenome;
+import binnie.botany.api.genetics.IFlowerType;
 import binnie.botany.core.BotanyCore;
+import binnie.botany.genetics.allele.AlleleFlowerColor;
 
 public class FlowerGenome extends Genome implements IFlowerGenome {
 	public FlowerGenome(NBTTagCompound nbttagcompound) {
@@ -36,15 +37,15 @@ public class FlowerGenome extends Genome implements IFlowerGenome {
 
 	@Nullable
 	public static IAlleleFlowerSpecies getSpecies(ItemStack itemStack) {
-		if (!FlowerManager.flowerRoot.isMember(itemStack)) {
+		if (!BotanyAPI.flowerRoot.isMember(itemStack)) {
 			return null;
 		}
 
-		IAlleleSpecies species = getSpeciesDirectly(FlowerManager.flowerRoot, itemStack);
+		IAlleleSpecies species = getSpeciesDirectly(BotanyAPI.flowerRoot, itemStack);
 		if (species instanceof IAlleleFlowerSpecies) {
 			return (IAlleleFlowerSpecies) species;
 		}
-		return (IAlleleFlowerSpecies) getActiveAllele(itemStack, EnumFlowerChromosome.SPECIES, FlowerManager.flowerRoot);
+		return (IAlleleFlowerSpecies) getActiveAllele(itemStack, EnumFlowerChromosome.SPECIES, BotanyAPI.flowerRoot);
 	}
 
 	@Override
@@ -63,18 +64,18 @@ public class FlowerGenome extends Genome implements IFlowerGenome {
 	}
 
 	@Override
-	public FlowerColorAllele getPrimaryColor() {
-		return ((FlowerColorAllele) getActiveAllele(EnumFlowerChromosome.PRIMARY));
+	public AlleleFlowerColor getPrimaryColor() {
+		return ((AlleleFlowerColor) getActiveAllele(EnumFlowerChromosome.PRIMARY));
 	}
 
 	@Override
-	public FlowerColorAllele getSecondaryColor() {
-		return ((FlowerColorAllele) getActiveAllele(EnumFlowerChromosome.SECONDARY));
+	public AlleleFlowerColor getSecondaryColor() {
+		return ((AlleleFlowerColor) getActiveAllele(EnumFlowerChromosome.SECONDARY));
 	}
 
 	@Override
-	public FlowerColorAllele getStemColor() {
-		return ((FlowerColorAllele) getActiveAllele(EnumFlowerChromosome.STEM));
+	public AlleleFlowerColor getStemColor() {
+		return ((AlleleFlowerColor) getActiveAllele(EnumFlowerChromosome.STEM));
 	}
 
 	@Override

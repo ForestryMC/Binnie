@@ -20,7 +20,7 @@ import forestry.api.genetics.ISpeciesRoot;
 import forestry.api.lepidopterology.IButterfly;
 
 import binnie.Binnie;
-import binnie.botany.api.IFlower;
+import binnie.botany.api.genetics.IFlower;
 import binnie.core.AbstractMod;
 import binnie.core.genetics.BreedingSystem;
 import binnie.core.gui.IWidget;
@@ -138,9 +138,6 @@ public class WindowAnalyst extends Window {
 	@SideOnly(Side.CLIENT)
 	public void initialiseClient() {
 		setTitle(isDatabase ? (isMaster ? I18N.localise("genetics.gui.registry.master.title") : I18N.localise("genetics.gui.registry.title")) : I18N.localise("genetics.gui.analyst.title"));
-		BreedingSystem system = Binnie.GENETICS.beeBreedingSystem;
-		IIndividual ind = system.getDefaultIndividual();
-		ItemStack stack = system.getSpeciesRoot().getMemberStack(ind, system.getDefaultType());
 		getWindowInventory().createSlot(0);
 		baseWidget = new Widget(this);
 		int x = 16;
@@ -151,9 +148,9 @@ public class WindowAnalyst extends Window {
 				x += 22;
 			}
 		} else {
-			new ControlSlot.Builder(this, x, y + 1).assign(InventoryType.Window, 0);
+			new ControlSlot.Builder(this, x, y + 1).assign(InventoryType.WINDOW, 0);
 			x += 22;
-			new ControlSlot.Builder(this, x, y + 1).assign(InventoryType.Window, 1);
+			new ControlSlot.Builder(this, x, y + 1).assign(InventoryType.WINDOW, 1);
 			x += 26;
 			setupValidators();
 		}

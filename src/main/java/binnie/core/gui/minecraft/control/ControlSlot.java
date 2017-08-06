@@ -218,7 +218,7 @@ public class ControlSlot extends ControlSlotBase {
 		}
 
 		public ControlSlot assign(final int index) {
-			return assign(InventoryType.Machine, index);
+			return assign(InventoryType.MACHINE, index);
 		}
 
 		public ControlSlot assign(final InventoryType inventory, final int index) {
