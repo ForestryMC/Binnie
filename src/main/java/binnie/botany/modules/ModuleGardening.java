@@ -1,5 +1,6 @@
 package binnie.botany.modules;
 
+import java.util.Locale;
 import java.util.Map;
 
 import net.minecraft.block.Block;
@@ -15,13 +16,9 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.oredict.OreDictionary;
-import net.minecraftforge.oredict.RecipeSorter;
-import net.minecraftforge.oredict.ShapedOreRecipe;
-import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import binnie.Constants;
 import binnie.botany.Botany;
@@ -40,14 +37,13 @@ import binnie.botany.items.ItemSoil;
 import binnie.botany.items.ItemSoilMeter;
 import binnie.botany.items.ItemTrowel;
 import binnie.botany.items.ItemWeed;
-import binnie.botany.recipes.CeramicTileRecipe;
-import binnie.botany.recipes.PigmentRecipe;
 import binnie.botany.tile.TileCeramic;
 import binnie.botany.tile.TileCeramicBrick;
 import binnie.core.BinnieCore;
 import binnie.core.Mods;
 import binnie.core.item.ItemMisc;
 import binnie.core.util.OreDictionaryUtil;
+import binnie.core.util.RecipeUtil;
 import binnie.modules.BinnieModule;
 import binnie.modules.Module;
 
@@ -69,8 +65,7 @@ public class ModuleGardening extends Module {
 	public static ItemMisc misc;
 
 	@Override
-	public void preInit() {
-		MinecraftForge.EVENT_BUS.register(this);
+	public void registerItemsAndBlocks() {
 		plant = new BlockPlant();
 		soil = new BlockSoil(EnumSoilType.SOIL, "soil", false);
 		loam = new BlockSoil(EnumSoilType.LOAM, "loam", false);
@@ -117,64 +112,64 @@ public class ModuleGardening extends Module {
 	}
 
 	@Override
-	public void init() {
-		RecipeSorter.register("botany:ceramictile", CeramicTileRecipe.class, RecipeSorter.Category.SHAPED, "");
-		RecipeSorter.register("botany:pigment", PigmentRecipe.class, RecipeSorter.Category.SHAPED, "");
+	public void preInit() {
+		MinecraftForge.EVENT_BUS.register(this);
 	}
 
 	@Override
 	public void postInit() {
+		RecipeUtil recipeUtil = new RecipeUtil(Constants.BOTANY_MOD_ID);
 		IGardeningManager gardening = BotanyCore.getGardening();
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(
+		recipeUtil.addRecipe("trowel_wood",
 				trowelWood,
 				"d  ", " x ", "  s",
 				'd', Blocks.DIRT,
 				's', "stickWood",
-				'x', "plankWood")
+				'x', "plankWood"
 		);
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(
+		recipeUtil.addRecipe("trowel_stone",
 				trowelStone,
 				"d  ", " x ", "  s",
 				'd', Blocks.DIRT,
 				's', "stickWood",
 				'x', "cobblestone"
-		));
+		);
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(
+		recipeUtil.addRecipe("trowel_iron",
 				trowelIron,
 				"d  ", " x ", "  s",
 				'd', Blocks.DIRT,
 				's', "stickWood",
 				'x', "ingotIron"
-		));
+		);
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(
+		recipeUtil.addRecipe("trowel_gold",
 				trowelGold,
 				"d  ", " x ", "  s",
 				'd', Blocks.DIRT,
 				's', "stickWood",
 				'x', "ingotGold"
-		));
+		);
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(
+		recipeUtil.addRecipe("trowel_diamond",
 				trowelDiamond,
 				"d  ", " x ", "  s",
 				'd', Blocks.DIRT,
 				's', "stickWood",
 				'x', "gemDiamond"
-		));
+		);
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(
+		recipeUtil.addRecipe("soil_meter",
 				soilMeter,
 				" gg", " rg", "i  ",
 				'g', "ingotGold",
 				'r', "dustRedstone",
 				'i', "ingotIron"
-		));
+		);
 
-		GameRegistry.addShapelessRecipe(
+		recipeUtil.addShapelessRecipe("weed_killer",
 				BotanyItems.WEEDKILLER.get(4),
 				new ItemStack(Items.SPIDER_EYE),
 				new ItemStack(Items.WHEAT_SEEDS),
@@ -182,35 +177,35 @@ public class ModuleGardening extends Module {
 				new ItemStack(Items.WHEAT_SEEDS)
 		);
 
-		GameRegistry.addShapelessRecipe(
+		recipeUtil.addShapelessRecipe("powder_ash",
 				BotanyItems.POWDER_ASH.get(4),
 				Mods.Forestry.stack("ash")
 		);
 
-		GameRegistry.addShapelessRecipe(
+		recipeUtil.addShapelessRecipe("powder_mulch",
 				BotanyItems.POWDER_MULCH.get(4),
 				Mods.Forestry.stack("mulch")
 		);
 
-		GameRegistry.addShapelessRecipe(
+		recipeUtil.addShapelessRecipe("powder_compost",
 				BotanyItems.POWDER_COMPOST.get(4),
 				Mods.Forestry.stack("fertilizer_bio")
 		);
 
-		GameRegistry.addShapelessRecipe(
+		recipeUtil.addShapelessRecipe("powder_fertilizer",
 				BotanyItems.POWDER_FERTILISER.get(4),
 				Mods.Forestry.stack("fertilizer_compound")
 		);
 
-		GameRegistry.addShapelessRecipe(
+		recipeUtil.addShapelessRecipe("powder_pulp",
 				BotanyItems.POWDER_PULP.get(4),
 				Mods.Forestry.stack("wood_pulp")
 		);
 
-		GameRegistry.addRecipe(new ShapelessOreRecipe(
+		recipeUtil.addShapelessRecipe("pigment_black",
 				BotanyItems.POWDER_SULPHUR.get(4),
 				"dustSulphur"
-		));
+		);
 
 		gardening.registerFertiliser(EnumFertiliserType.ACID, BotanyItems.POWDER_SULPHUR.get(1), 1);
 		gardening.registerFertiliser(EnumFertiliserType.ACID, BotanyItems.POWDER_MULCH.get(1), 1);
@@ -229,7 +224,7 @@ public class ModuleGardening extends Module {
 		gardening.registerFertiliser(EnumFertiliserType.NUTRIENT, Mods.Forestry.stack("fertilizer_bio"), 2);
 		gardening.registerFertiliser(EnumFertiliserType.NUTRIENT, Mods.Forestry.stack("fertilizer_compound"), 2);
 
-		addFertiliserRecipes();
+		addFertiliserRecipes(recipeUtil);
 	}
 
 	private ItemStack getStack(EnumSoilType type, EnumAcidity pH, EnumMoisture moisture, boolean weedkiller) {
@@ -237,7 +232,7 @@ public class ModuleGardening extends Module {
 		return new ItemStack(gardeningManager.getSoilBlock(type, weedkiller), 1, BlockSoil.getMeta(pH, moisture));
 	}
 
-	private void addFertiliserRecipes() {
+	private void addFertiliserRecipes(RecipeUtil recipeUtil) {
 		IGardeningManager gardening = BotanyCore.getGardening();
 		for (EnumMoisture moisture : EnumMoisture.values()) {
 			for (EnumAcidity acidity : EnumAcidity.values()) {
@@ -271,7 +266,8 @@ public class ModuleGardening extends Module {
 											stacks[i] = start;
 										}
 										stacks[numOfBlocks] = stack.copy();
-										GameRegistry.addShapelessRecipe(end, stacks);
+										String recipeName = fertiliserType.name().toLowerCase(Locale.ENGLISH) + "_fertiliser_moisture" + moisture + "_ph" + pH + "_type" + type + "_strength" + strength;
+										recipeUtil.addShapelessRecipe(recipeName, end, stacks);
 									}
 									numOfBlocks /= 2;
 								}
@@ -280,7 +276,8 @@ public class ModuleGardening extends Module {
 					}
 					ItemStack start = getStack(type, acidity, moisture, false);
 					ItemStack end = getStack(type, acidity, moisture, true);
-					GameRegistry.addRecipe(new ShapelessOreRecipe(end, start, start, start, start, "weedkiller"));
+					String recipeName = "weedkiller_moisture" + moisture + "_ph" + pH + "_type" + type;
+					recipeUtil.addShapelessRecipe(recipeName, end, start, start, start, start, "weedkiller");
 				}
 			}
 		}

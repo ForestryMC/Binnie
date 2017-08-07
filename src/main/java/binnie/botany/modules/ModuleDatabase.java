@@ -23,7 +23,7 @@ public class ModuleDatabase extends Module {
 	public static ItemDatabaseBotany database;
 
 	@Override
-	public void preInit() {
+	public void registerItemsAndBlocks() {
 		database = new ItemDatabaseBotany();
 		Botany.proxy.registerItem(database);
 	}

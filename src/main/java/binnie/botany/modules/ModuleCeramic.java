@@ -5,8 +5,9 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 import net.minecraftforge.oredict.OreDictionary;
-import net.minecraftforge.oredict.ShapelessOreRecipe;
+import net.minecraftforge.oredict.RecipeSorter;
 
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import binnie.Constants;
@@ -28,6 +29,7 @@ import binnie.botany.recipes.CeramicTileRecipe;
 import binnie.botany.recipes.PigmentRecipe;
 import binnie.core.block.TileEntityMetadata;
 import binnie.core.item.ItemMisc;
+import binnie.core.util.RecipeUtil;
 import binnie.extratrees.carpentry.ItemDesign;
 import binnie.modules.BinnieModule;
 import binnie.modules.Module;
@@ -68,17 +70,23 @@ public class ModuleCeramic extends Module {
 	}
 
 	@Override
+	public void init() {
+		RecipeSorter.register("botany:ceramictile", CeramicTileRecipe.class, RecipeSorter.Category.SHAPED, "");
+		RecipeSorter.register("botany:pigment", PigmentRecipe.class, RecipeSorter.Category.SHAPED, "");
+	}
+
+	@Override
 	public void postInit() {
-		GameRegistry.addRecipe(new CeramicTileRecipe());
+		RecipeUtil recipeUtil = new RecipeUtil(Constants.BOTANY_MOD_ID);
+		ForgeRegistries.RECIPES.register(new CeramicTileRecipe());
 
 		if(ModuleManager.isEnabled(Constants.BOTANY_MOD_ID, BotanyModuleUIDs.GARDENING)){
-			GameRegistry.addShapelessRecipe(CeramicItems.MORTAR.get(1), BotanyItems.MORTAR.get(1));
+			recipeUtil.addShapelessRecipe("mortar_old", CeramicItems.MORTAR.get(1), BotanyItems.MORTAR.get(1));
 		}
 
-		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(pigment, 2, EnumFlowerColor.Black.ordinal()), "pigment", "pigment", "dyeBlack"
-		));
+		recipeUtil.addShapelessRecipe("pigment_black", new ItemStack(pigment, 2, EnumFlowerColor.Black.ordinal()), "pigment", "pigment", "dyeBlack");
 
-		GameRegistry.addRecipe(CeramicItems.MORTAR.get(6),
+		recipeUtil.addRecipe("mortar", CeramicItems.MORTAR.get(6),
 			" c ",
 			"cgc",
 			" c ",
@@ -87,12 +95,12 @@ public class ModuleCeramic extends Module {
 		for (EnumFlowerColor c : EnumFlowerColor.values()) {
 			ItemStack clay = new ItemStack(ModuleCeramic.clay, 1, c.ordinal());
 			ItemStack pigment = new ItemStack(ModuleCeramic.pigment, 1, c.ordinal());
-			GameRegistry.addShapelessRecipe(clay, Items.CLAY_BALL, Items.CLAY_BALL, Items.CLAY_BALL, pigment);
+			recipeUtil.addShapelessRecipe("clay_" + c.getIdent(), clay, Items.CLAY_BALL, Items.CLAY_BALL, Items.CLAY_BALL, pigment);
 			GameRegistry.addSmelting(clay, TileEntityMetadata.getItemStack(ceramic, c.ordinal()), 0.0f);
 			ItemStack glass = TileEntityMetadata.getItemStack(stained, c.ordinal());
 			glass.setCount(4);
 
-			GameRegistry.addShapedRecipe(
+			recipeUtil.addRecipe("mortar_" + c.getIdent(),
 				glass,
 				" g ",
 				"gpg",
@@ -101,6 +109,6 @@ public class ModuleCeramic extends Module {
 				'p', pigment
 			);
 		}
-		GameRegistry.addRecipe(new PigmentRecipe());
+		ForgeRegistries.RECIPES.register(new PigmentRecipe());
 	}
 }

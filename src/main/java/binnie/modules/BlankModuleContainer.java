@@ -26,11 +26,6 @@ public abstract class BlankModuleContainer extends AbstractMod implements IModul
 		this.unloadedModules = new LinkedHashSet<>();
 		this.enabledModules = new LinkedHashSet<>();
 		this.disabledModules = new LinkedHashSet<>();
-	}
-
-	@Override
-	public void preInit() {
-		super.preInit();
 		configFolder = new File(Loader.instance().getConfigDir(), "forestry/" + getModID());
 	}
 

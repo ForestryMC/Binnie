@@ -5,6 +5,9 @@ import java.util.Locale;
 
 import net.minecraft.item.ItemStack;
 
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import binnie.botany.modules.ModuleGardening;
 import binnie.core.item.IItemMiscProvider;
 import binnie.core.util.I18N;
@@ -26,6 +29,7 @@ public enum BotanyItems implements IItemMiscProvider {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void addInformation(List<String> tooltip) {
 		if(this == MORTAR){
 			tooltip.add(I18N.localise("item.botany.mortar.tooltip"));

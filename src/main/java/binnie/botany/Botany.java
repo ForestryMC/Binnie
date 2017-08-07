@@ -40,7 +40,7 @@ public class Botany extends BlankModuleContainer {
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent evt) {
 		preInit();
-		ModuleManager.register(evt, this);
+		ModuleManager.runRegisterItemsAndBlocks(this);
 		ModuleManager.runPreInit(evt, this);
 		getProxy().registerModels();
 	}

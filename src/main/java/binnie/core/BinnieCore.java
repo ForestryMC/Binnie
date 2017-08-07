@@ -51,6 +51,7 @@ import binnie.core.network.IPacketID;
 import binnie.core.proxy.BinnieProxy;
 import binnie.core.proxy.IBinnieProxy;
 import binnie.core.triggers.ModuleTrigger;
+import binnie.modules.ModuleManager;
 
 @Mod(
 	modid = Constants.CORE_MOD_ID,
@@ -160,6 +161,7 @@ public final class BinnieCore extends AbstractMod {
 
 	@Mod.EventHandler
 	public void preInit(final FMLPreInitializationEvent evt) {
+		ModuleManager.loadModules(evt);
 		MinecraftForge.EVENT_BUS.register(Binnie.LIQUID);
 		Binnie.CONFIGURATION.registerConfiguration(ConfigurationMods.class, this);
 		for (FluidContainerType container : FluidContainerType.getBinnieContainers()) {

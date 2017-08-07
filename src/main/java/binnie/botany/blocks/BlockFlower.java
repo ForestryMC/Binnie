@@ -131,19 +131,7 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 				return FULL_BLOCK_AABB;
 			}
 		}
-		return FLOWER_BLOCK_AABB.move(getOffset(state, source, pos));
-	}
-
-	@Override
-	public AxisAlignedBB getSelectedBoundingBox(IBlockState state, World world, BlockPos pos) {
-		TileEntity tile = world.getTileEntity(pos);
-		if (tile instanceof TileEntityFlower) {
-			TileEntityFlower flower = (TileEntityFlower) tile;
-			if (flower.getType().getSections() > 1) {
-				return FULL_BLOCK_AABB.offset(pos);
-			}
-		}
-		return FLOWER_BLOCK_AABB.offset(pos).move(getOffset(state, world, pos));
+		return FLOWER_BLOCK_AABB.offset(getOffset(state, source, pos));
 	}
 
 	@Override

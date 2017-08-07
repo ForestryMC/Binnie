@@ -7,6 +7,9 @@ import net.minecraft.item.ItemStack;
 
 import net.minecraftforge.oredict.OreDictionary;
 
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import binnie.extrabees.ExtraBees;
 
 public enum ExtraBeeItems implements IEBItemMiscProvider {
@@ -95,6 +98,7 @@ public enum ExtraBeeItems implements IEBItemMiscProvider {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void addInformation(final List<String> tooltip) {
 	}
 

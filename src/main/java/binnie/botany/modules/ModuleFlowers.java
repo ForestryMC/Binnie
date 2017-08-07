@@ -25,11 +25,11 @@ import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+import forestry.api.apiculture.FlowerManager;
 import forestry.api.core.ForestryAPI;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.storage.BackpackManager;
 import forestry.api.storage.IBackpackInterface;
-import forestry.core.recipes.RecipeUtil;
 import forestry.storage.BackpackDefinition;
 
 import binnie.Constants;
@@ -49,6 +49,7 @@ import binnie.botany.genetics.allele.AlleleEffectNone;
 import binnie.botany.items.ItemFlowerGE;
 import binnie.botany.tile.TileEntityFlower;
 import binnie.core.BinnieCore;
+import binnie.core.util.RecipeUtil;
 import binnie.modules.BinnieModule;
 import binnie.modules.Module;
 
@@ -112,8 +113,9 @@ public class ModuleFlowers extends Module {
 
 	@Override
 	public void postInit() {
-		forestry.api.apiculture.FlowerManager.flowerRegistry.registerAcceptableFlower(flower, "flowersVanilla");
-		RecipeUtil.addRecipe(botanistBackpack,
+		RecipeUtil recipeUtil = new RecipeUtil(Constants.GENETICS_MOD_ID);
+		FlowerManager.flowerRegistry.registerAcceptableFlower(flower, "flowersVanilla");
+		recipeUtil.addRecipe("botanist_backpack", botanistBackpack,
 			"X#X",
 			"VYZ",
 			"X#X",

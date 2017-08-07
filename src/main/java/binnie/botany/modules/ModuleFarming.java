@@ -7,15 +7,16 @@ import java.util.Set;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 
-import net.minecraftforge.fml.common.registry.GameRegistry;
-
 import binnie.Constants;
 import binnie.botany.Botany;
 import binnie.botany.api.gardening.EnumAcidity;
 import binnie.botany.api.gardening.EnumMoisture;
 import binnie.botany.farming.CircuitGarden;
+import binnie.botany.items.EnumTubeInsulate;
+import binnie.botany.items.EnumTubeMaterial;
 import binnie.botany.items.ItemInsulatedTube;
 import binnie.core.Mods;
+import binnie.core.util.RecipeUtil;
 import binnie.modules.BinnieModule;
 import binnie.modules.Module;
 
@@ -29,7 +30,7 @@ public class ModuleFarming extends Module {
 	}
 
 	@Override
-	public void preInit() {
+	public void registerItemsAndBlocks() {
 		insulatedTube = new ItemInsulatedTube();
 		Botany.proxy.registerItem(insulatedTube);
 	}
@@ -65,12 +66,14 @@ public class ModuleFarming extends Module {
 
 	@Override
 	public void postInit() {
-		for (int mat = 0; mat < 4; ++mat) {
-			for (int insulate = 0; insulate < 6; ++insulate) {
-				ItemStack tubes = new ItemStack(insulatedTube, 2, mat + 128 * insulate);
+		for (EnumTubeMaterial mat: EnumTubeMaterial.VALUES) {
+			RecipeUtil recipeUtil = new RecipeUtil(Constants.BOTANY_MOD_ID);
+			for (EnumTubeInsulate insulate : EnumTubeInsulate.VALUES) {
+				ItemStack tubes = new ItemStack(insulatedTube, 2, mat.ordinal() + 128 * insulate.ordinal());
 				ItemStack insulateStack = ItemInsulatedTube.getInsulateStack(tubes);
-				ItemStack forestryTube = new ItemStack(Mods.Forestry.item("thermionic_tubes"), 1, mat);
-				GameRegistry.addShapelessRecipe(tubes, forestryTube, forestryTube, insulateStack);
+				ItemStack forestryTube = new ItemStack(Mods.Forestry.item("thermionic_tubes"), 1, mat.ordinal());
+				String recipeName = "thermionic_tubes_" + insulate.getUid() + "_" + mat.getUid();
+				recipeUtil.addShapelessRecipe(recipeName, tubes, forestryTube, forestryTube, insulateStack);
 			}
 		}
 	}

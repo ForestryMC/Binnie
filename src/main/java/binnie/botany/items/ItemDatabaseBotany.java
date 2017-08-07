@@ -29,7 +29,9 @@ public class ItemDatabaseBotany extends ItemBotany implements IItemModelRegister
 	@Override
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
 		if (this.isInCreativeTab(tab)) {
-			items.add(new ItemStack(this, 1, 1));
+			for(int i = 0;i < 2;i++) {
+				items.add(new ItemStack(this, 1, i));
+			}
 		}
 	}
 

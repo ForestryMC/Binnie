@@ -43,6 +43,7 @@ public class ItemMothDatabase extends Item implements IItemModelRegister {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		if (isMaster(stack)) {
 			tooltip.add(TextFormatting.DARK_PURPLE + I18N.localise("extratrees.item.database.lepi.master.tooltip"));

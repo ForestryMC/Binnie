@@ -173,7 +173,7 @@ public class ModuleManager {
 		}
 	}
 
-	private static void runRegisterItemsAndBlocks(IModuleContainer moduleContainer) {
+	public static void runRegisterItemsAndBlocks(IModuleContainer moduleContainer) {
 		stage = Stage.REGISTER;
 		for (Module module : moduleContainer.getLoadedModules()) {
 			Log.debug("Register Items and Blocks Start: {}", module);
@@ -186,13 +186,7 @@ public class ModuleManager {
 		stage = Stage.FINISHED;
 	}
 
-	public static void register(FMLPreInitializationEvent event, IModuleContainer moduleContainer){
-		if(stage == Stage.REGISTER){
-			runRegisterItemsAndBlocks(moduleContainer);
-			return;
-		} else if (stage != Stage.SETUP){
-			return;
-		}
+	public static void loadModules(FMLPreInitializationEvent event){
 		ASMDataTable asmDataTable = event.getAsmData();
 		Map<String, List<Module>> modules = ModuleHelper.getModules(asmDataTable);
 
@@ -215,8 +209,6 @@ public class ModuleManager {
 				Log.debug("Disabled-Setup Complete: {}", module);
 			}
 		}
-
-		runRegisterItemsAndBlocks(moduleContainer);
 	}
 
 	private static boolean isEnabled(Configuration config, Module module) {

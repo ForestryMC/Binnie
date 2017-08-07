@@ -3,7 +3,6 @@ package binnie.botany.recipes;
 import java.util.ArrayList;
 import java.util.List;
 
-import binnie.Constants;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -13,10 +12,10 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
 import net.minecraftforge.common.ForgeHooks;
-
-import binnie.botany.ceramic.brick.CeramicBrickType;
-import binnie.botany.gardening.ModuleGardening;
 import net.minecraftforge.registries.IForgeRegistryEntry;
+
+import binnie.Constants;
+import binnie.botany.ceramic.brick.CeramicBrickType;
 import binnie.botany.modules.ModuleCeramic;
 
 public class CeramicTileRecipe extends IForgeRegistryEntry.Impl<IRecipe> implements IRecipe { private ItemStack cached = ItemStack.EMPTY;

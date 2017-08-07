@@ -1,14 +1,15 @@
 package binnie.botany.recipes;
 
-import binnie.Binnie;
-import binnie.Constants;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+
 import net.minecraftforge.registries.IForgeRegistryEntry;
+
 import binnie.Binnie;
+import binnie.Constants;
 import binnie.botany.api.genetics.IFlower;
 import binnie.botany.modules.ModuleCeramic;
 

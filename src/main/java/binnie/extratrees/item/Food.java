@@ -9,6 +9,9 @@ import net.minecraft.item.ItemStack;
 
 import net.minecraftforge.oredict.OreDictionary;
 
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import forestry.api.recipes.RecipeManagers;
 import forestry.core.fluids.Fluids;
 
@@ -166,6 +169,7 @@ public enum Food implements IItemMiscProvider {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void addInformation(final List<String> tooltip) {
 	}
 

@@ -5,6 +5,9 @@ import java.util.List;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import binnie.core.item.IItemMiscProvider;
 import binnie.genetics.Genetics;
 
@@ -35,6 +38,7 @@ public enum GeneticsItems implements IItemMiscProvider {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void addInformation(final List<String> tooltip) {
 	}
 
