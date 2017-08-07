@@ -7,8 +7,8 @@ import java.util.Map;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 
-import binnie.botany.Botany;
 import binnie.botany.genetics.EnumFlowerColor;
+import binnie.botany.modules.ModuleCeramic;
 import binnie.core.block.TileEntityMetadata;
 import binnie.extratrees.api.IDesignMaterial;
 
@@ -63,7 +63,7 @@ public class GlassType implements IDesignMaterial {
 		if (this.id < 128) {
 			return new ItemStack(Blocks.STAINED_GLASS, 1, this.id);
 		}
-		return TileEntityMetadata.getItemStack(Botany.gardening().stained, this.id - 128);
+		return TileEntityMetadata.getItemStack(ModuleCeramic.stained, this.id - 128);
 	}
 
 	@Override

@@ -6,6 +6,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
+import binnie.Binnie;
 import binnie.core.item.ItemCore;
 import binnie.genetics.CreativeTabGenetics;
 import binnie.genetics.Genetics;
@@ -27,7 +28,9 @@ public class ItemMasterRegistry extends ItemCore {
 
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-		Genetics.proxy.openGui(GeneticsGUI.MASTER_REGISTRY, playerIn, playerIn.getPosition());
+		if(!Binnie.GENETICS.getActiveSystems().isEmpty()) {
+			Genetics.proxy.openGui(GeneticsGUI.MASTER_REGISTRY, playerIn, playerIn.getPosition());
+		}
 		return super.onItemRightClick(worldIn, playerIn, handIn);
 	}
 

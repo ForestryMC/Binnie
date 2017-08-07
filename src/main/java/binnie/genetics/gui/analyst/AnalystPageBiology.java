@@ -15,7 +15,7 @@ import forestry.api.lepidopterology.IButterfly;
 import forestry.apiculture.PluginApiculture;
 
 import binnie.Binnie;
-import binnie.botany.api.IFlower;
+import binnie.botany.api.genetics.IFlower;
 import binnie.core.gui.IWidget;
 import binnie.core.gui.controls.ControlTextCentered;
 import binnie.core.gui.geometry.Area;

@@ -57,7 +57,7 @@ public class ControlSlotArray extends Control implements Iterable<ControlSlot> {
 		}
 
 		public ControlSlotArray create(final int[] index) {
-			return this.create(InventoryType.Machine, index);
+			return this.create(InventoryType.MACHINE, index);
 		}
 
 		public ControlSlotArray create(final InventoryType type, final int[] index) {

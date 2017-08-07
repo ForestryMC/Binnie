@@ -7,7 +7,7 @@ import forestry.api.genetics.IIndividual;
 import forestry.core.genetics.BreedingTracker;
 
 import binnie.Binnie;
-import binnie.botany.api.IBotanistTracker;
+import binnie.botany.api.genetics.IBotanistTracker;
 
 public class BotanistTracker extends BreedingTracker implements IBotanistTracker {
 	public BotanistTracker(String s) {

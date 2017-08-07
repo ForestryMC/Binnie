@@ -8,11 +8,11 @@ import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IMutation;
 import forestry.core.genetics.mutations.Mutation;
 
-import binnie.botany.api.IAlleleFlowerSpecies;
-import binnie.botany.api.IFlowerGenome;
-import binnie.botany.api.IFlowerMutation;
-import binnie.botany.api.IFlowerMutationBuilder;
-import binnie.botany.api.IFlowerRoot;
+import binnie.botany.api.genetics.IAlleleFlowerSpecies;
+import binnie.botany.api.genetics.IFlowerGenome;
+import binnie.botany.api.genetics.IFlowerMutation;
+import binnie.botany.api.genetics.IFlowerMutationBuilder;
+import binnie.botany.api.genetics.IFlowerRoot;
 import binnie.botany.core.BotanyCore;
 
 public class FlowerMutation extends Mutation implements IFlowerMutation, IFlowerMutationBuilder {

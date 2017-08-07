@@ -55,7 +55,7 @@ public class WindowPress extends Window {
 		new ControlPlayerInventory(this);
 		new ControlErrorState(this, 128, 54);
 		new ControlFruitPressProgress(this, 62, 24);
-		((Window) this.getTopParent()).getContainer().createClientSlot(InventoryType.Machine, FruitPressMachine.SLOT_CURRENT);
+		((Window) this.getTopParent()).getContainer().createClientSlot(InventoryType.MACHINE, FruitPressMachine.SLOT_CURRENT);
 	}
 
 	@Override

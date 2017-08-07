@@ -5,6 +5,7 @@ import net.minecraft.util.IStringSerializable;
 import forestry.api.genetics.AlleleManager;
 
 import binnie.botany.core.BotanyCore;
+import binnie.botany.genetics.allele.AlleleFlowerColor;
 import binnie.core.util.I18N;
 
 //TODO: Clean Up
@@ -93,7 +94,7 @@ public enum EnumFlowerColor implements IStringSerializable {
 	public static final EnumFlowerColor[] VALUES = values();
 
 	private final String ident;
-	private FlowerColorAllele allele;
+	private AlleleFlowerColor allele;
 
 	EnumFlowerColor(String ident, int color) {
 		this.ident = ident;
@@ -105,7 +106,7 @@ public enum EnumFlowerColor implements IStringSerializable {
 		b = (int) (0.45 * (b + 131));
 		int colorDis = (r << 16) + (g << 8) + b;
 		String uid = "botany.color" + name();
-		allele = new FlowerColorAllele(uid, ordinal(), color, colorDis, name().toLowerCase(), uid, true);
+		allele = new AlleleFlowerColor(uid, ordinal(), color, colorDis, name().toLowerCase(), uid, true);
 	}
 
 	public String getIdent() {
@@ -2957,7 +2958,7 @@ public enum EnumFlowerColor implements IStringSerializable {
 		return name();
 	}
 
-	public FlowerColorAllele getFlowerColorAllele() {
+	public AlleleFlowerColor getFlowerColorAllele() {
 		return allele;
 	}
 }

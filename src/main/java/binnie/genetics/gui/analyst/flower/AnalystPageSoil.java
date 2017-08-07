@@ -7,11 +7,11 @@ import java.util.List;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
 
-import binnie.botany.Botany;
-import binnie.botany.api.EnumAcidity;
-import binnie.botany.api.EnumMoisture;
-import binnie.botany.api.IFlower;
-import binnie.botany.gardening.BlockSoil;
+import binnie.botany.api.gardening.EnumAcidity;
+import binnie.botany.api.gardening.EnumMoisture;
+import binnie.botany.api.genetics.IFlower;
+import binnie.botany.blocks.BlockSoil;
+import binnie.botany.modules.ModuleGardening;
 import binnie.core.genetics.Tolerance;
 import binnie.core.gui.IWidget;
 import binnie.core.gui.controls.ControlText;
@@ -81,7 +81,7 @@ public class AnalystPageSoil extends ControlAnalystPage {
 				recomPH = EnumAcidity.ALKALINE;
 			}
 		}
-		ItemStack stack = new ItemStack(Botany.gardening().soil, 1, BlockSoil.getMeta(recomPH, recomMoisture));
+		ItemStack stack = new ItemStack(ModuleGardening.soil, 1, BlockSoil.getMeta(recomPH, recomMoisture));
 		ControlItemDisplay recomSoil = new ControlItemDisplay(this, (getWidth() - 24) / 2, y, 24);
 		recomSoil.setItemStack(stack);
 		recomSoil.setTooltip();
@@ -92,7 +92,7 @@ public class AnalystPageSoil extends ControlAnalystPage {
 		for (EnumAcidity a : EnumSet.range(EnumAcidity.ACID, EnumAcidity.ALKALINE)) {
 			for (EnumMoisture b : EnumSet.range(EnumMoisture.DRY, EnumMoisture.DAMP)) {
 				if (Tolerance.canTolerate(pH, a, pHTol) && Tolerance.canTolerate(moisture, b, moistureTol) && (a != recomPH || b != recomMoisture)) {
-					stacks.add(new ItemStack(Botany.gardening().soil, 1, BlockSoil.getMeta(a, b)));
+					stacks.add(new ItemStack(ModuleGardening.soil, 1, BlockSoil.getMeta(a, b)));
 				}
 			}
 		}

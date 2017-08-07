@@ -1,25 +1,25 @@
 package binnie.botany.core;
 
-import binnie.botany.api.FlowerManager;
-import binnie.botany.api.IFlowerRoot;
-import binnie.botany.api.IGardeningManager;
-import binnie.botany.gardening.Gardening;
+import binnie.botany.GardeningManager;
+import binnie.botany.api.BotanyAPI;
+import binnie.botany.api.gardening.IGardeningManager;
+import binnie.botany.api.genetics.IFlowerRoot;
 import binnie.botany.genetics.FlowerRoot;
 
 public class BotanyCore {
 	public static final int CHANCE_INTERPOLLINATION = 20;
 
 	public static IFlowerRoot getFlowerRoot() {
-		if (FlowerManager.flowerRoot == null) {
-			FlowerManager.flowerRoot = new FlowerRoot();
+		if (BotanyAPI.flowerRoot == null) {
+			BotanyAPI.flowerRoot = new FlowerRoot();
 		}
-		return FlowerManager.flowerRoot;
+		return BotanyAPI.flowerRoot;
 	}
 
 	public static IGardeningManager getGardening() {
-		if (FlowerManager.gardening == null) {
-			FlowerManager.gardening = new Gardening();
+		if (BotanyAPI.gardening == null) {
+			BotanyAPI.gardening = new GardeningManager();
 		}
-		return FlowerManager.gardening;
+		return BotanyAPI.gardening;
 	}
 }

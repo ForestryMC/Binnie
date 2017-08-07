@@ -10,8 +10,8 @@ import net.minecraft.nbt.NBTTagInt;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.botany.Botany;
 import binnie.botany.genetics.EnumFlowerColor;
+import binnie.botany.modules.ModuleCeramic;
 import binnie.core.util.I18N;
 
 public class CeramicBrickPair {
@@ -23,7 +23,7 @@ public class CeramicBrickPair {
 	public CeramicBrickType type;
 	public int ordinal;
 
-	CeramicBrickPair(EnumFlowerColor colorFirst, EnumFlowerColor colorSecond, CeramicBrickType type) {
+	public CeramicBrickPair(EnumFlowerColor colorFirst, EnumFlowerColor colorSecond, CeramicBrickType type) {
 		this.colorFirst = colorFirst;
 		this.colorSecond = colorSecond;
 		this.type = type;
@@ -53,7 +53,7 @@ public class CeramicBrickPair {
 	}
 
 	public ItemStack getStack(int i) {
-		ItemStack stack = new ItemStack(Botany.gardening().ceramicBrick, i);
+		ItemStack stack = new ItemStack(ModuleCeramic.ceramicBrick, i);
 		stack.setTagInfo("id", new NBTTagInt(ordinal()));
 		return stack;
 	}

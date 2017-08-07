@@ -8,11 +8,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import forestry.api.genetics.IAlleleSpecies;
 
-import binnie.botany.api.IFlower;
-import binnie.botany.api.IFlowerGenome;
-import binnie.botany.api.IFlowerType;
-import binnie.botany.flower.FlowerSpriteManager;
+import binnie.botany.api.genetics.IFlower;
+import binnie.botany.api.genetics.IFlowerGenome;
+import binnie.botany.api.genetics.IFlowerType;
 import binnie.botany.gui.database.ControlColorDisplay;
+import binnie.botany.models.FlowerSpriteManager;
 import binnie.core.gui.IWidget;
 import binnie.core.gui.controls.ControlTextCentered;
 import binnie.core.gui.geometry.Area;

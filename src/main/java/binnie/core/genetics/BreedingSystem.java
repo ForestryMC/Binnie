@@ -121,14 +121,20 @@ public abstract class BreedingSystem implements IItemStackRepresentitive {
 	}
 
 	public void calculateArrays() {
-		Collection<IAllele> allAlleles = AlleleManager.alleleRegistry.getRegisteredAlleles().values();
+		ISpeciesRoot speciesRoot = getSpeciesRoot();
+		calculateAlleles(speciesRoot);
+		calculateBranches(speciesRoot);
+		calculateMutations(speciesRoot);
+	}
+
+	public void calculateAlleles(ISpeciesRoot speciesRoot) {
+		this.allSpecies = new ArrayList<>();
+		this.allActiveSpecies = new ArrayList<>();
 		this.resultantMutations = new HashMap<>();
 		this.furtherMutations = new HashMap<>();
 		this.allResultantMutations = new HashMap<>();
 		this.allFurtherMutations = new HashMap<>();
-		this.allActiveSpecies = new ArrayList<>();
-		this.allSpecies = new ArrayList<>();
-		ISpeciesRoot speciesRoot = getSpeciesRoot();
+		Collection<IAllele> allAlleles = AlleleManager.alleleRegistry.getRegisteredAlleles().values();
 		for (IAllele allele : allAlleles) {
 			String uid = allele.getUID();
 			IAllele[] template = speciesRoot.getTemplate(uid);
@@ -145,7 +151,9 @@ public abstract class BreedingSystem implements IItemStackRepresentitive {
 				this.allActiveSpecies.add((IAlleleSpecies) allele);
 			}
 		}
-		this.allMutations = new ArrayList<>();
+	}
+
+	public void calculateBranches(ISpeciesRoot speciesRoot) {
 		Collection<IClassification> allRegBranches = AlleleManager.alleleRegistry.getRegisteredClassifications().values();
 		this.allBranches = new ArrayList<>();
 		for (IClassification branch : allRegBranches) {
@@ -168,6 +176,10 @@ public abstract class BreedingSystem implements IItemStackRepresentitive {
 				this.allBranches.add(branch);
 			}
 		}
+	}
+
+	public void calculateMutations(ISpeciesRoot speciesRoot) {
+		this.allMutations = new ArrayList<>();
 		List<? extends IMutation> speciesMutations = speciesRoot.getMutations(false);
 		if (!speciesMutations.isEmpty()) {
 			final Set<IMutation> mutations = new LinkedHashSet<>();

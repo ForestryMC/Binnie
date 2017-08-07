@@ -3,8 +3,8 @@ package binnie.botany.gui.database;
 import java.util.ArrayList;
 import java.util.List;
 
-import binnie.botany.api.IColorMix;
-import binnie.botany.api.IFlowerColor;
+import binnie.botany.api.genetics.IColorMix;
+import binnie.botany.api.genetics.IFlowerColor;
 import binnie.botany.core.BotanyCore;
 import binnie.core.gui.IWidget;
 import binnie.core.gui.controls.ControlText;

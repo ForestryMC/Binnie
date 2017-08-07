@@ -16,7 +16,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.botany.Botany;
 import binnie.botany.genetics.EnumFlowerColor;
-import binnie.botany.items.BotanyItems;
+import binnie.botany.items.CeramicItems;
+import binnie.botany.modules.ModuleCeramic;
 import binnie.core.AbstractMod;
 import binnie.extratrees.api.IDesignMaterial;
 import binnie.extratrees.api.IDesignSystem;
@@ -97,13 +98,13 @@ public class CeramicDesignSystem implements IDesignSystem {
 
 	@Override
 	public ItemStack getAdhesive() {
-		return BotanyItems.MORTAR.get(1);
+		return CeramicItems.MORTAR.get(1);
 	}
 
 	@Override
 	@Nullable
 	public IDesignMaterial getMaterial(ItemStack itemStack) {
-		return (itemStack.getItem() == Item.getItemFromBlock(Botany.gardening().ceramic))
+		return (itemStack.getItem() == Item.getItemFromBlock(ModuleCeramic.ceramic))
 				? getMaterial(itemStack.getItemDamage())
 				: null;
 	}

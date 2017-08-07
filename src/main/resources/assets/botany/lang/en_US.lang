@@ -1,5 +1,15 @@
 botany.tab.botany=Botany
 
+botany.module.farming=Adds the farm integration for the botany flowers.
+botany.module.database=Adds a Botanist database.
+botany.module.gardening=Adds soil, loam, flowerbeds and trowels.
+botany.module.ceramic=Adds decorative ceramic blocks.
+botany.module.flowers=Adds an entirely new breeding system to Forestry: Flowers.
+
+botany.config.soil.growth=The chance that weed grows on a soil block.
+botany.config.soil.wilting=The change that weed withers on a soil block.
+botany.config.soil.fertile=The chance that a soil block will be fertilised or degraded if a weed block is above it.
+
 botany.ph=PH
 botany.ph.acid=Acidic
 botany.ph.neutral=Neutral
@@ -48,6 +58,7 @@ item.botany.powder_sulphur.name=Sulphur Powder
 item.botany.powder_fertiliser.name=Fertilizer Powder
 item.botany.powder_compost.name=Compost Powder
 item.botany.mortar.name=Mortar
+item.botany.mortar.tooltip=This item is deprecated, please convert it into the new item.
 item.botany.weedkiller.name=Weedkiller
 item.botany.clay.name=%s Clay
 item.botany.trowel_wood.name=Wooden Trowel

@@ -16,8 +16,8 @@ import forestry.api.genetics.IIndividual;
 import forestry.api.lepidopterology.EnumButterflyChromosome;
 import forestry.api.lepidopterology.IButterfly;
 
-import binnie.botany.api.EnumFlowerChromosome;
-import binnie.botany.api.IFlower;
+import binnie.botany.api.genetics.EnumFlowerChromosome;
+import binnie.botany.api.genetics.IFlower;
 import binnie.core.genetics.Tolerance;
 import binnie.core.gui.IWidget;
 import binnie.core.gui.controls.ControlText;
