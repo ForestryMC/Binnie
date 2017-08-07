@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Objects;
 
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -148,7 +149,7 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 		}
 
 		@Override
-		public void getTooltip(final Tooltip tooltip) {
+		public void getTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
 			tooltip.add(I18N.localise("binniecore.gui.designer.pattern", this.getValue().getName()));
 		}
 

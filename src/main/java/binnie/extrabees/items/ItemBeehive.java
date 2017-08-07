@@ -34,9 +34,11 @@ public class ItemBeehive extends ItemBlock implements IItemModelProvider {
 	}
 
 	@Override
-	public void getSubItems(final Item itemIn, final CreativeTabs tab, final NonNullList<ItemStack> subItems) {
-		for (int i = 0; i < EnumHiveType.values().length; ++i) {
-			subItems.add(new ItemStack(this, 1, i));
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
+		if (this.isInCreativeTab(tab)) {
+			for (int i = 0; i < EnumHiveType.values().length; ++i) {
+				items.add(new ItemStack(this, 1, i));
+			}
 		}
 	}
 

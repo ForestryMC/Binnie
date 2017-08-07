@@ -1,6 +1,5 @@
 package binnie.core.models;
 
-import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 
@@ -8,6 +7,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -28,8 +28,8 @@ import net.minecraft.util.registry.IRegistry;
 import net.minecraft.world.IBlockAccess;
 
 import net.minecraftforge.client.event.ModelBakeEvent;
-import net.minecraftforge.client.model.IPerspectiveAwareModel;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.client.model.PerspectiveMapWrapper;
 import net.minecraftforge.client.model.SimpleModelState;
 import net.minecraftforge.common.model.IModelState;
 import net.minecraftforge.common.model.TRSRTransformation;
@@ -98,7 +98,7 @@ public class ModelManager implements IModelManager {
 	private static IModelState mergeStates(IModelState state, IModelState secondaryState) {
 		Map<TransformType, TRSRTransformation> tMap = Maps.newHashMap();
 		TRSRTransformation guiTransformation = secondaryState.apply(Optional.of(TransformType.GUI)).get();
-		tMap.putAll(IPerspectiveAwareModel.MapWrapper.getTransforms(state));
+		tMap.putAll(PerspectiveMapWrapper.getTransforms(state));
 		tMap.put(TransformType.GUI, guiTransformation);
 		return new SimpleModelState(ImmutableMap.copyOf(tMap));
 	}

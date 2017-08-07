@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.util.ResourceLocation;
 
 import net.minecraftforge.fluids.Fluid;
@@ -89,7 +90,7 @@ public class ControlFluidDisplay extends Control implements ITooltip {
 	}
 
 	@Override
-	public void getTooltip(final Tooltip tooltip) {
+	public void getTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		if (this.hastooltip && this.fluidStack != null) {
 			tooltip.add(this.fluidStack.getLocalizedName());
 		}

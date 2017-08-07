@@ -92,13 +92,11 @@ public enum EnumFlowerColor implements IStringSerializable {
 
 	public static final EnumFlowerColor[] VALUES = values();
 
+	private final String ident;
 	private FlowerColorAllele allele;
 
-	EnumFlowerColor(String ident, int c) {
-		this(c);
-	}
-
-	EnumFlowerColor(int color) {
+	EnumFlowerColor(String ident, int color) {
+		this.ident = ident;
 		int r = color >> 16 & 0xFF;
 		int g = color >> 8 & 0xFF;
 		int b = color & 0xFF;
@@ -108,6 +106,10 @@ public enum EnumFlowerColor implements IStringSerializable {
 		int colorDis = (r << 16) + (g << 8) + b;
 		String uid = "botany.color" + name();
 		allele = new FlowerColorAllele(uid, ordinal(), color, colorDis, name().toLowerCase(), uid, true);
+	}
+
+	public String getIdent() {
+		return ident;
 	}
 
 	public static void addMix(EnumFlowerColor start1, EnumFlowerColor start2, EnumFlowerColor result, int chance) {

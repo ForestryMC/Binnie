@@ -1,9 +1,11 @@
 package binnie.genetics.item;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.List;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -37,18 +39,19 @@ public class ItemBeeDictionary extends Item implements IItemModelRegister {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
-		super.addInformation(stack, playerIn, tooltip, advanced);
+	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+		super.addInformation(stack, worldIn, tooltip, flagIn);
 		if (stack.getItemDamage() > 0) {
 			tooltip.add("Flora-in-a-box");
 		}
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public void getSubItems(final Item itemIn, final CreativeTabs tab, final NonNullList<ItemStack> subItems) {
-		super.getSubItems(itemIn, tab, subItems);
-		subItems.add(new ItemStack(itemIn, 1, 1));
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
+		super.getSubItems(tab, items);
+		if (this.isInCreativeTab(tab)) {
+			items.add(new ItemStack(this, 1, 1));
+		}
 	}
 
 	@Override

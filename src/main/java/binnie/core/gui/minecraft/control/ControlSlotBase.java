@@ -2,6 +2,7 @@ package binnie.core.gui.minecraft.control;
 
 import java.util.List;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
 
@@ -63,12 +64,12 @@ public abstract class ControlSlotBase extends Control implements ITooltip {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getTooltip(final Tooltip tooltip) {
+	public void getTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		final ItemStack stack = this.getItemStack();
 		if (stack.isEmpty()) {
 			return;
 		}
-		List<String> list = stack.getTooltip(((Window) this.getTopParent()).getPlayer(), false);
+		List<String> list = stack.getTooltip(((Window) this.getTopParent()).getPlayer(), tooltipFlag);
 
 		for (int i = 0; i < list.size(); ++i) {
 			if (i == 0) {

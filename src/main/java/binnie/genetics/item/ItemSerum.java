@@ -53,19 +53,22 @@ public class ItemSerum extends ItemGene implements IItemSerum {
 		return stack.getMaxDamage();
 	}
 
-	@SideOnly(Side.CLIENT)
 	@Override
-	public void getSubItems(Item item, CreativeTabs tab, NonNullList<ItemStack> subItems) {
-		for (ISpeciesRoot root : AlleleManager.alleleRegistry.getSpeciesRoot().values()) {
-			Map<IChromosomeType, List<IAllele>> chromosomeMap = Binnie.GENETICS.getChromosomeMap(root);
-			for (Map.Entry<IChromosomeType, List<IAllele>> entry : chromosomeMap.entrySet()) {
-				IChromosomeType chromosome = entry.getKey();
-				for (final IAllele allele : entry.getValue()) {
-					Gene gene = Gene.create(allele, chromosome, root);
-					IGeneItem geneItem = new GeneItem(gene);
-					ItemStack stack = new ItemStack(item);
-					geneItem.writeToItem(stack);
-					subItems.add(stack);
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
+		if (this.isInCreativeTab(tab)) {
+			for (ISpeciesRoot root : AlleleManager.alleleRegistry.getSpeciesRoot().values()) {
+				Map<IChromosomeType, List<IAllele>> chromosomeMap = Binnie.GENETICS.getChromosomeMap(root);
+				if (chromosomeMap != null) {
+					for (Map.Entry<IChromosomeType, List<IAllele>> entry : chromosomeMap.entrySet()) {
+						IChromosomeType chromosome = entry.getKey();
+						for (final IAllele allele : entry.getValue()) {
+							Gene gene = Gene.create(allele, chromosome, root);
+							IGeneItem geneItem = new GeneItem(gene);
+							ItemStack stack = new ItemStack(this);
+							geneItem.writeToItem(stack);
+							items.add(stack);
+						}
+					}
 				}
 			}
 		}

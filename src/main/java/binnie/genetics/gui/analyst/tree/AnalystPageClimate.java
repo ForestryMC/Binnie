@@ -30,6 +30,7 @@ import binnie.genetics.gui.analyst.AnalystConstants;
 import binnie.genetics.gui.analyst.ControlAnalystPage;
 import binnie.genetics.gui.analyst.ControlBiome;
 import binnie.genetics.gui.analyst.ControlToleranceBar;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 public class AnalystPageClimate extends ControlAnalystPage {
 	public AnalystPageClimate(IWidget parent, Area area, IIndividual ind) {
@@ -67,7 +68,7 @@ public class AnalystPageClimate extends ControlAnalystPage {
 		new ControlText(this, new Area(4, y, getWidth() - 8, 14), I18N.localise(AnalystConstants.CLIMATE_KEY + ".biomes"), TextJustification.MIDDLE_CENTER).setColor(getColor());
 		y += 12;
 		List<Biome> biomes = new ArrayList<>();
-		for (Biome biome : Biome.EXPLORATION_BIOMES_LIST) { //TODO check
+		for (Biome biome : ForgeRegistries.BIOMES.getValues()) { //TODO check
 			if (biome != null &&
 				biome != Biomes.FROZEN_OCEAN &&
 				Tolerance.canTolerate(temp, EnumTemperature.getFromBiome(biome), tempTol) &&

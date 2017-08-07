@@ -3,6 +3,7 @@ package binnie.genetics.gui.database.bee;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -55,7 +56,7 @@ public class ControlClimateBar extends Control implements ITooltip {
 	}
 
 	@Override
-	public void getTooltip(Tooltip tooltip) {
+	public void getTooltip(Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		if (tolerated.isEmpty()) {
 			return;
 		}

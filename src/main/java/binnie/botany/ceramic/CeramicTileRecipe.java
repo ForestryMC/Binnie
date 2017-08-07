@@ -3,11 +3,13 @@ package binnie.botany.ceramic;
 import java.util.ArrayList;
 import java.util.List;
 
+import binnie.Constants;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
 import net.minecraftforge.common.ForgeHooks;
@@ -15,9 +17,13 @@ import net.minecraftforge.common.ForgeHooks;
 import binnie.botany.Botany;
 import binnie.botany.ceramic.brick.CeramicBrickType;
 import binnie.botany.gardening.ModuleGardening;
+import net.minecraftforge.registries.IForgeRegistryEntry;
 
-public class CeramicTileRecipe implements IRecipe {
-	private ItemStack cached = ItemStack.EMPTY;
+public class CeramicTileRecipe extends IForgeRegistryEntry.Impl<IRecipe> implements IRecipe { private ItemStack cached = ItemStack.EMPTY;
+
+	public CeramicTileRecipe() {
+		setRegistryName(new ResourceLocation(Constants.BOTANY_MOD_ID, "ceramic_tile"));
+	}
 
 	@Override
 	public boolean matches(InventoryCrafting inv, World world) {
@@ -63,8 +69,8 @@ public class CeramicTileRecipe implements IRecipe {
 	}
 
 	@Override
-	public int getRecipeSize() {
-		return 2;
+	public boolean canFit(int width, int height) {
+		return width >= 2 && height >= 2;
 	}
 
 	@Override

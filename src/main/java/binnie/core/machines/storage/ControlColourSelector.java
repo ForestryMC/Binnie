@@ -1,5 +1,6 @@
 package binnie.core.machines.storage;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -22,7 +23,7 @@ class ControlColourSelector extends Control implements ITooltip, IControlValue<E
 	}
 
 	@Override
-	public void getTooltip(final Tooltip tooltip) {
+	public void getTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		tooltip.add(this.value.toString());
 	}
 

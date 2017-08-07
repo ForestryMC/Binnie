@@ -4,10 +4,12 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
+import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 
 import net.minecraftforge.fml.relauncher.Side;
@@ -106,9 +108,9 @@ public class ItemHiveFrame extends Item implements IHiveFrame, IBeeModifier, IIt
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
-		super.addInformation(stack, playerIn, tooltip, advanced);
-		this.frame.addInformation(stack, playerIn, tooltip, advanced);
+	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+		super.addInformation(stack, worldIn, tooltip, flagIn);
+		this.frame.addInformation(stack, tooltip, flagIn);
 		if (!stack.isItemDamaged()) {
 			tooltip.add(Translator.translateToLocalFormatted("item.for.durability", stack.getMaxDamage()));
 		}

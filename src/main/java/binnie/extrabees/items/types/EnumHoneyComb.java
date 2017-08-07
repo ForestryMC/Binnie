@@ -1,6 +1,7 @@
 package binnie.extrabees.items.types;
 
-import com.google.common.base.Objects;
+import binnie.core.Mods;
+import com.google.common.base.MoreObjects;
 
 import javax.annotation.Nullable;
 import java.util.LinkedHashMap;
@@ -14,8 +15,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
 import forestry.api.recipes.RecipeManagers;
-import forestry.apiculture.PluginApiculture;
-import forestry.core.PluginCore;
 
 import binnie.core.util.I18N;
 import binnie.extrabees.ExtraBees;
@@ -512,7 +511,8 @@ public enum EnumHoneyComb implements IEBEnumItem {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			addProduct(honeyDrop, 0.25f);
-			tryAddProduct(PluginCore.getItems().fertilizerBio.getItemStack(), 1.00f);
+			ItemStack compost = Mods.Forestry.stack("fertilizer_bio");
+			tryAddProduct(compost, 1.00f);
 		}
 	},
 	SAWDUST(12561009, 15913854){
@@ -636,8 +636,8 @@ public enum EnumHoneyComb implements IEBEnumItem {
 
 	public static void addSubtypes() {
 		OreDictionary.registerOre("beeComb", new ItemStack(ExtraBees.comb, 1, 32767));
-		ItemStack beeswax = PluginCore.getItems().beeswax.getItemStack();
-		ItemStack honeyDrop = PluginApiculture.getItems().honeyDrop.getItemStack();
+		ItemStack beeswax = Mods.Forestry.stack("beeswax");
+		ItemStack honeyDrop = Mods.Forestry.stack("honey_drop");
 		for(EnumHoneyComb comb : values()){
 			comb.addSubtypes(beeswax, honeyDrop);
 		}
@@ -665,7 +665,7 @@ public enum EnumHoneyComb implements IEBEnumItem {
 	}
 
 	public boolean addProduct(@Nullable Item item, final Float chance) {
-		return addProduct(new ItemStack(Objects.firstNonNull(item, Item.getItemFromBlock(Blocks.AIR))), chance);
+		return addProduct(new ItemStack(MoreObjects.firstNonNull(item, Item.getItemFromBlock(Blocks.AIR))), chance);
 	}
 
 	public boolean addProduct(final ItemStack item, final Float chance) {

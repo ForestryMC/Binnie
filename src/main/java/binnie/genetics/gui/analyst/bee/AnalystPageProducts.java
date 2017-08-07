@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -172,8 +173,8 @@ public class AnalystPageProducts extends AnalystPageProduce {
 		ControlItemDisplay item = new ControlItemDisplay(this, 16, y) {
 			@Override
 			@SideOnly(Side.CLIENT)
-			public void getTooltip(Tooltip tooltip) {
-				super.getTooltip(tooltip);
+			public void getTooltip(Tooltip tooltip, ITooltipFlag tooltipFlag) {
+				super.getTooltip(tooltip, tooltipFlag);
 				Collection<ItemStack> products = getCentrifuge(key);
 				if (!products.isEmpty()) {
 					tooltip.add(I18N.localise(AnalystConstants.PRODUCTS_KEY + ".centrifuges") + ": ");

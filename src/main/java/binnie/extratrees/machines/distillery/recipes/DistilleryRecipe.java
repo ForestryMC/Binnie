@@ -1,5 +1,6 @@
 package binnie.extratrees.machines.distillery.recipes;
 
+import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 
 import java.util.Collection;
@@ -49,7 +50,7 @@ public class DistilleryRecipe implements IDistilleryRecipe {
 
 	@Override
 	public String toString() {
-		return Objects.toStringHelper(this)
+		return MoreObjects.toStringHelper(this)
 			.add("input", FluidStackUtil.toString(input))
 			.add("output", FluidStackUtil.toString(output))
 			.add("level", level)

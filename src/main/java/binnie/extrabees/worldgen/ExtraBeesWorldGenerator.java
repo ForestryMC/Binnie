@@ -3,8 +3,8 @@ package binnie.extrabees.worldgen;
 import binnie.extrabees.utils.config.ConfigurationMain;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
 import java.util.LinkedList;
@@ -26,7 +26,7 @@ public class ExtraBeesWorldGenerator implements IWorldGenerator {
 
 	@Override
 	public void generate(Random rand, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
-		worldGenHives.stream().forEach(hive -> generateHive(hive, rand, chunkX, chunkZ, world));
+		worldGenHives.forEach(hive -> generateHive(hive, rand, chunkX, chunkZ, world));
 	}
 
 	private void generateHive(WorldGenHive hive, Random rand, int chunkX, int chunkZ, World world) {

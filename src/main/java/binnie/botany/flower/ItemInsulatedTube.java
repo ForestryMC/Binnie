@@ -1,5 +1,7 @@
 package binnie.botany.flower;
 
+import javax.annotation.Nullable;
+
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 
@@ -7,6 +9,7 @@ import java.util.Collection;
 import java.util.List;
 
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -14,6 +17,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.TextFormatting;
 
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -58,11 +62,12 @@ public class ItemInsulatedTube extends ItemCore implements IColoredItem {
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public void getSubItems(Item item, CreativeTabs tab, NonNullList<ItemStack> subItems) {
-		for (EnumTubeMaterial mat : EnumTubeMaterial.values()) {
-			for (EnumTubeInsulate ins : EnumTubeInsulate.values()) {
-				subItems.add(new ItemStack(this, 1, mat.ordinal() + ins.ordinal() * 128));
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
+		if (this.isInCreativeTab(tab)) {
+			for (EnumTubeMaterial mat : EnumTubeMaterial.values()) {
+				for (EnumTubeInsulate ins : EnumTubeInsulate.values()) {
+					items.add(new ItemStack(this, 1, mat.ordinal() + ins.ordinal() * 128));
+				}
 			}
 		}
 	}
@@ -89,8 +94,8 @@ public class ItemInsulatedTube extends ItemCore implements IColoredItem {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack itemstack, EntityPlayer player, List<String> list, boolean flag) {
-		super.addInformation(itemstack, player, list, flag);
+	public void addInformation(ItemStack itemstack, @Nullable World worldIn, List<String> list, ITooltipFlag flagIn) {
+		super.addInformation(itemstack, worldIn, list, flagIn);
 		Multimap<ICircuitLayout, ICircuit> circuits = getCircuits(itemstack);
 		if (!circuits.isEmpty()) {
 			if (GuiScreen.isShiftKeyDown()) {

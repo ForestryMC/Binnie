@@ -178,11 +178,10 @@ public class BlockHedge extends Block implements IBlockFence, IColoredBlock {
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(final Item item, final CreativeTabs tab, final NonNullList<ItemStack> list) {
+	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list) {
 		for (int i = 0; i < 6; ++i) {
 			for (int f = 0; f < 2; ++f) {
-				list.add(new ItemStack(item, 1, i + f * 8));
+				list.add(new ItemStack(this, 1, i + f * 8));
 			}
 		}
 	}

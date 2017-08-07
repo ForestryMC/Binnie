@@ -50,6 +50,6 @@ public class IsolatorRecipeWrapper extends BlankRecipeWrapper {
 	public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
 		float loss = IsolatorLogic.TARGET_LOSS_CHANCE;
 		String lossString = String.format("Loss: %.0f%%", loss * 100);
-		minecraft.fontRendererObj.drawString(lossString, 42, 0, Color.gray.getRGB());
+		minecraft.fontRenderer.drawString(lossString, 42, 0, Color.gray.getRGB());
 	}
 }

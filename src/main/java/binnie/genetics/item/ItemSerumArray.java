@@ -88,25 +88,26 @@ public class ItemSerumArray extends ItemGene implements IItemSerum {
 		return new GeneArrayItem(itemStack);
 	}
 
-	@SideOnly(Side.CLIENT)
 	@Override
-	public void getSubItems(Item item, CreativeTabs tab, NonNullList<ItemStack> subItems) {
-		for (ISpeciesRoot root : AlleleManager.alleleRegistry.getSpeciesRoot().values()) {
-			for (IIndividual template : root.getIndividualTemplates()) {
-				if (template.getGenome().getPrimary().isSecret()) {
-					continue;
-				}
-				IGeneItem geneItem = new GeneArrayItem();
-				for (IChromosomeType type : root.getKaryotype()) {
-					IChromosome chromosome = template.getGenome().getChromosomes()[type.ordinal()];
-					if (chromosome != null) {
-						IAllele active = chromosome.getActiveAllele();
-						geneItem.addGene(new Gene(active, type, root));
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
+		if (this.isInCreativeTab(tab)) {
+			for (ISpeciesRoot root : AlleleManager.alleleRegistry.getSpeciesRoot().values()) {
+				for (IIndividual template : root.getIndividualTemplates()) {
+					if (template.getGenome().getPrimary().isSecret()) {
+						continue;
 					}
+					IGeneItem geneItem = new GeneArrayItem();
+					for (IChromosomeType type : root.getKaryotype()) {
+						IChromosome chromosome = template.getGenome().getChromosomes()[type.ordinal()];
+						if (chromosome != null) {
+							IAllele active = chromosome.getActiveAllele();
+							geneItem.addGene(new Gene(active, type, root));
+						}
+					}
+					ItemStack array = new ItemStack(this);
+					geneItem.writeToItem(array);
+					items.add(array);
 				}
-				ItemStack array = new ItemStack(item);
-				geneItem.writeToItem(array);
-				subItems.add(array);
 			}
 		}
 	}

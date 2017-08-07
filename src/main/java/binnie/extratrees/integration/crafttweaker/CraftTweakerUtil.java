@@ -1,11 +1,10 @@
 package binnie.extratrees.integration.crafttweaker;
 
+import crafttweaker.CraftTweakerAPI;
+import crafttweaker.api.item.IIngredient;
 import net.minecraft.item.ItemStack;
 
 import net.minecraftforge.fluids.FluidStack;
-
-import minetweaker.MineTweakerAPI;
-import minetweaker.api.item.IIngredient;
 
 public class CraftTweakerUtil {
 
@@ -14,8 +13,9 @@ public class CraftTweakerUtil {
 			return ItemStack.EMPTY;
 
 		Object internal = item.getInternal();
-		if(internal == null || !(internal instanceof ItemStack)) {
-			MineTweakerAPI.logError("Not a valid item stack: " + item);
+		if (!(internal instanceof ItemStack)) {
+			CraftTweakerAPI.logError("Not a valid item stack: " + item);
+			return ItemStack.EMPTY;
 		}
 		return (ItemStack) internal;
 	}

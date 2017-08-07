@@ -1,5 +1,6 @@
 package binnie.extratrees.machines.lumbermill.recipes;
 
+import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 
 import java.util.Collection;
@@ -41,7 +42,7 @@ public class LumbermillRecipe implements ILumbermillRecipe {
 
 	@Override
 	public String toString() {
-		return Objects.toStringHelper(this)
+		return MoreObjects.toStringHelper(this)
 			.add("input", input)
 			.add("output", output)
 			.toString();

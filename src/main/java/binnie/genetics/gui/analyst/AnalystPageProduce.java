@@ -5,15 +5,14 @@ import java.util.Collection;
 import java.util.List;
 
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.FurnaceRecipes;
-import net.minecraft.item.crafting.ShapedRecipes;
-import net.minecraft.item.crafting.ShapelessRecipes;
+import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.NonNullList;
 
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
-import net.minecraftforge.oredict.ShapelessOreRecipe;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 import forestry.api.recipes.ICentrifugeRecipe;
 import forestry.api.recipes.ISqueezerRecipe;
@@ -82,43 +81,22 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
 
 	public Collection<ItemStack> getCrafting(ItemStack stack) {
 		List<ItemStack> products = new ArrayList<>();
-		for (Object recipeO : CraftingManager.getInstance().getRecipeList()) {
-			if (recipeO instanceof ShapelessRecipes) {
-				ShapelessRecipes recipe = (ShapelessRecipes) recipeO;
-				boolean match = true;
-				for (Object rec : recipe.recipeItems) {
-					if (rec != null && (!(rec instanceof ItemStack) || !stack.isItemEqual((ItemStack) rec))) {
-						match = false;
+		for (IRecipe recipe : ForgeRegistries.RECIPES.getValues()) {
+			ItemStack recipeOutput = recipe.getRecipeOutput();
+			if (!recipeOutput.isEmpty()) {
+				NonNullList<Ingredient> ingredients = recipe.getIngredients();
+				if (!ingredients.isEmpty()) {
+					boolean match = true;
+					for (Ingredient ingredient : ingredients) {
+						if (!ingredient.apply(stack)) {
+							match = false;
+							break;
+						}
+					}
+					if (match) {
+						products.add(recipeOutput);
 					}
 				}
-				if (match) {
-					products.add(recipe.getRecipeOutput());
-				}
-			}
-			if (recipeO instanceof ShapedRecipes) {
-				ShapedRecipes recipe2 = (ShapedRecipes) recipeO;
-				boolean match = true;
-				for (Object rec2 : recipe2.recipeItems) {
-					if (rec2 != null && (!(rec2 instanceof ItemStack) || !stack.isItemEqual((ItemStack) rec2))) {
-						match = false;
-					}
-				}
-				if (match) {
-					products.add(recipe2.getRecipeOutput());
-				}
-			}
-			if (recipeO instanceof ShapelessOreRecipe) {
-				ShapelessOreRecipe recipe3 = (ShapelessOreRecipe) recipeO;
-				boolean match = true;
-				for (Object rec : recipe3.getInput()) {
-					if (rec != null && (!(rec instanceof ItemStack) || !stack.isItemEqual((ItemStack) rec))) {
-						match = false;
-					}
-				}
-				if (!match) {
-					continue;
-				}
-				products.add(recipe3.getRecipeOutput());
 			}
 		}
 		return products;

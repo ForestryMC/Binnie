@@ -48,7 +48,8 @@ public class BinnieModProxy implements IBinnieModProxy {
 
 	@Override
 	public Block registerBlock(Block block) {
-		return GameRegistry.register(block);
+		ForgeRegistries.BLOCKS.register(block);
+		return block;
 	}
 
 	@Override

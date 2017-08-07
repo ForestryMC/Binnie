@@ -3,12 +3,14 @@ package binnie.genetics.item;
 import javax.annotation.Nullable;
 import java.util.List;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -31,7 +33,7 @@ public abstract class ItemGene extends ItemCore implements IColoredItem {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(final ItemStack itemstack, final EntityPlayer entityPlayer, final List<String> list, final boolean advanced) {
+	public void addInformation(ItemStack itemstack, @Nullable World worldIn, List<String> list, ITooltipFlag flagIn) {
 		int damage = itemstack.getMaxDamage() - itemstack.getItemDamage();
 		if (damage == 0) {
 			list.add(I18N.localise("genetics.item.gene.empty"));
@@ -53,9 +55,8 @@ public abstract class ItemGene extends ItemCore implements IColoredItem {
 	@Override
 	public abstract String getItemStackDisplayName(final ItemStack itemStack);
 
-	@SideOnly(Side.CLIENT)
 	@Override
-	public abstract void getSubItems(Item item, final CreativeTabs tab, final NonNullList<ItemStack> subItems);
+	public abstract void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items);
 
 	@Nullable
 	public abstract IGeneItem getGeneItem(ItemStack itemStack);

@@ -148,19 +148,20 @@ public class ItemHoneyCrystal extends Item implements IElectricItem, IItemHudInf
 		info.add(ElectricItem.manager.getToolTip(stack));
 		return info;
 	}
-	
+
 	@Override
-	@SideOnly(Side.CLIENT)
-	public void getSubItems(Item item, CreativeTabs tab, NonNullList<ItemStack> subItems) {
-		if(Mods.IC2.active()) {
-			subItems.add(getCharged(0.0D));
-			subItems.add(getCharged(1.0D / 0.0));
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
+		if (Mods.IC2.active() && this.isInCreativeTab(tab)) {
+			items.add(getCharged(0.0D));
+			// TODO: @Nedelosk please fix
+//			items.add(getCharged(1.0D / 0.0));
 		}
 	}
 	
 	@Optional.Method(modid = "ic2")
 	public ItemStack getCharged(double charge) {
 		ItemStack ret = new ItemStack(this);
+		// TODO: tier 2147483647 ?!
 		ElectricItem.manager.charge(ret, charge, 2147483647, true, false);
 		return ret;
 	}

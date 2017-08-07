@@ -1,5 +1,6 @@
 package binnie.extratrees.machines.brewery.recipes;
 
+import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 
@@ -117,7 +118,7 @@ public class BrewedGrainRecipe implements IBreweryRecipe {
 
 	@Override
 	public String toString() {
-		return Objects.toStringHelper(this)
+		return MoreObjects.toStringHelper(this)
 			.add("grainOreName", grainOreName)
 			.add("output", FluidStackUtil.toString(output))
 			.add("ingredientOreName", ingredientOreName)

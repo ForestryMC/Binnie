@@ -50,6 +50,6 @@ public class GenepoolRecipeWrapper extends BlankRecipeWrapper {
 	public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
 		float usedEnzyme = GenepoolLogic.ENZYME_PER_PROCESS;
 		String usedString = String.format("%.2f", usedEnzyme);
-		minecraft.fontRendererObj.drawString(usedString, 22, 20, Color.gray.getRGB());
+		minecraft.fontRenderer.drawString(usedString, 22, 20, Color.gray.getRGB());
 	}
 }

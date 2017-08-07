@@ -1,5 +1,7 @@
 package binnie.extratrees.item;
 
+import binnie.Constants;
+import binnie.core.util.RecipeUtil;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -8,8 +10,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
-import net.minecraftforge.oredict.ShapedOreRecipe;
-import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -132,27 +132,28 @@ public class ModuleItems implements IInitializable {
 
 	@Override
 	public void postInit() {
+		RecipeUtil recipeUtil = new RecipeUtil(Constants.EXTRA_TREES_MOD_ID);
 		ModuleItems items = ExtraTrees.items();
 		
 		MinecraftForge.addGrassSeed(new ItemStack(itemHops), 5);
 		
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(items.itemDurableHammer, 1, 0), "wiw", " s ", " s ", 'w', Blocks.OBSIDIAN, 'i', Items.GOLD_INGOT, 's', Items.STICK));
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(items.itemHammer, 1, 0), "wiw", " s ", " s ", 'w', "plankWood", 'i', Items.IRON_INGOT, 's', Items.STICK));
-		GameRegistry.addRecipe(new ShapedOreRecipe(ExtraTreeItems.Yeast.get(8), " m ", "mbm", 'b', Items.BREAD, 'm', Blocks.BROWN_MUSHROOM));
-		GameRegistry.addRecipe(new ShapedOreRecipe(ExtraTreeItems.LagerYeast.get(8), "mbm", " m ", 'b', Items.BREAD, 'm', Blocks.BROWN_MUSHROOM));
-		GameRegistry.addRecipe(ExtraTreeItems.GrainWheat.get(5), " s ", "sss", " s ", 's', Items.WHEAT_SEEDS);
-		GameRegistry.addRecipe(new ShapedOreRecipe(ExtraTreeItems.GrainBarley.get(3), false, " s ", "s  ", " s ", 's', ExtraTreeItems.GrainWheat.get(1)));
-		GameRegistry.addRecipe(new ShapedOreRecipe(ExtraTreeItems.GrainCorn.get(3), false, " s ", "  s", " s ", 's', ExtraTreeItems.GrainWheat.get(1)));
-		GameRegistry.addRecipe(ExtraTreeItems.GrainRye.get(3), "   ", "s s", " s ", 's', ExtraTreeItems.GrainWheat.get(1));
-		GameRegistry.addRecipe(ExtraTreeItems.ProvenGear.get(1), " s ", "s s", " s ", 's', Mods.Forestry.stack("oak_stick"));
-		GameRegistry.addRecipe(ExtraTreeItems.GlassFitting.get(6), "s s", " i ", "s s", 'i', Items.IRON_INGOT, 's', Items.STICK);
+		recipeUtil.addRecipe("durable_hammer", new ItemStack(items.itemDurableHammer, 1, 0), "wiw", " s ", " s ", 'w', Blocks.OBSIDIAN, 'i', Items.GOLD_INGOT, 's', Items.STICK);
+		recipeUtil.addRecipe("hammer", new ItemStack(items.itemHammer, 1, 0), "wiw", " s ", " s ", 'w', "plankWood", 'i', Items.IRON_INGOT, 's', Items.STICK);
+		recipeUtil.addRecipe("yeast", ExtraTreeItems.Yeast.get(8), " m ", "mbm", 'b', Items.BREAD, 'm', Blocks.BROWN_MUSHROOM);
+		recipeUtil.addRecipe("lager_yeast", ExtraTreeItems.LagerYeast.get(8), "mbm", " m ", 'b', Items.BREAD, 'm', Blocks.BROWN_MUSHROOM);
+		recipeUtil.addRecipe("grain_wheat", ExtraTreeItems.GrainWheat.get(5), " s ", "sss", " s ", 's', Items.WHEAT_SEEDS);
+		recipeUtil.addRecipe("grain_barley", ExtraTreeItems.GrainBarley.get(3), false, " s ", "s  ", " s ", 's', ExtraTreeItems.GrainWheat.get(1));
+		recipeUtil.addRecipe("grain_corn", ExtraTreeItems.GrainCorn.get(3), false, " s ", "  s", " s ", 's', ExtraTreeItems.GrainWheat.get(1));
+		recipeUtil.addRecipe("grain_rye", ExtraTreeItems.GrainRye.get(3), "   ", "s s", " s ", 's', ExtraTreeItems.GrainWheat.get(1));
+		recipeUtil.addRecipe("proven_gear", ExtraTreeItems.ProvenGear.get(1), " s ", "s s", " s ", 's', Mods.Forestry.stack("oak_stick"));
+		recipeUtil.addRecipe("glass_fitting", ExtraTreeItems.GlassFitting.get(6), "s s", " i ", "s s", 'i', Items.IRON_INGOT, 's', Items.STICK);
 		GameRegistry.addSmelting(ExtraTreeItems.GrainWheat.get(1), ExtraTreeItems.GrainRoasted.get(1), 0.0f);
 		GameRegistry.addSmelting(ExtraTreeItems.GrainRye.get(1), ExtraTreeItems.GrainRoasted.get(1), 0.0f);
 		GameRegistry.addSmelting(ExtraTreeItems.GrainCorn.get(1), ExtraTreeItems.GrainRoasted.get(1), 0.0f);
 		GameRegistry.addSmelting(ExtraTreeItems.GrainBarley.get(1), ExtraTreeItems.GrainRoasted.get(1), 0.0f);
 		try {
 			final Item minium = (Item) Class.forName("com.pahimar.ee3.lib.ItemIds").getField("minium_shard").get(null);
-			GameRegistry.addRecipe(new ShapelessOreRecipe(Food.PAPAYIMAR.get(1), minium, "cropPapaya"));
+			recipeUtil.addShapelessRecipe("papayimar", Food.PAPAYIMAR.get(1), minium, "cropPapaya");
 		} catch (Exception ignored) {
 		}
 		ICarpenterManager carpenterManager = RecipeManagers.carpenterManager;

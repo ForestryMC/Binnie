@@ -89,10 +89,9 @@ public class BlockCeramic extends Block implements IColoredBlock, IItemModelRegi
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(Item item, CreativeTabs tab, NonNullList<ItemStack> itemList) {
+	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> itemList) {
 		for (EnumFlowerColor c : EnumFlowerColor.values()) {
-			itemList.add(new ItemStack(item, 1, c.getFlowerColorAllele().getID()));
+			itemList.add(new ItemStack(this, 1, c.getFlowerColorAllele().getID()));
 		}
 	}
 

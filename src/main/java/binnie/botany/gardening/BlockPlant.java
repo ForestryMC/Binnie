@@ -90,8 +90,7 @@ public class BlockPlant extends BlockBush implements IItemModelRegister {
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(Item p_149666_1_, CreativeTabs p_149666_2_, NonNullList<ItemStack> subBlocks) {
+	public void getSubBlocks(CreativeTabs p_149666_2_, NonNullList<ItemStack> subBlocks) {
 		for (PlantType type : PlantType.values()) {
 			subBlocks.add(type.get());
 		}

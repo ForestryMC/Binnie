@@ -200,7 +200,7 @@ public class ContainerCraftGUI extends Container {
 			final int slotNumber = action.getShort("n");
 			this.createServerSlot(InventoryType.values()[type % 4], index, slotNumber);
 			for (IContainerListener listener : listeners) {
-				listener.updateCraftingInventory(this, this.getInventory());
+				listener.sendAllContents(this, this.getInventory());
 			}
 		}
 		return false;

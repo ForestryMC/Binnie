@@ -94,13 +94,13 @@ public class InoculatorRecipeWrapper extends BlankRecipeWrapper {
 
 			NumberFormat decimalFormat = NumberFormat.getIntegerInstance(MinecraftForgeClient.getLocale());
 			String powerString = decimalFormat.format(power) + " RF";
-			int xPower = 15 + (recipeWidth - minecraft.fontRendererObj.getStringWidth(powerString)) / 2;
-			minecraft.fontRendererObj.drawString(powerString, xPower, 5, Color.gray.getRGB());
+			int xPower = 15 + (recipeWidth - minecraft.fontRenderer.getStringWidth(powerString)) / 2;
+			minecraft.fontRenderer.drawString(powerString, xPower, 5, Color.gray.getRGB());
 
 			// todo: find a localized duration formatter
 			String processTime = DurationFormatUtils.formatDurationWords(processTicks * 1000 / 20, true, true);
-			int xTime = 15 + (recipeWidth - minecraft.fontRendererObj.getStringWidth(processTime)) / 2;
-			minecraft.fontRendererObj.drawString(processTime, xTime, 45, Color.gray.getRGB());
+			int xTime = 15 + (recipeWidth - minecraft.fontRenderer.getStringWidth(processTime)) / 2;
+			minecraft.fontRenderer.drawString(processTime, xTime, 45, Color.gray.getRGB());
 		}
 	}
 

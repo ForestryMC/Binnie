@@ -13,6 +13,7 @@ import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.NonNullList;
 
 import net.minecraftforge.oredict.OreDictionary;
@@ -46,7 +47,6 @@ public class LumbermillRecipeManager implements ILumbermillManager {
 	}
 
 	public static void calculateProducts() {
-		CraftingManager craftingManager = CraftingManager.getInstance();
 		InventoryCrafting fakeCraftingInventory = new InventoryCrafting(new FakeCraftingHandler(), 3, 3){};
 
 		NonNullList<ItemStack> logs = OreDictionary.getOres("logWood");
@@ -59,10 +59,13 @@ public class LumbermillRecipeManager implements ILumbermillManager {
 
 					fakeCraftingInventory.clear();
 					fakeCraftingInventory.setInventorySlotContents(0, logCopy);
-					ItemStack recipeOutput = craftingManager.findMatchingRecipe(fakeCraftingInventory, FakeCraftingWorld.getInstance());
-					if (!recipeOutput.isEmpty()) {
-						if (OreDictionaryUtil.hasOreName(recipeOutput, "plankWood")) {
-							addLogToPlankRecipe(logCopy.copy(), recipeOutput.copy());
+					IRecipe recipe = CraftingManager.findMatchingRecipe(fakeCraftingInventory, FakeCraftingWorld.getInstance());
+					if (recipe != null) {
+						ItemStack recipeOutput = recipe.getCraftingResult(fakeCraftingInventory);
+						if (!recipeOutput.isEmpty()) {
+							if (OreDictionaryUtil.hasOreName(recipeOutput, "plankWood")) {
+								addLogToPlankRecipe(logCopy.copy(), recipeOutput.copy());
+							}
 						}
 					}
 				}
@@ -70,10 +73,13 @@ public class LumbermillRecipeManager implements ILumbermillManager {
 				fakeCraftingInventory.clear();
 				fakeCraftingInventory.setInventorySlotContents(0, logStack.copy());
 
-				ItemStack recipeOutput = craftingManager.findMatchingRecipe(fakeCraftingInventory, FakeCraftingWorld.getInstance());
-				if (!recipeOutput.isEmpty()) {
-					if (OreDictionaryUtil.hasOreName(recipeOutput, "plankWood")) {
-						addLogToPlankRecipe(logStack.copy(), recipeOutput.copy());
+				IRecipe recipe = CraftingManager.findMatchingRecipe(fakeCraftingInventory, FakeCraftingWorld.getInstance());
+				if (recipe != null) {
+					ItemStack recipeOutput = recipe.getCraftingResult(fakeCraftingInventory);
+					if (!recipeOutput.isEmpty()) {
+						if (OreDictionaryUtil.hasOreName(recipeOutput, "plankWood")) {
+							addLogToPlankRecipe(logStack.copy(), recipeOutput.copy());
+						}
 					}
 				}
 			}

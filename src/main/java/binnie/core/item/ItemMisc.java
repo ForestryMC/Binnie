@@ -1,13 +1,16 @@
 package binnie.core.item;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -25,11 +28,12 @@ public class ItemMisc extends ItemCore {
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public void getSubItems(final Item itemIn, final CreativeTabs creativeTabs, NonNullList<ItemStack> subItems) {
-		for (IItemMiscProvider item : this.items) {
-			if (item.isActive()) {
-				subItems.add(this.getStack(item, 1));
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
+		if (this.isInCreativeTab(tab)) {
+			for (IItemMiscProvider item : this.items) {
+				if (item.isActive()) {
+					items.add(this.getStack(item, 1));
+				}
 			}
 		}
 	}
@@ -44,8 +48,8 @@ public class ItemMisc extends ItemCore {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
-		super.addInformation(stack, playerIn, tooltip, advanced);
+	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+		super.addInformation(stack, worldIn, tooltip, flagIn);
 		IItemMiscProvider item = this.getItem(stack.getItemDamage());
 		item.addInformation(tooltip);
 	}

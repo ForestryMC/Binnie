@@ -2,6 +2,7 @@ package binnie.genetics.gui.analyst;
 
 import java.util.EnumSet;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.util.text.TextFormatting;
 
 import net.minecraftforge.fml.relauncher.Side;
@@ -36,7 +37,7 @@ public abstract class ControlToleranceBar<T extends Enum<T>> extends Control imp
 	}
 
 	@Override
-	public void getTooltip(Tooltip tooltip) {
+	public void getTooltip(Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		int types = fullSet.size();
 		int type = getRelativeMousePosition().xPos() / (getSize().xPos() / types);
 		for (T tol : fullSet) {

@@ -1,14 +1,13 @@
 package binnie.extrabees.init;
 
+import binnie.core.util.RecipeUtil;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
-import net.minecraftforge.oredict.ShapedOreRecipe;
 
 import forestry.api.circuits.ICircuitLayout;
 import forestry.api.recipes.RecipeManagers;
@@ -30,10 +29,11 @@ import binnie.extrabees.items.types.ExtraBeeItems;
 import binnie.extrabees.utils.Utils;
 
 public final class RecipeRegister {
+	private static final RecipeUtil RECIPE_UTIL = new RecipeUtil(ExtraBees.MODID);
 	
 	public static void postInitRecipes() {
 		if (Loader.isModLoaded("ic2")) {
-			GameRegistry.addRecipe(ExtraBees.honeyCrystal.getCharged(0), "#@#", "@#@", "#@#", '@', PluginApiculture.getItems().honeyDrop, '#', EnumHoneyDrop.ENERGY.get(1));
+			RECIPE_UTIL.addRecipe("honey_crystal", ExtraBees.honeyCrystal.getCharged(0), "#@#", "@#@", "#@#", '@', PluginApiculture.getItems().honeyDrop, '#', EnumHoneyDrop.ENERGY.get(1));
 		}
 		for (final EnumHoneyComb info : EnumHoneyComb.values()) {
 			info.addRecipe();
@@ -44,7 +44,7 @@ public final class RecipeRegister {
 		for (final EnumPropolis info3 : EnumPropolis.values()) {
 			info3.addRecipe();
 		}
-		EnumHiveFrame.init();
+		EnumHiveFrame.init(RECIPE_UTIL);
 		addForestryRecipes();
 		addForestryRecipes();
 		addMiscItemRecipes();
@@ -56,13 +56,13 @@ public final class RecipeRegister {
 		Item thermionicTubes = PluginCore.getItems().tubes;
 		Item chipsets = PluginCore.getItems().circuitboards;
 		
-		GameRegistry.addRecipe(getAlvearyPart(EnumAlvearyLogicType.MUTATOR), "g g", " a ", "t t", 'g', Items.GOLD_INGOT, 'a', alveary, 't', new ItemStack(thermionicTubes, 1, 5));
-		GameRegistry.addRecipe(getAlvearyPart(EnumAlvearyLogicType.FRAME), "iii", "tat", " t ", 'i', Items.IRON_INGOT, 'a', alveary, 't', new ItemStack(thermionicTubes, 1, 4));
-		GameRegistry.addRecipe(getAlvearyPart(EnumAlvearyLogicType.RAINSHIELD), " b ", "bab", "t t", 'b', Items.BRICK, 'a', alveary, 't', new ItemStack(thermionicTubes, 1, 4));
-		GameRegistry.addRecipe(getAlvearyPart(EnumAlvearyLogicType.LIGHTING), "iii", "iai", " t ", 'i', Items.GLOWSTONE_DUST, 'a', alveary, 't', new ItemStack(thermionicTubes, 1, 4));
-		GameRegistry.addRecipe(getAlvearyPart(EnumAlvearyLogicType.STIMULATOR), "kik", "iai", " t ", 'i', Items.GOLD_NUGGET, 'a', alveary, 't', new ItemStack(thermionicTubes, 1, 4), 'k', new ItemStack(chipsets, 1, 2));
-		GameRegistry.addRecipe(getAlvearyPart(EnumAlvearyLogicType.HATCHERY), "i i", " a ", "iti", 'i', Blocks.GLASS_PANE, 'a', alveary, 't', new ItemStack(thermionicTubes, 1, 5));
-		GameRegistry.addRecipe(new ShapedOreRecipe(getAlvearyPart(EnumAlvearyLogicType.TRANSMISSION), " t ", "tat", " t ", 'a', alveary, 't', "gearTin"));
+		RECIPE_UTIL.addRecipe("alveary_mutator", getAlvearyPart(EnumAlvearyLogicType.MUTATOR), "g g", " a ", "t t", 'g', Items.GOLD_INGOT, 'a', alveary, 't', new ItemStack(thermionicTubes, 1, 5));
+		RECIPE_UTIL.addRecipe("alveary_frame", getAlvearyPart(EnumAlvearyLogicType.FRAME), "iii", "tat", " t ", 'i', Items.IRON_INGOT, 'a', alveary, 't', new ItemStack(thermionicTubes, 1, 4));
+		RECIPE_UTIL.addRecipe("alveary_rain_shield", getAlvearyPart(EnumAlvearyLogicType.RAINSHIELD), " b ", "bab", "t t", 'b', Items.BRICK, 'a', alveary, 't', new ItemStack(thermionicTubes, 1, 4));
+		RECIPE_UTIL.addRecipe("alveary_lighting", getAlvearyPart(EnumAlvearyLogicType.LIGHTING), "iii", "iai", " t ", 'i', Items.GLOWSTONE_DUST, 'a', alveary, 't', new ItemStack(thermionicTubes, 1, 4));
+		RECIPE_UTIL.addRecipe("alveary_stimulator", getAlvearyPart(EnumAlvearyLogicType.STIMULATOR), "kik", "iai", " t ", 'i', Items.GOLD_NUGGET, 'a', alveary, 't', new ItemStack(thermionicTubes, 1, 4), 'k', new ItemStack(chipsets, 1, 2));
+		RECIPE_UTIL.addRecipe("alveary_hatchery", getAlvearyPart(EnumAlvearyLogicType.HATCHERY), "i i", " a ", "iti", 'i', Blocks.GLASS_PANE, 'a', alveary, 't', new ItemStack(thermionicTubes, 1, 5));
+		RECIPE_UTIL.addRecipe("alveary_transmission", getAlvearyPart(EnumAlvearyLogicType.TRANSMISSION), " t ", "tat", " t ", 'a', alveary, 't', "gearTin");
 		ICircuitLayout stimulatorLayout = new BinnieCircuitLayout("Stimulator", BinnieCircuitSocketType.STIMULATOR);
 		for (final AlvearySimulatorCircuitType type : AlvearySimulatorCircuitType.values()) {
 			type.createCircuit(stimulatorLayout);
@@ -79,7 +79,7 @@ public final class RecipeRegister {
 	
 	private static void addMiscItemRecipes() {
 		final ItemStack lapisShard = ExtraBeeItems.LapisShard.get(1);
-		GameRegistry.addShapelessRecipe(new ItemStack(Items.DYE, 1, 4), lapisShard, lapisShard, lapisShard, lapisShard);
+		RECIPE_UTIL.addShapelessRecipe("lapis_from_shards", new ItemStack(Items.DYE, 1, 4), lapisShard, lapisShard, lapisShard, lapisShard);
 		for (final ExtraBeeItems item : ExtraBeeItems.values()) {
 			if (item.metalString != null) {
 				ItemStack dust = null;
@@ -92,11 +92,11 @@ public final class RecipeRegister {
 				}
 				final ItemStack input = item.get(1);
 				if (dust != null) {
-					GameRegistry.addShapelessRecipe(dust, input, input, input, input);
+					RECIPE_UTIL.addShapelessRecipe(item.getModelPath() + "_dust", dust, input, input, input, input);
 				} else if (ingot != null) {
-					GameRegistry.addShapelessRecipe(ingot, input, input, input, input, input, input, input, input, input);
+					RECIPE_UTIL.addShapelessRecipe(item.getModelPath() + "_ingot", ingot, input, input, input, input, input, input, input, input, input);
 				} else if (item == ExtraBeeItems.CoalDust) {
-					GameRegistry.addShapelessRecipe(new ItemStack(Items.COAL), input, input, input, input);
+					RECIPE_UTIL.addShapelessRecipe("coal_dust_to_coal", new ItemStack(Items.COAL), input, input, input, input);
 				}
 			} else if (item.gemString != null) {
 				ItemStack gem = null;
@@ -105,7 +105,7 @@ public final class RecipeRegister {
 				}
 				final ItemStack input2 = item.get(1);
 				if (gem != null) {
-					GameRegistry.addShapelessRecipe(gem.copy(), input2, input2, input2, input2, input2, input2, input2, input2, input2);
+					RECIPE_UTIL.addShapelessRecipe(item.getModelPath() + "_gem", gem.copy(), input2, input2, input2, input2, input2, input2, input2, input2, input2);
 				}
 			}
 		}

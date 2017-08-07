@@ -42,7 +42,7 @@ public enum EnumETLog implements IWoodType {
 	Eucalyptus("Eucalyptus", PlankType.ExtraTreePlanks.Eucalyptus),
 	Box("Box", PlankType.ExtraTreePlanks.Box),
 	Syzgium("Syzgium", PlankType.ExtraTreePlanks.Syzgium),
-	PinkIvory("Pink Ivory", PlankType.ExtraTreePlanks.PinkIvory),
+	PinkIvory("PinkIvory", PlankType.ExtraTreePlanks.PinkIvory),
 	Eucalyptus2("Eucalyptus", PlankType.ExtraTreePlanks.Eucalyptus, false),
 	Eucalyptus3("Eucalyptus", PlankType.ExtraTreePlanks.Eucalyptus, false),
 	Cherry("Cherry", PlankType.ForestryPlanks.CHERRY, false),
@@ -51,6 +51,7 @@ public enum EnumETLog implements IWoodType {
 	public static final EnumETLog[] VALUES = values();
 
 	private final String name;
+	private final String uid;
 	private final IPlankType plank;
 	private final boolean hasProducts;
 	
@@ -60,6 +61,7 @@ public enum EnumETLog implements IWoodType {
 
 	EnumETLog(final String name, final IPlankType plank, boolean hasProducts) {
 		this.name = name;
+		this.uid = name.toLowerCase(Locale.ENGLISH).replace(" ", "_");
 		this.plank = plank;
 		this.hasProducts = hasProducts;
 	}
@@ -113,8 +115,7 @@ public enum EnumETLog implements IWoodType {
 
 	@Override
 	public String getHeartTexture() {
-		String name = name().toLowerCase(Locale.ENGLISH).replace(" ", "_");
-		return Constants.EXTRA_TREES_MOD_ID + ":blocks/logs/" + name + "_trunk";
+		return Constants.EXTRA_TREES_MOD_ID + ":blocks/logs/" + uid + "_trunk";
 	}
 
 	@Override
@@ -129,8 +130,7 @@ public enum EnumETLog implements IWoodType {
 
 	@Override
 	public String getBarkTexture() {
-		String name = name().toLowerCase(Locale.ENGLISH).replace(" ", "_");
-		return Constants.EXTRA_TREES_MOD_ID + ":blocks/logs/" + name + "_bark";
+		return Constants.EXTRA_TREES_MOD_ID + ":blocks/logs/" + uid + "_bark";
 	}
 
 	@Override
@@ -145,6 +145,10 @@ public enum EnumETLog implements IWoodType {
 	@Override
 	public int getMetadata() {
 		return ordinal();
+	}
+
+	public String getUid() {
+		return uid;
 	}
 }
 

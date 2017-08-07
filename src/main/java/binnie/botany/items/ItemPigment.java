@@ -46,10 +46,11 @@ public class ItemPigment extends Item implements IItemModelRegister, IColoredIte
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public void getSubItems(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> list) {
-		for (EnumFlowerColor color : EnumFlowerColor.values()) {
-			list.add(new ItemStack(this, 1, color.ordinal()));
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
+		if (this.isInCreativeTab(tab)) {
+			for (EnumFlowerColor color : EnumFlowerColor.values()) {
+				items.add(new ItemStack(this, 1, color.ordinal()));
+			}
 		}
 	}
 }

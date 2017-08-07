@@ -13,6 +13,7 @@ import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -54,7 +55,7 @@ class BlockMachine extends Block implements IBlockMachine, ITileEntityProvider {
 	}
 
 	@Override
-	public void getSubBlocks(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> itemList) {
+	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> itemList) {
 		for (final MachinePackage pack : this.group.getPackages()) {
 			if (pack.isActive()) {
 				itemList.add(new ItemStack(this, 1, pack.getMetadata()));
@@ -108,9 +109,10 @@ class BlockMachine extends Block implements IBlockMachine, ITileEntityProvider {
 		MachinePackage machinePackage = this.getPackage(meta);
 		return (machinePackage == null) ? "Unnamed Machine" : machinePackage.getDisplayName();
 	}
-	
+
 	@Override
-	public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advanced) {
+	@SideOnly(Side.CLIENT)
+	public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, ITooltipFlag advanced) {
 		super.addInformation(stack, player, tooltip, advanced);
 		if (GuiScreen.isShiftKeyDown()) {
 			MachinePackage machinePackage = this.getPackage(stack.getMetadata());
@@ -121,7 +123,7 @@ class BlockMachine extends Block implements IBlockMachine, ITileEntityProvider {
 			tooltip.add(TextFormatting.ITALIC + "<" + Translator.translateToLocal("for.gui.tooltip.tmi") + ">");
 		}
 	}
-	
+
 	@Override
 	public int damageDropped(IBlockState state) {
 		return state.getValue(MACHINE_TYPE);
@@ -147,14 +149,9 @@ class BlockMachine extends Block implements IBlockMachine, ITileEntityProvider {
 		}
 		TileEntity tileEntity = worldIn.getTileEntity(pos);
 		if (tileEntity != null) {
-			if (tileEntity.hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, facing)) {
-				IFluidHandler tileFluidHandler = tileEntity.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, facing);
-				ItemStack heldItem = playerIn.getHeldItem(hand);
-				FluidActionResult actionResult = FluidUtil.interactWithFluidHandler(heldItem, tileFluidHandler, playerIn);
-				if (actionResult.isSuccess()) {
-					playerIn.setHeldItem(hand, actionResult.getResult());
-					return true;
-				}
+			IFluidHandler tileFluidHandler = tileEntity.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, facing);
+			if (tileFluidHandler != null && FluidUtil.interactWithFluidHandler(playerIn, hand, tileFluidHandler)) {
+				return true;
 			}
 			if (tileEntity instanceof TileEntityMachine) {
 				((TileEntityMachine) tileEntity).getMachine().onRightClick(worldIn, playerIn, pos);

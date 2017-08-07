@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 
 import net.minecraftforge.fml.relauncher.Side;
@@ -55,7 +55,7 @@ public class BeeModifierLogic {
 	}
 
 	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
+	public void addInformation(ItemStack stack, List<String> tooltip, ITooltipFlag flagIn) {
 		for (Map.Entry<EnumBeeModifier, Float[]> modifier : modifiers.entrySet()) {
 			final EnumBeeModifier key = modifier.getKey();
 			final Float[] value = modifier.getValue();

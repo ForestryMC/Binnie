@@ -1,5 +1,6 @@
 package binnie.genetics.gui.analyst;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -36,7 +37,7 @@ public class ControlSystemButton extends Control {
 	}
 
 	@Override
-	public void getTooltip(Tooltip tooltip) {
+	public void getTooltip(Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		tooltip.add(system.getName());
 	}
 

@@ -181,7 +181,7 @@ public class TextureRenderer {
 
 	public int textHeight(final String text, final int width) {
 		Minecraft minecraft = Minecraft.getMinecraft();
-		FontRenderer fontRenderer = minecraft.fontRendererObj;
+		FontRenderer fontRenderer = minecraft.fontRenderer;
 		return fontRenderer.listFormattedStringToWidth(text, width).size() * RenderUtil.getTextHeight();
 	}
 

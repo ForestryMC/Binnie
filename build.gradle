@@ -7,7 +7,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
         classpath "gradle.plugin.se.bjurr.gitchangelog:git-changelog-gradle-plugin:1.47"
     }
 }
@@ -29,7 +29,7 @@ if (System.getenv("BUILD_NUMBER") != null) {
     version = version + "." + System.getenv("BUILD_NUMBER")
 }
 group = "binnie" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "binnie-mods-1.11.2"
+archivesBaseName = "binnie-mods-" + mcversion
 
 minecraft {
     version = mcversion + "-" + forgeversion
@@ -67,7 +67,7 @@ dependencies {
     runtime "jei-bees:jeibees:${jeibees_version}:mc${mcversion}"
     deobfProvided "net.industrial-craft:industrialcraft-2:${ic2_version}:api"
     runtime "net.industrial-craft:industrialcraft-2:${ic2_version}"
-	deobfProvided "MineTweaker3:MineTweaker3-API:${minetweaker_version}"
+    deobfProvided "CraftTweaker2:CraftTweaker2-API:${minetweaker_version}"
 }
 
 processResources {

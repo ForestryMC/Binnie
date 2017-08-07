@@ -36,7 +36,7 @@ public class ContainerStimulator extends AbstractAlvearyContainer {
 	public void checkPower() {
 		if (power != storage.getEnergyStored()) {
 			for (IContainerListener listener : listeners) {
-				listener.sendProgressBarUpdate(this, 9, power = storage.getEnergyStored());
+				listener.sendWindowProperty(this, 9, power = storage.getEnergyStored());
 			}
 		}
 	}

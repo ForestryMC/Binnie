@@ -7,6 +7,7 @@ import java.util.List;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.nbt.NBTTagCompound;
 
 import net.minecraftforge.fluids.Fluid;
@@ -169,7 +170,7 @@ public class ControlLiquidTank extends Control implements ITooltip {
 	}
 
 	@Override
-	public void getTooltip(final Tooltip tooltip) {
+	public void getTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		if (this.isTankValid()) {
 			final int percentage = (int) (100.0 * this.getTank().getAmount() / this.getTankCapacity());
 			tooltip.add(this.getTank().getName());

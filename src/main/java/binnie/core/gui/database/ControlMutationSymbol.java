@@ -1,5 +1,6 @@
 package binnie.core.gui.database;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -58,7 +59,7 @@ class ControlMutationSymbol extends Control implements ITooltip {
 	}
 
 	@Override
-	public void getTooltip(final Tooltip tooltip) {
+	public void getTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		if (this.type == 1 && this.discovered) {
 			final IAlleleSpecies species1 = this.value.getAllele0();
 			final IAlleleSpecies species2 = this.value.getAllele1();

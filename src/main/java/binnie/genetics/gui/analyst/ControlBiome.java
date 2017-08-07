@@ -1,6 +1,7 @@
 package binnie.genetics.gui.analyst;
 
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.world.biome.Biome;
 
 import net.minecraftforge.common.BiomeDictionary;
@@ -68,7 +69,7 @@ public class ControlBiome extends Control implements ITooltip {
 	}
 
 	@Override
-	public void getTooltip(Tooltip tooltip) {
+	public void getTooltip(Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		tooltip.add(biome.getBiomeName().replaceAll("(\\p{Ll})(\\p{Lu})", "$1 $2"));
 	}
 }

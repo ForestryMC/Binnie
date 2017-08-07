@@ -1,5 +1,6 @@
 package binnie.botany.gui.database;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -39,8 +40,8 @@ public class ControlColorDisplay extends Control implements IControlValue<IFlowe
 	}
 
 	@Override
-	public void getTooltip(Tooltip tooltip) {
-		super.getTooltip(tooltip);
+	public void getTooltip(Tooltip tooltip, ITooltipFlag tooltipFlag) {
+		super.getTooltip(tooltip, tooltipFlag);
 		tooltip.add(value.getColorName());
 	}
 }

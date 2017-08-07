@@ -1,5 +1,7 @@
 package binnie.genetics.item;
 
+import binnie.Constants;
+import binnie.core.util.RecipeUtil;
 import com.google.common.base.Preconditions;
 
 import javax.annotation.Nullable;
@@ -105,66 +107,61 @@ public class ModuleItems implements IInitializable {
 
 	@Override
 	public void postInit() {
-		GameRegistry.addShapelessRecipe(GeneticsItems.DNADye.get(8),
+		RecipeUtil recipeUtil = new RecipeUtil(Constants.GENETICS_MOD_ID);
+		recipeUtil.addShapelessRecipe("dna_dye_from_glowstone", GeneticsItems.DNADye.get(8),
 			Items.GLOWSTONE_DUST, new ItemStack(Items.DYE, 1, 5)
 		);
-		GameRegistry.addRecipe(new ShapedOreRecipe(GeneticsItems.LaboratoryCasing.get(itemGenetics, 1),
+		recipeUtil.addRecipe("laboratory_casing", GeneticsItems.LaboratoryCasing.get(itemGenetics, 1),
 			"iii",
 			"iYi",
 			"iii",
 			'i', "ingotIron", 'Y', Mods.Forestry.item("sturdy_machine")
-		));
-		GameRegistry.addRecipe(new ShapelessOreRecipe(GeneticsItems.DNADye.get(itemGenetics, 2), "dyePurple", "dyeMagenta", "dyePink"));
-		GameRegistry.addRecipe(new ShapelessOreRecipe(GeneticsItems.FluorescentDye.get(itemGenetics, 2), "dyeOrange", "dyeYellow", "dustGlowstone"));
-		GameRegistry.addRecipe(new ShapelessOreRecipe(GeneticsItems.GrowthMedium.get(itemGenetics, 2), new ItemStack(Items.DYE, 1, 15), Items.SUGAR));
-		GameRegistry.addRecipe(new ShapedOreRecipe(GeneticsItems.EmptySequencer.get(itemGenetics, 1),
+		);
+		recipeUtil.addShapelessRecipe("dna_dye", GeneticsItems.DNADye.get(itemGenetics, 2), "dyePurple", "dyeMagenta", "dyePink");
+		recipeUtil.addShapelessRecipe("fluorescent_dye", GeneticsItems.FluorescentDye.get(itemGenetics, 2), "dyeOrange", "dyeYellow", "dustGlowstone");
+		recipeUtil.addShapelessRecipe("growth_medium", GeneticsItems.GrowthMedium.get(itemGenetics, 2), new ItemStack(Items.DYE, 1, 15), Items.SUGAR);
+		recipeUtil.addRecipe("empty_sequencer", GeneticsItems.EmptySequencer.get(itemGenetics, 1),
 			" p ",
 			"iGi",
 			" p ",
 			'i', "ingotGold", 'G', Blocks.GLASS_PANE, 'p', Items.PAPER
-		));
-		GameRegistry.addRecipe(new ShapedOreRecipe(GeneticsItems.EMPTY_SERUM.get(itemGenetics, 1),
+		);
+		recipeUtil.addRecipe("empty_serum", GeneticsItems.EMPTY_SERUM.get(itemGenetics, 1),
 			" g ",
 			" G ",
 			"GGG",
 			'g', "ingotGold", 'G', Blocks.GLASS_PANE
-		));
-		GameRegistry.addRecipe(new ShapedOreRecipe(GeneticsItems.EMPTY_GENOME.get(itemGenetics, 1),
+		);
+		recipeUtil.addRecipe("empty_genome", GeneticsItems.EMPTY_GENOME.get(itemGenetics, 1),
 			"sss",
 			"sss",
 			"sss",
 			's', GeneticsItems.EMPTY_SERUM.get(itemGenetics, 1)
-		));
-		GameRegistry.addRecipe(new ShapedOreRecipe(FluidContainerType.CYLINDER.get(8),
+		);
+		recipeUtil.addRecipe("cylinder", FluidContainerType.CYLINDER.get(8),
 			" g ",
 			"g g",
 			"   ",
 			'g', Blocks.GLASS_PANE
-		));
-		GameRegistry.addRecipe(new ShapedOreRecipe(GeneticsItems.IntegratedCircuit.get(itemGenetics, 1),
+		);
+		recipeUtil.addRecipe("integrated_circuit", GeneticsItems.IntegratedCircuit.get(itemGenetics, 1),
 			"l g",
 			" c ",
 			"g l",
 			'c', Mods.Forestry.stack("chipsets", 1, 1), 'l', new ItemStack(Items.DYE, 1, 4), 'g', "dustGlowstone"
-		));
-		GameRegistry.addRecipe(new ShapedOreRecipe(GeneticsItems.IntegratedCircuit.get(itemGenetics, 1),
-			"g l",
-			" c ",
-			"l g",
-			'c', Mods.Forestry.stack("chipsets", 1, 1), 'l', new ItemStack(Items.DYE, 1, 4), 'g', "dustGlowstone"
-		));
-		GameRegistry.addRecipe(new ShapedOreRecipe(GeneticsItems.IntegratedCasing.get(itemGenetics, 1),
+		);
+		recipeUtil.addRecipe("integrated_casing", GeneticsItems.IntegratedCasing.get(itemGenetics, 1),
 			"ccc",
 			"cdc",
 			"ccc",
 			'c', GeneticsItems.IntegratedCircuit.get(itemGenetics, 1), 'd', GeneticsItems.LaboratoryCasing.get(itemGenetics, 1)
-		));
-		GameRegistry.addRecipe(new ShapedOreRecipe(GeneticsItems.IntegratedCPU.get(itemGenetics, 1),
+		);
+		recipeUtil.addRecipe("integrated_cpu", GeneticsItems.IntegratedCPU.get(itemGenetics, 1),
 			"ccc",
 			"cdc",
 			"ccc",
 			'c', GeneticsItems.IntegratedCircuit.get(itemGenetics, 1), 'd', Items.DIAMOND
-		));
+		);
 
 
 		RecipeManagers.carpenterManager.addRecipe(100, Binnie.LIQUID.getFluidStack(ManagerLiquid.WATER, 2000), ItemStack.EMPTY,
@@ -178,25 +175,28 @@ public class ModuleItems implements IInitializable {
 		GameRegistry.addSmelting(itemSerum, GeneticsItems.EMPTY_SERUM.get(itemGenetics, 1), 0.0f);
 		GameRegistry.addSmelting(itemSerumArray, GeneticsItems.EMPTY_GENOME.get(itemGenetics, 1), 0.0f);
 
-		GameRegistry.addShapedRecipe(new ItemStack(analyst),
+		recipeUtil.addRecipe("analyst", new ItemStack(analyst),
 			" c ",
 			"cac",
 			" d ",
 			'c', GeneticsItems.IntegratedCircuit.get(itemGenetics, 1), 'a', Mods.Forestry.item("portable_alyzer"), 'd', new ItemStack(Items.DIAMOND)
 		);
 
+		// TODO: make this crazy list of recipes into one custom recipe
 		Item[] databases = {ExtraBeesIntegration.dictionary, ExtraTrees.items().itemDictionary, ExtraTrees.items().itemDictionaryLepi, Botany.database};
 		if (BinnieCore.isBotanyActive() && BinnieCore.isExtraBeesActive() && BinnieCore.isExtraTreesActive()) {
+			int recipeNum = 0;
 			for (Item databaseA : databases) {
 				for (Item databaseB : databases) {
 					for (Item databaseC : databases) {
 						for (Item databaseD : databases) {
 							if (databaseA != databaseB && databaseA != databaseC && databaseA != databaseD && databaseB != databaseC && databaseB != databaseD && databaseC != databaseD) {
-								GameRegistry.addShapedRecipe(new ItemStack(registry),
+								recipeUtil.addRecipe("registry_" + recipeNum, new ItemStack(registry),
 									" b ",
 									"fct",
 									" l ", 'c', GeneticsItems.IntegratedCircuit.get(itemGenetics, 1), 'b', databaseA, 't', databaseB, 'f', databaseC, 'l', databaseD
 								);
+								recipeNum++;
 							}
 						}
 					}

@@ -38,7 +38,7 @@ public class DatabaseRecipeWrapper extends BlankRecipeWrapper {
 		arrowAnimated.draw(minecraft, 60, 4);
 
 		String instructions = "Open the database and pick up an empty serum. Click the serum on a Sequenced gene to apply.";
-		minecraft.fontRendererObj.drawSplitString(instructions, 0, 40, recipeWidth, Color.gray.getRGB());
+		minecraft.fontRenderer.drawSplitString(instructions, 0, 40, recipeWidth, Color.gray.getRGB());
 	}
 
 	@Override

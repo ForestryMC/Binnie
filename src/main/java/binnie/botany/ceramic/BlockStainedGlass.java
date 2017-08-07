@@ -143,7 +143,7 @@ public class BlockStainedGlass extends Block implements IBlockMetadata, IColored
 	}
 
 	@Override
-	public void getSubBlocks(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> itemList) {
+	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> itemList) {
 		for (EnumFlowerColor color : EnumFlowerColor.values()) {
 			itemList.add(TileEntityMetadata.getItemStack(this, color.ordinal()));
 		}

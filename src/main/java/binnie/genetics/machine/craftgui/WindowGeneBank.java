@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.IInventory;
@@ -119,7 +120,7 @@ public class WindowGeneBank extends WindowMachine {
 			public ControlTab<BreedingSystem> createTab(final int x, final int y, final int w, final int h, final BreedingSystem value) {
 				return new ControlTabIcon<BreedingSystem>(this, x, y, w, h, value) {
 					@Override
-					public void getTooltip(final Tooltip tooltip) {
+					public void getTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
 						tooltip.add(this.getValue().toString());
 						int totalGenes = 0;
 						int seqGenes = 0;

@@ -1,5 +1,6 @@
 package binnie.core.gui.controls.tab;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -38,13 +39,13 @@ public class ControlTab<T> extends Control implements ITooltip, IControlValue<T>
 	}
 
 	@Override
-	public void getTooltip(final Tooltip tooltip) {
+	public void getTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		final String name = this.getName();
 		if (name != null && !name.isEmpty()) {
 			tooltip.add(this.getName());
 		}
 		if (this.value instanceof ITooltip) {
-			((ITooltip) this.value).getTooltip(tooltip);
+			((ITooltip) this.value).getTooltip(tooltip, tooltipFlag);
 		}
 	}
 

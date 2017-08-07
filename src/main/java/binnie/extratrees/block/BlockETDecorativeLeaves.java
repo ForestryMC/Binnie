@@ -89,12 +89,11 @@ public abstract class BlockETDecorativeLeaves extends Block implements IItemMode
 	/**
 	 * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
 	 */
-	@SideOnly(Side.CLIENT)
 	@Override
-	public void getSubBlocks(Item item, CreativeTabs tab, NonNullList<ItemStack> list) {
+	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list) {
 		for (IBlockState state : getBlockState().getValidStates()) {
 			int meta = getMetaFromState(state);
-			ItemStack itemStack = new ItemStack(item, 1, meta);
+			ItemStack itemStack = new ItemStack(this, 1, meta);
 			list.add(itemStack);
 		}
 	}

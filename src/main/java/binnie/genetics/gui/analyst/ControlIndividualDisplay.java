@@ -1,5 +1,6 @@
 package binnie.genetics.gui.analyst;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 
 import forestry.api.genetics.AlleleManager;
@@ -25,7 +26,7 @@ public class ControlIndividualDisplay extends ControlItemDisplay implements IToo
 	}
 
 	@Override
-	public void getTooltip(Tooltip tooltip) {
+	public void getTooltip(Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		ItemStack stack = getItemStack();
 		if (stack.isEmpty()) {
 			return;

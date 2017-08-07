@@ -10,6 +10,7 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.JsonToNBT;
@@ -106,7 +107,8 @@ public class GuiCraftGUI extends GuiContainer {
 				this.window.getHelpTooltip(tooltip);
 			} else {
 				tooltip.setType(Tooltip.Type.STANDARD);
-				this.window.getTooltip(tooltip);
+				ITooltipFlag tooltipFlag = this.mc.gameSettings.advancedItemTooltips ? ITooltipFlag.TooltipFlags.ADVANCED : ITooltipFlag.TooltipFlags.NORMAL;
+				this.window.getTooltip(tooltip, tooltipFlag);
 			}
 			if (tooltip.exists()) {
 				this.renderTooltip(new Point(mouseX, mouseY), tooltip);
@@ -286,7 +288,7 @@ public class GuiCraftGUI extends GuiContainer {
 	}
 
 	public FontRenderer getFontRenderer() {
-		return this.fontRendererObj;
+		return this.fontRenderer;
 	}
 
 	public void resize(final Point size) {

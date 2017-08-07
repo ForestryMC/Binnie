@@ -7,11 +7,11 @@ import java.util.List;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
@@ -80,7 +80,7 @@ public class RenderUtil {
 	private static FontRenderer getFontRenderer(Minecraft minecraft, ItemStack ingredient) {
 		FontRenderer fontRenderer = ingredient.getItem().getFontRenderer(ingredient);
 		if (fontRenderer == null) {
-			fontRenderer = minecraft.fontRendererObj;
+			fontRenderer = minecraft.fontRenderer;
 		}
 		return fontRenderer;
 	}
@@ -94,12 +94,12 @@ public class RenderUtil {
 		vMax = vMax - maskTop / 16.0 * (vMax - vMin);
 
 		Tessellator tessellator = Tessellator.getInstance();
-		VertexBuffer vertexBuffer = tessellator.getBuffer();
-		vertexBuffer.begin(7, DefaultVertexFormats.POSITION_TEX);
-		vertexBuffer.pos(xCoord, yCoord + 16, zLevel).tex(uMin, vMax).endVertex();
-		vertexBuffer.pos(xCoord + 16 - maskRight, yCoord + 16, zLevel).tex(uMax, vMax).endVertex();
-		vertexBuffer.pos(xCoord + 16 - maskRight, yCoord + maskTop, zLevel).tex(uMax, vMin).endVertex();
-		vertexBuffer.pos(xCoord, yCoord + maskTop, zLevel).tex(uMin, vMin).endVertex();
+		BufferBuilder bufferBuilder = tessellator.getBuffer();
+		bufferBuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
+		bufferBuilder.pos(xCoord, yCoord + 16, zLevel).tex(uMin, vMax).endVertex();
+		bufferBuilder.pos(xCoord + 16 - maskRight, yCoord + 16, zLevel).tex(uMax, vMax).endVertex();
+		bufferBuilder.pos(xCoord + 16 - maskRight, yCoord + maskTop, zLevel).tex(uMax, vMin).endVertex();
+		bufferBuilder.pos(xCoord, yCoord + maskTop, zLevel).tex(uMin, vMin).endVertex();
 		tessellator.draw();
 	}
 
@@ -119,13 +119,13 @@ public class RenderUtil {
 	}
 
 	public static int getTextWidth(final String text) {
-		FontRenderer fontRendererObj = Minecraft.getMinecraft().fontRendererObj;
-		return fontRendererObj.getStringWidth(text);
+		FontRenderer fontRenderer = Minecraft.getMinecraft().fontRenderer;
+		return fontRenderer.getStringWidth(text);
 	}
 
 	public static int getTextHeight() {
-		FontRenderer fontRendererObj = Minecraft.getMinecraft().fontRendererObj;
-		return (fontRendererObj == null) ? 0 : fontRendererObj.FONT_HEIGHT;
+		FontRenderer fontRenderer = Minecraft.getMinecraft().fontRenderer;
+		return (fontRenderer == null) ? 0 : fontRenderer.FONT_HEIGHT;
 	}
 
 	public static void drawText(final Point pos, final String text, final int colour) {
@@ -137,8 +137,8 @@ public class RenderUtil {
 		if (area.size().xPos() <= 0.0f) {
 			return;
 		}
-		FontRenderer fontRendererObj = Minecraft.getMinecraft().fontRendererObj;
-		final List<String> wrappedStrings = fontRendererObj.listFormattedStringToWidth(text, area.size().xPos());
+		FontRenderer fontRenderer = Minecraft.getMinecraft().fontRenderer;
+		final List<String> wrappedStrings = fontRenderer.listFormattedStringToWidth(text, area.size().xPos());
 		final float totalHeight = wrappedStrings.size() * getTextHeight();
 		float posY =  pos.yPos();
 		if (area.size().yPos() > totalHeight) {
@@ -149,7 +149,7 @@ public class RenderUtil {
 			float posX = area.size().xPos() - stringWidth;
 			posX *= justification.getXOffset();
 			GlStateManager.disableDepth();
-			fontRendererObj.drawString(string, (int) (pos.xPos() + posX), (int) posY, colour);
+			fontRenderer.drawString(string, (int) (pos.xPos() + posX), (int) posY, colour);
 			posY += getTextHeight();
 		}
 		GlStateManager.color(1.0f, 1.0f, 1.0f);

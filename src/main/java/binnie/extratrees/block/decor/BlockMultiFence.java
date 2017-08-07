@@ -113,26 +113,6 @@ public class BlockMultiFence extends BlockFence implements IBlockMetadata, IStat
 	}
 
 	@Override
-	public boolean canConnectTo(IBlockAccess worldIn, BlockPos pos) {
-		IBlockState state = worldIn.getBlockState(pos);
-		Block block = state.getBlock();
-		if (PluginArboriculture.validFences.contains(block)) {
-			return true;
-		}
-
-		if (block != Blocks.BARRIER) {
-			Material blockMaterial = block.getMaterial(state);
-			if (block instanceof BlockFence || block instanceof BlockFenceGate || block instanceof IBlockFence) {
-				return blockMaterial == this.blockMaterial;
-			}
-			if (blockMaterial.isOpaque() && state.isFullCube() && blockMaterial != Material.GOURD) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	@Override
 	public void breakBlock(World world, BlockPos pos, IBlockState state) {
 		super.breakBlock(world, pos, state);
 		world.removeTileEntity(pos);
@@ -173,9 +153,8 @@ public class BlockMultiFence extends BlockFence implements IBlockMetadata, IStat
 		return ((IExtendedBlockState) state).withProperty(UnlistedBlockPos.POS, pos).withProperty(UnlistedBlockAccess.BLOCKACCESS, world);
 	}
 
-	@SideOnly(Side.CLIENT)
 	@Override
-	public void getSubBlocks(final Item itemIn, final CreativeTabs tab, final NonNullList<ItemStack> itemList) {
+	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> itemList) {
 		for (FenceType type : FenceType.values()) {
 			itemList.add(WoodManager.getFence(PlankType.VanillaPlanks.SPRUCE, PlankType.VanillaPlanks.BIRCH, type, 1));
 		}

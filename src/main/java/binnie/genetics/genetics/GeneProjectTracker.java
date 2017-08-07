@@ -7,9 +7,9 @@ import java.util.Set;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldSavedData;
 
 import com.mojang.authlib.GameProfile;
+import net.minecraft.world.storage.WorldSavedData;
 
 public class GeneProjectTracker extends WorldSavedData {
 	private Map<Integer, GeneProject> projects;

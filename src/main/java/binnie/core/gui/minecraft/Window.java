@@ -6,6 +6,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Deque;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -115,13 +116,13 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 		return (T) widget.getTopParent();
 	}
 
-	public void getTooltip(final Tooltip tooltip) {
+	public void getTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		final Deque<IWidget> queue = this.calculateMousedOverWidgets();
 		while (!queue.isEmpty()) {
 			final IWidget widget = queue.removeFirst();
 			if (widget.isEnabled() && widget.isVisible() && widget.calculateIsMouseOver()) {
 				if (widget instanceof ITooltip) {
-					((ITooltip) widget).getTooltip(tooltip);
+					((ITooltip) widget).getTooltip(tooltip, tooltipFlag);
 					if (tooltip.exists()) {
 						return;
 					}

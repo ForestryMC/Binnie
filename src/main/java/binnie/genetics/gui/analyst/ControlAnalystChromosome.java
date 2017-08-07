@@ -1,5 +1,6 @@
 package binnie.genetics.gui.analyst;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -51,7 +52,7 @@ public class ControlAnalystChromosome extends Control implements ITooltip {
 	}
 
 	@Override
-	public void getTooltip(Tooltip tooltip) {
+	public void getTooltip(Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		BreedingSystem system = Binnie.GENETICS.getSystem(root);
 		tooltip.add(system.getChromosomeName(chromosomeType));
 		if (isHomozygous()) {

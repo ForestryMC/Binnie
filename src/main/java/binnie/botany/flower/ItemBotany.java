@@ -11,6 +11,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -89,7 +90,7 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack itemStack, EntityPlayer player, List<String> list, boolean flag) {
+	public void addInformation(ItemStack itemStack, @Nullable World worldIn, List<String> list, ITooltipFlag flagIn) {
 		IFlower individual = (IFlower) getIndividual(itemStack);
 		if (individual == null) {
 			list.add(TextFormatting.DARK_RED + I18N.localise("item.botany.flower.destroy"));
@@ -150,8 +151,10 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 	}
 
 	@Override
-	public void getSubItems(Item item, CreativeTabs tab, NonNullList<ItemStack> itemList) {
-		addCreativeItems(itemList, true);
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
+		if (this.isInCreativeTab(tab)) {
+			addCreativeItems(items, true);
+		}
 	}
 
 	public void addCreativeItems(NonNullList<ItemStack> itemList, boolean hideSecrets) {

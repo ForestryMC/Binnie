@@ -54,8 +54,8 @@ public class IsolatorRecipeCategory extends BlankRecipeCategory<IsolatorRecipeWr
 		arrowAnimated.draw(minecraft, 69, 25);
 
 		String randomText = "(Random)";
-		int textWidth = minecraft.fontRendererObj.getStringWidth(randomText);
-		minecraft.fontRendererObj.drawString(randomText, 102 - (textWidth / 2), 45, Color.gray.getRGB());
+		int textWidth = minecraft.fontRenderer.getStringWidth(randomText);
+		minecraft.fontRenderer.drawString(randomText, 102 - (textWidth / 2), 45, Color.gray.getRGB());
 	}
 
 	@Override

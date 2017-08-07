@@ -5,7 +5,7 @@ import net.minecraft.item.ItemStack;
 
 import binnie.core.util.I18N;
 
-enum EnumTubeInsulate {
+public enum EnumTubeInsulate {
 	CLAY(0xa1aacc, "clay"),
 	COBBLE(0x7b7b7b, "cobblestone"),
 	SAND(0xefeab5, "sandstone"),
@@ -16,11 +16,11 @@ enum EnumTubeInsulate {
 	public static final EnumTubeInsulate[] VALUES = values();
 
 	int color;
-	String name;
+	String uid;
 
-	EnumTubeInsulate(int color, String name) {
+	EnumTubeInsulate(int color, String uid) {
 		this.color = color;
-		this.name = name;
+		this.uid = uid;
 	}
 
 	public static EnumTubeInsulate get(int meta) {
@@ -32,7 +32,11 @@ enum EnumTubeInsulate {
 	}
 
 	public String getDisplayName() {
-		return I18N.localise("botany.tube.insulate." + name + ".name");
+		return I18N.localise("botany.tube.insulate." + uid + ".name");
+	}
+
+	public String getUid() {
+		return uid;
 	}
 
 	public ItemStack getStack() {

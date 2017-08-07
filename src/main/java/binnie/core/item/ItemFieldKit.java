@@ -1,10 +1,12 @@
 package binnie.core.item;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -57,14 +59,14 @@ public class ItemFieldKit extends ItemCore {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(final ItemStack p_77624_1_, final EntityPlayer p_77624_2_, final List<String> p_77624_3_, final boolean p_77624_4_) {
-		final int i = p_77624_1_.getMaxDamage() - p_77624_1_.getItemDamage();
+	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+		final int i = stack.getMaxDamage() - stack.getItemDamage();
 		if (i == 0) {
-			p_77624_3_.add("No paper");
+			tooltip.add("No paper");
 		} else {
-			p_77624_3_.add("" + i + " sheet" + ((i > 1) ? "s" : "") + " of paper");
+			tooltip.add("" + i + " sheet" + ((i > 1) ? "s" : "") + " of paper");
 		}
-		super.addInformation(p_77624_1_, p_77624_2_, p_77624_3_, p_77624_4_);
+		super.addInformation(stack, worldIn, tooltip, flagIn);
 	}
 
 	@Override

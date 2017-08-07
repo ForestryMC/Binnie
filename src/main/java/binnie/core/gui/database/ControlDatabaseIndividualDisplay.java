@@ -6,6 +6,7 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 
 import com.mojang.authlib.GameProfile;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -101,7 +102,7 @@ public class ControlDatabaseIndividualDisplay extends ControlItemDisplay impleme
 	}
 
 	@Override
-	public void getTooltip(final Tooltip tooltip) {
+	public void getTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		if (this.species != null) {
 			switch (this.discovered) {
 				case Show: {

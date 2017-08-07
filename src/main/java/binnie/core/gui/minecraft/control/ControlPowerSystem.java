@@ -1,5 +1,6 @@
 package binnie.core.gui.minecraft.control;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -28,7 +29,7 @@ public class ControlPowerSystem extends Control implements ITooltip {
 	}
 
 	@Override
-	public void getTooltip(final Tooltip tooltip) {
+	public void getTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		tooltip.setType(Tooltip.Type.POWER);
 		tooltip.add("Power Supply");
 		tooltip.add("Powered by " + this.system.getUnitName());

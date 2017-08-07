@@ -2,6 +2,7 @@ package binnie.core.gui.minecraft.control;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.InventoryPlayer;
 
 import net.minecraftforge.fml.relauncher.Side;
@@ -86,7 +87,7 @@ public class ControlErrorState extends Control implements ITooltip {
 	}
 
 	@Override
-	public void getTooltip(final Tooltip tooltipOrig) {
+	public void getTooltip(final Tooltip tooltipOrig, ITooltipFlag tooltipFlag) {
 		final MinecraftTooltip tooltip = (MinecraftTooltip) tooltipOrig;
 		if (this.errorState != null) {
 			if (this.type == 0) {

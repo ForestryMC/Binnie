@@ -76,7 +76,7 @@ public abstract class BinniePacketHandler implements IMessageHandler<MessageBinn
 	public static class ServerProxy extends MessageProxy {
 		@Override
 		public void onMessage(IPacketID id, MessageBinnie message, MessageContext ctx) {
-			EntityPlayerMP player = ctx.getServerHandler().playerEntity;
+			EntityPlayerMP player = ctx.getServerHandler().player;
 			checkThreadAndEnqueue(id, message, ctx, player.getServerWorld());
 		}
 	}

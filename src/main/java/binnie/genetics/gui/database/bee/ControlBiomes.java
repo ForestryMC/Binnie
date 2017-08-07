@@ -3,6 +3,7 @@ package binnie.genetics.gui.database.bee;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.world.biome.Biome;
 
 import net.minecraftforge.fml.relauncher.Side;
@@ -32,7 +33,7 @@ public class ControlBiomes extends Control implements ITooltip {
 	}
 
 	@Override
-	public void getTooltip(Tooltip tooltip) {
+	public void getTooltip(Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		if (tolerated.isEmpty()) {
 			return;
 		}

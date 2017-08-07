@@ -26,7 +26,7 @@ public class ItemBlockETDecorativeLeaves extends ItemBlockForestry<BlockETDecora
 		int meta = itemStack.getMetadata();
 		BlockETDecorativeLeaves block = getBlock();
 		ETTreeDefinition treeDefinition = block.getTreeType(meta);
-		if (treeDefinition == null) {
+		if (treeDefinition == null || treeDefinition.getGenome() == null) {
 			return Translator.translateToLocal("trees.grammar.leaves.type");
 		}
 

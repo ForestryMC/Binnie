@@ -24,6 +24,7 @@ import binnie.core.machines.power.PowerSystem;
 import binnie.core.util.ItemStackSet;
 
 public class MachineUtil {
+	private static final Random DAMAGE_RANDOM = new Random();
 	private IMachine machine;
 
 	public MachineUtil(final IMachine machine) {
@@ -103,8 +104,10 @@ public class MachineUtil {
 	public void damageItem(final ItemStack item, final int slot, final int damage) {
 		if (damage < 0) {
 			item.setItemDamage(Math.max(0, item.getItemDamage() + damage));
-		} else if (item.attemptDamageItem(damage, new Random())) {
-			this.setStack(slot, ItemStack.EMPTY);
+		} else {
+			if (item.attemptDamageItem(damage, DAMAGE_RANDOM, null)) {
+				this.setStack(slot, ItemStack.EMPTY);
+			}
 		}
 		this.setStack(slot, item);
 	}

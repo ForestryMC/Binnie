@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 
 import net.minecraftforge.fml.relauncher.Side;
@@ -82,14 +83,13 @@ public class ControlItemDisplay extends Control implements ITooltip {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getTooltip(final Tooltip tooltip) {
+	public void getTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		if (this.hastooltip && !this.itemStack.isEmpty()) {
-			final boolean advancedItemTooltips = Minecraft.getMinecraft().gameSettings.advancedItemTooltips;
-			List<String> itemStackTooltip = this.itemStack.getTooltip(((Window) this.getTopParent()).getPlayer(), advancedItemTooltips);
+			List<String> itemStackTooltip = this.itemStack.getTooltip(((Window) this.getTopParent()).getPlayer(), tooltipFlag);
 			tooltip.add(itemStackTooltip);
 			tooltip.setItemStack(this.itemStack);
 		}
-		super.getTooltip(tooltip);
+		super.getTooltip(tooltip, tooltipFlag);
 	}
 
 	public void setRotating() {

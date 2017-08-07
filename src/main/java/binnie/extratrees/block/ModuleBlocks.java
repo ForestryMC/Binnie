@@ -1,5 +1,6 @@
 package binnie.extratrees.block;
 
+import binnie.core.util.RecipeUtil;
 import com.google.common.base.Preconditions;
 
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.RecipeSorter;
 
@@ -36,7 +38,6 @@ import forestry.arboriculture.blocks.BlockForestryFenceGate;
 import forestry.arboriculture.blocks.BlockForestryStairs;
 import forestry.arboriculture.items.ItemBlockLeaves;
 import forestry.core.fluids.Fluids;
-import forestry.core.recipes.RecipeUtil;
 import forestry.core.utils.OreDictUtil;
 import forestry.plugins.ForestryPluginUids;
 
@@ -321,10 +322,11 @@ public class ModuleBlocks implements IInitializable {
 
 	@Override
 	public void postInit() {
+		RecipeUtil recipeUtil = new RecipeUtil(Constants.EXTRA_TREES_MOD_ID);
 		for (BlockETLog log : logs) {
 			ItemStack logInput = new ItemStack(log, 1, OreDictionary.WILDCARD_VALUE);
 			ItemStack coalOutput = new ItemStack(Items.COAL, 1, 1);
-			RecipeUtil.addSmelting(logInput, coalOutput, 0.15F);
+			GameRegistry.addSmelting(logInput, coalOutput, 0.15F);
 		}
 		
 		IWoodAccess woodAccess = TreeManager.woodAccess;
@@ -335,10 +337,10 @@ public class ModuleBlocks implements IInitializable {
 			ItemStack fireproofPlanks = log.getPlank().getStack(true);
 			
 			planks.setCount(4);
-			GameRegistry.addShapelessRecipe(planks.copy(), logs.copy());
+			recipeUtil.addShapelessRecipe(log.getUid() + "_planks", planks.copy(), logs.copy());
 			
 			fireproofPlanks.setCount(4);
-			GameRegistry.addShapelessRecipe(fireproofPlanks.copy(), fireproofLogs);
+			recipeUtil.addShapelessRecipe(log.getUid() + "_fireproof_planks", fireproofPlanks.copy(), fireproofLogs);
 			
 			if (ForestryAPI.enabledPlugins.containsAll(Arrays.asList(ForestryPluginUids.FACTORY, ForestryPluginUids.APICULTURE))) {
 				
@@ -360,9 +362,13 @@ public class ModuleBlocks implements IInitializable {
 				ItemStack fences = woodAccess.getStack(plankType.getWoodType(), WoodBlockKind.FENCE, fireproof);
 				ItemStack fenceGates = woodAccess.getStack(plankType.getWoodType(), WoodBlockKind.FENCE_GATE, fireproof);
 				ItemStack stairs = woodAccess.getStack(plankType.getWoodType(), WoodBlockKind.STAIRS, fireproof);
-				
+
+				String plankUid = plankType.getWoodType().getUid();
+				if (fireproof) {
+					plankUid += "_fireproof";
+				}
 				stairs.setCount(4);
-				RecipeUtil.addPriorityRecipe(stairs.copy(),
+				recipeUtil.addRecipe(plankUid + "_stairs", stairs.copy(),
 					"#  ",
 					"## ",
 					"###",
@@ -370,18 +376,18 @@ public class ModuleBlocks implements IInitializable {
 				);
 
 				slabs.setCount(6);
-				RecipeUtil.addPriorityRecipe(slabs.copy(), "###", '#', planks.copy());
+				recipeUtil.addRecipe(plankUid + "_slabs", slabs.copy(), "###", '#', planks.copy());
 				
 				fences.setCount(3);
 				planks.setCount(1);
-				RecipeUtil.addRecipe(fences.copy(),
+				recipeUtil.addRecipe(plankUid + "_fences", fences.copy(),
 						"#X#",
 						"#X#",
 						'#', planks.copy(), 'X', "stickWood");
 				
 				fenceGates.setCount(1);
 				planks.setCount(1);
-				RecipeUtil.addRecipe(fenceGates.copy(),
+				recipeUtil.addRecipe(plankUid + "_fence_gates", fenceGates.copy(),
 						"X#X",
 						"X#X",
 						'#', planks.copy(), 'X', "stickWood");
@@ -390,7 +396,7 @@ public class ModuleBlocks implements IInitializable {
 					ItemStack doors = woodAccess.getStack(plankType.getWoodType(), WoodBlockKind.DOOR, false);
 					doors.setCount(3);
 					planks.setCount(1);
-					RecipeUtil.addPriorityRecipe(doors.copy(),
+					recipeUtil.addRecipe(plankUid + "_doors", doors.copy(),
 							"## ",
 							"## ",
 							"## ",
@@ -411,9 +417,9 @@ public class ModuleBlocks implements IInitializable {
 						'X', planks.copy()});
 			}
 		}
-		GameRegistry.addRecipe(new MultiFenceRecipeSize());
-		GameRegistry.addRecipe(new MultiFenceRecipeEmbedded());
-		GameRegistry.addRecipe(new MultiFenceRecipeSolid());
+		ForgeRegistries.RECIPES.register(new MultiFenceRecipeSize());
+		ForgeRegistries.RECIPES.register(new MultiFenceRecipeEmbedded());
+		ForgeRegistries.RECIPES.register(new MultiFenceRecipeSolid());
 		this.addSqueezer(EnumVanillaWoodType.SPRUCE, ExtraTreeLiquid.Resin, 50);
 	}
 

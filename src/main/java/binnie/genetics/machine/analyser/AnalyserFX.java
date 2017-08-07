@@ -74,7 +74,7 @@ public class AnalyserFX extends MachineComponent implements IRender.DisplayTick,
 		}
 		final ItemStack stack = this.getUtil().getStack(6);
 		this.dummyEntityItem.world = this.getMachine().getWorld();
-		this.dummyEntityItem.setEntityItemStack(stack);
+		this.dummyEntityItem.setItem(stack);
 		final EntityItem dummyEntityItem = this.dummyEntityItem;
 		dummyEntityItem.setAgeToCreativeDespawnTime(); //++dummyEntityItem.age;
 		this.dummyEntityItem.hoverStart = 0.0f;
@@ -88,7 +88,7 @@ public class AnalyserFX extends MachineComponent implements IRender.DisplayTick,
 		GlStateManager.pushMatrix();
 		GlStateManager.rotate(180.0f, 0.0f, 0.0f, 1.0f);
 		GlStateManager.translate(0.0f, -0.2f, 0.0f);
-		BinnieCore.getBinnieProxy().getMinecraftInstance().getRenderItem().renderItem(dummyEntityItem.getEntityItem(), ItemCameraTransforms.TransformType.FIXED);//doRender(this.dummyEntityItem.getEntityItem(), 0.0, 0.0, 0.0, 0.0f, 0.0f);
+		BinnieCore.getBinnieProxy().getMinecraftInstance().getRenderItem().renderItem(dummyEntityItem.getItem(), ItemCameraTransforms.TransformType.FIXED);//doRender(this.dummyEntityItem.getEntityItem(), 0.0, 0.0, 0.0, 0.0f, 0.0f);
 		GlStateManager.popMatrix();
 	}
 

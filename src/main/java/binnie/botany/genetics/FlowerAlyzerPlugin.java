@@ -66,7 +66,7 @@ public class FlowerAlyzerPlugin implements IAlyzerPlugin {
 	}
 
 	public void drawLine(GuiScreen gui, int xOffset, String msg, int color) {
-		gui.mc.fontRendererObj.drawString(msg, guiLeft + xOffset, guiTop + lastTopOffset + margin, color);
+		gui.mc.fontRenderer.drawString(msg, guiLeft + xOffset, guiTop + lastTopOffset + margin, color);
 	}
 
 	public void drawChromosom(GuiScreen gui, EnumFlowerChromosome chromosome, IFlower flower) {
@@ -95,16 +95,16 @@ public class FlowerAlyzerPlugin implements IAlyzerPlugin {
 		ItemStack renderS = getIconStacks().get(flower.getGenome().getSecondary().getUID());
 
 
-		gui.mc.fontRendererObj.drawString("Active", guiLeft + 10 + COLUMN_1, guiTop + 10, 0xffffff);
-		gui.mc.fontRendererObj.drawString("Inactive", guiLeft + 10 + COLUMN_2, guiTop + 10, 0xffffff);
+		gui.mc.fontRenderer.drawString("Active", guiLeft + 10 + COLUMN_1, guiTop + 10, 0xffffff);
+		gui.mc.fontRenderer.drawString("Inactive", guiLeft + 10 + COLUMN_2, guiTop + 10, 0xffffff);
 
 		if (renderP != null && renderS != null) {
 			RenderItem itemRender = Minecraft.getMinecraft().getRenderItem();
 			itemRender.renderItemAndEffectIntoGUI(renderP, guiLeft + 10 + COLUMN_1, guiTop + 10 + 12);
-			itemRender.renderItemOverlayIntoGUI(gui.mc.fontRendererObj, renderP, guiLeft + 10 + COLUMN_1, guiTop + 10 + 12, null);
+			itemRender.renderItemOverlayIntoGUI(gui.mc.fontRenderer, renderP, guiLeft + 10 + COLUMN_1, guiTop + 10 + 12, null);
 
 			itemRender.renderItemAndEffectIntoGUI(renderS, guiLeft + 10 + COLUMN_2, guiTop + 10 + 12);
-			itemRender.renderItemOverlayIntoGUI(gui.mc.fontRendererObj, renderS, guiLeft + 10 + COLUMN_1, guiTop + 10 + 12, null);
+			itemRender.renderItemOverlayIntoGUI(gui.mc.fontRenderer, renderS, guiLeft + 10 + COLUMN_1, guiTop + 10 + 12, null);
 		}
 
 		guiTop += rowSize * 3;

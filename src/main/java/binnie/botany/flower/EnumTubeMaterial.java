@@ -2,7 +2,7 @@ package binnie.botany.flower;
 
 import binnie.core.util.I18N;
 
-enum EnumTubeMaterial {
+public enum EnumTubeMaterial {
 	COPPER(0xe3b78e, "copper"),
 	TIN(0xe1eef4, "tin"),
 	BRONZE(0xddc276, "bronze"),
@@ -11,15 +11,19 @@ enum EnumTubeMaterial {
 	public static final EnumTubeMaterial[] VALUES = values();
 
 	int color;
-	String name;
+	String uid;
 
-	EnumTubeMaterial(int color, String name) {
+	EnumTubeMaterial(int color, String uid) {
 		this.color = color;
-		this.name = name;
+		this.uid = uid;
 	}
 
 	public static EnumTubeMaterial get(int meta) {
 		return VALUES[meta % VALUES.length];
+	}
+
+	public String getUid() {
+		return uid;
 	}
 
 	public int getColor() {
@@ -27,6 +31,6 @@ enum EnumTubeMaterial {
 	}
 
 	public String getDisplayName() {
-		return I18N.localise("botany.tube.material." + name + ".name");
+		return I18N.localise("botany.tube.material." + uid + ".name");
 	}
 }

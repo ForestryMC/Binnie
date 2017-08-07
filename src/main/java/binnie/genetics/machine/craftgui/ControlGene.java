@@ -1,5 +1,6 @@
 package binnie.genetics.machine.craftgui;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -44,7 +45,7 @@ public class ControlGene extends Control implements IControlValue<IGene>, IToolt
 	}
 
 	@Override
-	public void getTooltip(final Tooltip tooltip) {
+	public void getTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		BreedingSystem system = Binnie.GENETICS.getSystem(this.gene.getSpeciesRoot());
 		final String cName = system.getChromosomeName(this.gene.getChromosome());
 		tooltip.add(cName + ": " + this.gene.getName());

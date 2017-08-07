@@ -1,15 +1,19 @@
 package binnie.genetics.item;
 
+import javax.annotation.Nullable;
+
 import com.google.common.base.Preconditions;
 
 import java.util.List;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -62,32 +66,33 @@ public class ItemSequence extends ItemCore implements IItemAnalysable, IItemChar
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack itemStack, EntityPlayer player, List<String> subItems, boolean advanced) {
-		subItems.add(I18N.localise("genetics.item.sequence." + (5 - itemStack.getItemDamage() % 6)));
+	public void addInformation(ItemStack itemStack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+		tooltip.add(I18N.localise("genetics.item.sequence." + (5 - itemStack.getItemDamage() % 6)));
 		SequencerItem gene = SequencerItem.create(itemStack);
 		if (gene != null) {
 			if (gene.analysed) {
-				gene.getInfo(subItems);
+				gene.getInfo(tooltip);
 			} else {
-				subItems.add("<" + I18N.localise("genetics.item.sequence.unknown") + ">");
+				tooltip.add("<" + I18N.localise("genetics.item.sequence.unknown") + ">");
 			}
 			int seq = gene.sequenced;
 			if (seq == 0) {
-				subItems.add(I18N.localise("genetics.item.sequence.unsequenced"));
+				tooltip.add(I18N.localise("genetics.item.sequence.unsequenced"));
 			} else if (seq < 100) {
-				subItems.add(I18N.localise("genetics.genetics.item.sequence.partially", seq));
+				tooltip.add(I18N.localise("genetics.genetics.item.sequence.partially", seq));
 			} else {
-				subItems.add(I18N.localise("genetics.item.sequence.sequenced"));
+				tooltip.add(I18N.localise("genetics.item.sequence.sequenced"));
 			}
 		}
 	}
 
-	@SideOnly(Side.CLIENT)
 	@Override
-	public void getSubItems(Item item, CreativeTabs tab, NonNullList<ItemStack> subItems) {
-		final IAlleleBeeSpecies species = (IAlleleBeeSpecies) AlleleManager.alleleRegistry.getAllele("forestry.speciesMeadows");
-		Preconditions.checkNotNull(species);
-		subItems.add(create(new Gene(species, EnumBeeChromosome.SPECIES, Binnie.GENETICS.getBeeRoot()), false));
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
+		if (this.isInCreativeTab(tab)) {
+			final IAlleleBeeSpecies species = (IAlleleBeeSpecies) AlleleManager.alleleRegistry.getAllele("forestry.speciesMeadows");
+			Preconditions.checkNotNull(species);
+			items.add(create(new Gene(species, EnumBeeChromosome.SPECIES, Binnie.GENETICS.getBeeRoot()), false));
+		}
 	}
 
 	@Override

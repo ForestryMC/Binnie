@@ -101,12 +101,13 @@ public class ItemDrink extends ItemFood implements IItemModelRegister {
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public void getSubItems(final Item item, final CreativeTabs creativeTabs, final NonNullList<ItemStack> itemList) {
-		for (final Glassware glassware : Glassware.values()) {
-			itemList.add(this.getStack(glassware, null));
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
+		if (this.isInCreativeTab(tab)) {
+			for (final Glassware glassware : Glassware.values()) {
+				items.add(this.getStack(glassware, null));
+			}
+			items.add(this.getStack(Glassware.Wine, Alcohol.RedWine.get(Glassware.Wine.getCapacity())));
 		}
-		itemList.add(this.getStack(Glassware.Wine, Alcohol.RedWine.get(Glassware.Wine.getCapacity())));
 	}
 
 	@Override

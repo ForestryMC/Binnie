@@ -3,22 +3,26 @@ package binnie.extratrees.block.decor;
 import java.util.ArrayList;
 import java.util.List;
 
+import binnie.Constants;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
 import net.minecraftforge.common.ForgeHooks;
 
 import binnie.extratrees.block.IPlankType;
 import binnie.extratrees.block.WoodManager;
+import net.minecraftforge.registries.IForgeRegistryEntry;
 
-public class MultiFenceRecipeSize implements IRecipe {
+public class MultiFenceRecipeSize extends IForgeRegistryEntry.Impl<IRecipe> implements IRecipe {
 	private ItemStack cached = ItemStack.EMPTY;
 
 	public MultiFenceRecipeSize() {
+		setRegistryName(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "multi_fence_size"));
 	}
 
 	@Override
@@ -69,8 +73,8 @@ public class MultiFenceRecipeSize implements IRecipe {
 	}
 
 	@Override
-	public int getRecipeSize() {
-		return 3;
+	public boolean canFit(int width, int height) {
+		return width >= 3 && height >= 3;
 	}
 
 	@Override

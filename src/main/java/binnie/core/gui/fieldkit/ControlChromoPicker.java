@@ -1,5 +1,6 @@
 package binnie.core.gui.fieldkit;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -55,7 +56,7 @@ public class ControlChromoPicker extends Control implements ITooltip {
 	}
 
 	@Override
-	public void getTooltip(Tooltip tooltip) {
+	public void getTooltip(Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		tooltip.add(Binnie.GENETICS.getSystem(parent.getRoot()).getChromosomeName(type));
 	}
 }

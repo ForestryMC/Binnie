@@ -1,5 +1,6 @@
 package binnie.botany.gui.database;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -47,7 +48,7 @@ public class ControlColorMixSymbol extends Control implements ITooltip {
 	}
 
 	@Override
-	public void getTooltip(Tooltip tooltip) {
+	public void getTooltip(Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		if (type == 1) {
 			float chance = value.getChance();
 			tooltip.add(I18N.localise(DatabaseConstants.BOTANY_CONTROL_KEY + ".color_mix_symbol.chance", chance));

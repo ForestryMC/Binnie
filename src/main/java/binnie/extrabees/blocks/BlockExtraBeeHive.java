@@ -51,7 +51,7 @@ public class BlockExtraBeeHive extends Block implements ITileEntityProvider {
 	}
 
 	@Override
-	public void getSubBlocks(@Nonnull final Item itemIn, final CreativeTabs tab, final NonNullList<ItemStack> itemList) {
+	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> itemList) {
 		for (int i = 0; i < EnumHiveType.values().length; ++i) {
 			itemList.add(new ItemStack(this, 1, i));
 		}

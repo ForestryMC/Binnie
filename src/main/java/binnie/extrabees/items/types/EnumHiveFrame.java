@@ -3,7 +3,8 @@ package binnie.extrabees.items.types;
 import javax.annotation.Nullable;
 import java.util.List;
 
-import net.minecraft.entity.player.EntityPlayer;
+import binnie.core.util.RecipeUtil;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -30,10 +31,10 @@ public enum EnumHiveFrame implements IHiveFrame, IBeeModifier {
 
 	COCOA{
 		@Override
-		protected void init(ItemStack impregnatedFrame) {
+		protected void init(RecipeUtil recipeUtil, ItemStack impregnatedFrame) {
 			logic.setModifier(EnumBeeModifier.LIFESPAN, 0.75f, 0.25f);
 			logic.setModifier(EnumBeeModifier.PRODUCTION, 1.5f, 5.0f);
-			GameRegistry.addRecipe(new ItemStack(EnumHiveFrame.COCOA.item),
+			recipeUtil.addRecipe("cocoa_frame", new ItemStack(EnumHiveFrame.COCOA.item),
 				" c ",
 				"cFc",
 				" c ",
@@ -43,29 +44,29 @@ public enum EnumHiveFrame implements IHiveFrame, IBeeModifier {
 	},
 	CAGE{
 		@Override
-		protected void init(ItemStack impregnatedFrame) {
+		protected void init(RecipeUtil recipeUtil, ItemStack impregnatedFrame) {
 			logic.setModifier(EnumBeeModifier.TERRITORY, 0.5f, 0.1f);
 			logic.setModifier(EnumBeeModifier.LIFESPAN, 0.75f, 0.5f);
 			logic.setModifier(EnumBeeModifier.PRODUCTION, 0.75f, 0.5f);
-			GameRegistry.addShapelessRecipe(new ItemStack(EnumHiveFrame.CAGE.item), impregnatedFrame, Blocks.IRON_BARS);
+			recipeUtil.addShapelessRecipe("cage_frame", new ItemStack(EnumHiveFrame.CAGE.item), impregnatedFrame, Blocks.IRON_BARS);
 		}
 	},
 	SOUL(80){
 		@Override
-		protected void init(ItemStack impregnatedFrame) {
+		protected void init(RecipeUtil recipeUtil, ItemStack impregnatedFrame) {
 			logic.setModifier(EnumBeeModifier.MUTATION, 1.5f, 5.0f);
 			logic.setModifier(EnumBeeModifier.LIFESPAN, 0.75f, 0.5f);
 			logic.setModifier(EnumBeeModifier.PRODUCTION, 0.25f, 0.1f);
-			GameRegistry.addShapelessRecipe(new ItemStack(EnumHiveFrame.SOUL.item), impregnatedFrame, Blocks.SOUL_SAND);
+			recipeUtil.addShapelessRecipe("soul_frame", new ItemStack(EnumHiveFrame.SOUL.item), impregnatedFrame, Blocks.SOUL_SAND);
 		}
 	},
 	CLAY{
 		@Override
-		protected void init(ItemStack impregnatedFrame) {
+		protected void init(RecipeUtil recipeUtil, ItemStack impregnatedFrame) {
 			logic.setModifier(EnumBeeModifier.LIFESPAN, 1.5f, 5.0f);
 			logic.setModifier(EnumBeeModifier.MUTATION, 0.5f, 0.2f);
 			logic.setModifier(EnumBeeModifier.PRODUCTION, 0.75f, 0.2f);
-			GameRegistry.addRecipe(new ItemStack(EnumHiveFrame.CLAY.item),
+			recipeUtil.addRecipe("clay_frame", new ItemStack(EnumHiveFrame.CLAY.item),
 				" c ",
 				"cFc",
 				" c ",
@@ -75,7 +76,7 @@ public enum EnumHiveFrame implements IHiveFrame, IBeeModifier {
 	},
 	DEBUG{
 		@Override
-		protected void init(ItemStack impregnatedFrame) {
+		protected void init(RecipeUtil recipeUtil, ItemStack impregnatedFrame) {
 			logic.setModifier(EnumBeeModifier.LIFESPAN, 1.0E-4f, 1.0E-4f);
 		}
 	};
@@ -94,14 +95,14 @@ public enum EnumHiveFrame implements IHiveFrame, IBeeModifier {
 		this.item = new ItemHiveFrame(this).setRegistryName("hive_frame." + name().toLowerCase());
 	}
 
-	protected void init(ItemStack impregnatedFrame){
+	protected void init(RecipeUtil recipeUtil, ItemStack impregnatedFrame){
 
 	}
 
-	public static void init() {
+	public static void init(RecipeUtil recipeUtil) {
 		ItemStack impregnatedFrame = PluginApiculture.getItems().frameImpregnated.getItemStack();
 		for(EnumHiveFrame frame : values()){
-			frame.init(impregnatedFrame);
+			frame.init(recipeUtil, impregnatedFrame);
 		}
 	}
 
@@ -186,8 +187,8 @@ public enum EnumHiveFrame implements IHiveFrame, IBeeModifier {
 	}
 
 	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
-		this.logic.addInformation(stack, playerIn, tooltip, advanced);
+	public void addInformation(ItemStack stack, List<String> tooltip, ITooltipFlag flagIn) {
+		this.logic.addInformation(stack, tooltip, flagIn);
 	}
 
 }

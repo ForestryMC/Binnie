@@ -23,7 +23,7 @@ public class GuiContainerAlvearyPart extends GuiContainer {
 	public GuiContainerAlvearyPart(AbstractAlvearyContainer container) {
 		super(container);
 		this.container = container;
-		font = Minecraft.getMinecraft().fontRendererObj;
+		font = Minecraft.getMinecraft().fontRenderer;
 	}
 
 	@Override

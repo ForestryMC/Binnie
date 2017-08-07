@@ -50,7 +50,7 @@ public class MachineRendererLab {
 				if (Minecraft.isFancyGraphicsEnabled()) {
 					final ItemStack stack = holder.getStack();
 					this.dummyEntityItem.world = world;
-					this.dummyEntityItem.setEntityItemStack(stack);
+					this.dummyEntityItem.setItem(stack);
 					if (world.getTotalWorldTime() != this.lastTick) {
 						this.lastTick = world.getTotalWorldTime();
 						this.dummyEntityItem.onUpdate();
@@ -74,7 +74,7 @@ public class MachineRendererLab {
 					for (EntityItem item : this.itemSides) {
 						GlStateManager.pushMatrix();
 						item.world = world;
-						item.setEntityItemStack(stack);
+						item.setItem(stack);
 						GlStateManager.rotate(rot, 0.0f, 1.0f, 0.0f);
 						GlStateManager.rotate(180.0f, 1.0f, 0.0f, 0.0f);
 						GlStateManager.translate(0.0, -1.13, 0.4);
@@ -86,9 +86,9 @@ public class MachineRendererLab {
 					break Label_0591;
 				}
 			}
-			this.dummyEntityItem.setEntityItemStack(ItemStack.EMPTY);
+			this.dummyEntityItem.setItem(ItemStack.EMPTY);
 			for (final EntityItem item2 : this.itemSides) {
-				item2.setEntityItemStack(ItemStack.EMPTY);
+				item2.setItem(ItemStack.EMPTY);
 			}
 		}
 		GlStateManager.popMatrix();

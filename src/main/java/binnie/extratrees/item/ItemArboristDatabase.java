@@ -1,7 +1,9 @@
 package binnie.extratrees.item;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -42,17 +44,18 @@ public class ItemArboristDatabase extends Item implements IItemModelRegister {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
+	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		if (isMaster(stack)) {
 			tooltip.add(TextFormatting.DARK_PURPLE + I18N.localise("extratrees.item.database.arborist.master.tooltip"));
 		}
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public void getSubItems(Item item, CreativeTabs tab, NonNullList<ItemStack> subItems) {
-		super.getSubItems(item, tab, subItems);
-		subItems.add(new ItemStack(item, 1, 1));
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
+		super.getSubItems(tab, items);
+		if (this.isInCreativeTab(tab)) {
+			items.add(new ItemStack(this, 1, 1));
+		}
 	}
 
 	@Override

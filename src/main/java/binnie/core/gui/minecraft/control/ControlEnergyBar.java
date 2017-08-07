@@ -3,6 +3,7 @@ package binnie.core.gui.minecraft.control;
 import javax.annotation.Nullable;
 
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.inventory.IInventory;
 
 import net.minecraftforge.fml.relauncher.Side;
@@ -63,7 +64,7 @@ public class ControlEnergyBar extends Control implements ITooltip {
 	}
 
 	@Override
-	public void getTooltip(final Tooltip tooltip) {
+	public void getTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		tooltip.add((int) this.getPercentage() + "% charged");
 		tooltip.add(this.getStoredEnergy() + "/" + this.getMaxEnergy() + " RF");
 	}

@@ -63,17 +63,18 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister {
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public void getSubItems(final Item item, final CreativeTabs tab, final NonNullList<ItemStack> subItems) {
-		super.getSubItems(item, tab, subItems);
-		for (final IFluidType liquid : Binnie.LIQUID.fluids.values()) {
-			if (!liquid.canPlaceIn(this.container)) {
-				continue;
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
+		super.getSubItems(tab, items);
+		if (this.isInCreativeTab(tab)) {
+			for (final IFluidType liquid : Binnie.LIQUID.fluids.values()) {
+				if (!liquid.canPlaceIn(this.container)) {
+					continue;
+				}
+				if (!liquid.showInCreative(this.container)) {
+					continue;
+				}
+				items.add(getContainer(liquid));
 			}
-			if (!liquid.showInCreative(this.container)) {
-				continue;
-			}
-			subItems.add(getContainer(liquid));
 		}
 	}
 

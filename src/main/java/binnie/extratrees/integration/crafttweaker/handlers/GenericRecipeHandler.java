@@ -1,10 +1,11 @@
 package binnie.extratrees.integration.crafttweaker.handlers;
 
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import crafttweaker.CraftTweakerAPI;
+import crafttweaker.IAction;
 import net.minecraft.item.ItemStack;
 
 import net.minecraftforge.fluids.FluidStack;
@@ -12,8 +13,6 @@ import net.minecraftforge.fluids.FluidStack;
 import binnie.core.api.IBinnieRecipe;
 import binnie.core.api.ICraftingManager;
 import binnie.core.util.ItemStackUtil;
-import minetweaker.IUndoableAction;
-import minetweaker.MineTweakerAPI;
 
 public class GenericRecipeHandler {
 
@@ -31,7 +30,7 @@ public class GenericRecipeHandler {
 				}
 			}
 		}
-		MineTweakerAPI.apply(new Remove(recipeToRemove, manager));
+		CraftTweakerAPI.apply(new Remove<>(recipeToRemove, manager));
 	}
 
 	public static <R extends  IBinnieRecipe, M extends ICraftingManager<R>> void removeRecipeInput(ItemStack input, M manager) {
@@ -48,7 +47,7 @@ public class GenericRecipeHandler {
 				}
 			}
 		}
-		MineTweakerAPI.apply(new Remove(recipeToRemove, manager));
+		CraftTweakerAPI.apply(new Remove<>(recipeToRemove, manager));
 	}
 
 	public static <R extends  IBinnieRecipe, M extends ICraftingManager<R>> void removeRecipe(FluidStack output, M manager) {
@@ -65,7 +64,7 @@ public class GenericRecipeHandler {
 				}
 			}
 		}
-		MineTweakerAPI.apply(new Remove(recipeToRemove, manager));
+		CraftTweakerAPI.apply(new Remove<>(recipeToRemove, manager));
 	}
 
 	public static <R extends  IBinnieRecipe, M extends ICraftingManager<R>> void removeRecipeInput(FluidStack input, M manager) {
@@ -82,14 +81,14 @@ public class GenericRecipeHandler {
 				}
 			}
 		}
-		MineTweakerAPI.apply(new Remove(recipeToRemove, manager));
+		CraftTweakerAPI.apply(new Remove<>(recipeToRemove, manager));
 	}
 
 	public static <R extends  IBinnieRecipe, M extends ICraftingManager<R>> void addRecipe(R recipe, M manager) {
-		MineTweakerAPI.apply(new Add(recipe, manager));
+		CraftTweakerAPI.apply(new Add<>(recipe, manager));
 	}
 
-	private static class Add<R extends  IBinnieRecipe, M extends ICraftingManager<R>> implements IUndoableAction {
+	private static class Add<R extends  IBinnieRecipe, M extends ICraftingManager<R>> implements IAction {
 		private final R recipe;
 		private final M manager;
 
@@ -100,37 +99,7 @@ public class GenericRecipeHandler {
 
 		@Override
 		public void apply() {
-			if(manager.addRecipe(recipe)) {
-				Object recipeWrapper = manager.getJeiWrapper(recipe);
-				if(recipeWrapper != null) {
-					MineTweakerAPI.getIjeiRecipeRegistry().addRecipe(recipeWrapper, manager.getJEICategory());
-				}
-			}
-		}
-
-		@Override
-		public void undo() {
-			if(manager.removeRecipe(recipe)) {
-				Object recipeWrapper = manager.getJeiWrapper(recipe);
-				if(recipeWrapper != null) {
-					MineTweakerAPI.getIjeiRecipeRegistry().removeRecipe(recipeWrapper, manager.getJEICategory());
-				}
-			}
-		}
-
-		@Override
-		public boolean canUndo() {
-			return true;
-		}
-
-		@Override
-		public String describeUndo() {
-			return "Removing " + manager.toString() + " recipe for " + recipe.toString();
-		}
-
-		@Override
-		public Object getOverrideKey() {
-			return null;
+			manager.addRecipe(recipe);
 		}
 
 		@Override
@@ -139,7 +108,7 @@ public class GenericRecipeHandler {
 		}
 	}
 
-	private static class Remove<R extends  IBinnieRecipe, M extends ICraftingManager<R>> implements IUndoableAction {
+	private static class Remove<R extends  IBinnieRecipe, M extends ICraftingManager<R>> implements IAction {
 		private final List<R> recipes;
 		private final M manager;
 
@@ -150,50 +119,12 @@ public class GenericRecipeHandler {
 
 		@Override
 		public void apply() {
-			Iterator<R> rIterator = recipes.iterator();
-			while(rIterator.hasNext()) {
-				R recipe = rIterator.next();
-				if (manager.removeRecipe(recipe)) {
-					Object recipeWrapper = manager.getJeiWrapper(recipe);
-					if (recipeWrapper != null) {
-						MineTweakerAPI.getIjeiRecipeRegistry().removeRecipe(recipeWrapper, manager.getJEICategory());
-					}
-				}else{
-					rIterator.remove();
-				}
-			}
-		}
-
-		@Override
-		public void undo() {
-			for(R recipe : recipes) {
-				if (manager.addRecipe(recipe)) {
-					Object recipeWrapper = manager.getJeiWrapper(recipe);
-					if (recipeWrapper != null) {
-						MineTweakerAPI.getIjeiRecipeRegistry().addRecipe(recipeWrapper, manager.getJEICategory());
-					}
-				}
-			}
-		}
-
-		@Override
-		public boolean canUndo() {
-			return true;
+			recipes.removeIf(recipe -> !manager.removeRecipe(recipe));
 		}
 
 		@Override
 		public String describe() {
 			return "Removing " + manager.toString() + " recipe for " + recipes.toString();
-		}
-
-		@Override
-		public Object getOverrideKey() {
-			return null;
-		}
-
-		@Override
-		public String describeUndo() {
-			return "Adding " + manager.toString() + " recipe for " + recipes.toString();
 		}
 	}
 }

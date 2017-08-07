@@ -3,6 +3,7 @@ package binnie.extrabees.items;
 import javax.annotation.Nullable;
 import java.util.List;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -10,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.NonNullList;
 
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -34,21 +36,22 @@ public class ItemIndustrialFrame extends Item {
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public void getSubItems(final Item itemIn, final CreativeTabs tab, final NonNullList<ItemStack> subItems) {
-		for (final IndustrialFrame frame : IndustrialFrame.values()) {
-			final ItemStack stack = new ItemStack(this);
-			final NBTTagCompound nbt = new NBTTagCompound();
-			nbt.setInteger("frame", frame.ordinal());
-			stack.setTagCompound(nbt);
-			subItems.add(stack);
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
+		if (this.isInCreativeTab(tab)) {
+			for (final IndustrialFrame frame : IndustrialFrame.values()) {
+				final ItemStack stack = new ItemStack(this);
+				final NBTTagCompound nbt = new NBTTagCompound();
+				nbt.setInteger("frame", frame.ordinal());
+				stack.setTagCompound(nbt);
+				items.add(stack);
+			}
 		}
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
-		super.addInformation(stack, playerIn, tooltip, advanced);
+	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+		super.addInformation(stack, worldIn, tooltip, flagIn);
 		final IndustrialFrame frame = getFrame(stack);
 		if (frame == null) {
 			tooltip.add("Invalid Contents");

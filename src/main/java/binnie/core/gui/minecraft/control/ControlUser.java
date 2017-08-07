@@ -2,6 +2,7 @@ package binnie.core.gui.minecraft.control;
 
 import java.util.Objects;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -32,7 +33,7 @@ public class ControlUser extends Control implements ITooltip {
 	}
 
 	@Override
-	public void getTooltip(final Tooltip tooltip) {
+	public void getTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		tooltip.setType(Tooltip.Type.USER);
 		tooltip.add("Owner");
 		if (!Objects.equals(this.username, "")) {

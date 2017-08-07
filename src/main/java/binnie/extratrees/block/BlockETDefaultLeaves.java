@@ -130,35 +130,31 @@ public abstract class BlockETDefaultLeaves extends BlockAbstractLeaves {
 		int variantMeta = (meta % variantCount) + blockNumber * VARIANTS_PER_BLOCK;
 		return ETTreeDefinition.byMetadata(variantMeta);
 	}
-	
+
 	@Override
-	protected NonNullList<ItemStack> getLeafDrop(World world, @Nullable GameProfile playerProfile, BlockPos pos, float saplingModifier, int fortune) {
-		NonNullList<ItemStack> prod = NonNullList.create();
-		
+	protected void getLeafDrop(NonNullList<ItemStack> drops, World world, @Nullable GameProfile playerProfile, BlockPos pos, float saplingModifier, int fortune) {
 		ITree tree = getTree(world, pos);
 		if (tree == null) {
-			return prod;
+			return;
 		}
-		
+
 		// Add saplings
 		List<ITree> saplings = tree.getSaplings(world, playerProfile, pos, saplingModifier);
 		for (ITree sapling : saplings) {
 			if (sapling != null) {
-				prod.add(TreeManager.treeRoot.getMemberStack(sapling, EnumGermlingType.SAPLING));
+				drops.add(TreeManager.treeRoot.getMemberStack(sapling, EnumGermlingType.SAPLING));
 			}
 		}
-		
+
 		// Add fruits
 		ITreeGenome genome = tree.getGenome();
 		IFruitProvider fruitProvider = genome.getFruitProvider();
 		if (fruitProvider.isFruitLeaf(genome, world, pos)) {
 			NonNullList<ItemStack> produceStacks = tree.produceStacks(world, pos, Integer.MAX_VALUE);
-			prod.addAll(produceStacks);
+			drops.addAll(produceStacks);
 		}
-		
-		return prod;
 	}
-	
+
 	@Override
 	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand) {
 		ETTreeDefinition type = getTreeType(meta);

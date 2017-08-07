@@ -3,6 +3,8 @@ package binnie.botany.genetics;
 import java.awt.Color;
 import java.util.function.Predicate;
 
+import binnie.Constants;
+import binnie.core.util.RecipeUtil;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -13,7 +15,6 @@ import forestry.api.genetics.AlleleManager;
 import forestry.api.recipes.RecipeManagers;
 import forestry.api.storage.BackpackManager;
 import forestry.api.storage.IBackpackInterface;
-import forestry.core.recipes.RecipeUtil;
 import forestry.storage.BackpackDefinition;
 
 import binnie.Binnie;
@@ -79,6 +80,7 @@ public class ModuleGenetics implements IInitializable {
 
 	@Override
 	public void postInit() {
+		RecipeUtil recipeUtil = new RecipeUtil(Constants.GENETICS_MOD_ID);
 		forestry.api.apiculture.FlowerManager.flowerRegistry.registerAcceptableFlower(Botany.flower, "flowersVanilla");
 		RecipeManagers.carpenterManager.addRecipe(
 				100,
@@ -95,8 +97,7 @@ public class ModuleGenetics implements IInitializable {
 				'D', Items.DIAMOND,
 				'E', Items.EMERALD
 		);
-		RecipeUtil.addRecipe
-				(Botany.botanistBackpack,
+		recipeUtil.addRecipe("botanist_backpack", Botany.botanistBackpack,
 						"X#X",
 						"VYZ",
 						"X#X",

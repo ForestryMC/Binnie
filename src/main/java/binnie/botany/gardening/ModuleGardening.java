@@ -3,11 +3,16 @@ package binnie.botany.gardening;
 import java.util.HashMap;
 import java.util.Map;
 
+import binnie.Constants;
+import binnie.botany.flower.EnumTubeInsulate;
+import binnie.botany.flower.EnumTubeMaterial;
+import binnie.core.util.RecipeUtil;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.RecipeSorter;
 import net.minecraftforge.oredict.ShapedOreRecipe;
@@ -167,66 +172,68 @@ public class ModuleGardening implements IInitializable {
 
 	@Override
 	public void postInit() {
+		RecipeUtil recipeUtil = new RecipeUtil(Constants.BOTANY_MOD_ID);
 		IGardeningManager gardening = BotanyCore.getGardening();
-		GameRegistry.addRecipe(new CeramicTileRecipe());
-		for (int mat = 0; mat < 4; ++mat) {
-			for (int insulate = 0; insulate < 6; ++insulate) {
-				ItemStack tubes = new ItemStack(insulatedTube, 2, mat + 128 * insulate);
+		ForgeRegistries.RECIPES.register(new CeramicTileRecipe());
+		for (EnumTubeMaterial mat: EnumTubeMaterial.VALUES) {
+			for (EnumTubeInsulate insulate : EnumTubeInsulate.VALUES) {
+				ItemStack tubes = new ItemStack(insulatedTube, 2, mat.ordinal() + 128 * insulate.ordinal());
 				ItemStack insulateStack = ItemInsulatedTube.getInsulateStack(tubes);
-				ItemStack forestryTube = new ItemStack(Mods.Forestry.item("thermionic_tubes"), 1, mat);
-				GameRegistry.addShapelessRecipe(tubes, forestryTube, forestryTube, insulateStack);
+				ItemStack forestryTube = new ItemStack(Mods.Forestry.item("thermionic_tubes"), 1, mat.ordinal());
+				String recipeName = "thermionic_tubes_" + insulate.getUid() + "_" + mat.getUid();
+				recipeUtil.addShapelessRecipe(recipeName, tubes, forestryTube, forestryTube, insulateStack);
 			}
 		}
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(
+		recipeUtil.addRecipe("trowel_wood",
 				trowelWood,
 				"d  ", " x ", "  s",
 				'd', Blocks.DIRT,
 				's', "stickWood",
-				'x', "plankWood")
+				'x', "plankWood"
 		);
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(
+		recipeUtil.addRecipe("trowel_stone",
 				trowelStone,
 				"d  ", " x ", "  s",
 				'd', Blocks.DIRT,
 				's', "stickWood",
 				'x', "cobblestone"
-		));
+		);
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(
+		recipeUtil.addRecipe("trowel_iron",
 				trowelIron,
 				"d  ", " x ", "  s",
 				'd', Blocks.DIRT,
 				's', "stickWood",
 				'x', "ingotIron"
-		));
+		);
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(
+		recipeUtil.addRecipe("trowel_gold",
 				trowelGold,
 				"d  ", " x ", "  s",
 				'd', Blocks.DIRT,
 				's', "stickWood",
 				'x', "ingotGold"
-		));
+		);
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(
+		recipeUtil.addRecipe("trowel_diamond",
 				trowelDiamond,
 				"d  ", " x ", "  s",
 				'd', Blocks.DIRT,
 				's', "stickWood",
 				'x', "gemDiamond"
-		));
+		);
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(
+		recipeUtil.addRecipe("soil_meter",
 				soilMeter,
 				" gg", " rg", "i  ",
 				'g', "ingotGold",
 				'r', "dustRedstone",
 				'i', "ingotIron"
-		));
+		);
 
-		GameRegistry.addShapelessRecipe(
+		recipeUtil.addShapelessRecipe("weed_killer",
 				BotanyItems.WEEDKILLER.get(4),
 				new ItemStack(Items.SPIDER_EYE),
 				new ItemStack(Items.WHEAT_SEEDS),
@@ -234,40 +241,40 @@ public class ModuleGardening implements IInitializable {
 				new ItemStack(Items.WHEAT_SEEDS)
 		);
 
-		GameRegistry.addShapelessRecipe(
+		recipeUtil.addShapelessRecipe("powder_ash",
 				BotanyItems.POWDER_ASH.get(4),
 				Mods.Forestry.stack("ash")
 		);
 
-		GameRegistry.addShapelessRecipe(
+		recipeUtil.addShapelessRecipe("powder_mulch",
 				BotanyItems.POWDER_MULCH.get(4),
 				Mods.Forestry.stack("mulch")
 		);
 
-		GameRegistry.addShapelessRecipe(
+		recipeUtil.addShapelessRecipe("powder_compost",
 				BotanyItems.POWDER_COMPOST.get(4),
 				Mods.Forestry.stack("fertilizer_bio")
 		);
 
-		GameRegistry.addShapelessRecipe(
+		recipeUtil.addShapelessRecipe("powder_fertilizer",
 				BotanyItems.POWDER_FERTILISER.get(4),
 				Mods.Forestry.stack("fertilizer_compound")
 		);
 
-		GameRegistry.addShapelessRecipe(
+		recipeUtil.addShapelessRecipe("powder_pulp",
 				BotanyItems.POWDER_PULP.get(4),
 				Mods.Forestry.stack("wood_pulp")
 		);
 
-		GameRegistry.addRecipe(new ShapelessOreRecipe(
+		recipeUtil.addShapelessRecipe("powder_sulphur",
 				BotanyItems.POWDER_SULPHUR.get(4),
 				"dustSulphur"
-		));
+		);
 
-		GameRegistry.addRecipe(new ShapelessOreRecipe(
+		recipeUtil.addShapelessRecipe("pigment_black",
 				new ItemStack(pigment, 2, EnumFlowerColor.Black.ordinal()),
 				"pigment", "pigment", "dyeBlack"
-		));
+		);
 
 		gardening.registerAcidFertiliser(BotanyItems.POWDER_SULPHUR.get(1), 1);
 		gardening.registerAcidFertiliser(BotanyItems.POWDER_MULCH.get(1), 1);
@@ -286,32 +293,32 @@ public class ModuleGardening implements IInitializable {
 		gardening.registerNutrientFertiliser(Mods.Forestry.stack("fertilizer_compound"), 2);
 
 		for (Map.Entry<ItemStack, Integer> entry : ModuleGardening.queuedAcidFertilisers.entrySet()) {
-			addAcidFertiliserRecipe(entry.getKey(), entry.getValue());
+			addAcidFertiliserRecipe(recipeUtil, entry.getKey(), entry.getValue());
 		}
 		for (Map.Entry<ItemStack, Integer> entry : ModuleGardening.queuedAlkalineFertilisers.entrySet()) {
-			addAlkalineFertiliserRecipe(entry.getKey(), entry.getValue());
+			addAlkalineFertiliserRecipe(recipeUtil, entry.getKey(), entry.getValue());
 		}
 		for (Map.Entry<ItemStack, Integer> entry : ModuleGardening.queuedNutrientFertilisers.entrySet()) {
-			addNutrientFertiliserRecipe(entry.getKey(), entry.getValue());
+			addNutrientFertiliserRecipe(recipeUtil, entry.getKey(), entry.getValue());
 		}
 
-		GameRegistry.addRecipe(BotanyItems.MORTAR.get(6), " c ", "cgc", " c ", 'c', Items.CLAY_BALL, 'g', Blocks.GRAVEL);
+		recipeUtil.addRecipe("mortar", BotanyItems.MORTAR.get(6), " c ", "cgc", " c ", 'c', Items.CLAY_BALL, 'g', Blocks.GRAVEL);
 		for (EnumFlowerColor c : EnumFlowerColor.values()) {
 			ItemStack clay = new ItemStack(this.clay, 1, c.ordinal());
 			ItemStack pigment = new ItemStack(this.pigment, 1, c.ordinal());
-			GameRegistry.addShapelessRecipe(clay, Items.CLAY_BALL, Items.CLAY_BALL, Items.CLAY_BALL, pigment);
+			recipeUtil.addShapelessRecipe("clay_" + c.getIdent(), clay, Items.CLAY_BALL, Items.CLAY_BALL, Items.CLAY_BALL, pigment);
 			GameRegistry.addSmelting(clay, TileEntityMetadata.getItemStack(ceramic, c.ordinal()), 0.0f);
 			ItemStack glass = TileEntityMetadata.getItemStack(stained, c.ordinal());
 			glass.setCount(4);
 
-			GameRegistry.addShapedRecipe(
+			recipeUtil.addRecipe("mortar_" + c.getIdent(),
 					glass,
 					" g ", "gpg", " g ",
 					'g', Blocks.GLASS,
 					'p', pigment
 			);
 		}
-		GameRegistry.addRecipe(new PigmentRecipe());
+		ForgeRegistries.RECIPES.register(new PigmentRecipe());
 	}
 
 	private ItemStack getStack(int type, int pH, int moisture) {
@@ -321,7 +328,7 @@ public class ModuleGardening implements IInitializable {
 		return ItemStack.EMPTY;
 	}
 
-	private void addAcidFertiliserRecipe(ItemStack stack, int strengthMax) {
+	private void addAcidFertiliserRecipe(RecipeUtil recipeUtil, ItemStack stack, int strengthMax) {
 		for (int moisture = 0; moisture < 3; ++moisture) {
 			for (int pH = 0; pH < 3; ++pH) {
 				for (int type = 0; type < 3; ++type) {
@@ -336,7 +343,8 @@ public class ModuleGardening implements IInitializable {
 								stacks[i] = start;
 							}
 							stacks[numOfBlocks] = stack.copy();
-							GameRegistry.addShapelessRecipe(end, stacks);
+							String recipeName = "acid_fertiliser_moisture" + moisture + "_ph" + pH + "_type" + type + "_strength" + strength;
+							recipeUtil.addShapelessRecipe(recipeName, end, stacks);
 						}
 						numOfBlocks /= 2;
 					}
@@ -345,7 +353,7 @@ public class ModuleGardening implements IInitializable {
 		}
 	}
 
-	private void addAlkalineFertiliserRecipe(ItemStack stack, int strengthMax) {
+	private void addAlkalineFertiliserRecipe(RecipeUtil recipeUtil, ItemStack stack, int strengthMax) {
 		for (int moisture = 0; moisture < 3; ++moisture) {
 			for (int pH = 0; pH < 3; ++pH) {
 				for (int type = 0; type < 3; ++type) {
@@ -360,7 +368,8 @@ public class ModuleGardening implements IInitializable {
 								stacks[i] = start;
 							}
 							stacks[numOfBlocks] = stack.copy();
-							GameRegistry.addShapelessRecipe(end, stacks);
+							String recipeName = "alkaline_fertiliser_moisture" + moisture + "_ph" + pH + "_type" + type + "_strength" + strength;
+							recipeUtil.addShapelessRecipe(recipeName, end, stacks);
 						}
 						numOfBlocks /= 2;
 					}
@@ -369,7 +378,7 @@ public class ModuleGardening implements IInitializable {
 		}
 	}
 
-	private void addNutrientFertiliserRecipe(ItemStack stack, int strengthMax) {
+	private void addNutrientFertiliserRecipe(RecipeUtil recipeUtil, ItemStack stack, int strengthMax) {
 		for (int moisture = 0; moisture < 3; ++moisture) {
 			for (int pH = 0; pH < 3; ++pH) {
 				for (int type = 0; type < 3; ++type) {
@@ -384,7 +393,8 @@ public class ModuleGardening implements IInitializable {
 								stacks[i] = start;
 							}
 							stacks[numOfBlocks] = stack.copy();
-							GameRegistry.addShapelessRecipe(end, stacks);
+							String recipeName = "nutrient_fertiliser_moisture" + moisture + "_ph" + pH + "_type" + type + "_strength" + strength;
+							recipeUtil.addShapelessRecipe(recipeName, end, stacks);
 						}
 						numOfBlocks /= 2;
 					}

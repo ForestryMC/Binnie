@@ -57,7 +57,7 @@ public class ManagerGenetics extends ManagerBase {
 	}
 
 	@Override
-	public void init() {
+	public void preInit() {
 		if (BinnieCore.isApicultureActive()) {
 			this.beeBreedingSystem = new BeeBreedingSystem();
 		}

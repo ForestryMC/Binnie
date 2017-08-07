@@ -5,6 +5,8 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import binnie.Constants;
+import binnie.core.util.RecipeUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.init.Items;
@@ -67,12 +69,13 @@ public class ManagerLiquid extends ManagerBase {
 
 	@Override
 	public void postInit() {
-		GameRegistry.addShapelessRecipe(FluidContainerType.GLASS.get(1), Items.GLASS_BOTTLE);
-		GameRegistry.addShapelessRecipe(new ItemStack(Items.GLASS_BOTTLE), FluidContainerType.GLASS.get(1));
-		GameRegistry.addRecipe(new ShapedOreRecipe(FluidContainerType.GLASS.get(3),
+		RecipeUtil recipeUtil = new RecipeUtil(Constants.CORE_MOD_ID);
+		recipeUtil.addShapelessRecipe("glass_container_conversion", FluidContainerType.GLASS.get(1), Items.GLASS_BOTTLE);
+		recipeUtil.addShapelessRecipe("glass_bottle_conversion", new ItemStack(Items.GLASS_BOTTLE), FluidContainerType.GLASS.get(1));
+		recipeUtil.addRecipe("glass_container", FluidContainerType.GLASS.get(3),
 			" b ", "g g", " g ",
 			'g', OreDictUtil.BLOCK_GLASS, 'b', OreDictUtil.SLAB_WOOD
-		));
+		);
 	}
 
 	public IFluidType getFluidType(final String liquid) {
