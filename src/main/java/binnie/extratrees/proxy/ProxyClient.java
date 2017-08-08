@@ -18,9 +18,9 @@ import forestry.core.models.ModelEntry;
 
 import binnie.Constants;
 import binnie.core.models.ModelManager;
-import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.block.BlockETDecorativeLeaves;
 import binnie.extratrees.block.BlockETDefaultLeaves;
+import binnie.extratrees.block.ModuleBlocks;
 import binnie.extratrees.block.wood.BlockETSlab;
 import binnie.extratrees.models.ModelDefaultETLeaves;
 import binnie.extratrees.models.ModelETDecorativeLeaves;
@@ -71,7 +71,7 @@ public class ProxyClient extends Proxy implements IExtraTreeProxy {
 
 	@Override
 	public void registerModels() {
-		for (BlockETDecorativeLeaves leaves : ExtraTrees.blocks().leavesDecorative) {
+		for (BlockETDecorativeLeaves leaves : ModuleBlocks.leavesDecorative) {
 			String resourceName = leaves.getRegistryName().toString();
 			ModelResourceLocation blockModelLocation = new ModelResourceLocation(resourceName);
 			ModelResourceLocation itemModeLocation = new ModelResourceLocation(resourceName, "inventory");
@@ -79,7 +79,7 @@ public class ProxyClient extends Proxy implements IExtraTreeProxy {
 			registerBlockModel(blockModelIndex);
 		}
 
-		for (BlockETDefaultLeaves leaves : ExtraTrees.blocks().leavesDefault) {
+		for (BlockETDefaultLeaves leaves : ModuleBlocks.leavesDefault) {
 			String resourceName = leaves.getRegistryName().toString();
 			ModelResourceLocation blockModelLocation = new ModelResourceLocation(resourceName);
 			ModelResourceLocation itemModeLocation = new ModelResourceLocation(resourceName, "inventory");
@@ -87,13 +87,13 @@ public class ProxyClient extends Proxy implements IExtraTreeProxy {
 			registerBlockModel(blockModelIndex);
 		}
 
-		for (BlockETSlab slab : ExtraTrees.blocks().slabsDouble) {
+		for (BlockETSlab slab : ModuleBlocks.slabsDouble) {
 			PluginArboriculture.proxy.registerWoodModel(slab, true);
 		}
-		for (BlockETSlab slab : ExtraTrees.blocks().slabsDoubleFireproof) {
+		for (BlockETSlab slab : ModuleBlocks.slabsDoubleFireproof) {
 			PluginArboriculture.proxy.registerWoodModel(slab, true);
 		}
-		getModelManager().registerModels();
+		modelManager.registerModels();
 	}
 
 	@Override

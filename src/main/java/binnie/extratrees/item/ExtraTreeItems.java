@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 
 import binnie.core.item.IItemMiscProvider;
 import binnie.core.util.I18N;
-import binnie.extratrees.ExtraTrees;
+import binnie.extratrees.core.ModuleCore;
 
 public enum ExtraTreeItems implements IItemMiscProvider {
 	CarpentryHammer("carpentry_hammer"),
@@ -50,6 +50,6 @@ public enum ExtraTreeItems implements IItemMiscProvider {
 
 	@Override
 	public ItemStack get(final int i) {
-		return new ItemStack(ExtraTrees.items().itemMisc, i, this.ordinal());
+		return new ItemStack(ModuleCore.itemMisc, i, this.ordinal());
 	}
 }

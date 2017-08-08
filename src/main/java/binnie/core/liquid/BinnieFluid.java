@@ -14,7 +14,7 @@ class BinnieFluid extends Fluid {
 		super(fluid.getIdentifier(), fluid.getStill(), fluid.getFlowing());
 		this.fluidType = fluid;
 		this.name = fluid.getDisplayName();
-		this.color = new Color(this.fluidType.getColour()).getRGB();
+		this.color = new Color(this.fluidType.getColor()).getRGB();
 	}
 
 	@Override

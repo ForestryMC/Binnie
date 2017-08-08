@@ -1,4 +1,4 @@
-package binnie.extratrees.worldgen;
+package binnie.extratrees.village;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -17,8 +17,8 @@ import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.StructureVillagePieces;
 import net.minecraft.world.gen.structure.template.TemplateManager;
 
-import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.block.BlockHops;
+import binnie.extratrees.core.ModuleCore;
 
 public class VillageHopeField extends StructureVillagePieces.Village {
 	private Block cropTypeA;
@@ -93,7 +93,7 @@ public class VillageHopeField extends StructureVillagePieces.Village {
 				return Blocks.BEETROOTS;
 			case 5:
 			case 6:
-				return ExtraTrees.blocks().hops;
+				return ModuleCore.hops;
 			default:
 				return Blocks.WHEAT;
 		}

@@ -51,6 +51,7 @@ import binnie.core.models.DefaultStateMapper;
 import binnie.core.models.ModelManager;
 import binnie.core.models.ModelMutlipass;
 import binnie.core.util.TileUtil;
+import binnie.extratrees.CreativeTabCarpentry;
 import binnie.extratrees.api.CarpentryManager;
 import binnie.extratrees.api.IDesign;
 import binnie.extratrees.api.IDesignSystem;
@@ -62,6 +63,7 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
 
 	public BlockDesign(final IDesignSystem system, final Material material) {
 		super(material);
+		this.setCreativeTab(CreativeTabCarpentry.instance);
 		this.designSystem = system;
 	}
 

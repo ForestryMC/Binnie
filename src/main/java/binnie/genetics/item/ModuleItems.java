@@ -28,7 +28,9 @@ import binnie.core.item.ItemMisc;
 import binnie.core.liquid.FluidContainerType;
 import binnie.core.liquid.ManagerLiquid;
 import binnie.core.resource.BinnieSprite;
-import binnie.extratrees.ExtraTrees;
+import binnie.extratrees.modules.ExtraTreesModuleUIDs;
+import binnie.extratrees.modules.ModuleMothDatabase;
+import binnie.extratrees.modules.ModuleTreeDatabase;
 import binnie.genetics.CreativeTabGenetics;
 import binnie.genetics.Genetics;
 import binnie.modules.ModuleManager;
@@ -188,8 +190,8 @@ public class ModuleItems implements IInitializable {
 			'c', GeneticsItems.IntegratedCircuit.get(itemGenetics, 1), 'a', Mods.Forestry.item("portable_alyzer"), 'd', new ItemStack(Items.DIAMOND)
 		);
 
-		Item[] databases = {ExtraBeesIntegration.dictionary, ExtraTrees.items().itemDictionary, ExtraTrees.items().itemDictionaryLepi, ModuleDatabase.database};
-		if (ModuleManager.isEnabled(Constants.BOTANY_MOD_ID, BotanyModuleUIDs.DATABASE) && BinnieCore.isExtraBeesActive() && BinnieCore.isExtraTreesActive()) {
+		Item[] databases = {ExtraBeesIntegration.dictionary, ModuleTreeDatabase.itemDictionary, ModuleMothDatabase.itemDictionaryLepi, ModuleDatabase.database};
+		if (ModuleManager.isEnabled(Constants.BOTANY_MOD_ID, BotanyModuleUIDs.DATABASE) && BinnieCore.isExtraBeesActive() && ModuleManager.isEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.TREE_DATABASE) && ModuleManager.isEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.MOTH_DATABASE)) {
 			for (Item databaseA : databases) {
 				for (Item databaseB : databases) {
 					for (Item databaseC : databases) {

@@ -61,6 +61,21 @@ extratrees.machine.machine.tileworker=Tileworker
 extratrees.machine.machine.tileworker.info=The Tileworker creates patterned ceramic tiles.
 
 ##################################################
+## Modules
+
+extratrees.tab.carpentry=Carpentry
+
+extratrees.module.alcohol=
+extratrees.module.carpentry=Adds decorative glass and wood blocks. And the Woodworker, Panelworker and Glassworker.
+extratrees.module.crafttweaker=Adds Craft Tweaker support for the machines.
+extratrees.module.database.moth=Adds a database for butterflies.
+extratrees.module.database.tree=Adds a database for trees.
+extratrees.module.genetics=Adds more tree species.
+extratrees.module.kitchen=
+extratrees.module.machines=Adds the Lumbermill, Fruit Press, Brewery and Distillery.
+extratrees.module.wood=Adds wood stairs, fences, planks, logs and doors.
+
+##################################################
 ## Wood Types
 
 et.trees.woodType.fir=Fir

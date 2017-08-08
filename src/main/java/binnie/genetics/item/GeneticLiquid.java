@@ -55,12 +55,12 @@ public enum GeneticLiquid implements IFluidType {
 	}
 
 	@Override
-	public int getColour() {
+	public int getColor() {
 		return 16777215;
 	}
 
 	@Override
-	public int getContainerColour() {
+	public int getContainerColor() {
 		return this.colour;
 	}
 
@@ -75,12 +75,12 @@ public enum GeneticLiquid implements IFluidType {
 	}
 
 	@Override
-	public boolean canPlaceIn(final FluidContainerType container) {
-		return this == GeneticLiquid.GrowthMedium || container == FluidContainerType.CYLINDER;
+	public boolean canPlaceIn(final FluidContainerType type) {
+		return this == GeneticLiquid.GrowthMedium || type == FluidContainerType.CYLINDER;
 	}
 
 	@Override
-	public boolean showInCreative(final FluidContainerType container) {
-		return container == FluidContainerType.CYLINDER;
+	public boolean showInCreative(final FluidContainerType type) {
+		return type == FluidContainerType.CYLINDER;
 	}
 }

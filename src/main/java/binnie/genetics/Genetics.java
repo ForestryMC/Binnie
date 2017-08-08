@@ -66,17 +66,17 @@ public class Genetics extends AbstractMod {
 	public void preInit(FMLPreInitializationEvent evt) {
 		dictionaryBees = proxy.registerItem(new ItemBeeDictionary());
 		proxy.registerItem(new ItemPunnettSquare());
-		preInit();
+		super.preInit(evt);
 	}
 
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent evt) {
-		init();
+		super.init(evt);
 	}
 
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent evt) {
-		postInit();
+		super.postInit(evt);
 		RecipeManagers.carpenterManager.addRecipe(
 			100,
 			Binnie.LIQUID.getFluidStack(ManagerLiquid.WATER, 2000),

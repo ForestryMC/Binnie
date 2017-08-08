@@ -4,8 +4,6 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemStack;
 
-import forestry.api.core.Tabs;
-
 import binnie.core.util.I18N;
 import binnie.extratrees.api.IDesign;
 import binnie.extratrees.block.PlankType;
@@ -13,7 +11,6 @@ import binnie.extratrees.block.PlankType;
 public class BlockCarpentry extends BlockDesign {
 	public BlockCarpentry(String name) {
 		super(DesignSystem.Wood, Material.WOOD);
-		this.setCreativeTab(Tabs.tabArboriculture);
 		this.setRegistryName(name);
 		this.setResistance(5.0f);
 		this.setHardness(2.0f);

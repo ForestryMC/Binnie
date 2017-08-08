@@ -20,7 +20,6 @@ import forestry.arboriculture.IWoodTyped;
 import forestry.core.utils.Translator;
 
 import binnie.core.block.TileEntityMetadata;
-import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.api.CarpentryManager;
 import binnie.extratrees.api.IDesignMaterial;
 import binnie.extratrees.block.decor.FenceDescription;
@@ -77,7 +76,7 @@ public class WoodManager {
 
 	@Nullable
 	public static FenceDescription getFenceDescription(final ItemStack stack) {
-		if (stack.getItem() == Item.getItemFromBlock(ExtraTrees.blocks().blockMultiFence)) {
+		if (stack.getItem() == Item.getItemFromBlock(ModuleBlocks.blockMultiFence)) {
 			final int damage = TileEntityMetadata.getItemDamage(stack);
 			return getFenceDescription(damage);
 		}
@@ -138,7 +137,7 @@ public class WoodManager {
 		}
 		final int ord = type.ordinal();
 		final int i = getPlankTypeIndex(plank) + 256 * ord;
-		final ItemStack stack = TileEntityMetadata.getItemStack(ExtraTrees.blocks().blockMultiFence, i + 65536 * getPlankTypeIndex(plank2));
+		final ItemStack stack = TileEntityMetadata.getItemStack(ModuleBlocks.blockMultiFence, i + 65536 * getPlankTypeIndex(plank2));
 		stack.setCount(amount);
 		return stack;
 	}

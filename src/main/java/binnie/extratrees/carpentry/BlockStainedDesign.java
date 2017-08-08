@@ -26,8 +26,6 @@ import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import forestry.api.core.Tabs;
-
 import binnie.core.block.TileEntityMetadata;
 import binnie.core.util.I18N;
 import binnie.extratrees.api.IDesign;
@@ -35,7 +33,6 @@ import binnie.extratrees.api.IDesign;
 public class BlockStainedDesign extends BlockDesign {
 	public BlockStainedDesign() {
 		super(DesignSystem.Glass, Material.GLASS);
-		this.setCreativeTab(Tabs.tabArboriculture);
 		this.setSoundType(SoundType.GLASS);
 		this.setRegistryName("stainedGlass");
 		this.setHardness(0.3F);

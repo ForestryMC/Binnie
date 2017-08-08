@@ -16,7 +16,7 @@ import forestry.api.recipes.RecipeManagers;
 import forestry.core.fluids.Fluids;
 
 import binnie.Binnie;
-import binnie.core.IInitializable;
+import binnie.Constants;
 import binnie.core.Mods;
 import binnie.core.liquid.IFluidType;
 import binnie.core.resource.BinnieSprite;
@@ -32,19 +32,27 @@ import binnie.extratrees.api.recipes.IFruitPressManager;
 import binnie.extratrees.item.ExtraTreeItems;
 import binnie.extratrees.item.Food;
 import binnie.extratrees.machines.distillery.DistilleryLogic;
+import binnie.extratrees.modules.ExtraTreesModuleUIDs;
+import binnie.modules.BinnieModule;
+import binnie.modules.Module;
 
-public class ModuleAlcohol implements IInitializable {
-	public ItemDrink drink;
-	public Block blockDrink;
+@BinnieModule(moduleID = ExtraTreesModuleUIDs.ALCOHOL, moduleContainerID = Constants.EXTRA_TREES_MOD_ID, name = "Alcohol", unlocalizedDescription = "extratrees.module.alcohol")
+public class ModuleAlcohol extends Module {
+	public static ItemDrink drink;
+	public static Block blockDrink;
 	public int drinkRendererID;
-	public BinnieSprite liquid;
+	public static BinnieSprite liquid;
+
+	@Override
+	public void registerItemsAndBlocks() {
+		drink = new ItemDrink();
+		ExtraTrees.proxy.registerItem(drink);
+	}
 
 	@Override
 	public void preInit() {
-		this.liquid = Binnie.RESOURCE.getBlockSprite(ExtraTrees.instance, "liquids/liquid");
+		liquid = Binnie.RESOURCE.getBlockSprite(ExtraTrees.instance, "liquids/liquid");
 		//ModuleAlcohol.drinkRendererID = BinnieCore.proxy.getUniqueRenderID();
-		this.drink = new ItemDrink();
-		ExtraTrees.proxy.registerItem(drink);
 		//BinnieCore.proxy.registerCustomItemRenderer(ExtraTrees.drink, new CocktailRenderer());
 		Binnie.LIQUID.createLiquids(Juice.values());
 		Binnie.LIQUID.createLiquids(Alcohol.values());

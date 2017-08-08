@@ -158,7 +158,7 @@ public enum Cocktail {
 	public static void registerIngredient(final ICocktailIngredient ingredient) {
 		String id = ingredient.getIdentifier().toLowerCase();
 		Cocktail.cocktailIngredients.put(id, ingredient);
-		DrinkLiquid liquid = new DrinkLiquid(ingredient.getDisplayName(), ingredient.getColour(), ingredient.getTransparency(), ingredient.getABV(), id);
+		DrinkLiquid liquid = new DrinkLiquid(ingredient.getDisplayName(), ingredient.getColor(), ingredient.getTransparency(), ingredient.getABV(), id);
 		DrinkManager.registerDrinkLiquid(liquid);
 	}
 

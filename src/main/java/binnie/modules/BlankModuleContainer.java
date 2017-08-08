@@ -6,6 +6,9 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 
 import binnie.core.AbstractMod;
@@ -26,12 +29,26 @@ public abstract class BlankModuleContainer extends AbstractMod implements IModul
 		this.unloadedModules = new LinkedHashSet<>();
 		this.enabledModules = new LinkedHashSet<>();
 		this.disabledModules = new LinkedHashSet<>();
+		ModuleManager.register(this);
+		configFolder = new File(Loader.instance().getConfigDir(), "forestry/" + getModID());
 	}
 
 	@Override
-	public void preInit() {
-		super.preInit();
-		configFolder = new File(Loader.instance().getConfigDir(), "forestry/" + getModID());
+	protected void preInitModules(FMLPreInitializationEvent event) {
+		ModuleManager.runRegisterItemsAndBlocks(this);
+		ModuleManager.runPreInit(event, this);
+	}
+
+	@Override
+	public void init(FMLInitializationEvent event) {
+		super.init(event);
+		ModuleManager.runInit(event, this);
+	}
+
+	@Override
+	public void postInit(FMLPostInitializationEvent event) {
+		super.postInit(event);
+		ModuleManager.runPostInit(event, this);
 	}
 
 	public final boolean isModuleEnabled(String moduleUID){

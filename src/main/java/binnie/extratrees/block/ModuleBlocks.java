@@ -7,27 +7,42 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
+import net.minecraftforge.client.event.ModelBakeEvent;
+import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.RecipeSorter;
 
 import net.minecraftforge.fml.common.event.FMLInterModComms;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.common.registry.VillagerRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import forestry.api.arboriculture.EnumVanillaWoodType;
+import forestry.api.arboriculture.IAlleleFruit;
+import forestry.api.arboriculture.ITreeRoot;
 import forestry.api.arboriculture.IWoodAccess;
 import forestry.api.arboriculture.IWoodType;
 import forestry.api.arboriculture.TreeManager;
 import forestry.api.arboriculture.WoodBlockKind;
 import forestry.api.core.ForestryAPI;
+import forestry.api.genetics.AlleleRegisterEvent;
+import forestry.api.genetics.AlleleSpeciesRegisterEvent;
+import forestry.api.lepidopterology.IButterflyRoot;
 import forestry.api.recipes.RecipeManagers;
 import forestry.arboriculture.IWoodTyped;
 import forestry.arboriculture.PluginArboriculture;
@@ -41,12 +56,12 @@ import forestry.core.utils.OreDictUtil;
 import forestry.plugins.ForestryPluginUids;
 
 import binnie.Constants;
-import binnie.core.IInitializable;
+import binnie.core.BinnieCore;
 import binnie.core.Mods;
 import binnie.core.block.ItemMetadata;
 import binnie.core.liquid.ILiquidType;
+import binnie.core.models.DoublePassBakedModel;
 import binnie.extratrees.ExtraTrees;
-import binnie.extratrees.block.decor.BlockHedge;
 import binnie.extratrees.block.decor.BlockMultiFence;
 import binnie.extratrees.block.decor.MultiFenceRecipeEmbedded;
 import binnie.extratrees.block.decor.MultiFenceRecipeSize;
@@ -61,46 +76,60 @@ import binnie.extratrees.block.wood.BlockShrubLog;
 import binnie.extratrees.block.wood.ItemBlockETWood;
 import binnie.extratrees.block.wood.ItemBlockETWoodDoor;
 import binnie.extratrees.block.wood.ItemETSlab;
+import binnie.extratrees.genetics.AlleleETFruit;
+import binnie.extratrees.genetics.ButterflySpecies;
 import binnie.extratrees.genetics.ETTreeDefinition;
+import binnie.extratrees.genetics.ExtraTreeMutation;
+import binnie.extratrees.genetics.FruitSprite;
 import binnie.extratrees.item.ExtraTreeLiquid;
-import binnie.extratrees.worldgen.VillageCreationExtraTrees;
+import binnie.extratrees.modules.ExtraTreesModuleUIDs;
+import binnie.extratrees.village.VillageCreationExtraTrees;
+import binnie.modules.BinnieModule;
+import binnie.modules.Module;
 
-public class ModuleBlocks implements IInitializable {
-	public List<BlockETLog> logs;
-	public List<BlockETLog> logsFireproof;
-	public List<BlockETPlank> planks;
-	public List<BlockETPlank> planksFireproof;
-	public List<BlockETSlab> slabs;
-	public List<BlockETSlab> slabsDouble;
-	public List<BlockETSlab> slabsFireproof;
-	public List<BlockETSlab> slabsDoubleFireproof;
-	public List<BlockForestryStairs<EnumETLog>> stairs;
-	public List<BlockForestryStairs<EnumETLog>> stairsFireproof;
-	public List<BlockETFence> fences;
-	public List<BlockETFence> fencesFireproof;
-	public List<BlockForestryFenceGate<EnumETLog>> fenceGates;
-	public List<BlockForestryFenceGate<EnumETLog>> fenceGatesFireproof;
-	public List<BlockETDoor> doors;
-	public List<BlockETDecorativeLeaves> leavesDecorative;
-	public Map<String, ItemStack> speciesToLeavesDecorative;
-	public List<BlockETDefaultLeaves> leavesDefault;
-	public Block blockDoor;
-	public BlockMultiFence blockMultiFence;
-	public BlockHedge blockHedge;
-	public BlockShrubLog shrubLog;
-	public BlockHops hops;
-	
+@BinnieModule(moduleID = ExtraTreesModuleUIDs.WOOD, moduleContainerID = Constants.EXTRA_TREES_MOD_ID, name = "Wood", unlocalizedDescription = "extratrees.module.wood")
+public class ModuleBlocks extends Module {
+	public static List<BlockETLog> logs = new ArrayList<>();
+	public static List<BlockETLog> logsFireproof = new ArrayList<>();
+	public static List<BlockETPlank> planks = new ArrayList<>();
+	public static List<BlockETPlank> planksFireproof = new ArrayList<>();
+	public static List<BlockETSlab> slabs = new ArrayList<>();
+	public static List<BlockETSlab> slabsDouble = new ArrayList<>();
+	public static List<BlockETSlab> slabsFireproof = new ArrayList<>();
+	public static List<BlockETSlab> slabsDoubleFireproof = new ArrayList<>();
+	public static List<BlockForestryStairs<EnumETLog>> stairs = new ArrayList<>();
+	public static List<BlockForestryStairs<EnumETLog>> stairsFireproof = new ArrayList<>();
+	public static List<BlockETFence> fences = new ArrayList<>();
+	public static List<BlockETFence> fencesFireproof = new ArrayList<>();
+	public static List<BlockForestryFenceGate<EnumETLog>> fenceGates = new ArrayList<>();
+	public static List<BlockForestryFenceGate<EnumETLog>> fenceGatesFireproof = new ArrayList<>();
+	public static List<BlockETDoor> doors = new ArrayList<>();
+	public static List<BlockETDecorativeLeaves> leavesDecorative = new ArrayList<>();
+	public static Map<String, ItemStack> speciesToLeavesDecorative = new HashMap<>();
+	public static List<BlockETDefaultLeaves> leavesDefault = new ArrayList<>();
+	public static BlockMultiFence blockMultiFence;
+	public static BlockShrubLog shrubLog;
+
+	public static String[] branches;
+	public static List<List<String>> classifications;
+
+	public ModuleBlocks() {
+		branches = new String[]{"Malus Maleae Amygdaloideae Rosaceae", "Musa   Musaceae Zingiberales Commelinids Angiosperms", "Sorbus Maleae", "Tsuga   Pinaceae", "Fraxinus Oleeae  Oleaceae Lamiales Asterids Angiospems"};
+		classifications = new ArrayList<>();
+	}
+
 	private static void registerOreDictWildcard(String oreDictName, Block block) {
 		OreDictionary.registerOre(oreDictName, new ItemStack(block, 1, OreDictionary.WILDCARD_VALUE));
 	}
 
 	public static ItemStack getDecorativeLeaves(String speciesUid) {
-		ItemStack itemStack = ExtraTrees.blocks().speciesToLeavesDecorative.get(speciesUid);
+		ItemStack itemStack = ModuleBlocks.speciesToLeavesDecorative.get(speciesUid);
 		return itemStack.copy();
 	}
 
 	@Override
 	public void preInit() {
+		MinecraftForge.EVENT_BUS.register(this);
 		WoodAccess woodAccess = WoodAccess.getInstance();
 		PlankType.setup();
 		
@@ -285,9 +314,6 @@ public class ModuleBlocks implements IInitializable {
 		woodAccess.register(EnumShrubLog.INSTANCE, WoodBlockKind.LOG, false, shrubLog.getStateFromMeta(0), new ItemStack(shrubLog, 1, 0));
 		woodAccess.register(EnumShrubLog.INSTANCE, WoodBlockKind.LOG, true, shrubLog.getStateFromMeta(1), new ItemStack(shrubLog, 1, 1));
 		
-		hops = new BlockHops();
-		ExtraTrees.proxy.registerBlock(hops);
-		
 		VillageCreationExtraTrees.registerVillageComponents();
 	}
 	
@@ -317,6 +343,13 @@ public class ModuleBlocks implements IInitializable {
 		RecipeSorter.register("extratrees:multifence", MultiFenceRecipeSize.class, RecipeSorter.Category.SHAPED, "");
 		RecipeSorter.register("extratrees:multifence2", MultiFenceRecipeEmbedded.class, RecipeSorter.Category.SHAPED, "");
 		RecipeSorter.register("extratrees:multifence3", MultiFenceRecipeSolid.class, RecipeSorter.Category.SHAPED, "");
+
+		AlleleETFruit.init();
+		ETTreeDefinition.initTrees();
+		ExtraTreeMutation.init();
+		if (BinnieCore.isLepidopteryActive()) {
+			ButterflySpecies.initButterflies();
+		}
 	}
 
 	@Override
@@ -425,5 +458,59 @@ public class ModuleBlocks implements IInitializable {
 
 	public void addSqueezer(final IWoodType log, final ILiquidType liquid, final int amount) {
 		this.addSqueezer(log, liquid, amount, 0.5f);
+	}
+
+	@SubscribeEvent
+	@SideOnly(Side.CLIENT)
+	public void registerSprites(TextureStitchEvent.Pre event) {
+		for (FruitSprite sprite : FruitSprite.VALUES) {
+			sprite.registerSprites();
+		}
+		TextureMap map = Minecraft.getMinecraft().getTextureMapBlocks();
+		for (IPlankType type : PlankType.ExtraTreePlanks.VALUES) {
+			type.registerSprites(map);
+		}
+		for (IPlankType type : PlankType.ForestryPlanks.values()) {
+			type.registerSprites(map);
+		}
+		for (IPlankType type : PlankType.VanillaPlanks.values()) {
+			type.registerSprites(map);
+		}
+	}
+
+	@SubscribeEvent
+	public static void onRegisterAllele(AlleleRegisterEvent<IAlleleFruit> event) {
+		if (event.getAlleleClass() == IAlleleFruit.class) {
+			AlleleETFruit.preInit();
+		}
+	}
+
+	@SubscribeEvent
+	public static void speciesRegister(AlleleSpeciesRegisterEvent event) {
+		if (event.getRoot() instanceof ITreeRoot) {
+			ETTreeDefinition.preInitTrees();
+			PlankType.ExtraTreePlanks.initWoodTypes();
+		} else if (event.getRoot() instanceof IButterflyRoot && BinnieCore.isLepidopteryActive()) {
+			ButterflySpecies.preInit();
+		}
+	}
+
+
+	@SubscribeEvent
+	@SideOnly(Side.CLIENT)
+	public void onBakedEvent(ModelBakeEvent e) {
+		//Find all ExtraTrees saplings
+		List<ModelResourceLocation> models = e.getModelRegistry().getKeys().stream()
+			.filter(mrl -> mrl.getResourceDomain().startsWith(Constants.EXTRA_TREES_MOD_ID))
+			.filter(mrl -> mrl.getResourcePath().startsWith("germlings")).collect(Collectors.toList());
+		//Replace model
+		Map<String, ETTreeDefinition> map = Arrays.stream(ETTreeDefinition.values()).collect(Collectors.toMap(o -> o.name().toLowerCase(), o -> o));
+		models.forEach(model -> {
+			String species = model.getVariant().split("=")[1];
+			ETTreeDefinition treeSpecies = map.get(species);
+			int primaryColor = treeSpecies.getLeafColor().getRGB();
+			int secondaryColor = treeSpecies.getWoodColor().getRGB();
+			e.getModelRegistry().putObject(model, new DoublePassBakedModel(e.getModelRegistry().getObject(model), primaryColor, secondaryColor));
+		});
 	}
 }

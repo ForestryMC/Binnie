@@ -47,7 +47,7 @@ public enum ExtraTreeLiquid implements ILiquidType {
 	}
 
 	@Override
-	public int getColour() {
+	public int getColor() {
 		return 16777215;
 	}
 
@@ -62,17 +62,17 @@ public enum ExtraTreeLiquid implements ILiquidType {
 	}
 
 	@Override
-	public boolean canPlaceIn(final FluidContainerType container) {
+	public boolean canPlaceIn(final FluidContainerType type) {
 		return true;
 	}
 
 	@Override
-	public boolean showInCreative(final FluidContainerType container) {
-		return container == FluidContainerType.CAN || container == FluidContainerType.CAPSULE;
+	public boolean showInCreative(final FluidContainerType type) {
+		return type == FluidContainerType.CAN || type == FluidContainerType.CAPSULE;
 	}
 
 	@Override
-	public int getContainerColour() {
+	public int getContainerColor() {
 		return this.colour;
 	}
 }

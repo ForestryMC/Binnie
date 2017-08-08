@@ -9,7 +9,6 @@ import net.minecraft.item.ItemStack;
 
 import binnie.Constants;
 import binnie.core.util.I18N;
-import binnie.extratrees.ExtraTrees;
 
 public enum Glassware {
 	BeerMug(480, 10, 14, " # ", "   ", "   "),
@@ -66,7 +65,7 @@ public enum Glassware {
 	}
 
 	public ItemStack get(final int i) {
-		return ExtraTrees.alcohol().drink.getStack(this, null);
+		return ModuleAlcohol.drink.getStack(this, null);
 	}
 
 	public float getContentBottom() {

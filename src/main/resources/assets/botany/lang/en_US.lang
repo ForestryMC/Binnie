@@ -3,12 +3,8 @@ botany.tab.botany=Botany
 botany.module.farming=Adds the farm integration for the botany flowers.
 botany.module.database=Adds a Botanist database.
 botany.module.gardening=Adds soil, loam, flowerbeds and trowels.
-botany.module.ceramic=Adds decorative ceramic blocks.
+botany.module.ceramic=Adds decorative ceramic blocks. And the Tileworker.
 botany.module.flowers=Adds an entirely new breeding system to Forestry: Flowers.
-
-botany.config.soil.growth=The chance that weed grows on a soil block.
-botany.config.soil.wilting=The change that weed withers on a soil block.
-botany.config.soil.fertile=The chance that a soil block will be fertilised or degraded if a weed block is above it.
 
 botany.ph=PH
 botany.ph.acid=Acidic

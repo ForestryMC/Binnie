@@ -13,7 +13,6 @@ import binnie.core.machines.Machine;
 import binnie.core.machines.MachinePackage;
 import binnie.core.machines.TileEntityMachine;
 import binnie.core.resource.IBinnieTexture;
-import binnie.extratrees.ExtraTrees;
 
 public enum KitchenMachine implements IMachineType {
 	// TODO implement
@@ -39,7 +38,7 @@ public enum KitchenMachine implements IMachineType {
 	}
 
 	public ItemStack get(final int i) {
-		return new ItemStack(ExtraTrees.getKitchen().blockKitchen, i, this.ordinal());
+		return new ItemStack(ModuleKitchen.blockKitchen, i, this.ordinal());
 	}
 
 	public abstract static class PackageKitchenMachine extends MachinePackage {
