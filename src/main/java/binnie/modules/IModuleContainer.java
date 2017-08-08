@@ -24,4 +24,6 @@ public interface IModuleContainer {
 	Set<Module> getLoadedModules();
 
 	Set<Module> getUnloadedModules();
+
+	boolean isAvailable();
 }

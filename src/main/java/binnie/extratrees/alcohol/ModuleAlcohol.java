@@ -123,7 +123,7 @@ public class ModuleAlcohol extends Module {
 
 		breweryManager.addGrainRecipe(OreDictionaryUtil.GRAIN_BARLEY, Alcohol.Ale.get(), OreDictionaryUtil.HOPS);
 
-		breweryManager.addGrainRecipe(OreDictionaryUtil.GRAIN_BARLEY, Alcohol.Lager.get(), OreDictionaryUtil.HOPS, ExtraTreeItems.LagerYeast.get(1));
+		breweryManager.addGrainRecipe(OreDictionaryUtil.GRAIN_BARLEY, Alcohol.Lager.get(), OreDictionaryUtil.HOPS, ExtraTreeItems.LAGER_YEAST.get(1));
 		breweryManager.addGrainRecipe(OreDictionaryUtil.GRAIN_ROASTED, Alcohol.Stout.get(), OreDictionaryUtil.HOPS);
 		breweryManager.addGrainRecipe(OreDictionaryUtil.GRAIN_CORN, Alcohol.CornBeer.get(), OreDictionaryUtil.HOPS);
 		breweryManager.addGrainRecipe(OreDictionaryUtil.GRAIN_RYE, Alcohol.RyeBeer.get(), OreDictionaryUtil.HOPS);

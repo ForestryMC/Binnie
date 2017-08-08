@@ -110,7 +110,7 @@ public class BreweryRecipeManager implements IBreweryManager {
 
 	@Override
 	public void addRecipe(FluidStack input, FluidStack output) {
-		addRecipe(input, output, ExtraTreeItems.Yeast.get(1));
+		addRecipe(input, output, ExtraTreeItems.YEAST.get(1));
 	}
 
 	@Override
@@ -125,7 +125,7 @@ public class BreweryRecipeManager implements IBreweryManager {
 
 	@Override
 	public void addGrainRecipe(String grainOreName, FluidStack output, @Nullable String ingredientOreName) {
-		addGrainRecipe(grainOreName, output, ingredientOreName, ExtraTreeItems.Yeast.get(1));
+		addGrainRecipe(grainOreName, output, ingredientOreName, ExtraTreeItems.YEAST.get(1));
 	}
 
 	@Override

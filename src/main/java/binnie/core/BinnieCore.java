@@ -161,9 +161,9 @@ public final class BinnieCore extends AbstractMod {
 
 	@Mod.EventHandler
 	public void preInit(final FMLPreInitializationEvent evt) {
-		ModuleManager.loadModules(evt);
 		MinecraftForge.EVENT_BUS.register(Binnie.LIQUID);
 		Binnie.CONFIGURATION.registerConfiguration(ConfigurationMods.class, this);
+		ModuleManager.loadModules(evt);
 		for (FluidContainerType container : FluidContainerType.getBinnieContainers()) {
 			Item item = new ItemFluidContainer(container);
 			getProxy().registerItem(item);

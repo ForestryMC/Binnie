@@ -67,9 +67,9 @@ public class AlleleETFruit extends AlleleCategorized implements IAlleleFruit, IF
 	public static final AlleleETFruit BuddhaHand = new AlleleETFruit("BuddhaHand", 10, 3665987, 16772192, FruitSprite.LARGE);
 	public static final AlleleETFruit Apple = new AlleleETFruit("Apple", 10, 7915859, 16193046, FruitSprite.AVERAGE);
 	public static final AlleleETFruit Crabapple = new AlleleETFruit("Crabapple", 10, 7915859, 16760140, FruitSprite.AVERAGE);
-	public static final AlleleETFruit Banana = new AlleleETFruit("Banana", FruitPod.Banana);
-	public static final AlleleETFruit RedBanana = new AlleleETFruit("Red Banana", FruitPod.RedBanana);
-	public static final AlleleETFruit Plantain = new AlleleETFruit("Platain", FruitPod.Plantain);
+	public static final AlleleETFruit Banana = new AlleleETFruit("Banana", FruitPod.BANANA);
+	public static final AlleleETFruit RedBanana = new AlleleETFruit("Red Banana", FruitPod.RED_BANANA);
+	public static final AlleleETFruit Plantain = new AlleleETFruit("Platain", FruitPod.PLANTAIN);
 	public static final AlleleETFruit Hazelnut = new AlleleETFruit("Hazelnut", 7, 8223006, 14463606, FruitSprite.SMALL);
 	public static final AlleleETFruit Butternut = new AlleleETFruit("Butternut", 7, 11712336, 16102498, FruitSprite.SMALL);
 	public static final AlleleETFruit Beechnut = new AlleleETFruit("Beechnut", 8, 14401148, 6241845, FruitSprite.TINY);
@@ -84,7 +84,7 @@ public class AlleleETFruit extends AlleleCategorized implements IAlleleFruit, IF
 	public static final AlleleETFruit Pear = new AlleleETFruit("Pear", 10, 10456913, 10474833, FruitSprite.PEAR);
 	public static final AlleleETFruit OsangeOsange = new AlleleETFruit("OsangeOsange", 10, 9934674, 10665767, FruitSprite.LARGER);
 	public static final AlleleETFruit Clove = new AlleleETFruit("Clove", 9, 6847532, 11224133, FruitSprite.TINY);
-	public static final AlleleETFruit Coconut = new AlleleETFruit("Coconut", FruitPod.Coconut);
+	public static final AlleleETFruit Coconut = new AlleleETFruit("Coconut", FruitPod.COCONUT);
 	public static final AlleleETFruit Cashew = new AlleleETFruit("Cashew", 8, 12879132, 15289111, FruitSprite.AVERAGE);
 	public static final AlleleETFruit Avacado = new AlleleETFruit("Avacado", 10, 10272370, 2170640, FruitSprite.PEAR);
 	public static final AlleleETFruit Nutmeg = new AlleleETFruit("Nutmeg", 9, 14861101, 11305813, FruitSprite.TINY);
@@ -94,7 +94,7 @@ public class AlleleETFruit extends AlleleCategorized implements IAlleleFruit, IF
 	public static final AlleleETFruit Mango = new AlleleETFruit("Mango", 10, 6654997, 15902262, FruitSprite.AVERAGE);
 	public static final AlleleETFruit Starfruit = new AlleleETFruit("Starfruit", 10, 9814541, 15061550, FruitSprite.AVERAGE);
 	public static final AlleleETFruit Candlenut = new AlleleETFruit("Candlenut", 8, 8235123, 14600882, FruitSprite.SMALL);
-	public static final AlleleETFruit Papayimar = new AlleleETFruit("Papayimar", FruitPod.Papayimar);
+	public static final AlleleETFruit Papayimar = new AlleleETFruit("Papayimar", FruitPod.PAPAYIMAR);
 	public static final AlleleETFruit Blackcurrant = new AlleleETFruit("Blackcurrant", 8, 9407571, 4935251, FruitSprite.TINY);
 	public static final AlleleETFruit Redcurrant = new AlleleETFruit("Redcurrant", 8, 13008910, 15080974, FruitSprite.TINY);
 	public static final AlleleETFruit Blackberry = new AlleleETFruit("Blackberry", 8, 9399665, 4801393, FruitSprite.TINY);

@@ -74,6 +74,11 @@ public class ModuleManager {
 			Iterator<Module> iterator = containerModules.iterator();
 			while (iterator.hasNext()) {
 				Module module = iterator.next();
+				if(!container.isAvailable()){
+					iterator.remove();
+					Log.info("Module disabled: {}", module);
+					continue;
+				}
 				if (module.canBeDisabled()) {
 					if (!isEnabled(config, module)) {
 						iterator.remove();

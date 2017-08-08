@@ -66,7 +66,7 @@ public class LumbermillLogic extends ComponentProcessSetCost implements IProcess
 			return;
 		}
 		util.addStack(LumbermillMachine.SLOT_PLANKS, result);
-		util.addStack(LumbermillMachine.SLOT_SAWDUST, ExtraTreeItems.Sawdust.get(2));
+		util.addStack(LumbermillMachine.SLOT_SAWDUST, ExtraTreeItems.SAWDUST.get(2));
 		util.addStack(LumbermillMachine.SLOT_BARK, ExtraTreeItems.Bark.get(2));
 		util.decreaseStack(LumbermillMachine.SLOT_LOG, 1);
 	}

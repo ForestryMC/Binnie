@@ -24,7 +24,7 @@ public class BreweryRecipeHandler extends GenericRecipeHandler {
 	public static void addRecipe(ILiquidStack input, ILiquidStack output, @Optional IItemStack yeast){
 		FluidStack inputStack = CraftTweakerUtil.getLiquidStack(input);
 		FluidStack outputStack = CraftTweakerUtil.getLiquidStack(output);
-		ItemStack yeastStack = ExtraTreeItems.Yeast.get(1);
+		ItemStack yeastStack = ExtraTreeItems.YEAST.get(1);
 		if(yeast != null) {
 			yeastStack = CraftTweakerUtil.getItemStack(yeast);
 		}
@@ -34,7 +34,7 @@ public class BreweryRecipeHandler extends GenericRecipeHandler {
 	@ZenMethod
 	public static void addGrainRecipe(IOreDictEntry grainOreName, ILiquidStack output, @Optional IOreDictEntry ingredientOreName, @Optional IItemStack yeast){
 		FluidStack outputStack = CraftTweakerUtil.getLiquidStack(output);
-		ItemStack yeastStack = ExtraTreeItems.Yeast.get(1);
+		ItemStack yeastStack = ExtraTreeItems.YEAST.get(1);
 		if(yeast != null) {
 			yeastStack = CraftTweakerUtil.getItemStack(yeast);
 		}

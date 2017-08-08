@@ -12,19 +12,19 @@ import binnie.core.util.I18N;
 import binnie.extratrees.core.ModuleCore;
 
 public enum ExtraTreeItems implements IItemMiscProvider {
-	CarpentryHammer("carpentry_hammer"),
-	Sawdust("sawdust"),
+	CARPENTRY_HAMMER("carpentry_hammer"),
+	SAWDUST("sawdust"),
 	Bark("bark"),
-	ProvenGear("proven_gear"),
-	WoodWax("wood_wax"),
-	Yeast("yeast"),
-	LagerYeast("yeast_lager"),
-	GrainWheat("grain_wheat"),
-	GrainBarley("grain_barley"),
-	GrainRye("grain_rye"),
-	GrainCorn("grain_corn"),
-	GrainRoasted("grain_roasted"),
-	GlassFitting("glass_fitting");
+	PROVEN_GEAR("proven_gear"),
+	WOOD_WAX("wood_wax"),
+	YEAST("yeast"),
+	LAGER_YEAST("yeast_lager"),
+	GRAIN_WHEAT("grain_wheat"),
+	GRAIN_BARLEY("grain_barley"),
+	GRAIN_RYE("grain_rye"),
+	GRAIN_CORN("grain_corn"),
+	GRAIN_ROASTED("grain_roasted"),
+	GLASS_FITTING("glass_fitting");
 	
 	String name;
 
@@ -49,7 +49,7 @@ public enum ExtraTreeItems implements IItemMiscProvider {
 
 	@Override
 	public boolean isActive() {
-		return this != ExtraTreeItems.CarpentryHammer;
+		return this != ExtraTreeItems.CARPENTRY_HAMMER;
 	}
 
 	@Override

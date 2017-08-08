@@ -71,15 +71,12 @@ public class ModuleFlowers extends Module {
 	}
 
 	@Override
-	public void preInit() {
-		MinecraftForge.EVENT_BUS.register(this);
+	public void registerItemsAndBlocks() {
 		AlleleManager.alleleRegistry.registerAllele(ModuleFlowers.alleleEffectNone);
 		EnumFlowerColor.setupMutations();
 		FlowerDefinition.preInitFlowers();
-		
-		/* BACKPACK*/
-		IBackpackInterface backpackInterface = BackpackManager.backpackInterface;
 
+		IBackpackInterface backpackInterface = BackpackManager.backpackInterface;
 		if (ForestryAPI.enabledPlugins.contains("forestry.storage")) {
 			Predicate<ItemStack> filter = BackpackManager.backpackInterface.createNaturalistBackpackFilter("rootFlowers");
 			BackpackDefinition definition = new BackpackDefinition(new Color(0xf6e83e), Color.WHITE, filter);
@@ -90,7 +87,7 @@ public class ModuleFlowers extends Module {
 		} else {
 			botanistBackpack = null;
 		}
-		
+
 		/* ITEMS */
 		flower = new BlockFlower();
 		flowerItem = new ItemFlowerGE("itemFlower", EnumFlowerStage.FLOWER, "");
@@ -103,6 +100,11 @@ public class ModuleFlowers extends Module {
 		Botany.proxy.registerItem(seed);
 
 		BinnieCore.getBinnieProxy().registerTileEntity(TileEntityFlower.class, "botany.tile.flower", null);
+	}
+
+	@Override
+	public void preInit() {
+		MinecraftForge.EVENT_BUS.register(this);
 	}
 
 	@Override

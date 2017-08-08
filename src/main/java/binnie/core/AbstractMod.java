@@ -71,11 +71,6 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {
 		getProxy().setMod(this);
-		if (!this.isAvailable()) {
-			disabledSetupAPI();
-			return;
-		}
-		setupAPI();
 		registerModules();
 		for (final Class<?> cls : this.getConfigs()) {
 			Binnie.CONFIGURATION.registerConfiguration(cls, this);
@@ -99,10 +94,6 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
 
 	@Override
 	public void init() {
-		if (!this.isAvailable()) {
-			disabledSetupAPI();
-			return;
-		}
 		this.getProxy().init();
 		this.wrapper = NetworkRegistry.INSTANCE.newSimpleChannel(this.getChannel());
 		this.wrapper.registerMessage(this.getPacketHandler(), MessageBinnie.class, 1, Side.CLIENT);
@@ -115,10 +106,6 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
 
 	@Override
 	public void postInit() {
-		if (!this.isAvailable()) {
-			disabledSetupAPI();
-			return;
-		}
 		this.getProxy().postInit();
 		for (final IInitializable module : this.modules) {
 			module.postInit();
@@ -126,9 +113,6 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
 	}
 
 	protected final void addModule(IInitializable init) {
-		if(!init.isAvailable()) {
-			return;
-		}
 		this.modules.add(init);
 		MinecraftForge.EVENT_BUS.register(init);
 	}

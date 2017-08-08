@@ -129,10 +129,10 @@ public enum DesignSystem implements IDesignSystem {
 	public ItemStack getAdhesive() {
 		switch (this) {
 			case Glass: {
-				return ExtraTreeItems.GlassFitting.get(1);
+				return ExtraTreeItems.GLASS_FITTING.get(1);
 			}
 			case Wood: {
-				return ExtraTreeItems.WoodWax.get(1);
+				return ExtraTreeItems.WOOD_WAX.get(1);
 			}
 			default: {
 				throw new IllegalStateException("Unknown design system: " + this);
