@@ -43,8 +43,8 @@ public class BlockHops extends BlockCrops{
 		int age = getAge(state);
 		if(age == getMaxAge()) {
 			if (!world.isRemote) {
-				List<ItemStack> items = NonNullList.create();
-				items.addAll(getDrops(world, pos, state, 0));
+				NonNullList<ItemStack> items = NonNullList.create();
+				getDrops(items, world, pos, state, 0);
 				
 				for (ItemStack item : items) {
 					spawnAsEntity(world, pos, item);

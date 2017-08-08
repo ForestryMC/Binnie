@@ -340,10 +340,6 @@ public class ModuleBlocks extends Module {
 		VillageCreationExtraTrees villageHandler = new VillageCreationExtraTrees();
 		VillagerRegistry villagerRegistry = VillagerRegistry.instance();
 		villagerRegistry.registerVillageCreationHandler(villageHandler);
-		
-		RecipeSorter.register("extratrees:multifence", MultiFenceRecipeSize.class, RecipeSorter.Category.SHAPED, "");
-		RecipeSorter.register("extratrees:multifence2", MultiFenceRecipeEmbedded.class, RecipeSorter.Category.SHAPED, "");
-		RecipeSorter.register("extratrees:multifence3", MultiFenceRecipeSolid.class, RecipeSorter.Category.SHAPED, "");
 
 		AlleleETFruit.init();
 		ETTreeDefinition.initTrees();

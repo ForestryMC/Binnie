@@ -1,5 +1,6 @@
 package binnie.extratrees.integration.jei.lumbermill;
 
+import mezz.jei.api.recipe.IRecipeCategory;
 import net.minecraft.client.Minecraft;
 
 import binnie.extratrees.ExtraTrees;
@@ -14,7 +15,7 @@ import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeCategory;
 
-public class LumbermillRecipeCategory extends BlankRecipeCategory<LumbermillRecipeWrapper> {
+public class LumbermillRecipeCategory implements IRecipeCategory<LumbermillRecipeWrapper> {
 	private final IDrawableAnimated arrowAnimated;
 
 	public LumbermillRecipeCategory() {

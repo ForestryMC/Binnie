@@ -123,7 +123,12 @@ public abstract class BlockETDecorativeLeaves extends Block implements IItemMode
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
-		return (Proxies.render.fancyGraphicsEnabled() || blockAccess.getBlockState(pos.offset(side)).getBlock() != this) && super.shouldSideBeRendered(blockState, blockAccess, pos, side);
+		if (Proxies.render.fancyGraphicsEnabled() || blockAccess.getBlockState(pos.offset(side)).getBlock() != this) {
+			if (super.shouldSideBeRendered(blockState, blockAccess, pos, side)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	@Override
@@ -179,8 +184,8 @@ public abstract class BlockETDecorativeLeaves extends Block implements IItemMode
 	}
 
 	@Override
-	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
-		return Collections.emptyList();
+	public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
+
 	}
 
 	@Override

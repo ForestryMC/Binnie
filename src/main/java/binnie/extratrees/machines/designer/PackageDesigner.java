@@ -13,7 +13,7 @@ public abstract class PackageDesigner extends ExtraTreeMachine.PackageExtraTreeM
 	DesignerType type;
 
 	public PackageDesigner(final DesignerType type) {
-		super(type.name, type.texture, false);
+		super(type.getName(), false);
 		this.type = type;
 	}
 

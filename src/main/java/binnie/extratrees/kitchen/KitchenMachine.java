@@ -5,14 +5,9 @@ import javax.annotation.Nullable;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import binnie.core.machines.IMachineType;
-import binnie.core.machines.Machine;
 import binnie.core.machines.MachinePackage;
 import binnie.core.machines.TileEntityMachine;
-import binnie.core.resource.IBinnieTexture;
 
 public enum KitchenMachine implements IMachineType {
 	// TODO implement
@@ -42,11 +37,9 @@ public enum KitchenMachine implements IMachineType {
 	}
 
 	public abstract static class PackageKitchenMachine extends MachinePackage {
-		private final IBinnieTexture textureName;
 
-		protected PackageKitchenMachine(final String uid, final IBinnieTexture textureName) {
+		protected PackageKitchenMachine(final String uid) {
 			super(uid, false);
-			this.textureName = textureName;
 		}
 
 		@Override
@@ -56,12 +49,6 @@ public enum KitchenMachine implements IMachineType {
 
 		@Override
 		public void register() {
-		}
-
-		@Override
-		@SideOnly(Side.CLIENT)
-		public void renderMachine(Machine machine, double x, double y, double z, float partialTicks, int destroyStage) {
-			MachineRendererKitchen.instance.renderMachine(machine, textureName.getTexture(), x, y, z, partialTicks);
 		}
 	}
 }

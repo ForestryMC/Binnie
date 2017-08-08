@@ -1,5 +1,6 @@
 package binnie.genetics.integration.jei.incubator;
 
+import mezz.jei.api.recipe.IRecipeCategory;
 import net.minecraft.client.Minecraft;
 
 import binnie.genetics.Genetics;
@@ -14,7 +15,7 @@ import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeCategory;
 
-public class IncubatorRecipeCategory extends BlankRecipeCategory<IncubatorRecipeWrapper> {
+public class IncubatorRecipeCategory implements IRecipeCategory<IncubatorRecipeWrapper> {
 	private final IDrawableAnimated arrowAnimated;
 
 	public IncubatorRecipeCategory() {

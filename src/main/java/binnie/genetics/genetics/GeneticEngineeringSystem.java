@@ -1,7 +1,5 @@
 package binnie.genetics.genetics;
 
-import com.google.common.base.Throwables;
-
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -31,14 +29,10 @@ public class GeneticEngineeringSystem {
 				if (!chromosomeMap.containsKey(chromosome)) {
 					chromosomeMap.put(chromosome, new ArrayList<>());
 				}
-				try {
-					IAllele a1 = indiv.getGenome().getActiveAllele(chromosome);
-					IAllele a2 = indiv.getGenome().getInactiveAllele(chromosome);
-					chromosomeMap.get(chromosome).add(a1);
-					chromosomeMap.get(chromosome).add(a2);
-				} catch (Exception ex) {
-					throw Throwables.propagate(ex);
-				}
+				IAllele a1 = indiv.getGenome().getActiveAllele(chromosome);
+				IAllele a2 = indiv.getGenome().getInactiveAllele(chromosome);
+				chromosomeMap.get(chromosome).add(a1);
+				chromosomeMap.get(chromosome).add(a2);
 			}
 		}
 		for (IChromosomeType chromosome2 : breedingSystem.getSpeciesRoot().getKaryotype()) {

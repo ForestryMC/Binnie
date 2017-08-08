@@ -3,14 +3,13 @@ package binnie.extratrees.kitchen;
 import binnie.core.gui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
 import binnie.core.machines.inventory.ComponentTankContainer;
-import binnie.extratrees.core.ExtraTreeTexture;
 import binnie.extratrees.core.ExtraTreesGUID;
 import binnie.extratrees.machines.ExtraTreeMachine;
 
 public class BottleRack {
 	public static class PackageBottleRack extends KitchenMachine.PackageKitchenMachine implements IMachineInformation {
 		public PackageBottleRack() {
-			super("bottleRack", ExtraTreeTexture.LUMBERMILL);
+			super("bottleRack");
 		}
 
 		@Override

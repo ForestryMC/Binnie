@@ -2,6 +2,7 @@ package binnie.genetics.integration.jei.isolator;
 
 import java.awt.Color;
 
+import mezz.jei.api.recipe.IRecipeCategory;
 import net.minecraft.client.Minecraft;
 
 import net.minecraftforge.fml.relauncher.Side;
@@ -19,7 +20,7 @@ import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeCategory;
 
-public class IsolatorRecipeCategory extends BlankRecipeCategory<IsolatorRecipeWrapper> {
+public class IsolatorRecipeCategory implements IRecipeCategory<IsolatorRecipeWrapper> {
 	private final IDrawableAnimated arrowAnimated;
 
 	public IsolatorRecipeCategory() {

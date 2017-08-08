@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 
@@ -14,7 +15,7 @@ import binnie.extratrees.block.decor.MultiFenceRecipePattern;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
 
-public class MultiFenceRecipeSizeWrapper extends BlankRecipeWrapper {
+public class MultiFenceRecipeSizeWrapper implements IRecipeWrapper {
 
 	@Nullable
 	private IPlankType plankType;

@@ -1,15 +1,20 @@
 package binnie.extrabees.proxy;
 
+import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.BlockModelShapes;
+import net.minecraft.client.renderer.BlockRendererDispatcher;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ItemOverrideList;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -28,7 +33,10 @@ import forestry.core.models.ModelManager;
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.items.IItemModelProvider;
 import binnie.extrabees.utils.ExtraBeesResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public class ExtraBeesClientProxy extends ExtraBeesCommonProxy {
 	
 	private static final ModelManager modelManager = ModelManager.getInstance();
@@ -43,7 +51,11 @@ public class ExtraBeesClientProxy extends ExtraBeesCommonProxy {
 					@Override
 					@SuppressWarnings("deprecation")
 					public IBakedModel handleItemState(IBakedModel originalModel, ItemStack stack, @Nullable World world, @Nullable EntityLivingBase entity) {
-						return Minecraft.getMinecraft().getBlockRendererDispatcher().getBlockModelShapes().getModelForState(block.getStateFromMeta(stack.getMetadata()));
+						Minecraft minecraft = Minecraft.getMinecraft();
+						BlockRendererDispatcher blockRendererDispatcher = minecraft.getBlockRendererDispatcher();
+						BlockModelShapes blockModelShapes = blockRendererDispatcher.getBlockModelShapes();
+						IBlockState stateFromMeta = block.getStateFromMeta(stack.getMetadata());
+						return blockModelShapes.getModelForState(stateFromMeta);
 					}
 				};
 			}
@@ -66,9 +78,21 @@ public class ExtraBeesClientProxy extends ExtraBeesCommonProxy {
 	}
 	
 	@Override
-	@SuppressWarnings("all")
 	public void registerModel(@Nonnull Item item, int meta) {
-		ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(item.getRegistryName(), "inventory"));
+		ResourceLocation registryName = item.getRegistryName();
+		Preconditions.checkNotNull(registryName);
+		ModelResourceLocation inventory = new ModelResourceLocation(registryName, "inventory");
+		ModelLoader.setCustomModelResourceLocation(item, meta, inventory);
+	}
+
+	@Override
+	public String localise(String s) {
+		return I18n.format("extrabees." + s);
+	}
+
+	@Override
+	public String localiseWithOutPrefix(String s) {
+		return I18n.format(s);
 	}
 	
 	@SubscribeEvent

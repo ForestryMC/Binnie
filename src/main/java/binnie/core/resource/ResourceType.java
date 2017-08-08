@@ -3,7 +3,6 @@ package binnie.core.resource;
 public enum ResourceType {
 	ITEM("items"),
 	Block("blocks"),
-	TILE("tile"),
 	GUI("gui"),
 	FX("fx"),
 	ENTITY("entities");

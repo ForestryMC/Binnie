@@ -33,6 +33,7 @@ public class ControlBiomes extends Control implements ITooltip {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void getTooltip(Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		if (tolerated.isEmpty()) {
 			return;

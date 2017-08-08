@@ -1,7 +1,6 @@
 package binnie.extratrees.machines.brewery.recipes;
 
 import com.google.common.base.MoreObjects;
-import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
 
 import javax.annotation.Nullable;

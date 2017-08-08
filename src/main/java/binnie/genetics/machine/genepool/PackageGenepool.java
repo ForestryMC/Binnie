@@ -20,7 +20,6 @@ import binnie.core.machines.inventory.TankSlot;
 import binnie.core.machines.inventory.TankValidator;
 import binnie.core.machines.power.ComponentPowerReceptor;
 import binnie.genetics.core.GeneticsGUI;
-import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.item.GeneticsItems;
 import binnie.genetics.machine.ComponentGeneticGUI;
 import binnie.genetics.machine.GeneticMachine;
@@ -28,7 +27,7 @@ import binnie.genetics.machine.ModuleMachine;
 
 public class PackageGenepool extends GeneticMachine.PackageGeneticBase implements IMachineInformation {
 	public PackageGenepool() {
-		super("genepool", GeneticsTexture.GENEPOOL, 12661942, true);
+		super("genepool", 12661942, true);
 	}
 
 	@Override

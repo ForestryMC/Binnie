@@ -19,7 +19,6 @@ import binnie.core.machines.inventory.Validator;
 import binnie.core.machines.power.ComponentPowerReceptor;
 import binnie.genetics.api.IItemSerum;
 import binnie.genetics.core.GeneticsGUI;
-import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.genetics.Engineering;
 import binnie.genetics.item.GeneticLiquid;
 import binnie.genetics.machine.ComponentGeneticGUI;
@@ -28,7 +27,7 @@ import binnie.genetics.machine.ModuleMachine;
 
 public class PackageInoculator extends GeneticMachine.PackageGeneticBase implements IMachineInformation {
 	public PackageInoculator() {
-		super("inoculator", GeneticsTexture.INOCULATOR, 14819893, true);
+		super("inoculator", 14819893, true);
 	}
 
 	@Override

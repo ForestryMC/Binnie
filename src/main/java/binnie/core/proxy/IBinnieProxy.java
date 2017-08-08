@@ -43,8 +43,6 @@ public interface IBinnieProxy extends IProxyCore {
 
 	boolean needsTagCompoundSynched(final Item p0);
 
-	Object createObject(final String p0);
-
 	void registerTileEntity(final Class<? extends TileEntity> tile, final String id, @Nullable final Object renderer);
 
 	void registerTileEntity(final Class<? extends TileEntity> tile, final String id);

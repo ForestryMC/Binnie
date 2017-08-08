@@ -4,6 +4,8 @@ import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.List;
 
+import mezz.jei.api.IModPlugin;
+import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -35,7 +37,6 @@ import binnie.genetics.machine.AdvGeneticMachine;
 import binnie.genetics.machine.GeneticMachine;
 import binnie.genetics.machine.LaboratoryMachine;
 import binnie.genetics.machine.incubator.Incubator;
-import mezz.jei.api.BlankModPlugin;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.IJeiHelpers;
 import mezz.jei.api.IModRegistry;
@@ -43,7 +44,7 @@ import mezz.jei.api.ISubtypeRegistry;
 import mezz.jei.api.JEIPlugin;
 
 @JEIPlugin
-public class GeneticsJeiPlugin extends BlankModPlugin {
+public class GeneticsJeiPlugin implements IModPlugin {
 	public static IJeiHelpers jeiHelpers;
 	public static IGuiHelper guiHelper;
 	public static Drawables drawables;
@@ -59,32 +60,35 @@ public class GeneticsJeiPlugin extends BlankModPlugin {
 	}
 
 	@Override
-	public void register(IModRegistry registry) {
+	public void registerCategories(IRecipeCategoryRegistration registry) {
 		GeneticsJeiPlugin.jeiHelpers = registry.getJeiHelpers();
 		GeneticsJeiPlugin.guiHelper = jeiHelpers.getGuiHelper();
 		GeneticsJeiPlugin.drawables = Drawables.getDrawables(guiHelper);
-
+		
 		registry.addRecipeCategories(
-			new IncubatorRecipeCategory(),
-			new LarvaeIncubatorRecipeCategory(),
-			new IsolatorRecipeCategory(),
-			new PolymeriserRecipeCategory(),
-			new SequencerRecipeCategory(),
-			new InoculatorRecipeCategory(),
-			new SplicerRecipeCategory(),
-			new GenepoolRecipeCategory(),
-			new DatabaseRecipeCategory()
+				new IncubatorRecipeCategory(),
+				new LarvaeIncubatorRecipeCategory(),
+				new IsolatorRecipeCategory(),
+				new PolymeriserRecipeCategory(),
+				new SequencerRecipeCategory(),
+				new InoculatorRecipeCategory(),
+				new SplicerRecipeCategory(),
+				new GenepoolRecipeCategory(),
+				new DatabaseRecipeCategory()
 		);
+	}
 
-		registry.addRecipeCategoryCraftingItem(LaboratoryMachine.Incubator.get(1), RecipeUids.INCUBATOR, RecipeUids.INCUBATOR_LARVAE);
-		registry.addRecipeCategoryCraftingItem(GeneticMachine.Isolator.get(1), RecipeUids.ISOLATOR);
-		registry.addRecipeCategoryCraftingItem(GeneticMachine.Polymeriser.get(1), RecipeUids.POLYMERISER);
-		registry.addRecipeCategoryCraftingItem(GeneticMachine.Sequencer.get(1), RecipeUids.SEQUENCER);
-		registry.addRecipeCategoryCraftingItem(GeneticMachine.Inoculator.get(1), RecipeUids.INOCULATOR);
-		registry.addRecipeCategoryCraftingItem(AdvGeneticMachine.Splicer.get(1), RecipeUids.SPLICER);
-		registry.addRecipeCategoryCraftingItem(LaboratoryMachine.Genepool.get(1), RecipeUids.GENEPOOL);
-		registry.addRecipeCategoryCraftingItem(new ItemStack(Genetics.items().database), RecipeUids.DATABASE);
-		registry.addRecipeCategoryCraftingItem(new ItemStack(Genetics.items().database, 1, 1), RecipeUids.DATABASE);
+	@Override
+	public void register(IModRegistry registry) {
+		registry.addRecipeCatalyst(LaboratoryMachine.Incubator.get(1), RecipeUids.INCUBATOR, RecipeUids.INCUBATOR_LARVAE);
+		registry.addRecipeCatalyst(GeneticMachine.Isolator.get(1), RecipeUids.ISOLATOR);
+		registry.addRecipeCatalyst(GeneticMachine.Polymeriser.get(1), RecipeUids.POLYMERISER);
+		registry.addRecipeCatalyst(GeneticMachine.Sequencer.get(1), RecipeUids.SEQUENCER);
+		registry.addRecipeCatalyst(GeneticMachine.Inoculator.get(1), RecipeUids.INOCULATOR);
+		registry.addRecipeCatalyst(AdvGeneticMachine.Splicer.get(1), RecipeUids.SPLICER);
+		registry.addRecipeCatalyst(LaboratoryMachine.Genepool.get(1), RecipeUids.GENEPOOL);
+		registry.addRecipeCatalyst(new ItemStack(Genetics.items().database), RecipeUids.DATABASE);
+		registry.addRecipeCatalyst(new ItemStack(Genetics.items().database, 1, 1), RecipeUids.DATABASE);
 
 		registry.addRecipes(Incubator.getRecipes(), RecipeUids.INCUBATOR);
 		registry.addRecipes(LarvaeIncubatorRecipeMaker.create(Incubator.getLarvaeRecipe()), RecipeUids.INCUBATOR);

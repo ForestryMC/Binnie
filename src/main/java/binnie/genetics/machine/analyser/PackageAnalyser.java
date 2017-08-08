@@ -13,7 +13,6 @@ import binnie.core.machines.inventory.InventorySlot;
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.machines.power.ComponentPowerReceptor;
 import binnie.genetics.core.GeneticsGUI;
-import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.item.GeneticsItems;
 import binnie.genetics.machine.ComponentGeneticGUI;
 import binnie.genetics.machine.GeneticMachine;
@@ -21,7 +20,7 @@ import binnie.genetics.machine.ModuleMachine;
 
 public class PackageAnalyser extends GeneticMachine.PackageGeneticBase implements IMachineInformation {
 	public PackageAnalyser() {
-		super("analyser", GeneticsTexture.ANALYSER, 9961727, true);
+		super("analyser", 9961727, true);
 	}
 
 	@Override

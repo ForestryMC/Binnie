@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 
@@ -18,7 +19,7 @@ import mezz.jei.api.gui.IDrawableAnimated;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
 
-public class DatabaseRecipeWrapper extends BlankRecipeWrapper {
+public class DatabaseRecipeWrapper implements IRecipeWrapper {
 	private final ItemStack input;
 	private final List<ItemStack> outputs;
 	private final IDrawableAnimated arrowAnimated;

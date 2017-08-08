@@ -36,13 +36,11 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 		return ItemStack.EMPTY;
 	}
 
-	public static NonNullList<ItemStack> getBlockDroppedAsList(IBlockMetadata block, IBlockAccess world, BlockPos pos) {
+	public static void getDrops(NonNullList<ItemStack> drops, IBlockMetadata block, IBlockAccess world, BlockPos pos) {
 		ItemStack drop = getBlockDropped(block, world, pos);
-		NonNullList<ItemStack> list = NonNullList.create();
 		if (!drop.isEmpty()) {
-			list.add(drop);
+			drops.add(drop);
 		}
-		return list;
 	}
 
 	public static boolean breakBlock(IBlockMetadata blockMetadata, @Nullable EntityPlayer player, World world, BlockPos pos) {
@@ -70,8 +68,8 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 	}
 
 	@Override
-	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
-		return getBlockDroppedAsList(this, world, pos);
+	public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
+		getDrops(drops, this, world, pos);
 	}
 
 	@Override

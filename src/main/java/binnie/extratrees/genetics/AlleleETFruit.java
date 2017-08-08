@@ -301,8 +301,8 @@ public class AlleleETFruit extends AlleleCategorized implements IAlleleFruit, IF
 				modifiersField.setAccessible(true);
 				modifiersField.setInt(f, f.getModifiers() & 0xFFFFFFEF);
 				f.set(prov, familyCitrus);
-			} catch (Exception e) {
-				throw Throwables.propagate(e);
+			} catch (IllegalAccessException | NoSuchFieldException e) {
+				throw new RuntimeException(e);
 			}
 		}
 		for (final IAlleleSpecies tree : Binnie.GENETICS.treeBreedingSystem.getAllSpecies()) {

@@ -104,6 +104,7 @@ public class ControlLumbermillProgress extends ControlProgressBase {
 		CraftGUI.RENDER.texture(ControlLumbermillProgress.SAW_2, new Point(sawX + 2, -8 + Math.round(6 * (float) Math.sin(this.animation))));
 	}
 
+	@SideOnly(Side.CLIENT)
 	private TextureAtlasSprite getWoodSprite(ItemStack stack){
 		Minecraft mc = Minecraft.getMinecraft();
 		RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();

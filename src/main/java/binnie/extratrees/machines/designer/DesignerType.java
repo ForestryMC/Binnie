@@ -4,7 +4,6 @@ import net.minecraft.item.ItemStack;
 
 import binnie.botany.ceramic.CeramicDesignSystem;
 import binnie.botany.modules.ModuleCeramic;
-import binnie.core.resource.IBinnieTexture;
 import binnie.core.util.I18N;
 import binnie.extratrees.api.IDesign;
 import binnie.extratrees.api.IDesignMaterial;
@@ -13,21 +12,17 @@ import binnie.extratrees.carpentry.BlockDesign;
 import binnie.extratrees.carpentry.DesignSystem;
 import binnie.extratrees.carpentry.EnumDesign;
 import binnie.extratrees.carpentry.ModuleCarpentry;
-import binnie.extratrees.core.ExtraTreeTexture;
 
 public enum DesignerType {
-	Woodworker("woodworker", ExtraTreeTexture.CARPENTER),
-	Panelworker("panelworker", ExtraTreeTexture.PANELER),
-	GlassWorker("glassworker", ExtraTreeTexture.PANELER),
-	// TODO why is this the Paneler texture?
-	Tileworker("tileworker", ExtraTreeTexture.TILEWORKER);
+	Woodworker("woodworker"),
+	Panelworker("panelworker"),
+	GlassWorker("glassworker"),
+	Tileworker("tileworker");
 
-	public String name;
-	public IBinnieTexture texture;
+	private final String name;
 
-	DesignerType(final String name, final IBinnieTexture texture) {
+	DesignerType(final String name) {
 		this.name = name;
-		this.texture = texture;
 	}
 
 	public IDesignSystem getSystem() {
@@ -94,5 +89,9 @@ public enum DesignerType {
 				return "";
 			}
 		}
+	}
+
+	public String getName() {
+		return name;
 	}
 }

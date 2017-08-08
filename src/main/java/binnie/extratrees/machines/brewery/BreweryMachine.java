@@ -11,7 +11,6 @@ import binnie.core.machines.inventory.InventorySlot;
 import binnie.core.machines.inventory.MachineSide;
 import binnie.core.machines.inventory.TankSlot;
 import binnie.core.machines.power.ComponentPowerReceptor;
-import binnie.extratrees.core.ExtraTreeTexture;
 import binnie.extratrees.core.ExtraTreesGUID;
 import binnie.extratrees.machines.ExtraTreeMachine;
 import binnie.extratrees.machines.brewery.window.SlotValidatorBreweryGrain;
@@ -30,7 +29,7 @@ public class BreweryMachine extends ExtraTreeMachine.PackageExtraTreeMachine imp
 	public static final int[] SLOTS_INVENTORY = new int[]{5, 6, 7, 8, 9, 10, 11, 12, 13};
 
 	public BreweryMachine() {
-		super("brewery", ExtraTreeTexture.BREWERY, true);
+		super("brewery", true);
 	}
 
 	@Override

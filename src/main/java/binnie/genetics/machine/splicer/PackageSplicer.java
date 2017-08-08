@@ -16,7 +16,6 @@ import binnie.core.machines.power.ComponentPowerReceptor;
 import binnie.core.util.I18N;
 import binnie.genetics.api.IItemSerum;
 import binnie.genetics.core.GeneticsGUI;
-import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.genetics.Engineering;
 import binnie.genetics.machine.AdvGeneticMachine;
 import binnie.genetics.machine.ComponentGeneticGUI;
@@ -24,7 +23,7 @@ import binnie.genetics.machine.ModuleMachine;
 
 public class PackageSplicer extends AdvGeneticMachine.PackageAdvGeneticBase implements IMachineInformation {
 	public PackageSplicer() {
-		super("splicer", GeneticsTexture.SPLICER, 14819893, true);
+		super("splicer", 14819893, true);
 	}
 
 	@Override

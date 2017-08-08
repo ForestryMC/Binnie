@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 
@@ -19,7 +20,7 @@ import binnie.genetics.machine.isolator.IsolatorLogic;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
 
-public class IsolatorRecipeWrapper extends BlankRecipeWrapper {
+public class IsolatorRecipeWrapper implements IRecipeWrapper {
 	private static final FluidStack ETHANOL = Fluids.BIO_ETHANOL.getFluid(IsolatorLogic.ETHANOL_PER_PROCESS);
 	private static final ItemStack EMPTY_SEQUENCE = GeneticsItems.EmptySequencer.get(1);
 	private static final ItemStack ENZYME = GeneticsItems.Enzyme.get(1);

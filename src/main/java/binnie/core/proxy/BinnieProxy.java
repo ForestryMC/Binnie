@@ -125,11 +125,6 @@ public class BinnieProxy extends BinnieModProxy implements IBinnieProxy {
 	public void registerBlockRenderer(final Object renderer) {
 	}
 
-	@Override
-	public Object createObject(final String renderer) {
-		throw new UnsupportedOperationException("Cannot call createObject on server side");
-	}
-
 	public void sendNetworkEntityPacket(final INetworkedEntity entity) {
 		final MessageUpdate packet = new MessageUpdate(BinnieCorePacketID.NETWORK_ENTITY_UPDATE.ordinal(), entity);
 		this.sendToAll(packet);

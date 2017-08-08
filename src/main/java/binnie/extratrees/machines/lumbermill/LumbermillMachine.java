@@ -12,7 +12,6 @@ import binnie.core.machines.inventory.InventorySlot;
 import binnie.core.machines.inventory.TankSlot;
 import binnie.core.machines.inventory.TankValidator;
 import binnie.core.machines.power.ComponentPowerReceptor;
-import binnie.extratrees.core.ExtraTreeTexture;
 import binnie.extratrees.core.ExtraTreesGUID;
 import binnie.extratrees.machines.ExtraTreeMachine;
 import binnie.extratrees.machines.lumbermill.window.SlotValidatorLog;
@@ -26,7 +25,7 @@ public class LumbermillMachine extends ExtraTreeMachine.PackageExtraTreeMachine 
 	public static final int TANK_WATER_CAPACITY = 10000;
 
 	public LumbermillMachine() {
-		super("lumbermill", ExtraTreeTexture.LUMBERMILL, true);
+		super("lumbermill", true);
 	}
 
 	@Override

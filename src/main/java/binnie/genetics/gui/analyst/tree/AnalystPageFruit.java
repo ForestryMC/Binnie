@@ -52,8 +52,8 @@ public class AnalystPageFruit extends AnalystPageProduce {
 				f.setAccessible(true);
 				Collections.addAll(products, ((Map<ItemStack, Float>) f.get(pod)).keySet().toArray(new ItemStack[0]));
 			}
-		} catch (Exception e) {
-			throw Throwables.propagate(e);
+		} catch (IllegalAccessException | NoSuchFieldException e) {
+			throw new RuntimeException(e);
 		}
 		if (products.size() > 0) {
 			new ControlTextCentered(this, y, I18N.localise(AnalystConstants.FRUIT_KEY + ".natural")).setColor(getColor());
@@ -113,8 +113,8 @@ public class AnalystPageFruit extends AnalystPageProduce {
 							field.setAccessible(true);
 							Collections.addAll(stacks, ((Map<ItemStack, Float>) field.get(pod2)).keySet().toArray(new ItemStack[0]));
 						}
-					} catch (Exception ex) {
-						throw Throwables.propagate(ex);
+					} catch (IllegalAccessException | NoSuchFieldException e) {
+						throw new RuntimeException(e);
 					}
 				}
 			}

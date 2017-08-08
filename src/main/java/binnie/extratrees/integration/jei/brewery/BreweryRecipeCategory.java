@@ -2,6 +2,7 @@ package binnie.extratrees.integration.jei.brewery;
 
 import java.util.List;
 
+import mezz.jei.api.recipe.IRecipeCategory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 
@@ -17,9 +18,8 @@ import mezz.jei.api.gui.IGuiFluidStackGroup;
 import mezz.jei.api.gui.IGuiItemStackGroup;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
-import mezz.jei.api.recipe.BlankRecipeCategory;
 
-public class BreweryRecipeCategory extends BlankRecipeCategory<BreweryRecipeWrapper> {
+public class BreweryRecipeCategory implements IRecipeCategory<BreweryRecipeWrapper> {
 	private final IDrawableAnimated arrowAnimated;
 
 	public BreweryRecipeCategory() {

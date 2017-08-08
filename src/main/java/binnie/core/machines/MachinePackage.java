@@ -16,7 +16,6 @@ public abstract class MachinePackage {
 
 	protected MachinePackage(final String uid, final boolean powered) {
 		this.active = true;
-		this.powered = false;
 		this.metadata = -1;
 		this.uid = uid;
 		this.powered = powered;
@@ -31,9 +30,6 @@ public abstract class MachinePackage {
 	public abstract TileEntity createTileEntity();
 
 	public abstract void register();
-
-	@SideOnly(Side.CLIENT)
-	public abstract void renderMachine(Machine machine, double x, double y, double z, float partialTicks, int destroyStage);//, final RenderBlocks p5);
 
 	public final String getDisplayName() {
 		return I18N.localise(this.group.getMod().getModID() + '.' + "machine." + this.group.getShortUID() + "." + this.getUID());

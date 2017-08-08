@@ -75,6 +75,7 @@ public class WindowPunnettSquare extends Window {
 		private BinnieResource resource;
 
 		@Override
+		@SideOnly(Side.CLIENT)
 		public BinnieResource getTexture() {
 			if (resource == null) {
 				resource = Binnie.RESOURCE.getPNG("genetics", ResourceType.GUI, "punnett");

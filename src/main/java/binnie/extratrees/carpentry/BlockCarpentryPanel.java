@@ -4,7 +4,6 @@ import javax.annotation.Nullable;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
@@ -122,7 +121,9 @@ public class BlockCarpentryPanel extends BlockCarpentry {
 		World world = (World) blockAccess;
 		final DesignBlock block = this.getCarpentryBlock(blockAccess, pos);
 		if (!isValidPanelPlacement(blockAccess, pos, block.getFacing())) {
-			for (ItemStack stack : BlockMetadata.getBlockDroppedAsList(this, blockAccess, pos)) {
+			NonNullList<ItemStack> drops = NonNullList.create();
+			BlockMetadata.getDrops(drops, this, blockAccess, pos);
+			for (ItemStack stack : drops) {
 				spawnAsEntity(world, pos, stack);
 			}
 			world.setBlockToAir(pos);

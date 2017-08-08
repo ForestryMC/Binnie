@@ -14,7 +14,6 @@ import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.machines.power.ComponentPowerReceptor;
 import binnie.genetics.Genetics;
 import binnie.genetics.core.GeneticsGUI;
-import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.item.GeneticsItems;
 import binnie.genetics.machine.ComponentGeneticGUI;
 import binnie.genetics.machine.GeneticMachine;
@@ -22,7 +21,7 @@ import binnie.genetics.machine.ModuleMachine;
 
 public class PackageSequencer extends GeneticMachine.PackageGeneticBase implements IMachineInformation {
 	public PackageSequencer() {
-		super("sequencer", GeneticsTexture.SEQUENCER, 12058418, true);
+		super("sequencer", 12058418, true);
 		Sequencer.fxSeqA = Binnie.RESOURCE.getBlockSprite(Genetics.instance, "fx/sequencer.a");
 		Sequencer.fxSeqG = Binnie.RESOURCE.getBlockSprite(Genetics.instance, "fx/sequencer.g");
 		Sequencer.fxSeqT = Binnie.RESOURCE.getBlockSprite(Genetics.instance, "fx/sequencer.t");

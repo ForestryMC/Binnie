@@ -286,8 +286,7 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 	}
 
 	@Override
-	public NonNullList<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
-		NonNullList<ItemStack> drops = NonNullList.create();
+	public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
 		TileEntity tile = world.getTileEntity(pos);
 		if (tile instanceof TileEntityFlower && ((TileEntityFlower) tile).getSection() == 0) {
 			ItemStack flower = ((TileEntityFlower) tile).getItemStack();
@@ -295,7 +294,6 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 				drops.add(flower);
 			}
 		}
-		return drops;
 	}
 
 	@Override

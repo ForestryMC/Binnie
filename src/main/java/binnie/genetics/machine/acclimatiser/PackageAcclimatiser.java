@@ -12,13 +12,12 @@ import binnie.core.machines.inventory.InventorySlot;
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.machines.power.ComponentPowerReceptor;
 import binnie.genetics.core.GeneticsGUI;
-import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.machine.ComponentGeneticGUI;
 import binnie.genetics.machine.GeneticMachine;
 
 public class PackageAcclimatiser extends GeneticMachine.PackageGeneticBase implements IMachineInformation {
 	public PackageAcclimatiser() {
-		super("acclimatiser", GeneticsTexture.ACCLIMATISER, 9857609, true);
+		super("acclimatiser", 9857609, true);
 	}
 
 	@Override

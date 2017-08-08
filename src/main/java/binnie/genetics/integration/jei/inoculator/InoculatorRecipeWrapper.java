@@ -6,6 +6,7 @@ import java.text.NumberFormat;
 import java.util.Arrays;
 import java.util.Map;
 
+import mezz.jei.api.recipe.IRecipeWrapper;
 import org.apache.commons.lang3.time.DurationFormatUtils;
 
 import net.minecraft.client.Minecraft;
@@ -24,7 +25,7 @@ import mezz.jei.api.gui.IGuiIngredient;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
 
-public class InoculatorRecipeWrapper extends BlankRecipeWrapper {
+public class InoculatorRecipeWrapper implements IRecipeWrapper {
 	private static final FluidStack BACTERIA_VECTOR = GeneticLiquid.BacteriaVector.get(InoculatorLogic.BACTERIA_PER_PROCESS);
 
 	private final ItemStack inputSerum;

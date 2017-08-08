@@ -1,5 +1,6 @@
 package binnie.extratrees.integration.jei;
 
+import mezz.jei.api.IModPlugin;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -25,7 +26,7 @@ import binnie.extratrees.integration.jei.multifence.MultiFenceRecipeRegistryPlug
 import binnie.extratrees.machines.ExtraTreeMachine;
 import binnie.extratrees.modules.ExtraTreesModuleUIDs;
 import binnie.modules.ModuleManager;
-import mezz.jei.api.BlankModPlugin;
+
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.IJeiHelpers;
 import mezz.jei.api.IModRegistry;
@@ -34,7 +35,7 @@ import mezz.jei.api.JEIPlugin;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 
 @JEIPlugin
-public class ExtraTreesJeiPlugin extends BlankModPlugin {
+public class ExtraTreesJeiPlugin implements IModPlugin {
 	public static IJeiHelpers jeiHelpers;
 	public static IGuiHelper guiHelper;
 	public static Drawables drawables;
@@ -64,6 +65,22 @@ public class ExtraTreesJeiPlugin extends BlankModPlugin {
 	}
 
 	@Override
+	public void registerCategories(IRecipeCategoryRegistration registry) {
+		ExtraTreesJeiPlugin.jeiHelpers = registry.getJeiHelpers();
+		ExtraTreesJeiPlugin.guiHelper = jeiHelpers.getGuiHelper();
+		ExtraTreesJeiPlugin.drawables = Drawables.getDrawables(guiHelper);
+
+		if(ModuleManager.isEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.MACHINES)) {
+			registry.addRecipeCategories(
+					new LumbermillRecipeCategory(),
+					new FruitPressRecipeCategory(),
+					new BreweryRecipeCategory(),
+					new DistilleryRecipeCategory()
+			);
+		}
+	}
+
+	@Override
 	public void register(IModRegistry registry) {
 		if(ModuleManager.isEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.MACHINES)) {
 			registry.addRecipeCatalyst(ExtraTreeMachine.Lumbermill.get(1), RecipeUids.LUMBERMILL);
@@ -79,22 +96,6 @@ public class ExtraTreesJeiPlugin extends BlankModPlugin {
 
 		if(ModuleManager.isEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.WOOD)) {
 			registry.addRecipeRegistryPlugin(new MultiFenceRecipeRegistryPlugin());
-		}
-	}
-
-	@Override
-	public void registerCategories(IRecipeCategoryRegistration registry) {
-		ExtraTreesJeiPlugin.jeiHelpers = registry.getJeiHelpers();
-		ExtraTreesJeiPlugin.guiHelper = jeiHelpers.getGuiHelper();
-		ExtraTreesJeiPlugin.drawables = Drawables.getDrawables(guiHelper);
-
-		if(ModuleManager.isEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.MACHINES)) {
-			registry.addRecipeCategories(
-				new LumbermillRecipeCategory(),
-				new FruitPressRecipeCategory(),
-				new BreweryRecipeCategory(),
-				new DistilleryRecipeCategory()
-			);
 		}
 	}
 }

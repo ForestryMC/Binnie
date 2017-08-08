@@ -6,7 +6,10 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
 import forestry.api.circuits.ICircuitLayout;
@@ -109,14 +112,12 @@ public final class RecipeRegister {
 				}
 			}
 		}
-		Item woodGear = null;
-		try {
-			woodGear = (Item) Class.forName("buildcraft.BuildCraftCore").getField("woodenGearItem").get(null);
-		} catch (Exception ignored) {
-		}
-		ItemStack gear = new ItemStack(Blocks.PLANKS, 1);
+		ItemStack gear;
+		Item woodGear = ForgeRegistries.ITEMS.getValue(new ResourceLocation("buildcraftcore", "gear_wood"));
 		if (woodGear != null) {
 			gear = new ItemStack(woodGear, 1);
+		} else {
+			gear = new ItemStack(Blocks.PLANKS, 1);
 		}
 		RecipeManagers.carpenterManager.addRecipe(100, Fluids.FOR_HONEY.getFluid(500), ItemStack.EMPTY, ExtraBeeItems.ScentedGear.get(1), " j ", "bgb", " p ", 'j', PluginApiculture.getItems().royalJelly, 'b', PluginCore.getItems().beeswax, 'p', PluginApiculture.getItems().pollenCluster, 'g', gear);
 	}

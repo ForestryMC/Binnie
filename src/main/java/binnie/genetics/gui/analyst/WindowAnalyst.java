@@ -216,6 +216,7 @@ public class WindowAnalyst extends Window {
 		}
 	}
 
+	@SideOnly(Side.CLIENT)
 	private void createPages(ControlAnalystPage databasePage){
 		if (isDatabase) {
 			analystPages.add((databasePage != null) ? databasePage : new AnalystPageDatabase(analystPanel, analystPageSize, currentSystem, isMaster));

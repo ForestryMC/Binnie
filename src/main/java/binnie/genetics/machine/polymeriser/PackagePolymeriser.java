@@ -18,7 +18,6 @@ import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.machines.inventory.Validator;
 import binnie.core.machines.power.ComponentPowerReceptor;
 import binnie.genetics.core.GeneticsGUI;
-import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.item.GeneticLiquid;
 import binnie.genetics.machine.ComponentGeneticGUI;
 import binnie.genetics.machine.GeneticMachine;
@@ -27,7 +26,7 @@ import binnie.genetics.machine.ModuleMachine;
 public class PackagePolymeriser extends GeneticMachine.PackageGeneticBase implements IMachineInformation {
 
 	public PackagePolymeriser() {
-		super("polymeriser", GeneticsTexture.POLYMERISER, 58819, true);
+		super("polymeriser", 58819, true);
 	}
 
 	@Override

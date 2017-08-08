@@ -1,7 +1,6 @@
 package binnie.extratrees.machines.fruitpress.recipes;
 
 import com.google.common.base.MoreObjects;
-import com.google.common.base.Objects;
 
 import java.util.Collection;
 import java.util.Collections;

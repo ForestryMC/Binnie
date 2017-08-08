@@ -3,15 +3,10 @@ package binnie.core.machines.storage;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import binnie.core.BinnieCore;
 import binnie.core.machines.IMachineType;
-import binnie.core.machines.Machine;
 import binnie.core.machines.MachinePackage;
 import binnie.core.machines.TileEntityMachine;
-import binnie.core.resource.IBinnieTexture;
 
 enum Compartment implements IMachineType {
 	Compartment(StandardCompartment.PackageCompartment.class),
@@ -42,11 +37,8 @@ enum Compartment implements IMachineType {
 	}
 
 	public abstract static class PackageCompartment extends MachinePackage {
-		private IBinnieTexture renderTexture;
-
-		protected PackageCompartment(final String uid, final IBinnieTexture renderTexture) {
+		protected PackageCompartment(final String uid) {
 			super(uid, false);
-			this.renderTexture = renderTexture;
 		}
 
 		@Override
@@ -56,12 +48,6 @@ enum Compartment implements IMachineType {
 
 		@Override
 		public void register() {
-		}
-
-		@Override
-		@SideOnly(Side.CLIENT)
-		public void renderMachine(Machine machine, double x, double y, double z, float partialTicks, int destroyStage) {
-			MachineRendererCompartment.instance.renderMachine(machine, 16777215, renderTexture.getTexture(), x, y, z, partialTicks);
 		}
 	}
 }

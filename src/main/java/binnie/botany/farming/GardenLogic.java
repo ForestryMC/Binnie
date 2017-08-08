@@ -9,6 +9,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -144,7 +145,8 @@ public class GardenLogic extends FarmLogic {
 					ItemStack block = getAsItemStack(world, position);
 					ItemStack loam = getAvailableLoam(housing);
 					if (isWaste(block) && !loam.isEmpty()) {
-						produce.addAll(Blocks.DIRT.getDrops(world, position, Block.getBlockFromItem(block.getItem()).getStateFromMeta(block.getItemDamage()), 0));
+						IBlockState blockState = Block.getBlockFromItem(block.getItem()).getStateFromMeta(block.getItemDamage());
+						Blocks.DIRT.getDrops(produce, world, position, blockState, 0);
 						setBlock(world, position, Blocks.AIR, 0);
 						return trySetSoil(world, position, loam, housing);
 					}

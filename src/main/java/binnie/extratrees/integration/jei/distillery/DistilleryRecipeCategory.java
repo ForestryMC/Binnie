@@ -1,5 +1,6 @@
 package binnie.extratrees.integration.jei.distillery;
 
+import mezz.jei.api.recipe.IRecipeCategory;
 import net.minecraft.client.Minecraft;
 
 import net.minecraftforge.fml.relauncher.Side;
@@ -24,7 +25,7 @@ import mezz.jei.api.gui.ITickTimer;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeCategory;
 
-public class DistilleryRecipeCategory extends BlankRecipeCategory<DistilleryRecipeWrapper> {
+public class DistilleryRecipeCategory implements IRecipeCategory<DistilleryRecipeWrapper> {
 	private static final Texture DISTILLERY_BASE = new StandardTexture(43, 0, 58, 60, ExtraTreeTexture.GUI);
 	private static final Texture LIQUID_FLOW = new StandardTexture(101, 0, 38, 60, ExtraTreeTexture.GUI);
 

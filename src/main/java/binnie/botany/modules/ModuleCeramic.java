@@ -70,12 +70,6 @@ public class ModuleCeramic extends Module {
 	}
 
 	@Override
-	public void init() {
-		RecipeSorter.register("botany:ceramictile", CeramicTileRecipe.class, RecipeSorter.Category.SHAPED, "");
-		RecipeSorter.register("botany:pigment", PigmentRecipe.class, RecipeSorter.Category.SHAPED, "");
-	}
-
-	@Override
 	public void postInit() {
 		RecipeUtil recipeUtil = new RecipeUtil(Constants.BOTANY_MOD_ID);
 		ForgeRegistries.RECIPES.register(new CeramicTileRecipe());

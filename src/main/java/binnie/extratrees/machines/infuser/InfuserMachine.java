@@ -10,13 +10,12 @@ import binnie.core.machines.inventory.ComponentTankContainer;
 import binnie.core.machines.inventory.MachineSide;
 import binnie.core.machines.inventory.TankSlot;
 import binnie.core.machines.power.ComponentPowerReceptor;
-import binnie.extratrees.core.ExtraTreeTexture;
 import binnie.extratrees.core.ExtraTreesGUID;
 import binnie.extratrees.machines.ExtraTreeMachine;
 
 public class InfuserMachine extends ExtraTreeMachine.PackageExtraTreeMachine implements IMachineInformation {
 	public InfuserMachine() {
-		super("infuser", ExtraTreeTexture.INFUSER, true);
+		super("infuser", true);
 	}
 
 	@Override

@@ -6,9 +6,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import binnie.Constants;
 import binnie.botany.modules.BotanyModuleUIDs;
 import binnie.core.machines.IMachineType;
@@ -17,7 +14,6 @@ import binnie.core.machines.MachineComponent;
 import binnie.core.machines.MachinePackage;
 import binnie.core.machines.TileEntityMachine;
 import binnie.core.machines.component.IInteraction;
-import binnie.core.resource.IBinnieTexture;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.core.ExtraTreesGUID;
 import binnie.extratrees.machines.brewery.BreweryMachine;
@@ -80,11 +76,9 @@ public enum ExtraTreeMachine implements IMachineType {
 	}
 
 	public abstract static class PackageExtraTreeMachine extends MachinePackage {
-		private final IBinnieTexture textureName;
 
-		protected PackageExtraTreeMachine(final String uid, final IBinnieTexture textureName, final boolean powered) {
+		protected PackageExtraTreeMachine(final String uid, final boolean powered) {
 			super(uid, powered);
-			this.textureName = textureName;
 		}
 
 		@Override
@@ -94,12 +88,6 @@ public enum ExtraTreeMachine implements IMachineType {
 
 		@Override
 		public void register() {
-		}
-
-		@Override
-		@SideOnly(Side.CLIENT)
-		public void renderMachine(Machine machine, double x, double y, double z, float partialTicks, int destroyStage) {
-			MachineRendererForestry.renderMachine(this.textureName.getTexture().getShortPath(), x, y, z, partialTicks);
 		}
 	}
 }

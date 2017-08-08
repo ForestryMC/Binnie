@@ -10,13 +10,12 @@ import binnie.core.machines.inventory.ComponentTankContainer;
 import binnie.core.machines.inventory.InventorySlot;
 import binnie.core.machines.power.ComponentPowerReceptor;
 import binnie.genetics.core.GeneticsGUI;
-import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.machine.ComponentGeneticGUI;
 import binnie.genetics.machine.GeneticMachine;
 
 public class PackageIncubator extends GeneticMachine.PackageGeneticBase implements IMachineInformation {
 	public PackageIncubator() {
-		super("incubator", GeneticsTexture.INCUBATOR, 16767313, true);
+		super("incubator", 16767313, true);
 	}
 
 	@Override

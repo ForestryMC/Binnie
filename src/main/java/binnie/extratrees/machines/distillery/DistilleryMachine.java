@@ -10,7 +10,6 @@ import binnie.core.machines.inventory.ComponentTankContainer;
 import binnie.core.machines.inventory.MachineSide;
 import binnie.core.machines.inventory.TankSlot;
 import binnie.core.machines.power.ComponentPowerReceptor;
-import binnie.extratrees.core.ExtraTreeTexture;
 import binnie.extratrees.core.ExtraTreesGUID;
 import binnie.extratrees.machines.ExtraTreeMachine;
 import binnie.extratrees.machines.distillery.window.TankValidatorDistilleryInput;
@@ -21,7 +20,7 @@ public class DistilleryMachine extends ExtraTreeMachine.PackageExtraTreeMachine 
 	public static final int TANK_OUTPUT = 1;
 
 	public DistilleryMachine() {
-		super("distillery", ExtraTreeTexture.DISTILLERY, true);
+		super("distillery", true);
 	}
 
 	@Override

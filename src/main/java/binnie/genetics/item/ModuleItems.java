@@ -1,6 +1,5 @@
 package binnie.genetics.item;
 
-import binnie.Constants;
 import binnie.core.util.RecipeUtil;
 import com.google.common.base.Preconditions;
 
@@ -10,9 +9,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-
-import net.minecraftforge.oredict.ShapedOreRecipe;
-import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 import net.minecraftforge.fml.common.registry.GameRegistry;
 

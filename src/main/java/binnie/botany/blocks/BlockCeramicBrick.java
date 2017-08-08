@@ -76,8 +76,8 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 	}
 
 	@Override
-	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
-		return Collections.emptyList();
+	public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
+
 	}
 
 	@Override

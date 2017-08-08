@@ -2,6 +2,7 @@ package binnie.genetics.integration.jei.sequencer;
 
 import java.util.Arrays;
 
+import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 
@@ -14,7 +15,7 @@ import mezz.jei.api.gui.IDrawableAnimated;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
 
-public class SequencerRecipeWrapper extends BlankRecipeWrapper {
+public class SequencerRecipeWrapper implements IRecipeWrapper {
 	private final ItemStack input;
 	private final IDrawableAnimated arrowAnimated;
 

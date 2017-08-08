@@ -17,7 +17,6 @@ import binnie.core.machines.MachinePackage;
 import binnie.core.machines.component.IInteraction;
 import binnie.core.machines.network.INetwork;
 import binnie.genetics.Genetics;
-import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.machine.acclimatiser.PackageAcclimatiser;
 import binnie.genetics.machine.analyser.PackageAnalyser;
 import binnie.genetics.machine.genepool.PackageGenepool;
@@ -53,18 +52,13 @@ public enum LaboratoryMachine implements IMachineType {
 
 	public static class PackageLabMachine extends GeneticMachine.PackageGeneticBase {
 		public PackageLabMachine() {
-			super("lab_machine", GeneticsTexture.LAB_MACHINE, 16777215, false);
+			super("lab_machine", 16777215, false);
 		}
 
 		@Override
 		public void createMachine(final Machine machine) {
 			new ComponentGUIHolder(machine);
 		}
-
-		/*@Override
-		public void renderMachine(final Machine machine, final double x, final double y, final double z, final float var8, final RenderBlocks renderer) {
-			MachineRendererLab.instance.renderMachine(machine, this.colour, this.renderTexture, x, y, z, var8);
-		}*/
 	}
 
 	public static class ComponentGUIHolder extends MachineComponent implements INetwork.TilePacketSync, IInteraction.RightClick {

@@ -1,7 +1,6 @@
 package binnie.extratrees.machines.distillery.recipes;
 
 import com.google.common.base.MoreObjects;
-import com.google.common.base.Objects;
 
 import java.util.Collection;
 import java.util.Collections;

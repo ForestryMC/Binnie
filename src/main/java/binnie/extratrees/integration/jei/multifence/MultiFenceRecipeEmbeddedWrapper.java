@@ -15,7 +15,7 @@ import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
 import mezz.jei.api.recipe.wrapper.IShapedCraftingRecipeWrapper;
 
-public class MultiFenceRecipeEmbeddedWrapper extends BlankRecipeWrapper implements IShapedCraftingRecipeWrapper {
+public class MultiFenceRecipeEmbeddedWrapper implements IShapedCraftingRecipeWrapper {
 
 	private FenceType fenceType;
 	@Nullable

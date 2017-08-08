@@ -2,6 +2,7 @@ package binnie.genetics.integration.jei.incubator;
 
 import java.awt.Color;
 
+import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 
@@ -14,7 +15,7 @@ import binnie.genetics.api.IIncubatorRecipe;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
 
-public class IncubatorRecipeWrapper extends BlankRecipeWrapper {
+public class IncubatorRecipeWrapper implements IRecipeWrapper {
 	private final IIncubatorRecipe recipe;
 
 	public IncubatorRecipeWrapper(IIncubatorRecipe recipe) {

@@ -7,9 +7,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 
 import net.minecraftforge.oredict.OreDictionary;
-import net.minecraftforge.oredict.ShapedOreRecipe;
-
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import binnie.core.BinnieCore;
 import binnie.core.IInitializable;

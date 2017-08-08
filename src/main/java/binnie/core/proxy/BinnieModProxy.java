@@ -13,7 +13,6 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.util.math.BlockPos;
 
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import forestry.core.models.BlockModelEntry;
 import forestry.core.models.ModelEntry;

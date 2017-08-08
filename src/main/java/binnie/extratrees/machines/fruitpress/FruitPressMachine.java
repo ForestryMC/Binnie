@@ -10,7 +10,6 @@ import binnie.core.machines.inventory.ComponentInventoryTransfer;
 import binnie.core.machines.inventory.ComponentTankContainer;
 import binnie.core.machines.inventory.InventorySlot;
 import binnie.core.machines.power.ComponentPowerReceptor;
-import binnie.extratrees.core.ExtraTreeTexture;
 import binnie.extratrees.core.ExtraTreesGUID;
 import binnie.extratrees.machines.ExtraTreeMachine;
 import binnie.extratrees.machines.fruitpress.window.SlotValidatorSqueezable;
@@ -22,7 +21,7 @@ public class FruitPressMachine extends ExtraTreeMachine.PackageExtraTreeMachine 
 	public static final int TANK_OUTPUT_CAPACITY = 5000;
 
 	public FruitPressMachine() {
-		super("press", ExtraTreeTexture.PRESS, true);
+		super("press", true);
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package binnie.extratrees.integration.jei.distillery;
 
+import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 
 import net.minecraftforge.fluids.FluidStack;
@@ -13,7 +14,7 @@ import binnie.extratrees.machines.distillery.window.ControlDistilleryProgress;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
 
-public class DistilleryRecipeWrapper extends BlankRecipeWrapper {
+public class DistilleryRecipeWrapper implements IRecipeWrapper {
 	private final int level;
 	private final FluidStack input;
 	private final FluidStack output;
@@ -33,8 +34,6 @@ public class DistilleryRecipeWrapper extends BlankRecipeWrapper {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
-		super.drawInfo(minecraft, recipeWidth, recipeHeight, mouseX, mouseY);
-
 		CraftGUI.RENDER.texture(ControlDistilleryProgress.OUTPUT, new Point(47, 14 + level * 15));
 	}
 }

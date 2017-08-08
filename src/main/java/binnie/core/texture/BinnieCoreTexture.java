@@ -12,12 +12,6 @@ import binnie.core.resource.IBinnieTexture;
 import binnie.core.resource.ResourceType;
 
 public enum BinnieCoreTexture implements IBinnieTexture {
-	COMPARTMENT(ResourceType.TILE, "compartment"),
-	COMPARTMENT_IRON(ResourceType.TILE, "compartment_iron"),
-	COMPARTMENT_DIAMOND(ResourceType.TILE, "compartment_diamond"),
-	COMPARTMENT_COPPER(ResourceType.TILE, "compartment_copper"),
-	COMPARTMENT_GOLD(ResourceType.TILE, "compartment_gold"),
-	COMPARTMENT_BRONZE(ResourceType.TILE, "compartment_bronze"),
 	GUI_BREEDING(ResourceType.GUI, "breeding"),
 	GUI_ANALYST(ResourceType.GUI, "guianalyst"),
 	GUI_PUNNETT(ResourceType.GUI, "punnett");

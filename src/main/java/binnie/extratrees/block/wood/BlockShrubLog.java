@@ -19,6 +19,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.Mirror;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -205,17 +206,15 @@ public class BlockShrubLog extends Block implements IWoodTyped, IStateMapperRegi
 	}
 
 	@Override
-	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
+	public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
 		Random rand = world instanceof World ? ((World) world).rand : RANDOM;
-		List<ItemStack> ret = new java.util.ArrayList<>();
 		float chance = 0.75F;
 		int amount = 2;
 		while (chance >= rand.nextFloat()) {
 			chance -= 0.25;
 			amount++;
 		}
-		ret.add(new ItemStack(Items.STICK, amount));
-		return ret;
+		drops.add(new ItemStack(Items.STICK, amount));
 	}
 
 	@Override

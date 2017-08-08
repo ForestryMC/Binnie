@@ -4,7 +4,6 @@ import net.minecraft.tileentity.TileEntity;
 
 import binnie.core.machines.Machine;
 import binnie.core.machines.inventory.ComponentInventorySlots;
-import binnie.extratrees.core.ExtraTreeTexture;
 import binnie.extratrees.machines.ExtraTreeMachine;
 
 public class Nursery {
@@ -12,7 +11,7 @@ public class Nursery {
 
 	public static class PackageNursery extends ExtraTreeMachine.PackageExtraTreeMachine {
 		public PackageNursery() {
-			super("nursery", ExtraTreeTexture.NURSERY, false);
+			super("nursery", false);
 		}
 
 		@Override
@@ -25,9 +24,5 @@ public class Nursery {
 		public TileEntity createTileEntity() {
 			return new TileEntityNursery(this);
 		}
-
-		/*@Override
-			public void renderMachine(final Machine machine, final double x, final double y, final double z, final float var8, final RenderBlocks renderer) {
-		}*/
 	}
 }

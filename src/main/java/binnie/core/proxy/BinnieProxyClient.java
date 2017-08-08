@@ -159,19 +159,6 @@ public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy
 	public void createPipe(final Item pipe) {
 	}
 
-	@Override
-	public Object createObject(final String renderer) {
-		try {
-			final Class<?> rendererClass = Class.forName(renderer);
-			if (rendererClass != null) {
-				return rendererClass.newInstance();
-			}
-		} catch (IllegalAccessException | InstantiationException | ClassNotFoundException e) {
-			throw Throwables.propagate(e);
-		}
-		throw new IllegalArgumentException("Could not create object for class name " + renderer);
-	}
-
 	/*@Override
 	public IIcon getIcon(final IIconRegister register, final String mod, final String name) {
 		return register.registerIcon(mod + ":" + name);

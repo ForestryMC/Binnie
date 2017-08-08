@@ -92,7 +92,7 @@ public class WindowBotanistDatabase extends WindowAbstractDatabase {
 				}
 			};
 
-			List<IFlowerColor> colors = Arrays.stream(EnumFlowerColor.values()).map(c -> c.getFlowerColorAllele()).collect(Collectors.toList());
+			List<IFlowerColor> colors = Arrays.stream(EnumFlowerColor.values()).map(EnumFlowerColor::getFlowerColorAllele).collect(Collectors.toList());
 			listBox.setOptions(colors);
 		}
 	}

@@ -14,7 +14,6 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.NonNullList;
@@ -101,10 +100,7 @@ public class BlockExtraBeeHive extends Block implements ITileEntityProvider {
 	}
 
 	@Override
-	@Nonnull
-	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, @Nonnull IBlockState state, int fortune) {
-		List<ItemStack> drops = new ArrayList<>();
-
+	public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
 		Random random = world instanceof World ? ((World) world).rand : RANDOM;
 
 		List<IHiveDrop> hiveDrops = getDropsForHive(getMetaFromState(state));
@@ -148,8 +144,6 @@ public class BlockExtraBeeHive extends Block implements ITileEntityProvider {
 				break;
 			}
 		}
-
-		return drops;
 	}
 
 	private static List<IHiveDrop> getDropsForHive(int meta) {

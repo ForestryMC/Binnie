@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.item.ItemStack;
 
 import net.minecraftforge.fluids.FluidStack;
 
 import binnie.extratrees.api.recipes.IBreweryRecipe;
 import mezz.jei.api.ingredients.IIngredients;
-import mezz.jei.api.recipe.BlankRecipeWrapper;
 
-public class BreweryRecipeWrapper extends BlankRecipeWrapper {
+public class BreweryRecipeWrapper implements IRecipeWrapper {
 	private final IBreweryRecipe recipe;
 
 	public BreweryRecipeWrapper(IBreweryRecipe recipe) {

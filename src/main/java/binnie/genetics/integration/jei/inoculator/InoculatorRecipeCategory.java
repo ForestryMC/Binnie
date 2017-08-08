@@ -1,5 +1,6 @@
 package binnie.genetics.integration.jei.inoculator;
 
+import mezz.jei.api.recipe.IRecipeCategory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 
@@ -24,7 +25,7 @@ import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeCategory;
 import mezz.jei.api.recipe.IFocus;
 
-public class InoculatorRecipeCategory extends BlankRecipeCategory<InoculatorRecipeWrapper> {
+public class InoculatorRecipeCategory implements IRecipeCategory<InoculatorRecipeWrapper> {
 	private final IDrawableAnimated arrowAnimated;
 	private final boolean splicer;
 

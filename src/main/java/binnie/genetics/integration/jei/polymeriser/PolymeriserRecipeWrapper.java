@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
@@ -15,7 +16,7 @@ import binnie.genetics.machine.polymeriser.PolymeriserLogic;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
 
-public class PolymeriserRecipeWrapper extends BlankRecipeWrapper {
+public class PolymeriserRecipeWrapper implements IRecipeWrapper {
 	private final ItemStack input;
 
 	public PolymeriserRecipeWrapper(ItemStack input) {
