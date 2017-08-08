@@ -21,13 +21,13 @@ public interface IFluidType {
 		return get(Fluid.BUCKET_VOLUME);
 	}
 
-	int getColour();
+	int getColor();
 
-	int getContainerColour();
+	int getContainerColor();
 
 	int getTransparency();
 
-	boolean canPlaceIn(final FluidContainerType p0);
+	boolean canPlaceIn(FluidContainerType type);
 
-	boolean showInCreative(final FluidContainerType p0);
+	boolean showInCreative(FluidContainerType type);
 }

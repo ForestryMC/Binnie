@@ -3,7 +3,6 @@ package binnie.botany.blocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemStack;
 
-import binnie.botany.CreativeTabBotany;
 import binnie.botany.ceramic.CeramicColor;
 import binnie.botany.ceramic.CeramicDesignSystem;
 import binnie.botany.genetics.EnumFlowerColor;
@@ -18,7 +17,6 @@ public class BlockCeramicPatterned extends BlockDesign {
 		super(CeramicDesignSystem.instance, Material.ROCK);
 		setHardness(1.0f);
 		setResistance(5.0f);
-		setCreativeTab(CreativeTabBotany.instance);
 		setRegistryName("ceramicPattern");
 	}
 

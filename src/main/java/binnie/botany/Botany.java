@@ -33,28 +33,19 @@ public class Botany extends BlankModuleContainer {
 	@SidedProxy(clientSide = "binnie.botany.proxy.ProxyClient", serverSide = "binnie.botany.proxy.ProxyServer")
 	public static Proxy proxy;
 
-	public Botany() {
-		ModuleManager.register(this);
-	}
-
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent evt) {
-		preInit();
-		ModuleManager.runRegisterItemsAndBlocks(this);
-		ModuleManager.runPreInit(evt, this);
-		getProxy().registerModels();
+		super.preInit(evt);
 	}
 
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent evt) {
-		init();
-		ModuleManager.runInit(evt, this);
+		super.init(evt);
 	}
 
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent evt) {
-		postInit();
-		ModuleManager.runPostInit(evt, this);
+		super.postInit(evt);
 	}
 
 	@Override
@@ -99,10 +90,6 @@ public class Botany extends BlankModuleContainer {
 	@Override
 	public boolean isAvailable() {
 		return BinnieCore.isBotanyActive();
-	}
-
-	public static boolean isModuleActive(String moduleUID){
-		return instance.isModuleEnabled(moduleUID);
 	}
 
 	public static class PacketHandler extends BinniePacketHandler {

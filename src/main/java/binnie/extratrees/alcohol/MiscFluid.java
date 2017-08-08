@@ -38,13 +38,13 @@ public enum MiscFluid implements IFluidType, ICocktailLiquid {
 	}
 
 	@Override
-	public boolean canPlaceIn(final FluidContainerType container) {
+	public boolean canPlaceIn(final FluidContainerType type) {
 		return true;
 	}
 
 	@Override
-	public boolean showInCreative(final FluidContainerType container) {
-		return container == FluidContainerType.GLASS;
+	public boolean showInCreative(final FluidContainerType type) {
+		return type == FluidContainerType.GLASS;
 	}
 
 	@Override
@@ -68,7 +68,7 @@ public enum MiscFluid implements IFluidType, ICocktailLiquid {
 	}
 
 	@Override
-	public int getColour() {
+	public int getColor() {
 		return this.colour;
 	}
 
@@ -88,8 +88,8 @@ public enum MiscFluid implements IFluidType, ICocktailLiquid {
 	}
 
 	@Override
-	public int getContainerColour() {
-		return this.getColour();
+	public int getContainerColor() {
+		return this.getColor();
 	}
 
 	@Override

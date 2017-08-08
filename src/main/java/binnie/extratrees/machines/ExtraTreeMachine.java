@@ -9,7 +9,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.core.BinnieCore;
+import binnie.Constants;
+import binnie.botany.modules.BotanyModuleUIDs;
 import binnie.core.machines.IMachineType;
 import binnie.core.machines.Machine;
 import binnie.core.machines.MachineComponent;
@@ -24,6 +25,8 @@ import binnie.extratrees.machines.designer.Designer;
 import binnie.extratrees.machines.distillery.DistilleryMachine;
 import binnie.extratrees.machines.fruitpress.FruitPressMachine;
 import binnie.extratrees.machines.lumbermill.LumbermillMachine;
+import binnie.extratrees.modules.ExtraTreesModuleUIDs;
+import binnie.modules.ModuleManager;
 
 public enum ExtraTreeMachine implements IMachineType {
 	Lumbermill(LumbermillMachine.class),
@@ -50,13 +53,16 @@ public enum ExtraTreeMachine implements IMachineType {
 	@Override
 	public boolean isActive() {
 		if (this == ExtraTreeMachine.Tileworker) {
-			return BinnieCore.isBotanyActive();
+			return ModuleManager.isEnabled(Constants.BOTANY_MOD_ID, BotanyModuleUIDs.CERAMIC);
+		}
+		if(this == Glassworker || this == Woodworker || this == Panelworker){
+			return ModuleManager.isEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.CARPENTRY);
 		}
 		return this != ExtraTreeMachine.Nursery;
 	}
 
 	public ItemStack get(final int i) {
-		return new ItemStack(ExtraTrees.machine().blockMachine, i, this.ordinal());
+		return new ItemStack(ModuleMachine.blockMachine, i, this.ordinal());
 	}
 
 	public static class ComponentExtraTreeGUI extends MachineComponent implements IInteraction.RightClick {

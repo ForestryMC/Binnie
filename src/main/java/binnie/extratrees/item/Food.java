@@ -18,8 +18,8 @@ import forestry.core.fluids.Fluids;
 import binnie.core.Mods;
 import binnie.core.item.IItemMiscProvider;
 import binnie.core.util.I18N;
-import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.alcohol.Juice;
+import binnie.extratrees.core.ModuleCore;
 
 public enum Food implements IItemMiscProvider {
 	CRABAPPLE(2),
@@ -160,7 +160,7 @@ public enum Food implements IItemMiscProvider {
 
 	@Override
 	public ItemStack get(final int i) {
-		return new ItemStack(ExtraTrees.items().itemFood, i, this.ordinal());
+		return new ItemStack(ModuleCore.itemFood, i, this.ordinal());
 	}
 
 	@Override

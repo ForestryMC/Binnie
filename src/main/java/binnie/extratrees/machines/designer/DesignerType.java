@@ -6,7 +6,6 @@ import binnie.botany.ceramic.CeramicDesignSystem;
 import binnie.botany.modules.ModuleCeramic;
 import binnie.core.resource.IBinnieTexture;
 import binnie.core.util.I18N;
-import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.api.IDesign;
 import binnie.extratrees.api.IDesignMaterial;
 import binnie.extratrees.api.IDesignSystem;
@@ -59,16 +58,16 @@ public enum DesignerType {
 	private BlockDesign getBlock() {
 		switch (this) {
 			case GlassWorker: {
-				return ExtraTrees.carpentry().blockStained;
+				return ModuleCarpentry.blockStained;
 			}
 			case Panelworker: {
-				return ExtraTrees.carpentry().blockPanel;
+				return ModuleCarpentry.blockPanel;
 			}
 			case Tileworker: {
 				return ModuleCeramic.ceramicTile;
 			}
 			default: {
-				return ExtraTrees.carpentry().blockCarpentry;
+				return ModuleCarpentry.blockCarpentry;
 			}
 		}
 	}

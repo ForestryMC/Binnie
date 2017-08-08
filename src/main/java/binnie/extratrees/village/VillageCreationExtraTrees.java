@@ -1,4 +1,4 @@
-package binnie.extratrees.worldgen;
+package binnie.extratrees.village;
 
 import javax.annotation.Nullable;
 import java.util.List;

@@ -38,9 +38,9 @@ import forestry.core.genetics.alleles.AlleleCategorized;
 import binnie.Binnie;
 import binnie.Constants;
 import binnie.core.util.I18N;
-import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.block.FruitPod;
 import binnie.extratrees.config.ConfigurationMain;
+import binnie.extratrees.core.ModuleCore;
 import binnie.extratrees.item.Food;
 
 public class AlleleETFruit extends AlleleCategorized implements IAlleleFruit, IFruitProvider {
@@ -494,7 +494,7 @@ public class AlleleETFruit extends AlleleCategorized implements IAlleleFruit, IF
 			return "Apple";
 		}
 		for (final ItemStack stack : this.products.keySet()) {
-			if (stack.getItem() == ExtraTrees.items().itemFood) {
+			if (stack.getItem() == ModuleCore.itemFood) {
 				return Food.values()[stack.getItemDamage()].toString();
 			}
 		}

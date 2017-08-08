@@ -1,27 +1,35 @@
 package binnie.extratrees.carpentry;
 
+import com.google.common.collect.ImmutableSet;
+
+import java.util.Set;
+
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 
 import net.minecraftforge.common.MinecraftForge;
 
-import binnie.core.IInitializable;
+import binnie.Constants;
 import binnie.core.block.TileEntityMetadata;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.api.CarpentryManager;
 import binnie.extratrees.api.IDesign;
 import binnie.extratrees.api.IDesignMaterial;
 import binnie.extratrees.api.IDesignSystem;
+import binnie.extratrees.modules.ExtraTreesModuleUIDs;
+import binnie.modules.BinnieModule;
+import binnie.modules.Module;
 
-public class ModuleCarpentry implements IInitializable {
+@BinnieModule(moduleID = ExtraTreesModuleUIDs.CARPENTRY, moduleContainerID = Constants.EXTRA_TREES_MOD_ID, name = "Carpentry", unlocalizedDescription = "extratrees.module.carpentry")
+public class ModuleCarpentry extends Module {
 
 	static {
 		CarpentryManager.carpentryInterface = new CarpentryInterface();
 	}
 
-	public BlockCarpentry blockCarpentry;
-	public BlockCarpentry blockPanel;
-	public BlockStainedDesign blockStained;
+	public static BlockCarpentry blockCarpentry;
+	public static BlockCarpentry blockPanel;
+	public static BlockStainedDesign blockStained;
 
 	public static ItemStack getItemStack(final BlockDesign block, final IDesignMaterial type1, final IDesignMaterial type2, final IDesign design) {
 		return getItemStack(block, block.getDesignSystem().getMaterialIndex(type1), block.getDesignSystem().getMaterialIndex(type2), CarpentryManager.carpentryInterface.getDesignIndex(design));
@@ -74,7 +82,7 @@ public class ModuleCarpentry implements IInitializable {
 	}
 
 	@Override
-	public void preInit() {
+	public void registerItemsAndBlocks() {
 		blockCarpentry = new BlockCarpentry("carpentry");
 		blockPanel = new BlockCarpentryPanel();
 		blockStained = new BlockStainedDesign();
@@ -103,5 +111,10 @@ public class ModuleCarpentry implements IInitializable {
 		Y,
 		X,
 		Z
+	}
+
+	@Override
+	public Set<String> getDependencyUids() {
+		return ImmutableSet.of(ExtraTreesModuleUIDs.MACHINES);
 	}
 }

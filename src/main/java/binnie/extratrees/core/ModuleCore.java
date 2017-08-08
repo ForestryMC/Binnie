@@ -1,37 +1,179 @@
 package binnie.extratrees.core;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.Queue;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
-import forestry.api.arboriculture.IAlleleTreeSpecies;
-import forestry.api.arboriculture.IWoodType;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 
-import binnie.core.BinnieCore;
-import binnie.core.IInitializable;
-import binnie.extratrees.api.CarpentryManager;
-import binnie.extratrees.api.IDesign;
-import binnie.extratrees.api.IDesignMaterial;
-import binnie.extratrees.block.EnumETLog;
-import binnie.extratrees.block.PlankType;
-import binnie.extratrees.genetics.AlleleETFruit;
-import binnie.extratrees.genetics.ETTreeDefinition;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
-public class ModuleCore implements IInitializable {
+import forestry.api.core.Tabs;
+import forestry.api.fuels.EngineBronzeFuel;
+import forestry.api.fuels.FuelManager;
+import forestry.api.recipes.ICarpenterManager;
+import forestry.api.recipes.IStillManager;
+import forestry.api.recipes.RecipeManagers;
+
+import binnie.Binnie;
+import binnie.Constants;
+import binnie.core.Mods;
+import binnie.core.item.ItemMisc;
+import binnie.core.liquid.ManagerLiquid;
+import binnie.extratrees.ExtraTrees;
+import binnie.extratrees.block.BlockHops;
+import binnie.extratrees.item.ExtraTreeItems;
+import binnie.extratrees.item.ExtraTreeLiquid;
+import binnie.extratrees.item.Food;
+import binnie.extratrees.item.ItemETFood;
+import binnie.extratrees.item.ItemHammer;
+import binnie.extratrees.item.ItemHops;
+import binnie.extratrees.modules.ExtraTreesModuleUIDs;
+import binnie.modules.BinnieModule;
+import binnie.modules.Module;
+
+@BinnieModule(moduleID = ExtraTreesModuleUIDs.CORE, moduleContainerID = Constants.EXTRA_TREES_MOD_ID, coreModule = true, name = "Core", unlocalizedDescription = "extratrees.module.core")
+public class ModuleCore extends Module {
+	public static ItemMisc itemMisc;
+	public static Item itemFood;
+	public static Item itemHammer;
+	public static Item itemDurableHammer;
+	public static Item itemHops;
+
+	public static BlockHops hops;
+
+	@Override
+	public void registerItemsAndBlocks() {
+		itemMisc = new ItemMisc(Tabs.tabArboriculture, ExtraTreeItems.values());
+		ExtraTrees.proxy.registerItem(itemMisc);
+
+		Binnie.LIQUID.createLiquids(ExtraTreeLiquid.values());
+		itemFood = new ItemETFood();
+		ExtraTrees.proxy.registerItem(itemFood);
+
+		itemHammer = new ItemHammer(false);
+		ExtraTrees.proxy.registerItem(itemHammer);
+		itemDurableHammer = new ItemHammer(true);
+		ExtraTrees.proxy.registerItem(itemDurableHammer);
+
+		hops = new BlockHops();
+		ExtraTrees.proxy.registerBlock(hops);
+
+		itemHops = new ItemHops(hops, Blocks.FARMLAND);
+		ExtraTrees.proxy.registerItem(itemHops);
+
+		OreDictionary.registerOre("pulpWood", ExtraTreeItems.Sawdust.get(1));
+		Food.registerOreDictionary();
+		OreDictionary.registerOre("cropApple", Items.APPLE);
+		OreDictionary.registerOre("cropHops", itemHops);
+		OreDictionary.registerOre("seedWheat", Items.WHEAT_SEEDS);
+		OreDictionary.registerOre("seedWheat", ExtraTreeItems.GrainWheat.get(1));
+		OreDictionary.registerOre("seedBarley", ExtraTreeItems.GrainBarley.get(1));
+		OreDictionary.registerOre("seedCorn", ExtraTreeItems.GrainCorn.get(1));
+		OreDictionary.registerOre("seedRye", ExtraTreeItems.GrainRye.get(1));
+		OreDictionary.registerOre("seedRoasted", ExtraTreeItems.GrainRoasted.get(1));
+
+		OreDictionary.registerOre("gearWood", ExtraTreeItems.ProvenGear.get(1));
+	}
+
 	@Override
 	public void preInit() {
 	}
 
 	@Override
 	public void init() {
+		Food.CRABAPPLE.addJuice(10, 150, 10);
+		Food.ORANGE.addJuice(10, 400, 15);
+		Food.KUMQUAT.addJuice(10, 300, 10);
+		Food.LIME.addJuice(10, 300, 10);
+		Food.WILD_CHERRY.addOil(20, 50, 5);
+		Food.SOUR_CHERRY.addOil(20, 50, 3);
+		Food.BLACK_CHERRY.addOil(20, 50, 5);
+		Food.Blackthorn.addJuice(10, 50, 5);
+		Food.CHERRY_PLUM.addJuice(10, 100, 60);
+		Food.ALMOND.addOil(20, 80, 5);
+		Food.APRICOT.addJuice(10, 150, 40);
+		Food.GRAPEFRUIT.addJuice(10, 500, 15);
+		Food.PEACH.addJuice(10, 150, 40);
+		Food.SATSUMA.addJuice(10, 300, 10);
+		Food.BUDDHA_HAND.addJuice(10, 400, 15);
+		Food.CITRON.addJuice(10, 400, 15);
+		Food.FINGER_LIME.addJuice(10, 300, 10);
+		Food.KEY_LIME.addJuice(10, 300, 10);
+		Food.MANDERIN.addJuice(10, 400, 10);
+		Food.NECTARINE.addJuice(10, 150, 40);
+		Food.POMELO.addJuice(10, 300, 10);
+		Food.TANGERINE.addJuice(10, 300, 10);
+		Food.PEAR.addJuice(10, 300, 20);
+		Food.SAND_PEAR.addJuice(10, 200, 10);
+		Food.HAZELNUT.addOil(20, 150, 5);
+		Food.BUTTERNUT.addOil(20, 180, 5);
+		Food.BEECHNUT.addOil(20, 100, 4);
+		Food.PECAN.addOil(29, 50, 2);
+		Food.BANANA.addJuice(10, 100, 30);
+		Food.RED_BANANA.addJuice(10, 100, 30);
+		Food.PLANTAIN.addJuice(10, 100, 40);
+		Food.BRAZIL_NUT.addOil(20, 20, 2);
+		Food.FIG.addOil(20, 50, 3);
+		Food.ACORN.addOil(20, 50, 3);
+		Food.ELDERBERRY.addJuice(10, 100, 5);
+		Food.OLIVE.addOil(20, 50, 3);
+		Food.GINGKO_NUT.addOil(20, 50, 5);
+		Food.COFFEE.addOil(15, 20, 2);
+		Food.OSANGE_ORANGE.addJuice(10, 300, 15);
+		Food.CLOVE.addOil(10, 25, 2);
+		Food.COCONUT.addOil(20, 300, 25);
+		Food.CASHEW.addJuice(10, 150, 15);
+		Food.AVACADO.addJuice(10, 300, 15);
+		Food.NUTMEG.addOil(20, 50, 10);
+		Food.ALLSPICE.addOil(20, 50, 10);
+		Food.CHILLI.addJuice(10, 100, 10);
+		Food.STAR_ANISE.addOil(20, 100, 10);
+		Food.MANGO.addJuice(10, 400, 20);
+		Food.STARFRUIT.addJuice(10, 300, 10);
+		Food.CANDLENUT.addJuice(20, 50, 10);
 	}
 
 	@Override
 	public void postInit() {
-		if (BinnieCore.getBinnieProxy().isDebug()) {
+		MinecraftForge.addGrassSeed(new ItemStack(itemHops), 5);
+
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(itemDurableHammer, 1, 0), "wiw", " s ", " s ", 'w', Blocks.OBSIDIAN, 'i', Items.GOLD_INGOT, 's', Items.STICK));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(itemHammer, 1, 0), "wiw", " s ", " s ", 'w', "plankWood", 'i', Items.IRON_INGOT, 's', Items.STICK));
+		GameRegistry.addRecipe(new ShapedOreRecipe(ExtraTreeItems.Yeast.get(8), " m ", "mbm", 'b', Items.BREAD, 'm', Blocks.BROWN_MUSHROOM));
+		GameRegistry.addRecipe(new ShapedOreRecipe(ExtraTreeItems.LagerYeast.get(8), "mbm", " m ", 'b', Items.BREAD, 'm', Blocks.BROWN_MUSHROOM));
+		GameRegistry.addRecipe(ExtraTreeItems.GrainWheat.get(5), " s ", "sss", " s ", 's', Items.WHEAT_SEEDS);
+		GameRegistry.addRecipe(new ShapedOreRecipe(ExtraTreeItems.GrainBarley.get(3), false, " s ", "s  ", " s ", 's', ExtraTreeItems.GrainWheat.get(1)));
+		GameRegistry.addRecipe(new ShapedOreRecipe(ExtraTreeItems.GrainCorn.get(3), false, " s ", "  s", " s ", 's', ExtraTreeItems.GrainWheat.get(1)));
+		GameRegistry.addRecipe(ExtraTreeItems.GrainRye.get(3), "   ", "s s", " s ", 's', ExtraTreeItems.GrainWheat.get(1));
+		GameRegistry.addRecipe(ExtraTreeItems.ProvenGear.get(1), " s ", "s s", " s ", 's', Mods.Forestry.stack("oak_stick"));
+		GameRegistry.addRecipe(ExtraTreeItems.GlassFitting.get(6), "s s", " i ", "s s", 'i', Items.IRON_INGOT, 's', Items.STICK);
+		GameRegistry.addSmelting(ExtraTreeItems.GrainWheat.get(1), ExtraTreeItems.GrainRoasted.get(1), 0.0f);
+		GameRegistry.addSmelting(ExtraTreeItems.GrainRye.get(1), ExtraTreeItems.GrainRoasted.get(1), 0.0f);
+		GameRegistry.addSmelting(ExtraTreeItems.GrainCorn.get(1), ExtraTreeItems.GrainRoasted.get(1), 0.0f);
+		GameRegistry.addSmelting(ExtraTreeItems.GrainBarley.get(1), ExtraTreeItems.GrainRoasted.get(1), 0.0f);
+		try {
+			final Item minium = (Item) Class.forName("com.pahimar.ee3.lib.ItemIds").getField("minium_shard").get(null);
+			GameRegistry.addRecipe(new ShapelessOreRecipe(Food.PAPAYIMAR.get(1), minium, "cropPapaya"));
+		} catch (Exception ignored) {
+		}
+		ICarpenterManager carpenterManager = RecipeManagers.carpenterManager;
+		IStillManager stillManager = RecipeManagers.stillManager;
+		stillManager.addRecipe(25, ExtraTreeLiquid.Resin.get(5), ExtraTreeLiquid.Turpentine.get(3));
+		carpenterManager.addRecipe(25, ExtraTreeLiquid.Turpentine.get(50), ItemStack.EMPTY, itemMisc.getStack(ExtraTreeItems.WoodWax, 4), "x", 'x', Mods.Forestry.stack("beeswax"));
+		FluidStack creosoteOil = Binnie.LIQUID.getFluidStack(ManagerLiquid.CREOSOTE, 50);
+		if (creosoteOil != null) {
+			carpenterManager.addRecipe(25, creosoteOil, ItemStack.EMPTY, itemMisc.getStack(ExtraTreeItems.WoodWax, 1), "x", 'x', Mods.Forestry.stack("beeswax"));
+		}
+
+		FuelManager.bronzeEngineFuel.put(ExtraTreeLiquid.Sap.get(1).getFluid(), new EngineBronzeFuel(ExtraTreeLiquid.Sap.get(1).getFluid(), 20, 10000, 1));
+		FuelManager.bronzeEngineFuel.put(ExtraTreeLiquid.Resin.get(1).getFluid(), new EngineBronzeFuel(ExtraTreeLiquid.Resin.get(1).getFluid(), 30, 10000, 1));
+	/*	if (BinnieCore.getBinnieProxy().isDebug()) {
 			try {
 				final PrintWriter outputSpecies = new PrintWriter(new FileWriter("data/species.html"));
 				final PrintWriter outputLogs = new PrintWriter(new FileWriter("data/logs.html"));
@@ -131,6 +273,11 @@ public class ModuleCore implements IInitializable {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		}
+		}*/
+	}
+
+	@Override
+	public boolean canBeDisabled() {
+		return false;
 	}
 }

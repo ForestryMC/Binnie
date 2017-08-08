@@ -1,28 +1,30 @@
 package binnie.extratrees.integration.crafttweaker;
 
-import crafttweaker.CraftTweakerAPI;
+import com.google.common.collect.ImmutableSet;
+
+import java.util.Set;
+
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Optional;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 
-import binnie.core.IInitializable;
+import binnie.Constants;
 import binnie.extratrees.integration.crafttweaker.handlers.BreweryRecipeHandler;
 import binnie.extratrees.integration.crafttweaker.handlers.DistilleryRecipeHandler;
 import binnie.extratrees.integration.crafttweaker.handlers.FruitPressRecipeHandler;
 import binnie.extratrees.integration.crafttweaker.handlers.LumbermillRecipeHandler;
+import binnie.extratrees.modules.ExtraTreesModuleUIDs;
+import binnie.modules.BinnieModule;
+import binnie.modules.Module;
+import crafttweaker.CraftTweakerAPI;
 
-public class CraftTweakerModule implements IInitializable {
+@BinnieModule(moduleID = ExtraTreesModuleUIDs.CRAFT_TWEAKER, moduleContainerID = Constants.EXTRA_TREES_MOD_ID, name = "Craft Tweaker", unlocalizedDescription = "extratrees.module.crafttweaker")
+public class CraftTweakerModule extends Module {
 	public static final String MOD_ID = "crafttweaker";
 
-	public void init(){
+	@Override
+	public void init(FMLInitializationEvent event) {
 		initCT();
-	}
-
-	@Override
-	public void preInit() {
-	}
-
-	@Override
-	public void postInit() {
 	}
 
 	@Optional.Method(modid = "crafttweaker")
@@ -36,5 +38,10 @@ public class CraftTweakerModule implements IInitializable {
 	@Override
 	public boolean isAvailable() {
 		return Loader.isModLoaded(MOD_ID);
+	}
+
+	@Override
+	public Set<String> getDependencyUids() {
+		return ImmutableSet.of(ExtraTreesModuleUIDs.MACHINES);
 	}
 }

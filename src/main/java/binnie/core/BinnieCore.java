@@ -168,12 +168,12 @@ public final class BinnieCore extends AbstractMod {
 			Item item = new ItemFluidContainer(container);
 			getProxy().registerItem(item);
 		}
-		this.preInit();
+		super.preInit(evt);
 	}
 
 	@Mod.EventHandler
 	public void init(final FMLInitializationEvent evt) {
-		this.init();
+		super.init(evt);
 		for (final AbstractMod mod : getActiveMods()) {
 			NetworkRegistry.INSTANCE.registerGuiHandler(mod.getMod(), new BinnieGUIHandler(mod));
 		}
@@ -182,7 +182,7 @@ public final class BinnieCore extends AbstractMod {
 
 	@Mod.EventHandler
 	public void postInit(final FMLPostInitializationEvent evt) {
-		this.postInit();
+		super.postInit(evt);
 	}
 
 	@Override

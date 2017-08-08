@@ -14,24 +14,107 @@ import binnie.core.liquid.IFluidType;
 import binnie.core.util.I18N;
 
 public enum Alcohol implements IFluidType, ICocktailLiquid {
-	Apple("cider.apple", 16432700, 0.3, 0.05),
-	Apricot("wine.apricot", 15781686, 0.3, 0.1),
-	Banana("wine.banana", 14993485, 0.3, 0.1),
-	Cherry("wine.cherry", 11207702, 0.3, 0.1),
-	Elderberry("wine.elderberry", 9764865, 0.3, 0.1),
-	Peach("cider.peach", 15361563, 0.3, 0.05),
-	Pear("ciderpear", 15061095, 0.3, 0.05),
-	Plum("wine.plum", 12063752, 0.3, 0.1),
-	Carrot("wine.carrot", 16219394, 0.3, 0.1),
-	WhiteWine("wine.white", 15587989, 0.1, 0.1),
-	RedWine("wine.red", 7670539, 0.2, 0.1),
+	Apple("cider.apple", 16432700, 0.3, 0.05){
+		@Override
+		protected void init() {
+			addFementation(Juice.Apple);
+		}
+	},
+	Apricot("wine.apricot", 15781686, 0.3, 0.1){
+		@Override
+		protected void init() {
+			addFementation(Juice.Apricot);
+		}
+	},
+	Banana("wine.banana", 14993485, 0.3, 0.1){
+		@Override
+		protected void init() {
+			addFementation(Juice.Banana);
+		}
+	},
+	Cherry("wine.cherry", 11207702, 0.3, 0.1){
+		@Override
+		protected void init() {
+			addFementation(Juice.Cherry);
+		}
+	},
+	Elderberry("wine.elderberry", 9764865, 0.3, 0.1){
+		@Override
+		protected void init() {
+			addFementation(Juice.Elderberry);
+		}
+	},
+	Peach("cider.peach", 15361563, 0.3, 0.05){
+		@Override
+		protected void init() {
+			addFementation(Juice.Peach);
+		}
+	},
+	Pear("ciderpear", 15061095, 0.3, 0.05){
+		@Override
+		protected void init() {
+			addFementation(Juice.Pear);
+		}
+	},
+	Plum("wine.plum", 12063752, 0.3, 0.1){
+		@Override
+		protected void init() {
+			addFementation(Juice.Plum);
+		}
+	},
+	Carrot("wine.carrot", 16219394, 0.3, 0.1){
+		@Override
+		protected void init() {
+			addFementation(Juice.Carrot);
+		}
+	},
+	WhiteWine("wine.white", 15587989, 0.1, 0.1){
+		@Override
+		protected void init() {
+			addFementation(Juice.WhiteGrape);
+		}
+	},
+	RedWine("wine.red", 7670539, 0.2, 0.1){
+		@Override
+		protected void init() {
+			addFementation(Juice.RedGrape);
+		}
+	},
 	SparklingWine("wine.sparkling", 16709566, 0.1, 0.1),
 	Agave("wine.agave", 13938276, 0.2, 0.1),
-	Potato("fermented.potatoes", 12028240, 0.8, 0.1),
-	Citrus("wine.citrus", 16776960, 0.2, 0.1),
-	Cranberry("wine.cranberry", 11599874, 0.2, 0.1),
-	Pineapple("wine.pineapple", 14724150, 0.2, 0.1),
-	Tomato("wine.tomato", 12458521, 0.2, 0.1),
+	Potato("fermented.potatoes", 12028240, 0.8, 0.1){
+		@Override
+		protected void init() {
+			addFementation("cropPotato");
+		}
+	},
+	Citrus("wine.citrus", 16776960, 0.2, 0.1){
+		@Override
+		protected void init() {
+			addFementation(Juice.Lemon);
+			addFementation(Juice.Lime);
+			addFementation(Juice.Orange);
+			addFementation(Juice.Grapefruit);
+		}
+	},
+	Cranberry("wine.cranberry", 11599874, 0.2, 0.1){
+		@Override
+		protected void init() {
+			addFementation(Juice.Cranberry);
+		}
+	},
+	Pineapple("wine.pineapple", 14724150, 0.2, 0.1){
+		@Override
+		protected void init() {
+			addFementation(Juice.Pineapple);
+		}
+	},
+	Tomato("wine.tomato", 12458521, 0.2, 0.1){
+		@Override
+		protected void init() {
+			addFementation(Juice.Tomato);
+		}
+	},
 	Fruit("juice", 16432700, 0.2, 0.1),
 	Ale("beer.ale", 12991009, 0.7, 0.05),
 	Lager("beer.lager", 15301637, 0.7, 0.05),
@@ -45,25 +128,13 @@ public enum Alcohol implements IFluidType, ICocktailLiquid {
 	Corn("mash.corn", 13411364, 0.9, 0.05);
 
 	static {
-		Alcohol.Apple.setFementation(Juice.Apple);
-		Alcohol.Apricot.setFementation(Juice.Apricot);
-		Alcohol.Banana.setFementation(Juice.Banana);
-		Alcohol.Cherry.setFementation(Juice.Cherry);
-		Alcohol.Elderberry.setFementation(Juice.Elderberry);
-		Alcohol.Peach.setFementation(Juice.Peach);
-		Alcohol.Pear.setFementation(Juice.Pear);
-		Alcohol.Plum.setFementation(Juice.Plum);
-		Alcohol.Carrot.setFementation(Juice.Carrot);
-		Alcohol.WhiteWine.setFementation(Juice.WhiteGrape);
-		Alcohol.RedWine.setFementation(Juice.RedGrape);
-		Alcohol.Citrus.setFementation(Juice.Lemon);
-		Alcohol.Citrus.setFementation(Juice.Lime);
-		Alcohol.Citrus.setFementation(Juice.Orange);
-		Alcohol.Citrus.setFementation(Juice.Grapefruit);
-		Alcohol.Tomato.setFementation(Juice.Tomato);
-		Alcohol.Cranberry.setFementation(Juice.Cranberry);
-		Alcohol.Pineapple.setFementation(Juice.Pineapple);
-		Alcohol.Potato.setFementation("cropPotato");
+		for(Alcohol alcohol : values()){
+			alcohol.init();
+		}
+	}
+
+	protected void init(){
+
 	}
 
 	List<String> fermentationLiquid;
@@ -82,11 +153,11 @@ public enum Alcohol implements IFluidType, ICocktailLiquid {
 		this.abv = (float) abv;
 	}
 
-	private void setFementation(final Juice juice) {
+	protected void addFementation(final Juice juice) {
 		this.fermentationLiquid.add(juice.getIdentifier());
 	}
 
-	private void setFementation(final String oreDict) {
+	protected void addFementation(final String oreDict) {
 		this.fermentationSolid = oreDict;
 	}
 
@@ -116,7 +187,7 @@ public enum Alcohol implements IFluidType, ICocktailLiquid {
 	}
 
 	@Override
-	public int getColour() {
+	public int getColor() {
 		return this.colour;
 	}
 
@@ -136,18 +207,18 @@ public enum Alcohol implements IFluidType, ICocktailLiquid {
 	}
 
 	@Override
-	public boolean canPlaceIn(final FluidContainerType container) {
+	public boolean canPlaceIn(final FluidContainerType type) {
 		return true;
 	}
 
 	@Override
-	public boolean showInCreative(final FluidContainerType container) {
-		return container == FluidContainerType.GLASS;
+	public boolean showInCreative(final FluidContainerType type) {
+		return type == FluidContainerType.GLASS;
 	}
 
 	@Override
-	public int getContainerColour() {
-		return this.getColour();
+	public int getContainerColor() {
+		return this.getColor();
 	}
 
 	@Override

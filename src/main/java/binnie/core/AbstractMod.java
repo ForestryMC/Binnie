@@ -8,6 +8,7 @@ import java.util.List;
 
 import net.minecraftforge.common.MinecraftForge;
 
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
@@ -68,7 +69,7 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
 	}
 
 	@Override
-	public void preInit() {
+	public void preInit(FMLPreInitializationEvent event) {
 		getProxy().setMod(this);
 		if (!this.isAvailable()) {
 			disabledSetupAPI();
@@ -83,7 +84,17 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
 		for (final IInitializable module : this.modules) {
 			module.preInit();
 		}
+		preInitModules(event);
 		getProxy().registerModels();
+	}
+
+	@Override
+	public void preInit() {
+
+	}
+
+	protected void preInitModules(FMLPreInitializationEvent event){
+
 	}
 
 	@Override

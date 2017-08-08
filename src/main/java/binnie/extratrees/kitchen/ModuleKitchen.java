@@ -3,14 +3,18 @@ package binnie.extratrees.kitchen;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 
-import binnie.core.IInitializable;
+import binnie.Constants;
+import binnie.extratrees.modules.ExtraTreesModuleUIDs;
+import binnie.modules.BinnieModule;
+import binnie.modules.Module;
 
-public class ModuleKitchen implements IInitializable {
+@BinnieModule(moduleID = ExtraTreesModuleUIDs.KITCHEN, moduleContainerID = Constants.EXTRA_TREES_MOD_ID, name = "Kitchen", unlocalizedDescription = "extratrees.module.kitchen")
+public class ModuleKitchen extends Module {
 
-	public Block blockKitchen = Blocks.AIR;
+	public static Block blockKitchen = Blocks.AIR;
 
 	@Override
-	public void preInit() {
+	public void registerItemsAndBlocks() {
 		// TODO implement kitchen
 		/*final MachineGroup machineGroup = new MachineGroup(ExtraTrees.instance, "kitchen", "kitchen", KitchenMachine.values());
 		machineGroup.setCreativeTab(Tabs.tabArboriculture);
