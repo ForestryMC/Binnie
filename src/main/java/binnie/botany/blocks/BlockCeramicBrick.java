@@ -236,7 +236,7 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 		if (ceramic != null) {
 			return ceramic.pair();
 		}
-		return null;
+		return CeramicBrickPair.EMPTY;
 	}
 
 	@Override
