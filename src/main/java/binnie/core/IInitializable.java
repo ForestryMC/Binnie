@@ -1,11 +1,17 @@
 package binnie.core;
 
 public interface IInitializable {
-	void preInit();
+	default void preInit() {
 
-	void init();
+	}
 
-	void postInit();
+	default void init() {
+
+	}
+
+	default void postInit() {
+
+	}
 
 	/**
 	 * For compat modules if the mod is not loaded the module will not be registered.

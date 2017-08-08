@@ -39,16 +39,17 @@ public class ModuleMachine implements IInitializable {
 		(packageGenetic = new MachineGroup(Genetics.instance, "machine", "machine", GeneticMachine.values())).setCreativeTab(CreativeTabGenetics.instance);
 		(packageLabMachine = new MachineGroup(Genetics.instance, "lab_machine", "lab_machine", LaboratoryMachine.values())).setCreativeTab(CreativeTabGenetics.instance);
 		(packageAdvGenetic = new MachineGroup(Genetics.instance, "adv_machine", "adv_machine", AdvGeneticMachine.values())).setCreativeTab(CreativeTabGenetics.instance);
-	}
 
-	@Override
-	public void init() {
 		ModuleMachine.spriteSequencer = new ValidatorSprite(Genetics.instance, "validator/sequencer.0", "validator/sequencer.1");
 		ModuleMachine.spriteSerum = new ValidatorSprite(Genetics.instance, "validator/serum.0", "validator/serum.1");
 		ModuleMachine.spriteEnzyme = new ValidatorSprite(Genetics.instance, "validator/enzyme.0", "validator/enzyme.1");
 		ModuleMachine.spriteDye = new ValidatorSprite(Genetics.instance, "validator/dye.0", "validator/dye.1");
 		ModuleMachine.spriteNugget = new ValidatorSprite(Genetics.instance, "validator/nugget.0", "validator/nugget.1");
 		ModuleMachine.spriteBacteria = new ValidatorSprite(Genetics.instance, "validator/bacteria.0", "validator/bacteria.1");
+	}
+
+	@Override
+	public void init() {
 		Incubator.addRecipes();
 	}
 

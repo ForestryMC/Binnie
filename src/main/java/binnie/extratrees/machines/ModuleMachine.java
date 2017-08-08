@@ -35,10 +35,7 @@ public class ModuleMachine implements IInitializable {
 		// TODO fix rendering
 		Object rendererMachine = null;// BinnieCore.proxy.createObject("binnie.core.machines.RendererMachine");
 		BinnieCore.getBinnieProxy().registerTileEntity(TileEntityNursery.class, "binnie.tile.nursery", rendererMachine);
-	}
 
-	@Override
-	public void init() {
 		ModuleMachine.spritePolish = new ValidatorSprite(ExtraTrees.instance, "validator/polish.0", "validator/polish.1");
 	}
 

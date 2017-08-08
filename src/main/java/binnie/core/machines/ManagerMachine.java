@@ -68,7 +68,7 @@ public class ManagerMachine extends ManagerBase {
 	}
 
 	@Override
-	public void init() {
+	public void preInit() {
 		SlotValidator.spriteBee = new ValidatorSprite(BinnieCore.getInstance(), "validator/bee.0", "validator/bee.1");
 		SlotValidator.spriteFrame = new ValidatorSprite(BinnieCore.getInstance(), "validator/frame.0", "validator/frame.1");
 		SlotValidator.spriteCircuit = new ValidatorSprite(BinnieCore.getInstance(), "validator/circuit.0", "validator/circuit.1");
