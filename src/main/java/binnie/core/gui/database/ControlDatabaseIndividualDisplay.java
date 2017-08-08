@@ -41,12 +41,9 @@ public class ControlDatabaseIndividualDisplay extends ControlItemDisplay impleme
 		super(parent, x, y, size);
 		this.species = null;
 		this.discovered = EnumDiscoveryState.Show;
-		this.addSelfEventHandler(new EventMouse.Down.Handler() {
-			@Override
-			public void onEvent(final EventMouse.Down event) {
-				if (event.getButton() == 0 && ControlDatabaseIndividualDisplay.this.species != null && EnumDiscoveryState.Show == ControlDatabaseIndividualDisplay.this.discovered) {
-					((WindowAbstractDatabase) ControlDatabaseIndividualDisplay.this.getTopParent()).gotoSpeciesDelayed(ControlDatabaseIndividualDisplay.this.species);
-				}
+		this.addSelfEventHandler(EventMouse.Down.class, event -> {
+			if (event.getButton() == 0 && ControlDatabaseIndividualDisplay.this.species != null && EnumDiscoveryState.Show == ControlDatabaseIndividualDisplay.this.discovered) {
+				((WindowAbstractDatabase) ControlDatabaseIndividualDisplay.this.getTopParent()).gotoSpeciesDelayed(ControlDatabaseIndividualDisplay.this.species);
 			}
 		});
 	}

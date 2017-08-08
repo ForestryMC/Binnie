@@ -48,17 +48,11 @@ public class CraftGUIUtil {
 	}
 
 	public static <T> void linkWidgets(final IControlValue<T> tab, final IControlValue<T> target) {
-		tab.addSelfEventHandler(new EventValueChanged.Handler() {
-			@Override
-			public void onEvent(final EventValueChanged event) {
-				target.setValue((T) event.getValue());
-			}
+		tab.addSelfEventHandler(EventValueChanged.class, event -> {
+			target.setValue((T) event.getValue());
 		});
-		target.addSelfEventHandler(new EventValueChanged.Handler() {
-			@Override
-			public void onEvent(final EventValueChanged event) {
-				tab.setValue((T) event.getValue());
-			}
+		target.addSelfEventHandler(EventValueChanged.class, event -> {
+			tab.setValue((T) event.getValue());
 		});
 	}
 }

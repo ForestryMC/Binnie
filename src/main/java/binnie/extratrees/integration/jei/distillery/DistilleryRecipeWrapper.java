@@ -12,7 +12,6 @@ import binnie.core.gui.CraftGUI;
 import binnie.core.gui.geometry.Point;
 import binnie.extratrees.machines.distillery.window.ControlDistilleryProgress;
 import mezz.jei.api.ingredients.IIngredients;
-import mezz.jei.api.recipe.BlankRecipeWrapper;
 
 public class DistilleryRecipeWrapper implements IRecipeWrapper {
 	private final int level;

@@ -1,7 +1,6 @@
 package binnie.extratrees.block.decor;
 
 import javax.annotation.Nullable;
-import java.util.List;
 
 import net.minecraft.block.BlockFence;
 import net.minecraft.block.SoundType;

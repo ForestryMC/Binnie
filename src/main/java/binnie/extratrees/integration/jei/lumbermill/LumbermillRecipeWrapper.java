@@ -11,7 +11,6 @@ import net.minecraftforge.fluids.FluidStack;
 import binnie.extratrees.item.ExtraTreeItems;
 import binnie.extratrees.machines.lumbermill.LumbermillLogic;
 import mezz.jei.api.ingredients.IIngredients;
-import mezz.jei.api.recipe.BlankRecipeWrapper;
 
 public class LumbermillRecipeWrapper implements IRecipeWrapper {
 	private static final FluidStack WATER = new FluidStack(FluidRegistry.WATER, LumbermillLogic.WATER_PER_TICK * LumbermillLogic.PROCESS_LENGTH);

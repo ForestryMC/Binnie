@@ -1,28 +1,41 @@
 package binnie.core.gui.events;
 
+import javax.annotation.Nullable;
+
 import binnie.core.gui.IWidget;
 
-public abstract class EventHandler<E extends Event> {
-	Class<? extends E> eventClass;
-	Origin origin;
-	IWidget relative;
+public final class EventHandler<E extends Event> {
+	private final OnEventHandler<E> onEventHandler;
+	private final Class<? super E> eventClass;
+	private final Origin origin;
+	@Nullable
+	private final IWidget relative;
 
-	public EventHandler(Class<? extends E> eventClass) {
+	public EventHandler(Class<? super E> eventClass, OnEventHandler<E> onEventHandler) {
 		this.origin = Origin.ANY;
 		this.relative = null;
 		this.eventClass = eventClass;
+		this.onEventHandler = onEventHandler;
 	}
 
-	public EventHandler<E> setOrigin(Origin origin, IWidget relative) {
+	public EventHandler(Class<? super E> eventClass, Origin origin, IWidget relative, OnEventHandler<E> onEventHandler) {
 		this.origin = origin;
 		this.relative = relative;
-		return this;
+		this.eventClass = eventClass;
+		this.onEventHandler = onEventHandler;
 	}
 
-	public abstract void onEvent(E event);
+	public final void onEvent(E event) {
+		onEventHandler.onEvent(event);
+	}
 
 	public final boolean handles(Event event) {
-		return this.eventClass.isInstance(event) && this.origin.isOrigin(event.getOrigin(), this.relative);
+		boolean instance = this.eventClass.isInstance(event);
+		return instance && this.origin.isOrigin(event.getOrigin(), this.relative);
+	}
+
+	public interface OnEventHandler<E> {
+		void onEvent(E event);
 	}
 
 	public enum Origin {

@@ -136,15 +136,14 @@ public interface IWidget {
 	 */
 	void receiveEvent(Event event);
 
-	/**
-	 * Adds an event handler to this widget
-	 */
-	<E extends Event> void addEventHandler(EventHandler<E> eventHandler);
+	<E extends Event> void addEventHandler(Class<? super E> eventClass, EventHandler.OnEventHandler<E> handler);
+
+	<E extends Event> void addEventHandler(Class<? super E> eventClass, EventHandler.Origin origin, IWidget relative, EventHandler.OnEventHandler<E> handler);
 
 	/**
 	 * Adds an event handler to this widget and sets his origin to self
 	 */
-	<E extends Event> void addSelfEventHandler(EventHandler<E> eventHandler);
+	<E extends Event> void addSelfEventHandler(Class<? super E> eventClass, EventHandler.OnEventHandler<E> handler);
 
 	@SideOnly(Side.CLIENT)
 	void onUpdateClient();

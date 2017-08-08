@@ -117,49 +117,47 @@ public class WindowGenesis extends Window {
 				return new ControlTextOption<>(this.getContent(), value, y);
 			}
 		};
-		tabSystems.addEventHandler(new EventValueChanged.Handler() {
-			@Override
-			public void onEvent(final EventValueChanged event) {
-				root = ((BreedingSystem) event.getValue()).getSpeciesRoot();
-				template = root.getDefaultTemplate();
-				refreshTemplate(null);
+		tabSystems.addEventHandler(EventValueChanged.class, EventHandler.Origin.SELF, tabSystems, event -> {
+			Object value = event.getValue();
+			if (!(value instanceof BreedingSystem)) {
+				return;
 			}
-		}.setOrigin(EventHandler.Origin.SELF, tabSystems));
-		this.geneList.addEventHandler(new EventValueChanged.Handler() {
-			@Override
-			public void onEvent(final EventValueChanged event) {
-				if (event.value == null) {
-					return;
-				}
-				Map<IChromosomeType, List<IAllele>> map = Binnie.GENETICS.getChromosomeMap(root);
-				List<Gene> options = new ArrayList<>();
-				Gene gene = (Gene) event.value;
-				IChromosomeType chromosomeType = gene.getChromosome();
-				List<IAllele> alleles = map.get(chromosomeType);
-				for (IAllele allele : alleles) {
-					options.add(new Gene(allele, chromosomeType, root));
-				}
-				geneOptions.setOptions(options);
+			BreedingSystem breedingSystem = (BreedingSystem) value;
+			root = breedingSystem.getSpeciesRoot();
+			template = root.getDefaultTemplate();
+			refreshTemplate(null);
+		});
+		this.geneList.addEventHandler(EventValueChanged.class, EventHandler.Origin.SELF, this.geneList, event -> {
+			Object value = event.getValue();
+			if (!(value instanceof Gene)) {
+				return;
 			}
-		}.setOrigin(EventHandler.Origin.SELF, this.geneList));
-		this.geneOptions.addEventHandler(new EventValueChanged.Handler() {
-			@Override
-			public void onEvent(final EventValueChanged event) {
-				if (event.value == null) {
-					return;
-				}
-				Gene gene = (Gene) event.value;
-				IChromosomeType chromosomeType = gene.getChromosome();
-				ISpeciesRoot speciesRoot = gene.getSpeciesRoot();
-				IAllele allele = gene.getAllele();
-				if (chromosomeType == speciesRoot.getSpeciesChromosomeType()) {
-					template = speciesRoot.getTemplate(allele.getUID());
-				}else {
-					template[chromosomeType.ordinal()] = allele;
-				}
-				refreshTemplate(chromosomeType);
+			Gene gene = (Gene) value;
+			Map<IChromosomeType, List<IAllele>> map = Binnie.GENETICS.getChromosomeMap(root);
+			List<Gene> options = new ArrayList<>();
+			IChromosomeType chromosomeType = gene.getChromosome();
+			List<IAllele> alleles = map.get(chromosomeType);
+			for (IAllele allele : alleles) {
+				options.add(new Gene(allele, chromosomeType, root));
 			}
-		}.setOrigin(EventHandler.Origin.SELF, this.geneOptions));
+			geneOptions.setOptions(options);
+		});
+		this.geneOptions.addEventHandler(EventValueChanged.class, EventHandler.Origin.SELF, this.geneOptions, event -> {
+			Object value = event.getValue();
+			if (!(value instanceof Gene)) {
+				return;
+			}
+			Gene gene = (Gene) value;
+			IChromosomeType chromosomeType = gene.getChromosome();
+			ISpeciesRoot speciesRoot = gene.getSpeciesRoot();
+			IAllele allele = gene.getAllele();
+			if (chromosomeType == speciesRoot.getSpeciesChromosomeType()) {
+				template = speciesRoot.getTemplate(allele.getUID());
+			}else {
+				template[chromosomeType.ordinal()] = allele;
+			}
+			refreshTemplate(chromosomeType);
+		});
 		this.panelPickup = new Panel(this, 16, 140, 60, 42, MinecraftGUI.PanelType.BLACK);
 		this.refreshTemplate(null);
 	}
@@ -194,14 +192,11 @@ public class WindowGenesis extends Window {
 			ControlItemDisplay display = new ControlItemDisplay(this.panelPickup, 4 + i % 3 * 18, 4 + i / 3 * 18);
 			display.setItemStack(stack);
 			display.setTooltip();
-			display.addEventHandler(new EventMouse.Down.Handler() {
-				@Override
-				public void onEvent(final EventMouse.Down event) {
-					NBTTagCompound nbt = new NBTTagCompound();
-					stack.writeToNBT(nbt);
-					Window.get(event.getOrigin()).sendClientAction(ACTION_GENESIS, nbt);
-				}
-			}.setOrigin(EventHandler.Origin.SELF, display));
+			display.addEventHandler(EventMouse.Down.class, EventHandler.Origin.SELF, display, event -> {
+				NBTTagCompound nbt = new NBTTagCompound();
+				stack.writeToNBT(nbt);
+				Window.get(event.getOrigin()).sendClientAction(ACTION_GENESIS, nbt);
+			});
 			++i;
 		}
 	}

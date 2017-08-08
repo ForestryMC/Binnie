@@ -27,12 +27,8 @@ public class ControlSystemButton extends Control {
 	@Override
 	public void initialise() {
 		addAttribute(Attribute.MOUSE_OVER);
-		addSelfEventHandler(new EventMouse.Down.Handler() {
-			@Override
-			@SideOnly(Side.CLIENT)
-			public void onEvent(EventMouse.Down event) {
-				window.setSystem(system);
-			}
+		addSelfEventHandler(EventMouse.Down.class, event -> {
+			window.setSystem(system);
 		});
 	}
 

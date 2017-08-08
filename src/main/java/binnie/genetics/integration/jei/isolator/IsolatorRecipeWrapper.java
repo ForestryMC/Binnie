@@ -18,7 +18,6 @@ import forestry.core.fluids.Fluids;
 import binnie.genetics.item.GeneticsItems;
 import binnie.genetics.machine.isolator.IsolatorLogic;
 import mezz.jei.api.ingredients.IIngredients;
-import mezz.jei.api.recipe.BlankRecipeWrapper;
 
 public class IsolatorRecipeWrapper implements IRecipeWrapper {
 	private static final FluidStack ETHANOL = Fluids.BIO_ETHANOL.getFluid(IsolatorLogic.ETHANOL_PER_PROCESS);

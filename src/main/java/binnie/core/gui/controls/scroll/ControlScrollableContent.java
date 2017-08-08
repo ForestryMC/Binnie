@@ -21,16 +21,13 @@ public class ControlScrollableContent<T extends IWidget> extends Control impleme
 		if (scrollBarSize != 0) {
 			new ControlScroll(this, this.getSize().xPos() - scrollBarSize, 0, scrollBarSize, this.getSize().yPos(), this);
 		}
-		this.addEventHandler(new EventMouse.Wheel.Handler() {
-			@Override
-			public void onEvent(final EventMouse.Wheel event) {
-				if (ControlScrollableContent.this.getRelativeMousePosition().xPos() > 0 && ControlScrollableContent.this.getRelativeMousePosition().yPos() > 0 && ControlScrollableContent.this.getRelativeMousePosition().xPos() < ControlScrollableContent.this.getSize().xPos() && ControlScrollableContent.this.getRelativeMousePosition().yPos() < ControlScrollableContent.this.getSize().yPos()) {
-					if (ControlScrollableContent.this.getMovementRange() == 0) {
-						return;
-					}
-					final float percentageMove = 0.8f / ControlScrollableContent.this.getMovementRange();
-					ControlScrollableContent.this.movePercentage(percentageMove * -event.getDWheel());
+		this.addEventHandler(EventMouse.Wheel.class, event -> {
+			if (ControlScrollableContent.this.getRelativeMousePosition().xPos() > 0 && ControlScrollableContent.this.getRelativeMousePosition().yPos() > 0 && ControlScrollableContent.this.getRelativeMousePosition().xPos() < ControlScrollableContent.this.getSize().xPos() && ControlScrollableContent.this.getRelativeMousePosition().yPos() < ControlScrollableContent.this.getSize().yPos()) {
+				if (ControlScrollableContent.this.getMovementRange() == 0) {
+					return;
 				}
+				final float percentageMove = 0.8f / ControlScrollableContent.this.getMovementRange();
+				ControlScrollableContent.this.movePercentage(percentageMove * -event.getDWheel());
 			}
 		});
 		this.scrollBarSize = scrollBarSize;
@@ -44,13 +41,10 @@ public class ControlScrollableContent<T extends IWidget> extends Control impleme
 
 		child.setCroppedZone(this, new Area(1, 1, getSize().xPos() - 2 - this.scrollBarSize, getSize().yPos() - 2));
 
-		child.addSelfEventHandler(new EventWidget.ChangeSize.Handler() {
-			@Override
-			public void onEvent(final EventWidget.ChangeSize event) {
-				child.setOffset(new Point(0, Math.round(-ControlScrollableContent.this.percentageIndex * ControlScrollableContent.this.getMovementRange())));
-				if (ControlScrollableContent.this.getMovementRange() == 0) {
-					ControlScrollableContent.this.percentageIndex = 0;
-				}
+		child.addSelfEventHandler(EventWidget.ChangeSize.class, event -> {
+			child.setOffset(new Point(0, Math.round(-ControlScrollableContent.this.percentageIndex * ControlScrollableContent.this.getMovementRange())));
+			if (ControlScrollableContent.this.getMovementRange() == 0) {
+				ControlScrollableContent.this.percentageIndex = 0;
 			}
 		});
 	}

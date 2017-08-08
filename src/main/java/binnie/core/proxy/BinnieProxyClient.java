@@ -1,7 +1,5 @@
 package binnie.core.proxy;
 
-import com.google.common.base.Throwables;
-
 import javax.annotation.Nullable;
 import java.io.File;
 import java.io.IOException;

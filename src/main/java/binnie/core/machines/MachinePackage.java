@@ -2,9 +2,6 @@ package binnie.core.machines;
 
 import net.minecraft.tileentity.TileEntity;
 
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import binnie.core.util.I18N;
 
 public abstract class MachinePackage {

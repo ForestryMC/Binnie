@@ -6,7 +6,7 @@ import binnie.core.gui.IWidget;
 
 public class EventValueChanged<T> extends Event {
 	@Nullable
-	public T value;
+	private T value;
 
 	public EventValueChanged(final IWidget origin, @Nullable final T value) {
 		super(origin);
@@ -16,11 +16,5 @@ public class EventValueChanged<T> extends Event {
 	@Nullable
 	public T getValue() {
 		return this.value;
-	}
-
-	public abstract static class Handler extends EventHandler<EventValueChanged> {
-		public Handler() {
-			super(EventValueChanged.class);
-		}
 	}
 }

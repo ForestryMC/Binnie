@@ -33,16 +33,13 @@ public class ControlFruitPressProgress extends ControlProgressBase {
 	protected ControlFruitPressProgress(final IWidget parent, final int x, final int y) {
 		super(parent, x, y, 37, 69);
 		this.addAttribute(Attribute.MOUSE_OVER);
-		this.addSelfEventHandler(new EventMouse.Down.Handler() {
-			@Override
-			public void onEvent(final EventMouse.Down event) {
-				if (event.getY() - event.getOrigin().getAbsolutePosition().yPos() > 52 + Math.round(16 * progress)) {
-					final NBTTagCompound action = new NBTTagCompound();
-					Window.get(ControlFruitPressProgress.this.getWidget()).sendClientAction("clear-fruit", action);
-				} else {
-					final NBTTagCompound action = new NBTTagCompound();
-					Window.get(ControlFruitPressProgress.this.getWidget()).sendClientAction("fruitpress-click", action);
-				}
+		this.addSelfEventHandler(EventMouse.Down.class, event -> {
+			if (event.getY() - event.getOrigin().getAbsolutePosition().yPos() > 52 + Math.round(16 * progress)) {
+				final NBTTagCompound action = new NBTTagCompound();
+				Window.get(ControlFruitPressProgress.this.getWidget()).sendClientAction("clear-fruit", action);
+			} else {
+				final NBTTagCompound action = new NBTTagCompound();
+				Window.get(ControlFruitPressProgress.this.getWidget()).sendClientAction("fruitpress-click", action);
 			}
 		});
 	}

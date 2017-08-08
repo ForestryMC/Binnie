@@ -98,14 +98,11 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 			if (showInfoButton != null) {
 				new ControlInfo(this, this.titleButtonLeft += 22, 8, showInfoButton);
 			}
-			this.addSelfEventHandler(new EventWidget.ChangeSize.Handler() {
-				@Override
-				public void onEvent(final EventWidget.ChangeSize event) {
-					if (Window.this.isClient()) {
-						Window.this.getGui().resize(Window.this.getSize());
-						if (Window.this.title != null) {
-							Window.this.title.setSize(new Point(Window.this.getWidth(), Window.this.title.getHeight()));
-						}
+			this.addSelfEventHandler(EventWidget.ChangeSize.class, event -> {
+				if (Window.this.isClient()) {
+					Window.this.getGui().resize(Window.this.getSize());
+					if (Window.this.title != null) {
+						Window.this.title.setSize(new Point(Window.this.getWidth(), Window.this.title.getHeight()));
 					}
 				}
 			});
@@ -116,6 +113,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 		return (T) widget.getTopParent();
 	}
 
+	@SideOnly(Side.CLIENT)
 	public void getTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		final Deque<IWidget> queue = this.calculateMousedOverWidgets();
 		while (!queue.isEmpty()) {

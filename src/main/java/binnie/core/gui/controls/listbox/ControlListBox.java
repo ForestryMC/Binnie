@@ -19,20 +19,17 @@ public class ControlListBox<T> extends ControlScrollableContent<ControlList<T>> 
 		T defaultValue = content == null ? null : content.getDefaultValue();
 		ControlList<T> child = new ControlList<>(this, 1, 1, this.getWidth() - 2 - this.scrollBarSize, this.getHeight() - 2, defaultValue);
 		this.setScrollableContent(child);
-		this.addEventHandler(new EventKey.Down.Handler() {
-			@Override
-			public void onEvent(final EventKey.Down event) {
-				if (ControlListBox.this.calculateIsMouseOver()) {
-					int currentIndex = ControlListBox.this.getContent().getCurrentIndex();
-					if (event.getKey() == 208) {
-						if (++currentIndex >= ControlListBox.this.getContent().getOptions().size()) {
-							currentIndex = 0;
-						}
-					} else if (event.getKey() == 200 && --currentIndex < 0) {
-						currentIndex = ControlListBox.this.getContent().getOptions().size() - 1;
+		this.addEventHandler(EventKey.Down.class, event -> {
+			if (ControlListBox.this.calculateIsMouseOver()) {
+				int currentIndex = ControlListBox.this.getContent().getCurrentIndex();
+				if (event.getKey() == 208) {
+					if (++currentIndex >= ControlListBox.this.getContent().getOptions().size()) {
+						currentIndex = 0;
 					}
-					ControlListBox.this.getContent().setIndex(currentIndex);
+				} else if (event.getKey() == 200 && --currentIndex < 0) {
+					currentIndex = ControlListBox.this.getContent().getOptions().size() - 1;
 				}
+				ControlListBox.this.getContent().setIndex(currentIndex);
 			}
 		});
 	}

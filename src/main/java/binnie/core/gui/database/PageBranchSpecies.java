@@ -24,12 +24,9 @@ public class PageBranchSpecies extends PageBranch {
 	public PageBranchSpecies(final IWidget parent, final DatabaseTab tab) {
 		super(parent, tab);
 		this.pageBranchSpecies_title = new ControlTextCentered(this, 8, I18N.localise(DatabaseConstants.SPECIES_KEY));
-		this.addEventHandler(new EventValueChanged.Handler() {
-			@Override
-			public void onEvent(final EventValueChanged event) {
-				if (event.isOrigin(PageBranchSpecies.this.pageBranchSpecies_speciesList)) {
-					((WindowAbstractDatabase) PageBranchSpecies.this.getTopParent()).gotoSpecies((IAlleleSpecies) event.getValue());
-				}
+		this.addEventHandler(EventValueChanged.class, event -> {
+			if (event.isOrigin(PageBranchSpecies.this.pageBranchSpecies_speciesList)) {
+				((WindowAbstractDatabase) PageBranchSpecies.this.getTopParent()).gotoSpecies((IAlleleSpecies) event.getValue());
 			}
 		});
 		this.pageBranchSpecies_speciesList = new ControlSpeciesBox(this, 4, 20, 136, 152);

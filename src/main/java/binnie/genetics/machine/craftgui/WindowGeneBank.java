@@ -83,12 +83,9 @@ public class WindowGeneBank extends WindowMachine {
 	@SideOnly(Side.CLIENT)
 	public void initialiseClient() {
 		super.initialiseClient();
-		this.addEventHandler(new EventValueChanged.Handler() {
-			@Override
-			public void onEvent(final EventValueChanged event) {
-				if (event.value instanceof BreedingSystem) {
-					WindowGeneBank.this.genes.setValue((BreedingSystem) event.value);
-				}
+		this.addEventHandler(EventValueChanged.class, event -> {
+			if (event.getValue() instanceof BreedingSystem) {
+				WindowGeneBank.this.genes.setValue((BreedingSystem) event.getValue());
 			}
 		});
 		int boxX = 100;
@@ -102,16 +99,13 @@ public class WindowGeneBank extends WindowMachine {
 		new Panel(this, boxX + 24 + geneBoxWidth, 32, 14, 120, MinecraftGUI.PanelType.GRAY);
 		final ControlScrollableContent<ControlGeneScroll> scroll = new ControlScrollableContent<>(this, boxX + 24 + 2, 34, geneBoxWidth + 10, 116, 12);
 		final ControlTextEdit edit = new ControlTextEdit(this, boxX + 27 + geneBoxWidth - 70, 18, 80, 12);
-		this.addEventHandler(new EventTextEdit.Handler() {
-			@Override
-			public void onEvent(final EventTextEdit event) {
-				String value = event.getValue();
-				if (value == null) {
-					value = "";
-				}
-				WindowGeneBank.this.genes.setFilter(value);
+		this.addEventHandler(EventTextEdit.class, EventHandler.Origin.SELF, edit, event -> {
+			String value = event.getValue();
+			if (value == null) {
+				value = "";
 			}
-		}.setOrigin(EventHandler.Origin.SELF, edit));
+			WindowGeneBank.this.genes.setFilter(value);
+		});
 		this.genes = new ControlGeneScroll(scroll, 1, 1, geneBoxWidth, 116);
 		scroll.setScrollableContent(this.genes);
 		this.genes.setGenes(Binnie.GENETICS.beeBreedingSystem);

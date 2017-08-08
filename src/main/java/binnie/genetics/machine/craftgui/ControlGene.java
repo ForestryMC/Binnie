@@ -30,16 +30,13 @@ public class ControlGene extends Control implements IControlValue<IGene>, IToolt
 		super(parent, x, y, 16, 16);
 		this.gene = gene;
 		this.addAttribute(Attribute.MOUSE_OVER);
-		this.addSelfEventHandler(new EventMouse.Down.Handler() {
-			@Override
-			public void onEvent(final EventMouse.Down event) {
-				if (ControlGene.this.canFill(Window.get(ControlGene.this.getWidget()).getHeldItemStack())) {
-					final NBTTagCompound action = new NBTTagCompound();
-					final NBTTagCompound geneNBT = new NBTTagCompound();
-					ControlGene.this.getValue().writeToNBT(geneNBT);
-					action.setTag("gene", geneNBT);
-					Window.get(ControlGene.this.getWidget()).sendClientAction("gene-select", action);
-				}
+		this.addSelfEventHandler(EventMouse.Down.class, event -> {
+			if (ControlGene.this.canFill(Window.get(ControlGene.this.getWidget()).getHeldItemStack())) {
+				final NBTTagCompound action = new NBTTagCompound();
+				final NBTTagCompound geneNBT = new NBTTagCompound();
+				ControlGene.this.getValue().writeToNBT(geneNBT);
+				action.setTag("gene", geneNBT);
+				Window.get(ControlGene.this.getWidget()).sendClientAction("gene-select", action);
 			}
 		});
 	}

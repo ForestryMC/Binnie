@@ -1,8 +1,6 @@
 package binnie.extratrees.carpentry;
 
 import javax.annotation.Nullable;
-import java.util.Collections;
-import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.Block;

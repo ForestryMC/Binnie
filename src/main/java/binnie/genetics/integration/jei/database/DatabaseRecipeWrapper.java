@@ -17,7 +17,6 @@ import binnie.genetics.integration.jei.GeneticsJeiPlugin;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IDrawableAnimated;
 import mezz.jei.api.ingredients.IIngredients;
-import mezz.jei.api.recipe.BlankRecipeWrapper;
 
 public class DatabaseRecipeWrapper implements IRecipeWrapper {
 	private final ItemStack input;

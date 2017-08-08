@@ -22,27 +22,21 @@ public class ControlScrollBar extends Control {
 		super(parent, x, y, w, h);
 		this.scrollable = scrollable2;
 		this.addAttribute(Attribute.MOUSE_OVER);
-		this.addSelfEventHandler(new EventMouse.Drag.Handler() {
-			@Override
-			public void onEvent(final EventMouse.Drag event) {
-				ControlScrollBar.this.scrollable.movePercentage(event.getDy() / (float) (ControlScrollBar.this.getHeight() - ControlScrollBar.this.getBarHeight()));
-			}
+		this.addSelfEventHandler(EventMouse.Drag.class, event -> {
+			ControlScrollBar.this.scrollable.movePercentage(event.getDy() / (float) (ControlScrollBar.this.getHeight() - ControlScrollBar.this.getBarHeight()));
 		});
-		this.addSelfEventHandler(new EventMouse.Down.Handler() {
-			@Override
-			public void onEvent(final EventMouse.Down event) {
-				final float shownPercentage = ControlScrollBar.this.scrollable.getPercentageShown();
-				final float percentageIndex = ControlScrollBar.this.scrollable.getPercentageIndex();
-				final float minPercent = (1.0f - shownPercentage) * percentageIndex;
-				final float maxPercent = minPercent + shownPercentage;
-				float clickedPercentage = (float)ControlScrollBar.this.getRelativeMousePosition().yPos() / (ControlScrollBar.this.getHeight() - 2.0f);
-				clickedPercentage = Math.max(Math.min(clickedPercentage, 1.0f), 0.0f);
-				if (clickedPercentage > maxPercent) {
-					ControlScrollBar.this.scrollable.setPercentageIndex((clickedPercentage - shownPercentage) / (1.0f - shownPercentage));
-				}
-				if (clickedPercentage < minPercent) {
-					ControlScrollBar.this.scrollable.setPercentageIndex(clickedPercentage / (1.0f - shownPercentage));
-				}
+		this.addSelfEventHandler(EventMouse.Down.class, event -> {
+			final float shownPercentage = ControlScrollBar.this.scrollable.getPercentageShown();
+			final float percentageIndex = ControlScrollBar.this.scrollable.getPercentageIndex();
+			final float minPercent = (1.0f - shownPercentage) * percentageIndex;
+			final float maxPercent = minPercent + shownPercentage;
+			float clickedPercentage = (float)ControlScrollBar.this.getRelativeMousePosition().yPos() / (ControlScrollBar.this.getHeight() - 2.0f);
+			clickedPercentage = Math.max(Math.min(clickedPercentage, 1.0f), 0.0f);
+			if (clickedPercentage > maxPercent) {
+				ControlScrollBar.this.scrollable.setPercentageIndex((clickedPercentage - shownPercentage) / (1.0f - shownPercentage));
+			}
+			if (clickedPercentage < minPercent) {
+				ControlScrollBar.this.scrollable.setPercentageIndex(clickedPercentage / (1.0f - shownPercentage));
 			}
 		});
 	}

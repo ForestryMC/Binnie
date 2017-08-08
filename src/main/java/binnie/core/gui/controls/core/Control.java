@@ -84,6 +84,7 @@ public class Control extends Widget implements ITooltipHelp, ITooltip {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void getTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		tooltip.add(this.tooltipStrings);
 	}

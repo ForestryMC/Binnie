@@ -17,14 +17,11 @@ public class ControlTankSlot extends ControlSlotFluid {
 		super(parent, x, y, null);
 		this.tankID = 0;
 		this.tankID = i;
-		this.addSelfEventHandler(new EventMouse.Down.Handler() {
-			@Override
-			public void onEvent(final EventMouse.Down event) {
-				if (event.getButton() == 0) {
-					final NBTTagCompound nbt = new NBTTagCompound();
-					nbt.setByte("id", (byte) ControlTankSlot.this.tankID);
-					Window.get(ControlTankSlot.this.getWidget()).sendClientAction("tank-click", nbt);
-				}
+		this.addSelfEventHandler(EventMouse.Down.class, event -> {
+			if (event.getButton() == 0) {
+				final NBTTagCompound nbt = new NBTTagCompound();
+				nbt.setByte("id", (byte) ControlTankSlot.this.tankID);
+				Window.get(ControlTankSlot.this.getWidget()).sendClientAction("tank-click", nbt);
 			}
 		});
 	}

@@ -21,11 +21,8 @@ public class ControlOption<T> extends Control implements IControlValue<T> {
 		super(controlList, 0, height, controlList.getSize().xPos(), 20);
 		this.value = option;
 		this.addAttribute(Attribute.MOUSE_OVER);
-		this.addSelfEventHandler(new EventMouse.Down.Handler() {
-			@Override
-			public void onEvent(final EventMouse.Down event) {
-				controlList.setValue(ControlOption.this.getValue());
-			}
+		this.addSelfEventHandler(EventMouse.Down.class, event -> {
+			controlList.setValue(ControlOption.this.getValue());
 		});
 	}
 

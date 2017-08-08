@@ -314,13 +314,18 @@ public class Widget implements IWidget {
 	}
 
 	@Override
-	public <E extends Event> void addEventHandler(EventHandler<E> handler) {
-		this.eventHandlers.add(handler);
+	public <E extends Event> void addEventHandler(Class<? super E> eventClass, EventHandler.OnEventHandler<E> handler) {
+		this.eventHandlers.add(new EventHandler<E>(eventClass, handler));
 	}
 
 	@Override
-	public <E extends Event> void addSelfEventHandler(final EventHandler<E> handler) {
-		this.addEventHandler(handler.setOrigin(EventHandler.Origin.SELF, this));
+	public <E extends Event> void addEventHandler(Class<? super E> eventClass, EventHandler.Origin origin, IWidget relative, EventHandler.OnEventHandler<E> handler) {
+		this.eventHandlers.add(new EventHandler<E>(eventClass, origin, relative, handler));
+	}
+
+	@Override
+	public <E extends Event> void addSelfEventHandler(Class<? super E> eventClass, EventHandler.OnEventHandler<E> handler) {
+		this.eventHandlers.add(new EventHandler<E>(eventClass, EventHandler.Origin.SELF, this, handler));
 	}
 
 	@Override

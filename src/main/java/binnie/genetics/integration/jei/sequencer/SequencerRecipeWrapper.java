@@ -13,7 +13,6 @@ import binnie.genetics.machine.sequencer.SequencerLogic;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IDrawableAnimated;
 import mezz.jei.api.ingredients.IIngredients;
-import mezz.jei.api.recipe.BlankRecipeWrapper;
 
 public class SequencerRecipeWrapper implements IRecipeWrapper {
 	private final ItemStack input;

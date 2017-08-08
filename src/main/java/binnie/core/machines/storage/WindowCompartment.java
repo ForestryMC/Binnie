@@ -135,16 +135,16 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		};
 		final String[] tabHelp = {"Compartment Tab", "Tabs that divide the inventory into sections. Each one can be labelled seperately."};
 		tab.addHelp(tabHelp);
-		tab.addEventHandler(new EventValueChanged.Handler() {
-			@Override
-			public void onEvent(final EventValueChanged event) {
-				final NBTTagCompound nbt = new NBTTagCompound();
-				final int i = (Integer) event.getValue();
-				nbt.setByte("i", (byte) i);
-				Window.get(tab).sendClientAction("tab-change", nbt);
-				WindowCompartment.this.currentTab = i;
+		tab.addEventHandler(EventValueChanged.class, EventHandler.Origin.DIRECT_CHILD, tab, event -> {
+			if (event.getValue() == null) {
+				return;
 			}
-		}.setOrigin(EventHandler.Origin.DIRECT_CHILD, tab));
+			final NBTTagCompound nbt = new NBTTagCompound();
+			final int i = (Integer) event.getValue();
+			nbt.setByte("i", (byte) i);
+			Window.get(tab).sendClientAction("tab-change", nbt);
+			WindowCompartment.this.currentTab = i;
+		});
 		x += 24;
 		final ControlPages<Integer> compartmentPages = new ControlPages<>(controlCompartment, 24, 0, compartmentPageWidth, compartmentPageHeight);
 		final ControlPage[] page = new ControlPage[inv.getTabNumber()];
@@ -200,16 +200,16 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 				}
 			};
 			tab2.addHelp(tabHelp);
-			tab2.addEventHandler(new EventValueChanged.Handler() {
-				@Override
-				public void onEvent(final EventValueChanged event) {
-					final NBTTagCompound nbt = new NBTTagCompound();
-					final int i = (Integer) event.getValue();
-					nbt.setByte("i", (byte) i);
-					Window.get(tab).sendClientAction("tab-change", nbt);
-					WindowCompartment.this.currentTab = i;
+			tab2.addEventHandler(EventValueChanged.class, EventHandler.Origin.DIRECT_CHILD, tab2, event -> {
+				if (event.getValue() == null) {
+					return;
 				}
-			}.setOrigin(EventHandler.Origin.DIRECT_CHILD, tab2));
+				final NBTTagCompound nbt = new NBTTagCompound();
+				final int iVal = (Integer) event.getValue();
+				nbt.setByte("i", (byte) iVal);
+				Window.get(tab).sendClientAction("tab-change", nbt);
+				WindowCompartment.this.currentTab = iVal;
+			});
 			CraftGUIUtil.linkWidgets(tab2, compartmentPages);
 			x += 24;
 		}
@@ -228,34 +228,28 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		final Panel parent = tabPropertyPanel;
 		final int x2 = 4;
 		y2 += 12;
-		(this.tabName = new ControlTextEdit(parent, x2, y2, 104, 12)).addSelfEventHandler(new EventTextEdit.Handler() {
-			@Override
-			public void onEvent(final EventTextEdit event) {
-				final CompartmentTab tab = WindowCompartment.this.getCurrentTab();
-				tab.setName(event.getValue());
-				final NBTTagCompound nbt = new NBTTagCompound();
-				tab.writeToNBT(nbt);
-				WindowCompartment.this.sendClientAction("comp-change-tab", nbt);
-			}
-		}.setOrigin(EventHandler.Origin.SELF, this.tabName));
+		(this.tabName = new ControlTextEdit(parent, x2, y2, 104, 12)).addEventHandler(EventTextEdit.class, EventHandler.Origin.SELF, this.tabName, event -> {
+			final CompartmentTab currentTab = WindowCompartment.this.getCurrentTab();
+			currentTab.setName(event.getValue());
+			final NBTTagCompound nbt = new NBTTagCompound();
+			currentTab.writeToNBT(nbt);
+			WindowCompartment.this.sendClientAction("comp-change-tab", nbt);
+		});
 		y2 += 20;
 		new ControlText(tabPropertyPanel, new Point(4, y2), "Tab Icon: ");
 		(this.tabIcon = new ControlItemDisplay(tabPropertyPanel, 58, y2 - 4)).setItemStack(new ItemStack(Items.PAPER));
 		this.tabIcon.addAttribute(Attribute.MOUSE_OVER);
-		this.tabIcon.addSelfEventHandler(new EventMouse.Down.Handler() {
-			@Override
-			public void onEvent(final EventMouse.Down event) {
-				if (WindowCompartment.this.getHeldItemStack() == null) {
-					return;
-				}
-				final CompartmentTab tab = WindowCompartment.this.getCurrentTab();
-				final ItemStack stack = WindowCompartment.this.getHeldItemStack().copy();
-				stack.setCount(1);
-				tab.setIcon(stack);
-				final NBTTagCompound nbt = new NBTTagCompound();
-				tab.writeToNBT(nbt);
-				WindowCompartment.this.sendClientAction("comp-change-tab", nbt);
+		this.tabIcon.addSelfEventHandler(EventMouse.Down.class, event -> {
+			if (WindowCompartment.this.getHeldItemStack().isEmpty()) {
+				return;
 			}
+			final CompartmentTab currentTab = WindowCompartment.this.getCurrentTab();
+			final ItemStack stack = WindowCompartment.this.getHeldItemStack().copy();
+			stack.setCount(1);
+			currentTab.setIcon(stack);
+			final NBTTagCompound nbt = new NBTTagCompound();
+			currentTab.writeToNBT(nbt);
+			WindowCompartment.this.sendClientAction("comp-change-tab", nbt);
 		});
 		this.tabColour = new ControlColourSelector(tabPropertyPanel, 82, y2 - 4, 16, 16, EnumColor.WHITE);
 		this.tabIcon.addHelp("Icon for Current Tab");
@@ -266,15 +260,12 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		final Panel panelColour = new Panel(tabPropertyPanel, 40, y2 - 4, cw * 8 + 2, cw * 2 + 1, MinecraftGUI.PanelType.GRAY);
 		for (int cc = 0; cc < 16; ++cc) {
 			final ControlColourSelector color = new ControlColourSelector(panelColour, 1 + cw * (cc % 8), 1 + cw * (cc / 8), cw, cw, EnumColor.values()[cc]);
-			color.addSelfEventHandler(new EventMouse.Down.Handler() {
-				@Override
-				public void onEvent(final EventMouse.Down event) {
-					final CompartmentTab tab = WindowCompartment.this.getCurrentTab();
-					tab.setColor(color.getValue());
-					final NBTTagCompound nbt = new NBTTagCompound();
-					tab.writeToNBT(nbt);
-					WindowCompartment.this.sendClientAction("comp-change-tab", nbt);
-				}
+			color.addSelfEventHandler(EventMouse.Down.class, event -> {
+				final CompartmentTab currentTab = WindowCompartment.this.getCurrentTab();
+				currentTab.setColor(color.getValue());
+				final NBTTagCompound nbt = new NBTTagCompound();
+				currentTab.writeToNBT(nbt);
+				WindowCompartment.this.sendClientAction("comp-change-tab", nbt);
 			});
 			color.addHelp("Colour Selector");
 			color.addHelp("Select a colour to highlight the current tab");
@@ -383,12 +374,9 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 			};
 			scroll.setScrollableContent(this.slotGrid = new Control(scroll, 1, 1, 108, 18));
 			new ControlPlayerInventory(this, true);
-			new ControlTextEdit(this, 16, 16, 100, 14).addEventHandler(new EventTextEdit.Handler() {
-				@Override
-				public void onEvent(final EventTextEdit event) {
-					textSearch = event.value;
-					updateSearch();
-				}
+			new ControlTextEdit(this, 16, 16, 100, 14).addEventHandler(EventTextEdit.class, event -> {
+				textSearch = event.getValue();
+				updateSearch();
 			});
 			this.includeItems = true;
 			this.includeBlocks = true;

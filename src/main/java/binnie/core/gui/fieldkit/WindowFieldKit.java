@@ -108,18 +108,15 @@ public class WindowFieldKit extends Window {
 		(this.text = new ControlText(this, new Point(232, 13), I18N.localise("binniecore.gui.fieldkit.paper"))).setColor(2236962);
 		(this.text = new ControlText(this, new Area(0, 120, this.getWidth(), 24), "", TextJustification.MIDDLE_CENTER)).setColor(2236962);
 		this.chromo = new ControlChromosome(this, 150, 24);
-		this.addEventHandler(new EventValueChanged.Handler() {
-			@Override
-			public void onEvent(final EventValueChanged event) {
-				final IChromosomeType type = (IChromosomeType) event.getValue();
-				if (type != null && WindowFieldKit.this.info.containsKey(type)) {
-					final String t = WindowFieldKit.this.info.get(type);
-					WindowFieldKit.this.text.setValue(t);
-				} else {
-					WindowFieldKit.this.text.setValue("");
-				}
+		this.addEventHandler(EventValueChanged.class, EventHandler.Origin.DIRECT_CHILD, this.chromo, event -> {
+			final IChromosomeType type = (IChromosomeType) event.getValue();
+			if (type != null && WindowFieldKit.this.info.containsKey(type)) {
+				final String t = WindowFieldKit.this.info.get(type);
+				WindowFieldKit.this.text.setValue(t);
+			} else {
+				WindowFieldKit.this.text.setValue("");
 			}
-		}.setOrigin(EventHandler.Origin.DIRECT_CHILD, this.chromo));
+		});
 	}
 
 	@Override

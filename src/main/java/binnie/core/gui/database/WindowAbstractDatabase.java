@@ -100,22 +100,19 @@ public abstract class WindowAbstractDatabase extends Window {
 	@SideOnly(Side.CLIENT)
 	public void initialiseClient() {
 		this.setSize(new Point(176 + this.selectionBoxWidth + 22 + 8, 208));
-		this.addEventHandler(new EventValueChanged.Handler() {
-			@Override
-			public void onEvent(final EventValueChanged event) {
-				if (event.getOrigin().getParent() instanceof ControlPage && !(event.getValue() instanceof DatabaseTab)) {
-					final ControlPage parent = (ControlPage) event.getOrigin().getParent();
-					if (parent.getValue() instanceof IDatabaseMode) {
-						for (final IWidget child : parent.getChildren()) {
-							if (child instanceof ControlPages) {
-								if (event.getValue() == null) {
-									child.hide();
-								} else {
-									child.show();
-									for (final IWidget widget : child.getChildren()) {
-										if (widget instanceof PageAbstract) {
-											((PageAbstract) widget).onValueChanged(event.getValue());
-										}
+		this.addEventHandler(EventValueChanged.class, event -> {
+			if (event.getOrigin().getParent() instanceof ControlPage && !(event.getValue() instanceof DatabaseTab)) {
+				final ControlPage parent = (ControlPage) event.getOrigin().getParent();
+				if (parent.getValue() instanceof IDatabaseMode) {
+					for (final IWidget child : parent.getChildren()) {
+						if (child instanceof ControlPages) {
+							if (event.getValue() == null) {
+								child.hide();
+							} else {
+								child.show();
+								for (final IWidget widget : child.getChildren()) {
+									if (widget instanceof PageAbstract) {
+										((PageAbstract) widget).onValueChanged(event.getValue());
 									}
 								}
 							}
@@ -124,14 +121,19 @@ public abstract class WindowAbstractDatabase extends Window {
 				}
 			}
 		});
-		this.addEventHandler(new EventTextEdit.Handler() {
-			@Override
-			public void onEvent(final EventTextEdit event) {
-				for (final ModeWidgets widgets : WindowAbstractDatabase.this.modes.values()) {
-					widgets.listBox.setValidator(object -> Objects.equals(event.getValue(), "") || ((ControlTextOption) object).getText().toLowerCase().contains(event.getValue().toLowerCase()));
-				}
+		this.addEventHandler(EventTextEdit.class, EventHandler.Origin.DIRECT_CHILD, this, event -> {
+			for (final ModeWidgets widgets : WindowAbstractDatabase.this.modes.values()) {
+				widgets.listBox.setValidator(object -> {
+					if (Objects.equals(event.getValue(), "")) {
+						return true;
+					}
+					if (((ControlTextOption) object).getText().toLowerCase().contains(event.getValue().toLowerCase())) {
+						return true;
+					}
+					return false;
+				});
 			}
-		}.setOrigin(EventHandler.Origin.DIRECT_CHILD, this));
+		});
 		new ControlHelp(this, 4, 4);
 		(this.panelInformation = new Panel(this, 24, 24, 144, 176, MinecraftGUI.PanelType.BLACK)).setColor(860416);
 		(this.panelSearch = new Panel(this, 176, 24, this.selectionBoxWidth, 160, MinecraftGUI.PanelType.BLACK)).setColor(860416);

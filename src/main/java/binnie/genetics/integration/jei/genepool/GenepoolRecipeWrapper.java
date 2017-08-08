@@ -19,7 +19,6 @@ import binnie.genetics.item.GeneticLiquid;
 import binnie.genetics.item.GeneticsItems;
 import binnie.genetics.machine.genepool.GenepoolLogic;
 import mezz.jei.api.ingredients.IIngredients;
-import mezz.jei.api.recipe.BlankRecipeWrapper;
 
 public class GenepoolRecipeWrapper implements IRecipeWrapper {
 	private static final ItemStack ENZYME = GeneticsItems.Enzyme.get(1);

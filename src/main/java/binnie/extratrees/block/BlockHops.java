@@ -1,6 +1,5 @@
 package binnie.extratrees.block;
 
-import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 

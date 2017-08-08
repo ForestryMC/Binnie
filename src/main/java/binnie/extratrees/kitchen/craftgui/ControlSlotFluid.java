@@ -34,11 +34,8 @@ public class ControlSlotFluid extends Control implements ITooltip {
 		this.addAttribute(Attribute.MOUSE_OVER);
 		this.itemDisplay = new ControlFluidDisplay(this, 1, 1, size - 2);
 		this.fluidStack = fluid;
-		this.addSelfEventHandler(new EventWidget.ChangeSize.Handler() {
-			@Override
-			public void onEvent(final EventWidget.ChangeSize event) {
-				ControlSlotFluid.this.itemDisplay.setSize(ControlSlotFluid.this.getSize().sub(new Point(2, 2)));
-			}
+		this.addSelfEventHandler(EventWidget.ChangeSize.class, event -> {
+			ControlSlotFluid.this.itemDisplay.setSize(ControlSlotFluid.this.getSize().sub(new Point(2, 2)));
 		});
 	}
 

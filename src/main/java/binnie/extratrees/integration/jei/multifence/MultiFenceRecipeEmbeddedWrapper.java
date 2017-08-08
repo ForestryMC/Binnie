@@ -12,7 +12,6 @@ import binnie.extratrees.block.WoodManager;
 import binnie.extratrees.block.decor.FenceDescription;
 import binnie.extratrees.block.decor.FenceType;
 import mezz.jei.api.ingredients.IIngredients;
-import mezz.jei.api.recipe.BlankRecipeWrapper;
 import mezz.jei.api.recipe.wrapper.IShapedCraftingRecipeWrapper;
 
 public class MultiFenceRecipeEmbeddedWrapper implements IShapedCraftingRecipeWrapper {

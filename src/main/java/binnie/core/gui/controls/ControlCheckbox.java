@@ -8,7 +8,6 @@ import binnie.core.gui.CraftGUI;
 import binnie.core.gui.IWidget;
 import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.controls.core.IControlValue;
-import binnie.core.gui.events.EventHandler;
 import binnie.core.gui.events.EventMouse;
 import binnie.core.gui.events.EventValueChanged;
 import binnie.core.gui.geometry.Area;
@@ -32,12 +31,9 @@ public class ControlCheckbox extends Control implements IControlValue<Boolean> {
 			new ControlText(this, new Area(16, 1, w - 16, 16), text, TextJustification.MIDDLE_CENTER).setColor(4473924);
 		}
 		this.addAttribute(Attribute.MOUSE_OVER);
-		this.addEventHandler(new EventMouse.Down.Handler() {
-			@Override
-			public void onEvent(final EventMouse.Down event) {
-				ControlCheckbox.this.toggleValue();
-			}
-		}.setOrigin(EventHandler.Origin.SELF, this));
+		this.addSelfEventHandler(EventMouse.Down.class, event -> {
+			ControlCheckbox.this.toggleValue();
+		});
 	}
 
 	protected void onValueChanged(final boolean value) {

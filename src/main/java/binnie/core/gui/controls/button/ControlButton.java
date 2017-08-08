@@ -11,7 +11,6 @@ import binnie.core.gui.IWidget;
 import binnie.core.gui.controls.ControlText;
 import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.events.EventButtonClicked;
-import binnie.core.gui.events.EventHandler;
 import binnie.core.gui.events.EventMouse;
 import binnie.core.gui.geometry.TextJustification;
 import binnie.core.gui.resource.minecraft.CraftGUITexture;
@@ -25,13 +24,10 @@ public class ControlButton extends Control {
 	public ControlButton(final IWidget parent, final int x, final int y, final int width, final int height) {
 		super(parent, x, y, width, height);
 		this.addAttribute(Attribute.MOUSE_OVER);
-		this.addEventHandler(new EventMouse.Down.Handler() {
-			@Override
-			public void onEvent(final EventMouse.Down event) {
-				ControlButton.this.callEvent(new EventButtonClicked(ControlButton.this.getWidget()));
-				ControlButton.this.onMouseClick(event);
-			}
-		}.setOrigin(EventHandler.Origin.SELF, this));
+		this.addSelfEventHandler(EventMouse.Down.class, event -> {
+			ControlButton.this.callEvent(new EventButtonClicked(ControlButton.this.getWidget()));
+			ControlButton.this.onMouseClick(event);
+		});
 	}
 
 	public ControlButton(final IWidget parent, final int x, final int y, final int width, final int height, final String text) {

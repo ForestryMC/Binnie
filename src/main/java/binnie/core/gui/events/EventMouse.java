@@ -36,23 +36,11 @@ public abstract class EventMouse extends Event {
 		public Down(final IWidget currentMousedOverWidget, final int x, final int y, final int button) {
 			super(currentMousedOverWidget, x, y, button);
 		}
-
-		public abstract static class Handler extends EventHandler<Down> {
-			public Handler() {
-				super(Down.class);
-			}
-		}
 	}
 
 	public static class Up extends Button {
 		public Up(final IWidget currentMousedOverWidget, final int x, final int y, final int button) {
 			super(currentMousedOverWidget, x, y, button);
-		}
-
-		public abstract static class Handler extends EventHandler<Up> {
-			public Handler() {
-				super(Up.class);
-			}
 		}
 	}
 
@@ -73,23 +61,11 @@ public abstract class EventMouse extends Event {
 		public float getDy() {
 			return this.dy;
 		}
-
-		public abstract static class Handler extends EventHandler<Move> {
-			public Handler() {
-				super(Move.class);
-			}
-		}
 	}
 
 	public static class Drag extends Move {
 		public Drag(final IWidget draggedWidget, final float dx, final float dy) {
 			super(draggedWidget, dx, dy);
-		}
-
-		public abstract static class Handler extends EventHandler<Drag> {
-			public Handler() {
-				super(Drag.class);
-			}
 		}
 	}
 
@@ -104,12 +80,6 @@ public abstract class EventMouse extends Event {
 
 		public int getDWheel() {
 			return this.dWheel;
-		}
-
-		public abstract static class Handler extends EventHandler<Wheel> {
-			public Handler() {
-				super(Wheel.class);
-			}
 		}
 	}
 }

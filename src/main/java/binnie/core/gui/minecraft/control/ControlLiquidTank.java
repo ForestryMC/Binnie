@@ -53,14 +53,11 @@ public class ControlLiquidTank extends Control implements ITooltip {
 		this.horizontal = false;
 		this.horizontal = horizontal;
 		this.addAttribute(Attribute.MOUSE_OVER);
-		this.addSelfEventHandler(new EventMouse.Down.Handler() {
-			@Override
-			public void onEvent(final EventMouse.Down event) {
-				if (event.getButton() == 0) {
-					final NBTTagCompound nbt = new NBTTagCompound();
-					nbt.setByte("id", (byte) ControlLiquidTank.this.tankID);
-					Window.get(ControlLiquidTank.this.getWidget()).sendClientAction("tank-click", nbt);
-				}
+		this.addSelfEventHandler(EventMouse.Down.class, event -> {
+			if (event.getButton() == 0) {
+				final NBTTagCompound nbt = new NBTTagCompound();
+				nbt.setByte("id", (byte) ControlLiquidTank.this.tankID);
+				Window.get(ControlLiquidTank.this.getWidget()).sendClientAction("tank-click", nbt);
 			}
 		});
 	}

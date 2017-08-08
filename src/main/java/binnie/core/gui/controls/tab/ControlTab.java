@@ -30,15 +30,13 @@ public class ControlTab<T> extends Control implements ITooltip, IControlValue<T>
 		this.value = value;
 		this.tabBar = parent;
 		this.addAttribute(Attribute.MOUSE_OVER);
-		this.addSelfEventHandler(new EventMouse.Down.Handler() {
-			@Override
-			public void onEvent(final EventMouse.Down event) {
-				ControlTab.this.callEvent(new EventValueChanged<Object>(ControlTab.this.getWidget(), ControlTab.this.getValue()));
-			}
+		this.addSelfEventHandler(EventMouse.Down.class, event -> {
+			ControlTab.this.callEvent(new EventValueChanged<Object>(ControlTab.this.getWidget(), ControlTab.this.getValue()));
 		});
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void getTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		final String name = this.getName();
 		if (name != null && !name.isEmpty()) {

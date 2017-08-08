@@ -132,19 +132,16 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 			super(parent, x, y, 18, 18);
 			this.value = value;
 			this.addAttribute(Attribute.MOUSE_OVER);
-			this.addSelfEventHandler(new EventMouse.Down.Handler() {
-				@Override
-				public void onEvent(final EventMouse.Down event) {
-					final TileEntityMachine tile = (TileEntityMachine) Window.get(ControlTile.this.getWidget()).getInventory();
-					if (tile == null) {
-						return;
-					}
-					// TODO: why is recipe unused here?
-					ComponentDesignerRecipe recipe = tile.getMachine().getComponent(ComponentDesignerRecipe.class);
-					final NBTTagCompound nbt = new NBTTagCompound();
-					nbt.setShort("d", (short) CarpentryManager.carpentryInterface.getDesignIndex(ControlTile.this.getValue()));
-					Window.get(ControlTile.this.getWidget()).sendClientAction("design", nbt);
+			this.addSelfEventHandler(EventMouse.Down.class, event -> {
+				final TileEntityMachine tile = (TileEntityMachine) Window.get(ControlTile.this.getWidget()).getInventory();
+				if (tile == null) {
+					return;
 				}
+				// TODO: why is recipe unused here?
+				ComponentDesignerRecipe recipe = tile.getMachine().getComponent(ComponentDesignerRecipe.class);
+				final NBTTagCompound nbt = new NBTTagCompound();
+				nbt.setShort("d", (short) CarpentryManager.carpentryInterface.getDesignIndex(ControlTile.this.getValue()));
+				Window.get(ControlTile.this.getWidget()).sendClientAction("design", nbt);
 			});
 		}
 

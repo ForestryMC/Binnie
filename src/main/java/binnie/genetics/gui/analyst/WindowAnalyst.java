@@ -161,15 +161,12 @@ public class WindowAnalyst extends Window {
 			new ControlPlayerInventory(slideUpInv, true);
 			slideUpInv.setSlide(false);
 		}
-		addEventHandler(new EventKey.Down.Handler() {
-			@Override
-			public void onEvent(EventKey.Down event) {
-				if (event.getKey() == 205) {
-					shiftPages(true);
-				}
-				if (event.getKey() == 203) {
-					shiftPages(false);
-				}
+		addEventHandler(EventKey.Down.class, event -> {
+			if (event.getKey() == 205) {
+				shiftPages(true);
+			}
+			if (event.getKey() == 203) {
+				shiftPages(false);
 			}
 		});
 		if (!isDatabase) {

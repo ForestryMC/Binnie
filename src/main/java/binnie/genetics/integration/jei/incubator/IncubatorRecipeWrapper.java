@@ -13,7 +13,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.genetics.api.IIncubatorRecipe;
 import mezz.jei.api.ingredients.IIngredients;
-import mezz.jei.api.recipe.BlankRecipeWrapper;
 
 public class IncubatorRecipeWrapper implements IRecipeWrapper {
 	private final IIncubatorRecipe recipe;

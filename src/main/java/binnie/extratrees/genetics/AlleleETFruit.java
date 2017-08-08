@@ -1,7 +1,6 @@
 package binnie.extratrees.genetics;
 
 import com.google.common.base.Preconditions;
-import com.google.common.base.Throwables;
 
 import javax.annotation.Nullable;
 import java.lang.reflect.Field;

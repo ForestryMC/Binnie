@@ -10,7 +10,6 @@ import binnie.core.gui.CraftGUI;
 import binnie.core.gui.IWidget;
 import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.controls.core.IControlValue;
-import binnie.core.gui.events.EventHandler;
 import binnie.core.gui.events.EventKey;
 import binnie.core.gui.events.EventMouse;
 import binnie.core.gui.events.EventTextEdit;
@@ -29,36 +28,24 @@ public class ControlTextEdit extends Control implements IControlValue<String> {
 		this.addAttribute(Attribute.CAN_FOCUS);
 		this.addAttribute(Attribute.MOUSE_OVER);
 		this.field.setEnableBackgroundDrawing(false);
-		this.addEventHandler(new EventKey.Down.Handler() {
-			@Override
-			public void onEvent(final EventKey.Down event) {
-				ControlTextEdit.this.field.textboxKeyTyped(event.getCharacter(), event.getKey());
-				final String text = ControlTextEdit.this.getValue();
-				if (!text.equals(ControlTextEdit.this.cachedValue)) {
-					ControlTextEdit.this.cachedValue = text;
-					ControlTextEdit.this.callEvent(new EventTextEdit(ControlTextEdit.this, ControlTextEdit.this.cachedValue));
-					ControlTextEdit.this.onTextEdit(ControlTextEdit.this.cachedValue);
-				}
+		this.addSelfEventHandler(EventKey.Down.class, event -> {
+			ControlTextEdit.this.field.textboxKeyTyped(event.getCharacter(), event.getKey());
+			final String text = ControlTextEdit.this.getValue();
+			if (!text.equals(ControlTextEdit.this.cachedValue)) {
+				ControlTextEdit.this.cachedValue = text;
+				ControlTextEdit.this.callEvent(new EventTextEdit(ControlTextEdit.this, ControlTextEdit.this.cachedValue));
+				ControlTextEdit.this.onTextEdit(ControlTextEdit.this.cachedValue);
 			}
-		}.setOrigin(EventHandler.Origin.SELF, this));
-		this.addEventHandler(new EventMouse.Down.Handler() {
-			@Override
-			public void onEvent(final EventMouse.Down event) {
-				ControlTextEdit.this.field.mouseClicked(ControlTextEdit.this.getRelativeMousePosition().xPos(), ControlTextEdit.this.getRelativeMousePosition().yPos(), event.getButton());
-			}
-		}.setOrigin(EventHandler.Origin.SELF, this));
-		this.addEventHandler(new EventWidget.GainFocus.Handler() {
-			@Override
-			public void onEvent(final EventWidget.GainFocus event) {
-				ControlTextEdit.this.field.setFocused(true);
-			}
-		}.setOrigin(EventHandler.Origin.SELF, this));
-		this.addEventHandler(new EventWidget.LoseFocus.Handler() {
-			@Override
-			public void onEvent(final EventWidget.LoseFocus event) {
-				ControlTextEdit.this.field.setFocused(false);
-			}
-		}.setOrigin(EventHandler.Origin.SELF, this));
+		});
+		this.addSelfEventHandler(EventMouse.Down.class, event -> {
+			ControlTextEdit.this.field.mouseClicked(ControlTextEdit.this.getRelativeMousePosition().xPos(), ControlTextEdit.this.getRelativeMousePosition().yPos(), event.getButton());
+		});
+		this.addSelfEventHandler(EventWidget.GainFocus.class, event -> {
+			ControlTextEdit.this.field.setFocused(true);
+		});
+		this.addSelfEventHandler(EventWidget.LoseFocus.class, event -> {
+			ControlTextEdit.this.field.setFocused(false);
+		});
 	}
 
 	@Override

@@ -4,7 +4,6 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.item.ItemStack;
 
 import binnie.extratrees.block.IPlankType;
@@ -12,7 +11,6 @@ import binnie.extratrees.block.WoodManager;
 import binnie.extratrees.block.decor.FenceDescription;
 import binnie.extratrees.block.decor.FenceType;
 import mezz.jei.api.ingredients.IIngredients;
-import mezz.jei.api.recipe.BlankRecipeWrapper;
 import mezz.jei.api.recipe.wrapper.IShapedCraftingRecipeWrapper;
 
 public class MultiFenceRecipeSolidWrapper implements IShapedCraftingRecipeWrapper {

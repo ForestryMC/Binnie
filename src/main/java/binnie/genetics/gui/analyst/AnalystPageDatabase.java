@@ -147,13 +147,9 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 					new ControlIndividualDisplay(this, biomeListX + dx, 2 + dy, ind) {
 						@Override
 						public void initialise() {
-							addSelfEventHandler(new EventMouse.Down.Handler() {
-								@Override
-								@SideOnly(Side.CLIENT)
-								public void onEvent(EventMouse.Down event) {
-									WindowAnalyst window = (WindowAnalyst) AnalystPageDatabase.this.getTopParent();
-									window.setIndividual(ind);
-								}
+							addSelfEventHandler(EventMouse.Down.class, event -> {
+								WindowAnalyst window = (WindowAnalyst) AnalystPageDatabase.this.getTopParent();
+								window.setIndividual(ind);
 							});
 						}
 

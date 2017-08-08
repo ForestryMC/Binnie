@@ -32,24 +32,13 @@ public abstract class TopLevelWidget extends Widget implements ITopLevelWidget {
 		this.focusedWidget = null;
 		this.mousePosition = Point.ZERO;
 		this.dragStart = Point.ZERO;
-		this.addEventHandler(new EventMouse.Down.Handler() {
-			@Override
-			public void onEvent(final EventMouse.Down event) {
-				TopLevelWidget.this.setDraggedWidget(TopLevelWidget.this.mousedOverWidget, event.getButton());
-				TopLevelWidget.this.setFocusedWidget(TopLevelWidget.this.mousedOverWidget);
-			}
+		this.addEventHandler(EventMouse.Down.class, event -> {
+			TopLevelWidget.this.setDraggedWidget(TopLevelWidget.this.mousedOverWidget, event.getButton());
+			TopLevelWidget.this.setFocusedWidget(TopLevelWidget.this.mousedOverWidget);
 		});
-		this.addEventHandler(new EventMouse.Up.Handler() {
-			@Override
-			public void onEvent(final EventMouse.Up event) {
-				TopLevelWidget.this.setDraggedWidget(null);
-			}
-		});
-		this.addEventHandler(new EventWidget.StartDrag.Handler() {
-			@Override
-			public void onEvent(final EventWidget.StartDrag event) {
-				TopLevelWidget.this.dragStart = TopLevelWidget.this.getRelativeMousePosition();
-			}
+		this.addEventHandler(EventMouse.Up.class, event -> TopLevelWidget.this.setDraggedWidget(null));
+		this.addEventHandler(EventWidget.StartDrag.class, event -> {
+			TopLevelWidget.this.dragStart = TopLevelWidget.this.getRelativeMousePosition();
 		});
 	}
 

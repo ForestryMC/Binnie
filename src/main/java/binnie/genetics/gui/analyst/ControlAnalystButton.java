@@ -26,28 +26,25 @@ public class ControlAnalystButton extends Control {
 		this.window = window;
 		addAttribute(Attribute.MOUSE_OVER);
 		this.value = page;
-		addSelfEventHandler(new EventMouse.Down.Handler() {
-			@Override
-			public void onEvent(EventMouse.Down event) {
-				List<ControlAnalystPage> pages = window.analystPages;
-				int currentIndex = pages.indexOf(window.rightPage.getContent());
-				int clickedIndex = pages.indexOf(value);
-				if (window.isDatabase) {
-					if (clickedIndex != 0 && clickedIndex != currentIndex) {
-						window.setPage(window.rightPage, value);
-					}
-				} else {
-					if (clickedIndex < 0) {
-						clickedIndex = 0;
-					}
-					if (clickedIndex < currentIndex) {
-						++clickedIndex;
-					}
-					window.setPage(window.rightPage, null);
-					window.setPage(window.leftPage, null);
-					window.setPage(window.rightPage, pages.get(clickedIndex));
-					window.setPage(window.leftPage, pages.get(clickedIndex - 1));
+		addSelfEventHandler(EventMouse.Down.class, event -> {
+			List<ControlAnalystPage> pages = window.analystPages;
+			int currentIndex = pages.indexOf(window.rightPage.getContent());
+			int clickedIndex = pages.indexOf(value);
+			if (window.isDatabase) {
+				if (clickedIndex != 0 && clickedIndex != currentIndex) {
+					window.setPage(window.rightPage, value);
 				}
+			} else {
+				if (clickedIndex < 0) {
+					clickedIndex = 0;
+				}
+				if (clickedIndex < currentIndex) {
+					++clickedIndex;
+				}
+				window.setPage(window.rightPage, null);
+				window.setPage(window.leftPage, null);
+				window.setPage(window.rightPage, pages.get(clickedIndex));
+				window.setPage(window.leftPage, pages.get(clickedIndex - 1));
 			}
 		});
 	}

@@ -35,12 +35,9 @@ public class WindowDesigner extends Window {
 
 	public WindowDesigner(final EntityPlayer player, final IInventory inventory, final Side side) {
 		super(320, 216, player, inventory, side);
-		this.addEventHandler(new EventTextEdit.Handler() {
-			@Override
-			public void onEvent(final EventTextEdit event) {
-				WindowDesigner.this.tileSelect.refresh(event.getValue());
-			}
-		}.setOrigin(EventHandler.Origin.DIRECT_CHILD, this));
+		this.addEventHandler(EventTextEdit.class, EventHandler.Origin.DIRECT_CHILD, this, event -> {
+			WindowDesigner.this.tileSelect.refresh(event.getValue());
+		});
 	}
 
 	@Nullable

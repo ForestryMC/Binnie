@@ -1,7 +1,6 @@
 package binnie.extrabees.proxy;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.item.Item;
 
 import net.minecraftforge.fml.common.registry.ForgeRegistries;

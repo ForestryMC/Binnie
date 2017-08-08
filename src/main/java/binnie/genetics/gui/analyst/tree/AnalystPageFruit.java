@@ -1,7 +1,5 @@
 package binnie.genetics.gui.analyst.tree;
 
-import com.google.common.base.Throwables;
-
 import java.lang.reflect.Field;
 import java.util.Collection;
 import java.util.Collections;

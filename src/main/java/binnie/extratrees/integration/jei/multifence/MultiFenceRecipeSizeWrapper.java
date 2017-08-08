@@ -13,7 +13,6 @@ import binnie.extratrees.block.IPlankType;
 import binnie.extratrees.block.WoodManager;
 import binnie.extratrees.block.decor.MultiFenceRecipePattern;
 import mezz.jei.api.ingredients.IIngredients;
-import mezz.jei.api.recipe.BlankRecipeWrapper;
 
 public class MultiFenceRecipeSizeWrapper implements IRecipeWrapper {
 
