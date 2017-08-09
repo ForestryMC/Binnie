@@ -73,7 +73,7 @@ public class ModuleCeramic extends Module {
 		RecipeUtil recipeUtil = new RecipeUtil(Constants.BOTANY_MOD_ID);
 		ForgeRegistries.RECIPES.register(new CeramicTileRecipe());
 
-		if(ModuleManager.isEnabled(Constants.BOTANY_MOD_ID, BotanyModuleUIDs.GARDENING)){
+		if(ModuleManager.isModuleEnabled(Constants.BOTANY_MOD_ID, BotanyModuleUIDs.GARDENING)){
 			recipeUtil.addShapelessRecipe("mortar_old", CeramicItems.MORTAR.get(1), BotanyItems.MORTAR.get(1));
 		}
 

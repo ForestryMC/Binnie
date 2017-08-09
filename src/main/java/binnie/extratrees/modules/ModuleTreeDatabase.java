@@ -5,8 +5,6 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-
 import forestry.api.recipes.ICarpenterManager;
 import forestry.api.recipes.RecipeManagers;
 
@@ -29,7 +27,7 @@ public class ModuleTreeDatabase extends Module {
 	}
 
 	@Override
-	public void postInit(FMLPostInitializationEvent event) {
+	public void postInit() {
 		ICarpenterManager carpenterManager = RecipeManagers.carpenterManager;
 		carpenterManager.addRecipe(100, Binnie.LIQUID.getFluidStack(ManagerLiquid.WATER, 2000), ItemStack.EMPTY, new ItemStack(ModuleTreeDatabase.itemDictionary), "X#X", "YEY", "RDR", '#', Blocks.GLASS_PANE, 'X', Items.GOLD_INGOT, 'Y', "ingotCopper", 'R', Items.REDSTONE, 'D', Items.DIAMOND, 'E', Items.EMERALD);
 	}

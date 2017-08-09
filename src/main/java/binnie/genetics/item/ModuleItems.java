@@ -1,6 +1,5 @@
 package binnie.genetics.item;
 
-import binnie.core.util.RecipeUtil;
 import com.google.common.base.Preconditions;
 
 import javax.annotation.Nullable;
@@ -26,6 +25,7 @@ import binnie.core.item.ItemMisc;
 import binnie.core.liquid.FluidContainerType;
 import binnie.core.liquid.ManagerLiquid;
 import binnie.core.resource.BinnieSprite;
+import binnie.core.util.RecipeUtil;
 import binnie.extratrees.modules.ExtraTreesModuleUIDs;
 import binnie.extratrees.modules.ModuleMothDatabase;
 import binnie.extratrees.modules.ModuleTreeDatabase;
@@ -182,7 +182,7 @@ public class ModuleItems implements IInitializable {
 
 		// TODO: make this crazy list of recipes into one custom recipe
 		Item[] databases = {ExtraBeesIntegration.dictionary, ModuleTreeDatabase.itemDictionary, ModuleMothDatabase.itemDictionaryLepi, ModuleDatabase.database};
-		if (ModuleManager.isEnabled(Constants.BOTANY_MOD_ID, BotanyModuleUIDs.DATABASE) && BinnieCore.isExtraBeesActive() && ModuleManager.isEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.TREE_DATABASE) && ModuleManager.isEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.MOTH_DATABASE)) {
+		if (ModuleManager.isModuleEnabled(Constants.BOTANY_MOD_ID, BotanyModuleUIDs.DATABASE) && BinnieCore.isExtraBeesActive() && ModuleManager.isModuleEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.TREE_DATABASE) && ModuleManager.isModuleEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.MOTH_DATABASE)) {
 			int recipeNum = 0;
 			for (Item databaseA : databases) {
 				for (Item databaseB : databases) {

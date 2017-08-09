@@ -2,7 +2,6 @@ package binnie.modules;
 
 import com.google.common.collect.ImmutableList;
 
-import java.io.File;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -17,33 +16,19 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 
 import net.minecraftforge.fml.common.discovery.ASMDataTable;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 public class ModuleManager {
 	private static Map<String, IModuleContainer> containers = new LinkedHashMap<>();
-	private static Map<String, Configuration> configs = new LinkedHashMap<>();
-	private static final String CONFIG_FILE_NAME = "modules.cfg";
 	private static final String CONFIG_CATEGORY = "modules";
-	private static Stage stage = Stage.SETUP;
+	private static boolean initialized = false;
 
-	public enum Stage {
-		SETUP, // setup API to make it functional. GameMode Configs are not yet accessible
-		SETUP_DISABLED, // setup fallback API to avoid crashes
-		REGISTER, // register basic blocks and items
-		PRE_INIT, // register handlers, triggers, definitions, backpacks, crates, and anything that depends on basic items
-		INIT, // anything that depends on PreInit stages, recipe registration
-		POST_INIT, // stubborn mod integration, dungeon loot, and finalization of things that take input from mods
-		FINISHED
-	}
-
-	public static boolean isEnabled(String containerID, String moduleID){
+	public static boolean isModuleEnabled(String containerID, String moduleID){
 		IModuleContainer container = containers.get(containerID);
 		if(container == null){
 			return false;
 		}
-		return container.getEnabledModules().contains(moduleID);
+		return container.isModuleEnabled(moduleID);
 	}
 
 	public static void register(IModuleContainer container){
@@ -59,14 +44,13 @@ public class ModuleManager {
 		for(IModuleContainer container : containers.values()) {
 			String containerID = container.getID();
 			List<Module> containerModules = modules.get(containerID);
-			Configuration config = new Configuration(new File(container.getConfigFolder(), CONFIG_FILE_NAME));
-			configs.put(container.getID(), config);
+			Configuration config = container.getModulesConfig();
 
 			config.load();
 			config.addCustomCategoryComment(CONFIG_CATEGORY, "Disabling these modules can greatly change how the mod functions.\n"
 				+ "Your mileage may vary, please report any issues.");
 
-			Module coreModule = getPluginCore(containerModules, containerID);
+			Module coreModule = getCoreModule(containerModules, containerID);
 			containerModules.remove(coreModule);
 			containerModules.add(0, coreModule);
 
@@ -80,7 +64,7 @@ public class ModuleManager {
 					continue;
 				}
 				if (module.canBeDisabled()) {
-					if (!isEnabled(config, module)) {
+					if (!isModuleEnabled(config, module)) {
 						iterator.remove();
 						Log.info("Module disabled: {}", module);
 						continue;
@@ -131,7 +115,7 @@ public class ModuleManager {
 				BinnieModule info = module.getClass().getAnnotation(BinnieModule.class);
 				container.enableModule(info.moduleID());
 			}
-			Configuration config = configs.get(container.getID());
+			Configuration config = container.getModulesConfig();
 
 			if (config.hasChanged()) {
 				config.save();
@@ -141,7 +125,7 @@ public class ModuleManager {
 		Locale.setDefault(locale);
 	}
 
-	private static Module getPluginCore(List<Module> modules, String containerID) {
+	private static Module getCoreModule(List<Module> modules, String containerID) {
 		for (Module module : modules) {
 			BinnieModule info = module.getClass().getAnnotation(BinnieModule.class);
 			if (info.coreModule()) {
@@ -151,51 +135,14 @@ public class ModuleManager {
 		throw new IllegalStateException("Could not find core module for the container " + containerID);
 	}
 
-	public static void runPreInit(FMLPreInitializationEvent event, IModuleContainer moduleContainer) {
-		stage = Stage.PRE_INIT;
-		for (Module module : moduleContainer.getLoadedModules()) {
-			Log.debug("Pre-Init Start: {}", module);
-			module.preInit(event);
-			Log.debug("Pre-Init Complete: {}", module);
-		}
-	}
-
-	public static void runInit(FMLInitializationEvent event, IModuleContainer moduleContainer) {
-		stage = Stage.INIT;
-		for (Module module : moduleContainer.getLoadedModules()) {
-			Log.debug("Init Start: {}", module);
-			module.init(event);
-			Log.debug("Init Complete: {}", module);
-		}
-	}
-
-	public static void runPostInit(FMLPostInitializationEvent event, IModuleContainer moduleContainer) {
-		stage = Stage.POST_INIT;
-		for (Module module : moduleContainer.getLoadedModules()) {
-			Log.debug("Post-Init Start: {}", module);
-			module.postInit(event);
-			Log.debug("Post-Init Complete: {}", module);
-		}
-	}
-
-	public static void runRegisterItemsAndBlocks(IModuleContainer moduleContainer) {
-		stage = Stage.REGISTER;
-		for (Module module : moduleContainer.getLoadedModules()) {
-			Log.debug("Register Items and Blocks Start: {}", module);
-			module.registerItemsAndBlocks();
-			Log.debug("Register Items and Blocks Complete: {}", module);
-		}
-	}
-
-	public static void finish(){
-		stage = Stage.FINISHED;
-	}
-
 	public static void loadModules(FMLPreInitializationEvent event){
+		if(initialized){
+			return;
+		}
+		initialized = true;
 		ASMDataTable asmDataTable = event.getAsmData();
 		Map<String, List<Module>> modules = ModuleHelper.getModules(asmDataTable);
 
-		stage = Stage.SETUP;
 		configureModules(modules);
 
 		for(IModuleContainer container : containers.values()) {
@@ -206,7 +153,6 @@ public class ModuleManager {
 			}
 		}
 
-		stage = Stage.SETUP_DISABLED;
 		for(IModuleContainer container : containers.values()) {
 			for (Module module : container.getUnloadedModules()) {
 				Log.debug("Disabled-Setup Start: {}", module);
@@ -216,7 +162,7 @@ public class ModuleManager {
 		}
 	}
 
-	private static boolean isEnabled(Configuration config, Module module) {
+	private static boolean isModuleEnabled(Configuration config, Module module) {
 		BinnieModule info = module.getClass().getAnnotation(BinnieModule.class);
 
 		String comment = I18n.translateToLocal(info.unlocalizedDescription());
@@ -236,15 +182,6 @@ public class ModuleManager {
 			comment = builder.toString();
 		}
 		Property prop = config.get(CONFIG_CATEGORY, info.moduleID(), true, comment);
-		boolean enabled = prop.getBoolean();
-
-		if (!enabled) {
-			IModuleContainer container = containers.get(info.moduleContainerID());
-			if(container != null){
-				container.disableModule(info.moduleID());
-			}
-		}
-
-		return enabled;
+		return prop.getBoolean();
 	}
 }

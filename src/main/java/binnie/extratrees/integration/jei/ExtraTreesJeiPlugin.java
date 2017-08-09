@@ -42,7 +42,7 @@ public class ExtraTreesJeiPlugin implements IModPlugin {
 
 	@Override
 	public void registerItemSubtypes(ISubtypeRegistry subtypeRegistry) {
-		if(ModuleManager.isEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.WOOD)){
+		if(ModuleManager.isModuleEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.WOOD)){
 			subtypeRegistry.registerSubtypeInterpreter(Item.getItemFromBlock(ModuleBlocks.blockMultiFence), (ItemStack itemStack) -> {
 				FenceDescription desc = WoodManager.getFenceDescription(itemStack);
 				if (desc != null) {
@@ -52,7 +52,7 @@ public class ExtraTreesJeiPlugin implements IModPlugin {
 				return Integer.toString(itemStack.getItemDamage());
 			});
 		}
-		if(ModuleManager.isEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.ALCOHOL)) {
+		if(ModuleManager.isModuleEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.ALCOHOL)) {
 			subtypeRegistry.registerSubtypeInterpreter(ModuleAlcohol.drink, (ItemStack itemStack) -> {
 				String glassware = ModuleAlcohol.drink.getGlassware(itemStack).getName();
 				FluidStack fluidStack = FluidUtil.getFluidContained(itemStack);
@@ -70,7 +70,7 @@ public class ExtraTreesJeiPlugin implements IModPlugin {
 		ExtraTreesJeiPlugin.guiHelper = jeiHelpers.getGuiHelper();
 		ExtraTreesJeiPlugin.drawables = Drawables.getDrawables(guiHelper);
 
-		if(ModuleManager.isEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.MACHINES)) {
+		if(ModuleManager.isModuleEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.MACHINES)) {
 			registry.addRecipeCategories(
 					new LumbermillRecipeCategory(),
 					new FruitPressRecipeCategory(),
@@ -82,7 +82,7 @@ public class ExtraTreesJeiPlugin implements IModPlugin {
 
 	@Override
 	public void register(IModRegistry registry) {
-		if(ModuleManager.isEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.MACHINES)) {
+		if(ModuleManager.isModuleEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.MACHINES)) {
 			registry.addRecipeCatalyst(ExtraTreeMachine.Lumbermill.get(1), RecipeUids.LUMBERMILL);
 			registry.addRecipeCatalyst(ExtraTreeMachine.Press.get(1), RecipeUids.FRUIT_PRESS);
 			registry.addRecipeCatalyst(ExtraTreeMachine.BREWERY.get(1), RecipeUids.BREWING);
@@ -94,7 +94,7 @@ public class ExtraTreesJeiPlugin implements IModPlugin {
 			registry.addRecipes(DistilleryRecipeMaker.create(), RecipeUids.DISTILLING);
 		}
 
-		if(ModuleManager.isEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.WOOD)) {
+		if(ModuleManager.isModuleEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.WOOD)) {
 			registry.addRecipeRegistryPlugin(new MultiFenceRecipeRegistryPlugin());
 		}
 	}

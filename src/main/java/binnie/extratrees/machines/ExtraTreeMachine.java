@@ -49,10 +49,10 @@ public enum ExtraTreeMachine implements IMachineType {
 	@Override
 	public boolean isActive() {
 		if (this == ExtraTreeMachine.Tileworker) {
-			return ModuleManager.isEnabled(Constants.BOTANY_MOD_ID, BotanyModuleUIDs.CERAMIC);
+			return ModuleManager.isModuleEnabled(Constants.BOTANY_MOD_ID, BotanyModuleUIDs.CERAMIC);
 		}
 		if(this == Glassworker || this == Woodworker || this == Panelworker){
-			return ModuleManager.isEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.CARPENTRY);
+			return ModuleManager.isModuleEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.CARPENTRY);
 		}
 		return this != ExtraTreeMachine.Nursery;
 	}

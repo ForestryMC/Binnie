@@ -3,6 +3,8 @@ package binnie.modules;
 import java.io.File;
 import java.util.Set;
 
+import net.minecraftforge.common.config.Configuration;
+
 public interface IModuleContainer {
 
 	/**
@@ -19,11 +21,15 @@ public interface IModuleContainer {
 
 	void enableModule(String uid);
 
-	void disableModule(String uid);
+	boolean isModuleEnabled(String moduleID);
 
 	Set<Module> getLoadedModules();
 
 	Set<Module> getUnloadedModules();
 
 	boolean isAvailable();
+
+	Configuration getModulesConfig();
+
+	Configuration getMainConfig();
 }

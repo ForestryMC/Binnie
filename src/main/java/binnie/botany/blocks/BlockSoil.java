@@ -299,7 +299,7 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 	@Override
 	public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, IPlantable plantable) {
 		IBlockState plant = plantable.getPlant(world, pos.up());
-		if(ModuleManager.isEnabled(Constants.BOTANY_MOD_ID, BotanyModuleUIDs.FLOWERS)) {
+		if(ModuleManager.isModuleEnabled(Constants.BOTANY_MOD_ID, BotanyModuleUIDs.FLOWERS)) {
 			if (plant.getBlock() == ModuleFlowers.flower) {
 				return true;
 			}

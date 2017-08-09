@@ -6,7 +6,6 @@ import java.util.Set;
 
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Optional;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 
 import binnie.Constants;
 import binnie.extratrees.integration.crafttweaker.handlers.BreweryRecipeHandler;
@@ -23,7 +22,7 @@ public class CraftTweakerModule extends Module {
 	public static final String MOD_ID = "crafttweaker";
 
 	@Override
-	public void init(FMLInitializationEvent event) {
+	public void init() {
 		initCT();
 	}
 

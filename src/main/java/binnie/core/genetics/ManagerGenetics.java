@@ -69,7 +69,7 @@ public class ManagerGenetics extends ManagerBase {
 		if (BinnieCore.isLepidopteryActive()) {
 			this.mothBreedingSystem = new MothBreedingSystem();
 		}
-		if (ModuleManager.isEnabled(Constants.BOTANY_MOD_ID, BotanyModuleUIDs.FLOWERS)) {
+		if (ModuleManager.isModuleEnabled(Constants.BOTANY_MOD_ID, BotanyModuleUIDs.FLOWERS)) {
 			this.flowerBreedingSystem = new FlowerBreedingSystem();
 		}
 	}
