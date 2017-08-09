@@ -23,7 +23,6 @@ public class PageBreeder extends ControlPage<DatabaseTab> {
 	public void onPageRefresh() {
 		this.deleteAllChildren();
 		final BreedingSystem system = ((WindowAbstractDatabase) Window.get(this)).getBreedingSystem();
-		final String descriptor = system.getDescriptor();
 		new ControlTextCentered(this, 8, TextFormatting.UNDERLINE + system.getDescriptor() + " " + I18N.localise(DatabaseConstants.BREEDER_KEY + ".profile"));
 		new ControlTextCentered(this, 75, "" + system.discoveredSpeciesCount + "/" + system.totalSpeciesCount + " " + I18N.localise(DatabaseConstants.BREEDER_KEY + ".species"));
 		new ControlBreedingProgress(this, 20, 87, 102, 14, system, system.discoveredSpeciesPercentage);

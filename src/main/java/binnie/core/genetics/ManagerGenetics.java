@@ -12,7 +12,6 @@ import java.util.Map;
 import java.util.TreeSet;
 
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 
 import net.minecraftforge.event.world.WorldEvent;
 
@@ -80,10 +79,6 @@ public class ManagerGenetics extends ManagerBase {
 		this.refreshData();
 	}
 
-	public boolean isSpeciesDiscovered(final IAlleleSpecies species, final World world, final boolean nei) {
-		return true;
-	}
-
 	public ITreeRoot getTreeRoot() {
 		return TreeManager.treeRoot;
 	}
@@ -119,10 +114,6 @@ public class ManagerGenetics extends ManagerBase {
 
 	public ISpeciesRoot getSpeciesRoot(final IAlleleSpecies species) {
 		return species.getRoot();
-	}
-
-	public IAllele getToleranceAllele(final forestry.api.genetics.EnumTolerance tol) {
-		return AlleleManager.alleleRegistry.getAllele(Tolerance.values()[tol.ordinal()].getUID());
 	}
 
 	public int[] getTolerance(final forestry.api.genetics.EnumTolerance tol) {

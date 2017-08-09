@@ -88,10 +88,6 @@ public enum Food implements IItemMiscProvider {
 	int hunger;
 	private List<String> ores;
 
-	Food() {
-		this(0);
-	}
-
 	Food(final int hunger) {
 		this.ores = new ArrayList<>();
 		this.hunger = hunger;

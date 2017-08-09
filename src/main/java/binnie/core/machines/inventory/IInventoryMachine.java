@@ -5,7 +5,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 
-public interface IInventoryMachine extends IInventory, ISidedInventory, IValidatedInventory {
+public interface IInventoryMachine extends IInventory, ISidedInventory {
 	IInventory getInventory();
 
 	@Override

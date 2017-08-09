@@ -32,7 +32,6 @@ import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IBreedingTracker;
 import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.IClassification;
-import forestry.api.genetics.IGenome;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.IMutation;
 import forestry.api.genetics.ISpeciesRoot;
@@ -209,25 +208,11 @@ public abstract class BreedingSystem implements IItemStackRepresentitive {
 		return AlleleManager.alleleRegistry.isBlacklisted(allele.getUID());
 	}
 
-	public final List<IMutation> getResultantMutations(final IAlleleSpecies species, final boolean includeInactive) {
-		if (this.resultantMutations.isEmpty()) {
-			this.calculateArrays();
-		}
-		return includeInactive ? this.allResultantMutations.get(species) : this.resultantMutations.get(species);
-	}
-
 	public final List<IMutation> getResultantMutations(final IAlleleSpecies species) {
 		if (this.resultantMutations.isEmpty()) {
 			this.calculateArrays();
 		}
 		return this.resultantMutations.get(species);
-	}
-
-	public final List<IMutation> getFurtherMutations(final IAlleleSpecies species, final boolean includeInactive) {
-		if (this.furtherMutations.isEmpty()) {
-			this.calculateArrays();
-		}
-		return includeInactive ? this.allFurtherMutations.get(species) : this.furtherMutations.get(species);
 	}
 
 	public final List<IMutation> getFurtherMutations(final IAlleleSpecies species) {
@@ -328,26 +313,6 @@ public abstract class BreedingSystem implements IItemStackRepresentitive {
 		return speciesList;
 	}
 
-	public final List<IMutation> getDiscoveredMutations(final IBreedingTracker tracker) {
-		final List<IMutation> speciesList = new ArrayList<>();
-		for (final IMutation species : this.getAllMutations()) {
-			if (this.isMutationDiscovered(species, tracker)) {
-				speciesList.add(species);
-			}
-		}
-		return speciesList;
-	}
-
-	public final int getDiscoveredBranchMembers(final IClassification branch, final IBreedingTracker tracker) {
-		int discoveredSpecies = 0;
-		for (final IAlleleSpecies species : branch.getMemberSpecies()) {
-			if (this.isSpeciesDiscovered(species, tracker)) {
-				++discoveredSpecies;
-			}
-		}
-		return discoveredSpecies;
-	}
-
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getUndiscoveredIcon() {
 		return this.iconUndiscovered.getSprite();
@@ -438,16 +403,6 @@ public abstract class BreedingSystem implements IItemStackRepresentitive {
 		return this.getSpeciesRoot().getUID();
 	}
 
-	@Nullable
-	public final IChromosomeType getChromosome(int index) {
-		for (IChromosomeType chromosome : this.getSpeciesRoot().getKaryotype()) {
-			if (index == chromosome.ordinal()) {
-				return chromosome;
-			}
-		}
-		return null;
-	}
-
 	public abstract int getColour();
 
 	public String getAlleleName(final IChromosomeType chromosome, final IAllele allele) {
@@ -524,14 +479,5 @@ public abstract class BreedingSystem implements IItemStackRepresentitive {
 			return null;
 		}
 		return this.getSpeciesRoot().templateAsIndividual(template);
-	}
-
-	@Nullable
-	public IGenome getGenome(String uid) {
-		IAllele[] template = this.getSpeciesRoot().getTemplate(uid);
-		if (template == null) {
-			return null;
-		}
-		return this.getSpeciesRoot().templateAsGenome(template);
 	}
 }

@@ -111,10 +111,6 @@ public class Gene implements IGene {
 		return this.getSystem().getAlleleName(this.chromosome, this.allele);
 	}
 
-	public String getChromosomeName() {
-		return this.getSystem().getChromosomeName(this.chromosome);
-	}
-
 	public String getShortChromosomeName() {
 		return this.getSystem().getChromosomeShortName(this.chromosome);
 	}

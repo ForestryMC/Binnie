@@ -14,9 +14,6 @@ import net.minecraft.util.math.BlockPos;
 
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
-import forestry.core.models.BlockModelEntry;
-import forestry.core.models.ModelEntry;
-
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
 import binnie.core.gui.IBinnieGUID;
@@ -91,20 +88,9 @@ public class BinnieModProxy implements IBinnieModProxy {
 		this.getMod().getNetworkWrapper().sendToServer(packet.GetMessage());
 	}
 
-	public void registerModel(Item item, int meta) {
-
-	}
-
 	public void registerModel(Item item, int meta, ModelResourceLocation modelResourceLocation) {
 
 	}
-
-	public void registerBlockModel(final BlockModelEntry index) {
-	}
-
-	public void registerModel(ModelEntry index) {
-	}
-
 
 	/*@Override
 	public IIcon getIcon(final IIconRegister register, final String string) {

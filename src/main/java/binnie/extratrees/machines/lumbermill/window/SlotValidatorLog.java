@@ -2,15 +2,11 @@ package binnie.extratrees.machines.lumbermill.window;
 
 import net.minecraft.item.ItemStack;
 
-import net.minecraftforge.oredict.OreDictionary;
-
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.util.I18N;
 import binnie.extratrees.machines.lumbermill.recipes.LumbermillRecipeManager;
 
 public class SlotValidatorLog extends SlotValidator {
-	private static final int logWoodId = OreDictionary.getOreID("logWood");
-
 	public SlotValidatorLog() {
 		super(SlotValidator.spriteBlock);
 	}

@@ -21,8 +21,6 @@ import net.minecraft.world.World;
 import binnie.core.BinnieCore;
 
 public class BlockMetadata extends BlockContainer implements IBlockMetadata {
-	static int temporyMeta = -1;
-
 	public BlockMetadata(final Material material) {
 		super(material);
 	}

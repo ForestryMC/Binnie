@@ -13,10 +13,6 @@ import binnie.core.gui.resource.minecraft.CraftGUITexture;
 public class ControlOption<T> extends Control implements IControlValue<T> {
 	private T value;
 
-	public ControlOption(final ControlList<T> controlList, final T option) {
-		this(controlList, option, 16);
-	}
-
 	public ControlOption(final ControlList<T> controlList, final T option, final int height) {
 		super(controlList, 0, height, controlList.getSize().xPos(), 20);
 		this.value = option;

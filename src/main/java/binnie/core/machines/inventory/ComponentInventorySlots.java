@@ -95,17 +95,6 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 		this.markDirty();
 	}
 
-	protected void transferItem(final int indexFrom, final int indexTo) {
-		if (this.inventory.containsKey(indexFrom) && this.inventory.containsKey(indexTo)) {
-			final InventorySlot slotFrom = this.inventory.get(indexFrom);
-			final ItemStack oldStack = slotFrom.getItemStack();
-			final ItemStack newStack = oldStack.isEmpty() ? ItemStack.EMPTY : oldStack.copy();
-			slotFrom.setContent(ItemStack.EMPTY);
-			this.inventory.get(indexTo).setContent(newStack);
-		}
-		this.markDirty();
-	}
-	
 	@Override
 	public boolean isEmpty() {
 		return this.inventory.isEmpty();
@@ -169,14 +158,12 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 		return nbttagcompound;
 	}
 
-	@Override
 	public final InventorySlot addSlot(final int index, final String unlocName) {
 		InventorySlot slot = new InventorySlot(index, unlocName);
 		this.inventory.put(index, slot);
 		return slot;
 	}
 
-	@Override
 	public final InventorySlot[] addSlotArray(final int[] indexes, final String unlocName) {
 		for (final int k : indexes) {
 			this.addSlot(k, unlocName);
@@ -193,12 +180,6 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 		return null;
 	}
 
-	@Override
-	public InventorySlot[] getAllSlots() {
-		return this.inventory.values().toArray(new InventorySlot[0]);
-	}
-
-	@Override
 	public InventorySlot[] getSlots(final int[] indexes) {
 		final List<InventorySlot> list = new ArrayList<>();
 		for (final int i : indexes) {
@@ -209,8 +190,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 		return list.toArray(new InventorySlot[0]);
 	}
 
-	@Override
-	public boolean isReadOnly(final int slot) {
+	private boolean isReadOnly(final int slot) {
 		final InventorySlot iSlot = this.getSlot(slot);
 		return iSlot == null || iSlot.isReadOnly();
 	}

@@ -17,15 +17,9 @@ import binnie.core.gui.resource.minecraft.CraftGUITexture;
 
 public class ControlCheckbox extends Control implements IControlValue<Boolean> {
 	private boolean value;
-	private String text;
-
-	public ControlCheckbox(final IWidget parent, final int x, final int y, final boolean bool) {
-		this(parent, x, y, 0, "", bool);
-	}
 
 	public ControlCheckbox(final IWidget parent, final int x, final int y, final int w, final String text, final boolean bool) {
 		super(parent, x, y, (w > 16) ? w : 16, 16);
-		this.text = text;
 		this.value = bool;
 		if (w > 16) {
 			new ControlText(this, new Area(16, 1, w - 16, 16), text, TextJustification.MIDDLE_CENTER).setColor(4473924);

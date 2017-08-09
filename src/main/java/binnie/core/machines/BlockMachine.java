@@ -96,9 +96,8 @@ class BlockMachine extends Block implements IBlockMachine, ITileEntityProvider {
 		return new BlockStateContainer(this, MACHINE_TYPE);
 	}
 
-	@Override
 	@Nullable
-	public MachinePackage getPackage(final int meta) {
+	private MachinePackage getPackage(final int meta) {
 		return this.group.getPackage(meta);
 	}
 

@@ -962,10 +962,6 @@ public enum FlowerDefinition implements IFlowerDefinition {
 		this(name, branch, binomial, type, true, primaryColor, secondaryColor);
 	}
 
-	FlowerDefinition(String name, String branch, String binomial, IFlowerType<binnie.botany.genetics.EnumFlowerType> type, boolean isDominant, EnumFlowerColor colour) {
-		this(name, branch, binomial, type, isDominant, colour, colour);
-	}
-
 	FlowerDefinition(String name, String branch, String binomial, IFlowerType<binnie.botany.genetics.EnumFlowerType> flowerType, boolean isDominant, EnumFlowerColor primaryColor, EnumFlowerColor secondaryColor) {
 		String uid = Constants.BOTANY_MOD_ID + ".flower" + this;
 		String unlocalizedDescription = "botany.description.flower" + this;

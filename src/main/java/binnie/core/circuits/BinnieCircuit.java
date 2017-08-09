@@ -3,7 +3,6 @@ package binnie.core.circuits;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import forestry.api.circuits.ChipsetManager;
@@ -23,10 +22,6 @@ public class BinnieCircuit implements ICircuit {
 		if (!itemStack.isEmpty()) {
 			ChipsetManager.solderManager.addRecipe(layout, itemStack, this);
 		}
-	}
-
-	public BinnieCircuit(final String uid, final int limit, final ICircuitLayout layout, final Item item, final int itemMeta) {
-		this(uid, limit, layout, new ItemStack(item, 1, itemMeta));
 	}
 
 	public void addTooltipString(final String string) {

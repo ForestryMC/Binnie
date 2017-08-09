@@ -32,11 +32,6 @@ public class ControlIconDisplay extends Control {
 		this.sprite = sprite.getSprite();
 	}
 
-	public ControlIconDisplay(final IWidget parent, final int x, final int y, TextureAtlasSprite sprite) {
-		super(parent, x, y, 16, 16);
-		this.sprite = sprite;
-	}
-
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderForeground(int guiWidth, int guiHeight) {

@@ -75,16 +75,6 @@ public abstract class ComponentIndexerInventory<T> extends ComponentInventory im
 		this.markDirty();
 	}
 
-	/*@Override
-	public ItemStack getStackInSlotOnClosing(final int var1) {
-		return null;
-	}
-
-	@Override
-	public String getInventoryName() {
-		return "";
-	}*/
-
 	@Override
 	public int getInventoryStackLimit() {
 		return 64;
@@ -94,14 +84,6 @@ public abstract class ComponentIndexerInventory<T> extends ComponentInventory im
 	public boolean isUsableByPlayer(final EntityPlayer var1) {
 		return true;
 	}
-
-	/*@Override
-	public void openInventory() {
-	}
-
-	@Override
-	public void closeInventory() {
-	}*/
 
 	@Nullable
 	public T getMode() {

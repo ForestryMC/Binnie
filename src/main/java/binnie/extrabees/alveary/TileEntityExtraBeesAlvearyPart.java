@@ -3,8 +3,6 @@ package binnie.extrabees.alveary;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Collection;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -58,11 +56,6 @@ public class TileEntityExtraBeesAlvearyPart extends MultiblockTileEntityForestry
 
 	public boolean hasGui() {
 		return alvearyLogic.hasGui();
-	}
-
-	@Nonnull
-	public AbstractAlvearyLogic getAlvearyLogic() {
-		return alvearyLogic;
 	}
 
 	@Override
@@ -151,9 +144,5 @@ public class TileEntityExtraBeesAlvearyPart extends MultiblockTileEntityForestry
 
 	public Collection<IMultiblockComponent> getConnectedComponents() {
 		return getMultiblockLogic().getController().getComponents();
-	}
-
-	public Set<TileEntityExtraBeesAlvearyPart> getExtraBeesParts() {
-		return getConnectedComponents().stream().filter(p -> p instanceof TileEntityExtraBeesAlvearyPart).map(p -> (TileEntityExtraBeesAlvearyPart) p).collect(Collectors.toSet());
 	}
 }

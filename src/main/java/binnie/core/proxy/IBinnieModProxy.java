@@ -14,6 +14,4 @@ public interface IBinnieModProxy extends IProxyCore {
 	void sendToPlayer(final MessageBase p0, final EntityPlayer p1);
 
 	void sendToServer(final MessageBase p0);
-
-	//IIcon getIcon(final IIconRegister p0, final String p1);
 }

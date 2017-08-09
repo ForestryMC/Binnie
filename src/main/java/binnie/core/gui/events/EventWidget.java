@@ -7,18 +7,6 @@ public class EventWidget extends Event {
 		super(origin);
 	}
 
-	public static class Enable extends EventWidget {
-		public Enable(final IWidget origin) {
-			super(origin);
-		}
-	}
-
-	public static class Disable extends EventWidget {
-		public Disable(final IWidget origin) {
-			super(origin);
-		}
-	}
-
 	public static class Show extends EventWidget {
 		public Show(final IWidget origin) {
 			super(origin);

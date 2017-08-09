@@ -19,15 +19,7 @@ public class BinnieResource {
 		this.path = path;
 	}
 
-	/*public String getFullPath() {
-		return "/assets/" + this.mod + "/textures/" + this.type.toString() + "/" + this.path;
-	}*/
-
 	public ResourceLocation getResourceLocation() {
 		return this.path.endsWith(".png") ? new ResourceLocation(this.mod, "textures/" + this.type.toString() + "/" + this.path) : new ResourceLocation(this.mod, this.type.toString() + "/" + this.path);
-	}
-
-	public String getShortPath() {
-		return "textures/" + this.type.toString() + "/" + this.path;
 	}
 }

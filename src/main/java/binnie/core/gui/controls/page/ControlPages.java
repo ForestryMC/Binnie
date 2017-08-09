@@ -44,8 +44,4 @@ public class ControlPages<T> extends Control implements IControlValues<T>, ICont
 		}
 		return list;
 	}
-
-	@Override
-	public void setValues(final Collection<T> values) {
-	}
 }

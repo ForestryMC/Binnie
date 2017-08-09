@@ -91,7 +91,6 @@ public class ControlLumbermillProgress extends ControlProgressBase {
 		}
 		//final IIcon icon2 = block2.getIcon(2, result.getItemDamage());
 		TextureAtlasSprite sprite = getWoodSprite(result);
-		final Point size = this.getSize();
 		final Point pos = this.getAbsolutePosition();
 		CraftGUI.RENDER.limitArea(new Area(pos.add(Point.ZERO), new Point(Math.round(this.progress * 64) + 2, 18)), guiWidth, guiHeight);
 		GL11.glEnable(GL11.GL_SCISSOR_TEST);

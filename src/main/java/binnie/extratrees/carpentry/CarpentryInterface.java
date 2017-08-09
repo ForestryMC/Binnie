@@ -14,8 +14,6 @@ import binnie.extratrees.api.ICarpentryInterface;
 import binnie.extratrees.api.IDesign;
 import binnie.extratrees.api.IDesignCategory;
 import binnie.extratrees.api.IDesignMaterial;
-import binnie.extratrees.api.ILayout;
-import binnie.extratrees.api.IPattern;
 
 public class CarpentryInterface implements ICarpentryInterface {
 	static Map<Integer, IDesignMaterial> woodMap = new LinkedHashMap<>();
@@ -63,18 +61,8 @@ public class CarpentryInterface implements ICarpentryInterface {
 	}
 
 	@Override
-	public ILayout getLayout(final IPattern pattern, final boolean inverted) {
-		return Layout.get(pattern, inverted);
-	}
-
-	@Override
 	public boolean registerDesignCategory(final IDesignCategory category) {
 		return CarpentryInterface.designCategories.put(category.getId(), category) == null;
-	}
-
-	@Override
-	public IDesignCategory getDesignCategory(final String id) {
-		return CarpentryInterface.designCategories.get(id);
 	}
 
 	@Override

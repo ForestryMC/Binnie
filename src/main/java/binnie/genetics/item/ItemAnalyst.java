@@ -12,12 +12,6 @@ import binnie.genetics.Genetics;
 import binnie.genetics.core.GeneticsGUI;
 
 public class ItemAnalyst extends ItemCore {
-	/*@Override
-	@SideOnly(Side.CLIENT)
-	public void registerIcons(final IIconRegister register) {
-		this.itemIcon = Genetics.proxy.getIcon(register, "analyst");
-	}*/
-
 	public ItemAnalyst() {
 		super("analyst");
 		this.setCreativeTab(CreativeTabGenetics.instance);

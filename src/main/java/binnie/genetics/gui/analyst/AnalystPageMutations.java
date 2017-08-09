@@ -32,7 +32,6 @@ import binnie.core.gui.minecraft.Window;
 import binnie.core.gui.minecraft.control.ControlItemDisplay;
 import binnie.core.gui.renderer.RenderUtil;
 import binnie.core.integration.extrabees.ExtraBeesIntegration;
-import binnie.core.resource.BinnieSprite;
 import binnie.core.util.I18N;
 
 public class AnalystPageMutations extends ControlAnalystPage {
@@ -124,11 +123,6 @@ public class AnalystPageMutations extends ControlAnalystPage {
 		}
 		y += 8;
 		setSize(new Point(getWidth(), y));
-	}
-
-	@SideOnly(Side.CLIENT)
-	private void drawSprite(BinnieSprite sprite) {
-		RenderUtil.drawSprite(new Point(14, 0), sprite.getSprite());
 	}
 
 	private boolean isKnown(BreedingSystem system, IMutation mutation) {

@@ -37,18 +37,6 @@ public class DummyManagers {
 		public Set<T> recipes() {
 			return ImmutableSet.of();
 		}
-
-		@Nullable
-		@Override
-		public String getJEICategory() {
-			return null;
-		}
-
-		@Nullable
-		@Override
-		public Object getJeiWrapper(T recipe) {
-			return null;
-		}
 	}
 
 	public static class DummyBreweryManager extends DummyCraftingManager<IBreweryRecipe> implements IBreweryManager {

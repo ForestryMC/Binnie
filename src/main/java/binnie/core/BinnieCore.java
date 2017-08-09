@@ -64,7 +64,6 @@ import binnie.modules.ModuleManager;
 public final class BinnieCore extends AbstractMod {
 
 	private static final List<AbstractMod> modList = new ArrayList<>();
-	public static int multipassRenderID;
 	@SuppressWarnings("NullableProblems")
 	@Mod.Instance(Constants.CORE_MOD_ID)
 	private static BinnieCore instance;

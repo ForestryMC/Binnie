@@ -2954,10 +2954,6 @@ public enum EnumFlowerColor implements IStringSerializable {
 		return name().toLowerCase();
 	}
 
-	public String getHTMLName() {
-		return name();
-	}
-
 	public AlleleFlowerColor getFlowerColorAllele() {
 		return allele;
 	}

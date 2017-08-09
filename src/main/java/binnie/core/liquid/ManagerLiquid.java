@@ -1,7 +1,6 @@
 package binnie.core.liquid;
 
 import javax.annotation.Nullable;
-import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -33,10 +32,6 @@ public class ManagerLiquid extends ManagerBase {
 
 	public ManagerLiquid() {
 		this.fluids = new LinkedHashMap<>();
-	}
-
-	public Collection<IFluidType> getFluidTypes() {
-		return this.fluids.values();
 	}
 
 	public void createLiquids(final IFluidType[] liquids) {
@@ -74,10 +69,6 @@ public class ManagerLiquid extends ManagerBase {
 			" b ", "g g", " g ",
 			'g', OreDictUtil.BLOCK_GLASS, 'b', OreDictUtil.SLAB_WOOD
 		);
-	}
-
-	public IFluidType getFluidType(final String liquid) {
-		return this.fluids.get(liquid.toLowerCase());
 	}
 
 	@SubscribeEvent

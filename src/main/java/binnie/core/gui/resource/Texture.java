@@ -15,14 +15,6 @@ public class Texture {
 	private final Border border;
 	private final IBinnieTexture binnieTexture;
 
-	public Texture(final Area area, final IBinnieTexture binnieTexture) {
-		this(area, Border.ZERO, Border.ZERO, binnieTexture);
-	}
-
-	public Texture(final Area area, final Border padding, final IBinnieTexture binnieTexture) {
-		this(area, padding, Border.ZERO, binnieTexture);
-	}
-
 	public Texture(final Area area, final Border padding, final Border border, final IBinnieTexture binnieTexture) {
 		this.area = new Area(area);
 		this.padding = new Border(padding);
@@ -32,10 +24,6 @@ public class Texture {
 
 	public Area getArea() {
 		return this.area;
-	}
-
-	public Border getPadding() {
-		return this.padding;
 	}
 
 	public Border getBorder() {
@@ -57,14 +45,6 @@ public class Texture {
 
 	public int height() {
 		return this.getArea().height();
-	}
-
-	public int u() {
-		return this.getArea().xPos();
-	}
-
-	public int v() {
-		return this.getArea().yPos();
 	}
 
 	public Texture crop(final Position anchor, final int dist) {

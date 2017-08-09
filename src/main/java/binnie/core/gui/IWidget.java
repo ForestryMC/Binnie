@@ -22,20 +22,11 @@ public interface IWidget {
 	ITopLevelWidget getTopParent();
 
 	/**
-	 * @return true if this widget is the {@link #getTopParent()}
-	 */
-	boolean isTopLevel();
-
-	/**
 	 * @return the position of this widget
 	 */
 	Point getPosition();
 
-	Point getOriginalPosition();
-
 	Point getAbsolutePosition();
-
-	Point getOriginalAbsolutePosition();
 
 	void setPosition(Point position);
 
@@ -44,13 +35,6 @@ public interface IWidget {
 	 */
 	Point getSize();
 
-	void setSize(Point size);
-
-	/**
-	 * @return the offset of this widget
-	 */
-	Point getOffset();
-
 	void setOffset(final Point p0);
 
 	/**
@@ -58,14 +42,7 @@ public interface IWidget {
 	 */
 	Area getArea();
 
-	/**
-	 * @return the position of the mouse
-	 */
-	Point getMousePosition();
-
 	Point getRelativeMousePosition();
-
-	int getXPos();
 
 	int getYPos();
 
@@ -83,10 +60,6 @@ public interface IWidget {
 	@SideOnly(Side.CLIENT)
 	void updateClient();
 
-	void enable();
-
-	void disable();
-
 	void show();
 
 	void hide();
@@ -97,12 +70,6 @@ public interface IWidget {
 
 	boolean isVisible();
 
-	boolean isFocused();
-
-	boolean isMouseOver();
-
-	boolean isDragged();
-
 	boolean canMouseOver();
 
 	boolean canFocus();
@@ -110,26 +77,16 @@ public interface IWidget {
 	/* CHILDREN */
 	boolean isChildVisible(IWidget child);
 
-	boolean isChildEnabled(IWidget child);
-
-	@Nullable
-	IWidget addChild(IWidget child);
+	void addChild(IWidget child);
 
 	List<IWidget> getChildren();
 
 	@Nullable
-	IWidget deleteChild(IWidget child);
+	<W> W getWidget(Class<W> widgetClass);
 
-	void deleteAllChildren();
-
-	IWidget getTopChild();
+	void deleteChild(IWidget child);
 
 	/* EVENTS*/
-
-	/**
-	 * Calls an event
-	 */
-	void callEvent(Event event);
 
 	/**
 	 * Called if this widget receives an event
@@ -145,15 +102,7 @@ public interface IWidget {
 	 */
 	<E extends Event> void addSelfEventHandler(Class<? super E> eventClass, EventHandler.OnEventHandler<E> handler);
 
-	@SideOnly(Side.CLIENT)
-	void onUpdateClient();
-
 	void delete();
-
-	void onDelete();
-
-	@Nullable
-	<T> T getWidget(final Class<T> widgetClass);
 
 	@Nullable
 	Area getCroppedZone();
@@ -164,32 +113,13 @@ public interface IWidget {
 
 	IWidget getCropWidget();
 
-	boolean isMouseOverWidget(final Point p0);
-
-	int getLevel();
-
-	boolean isDescendant(final IWidget p0);
-
 	/* ATTRIBUTES */
-
-	/**
-	 * @return a list with all attributes that this widget has.
-	 */
-	List<IWidgetAttribute> getAttributes();
 
 	/**
 	 *
 	 * @return true if this widget has this attribute
 	 */
 	boolean hasAttribute(IWidgetAttribute attribute);
-
-	/**
-	 * Adds an attribute to this widget
-	 */
-	boolean addAttribute(IWidgetAttribute attribute);
-
-	boolean contains(Point point);
-
 
 	@SideOnly(Side.CLIENT)
 	void onRender(RenderStage stage, int guiWidth, int guiHeight);

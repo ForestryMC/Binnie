@@ -43,10 +43,6 @@ public class Tooltip {
 		this.tooltip.add(string);
 	}
 
-	public String getLine(final int index) {
-		return this.getList().get(index);
-	}
-
 	public void add(final List<String> list) {
 		this.tooltip.addAll(list);
 	}

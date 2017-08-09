@@ -1,5 +1,6 @@
 package binnie.core.gui.database;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 import forestry.api.genetics.IAlleleSpecies;
@@ -11,8 +12,8 @@ import binnie.core.gui.controls.listbox.ControlListBox;
 import binnie.core.gui.minecraft.Window;
 
 class ControlMutationBox extends ControlListBox<IMutation> {
-	private int index;
 	private Type type;
+	@Nullable
 	private IAlleleSpecies species;
 
 	public ControlMutationBox(final IWidget parent, final int x, final int y, final int width, final int height, final Type type) {
@@ -26,10 +27,9 @@ class ControlMutationBox extends ControlListBox<IMutation> {
 		return new ControlMutationItem(this.getContent(), value, this.species, y);
 	}
 
-	public void setSpecies(final IAlleleSpecies species) {
+	public void setSpecies(@Nullable final IAlleleSpecies species) {
 		if (species != this.species) {
 			this.species = species;
-			this.index = 0;
 			this.movePercentage(-100.0f);
 			final BreedingSystem system = ((WindowAbstractDatabase) this.getTopParent()).getBreedingSystem();
 			final List<IMutation> discovered = system.getDiscoveredMutations(Window.get(this).getWorld(), Window.get(this).getUsername());

@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.tileentity.TileEntity;
@@ -29,7 +28,6 @@ import binnie.core.BinnieCore;
 import binnie.core.machines.component.IInteraction;
 import binnie.core.machines.component.IRender;
 import binnie.core.machines.network.INetwork;
-import binnie.core.machines.power.ITankMachine;
 import binnie.core.network.BinnieCorePacketID;
 import binnie.core.network.INetworkedEntity;
 import binnie.core.network.packet.MessageBase;
@@ -147,21 +145,6 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 		return this.tile;
 	}
 
-	public void sendRefreshPacket() {
-		if (!BinnieCore.getBinnieProxy().isSimulating(this.getTileEntity().getWorld())) {
-			return;
-		}
-		MessageBase message = getRefreshPacket();
-		if(message == null){
-			return;
-		}
-		BinnieCore.getBinnieProxy().sendToAll(message);
-	}
-
-	public Side getSide() {
-		return BinnieCore.getBinnieProxy().isSimulating(this.getTileEntity().getWorld()) ? Side.SERVER : Side.CLIENT;
-	}
-
 	@Override
 	public void writeToPacket(final PacketPayload payload) {
 		for (final MachineComponent component : this.getComponents()) {
@@ -214,14 +197,6 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 		for (IRender.DisplayTick renders : this.getInterfaces(IRender.DisplayTick.class)) {
 			renders.onDisplayTick(this.getWorld(), this.getTileEntity().getPos(), this.getWorld().rand);
 		}
-	}
-
-	public IInventory getInventory() {
-		return this.getInterface(IInventory.class);
-	}
-
-	public ITankMachine getTankContainer() {
-		return this.getInterface(ITankMachine.class);
 	}
 
 	@Override

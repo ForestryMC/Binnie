@@ -17,15 +17,11 @@ import binnie.core.machines.inventory.ValidatorSprite;
 public class ManagerMachine extends ManagerBase {
 	private Map<Class<?>, Class<?>[]> componentInterfaceMap;
 	private Map<String, MachineGroup> machineGroups;
-	private Map<Integer, Class<?>> networkIDToComponent;
-	private Map<Class<?>, Integer> componentToNetworkID;
 	private int nextNetworkID;
 
 	public ManagerMachine() {
 		this.componentInterfaceMap = new HashMap<>();
 		this.machineGroups = new HashMap<>();
-		this.networkIDToComponent = new HashMap<>();
-		this.componentToNetworkID = new HashMap<>();
 		this.nextNetworkID = 0;
 	}
 
@@ -55,16 +51,6 @@ public class ManagerMachine extends ManagerBase {
 		interfaces.remove(INbtReadable.class);
 		this.componentInterfaceMap.put(component, interfaces.toArray(new Class[0]));
 		final int networkID = this.nextNetworkID++;
-		this.networkIDToComponent.put(networkID, component);
-		this.componentToNetworkID.put(component, networkID);
-	}
-
-	public int getNetworkID(final Class<?> component) {
-		return this.componentToNetworkID.get(component);
-	}
-
-	public Class<?> getComponentClass(final int networkID) {
-		return this.networkIDToComponent.get(networkID);
 	}
 
 	@Override

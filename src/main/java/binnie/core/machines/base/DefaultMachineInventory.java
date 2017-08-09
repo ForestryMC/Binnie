@@ -27,11 +27,6 @@ class DefaultMachineInventory implements IInventoryMachine {
 	}
 
 	@Override
-	public boolean isReadOnly(final int slot) {
-		return false;
-	}
-
-	@Override
 	public void markDirty() {
 	}
 

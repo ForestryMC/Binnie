@@ -41,12 +41,6 @@ public abstract class BaseSlot<T> implements INbtWritable, INbtReadable, IValida
 	@Nullable
 	public abstract T getContent();
 
-	public abstract void setContent(final T content);
-
-	public boolean isEmpty() {
-		return this.getContent() == null;
-	}
-
 	public boolean isReadOnly() {
 		return this.readOnly;
 	}
@@ -92,14 +86,6 @@ public abstract class BaseSlot<T> implements INbtWritable, INbtReadable, IValida
 
 	public Collection<EnumFacing> getInputSides() {
 		return this.access.getInsertionSides();
-	}
-
-	public void setInputSides(final EnumSet<EnumFacing> sides) {
-		for (final EnumFacing side : EnumSet.complementOf(sides)) {
-			//if (side != ForgeDirection.UNKNOWN) {
-			this.access.setInsert(side, false);
-			//}
-		}
 	}
 
 	public Collection<EnumFacing> getOutputSides() {

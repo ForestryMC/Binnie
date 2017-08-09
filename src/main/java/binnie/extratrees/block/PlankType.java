@@ -250,16 +250,6 @@ public class PlankType {
 		public ItemStack getStack(boolean fireproof) {
 			return TreeManager.woodAccess.getStack(woodType, WoodBlockKind.PLANKS, fireproof);
 		}
-
-		/*@Override
-		public IIcon getIcon() {
-			if (this.getStack() != null) {
-				final int meta = this.getStack().getItemDamage();
-				final Block block = Blocks.planks;
-				return block.getIcon(2, meta);
-			}
-			return null;
-		}*/
 	}
 
 	public enum ForestryPlanks implements IPlankType, IFenceProvider {
@@ -349,16 +339,6 @@ public class PlankType {
 		public ItemStack getStack() {
 			return getStack(true);
 		}
-
-		/*@Override
-		public IIcon getIcon() {
-			if (this.getStack() != null) {
-				final int meta = this.getStack().getItemDamage();
-				final Block block = ((ItemBlock) this.getStack().getItem()).field_150939_a;
-				return block.getIcon(2, meta);
-			}
-			return null;
-		}*/
 
 		@Override
 		public ItemStack getFence() {

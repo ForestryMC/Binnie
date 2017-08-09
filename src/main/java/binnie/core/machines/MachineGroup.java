@@ -14,23 +14,17 @@ import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
 
 public class MachineGroup {
-	public boolean customRenderer;
 	private AbstractMod mod;
-	private String blockName;
 	private String uid;
 	private Map<String, MachinePackage> packages;
 	private Map<Integer, MachinePackage> packagesID;
 	private BlockMachine block;
-	private boolean renderedTileEntity;
 
 	public MachineGroup(final AbstractMod mod, final String uid, final String blockName, final IMachineType[] types) {
 		this.packages = new LinkedHashMap<>();
 		this.packagesID = new LinkedHashMap<>();
-		this.customRenderer = true;
-		this.renderedTileEntity = true;
 		this.mod = mod;
 		this.uid = uid;
-		this.blockName = blockName;
 		createPackages(types);
 		Binnie.MACHINE.registerMachineGroup(this);
 		this.block = new BlockMachine(this, blockName);
@@ -91,14 +85,6 @@ public class MachineGroup {
 
 	public String getShortUID() {
 		return this.uid;
-	}
-
-	boolean isTileEntityRenderered() {
-		return this.renderedTileEntity;
-	}
-
-	public void renderAsBlock() {
-		this.renderedTileEntity = false;
 	}
 
 	public void setCreativeTab(final CreativeTabs tab) {

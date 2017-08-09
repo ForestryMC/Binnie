@@ -41,10 +41,6 @@ public class TankInfo implements INbtReadable, INbtWritable {
 		return this.capacity;
 	}
 
-	/*public IIcon getIcon() {
-		return this.liquid.getFluid().getStillIcon();
-	}*/
-
 	public boolean isEmpty() {
 		return this.liquid == null;
 	}

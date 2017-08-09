@@ -404,7 +404,6 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 	private String fx;
 	private boolean combinable;
 	private boolean dominant;
-	private int id;
 	private String uid;
 
 	ExtraBeesEffect() {
@@ -549,10 +548,6 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 		List<BlockPos> flowerPositions = beekeepingLogic.getFlowerPositions();
 		ParticleRender.addBeeHiveFX(housing, genome, flowerPositions);
 		return storedData;
-	}
-
-	public String getFX() {
-		return this.fx;
 	}
 
 	private void setFX(String string) {

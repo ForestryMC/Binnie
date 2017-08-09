@@ -34,6 +34,7 @@ public enum BinnieCorePacketID implements IPacketID {
 				((INetworkedEntity) tile).readFromPacket(packet.payload);
 			}
 		} else if (this == BinnieCorePacketID.TILE_METADATA) {
+			// TODO: why doesn't this store any metadata to the packet ?
 			final MessageMetadata packet2 = new MessageMetadata(message);
 			final TileEntity tile = packet2.getTileEntity(BinnieCore.getBinnieProxy().getWorld());
 			if (tile instanceof TileEntityMetadata) {

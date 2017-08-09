@@ -74,7 +74,6 @@ public abstract class TopLevelWidget extends Widget implements ITopLevelWidget {
 		}
 	}
 
-	@Override
 	@Nullable
 	public IWidget getDraggedWidget() {
 		return this.draggedWidget;
@@ -84,7 +83,6 @@ public abstract class TopLevelWidget extends Widget implements ITopLevelWidget {
 		this.setDraggedWidget(widget, -1);
 	}
 
-	@Override
 	@Nullable
 	public IWidget getFocusedWidget() {
 		return this.focusedWidget;
@@ -112,12 +110,10 @@ public abstract class TopLevelWidget extends Widget implements ITopLevelWidget {
 		return this.getMousedOverWidget() == widget;
 	}
 
-	@Override
 	public boolean isDragged(final IWidget widget) {
 		return this.getDraggedWidget() == widget;
 	}
 
-	@Override
 	public boolean isFocused(final IWidget widget) {
 		return this.getFocusedWidget() == widget;
 	}
@@ -175,7 +171,6 @@ public abstract class TopLevelWidget extends Widget implements ITopLevelWidget {
 		return widgets;
 	}
 
-	@Override
 	public void setMousePosition(final int x, final int y) {
 		final float dx = x - this.mousePosition.xPos();
 		final float dy = y - this.mousePosition.yPos();
@@ -208,10 +203,5 @@ public abstract class TopLevelWidget extends Widget implements ITopLevelWidget {
 		if (this.isFocused(widget)) {
 			this.setFocusedWidget(null);
 		}
-	}
-
-	@Override
-	public Point getDragDistance() {
-		return this.getRelativeMousePosition().sub(this.dragStart);
 	}
 }

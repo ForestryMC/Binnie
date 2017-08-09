@@ -40,11 +40,6 @@ import binnie.core.gui.window.Panel;
 import binnie.core.util.I18N;
 
 public abstract class WindowAbstractDatabase extends Window {
-	private final int infoBoxWidth = 144;
-	private final int infoBoxHeight = 176;
-	private final int infoTabWidth = 16;
-	private final int modeTabWidth = 22;
-	private final int searchBoxHeight = 16;
 	boolean isNEI;
 	private int selectionBoxWidth;
 	private Map<IDatabaseMode, ModeWidgets> modes;
@@ -69,10 +64,6 @@ public abstract class WindowAbstractDatabase extends Window {
 		this.isNEI = nei;
 		this.system = system;
 		this.selectionBoxWidth = wid;
-	}
-
-	public WindowAbstractDatabase(final EntityPlayer player, final Side side, final boolean nei, final BreedingSystem system) {
-		this(player, side, nei, system, 95);
 	}
 
 	public void changeMode(final IDatabaseMode mode) {
@@ -252,7 +243,7 @@ public abstract class WindowAbstractDatabase extends Window {
 		@Override
 		public void createListBox(final Area area) {
 			final EntityPlayer player = this.database.getPlayer();
-			final GameProfile playerName = WindowAbstractDatabase.this.getUsername();
+			final GameProfile playerName = player.getGameProfile();
 			final Collection<IClassification> speciesList = this.database.isNEI ? this.database.system.getAllBranches() : this.database.system.getDiscoveredBranches(this.database.getWorld(), playerName);
 			ControlBranchBox controlBranchBox = new ControlBranchBox(this.modePage, area.xPos(), area.yPos(), area.width(), area.height());
 			controlBranchBox.setOptions(speciesList);

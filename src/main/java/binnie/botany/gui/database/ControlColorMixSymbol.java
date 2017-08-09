@@ -42,11 +42,6 @@ public class ControlColorMixSymbol extends Control implements ITooltip {
 		}
 	}
 
-	public void setValue(IColorMix value) {
-		this.value = value;
-		setColor(0xffffff);
-	}
-
 	@Override
 	public void getTooltip(Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		if (type == 1) {

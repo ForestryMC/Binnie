@@ -45,14 +45,12 @@ import forestry.api.core.IStateMapperRegister;
 import forestry.core.blocks.IColoredBlock;
 import forestry.core.items.IColoredItem;
 import forestry.core.models.BlockModelEntry;
-import forestry.core.models.ModelEntry;
 import forestry.core.utils.ModelUtil;
 
 @SideOnly(Side.CLIENT)
 public class ModelManager implements IModelManager {
 
 	private final static List<BlockModelEntry> customBlockModels = new ArrayList<>();
-	private final static List<ModelEntry> customModels = new ArrayList<>();
 	private final static List<ISpriteRegister> spriteRegister = new ArrayList<>();
 	public static IModelState defaultFenceState;
 	private final String modID;
@@ -87,9 +85,6 @@ public class ModelManager implements IModelManager {
 			}
 		}
 
-		for (final ModelEntry entry : customModels) {
-			registry.putObject(entry.modelLocation, entry.model);
-		}
 		IModelState defaultBlockState = ModelUtil.loadModelState(new ResourceLocation("minecraft:models/block/block"));
 		IModelState defaultFenceState = ModelUtil.loadModelState(new ResourceLocation("minecraft:models/block/fence_inventory"));
 		ModelManager.defaultFenceState = mergeStates(defaultBlockState, defaultFenceState);
@@ -105,10 +100,6 @@ public class ModelManager implements IModelManager {
 
 	public static void registerCustomBlockModel(BlockModelEntry index) {
 		customBlockModels.add(index);
-	}
-
-	public static void registerCustomModel(ModelEntry index) {
-		customModels.add(index);
 	}
 
 	@Override

@@ -23,22 +23,12 @@ public class InventorySlot extends BaseSlot<ItemStack> {
 		return this.itemStack.isEmpty() ? null : this.itemStack;
 	}
 
-	@Override
 	public void setContent(final ItemStack itemStack) {
 		this.itemStack = itemStack;
 	}
 
 	public ItemStack getItemStack() {
 		return this.itemStack;
-	}
-
-	public void setItemStack(final ItemStack duplicate) {
-		this.setContent(duplicate);
-	}
-
-	@Override
-	public boolean isEmpty() {
-		return this.itemStack.isEmpty();
 	}
 
 	public ItemStack decrStackSize(final int amount) {
@@ -80,10 +70,6 @@ public class InventorySlot extends BaseSlot<ItemStack> {
 	@Override
 	public SlotValidator getValidator() {
 		return (SlotValidator) this.validator;
-	}
-
-	public Type getType() {
-		return this.type;
 	}
 
 	public void setType(final Type type) {

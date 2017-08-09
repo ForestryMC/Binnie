@@ -37,7 +37,6 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
 
 	public abstract boolean isAvailable();
 
-	@Override
 	public abstract String getChannel();
 
 	@Override

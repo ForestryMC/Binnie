@@ -15,13 +15,10 @@ import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.resource.minecraft.CraftGUITexture;
 
 public class ControlUser extends Control implements ITooltip {
-	String team;
-	private String username;
+	private final String username;
 
 	public ControlUser(final IWidget parent, final int x, final int y, final String username) {
 		super(parent, x, y, 16, 16);
-		this.username = "";
-		this.team = "";
 		this.addAttribute(Attribute.MOUSE_OVER);
 		this.username = username;
 	}

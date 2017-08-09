@@ -1,6 +1,5 @@
 package binnie.modules;
 
-import javax.annotation.Nullable;
 import java.io.File;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -9,7 +8,6 @@ import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 
 import binnie.core.AbstractMod;
 
@@ -19,9 +17,6 @@ public abstract class BlankModuleContainer extends AbstractMod implements IModul
 	protected Set<String> enabledModules;
 	protected Set<String> disabledModules;
 	protected File configFolder;
-
-	@Nullable
-	private SimpleNetworkWrapper wrapper;
 
 	public BlankModuleContainer() {
 		super();

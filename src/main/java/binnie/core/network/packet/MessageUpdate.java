@@ -4,7 +4,6 @@ import javax.annotation.Nullable;
 import java.io.IOException;
 
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
 
 import binnie.core.network.INetworkedEntity;
 import io.netty.buffer.ByteBuf;
@@ -31,16 +30,16 @@ public class MessageUpdate extends MessageCoordinates {
 			data.writeInt(0);
 			return;
 		}
-		data.writeInt(this.payload.intPayload.size());
-		data.writeInt(this.payload.floatPayload.size());
-		data.writeInt(this.payload.stringPayload.size());
-		for (final int intData : this.payload.intPayload) {
+		data.writeInt(this.payload.getIntPayload().size());
+		data.writeInt(this.payload.getFloatPayload().size());
+		data.writeInt(this.payload.getStringPayload().size());
+		for (final int intData : this.payload.getIntPayload()) {
 			data.writeInt(intData);
 		}
-		for (final float floatData : this.payload.floatPayload) {
+		for (final float floatData : this.payload.getFloatPayload()) {
 			data.writeFloat(floatData);
 		}
-		for (final String stringData : this.payload.stringPayload) {
+		for (final String stringData : this.payload.getStringPayload()) {
 			final byte[] bytes = stringData.getBytes("UTF-8");
 			data.writeShort(bytes.length);
 			data.writeBytes(bytes);
@@ -54,9 +53,9 @@ public class MessageUpdate extends MessageCoordinates {
 		final int intLength = data.readInt();
 		final int floatLength = data.readInt();
 		final int stringLength = data.readInt();
-		this.payload.intPayload.clear();
-		this.payload.floatPayload.clear();
-		this.payload.stringPayload.clear();
+		this.payload.getIntPayload().clear();
+		this.payload.getFloatPayload().clear();
+		this.payload.getStringPayload().clear();
 		for (int i = 0; i < intLength; ++i) {
 			this.payload.addInteger(data.readInt());
 		}
@@ -68,10 +67,5 @@ public class MessageUpdate extends MessageCoordinates {
 			final byte[] string = data.readBytes(length).array();
 			this.payload.addString(new String(string, "UTF-8"));
 		}
-	}
-
-	@Nullable
-	public TileEntity getTarget(final World world) {
-		return world.getTileEntity(getCoordinates());
 	}
 }

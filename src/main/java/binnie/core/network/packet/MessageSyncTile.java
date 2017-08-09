@@ -10,7 +10,7 @@ import net.minecraft.world.World;
 
 import io.netty.buffer.ByteBuf;
 
-public class MessageSyncTile extends MessageNBT implements IPacketLocation {
+public class MessageSyncTile extends MessageNBT {
 	private int posX;
 	private int posY;
 	private int posZ;
@@ -43,23 +43,19 @@ public class MessageSyncTile extends MessageNBT implements IPacketLocation {
 		super.readData(data);
 	}
 
-	@Override
 	@Nullable
 	public TileEntity getTarget(final World world) {
 		return world.getTileEntity(new BlockPos(this.posX, this.posY, this.posZ));
 	}
 
-	@Override
 	public int getX() {
 		return this.posX;
 	}
 
-	@Override
 	public int getY() {
 		return this.posY;
 	}
 
-	@Override
 	public int getZ() {
 		return this.posZ;
 	}

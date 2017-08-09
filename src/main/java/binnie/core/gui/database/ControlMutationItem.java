@@ -1,5 +1,7 @@
 package binnie.core.gui.database;
 
+import javax.annotation.Nullable;
+
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IMutation;
 
@@ -15,7 +17,7 @@ class ControlMutationItem extends ControlOption<IMutation> {
 	private ControlMutationSymbol addSymbol;
 	private ControlMutationSymbol arrowSymbol;
 
-	public ControlMutationItem(final ControlList<IMutation> controlList, final IMutation option, final IAlleleSpecies species, final int y) {
+	public ControlMutationItem(final ControlList<IMutation> controlList, final IMutation option, @Nullable final IAlleleSpecies species, final int y) {
 		super(controlList, option, y);
 		this.itemWidget1 = new ControlDatabaseIndividualDisplay(this, 4, 4);
 		this.itemWidget2 = new ControlDatabaseIndividualDisplay(this, 44, 4);

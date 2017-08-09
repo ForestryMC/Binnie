@@ -39,9 +39,9 @@ public class ControlTabBar<T> extends Control implements IControlValue<T> {
 		int j = 0;
 		for (final T value : values) {
 			if (this.position == Position.Top || this.position == Position.BOTTOM) {
-				final IWidget tab = this.createTab(j * tabDimension, 0, tabDimension, this.getSize().yPos(), value);
+				this.createTab(j * tabDimension, 0, tabDimension, this.getSize().yPos(), value);
 			} else {
-				final IWidget tab = this.createTab(0, j * tabDimension, this.getSize().xPos(), tabDimension, value);
+				this.createTab(0, j * tabDimension, this.getSize().xPos(), tabDimension, value);
 			}
 			++j;
 		}

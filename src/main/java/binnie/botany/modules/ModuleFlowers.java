@@ -1,5 +1,6 @@
 package binnie.botany.modules;
 
+import binnie.core.util.TileUtil;
 import com.google.common.collect.ImmutableSet;
 
 import javax.annotation.Nullable;
@@ -212,10 +213,9 @@ public class ModuleFlowers extends Module {
 	@SubscribeEvent
 	public void onBonemeal(BonemealEvent event) {
 		BlockPos pos = event.getPos();
-		Block block = event.getBlock().getBlock();
 
-		TileEntity tile = event.getWorld().getTileEntity(pos);
-		if (tile instanceof TileEntityFlower && ((TileEntityFlower) tile).onBonemeal()) {
+		TileEntityFlower tile = TileUtil.getTile(event.getWorld(), pos, TileEntityFlower.class);
+		if (tile != null && tile.onBonemeal()) {
 			event.setResult(Event.Result.ALLOW);
 		}
 	}

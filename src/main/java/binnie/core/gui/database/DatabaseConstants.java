@@ -28,6 +28,4 @@ public class DatabaseConstants {
 	public static final String BOTANY_TAB_KEY = BOTANY_KEY + TAB_PRE_FIX;
 	public static final String BOTANY_GENOME_KEY = BOTANY_TAB_KEY + ".genome";
 
-	public static final String TIME_KEY = KEY + ".time";
-
 }

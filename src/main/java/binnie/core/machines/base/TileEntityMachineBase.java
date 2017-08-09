@@ -84,11 +84,6 @@ public class TileEntityMachineBase extends TileEntity implements IInventoryMachi
 	}
 
 	@Override
-	public boolean isReadOnly(final int slot) {
-		return this.getInventory().isReadOnly(slot);
-	}
-
-	@Override
 	public PowerInfo getPowerInfo() {
 		return this.getPower().getPowerInfo();
 	}

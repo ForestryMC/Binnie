@@ -17,8 +17,6 @@ public interface IFlowerType<I extends IFlowerType<I>> extends Comparable<I> {
 
 	String getName();
 
-	int getID();
-
 	int getSections();
 
 	int ordinal();

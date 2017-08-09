@@ -101,9 +101,4 @@ public class ControlErrorState extends Control implements ITooltip {
 			}
 		}
 	}
-
-	@Nullable
-	public ErrorState getErrorState() {
-		return this.errorState;
-	}
 }

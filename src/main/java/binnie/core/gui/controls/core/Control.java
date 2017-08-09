@@ -74,11 +74,6 @@ public class Control extends Widget implements ITooltipHelp, ITooltip {
 	}
 
 	@Override
-	public int getLevel() {
-		return this.extraLevel + super.getLevel();
-	}
-
-	@Override
 	public void getHelpTooltip(final Tooltip tooltip) {
 		tooltip.add(this.helpStrings);
 	}

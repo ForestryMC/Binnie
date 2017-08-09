@@ -1,11 +1,7 @@
 package binnie.core.gui.minecraft.control;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
-
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
 
 import binnie.core.gui.IWidget;
 import binnie.core.gui.controls.core.Control;
@@ -49,29 +45,6 @@ public class ControlPlayerInventory extends Control {
 				this.slots.add(slot);
 			}
 		}
-	}
-
-	public void addItem(final ItemStack item) {
-		for (final ControlSlot slot : this.slots) {
-			if (!slot.slot.getHasStack()) {
-				slot.slot.putStack(item);
-			}
-		}
-	}
-
-	public void addInventory(final IInventory inventory) {
-		for (int i = 0; i < inventory.getSizeInventory(); ++i) {
-			ItemStack stackInSlot = inventory.getStackInSlot(i);
-			this.addItem(stackInSlot);
-		}
-	}
-
-	@Nullable
-	public ControlSlot getSlot(final int i) {
-		if (i < 0 || i >= this.slots.size()) {
-			return null;
-		}
-		return this.slots.get(i);
 	}
 
 	@Override

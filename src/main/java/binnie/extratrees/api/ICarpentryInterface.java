@@ -19,14 +19,10 @@ public interface ICarpentryInterface {
 
 	IDesign getDesign(final int p0);
 
-	ILayout getLayout(final IPattern p0, final boolean p1);
-
 	@Nullable
 	IDesignMaterial getWoodMaterial(final ItemStack stack);
 
 	boolean registerDesignCategory(final IDesignCategory p0);
-
-	IDesignCategory getDesignCategory(final String p0);
 
 	Collection<IDesignCategory> getAllDesignCategories();
 

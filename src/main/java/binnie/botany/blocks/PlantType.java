@@ -31,10 +31,6 @@ public enum PlantType implements IStringSerializable {
 		return values()[meta];
 	}
 
-	public static PlantType get(int id) {
-		return values()[id % values().length];
-	}
-
 	public ItemStack get() {
 		return new ItemStack(ModuleGardening.plant, 1, ordinal());
 	}

@@ -18,10 +18,6 @@ public class Layout implements ILayout {
 		this.inverted = inverted;
 	}
 
-	private Layout(final IPattern pattern) {
-		this(pattern, false);
-	}
-
 	public static ILayout get(final IPattern pattern, final boolean inverted) {
 		return new Layout(pattern, inverted);
 	}

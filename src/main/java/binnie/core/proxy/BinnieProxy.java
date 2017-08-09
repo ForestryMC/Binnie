@@ -49,11 +49,6 @@ public class BinnieProxy extends BinnieModProxy implements IBinnieProxy {
 		return false;
 	}
 
-	/*@Override
-	public int getUniqueRenderID() {
-		return RenderingRegistry.getNextAvailableRenderId();
-	}*/
-
 	@Override
 	public void openGui(final AbstractMod mod, final int id, final EntityPlayer player, final BlockPos pos) {
 		player.openGui(mod.getMod(), id, player.world, pos.getX(), pos.getY(), pos.getZ());
@@ -63,10 +58,6 @@ public class BinnieProxy extends BinnieModProxy implements IBinnieProxy {
 	public boolean isSimulating(final World world) {
 		return true;
 	}
-
-	/*@Override
-	public void registerCustomItemRenderer(final Item item, final IItemRenderer itemRenderer) {
-	}*/
 
 	public TextureAtlasSprite getTextureAtlasSprite(ResourceLocation location) {
 		throw new UnsupportedOperationException("Cannot call getTextureAtlasSprite on server side");

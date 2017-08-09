@@ -12,6 +12,7 @@ import forestry.arboriculture.worldgen.WorldGenTree;
 import forestry.core.worldgen.WorldGenHelper;
 
 public class WorldGenWalnut {
+	// TODO: unused?
 	public static class BlackWalnut extends WorldGenTree {
 		public BlackWalnut(ITreeGenData tree) {
 			super(tree, 9, 6);

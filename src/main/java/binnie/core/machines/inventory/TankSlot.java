@@ -9,9 +9,6 @@ import net.minecraftforge.fluids.IFluidTank;
 import binnie.core.util.I18N;
 
 public class TankSlot extends BaseSlot<FluidStack> {
-	public static final String NameJuice = "Juice Tank";
-	public static final String NameWater = "Water Tank";
-	public static String NameCupboard = "Cupboard Slot";
 	private FluidTank tank;
 
 	public TankSlot(final int index, final String name, final int capacity) {
@@ -38,7 +35,6 @@ public class TankSlot extends BaseSlot<FluidStack> {
 		return this.tank.getFluid();
 	}
 
-	@Override
 	public void setContent(final FluidStack itemStack) {
 		this.tank.setFluid(itemStack);
 	}

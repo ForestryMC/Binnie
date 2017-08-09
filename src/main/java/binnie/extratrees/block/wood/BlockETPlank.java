@@ -12,8 +12,6 @@ import binnie.extratrees.block.EnumETLog;
 import binnie.extratrees.block.property.PropertyETWoodType;
 
 public abstract class BlockETPlank extends BlockForestryPlanks<EnumETLog> {
-	public static final String BLOCK_NAME = "plank";
-
 	private BlockETPlank(boolean fireproof, int blockNumber) {
 		super(fireproof, blockNumber);
 		String name = "planks.";

@@ -25,10 +25,4 @@ public abstract class EventKey extends Event {
 			super(origin, character, key);
 		}
 	}
-
-	public static class Up extends EventKey {
-		public Up(final IWidget origin, final char character, final int key) {
-			super(origin, character, key);
-		}
-	}
 }

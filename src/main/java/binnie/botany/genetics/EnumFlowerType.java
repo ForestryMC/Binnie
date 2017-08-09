@@ -102,11 +102,6 @@ public enum EnumFlowerType implements IFlowerType<EnumFlowerType> {
 	}
 
 	@Override
-	public int getID() {
-		return ordinal();
-	}
-
-	@Override
 	public int getSections() {
 		return sections;
 	}

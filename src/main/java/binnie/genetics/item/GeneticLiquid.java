@@ -18,15 +18,12 @@ public enum GeneticLiquid implements IFluidType {
 
 	String name;
 	String ident;
-	//IIcon icon;
 	int colour;
-	float transparency;
 
 	GeneticLiquid(final String name, final String ident, final int colour) {
 		this.name = name;
 		this.ident = ident;
 		this.colour = colour;
-		this.transparency = 1.0f;
 	}
 
 	@Override

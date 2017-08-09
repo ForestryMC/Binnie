@@ -31,16 +31,16 @@ public class WindowApiaristDatabase extends WindowAbstractDatabase {
 	@Override
 	@SideOnly(Side.CLIENT)
 	protected void addTabs() {
-		new PageSpeciesOverview(getInfoPages(Mode.SPECIES), new DatabaseTab(Genetics.instance, "species.overview", 0));
-		new PageSpeciesClassification(getInfoPages(Mode.SPECIES), new DatabaseTab(Genetics.instance, "species.classification", 0));
-		new PageSpeciesGenome(getInfoPages(Mode.SPECIES), new DatabaseTab(Genetics.instance, "species.genome", 0));
-		new PageSpeciesProducts(getInfoPages(Mode.SPECIES), new DatabaseTab(Genetics.instance, "species.products", 0));
-		new PageSpeciesClimate(getInfoPages(Mode.SPECIES), new DatabaseTab(Genetics.instance, "species.climate", 0));
-		new PageSpeciesResultant(getInfoPages(Mode.SPECIES), new DatabaseTab(Genetics.instance, "species.resultant", 0));
-		new PageSpeciesMutations(getInfoPages(Mode.SPECIES), new DatabaseTab(Genetics.instance, "species.further", 0));
-		new PageBranchOverview(getInfoPages(Mode.BRANCHES), new DatabaseTab(Genetics.instance, "branches.overview", 0));
-		new PageBranchSpecies(getInfoPages(Mode.BRANCHES), new DatabaseTab(Genetics.instance, "branches.species", 0));
-		new PageBreeder(getInfoPages(Mode.BREEDER), getUsername(), new DatabaseTab(Genetics.instance, "breeder", 0));
+		new PageSpeciesOverview(getInfoPages(Mode.SPECIES), new DatabaseTab(Genetics.instance, "species.overview"));
+		new PageSpeciesClassification(getInfoPages(Mode.SPECIES), new DatabaseTab(Genetics.instance, "species.classification"));
+		new PageSpeciesGenome(getInfoPages(Mode.SPECIES), new DatabaseTab(Genetics.instance, "species.genome"));
+		new PageSpeciesProducts(getInfoPages(Mode.SPECIES), new DatabaseTab(Genetics.instance, "species.products"));
+		new PageSpeciesClimate(getInfoPages(Mode.SPECIES), new DatabaseTab(Genetics.instance, "species.climate"));
+		new PageSpeciesResultant(getInfoPages(Mode.SPECIES), new DatabaseTab(Genetics.instance, "species.resultant"));
+		new PageSpeciesMutations(getInfoPages(Mode.SPECIES), new DatabaseTab(Genetics.instance, "species.further"));
+		new PageBranchOverview(getInfoPages(Mode.BRANCHES), new DatabaseTab(Genetics.instance, "branches.overview"));
+		new PageBranchSpecies(getInfoPages(Mode.BRANCHES), new DatabaseTab(Genetics.instance, "branches.species"));
+		new PageBreeder(getInfoPages(Mode.BREEDER), getUsername(), new DatabaseTab(Genetics.instance, "breeder"));
 	}
 
 	@Override

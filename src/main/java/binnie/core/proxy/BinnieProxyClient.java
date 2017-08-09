@@ -72,11 +72,6 @@ public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy
 	}
 
 	@Override
-	public void registerModel(Item item, int meta) {
-		registerModel(item, meta, new ModelResourceLocation(item.getRegistryName(), "inventory"));
-	}
-
-	@Override
 	public void registerModel(Item item, int meta, ModelResourceLocation modelResourceLocation) {
 		ModelLoader.setCustomModelResourceLocation(item, meta, modelResourceLocation);
 	}
@@ -106,11 +101,6 @@ public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy
 	public boolean isSimulating(final World world) {
 		return !world.isRemote;
 	}
-
-	/*@Override
-	public void registerCustomItemRenderer(final Item item, final IItemRenderer itemRenderer) {
-		MinecraftForgeClient.registerItemRenderer(item, itemRenderer);
-	}*/
 
 	@Override
 	public World getWorld() {
@@ -157,11 +147,6 @@ public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy
 	public void createPipe(final Item pipe) {
 	}
 
-	/*@Override
-	public IIcon getIcon(final IIconRegister register, final String mod, final String name) {
-		return register.registerIcon(mod + ":" + name);
-	}*/
-
 	@Override
 	public TextureAtlasSprite getTextureAtlasSprite(ResourceLocation location) {
 		return Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(location.toString());
@@ -171,12 +156,6 @@ public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy
 	public EntityPlayer getPlayer() {
 		return Minecraft.getMinecraft().player;
 	}
-
-	/*public void handlePreTextureRefresh(final IIconRegister register, final int type) {
-		if (type == 0) {
-			Binnie.Liquid.reloadIcons(register);
-		}
-	}*/
 
 	@Override
 	public void preInit() {

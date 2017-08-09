@@ -45,10 +45,10 @@ public abstract class ControlSlotBase extends Control implements ITooltip {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		final int size = this.getSize().xPos();
 		CraftGUI.RENDER.texture(CraftGUITexture.SLOT, this.getArea());
 		if (this.getTopParent().getMousedOverWidget() == this) {
-			RenderUtil.drawGradientRect(new Area(new Point(1, 1), this.getArea().size().sub(new Point(2, 2))), -2130706433, -2130706433);
+			Area area = new Area(new Point(1, 1), this.getArea().size().sub(new Point(2, 2)));
+			RenderUtil.drawGradientRect(area, -2130706433, -2130706433);
 		}
 	}
 

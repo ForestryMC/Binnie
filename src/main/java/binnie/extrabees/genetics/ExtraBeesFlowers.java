@@ -191,11 +191,6 @@ public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers {
 		return this.getUID();
 	}
 
-	/*@Override
-	public Set<IFlower> getFlowers() {
-		return new HashSet<IFlower>();
-	}*/
-
 	@Override
 	public boolean isAcceptedPollinatable(World world, ICheckPollinatable pollinatable) {
 		return pollinatable.getPlantType() != EnumPlantType.Nether;

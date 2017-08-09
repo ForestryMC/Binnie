@@ -252,10 +252,6 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 		return this.player.inventory.getItemStack();
 	}
 
-	public void setHeldItemStack(final ItemStack stack) {
-		this.player.inventory.setItemStack(stack);
-	}
-
 	@Nullable
 	public IInventory getInventory() {
 		return this.entityInventory;
@@ -274,9 +270,6 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 
 	public World getWorld() {
 		return this.getPlayer().world;
-	}
-
-	public void onInventoryUpdate() {
 	}
 
 	public void sendClientAction(final String name, final NBTTagCompound action) {

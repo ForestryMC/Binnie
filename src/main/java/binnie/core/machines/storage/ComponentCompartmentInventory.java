@@ -16,10 +16,6 @@ class ComponentCompartmentInventory extends ComponentInventorySlots implements I
 	private int slotsPerPage;
 	private Map<Integer, CompartmentTab> tabs;
 
-	public ComponentCompartmentInventory(final IMachine machine, final int sections) {
-		this(machine, sections, 4);
-	}
-
 	public ComponentCompartmentInventory(final IMachine machine, final int tabs, final int pageSize) {
 		super(machine);
 		this.tabs = new HashMap<>();

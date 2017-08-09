@@ -76,10 +76,6 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		this.currentTab = 0;
 	}
 
-	public static Window create(final EntityPlayer player, final IInventory inventory, final Side side) {
-		return new WindowCompartment(player, inventory, side);
-	}
-
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void initialiseClient() {

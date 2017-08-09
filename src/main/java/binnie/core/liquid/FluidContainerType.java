@@ -38,11 +38,6 @@ public enum FluidContainerType {
 		return I18N.localise("binniecore.item.container." + this.name().toLowerCase());
 	}
 
-	@Nullable
-	public ItemFluidContainer getItem() {
-		return item;
-	}
-
 	public void setItem(ItemFluidContainer item) {
 		this.item = item;
 	}

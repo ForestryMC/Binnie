@@ -14,7 +14,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import forestry.arboriculture.PluginArboriculture;
 import forestry.core.models.BlockModelEntry;
-import forestry.core.models.ModelEntry;
 
 import binnie.Constants;
 import binnie.core.models.ModelManager;
@@ -38,18 +37,12 @@ public class ProxyClient extends Proxy implements IExtraTreeProxy {
 		//ForestryAPI.textureManager.registerIconProvider(FruitSprite.Average);
 	}
 
-	@Override
-	public void registerBlockModel(final BlockModelEntry index) {
+	private static void registerBlockModel(final BlockModelEntry index) {
 		ModelManager.registerCustomBlockModel(index);
 		if (index.addStateMapper) {
 			StateMapperBase ignoreState = new BlockModeStateMapper(index);
 			ModelLoader.setCustomStateMapper(index.block, ignoreState);
 		}
-	}
-
-	@Override
-	public void registerModel(ModelEntry index) {
-		ModelManager.registerCustomModel(index);
 	}
 
 	@Override
@@ -114,7 +107,7 @@ public class ProxyClient extends Proxy implements IExtraTreeProxy {
 		}
 	}
 
-	class BlockModeStateMapper extends StateMapperBase {
+	private static class BlockModeStateMapper extends StateMapperBase {
 		private final BlockModelEntry index;
 
 		public BlockModeStateMapper(BlockModelEntry index) {

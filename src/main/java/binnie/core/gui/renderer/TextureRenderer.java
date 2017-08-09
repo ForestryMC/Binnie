@@ -214,7 +214,4 @@ public class TextureRenderer {
 		}
 		this.texture(texture.crop(direction, dim - dist), new Area(x, y, w, h));
 	}
-
-	public void test(final IWidget widget) {
-	}
 }

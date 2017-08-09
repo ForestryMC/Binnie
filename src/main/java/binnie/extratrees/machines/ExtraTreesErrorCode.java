@@ -31,10 +31,6 @@ public enum ExtraTreesErrorCode implements IErrorStateDefinition {
 		this(name, null, EnumErrorType.NONE);
 	}
 
-	ExtraTreesErrorCode(String name, EnumErrorType type) {
-		this(name, null, type);
-	}
-
 	ExtraTreesErrorCode(String name, IErrorStateDefinition parent) {
 		this(name, parent, EnumErrorType.NONE);
 	}

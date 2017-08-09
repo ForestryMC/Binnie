@@ -229,10 +229,6 @@ public class GuiCraftGUI extends GuiContainer {
 		this.window.callEvent(new EventMouse.Down(origin, x, y, button));
 	}
 
-	public boolean isShiftDown() {
-		return Keyboard.isKeyDown(this.mc.gameSettings.keyBindSneak.getKeyCode());
-	}
-
 	@Override
 	protected void keyTyped(final char c, final int key) {
 		if (key == 1 || (key == this.mc.gameSettings.keyBindInventory.getKeyCode() && this.window.getFocusedWidget() == null)) {

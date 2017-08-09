@@ -105,10 +105,6 @@ public enum EnumHiveFrame implements IHiveFrame, IBeeModifier {
 		}
 	}
 
-	public int getIconIndex() {
-		return 55 + this.ordinal();
-	}
-
 	public int getMaxDamage() {
 		return maxDamage;
 	}

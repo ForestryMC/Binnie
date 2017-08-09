@@ -11,12 +11,8 @@ import net.minecraft.item.ItemStack;
 
 import net.minecraftforge.fluids.FluidStack;
 
-import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.Optional;
-
 import binnie.extratrees.api.recipes.IFruitPressManager;
 import binnie.extratrees.api.recipes.IFruitPressRecipe;
-import binnie.extratrees.integration.jei.RecipeUids;
 
 public class FruitPressRecipeManager implements IFruitPressManager {
 	//Map<input fruit item, Pair<input fruit, output fluid>>
@@ -64,24 +60,5 @@ public class FruitPressRecipeManager implements IFruitPressManager {
 	@Override
 	public Collection<IFruitPressRecipe> recipes() {
 		return recipes.values();
-	}
-
-	@Override
-	public String getJEICategory() {
-		return RecipeUids.FRUIT_PRESS;
-	}
-
-	@Nullable
-	@Override
-	public Object getJeiWrapper(IFruitPressRecipe recipe) {
-		if(!Loader.isModLoaded("jei")){
-			return null;
-		}
-		return getWrapper(recipe);
-	}
-
-	@Optional.Method(modid = "jei")
-	private Object getWrapper(IFruitPressRecipe recipe){
-		return new FruitPressRecipe(recipe.getInput(), recipe.getOutput());
 	}
 }

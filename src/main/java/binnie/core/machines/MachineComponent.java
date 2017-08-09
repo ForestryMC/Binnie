@@ -7,7 +7,6 @@ import forestry.api.core.INbtReadable;
 import forestry.api.core.INbtWritable;
 
 import binnie.Binnie;
-import binnie.core.network.packet.MachinePayload;
 
 public class MachineComponent implements INbtReadable, INbtWritable {
 	private IMachine machine;
@@ -42,13 +41,6 @@ public class MachineComponent implements INbtReadable, INbtWritable {
 	}
 
 	public void onInventoryUpdate() {
-	}
-
-	public final MachinePayload getPayload() {
-		return new MachinePayload(Binnie.MACHINE.getNetworkID(this.getClass()));
-	}
-
-	public void recieveData(final MachinePayload payload) {
 	}
 
 	public MachineUtil getUtil() {

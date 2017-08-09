@@ -90,10 +90,6 @@ public class ControlList<T> extends Control implements IControlValue<T> {
 		this.filterOptions();
 	}
 
-	public Collection<T> getAllOptions() {
-		return this.allOptions.keySet();
-	}
-
 	public int getIndexOf(final T value) {
 		int index = 0;
 		for (final T option : this.getOptions()) {

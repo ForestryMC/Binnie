@@ -11,7 +11,6 @@ public class ErrorState implements INbtReadable, INbtWritable {
 	private IErrorStateDefinition nameDefinition;
 	private IErrorStateDefinition definition;
 	private int[] data;
-	private boolean progress;
 	private boolean itemError;
 	private boolean tankError;
 	private boolean powerError;
@@ -32,14 +31,9 @@ public class ErrorState implements INbtReadable, INbtWritable {
 		this(nameDefinition, definition, new int[0]);
 	}
 
-	public ErrorState(IErrorStateDefinition nameDefinition, IErrorStateDefinition definition, int data) {
-		this(nameDefinition, definition, new int[]{data});
-	}
-
 	public ErrorState(IErrorStateDefinition nameDefinition, IErrorStateDefinition definition, int[] data) {
 		EnumErrorType type = definition.getType();
 		this.data = data;
-		this.progress = false;
 		this.itemError = type.isItemError();
 		this.tankError = type.isTankError();
 		this.powerError = type.isPowerError();
@@ -49,7 +43,6 @@ public class ErrorState implements INbtReadable, INbtWritable {
 
 	public ErrorState(NBTTagCompound nbtTagCompound) {
 		this.data = new int[0];
-		this.progress = false;
 		this.itemError = false;
 		this.tankError = false;
 		this.powerError = false;
@@ -69,14 +62,6 @@ public class ErrorState implements INbtReadable, INbtWritable {
 
 	public int[] getData() {
 		return this.data;
-	}
-
-	public boolean isProgress() {
-		return this.progress;
-	}
-
-	public void setIsProgress() {
-		this.progress = true;
 	}
 
 	@Override
