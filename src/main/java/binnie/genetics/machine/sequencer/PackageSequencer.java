@@ -22,10 +22,6 @@ import binnie.genetics.machine.ModuleMachine;
 public class PackageSequencer extends GeneticMachine.PackageGeneticBase implements IMachineInformation {
 	public PackageSequencer() {
 		super("sequencer", 12058418, true);
-		Sequencer.fxSeqA = Binnie.RESOURCE.getBlockSprite(Genetics.instance, "fx/sequencer.a");
-		Sequencer.fxSeqG = Binnie.RESOURCE.getBlockSprite(Genetics.instance, "fx/sequencer.g");
-		Sequencer.fxSeqT = Binnie.RESOURCE.getBlockSprite(Genetics.instance, "fx/sequencer.t");
-		Sequencer.fxSeqC = Binnie.RESOURCE.getBlockSprite(Genetics.instance, "fx/sequencer.c");
 	}
 
 	@Override

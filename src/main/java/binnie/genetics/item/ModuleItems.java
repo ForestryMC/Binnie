@@ -80,15 +80,7 @@ public class ModuleItems implements IInitializable {
 		Genetics.proxy.registerItem(itemSequencer);
 
 		Binnie.LIQUID.createLiquids(GeneticLiquid.values());
-	}
 
-	public Item getItemGenetics() {
-		Preconditions.checkState(itemGenetics != null);
-		return itemGenetics;
-	}
-
-	@Override
-	public void init() {
 		ModuleItems.iconNight = Binnie.RESOURCE.getItemSprite(BinnieCore.getInstance(), "gui/analyst.night");
 		ModuleItems.iconDaytime = Binnie.RESOURCE.getItemSprite(BinnieCore.getInstance(), "gui/analyst.day");
 		ModuleItems.iconAllDay = Binnie.RESOURCE.getItemSprite(BinnieCore.getInstance(), "gui/analyst.allday");
@@ -104,6 +96,11 @@ public class ModuleItems implements IInitializable {
 		ModuleItems.iconArrow0 = Binnie.RESOURCE.getItemSprite(BinnieCore.getInstance(), "gui/analyst.arrow.0");
 		ModuleItems.iconAdd1 = Binnie.RESOURCE.getItemSprite(BinnieCore.getInstance(), "gui/analyst.add.1");
 		ModuleItems.iconArrow1 = Binnie.RESOURCE.getItemSprite(BinnieCore.getInstance(), "gui/analyst.arrow.1");
+	}
+
+	public Item getItemGenetics() {
+		Preconditions.checkState(itemGenetics != null);
+		return itemGenetics;
 	}
 
 	@Override

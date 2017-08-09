@@ -18,7 +18,7 @@ public enum GeneticsTexture implements IBinnieTexture {
 	GUI_PROCESS_3(ResourceType.GUI, "process3"),
 	;
 
-	public static BinnieSprite dnaIcon = Binnie.RESOURCE.getItemSprite(Genetics.instance, "dna");
+	public static BinnieSprite dnaIcon;
 
 	private final String texture;
 	private final ResourceType type;

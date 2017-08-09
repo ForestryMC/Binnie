@@ -1,5 +1,7 @@
 package binnie.genetics;
 
+import binnie.genetics.core.GeneticsTexture;
+import binnie.genetics.machine.sequencer.Sequencer;
 import com.google.common.base.Preconditions;
 
 import javax.annotation.Nullable;
@@ -67,6 +69,12 @@ public class Genetics extends AbstractMod {
 		dictionaryBees = proxy.registerItem(new ItemBeeDictionary());
 		proxy.registerItem(new ItemPunnettSquare());
 		super.preInit(evt);
+
+		GeneticsTexture.dnaIcon = Binnie.RESOURCE.getItemSprite(Genetics.instance, "dna");
+		Sequencer.fxSeqA = Binnie.RESOURCE.getBlockSprite(Genetics.instance, "fx/sequencer.a");
+		Sequencer.fxSeqG = Binnie.RESOURCE.getBlockSprite(Genetics.instance, "fx/sequencer.g");
+		Sequencer.fxSeqT = Binnie.RESOURCE.getBlockSprite(Genetics.instance, "fx/sequencer.t");
+		Sequencer.fxSeqC = Binnie.RESOURCE.getBlockSprite(Genetics.instance, "fx/sequencer.c");
 	}
 
 	@Mod.EventHandler
