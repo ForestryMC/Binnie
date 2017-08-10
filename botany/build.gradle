@@ -1,0 +1,6 @@
+archivesBaseName = 'botany'
+
+dependencies {
+	compile project(":api")
+	compile project(":core")
+}

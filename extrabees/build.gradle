@@ -1,0 +1,6 @@
+archivesBaseName = 'extrabees'
+
+dependencies {
+	compile project(":api")
+	compile project(":core")
+}

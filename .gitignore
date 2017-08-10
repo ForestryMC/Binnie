@@ -16,6 +16,12 @@ classes/
 # folders
 !/gradle/wrapper
 !/src
+!/api
+!/botany
+!/core
+!/extrabees
+!/extratrees
+!/genetics
 
 # files
 !/.gitignore

@@ -8,127 +8,131 @@ buildscript {
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
-        classpath "gradle.plugin.se.bjurr.gitchangelog:git-changelog-gradle-plugin:1.47"
+//        classpath "gradle.plugin.se.bjurr.gitchangelog:git-changelog-gradle-plugin:1.47"
     }
 }
 
-plugins {
-    id "com.matthewprenger.cursegradle" version "1.0.9"
-}
+//plugins {
+//    id "com.matthewprenger.cursegradle" version "1.0.9"
+//}
+//apply plugin: "se.bjurr.gitchangelog.git-changelog-gradle-plugin"
+//apply plugin: 'idea'
+//apply plugin: 'maven'
 
-apply plugin: 'net.minecraftforge.gradle.forge'
-apply plugin: 'idea'
-apply plugin: 'maven'
-apply plugin: "se.bjurr.gitchangelog.git-changelog-gradle-plugin"
+//archivesBaseName = "binnie-mods-" + mcversion
 
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
+subprojects {
+    apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = version_major + '.' + version_minor + '.' + version_patch
-if (System.getenv("BUILD_NUMBER") != null) {
-    version = version + "." + System.getenv("BUILD_NUMBER")
-}
-group = "binnie" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "binnie-mods-" + mcversion
+    minecraft {
+        version = mcversion + "-" + forgeversion
+        mappings = mcp_mappings
+        runDir = "run"
 
-minecraft {
-    version = mcversion + "-" + forgeversion
-    mappings = mcp_mappings
-    runDir = "run"
-
-    replace '@VERSION@', project.version
-}
-
-repositories {
-    maven {
-        name = "jei"
-        url "http://dvs1.progwml6.com/files/maven"
-    }
-    maven {
-        name = "ic2, forestry"
-        url = "http://maven.ic2.player.to/"
-    }
-    maven {
-        name = "CurseForge"
-        url = "https://minecraft.curseforge.com/api/maven/"
-    }
-	maven {
-		name "Jared"
-		url "http://maven.blamejared.com/"
-	}
-}
-
-dependencies {
-    deobfCompile("net.sengir.forestry:forestry_${mcversion}:${forestry_version}") {
-        transitive = false
-    }
-    deobfProvided "mezz.jei:jei_${mcversion}:${jei_version}:api"
-    runtime "mezz.jei:jei_${mcversion}:${jei_version}"
-    runtime "jei-bees:jeibees:${jeibees_version}:mc${mcversion}"
-    deobfProvided "net.industrial-craft:industrialcraft-2:${ic2_version}:api"
-    runtime "net.industrial-craft:industrialcraft-2:${ic2_version}"
-    deobfProvided "CraftTweaker2:CraftTweaker2-API:${minetweaker_version}"
-}
-
-processResources {
-    // this will ensure that this task is redone when the versions change.
-    inputs.property "version", project.version
-    inputs.property "mcversion", project.minecraft.version
-
-    // replace stuff in mcmod.info, nothing else
-    from(sourceSets.main.resources.srcDirs) {
-        include 'mcmod.info'
-
-        // replace version and mcversion
-        expand 'version':project.version, 'mcversion':project.minecraft.version
+        replace '@VERSION@', project.version
     }
 
-    // copy everything else, thats not the mcmod.info
-    from(sourceSets.main.resources.srcDirs) {
-        exclude 'mcmod.info'
-    }
-}
+    group = "binnie" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 
-// prevent java 8's strict doclint for javadocs from failing builds
-allprojects {
+    version = version_major + '.' + version_minor + '.' + version_patch
+    if (System.getenv("BUILD_NUMBER") != null) {
+        version = version + "." + System.getenv("BUILD_NUMBER")
+    }
+
+    sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
+    compileJava {
+        sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    repositories {
+        maven {
+            name = "jei"
+            url "http://dvs1.progwml6.com/files/maven"
+        }
+        maven {
+            name = "ic2, forestry"
+            url = "http://maven.ic2.player.to/"
+        }
+        maven {
+            name = "CurseForge"
+            url = "https://minecraft.curseforge.com/api/maven/"
+        }
+        maven {
+            name "Jared"
+            url "http://maven.blamejared.com/"
+        }
+    }
+
+    dependencies {
+        deobfCompile("net.sengir.forestry:forestry_${mcversion}:${forestry_version}") {
+            transitive = false
+        }
+        deobfProvided "mezz.jei:jei_${mcversion}:${jei_version}:api"
+        runtime "mezz.jei:jei_${mcversion}:${jei_version}"
+        runtime "jei-bees:jeibees:${jeibees_version}:mc${mcversion}"
+        deobfProvided "net.industrial-craft:industrialcraft-2:${ic2_version}:api"
+        runtime "net.industrial-craft:industrialcraft-2:${ic2_version}"
+        deobfProvided "CraftTweaker2:CraftTweaker2-API:${minetweaker_version}"
+    }
+
+    processResources {
+        // this will ensure that this task is redone when the versions change.
+        inputs.property "version", project.version
+        inputs.property "mcversion", project.minecraft.version
+
+        // replace stuff in mcmod.info, nothing else
+        from(sourceSets.main.resources.srcDirs) {
+            include 'mcmod.info'
+
+            // replace version and mcversion
+            expand 'version': project.version, 'mcversion': project.minecraft.version
+        }
+
+        // copy everything else, thats not the mcmod.info
+        from(sourceSets.main.resources.srcDirs) {
+            exclude 'mcmod.info'
+        }
+    }
+
+    // prevent java 8's strict doclint for javadocs from failing builds
     tasks.withType(Javadoc) {
         options.addStringOption('Xdoclint:none', '-quiet')
     }
 }
-
-uploadArchives {
-    repositories {
-        if (project.hasProperty('mavenDir')) {
-            mavenDeployer {
-                repository(url: "file://" + mavenDir)
-            }
-        } else {
-            println 'Archives upload disabled, mavenDir in gradle.properties is missing.'
-        }
-    }
-}
-
-task makeChangelog(type: se.bjurr.gitchangelog.plugin.gradle.GitChangelogTask) {
-    filePath = "changelog.html"
-    untaggedName = "Current release ${project.version}"
-    fromCommit = "dbc5c1a564c39e4a9c042411d1bdbe450985ce2c"
-    toRef =  "HEAD"
-    templateContent = file('changelog.mustache').getText('UTF-8')
-}
-
-curseforge {
-    apiKey = project.hasProperty('curseforge_apikey') ? project.curseforge_apikey : '0'
-    project {
-        id = curse_project_id
-        changelog = file('changelog.html')
-        changelogType = 'html'
-        releaseType = 'alpha'
-        relations {
-            requiredLibrary 'forestry'
-        }
-    }
-}
-
-afterEvaluate {
-    tasks.curseforge223525.dependsOn.add(makeChangelog)
-}
+//
+//uploadArchives {
+//    repositories {
+//        if (project.hasProperty('mavenDir')) {
+//            mavenDeployer {
+//                repository(url: "file://" + mavenDir)
+//            }
+//        } else {
+//            println 'Archives upload disabled, mavenDir in gradle.properties is missing.'
+//        }
+//    }
+//}
+//
+//task makeChangelog(type: se.bjurr.gitchangelog.plugin.gradle.GitChangelogTask) {
+//    filePath = "changelog.html"
+//    untaggedName = "Current release ${project.version}"
+//    fromCommit = "dbc5c1a564c39e4a9c042411d1bdbe450985ce2c"
+//    toRef =  "HEAD"
+//    templateContent = file('changelog.mustache').getText('UTF-8')
+//}
+//
+//curseforge {
+//    apiKey = project.hasProperty('curseforge_apikey') ? project.curseforge_apikey : '0'
+//    project {
+//        id = curse_project_id
+//        changelog = file('changelog.html')
+//        changelogType = 'html'
+//        releaseType = 'alpha'
+//        relations {
+//            requiredLibrary 'forestry'
+//        }
+//    }
+//}
+//
+//afterEvaluate {
+//    tasks.curseforge223525.dependsOn.add(makeChangelog)
+//}

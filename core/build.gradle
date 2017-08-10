@@ -1,0 +1,5 @@
+archivesBaseName = 'core'
+
+dependencies {
+	compile project(":api")
+}
