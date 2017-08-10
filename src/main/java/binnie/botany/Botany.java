@@ -16,7 +16,6 @@ import binnie.core.network.BinniePacketHandler;
 import binnie.core.network.IPacketID;
 import binnie.core.proxy.IProxyCore;
 import binnie.modules.BlankModuleContainer;
-import binnie.modules.ModuleManager;
 
 @Mod(
 	modid = Constants.BOTANY_MOD_ID,
