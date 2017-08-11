@@ -3,15 +3,14 @@
 
 .gradle
 # IntelliJ
-/build
-/run
-/out
+build/
+run/
+out/
 .idea
 *.iml
 *.ipr
 *.iws
 classes/
-
 
 # folders
 !/gradle/wrapper
