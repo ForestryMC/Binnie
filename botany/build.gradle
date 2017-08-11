@@ -1,4 +1,4 @@
-archivesBaseName = 'botany'
+archivesBaseName = 'botany-' + mcversion
 
 dependencies {
 	compile project(":api")

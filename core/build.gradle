@@ -1,4 +1,4 @@
-archivesBaseName = 'core'
+archivesBaseName = 'core-' + mcversion
 
 dependencies {
 	compile project(":api")

@@ -1,1 +1,1 @@
-archivesBaseName = 'api'
+archivesBaseName = 'api-' + mcversion

@@ -1,4 +1,4 @@
-archivesBaseName = 'genetics'
+archivesBaseName = 'genetics-' + mcversion
 
 dependencies {
 	compile project(":api")
