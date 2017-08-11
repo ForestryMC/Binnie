@@ -3,6 +3,7 @@ package binnie.extratrees.machines.designer.window;
 import javax.annotation.Nullable;
 import java.util.Map;
 
+import binnie.extratrees.machines.designer.IDesignerType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -21,13 +22,12 @@ import binnie.extratrees.api.IDesignMaterial;
 import binnie.extratrees.carpentry.EnumDesign;
 import binnie.extratrees.machines.ExtraTreesErrorCode;
 import binnie.extratrees.machines.designer.Designer;
-import binnie.extratrees.machines.designer.DesignerType;
 
 public class ComponentDesignerRecipe extends ComponentRecipe implements IComponentRecipe, INetwork.GuiNBT, IErrorStateSource {
-	public DesignerType type;
+	public IDesignerType type;
 	private IDesign design;
 
-	public ComponentDesignerRecipe(final Machine machine, final DesignerType type) {
+	public ComponentDesignerRecipe(final Machine machine, final IDesignerType type) {
 		super(machine);
 		this.design = EnumDesign.Diamond;
 		this.type = type;
@@ -148,7 +148,7 @@ public class ComponentDesignerRecipe extends ComponentRecipe implements ICompone
 		}
 	}
 
-	public DesignerType getDesignerType() {
+	public IDesignerType getDesignerType() {
 		return this.type;
 	}
 }

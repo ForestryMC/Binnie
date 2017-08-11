@@ -1,5 +1,6 @@
 package binnie.genetics.gui.analyst;
 
+import binnie.core.api.genetics.IBreedingSystem;
 import net.minecraft.client.renderer.GlStateManager;
 
 import net.minecraftforge.fml.relauncher.Side;
@@ -8,7 +9,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IMutation;
 
-import binnie.core.genetics.BreedingSystem;
 import binnie.core.gui.IWidget;
 import binnie.core.gui.geometry.Point;
 import binnie.core.gui.renderer.RenderUtil;
@@ -17,7 +17,7 @@ import binnie.genetics.item.ModuleItems;
 
 public class ControlResultantMutation extends ControlMutation {
 
-	public ControlResultantMutation(IWidget parent, int x, int y, IMutation mutation, float specificChance, BreedingSystem system, IAlleleSpecies firstSpecies, IAlleleSpecies secondSpecies) {
+	public ControlResultantMutation(IWidget parent, int x, int y, IMutation mutation, float specificChance, IBreedingSystem system, IAlleleSpecies firstSpecies, IAlleleSpecies secondSpecies) {
 		super(parent, x, y, mutation, specificChance, system, firstSpecies, secondSpecies);
 
 		String comb = firstSpecies.getAlleleName() + " + " + secondSpecies.getAlleleName();

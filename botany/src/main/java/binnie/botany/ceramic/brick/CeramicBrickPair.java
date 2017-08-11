@@ -10,7 +10,7 @@ import net.minecraft.nbt.NBTTagInt;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.botany.genetics.EnumFlowerColor;
+import binnie.botany.api.genetics.EnumFlowerColor;
 import binnie.botany.modules.ModuleCeramic;
 import binnie.core.util.I18N;
 

@@ -8,7 +8,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import forestry.core.items.IColoredItem;
 
 import binnie.core.block.ItemMetadata;
-import binnie.core.block.TileEntityMetadata;
+import binnie.core.api.block.TileEntityMetadata;
 
 public class ItemDesign extends ItemMetadata implements IColoredItem {
 

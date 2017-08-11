@@ -1,5 +1,6 @@
 package binnie.botany.genetics;
 
+import binnie.botany.api.BotanyAPI;
 import net.minecraft.entity.player.EntityPlayer;
 
 import forestry.api.genetics.IBreedingTracker;

@@ -11,7 +11,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.botany.Botany;
 import binnie.botany.api.genetics.IFlowerColor;
-import binnie.botany.genetics.EnumFlowerColor;
+import binnie.botany.api.genetics.EnumFlowerColor;
 import binnie.core.AbstractMod;
 import binnie.core.gui.IWidget;
 import binnie.core.gui.controls.listbox.ControlListBox;

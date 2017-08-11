@@ -2,6 +2,7 @@ package binnie.core.gui.database;
 
 import javax.annotation.Nullable;
 
+import binnie.core.api.genetics.IBreedingSystem;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 
 import com.mojang.authlib.GameProfile;
@@ -16,7 +17,6 @@ import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.ISpeciesRoot;
 
 import binnie.core.Binnie;
-import binnie.core.genetics.BreedingSystem;
 import binnie.core.gui.Attribute;
 import binnie.core.gui.ITooltip;
 import binnie.core.gui.IWidget;
@@ -54,7 +54,7 @@ public class ControlDatabaseIndividualDisplay extends ControlItemDisplay impleme
 
 	public void setSpecies(final IAlleleSpecies species, EnumDiscoveryState state) {
 		final ISpeciesRoot speciesRoot = Binnie.GENETICS.getSpeciesRoot(species);
-		final BreedingSystem system = Binnie.GENETICS.getSystem(speciesRoot);
+		final IBreedingSystem system = Binnie.GENETICS.getSystem(speciesRoot);
 		final IAllele[] template = system.getSpeciesRoot().getTemplate(species);
 		final IIndividual ind = system.getSpeciesRoot().templateAsIndividual(template);
 		super.setItemStack(system.getSpeciesRoot().getMemberStack(ind, system.getDefaultType()));
@@ -78,7 +78,7 @@ public class ControlDatabaseIndividualDisplay extends ControlItemDisplay impleme
 		if (this.species == null) {
 			return;
 		}
-		BreedingSystem system = Binnie.GENETICS.getSystem(this.species.getRoot());
+		IBreedingSystem system = Binnie.GENETICS.getSystem(this.species.getRoot());
 		switch (this.discovered) {
 			case Show: {
 				super.onRenderForeground(guiWidth, guiHeight);

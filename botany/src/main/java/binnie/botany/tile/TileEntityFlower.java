@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
+import binnie.botany.api.BotanyAPI;
 import binnie.botany.genetics.EnumFlowerType;
 import forestry.api.lepidopterology.ButterflyManager;
 import net.minecraft.block.Block;
@@ -43,7 +44,7 @@ import binnie.botany.api.genetics.IFlowerRoot;
 import binnie.botany.api.genetics.IFlowerType;
 import binnie.botany.blocks.PlantType;
 import binnie.botany.core.BotanyCore;
-import binnie.botany.genetics.EnumFlowerColor;
+import binnie.botany.api.genetics.EnumFlowerColor;
 import binnie.botany.genetics.Flower;
 import binnie.botany.modules.ModuleFlowers;
 import binnie.botany.modules.ModuleGardening;
@@ -396,7 +397,7 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 
 	public void setSection(int i) {
 		section = i;
-		if (BinnieCore.getBinnieProxy().isSimulating(world)) {
+		if (!world.isRemote) {
 			updateRender(true);
 		}
 	}

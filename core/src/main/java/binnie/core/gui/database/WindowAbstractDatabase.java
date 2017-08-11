@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import binnie.core.api.genetics.IBreedingSystem;
 import net.minecraft.entity.player.EntityPlayer;
 
 import com.mojang.authlib.GameProfile;
@@ -17,7 +18,6 @@ import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IBreedingTracker;
 import forestry.api.genetics.IClassification;
 
-import binnie.core.genetics.BreedingSystem;
 import binnie.core.gui.IWidget;
 import binnie.core.gui.controls.ControlTextEdit;
 import binnie.core.gui.controls.listbox.ControlListBox;
@@ -43,7 +43,7 @@ public abstract class WindowAbstractDatabase extends Window {
 	boolean isNEI;
 	private int selectionBoxWidth;
 	private Map<IDatabaseMode, ModeWidgets> modes;
-	private BreedingSystem system;
+	private IBreedingSystem system;
 	@Nullable
 	private Panel panelInformation;
 	@Nullable
@@ -53,7 +53,7 @@ public abstract class WindowAbstractDatabase extends Window {
 	@Nullable
 	private IAlleleSpecies gotoSpecies;
 
-	public WindowAbstractDatabase(final EntityPlayer player, final Side side, final boolean nei, final BreedingSystem system, final int wid) {
+	public WindowAbstractDatabase(final EntityPlayer player, final Side side, final boolean nei, final IBreedingSystem system, final int wid) {
 		super(100, 192, player, null, side);
 		this.selectionBoxWidth = 95;
 		this.modes = new HashMap<>();
@@ -78,7 +78,7 @@ public abstract class WindowAbstractDatabase extends Window {
 		return this.isNEI;
 	}
 
-	public BreedingSystem getBreedingSystem() {
+	public IBreedingSystem getBreedingSystem() {
 		return this.system;
 	}
 

@@ -8,9 +8,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import forestry.core.items.IColoredItem;
 
-import binnie.botany.genetics.EnumFlowerColor;
+import binnie.botany.api.genetics.EnumFlowerColor;
 import binnie.core.block.ItemMetadata;
-import binnie.core.block.TileEntityMetadata;
+import binnie.core.api.block.TileEntityMetadata;
 
 public class ItemStainedGlass extends ItemMetadata implements IColoredItem {
 	public ItemStainedGlass(Block block) {

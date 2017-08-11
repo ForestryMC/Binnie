@@ -17,7 +17,7 @@ import forestry.core.blocks.properties.UnlistedBlockAccess;
 import forestry.core.blocks.properties.UnlistedBlockPos;
 import forestry.core.models.ModelBlockCached;
 
-import binnie.core.block.TileEntityMetadata;
+import binnie.core.api.block.TileEntityMetadata;
 import binnie.core.models.AABBModelBaker;
 import binnie.core.models.ModelManager;
 import binnie.extratrees.block.WoodManager;

@@ -1,4 +1,4 @@
-package binnie.extratrees.carpentry;
+package binnie.extratrees.api.carpentry;
 
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 
@@ -11,6 +11,7 @@ import binnie.extratrees.api.IDesignSystem;
 import binnie.extratrees.api.ILayout;
 import binnie.extratrees.api.IPattern;
 
+// TODO: move out of API
 public enum EnumPattern implements IPattern {
 	Blank,
 	Octagon,
@@ -389,6 +390,11 @@ public enum EnumPattern implements IPattern {
 	@Override
 	public ILayout getHorizontalFlip() {
 		return this.horizontalFlip;
+	}
+
+	@Override
+	public int getIndex() {
+		return ordinal();
 	}
 
 	protected void setLeftRotation(final EnumPattern pattern, final boolean inverted) {

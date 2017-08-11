@@ -1,4 +1,4 @@
-package binnie.core.block;
+package binnie.core.api.block;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -18,8 +18,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import binnie.core.BinnieCore;
-
+// TODO: move out of API
 public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 	public BlockMetadata(final Material material) {
 		super(material);
@@ -49,7 +48,7 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 			drops = block.getDrops(world, pos, world.getBlockState(pos), 0);
 		}
 		boolean hasBeenBroken = world.setBlockToAir(pos);
-		if (hasBeenBroken && BinnieCore.getBinnieProxy().isSimulating(world) && drops.size() > 0 && (player == null || !player.capabilities.isCreativeMode)) {
+		if (hasBeenBroken && !world.isRemote && drops.size() > 0 && (player == null || !player.capabilities.isCreativeMode)) {
 			for (ItemStack drop : drops) {
 				spawnAsEntity(world, pos, drop);
 			}

@@ -1,5 +1,7 @@
 package binnie.genetics.item;
 
+import binnie.core.api.genetics.IBreedingSystem;
+import binnie.genetics.api.IGene;
 import com.google.common.base.Preconditions;
 
 import javax.annotation.Nullable;
@@ -16,11 +18,9 @@ import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.ISpeciesRoot;
 
 import binnie.core.Binnie;
-import binnie.core.genetics.BreedingSystem;
 import binnie.core.genetics.Gene;
 import binnie.core.util.I18N;
 import binnie.genetics.Genetics;
-import binnie.api.genetics.IGene;
 import binnie.genetics.api.IItemSerum;
 import binnie.genetics.genetics.GeneItem;
 import binnie.genetics.genetics.IGeneItem;
@@ -101,7 +101,7 @@ public class ItemSerum extends ItemGene implements IItemSerum {
 	public String getItemStackDisplayName(ItemStack itemstack) {
 		GeneItem gene = this.getGeneItem(itemstack);
 		if (gene != null && gene.getSpeciesRoot() != null) {
-			BreedingSystem system = Binnie.GENETICS.getSystem(gene.getSpeciesRoot());
+			IBreedingSystem system = Binnie.GENETICS.getSystem(gene.getSpeciesRoot());
 			return system.getDescriptor() + " " + I18N.localise("genetics.item.gene.serum");
 		} else {
 			return I18N.localise("genetics.item.gene.corrupted.serum");

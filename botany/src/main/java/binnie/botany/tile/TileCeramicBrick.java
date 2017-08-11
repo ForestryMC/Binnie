@@ -6,9 +6,9 @@ import net.minecraft.tileentity.TileEntity;
 
 import binnie.botany.ceramic.brick.CeramicBrickPair;
 import binnie.botany.ceramic.brick.CeramicBrickType;
-import binnie.botany.genetics.EnumFlowerColor;
+import binnie.botany.api.genetics.EnumFlowerColor;
 import binnie.botany.modules.ModuleCeramic;
-import binnie.core.block.TileEntityMetadata;
+import binnie.core.api.block.TileEntityMetadata;
 
 public class TileCeramicBrick extends TileEntity {
 	private EnumFlowerColor colorFirst = EnumFlowerColor.Black;

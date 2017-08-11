@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import binnie.core.api.genetics.IBreedingSystem;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IChromosomeType;
 
 import binnie.core.Binnie;
-import binnie.core.genetics.BreedingSystem;
 import binnie.core.genetics.Gene;
 import binnie.core.gui.IWidget;
 import binnie.core.gui.controls.ControlText;
@@ -19,10 +19,10 @@ import binnie.core.gui.geometry.Point;
 import binnie.core.gui.minecraft.Window;
 import binnie.genetics.genetics.GeneTracker;
 
-public class ControlGeneScroll extends Control implements IControlValue<BreedingSystem> {
+public class ControlGeneScroll extends Control implements IControlValue<IBreedingSystem> {
 	private String filter;
 	@Nullable
-	private BreedingSystem system;
+	private IBreedingSystem system;
 
 	protected ControlGeneScroll(final IWidget parent, final int x, final int y, final int w, final int h) {
 		super(parent, x, y, w, h);
@@ -35,7 +35,7 @@ public class ControlGeneScroll extends Control implements IControlValue<Breeding
 		this.refresh();
 	}
 
-	public void setGenes(final BreedingSystem system) {
+	public void setGenes(final IBreedingSystem system) {
 		this.system = system;
 		this.refresh();
 	}
@@ -78,12 +78,12 @@ public class ControlGeneScroll extends Control implements IControlValue<Breeding
 	}
 
 	@Override
-	public BreedingSystem getValue() {
+	public IBreedingSystem getValue() {
 		return this.system;
 	}
 
 	@Override
-	public void setValue(final BreedingSystem system) {
+	public void setValue(final IBreedingSystem system) {
 		this.setGenes(system);
 	}
 }

@@ -1,5 +1,7 @@
 package binnie.genetics.machine;
 
+import java.util.function.Supplier;
+
 import net.minecraft.item.ItemStack;
 
 import binnie.core.machines.IMachineType;
@@ -8,22 +10,17 @@ import binnie.genetics.Genetics;
 import binnie.genetics.machine.splicer.PackageSplicer;
 
 public enum AdvGeneticMachine implements IMachineType {
-	Splicer(PackageSplicer.class);
+	Splicer(PackageSplicer::new);
 
-	Class<? extends MachinePackage> clss;
+	private final Supplier<MachinePackage> supplier;
 
-	AdvGeneticMachine(final Class<? extends MachinePackage> clss) {
-		this.clss = clss;
+	AdvGeneticMachine(final Supplier<MachinePackage> supplier) {
+		this.supplier = supplier;
 	}
 
 	@Override
-	public Class<? extends MachinePackage> getPackageClass() {
-		return this.clss;
-	}
-
-	@Override
-	public boolean isActive() {
-		return true;
+	public Supplier<MachinePackage> getSupplier() {
+		return supplier;
 	}
 
 	public ItemStack get(final int i) {

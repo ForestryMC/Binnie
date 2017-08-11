@@ -1,11 +1,10 @@
-package binnie.botany.genetics.allele;
+package binnie.botany.api.genetics;
 
 import forestry.api.genetics.IAlleleInteger;
+import net.minecraft.util.text.translation.I18n;
 
-import binnie.botany.api.genetics.IFlowerColor;
-import binnie.core.util.I18N;
-
-public class AlleleFlowerColor implements IFlowerColor, IAlleleInteger {
+// TODO: move out of API
+public class AlleleFlowerColor implements IAlleleFlowerColor {
 	private int color;
 	private String uid;
 	private boolean isDominant;
@@ -71,6 +70,6 @@ public class AlleleFlowerColor implements IFlowerColor, IAlleleInteger {
 
 	@Override
 	public String getColorName() {
-		return I18N.localise("botany.color." + getAlleleName());
+		return I18n.translateToLocal("botany.color." + getAlleleName());
 	}
 }

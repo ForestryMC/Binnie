@@ -8,7 +8,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.Constants;
 
 import binnie.core.genetics.Gene;
-import binnie.api.genetics.IGene;
+import binnie.genetics.api.IGene;
 
 public class SequencerItem extends GeneItem {
 	public int sequenced;

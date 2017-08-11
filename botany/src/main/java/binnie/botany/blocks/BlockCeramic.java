@@ -28,9 +28,8 @@ import forestry.api.core.IModelManager;
 import forestry.core.blocks.IColoredBlock;
 
 import binnie.botany.CreativeTabBotany;
-import binnie.botany.genetics.EnumFlowerColor;
+import binnie.botany.api.genetics.EnumFlowerColor;
 import binnie.botany.tile.TileCeramic;
-import binnie.core.BinnieCore;
 import binnie.core.util.TileUtil;
 
 public class BlockCeramic extends Block implements IColoredBlock, IItemModelRegister {
@@ -63,7 +62,7 @@ public class BlockCeramic extends Block implements IColoredBlock, IItemModelRegi
 			drops = Collections.singletonList(ceramic.getStack());
 		}
 		boolean hasBeenBroken = world.setBlockToAir(pos);
-		if (hasBeenBroken && BinnieCore.getBinnieProxy().isSimulating(world) && drops.size() > 0 && (player == null || !player.capabilities.isCreativeMode)) {
+		if (hasBeenBroken && !world.isRemote && drops.size() > 0 && (player == null || !player.capabilities.isCreativeMode)) {
 			for (ItemStack drop : drops) {
 				spawnAsEntity(world, pos, drop);
 			}

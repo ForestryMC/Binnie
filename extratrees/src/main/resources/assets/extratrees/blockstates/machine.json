@@ -48,11 +48,7 @@
           "texture": "extratrees:blocks/paneler"
         }
       },
-      "8": {
-        "textures":{
-          "texture": "extratrees:blocks/tileworker"
-        }
-      },
+      "8": {},
       "9": {},
       "10": {},
       "11": {},

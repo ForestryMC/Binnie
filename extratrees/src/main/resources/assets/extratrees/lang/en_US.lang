@@ -57,9 +57,6 @@ extratrees.machine.machine.panelworker.info=The Panelworker creates patterned wo
 extratrees.machine.machine.glassworker=Glassworker
 extratrees.machine.machine.glassworker.info=The Glassworker creates patterned stained glass.
 
-extratrees.machine.machine.tileworker=Tileworker
-extratrees.machine.machine.tileworker.info=The Tileworker creates patterned ceramic tiles.
-
 ##################################################
 ## Modules
 

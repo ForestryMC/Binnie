@@ -1,12 +1,9 @@
 package binnie.core.machines;
 
-import javax.annotation.Nullable;
+import java.util.function.Supplier;
 
 import binnie.core.network.IOrdinaled;
 
 public interface IMachineType extends IOrdinaled {
-	@Nullable
-	Class<? extends MachinePackage> getPackageClass();
-
-	boolean isActive();
+	Supplier<MachinePackage> getSupplier();
 }

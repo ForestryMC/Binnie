@@ -10,7 +10,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.core.AbstractMod;
-import binnie.core.BinnieCore;
 import binnie.core.gui.minecraft.Window;
 
 public final class BinnieGUIHandler implements IGuiHandler {
@@ -35,7 +34,7 @@ public final class BinnieGUIHandler implements IGuiHandler {
 	@Nullable
 	@SideOnly(Side.CLIENT)
 	public final Object getClientGuiElement(final int id, final EntityPlayer player, final World world, final int x, final int y, final int z) {
-		if (BinnieCore.getBinnieProxy().isSimulating(world)) {
+		if (!world.isRemote) {
 			return this.getServerGuiElement(id, player, world, x, y, z);
 		}
 		Window window = this.getWindow(id, player, world, x, y, z, Side.CLIENT);

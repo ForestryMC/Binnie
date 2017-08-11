@@ -9,7 +9,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import forestry.core.items.IColoredItem;
 
 import binnie.botany.blocks.BlockCeramic;
-import binnie.botany.genetics.EnumFlowerColor;
+import binnie.botany.api.genetics.EnumFlowerColor;
 import binnie.core.util.I18N;
 
 public class ItemCeramic extends ItemBlock implements IColoredItem {

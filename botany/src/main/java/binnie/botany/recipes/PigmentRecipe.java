@@ -1,5 +1,6 @@
 package binnie.botany.recipes;
 
+import binnie.botany.api.BotanyAPI;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;

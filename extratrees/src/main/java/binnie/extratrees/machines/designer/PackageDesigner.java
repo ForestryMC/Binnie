@@ -9,10 +9,10 @@ import binnie.extratrees.machines.designer.window.ComponentDesignerRecipe;
 import binnie.extratrees.machines.designer.window.SlotValidatorBeeswax;
 import binnie.extratrees.machines.designer.window.SlotValidatorPlanks;
 
-public abstract class PackageDesigner extends ExtraTreeMachine.PackageExtraTreeMachine implements IMachineInformation {
-	DesignerType type;
+public final class PackageDesigner extends ExtraTreeMachine.PackageExtraTreeMachine implements IMachineInformation {
+	private final IDesignerType type;
 
-	public PackageDesigner(final DesignerType type) {
+	public PackageDesigner(final IDesignerType type) {
 		super(type.getName(), false);
 		this.type = type;
 	}

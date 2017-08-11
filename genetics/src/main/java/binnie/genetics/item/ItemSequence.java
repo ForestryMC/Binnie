@@ -26,7 +26,7 @@ import binnie.core.item.ItemCore;
 import binnie.core.util.I18N;
 import binnie.genetics.CreativeTabGenetics;
 import binnie.genetics.Genetics;
-import binnie.api.genetics.IGene;
+import binnie.genetics.api.IGene;
 import binnie.genetics.api.IItemAnalysable;
 import binnie.genetics.api.IItemChargeable;
 import binnie.genetics.genetics.GeneItem;

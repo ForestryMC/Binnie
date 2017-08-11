@@ -3,6 +3,7 @@ package binnie.extratrees.carpentry;
 import javax.annotation.Nullable;
 import java.util.List;
 
+import binnie.extratrees.api.carpentry.DesignerManager;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
@@ -45,9 +46,9 @@ import forestry.core.blocks.properties.UnlistedBlockAccess;
 import forestry.core.blocks.properties.UnlistedBlockPos;
 import forestry.core.models.BlockModelEntry;
 
-import binnie.core.block.BlockMetadata;
+import binnie.core.api.block.BlockMetadata;
 import binnie.core.block.IMultipassBlock;
-import binnie.core.block.TileEntityMetadata;
+import binnie.core.api.block.TileEntityMetadata;
 import binnie.core.models.DefaultStateMapper;
 import binnie.core.models.ModelManager;
 import binnie.core.models.ModelMutlipass;

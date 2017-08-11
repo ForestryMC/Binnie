@@ -1,15 +1,15 @@
 package binnie.extratrees.machines.designer.window;
 
+import binnie.extratrees.machines.designer.IDesignerType;
 import net.minecraft.item.ItemStack;
 
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.extratrees.machines.ModuleMachine;
-import binnie.extratrees.machines.designer.DesignerType;
 
 public class SlotValidatorBeeswax extends SlotValidator {
-	DesignerType type;
+	private final IDesignerType type;
 
-	public SlotValidatorBeeswax(final DesignerType type) {
+	public SlotValidatorBeeswax(final IDesignerType type) {
 		super(ModuleMachine.spritePolish);
 		this.type = type;
 	}

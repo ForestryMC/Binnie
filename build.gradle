@@ -20,8 +20,7 @@ buildscript {
 //apply plugin: 'maven'
 
 //archivesBaseName = "binnie-mods-" + mcversion
-
-subprojects {
+allprojects {
     apply plugin: 'net.minecraftforge.gradle.forge'
 
     minecraft {

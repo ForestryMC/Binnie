@@ -15,7 +15,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidTank;
 
-import binnie.core.BinnieCore;
 import binnie.core.machines.inventory.IChargedSlots;
 import binnie.core.machines.power.IPoweredMachine;
 import binnie.core.machines.power.IProcess;
@@ -218,6 +217,6 @@ public class MachineUtil {
 	}
 
 	public boolean isServer() {
-		return BinnieCore.getBinnieProxy().isSimulating(this.machine.getWorld());
+		return !this.machine.getWorld().isRemote;
 	}
 }

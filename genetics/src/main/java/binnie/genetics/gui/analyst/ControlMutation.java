@@ -1,12 +1,12 @@
 package binnie.genetics.gui.analyst;
 
+import binnie.core.api.genetics.IBreedingSystem;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IMutation;
 
-import binnie.core.genetics.BreedingSystem;
 import binnie.core.gui.IWidget;
 import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.geometry.Point;
@@ -17,11 +17,11 @@ import binnie.core.resource.BinnieSprite;
 public abstract class ControlMutation extends Control {
 	protected final IMutation mutation;
 	protected final float specificChance;
-	protected final BreedingSystem system;
+	protected final IBreedingSystem system;
 	protected final IAlleleSpecies firstSpecies;
 	protected final IAlleleSpecies secondSpecies;
 
-	protected ControlMutation(IWidget parent, int x, int y, IMutation mutation, float specificChance, BreedingSystem system, IAlleleSpecies firstSpecies, IAlleleSpecies secondSpecies) {
+	protected ControlMutation(IWidget parent, int x, int y, IMutation mutation, float specificChance, IBreedingSystem system, IAlleleSpecies firstSpecies, IAlleleSpecies secondSpecies) {
 		super(parent, x, y, 44, 16);
 		this.mutation = mutation;
 		this.specificChance = specificChance;

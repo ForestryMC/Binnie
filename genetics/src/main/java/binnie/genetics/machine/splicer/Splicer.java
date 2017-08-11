@@ -8,7 +8,7 @@ import forestry.api.apiculture.EnumBeeChromosome;
 import forestry.api.apiculture.IBeeRoot;
 import forestry.api.genetics.IAllele;
 
-import binnie.api.genetics.IGene;
+import binnie.genetics.api.IGene;
 
 public class Splicer {
 	public static final int SLOT_SERUM_VIAL = 0;

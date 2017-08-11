@@ -54,11 +54,6 @@ public class BinnieProxy extends BinnieModProxy implements IBinnieProxy {
 		player.openGui(mod.getMod(), id, player.world, pos.getX(), pos.getY(), pos.getZ());
 	}
 
-	@Override
-	public boolean isSimulating(final World world) {
-		return true;
-	}
-
 	public TextureAtlasSprite getTextureAtlasSprite(ResourceLocation location) {
 		throw new UnsupportedOperationException("Cannot call getTextureAtlasSprite on server side");
 	}

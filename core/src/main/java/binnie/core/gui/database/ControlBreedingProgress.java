@@ -1,9 +1,9 @@
 package binnie.core.gui.database;
 
+import binnie.core.api.genetics.IBreedingSystem;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.core.genetics.BreedingSystem;
 import binnie.core.gui.CraftGUI;
 import binnie.core.gui.IWidget;
 import binnie.core.gui.controls.core.Control;
@@ -20,7 +20,7 @@ class ControlBreedingProgress extends Control {
 	private float percentage;
 	private int colour;
 
-	public ControlBreedingProgress(final IWidget parent, final int x, final int y, final int width, final int height, final BreedingSystem system, final float percentage) {
+	public ControlBreedingProgress(final IWidget parent, final int x, final int y, final int width, final int height, final IBreedingSystem system, final float percentage) {
 		super(parent, x, y, width, height);
 		this.percentage = percentage;
 		this.colour = system.getColour();

@@ -11,10 +11,10 @@ import net.minecraft.util.IStringSerializable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.botany.genetics.EnumFlowerColor;
+import binnie.botany.api.genetics.EnumFlowerColor;
 import binnie.botany.items.CeramicItems;
 import binnie.botany.modules.ModuleCeramic;
-import binnie.core.block.TileEntityMetadata;
+import binnie.core.api.block.TileEntityMetadata;
 
 public enum CeramicBrickType implements IStringSerializable {
 	TILE("tile") {

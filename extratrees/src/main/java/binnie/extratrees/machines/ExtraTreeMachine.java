@@ -1,5 +1,9 @@
 package binnie.extratrees.machines;
 
+import java.util.function.Supplier;
+
+import binnie.extratrees.machines.designer.DesignerType;
+import binnie.extratrees.machines.designer.PackageDesigner;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -7,7 +11,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import binnie.core.Constants;
-import binnie.botany.modules.BotanyModuleUIDs;
 import binnie.core.machines.IMachineType;
 import binnie.core.machines.Machine;
 import binnie.core.machines.MachineComponent;
@@ -17,7 +20,6 @@ import binnie.core.machines.component.IInteraction;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.core.ExtraTreesGUID;
 import binnie.extratrees.machines.brewery.BreweryMachine;
-import binnie.extratrees.machines.designer.Designer;
 import binnie.extratrees.machines.distillery.DistilleryMachine;
 import binnie.extratrees.machines.fruitpress.FruitPressMachine;
 import binnie.extratrees.machines.lumbermill.LumbermillMachine;
@@ -25,36 +27,43 @@ import binnie.extratrees.modules.ExtraTreesModuleUIDs;
 import binnie.core.modules.ModuleManager;
 
 public enum ExtraTreeMachine implements IMachineType {
-	Lumbermill(LumbermillMachine.class),
-	Woodworker(Designer.PackageWoodworker.class),
-	Panelworker(Designer.PackagePanelworker.class),
-	Nursery(binnie.extratrees.machines.nursery.Nursery.PackageNursery.class),
-	Press(FruitPressMachine.class),
-	BREWERY(BreweryMachine.class),
-	Distillery(DistilleryMachine.class),
-	Glassworker(Designer.PackageGlassworker.class),
-	Tileworker(Designer.PackageTileworker.class);
+	Lumbermill(LumbermillMachine::new),
+	Woodworker(() -> {
+		if (ModuleManager.isModuleEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.CARPENTRY)) {
+			return new PackageDesigner(DesignerType.Woodworker);
+		}
+		return null;
+	}),
+	Panelworker(() -> {
+		if (ModuleManager.isModuleEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.CARPENTRY)) {
+			return new PackageDesigner(DesignerType.Panelworker);
+		}
+		return null;
+	}),
+	Nursery(() -> {
+		// TODO: implement
+		// binnie.extratrees.machines.nursery.Nursery.PackageNursery::new
+		return null;
+	}),
+	Press(FruitPressMachine::new),
+	BREWERY(BreweryMachine::new),
+	Distillery(DistilleryMachine::new),
+	Glassworker(() -> {
+		if (ModuleManager.isModuleEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.CARPENTRY)) {
+			return new PackageDesigner(DesignerType.GlassWorker);
+		}
+		return null;
+	});
 
-	Class<? extends MachinePackage> clss;
+	Supplier<MachinePackage> supplier;
 
-	ExtraTreeMachine(final Class<? extends MachinePackage> clss) {
-		this.clss = clss;
+	ExtraTreeMachine(final Supplier<MachinePackage> supplier) {
+		this.supplier = supplier;
 	}
 
 	@Override
-	public Class<? extends MachinePackage> getPackageClass() {
-		return this.clss;
-	}
-
-	@Override
-	public boolean isActive() {
-		if (this == ExtraTreeMachine.Tileworker) {
-			return ModuleManager.isModuleEnabled(Constants.BOTANY_MOD_ID, BotanyModuleUIDs.CERAMIC);
-		}
-		if(this == Glassworker || this == Woodworker || this == Panelworker){
-			return ModuleManager.isModuleEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.CARPENTRY);
-		}
-		return this != ExtraTreeMachine.Nursery;
+	public Supplier<MachinePackage> getSupplier() {
+		return this.supplier;
 	}
 
 	public ItemStack get(final int i) {

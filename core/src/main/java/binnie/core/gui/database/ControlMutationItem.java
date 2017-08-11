@@ -2,10 +2,10 @@ package binnie.core.gui.database;
 
 import javax.annotation.Nullable;
 
+import binnie.core.api.genetics.IBreedingSystem;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IMutation;
 
-import binnie.core.genetics.BreedingSystem;
 import binnie.core.gui.controls.listbox.ControlList;
 import binnie.core.gui.controls.listbox.ControlOption;
 import binnie.core.gui.minecraft.Window;
@@ -25,7 +25,7 @@ class ControlMutationItem extends ControlOption<IMutation> {
 		this.addSymbol = new ControlMutationSymbol(this, 24, 4, 0);
 		this.arrowSymbol = new ControlMutationSymbol(this, 64, 4, 1);
 		final boolean isNEI = ((WindowAbstractDatabase) this.getTopParent()).isNEI();
-		final BreedingSystem system = ((WindowAbstractDatabase) this.getTopParent()).getBreedingSystem();
+		final IBreedingSystem system = ((WindowAbstractDatabase) this.getTopParent()).getBreedingSystem();
 		if (this.getValue() != null) {
 			final boolean isMutationDiscovered = system.isMutationDiscovered(this.getValue(), Window.get(this).getWorld(), Window.get(this).getUsername());
 			IAlleleSpecies allele = null;

@@ -19,7 +19,7 @@ import binnie.core.gui.database.PageSpecies;
 import binnie.core.gui.geometry.Area;
 import binnie.core.gui.geometry.TextJustification;
 import binnie.core.util.I18N;
-import binnie.genetics.genetics.AlleleHelper;
+import binnie.core.genetics.AlleleHelper;
 
 public class PageSpeciesGenome extends PageSpecies {
 	ControlText title;

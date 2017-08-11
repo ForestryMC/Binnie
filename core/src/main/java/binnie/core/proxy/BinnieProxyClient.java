@@ -98,11 +98,6 @@ public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy
 	}
 
 	@Override
-	public boolean isSimulating(final World world) {
-		return !world.isRemote;
-	}
-
-	@Override
 	public World getWorld() {
 		return this.getMinecraftInstance().world;
 	}

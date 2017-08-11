@@ -1,5 +1,6 @@
 package binnie.genetics.gui.analyst;
 
+import binnie.core.api.genetics.IBreedingSystem;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.text.TextFormatting;
 
@@ -13,7 +14,6 @@ import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.ISpeciesRoot;
 
 import binnie.core.Binnie;
-import binnie.core.genetics.BreedingSystem;
 import binnie.core.gui.CraftGUI;
 import binnie.core.gui.IWidget;
 import binnie.core.gui.controls.ControlText;
@@ -38,7 +38,7 @@ public class AnalystPageGenome extends ControlAnalystPage {
 		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColor(getColor());
 		y += 16;
 		ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(ind);
-		BreedingSystem system = Binnie.GENETICS.getSystem(root);
+		IBreedingSystem system = Binnie.GENETICS.getSystem(root);
 		Control scaled = new Control(this, 0, y, 0, 0) {
 			@Override
 			@SideOnly(Side.CLIENT)

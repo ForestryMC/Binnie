@@ -8,6 +8,8 @@ import binnie.extratrees.api.CarpentryManager;
 import binnie.extratrees.api.IDesign;
 import binnie.extratrees.api.IDesignCategory;
 import binnie.extratrees.api.ILayout;
+import binnie.extratrees.api.carpentry.EnumPattern;
+import binnie.extratrees.api.carpentry.Layout;
 
 public enum EnumDesign implements IDesign {
 	Blank("blank"),

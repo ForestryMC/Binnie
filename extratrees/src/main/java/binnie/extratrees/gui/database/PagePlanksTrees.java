@@ -31,7 +31,8 @@ public class PagePlanksTrees extends PageAbstract<ItemStack> {
 		this.deleteAllChildren();
 		final WindowAbstractDatabase database = Window.get(this);
 		new ControlText(this, new Area(0, 0, this.getSize().xPos(), 24), species.getDisplayName(), TextJustification.MIDDLE_CENTER);
-		final Collection<IAlleleSpecies> trees = ((TreeBreedingSystem) database.getBreedingSystem()).getTreesThatMakePlanks(species, database.isNEI(), database.getWorld(), database.getUsername());
+		TreeBreedingSystem breedingSystem = (TreeBreedingSystem) database.getBreedingSystem();
+		final Collection<IAlleleSpecies> trees = breedingSystem.getTreesThatMakePlanks(species, database.isNEI(), database.getWorld(), database.getUsername());
 		new ControlSpeciesBox(this, 4, 24, this.getSize().xPos() - 8, this.getSize().yPos() - 4 - 24).setOptions(trees);
 	}
 }

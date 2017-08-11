@@ -3,6 +3,8 @@ package binnie.genetics.genetics;
 import javax.annotation.Nullable;
 import java.util.List;
 
+import binnie.core.api.genetics.IBreedingSystem;
+import binnie.genetics.api.IGene;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.text.TextFormatting;
@@ -16,9 +18,8 @@ import forestry.api.core.INbtWritable;
 import forestry.api.genetics.ISpeciesRoot;
 
 import binnie.core.Binnie;
-import binnie.core.genetics.BreedingSystem;
 import binnie.core.genetics.Gene;
-import binnie.api.genetics.IGene;
+
 
 public class GeneItem implements INbtWritable, IGeneItem {
 	private IGene gene;
@@ -63,7 +64,7 @@ public class GeneItem implements INbtWritable, IGeneItem {
 		list.add(TextFormatting.GOLD + chromosomeName + TextFormatting.GRAY + ": " + gene.getName());
 	}
 
-	public BreedingSystem getBreedingSystem() {
+	public IBreedingSystem getBreedingSystem() {
 		return Binnie.GENETICS.getSystem(gene.getSpeciesRoot());
 	}
 

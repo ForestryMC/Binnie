@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
+import binnie.botany.api.genetics.EnumFlowerColor;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 

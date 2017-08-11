@@ -1,4 +1,4 @@
-package binnie.extratrees.carpentry;
+package binnie.extratrees.api.carpentry;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -6,12 +6,12 @@ import java.util.List;
 
 import binnie.extratrees.api.IDesignSystem;
 
-public class DesignerManager {
+public final class DesignerManager {
 	public static DesignerManager instance = new DesignerManager();
 
-	List<IDesignSystem> systems;
+	private final List<IDesignSystem> systems;
 
-	public DesignerManager() {
+	private DesignerManager() {
 		this.systems = new ArrayList<>();
 	}
 
@@ -23,7 +23,7 @@ public class DesignerManager {
 		return this.systems;
 	}
 
-	public void addDesignSystem(final DesignSystem system) {
+	public void addDesignSystem(final IDesignSystem system) {
 		this.systems.add(system);
 	}
 }

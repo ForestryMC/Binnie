@@ -17,4 +17,6 @@ public interface IPattern extends ISpriteRegister {
 	ILayout getRotation();
 
 	ILayout getHorizontalFlip();
+
+	int getIndex();
 }

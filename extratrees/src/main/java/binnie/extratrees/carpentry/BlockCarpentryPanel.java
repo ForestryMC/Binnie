@@ -12,8 +12,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import binnie.core.block.BlockMetadata;
-import binnie.core.block.TileEntityMetadata;
+import binnie.core.api.block.BlockMetadata;
+import binnie.core.api.block.TileEntityMetadata;
 import binnie.core.util.I18N;
 
 public class BlockCarpentryPanel extends BlockCarpentry {

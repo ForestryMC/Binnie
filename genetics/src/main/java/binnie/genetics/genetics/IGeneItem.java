@@ -10,7 +10,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import forestry.api.genetics.ISpeciesRoot;
 
-import binnie.api.genetics.IGene;
+import binnie.genetics.api.IGene;
 
 public interface IGeneItem {
 	@Nullable

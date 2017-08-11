@@ -1,5 +1,6 @@
 package binnie.genetics.gui.analyst;
 
+import binnie.core.api.genetics.IBreedingSystem;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 
@@ -7,7 +8,6 @@ import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IIndividual;
 
 import binnie.core.Binnie;
-import binnie.core.genetics.BreedingSystem;
 import binnie.core.gui.ITooltip;
 import binnie.core.gui.IWidget;
 import binnie.core.gui.Tooltip;
@@ -20,7 +20,7 @@ public class ControlIndividualDisplay extends ControlItemDisplay implements IToo
 
 	public ControlIndividualDisplay(IWidget parent, int x, int y, int size, IIndividual ind) {
 		super(parent, x, y, size);
-		BreedingSystem system = Binnie.GENETICS.getSystem(ind.getGenome().getSpeciesRoot());
+		IBreedingSystem system = Binnie.GENETICS.getSystem(ind.getGenome().getSpeciesRoot());
 		setItemStack(system.getSpeciesRoot().getMemberStack(ind, system.getDefaultType()));
 		setTooltip();
 	}

@@ -4,16 +4,26 @@ import javax.annotation.Nullable;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import binnie.botany.api.genetics.EnumFlowerColor;
+import binnie.core.Constants;
+import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 
-import binnie.botany.genetics.EnumFlowerColor;
-import binnie.botany.modules.ModuleCeramic;
-import binnie.core.block.TileEntityMetadata;
+
+import binnie.core.api.block.TileEntityMetadata;
 import binnie.extratrees.api.IDesignMaterial;
+import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 
 public class GlassType implements IDesignMaterial {
 	static Map<Integer, GlassType> types;
+
+	@ObjectHolder(Constants.BOTANY_MOD_ID)
+	public static final class Botany {
+		@ObjectHolder("stained")
+		@Nullable
+		public static final Block stained = Blocks.AIR;
+	}
 
 	static {
 		GlassType.types = new LinkedHashMap<>();
@@ -63,7 +73,11 @@ public class GlassType implements IDesignMaterial {
 		if (this.id < 128) {
 			return new ItemStack(Blocks.STAINED_GLASS, 1, this.id);
 		}
-		return TileEntityMetadata.getItemStack(ModuleCeramic.stained, this.id - 128);
+		Block stained = Botany.stained;
+		if (stained != null) {
+			return TileEntityMetadata.getItemStack(stained, this.id - 128);
+		}
+		return ItemStack.EMPTY;
 	}
 
 	@Override

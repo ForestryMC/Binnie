@@ -1,6 +1,6 @@
 package binnie.extratrees.kitchen;
 
-import javax.annotation.Nullable;
+import java.util.function.Supplier;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -11,25 +11,19 @@ import binnie.core.machines.TileEntityMachine;
 
 public enum KitchenMachine implements IMachineType {
 	// TODO implement
-	Worktop(null),
-	Cupboard(null),
-	BottleRack(BottleRack.PackageBottleRack.class);
+	Worktop(() -> null),
+	Cupboard(() -> null),
+	BottleRack(binnie.extratrees.kitchen.BottleRack.PackageBottleRack::new);
 
-	@Nullable
-	Class<? extends MachinePackage> clss;
+	private final Supplier<MachinePackage> supplier;
 
-	KitchenMachine(@Nullable final Class<? extends MachinePackage> clss) {
-		this.clss = clss;
+	KitchenMachine(final Supplier<MachinePackage> supplier) {
+		this.supplier = supplier;
 	}
 
 	@Override
-	public Class<? extends MachinePackage> getPackageClass() {
-		return this.clss;
-	}
-
-	@Override
-	public boolean isActive() {
-		return this.clss != null;
+	public Supplier<MachinePackage> getSupplier() {
+		return supplier;
 	}
 
 	public ItemStack get(final int i) {

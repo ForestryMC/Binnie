@@ -44,7 +44,7 @@ import binnie.botany.api.genetics.IFlower;
 import binnie.botany.api.genetics.IFlowerRoot;
 import binnie.botany.blocks.BlockFlower;
 import binnie.botany.core.BotanyCore;
-import binnie.botany.genetics.EnumFlowerColor;
+import binnie.botany.api.genetics.EnumFlowerColor;
 import binnie.botany.genetics.FlowerDefinition;
 import binnie.botany.genetics.FlowerFactory;
 import binnie.botany.genetics.allele.AlleleEffectNone;
@@ -117,7 +117,7 @@ public class ModuleFlowers extends Module {
 
 	@Override
 	public void postInit() {
-		RecipeUtil recipeUtil = new RecipeUtil(Constants.GENETICS_MOD_ID);
+		RecipeUtil recipeUtil = new RecipeUtil(Constants.BOTANY_MOD_ID);
 		FlowerManager.flowerRegistry.registerAcceptableFlower(flower, "flowersVanilla");
 		recipeUtil.addRecipe("botanist_backpack", botanistBackpack,
 			"X#X",
@@ -187,7 +187,7 @@ public class ModuleFlowers extends Module {
 		World world = event.getWorld();
 		EntityPlayer player = event.getEntityPlayer();
 		ItemStack heldItem = player.getHeldItemMainhand();
-		if (!BinnieCore.getBinnieProxy().isSimulating(event.getWorld())) {
+		if (!!event.getWorld().isRemote) {
 			return;
 		}
 

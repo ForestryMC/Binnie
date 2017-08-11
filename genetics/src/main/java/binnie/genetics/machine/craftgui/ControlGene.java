@@ -1,5 +1,6 @@
 package binnie.genetics.machine.craftgui;
 
+import binnie.core.api.genetics.IBreedingSystem;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -8,7 +9,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.core.Binnie;
-import binnie.core.genetics.BreedingSystem;
 import binnie.core.gui.Attribute;
 import binnie.core.gui.ITooltip;
 import binnie.core.gui.IWidget;
@@ -19,7 +19,7 @@ import binnie.core.gui.events.EventMouse;
 import binnie.core.gui.geometry.Point;
 import binnie.core.gui.minecraft.Window;
 import binnie.core.gui.renderer.RenderUtil;
-import binnie.api.genetics.IGene;
+import binnie.genetics.api.IGene;
 import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.genetics.Engineering;
 
@@ -43,7 +43,7 @@ public class ControlGene extends Control implements IControlValue<IGene>, IToolt
 
 	@Override
 	public void getTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
-		BreedingSystem system = Binnie.GENETICS.getSystem(this.gene.getSpeciesRoot());
+		IBreedingSystem system = Binnie.GENETICS.getSystem(this.gene.getSpeciesRoot());
 		final String cName = system.getChromosomeName(this.gene.getChromosome());
 		tooltip.add(cName + ": " + this.gene.getName());
 		if (this.isMouseOver() && this.canFill(Window.get(this).getHeldItemStack())) {

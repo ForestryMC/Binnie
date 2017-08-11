@@ -1,5 +1,6 @@
 package binnie.core.genetics;
 
+import binnie.core.api.genetics.IBreedingSystem;
 import binnie.genetics.api.IGene;
 import com.google.common.base.Preconditions;
 
@@ -84,7 +85,7 @@ public class Gene implements IGene {
 		return Binnie.GENETICS.getSystem(this.root).getAlleleName(this.chromosome, this.allele);
 	}
 
-	public BreedingSystem getSystem() {
+	public IBreedingSystem getSystem() {
 		return Binnie.GENETICS.getSystem(this.root);
 	}
 

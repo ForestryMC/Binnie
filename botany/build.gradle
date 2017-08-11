@@ -3,4 +3,7 @@ archivesBaseName = 'botany'
 dependencies {
 	compile project(":api")
 	compile project(":core")
+
+	// TODO: remove
+	compile project(":extratrees")
 }

@@ -6,6 +6,9 @@ botany.module.gardening=Adds soil, loam, flowerbeds and trowels.
 botany.module.ceramic=Adds decorative ceramic blocks. And the Tileworker.
 botany.module.flowers=Adds an entirely new breeding system to Forestry: Flowers.
 
+botany.machine.machine.tileworker=Tileworker
+botany.machine.machine.tileworker.info=The Tileworker creates patterned ceramic tiles.
+
 botany.ph=PH
 botany.ph.acid=Acidic
 botany.ph.neutral=Neutral

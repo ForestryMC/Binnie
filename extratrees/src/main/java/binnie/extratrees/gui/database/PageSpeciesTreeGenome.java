@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import binnie.core.api.genetics.IBreedingSystem;
 import binnie.extratrees.ExtraTrees;
 import forestry.api.arboriculture.TreeManager;
 import net.minecraft.client.Minecraft;
@@ -24,7 +25,6 @@ import forestry.api.arboriculture.ITreeGenome;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IAlleleSpecies;
 
-import binnie.core.genetics.BreedingSystem;
 import binnie.core.gui.IWidget;
 import binnie.core.gui.controls.ControlText;
 import binnie.core.gui.controls.core.Control;
@@ -73,7 +73,7 @@ public class PageSpeciesTreeGenome extends PageSpecies {
 		int y = 0;
 		final int th = 14;
 		final int th2 = 18;
-		final BreedingSystem syst = ExtraTrees.treeBreedingSystem;
+		final IBreedingSystem syst = ExtraTrees.treeBreedingSystem;
 		new ControlText(contents, new Area(w2, y, w3, th), treeSpecies.getPlantType().toString(), TextJustification.MIDDLE_LEFT);
 		y += th;
 		new ControlText(contents, new Area(0, y, w2, th), I18N.localise("binniecore.gui.temperature.short") + " : ", TextJustification.MIDDLE_RIGHT);

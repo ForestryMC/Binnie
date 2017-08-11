@@ -2,7 +2,7 @@ package binnie.botany;
 
 import binnie.botany.genetics.FlowerBreedingSystem;
 import binnie.core.Binnie;
-import binnie.core.genetics.BreedingSystem;
+import binnie.core.api.genetics.IBreedingSystem;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -34,7 +34,7 @@ public class Botany extends BlankModuleContainer {
 	@SuppressWarnings("NullableProblems")
 	@SidedProxy(clientSide = "binnie.botany.proxy.ProxyClient", serverSide = "binnie.botany.proxy.ProxyServer")
 	public static Proxy proxy;
-	public static BreedingSystem flowerBreedingSystem;
+	public static IBreedingSystem flowerBreedingSystem;
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent evt) {

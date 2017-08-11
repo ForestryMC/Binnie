@@ -3,6 +3,7 @@ package binnie.genetics.gui.analyst;
 import java.util.Collection;
 import java.util.List;
 
+import binnie.core.api.genetics.IBreedingSystem;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
@@ -18,7 +19,6 @@ import forestry.api.genetics.IMutation;
 
 import binnie.core.Binnie;
 import binnie.core.Mods;
-import binnie.core.genetics.BreedingSystem;
 import binnie.core.genetics.ForestryAllele;
 import binnie.core.gui.Attribute;
 import binnie.core.gui.IWidget;
@@ -41,7 +41,7 @@ public class AnalystPageMutations extends ControlAnalystPage {
 		int y = 4;
 		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColor(getColor());
 		y += 18;
-		BreedingSystem system = Binnie.GENETICS.getSystem(ind.getGenome().getSpeciesRoot());
+		IBreedingSystem system = Binnie.GENETICS.getSystem(ind.getGenome().getSpeciesRoot());
 		List<IMutation> discovered = system.getDiscoveredMutations(Window.get(this).getWorld(), Window.get(this).getUsername());
 		IAlleleSpecies speciesCurrent = ind.getGenome().getPrimary();
 		Collection<IMutation> resultant = system.getResultantMutations(speciesCurrent);
@@ -125,11 +125,11 @@ public class AnalystPageMutations extends ControlAnalystPage {
 		setSize(new Point(getWidth(), y));
 	}
 
-	private boolean isKnown(BreedingSystem system, IMutation mutation) {
+	private boolean isKnown(IBreedingSystem system, IMutation mutation) {
 		return system.getDiscoveredMutations(getWindow().getWorld(), getWindow().getPlayer().getGameProfile()).contains(mutation);
 	}
 
-	private float getSpecificChance(IIndividual ind, IMutation mutation, BreedingSystem system) {
+	private float getSpecificChance(IIndividual ind, IMutation mutation, IBreedingSystem system) {
 		return system.getChance(mutation, getWindow().getPlayer(), mutation.getAllele0(), mutation.getAllele1());
 	}
 

@@ -2,6 +2,7 @@ package binnie.extratrees.machines.designer.window;
 
 import javax.annotation.Nullable;
 
+import binnie.extratrees.machines.designer.IDesignerType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 
@@ -27,7 +28,6 @@ import binnie.core.machines.Machine;
 import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.machines.designer.Designer;
-import binnie.extratrees.machines.designer.DesignerType;
 
 public class WindowDesigner extends Window {
 	ControlTextEdit textEdit;
@@ -77,7 +77,7 @@ public class WindowDesigner extends Window {
 		return "Woodworker";
 	}
 
-	public DesignerType getDesignerType() {
+	public IDesignerType getDesignerType() {
 		return Machine.getInterface(ComponentDesignerRecipe.class, this.getInventory()).getDesignerType();
 	}
 }

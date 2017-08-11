@@ -1,5 +1,6 @@
 package binnie.core.genetics;
 
+import binnie.core.api.genetics.IBreedingSystem;
 import binnie.genetics.api.IItemAnalysable;
 import com.google.common.base.Preconditions;
 
@@ -36,7 +37,7 @@ import binnie.core.Binnie;
 import binnie.core.ManagerBase;
 
 public class ManagerGenetics extends ManagerBase {
-	private final Map<ISpeciesRoot, BreedingSystem> BREEDING_SYSTEMS;
+	private final Map<ISpeciesRoot, IBreedingSystem> BREEDING_SYSTEMS;
 	private List<IChromosomeType> invalidChromosomeTypes;
 	private Map<ISpeciesRoot, Map<IChromosomeType, List<IAllele>>> chromosomeArray;
 
@@ -94,8 +95,8 @@ public class ManagerGenetics extends ManagerBase {
 	}
 
 	@Nullable
-	public BreedingSystem getSystem(final String string) {
-		for (final BreedingSystem system : this.BREEDING_SYSTEMS.values()) {
+	public IBreedingSystem getSystem(final String string) {
+		for (final IBreedingSystem system : this.BREEDING_SYSTEMS.values()) {
 			if (system.getIdent().equals(string)) {
 				return system;
 			}
@@ -103,9 +104,9 @@ public class ManagerGenetics extends ManagerBase {
 		return null;
 	}
 
-	public BreedingSystem getSystem(final ISpeciesRoot root) {
+	public IBreedingSystem getSystem(final ISpeciesRoot root) {
 		String rootUID = root.getUID();
-		BreedingSystem system = this.getSystem(rootUID);
+		IBreedingSystem system = this.getSystem(rootUID);
 		Preconditions.checkState(system != null, "Could not find system for species root %s", rootUID);
 		return system;
 	}
@@ -118,18 +119,18 @@ public class ManagerGenetics extends ManagerBase {
 		return Tolerance.values()[tol.ordinal()].getBounds();
 	}
 
-	public Collection<BreedingSystem> getActiveSystems() {
+	public Collection<IBreedingSystem> getActiveSystems() {
 		return this.BREEDING_SYSTEMS.values();
 	}
 
-	public void registerBreedingSystem(final BreedingSystem system) {
+	public void registerBreedingSystem(final IBreedingSystem system) {
 		this.BREEDING_SYSTEMS.put(system.getSpeciesRoot(), system);
 	}
 
 	@Nullable
-	public BreedingSystem getConversionSystem(final ItemStack stack) {
+	public IBreedingSystem getConversionSystem(final ItemStack stack) {
 		if (!stack.isEmpty()) {
-			for (final BreedingSystem system : this.getActiveSystems()) {
+			for (final IBreedingSystem system : this.getActiveSystems()) {
 				if (system.getConversion(stack) != null) {
 					return system;
 				}
@@ -140,7 +141,7 @@ public class ManagerGenetics extends ManagerBase {
 
 	public ItemStack getConversionStack(final ItemStack stack) {
 		if (!stack.isEmpty()) {
-			final BreedingSystem system = this.getConversionSystem(stack);
+			final IBreedingSystem system = this.getConversionSystem(stack);
 			if (system != null) {
 				return system.getConversionStack(stack);
 			}
@@ -150,7 +151,7 @@ public class ManagerGenetics extends ManagerBase {
 
 	@Nullable
 	public IIndividual getConversion(final ItemStack stack) {
-		final BreedingSystem system = this.getConversionSystem(stack);
+		final IBreedingSystem system = this.getConversionSystem(stack);
 		return (system == null) ? null : system.getConversion(stack);
 	}
 
@@ -161,15 +162,15 @@ public class ManagerGenetics extends ManagerBase {
 
 	private void refreshData() {
 		this.loadAlleles();
-		for (final BreedingSystem system : Binnie.GENETICS.getActiveSystems()) {
+		for (IBreedingSystem system : Binnie.GENETICS.getActiveSystems()) {
 			system.calculateArrays();
 		}
 	}
 
 	private void loadAlleles() {
 		this.invalidChromosomeTypes.clear();
-		for (ISpeciesRoot root : AlleleManager.alleleRegistry.getSpeciesRoot().values()) {
-			BreedingSystem system = this.getSystem(root);
+		for (IBreedingSystem system : BREEDING_SYSTEMS.values()) {
+			ISpeciesRoot root = system.getSpeciesRoot();
 			Map<IChromosomeType, List<IAllele>> chromosomeMap = new LinkedHashMap<>();
 			for (IChromosomeType chromosome : root.getKaryotype()) {
 				TreeSet<IAllele> alleles = new TreeSet<>(new ComparatorAllele());

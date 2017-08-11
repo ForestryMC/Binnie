@@ -1,4 +1,4 @@
-package binnie.genetics.genetics;
+package binnie.core.genetics;
 
 import java.util.Locale;
 
@@ -14,7 +14,7 @@ import forestry.core.genetics.alleles.EnumAllele;
 import binnie.botany.api.gardening.EnumAcidity;
 import binnie.botany.api.gardening.EnumMoisture;
 import binnie.botany.api.gardening.EnumSoilType;
-import binnie.botany.genetics.EnumFlowerColor;
+import binnie.botany.api.genetics.EnumFlowerColor;
 import binnie.core.util.I18N;
 
 public class AlleleHelper extends forestry.core.genetics.alleles.AlleleHelper {

@@ -41,17 +41,11 @@ public class MachineGroup {
 
 	private void createPackages(IMachineType[] types) {
 		for (IMachineType type : types) {
-			if (type.getPackageClass() != null) {
-				if (type.isActive()) {
-					try {
-						MachinePackage pack = type.getPackageClass().newInstance();
-						pack.assignMetadata(type.ordinal());
-						pack.setActive(type.isActive());
-						this.addPackage(pack);
-					} catch (InstantiationException | IllegalAccessException e) {
-						throw new RuntimeException("Failed to create machine package " + type.toString(), e);
-					}
-				}
+			MachinePackage pack = type.getSupplier().get();
+			if (pack != null) {
+				pack.assignMetadata(type.ordinal());
+				pack.setActive(true);
+				this.addPackage(pack);
 			}
 		}
 	}

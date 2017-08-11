@@ -12,7 +12,7 @@ import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
 import forestry.core.items.IColoredItem;
 
-import binnie.botany.genetics.EnumFlowerColor;
+import binnie.botany.api.genetics.EnumFlowerColor;
 import binnie.core.util.I18N;
 
 public class ItemClay extends ItemBotany implements IColoredItem, IItemModelRegister {

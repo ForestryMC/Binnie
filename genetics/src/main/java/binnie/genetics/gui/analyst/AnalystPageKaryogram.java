@@ -1,5 +1,6 @@
 package binnie.genetics.gui.analyst;
 
+import binnie.core.api.genetics.IBreedingSystem;
 import net.minecraft.util.text.TextFormatting;
 
 import forestry.api.genetics.AlleleManager;
@@ -8,7 +9,6 @@ import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.ISpeciesRoot;
 
 import binnie.core.Binnie;
-import binnie.core.genetics.BreedingSystem;
 import binnie.core.gui.IWidget;
 import binnie.core.gui.controls.ControlTextCentered;
 import binnie.core.gui.geometry.Area;
@@ -23,7 +23,7 @@ public class AnalystPageKaryogram extends ControlAnalystPage {
 		y += 16;
 		y += 8;
 		ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(ind);
-		BreedingSystem system = Binnie.GENETICS.getSystem(root);
+		IBreedingSystem system = Binnie.GENETICS.getSystem(root);
 		int maxBiomePerLine = (int) ((getWidth() + 4.0f - 16.0f) / 22.0f);
 		int karygramX = (getWidth() - (Math.min(maxBiomePerLine, system.getActiveKaryotype().size()) * 18 - 4)) / 2;
 		int dx = 0;

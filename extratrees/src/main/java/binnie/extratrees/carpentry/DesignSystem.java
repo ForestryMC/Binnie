@@ -4,6 +4,8 @@ import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
+import binnie.extratrees.api.carpentry.DesignerManager;
+import binnie.extratrees.api.carpentry.EnumPattern;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;

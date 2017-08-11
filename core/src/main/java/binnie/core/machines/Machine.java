@@ -24,7 +24,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import forestry.api.core.INbtReadable;
 import forestry.api.core.INbtWritable;
 
-import binnie.core.BinnieCore;
 import binnie.core.machines.component.IInteraction;
 import binnie.core.machines.component.IRender;
 import binnie.core.machines.network.INetwork;
@@ -176,7 +175,7 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 	}
 
 	public void onUpdate() {
-		if (BinnieCore.getBinnieProxy().isSimulating(this.getWorld())) {
+		if (!this.getWorld().isRemote) {
 			for (final MachineComponent component : this.getComponents()) {
 				component.onUpdate();
 			}

@@ -3,6 +3,7 @@ package binnie.botany.genetics;
 import java.util.TreeSet;
 
 import binnie.botany.api.BotanyAPI;
+import binnie.botany.api.genetics.EnumFlowerColor;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 

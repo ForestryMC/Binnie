@@ -37,7 +37,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import forestry.core.utils.Translator;
 
-import binnie.core.BinnieCore;
 import binnie.core.machines.component.IRender;
 import binnie.core.util.TileUtil;
 
@@ -138,7 +137,7 @@ class BlockMachine extends Block implements IBlockMachine, ITileEntityProvider {
 
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		if (!BinnieCore.getBinnieProxy().isSimulating(worldIn)) {
+		if (!!worldIn.isRemote) {
 			return true;
 		}
 		if (playerIn.isSneaking()) {
@@ -160,7 +159,7 @@ class BlockMachine extends Block implements IBlockMachine, ITileEntityProvider {
 	@Override
 	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase entityliving, ItemStack stack) {
 		super.onBlockPlacedBy(world, pos, state, entityliving, stack);
-		if (!BinnieCore.getBinnieProxy().isSimulating(world)) {
+		if (!!world.isRemote) {
 			return;
 		}
 		final IMachine machine = Machine.getMachine(world.getTileEntity(pos));

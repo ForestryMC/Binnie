@@ -25,7 +25,6 @@ import binnie.botany.api.gardening.EnumMoisture;
 import binnie.botany.api.gardening.IBlockSoil;
 import binnie.botany.api.gardening.IGardeningManager;
 import binnie.botany.core.BotanyCore;
-import binnie.core.BinnieCore;
 import binnie.core.util.I18N;
 
 public class ItemSoilMeter extends Item implements IItemModelRegister {
@@ -76,7 +75,7 @@ public class ItemSoilMeter extends Item implements IItemModelRegister {
 			block = worldIn.getBlockState(pos).getBlock();
 		}
 
-		if (gardening.isSoil(block) && !BinnieCore.getBinnieProxy().isSimulating(worldIn)) {
+		if (gardening.isSoil(block) && !!worldIn.isRemote) {
 			IBlockSoil soil = (IBlockSoil) block;
 			String info = I18N.localise("botany.soil.type") + ": "
 					+ soil.getType(worldIn, pos).getTranslated() + ", "

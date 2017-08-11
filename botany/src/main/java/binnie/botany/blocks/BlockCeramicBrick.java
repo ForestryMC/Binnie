@@ -54,10 +54,9 @@ import binnie.core.Constants;
 import binnie.botany.CreativeTabBotany;
 import binnie.botany.ceramic.brick.CeramicBrickPair;
 import binnie.botany.ceramic.brick.CeramicBrickType;
-import binnie.botany.genetics.EnumFlowerColor;
+import binnie.botany.api.genetics.EnumFlowerColor;
 import binnie.botany.tile.TileCeramic;
 import binnie.botany.tile.TileCeramicBrick;
-import binnie.core.BinnieCore;
 import binnie.core.block.IMultipassBlock;
 import binnie.core.models.DefaultStateMapper;
 import binnie.core.models.ModelManager;
@@ -88,7 +87,7 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 			drops = Collections.singletonList(ceramic.getStack());
 		}
 		boolean hasBeenBroken = world.setBlockToAir(pos);
-		if (hasBeenBroken && BinnieCore.getBinnieProxy().isSimulating(world) && drops.size() > 0 && (player == null || !player.capabilities.isCreativeMode)) {
+		if (hasBeenBroken && !world.isRemote && drops.size() > 0 && (player == null || !player.capabilities.isCreativeMode)) {
 			for (ItemStack drop : drops) {
 				spawnAsEntity(world, pos, drop);
 			}

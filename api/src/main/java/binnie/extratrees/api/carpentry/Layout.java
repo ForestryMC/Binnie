@@ -1,4 +1,4 @@
-package binnie.extratrees.carpentry;
+package binnie.extratrees.api.carpentry;
 
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 

@@ -1,5 +1,6 @@
 package binnie.botany.gui.database;
 
+import binnie.botany.api.BotanyAPI;
 import net.minecraft.item.ItemStack;
 
 import forestry.api.genetics.IAllele;

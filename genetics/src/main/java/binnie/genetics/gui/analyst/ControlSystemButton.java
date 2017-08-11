@@ -1,10 +1,10 @@
 package binnie.genetics.gui.analyst;
 
+import binnie.core.api.genetics.IBreedingSystem;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.core.genetics.BreedingSystem;
 import binnie.core.gui.Attribute;
 import binnie.core.gui.CraftGUI;
 import binnie.core.gui.Tooltip;
@@ -15,10 +15,10 @@ import binnie.core.gui.renderer.RenderUtil;
 import binnie.core.gui.resource.minecraft.CraftGUITexture;
 
 public class ControlSystemButton extends Control {
-	BreedingSystem system;
+	IBreedingSystem system;
 	WindowAnalyst window;
 
-	public ControlSystemButton(int xPos, int yPos, WindowAnalyst window, BreedingSystem system) {
+	public ControlSystemButton(int xPos, int yPos, WindowAnalyst window, IBreedingSystem system) {
 		super(window, xPos, yPos, 20, 20);
 		this.system = system;
 		this.window = window;

@@ -35,7 +35,13 @@ public class PageFruit extends PageAbstract<ItemStack> {
 		this.deleteAllChildren();
 		final WindowAbstractDatabase database = Window.get(this);
 		new ControlText(this, new Area(0, 0, this.getSize().xPos(), 24), I18N.localise("extratrees.gui.database.tab.fruit." + (this.treesThatBearFruit ? "natural" : "potential")), TextJustification.MIDDLE_CENTER);
-		final Collection<IAlleleSpecies> trees = this.treesThatBearFruit ? ((TreeBreedingSystem) database.getBreedingSystem()).getTreesThatBearFruit(species, database.isNEI(), database.getWorld(), database.getUsername()) : ((TreeBreedingSystem) database.getBreedingSystem()).getTreesThatCanBearFruit(species, database.isNEI(), database.getWorld(), database.getUsername());
+		TreeBreedingSystem breedingSystem = (TreeBreedingSystem) database.getBreedingSystem();
+		final Collection<IAlleleSpecies> trees;
+		if (this.treesThatBearFruit) {
+			trees = breedingSystem.getTreesThatBearFruit(species, database.isNEI(), database.getWorld(), database.getUsername());
+		} else {
+			trees = breedingSystem.getTreesThatCanBearFruit(species, database.isNEI(), database.getWorld(), database.getUsername());
+		}
 		new ControlSpeciesBox(this, 4, 24, this.getSize().xPos() - 8, this.getSize().yPos() - 4 - 24).setOptions(trees);
 	}
 }

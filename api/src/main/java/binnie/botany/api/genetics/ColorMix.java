@@ -1,13 +1,10 @@
-package binnie.botany.genetics;
+package binnie.botany.api.genetics;
 
-import binnie.botany.api.genetics.IColorMix;
-import binnie.botany.api.genetics.IFlowerColor;
-
-public class ColorMix implements IColorMix {
-	IFlowerColor colorFirst;
-	IFlowerColor colorSecond;
-	IFlowerColor result;
-	int chance;
+public final class ColorMix implements IColorMix {
+	private final IFlowerColor colorFirst;
+	private final IFlowerColor colorSecond;
+	private final IFlowerColor result;
+	private final int chance;
 
 	public ColorMix(IFlowerColor colorFirst, IFlowerColor colorSecond, IFlowerColor result, int chance) {
 		this.colorFirst = colorFirst;

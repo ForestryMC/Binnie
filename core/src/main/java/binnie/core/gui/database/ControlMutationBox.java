@@ -3,10 +3,10 @@ package binnie.core.gui.database;
 import javax.annotation.Nullable;
 import java.util.List;
 
+import binnie.core.api.genetics.IBreedingSystem;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IMutation;
 
-import binnie.core.genetics.BreedingSystem;
 import binnie.core.gui.IWidget;
 import binnie.core.gui.controls.listbox.ControlListBox;
 import binnie.core.gui.minecraft.Window;
@@ -31,7 +31,7 @@ class ControlMutationBox extends ControlListBox<IMutation> {
 		if (species != this.species) {
 			this.species = species;
 			this.movePercentage(-100.0f);
-			final BreedingSystem system = ((WindowAbstractDatabase) this.getTopParent()).getBreedingSystem();
+			final IBreedingSystem system = ((WindowAbstractDatabase) this.getTopParent()).getBreedingSystem();
 			final List<IMutation> discovered = system.getDiscoveredMutations(Window.get(this).getWorld(), Window.get(this).getUsername());
 			if (species != null) {
 				if (this.type == Type.Resultant) {

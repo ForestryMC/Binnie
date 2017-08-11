@@ -31,8 +31,6 @@ public interface IBinnieProxy extends IProxyCore {
 
 	void openGui(final AbstractMod p0, final int p1, final EntityPlayer p2, final BlockPos pos);
 
-	boolean isSimulating(final World p0);
-
 	World getWorld();
 
 	//EntityPlayer getPlayer();
@@ -52,24 +50,4 @@ public interface IBinnieProxy extends IProxyCore {
 	boolean isDebug();
 
 	void registerBlockRenderer(final Object p0);
-
-	//String localise(final String string);
-
-	//void sendToPlayer(final MessageBase packet, final EntityPlayer entityplayer);
-
-	//void sendToServer(final MessageBase packet);
-
-	//void sendNetworkEntityPacket(final INetworkedEntity entity);
-
-	//TextureAtlasSprite getTextureAtlasSprite(ResourceLocation location);
-
-	//void reloadSprites();
-
-	//void registerSprite(ResourceLocation location);
-
-	//short getUniqueTextureUID();
-
-	//boolean checkTexture(final BinnieResource location);
-
-	//IIcon getIcon(final IIconRegister p0, final String p1, final String p2);
 }

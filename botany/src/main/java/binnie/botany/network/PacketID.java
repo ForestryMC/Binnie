@@ -10,7 +10,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import forestry.api.genetics.AlleleManager;
 
 import binnie.botany.api.genetics.IAlleleFlowerSpecies;
-import binnie.botany.genetics.EnumFlowerColor;
+import binnie.botany.api.genetics.EnumFlowerColor;
 import binnie.core.BinnieCore;
 import binnie.core.network.IPacketID;
 import binnie.core.network.packet.MessageBinnie;

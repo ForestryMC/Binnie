@@ -4,7 +4,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import binnie.core.api.genetics.IBreedingSystem;
 import binnie.core.gui.window.WindowMachine;
+import binnie.extrabees.api.ExtraBeesAPI;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -86,7 +88,7 @@ public class WindowGeneBank extends WindowMachine {
 		super.initialiseClient();
 		this.addEventHandler(EventValueChanged.class, event -> {
 			if (event.getValue() instanceof BreedingSystem) {
-				WindowGeneBank.this.genes.setValue((BreedingSystem) event.getValue());
+				WindowGeneBank.this.genes.setValue((IBreedingSystem) event.getValue());
 			}
 		});
 		int boxX = 100;
@@ -109,11 +111,11 @@ public class WindowGeneBank extends WindowMachine {
 		});
 		this.genes = new ControlGeneScroll(scroll, 1, 1, geneBoxWidth, 116);
 		scroll.setScrollableContent(this.genes);
-		this.genes.setGenes(ExtraBees.beeBreedingSystem);
-		final ControlTabBar<BreedingSystem> tabBar = new ControlTabBar<BreedingSystem>(this, boxX, 32, 24, 120, Position.LEFT, Binnie.GENETICS.getActiveSystems()) {
+		this.genes.setGenes(ExtraBeesAPI.beeBreedingSystem);
+		final ControlTabBar<IBreedingSystem> tabBar = new ControlTabBar<IBreedingSystem>(this, boxX, 32, 24, 120, Position.LEFT, Binnie.GENETICS.getActiveSystems()) {
 			@Override
-			public ControlTab<BreedingSystem> createTab(final int x, final int y, final int w, final int h, final BreedingSystem value) {
-				return new ControlTabIcon<BreedingSystem>(this, x, y, w, h, value) {
+			public ControlTab<IBreedingSystem> createTab(final int x, final int y, final int w, final int h, final IBreedingSystem value) {
+				return new ControlTabIcon<IBreedingSystem>(this, x, y, w, h, value) {
 					@Override
 					public void getTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
 						tooltip.add(this.getValue().toString());
@@ -135,13 +137,13 @@ public class WindowGeneBank extends WindowMachine {
 				};
 			}
 		};
-		tabBar.setValue(ExtraBees.beeBreedingSystem);
+		tabBar.setValue(ExtraBeesAPI.beeBreedingSystem);
 		boxX -= 8;
 		final ControlTabBar<String> infoTabs = new ControlTabBar<>(this, boxX + 8, 160, 16, 50, Position.LEFT, Arrays.asList("Info", "Stats", "Ranking"));
 		final Panel panelProject = new Panel(this, boxX + 24, 160, geneBoxWidth + 20, 50, MinecraftGUI.PanelType.BLACK);
 		int totalGenes = 0;
 		int seqGenes = 0;
-		for (final BreedingSystem system : Binnie.GENETICS.getActiveSystems()) {
+		for (final IBreedingSystem system : Binnie.GENETICS.getActiveSystems()) {
 			final GeneTracker tracker = GeneTracker.getTracker(this.getWorld(), this.getUsername());
 			final Map<IChromosomeType, List<IAllele>> genes = Binnie.GENETICS.getChromosomeMap(system.getSpeciesRoot());
 			for (final Map.Entry<IChromosomeType, List<IAllele>> entry : genes.entrySet()) {
@@ -175,9 +177,9 @@ public class WindowGeneBank extends WindowMachine {
 
 	public static class ChromosomeType {
 		IChromosomeType chromosome;
-		BreedingSystem system;
+		IBreedingSystem system;
 
-		public ChromosomeType(final IChromosomeType chromosome, final BreedingSystem system) {
+		public ChromosomeType(final IChromosomeType chromosome, final IBreedingSystem system) {
 			this.chromosome = chromosome;
 			this.system = system;
 		}

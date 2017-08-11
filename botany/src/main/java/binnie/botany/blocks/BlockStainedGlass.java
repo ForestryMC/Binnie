@@ -35,10 +35,10 @@ import forestry.api.core.IModelManager;
 import forestry.core.blocks.IColoredBlock;
 
 import binnie.botany.CreativeTabBotany;
-import binnie.botany.genetics.EnumFlowerColor;
-import binnie.core.block.BlockMetadata;
-import binnie.core.block.IBlockMetadata;
-import binnie.core.block.TileEntityMetadata;
+import binnie.botany.api.genetics.EnumFlowerColor;
+import binnie.core.api.block.BlockMetadata;
+import binnie.core.api.block.IBlockMetadata;
+import binnie.core.api.block.TileEntityMetadata;
 import binnie.core.util.I18N;
 
 public class BlockStainedGlass extends Block implements IBlockMetadata, IColoredBlock, IItemModelRegister {

@@ -4,6 +4,8 @@ import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
+import binnie.extratrees.api.carpentry.DesignerManager;
+import binnie.extratrees.api.carpentry.EnumPattern;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
@@ -15,15 +17,13 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.botany.Botany;
-import binnie.botany.genetics.EnumFlowerColor;
+import binnie.botany.api.genetics.EnumFlowerColor;
 import binnie.botany.items.CeramicItems;
 import binnie.botany.modules.ModuleCeramic;
 import binnie.core.AbstractMod;
 import binnie.extratrees.api.IDesignMaterial;
 import binnie.extratrees.api.IDesignSystem;
 import binnie.extratrees.api.IPattern;
-import binnie.extratrees.carpentry.DesignerManager;
-import binnie.extratrees.carpentry.EnumPattern;
 
 public class CeramicDesignSystem implements IDesignSystem {
 	public static CeramicDesignSystem instance = new CeramicDesignSystem();
@@ -64,8 +64,9 @@ public class CeramicDesignSystem implements IDesignSystem {
 	@Nullable
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getPrimarySprite(IPattern pattern) {
-		if (pattern instanceof EnumPattern) {
-			return primary.get(((EnumPattern) pattern).ordinal());
+		int index = pattern.getIndex();
+		if (index > 0 && index < primary.size()) {
+			return primary.get(index);
 		}
 		return null;
 	}
@@ -74,8 +75,9 @@ public class CeramicDesignSystem implements IDesignSystem {
 	@Nullable
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getSecondarySprite(IPattern pattern) {
-		if (pattern instanceof EnumPattern) {
-			return secondary.get(((EnumPattern) pattern).ordinal());
+		int index = pattern.getIndex();
+		if (index > 0 && index < secondary.size()) {
+			return secondary.get(index);
 		}
 		return null;
 	}
@@ -87,8 +89,8 @@ public class CeramicDesignSystem implements IDesignSystem {
 		for (EnumPattern pattern : EnumPattern.values()) {
 			ResourceLocation primaryLocation = new ResourceLocation(getMod().getModID(), getTexturePath() + "/" + pattern.toString().toLowerCase() + ".0");
 			ResourceLocation secondaryLocation = new ResourceLocation(getMod().getModID(), getTexturePath() + "/" + pattern.toString().toLowerCase() + ".1");
-			primary.put(pattern.ordinal(), textureMap.registerSprite(primaryLocation));
-			secondary.put(pattern.ordinal(), textureMap.registerSprite(secondaryLocation));
+			primary.put(pattern.getIndex(), textureMap.registerSprite(primaryLocation));
+			secondary.put(pattern.getIndex(), textureMap.registerSprite(secondaryLocation));
 		}
 	}
 

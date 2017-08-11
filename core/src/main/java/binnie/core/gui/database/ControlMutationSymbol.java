@@ -1,5 +1,6 @@
 package binnie.core.gui.database;
 
+import binnie.core.api.genetics.IBreedingSystem;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -7,7 +8,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IMutation;
 
-import binnie.core.genetics.BreedingSystem;
 import binnie.core.gui.Attribute;
 import binnie.core.gui.CraftGUI;
 import binnie.core.gui.ITooltip;
@@ -49,7 +49,7 @@ class ControlMutationSymbol extends Control implements ITooltip {
 	public void setValue(final IMutation value) {
 		this.value = value;
 		final boolean isNEI = ((WindowAbstractDatabase) this.getTopParent()).isNEI();
-		final BreedingSystem system = ((WindowAbstractDatabase) this.getTopParent()).getBreedingSystem();
+		final IBreedingSystem system = ((WindowAbstractDatabase) this.getTopParent()).getBreedingSystem();
 		this.discovered = (isNEI || system.isMutationDiscovered(value, Window.get(this).getWorld(), Window.get(this).getUsername()));
 		if (this.discovered) {
 			this.setColor(16777215);
@@ -63,7 +63,7 @@ class ControlMutationSymbol extends Control implements ITooltip {
 		if (this.type == 1 && this.discovered) {
 			final IAlleleSpecies species1 = this.value.getAllele0();
 			final IAlleleSpecies species2 = this.value.getAllele1();
-			final BreedingSystem system = ((WindowAbstractDatabase) this.getTopParent()).getBreedingSystem();
+			final IBreedingSystem system = ((WindowAbstractDatabase) this.getTopParent()).getBreedingSystem();
 			final float chance = system.getChance(this.value, Window.get(this).getPlayer(), species1, species2);
 			tooltip.add(I18N.localise(DatabaseConstants.CONTROL_KEY+ ".chance", chance));
 			for (final String string : this.value.getSpecialConditions()) {

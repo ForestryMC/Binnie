@@ -1,5 +1,7 @@
 package binnie.core.machines.storage;
 
+import java.util.function.Supplier;
+
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 
@@ -9,27 +11,22 @@ import binnie.core.machines.MachinePackage;
 import binnie.core.machines.TileEntityMachine;
 
 enum Compartment implements IMachineType {
-	Compartment(StandardCompartment.PackageCompartment.class),
-	CompartmentCopper(StandardCompartment.PackageCompartmentCopper.class),
-	CompartmentBronze(StandardCompartment.PackageCompartmentBronze.class),
-	CompartmentIron(StandardCompartment.PackageCompartmentIron.class),
-	CompartmentGold(StandardCompartment.PackageCompartmentGold.class),
-	CompartmentDiamond(StandardCompartment.PackageCompartmentDiamond.class);
+	Compartment(StandardCompartment.PackageCompartment::new),
+	CompartmentCopper(StandardCompartment.PackageCompartmentCopper::new),
+	CompartmentBronze(StandardCompartment.PackageCompartmentBronze::new),
+	CompartmentIron(StandardCompartment.PackageCompartmentIron::new),
+	CompartmentGold(StandardCompartment.PackageCompartmentGold::new),
+	CompartmentDiamond(StandardCompartment.PackageCompartmentDiamond::new);
 
-	Class<? extends MachinePackage> clss;
+	private final Supplier<MachinePackage> supplier;
 
-	Compartment(final Class<? extends MachinePackage> clss) {
-		this.clss = clss;
+	Compartment(final Supplier<MachinePackage> supplier) {
+		this.supplier = supplier;
 	}
 
 	@Override
-	public Class<? extends MachinePackage> getPackageClass() {
-		return this.clss;
-	}
-
-	@Override
-	public boolean isActive() {
-		return true;
+	public Supplier<MachinePackage> getSupplier() {
+		return supplier;
 	}
 
 	public ItemStack get(final int i) {

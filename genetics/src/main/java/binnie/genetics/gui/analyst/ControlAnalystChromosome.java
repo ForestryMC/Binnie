@@ -1,5 +1,6 @@
 package binnie.genetics.gui.analyst;
 
+import binnie.core.api.genetics.IBreedingSystem;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -9,7 +10,6 @@ import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.ISpeciesRoot;
 
 import binnie.core.Binnie;
-import binnie.core.genetics.BreedingSystem;
 import binnie.core.gui.Attribute;
 import binnie.core.gui.CraftGUI;
 import binnie.core.gui.ITooltip;
@@ -53,7 +53,7 @@ public class ControlAnalystChromosome extends Control implements ITooltip {
 
 	@Override
 	public void getTooltip(Tooltip tooltip, ITooltipFlag tooltipFlag) {
-		BreedingSystem system = Binnie.GENETICS.getSystem(root);
+		IBreedingSystem system = Binnie.GENETICS.getSystem(root);
 		tooltip.add(system.getChromosomeName(chromosomeType));
 		if (isHomozygous()) {
 			tooltip.add(system.getAlleleName(chromosomeType, allele0));

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import binnie.core.api.genetics.IBreedingSystem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -71,10 +72,10 @@ public class WindowGenesis extends Window {
 	public void initialiseClient() {
 		new ControlPlayerInventory(this);
 		this.setTitle(I18N.localise("binniecore.gui.genesis.title"));
-		final ControlTabBar<BreedingSystem> tabSystems = new ControlTabBar<BreedingSystem>(this, 8, 28, 23, 100, Position.LEFT, Binnie.GENETICS.getActiveSystems()) {
+		final ControlTabBar<IBreedingSystem> tabSystems = new ControlTabBar<IBreedingSystem>(this, 8, 28, 23, 100, Position.LEFT, Binnie.GENETICS.getActiveSystems()) {
 			@Override
-			public ControlTab<BreedingSystem> createTab(final int x, final int y, final int w, final int h, final BreedingSystem value) {
-				return new ControlTabIcon<BreedingSystem>(this, x, y, w, h, value) {
+			public ControlTab<IBreedingSystem> createTab(final int x, final int y, final int w, final int h, final IBreedingSystem value) {
+				return new ControlTabIcon<IBreedingSystem>(this, x, y, w, h, value) {
 					@Override
 					public ItemStack getItemStack() {
 						final ISpeciesType type = this.value.getDefaultType();
@@ -122,7 +123,7 @@ public class WindowGenesis extends Window {
 			if (!(value instanceof BreedingSystem)) {
 				return;
 			}
-			BreedingSystem breedingSystem = (BreedingSystem) value;
+			IBreedingSystem breedingSystem = (IBreedingSystem) value;
 			root = breedingSystem.getSpeciesRoot();
 			template = root.getDefaultTemplate();
 			refreshTemplate(null);
@@ -184,7 +185,7 @@ public class WindowGenesis extends Window {
 	private void refreshPickup() {
 		this.panelPickup.deleteAllChildren();
 		int i = 0;
-		BreedingSystem system = Binnie.GENETICS.getSystem(this.root);
+		IBreedingSystem system = Binnie.GENETICS.getSystem(this.root);
 		for (ISpeciesType type : system.getActiveTypes()) {
 			IIndividual ind = this.root.templateAsIndividual(this.template);
 			ind.analyze();

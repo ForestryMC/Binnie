@@ -4,7 +4,8 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-import binnie.api.genetics.IGene;
+import binnie.core.api.genetics.IBreedingSystem;
+import binnie.genetics.api.IGene;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -19,7 +20,6 @@ import forestry.api.core.INbtWritable;
 import forestry.api.genetics.ISpeciesRoot;
 
 import binnie.core.Binnie;
-import binnie.core.genetics.BreedingSystem;
 import binnie.core.genetics.Gene;
 import binnie.core.util.I18N;
 
@@ -45,7 +45,7 @@ public class GeneArrayItem implements INbtReadable, INbtWritable, IGeneItem {
 	@Override
 	public int getColor(int renderPass) {
 		if (renderPass == 2) {
-			BreedingSystem breedingSystem = getBreedingSystem();
+			IBreedingSystem breedingSystem = getBreedingSystem();
 			if (breedingSystem != null) {
 				return breedingSystem.getColour();
 			}
@@ -57,7 +57,7 @@ public class GeneArrayItem implements INbtReadable, INbtWritable, IGeneItem {
 	@SideOnly(Side.CLIENT)
 	public void getInfo(List<String> list) {
 		List<String> totalList = new ArrayList<>();
-		BreedingSystem breedingSystem = getBreedingSystem();
+		IBreedingSystem breedingSystem = getBreedingSystem();
 		if (breedingSystem != null) {
 			for (IGene gene : genes) {
 				String chromosomeName = breedingSystem.getChromosomeName(gene.getChromosome());
@@ -75,11 +75,11 @@ public class GeneArrayItem implements INbtReadable, INbtWritable, IGeneItem {
 	}
 
 	@Nullable
-	public BreedingSystem getBreedingSystem() {
+	public IBreedingSystem getBreedingSystem() {
 		if (genes.size() == 0) {
 			return null;
 		}
-		BreedingSystem system = Binnie.GENETICS.getSystem(genes.get(0).getSpeciesRoot().getUID());
+		IBreedingSystem system = Binnie.GENETICS.getSystem(genes.get(0).getSpeciesRoot().getUID());
 		return (system == null) ? Binnie.GENETICS.getActiveSystems().iterator().next() : system;
 	}
 

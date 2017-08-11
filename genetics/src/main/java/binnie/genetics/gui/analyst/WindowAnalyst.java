@@ -4,7 +4,9 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
+import binnie.core.api.genetics.IBreedingSystem;
 import binnie.core.genetics.ManagerGenetics;
+import binnie.extrabees.api.ExtraBeesAPI;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -23,7 +25,6 @@ import forestry.api.lepidopterology.IButterfly;
 import binnie.core.Binnie;
 import binnie.botany.api.genetics.IFlower;
 import binnie.core.AbstractMod;
-import binnie.core.genetics.BreedingSystem;
 import binnie.core.gui.IWidget;
 import binnie.core.gui.Widget;
 import binnie.core.gui.controls.ControlTextCentered;
@@ -71,7 +72,7 @@ public class WindowAnalyst extends Window {
 	@Nullable
 	IIndividual current;
 	@Nullable
-	BreedingSystem currentSystem;
+	IBreedingSystem currentSystem;
 	private Control analystNone;
 	private ControlSlide slideUpInv;
 
@@ -119,7 +120,7 @@ public class WindowAnalyst extends Window {
 
 	@Override
 	public void initialiseServer() {
-		for (BreedingSystem system : Binnie.GENETICS.getActiveSystems()) {
+		for (IBreedingSystem system : Binnie.GENETICS.getActiveSystems()) {
 			ISpeciesRoot root = system.getSpeciesRoot();
 			if (root != null) {
 				IBreedingTracker tracker = root.getBreedingTracker(getWorld(), getUsername());
@@ -143,7 +144,7 @@ public class WindowAnalyst extends Window {
 		int x = 16;
 		int y = 28;
 		if (isDatabase) {
-			for (BreedingSystem syst : Binnie.GENETICS.getActiveSystems()) {
+			for (IBreedingSystem syst : Binnie.GENETICS.getActiveSystems()) {
 				new ControlSystemButton(x, y, this, syst);
 				x += 22;
 			}
@@ -179,7 +180,7 @@ public class WindowAnalyst extends Window {
 			};
 		}
 		setIndividual(null);
-		setSystem(ExtraBees.beeBreedingSystem);
+		setSystem(ExtraBeesAPI.beeBreedingSystem);
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -349,12 +350,12 @@ public class WindowAnalyst extends Window {
 		updatePages(systemChange);
 	}
 
-	public BreedingSystem getSystem() {
+	public IBreedingSystem getSystem() {
 		return currentSystem;
 	}
 
 	@SideOnly(Side.CLIENT)
-	public void setSystem(BreedingSystem system) {
+	public void setSystem(IBreedingSystem system) {
 		if (system == currentSystem) {
 			return;
 		}

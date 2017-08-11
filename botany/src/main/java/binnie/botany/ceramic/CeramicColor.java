@@ -5,9 +5,9 @@ import java.util.Map;
 
 import net.minecraft.item.ItemStack;
 
-import binnie.botany.genetics.EnumFlowerColor;
+import binnie.botany.api.genetics.EnumFlowerColor;
 import binnie.botany.modules.ModuleCeramic;
-import binnie.core.block.TileEntityMetadata;
+import binnie.core.api.block.TileEntityMetadata;
 import binnie.extratrees.api.IDesignMaterial;
 
 public class CeramicColor implements IDesignMaterial {

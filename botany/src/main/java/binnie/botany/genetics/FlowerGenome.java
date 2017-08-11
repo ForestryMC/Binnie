@@ -24,7 +24,7 @@ import binnie.botany.api.genetics.IAlleleFlowerSpecies;
 import binnie.botany.api.genetics.IFlowerGenome;
 import binnie.botany.api.genetics.IFlowerType;
 import binnie.botany.core.BotanyCore;
-import binnie.botany.genetics.allele.AlleleFlowerColor;
+import binnie.botany.api.genetics.AlleleFlowerColor;
 
 public class FlowerGenome extends Genome implements IFlowerGenome {
 	public FlowerGenome(NBTTagCompound nbttagcompound) {

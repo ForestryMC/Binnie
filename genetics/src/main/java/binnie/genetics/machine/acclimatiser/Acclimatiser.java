@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import binnie.botany.api.BotanyAPI;
 import forestry.api.apiculture.BeeManager;
 import forestry.api.lepidopterology.ButterflyManager;
 import net.minecraft.init.Blocks;

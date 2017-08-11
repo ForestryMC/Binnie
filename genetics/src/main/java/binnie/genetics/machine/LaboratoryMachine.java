@@ -2,6 +2,8 @@ package binnie.genetics.machine;
 
 import javax.annotation.Nonnull;
 
+import java.util.function.Supplier;
+
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -23,26 +25,21 @@ import binnie.genetics.machine.genepool.PackageGenepool;
 import binnie.genetics.machine.incubator.PackageIncubator;
 
 public enum LaboratoryMachine implements IMachineType {
-	LabMachine(PackageLabMachine.class),
-	Analyser(PackageAnalyser.class),
-	Incubator(PackageIncubator.class),
-	Genepool(PackageGenepool.class),
-	Acclimatiser(PackageAcclimatiser.class);
+	LabMachine(PackageLabMachine::new),
+	Analyser(PackageAnalyser::new),
+	Incubator(PackageIncubator::new),
+	Genepool(PackageGenepool::new),
+	Acclimatiser(PackageAcclimatiser::new);
 
-	Class<? extends MachinePackage> clss;
+	private final Supplier<MachinePackage> supplier;
 
-	LaboratoryMachine(final Class<? extends MachinePackage> clss) {
-		this.clss = clss;
+	LaboratoryMachine(final Supplier<MachinePackage> supplier) {
+		this.supplier = supplier;
 	}
 
 	@Override
-	public Class<? extends MachinePackage> getPackageClass() {
-		return this.clss;
-	}
-
-	@Override
-	public boolean isActive() {
-		return true;
+	public Supplier<MachinePackage> getSupplier() {
+		return supplier;
 	}
 
 	public ItemStack get(final int amount) {

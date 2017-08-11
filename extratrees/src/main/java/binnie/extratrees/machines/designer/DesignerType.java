@@ -2,8 +2,6 @@ package binnie.extratrees.machines.designer;
 
 import net.minecraft.item.ItemStack;
 
-import binnie.botany.ceramic.CeramicDesignSystem;
-import binnie.botany.modules.ModuleCeramic;
 import binnie.core.util.I18N;
 import binnie.extratrees.api.IDesign;
 import binnie.extratrees.api.IDesignMaterial;
@@ -13,11 +11,10 @@ import binnie.extratrees.carpentry.DesignSystem;
 import binnie.extratrees.carpentry.EnumDesign;
 import binnie.extratrees.carpentry.ModuleCarpentry;
 
-public enum DesignerType {
+public enum DesignerType implements IDesignerType {
 	Woodworker("woodworker"),
 	Panelworker("panelworker"),
-	GlassWorker("glassworker"),
-	Tileworker("tileworker");
+	GlassWorker("glassworker");
 
 	private final String name;
 
@@ -25,13 +22,11 @@ public enum DesignerType {
 		this.name = name;
 	}
 
+	@Override
 	public IDesignSystem getSystem() {
 		switch (this) {
 			case GlassWorker: {
 				return DesignSystem.Glass;
-			}
-			case Tileworker: {
-				return CeramicDesignSystem.instance;
 			}
 			default: {
 				return DesignSystem.Wood;
@@ -39,6 +34,7 @@ public enum DesignerType {
 		}
 	}
 
+	@Override
 	public ItemStack getBlock(final IDesignMaterial type1, IDesignMaterial type2, final IDesign design) {
 		int stackSize = 2;
 		if (design == EnumDesign.Blank) {
@@ -58,19 +54,18 @@ public enum DesignerType {
 			case Panelworker: {
 				return ModuleCarpentry.blockPanel;
 			}
-			case Tileworker: {
-				return ModuleCeramic.ceramicTile;
-			}
 			default: {
 				return ModuleCarpentry.blockCarpentry;
 			}
 		}
 	}
 
+	@Override
 	public ItemStack getDisplayStack(final IDesign design) {
 		return this.getBlock(this.getSystem().getDefaultMaterial(), this.getSystem().getDefaultMaterial2(), design);
 	}
 
+	@Override
 	public String getMaterialTooltip() {
 		switch (this) {
 			case GlassWorker: {
@@ -78,9 +73,6 @@ public enum DesignerType {
 			}
 			case Panelworker: {
 				return I18N.localise("extratrees.machine.machine.designer.material.panel");
-			}
-			case Tileworker: {
-				return I18N.localise("extratrees.machine.machine.designer.material.tile");
 			}
 			case Woodworker: {
 				return I18N.localise("extratrees.machine.machine.designer.material.wood");
@@ -91,6 +83,7 @@ public enum DesignerType {
 		}
 	}
 
+	@Override
 	public String getName() {
 		return name;
 	}

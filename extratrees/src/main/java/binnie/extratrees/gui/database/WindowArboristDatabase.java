@@ -64,7 +64,8 @@ public class WindowArboristDatabase extends WindowAbstractDatabase {
 						return new ControlItemStackOption(this.getContent(), value, y);
 					}
 				};
-				controlListBox.setOptions(((TreeBreedingSystem) WindowArboristDatabase.this.getBreedingSystem()).allFruits);
+				TreeBreedingSystem breedingSystem = (TreeBreedingSystem) WindowArboristDatabase.this.getBreedingSystem();
+				controlListBox.setOptions(breedingSystem.allFruits);
 				this.listBox = controlListBox;
 			}
 		});
@@ -78,7 +79,8 @@ public class WindowArboristDatabase extends WindowAbstractDatabase {
 						return new ControlItemStackOption(this.getContent(), value, y);
 					}
 				};
-				controlListBox.setOptions(((TreeBreedingSystem) WindowArboristDatabase.this.getBreedingSystem()).allWoods);
+				TreeBreedingSystem breedingSystem = (TreeBreedingSystem) WindowArboristDatabase.this.getBreedingSystem();
+				controlListBox.setOptions(breedingSystem.allWoods);
 				this.listBox = controlListBox;
 			}
 		});

@@ -7,5 +7,5 @@ public class BotanyModuleUIDs {
 	public static final String DATABASE = "botany.database";
 	public static final String GARDENING = "botany.gardening";
 	public static final String FLOWERS = "botany.flowers";
-
+	public static final String MACHINES = "botany.machines";
 }

@@ -1,5 +1,7 @@
 package binnie.genetics.machine;
 
+import java.util.function.Supplier;
+
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 
@@ -13,25 +15,20 @@ import binnie.genetics.machine.polymeriser.PackagePolymeriser;
 import binnie.genetics.machine.sequencer.PackageSequencer;
 
 public enum GeneticMachine implements IMachineType {
-	Isolator(PackageIsolator.class),
-	Sequencer(PackageSequencer.class),
-	Polymeriser(PackagePolymeriser.class),
-	Inoculator(PackageInoculator.class);
+	Isolator(PackageIsolator::new),
+	Sequencer(PackageSequencer::new),
+	Polymeriser(PackagePolymeriser::new),
+	Inoculator(PackageInoculator::new);
 
-	Class<? extends MachinePackage> clss;
+	private final Supplier<MachinePackage> supplier;
 
-	GeneticMachine(final Class<? extends MachinePackage> clss) {
-		this.clss = clss;
+	GeneticMachine(final Supplier<MachinePackage> supplier) {
+		this.supplier = supplier;
 	}
 
 	@Override
-	public Class<? extends MachinePackage> getPackageClass() {
-		return this.clss;
-	}
-
-	@Override
-	public boolean isActive() {
-		return true;
+	public Supplier<MachinePackage> getSupplier() {
+		return supplier;
 	}
 
 	public ItemStack get(final int i) {

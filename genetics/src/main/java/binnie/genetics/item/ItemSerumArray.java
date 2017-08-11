@@ -1,5 +1,6 @@
 package binnie.genetics.item;
 
+import binnie.core.api.genetics.IBreedingSystem;
 import com.google.common.base.Preconditions;
 
 import javax.annotation.Nullable;
@@ -16,11 +17,10 @@ import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.ISpeciesRoot;
 
 import binnie.core.Binnie;
-import binnie.core.genetics.BreedingSystem;
 import binnie.core.genetics.Gene;
 import binnie.core.util.I18N;
 import binnie.genetics.Genetics;
-import binnie.api.genetics.IGene;
+import binnie.genetics.api.IGene;
 import binnie.genetics.api.IItemSerum;
 import binnie.genetics.genetics.GeneArrayItem;
 import binnie.genetics.genetics.IGeneItem;
@@ -114,7 +114,7 @@ public class ItemSerumArray extends ItemGene implements IItemSerum {
 		if (geneItem != null) {
 			ISpeciesRoot speciesRoot = geneItem.getSpeciesRoot();
 			if (speciesRoot != null) {
-				BreedingSystem system = Binnie.GENETICS.getSystem(speciesRoot);
+				IBreedingSystem system = Binnie.GENETICS.getSystem(speciesRoot);
 				return system.getDescriptor() + " " + I18N.localise("genetics.item.gene.serum.array");
 			}
 		}

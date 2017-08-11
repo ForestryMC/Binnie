@@ -35,7 +35,7 @@ import forestry.core.genetics.alleles.EnumAllele;
 import binnie.extrabees.genetics.effect.ExtraBeesEffect;
 import binnie.extrabees.items.ItemHoneyComb;
 import binnie.extrabees.items.types.EnumHoneyComb;
-import binnie.genetics.genetics.AlleleHelper;
+import binnie.core.genetics.AlleleHelper;
 
 public enum ExtraBeeDefinition implements IBeeDefinition {
 	/* BARREN BRANCH */

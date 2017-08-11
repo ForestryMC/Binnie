@@ -149,7 +149,7 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 		super.onBlockPlacedBy(world, pos, state, placer, stack);
 		IFlowerRoot flowerRoot = BotanyCore.getFlowerRoot();
 		TileEntity flower = world.getTileEntity(pos);
-		if (!BinnieCore.getBinnieProxy().isSimulating(world)) {
+		if (!!world.isRemote) {
 			if (flower != null && flower instanceof TileEntityFlower) {
 				IFlower f = flowerRoot.getMember(stack);
 				if (f != null) {
@@ -300,7 +300,7 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 	public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest) {
 		List<ItemStack> drops = getDrops(world, pos, world.getBlockState(pos), 0);
 		boolean hasBeenBroken = world.setBlockToAir(pos);
-		if (hasBeenBroken && BinnieCore.getBinnieProxy().isSimulating(world) && drops.size() > 0 && (player == null || !player.capabilities.isCreativeMode)) {
+		if (hasBeenBroken && !world.isRemote && drops.size() > 0 && (player == null || !player.capabilities.isCreativeMode)) {
 			for (ItemStack drop : drops) {
 				spawnAsEntity(world, pos, drop);
 			}

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Objects;
 
+import binnie.core.api.genetics.IBreedingSystem;
 import net.minecraft.util.text.TextFormatting;
 
 import net.minecraftforge.fml.relauncher.Side;
@@ -13,7 +14,6 @@ import forestry.api.arboriculture.EnumTreeChromosome;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IIndividual;
 
-import binnie.core.genetics.BreedingSystem;
 import binnie.core.gui.CraftGUI;
 import binnie.core.gui.IWidget;
 import binnie.core.gui.controls.ControlTextCentered;
@@ -36,7 +36,7 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 	private final ControlScrollableContent scroll;
 	boolean isMaster;
 
-	public AnalystPageDatabase(IWidget parent, Area area, BreedingSystem system, boolean isMaster) {
+	public AnalystPageDatabase(IWidget parent, Area area, IBreedingSystem system, boolean isMaster) {
 		super(parent, area);
 		this.isMaster = isMaster;
 		setColor(getColor(system));
@@ -121,7 +121,7 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 		};
 	}
 
-	private static int getColor(BreedingSystem system){
+	private static int getColor(IBreedingSystem system){
 		int cOfSystem = system.getColour();
 		int cr = (0xFF0000 & cOfSystem) >> 16;
 		int cg = (0xFF00 & cOfSystem) >> 8;
@@ -134,7 +134,7 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 		return (int) (cr * brightness) * 65536 + (int) (cg * brightness) * 256 + (int) (cb * brightness);
 	}
 
-	private IWidget getItemScrollList(BreedingSystem system, Collection<IAlleleSpecies> options) {
+	private IWidget getItemScrollList(IBreedingSystem system, Collection<IAlleleSpecies> options) {
 		return new Control(scroll, 0, 0, scroll.getWidth(), scroll.getHeight()) {
 			@Override
 			public void initialise() {
@@ -185,7 +185,7 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 		return I18N.localise("genetics.gui.analyst.registry.title");
 	}
 
-	private Collection<IAlleleSpecies> getSpecies(BreedingSystem system) {
+	private Collection<IAlleleSpecies> getSpecies(IBreedingSystem system) {
 		Collection<IAlleleSpecies> species = new ArrayList<>();
 		species.addAll(isMaster ? system.getAllSpecies() : system.getDiscoveredSpecies(getWindow().getWorld(), getWindow().getPlayer().getGameProfile()));
 		return species;

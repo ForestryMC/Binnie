@@ -1,5 +1,7 @@
 package binnie.core.block;
 
+import binnie.core.api.block.IBlockMetadata;
+import binnie.core.api.block.TileEntityMetadata;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;

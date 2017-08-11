@@ -1,7 +1,7 @@
 package binnie.extratrees;
 
 import binnie.core.Binnie;
-import binnie.core.genetics.BreedingSystem;
+import binnie.core.api.genetics.IBreedingSystem;
 import binnie.extratrees.genetics.MothBreedingSystem;
 import binnie.extratrees.genetics.TreeBreedingSystem;
 import net.minecraftforge.common.MinecraftForge;
@@ -37,8 +37,8 @@ public class ExtraTrees extends BlankModuleContainer {
 	@SuppressWarnings("NullableProblems")
 	@SidedProxy(clientSide = "binnie.extratrees.proxy.ProxyClient", serverSide = "binnie.extratrees.proxy.ProxyServer")
 	public static Proxy proxy;
-	public static BreedingSystem treeBreedingSystem;
-	public static BreedingSystem mothBreedingSystem;
+	public static IBreedingSystem treeBreedingSystem;
+	public static IBreedingSystem mothBreedingSystem;
 
 	public ExtraTrees() {
 		super();
