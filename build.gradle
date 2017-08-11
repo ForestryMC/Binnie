@@ -98,6 +98,22 @@ allprojects {
         options.addStringOption('Xdoclint:none', '-quiet')
     }
 }
+
+def mainProjects = [':api', ':botany', ':core', ':extrabees', ':extratrees', ':genetics'].collect{ subproject -> project(subproject) }
+mainProjects.each { subproject -> evaluationDependsOn( subproject.path ) }
+jar.dependsOn mainProjects.tasks['classes']
+jar {
+    mainProjects.each { subproject ->
+        from subproject.sourceSets.main.output.classesDir
+        from subproject.sourceSets.main.output.resourcesDir
+    }
+}
+
+task copyJars(type: Copy) {
+    from mainProjects.collect { it.tasks.withType(Jar) }
+    into "$buildDir/libs"
+}
+
 //
 //uploadArchives {
 //    repositories {
