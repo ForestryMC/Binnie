@@ -8,18 +8,17 @@ buildscript {
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
-//        classpath "gradle.plugin.se.bjurr.gitchangelog:git-changelog-gradle-plugin:1.47"
+        classpath "gradle.plugin.se.bjurr.gitchangelog:git-changelog-gradle-plugin:1.47"
     }
 }
 
-//plugins {
-//    id "com.matthewprenger.cursegradle" version "1.0.9"
-//}
-//apply plugin: "se.bjurr.gitchangelog.git-changelog-gradle-plugin"
-//apply plugin: 'idea'
-//apply plugin: 'maven'
+plugins {
+    id "com.matthewprenger.cursegradle" version "1.0.9"
+}
+apply plugin: "se.bjurr.gitchangelog.git-changelog-gradle-plugin"
+apply plugin: 'idea'
+apply plugin: 'maven'
 
-//archivesBaseName = "binnie-mods-" + mcversion
 allprojects {
     apply plugin: 'net.minecraftforge.gradle.forge'
 
@@ -114,40 +113,39 @@ task copyJars(type: Copy) {
     into "$buildDir/libs"
 }
 
-//
-//uploadArchives {
-//    repositories {
-//        if (project.hasProperty('mavenDir')) {
-//            mavenDeployer {
-//                repository(url: "file://" + mavenDir)
-//            }
-//        } else {
-//            println 'Archives upload disabled, mavenDir in gradle.properties is missing.'
-//        }
-//    }
-//}
-//
-//task makeChangelog(type: se.bjurr.gitchangelog.plugin.gradle.GitChangelogTask) {
-//    filePath = "changelog.html"
-//    untaggedName = "Current release ${project.version}"
-//    fromCommit = "dbc5c1a564c39e4a9c042411d1bdbe450985ce2c"
-//    toRef =  "HEAD"
-//    templateContent = file('changelog.mustache').getText('UTF-8')
-//}
-//
-//curseforge {
-//    apiKey = project.hasProperty('curseforge_apikey') ? project.curseforge_apikey : '0'
-//    project {
-//        id = curse_project_id
-//        changelog = file('changelog.html')
-//        changelogType = 'html'
-//        releaseType = 'alpha'
-//        relations {
-//            requiredLibrary 'forestry'
-//        }
-//    }
-//}
-//
-//afterEvaluate {
-//    tasks.curseforge223525.dependsOn.add(makeChangelog)
-//}
+uploadArchives {
+    repositories {
+        if (project.hasProperty('mavenDir')) {
+            mavenDeployer {
+                repository(url: "file://" + mavenDir)
+            }
+        } else {
+            println 'Archives upload disabled, mavenDir in gradle.properties is missing.'
+        }
+    }
+}
+
+task makeChangelog(type: se.bjurr.gitchangelog.plugin.gradle.GitChangelogTask) {
+    filePath = "changelog.html"
+    untaggedName = "Current release ${project.version}"
+    fromCommit = "dbc5c1a564c39e4a9c042411d1bdbe450985ce2c"
+    toRef =  "HEAD"
+    templateContent = file('changelog.mustache').getText('UTF-8')
+}
+
+curseforge {
+    apiKey = project.hasProperty('curseforge_apikey') ? project.curseforge_apikey : '0'
+    project {
+        id = curse_project_id
+        changelog = file('changelog.html')
+        changelogType = 'html'
+        releaseType = 'alpha'
+        relations {
+            requiredLibrary 'forestry'
+        }
+    }
+}
+
+afterEvaluate {
+    tasks.curseforge223525.dependsOn.add(makeChangelog)
+}
