@@ -11,7 +11,7 @@ public enum EnumBeeModifier {
 	GENETIC_DECAY;
 
 	public String getName() {
-		return ExtraBees.proxy.localiseWithOutPrefix("beemodifier." + this.name().toLowerCase());
+		return ExtraBees.proxy.localiseWithOutPrefix("extrabees.beemodifier." + this.name().toLowerCase());
 	}
 
 }

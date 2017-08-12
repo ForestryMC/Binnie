@@ -404,3 +404,10 @@ extrabees.effect.bonemealsapling.name=Growth
 extrabees.effect.bonemealfruit.name=Ripening
 extrabees.effect.bonemealmushroom.name=Mushroom
 extrabees.effect.power.name=Power
+
+extrabees.beemodifier.territory=Territory
+extrabees.beemodifier.mutation=Mutation
+extrabees.beemodifier.lifespan=Lifespan
+extrabees.beemodifier.production=Production
+extrabees.beemodifier.flowering=Flowering
+extrabees.beemodifier.geneticdecay=Genetic Decay

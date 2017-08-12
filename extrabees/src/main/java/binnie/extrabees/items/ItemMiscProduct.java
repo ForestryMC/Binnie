@@ -8,8 +8,8 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-
 import net.minecraft.world.World;
+
 import net.minecraftforge.client.model.ModelLoader;
 
 import net.minecraftforge.fml.relauncher.Side;
@@ -17,11 +17,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import forestry.api.core.IModelManager;
 
-import binnie.extrabees.items.types.IEBEnumItem;
+import binnie.extrabees.ExtraBees;
 import binnie.extrabees.items.types.IEBItemMiscProvider;
-import binnie.extrabees.utils.ExtraBeesResourceLocation;
 
-public class ItemMiscProduct extends ItemProduct {
+public class ItemMiscProduct extends ItemProduct<IEBItemMiscProvider> {
 
 	public ItemMiscProduct(CreativeTabs tab, IEBItemMiscProvider[] types) {
 		super(types);
@@ -32,16 +31,16 @@ public class ItemMiscProduct extends ItemProduct {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		super.addInformation(stack, worldIn, tooltip, flagIn);
-		((IEBItemMiscProvider) get(stack)).addInformation(tooltip);
+		IEBItemMiscProvider provider = get(stack);
+		provider.addInformation(tooltip);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	@SuppressWarnings("all")
 	public void registerModel(Item item, IModelManager manager) {
-		for (IEBEnumItem type : types) {
-			ModelLoader.setCustomModelResourceLocation(item, type.ordinal(), new ModelResourceLocation(new ExtraBeesResourceLocation("misc/" + ((IEBItemMiscProvider) type).getModelPath()), "inventory"));
+		for (IEBItemMiscProvider type : types) {
+			ModelLoader.setCustomModelResourceLocation(item, type.ordinal(), new ModelResourceLocation(ExtraBees.MODID + ":misc/" + type.getModelPath(), "inventory"));
 		}
 	}
 }

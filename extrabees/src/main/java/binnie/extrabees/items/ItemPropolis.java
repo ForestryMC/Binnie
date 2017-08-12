@@ -7,7 +7,7 @@ import forestry.core.items.IColoredItem;
 
 import binnie.extrabees.items.types.EnumPropolis;
 
-public class ItemPropolis extends ItemProduct implements IColoredItem {
+public class ItemPropolis extends ItemProduct<EnumPropolis> implements IColoredItem {
 
 	public ItemPropolis() {
 		super(EnumPropolis.values());
@@ -18,9 +18,7 @@ public class ItemPropolis extends ItemProduct implements IColoredItem {
 
 	@Override
 	public int getColorFromItemstack(final ItemStack itemStack, final int tintIndex) {
-		if (tintIndex == 0) {
-			return EnumPropolis.get(itemStack).colour[0];
-		}
-		return EnumPropolis.get(itemStack).colour[1];
+		EnumPropolis type =  EnumPropolis.get(itemStack);
+		return type.getSpriteColour(tintIndex);
 	}
 }

@@ -67,14 +67,14 @@ public final class ItemRegister {
 		OreDictionary.registerOre("ingotGold", Items.GOLD_INGOT);
 		OreDictionary.registerOre("gemDiamond", Items.DIAMOND);
 
-		OreDictionary.registerOre("dyeRed", ExtraBeeItems.RedDye.get(1));
-		OreDictionary.registerOre("dyeYellow", ExtraBeeItems.YellowDye.get(1));
-		OreDictionary.registerOre("dyeBlue", ExtraBeeItems.BlueDye.get(1));
-		OreDictionary.registerOre("dyeGreen", ExtraBeeItems.GreenDye.get(1));
-		OreDictionary.registerOre("dyeBlack", ExtraBeeItems.BlackDye.get(1));
-		OreDictionary.registerOre("dyeWhite", ExtraBeeItems.WhiteDye.get(1));
-		OreDictionary.registerOre("dyeBrown", ExtraBeeItems.BrownDye.get(1));
+		OreDictionary.registerOre("dyeRed", ExtraBeeItems.RED_DYE.get(1));
+		OreDictionary.registerOre("dyeYellow", ExtraBeeItems.YELLOW_DYE.get(1));
+		OreDictionary.registerOre("dyeBlue", ExtraBeeItems.BLUE_DYE.get(1));
+		OreDictionary.registerOre("dyeGreen", ExtraBeeItems.GREEN_DYE.get(1));
+		OreDictionary.registerOre("dyeBlack", ExtraBeeItems.BLACK_DYE.get(1));
+		OreDictionary.registerOre("dyeWhite", ExtraBeeItems.WHITE_DYE.get(1));
+		OreDictionary.registerOre("dyeBrown", ExtraBeeItems.BROWN_DYE.get(1));
 
-		OreDictionary.registerOre("gearWood", ExtraBeeItems.ScentedGear.get(1));
+		OreDictionary.registerOre("gearWood", ExtraBeeItems.SCENTED_GEAR.get(1));
 	}
 }

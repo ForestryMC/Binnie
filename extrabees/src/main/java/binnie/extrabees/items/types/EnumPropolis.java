@@ -22,20 +22,21 @@ public enum EnumPropolis implements IEBEnumItem {
 	GLACIAL,
 	PEAT;
 
-	public int[] colour;
-	public String liquidName;
-	public boolean active;
+	private final int primaryColor;
+	private final int secondaryColor;
+	private String liquidName;
+	private boolean active;
 
 	EnumPropolis() {
 		this(16777215, 16777215, "");
 		this.active = false;
 	}
 
-	EnumPropolis(final int colour, final int colour2, final String liquid) {
-		this.colour = new int[0];
+	EnumPropolis(int primaryColor, int secondaryColor, String liquidName) {
 		this.active = true;
-		this.colour = new int[]{colour, colour2};
-		this.liquidName = liquid;
+		this.primaryColor = primaryColor;
+		this.secondaryColor = secondaryColor;
+		this.liquidName = liquidName;
 	}
 
 	public static EnumPropolis get(final ItemStack itemStack) {
@@ -51,6 +52,16 @@ public enum EnumPropolis implements IEBEnumItem {
 		if (liquid != null) {
 			RecipeManagers.squeezerManager.addRecipe(20, this.get(1), liquid, ItemStack.EMPTY, 0);
 		}
+	}
+
+	public int getSpriteColour(int renderPass) {
+		if (renderPass == 0) {
+			return primaryColor;
+		}
+		if (renderPass == 1) {
+			return secondaryColor;
+		}
+		return 0xffffff;
 	}
 
 	@Override

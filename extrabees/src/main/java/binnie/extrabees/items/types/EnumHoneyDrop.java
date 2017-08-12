@@ -43,7 +43,8 @@ public enum EnumHoneyDrop implements IEBEnumItem {
 	MAGENTA(15040472, 16711884, "for.honey"),
 	LIGHTGRAY(10066329, 13224393, "for.honey");
 
-	private int[] colour;
+	private final int primaryColor;
+	private final int secondaryColor;
 	private String liquidName;
 	private ItemStack remnant;
 
@@ -51,10 +52,11 @@ public enum EnumHoneyDrop implements IEBEnumItem {
 		this(16777215, 16777215, "");
 	}
 
-	EnumHoneyDrop(final int colour, final int colour2, final String liquid) {
+	EnumHoneyDrop(int primaryColor, int secondaryColor, String liquidName) {
 		this.remnant = ItemStack.EMPTY;
-		this.colour = new int[]{colour, colour2};
-		this.liquidName = liquid;
+		this.primaryColor = primaryColor;
+		this.secondaryColor = secondaryColor;
+		this.liquidName = liquidName;
 	}
 
 	public static EnumHoneyDrop get(final ItemStack itemStack) {
@@ -91,8 +93,14 @@ public enum EnumHoneyDrop implements IEBEnumItem {
 		return I18N.localise("extrabees.item.honeydrop." + this.name().toLowerCase());
 	}
 
-	public int[] getColour() {
-		return colour;
+	public int getSpriteColour(int renderPass) {
+		if (renderPass == 0) {
+			return primaryColor;
+		}
+		if (renderPass == 1) {
+			return secondaryColor;
+		}
+		return 0xffffff;
 	}
 
 	public String getLiquidName() {

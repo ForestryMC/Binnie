@@ -176,13 +176,6 @@ binniecore.allele.metabolism.slowest=Slowest
 binniecore.allele.growth.tropical=Tropical
 binniecore.allele.growth.lightlevel=Light Level
 
-binniecore.beemodifier.territory=Territory
-binniecore.beemodifier.mutation=Mutation
-binniecore.beemodifier.lifespan=Lifespan
-binniecore.beemodifier.production=Production
-binniecore.beemodifier.flowering=Flowering
-binniecore.beemodifier.geneticdecay=Genetic Decay
-
 binniecore.gui.breedingmessage.species=Species Discovered
 binniecore.gui.breedingmessage.branch=Branch Discovered
 binniecore.gui.breedingmessage.epithet=Epithet Gained

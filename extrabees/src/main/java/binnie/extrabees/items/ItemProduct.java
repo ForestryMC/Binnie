@@ -16,18 +16,18 @@ import forestry.api.core.IModelManager;
 
 import binnie.extrabees.items.types.IEBEnumItem;
 
-public class ItemProduct extends Item implements IItemModelRegister {
+public class ItemProduct<E extends IEBEnumItem> extends Item implements IItemModelRegister {
 
-	protected IEBEnumItem[] types;
+	protected E[] types;
 
-	public ItemProduct(IEBEnumItem[] types) {
+	public ItemProduct(E[] types) {
 		this.setMaxStackSize(64);
 		this.setMaxDamage(0);
 		this.setHasSubtypes(true);
 		this.types = types;
 	}
 
-	public IEBEnumItem get(ItemStack stack) {
+	public E get(ItemStack stack) {
 		int damage = stack.getItemDamage();
 		if (damage >= 0 && damage < this.types.length) {
 			return this.types[damage];
@@ -37,14 +37,14 @@ public class ItemProduct extends Item implements IItemModelRegister {
 
 	@Override
 	public String getItemStackDisplayName(ItemStack itemstack) {
-		IEBEnumItem item = get(itemstack);
+		E item = get(itemstack);
 		return item.getName(itemstack);
 	}
 
 	@Override
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
 		if (this.isInCreativeTab(tab)) {
-			for (final IEBEnumItem type : this.types) {
+			for (E type : this.types) {
 				if (type.isActive()) {
 					items.add(new ItemStack(this, 1, type.ordinal()));
 				}
@@ -56,7 +56,7 @@ public class ItemProduct extends Item implements IItemModelRegister {
 	@SideOnly(Side.CLIENT)
 	@SuppressWarnings("all")
 	public void registerModel(Item item, IModelManager manager) {
-		for (IEBEnumItem type : types) {
+		for (E type : types) {
 			ModelLoader.setCustomModelResourceLocation(item, type.ordinal(), new ModelResourceLocation(getRegistryName(), "inventory"));
 		}
 	}

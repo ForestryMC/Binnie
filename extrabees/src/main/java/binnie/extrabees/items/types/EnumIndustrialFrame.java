@@ -9,43 +9,100 @@ import net.minecraft.nbt.NBTTagCompound;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeModifier;
 
-public enum IndustrialFrame implements IBeeModifier {
+public enum EnumIndustrialFrame implements IBeeModifier {
 
-	Empty("Empty", 5, 0),
-	Light("Glowstone Lighting", 2, 4),
-	Rain("Rain Shielding", 2, 4),
-	Sunlight("Sunlight Simulator", 4, 8),
-	Soul("Low Grade Mutagen", 5, 15),
-	Uranium("High Grade Mutagen", 10, 50),
-	Cage("Meshed Restrainer", 3, 12),
-	Freedom("Territory Extension", 3, 16),
-	Honey("Honey Amplifier", 4, 12),
-	Jelly("Gelatin Amplifier", 8, 36),
-	Leaf("Pollinator MK I", 3, 15),
-	Pollen("Pollinator MK II", 7, 25),
-	Clay("Lifespan Extensor", 2, 10),
-	Emerald("Eon Simulator", 7, 20),
-	NetherStar("Immortality Gate", 12, 50),
-	Poison("Mortality Inhibitor", 8, 18);
-
-	static {
-		IndustrialFrame.Light.lighted = true;
-		IndustrialFrame.Rain.rain = true;
-		IndustrialFrame.Sunlight.lighted = true;
-		IndustrialFrame.Sunlight.sunlight = true;
-		IndustrialFrame.Soul.mutationMod = 1.3f;
-		IndustrialFrame.Uranium.mutationMod = 2.0f;
-		IndustrialFrame.Cage.territoryMod = 0.4f;
-		IndustrialFrame.Freedom.territoryMod = 1.4f;
-		IndustrialFrame.Honey.productionMod = 1.4f;
-		IndustrialFrame.Jelly.productionMod = 1.8f;
-		IndustrialFrame.Leaf.floweringMod = 1.4f;
-		IndustrialFrame.Pollen.floweringMod = 2.0f;
-		IndustrialFrame.Clay.lifespanMod = 1.4f;
-		IndustrialFrame.Emerald.lifespanMod = 2.0f;
-		IndustrialFrame.NetherStar.lifespanMod = 20.0f;
-		IndustrialFrame.Poison.lifespanMod = 0.5f;
-	}
+	EMPTY("Empty", 5, 0),
+	LIGHT("Glowstone Lighting", 2, 4){
+		@Override
+		protected void init() {
+			lighted = true;
+		}
+	},
+	RAIN("Rain Shielding", 2, 4){
+		@Override
+		protected void init() {
+			rain = true;
+		}
+	},
+	SUNLIGHT("Sunlight Simulator", 4, 8){
+		@Override
+		protected void init() {
+			lighted = true;
+			sunlight = true;
+		}
+	},
+	SOUL("Low Grade Mutagen", 5, 15){
+		@Override
+		protected void init() {
+			mutationMod = 1.3f;
+		}
+	},
+	URANIUM("High Grade Mutagen", 10, 50){
+		@Override
+		protected void init() {
+			mutationMod = 2.0f;
+		}
+	},
+	CAGE("Meshed Restrainer", 3, 12){
+		@Override
+		protected void init() {
+			territoryMod = 0.4f;
+		}
+	},
+	FREEDOM("Territory Extension", 3, 16){
+		@Override
+		protected void init() {
+			territoryMod = 1.4f;
+		}
+	},
+	HONEY("Honey Amplifier", 4, 12){
+		@Override
+		protected void init() {
+			productionMod = 1.4f;
+		}
+	},
+	JELLY("Gelatin Amplifier", 8, 36){
+		@Override
+		protected void init() {
+			productionMod = 1.8f;
+		}
+	},
+	LEAF("Pollinator MK I", 3, 15){
+		@Override
+		protected void init() {
+			floweringMod = 1.4f;
+		}
+	},
+	POLLEN("Pollinator MK II", 7, 25){
+		@Override
+		protected void init() {
+			floweringMod = 2.0f;
+		}
+	},
+	CLAY("Lifespan Extensor", 2, 10){
+		@Override
+		protected void init() {
+			lifespanMod = 1.4f;
+		}
+	},
+	EMERALD("Eon Simulator", 7, 20){
+		@Override
+		protected void init() {
+			lifespanMod = 2.0f;
+		}
+	},
+	NETHER_STAR("Immortality Gate", 12, 50){
+		@Override
+		protected void init() {
+			lifespanMod = 20.0f;
+		}
+	},
+	POISON("Mortality Inhibitor", 8, 18){
+		@Override
+		protected void init() {
+			lifespanMod = 0.5f;
+		}
+	};
 
 	String name;
 	float territoryMod;
@@ -59,7 +116,7 @@ public enum IndustrialFrame implements IBeeModifier {
 	int wearMod;
 	int power;
 
-	IndustrialFrame(final String name, final int wear, final int power) {
+	EnumIndustrialFrame(final String name, final int wear, final int power) {
 		this.territoryMod = 1.0f;
 		this.mutationMod = 1.0f;
 		this.lifespanMod = 1.0f;
@@ -71,9 +128,14 @@ public enum IndustrialFrame implements IBeeModifier {
 		this.name = name;
 		this.wearMod = wear;
 		this.power = power;
+		init();
 	}
 
-	public static ItemStack getItemStack(final Item item, final IndustrialFrame frame) {
+	protected void init(){
+
+	}
+
+	public static ItemStack getItemStack(final Item item, final EnumIndustrialFrame frame) {
 		final ItemStack stack = new ItemStack(item);
 		final NBTTagCompound nbt = new NBTTagCompound();
 		nbt.setInteger("frame", frame.ordinal());

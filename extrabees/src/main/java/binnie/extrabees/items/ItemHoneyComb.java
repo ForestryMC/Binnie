@@ -12,7 +12,7 @@ import forestry.core.items.IColoredItem;
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.items.types.EnumHoneyComb;
 
-public class ItemHoneyComb extends ItemProduct implements IColoredItem {
+public class ItemHoneyComb extends ItemProduct<EnumHoneyComb> implements IColoredItem {
 
 	public ItemHoneyComb() {
 		super(EnumHoneyComb.values());
@@ -24,11 +24,8 @@ public class ItemHoneyComb extends ItemProduct implements IColoredItem {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public int getColorFromItemstack(ItemStack stack, int tintIndex) {
-		EnumHoneyComb honeyComb = EnumHoneyComb.get(stack);
-		if (tintIndex == 1) {
-			return honeyComb.colour[0];
-		}
-		return honeyComb.colour[1];
+		EnumHoneyComb honeyComb = get(stack);
+		return honeyComb.getSpriteColour(tintIndex);
 	}
 
 	public static boolean isInvalidComb(ItemStack stack){

@@ -34,14 +34,11 @@ import ic2.api.item.IItemHudInfo;
 		@Optional.Interface(modid = "ic2", iface = "ic2.api.item.IItemHudInfo")
 })
 public class ItemHoneyCrystal extends Item implements IElectricItem, IItemHudInfo, IItemModelProvider {
-	private int maxCharge;
-	private int transferLimit;
-	private int tier;
+	private static final int MAX_CHARGE = 8000;
+	private static final int TRANSFER_LIMIT = 500;
+	private static final int TIER = 1;
 
 	public ItemHoneyCrystal() {
-		this.maxCharge = 8000;
-		this.transferLimit = 500;
-		this.tier = 1;
 		this.setMaxDamage(27);
 		this.setMaxStackSize(16);
 		this.setCreativeTab(Tabs.tabApiculture);
@@ -53,7 +50,6 @@ public class ItemHoneyCrystal extends Item implements IElectricItem, IItemHudInf
 	public String getItemStackDisplayName(ItemStack stack) {
 		if(Mods.IC2.active()) {
 			double charge = ElectricItem.manager.getCharge(stack);
-			double maxCharge = ElectricItem.manager.getMaxCharge(stack);
 			if (charge <= 0.0F) {
 				return I18N.localise("extrabees.item.honeycrystal.empty");
 			}
@@ -95,9 +91,9 @@ public class ItemHoneyCrystal extends Item implements IElectricItem, IItemHudInf
 				for(int i = 0; i < 9; ++i) {
 					ItemStack target = player.inventory.mainInventory.get(i);
 					if(target != null && target != stack && ElectricItem.manager.discharge(target, 1.0D / 0.0, 2147483647, true, true, true) <= 0.0D) {
-						double transfer = ElectricItem.manager.discharge(stack, 2.0D * this.transferLimit, 2147483647, true, true, true);
+						double transfer = ElectricItem.manager.discharge(stack, 2.0D * this.TRANSFER_LIMIT, 2147483647, true, true, true);
 						if(transfer > 0.0D) {
-							transfer = ElectricItem.manager.charge(target, transfer, this.tier, true, false);
+							transfer = ElectricItem.manager.charge(target, transfer, this.TIER, true, false);
 							if(transfer > 0.0D) {
 								ElectricItem.manager.discharge(stack, transfer, 2147483647, true, true, false);
 								transferred = true;
@@ -126,19 +122,19 @@ public class ItemHoneyCrystal extends Item implements IElectricItem, IItemHudInf
 	@Override
 	@Optional.Method(modid = "ic2")
 	public double getMaxCharge(ItemStack stack) {
-		return this.maxCharge;
+		return this.MAX_CHARGE;
 	}
 	
 	@Override
 	@Optional.Method(modid = "ic2")
 	public int getTier(ItemStack stack) {
-		return this.tier;
+		return this.TIER;
 	}
 	
 	@Override
 	@Optional.Method(modid = "ic2")
 	public double getTransferLimit(ItemStack stack) {
-		return this.transferLimit;
+		return this.TRANSFER_LIMIT;
 	}
 	
 	@Override
@@ -153,14 +149,14 @@ public class ItemHoneyCrystal extends Item implements IElectricItem, IItemHudInf
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
 		if (Mods.IC2.active() && this.isInCreativeTab(tab)) {
 			items.add(getCharged(0.0D));
-			items.add(getCharged(maxCharge));
+			items.add(getCharged(MAX_CHARGE));
 		}
 	}
 	
 	@Optional.Method(modid = "ic2")
 	public ItemStack getCharged(double charge) {
 		ItemStack ret = new ItemStack(this);
-		ElectricItem.manager.charge(ret, charge, tier, true, false);
+		ElectricItem.manager.charge(ret, charge, TIER, true, false);
 		return ret;
 	}
 	

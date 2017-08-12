@@ -23,7 +23,7 @@ public class BeeModifierLogic {
 		this.booleanModifiers = new ArrayList<>();
 	}
 
-	public float getModifier(final EnumBeeModifier modifier, final float currentModifier) {
+	public float getModifier(EnumBeeModifier modifier, final float currentModifier) {
 		if (!this.modifiers.containsKey(modifier)) {
 			return 1.0f;
 		}

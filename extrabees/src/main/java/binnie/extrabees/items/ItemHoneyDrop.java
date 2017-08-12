@@ -7,7 +7,7 @@ import forestry.core.items.IColoredItem;
 
 import binnie.extrabees.items.types.EnumHoneyDrop;
 
-public class ItemHoneyDrop extends ItemProduct implements IColoredItem {
+public class ItemHoneyDrop extends ItemProduct<EnumHoneyDrop> implements IColoredItem {
 
 	public ItemHoneyDrop() {
 		super(EnumHoneyDrop.values());
@@ -18,9 +18,7 @@ public class ItemHoneyDrop extends ItemProduct implements IColoredItem {
 
 	@Override
 	public int getColorFromItemstack(ItemStack itemStack, int tintIndex) {
-		if (tintIndex == 0) {
-			return EnumHoneyDrop.get(itemStack).getColour()[0];
-		}
-		return EnumHoneyDrop.get(itemStack).getColour()[1];
+		EnumHoneyDrop drop = get(itemStack);
+		return drop.getSpriteColour(tintIndex);
 	}
 }

@@ -1,15 +1,15 @@
 package binnie.extrabees.init;
 
-import binnie.core.util.RecipeUtil;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-
 import net.minecraft.util.ResourceLocation;
+
+import net.minecraftforge.oredict.OreDictionary;
+
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import net.minecraftforge.oredict.OreDictionary;
 
 import forestry.api.circuits.ICircuitLayout;
 import forestry.api.recipes.RecipeManagers;
@@ -18,6 +18,7 @@ import forestry.apiculture.blocks.BlockAlvearyType;
 import forestry.core.PluginCore;
 import forestry.core.fluids.Fluids;
 
+import binnie.core.util.RecipeUtil;
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.alveary.EnumAlvearyLogicType;
 import binnie.extrabees.circuit.AlvearySimulatorCircuitType;
@@ -80,7 +81,7 @@ public final class RecipeRegister {
 	}
 	
 	private static void addMiscItemRecipes() {
-		final ItemStack lapisShard = ExtraBeeItems.LapisShard.get(1);
+		final ItemStack lapisShard = ExtraBeeItems.LAPIS_SHARD.get(1);
 		RECIPE_UTIL.addShapelessRecipe("lapis_from_shards", new ItemStack(Items.DYE, 1, 4), lapisShard, lapisShard, lapisShard, lapisShard);
 		for (final ExtraBeeItems item : ExtraBeeItems.values()) {
 			if (item.metalString != null) {
@@ -97,7 +98,7 @@ public final class RecipeRegister {
 					RECIPE_UTIL.addShapelessRecipe(item.getModelPath() + "_dust", dust, input, input, input, input);
 				} else if (ingot != null) {
 					RECIPE_UTIL.addShapelessRecipe(item.getModelPath() + "_ingot", ingot, input, input, input, input, input, input, input, input, input);
-				} else if (item == ExtraBeeItems.CoalDust) {
+				} else if (item == ExtraBeeItems.COAL_DUST) {
 					RECIPE_UTIL.addShapelessRecipe("coal_dust_to_coal", new ItemStack(Items.COAL), input, input, input, input);
 				}
 			} else if (item.gemString != null) {
@@ -118,6 +119,6 @@ public final class RecipeRegister {
 		} else {
 			gear = new ItemStack(Blocks.PLANKS, 1);
 		}
-		RecipeManagers.carpenterManager.addRecipe(100, Fluids.FOR_HONEY.getFluid(500), ItemStack.EMPTY, ExtraBeeItems.ScentedGear.get(1), " j ", "bgb", " p ", 'j', PluginApiculture.getItems().royalJelly, 'b', PluginCore.getItems().beeswax, 'p', PluginApiculture.getItems().pollenCluster, 'g', gear);
+		RecipeManagers.carpenterManager.addRecipe(100, Fluids.FOR_HONEY.getFluid(500), ItemStack.EMPTY, ExtraBeeItems.SCENTED_GEAR.get(1), " j ", "bgb", " p ", 'j', PluginApiculture.getItems().royalJelly, 'b', PluginCore.getItems().beeswax, 'p', PluginApiculture.getItems().pollenCluster, 'g', gear);
 	}
 }
