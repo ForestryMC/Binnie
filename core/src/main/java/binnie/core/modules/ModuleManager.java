@@ -15,8 +15,12 @@ import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 
+import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.discovery.ASMDataTable;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
+import binnie.core.util.Log;
 
 public class ModuleManager {
 	private static Map<String, IModuleContainer> containers = new LinkedHashMap<>();
@@ -183,5 +187,17 @@ public class ModuleManager {
 		}
 		Property prop = config.get(CONFIG_CATEGORY, info.moduleID(), true, comment);
 		return prop.getBoolean();
+	}
+
+
+	@SubscribeEvent
+	public static void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event) {
+		for(IModuleContainer container : containers.values()) {
+			if (!event.getModID().equals(container.getID())) {
+				continue;
+			}
+			container.onConfigChanged(event);
+			break;
+		}
 	}
 }

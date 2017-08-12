@@ -4,10 +4,6 @@ import java.util.Collections;
 import java.util.Set;
 
 public abstract class Module{
-
-	public void registerItemsAndBlocks(){
-	}
-
 	public String getFailMessage(){
 		return "";
 	}
@@ -29,6 +25,10 @@ public abstract class Module{
 
 	public void disabledSetupAPI(){
 	}
+
+	public void registerItemsAndBlocks(){
+	}
+
 
 	public void preInit() {
 	}

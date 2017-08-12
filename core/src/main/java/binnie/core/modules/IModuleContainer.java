@@ -5,6 +5,8 @@ import java.util.Set;
 
 import net.minecraftforge.common.config.Configuration;
 
+import net.minecraftforge.fml.client.event.ConfigChangedEvent;
+
 public interface IModuleContainer {
 
 	/**
@@ -16,8 +18,6 @@ public interface IModuleContainer {
 	 * @return The config folder of this container.
 	 */
 	File getConfigFolder();
-
-	Set<String> getEnabledModules();
 
 	void enableModule(String uid);
 
@@ -31,5 +31,7 @@ public interface IModuleContainer {
 
 	Configuration getModulesConfig();
 
-	Configuration getMainConfig();
+	void registerConfigHandler(IConfigHandler handler);
+
+	void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event);
 }

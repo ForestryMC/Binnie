@@ -1,11 +1,13 @@
 package binnie.core.modules;
 
 import java.io.File;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 import net.minecraftforge.common.config.Configuration;
 
+import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -20,9 +22,9 @@ public class ModuleContainer implements IModuleContainer {
 	protected final Set<String> enabledModules;
 	protected final File configFolder;
 	protected final Configuration configModules;
-	protected final Configuration configMain;
 	protected final String modId;
 	protected final ContainerState state;
+	protected final Set<IConfigHandler> configHandlers;
 
 	public ModuleContainer(String modId, ContainerState state) {
 		this.modId = modId;
@@ -32,7 +34,7 @@ public class ModuleContainer implements IModuleContainer {
 		enabledModules = new LinkedHashSet<>();
 		configFolder = new File(Loader.instance().getConfigDir(), Constants.FORESTRY_CONFIG_FOLDER + modId);
 		configModules = new Configuration(configFolder, "modules.cfg");
-		configMain = new Configuration(configFolder, "main.cfg");
+		configHandlers = new HashSet<>();
 	}
 
 	protected void runPreInit(FMLPreInitializationEvent event) {
@@ -48,6 +50,9 @@ public class ModuleContainer implements IModuleContainer {
 		for (Module module : loadedModules) {
 			module.init();
 		}
+		for(IConfigHandler handler : configHandlers){
+			handler.loadConfig();
+		}
 	}
 
 	public void runPostInit(FMLPostInitializationEvent event) {
@@ -56,6 +61,14 @@ public class ModuleContainer implements IModuleContainer {
 		}
 	}
 
+	@Override
+	public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event) {
+		for(IConfigHandler handler : configHandlers){
+			handler.loadConfig();
+		}
+	}
+
+	@Override
 	public final boolean isModuleEnabled(String moduleUID){
 		return enabledModules.contains(moduleUID);
 	}
@@ -76,16 +89,6 @@ public class ModuleContainer implements IModuleContainer {
 	}
 
 	@Override
-	public Configuration getMainConfig() {
-		return configMain;
-	}
-
-	@Override
-	public Set<String> getEnabledModules() {
-		return enabledModules;
-	}
-
-	@Override
 	public void enableModule(String uid) {
 		enabledModules.add(uid);
 	}
@@ -98,6 +101,11 @@ public class ModuleContainer implements IModuleContainer {
 	@Override
 	public Set<Module> getUnloadedModules() {
 		return unloadedModules;
+	}
+
+	@Override
+	public void registerConfigHandler(IConfigHandler handler) {
+		configHandlers.add(handler);
 	}
 
 	@Override
