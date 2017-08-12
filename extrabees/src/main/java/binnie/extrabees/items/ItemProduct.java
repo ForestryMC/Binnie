@@ -20,24 +20,25 @@ public class ItemProduct extends Item implements IItemModelRegister {
 
 	protected IEBEnumItem[] types;
 
-	public ItemProduct(final IEBEnumItem[] types) {
+	public ItemProduct(IEBEnumItem[] types) {
 		this.setMaxStackSize(64);
 		this.setMaxDamage(0);
 		this.setHasSubtypes(true);
 		this.types = types;
 	}
 
-	public IEBEnumItem get(final ItemStack stack) {
-		final int i = stack.getItemDamage();
-		if (i >= 0 && i < this.types.length) {
-			return this.types[i];
+	public IEBEnumItem get(ItemStack stack) {
+		int damage = stack.getItemDamage();
+		if (damage >= 0 && damage < this.types.length) {
+			return this.types[damage];
 		}
 		return this.types[0];
 	}
 
 	@Override
-	public String getItemStackDisplayName(final ItemStack itemstack) {
-		return this.get(itemstack).getName(itemstack);
+	public String getItemStackDisplayName(ItemStack itemstack) {
+		IEBEnumItem item = get(itemstack);
+		return item.getName(itemstack);
 	}
 
 	@Override

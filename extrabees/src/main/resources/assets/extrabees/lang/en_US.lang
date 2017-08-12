@@ -118,18 +118,18 @@ extrabees.item.propolis.peat=Peat Propolis
 extrabees.item.honeycrystal=Honey Crystal
 extrabees.item.honeycrystal.empty=Depleted Honey Crystal
 
-extrabees.item.frame.cocoa=Chocolate Frame
-extrabees.item.frame.cage=Restraint Frame
-extrabees.item.frame.soul=Soul Frame
-extrabees.item.frame.clay=Healing Frame
-extrabees.item.frame.debug=Nova Frame
+extrabees.item.frame.cocoa.name=Chocolate Frame
+extrabees.item.frame.cage.name=Restraint Frame
+extrabees.item.frame.soul.name=Soul Frame
+extrabees.item.frame.clay.name=Healing Frame
+extrabees.item.frame.debug.name=Nova Frame
 
 extrabees.block.ectoplasm.name=Ectoplasm
 
-extrabees.block.hive.0=Water Hive
-extrabees.block.hive.1=Rock Hive
-extrabees.block.hive.2=Nether Hive
-extrabees.block.hive.3=Marble Hive
+extrabees.block.hive.water.name=Water Hive
+extrabees.block.hive.rick.name=Rock Hive
+extrabees.block.hive.nether.name=Nether Hive
+extrabees.block.hive.marble.name=Marble Hive
 
 
 ##################################################

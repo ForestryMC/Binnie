@@ -62,7 +62,7 @@ public class BlockExtraBeeHives extends Block implements ITileEntityProvider {
 	@Nonnull
 	@SuppressWarnings("deprecation")
 	public IBlockState getStateFromMeta(int meta) {
-		return getDefaultState().withProperty(HIVE_TYPE, getHiveNameForMeta(meta));
+		return getDefaultState().withProperty(HIVE_TYPE, EnumHiveType.getHiveNameForMeta(meta));
 	}
 	
 	@Override
@@ -137,19 +137,11 @@ public class BlockExtraBeeHives extends Block implements ITileEntityProvider {
 	}
 
 	private static List<IHiveDrop> getDropsForHive(int meta) {
-		EnumHiveType hive = getHiveNameForMeta(meta);
+		EnumHiveType hive = EnumHiveType.getHiveNameForMeta(meta);
 		if (hive == null) {
 			return Collections.emptyList();
 		}
 		return hive.getDrops();
-	}
-
-	@Nullable
-	private static EnumHiveType getHiveNameForMeta(int meta) {
-		if (meta < 0 || meta >= EnumHiveType.values().length) {
-			return null;
-		}
-		return EnumHiveType.values()[meta];
 	}
 
 }

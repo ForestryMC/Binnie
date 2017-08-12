@@ -3,7 +3,6 @@ package binnie.extrabees.items.types;
 import javax.annotation.Nullable;
 import java.util.List;
 
-import binnie.core.util.RecipeUtil;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -21,6 +20,7 @@ import forestry.api.apiculture.IHiveFrame;
 import forestry.apiculture.PluginApiculture;
 
 import binnie.core.util.I18N;
+import binnie.core.util.RecipeUtil;
 import binnie.extrabees.items.ItemHiveFrame;
 import binnie.extrabees.utils.BeeModifierLogic;
 import binnie.extrabees.utils.EnumBeeBooleanModifier;
@@ -169,7 +169,7 @@ public enum EnumHiveFrame implements IHiveFrame, IBeeModifier {
 	}
 
 	public String getName() {
-		return I18N.localise("extrabees.item.frame." + this.toString().toLowerCase());
+		return I18N.localise("extrabees.item.frame." + this.toString().toLowerCase() + ".name");
 	}
 
 	@Override

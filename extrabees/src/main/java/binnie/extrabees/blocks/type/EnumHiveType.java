@@ -1,5 +1,6 @@
 package binnie.extrabees.blocks.type;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -30,6 +31,14 @@ public enum EnumHiveType implements IStringSerializable {
 
 	public int getMeta() {
 		return ordinal();
+	}
+
+	@Nullable
+	public static EnumHiveType getHiveNameForMeta(int meta) {
+		if (meta < 0 || meta >= values().length) {
+			return null;
+		}
+		return values()[meta];
 	}
 
 	@Override

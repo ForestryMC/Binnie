@@ -44,7 +44,8 @@ public class ItemBeeHive extends ItemBlock implements IItemModelProvider {
 
 	@Override
 	public String getUnlocalizedName(ItemStack stack) {
-		return  "extrabees.block.hive." + stack.getItemDamage();
+		EnumHiveType type = EnumHiveType.getHiveNameForMeta(stack.getItemDamage());
+		return  "extrabees.block.hive." + type.getName();
 	}
 
 	@SideOnly(Side.CLIENT)

@@ -655,12 +655,12 @@ public enum EnumHoneyComb implements IEBEnumItem {
 	}
 
 	@Override
-	public ItemStack get(final int size) {
-		return new ItemStack(ExtraBees.comb, size, this.ordinal());
+	public ItemStack get(final int amount) {
+		return new ItemStack(ExtraBees.comb, amount, this.ordinal());
 	}
 
 	@Override
-	public String getName(final ItemStack stack) {
+	public String getName(final ItemStack itemStack) {
 		return I18N.localise("extrabees.item.comb." + this.name().toLowerCase());
 	}
 

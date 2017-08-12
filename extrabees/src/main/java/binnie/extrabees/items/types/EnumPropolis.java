@@ -59,12 +59,12 @@ public enum EnumPropolis implements IEBEnumItem {
 	}
 
 	@Override
-	public ItemStack get(final int size) {
-		return new ItemStack(ExtraBees.propolis, size, this.ordinal());
+	public ItemStack get(final int amount) {
+		return new ItemStack(ExtraBees.propolis, amount, this.ordinal());
 	}
 
 	@Override
-	public String getName(final ItemStack stack) {
+	public String getName(final ItemStack itemStack) {
 		return I18N.localise("extrabees.item.propolis." + this.name().toLowerCase());
 	}
 

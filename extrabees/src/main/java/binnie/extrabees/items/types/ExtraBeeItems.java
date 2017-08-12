@@ -103,13 +103,13 @@ public enum ExtraBeeItems implements IEBItemMiscProvider {
 	}
 
 	@Override
-	public String getName(final ItemStack stack) {
+	public String getName(final ItemStack itemStack) {
 		return this.name;
 	}
 
 	@Override
-	public ItemStack get(final int i) {
-		return new ItemStack(ExtraBees.itemMisc, i, this.ordinal());
+	public ItemStack get(final int amount) {
+		return new ItemStack(ExtraBees.itemMisc, amount, this.ordinal());
 	}
 
 	@Override

@@ -6,11 +6,11 @@ public interface IEBEnumItem {
 
 	boolean isActive();
 
-	String getName(final ItemStack p0);
+	String getName(ItemStack itemStack);
 
 	int ordinal();
 
-	ItemStack get(final int p0);
+	ItemStack get(int amount);
 
 	String name();
 }
