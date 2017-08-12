@@ -19,7 +19,7 @@ public class ConfigurationMain implements IConfigHandler {
 	@Override
 	public void loadConfig() {
 		//TODO: Localise comment
-		alterLemon = config.getBoolean("family", "lemon.citrus", alterLemon, "Uses reflection to convert the Forestry lemon tree to the Citrus family.");
+		alterLemon = config.getBoolean("lemon.citrus.family", "general", alterLemon, "Uses reflection to convert the Forestry lemon tree to the Citrus family.");
 		if(config.hasChanged()){
 			config.save();
 		}
