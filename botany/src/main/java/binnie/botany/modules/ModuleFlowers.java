@@ -1,7 +1,5 @@
 package binnie.botany.modules;
 
-import binnie.core.modules.BotanyModuleUIDs;
-import binnie.core.util.TileUtil;
 import com.google.common.collect.ImmutableSet;
 
 import javax.annotation.Nullable;
@@ -34,26 +32,31 @@ import forestry.api.storage.BackpackManager;
 import forestry.api.storage.IBackpackInterface;
 import forestry.storage.BackpackDefinition;
 
-import binnie.core.Constants;
 import binnie.botany.Botany;
 import binnie.botany.CreativeTabBotany;
 import binnie.botany.api.BotanyAPI;
 import binnie.botany.api.gardening.IBlockSoil;
+import binnie.botany.api.genetics.EnumFlowerColor;
 import binnie.botany.api.genetics.EnumFlowerStage;
 import binnie.botany.api.genetics.IFlower;
 import binnie.botany.api.genetics.IFlowerRoot;
 import binnie.botany.blocks.BlockFlower;
 import binnie.botany.core.BotanyCore;
-import binnie.botany.api.genetics.EnumFlowerColor;
+import binnie.botany.genetics.FlowerBreedingSystem;
 import binnie.botany.genetics.FlowerDefinition;
 import binnie.botany.genetics.FlowerFactory;
 import binnie.botany.genetics.allele.AlleleEffectNone;
 import binnie.botany.items.ItemFlowerGE;
 import binnie.botany.tile.TileEntityFlower;
+import binnie.core.Binnie;
 import binnie.core.BinnieCore;
-import binnie.core.util.RecipeUtil;
+import binnie.core.Constants;
+import binnie.core.api.genetics.IBreedingSystem;
 import binnie.core.modules.BinnieModule;
+import binnie.core.modules.BotanyModuleUIDs;
 import binnie.core.modules.Module;
+import binnie.core.util.RecipeUtil;
+import binnie.core.util.TileUtil;
 
 @BinnieModule(moduleID = BotanyModuleUIDs.FLOWERS, moduleContainerID = Constants.BOTANY_MOD_ID, name = "Flowers", unlocalizedDescription = "botany.module.flowers")
 public class ModuleFlowers extends Module {
@@ -65,6 +68,7 @@ public class ModuleFlowers extends Module {
 	public static ItemFlowerGE flowerItem;
 	public static ItemFlowerGE seed;
 	public static ItemFlowerGE pollen;
+	public static IBreedingSystem flowerBreedingSystem;
 
 	@Override
 	public void setupAPI() {
@@ -107,6 +111,8 @@ public class ModuleFlowers extends Module {
 	@Override
 	public void preInit() {
 		MinecraftForge.EVENT_BUS.register(this);
+		flowerBreedingSystem = new FlowerBreedingSystem();
+		Binnie.GENETICS.registerBreedingSystem(flowerBreedingSystem);
 	}
 
 	@Override

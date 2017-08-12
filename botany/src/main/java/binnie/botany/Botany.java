@@ -1,24 +1,21 @@
 package binnie.botany;
 
-import binnie.botany.genetics.FlowerBreedingSystem;
-import binnie.core.Binnie;
-import binnie.core.api.genetics.IBreedingSystem;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-import binnie.core.Constants;
 import binnie.botany.gui.BotanyGUI;
 import binnie.botany.network.PacketID;
 import binnie.botany.proxy.Proxy;
 import binnie.core.BinnieCore;
+import binnie.core.Constants;
 import binnie.core.gui.IBinnieGUID;
+import binnie.core.modules.BlankModuleContainer;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.network.IPacketID;
 import binnie.core.proxy.IProxyCore;
-import binnie.core.modules.BlankModuleContainer;
 
 @Mod(
 	modid = Constants.BOTANY_MOD_ID,
@@ -34,13 +31,10 @@ public class Botany extends BlankModuleContainer {
 	@SuppressWarnings("NullableProblems")
 	@SidedProxy(clientSide = "binnie.botany.proxy.ProxyClient", serverSide = "binnie.botany.proxy.ProxyServer")
 	public static Proxy proxy;
-	public static IBreedingSystem flowerBreedingSystem;
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent evt) {
 		super.preInit(evt);
-		flowerBreedingSystem = new FlowerBreedingSystem();
-		Binnie.GENETICS.registerBreedingSystem(flowerBreedingSystem);
 	}
 
 	@Mod.EventHandler

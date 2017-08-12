@@ -14,6 +14,7 @@ import binnie.botany.ceramic.brick.CeramicBrickPair;
 public class ItemCeramicBrick extends ItemBlock implements IColoredItem {
 	public ItemCeramicBrick(BlockCeramicBrick block) {
 		super(block);
+		setHasSubtypes(true);
 	}
 
 	@Override

@@ -12,6 +12,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import binnie.botany.Botany;
 import binnie.botany.api.genetics.IFlowerColor;
 import binnie.botany.api.genetics.EnumFlowerColor;
+import binnie.botany.modules.ModuleFlowers;
 import binnie.core.AbstractMod;
 import binnie.core.gui.IWidget;
 import binnie.core.gui.controls.listbox.ControlListBox;
@@ -32,7 +33,7 @@ import binnie.core.util.I18N;
 
 public class WindowBotanistDatabase extends WindowAbstractDatabase {
 	public WindowBotanistDatabase(EntityPlayer player, Side side, boolean nei) {
-		super(player, side, nei, Botany.flowerBreedingSystem, 130);
+		super(player, side, nei, ModuleFlowers.flowerBreedingSystem, 130);
 	}
 
 	public static Window create(EntityPlayer player, Side side, boolean nei) {

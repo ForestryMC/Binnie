@@ -15,6 +15,7 @@ import binnie.core.util.I18N;
 public class ItemCeramic extends ItemBlock implements IColoredItem {
 	public ItemCeramic(BlockCeramic block) {
 		super(block);
+		setHasSubtypes(true);
 	}
 
 	@Override
