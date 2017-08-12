@@ -15,85 +15,116 @@ buildscript {
 plugins {
     id "com.matthewprenger.cursegradle" version "1.0.9"
 }
-
-apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: "se.bjurr.gitchangelog.git-changelog-gradle-plugin"
 apply plugin: 'idea'
 apply plugin: 'maven'
-apply plugin: "se.bjurr.gitchangelog.git-changelog-gradle-plugin"
 
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
-
-version = version_major + '.' + version_minor + '.' + version_patch
-if (System.getenv("BUILD_NUMBER") != null) {
-    version = version + "." + System.getenv("BUILD_NUMBER")
-}
-group = "binnie" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "binnie-mods-" + mcversion
-
-minecraft {
-    version = mcversion + "-" + forgeversion
-    mappings = mcp_mappings
-    runDir = "run"
-
-    replace '@VERSION@', project.version
-}
-
-repositories {
-    maven {
-        name = "jei"
-        url "http://dvs1.progwml6.com/files/maven"
-    }
-    maven {
-        name = "ic2, forestry"
-        url = "http://maven.ic2.player.to/"
-    }
-    maven {
-        name = "CurseForge"
-        url = "https://minecraft.curseforge.com/api/maven/"
-    }
-	maven {
-		name "Jared"
-		url "http://maven.blamejared.com/"
-	}
-}
-
-dependencies {
-    deobfCompile("net.sengir.forestry:forestry_${mcversion}:${forestry_version}") {
-        transitive = false
-    }
-    deobfProvided "mezz.jei:jei_${mcversion}:${jei_version}:api"
-    runtime "mezz.jei:jei_${mcversion}:${jei_version}"
-    runtime "jei-bees:jeibees:${jeibees_version}:mc${mcversion}"
-    deobfProvided "net.industrial-craft:industrialcraft-2:${ic2_version}:api"
-    runtime "net.industrial-craft:industrialcraft-2:${ic2_version}"
-    deobfProvided "CraftTweaker2:CraftTweaker2-API:${minetweaker_version}"
-}
-
-processResources {
-    // this will ensure that this task is redone when the versions change.
-    inputs.property "version", project.version
-    inputs.property "mcversion", project.minecraft.version
-
-    // replace stuff in mcmod.info, nothing else
-    from(sourceSets.main.resources.srcDirs) {
-        include 'mcmod.info'
-
-        // replace version and mcversion
-        expand 'version':project.version, 'mcversion':project.minecraft.version
-    }
-
-    // copy everything else, thats not the mcmod.info
-    from(sourceSets.main.resources.srcDirs) {
-        exclude 'mcmod.info'
-    }
-}
-
-// prevent java 8's strict doclint for javadocs from failing builds
 allprojects {
+    apply plugin: 'net.minecraftforge.gradle.forge'
+
+    minecraft {
+        version = mcversion + "-" + forgeversion
+        mappings = mcp_mappings
+        runDir = "run"
+
+        replace '@VERSION@', project.version
+    }
+
+    group = "binnie" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+
+    version = version_major + '.' + version_minor + '.' + version_patch
+    if (System.getenv("BUILD_NUMBER") != null) {
+        version = version + "." + System.getenv("BUILD_NUMBER")
+    }
+
+    sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
+    compileJava {
+        sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    repositories {
+        maven {
+            name = "jei"
+            url "http://dvs1.progwml6.com/files/maven"
+        }
+        maven {
+            name = "ic2, forestry"
+            url = "http://maven.ic2.player.to/"
+        }
+        maven {
+            name = "CurseForge"
+            url = "https://minecraft.curseforge.com/api/maven/"
+        }
+        maven {
+            name "Jared"
+            url "http://maven.blamejared.com/"
+        }
+    }
+
+    dependencies {
+        deobfCompile("net.sengir.forestry:forestry_${mcversion}:${forestry_version}") {
+            transitive = false
+        }
+        deobfProvided "mezz.jei:jei_${mcversion}:${jei_version}:api"
+        runtime "mezz.jei:jei_${mcversion}:${jei_version}"
+        runtime "jei-bees:jeibees:${jeibees_version}:mc${mcversion}"
+        deobfProvided "net.industrial-craft:industrialcraft-2:${ic2_version}:api"
+        runtime "net.industrial-craft:industrialcraft-2:${ic2_version}"
+        deobfProvided "CraftTweaker2:CraftTweaker2-API:${minetweaker_version}"
+    }
+
+    processResources {
+        // this will ensure that this task is redone when the versions change.
+        inputs.property "version", project.version
+        inputs.property "mcversion", project.minecraft.version
+
+        // replace stuff in mcmod.info, nothing else
+        from(sourceSets.main.resources.srcDirs) {
+            include 'mcmod.info'
+
+            // replace version and mcversion
+            expand 'version': project.version, 'mcversion': project.minecraft.version
+        }
+
+        // copy everything else, thats not the mcmod.info
+        from(sourceSets.main.resources.srcDirs) {
+            exclude 'mcmod.info'
+        }
+    }
+
+    // prevent java 8's strict doclint for javadocs from failing builds
     tasks.withType(Javadoc) {
         options.addStringOption('Xdoclint:none', '-quiet')
     }
+}
+
+def mainProjects = [':api', ':botany', ':core', ':extrabees', ':extratrees', ':genetics'].collect{ subproject -> project(subproject) }
+mainProjects.each { subproject -> evaluationDependsOn( subproject.path ) }
+jar.dependsOn mainProjects.tasks['classes']
+jar {
+    mainProjects.each { subproject ->
+        from subproject.sourceSets.main.output.classesDirs
+        from subproject.sourceSets.main.output.resourcesDir
+    }
+}
+
+task sourcesJar(type: Jar, dependsOn: mainProjects.tasks['classes']) {
+    classifier = 'sources'
+    mainProjects.each { subproject ->
+        from(subproject.sourceSets.main.allSource) {
+            exclude 'assets'
+            exclude 'mcmod.info'
+        }
+    }
+}
+
+task copyJars(type: Copy) {
+    from mainProjects.collect { it.tasks.withType(Jar) }
+    into "$buildDir/libs"
+}
+
+artifacts {
+    archives sourcesJar
 }
 
 uploadArchives {

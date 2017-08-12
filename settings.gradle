@@ -1,0 +1,3 @@
+rootProject.name = 'binnie-mods-' + mcversion
+
+include ':all', ':api', ':core', ':botany', ':extrabees', ':extratrees', ':genetics'

@@ -1,0 +1,10 @@
+archivesBaseName = 'genetics-' + mcversion
+
+dependencies {
+	compile project(":api")
+	compile project(":core")
+
+	// TODO: remove these
+	compile project(":botany")
+	compile project(":extratrees")
+}
