@@ -1,0 +1,10 @@
+archivesBaseName = 'all-' + mcversion
+
+dependencies {
+	compile project(":api")
+	compile project(":botany")
+	compile project(":core")
+	compile project(":extrabees")
+	compile project(":extratrees")
+	compile project(":genetics")
+}
