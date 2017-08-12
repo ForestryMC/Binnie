@@ -10,7 +10,7 @@ along with new features such as fully breedable flowers and genetic manipulation
 
 [Wiki](https://binnie.mods.wiki/wiki/Main_Page)
 
-[Latest Builds for 1.11 / 1.11.2](http://jenkins.ic2.player.to/job/Binnie's%201.11.2/)
+[Latest Builds for 1.12 ](http://jenkins.ic2.player.to/job/Binnie's%201.12/)
 
 ### Mods
 
