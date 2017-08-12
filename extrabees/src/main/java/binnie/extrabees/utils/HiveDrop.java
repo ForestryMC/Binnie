@@ -15,17 +15,17 @@ public class HiveDrop implements IHiveDrop {
 
 	private IAllele[] template;
 	private NonNullList<ItemStack> extra;
-	private int chance;
+	private double chance;
 
-	public HiveDrop(IBeeDefinition species, final int chance) {
+	public HiveDrop(IBeeDefinition species, double chance) {
 		this(species.getTemplate(), NonNullList.create(), chance);
 	}
 
-	public HiveDrop(final IAlleleBeeSpecies species, final int chance) {
+	public HiveDrop(IAlleleBeeSpecies species, double chance) {
 		this(Utils.getBeeRoot().getTemplate(species), NonNullList.create(), chance);
 	}
 
-	public HiveDrop(IAllele[] template, final NonNullList<ItemStack> extra, final int chance) {
+	public HiveDrop(IAllele[] template, NonNullList<ItemStack> extra, double chance) {
 		this.extra = extra;
 		this.template = template;
 		this.chance = chance;

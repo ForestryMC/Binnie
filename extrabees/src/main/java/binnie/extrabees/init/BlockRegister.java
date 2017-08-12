@@ -10,7 +10,7 @@ import binnie.extrabees.ExtraBees;
 import binnie.extrabees.alveary.BlockAlveary;
 import binnie.extrabees.alveary.TileEntityExtraBeesAlvearyPart;
 import binnie.extrabees.blocks.BlockEctoplasm;
-import binnie.extrabees.blocks.BlockExtraBeeHive;
+import binnie.extrabees.blocks.BlockExtraBeeHives;
 import binnie.extrabees.blocks.type.EnumHiveType;
 import binnie.extrabees.genetics.ExtraBeeDefinition;
 import binnie.extrabees.utils.HiveDrop;
@@ -36,24 +36,28 @@ public final class BlockRegister {
 
 	@SuppressWarnings("all")
 	private static void registerHives() {
-		ForgeRegistries.BLOCKS.register(ExtraBees.hive = new BlockExtraBeeHive());
+		ForgeRegistries.BLOCKS.register(ExtraBees.hive = new BlockExtraBeeHives());
 	}
 
 	private static void registerHiveDrops() {
 		IAlleleBeeSpecies valiantSpecies = Utils.getSpecies(BeeDefinition.VALIANT);
-		EnumHiveType.Water.drops.add(new HiveDrop(ExtraBeeDefinition.WATER, 80));
-		EnumHiveType.Water.drops.add(new HiveDrop(valiantSpecies, 3));
-		EnumHiveType.Rock.drops.add(new HiveDrop(ExtraBeeDefinition.ROCK, 80));
-		EnumHiveType.Rock.drops.add(new HiveDrop(valiantSpecies, 3));
-		EnumHiveType.Nether.drops.add(new HiveDrop(ExtraBeeDefinition.BASALT, 80));
-		EnumHiveType.Nether.drops.add(new HiveDrop(valiantSpecies, 3));
-		EnumHiveType.Marble.drops.add(new HiveDrop(ExtraBeeDefinition.MARBLE, 80));
-		EnumHiveType.Marble.drops.add(new HiveDrop(valiantSpecies, 3));
+		EnumHiveType.WATER.addDrops(
+			new HiveDrop(ExtraBeeDefinition.WATER, 0.80),
+			new HiveDrop(valiantSpecies, 0.03)
+		);
+		EnumHiveType.ROCK.addDrops(
+			new HiveDrop(ExtraBeeDefinition.ROCK, 0.80),
+			new HiveDrop(valiantSpecies, 0.03)
+		);
+		EnumHiveType.NETHER.addDrops(
+			new HiveDrop(ExtraBeeDefinition.BASALT, 0.80),
+			new HiveDrop(valiantSpecies, 0.03)
+		);
+		EnumHiveType.MARBLE.addDrops(
+			new HiveDrop(ExtraBeeDefinition.MARBLE, 0.80),
+			new HiveDrop(valiantSpecies, 0.03)
+		);
 
-		ExtraBees.hive.setHarvestLevel("scoop", 0, ExtraBees.hive.getDefaultState().withProperty(BlockExtraBeeHive.hiveType, EnumHiveType.Water));
-		ExtraBees.hive.setHarvestLevel("scoop", 0, ExtraBees.hive.getDefaultState().withProperty(BlockExtraBeeHive.hiveType, EnumHiveType.Rock));
-		ExtraBees.hive.setHarvestLevel("scoop", 0, ExtraBees.hive.getDefaultState().withProperty(BlockExtraBeeHive.hiveType, EnumHiveType.Nether));
-		ExtraBees.hive.setHarvestLevel("scoop", 0, ExtraBees.hive.getDefaultState().withProperty(BlockExtraBeeHive.hiveType, EnumHiveType.Marble));
 		if (!ConfigurationMain.canQuarryMineHives) {
 			//BuildCraftAPI.softBlocks.add(ExtraBees.hive);
 		}

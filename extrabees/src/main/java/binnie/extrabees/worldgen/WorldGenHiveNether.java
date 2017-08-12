@@ -1,7 +1,7 @@
 package binnie.extrabees.worldgen;
 
 import binnie.extrabees.ExtraBees;
-import binnie.extrabees.blocks.BlockExtraBeeHive;
+import binnie.extrabees.blocks.BlockExtraBeeHives;
 import binnie.extrabees.blocks.type.EnumHiveType;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -26,7 +26,7 @@ public class WorldGenHiveNether extends WorldGenHive {
 			return true;
 		}
 		if (this.embedInWall(world, Blocks.NETHERRACK, pos)) {
-			world.setBlockState(pos, ExtraBees.hive.getDefaultState().withProperty(BlockExtraBeeHive.hiveType, EnumHiveType.Nether));
+			world.setBlockState(pos, ExtraBees.hive.getDefaultState().withProperty(BlockExtraBeeHives.HIVE_TYPE, EnumHiveType.NETHER));
 		}
 		return true;
 	}

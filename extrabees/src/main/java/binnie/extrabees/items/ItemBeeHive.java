@@ -17,10 +17,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.extrabees.blocks.type.EnumHiveType;
 
-public class ItemBeehive extends ItemBlock implements IItemModelProvider {
+public class ItemBeeHive extends ItemBlock implements IItemModelProvider {
 
 	@SuppressWarnings("all")
-	public ItemBeehive(@Nonnull final Block block) {
+	public ItemBeeHive(@Nonnull final Block block) {
 		super(block);
 		setRegistryName(block.getRegistryName());
 		this.setMaxDamage(0);
@@ -29,31 +29,29 @@ public class ItemBeehive extends ItemBlock implements IItemModelProvider {
 	}
 
 	@Override
-	public int getMetadata(final int i) {
-		return i;
+	public int getMetadata(int damage) {
+		return damage;
 	}
 
 	@Override
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
 		if (this.isInCreativeTab(tab)) {
-			for (int i = 0; i < EnumHiveType.values().length; ++i) {
-				items.add(new ItemStack(this, 1, i));
+			for (EnumHiveType type : EnumHiveType.values()) {
+				items.add(new ItemStack(this, 1, type.getMeta()));
 			}
 		}
 	}
 
 	@Override
-	public String getItemStackDisplayName(final ItemStack itemStack) {
-		return EnumHiveType.values()[itemStack.getItemDamage()].toString() + " Hive";
+	public String getUnlocalizedName(ItemStack stack) {
+		return  "extrabees.block.hive." + stack.getItemDamage();
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerModel(Item item) {
-		int i = 0;
 		for(EnumHiveType type : EnumHiveType.values()){
-			ModelLoader.setCustomModelResourceLocation(item, i, new ModelResourceLocation("extrabees:hive", "type=" + type.getName()));
-			i++;
+			ModelLoader.setCustomModelResourceLocation(item, type.getMeta(), new ModelResourceLocation("extrabees:hive", "type=" + type.getName()));
 		}
 	}
 }

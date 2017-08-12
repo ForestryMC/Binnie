@@ -9,7 +9,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import binnie.extrabees.ExtraBees;
-import binnie.extrabees.blocks.BlockExtraBeeHive;
+import binnie.extrabees.blocks.BlockExtraBeeHives;
 import binnie.extrabees.blocks.type.EnumHiveType;
 
 public class WorldGenHiveRock extends WorldGenHive {
@@ -25,7 +25,7 @@ public class WorldGenHiveRock extends WorldGenHive {
 			return true;
 		}
 		if (block.getBlock().isReplaceableOreGen(block, world, pos, BlockStateMatcher.forBlock(Blocks.STONE))) {
-			world.setBlockState(pos, ExtraBees.hive.getDefaultState().withProperty(BlockExtraBeeHive.hiveType, EnumHiveType.Rock));
+			world.setBlockState(pos, ExtraBees.hive.getDefaultState().withProperty(BlockExtraBeeHives.HIVE_TYPE, EnumHiveType.ROCK));
 		}
 		return true;
 	}

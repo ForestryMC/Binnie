@@ -8,7 +8,7 @@ import net.minecraftforge.oredict.OreDictionary;
 import forestry.api.core.Tabs;
 
 import binnie.extrabees.ExtraBees;
-import binnie.extrabees.items.ItemBeehive;
+import binnie.extrabees.items.ItemBeeHive;
 import binnie.extrabees.items.ItemBlockAlveary;
 import binnie.extrabees.items.ItemHoneyComb;
 import binnie.extrabees.items.ItemHoneyCrystal;
@@ -30,7 +30,7 @@ public final class ItemRegister {
 	@SuppressWarnings("all")
 	private static void registerMisc() {
 		ItemBlockAlveary itemAlveary = new ItemBlockAlveary(ExtraBees.alveary);
-		ItemBeehive itemBeehive = new ItemBeehive(ExtraBees.hive);
+		ItemBeeHive itemBeeHive = new ItemBeeHive(ExtraBees.hive);
 		ItemBlock ectoplasm = new ItemBlock(ExtraBees.ectoplasm);
 		ectoplasm.setRegistryName(ExtraBees.ectoplasm.getRegistryName());
 		ItemMiscProduct itemMisc = ExtraBees.itemMisc = new ItemMiscProduct(Tabs.tabApiculture, ExtraBeeItems.values());
@@ -38,7 +38,7 @@ public final class ItemRegister {
 		ExtraBees.proxy.registerItem(ectoplasm);
 		ExtraBees.proxy.registerModel(ectoplasm, 0);
 		ExtraBees.proxy.registerItem(itemAlveary);
-		ExtraBees.proxy.registerItem(itemBeehive);
+		ExtraBees.proxy.registerItem(itemBeeHive);
 		ExtraBees.proxy.registerItem(itemMisc);
 		for (final EnumHiveFrame frame : EnumHiveFrame.values()) {
 			ExtraBees.proxy.registerItem(frame.getItem());

@@ -28,24 +28,22 @@ import forestry.api.apiculture.IHiveTile;
 import forestry.api.core.Tabs;
 import forestry.apiculture.tiles.TileHive;
 
+import binnie.core.util.TileUtil;
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.blocks.type.EnumHiveType;
 
-public class BlockExtraBeeHive extends Block implements ITileEntityProvider {
+public class BlockExtraBeeHives extends Block implements ITileEntityProvider {
 
-	public static final PropertyEnum<EnumHiveType> hiveType = PropertyEnum.create("type", EnumHiveType.class);
+	public static final PropertyEnum<EnumHiveType> HIVE_TYPE = PropertyEnum.create("type", EnumHiveType.class);
 
-	public BlockExtraBeeHive() {
+	public BlockExtraBeeHives() {
 		super(ExtraBees.materialBeehive);
 		this.setLightLevel(0.2f);
 		this.setHardness(1.0f);
 		this.setTickRandomly(true);
 		this.setRegistryName("hive");
+		this.setHarvestLevel("scoop", 0);
 		this.setCreativeTab(Tabs.tabApiculture);
-	}
-
-	public String getUnlocalizedName(final ItemStack itemStack) {
-		return "extrabees.block.hive." + itemStack.getItemDamage();
 	}
 
 	@Override
@@ -57,33 +55,26 @@ public class BlockExtraBeeHive extends Block implements ITileEntityProvider {
 
 	@Override
 	public int getMetaFromState(IBlockState state) {
-		return state.getValue(hiveType).ordinal();
+		return state.getValue(HIVE_TYPE).ordinal();
 	}
 
 	@Override
 	@Nonnull
 	@SuppressWarnings("deprecation")
 	public IBlockState getStateFromMeta(int meta) {
-		return getDefaultState().withProperty(hiveType, EnumHiveType.values()[meta]);
+		return getDefaultState().withProperty(HIVE_TYPE, getHiveNameForMeta(meta));
 	}
 	
 	@Override
 	public void onBlockClicked(World world, BlockPos pos, EntityPlayer player) {
 		super.onBlockClicked(world, pos, player);
-		TileEntity tile = world.getTileEntity(pos);
-		if (tile instanceof IHiveTile) {
-			IHiveTile hive = (IHiveTile) tile;
-			hive.onAttack(world, pos, player);
-		}
+		TileUtil.actOnTile(world, pos, IHiveTile.class, tile -> tile.onAttack(world, pos, player));
 	}
 	
 	@Override
 	public void onBlockHarvested(World world, BlockPos pos, IBlockState state, EntityPlayer player) {
-		TileEntity tile = world.getTileEntity(pos);
-		if (tile instanceof IHiveTile) {
-			IHiveTile hive = (IHiveTile) tile;
-			hive.onBroken(world, pos, player, canHarvestBlock(world, pos, player));
-		}
+		boolean canHarvest = canHarvestBlock(world, pos, player);
+		TileUtil.actOnTile(world, pos, IHiveTile.class, tile -> tile.onBroken(world, pos, player, canHarvest));
 	}
 	
 	@Nullable
@@ -95,7 +86,7 @@ public class BlockExtraBeeHive extends Block implements ITileEntityProvider {
 	@Override
 	@Nonnull
 	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, hiveType);
+		return new BlockStateContainer(this, HIVE_TYPE);
 	}
 
 	@Override
@@ -150,7 +141,7 @@ public class BlockExtraBeeHive extends Block implements ITileEntityProvider {
 		if (hive == null) {
 			return Collections.emptyList();
 		}
-		return hive.drops;
+		return hive.getDrops();
 	}
 
 	@Nullable
