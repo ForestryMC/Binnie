@@ -108,9 +108,23 @@ jar {
     }
 }
 
+task sourcesJar(type: Jar, dependsOn: mainProjects.tasks['classes']) {
+    classifier = 'sources'
+    mainProjects.each { subproject ->
+        from(subproject.sourceSets.main.allSource) {
+            exclude 'assets'
+            exclude 'mcmod.info'
+        }
+    }
+}
+
 task copyJars(type: Copy) {
     from mainProjects.collect { it.tasks.withType(Jar) }
     into "$buildDir/libs"
+}
+
+artifacts {
+    archives sourcesJar
 }
 
 uploadArchives {
