@@ -9,6 +9,7 @@ import java.util.List;
 import org.apache.commons.lang3.tuple.Pair;
 
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -44,6 +45,19 @@ public class AlvearyMutationHandler {
 		}
 		MUTATIONS.add(Pair.of(item, chance));
 		MUTATIONS.sort(Comparator.comparing(Pair::getValue));
+	}
+
+	public static void registerMutationItems(){
+		AlvearyMutationHandler.addMutationItem(new ItemStack(Blocks.SOUL_SAND), 1.5f);
+		AlvearyMutationHandler.addMutationItem(Utils.getIC2Item("UranFuel"), 4.0f);
+		AlvearyMutationHandler.addMutationItem(Utils.getIC2Item("MOXFuel"), 10.0f);
+		AlvearyMutationHandler.addMutationItem(Utils.getIC2Item("Plutonium"), 8.0f);
+		AlvearyMutationHandler.addMutationItem(Utils.getIC2Item("smallPlutonium"), 5.0f);
+		AlvearyMutationHandler.addMutationItem(Utils.getIC2Item("Uran235"), 4.0f);
+		AlvearyMutationHandler.addMutationItem(Utils.getIC2Item("smallUran235"), 2.5f);
+		AlvearyMutationHandler.addMutationItem(Utils.getIC2Item("Uran238"), 2.0f);
+		AlvearyMutationHandler.addMutationItem(new ItemStack(Items.ENDER_PEARL), 2.0f);
+		AlvearyMutationHandler.addMutationItem(new ItemStack(Items.ENDER_EYE), 4.0f);
 	}
 
 	public static List<Pair<ItemStack, Float>> getMutagens() {

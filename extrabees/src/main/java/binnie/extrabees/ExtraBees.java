@@ -1,8 +1,5 @@
 package binnie.extrabees;
 
-import binnie.core.Binnie;
-import binnie.extrabees.api.ExtraBeesAPI;
-import binnie.extrabees.genetics.BeeBreedingSystem;
 import com.google.common.collect.Lists;
 
 import java.io.File;
@@ -11,10 +8,7 @@ import java.util.List;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 
 import net.minecraftforge.common.MinecraftForge;
 
@@ -33,8 +27,11 @@ import forestry.core.gui.GuiIdRegistry;
 import forestry.core.gui.GuiType;
 import forestry.core.proxy.Proxies;
 
+import binnie.core.Binnie;
 import binnie.core.Constants;
 import binnie.extrabees.alveary.TileEntityExtraBeesAlvearyPart;
+import binnie.extrabees.api.ExtraBeesAPI;
+import binnie.extrabees.genetics.BeeBreedingSystem;
 import binnie.extrabees.genetics.ExtraBeeDefinition;
 import binnie.extrabees.genetics.ExtraBeesFlowers;
 import binnie.extrabees.genetics.effect.ExtraBeesEffect;
@@ -47,7 +44,6 @@ import binnie.extrabees.items.types.EnumHoneyComb;
 import binnie.extrabees.proxy.ExtraBeesCommonProxy;
 import binnie.extrabees.utils.AlvearyMutationHandler;
 import binnie.extrabees.utils.MaterialBeehive;
-import binnie.extrabees.utils.Utils;
 import binnie.extrabees.utils.config.ConfigHandler;
 import binnie.extrabees.utils.config.ConfigurationMain;
 import binnie.extrabees.worldgen.ExtraBeesWorldGenerator;
@@ -124,16 +120,7 @@ public class ExtraBees {
 		BlockRegister.postInitBlocks();
 		RecipeRegister.postInitRecipes();
 		//Register mutations
-		AlvearyMutationHandler.addMutationItem(new ItemStack(Blocks.SOUL_SAND), 1.5f);
-		AlvearyMutationHandler.addMutationItem(Utils.getIC2Item("UranFuel"), 4.0f);
-		AlvearyMutationHandler.addMutationItem(Utils.getIC2Item("MOXFuel"), 10.0f);
-		AlvearyMutationHandler.addMutationItem(Utils.getIC2Item("Plutonium"), 8.0f);
-		AlvearyMutationHandler.addMutationItem(Utils.getIC2Item("smallPlutonium"), 5.0f);
-		AlvearyMutationHandler.addMutationItem(Utils.getIC2Item("Uran235"), 4.0f);
-		AlvearyMutationHandler.addMutationItem(Utils.getIC2Item("smallUran235"), 2.5f);
-		AlvearyMutationHandler.addMutationItem(Utils.getIC2Item("Uran238"), 2.0f);
-		AlvearyMutationHandler.addMutationItem(new ItemStack(Items.ENDER_PEARL), 2.0f);
-		AlvearyMutationHandler.addMutationItem(new ItemStack(Items.ENDER_EYE), 4.0f);
+		AlvearyMutationHandler.registerMutationItems();
 	}
 	
 	@SubscribeEvent
