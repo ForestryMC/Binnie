@@ -33,7 +33,7 @@ public class ModuleContainer implements IModuleContainer {
 		unloadedModules = new LinkedHashSet<>();
 		enabledModules = new LinkedHashSet<>();
 		configFolder = new File(Loader.instance().getConfigDir(), Constants.FORESTRY_CONFIG_FOLDER + modId);
-		configModules = new Configuration(configFolder, "modules.cfg");
+		configModules = new Configuration(new File(configFolder, "modules.cfg"));
 		configHandlers = new HashSet<>();
 	}
 

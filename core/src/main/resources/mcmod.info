@@ -13,5 +13,61 @@
     "parent": "",
     "requiredMods": [ "forestry" ],
     "dependencies": [ "forestry" ]
+  },
+  {
+    "modid": "extrabees",
+    "name": "Binnie's Extra Bees",
+    "description": "Adds new bees and products to expand the bee breeding in Forestry.",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "https://minecraft.curseforge.com/projects/binnies-mods",
+    "updateUrl": "",
+    "authorList": [ "Binnie" ],
+    "credits": "Thanks to Sengir, MysteriousAges, Xizzzy and many others",
+    "logoFile": "/assets/extrabees/logo.png",
+    "parent": "",
+    "dependencies": [ "BinnieCore" ]
+  },
+  {
+    "modid": "extratrees",
+    "name": "Binnie's Extra Trees",
+    "description": "Adds new trees, aesthetic blocks and alcohol production.",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "https://minecraft.curseforge.com/projects/binnies-mods",
+    "updateUrl": "",
+    "authorList": [ "Binnie" ],
+    "credits": "Thanks to Sengir, MysteriousAges, Xizzzy and many others",
+    "logoFile": "/assets/extratrees/logo.png",
+    "parent": "",
+    "dependencies": [ "BinnieCore" ]
+  },
+  {
+    "modid": "botany",
+    "name": "Binnie's Botany",
+    "description": "Adds breedable flowers.",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "https://minecraft.curseforge.com/projects/binnies-mods",
+    "updateUrl": "",
+    "authorList": [ "Binnie" ],
+    "credits": "Thanks to Sengir, MysteriousAges, Xizzzy and many others",
+    "logoFile": "/assets/botany/logo.png",
+    "parent": "",
+    "dependencies": [ "BinnieCore" ]
+  },
+  {
+    "modid": "genetics",
+    "name": "Binnie's Genetics",
+    "description": "Adds genetic manipulation for bees, trees, butterflies and flowers.",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "https://minecraft.curseforge.com/projects/binnies-mods",
+    "updateUrl": "",
+    "authorList": [ "Binnie" ],
+    "credits": "Thanks to Sengir, MysteriousAges, Xizzzy and many others",
+    "logoFile": "/assets/genetics/logo.png",
+    "parent": "",
+    "dependencies": [ "BinnieCore" ]
   }
 ]
