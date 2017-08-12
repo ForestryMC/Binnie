@@ -4,8 +4,6 @@ import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
-import binnie.extratrees.api.carpentry.DesignerManager;
-import binnie.extratrees.api.carpentry.EnumPattern;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
@@ -24,6 +22,8 @@ import binnie.core.AbstractMod;
 import binnie.extratrees.api.IDesignMaterial;
 import binnie.extratrees.api.IDesignSystem;
 import binnie.extratrees.api.IPattern;
+import binnie.extratrees.api.carpentry.DesignerManager;
+import binnie.extratrees.api.carpentry.EnumPattern;
 
 public class CeramicDesignSystem implements IDesignSystem {
 	public static CeramicDesignSystem instance = new CeramicDesignSystem();
@@ -65,7 +65,7 @@ public class CeramicDesignSystem implements IDesignSystem {
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getPrimarySprite(IPattern pattern) {
 		int index = pattern.getIndex();
-		if (index > 0 && index < primary.size()) {
+		if (index >= 0 && index < primary.size()) {
 			return primary.get(index);
 		}
 		return null;
@@ -76,7 +76,7 @@ public class CeramicDesignSystem implements IDesignSystem {
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getSecondarySprite(IPattern pattern) {
 		int index = pattern.getIndex();
-		if (index > 0 && index < secondary.size()) {
+		if (index >= 0 && index < secondary.size()) {
 			return secondary.get(index);
 		}
 		return null;

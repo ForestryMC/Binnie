@@ -3,7 +3,6 @@ package binnie.extratrees.carpentry;
 import javax.annotation.Nullable;
 import java.util.List;
 
-import binnie.extratrees.api.carpentry.DesignerManager;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
@@ -47,8 +46,8 @@ import forestry.core.blocks.properties.UnlistedBlockPos;
 import forestry.core.models.BlockModelEntry;
 
 import binnie.core.api.block.BlockMetadata;
-import binnie.core.block.IMultipassBlock;
 import binnie.core.api.block.TileEntityMetadata;
+import binnie.core.block.IMultipassBlock;
 import binnie.core.models.DefaultStateMapper;
 import binnie.core.models.ModelManager;
 import binnie.core.models.ModelMutlipass;
@@ -58,9 +57,11 @@ import binnie.extratrees.api.CarpentryManager;
 import binnie.extratrees.api.IDesign;
 import binnie.extratrees.api.IDesignSystem;
 import binnie.extratrees.api.IToolHammer;
+import binnie.extratrees.api.carpentry.DesignerManager;
 
-public abstract class BlockDesign extends BlockMetadata implements IMultipassBlock<Integer>, IColoredBlock, ISpriteRegister, IItemModelRegister, IStateMapperRegister {
+public abstract class BlockDesign extends BlockMetadata implements IMultipassBlock<BlockDesign.Key>, IColoredBlock, ISpriteRegister, IItemModelRegister, IStateMapperRegister {
 	public static final EnumFacing[] RENDER_DIRECTIONS = new EnumFacing[]{EnumFacing.DOWN, EnumFacing.UP, EnumFacing.EAST, EnumFacing.WEST, EnumFacing.NORTH, EnumFacing.SOUTH};
+	public static final EnumFacing[] RENDER_DIRECTIONS_ITEM = new EnumFacing[]{EnumFacing.DOWN, EnumFacing.UP, EnumFacing.WEST, EnumFacing.EAST, EnumFacing.SOUTH, EnumFacing.NORTH};
 	IDesignSystem designSystem;
 
 	public BlockDesign(final IDesignSystem system, final Material material) {
@@ -218,32 +219,60 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public Integer getInventoryKey(ItemStack stack) {
-		return TileEntityMetadata.getItemDamage(stack);
+	public Key getInventoryKey(ItemStack stack) {
+		return new Key(TileEntityMetadata.getItemDamage(stack), true);
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public Integer getWorldKey(IBlockState state) {
+	public Key getWorldKey(IBlockState state) {
 		IExtendedBlockState extendedState = (IExtendedBlockState) state;
 		IBlockAccess world = extendedState.getValue(UnlistedBlockAccess.BLOCKACCESS);
 		BlockPos pos = extendedState.getValue(UnlistedBlockPos.POS);
-		return TileEntityMetadata.getTileMetadata(world, pos);
+		return new Key(TileEntityMetadata.getTileMetadata(world, pos), false);
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public TextureAtlasSprite getSprite(Integer key, @Nullable EnumFacing facing, int pass) {
-		DesignBlock block = ModuleCarpentry.getDesignBlock(this.getDesignSystem(), key);
+	public TextureAtlasSprite getSprite(Key key, @Nullable EnumFacing facing, int pass) {
+		EnumFacing[] renderDirections = RENDER_DIRECTIONS;
+		if(key.item){
+			renderDirections = RENDER_DIRECTIONS_ITEM;
+		}
+		DesignBlock block = ModuleCarpentry.getDesignBlock(this.getDesignSystem(), key.metadata);
 
 		if (facing == null) {
-			return block.getPrimarySprite(getDesignSystem(), BlockDesign.RENDER_DIRECTIONS[0]);
+			return block.getPrimarySprite(getDesignSystem(), renderDirections[0]);
 		}
 
 		if (pass > 0) {
-			return block.getSecondarySprite(getDesignSystem(), BlockDesign.RENDER_DIRECTIONS[facing.ordinal()]);
+			return block.getSecondarySprite(getDesignSystem(), renderDirections[facing.ordinal()]);
 		}
-		return block.getPrimarySprite(getDesignSystem(), BlockDesign.RENDER_DIRECTIONS[facing.ordinal()]);
+		return block.getPrimarySprite(getDesignSystem(), renderDirections[facing.ordinal()]);
+	}
+
+	public static class Key {
+		int metadata;
+		boolean item;
+
+		public Key(int metadata, boolean item) {
+			this.metadata = metadata;
+			this.item = item;
+		}
+
+		@Override
+		public boolean equals(Object obj) {
+			if(!(obj instanceof Key)){
+				return false;
+			}
+			Key k = (Key)obj;
+			return k.item == item && k.metadata == metadata;
+		}
+
+		@Override
+		public int hashCode() {
+			return 1 + metadata * 31 + Boolean.hashCode(item) * 31;
+		}
 	}
 
 	@SideOnly(Side.CLIENT)
