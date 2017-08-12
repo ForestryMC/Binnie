@@ -1,17 +1,16 @@
 [
   {
-    "modid": "binniecore",
-    "name": "Binnie Core",
-    "description": "Base mod for Binnie's Mods, with lots of common code.",
+    "modid": "extratrees",
+    "name": "Binnie's Extra Trees",
+    "description": "Adds new trees, aesthetic blocks and alcohol production.",
     "version": "${version}",
     "mcversion": "${mcversion}",
     "url": "https://minecraft.curseforge.com/projects/binnies-mods",
     "updateUrl": "",
     "authorList": [ "Binnie" ],
     "credits": "Thanks to Sengir, MysteriousAges, Xizzzy and many others",
-    "logoFile": "/assets/binniecore/logo.png",
+    "logoFile": "/assets/extratrees/logo.png",
     "parent": "",
-    "requiredMods": [ "forestry" ],
-    "dependencies": [ "forestry" ]
+    "dependencies": [ "binniecore" ]
   }
 ]
