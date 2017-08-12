@@ -37,10 +37,13 @@ public class DistilleryRecipeManager implements IDistilleryManager {
 		return null;
 	}
 
-	public static boolean isValidInputLiquid(final FluidStack fluid) {
+	public static boolean isValidInputLiquid(FluidStack fluid) {
 		for (int i = 0; i < LEVELS; ++i) {
 			Map<Fluid, IDistilleryRecipe> recipesForLevel = recipes.get(i);
 			IDistilleryRecipe recipe = recipesForLevel.get(fluid.getFluid());
+			if(recipe == null){
+				continue;
+			}
 			if (recipe.getInput().isFluidEqual(fluid)) {
 				return true;
 			}
