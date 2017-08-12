@@ -9,6 +9,7 @@ import forestry.core.items.IColoredItem;
 
 import binnie.core.block.ItemMetadata;
 import binnie.core.api.block.TileEntityMetadata;
+import binnie.extratrees.modules.ModuleCarpentry;
 
 public class ItemDesign extends ItemMetadata implements IColoredItem {
 

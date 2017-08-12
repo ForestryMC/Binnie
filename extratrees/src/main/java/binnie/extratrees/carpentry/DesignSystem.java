@@ -21,8 +21,8 @@ import binnie.extratrees.api.CarpentryManager;
 import binnie.extratrees.api.IDesignMaterial;
 import binnie.extratrees.api.IDesignSystem;
 import binnie.extratrees.api.IPattern;
-import binnie.extratrees.block.PlankType;
-import binnie.extratrees.item.ExtraTreeItems;
+import binnie.extratrees.wood.PlankType;
+import binnie.extratrees.items.ExtraTreeItems;
 
 public enum DesignSystem implements IDesignSystem {
 	Wood,

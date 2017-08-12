@@ -28,7 +28,7 @@ import binnie.core.gui.minecraft.Window;
 import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.api.IDesignMaterial;
-import binnie.extratrees.block.WoodManager;
+import binnie.extratrees.wood.WoodManager;
 
 public class WindowArboristDatabase extends WindowAbstractDatabase {
 	ControlListBox<ItemStack> selectionBoxFruit;

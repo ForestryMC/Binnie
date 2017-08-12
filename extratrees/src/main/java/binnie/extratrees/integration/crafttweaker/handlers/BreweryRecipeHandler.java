@@ -10,7 +10,7 @@ import net.minecraftforge.fluids.FluidStack;
 
 import binnie.extratrees.api.recipes.ExtraTreesRecipeManager;
 import binnie.extratrees.integration.crafttweaker.CraftTweakerUtil;
-import binnie.extratrees.item.ExtraTreeItems;
+import binnie.extratrees.items.ExtraTreeItems;
 import binnie.extratrees.machines.brewery.recipes.BrewedGrainRecipe;
 import binnie.extratrees.machines.brewery.recipes.BreweryRecipe;
 import stanhebben.zenscript.annotations.Optional;

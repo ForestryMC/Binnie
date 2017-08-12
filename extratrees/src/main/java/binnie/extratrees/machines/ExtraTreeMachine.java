@@ -23,8 +23,9 @@ import binnie.extratrees.machines.brewery.BreweryMachine;
 import binnie.extratrees.machines.distillery.DistilleryMachine;
 import binnie.extratrees.machines.fruitpress.FruitPressMachine;
 import binnie.extratrees.machines.lumbermill.LumbermillMachine;
-import binnie.extratrees.modules.ExtraTreesModuleUIDs;
+import binnie.core.modules.ExtraTreesModuleUIDs;
 import binnie.core.modules.ModuleManager;
+import binnie.extratrees.modules.ModuleMachine;
 
 public enum ExtraTreeMachine implements IMachineType {
 	Lumbermill(LumbermillMachine::new),

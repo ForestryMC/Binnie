@@ -17,15 +17,16 @@ import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.StructureVillagePieces;
 import net.minecraft.world.gen.structure.template.TemplateManager;
 
-import binnie.extratrees.block.BlockHops;
-import binnie.extratrees.core.ModuleCore;
+import binnie.extratrees.blocks.BlockHops;
+import binnie.extratrees.modules.ModuleCore;
 
 public class VillageHopeField extends StructureVillagePieces.Village {
 	private Block cropTypeA;
 	private Block cropTypeB;
 	private Block cropTypeC;
 	private Block cropTypeD;
-	
+
+	@SuppressWarnings("unused")
 	public VillageHopeField() {
 	}
 	

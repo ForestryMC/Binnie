@@ -127,16 +127,6 @@ public enum Alcohol implements IFluidType, ICocktailLiquid {
 	Rye("mash.rye", 10836007, 0.9, 0.05),
 	Corn("mash.corn", 13411364, 0.9, 0.05);
 
-	static {
-		for(Alcohol alcohol : values()){
-			alcohol.init();
-		}
-	}
-
-	protected void init(){
-
-	}
-
 	List<String> fermentationLiquid;
 	String fermentationSolid;
 	String ident;
@@ -151,6 +141,15 @@ public enum Alcohol implements IFluidType, ICocktailLiquid {
 		this.colour = colour;
 		this.transparency = (float) transparency;
 		this.abv = (float) abv;
+		init();
+	}
+
+	protected void init(){
+
+	}
+
+	public List<String> getFermentationLiquid() {
+		return fermentationLiquid;
 	}
 
 	protected void addFementation(final Juice juice) {

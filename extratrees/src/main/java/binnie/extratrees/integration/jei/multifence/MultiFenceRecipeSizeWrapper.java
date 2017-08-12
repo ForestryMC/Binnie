@@ -9,9 +9,9 @@ import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 
-import binnie.extratrees.block.IPlankType;
-import binnie.extratrees.block.WoodManager;
-import binnie.extratrees.block.decor.MultiFenceRecipePattern;
+import binnie.extratrees.wood.IPlankType;
+import binnie.extratrees.wood.WoodManager;
+import binnie.extratrees.blocks.decor.MultiFenceRecipePattern;
 import mezz.jei.api.ingredients.IIngredients;
 
 public class MultiFenceRecipeSizeWrapper implements IRecipeWrapper {

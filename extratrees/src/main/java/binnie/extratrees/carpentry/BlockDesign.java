@@ -58,6 +58,7 @@ import binnie.extratrees.api.IDesign;
 import binnie.extratrees.api.IDesignSystem;
 import binnie.extratrees.api.IToolHammer;
 import binnie.extratrees.api.carpentry.DesignerManager;
+import binnie.extratrees.modules.ModuleCarpentry;
 
 public abstract class BlockDesign extends BlockMetadata implements IMultipassBlock<BlockDesign.Key>, IColoredBlock, ISpriteRegister, IItemModelRegister, IStateMapperRegister {
 	public static final EnumFacing[] RENDER_DIRECTIONS = new EnumFacing[]{EnumFacing.DOWN, EnumFacing.UP, EnumFacing.EAST, EnumFacing.WEST, EnumFacing.NORTH, EnumFacing.SOUTH};

@@ -7,10 +7,10 @@ import java.util.Map.Entry;
 
 import net.minecraft.item.ItemStack;
 
-import binnie.extratrees.block.IPlankType;
-import binnie.extratrees.block.WoodManager;
-import binnie.extratrees.block.decor.FenceDescription;
-import binnie.extratrees.block.decor.FenceType;
+import binnie.extratrees.wood.IPlankType;
+import binnie.extratrees.wood.WoodManager;
+import binnie.extratrees.blocks.decor.FenceDescription;
+import binnie.extratrees.blocks.decor.FenceType;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.wrapper.IShapedCraftingRecipeWrapper;
 

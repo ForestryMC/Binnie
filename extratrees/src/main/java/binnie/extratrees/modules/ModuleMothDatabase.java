@@ -12,8 +12,9 @@ import binnie.core.Binnie;
 import binnie.core.Constants;
 import binnie.core.BinnieCore;
 import binnie.core.liquid.ManagerLiquid;
+import binnie.core.modules.ExtraTreesModuleUIDs;
 import binnie.extratrees.ExtraTrees;
-import binnie.extratrees.item.ItemMothDatabase;
+import binnie.extratrees.items.ItemMothDatabase;
 import binnie.core.modules.BinnieModule;
 import binnie.core.modules.Module;
 

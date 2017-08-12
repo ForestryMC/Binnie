@@ -28,6 +28,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import binnie.core.api.block.TileEntityMetadata;
 import binnie.core.util.I18N;
 import binnie.extratrees.api.IDesign;
+import binnie.extratrees.modules.ModuleCarpentry;
 
 public class BlockStainedDesign extends BlockDesign {
 	public BlockStainedDesign() {

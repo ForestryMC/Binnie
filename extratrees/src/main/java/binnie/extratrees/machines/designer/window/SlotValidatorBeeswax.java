@@ -4,7 +4,7 @@ import binnie.extratrees.machines.designer.IDesignerType;
 import net.minecraft.item.ItemStack;
 
 import binnie.core.machines.inventory.SlotValidator;
-import binnie.extratrees.machines.ModuleMachine;
+import binnie.extratrees.modules.ModuleMachine;
 
 public class SlotValidatorBeeswax extends SlotValidator {
 	private final IDesignerType type;

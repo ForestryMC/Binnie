@@ -6,7 +6,8 @@ import net.minecraft.item.ItemStack;
 
 import binnie.core.util.I18N;
 import binnie.extratrees.api.IDesign;
-import binnie.extratrees.block.PlankType;
+import binnie.extratrees.wood.PlankType;
+import binnie.extratrees.modules.ModuleCarpentry;
 
 public class BlockCarpentry extends BlockDesign {
 	public BlockCarpentry(String name) {

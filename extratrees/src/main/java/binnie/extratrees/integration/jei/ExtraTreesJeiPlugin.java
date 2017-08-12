@@ -9,11 +9,11 @@ import net.minecraftforge.fluids.FluidUtil;
 
 import binnie.core.Constants;
 import binnie.core.integration.jei.Drawables;
-import binnie.extratrees.alcohol.ModuleAlcohol;
-import binnie.extratrees.block.ModuleBlocks;
-import binnie.extratrees.block.WoodManager;
-import binnie.extratrees.block.decor.FenceDescription;
-import binnie.extratrees.block.decor.FenceType;
+import binnie.extratrees.modules.ModuleAlcohol;
+import binnie.extratrees.modules.ModuleWood;
+import binnie.extratrees.wood.WoodManager;
+import binnie.extratrees.blocks.decor.FenceDescription;
+import binnie.extratrees.blocks.decor.FenceType;
 import binnie.extratrees.integration.jei.brewery.BreweryRecipeCategory;
 import binnie.extratrees.integration.jei.brewery.BreweryRecipeMaker;
 import binnie.extratrees.integration.jei.distillery.DistilleryRecipeCategory;
@@ -24,7 +24,7 @@ import binnie.extratrees.integration.jei.lumbermill.LumbermillRecipeCategory;
 import binnie.extratrees.integration.jei.lumbermill.LumbermillRecipeMaker;
 import binnie.extratrees.integration.jei.multifence.MultiFenceRecipeRegistryPlugin;
 import binnie.extratrees.machines.ExtraTreeMachine;
-import binnie.extratrees.modules.ExtraTreesModuleUIDs;
+import binnie.core.modules.ExtraTreesModuleUIDs;
 import binnie.core.modules.ModuleManager;
 
 import mezz.jei.api.IGuiHelper;
@@ -43,7 +43,7 @@ public class ExtraTreesJeiPlugin implements IModPlugin {
 	@Override
 	public void registerItemSubtypes(ISubtypeRegistry subtypeRegistry) {
 		if(ModuleManager.isModuleEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.WOOD)){
-			subtypeRegistry.registerSubtypeInterpreter(Item.getItemFromBlock(ModuleBlocks.blockMultiFence), (ItemStack itemStack) -> {
+			subtypeRegistry.registerSubtypeInterpreter(Item.getItemFromBlock(ModuleWood.blockMultiFence), (ItemStack itemStack) -> {
 				FenceDescription desc = WoodManager.getFenceDescription(itemStack);
 				if (desc != null) {
 					FenceType type = WoodManager.getFenceType(itemStack);

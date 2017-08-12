@@ -11,8 +11,9 @@ import forestry.api.recipes.RecipeManagers;
 import binnie.core.Binnie;
 import binnie.core.Constants;
 import binnie.core.liquid.ManagerLiquid;
+import binnie.core.modules.ExtraTreesModuleUIDs;
 import binnie.extratrees.ExtraTrees;
-import binnie.extratrees.item.ItemArboristDatabase;
+import binnie.extratrees.items.ItemArboristDatabase;
 import binnie.core.modules.BinnieModule;
 import binnie.core.modules.Module;
 

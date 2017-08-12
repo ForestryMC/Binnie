@@ -37,10 +37,10 @@ import forestry.core.genetics.alleles.AlleleCategorized;
 
 import binnie.core.Constants;
 import binnie.core.util.I18N;
-import binnie.extratrees.block.FruitPod;
+import binnie.extratrees.wood.FruitPod;
 import binnie.extratrees.config.ConfigurationMain;
-import binnie.extratrees.core.ModuleCore;
-import binnie.extratrees.item.Food;
+import binnie.extratrees.modules.ModuleCore;
+import binnie.extratrees.items.Food;
 
 public class AlleleETFruit extends AlleleCategorized implements IAlleleFruit, IFruitProvider {
 	public static final AlleleETFruit Blackthorn = new AlleleETFruit("Blackthorn", 10, 7180062, 14561129, FruitSprite.SMALL);

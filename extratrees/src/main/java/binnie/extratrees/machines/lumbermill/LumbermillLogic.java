@@ -7,7 +7,7 @@ import binnie.core.machines.MachineUtil;
 import binnie.core.machines.errors.ErrorState;
 import binnie.core.machines.power.ComponentProcessSetCost;
 import binnie.core.machines.power.IProcess;
-import binnie.extratrees.item.ExtraTreeItems;
+import binnie.extratrees.items.ExtraTreeItems;
 import binnie.extratrees.machines.ExtraTreesErrorCode;
 import binnie.extratrees.machines.lumbermill.recipes.LumbermillRecipeManager;
 

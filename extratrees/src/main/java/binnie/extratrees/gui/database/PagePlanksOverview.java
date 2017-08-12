@@ -17,9 +17,9 @@ import binnie.core.gui.geometry.TextJustification;
 import binnie.core.gui.minecraft.Window;
 import binnie.core.gui.minecraft.control.ControlItemDisplay;
 import binnie.core.util.I18N;
-import binnie.extratrees.block.IPlankType;
-import binnie.extratrees.block.WoodManager;
-import binnie.extratrees.block.decor.FenceType;
+import binnie.extratrees.wood.IPlankType;
+import binnie.extratrees.wood.WoodManager;
+import binnie.extratrees.blocks.decor.FenceType;
 
 //TODO: Add to DatabaseConstants
 @SideOnly(Side.CLIENT)

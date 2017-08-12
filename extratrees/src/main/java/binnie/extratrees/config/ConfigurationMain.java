@@ -9,6 +9,7 @@ import binnie.core.modules.IModuleContainer;
 
 public class ConfigurationMain implements IConfigHandler {
 	public static boolean alterLemon = true;
+	public static boolean hopeField = true;
 
 	private final Configuration config;
 
@@ -19,6 +20,9 @@ public class ConfigurationMain implements IConfigHandler {
 	@Override
 	public void loadConfig() {
 		//TODO: Localise comment
+		//Core Module
+		hopeField = config.getBoolean("village.hopeField", "general", alterLemon, "Adds a hope field to the village generation.");
+		//Wood Module
 		alterLemon = config.getBoolean("lemon.citrus.family", "general", alterLemon, "Uses reflection to convert the Forestry lemon tree to the Citrus family.");
 		if(config.hasChanged()){
 			config.save();

@@ -55,8 +55,8 @@ import forestry.core.tiles.TileUtil;
 
 import binnie.core.Constants;
 import binnie.core.genetics.ForestryAllele;
-import binnie.extratrees.block.EnumETLog;
-import binnie.extratrees.block.EnumShrubLog;
+import binnie.extratrees.wood.EnumETLog;
+import binnie.extratrees.wood.EnumShrubLog;
 import binnie.extratrees.gen.WorldGenAlder;
 import binnie.extratrees.gen.WorldGenApple;
 import binnie.extratrees.gen.WorldGenAsh;

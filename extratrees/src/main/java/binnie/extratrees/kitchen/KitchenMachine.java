@@ -8,6 +8,7 @@ import net.minecraft.tileentity.TileEntity;
 import binnie.core.machines.IMachineType;
 import binnie.core.machines.MachinePackage;
 import binnie.core.machines.TileEntityMachine;
+import binnie.extratrees.modules.ModuleKitchen;
 
 public enum KitchenMachine implements IMachineType {
 	// TODO implement

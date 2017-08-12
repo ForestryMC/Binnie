@@ -10,7 +10,7 @@ import forestry.api.arboriculture.ILeafProvider;
 import forestry.api.genetics.IAllele;
 import forestry.arboriculture.genetics.TreeDefinition;
 
-import binnie.extratrees.block.ModuleBlocks;
+import binnie.extratrees.modules.ModuleWood;
 
 public class ETLeafProvider implements ILeafProvider {
 	@Nullable
@@ -29,6 +29,6 @@ public class ETLeafProvider implements ILeafProvider {
 		} else {
 			species = treeSpecies;
 		}
-		return ModuleBlocks.getDecorativeLeaves(species.getUID());
+		return ModuleWood.getDecorativeLeaves(species.getUID());
 	}
 }

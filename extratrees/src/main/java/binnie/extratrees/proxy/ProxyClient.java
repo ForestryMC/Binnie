@@ -17,10 +17,10 @@ import forestry.core.models.BlockModelEntry;
 
 import binnie.core.Constants;
 import binnie.core.models.ModelManager;
-import binnie.extratrees.block.BlockETDecorativeLeaves;
-import binnie.extratrees.block.BlockETDefaultLeaves;
-import binnie.extratrees.block.ModuleBlocks;
-import binnie.extratrees.block.wood.BlockETSlab;
+import binnie.extratrees.blocks.BlockETDecorativeLeaves;
+import binnie.extratrees.blocks.BlockETDefaultLeaves;
+import binnie.extratrees.modules.ModuleWood;
+import binnie.extratrees.blocks.wood.BlockETSlab;
 import binnie.extratrees.models.ModelDefaultETLeaves;
 import binnie.extratrees.models.ModelETDecorativeLeaves;
 
@@ -64,7 +64,7 @@ public class ProxyClient extends Proxy implements IExtraTreeProxy {
 
 	@Override
 	public void registerModels() {
-		for (BlockETDecorativeLeaves leaves : ModuleBlocks.leavesDecorative) {
+		for (BlockETDecorativeLeaves leaves : ModuleWood.leavesDecorative) {
 			String resourceName = leaves.getRegistryName().toString();
 			ModelResourceLocation blockModelLocation = new ModelResourceLocation(resourceName);
 			ModelResourceLocation itemModeLocation = new ModelResourceLocation(resourceName, "inventory");
@@ -72,7 +72,7 @@ public class ProxyClient extends Proxy implements IExtraTreeProxy {
 			registerBlockModel(blockModelIndex);
 		}
 
-		for (BlockETDefaultLeaves leaves : ModuleBlocks.leavesDefault) {
+		for (BlockETDefaultLeaves leaves : ModuleWood.leavesDefault) {
 			String resourceName = leaves.getRegistryName().toString();
 			ModelResourceLocation blockModelLocation = new ModelResourceLocation(resourceName);
 			ModelResourceLocation itemModeLocation = new ModelResourceLocation(resourceName, "inventory");
@@ -80,10 +80,10 @@ public class ProxyClient extends Proxy implements IExtraTreeProxy {
 			registerBlockModel(blockModelIndex);
 		}
 
-		for (BlockETSlab slab : ModuleBlocks.slabsDouble) {
+		for (BlockETSlab slab : ModuleWood.slabsDouble) {
 			PluginArboriculture.proxy.registerWoodModel(slab, true);
 		}
-		for (BlockETSlab slab : ModuleBlocks.slabsDoubleFireproof) {
+		for (BlockETSlab slab : ModuleWood.slabsDoubleFireproof) {
 			PluginArboriculture.proxy.registerWoodModel(slab, true);
 		}
 		modelManager.registerModels();

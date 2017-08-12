@@ -26,7 +26,7 @@ import binnie.core.liquid.FluidContainerType;
 import binnie.core.liquid.ManagerLiquid;
 import binnie.core.resource.BinnieSprite;
 import binnie.core.util.RecipeUtil;
-import binnie.extratrees.modules.ExtraTreesModuleUIDs;
+import binnie.core.modules.ExtraTreesModuleUIDs;
 import binnie.extratrees.modules.ModuleMothDatabase;
 import binnie.extratrees.modules.ModuleTreeDatabase;
 import binnie.genetics.CreativeTabGenetics;

@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
-import binnie.extratrees.item.ExtraTreeItems;
+import binnie.extratrees.items.ExtraTreeItems;
 import binnie.extratrees.machines.lumbermill.LumbermillLogic;
 import mezz.jei.api.ingredients.IIngredients;
 

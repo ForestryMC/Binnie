@@ -9,6 +9,7 @@ import net.minecraft.item.ItemStack;
 
 import binnie.core.Constants;
 import binnie.core.util.I18N;
+import binnie.extratrees.modules.ModuleAlcohol;
 
 public enum Glassware {
 	BeerMug(480, 10, 14, " # ", "   ", "   "),

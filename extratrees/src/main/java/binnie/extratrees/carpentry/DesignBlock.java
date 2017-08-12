@@ -17,6 +17,7 @@ import binnie.extratrees.api.IDesignMaterial;
 import binnie.extratrees.api.IDesignSystem;
 import binnie.extratrees.api.ILayout;
 import binnie.extratrees.api.IToolHammer;
+import binnie.extratrees.modules.ModuleCarpentry;
 
 public class DesignBlock {
 	private static final int[][] ROTATION_MATRIX = {
@@ -35,7 +36,7 @@ public class DesignBlock {
 	EnumFacing facing;
 	boolean panel;
 
-	DesignBlock(final IDesignSystem system, @Nullable final IDesignMaterial primaryWood, @Nullable final IDesignMaterial secondaryWood, @Nullable final IDesign design, final int rotation, @Nullable final EnumFacing dir) {
+	public DesignBlock(final IDesignSystem system, @Nullable final IDesignMaterial primaryWood, @Nullable final IDesignMaterial secondaryWood, @Nullable final IDesign design, final int rotation, @Nullable final EnumFacing dir) {
 		this.panel = false;
 		this.rotation = rotation;
 
@@ -89,8 +90,8 @@ public class DesignBlock {
 		return this.getSecondaryMaterial().getColour();
 	}
 
-	EnumFacing getRotation(final EnumFacing dir, final ModuleCarpentry.Axis axis) {
-		if (axis == ModuleCarpentry.Axis.Y) {
+	EnumFacing getRotation(final EnumFacing dir, final EnumFacing.Axis axis) {
+		if (axis == EnumFacing.Axis.Y) {
 			switch (dir) {
 				case EAST: {
 					return EnumFacing.NORTH;
@@ -108,7 +109,7 @@ public class DesignBlock {
 					return dir;
 				}
 			}
-		} else if (axis == ModuleCarpentry.Axis.X) {
+		} else if (axis == EnumFacing.Axis.X) {
 			switch (dir) {
 				case EAST: {
 					return EnumFacing.UP;

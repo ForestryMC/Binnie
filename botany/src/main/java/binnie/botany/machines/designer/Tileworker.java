@@ -11,7 +11,7 @@ import binnie.extratrees.api.IDesignMaterial;
 import binnie.extratrees.api.IDesignSystem;
 import binnie.extratrees.carpentry.BlockDesign;
 import binnie.extratrees.carpentry.EnumDesign;
-import binnie.extratrees.carpentry.ModuleCarpentry;
+import binnie.extratrees.modules.ModuleCarpentry;
 
 public class Tileworker implements IDesignerType {
 	private static final String name = "tileworker";

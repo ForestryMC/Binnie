@@ -16,7 +16,7 @@ import binnie.core.gui.IBinnieGUID;
 import binnie.core.modules.BlankModuleContainer;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.proxy.IProxyCore;
-import binnie.extratrees.block.ModuleBlocks;
+import binnie.extratrees.modules.ModuleWood;
 import binnie.extratrees.config.ConfigurationMain;
 import binnie.extratrees.core.ExtraTreesGUID;
 import binnie.extratrees.genetics.MothBreedingSystem;
@@ -42,7 +42,7 @@ public class ExtraTrees extends BlankModuleContainer {
 
 	public ExtraTrees() {
 		super();
-		MinecraftForge.EVENT_BUS.register(ModuleBlocks.class);
+		MinecraftForge.EVENT_BUS.register(ModuleWood.class);
 	}
 
 	@Mod.EventHandler

@@ -14,7 +14,7 @@ import net.minecraftforge.fml.common.Optional;
 import binnie.extratrees.api.recipes.IBreweryManager;
 import binnie.extratrees.api.recipes.IBreweryRecipe;
 import binnie.extratrees.integration.jei.brewery.BreweryRecipeWrapper;
-import binnie.extratrees.item.ExtraTreeItems;
+import binnie.extratrees.items.ExtraTreeItems;
 
 public class BreweryRecipeManager implements IBreweryManager {
 

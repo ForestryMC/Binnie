@@ -20,7 +20,7 @@ import forestry.core.models.ModelBlockCached;
 import forestry.core.models.baker.ModelBaker;
 import forestry.core.proxy.Proxies;
 
-import binnie.extratrees.block.BlockETDecorativeLeaves;
+import binnie.extratrees.blocks.BlockETDecorativeLeaves;
 import binnie.extratrees.genetics.ETTreeDefinition;
 
 @SideOnly(Side.CLIENT)

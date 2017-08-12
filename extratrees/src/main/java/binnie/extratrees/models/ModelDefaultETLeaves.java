@@ -19,7 +19,7 @@ import forestry.core.models.ModelBlockCached;
 import forestry.core.models.baker.ModelBaker;
 import forestry.core.proxy.Proxies;
 
-import binnie.extratrees.block.BlockETDefaultLeaves;
+import binnie.extratrees.blocks.BlockETDefaultLeaves;
 import binnie.extratrees.genetics.ETTreeDefinition;
 
 public class ModelDefaultETLeaves extends ModelBlockCached<BlockETDefaultLeaves, ETTreeDefinition> {

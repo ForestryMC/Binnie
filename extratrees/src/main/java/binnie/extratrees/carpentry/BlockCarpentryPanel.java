@@ -15,6 +15,7 @@ import net.minecraft.world.World;
 import binnie.core.api.block.BlockMetadata;
 import binnie.core.api.block.TileEntityMetadata;
 import binnie.core.util.I18N;
+import binnie.extratrees.modules.ModuleCarpentry;
 
 public class BlockCarpentryPanel extends BlockCarpentry {
 	public BlockCarpentryPanel() {

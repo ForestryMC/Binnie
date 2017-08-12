@@ -20,9 +20,9 @@ import forestry.core.models.ModelBlockCached;
 import binnie.core.api.block.TileEntityMetadata;
 import binnie.core.models.AABBModelBaker;
 import binnie.core.models.ModelManager;
-import binnie.extratrees.block.WoodManager;
-import binnie.extratrees.block.decor.BlockMultiFence;
-import binnie.extratrees.block.decor.FenceType;
+import binnie.extratrees.wood.WoodManager;
+import binnie.extratrees.blocks.decor.BlockMultiFence;
+import binnie.extratrees.blocks.decor.FenceType;
 
 public class ModelMultiFence extends ModelBlockCached<BlockMultiFence, ModelMultiFence.Key> {
 

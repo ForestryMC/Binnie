@@ -12,7 +12,7 @@ import binnie.extratrees.integration.crafttweaker.handlers.BreweryRecipeHandler;
 import binnie.extratrees.integration.crafttweaker.handlers.DistilleryRecipeHandler;
 import binnie.extratrees.integration.crafttweaker.handlers.FruitPressRecipeHandler;
 import binnie.extratrees.integration.crafttweaker.handlers.LumbermillRecipeHandler;
-import binnie.extratrees.modules.ExtraTreesModuleUIDs;
+import binnie.core.modules.ExtraTreesModuleUIDs;
 import binnie.core.modules.BinnieModule;
 import binnie.core.modules.Module;
 import crafttweaker.CraftTweakerAPI;

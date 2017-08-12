@@ -10,7 +10,7 @@ import binnie.core.util.I18N;
 import binnie.extratrees.api.IDesign;
 import binnie.extratrees.carpentry.BlockDesign;
 import binnie.extratrees.carpentry.DesignBlock;
-import binnie.extratrees.carpentry.ModuleCarpentry;
+import binnie.extratrees.modules.ModuleCarpentry;
 
 public class BlockCeramicPatterned extends BlockDesign {
 	public BlockCeramicPatterned() {
