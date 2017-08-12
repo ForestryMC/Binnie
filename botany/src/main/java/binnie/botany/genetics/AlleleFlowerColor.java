@@ -1,25 +1,27 @@
-package binnie.botany.api.genetics;
+package binnie.botany.genetics;
 
+import java.awt.Color;
+
+import binnie.botany.api.genetics.IAlleleFlowerColor;
+import binnie.core.util.I18N;
 import forestry.api.genetics.IAlleleInteger;
-import net.minecraft.util.text.translation.I18n;
 
-// TODO: move out of API
 public class AlleleFlowerColor implements IAlleleFlowerColor {
 	private int color;
 	private String uid;
 	private boolean isDominant;
 	private String name;
 	private String unlocalizedName;
-	private int colorDis;
+	private int colorWilted;
 	private int id;
 
-	public AlleleFlowerColor(String uid, int id, int color, int colorDis, String name, String unlocalizedName, boolean isDominant) {
-		this.color = color;
+	public AlleleFlowerColor(String uid, int id, Color color, Color colorWilted, String name, String unlocalizedName, boolean isDominant) {
+		this.color = color.getRGB();
 		this.uid = uid;
 		this.isDominant = isDominant;
 		this.name = name;
 		this.unlocalizedName = unlocalizedName;
-		this.colorDis = colorDis;
+		this.colorWilted = colorWilted.getRGB();
 		this.id = id;
 	}
 
@@ -54,8 +56,8 @@ public class AlleleFlowerColor implements IAlleleFlowerColor {
 	}
 
 	@Override
-	public int getColor(boolean dis) {
-		return dis ? colorDis : color;
+	public int getColor(boolean wilted) {
+		return wilted ? colorWilted : color;
 	}
 
 	@Override
@@ -70,6 +72,6 @@ public class AlleleFlowerColor implements IAlleleFlowerColor {
 
 	@Override
 	public String getColorName() {
-		return I18n.translateToLocal("botany.color." + getAlleleName());
+		return I18N.localise("botany.color." + getAlleleName());
 	}
 }

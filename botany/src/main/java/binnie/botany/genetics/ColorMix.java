@@ -1,4 +1,7 @@
-package binnie.botany.api.genetics;
+package binnie.botany.genetics;
+
+import binnie.botany.api.genetics.IColorMix;
+import binnie.botany.api.genetics.IFlowerColor;
 
 public final class ColorMix implements IColorMix {
 	private final IFlowerColor colorFirst;
