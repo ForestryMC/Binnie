@@ -103,7 +103,7 @@ public class PackageInoculator extends GeneticMachine.PackageGeneticBase impleme
 
 			@Override
 			public String getTooltip() {
-				return GeneticLiquid.BacteriaVector.getDisplayName();
+				return GeneticLiquid.BacteriaVector.toString();
 			}
 		});
 	}

@@ -7,9 +7,9 @@ import net.minecraft.util.ResourceLocation;
 
 import net.minecraftforge.fluids.FluidStack;
 
-import binnie.core.Binnie;
 import binnie.core.Constants;
 import binnie.core.liquid.FluidContainerType;
+import binnie.core.liquid.FluidDefinition;
 import binnie.core.liquid.IFluidType;
 import binnie.core.util.I18N;
 
@@ -127,25 +127,29 @@ public enum Alcohol implements IFluidType, ICocktailLiquid {
 	Rye("mash.rye", 10836007, 0.9, 0.05),
 	Corn("mash.corn", 13411364, 0.9, 0.05);
 
-	List<String> fermentationLiquid;
+	final List<String> fermentationLiquid;
+	final float abv;
+	final FluidDefinition definition;
 	String fermentationSolid;
-	String ident;
-	int colour;
-	float transparency;
-	float abv;
 
-	Alcohol(final String ident, final int colour, final double transparency, final double abv) {
+	Alcohol(final String ident, final int color, final double transparency, final double abv) {
 		this.fermentationLiquid = new ArrayList<>();
 		this.fermentationSolid = "";
-		this.ident = ident;
-		this.colour = colour;
-		this.transparency = (float) transparency;
 		this.abv = (float) abv;
 		init();
+		definition = new FluidDefinition(ident, "extratrees.fluid.alcohol." + this.name().toLowerCase(), color)
+			.setTransparency(transparency)
+			.setTextures(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "blocks/liquids/liquid"))
+			.setPlaceHandler((type) -> type == FluidContainerType.GLASS);
 	}
 
 	protected void init(){
 
+	}
+
+	@Override
+	public FluidDefinition getDefinition() {
+		return definition;
 	}
 
 	public List<String> getFermentationLiquid() {
@@ -166,62 +170,39 @@ public enum Alcohol implements IFluidType, ICocktailLiquid {
 	}
 
 	@Override
-	public ResourceLocation getFlowing() {
-		return new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "blocks/liquids/liquid");
-	}
-
-	@Override
-	public ResourceLocation getStill() {
-		return new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "blocks/liquids/liquid");
-	}
-
-	@Override
 	public String getDisplayName() {
 		return I18N.localise("extratrees.fluid.alcohol." + this.name().toLowerCase());
 	}
 
 	@Override
 	public String getIdentifier() {
-		return "binnie." + this.ident;
-	}
-
-	@Override
-	public int getColor() {
-		return this.colour;
+		return definition.getIdentifier();
 	}
 
 	@Override
 	public FluidStack get(final int amount) {
-		return Binnie.LIQUID.getFluidStack(this.getIdentifier(), amount);
+		return definition.get(amount);
+	}
+
+	@Override
+	public int getColor() {
+		return definition.getColor();
 	}
 
 	@Override
 	public int getTransparency() {
-		return (int) (Math.min(1.0, this.transparency + 0.3) * 255.0);
+		return definition.getTransparency();
 	}
 
 	@Override
 	public String getTooltip(final int ratio) {
-		return ratio + " Part" + ((ratio > 1) ? "s " : " ") + this.getDisplayName();
-	}
-
-	@Override
-	public boolean canPlaceIn(final FluidContainerType type) {
-		return true;
-	}
-
-	@Override
-	public boolean showInCreative(final FluidContainerType type) {
-		return type == FluidContainerType.GLASS;
-	}
-
-	@Override
-	public int getContainerColor() {
-		return this.getColor();
+		return ratio + " Part" + ((ratio > 1) ? "s " : " ") + definition.getDisplayName();
 	}
 
 	@Override
 	public float getABV() {
 		return this.abv;
 	}
+
+
 }

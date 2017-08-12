@@ -4,9 +4,9 @@ import net.minecraft.util.ResourceLocation;
 
 import net.minecraftforge.fluids.FluidStack;
 
-import binnie.core.Binnie;
 import binnie.core.Constants;
 import binnie.core.liquid.FluidContainerType;
+import binnie.core.liquid.FluidDefinition;
 import binnie.core.liquid.IFluidType;
 
 public enum MiscFluid implements IFluidType, ICocktailLiquid {
@@ -19,67 +19,43 @@ public enum MiscFluid implements IFluidType, ICocktailLiquid {
 	AgaveNectar("Agave Nectar", "syrup.agave", 13598245, 0.699999988079071),
 	GrenadineSyrup("Grenadine Syrup", "syrup.grenadine", 16009573, 0.800000011920929);
 
-	String name;
-	String ident;
-	//IIcon icon;
-	int colour;
-	float transparency;
+	FluidDefinition definition;
 
-	MiscFluid(final String name, final String ident, final int colour, final double transparency) {
-		this.name = name;
-		this.ident = ident;
-		this.colour = colour;
-		this.transparency = (float) transparency;
+	MiscFluid(final String name, final String ident, final int color, final double transparency) {
+		definition = new FluidDefinition(ident, name, color)
+			.setTransparency(transparency)
+			.setTextures(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "blocks/liquids/liquid"))
+			.setShowHandler((type)-> type == FluidContainerType.GLASS);
 	}
 
 	@Override
 	public String toString() {
-		return this.name;
-	}
-
-	@Override
-	public boolean canPlaceIn(final FluidContainerType type) {
-		return true;
-	}
-
-	@Override
-	public boolean showInCreative(final FluidContainerType type) {
-		return type == FluidContainerType.GLASS;
-	}
-
-	@Override
-	public ResourceLocation getFlowing() {
-		return new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "blocks/liquids/liquid");
-	}
-
-	@Override
-	public ResourceLocation getStill() {
-		return new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "blocks/liquids/liquid");
+		return definition.toString();
 	}
 
 	@Override
 	public String getDisplayName() {
-		return this.name;
+		return definition.getDisplayName();
 	}
 
 	@Override
 	public String getIdentifier() {
-		return "binnie." + this.ident;
+		return definition.getIdentifier();
 	}
 
 	@Override
 	public int getColor() {
-		return this.colour;
+		return definition.getColor();
 	}
 
 	@Override
 	public FluidStack get(final int amount) {
-		return Binnie.LIQUID.getFluidStack(this.getIdentifier(), amount);
+		return definition.get(amount);
 	}
 
 	@Override
 	public int getTransparency() {
-		return (int) (Math.min(1.0, this.transparency + 0.3) * 255.0);
+		return definition.getTransparency();
 	}
 
 	@Override
@@ -88,12 +64,12 @@ public enum MiscFluid implements IFluidType, ICocktailLiquid {
 	}
 
 	@Override
-	public int getContainerColor() {
-		return this.getColor();
+	public float getABV() {
+		return 0.0f;
 	}
 
 	@Override
-	public float getABV() {
-		return 0.0f;
+	public FluidDefinition getDefinition() {
+		return definition;
 	}
 }

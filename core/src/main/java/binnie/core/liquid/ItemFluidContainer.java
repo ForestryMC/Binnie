@@ -24,7 +24,6 @@ import net.minecraft.world.World;
 
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 
@@ -63,14 +62,14 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister {
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
 		super.getSubItems(tab, items);
 		if (this.isInCreativeTab(tab)) {
-			for (final IFluidType liquid : Binnie.LIQUID.fluids.values()) {
-				if (!liquid.canPlaceIn(this.container)) {
+			for (FluidDefinition definition : Binnie.LIQUID.definitions.values()) {
+				if (!definition.canPlaceIn(this.container)) {
 					continue;
 				}
-				if (!liquid.showInCreative(this.container)) {
+				if (!definition.showInCreative(this.container)) {
 					continue;
 				}
-				items.add(getContainer(liquid));
+				items.add(getContainer(definition));
 			}
 		}
 	}
@@ -85,10 +84,14 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister {
 		return fluidHandler.drain(Integer.MAX_VALUE, false);
 	}
 
-	public ItemStack getContainer(final IFluidType liquid) {
+	public ItemStack getContainer(FluidDefinition definition) {
 		ItemStack itemStack = new ItemStack(this);
 		IFluidHandler fluidHandler = new FluidHandlerItemBinnie(itemStack, container);
-		if (fluidHandler.fill(new FluidStack(FluidRegistry.getFluid(liquid.getIdentifier()), Fluid.BUCKET_VOLUME), true) == Fluid.BUCKET_VOLUME) {
+		FluidStack fluidStack = definition.get();
+		if(fluidStack == null){
+			return container.getEmpty();
+		}
+		if (fluidHandler.fill(fluidStack, true) == Fluid.BUCKET_VOLUME) {
 			return itemStack;
 		}
 		return container.getEmpty();

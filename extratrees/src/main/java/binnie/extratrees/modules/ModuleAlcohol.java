@@ -7,7 +7,6 @@ import java.util.Objects;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 
-import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -18,7 +17,12 @@ import forestry.core.fluids.Fluids;
 import binnie.core.Binnie;
 import binnie.core.Constants;
 import binnie.core.Mods;
+import binnie.core.liquid.DrinkManager;
+import binnie.core.liquid.FluidDefinition;
 import binnie.core.liquid.IFluidType;
+import binnie.core.modules.BinnieModule;
+import binnie.core.modules.ExtraTreesModuleUIDs;
+import binnie.core.modules.Module;
 import binnie.core.resource.BinnieSprite;
 import binnie.core.util.OreDictionaryUtil;
 import binnie.extratrees.ExtraTrees;
@@ -29,7 +33,6 @@ import binnie.extratrees.alcohol.Juice;
 import binnie.extratrees.alcohol.Liqueur;
 import binnie.extratrees.alcohol.Spirit;
 import binnie.extratrees.alcohol.drink.DrinkLiquid;
-import binnie.core.liquid.DrinkManager;
 import binnie.extratrees.alcohol.drink.ItemDrink;
 import binnie.extratrees.api.recipes.ExtraTreesRecipeManager;
 import binnie.extratrees.api.recipes.IBreweryManager;
@@ -38,9 +41,6 @@ import binnie.extratrees.api.recipes.IFruitPressManager;
 import binnie.extratrees.items.ExtraTreeItems;
 import binnie.extratrees.items.Food;
 import binnie.extratrees.machines.distillery.DistilleryLogic;
-import binnie.core.modules.ExtraTreesModuleUIDs;
-import binnie.core.modules.BinnieModule;
-import binnie.core.modules.Module;
 
 @BinnieModule(moduleID = ExtraTreesModuleUIDs.ALCOHOL, moduleContainerID = Constants.EXTRA_TREES_MOD_ID, name = "Alcohol", unlocalizedDescription = "extratrees.module.alcohol")
 public class ModuleAlcohol extends Module {
@@ -119,10 +119,11 @@ public class ModuleAlcohol extends Module {
 			}
 		}
 		for (Alcohol alcohol : Alcohol.values()) {
+			FluidDefinition definition = alcohol.getDefinition();
 			for (String fermentLiquid : alcohol.getFermentationLiquid()) {
-				FluidStack fluid = Binnie.LIQUID.getFluidStack(fermentLiquid, Fluid.BUCKET_VOLUME);
+				FluidStack fluid = Binnie.LIQUID.getFluidStack(fermentLiquid);
 				if (fluid != null) {
-					breweryManager.addRecipe(fluid, alcohol.get());
+					breweryManager.addRecipe(fluid, definition.get());
 				}
 			}
 		}
