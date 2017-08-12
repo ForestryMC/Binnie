@@ -6,10 +6,10 @@ import net.minecraftforge.fluids.FluidStack;
 
 import binnie.core.Constants;
 import binnie.core.liquid.FluidContainerType;
-import binnie.core.liquid.FluidDefinition;
-import binnie.core.liquid.IFluidType;
+import binnie.core.liquid.FluidType;
+import binnie.core.liquid.IFluidDefinition;
 
-public enum Juice implements IFluidType, ICocktailLiquid {
+public enum Juice implements IFluidDefinition, ICocktailIngredientProvider {
 	Apple("Apple Juice", "juice.apple", 16763442, 0.7, "Apple"),
 	Apricot("Apricot Juice", "juice.apricot", 16758046, 0.6, "Apricot"),
 	Banana("Banana Juice", "juice.banana", 15324291, 0.6, "Banana"),
@@ -31,15 +31,17 @@ public enum Juice implements IFluidType, ICocktailLiquid {
 	RedGrape("Red Grape Juice", "juice.red.grape", 9775412, 0.6, "RedGrape");
 
 	public String squeezing;
-	FluidDefinition definition;
+	FluidType type;
+	CocktailLiquid cocktailLiquid;
 
 	Juice(final String name, final String ident, final int colour, final double transparency, final String squeezing) {
 		this.addSqueezing("crop" + squeezing);
 
-		definition = new FluidDefinition(ident, name, colour)
+		type = new FluidType(ident, name, colour)
 			.setTransparency(transparency)
 			.setTextures(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "blocks/liquids/liquid"))
 			.setShowHandler(type -> type == FluidContainerType.GLASS);
+		cocktailLiquid = new CocktailLiquid(type, 0.0F);
 	}
 
 	private void addSqueezing(final String oreDict) {
@@ -48,46 +50,21 @@ public enum Juice implements IFluidType, ICocktailLiquid {
 
 	@Override
 	public String toString() {
-		return definition.toString();
-	}
-
-	@Override
-	public String getDisplayName() {
-		return definition.getDisplayName();
-	}
-
-	@Override
-	public String getIdentifier() {
-		return definition.getIdentifier();
-	}
-
-	@Override
-	public int getColor() {
-		return definition.getColor();
+		return type.toString();
 	}
 
 	@Override
 	public FluidStack get(final int amount) {
-		return definition.get(amount);
+		return type.get(amount);
 	}
 
 	@Override
-	public int getTransparency() {
-		return definition.getTransparency();
+	public ICocktailIngredient getIngredient() {
+		return cocktailLiquid;
 	}
 
 	@Override
-	public String getTooltip(final int ratio) {
-		return ratio + " Part" + ((ratio > 1) ? "s " : " ") + definition.getDisplayName();
-	}
-
-	@Override
-	public float getABV() {
-		return 0.0f;
-	}
-
-	@Override
-	public FluidDefinition getDefinition() {
-		return definition;
+	public FluidType getType() {
+		return type;
 	}
 }

@@ -7,14 +7,14 @@ import net.minecraftforge.fluids.FluidStack;
 
 class BinnieFluid extends Fluid {
 	private final String name;
-	private final FluidDefinition fluidDefinition;
+	private final FluidType fluidType;
 	private final int color;
 
-	public BinnieFluid(FluidDefinition fluid) {
+	BinnieFluid(FluidType fluid) {
 		super(fluid.getIdentifier(), fluid.getStill(), fluid.getFlowing());
-		this.fluidDefinition = fluid;
+		this.fluidType = fluid;
 		this.name = fluid.getDisplayName();
-		this.color = new Color(this.fluidDefinition.getColor()).getRGB();
+		this.color = new Color(this.fluidType.getColor()).getRGB();
 	}
 
 	@Override
@@ -27,7 +27,7 @@ class BinnieFluid extends Fluid {
 		return color;
 	}
 
-	public FluidDefinition getDefinition() {
-		return this.fluidDefinition;
+	FluidType getDefinition() {
+		return this.fluidType;
 	}
 }

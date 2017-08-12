@@ -1,5 +1,6 @@
 package binnie.extratrees.modules;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -18,8 +19,8 @@ import binnie.core.Binnie;
 import binnie.core.Constants;
 import binnie.core.Mods;
 import binnie.core.liquid.DrinkManager;
-import binnie.core.liquid.FluidDefinition;
-import binnie.core.liquid.IFluidType;
+import binnie.core.liquid.FluidType;
+import binnie.core.liquid.IFluidDefinition;
 import binnie.core.modules.BinnieModule;
 import binnie.core.modules.ExtraTreesModuleUIDs;
 import binnie.core.modules.Module;
@@ -44,9 +45,11 @@ import binnie.extratrees.machines.distillery.DistilleryLogic;
 
 @BinnieModule(moduleID = ExtraTreesModuleUIDs.ALCOHOL, moduleContainerID = Constants.EXTRA_TREES_MOD_ID, name = "Alcohol", unlocalizedDescription = "extratrees.module.alcohol")
 public class ModuleAlcohol extends Module {
+	@Nullable
 	public static ItemDrink drink;
+	@Nullable
 	public static Block blockDrink;
-	public int drinkRendererID;
+	@Nullable
 	public static BinnieSprite liquid;
 
 	@Override
@@ -87,59 +90,63 @@ public class ModuleAlcohol extends Module {
 	public void postInit() {
 		IBreweryManager breweryManager = ExtraTreesRecipeManager.breweryManager;
 		IFruitPressManager fruitPressManager = ExtraTreesRecipeManager.fruitPressManager;
-		ItemStack wax = Mods.Forestry.stack("beeswax");
-		ItemStack waxCast = Mods.Forestry.stackWildcard("wax_cast");
-		for (Glassware glassware : Glassware.values()) {
-			ItemStack result = drink.getStack(glassware, null, 8);
-			Object[] recipe = glassware.getRecipePattern(wax.getItem());
-			RecipeManagers.fabricatorManager.addRecipe(waxCast, Fluids.GLASS.getFluid(glassware.getRecipeGlassCost()), result, recipe);
-		}
-		for (final Juice juice : Juice.values()) {
-			final String oreDict = juice.squeezing;
-			final List<ItemStack> ores = new ArrayList<>();
-			ores.addAll(OreDictionary.getOres(oreDict));
-			for (final Food food : Food.values()) {
-				if (food.getOres().contains(oreDict)) {
-					ores.add(food.get(1));
-				}
+		if(fruitPressManager != null) {
+			ItemStack wax = Mods.Forestry.stack("beeswax");
+			ItemStack waxCast = Mods.Forestry.stackWildcard("wax_cast");
+			for (Glassware glassware : Glassware.values()) {
+				ItemStack result = drink.getStack(glassware, null, 8);
+				Object[] recipe = glassware.getRecipePattern(wax.getItem());
+				RecipeManagers.fabricatorManager.addRecipe(waxCast, Fluids.GLASS.getFluid(glassware.getRecipeGlassCost()), result, recipe);
 			}
-			for (final ItemStack stack : ores) {
-				for (final ISqueezerRecipe entry : RecipeManagers.squeezerManager.recipes()) {
-					final ItemStack input = entry.getResources().get(0);
-					final FluidStack output = entry.getFluidOutput();
-					if (!ItemStack.areItemStacksEqual(stack, input) && !OreDictionary.itemMatches(input, stack, true)) {
-						continue;
+			for (final Juice juice : Juice.values()) {
+				final String oreDict = juice.squeezing;
+				final List<ItemStack> ores = new ArrayList<>();
+				ores.addAll(OreDictionary.getOres(oreDict));
+				for (final Food food : Food.values()) {
+					if (food.getOres().contains(oreDict)) {
+						ores.add(food.get(1));
 					}
-					int amount = output.amount;
-					if (Objects.equals(output.getFluid().getName(), "seedoil")) {
-						amount *= 2;
+				}
+				for (final ItemStack stack : ores) {
+					for (final ISqueezerRecipe entry : RecipeManagers.squeezerManager.recipes()) {
+						final ItemStack input = entry.getResources().get(0);
+						final FluidStack output = entry.getFluidOutput();
+						if (!ItemStack.areItemStacksEqual(stack, input) && !OreDictionary.itemMatches(input, stack, true)) {
+							continue;
+						}
+						int amount = output.amount;
+						if (Objects.equals(output.getFluid().getName(), "seedoil")) {
+							amount *= 2;
+						}
+						fruitPressManager.addRecipe(stack, juice.get(amount));
 					}
-					fruitPressManager.addRecipe(stack, juice.get(amount));
 				}
 			}
 		}
-		for (Alcohol alcohol : Alcohol.values()) {
-			FluidDefinition definition = alcohol.getDefinition();
-			for (String fermentLiquid : alcohol.getFermentationLiquid()) {
-				FluidStack fluid = Binnie.LIQUID.getFluidStack(fermentLiquid);
-				if (fluid != null) {
-					breweryManager.addRecipe(fluid, definition.get());
+		if(breweryManager != null) {
+			for (Alcohol alcohol : Alcohol.values()) {
+				FluidType type = alcohol.getType();
+				for (String fermentLiquid : alcohol.getFermentationLiquid()) {
+					FluidStack fluid = Binnie.LIQUID.getFluidStack(fermentLiquid);
+					if (fluid != null) {
+						breweryManager.addRecipe(fluid, type.get());
+					}
 				}
 			}
+
+			breweryManager.addGrainRecipe(OreDictionaryUtil.GRAIN_BARLEY, Alcohol.Ale.get(), OreDictionaryUtil.HOPS);
+
+			breweryManager.addGrainRecipe(OreDictionaryUtil.GRAIN_BARLEY, Alcohol.Lager.get(), OreDictionaryUtil.HOPS, ExtraTreeItems.LAGER_YEAST.get(1));
+			breweryManager.addGrainRecipe(OreDictionaryUtil.GRAIN_ROASTED, Alcohol.Stout.get(), OreDictionaryUtil.HOPS);
+			breweryManager.addGrainRecipe(OreDictionaryUtil.GRAIN_CORN, Alcohol.CornBeer.get(), OreDictionaryUtil.HOPS);
+			breweryManager.addGrainRecipe(OreDictionaryUtil.GRAIN_RYE, Alcohol.RyeBeer.get(), OreDictionaryUtil.HOPS);
+			breweryManager.addGrainRecipe(OreDictionaryUtil.GRAIN_WHEAT, Alcohol.WheatBeer.get(), OreDictionaryUtil.HOPS);
+
+			breweryManager.addGrainRecipe(OreDictionaryUtil.GRAIN_BARLEY, Alcohol.Barley.get());
+			breweryManager.addGrainRecipe(OreDictionaryUtil.GRAIN_CORN, Alcohol.Corn.get());
+			breweryManager.addGrainRecipe(OreDictionaryUtil.GRAIN_RYE, Alcohol.Rye.get());
+			breweryManager.addGrainRecipe(OreDictionaryUtil.GRAIN_WHEAT, Alcohol.Wheat.get());
 		}
-
-		breweryManager.addGrainRecipe(OreDictionaryUtil.GRAIN_BARLEY, Alcohol.Ale.get(), OreDictionaryUtil.HOPS);
-
-		breweryManager.addGrainRecipe(OreDictionaryUtil.GRAIN_BARLEY, Alcohol.Lager.get(), OreDictionaryUtil.HOPS, ExtraTreeItems.LAGER_YEAST.get(1));
-		breweryManager.addGrainRecipe(OreDictionaryUtil.GRAIN_ROASTED, Alcohol.Stout.get(), OreDictionaryUtil.HOPS);
-		breweryManager.addGrainRecipe(OreDictionaryUtil.GRAIN_CORN, Alcohol.CornBeer.get(), OreDictionaryUtil.HOPS);
-		breweryManager.addGrainRecipe(OreDictionaryUtil.GRAIN_RYE, Alcohol.RyeBeer.get(), OreDictionaryUtil.HOPS);
-		breweryManager.addGrainRecipe(OreDictionaryUtil.GRAIN_WHEAT, Alcohol.WheatBeer.get(), OreDictionaryUtil.HOPS);
-
-		breweryManager.addGrainRecipe(OreDictionaryUtil.GRAIN_BARLEY, Alcohol.Barley.get());
-		breweryManager.addGrainRecipe(OreDictionaryUtil.GRAIN_CORN, Alcohol.Corn.get());
-		breweryManager.addGrainRecipe(OreDictionaryUtil.GRAIN_RYE, Alcohol.Rye.get());
-		breweryManager.addGrainRecipe(OreDictionaryUtil.GRAIN_WHEAT, Alcohol.Wheat.get());
 
 		this.addDistillery(Alcohol.Apple, Spirit.AppleBrandy, Spirit.AppleLiquor, Spirit.NeutralSpirit);
 		this.addDistillery(Alcohol.Pear, Spirit.PearBrandy, Spirit.PearLiquor, Spirit.NeutralSpirit);
@@ -166,7 +173,7 @@ public class ModuleAlcohol extends Module {
 		this.addDistillery(Alcohol.Corn, Spirit.CornWhiskey, Spirit.Vodka, Spirit.NeutralSpirit);
 	}
 
-	private void addDistillery(final IFluidType source, final IFluidType singleDistilled, final IFluidType doubleDistilled, final IFluidType tripleDistilled) {
+	private void addDistillery(final IFluidDefinition source, final IFluidDefinition singleDistilled, final IFluidDefinition doubleDistilled, final IFluidDefinition tripleDistilled) {
 		final int inAmount = DistilleryLogic.INPUT_FLUID_AMOUNT;
 		final int outAmount1 = inAmount * 4 / 5;
 		final int outAmount2 = inAmount * 2 / 5;

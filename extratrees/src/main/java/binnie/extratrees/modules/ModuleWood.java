@@ -2,6 +2,7 @@ package binnie.extratrees.modules;
 
 import com.google.common.base.Preconditions;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -12,6 +13,7 @@ import java.util.stream.Collectors;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.init.Items;
@@ -57,7 +59,7 @@ import binnie.core.BinnieCore;
 import binnie.core.Constants;
 import binnie.core.Mods;
 import binnie.core.block.ItemMetadata;
-import binnie.core.liquid.ILiquidType;
+import binnie.core.liquid.ILiquidDefinition;
 import binnie.core.models.DoublePassBakedModel;
 import binnie.core.modules.BinnieModule;
 import binnie.core.modules.ExtraTreesModuleUIDs;
@@ -112,16 +114,14 @@ public class ModuleWood extends Module {
 	public static List<BlockETDecorativeLeaves> leavesDecorative = new ArrayList<>();
 	public static Map<String, ItemStack> speciesToLeavesDecorative = new HashMap<>();
 	public static List<BlockETDefaultLeaves> leavesDefault = new ArrayList<>();
+	@Nullable
 	public static BlockMultiFence blockMultiFence;
+	@Nullable
 	public static BlockShrubLog shrubLog;
 
-	public static String[] branches;
-	public static List<List<String>> classifications;
-
-	public ModuleWood() {
-		branches = new String[]{"Malus Maleae Amygdaloideae Rosaceae", "Musa   Musaceae Zingiberales Commelinids Angiosperms", "Sorbus Maleae", "Tsuga   Pinaceae", "Fraxinus Oleeae  Oleaceae Lamiales Asterids Angiospems"};
-		classifications = new ArrayList<>();
-	}
+	//TODO: Unused ?
+	public static String[] branches = new String[]{"Malus Maleae Amygdaloideae Rosaceae", "Musa   Musaceae Zingiberales Commelinids Angiosperms", "Sorbus Maleae", "Tsuga   Pinaceae", "Fraxinus Oleeae  Oleaceae Lamiales Asterids Angiospems"};;
+	public static List<List<String>> classifications = new ArrayList<>();
 
 	private static void registerOreDictWildcard(String oreDictName, Block block) {
 		OreDictionary.registerOre(oreDictName, new ItemStack(block, 1, OreDictionary.WILDCARD_VALUE));
@@ -315,12 +315,12 @@ public class ModuleWood extends Module {
 		}
 
 		shrubLog = new BlockShrubLog();
-		ExtraTrees.proxy.registerBlock(shrubLog, new ItemBlockETWood(shrubLog));
+		ExtraTrees.proxy.registerBlock(shrubLog, new ItemBlockETWood<BlockShrubLog>(shrubLog));
 		woodAccess.register(EnumShrubLog.INSTANCE, WoodBlockKind.LOG, false, shrubLog.getStateFromMeta(0), new ItemStack(shrubLog, 1, 0));
 		woodAccess.register(EnumShrubLog.INSTANCE, WoodBlockKind.LOG, true, shrubLog.getStateFromMeta(1), new ItemStack(shrubLog, 1, 1));
 	}
 	
-	public void registerDoors(WoodAccess woodAccess, List<BlockETDoor> blocks) {
+	private void registerDoors(WoodAccess woodAccess, List<BlockETDoor> blocks) {
 		for (BlockETDoor block : blocks) {
 			registerWithoutVariants(woodAccess, block, WoodBlockKind.DOOR);
 		}
@@ -450,13 +450,13 @@ public class ModuleWood extends Module {
 		this.addSqueezer(EnumVanillaWoodType.SPRUCE, ExtraTreeLiquid.Resin, 50);
 	}
 
-	public void addSqueezer(final IWoodType log, final ILiquidType liquid, final int amount, final float pulpChance) {
+	private void addSqueezer(final IWoodType log, final ILiquidDefinition liquid, final int amount, final float pulpChance) {
 		final FluidStack liquidStack = liquid.get(amount);
 		ItemStack logStack = TreeManager.woodAccess.getStack(log, WoodBlockKind.LOG, false);
 		RecipeManagers.squeezerManager.addRecipe(10, logStack, liquidStack, Mods.Forestry.stack("wood_pulp"), (int) (100.0f * pulpChance));
 	}
 
-	public void addSqueezer(final IWoodType log, final ILiquidType liquid, final int amount) {
+	private void addSqueezer(final IWoodType log, final ILiquidDefinition liquid, final int amount) {
 		this.addSqueezer(log, liquid, amount, 0.5f);
 	}
 
@@ -510,7 +510,11 @@ public class ModuleWood extends Module {
 			ETTreeDefinition treeSpecies = map.get(species);
 			int primaryColor = treeSpecies.getLeafColor().getRGB();
 			int secondaryColor = treeSpecies.getWoodColor().getRGB();
-			e.getModelRegistry().putObject(model, new DoublePassBakedModel(e.getModelRegistry().getObject(model), primaryColor, secondaryColor));
+			IBakedModel bakedModel = e.getModelRegistry().getObject(model);
+			if(bakedModel == null){
+				return;
+			}
+			e.getModelRegistry().putObject(model, new DoublePassBakedModel(bakedModel, primaryColor, secondaryColor));
 		});
 	}
 }

@@ -29,24 +29,24 @@ public class ManagerLiquid extends ManagerBase {
 	//TODO: test if the name is "Creosote Oil" and not "fluid.creosote"
 	public static final String CREOSOTE = "fluid.creosote";
 
-	Map<String, FluidDefinition> definitions;
+	Map<String, FluidType> fluids;
 
 	public ManagerLiquid() {
-		this.definitions = new LinkedHashMap<>();
+		this.fluids = new LinkedHashMap<>();
 	}
 
-	public void createLiquids(IFluidType[] liquids) {
-		for (IFluidType liquid : liquids) {
-			FluidDefinition definition = liquid.getDefinition();
-			final BinnieFluid fluid = this.createLiquid(definition);
+	public void createLiquids(IFluidDefinition[] liquids) {
+		for (IFluidDefinition liquid : liquids) {
+			FluidType type = liquid.getType();
+			final BinnieFluid fluid = this.createLiquid(type);
 			if (fluid == null) {
-				throw new RuntimeException("Liquid registered incorrectly - " + definition.getIdentifier());
+				throw new RuntimeException("Liquid registered incorrectly - " + type.getIdentifier());
 			}
 		}
 	}
 
-	public BinnieFluid createLiquid(FluidDefinition fluid) {
-		this.definitions.put(fluid.getIdentifier().toLowerCase(), fluid);
+	private BinnieFluid createLiquid(FluidType fluid) {
+		this.fluids.put(fluid.getIdentifier().toLowerCase(), fluid);
 		final BinnieFluid bFluid = new BinnieFluid(fluid);
 		FluidRegistry.registerFluid(bFluid);
 		FluidRegistry.addBucketForFluid(bFluid);
@@ -82,7 +82,7 @@ public class ManagerLiquid extends ManagerBase {
 	@SideOnly(Side.CLIENT)
 	public void registerSprites(TextureStitchEvent event) {
 		TextureMap textureMap = Minecraft.getMinecraft().getTextureMapBlocks();
-		for (FluidDefinition definition : definitions.values()) {
+		for (FluidType definition : fluids.values()) {
 			textureMap.registerSprite(definition.getFlowing());
 			textureMap.registerSprite(definition.getStill());
 		}

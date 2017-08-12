@@ -575,6 +575,9 @@ extratrees.fluid.alcohol.wheat=Fermented Wheat Mash
 extratrees.fluid.alcohol.rye=Fermented Rye Mash
 extratrees.fluid.alcohol.corn=Fermented Corn Mash
 
+extratrees.cocktail.liquid.tooltip=%d Part %s
+extratrees.cocktail.liquids.tooltip=%d Parts %s
+
 extrabees.poison.name=Poison
 extrabees.acid.name=Acid
 extrabees.glacial.name=Glacial

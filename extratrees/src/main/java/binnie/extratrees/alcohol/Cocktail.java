@@ -162,6 +162,10 @@ public enum Cocktail {
 		DrinkManager.registerDrinkLiquid(liquid);
 	}
 
+	public static void registerIngredient(final ICocktailIngredientProvider ingredient) {
+		registerIngredient(ingredient.getIngredient());
+	}
+
 	public static ICocktailIngredient getIngredient(final String name2) {
 		return Cocktail.cocktailIngredients.get(name2.toLowerCase());
 	}
@@ -172,5 +176,9 @@ public enum Cocktail {
 
 	private void add(final ICocktailIngredient ingredient, final int ratio) {
 		this.ingredients.put(ingredient, ratio);
+	}
+
+	private void add(final ICocktailIngredientProvider ingredient, final int ratio) {
+		add(ingredient.getIngredient(), ratio);
 	}
 }

@@ -62,14 +62,14 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister {
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
 		super.getSubItems(tab, items);
 		if (this.isInCreativeTab(tab)) {
-			for (FluidDefinition definition : Binnie.LIQUID.definitions.values()) {
-				if (!definition.canPlaceIn(this.container)) {
+			for (FluidType type : Binnie.LIQUID.fluids.values()) {
+				if (!type.canPlaceIn(this.container)) {
 					continue;
 				}
-				if (!definition.showInCreative(this.container)) {
+				if (!type.showInCreative(this.container)) {
 					continue;
 				}
-				items.add(getContainer(definition));
+				items.add(getContainer(type));
 			}
 		}
 	}
@@ -84,10 +84,10 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister {
 		return fluidHandler.drain(Integer.MAX_VALUE, false);
 	}
 
-	public ItemStack getContainer(FluidDefinition definition) {
+	public ItemStack getContainer(FluidType type) {
 		ItemStack itemStack = new ItemStack(this);
 		IFluidHandler fluidHandler = new FluidHandlerItemBinnie(itemStack, container);
-		FluidStack fluidStack = definition.get();
+		FluidStack fluidStack = type.get();
 		if(fluidStack == null){
 			return container.getEmpty();
 		}

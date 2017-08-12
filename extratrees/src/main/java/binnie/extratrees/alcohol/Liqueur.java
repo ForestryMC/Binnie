@@ -6,27 +6,27 @@ import net.minecraftforge.fluids.FluidStack;
 
 import binnie.core.Constants;
 import binnie.core.liquid.FluidContainerType;
-import binnie.core.liquid.FluidDefinition;
-import binnie.core.liquid.IFluidType;
+import binnie.core.liquid.FluidType;
+import binnie.core.liquid.IFluidDefinition;
 
-public enum Liqueur implements IFluidType, ICocktailLiquid {
-	Almond("Almond", 14966063, 0.3, 0.2),
-	Orange("Orange", 16353536, 0.4, 0.2),
-	Banana("Banana", 16302592, 0.5, 0.2),
-	Chocolate("Chocolate", 12667680, 0.3, 0.2),
-	Mint("Mint", 2737788, 0.4, 0.2),
-	Hazelnut("Hazelnut", 15570987, 0.3, 0.2),
-	Cinnamon("Cinnamon", 15028224, 0.3, 0.2),
-	Coffee("Coffee", 9847577, 0.4, 0.2),
-	Melon("Melon", 11584049, 0.4, 0.2),
-	Anise("Anise", 14344681, 0.3, 0.2),
-	Peach("Peach", 16684384, 0.4, 0.2),
-	Lemon("Lemon", 16311405, 0.4, 0.2),
-	Herbal("Herbal", 16700673, 0.3, 0.2),
-	Cherry("Cherry", 14096641, 0.5, 0.2),
-	Blackcurrant("Blackcurrant", 6962541, 0.5, 0.2),
-	Blackberry("Blackberry", 6837581, 0.5, 0.2),
-	Raspberry("Raspberry", 10158848, 0.5, 0.2);
+public enum Liqueur implements IFluidDefinition, ICocktailIngredientProvider {
+	Almond("Almond", 14966063, 0.3, 0.2F),
+	Orange("Orange", 16353536, 0.4, 0.2F),
+	Banana("Banana", 16302592, 0.5, 0.2F),
+	Chocolate("Chocolate", 12667680, 0.3, 0.2F),
+	Mint("Mint", 2737788, 0.4, 0.2F),
+	Hazelnut("Hazelnut", 15570987, 0.3, 0.2F),
+	Cinnamon("Cinnamon", 15028224, 0.3, 0.2F),
+	Coffee("Coffee", 9847577, 0.4, 0.2F),
+	Melon("Melon", 11584049, 0.4, 0.2F),
+	Anise("Anise", 14344681, 0.3, 0.2F),
+	Peach("Peach", 16684384, 0.4, 0.2F),
+	Lemon("Lemon", 16311405, 0.4, 0.2F),
+	Herbal("Herbal", 16700673, 0.3, 0.2F),
+	Cherry("Cherry", 14096641, 0.5, 0.2F),
+	Blackcurrant("Blackcurrant", 6962541, 0.5, 0.2F),
+	Blackberry("Blackberry", 6837581, 0.5, 0.2F),
+	Raspberry("Raspberry", 10158848, 0.5, 0.2F);
 
 	static {
 		Liqueur.Almond.addFlavour("cropAlmond");
@@ -49,18 +49,20 @@ public enum Liqueur implements IFluidType, ICocktailLiquid {
 	}
 
 	float abv;
-	final FluidDefinition definition;
+	final FluidType type;
+	final CocktailLiquid cocktailLiquid;
 
-	Liqueur(final String name, final int colour, final double transparency, final double abv) {
+	Liqueur(final String name, final int colour, final double transparency,float abv) {
 		this(name + " Liqueur", "liqueur." + name.toLowerCase(), colour, transparency, abv);
 	}
 
-	Liqueur(final String name, final String ident, final int color, final double transparency, final double abv) {
+	Liqueur(final String name, final String ident, final int color, final double transparency, float abv) {
 		this.abv = (float) abv;
-		definition = new FluidDefinition(ident, name, color)
+		type = new FluidType(ident, name, color)
 			.setTransparency(transparency)
 			.setTextures(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "blocks/liquids/liquid"))
 			.setShowHandler((type)->type == FluidContainerType.GLASS);
+		cocktailLiquid = new CocktailLiquid(type, abv);
 	}
 
 	private void addFlavour(final String oreDict) {
@@ -68,48 +70,21 @@ public enum Liqueur implements IFluidType, ICocktailLiquid {
 
 	@Override
 	public String toString() {
-		return definition.toString();
-	}
-
-	@Override
-	public String getDisplayName() {
-		return definition.getDisplayName();
+		return type.toString();
 	}
 
 	@Override
 	public FluidStack get(final int amount) {
-		return definition.get(amount);
+		return type.get(amount);
 	}
 
 	@Override
-	public int getColor() {
-		return definition.getColor();
+	public FluidType getType() {
+		return type;
 	}
 
 	@Override
-	public int getTransparency() {
-		return definition.getTransparency();
+	public ICocktailIngredient getIngredient() {
+		return cocktailLiquid;
 	}
-
-	@Override
-	public String getTooltip(final int ratio) {
-		return ratio + " Part" + ((ratio > 1) ? "s " : " ") + definition.getDisplayName();
-	}
-
-	@Override
-	public float getABV() {
-		return this.abv;
-	}
-
-	@Override
-	public String getIdentifier() {
-		return definition.getIdentifier();
-	}
-
-	@Override
-	public FluidDefinition getDefinition() {
-		return definition;
-	}
-
-
 }

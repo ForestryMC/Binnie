@@ -9,7 +9,7 @@ import net.minecraftforge.fluids.capability.templates.FluidHandlerItemStackSimpl
 public class FluidHandlerItemBinnie extends FluidHandlerItemStackSimple {
 	private final FluidContainerType containerType;
 
-	public FluidHandlerItemBinnie(ItemStack container, FluidContainerType containerType) {
+	FluidHandlerItemBinnie(ItemStack container, FluidContainerType containerType) {
 		super(container, Fluid.BUCKET_VOLUME);
 		this.containerType = containerType;
 	}
@@ -26,7 +26,7 @@ public class FluidHandlerItemBinnie extends FluidHandlerItemStackSimple {
 
 		if (fluid instanceof BinnieFluid) {
 			BinnieFluid binnieFluid = (BinnieFluid) fluid;
-			FluidDefinition definition = binnieFluid.getDefinition();
+			FluidType definition = binnieFluid.getDefinition();
 			return definition.canPlaceIn(containerType);
 		}
 		return false;

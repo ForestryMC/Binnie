@@ -6,19 +6,19 @@ import net.minecraftforge.fluids.FluidStack;
 
 import binnie.core.Constants;
 import binnie.core.liquid.FluidContainerType;
-import binnie.core.liquid.FluidDefinition;
-import binnie.core.liquid.ILiquidType;
+import binnie.core.liquid.FluidType;
+import binnie.core.liquid.ILiquidDefinition;
 
-public enum ExtraTreeLiquid implements ILiquidType {
+public enum ExtraTreeLiquid implements ILiquidDefinition {
 	Sap("Sap", "sap", 12481858),
 	Resin("Resin", "resin", 13199360),
 	Latex("Latex", "latex", 14212041),
 	Turpentine("Turpentine", "turpentine", 7951162);
 
-	FluidDefinition definition;
+	FluidType type;
 
 	ExtraTreeLiquid(final String name, final String ident, final int color) {
-		definition = new FluidDefinition(ident, name, color)
+		type = new FluidType(ident, name, color)
 			.setShowHandler((type)->type == FluidContainerType.CAN || type == FluidContainerType.CAPSULE)
 			.setTransparency(255)
 			.setTextures(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "blocks/liquids/" + ident));
@@ -26,11 +26,11 @@ public enum ExtraTreeLiquid implements ILiquidType {
 
 	@Override
 	public FluidStack get(final int amount) {
-		return definition.get(amount);
+		return type.get(amount);
 	}
 
 	@Override
-	public FluidDefinition getDefinition() {
-		return definition;
+	public FluidType getType() {
+		return type;
 	}
 }

@@ -9,33 +9,35 @@ import binnie.core.Binnie;
 import binnie.core.Constants;
 import binnie.core.util.I18N;
 
-public class FluidDefinition {
-	public ResourceLocation textureFlowing;
-	public ResourceLocation textureStill;
-	public int color;
-	public int containerColor;
-	public int transparency;
-	public String unlocalizedName;
-	public String identifier;
-	public ContainerShowHandler showHandler = (t)->true;
-	public ContainerPlaceHandler placeHandler = (t)->true;
+public class FluidType {
+	private ResourceLocation textureFlowing;
+	private ResourceLocation textureStill;
+	private int color;
+	private int containerColor;
+	private int transparency;
+	private String unlocalizedName;
+	private final String identifier;
+	private ContainerShowHandler showHandler = (t)->true;
+	private ContainerPlaceHandler placeHandler = (t)->true;
 
-	public FluidDefinition(String identifier, String unlocalizedName, int color) {
+	public FluidType(String identifier, String unlocalizedName, int color) {
 		this.identifier = "binnie." + identifier;
 		this.unlocalizedName = unlocalizedName;
 		this.color = color;
 		this.containerColor = color;
-		setTextures(new ResourceLocation(Constants.CORE_MOD_ID, "blocks/liquids/blank"));
+		ResourceLocation texture = new ResourceLocation(Constants.CORE_MOD_ID, "blocks/liquids/blank");
+		this.textureFlowing = texture;
+		this.textureStill = texture;
 	}
 
 	/* TEXTURES */
-	public FluidDefinition setTextures(ResourceLocation texture) {
+	public FluidType setTextures(ResourceLocation texture) {
 		this.textureFlowing = texture;
 		this.textureStill = texture;
 		return this;
 	}
 
-	public FluidDefinition setTextureFlowing(ResourceLocation textureFlowing) {
+	public FluidType setTextureFlowing(ResourceLocation textureFlowing) {
 		this.textureFlowing = textureFlowing;
 		return this;
 	}
@@ -44,7 +46,7 @@ public class FluidDefinition {
 		return textureFlowing;
 	}
 
-	public FluidDefinition setTextureStill(ResourceLocation textureStill) {
+	public FluidType setTextureStill(ResourceLocation textureStill) {
 		this.textureStill = textureStill;
 		return this;
 	}
@@ -58,13 +60,8 @@ public class FluidDefinition {
 		return I18N.localise(unlocalizedName);
 	}
 
-	public FluidDefinition setUnlocalizedName(String unlocalizedName) {
+	public FluidType setUnlocalizedName(String unlocalizedName) {
 		this.unlocalizedName = unlocalizedName;
-		return this;
-	}
-
-	public FluidDefinition setIdentifier(String identifier) {
-		this.identifier = identifier;
 		return this;
 	}
 
@@ -86,7 +83,7 @@ public class FluidDefinition {
 	}
 
 	/* COLORS */
-	public FluidDefinition setColor(int color) {
+	public FluidType setColor(int color) {
 		this.color = color;
 		return this;
 	}
@@ -95,7 +92,7 @@ public class FluidDefinition {
 		return color;
 	}
 
-	public FluidDefinition setContainerColor(int containerColor) {
+	public FluidType setContainerColor(int containerColor) {
 		this.containerColor = containerColor;
 		return this;
 	}
@@ -104,12 +101,12 @@ public class FluidDefinition {
 		return containerColor;
 	}
 
-	public FluidDefinition setTransparency(double transparency) {
+	public FluidType setTransparency(double transparency) {
 		this.transparency = (int)(Math.min(1.0, transparency + 0.3) * 255.0);
 		return this;
 	}
 
-	public FluidDefinition setTransparency(int transparency) {
+	public FluidType setTransparency(int transparency) {
 		this.transparency = transparency;
 		return this;
 	}
@@ -119,12 +116,12 @@ public class FluidDefinition {
 	}
 
 	/* HANDLERS*/
-	public FluidDefinition setPlaceHandler(ContainerPlaceHandler placeHandler) {
+	public FluidType setPlaceHandler(ContainerPlaceHandler placeHandler) {
 		this.placeHandler = placeHandler;
 		return this;
 	}
 
-	public FluidDefinition setShowHandler(ContainerShowHandler showHandler) {
+	public FluidType setShowHandler(ContainerShowHandler showHandler) {
 		this.showHandler = showHandler;
 		return this;
 	}
@@ -137,15 +134,15 @@ public class FluidDefinition {
 		return showHandler.showInCreative(type);
 	}
 
-	public static interface ContainerShowHandler{
+	public interface ContainerShowHandler{
 		boolean showInCreative(FluidContainerType type);
 	}
 
-	public static interface ContainerPlaceHandler{
+	public interface ContainerPlaceHandler{
 		boolean canPlaceIn(FluidContainerType type);
 	}
 
-	public FluidDefinition getDefinition() {
+	public FluidType getDefinition() {
 		return this;
 	}
 }

@@ -3,7 +3,7 @@ package binnie.core.liquid;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 
-public interface IFluidType {
+public interface IFluidDefinition {
 
 	FluidStack get(int amount);
 
@@ -11,5 +11,5 @@ public interface IFluidType {
 		return get(Fluid.BUCKET_VOLUME);
 	}
 
-	FluidDefinition getDefinition();
+	FluidType getType();
 }
