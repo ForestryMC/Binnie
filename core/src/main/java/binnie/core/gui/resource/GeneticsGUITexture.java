@@ -1,6 +1,6 @@
 package binnie.core.gui.resource;
 
 public enum GeneticsGUITexture {
-	Chromosome,
-	Chromosome2
+	CHROMOSOME,
+	CHROMOSOME_OVERLAY
 }

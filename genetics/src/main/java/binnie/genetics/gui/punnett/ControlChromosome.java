@@ -1,7 +1,7 @@
 package binnie.genetics.gui.punnett;
 
-import binnie.core.gui.resource.GeneticsGUITexture;
 import net.minecraft.client.util.ITooltipFlag;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -15,6 +15,7 @@ import binnie.core.gui.Tooltip;
 import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.controls.core.IControlValue;
 import binnie.core.gui.renderer.RenderUtil;
+import binnie.core.gui.resource.GeneticsGUITexture;
 
 public class ControlChromosome extends Control implements IControlValue<IChromosomeType>, ITooltip {
 	private IChromosomeType value;
@@ -38,9 +39,9 @@ public class ControlChromosome extends Control implements IControlValue<IChromos
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		CraftGUI.RENDER.texture(GeneticsGUITexture.Chromosome, getArea());
+		CraftGUI.RENDER.texture(GeneticsGUITexture.CHROMOSOME, getArea());
 		RenderUtil.setColour(16711680);
-		CraftGUI.RENDER.texture(GeneticsGUITexture.Chromosome2, getArea());
+		CraftGUI.RENDER.texture(GeneticsGUITexture.CHROMOSOME_OVERLAY, getArea());
 	}
 
 	@Override

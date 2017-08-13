@@ -59,8 +59,7 @@ public class CraftGUIResourceManager implements IResourceManagerReloadListener {
 		this.textureSheets.clear();
 		try {
 			IResource res = manager.getResource(SHEET_LOCATION);
-			BufferedReader bufferedreader = null;
-			bufferedreader = new BufferedReader(new InputStreamReader(res.getInputStream(), Charsets.UTF_8));
+			BufferedReader bufferedreader = new BufferedReader(new InputStreamReader(res.getInputStream(), Charsets.UTF_8));
 
 			JsonParser jsonParser = new JsonParser();
 			JsonObject jsonObject = jsonParser.parse(bufferedreader).getAsJsonObject();

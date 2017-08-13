@@ -1,0 +1,47 @@
+{
+    "name": "punnett",
+    "author": "Binnie",
+    
+    "texture-sheets": [
+        {
+            "name": "punnett",
+            "modid": "binniecore",
+            "path": "punnett.png"
+        }
+    ],
+    
+    "textures": [
+        {
+            "name": "window",
+            "sheet": "punnett",
+            "uv": [0, 0, 160, 160],
+            "padding": [32]
+        },
+        {
+            "name": "slot",
+            "sheet": "punnett",
+            "uv": [160, 0, 18, 18]
+        },
+        {
+            "name": "chromosome",
+            "sheet": "punnett",
+            "uv": [160, 36, 16, 16]
+        },
+        {
+            "name": "chromosome_overlay",
+            "sheet": "punnett",
+            "uv": [160, 52, 16, 16]
+        },
+        {
+            "name": "button.help",
+            "sheet": "punnett",
+            "uv": [178, 0, 16, 16]
+        },
+        {
+            "name": "button.info",
+            "sheet": "punnett",
+            "uv": [178, 16, 16, 16]
+        }
+    ]
+    
+}

@@ -2,7 +2,6 @@ package binnie.genetics.gui.punnett;
 
 import javax.annotation.Nullable;
 
-import binnie.core.gui.resource.GeneticsGUITexture;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 
@@ -11,11 +10,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import forestry.api.genetics.ISpeciesRoot;
 
-import binnie.core.Binnie;
 import binnie.core.AbstractMod;
+import binnie.core.Binnie;
 import binnie.core.gui.CraftGUI;
 import binnie.core.gui.minecraft.Window;
 import binnie.core.gui.minecraft.control.ControlSlot;
+import binnie.core.gui.resource.GeneticsGUITexture;
 import binnie.core.gui.resource.StyleSheet;
 import binnie.core.gui.resource.minecraft.CraftGUITexture;
 import binnie.core.gui.resource.minecraft.PaddedTexture;
@@ -64,8 +64,8 @@ public class WindowPunnettSquare extends Window {
 		public StyleSheetPunnett() {
 			textures.put(CraftGUITexture.WINDOW, new PaddedTexture(0, 0, 160, 160, 0, texture, 32, 32, 32, 32));
 			textures.put(CraftGUITexture.SLOT, new StandardTexture(160, 0, 18, 18, 0, texture));
-			textures.put(GeneticsGUITexture.Chromosome, new StandardTexture(160, 36, 16, 16, 0, texture));
-			textures.put(GeneticsGUITexture.Chromosome2, new StandardTexture(160, 52, 16, 16, 0, texture));
+			textures.put(GeneticsGUITexture.CHROMOSOME, new StandardTexture(160, 36, 16, 16, 0, texture));
+			textures.put(GeneticsGUITexture.CHROMOSOME_OVERLAY, new StandardTexture(160, 52, 16, 16, 0, texture));
 		}
 	}
 
@@ -79,7 +79,7 @@ public class WindowPunnettSquare extends Window {
 		@SideOnly(Side.CLIENT)
 		public BinnieResource getTexture() {
 			if (resource == null) {
-				resource = Binnie.RESOURCE.getPNG("genetics", ResourceType.GUI, "punnett");
+				resource = Binnie.RESOURCE.getPNG("binniecore", ResourceType.GUI, "punnett");
 			}
 			return resource;
 		}
