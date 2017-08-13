@@ -30,12 +30,12 @@ public class DesignBlock {
 		{3, 2, 0, 1, 4, 5, 6},
 		{0, 1, 2, 3, 4, 5, 6},
 	};
-	IDesign design;
-	IDesignMaterial primaryMaterial;
-	IDesignMaterial secondaryMaterial;
-	int rotation;
-	EnumFacing facing;
-	boolean panel;
+	private IDesign design;
+	private IDesignMaterial primaryMaterial;
+	private IDesignMaterial secondaryMaterial;
+	private int rotation;
+	private EnumFacing facing;
+	private boolean panel;
 
 	public DesignBlock(final IDesignSystem system, @Nullable final IDesignMaterial primaryWood, @Nullable final IDesignMaterial secondaryWood, @Nullable final IDesign design, final int rotation, @Nullable final EnumFacing dir) {
 		this.panel = false;

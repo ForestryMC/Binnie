@@ -6,7 +6,7 @@ import java.util.List;
 
 import net.minecraft.item.ItemStack;
 
-import binnie.extratrees.wood.IPlankType;
+import binnie.extratrees.wood.planks.IPlankType;
 import binnie.extratrees.wood.WoodManager;
 import binnie.extratrees.blocks.decor.FenceDescription;
 import binnie.extratrees.blocks.decor.FenceType;

@@ -68,6 +68,7 @@ import binnie.core.modules.ExtraTreesModuleUIDs;
 import binnie.core.modules.Module;
 import binnie.core.util.RecipeUtil;
 import binnie.extratrees.ExtraTrees;
+import binnie.extratrees.api.CarpentryManager;
 import binnie.extratrees.blocks.BlockETDecorativeLeaves;
 import binnie.extratrees.blocks.BlockETDefaultLeaves;
 import binnie.extratrees.blocks.decor.BlockMultiFence;
@@ -94,8 +95,11 @@ import binnie.extratrees.items.ExtraTreeLiquid;
 import binnie.extratrees.items.ItemBlockETDecorativeLeaves;
 import binnie.extratrees.wood.EnumETLog;
 import binnie.extratrees.wood.EnumShrubLog;
-import binnie.extratrees.wood.IPlankType;
-import binnie.extratrees.wood.PlankType;
+import binnie.extratrees.wood.WoodManager;
+import binnie.extratrees.wood.planks.ExtraTreePlanks;
+import binnie.extratrees.wood.planks.ForestryPlanks;
+import binnie.extratrees.wood.planks.IPlankType;
+import binnie.extratrees.wood.planks.VanillaPlanks;
 
 @BinnieModule(moduleID = ExtraTreesModuleUIDs.WOOD, moduleContainerID = Constants.EXTRA_TREES_MOD_ID, name = "Wood", unlocalizedDescription = "extratrees.module.wood")
 public class ModuleWood extends Module {
@@ -141,7 +145,7 @@ public class ModuleWood extends Module {
 	public void preInit() {
 		MinecraftForge.EVENT_BUS.register(this);
 		WoodAccess woodAccess = WoodAccess.getInstance();
-		PlankType.setup();
+		registerPlanks();
 		
 		logs = BlockETLog.create(false);
 		logsFireproof = BlockETLog.create(true);
@@ -250,7 +254,7 @@ public class ModuleWood extends Module {
 
 		fenceGates = new ArrayList<>();
 		fenceGatesFireproof = new ArrayList<>();
-		for (PlankType.ExtraTreePlanks plankType : PlankType.ExtraTreePlanks.VALUES) {
+		for (ExtraTreePlanks plankType : ExtraTreePlanks.VALUES) {
 			EnumETLog woodType = plankType.getWoodType();
 			BlockForestryFenceGate<EnumETLog> fenceGate = new BlockForestryFenceGate<>(false, woodType);
 			String name = "fence.gates." + woodType;
@@ -327,7 +331,22 @@ public class ModuleWood extends Module {
 		treeBreedingSystem = new TreeBreedingSystem();
 		Binnie.GENETICS.registerBreedingSystem(treeBreedingSystem);
 	}
-	
+
+	public static void registerPlanks() {
+		for (VanillaPlanks plank : VanillaPlanks.values()) {
+			CarpentryManager.carpentryInterface.registerCarpentryWood(plank.ordinal(), plank);
+		}
+		for (ExtraTreePlanks plank : ExtraTreePlanks.values()) {
+			CarpentryManager.carpentryInterface.registerCarpentryWood(plank.ordinal() + 32, plank);
+		}
+		for (ForestryPlanks plank : ForestryPlanks.values()) {
+			CarpentryManager.carpentryInterface.registerCarpentryWood(plank.ordinal() + 128, plank);
+		}
+		/*for (ExtraBiomesPlank plank : ExtraBiomesPlank.values()) {
+			CarpentryManager.carpentryInterface.registerCarpentryWood(plank.ordinal() + 192, plank);
+		}*/
+	}
+
 	private void registerDoors(WoodAccess woodAccess, List<BlockETDoor> blocks) {
 		for (BlockETDoor block : blocks) {
 			registerWithoutVariants(woodAccess, block, WoodBlockKind.DOOR);
@@ -390,7 +409,7 @@ public class ModuleWood extends Module {
 			}
 		}
 		
-		for (PlankType.ExtraTreePlanks plankType : PlankType.ExtraTreePlanks.VALUES) {
+		for (ExtraTreePlanks plankType : ExtraTreePlanks.VALUES) {
 			for (boolean fireproof : new boolean[]{false, true}) {
 				ItemStack planks = woodAccess.getStack(plankType.getWoodType(), WoodBlockKind.PLANKS, fireproof);
 				ItemStack slabs = woodAccess.getStack(plankType.getWoodType(), WoodBlockKind.SLAB, fireproof);
@@ -475,13 +494,7 @@ public class ModuleWood extends Module {
 			sprite.registerSprites();
 		}
 		TextureMap map = Minecraft.getMinecraft().getTextureMapBlocks();
-		for (IPlankType type : PlankType.ExtraTreePlanks.VALUES) {
-			type.registerSprites(map);
-		}
-		for (IPlankType type : PlankType.ForestryPlanks.values()) {
-			type.registerSprites(map);
-		}
-		for (IPlankType type : PlankType.VanillaPlanks.values()) {
+		for (IPlankType type : WoodManager.getAllPlankTypes()) {
 			type.registerSprites(map);
 		}
 	}
@@ -497,7 +510,7 @@ public class ModuleWood extends Module {
 	public static void speciesRegister(AlleleSpeciesRegisterEvent event) {
 		if (event.getRoot() instanceof ITreeRoot) {
 			ETTreeDefinition.preInitTrees();
-			PlankType.ExtraTreePlanks.initWoodTypes();
+			ExtraTreePlanks.initWoodTypes();
 		} else if (event.getRoot() instanceof IButterflyRoot && BinnieCore.isLepidopteryActive()) {
 			ButterflySpecies.preInit();
 		}

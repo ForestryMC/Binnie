@@ -4,19 +4,19 @@ import javax.annotation.Nullable;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import binnie.botany.api.genetics.EnumFlowerColor;
-import binnie.core.Constants;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 
-
-import binnie.core.api.block.TileEntityMetadata;
-import binnie.extratrees.api.IDesignMaterial;
 import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 
+import binnie.botany.api.genetics.EnumFlowerColor;
+import binnie.core.Constants;
+import binnie.core.api.block.TileEntityMetadata;
+import binnie.extratrees.api.IDesignMaterial;
+
 public class GlassType implements IDesignMaterial {
-	static Map<Integer, GlassType> types;
+	private static Map<Integer, GlassType> types;
 
 	@ObjectHolder(Constants.BOTANY_MOD_ID)
 	public static final class Botany {

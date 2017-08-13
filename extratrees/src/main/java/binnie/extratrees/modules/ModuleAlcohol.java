@@ -24,23 +24,23 @@ import binnie.core.liquid.IFluidDefinition;
 import binnie.core.modules.BinnieModule;
 import binnie.core.modules.ExtraTreesModuleUIDs;
 import binnie.core.modules.Module;
-import binnie.core.resource.BinnieSprite;
 import binnie.core.util.OreDictionaryUtil;
 import binnie.extratrees.ExtraTrees;
-import binnie.extratrees.liquid.Alcohol;
-import binnie.extratrees.liquid.Cocktail;
 import binnie.extratrees.alcohol.GlasswareType;
-import binnie.extratrees.liquid.Juice;
-import binnie.extratrees.liquid.Liqueur;
-import binnie.extratrees.liquid.Spirit;
+import binnie.extratrees.alcohol.ICocktailIngredientProvider;
 import binnie.extratrees.alcohol.drink.DrinkLiquid;
-import binnie.extratrees.items.ItemDrink;
 import binnie.extratrees.api.recipes.ExtraTreesRecipeManager;
 import binnie.extratrees.api.recipes.IBreweryManager;
 import binnie.extratrees.api.recipes.IDistilleryManager;
 import binnie.extratrees.api.recipes.IFruitPressManager;
 import binnie.extratrees.items.ExtraTreeItems;
 import binnie.extratrees.items.Food;
+import binnie.extratrees.items.ItemDrink;
+import binnie.extratrees.liquid.Alcohol;
+import binnie.extratrees.liquid.Cocktail;
+import binnie.extratrees.liquid.Juice;
+import binnie.extratrees.liquid.Liqueur;
+import binnie.extratrees.liquid.Spirit;
 import binnie.extratrees.machines.distillery.DistilleryLogic;
 
 @BinnieModule(moduleID = ExtraTreesModuleUIDs.ALCOHOL, moduleContainerID = Constants.EXTRA_TREES_MOD_ID, name = "Alcohol", unlocalizedDescription = "extratrees.module.alcohol")
@@ -49,8 +49,6 @@ public class ModuleAlcohol extends Module {
 	public static ItemDrink drink;
 	@Nullable
 	public static Block blockDrink;
-	@Nullable
-	public static BinnieSprite liquid;
 
 	@Override
 	public void registerItemsAndBlocks() {
@@ -60,47 +58,32 @@ public class ModuleAlcohol extends Module {
 
 	@Override
 	public void preInit() {
-		liquid = Binnie.RESOURCE.getBlockSprite(ExtraTrees.instance, "liquids/liquid");
 		//ModuleAlcohol.drinkRendererID = BinnieCore.proxy.getUniqueRenderID();
 		//BinnieCore.proxy.registerCustomItemRenderer(ExtraTrees.drink, new CocktailRenderer());
-		Binnie.LIQUID.createLiquids(Juice.values());
-		Binnie.LIQUID.createLiquids(Alcohol.values());
-		Binnie.LIQUID.createLiquids(Spirit.values());
-		Binnie.LIQUID.createLiquids(Liqueur.values());
-		for (final Juice juice : Juice.values()) {
-			Cocktail.registerIngredient(juice);
-		}
-		for (final Alcohol juice2 : Alcohol.values()) {
-			Cocktail.registerIngredient(juice2);
-		}
-		for (final Spirit juice3 : Spirit.values()) {
-			Cocktail.registerIngredient(juice3);
-		}
-		for (final Liqueur juice4 : Liqueur.values()) {
-			Cocktail.registerIngredient(juice4);
-		}
+		registerLiquids(Juice.values());
+		registerLiquids(Alcohol.values());
+		registerLiquids(Spirit.values());
+		registerLiquids(Liqueur.values());
 		DrinkManager.registerDrinkLiquid(new DrinkLiquid("Water", 13421823, 0.1f, 0.0f, "water"));
-	}
-
-	@Override
-	public void init() {
 	}
 
 	@Override
 	public void postInit() {
 		IBreweryManager breweryManager = ExtraTreesRecipeManager.breweryManager;
 		IFruitPressManager fruitPressManager = ExtraTreesRecipeManager.fruitPressManager;
+
+		ItemStack wax = Mods.Forestry.stack("beeswax");
+		ItemStack waxCast = Mods.Forestry.stackWildcard("wax_cast");
+		for (GlasswareType glasswareType : GlasswareType.values()) {
+			ItemStack result = drink.getStack(glasswareType, null, 8);
+			Object[] recipe = glasswareType.getRecipePattern(wax.getItem());
+			RecipeManagers.fabricatorManager.addRecipe(waxCast, Fluids.GLASS.getFluid(glasswareType.getRecipeGlassCost()), result, recipe);
+		}
+
 		if(fruitPressManager != null) {
-			ItemStack wax = Mods.Forestry.stack("beeswax");
-			ItemStack waxCast = Mods.Forestry.stackWildcard("wax_cast");
-			for (GlasswareType glasswareType : GlasswareType.values()) {
-				ItemStack result = drink.getStack(glasswareType, null, 8);
-				Object[] recipe = glasswareType.getRecipePattern(wax.getItem());
-				RecipeManagers.fabricatorManager.addRecipe(waxCast, Fluids.GLASS.getFluid(glasswareType.getRecipeGlassCost()), result, recipe);
-			}
-			for (final Juice juice : Juice.values()) {
-				final String oreDict = juice.squeezing;
-				final List<ItemStack> ores = new ArrayList<>();
+			for (Juice juice : Juice.values()) {
+				String oreDict = juice.squeezing;
+				List<ItemStack> ores = new ArrayList<>();
 				ores.addAll(OreDictionary.getOres(oreDict));
 				for (final Food food : Food.values()) {
 					if (food.getOres().contains(oreDict)) {
@@ -187,7 +170,12 @@ public class ModuleAlcohol extends Module {
 
 		distilleryManager.addRecipe(singleDistilled.get(inAmount), doubleDistilled.get(outAmount2), 0);
 		distilleryManager.addRecipe(singleDistilled.get(inAmount), tripleDistilled.get(outAmount3), 1);
-
 		distilleryManager.addRecipe(doubleDistilled.get(inAmount), tripleDistilled.get(outAmount2), 0);
+	}
+
+
+	private <L extends IFluidDefinition & ICocktailIngredientProvider> void registerLiquids(L[] liquids){
+		Binnie.LIQUID.createLiquids(liquids);
+		Cocktail.registerIngredients(liquids);
 	}
 }

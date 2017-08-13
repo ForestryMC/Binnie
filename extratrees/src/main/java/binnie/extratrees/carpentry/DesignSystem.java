@@ -4,8 +4,6 @@ import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
-import binnie.extratrees.api.carpentry.DesignerManager;
-import binnie.extratrees.api.carpentry.EnumPattern;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
@@ -21,8 +19,10 @@ import binnie.extratrees.api.CarpentryManager;
 import binnie.extratrees.api.IDesignMaterial;
 import binnie.extratrees.api.IDesignSystem;
 import binnie.extratrees.api.IPattern;
-import binnie.extratrees.wood.PlankType;
+import binnie.extratrees.api.carpentry.DesignerManager;
+import binnie.extratrees.api.carpentry.EnumPattern;
 import binnie.extratrees.items.ExtraTreeItems;
+import binnie.extratrees.wood.planks.ExtraTreePlanks;
 
 public enum DesignSystem implements IDesignSystem {
 	Wood,
@@ -44,7 +44,7 @@ public enum DesignSystem implements IDesignSystem {
 				return GlassType.get(0);
 			}
 			case Wood: {
-				return PlankType.ExtraTreePlanks.Fir;
+				return ExtraTreePlanks.Fir;
 			}
 			default: {
 				throw new IllegalStateException("Unknown design system: " + this);
@@ -59,7 +59,7 @@ public enum DesignSystem implements IDesignSystem {
 				return GlassType.get(1);
 			}
 			case Wood: {
-				return PlankType.ExtraTreePlanks.Whitebeam;
+				return ExtraTreePlanks.Whitebeam;
 			}
 			default: {
 				throw new IllegalStateException("Unknown design system: " + this);

@@ -5,8 +5,14 @@ public interface ICocktailIngredient {
 
 	String getIdentifier();
 
+	/**
+	 * @return The color of the ingredient.
+	 */
 	int getColor();
 
+	/**
+	 * @return The transparency of the ingredient.
+	 */
 	int getTransparency();
 
 	String getTooltip(int ratio);

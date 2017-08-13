@@ -25,6 +25,10 @@ import binnie.extratrees.api.IDesignMaterial;
 import binnie.extratrees.blocks.decor.FenceDescription;
 import binnie.extratrees.blocks.decor.FenceType;
 import binnie.extratrees.modules.ModuleWood;
+import binnie.extratrees.wood.planks.ExtraTreePlanks;
+import binnie.extratrees.wood.planks.ForestryPlanks;
+import binnie.extratrees.wood.planks.IPlankType;
+import binnie.extratrees.wood.planks.VanillaPlanks;
 
 public class WoodManager {
 	private static List<IPlankType> PLANK_TYPES;
@@ -61,7 +65,7 @@ public class WoodManager {
 		if (wood instanceof IPlankType) {
 			return (IPlankType) wood;
 		}
-		return PlankType.ExtraTreePlanks.Fir;
+		return ExtraTreePlanks.Fir;
 	}
 
 	public static int getPlankTypeIndex(final IPlankType type) {
@@ -101,24 +105,24 @@ public class WoodManager {
 	}
 
 	public static ItemStack getGate(final IPlankType plank) {
-		if (plank == PlankType.VanillaPlanks.OAK) {
+		if (plank == VanillaPlanks.OAK) {
 			return new ItemStack(Blocks.OAK_FENCE_GATE);
 		}
 		return TreeManager.woodAccess.getStack(plank.getWoodType(), WoodBlockKind.FENCE_GATE, false);
 	}
 	
 	public static ItemStack getDoor(final IPlankType plank) {
-		if (plank == PlankType.VanillaPlanks.OAK) {
+		if (plank == VanillaPlanks.OAK) {
 			return new ItemStack(Items.OAK_DOOR);
-		}else if (plank == PlankType.VanillaPlanks.BIRCH) {
+		}else if (plank == VanillaPlanks.BIRCH) {
 			return new ItemStack(Items.BIRCH_DOOR);
-		}else if (plank == PlankType.VanillaPlanks.SPRUCE) {
+		}else if (plank == VanillaPlanks.SPRUCE) {
 			return new ItemStack(Items.SPRUCE_DOOR);
-		} else if (plank == PlankType.VanillaPlanks.BIG_OAK) {
+		} else if (plank == VanillaPlanks.BIG_OAK) {
 			return new ItemStack(Items.DARK_OAK_DOOR);
-		} else if (plank == PlankType.VanillaPlanks.JUNGLE) {
+		} else if (plank == VanillaPlanks.JUNGLE) {
 			return new ItemStack(Items.JUNGLE_DOOR);
-		} else if (plank == PlankType.VanillaPlanks.ACACIA) {
+		} else if (plank == VanillaPlanks.ACACIA) {
 			return new ItemStack(Items.ACACIA_DOOR);
 		}
 		return TreeManager.woodAccess.getStack(plank.getWoodType(), WoodBlockKind.DOOR, false);
@@ -146,11 +150,11 @@ public class WoodManager {
 	public static List<IPlankType> getAllPlankTypes() {
 		if(PLANK_TYPES == null){
 			PLANK_TYPES = new ArrayList<>();
-			Collections.addAll(PLANK_TYPES, PlankType.ExtraTreePlanks.VALUES);
-			Collections.addAll(PLANK_TYPES, PlankType.ForestryPlanks.values());
-			Collections.addAll(PLANK_TYPES, PlankType.VanillaPlanks.values());
+			Collections.addAll(PLANK_TYPES, ExtraTreePlanks.VALUES);
+			Collections.addAll(PLANK_TYPES, ForestryPlanks.values());
+			Collections.addAll(PLANK_TYPES, VanillaPlanks.values());
 			//TODO: extrabiomes 1.12
-			/*for (final IPlankType type : PlankType.ExtraBiomesPlank.values()) {
+			/*for (final IPlankType type : ExtraBiomesPlank.values()) {
 				if (type.getStack() != null) {
 					list.add(type);
 				}

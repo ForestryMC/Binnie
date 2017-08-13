@@ -2,6 +2,7 @@ package binnie.core.liquid;
 
 import net.minecraftforge.fluids.FluidStack;
 
+//ToDo: Why is this in the core mod and not in extra trees ?
 public interface IDrinkLiquid {
 	boolean isConsumable();
 

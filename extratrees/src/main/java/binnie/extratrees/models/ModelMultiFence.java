@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockFence;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.IBakedModel;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -177,9 +178,11 @@ public class ModelMultiFence extends ModelBlockCached<BlockMultiFence, ModelMult
 		float maxPostPos = 0.5f + POST_WIDGTH / 2.0f;
 		int meta = key.meta;
 		FenceType fenceType = key.type;
+		TextureAtlasSprite primarySprite =  block.getSprite(meta, false);
+		TextureAtlasSprite secondarySprite =  block.getSprite(meta, true);
 
 		modelBaker.setModelBounds(new AxisAlignedBB(minPostPos, 0.0, minPostPos, maxPostPos, POST_HEIGHT, maxPostPos));
-		modelBaker.addBlockModel(null, block.getSprite(meta, false), 0);
+		modelBaker.addBlockModel(null, primarySprite, 0);
 
 		boolean connectNegX = key.west;
 		boolean connectPosX = key.east;
@@ -214,11 +217,11 @@ public class ModelMultiFence extends ModelBlockCached<BlockMultiFence, ModelMult
 		float totalMaxY = barMaxY;
 		if (connectAnyX) {
 			modelBaker.setModelBounds(new AxisAlignedBB(minX, barMinY, minPostPos, maxX, barMaxY, maxPostPos));
-			modelBaker.addBlockModel(null, block.getSprite(meta, true), 0);
+			modelBaker.addBlockModel(null, secondarySprite, 0);
 		}
 		if (connectAnyZ) {
 			modelBaker.setModelBounds(new AxisAlignedBB(minPostPos, barMinY, minZ, maxPostPos, barMaxY, maxZ));
-			modelBaker.addBlockModel(null, block.getSprite(meta, true), 0);
+			modelBaker.addBlockModel(null, secondarySprite, 0);
 		}
 		if (renderBottom) {
 			barMinY -= 6.0f * SCALE;
@@ -228,11 +231,11 @@ public class ModelMultiFence extends ModelBlockCached<BlockMultiFence, ModelMult
 			}
 			if (connectAnyX) {
 				modelBaker.setModelBounds(new AxisAlignedBB(minX, barMinY, minPostPos, maxX, barMaxY, maxPostPos));
-				modelBaker.addBlockModel(null, block.getSprite(meta, true), 0);
+				modelBaker.addBlockModel(null, secondarySprite, 0);
 			}
 			if (connectAnyZ) {
 				modelBaker.setModelBounds(new AxisAlignedBB(minPostPos, barMinY, minZ, maxPostPos, barMaxY, maxZ));
-				modelBaker.addBlockModel(null, block.getSprite(meta, true), 0);
+				modelBaker.addBlockModel(null, secondarySprite, 0);
 			}
 
 			if (fenceType.size == 1) {
@@ -241,11 +244,11 @@ public class ModelMultiFence extends ModelBlockCached<BlockMultiFence, ModelMult
 				barMaxY += SCALE;
 				if (connectAnyX) {
 					modelBaker.setModelBounds(new AxisAlignedBB(minX, barMinY, minPostPos, maxX, barMaxY, maxPostPos));
-					modelBaker.addBlockModel(null, block.getSprite(meta, true), 0);
+					modelBaker.addBlockModel(null, secondarySprite, 0);
 				}
 				if (connectAnyZ) {
 					modelBaker.setModelBounds(new AxisAlignedBB(minPostPos, barMinY, minZ, maxPostPos, barMaxY, maxZ));
-					modelBaker.addBlockModel(null, block.getSprite(meta, true), 0);
+					modelBaker.addBlockModel(null, secondarySprite, 0);
 				}
 			}
 		}
@@ -267,14 +270,14 @@ public class ModelMultiFence extends ModelBlockCached<BlockMultiFence, ModelMult
 			}
 			if (connectAnyX) {
 				modelBaker.setModelBounds(new AxisAlignedBB(minX, minY, minPostPos, maxX, maxY, maxPostPos));
-				modelBaker.addBlockModel(null, block.getSprite(meta, false), 0);
+				modelBaker.addBlockModel(null, primarySprite, 0);
 			}
 			if (connectAnyZ) {
 				modelBaker.setModelBounds(new AxisAlignedBB(minPostPos, minY, minZ, maxPostPos, maxY, maxZ));
-				modelBaker.addBlockModel(null, block.getSprite(meta, false), 0);
+				modelBaker.addBlockModel(null, primarySprite, 0);
 			}
 		}
-		modelBaker.setParticleSprite(block.getSprite(meta, false));
+		modelBaker.setParticleSprite(primarySprite);
 	}
 
 	public static class Key {

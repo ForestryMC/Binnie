@@ -1,4 +1,4 @@
-package binnie.extratrees.wood;
+package binnie.extratrees.wood.planks;
 
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
@@ -11,8 +11,6 @@ import forestry.api.arboriculture.IWoodType;
 import binnie.extratrees.api.IDesignMaterial;
 
 public interface IPlankType extends IDesignMaterial {
-	String getPlankTextureName();
-
 	String getDescription();
 
 	IWoodType getWoodType();

@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 
 import net.minecraftforge.common.ForgeHooks;
 
-import binnie.extratrees.wood.IPlankType;
+import binnie.extratrees.wood.planks.IPlankType;
 import binnie.extratrees.wood.WoodManager;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 

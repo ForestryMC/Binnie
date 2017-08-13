@@ -276,13 +276,13 @@ public enum EnumDesign implements IDesign {
 		EnumDesign.OverlappedBarred.setTopPattern(EnumPattern.OverlappedBarred.layout());
 	}
 
-	String name;
-	ILayout topPattern;
-	ILayout bottomPattern;
-	ILayout northPattern;
-	ILayout southPattern;
-	ILayout eastPattern;
-	ILayout westPattern;
+	private String name;
+	private ILayout topPattern;
+	private ILayout bottomPattern;
+	private ILayout northPattern;
+	private ILayout southPattern;
+	private ILayout eastPattern;
+	private ILayout westPattern;
 
 	EnumDesign(final String name) {
 		this.topPattern = Layout.get(EnumPattern.Blank, false);

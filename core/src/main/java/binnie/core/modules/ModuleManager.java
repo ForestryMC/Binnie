@@ -58,7 +58,6 @@ public class ModuleManager {
 			containerModules.remove(coreModule);
 			containerModules.add(0, coreModule);
 
-
 			Iterator<Module> iterator = containerModules.iterator();
 			while (iterator.hasNext()) {
 				Module module = iterator.next();
@@ -139,6 +138,9 @@ public class ModuleManager {
 		throw new IllegalStateException("Could not find core module for the container " + containerID);
 	}
 
+	/**
+	 * Loads module classes that have the annotation {@link BinnieModule}.
+	 */
 	public static void loadModules(FMLPreInitializationEvent event){
 		if(initialized){
 			return;

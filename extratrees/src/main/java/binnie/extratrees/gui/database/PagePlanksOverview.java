@@ -18,7 +18,7 @@ import binnie.core.gui.geometry.TextJustification;
 import binnie.core.gui.minecraft.Window;
 import binnie.core.gui.minecraft.control.ControlItemDisplay;
 import binnie.core.util.I18N;
-import binnie.extratrees.wood.IPlankType;
+import binnie.extratrees.wood.planks.IPlankType;
 import binnie.extratrees.wood.WoodManager;
 import binnie.extratrees.blocks.decor.FenceType;
 

@@ -1,6 +1,6 @@
 package binnie.extratrees.blocks.decor;
 
-import binnie.extratrees.wood.IPlankType;
+import binnie.extratrees.wood.planks.IPlankType;
 import binnie.extratrees.wood.WoodManager;
 
 public class FenceDescription {

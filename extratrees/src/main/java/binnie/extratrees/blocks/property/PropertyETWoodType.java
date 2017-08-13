@@ -8,7 +8,7 @@ import java.util.Collection;
 import forestry.arboriculture.blocks.PropertyWoodType;
 
 import binnie.extratrees.wood.EnumETLog;
-import binnie.extratrees.wood.PlankType;
+import binnie.extratrees.wood.planks.ExtraTreePlanks;
 
 public class PropertyETWoodType extends PropertyWoodType<EnumETLog> {
 
@@ -25,7 +25,7 @@ public class PropertyETWoodType extends PropertyWoodType<EnumETLog> {
 		if (isLog) {
 			length = EnumETLog.VALUES.length;
 		} else {
-			length = PlankType.ExtraTreePlanks.VALUES.length;
+			length = ExtraTreePlanks.VALUES.length;
 		}
 		final int variantCount = (int) Math.ceil((float) length / variantsPerBlock);
 		PropertyETWoodType[] variants = new PropertyETWoodType[variantCount];

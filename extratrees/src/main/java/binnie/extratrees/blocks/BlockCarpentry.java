@@ -8,8 +8,9 @@ import binnie.core.util.I18N;
 import binnie.extratrees.api.IDesign;
 import binnie.extratrees.carpentry.DesignBlock;
 import binnie.extratrees.carpentry.DesignSystem;
-import binnie.extratrees.wood.PlankType;
 import binnie.extratrees.modules.ModuleCarpentry;
+import binnie.extratrees.wood.planks.ExtraTreePlanks;
+import binnie.extratrees.wood.planks.VanillaPlanks;
 
 public class BlockCarpentry extends BlockDesign {
 	public BlockCarpentry(String name) {
@@ -22,7 +23,7 @@ public class BlockCarpentry extends BlockDesign {
 
 	@Override
 	public ItemStack getCreativeStack(final IDesign design) {
-		return ModuleCarpentry.getItemStack(this, PlankType.ExtraTreePlanks.Apple, PlankType.VanillaPlanks.BIRCH, design);
+		return ModuleCarpentry.getItemStack(this, ExtraTreePlanks.Apple, VanillaPlanks.BIRCH, design);
 	}
 
 	@Override

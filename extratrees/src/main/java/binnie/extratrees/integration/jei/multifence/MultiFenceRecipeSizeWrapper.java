@@ -5,14 +5,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 
-import binnie.extratrees.wood.IPlankType;
-import binnie.extratrees.wood.WoodManager;
 import binnie.extratrees.blocks.decor.MultiFenceRecipePattern;
+import binnie.extratrees.wood.WoodManager;
+import binnie.extratrees.wood.planks.IPlankType;
 import mezz.jei.api.ingredients.IIngredients;
+import mezz.jei.api.recipe.IRecipeWrapper;
 
 public class MultiFenceRecipeSizeWrapper implements IRecipeWrapper {
 

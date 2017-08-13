@@ -47,10 +47,10 @@ import binnie.core.api.block.TileEntityMetadata;
 import binnie.core.models.DefaultStateMapper;
 import binnie.core.models.ModelManager;
 import binnie.core.util.I18N;
-import binnie.extratrees.wood.IPlankType;
-import binnie.extratrees.wood.PlankType;
-import binnie.extratrees.wood.WoodManager;
 import binnie.extratrees.models.ModelMultiFence;
+import binnie.extratrees.wood.WoodManager;
+import binnie.extratrees.wood.planks.IPlankType;
+import binnie.extratrees.wood.planks.VanillaPlanks;
 
 public class BlockMultiFence extends BlockFence implements IBlockMetadata, IStateMapperRegister, IItemModelRegister, IBlockFence {
 	public BlockMultiFence() {
@@ -151,7 +151,7 @@ public class BlockMultiFence extends BlockFence implements IBlockMetadata, IStat
 	@Override
 	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> itemList) {
 		for (FenceType type : FenceType.values()) {
-			itemList.add(WoodManager.getFence(PlankType.VanillaPlanks.SPRUCE, PlankType.VanillaPlanks.BIRCH, type, 1));
+			itemList.add(WoodManager.getFence(VanillaPlanks.SPRUCE, VanillaPlanks.BIRCH, type, 1));
 		}
 	}
 

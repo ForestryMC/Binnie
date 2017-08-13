@@ -5,11 +5,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import binnie.core.liquid.DrinkManager;
 import binnie.extratrees.alcohol.GlasswareType;
 import binnie.extratrees.alcohol.ICocktailIngredient;
 import binnie.extratrees.alcohol.ICocktailIngredientProvider;
 import binnie.extratrees.alcohol.drink.DrinkLiquid;
-import binnie.core.liquid.DrinkManager;
 
 public enum Cocktail {
 	Bellini("Bellini", GlasswareType.FLUTE, 15974764),
@@ -165,8 +165,14 @@ public enum Cocktail {
 		DrinkManager.registerDrinkLiquid(liquid);
 	}
 
-	public static void registerIngredient(final ICocktailIngredientProvider ingredient) {
+	public static void registerIngredient(ICocktailIngredientProvider ingredient) {
 		registerIngredient(ingredient.getIngredient());
+	}
+
+	public static void registerIngredients(ICocktailIngredientProvider[] ingredients) {
+		for (ICocktailIngredientProvider ingredient : ingredients) {
+			registerIngredient(ingredient.getIngredient());
+		}
 	}
 
 	public static ICocktailIngredient getIngredient(final String name2) {
