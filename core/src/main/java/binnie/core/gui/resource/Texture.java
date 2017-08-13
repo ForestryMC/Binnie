@@ -63,27 +63,27 @@ public class Texture implements ITexture {
 	@Override
 	public ITexture crop(final IBorder crop) {
 		final Texture copy = new Texture(this.area, this.padding, this.border, this.binnieTexture);
-		if (crop.b() > 0) {
-			copy.border.b(0);
-			copy.padding.b(copy.padding.b() - Math.min(crop.b(), copy.padding.b()));
-			copy.area.setHeight(copy.area.height() - crop.b());
+		if (crop.getBottom() > 0) {
+			copy.border.setBottom(0);
+			copy.padding.setBottom(copy.padding.getBottom() - Math.min(crop.getBottom(), copy.padding.getBottom()));
+			copy.area.setHeight(copy.area.height() - crop.getBottom());
 		}
-		if (crop.t() > 0) {
-			copy.border.t(0);
-			copy.padding.t(copy.padding.t() - Math.min(crop.t(), copy.padding.t()));
-			copy.area.setHeight(copy.area.height() - crop.t());
-			copy.area.setYPos(copy.area.yPos() + crop.t());
+		if (crop.getTop() > 0) {
+			copy.border.setTop(0);
+			copy.padding.setTop(copy.padding.getTop() - Math.min(crop.getTop(), copy.padding.getTop()));
+			copy.area.setHeight(copy.area.height() - crop.getTop());
+			copy.area.setYPos(copy.area.yPos() + crop.getTop());
 		}
-		if (crop.r() > 0) {
-			copy.border.r(0);
-			copy.padding.r(copy.padding.r() - Math.min(crop.r(), copy.padding.r()));
-			copy.area.setWidth(copy.area.width() - crop.r());
+		if (crop.getRight() > 0) {
+			copy.border.setRight(0);
+			copy.padding.setRight(copy.padding.getRight() - Math.min(crop.getRight(), copy.padding.getRight()));
+			copy.area.setWidth(copy.area.width() - crop.getRight());
 		}
-		if (crop.l() > 0) {
-			copy.border.l(0);
-			copy.padding.l(copy.padding.l() - Math.min(crop.l(), copy.padding.l()));
-			copy.area.setWidth(copy.area.width() - crop.l());
-			copy.area.setXPos(copy.area.xPos() + crop.l());
+		if (crop.getLeft() > 0) {
+			copy.border.setLeft(0);
+			copy.padding.setLeft(copy.padding.getLeft() - Math.min(crop.getLeft(), copy.padding.getLeft()));
+			copy.area.setWidth(copy.area.width() - crop.getLeft());
+			copy.area.setXPos(copy.area.xPos() + crop.getLeft());
 		}
 		return copy;
 	}

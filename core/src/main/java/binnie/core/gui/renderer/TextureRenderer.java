@@ -27,10 +27,10 @@ public class TextureRenderer {
 	private IStyleSheet styleSheet;
 
 	private static void renderTexturePadded(final IArea area, final IArea texture, final IBorder padding) {
-		int borderLeft = padding.l();
-		int borderRight = padding.r();
-		int borderTop = padding.t();
-		int borderBottom = padding.b();
+		int borderLeft = padding.getLeft();
+		int borderRight = padding.getRight();
+		int borderTop = padding.getTop();
+		int borderBottom = padding.getBottom();
 		final int posX = area.pos().xPos();
 		final int posY = area.pos().yPos();
 		final int width = area.size().xPos();
@@ -139,7 +139,7 @@ public class TextureRenderer {
 			return;
 		}
 		this.setTexture(texture);
-		final IPoint point = position.sub(texture.getBorder().l(), texture.getBorder().t());
+		final IPoint point = position.sub(texture.getBorder().getLeft(), texture.getBorder().getTop());
 		final IArea textureArea = texture.getArea().outset(texture.getBorder());
 		GuiUtils.drawTexturedModalRect(point.xPos(), point.yPos(), textureArea.pos().xPos(), textureArea.pos().yPos(), textureArea.size().xPos(), textureArea.size().yPos(), 0);
 	}

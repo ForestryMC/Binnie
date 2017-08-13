@@ -1,7 +1,5 @@
 package binnie.core.gui.geometry;
 
-import java.awt.Point;
-
 import binnie.core.api.gui.Alignment;
 import binnie.core.api.gui.IBorder;
 
@@ -36,47 +34,47 @@ public class Border implements IBorder {
 	}
 
 	public Border(final Border padding) {
-		this(padding.t(), padding.r(), padding.b(), padding.l());
+		this(padding.getTop(), padding.getRight(), padding.getBottom(), padding.getLeft());
 	}
 
 	@Override
-	public int t() {
+	public int getTop() {
 		return this.t;
 	}
 
 	@Override
-	public int b() {
+	public int getBottom() {
 		return this.b;
 	}
 
 	@Override
-	public int l() {
+	public int getLeft() {
 		return this.l;
 	}
 
 	@Override
-	public int r() {
+	public int getRight() {
 		return this.r;
 	}
 
 	@Override
-	public int t(final int n) {
-		return this.t = n;
+	public void setTop(final int amount) {
+		this.t = amount;
 	}
 
 	@Override
-	public int b(final int n) {
-		return this.b = n;
+	public void setBottom(final int amount) {
+		this.b = amount;
 	}
 
 	@Override
-	public int l(final int n) {
-		return this.l = n;
+	public void setLeft(final int amount) {
+		this.l = amount;
 	}
 
 	@Override
-	public int r(final int n) {
-		return this.r = n;
+	public void setRight(final int amount) {
+		this.r = amount;
 	}
 
 	@Override
@@ -85,36 +83,12 @@ public class Border implements IBorder {
 	}
 
 	@Override
-	@Deprecated
-	public Point tl() {
-		return new Point(this.l(), this.t());
-	}
-
-	@Override
-	@Deprecated
-	public Point tr() {
-		return new Point(this.r(), this.t());
-	}
-
-	@Override
-	@Deprecated
-	public Point bl() {
-		return new Point(this.l(), this.b());
-	}
-
-	@Override
-	@Deprecated
-	public Point br() {
-		return new Point(this.r(), this.b());
-	}
-
-	@Override
 	public IBorder add(final IBorder o) {
-		return new Border(this.t() + o.t(), this.r() + o.r(), this.b() + o.b(), this.l() + o.l());
+		return new Border(this.getTop() + o.getTop(), this.getRight() + o.getRight(), this.getBottom() + o.getBottom(), this.getLeft() + o.getLeft());
 	}
 
 	@Override
 	public String toString() {
-		return this.t() + "-" + this.r() + "-" + this.b() + "-" + this.l();
+		return this.getTop() + "-" + this.getRight() + "-" + this.getBottom() + "-" + this.getLeft();
 	}
 }

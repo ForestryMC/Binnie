@@ -1,37 +1,23 @@
 package binnie.core.api.gui;
 
-import java.awt.Point;
-
 public interface IBorder {
-	int t();
+	int getTop();
 
-	int b();
+	int getBottom();
 
-	int l();
+	int getLeft();
 
-	int r();
+	int getRight();
 
-	int t(int n);
+	void setTop(int amount);
 
-	int b(int n);
+	void setBottom(int amount);
 
-	int l(int n);
+	void setLeft(int amount);
 
-	int r(int n);
+	void setRight(int amount);
 
 	boolean isNonZero();
-
-	@Deprecated
-	Point tl();
-
-	@Deprecated
-	Point tr();
-
-	@Deprecated
-	Point bl();
-
-	@Deprecated
-	Point br();
 
 	IBorder add(IBorder o);
 }

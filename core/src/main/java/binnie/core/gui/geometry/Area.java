@@ -110,7 +110,7 @@ public final class Area implements IArea {
 
 	@Override
 	public IArea inset(final IBorder border) {
-		return new Area(this.xPos() + border.l(), this.yPos() + border.t(), this.width() - border.l() - border.r(), this.height() - border.t() - border.b());
+		return new Area(this.xPos() + border.getLeft(), this.yPos() + border.getTop(), this.width() - border.getLeft() - border.getRight(), this.height() - border.getTop() - border.getBottom());
 	}
 
 	@Override
@@ -120,7 +120,7 @@ public final class Area implements IArea {
 
 	@Override
 	public IArea outset(final IBorder border) {
-		return new Area(this.xPos() - border.l(), this.yPos() - border.t(), this.width() + border.l() + border.r(), this.height() + border.t() + border.b());
+		return new Area(this.xPos() - border.getLeft(), this.yPos() - border.getTop(), this.width() + border.getLeft() + border.getRight(), this.height() + border.getTop() + border.getBottom());
 	}
 
 	@Override
