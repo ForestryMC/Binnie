@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import binnie.core.api.gui.ITexture;
+import binnie.core.api.gui.events.EventHandlerOrigin;
 import binnie.core.gui.geometry.Point;
 import binnie.core.gui.window.WindowMachine;
 import net.minecraft.block.Block;
@@ -27,7 +28,7 @@ import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
 import binnie.core.gui.Attribute;
 import binnie.core.gui.CraftGUI;
-import binnie.core.gui.IWidget;
+import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.ControlCheckbox;
 import binnie.core.gui.controls.ControlText;
 import binnie.core.gui.controls.ControlTextEdit;
@@ -38,7 +39,6 @@ import binnie.core.gui.controls.page.ControlPages;
 import binnie.core.gui.controls.scroll.ControlScrollableContent;
 import binnie.core.gui.controls.tab.ControlTab;
 import binnie.core.gui.controls.tab.ControlTabBar;
-import binnie.core.gui.events.EventHandler;
 import binnie.core.gui.events.EventMouse;
 import binnie.core.gui.events.EventTextEdit;
 import binnie.core.gui.events.EventValueChanged;
@@ -131,7 +131,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		};
 		final String[] tabHelp = {"Compartment Tab", "Tabs that divide the inventory into sections. Each one can be labelled seperately."};
 		tab.addHelp(tabHelp);
-		tab.addEventHandler(EventValueChanged.class, EventHandler.Origin.DIRECT_CHILD, tab, event -> {
+		tab.addEventHandler(EventValueChanged.class, EventHandlerOrigin.DIRECT_CHILD, tab, event -> {
 			if (event.getValue() == null) {
 				return;
 			}
@@ -196,7 +196,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 				}
 			};
 			tab2.addHelp(tabHelp);
-			tab2.addEventHandler(EventValueChanged.class, EventHandler.Origin.DIRECT_CHILD, tab2, event -> {
+			tab2.addEventHandler(EventValueChanged.class, EventHandlerOrigin.DIRECT_CHILD, tab2, event -> {
 				if (event.getValue() == null) {
 					return;
 				}
@@ -224,7 +224,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		final Panel parent = tabPropertyPanel;
 		final int x2 = 4;
 		y2 += 12;
-		(this.tabName = new ControlTextEdit(parent, x2, y2, 104, 12)).addEventHandler(EventTextEdit.class, EventHandler.Origin.SELF, this.tabName, event -> {
+		(this.tabName = new ControlTextEdit(parent, x2, y2, 104, 12)).addEventHandler(EventTextEdit.class, EventHandlerOrigin.SELF, this.tabName, event -> {
 			final CompartmentTab currentTab = WindowCompartment.this.getCurrentTab();
 			currentTab.setName(event.getValue());
 			final NBTTagCompound nbt = new NBTTagCompound();

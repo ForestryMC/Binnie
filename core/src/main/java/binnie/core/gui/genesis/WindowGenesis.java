@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import binnie.core.api.genetics.IBreedingSystem;
+import binnie.core.api.gui.events.EventHandlerOrigin;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -26,12 +27,11 @@ import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
 import binnie.core.genetics.BreedingSystem;
 import binnie.core.genetics.Gene;
-import binnie.core.gui.IWidget;
+import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.listbox.ControlListBox;
 import binnie.core.gui.controls.listbox.ControlTextOption;
 import binnie.core.gui.controls.tab.ControlTab;
 import binnie.core.gui.controls.tab.ControlTabBar;
-import binnie.core.gui.events.EventHandler;
 import binnie.core.gui.events.EventMouse;
 import binnie.core.gui.events.EventValueChanged;
 import binnie.core.gui.geometry.Area;
@@ -118,7 +118,7 @@ public class WindowGenesis extends Window {
 				return new ControlTextOption<>(this.getContent(), value, y);
 			}
 		};
-		tabSystems.addEventHandler(EventValueChanged.class, EventHandler.Origin.SELF, tabSystems, event -> {
+		tabSystems.addEventHandler(EventValueChanged.class, EventHandlerOrigin.SELF, tabSystems, event -> {
 			Object value = event.getValue();
 			if (!(value instanceof BreedingSystem)) {
 				return;
@@ -128,7 +128,7 @@ public class WindowGenesis extends Window {
 			template = root.getDefaultTemplate();
 			refreshTemplate(null);
 		});
-		this.geneList.addEventHandler(EventValueChanged.class, EventHandler.Origin.SELF, this.geneList, event -> {
+		this.geneList.addEventHandler(EventValueChanged.class, EventHandlerOrigin.SELF, this.geneList, event -> {
 			Object value = event.getValue();
 			if (!(value instanceof Gene)) {
 				return;
@@ -143,7 +143,7 @@ public class WindowGenesis extends Window {
 			}
 			geneOptions.setOptions(options);
 		});
-		this.geneOptions.addEventHandler(EventValueChanged.class, EventHandler.Origin.SELF, this.geneOptions, event -> {
+		this.geneOptions.addEventHandler(EventValueChanged.class, EventHandlerOrigin.SELF, this.geneOptions, event -> {
 			Object value = event.getValue();
 			if (!(value instanceof Gene)) {
 				return;
@@ -193,7 +193,7 @@ public class WindowGenesis extends Window {
 			ControlItemDisplay display = new ControlItemDisplay(this.panelPickup, 4 + i % 3 * 18, 4 + i / 3 * 18);
 			display.setItemStack(stack);
 			display.setTooltip();
-			display.addEventHandler(EventMouse.Down.class, EventHandler.Origin.SELF, display, event -> {
+			display.addEventHandler(EventMouse.Down.class, EventHandlerOrigin.SELF, display, event -> {
 				NBTTagCompound nbt = new NBTTagCompound();
 				stack.writeToNBT(nbt);
 				Window.get(event.getOrigin()).sendClientAction(ACTION_GENESIS, nbt);

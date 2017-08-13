@@ -1,6 +1,7 @@
 package binnie.genetics.gui.analyst;
 
 import binnie.core.api.genetics.IBreedingSystem;
+import binnie.core.api.gui.IArea;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.text.TextFormatting;
 
@@ -15,7 +16,7 @@ import forestry.api.genetics.ISpeciesRoot;
 
 import binnie.core.Binnie;
 import binnie.core.gui.CraftGUI;
-import binnie.core.gui.IWidget;
+import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.ControlText;
 import binnie.core.gui.controls.ControlTextCentered;
 import binnie.core.gui.controls.core.Control;
@@ -28,7 +29,7 @@ import binnie.core.util.I18N;
 public class AnalystPageGenome extends ControlAnalystPage {
 	boolean active;
 
-	public AnalystPageGenome(IWidget parent, Area area, boolean active, IIndividual ind) {
+	public AnalystPageGenome(IWidget parent, IArea area, boolean active, IIndividual ind) {
 		super(parent, area);
 		this.active = active;
 		setColor(26265);

@@ -5,7 +5,7 @@ import net.minecraft.util.text.TextFormatting;
 
 import com.mojang.authlib.GameProfile;
 
-import binnie.core.gui.IWidget;
+import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.ControlTextCentered;
 import binnie.core.gui.controls.page.ControlPage;
 import binnie.core.gui.minecraft.Window;

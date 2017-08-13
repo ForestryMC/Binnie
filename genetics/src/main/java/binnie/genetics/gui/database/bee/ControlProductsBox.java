@@ -12,7 +12,7 @@ import forestry.api.apiculture.IBeeGenome;
 import forestry.api.genetics.IAllele;
 
 import binnie.core.BinnieCore;
-import binnie.core.gui.IWidget;
+import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.listbox.ControlListBox;
 
 public class ControlProductsBox extends ControlListBox<ControlProductsBox.Product> {

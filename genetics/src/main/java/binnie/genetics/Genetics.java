@@ -1,6 +1,8 @@
 package binnie.genetics;
 
+import binnie.genetics.api.GeneticsApi;
 import binnie.genetics.core.GeneticsTexture;
+import binnie.genetics.gui.analyst.GeneticsProducePlugin;
 import binnie.genetics.machine.sequencer.Sequencer;
 import com.google.common.base.Preconditions;
 
@@ -35,6 +37,7 @@ import binnie.genetics.item.ItemPunnettSquare;
 import binnie.genetics.item.ModuleItems;
 import binnie.genetics.machine.ModuleMachine;
 import binnie.genetics.proxy.Proxy;
+import net.minecraftforge.oredict.OreDictionary;
 
 @Mod(
 	modid = Constants.GENETICS_MOD_ID,
@@ -68,6 +71,7 @@ public class Genetics extends AbstractMod {
 	public void preInit(FMLPreInitializationEvent evt) {
 		dictionaryBees = proxy.registerItem(new ItemBeeDictionary());
 		proxy.registerItem(new ItemPunnettSquare());
+		OreDictionary.registerOre("binnie_database", dictionaryBees);
 		super.preInit(evt);
 
 		GeneticsTexture.dnaIcon = Binnie.RESOURCE.getItemSprite(Genetics.instance, "dna");
@@ -75,6 +79,8 @@ public class Genetics extends AbstractMod {
 		Sequencer.fxSeqG = Binnie.RESOURCE.getBlockSprite(Genetics.instance, "fx/sequencer.g");
 		Sequencer.fxSeqT = Binnie.RESOURCE.getBlockSprite(Genetics.instance, "fx/sequencer.t");
 		Sequencer.fxSeqC = Binnie.RESOURCE.getBlockSprite(Genetics.instance, "fx/sequencer.c");
+
+		GeneticsApi.registerProducePlugin(new GeneticsProducePlugin());
 	}
 
 	@Mod.EventHandler

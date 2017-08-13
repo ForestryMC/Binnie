@@ -2,7 +2,7 @@ package binnie.core.gui.controls.scroll;
 
 import javax.annotation.Nullable;
 
-import binnie.core.gui.IWidget;
+import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.events.EventMouse;
 import binnie.core.gui.events.EventWidget;

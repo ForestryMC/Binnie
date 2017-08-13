@@ -11,7 +11,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.core.AbstractMod;
 import binnie.extratrees.genetics.TreeBreedingSystem;
-import binnie.core.gui.IWidget;
+import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.listbox.ControlListBox;
 import binnie.core.gui.database.ControlItemStackOption;
 import binnie.core.gui.database.DatabaseTab;

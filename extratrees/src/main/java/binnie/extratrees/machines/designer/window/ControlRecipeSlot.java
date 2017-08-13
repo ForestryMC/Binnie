@@ -4,7 +4,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 
-import binnie.core.gui.IWidget;
+import binnie.core.api.gui.IWidget;
 import binnie.core.gui.events.EventMouse;
 import binnie.core.gui.minecraft.Window;
 import binnie.core.gui.minecraft.control.ControlSlotBase;

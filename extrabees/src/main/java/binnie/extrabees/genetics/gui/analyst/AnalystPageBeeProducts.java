@@ -1,22 +1,23 @@
-package binnie.genetics.gui.analyst.bee;
+package binnie.extrabees.genetics.gui.analyst;
 
-import javax.annotation.Nullable;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import binnie.core.api.gui.IArea;
+import binnie.core.gui.controls.ControlFluidDisplay;
+import binnie.core.util.FluidStackUtil;
+import binnie.core.util.ForestryRecipeUtil;
+import binnie.core.util.TimeUtil;
 import binnie.extrabees.api.ExtraBeesAPI;
 import forestry.api.apiculture.BeeManager;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.TextFormatting;
 
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidUtil;
-import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -27,22 +28,20 @@ import forestry.api.apiculture.IBeeGenome;
 import forestry.apiculture.PluginApiculture;
 
 import binnie.core.BinnieCore;
-import binnie.core.gui.IWidget;
+import binnie.core.api.gui.IWidget;
 import binnie.core.gui.Tooltip;
 import binnie.core.gui.controls.ControlText;
 import binnie.core.gui.controls.ControlTextCentered;
-import binnie.core.gui.geometry.Area;
 import binnie.core.gui.geometry.CraftGUIUtil;
 import binnie.core.gui.geometry.Point;
 import binnie.core.gui.minecraft.control.ControlItemDisplay;
 import binnie.core.util.I18N;
 import binnie.core.util.UniqueItemStackSet;
-import binnie.extratrees.kitchen.craftgui.ControlFluidDisplay;
 import binnie.genetics.gui.analyst.AnalystConstants;
 import binnie.genetics.gui.analyst.AnalystPageProduce;
 
-public class AnalystPageProducts extends AnalystPageProduce {
-	public AnalystPageProducts(IWidget parent, Area area, IBee ind) {
+public class AnalystPageBeeProducts extends AnalystPageProduce {
+	public AnalystPageBeeProducts(IWidget parent, IArea area, IBee ind) {
 		super(parent, area);
 		setColor(0xcc3300);
 		IBeeGenome genome = ind.getGenome();
@@ -104,20 +103,7 @@ public class AnalystPageProducts extends AnalystPageProduce {
 		}
 
 		refinedProducts.addAll(level2Products);
-		Collection<FluidStack> allFluids = new ArrayList<>();
-		for (ItemStack itemStack : refinedProducts) {
-			for (FluidStack addition : getAllFluids(itemStack)) {
-				boolean alreadyIn = false;
-				for (FluidStack existing : allFluids) {
-					if (existing.isFluidEqual(addition)) {
-						alreadyIn = true;
-					}
-				}
-				if (!alreadyIn) {
-					allFluids.add(addition);
-				}
-			}
-		}
+		NonNullList<FluidStack> allFluids = getAllFluidsFromItems(refinedProducts);
 
 		int maxBiomePerLine = (int) ((getWidth() + 2.0f - 16.0f) / 18.0f);
 		int biomeListX = (getWidth() - (Math.min(maxBiomePerLine, allFluids.size() + refinedProducts.size()) * 18 - 2)) / 2;
@@ -139,7 +125,7 @@ public class AnalystPageProducts extends AnalystPageProduce {
 				dx = 0;
 				dy += 18;
 			}
-			ItemStack container = getContainer(fluidStack);
+			ItemStack container = FluidStackUtil.getContainer(fluidStack);
 			if (container == null) {
 				ControlFluidDisplay display2 = new ControlFluidDisplay(this, biomeListX + dx, y + dy);
 				display2.setFluidStack(fluidStack);
@@ -154,41 +140,27 @@ public class AnalystPageProducts extends AnalystPageProduce {
 		setSize(new Point(getWidth(), y + dy + 18 + 8));
 	}
 
-	@Nullable
-	public static ItemStack getContainer(FluidStack fluidStack) {
-		ItemStack[] containers = {
-			new ItemStack(Items.GLASS_BOTTLE),
-			new ItemStack(Items.BUCKET)
-		};
-
-		for (ItemStack container : containers) {
-			IFluidHandlerItem fluidHandler = FluidUtil.getFluidHandler(container);
-			if (fluidHandler != null && fluidHandler.fill(fluidStack, true) > 0) {
-				return fluidHandler.getContainer();
-			}
-		}
-		return null;
-	}
-
 	private void createProductEntry(ItemStack key, Float value, int y, float speed) {
 		ControlItemDisplay item = new ControlItemDisplay(this, 16, y) {
 			@Override
 			@SideOnly(Side.CLIENT)
 			public void getTooltip(Tooltip tooltip, ITooltipFlag tooltipFlag) {
 				super.getTooltip(tooltip, tooltipFlag);
-				Collection<ItemStack> products = getCentrifuge(key);
-				if (!products.isEmpty()) {
+				NonNullList<ItemStack> centrifugeProducts = NonNullList.create();
+				ForestryRecipeUtil.getCentrifugeOutputs(key, centrifugeProducts);
+				if (!centrifugeProducts.isEmpty()) {
 					tooltip.add(I18N.localise(AnalystConstants.PRODUCTS_KEY + ".centrifuges") + ": ");
-					for (ItemStack prod : products) {
+					for (ItemStack prod : centrifugeProducts) {
 						NBTTagCompound nbt = new NBTTagCompound();
 						prod.writeToNBT(nbt);
 						tooltip.add(prod, prod.getDisplayName());
 					}
 				}
-				Collection<ItemStack> liquids = getSqueezer(key);
-				if (!liquids.isEmpty()) {
+				NonNullList<ItemStack> squeezerProducts = NonNullList.create();
+				ForestryRecipeUtil.getSqueezerOutputs(key, squeezerProducts);
+				if (!squeezerProducts.isEmpty()) {
 					tooltip.add(I18N.localise(AnalystConstants.PRODUCTS_KEY + ".squeezes") + ": ");
-					for (ItemStack prod2 : liquids) {
+					for (ItemStack prod2 : squeezerProducts) {
 						NBTTagCompound nbt2 = new NBTTagCompound();
 						prod2.writeToNBT(nbt2);
 						tooltip.add(prod2, prod2.getDisplayName());
@@ -203,7 +175,7 @@ public class AnalystPageProducts extends AnalystPageProduce {
 		CraftGUIUtil.moveWidget(textWidget, new Point(12, 0));
 		item.setItemStack(key);
 		int time = (int) (PluginApiculture.ticksPerBeeWorkCycle * 100.0 / (speed * value));
-		textWidget.setValue(I18N.localise(AnalystConstants.PRODUCTS_KEY + ".every") + " " + getTimeString(time));
+		textWidget.setValue(I18N.localise(AnalystConstants.PRODUCTS_KEY + ".every") + " " + TimeUtil.getTimeString(time));
 	}
 
 	@Override

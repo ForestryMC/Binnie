@@ -1,6 +1,6 @@
 package binnie.core.gui.controls;
 
-import binnie.core.gui.IWidget;
+import binnie.core.api.gui.IWidget;
 import binnie.core.gui.geometry.Area;
 import binnie.core.gui.geometry.Point;
 import binnie.core.gui.geometry.TextJustification;

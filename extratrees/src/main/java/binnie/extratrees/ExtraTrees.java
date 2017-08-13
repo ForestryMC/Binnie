@@ -1,5 +1,9 @@
 package binnie.extratrees;
 
+import binnie.extratrees.genetics.gui.analyst.ButterflyAnalystPagePlugin;
+import binnie.extratrees.genetics.gui.analyst.TreeAnalystPagePlugin;
+import binnie.extratrees.genetics.gui.analyst.TreeProducePlugin;
+import binnie.genetics.api.GeneticsApi;
 import net.minecraftforge.common.MinecraftForge;
 
 import net.minecraftforge.fml.common.Mod;
@@ -49,6 +53,10 @@ public class ExtraTrees extends BlankModuleContainer {
 		super.preInit(evt);
 		mothBreedingSystem = new MothBreedingSystem();
 		Binnie.GENETICS.registerBreedingSystem(mothBreedingSystem);
+
+		GeneticsApi.registerAnalystPagePlugin(new TreeAnalystPagePlugin());
+		GeneticsApi.registerAnalystPagePlugin(new ButterflyAnalystPagePlugin());
+		GeneticsApi.registerProducePlugin(new TreeProducePlugin());
 	}
 
 	@Mod.EventHandler

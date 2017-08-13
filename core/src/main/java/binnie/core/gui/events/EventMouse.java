@@ -1,6 +1,7 @@
 package binnie.core.gui.events;
 
-import binnie.core.gui.IWidget;
+import binnie.core.api.gui.IWidget;
+import binnie.core.api.gui.events.Event;
 
 public abstract class EventMouse extends Event {
 	public EventMouse(final IWidget origin) {

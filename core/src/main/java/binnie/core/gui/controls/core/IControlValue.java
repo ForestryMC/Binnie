@@ -2,7 +2,7 @@ package binnie.core.gui.controls.core;
 
 import javax.annotation.Nullable;
 
-import binnie.core.gui.IWidget;
+import binnie.core.api.gui.IWidget;
 
 public interface IControlValue<T> extends IWidget {
 	@Nullable

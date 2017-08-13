@@ -7,7 +7,7 @@ import binnie.core.api.genetics.IBreedingSystem;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IMutation;
 
-import binnie.core.gui.IWidget;
+import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.listbox.ControlListBox;
 import binnie.core.gui.minecraft.Window;
 

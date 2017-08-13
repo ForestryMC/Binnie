@@ -5,7 +5,7 @@ import java.util.Random;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
 
-import binnie.core.gui.IWidget;
+import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.ControlText;
 import binnie.core.gui.geometry.Area;
 import binnie.core.gui.geometry.TextJustification;

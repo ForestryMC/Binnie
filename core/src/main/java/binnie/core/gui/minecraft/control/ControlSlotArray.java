@@ -7,7 +7,7 @@ import java.util.List;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-import binnie.core.gui.IWidget;
+import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.minecraft.InventoryType;
 

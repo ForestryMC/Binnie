@@ -10,6 +10,8 @@ import java.util.ListIterator;
 
 import binnie.core.api.gui.IArea;
 import binnie.core.api.gui.IPoint;
+import binnie.core.api.gui.ITopLevelWidget;
+import binnie.core.api.gui.IWidget;
 import binnie.core.gui.geometry.Point;
 import org.lwjgl.input.Mouse;
 

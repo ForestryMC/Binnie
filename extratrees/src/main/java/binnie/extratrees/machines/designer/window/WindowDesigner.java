@@ -2,6 +2,7 @@ package binnie.extratrees.machines.designer.window;
 
 import javax.annotation.Nullable;
 
+import binnie.core.api.gui.events.EventHandlerOrigin;
 import binnie.extratrees.machines.designer.IDesignerType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -13,7 +14,6 @@ import binnie.core.AbstractMod;
 import binnie.core.gui.controls.ControlText;
 import binnie.core.gui.controls.ControlTextEdit;
 import binnie.core.gui.controls.scroll.ControlScrollableContent;
-import binnie.core.gui.events.EventHandler;
 import binnie.core.gui.events.EventTextEdit;
 import binnie.core.gui.geometry.Area;
 import binnie.core.gui.geometry.Point;
@@ -35,7 +35,7 @@ public class WindowDesigner extends Window {
 
 	public WindowDesigner(final EntityPlayer player, final IInventory inventory, final Side side) {
 		super(320, 216, player, inventory, side);
-		this.addEventHandler(EventTextEdit.class, EventHandler.Origin.DIRECT_CHILD, this, event -> {
+		this.addEventHandler(EventTextEdit.class, EventHandlerOrigin.DIRECT_CHILD, this, event -> {
 			WindowDesigner.this.tileSelect.refresh(event.getValue());
 		});
 	}

@@ -1,5 +1,6 @@
-package binnie.genetics.gui.analyst.flower;
+package binnie.botany.genetics.gui.analyst;
 
+import binnie.core.api.gui.IArea;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.text.TextFormatting;
 
@@ -13,9 +14,8 @@ import binnie.botany.api.genetics.IFlowerGenome;
 import binnie.botany.api.genetics.IFlowerType;
 import binnie.botany.gui.database.ControlColorDisplay;
 import binnie.botany.models.FlowerSpriteManager;
-import binnie.core.gui.IWidget;
+import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.ControlTextCentered;
-import binnie.core.gui.geometry.Area;
 import binnie.core.gui.geometry.Point;
 import binnie.core.gui.minecraft.control.ControlIconDisplay;
 import binnie.core.gui.renderer.RenderUtil;
@@ -24,7 +24,7 @@ import binnie.genetics.gui.analyst.AnalystConstants;
 import binnie.genetics.gui.analyst.ControlAnalystPage;
 
 public class AnalystPageAppearance extends ControlAnalystPage {
-	public AnalystPageAppearance(IWidget parent, Area area, IFlower flower) {
+	public AnalystPageAppearance(IWidget parent, IArea area, IFlower flower) {
 		super(parent, area);
 		setColor(3355443);
 		int y = 4;

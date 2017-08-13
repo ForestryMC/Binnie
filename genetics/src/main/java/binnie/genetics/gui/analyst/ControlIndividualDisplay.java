@@ -9,7 +9,7 @@ import forestry.api.genetics.IIndividual;
 
 import binnie.core.Binnie;
 import binnie.core.gui.ITooltip;
-import binnie.core.gui.IWidget;
+import binnie.core.api.gui.IWidget;
 import binnie.core.gui.Tooltip;
 import binnie.core.gui.minecraft.control.ControlItemDisplay;
 

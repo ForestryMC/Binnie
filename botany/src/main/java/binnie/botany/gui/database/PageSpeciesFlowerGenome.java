@@ -13,7 +13,7 @@ import binnie.botany.api.genetics.IAlleleFlowerSpecies;
 import binnie.botany.api.genetics.IFlower;
 import binnie.botany.api.genetics.IFlowerGenome;
 import binnie.botany.core.BotanyCore;
-import binnie.core.gui.IWidget;
+import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.ControlText;
 import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.controls.scroll.ControlScrollableContent;

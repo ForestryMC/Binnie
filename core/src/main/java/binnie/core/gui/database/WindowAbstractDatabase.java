@@ -8,6 +8,7 @@ import java.util.Objects;
 
 import binnie.core.api.genetics.IBreedingSystem;
 import binnie.core.api.gui.IArea;
+import binnie.core.api.gui.events.EventHandlerOrigin;
 import binnie.core.gui.geometry.Point;
 import net.minecraft.entity.player.EntityPlayer;
 
@@ -20,7 +21,7 @@ import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IBreedingTracker;
 import forestry.api.genetics.IClassification;
 
-import binnie.core.gui.IWidget;
+import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.ControlTextEdit;
 import binnie.core.gui.controls.listbox.ControlListBox;
 import binnie.core.gui.controls.listbox.ControlTextOption;
@@ -28,7 +29,6 @@ import binnie.core.gui.controls.page.ControlPage;
 import binnie.core.gui.controls.page.ControlPages;
 import binnie.core.gui.controls.tab.ControlTab;
 import binnie.core.gui.controls.tab.ControlTabBar;
-import binnie.core.gui.events.EventHandler;
 import binnie.core.gui.events.EventTextEdit;
 import binnie.core.gui.events.EventValueChanged;
 import binnie.core.gui.geometry.CraftGUIUtil;
@@ -112,7 +112,7 @@ public abstract class WindowAbstractDatabase extends Window {
 				}
 			}
 		});
-		this.addEventHandler(EventTextEdit.class, EventHandler.Origin.DIRECT_CHILD, this, event -> {
+		this.addEventHandler(EventTextEdit.class, EventHandlerOrigin.DIRECT_CHILD, this, event -> {
 			for (final ModeWidgets widgets : WindowAbstractDatabase.this.modes.values()) {
 				widgets.listBox.setValidator(object -> {
 					if (Objects.equals(event.getValue(), "")) {

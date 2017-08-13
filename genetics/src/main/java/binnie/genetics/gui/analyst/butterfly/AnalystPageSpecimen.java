@@ -1,19 +1,19 @@
 package binnie.genetics.gui.analyst.butterfly;
 
+import binnie.core.api.gui.IArea;
 import net.minecraft.util.text.TextFormatting;
 
 import forestry.api.lepidopterology.IButterfly;
 
-import binnie.core.gui.IWidget;
+import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.ControlTextCentered;
-import binnie.core.gui.geometry.Area;
 import binnie.core.util.I18N;
 import binnie.genetics.gui.analyst.AnalystConstants;
 import binnie.genetics.gui.analyst.ControlAnalystPage;
 import binnie.genetics.gui.analyst.ControlIndividualDisplay;
 
 public class AnalystPageSpecimen extends ControlAnalystPage {
-	public AnalystPageSpecimen(IWidget parent, Area area, IButterfly ind) {
+	public AnalystPageSpecimen(IWidget parent, IArea area, IButterfly ind) {
 		super(parent, area);
 		setColor(3355443);
 		int y = 4;

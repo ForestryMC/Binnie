@@ -5,6 +5,7 @@ import java.util.List;
 
 import net.minecraft.item.ItemStack;
 
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class OreDictionaryUtil {
@@ -29,7 +30,7 @@ public class OreDictionaryUtil {
 		}
 	}
 
-	public static List<ItemStack> getOres(String oreName) {
+	public static NonNullList<ItemStack> getOres(String oreName) {
 		return OreDictionary.getOres(oreName);
 	}
 

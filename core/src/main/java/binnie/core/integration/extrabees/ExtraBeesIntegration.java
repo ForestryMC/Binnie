@@ -3,7 +3,6 @@ package binnie.core.integration.extrabees;
 import com.google.common.base.Preconditions;
 
 import net.minecraft.block.Block;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
@@ -21,7 +20,6 @@ public class ExtraBeesIntegration implements IInitializable {
 	private static final boolean loaded;
 	public static IAlleleBeeSpecies water, rock, basalt, marble;
 	public static Block hive;
-	public static Item dictionary;
 
 	static {
 		loaded = Loader.isModLoaded("extrabees");
@@ -39,7 +37,6 @@ public class ExtraBeesIntegration implements IInitializable {
 	@Override
 	public void init() {
 		hive = Preconditions.checkNotNull(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("extrabees", "hive")));
-		dictionary = Preconditions.checkNotNull(ForgeRegistries.ITEMS.getValue(new ResourceLocation("genetics", "dictionary")));
 	}
 
 	@Override

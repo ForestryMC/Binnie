@@ -1,6 +1,6 @@
 package binnie.core.gui.controls.scroll;
 
-import binnie.core.gui.IWidget;
+import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.core.Control;
 
 public class ControlScroll extends Control {

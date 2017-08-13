@@ -1,5 +1,7 @@
 package binnie.extrabees;
 
+import binnie.extrabees.genetics.gui.analyst.AnalystPagePlugin;
+import binnie.genetics.api.GeneticsApi;
 import com.google.common.collect.Lists;
 
 import java.io.File;
@@ -101,6 +103,8 @@ public class ExtraBees {
 		BeeBreedingSystem beeBreedingSystem = new BeeBreedingSystem();
 		ExtraBeesAPI.beeBreedingSystem = beeBreedingSystem;
 		Binnie.GENETICS.registerBreedingSystem(beeBreedingSystem);
+
+		GeneticsApi.registerAnalystPagePlugin(new AnalystPagePlugin());
 	}
 
 	@Mod.EventHandler

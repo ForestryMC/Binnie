@@ -11,7 +11,7 @@ import binnie.core.api.gui.IPoint;
 import binnie.core.api.gui.ITexture;
 import binnie.core.gui.Attribute;
 import binnie.core.gui.CraftGUI;
-import binnie.core.gui.IWidget;
+import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.geometry.Area;
 import binnie.core.gui.geometry.Border;

@@ -4,4 +4,8 @@ dependencies {
 	compile project(":core")
 	compile project(":core-api")
 	compile project(":extrabees-api")
+	compile project(":genetics-api")
+
+	// TODO: remove genetics dependency
+	compile project(":genetics")
 }

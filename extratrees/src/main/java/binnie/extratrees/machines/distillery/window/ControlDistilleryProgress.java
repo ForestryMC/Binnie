@@ -10,7 +10,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.core.gui.CraftGUI;
-import binnie.core.gui.IWidget;
+import binnie.core.api.gui.IWidget;
 import binnie.core.gui.events.EventMouse;
 import binnie.core.gui.geometry.Area;
 import binnie.core.api.gui.Alignment;

@@ -1,139 +1,54 @@
 package binnie.genetics.gui.analyst;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
+import binnie.core.api.gui.IArea;
+import binnie.core.util.FluidStackUtil;
+import binnie.genetics.api.GeneticsApi;
+import binnie.genetics.api.IProducePlugin;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.FurnaceRecipes;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.NonNullList;
 
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
-import forestry.api.recipes.ICentrifugeRecipe;
-import forestry.api.recipes.ISqueezerRecipe;
-import forestry.api.recipes.RecipeManagers;
-
-import binnie.core.gui.IWidget;
+import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.ControlTextCentered;
-import binnie.core.gui.geometry.Area;
 import binnie.core.gui.minecraft.control.ControlItemDisplay;
 import binnie.core.util.UniqueFluidStackSet;
 import binnie.core.util.UniqueItemStackSet;
-import binnie.extratrees.machines.brewery.recipes.BreweryRecipeManager;
-import binnie.extratrees.machines.distillery.recipes.DistilleryRecipeManager;
-import binnie.extratrees.machines.fruitpress.recipes.FruitPressRecipeManager;
-import binnie.genetics.gui.analyst.bee.AnalystPageProducts;
 
 public abstract class AnalystPageProduce extends ControlAnalystPage {
-	public AnalystPageProduce(IWidget parent, Area area) {
+	public AnalystPageProduce(IWidget parent, IArea area) {
 		super(parent, area);
 	}
 
-	protected Collection<? extends ItemStack> getAllProducts(ItemStack key) {
-		Collection<ItemStack> products = new UniqueItemStackSet();
-		products.addAll(getCentrifuge(key));
-		products.addAll(getSqueezer(key));
-		products.add(FurnaceRecipes.instance().getSmeltingResult(key));
-		products.addAll(getCrafting(key));
-		return products;
-	}
-
-	public Collection<ItemStack> getCentrifuge(ItemStack stack) {
-		List<ItemStack> products = new ArrayList<>();
-		for (ICentrifugeRecipe recipe : RecipeManagers.centrifugeManager.recipes()) {
-			boolean isRecipe = false;
-			if (stack.isItemEqual(recipe.getInput())) {
-				isRecipe = true;
-			}
-			if (isRecipe) {
-				for (Object obj : recipe.getAllProducts().keySet()) {
-					if (obj instanceof ItemStack) {
-						products.add((ItemStack) obj);
-					}
-				}
-			}
-		}
-		return products;
-	}
-
-	public NonNullList<ItemStack> getSqueezer(ItemStack stack) {
+	protected NonNullList<ItemStack> getAllProducts(ItemStack key) {
 		NonNullList<ItemStack> products = NonNullList.create();
-		for (ISqueezerRecipe recipe : RecipeManagers.squeezerManager.recipes()) {
-			boolean isRecipe = false;
-			for (Object obj : recipe.getResources()) {
-				if (obj instanceof ItemStack && stack.isItemEqual((ItemStack) obj)) {
-					isRecipe = true;
-				}
-			}
-			if (isRecipe) {
-				if (!recipe.getRemnants().isEmpty()) {
-					products.add(recipe.getRemnants());
-				}
-			}
+		for (IProducePlugin plugin : GeneticsApi.getProducePlugins()) {
+			plugin.getItems(key, products);
 		}
 		return products;
 	}
 
-	public Collection<ItemStack> getCrafting(ItemStack stack) {
-		List<ItemStack> products = new ArrayList<>();
-		for (IRecipe recipe : ForgeRegistries.RECIPES.getValues()) {
-			ItemStack recipeOutput = recipe.getRecipeOutput();
-			if (!recipeOutput.isEmpty()) {
-				NonNullList<Ingredient> ingredients = recipe.getIngredients();
-				if (!ingredients.isEmpty()) {
-					boolean match = true;
-					for (Ingredient ingredient : ingredients) {
-						if (!ingredient.apply(stack)) {
-							match = false;
-							break;
-						}
-					}
-					if (match) {
-						products.add(recipeOutput);
-					}
-				}
+	public NonNullList<FluidStack> getAllFluidsFromItems(Collection<ItemStack> itemStacks) {
+		NonNullList<FluidStack> allFluids = NonNullList.create();
+		for (ItemStack itemStack : itemStacks) {
+			for (IProducePlugin producePlugin : GeneticsApi.getProducePlugins()) {
+				producePlugin.getFluids(itemStack, allFluids);
 			}
 		}
-		return products;
+		return FluidStackUtil.removeEqualFluids(allFluids);
 	}
 
-	public Collection<FluidStack> getAllFluids(ItemStack stack) {
-		List<FluidStack> products = new ArrayList<>();
-		products.addAll(getSqueezerFluid(stack));
-		if (FruitPressRecipeManager.getOutput(stack) != null) {
-			products.add(FruitPressRecipeManager.getOutput(stack));
-		}
-		return products;
-	}
-
-	public Collection<FluidStack> getSqueezerFluid(ItemStack stack) {
-		List<FluidStack> products = new ArrayList<>();
-		for (ISqueezerRecipe recipe : RecipeManagers.squeezerManager.recipes()) {
-			boolean isRecipe = false;
-			for (Object obj : recipe.getResources()) {
-				if (obj instanceof ItemStack && stack.isItemEqual((ItemStack) obj)) {
-					isRecipe = true;
-				}
-			}
-			if (isRecipe) {
-				products.add(recipe.getFluidOutput());
+	public NonNullList<FluidStack> getAllFluidsFromFluids(Collection<FluidStack> fluidStacks) {
+		NonNullList<FluidStack> allFluids = NonNullList.create();
+		for (FluidStack itemStack : fluidStacks) {
+			for (IProducePlugin producePlugin : GeneticsApi.getProducePlugins()) {
+				producePlugin.getFluids(itemStack, allFluids);
 			}
 		}
-		return products;
-	}
-
-	protected Collection<? extends FluidStack> getAllProducts(FluidStack stack) {
-		Collection<FluidStack> fluids = new UniqueFluidStackSet();
-		fluids.add(BreweryRecipeManager.getOutput(stack));
-		fluids.add(DistilleryRecipeManager.getOutput(stack, 0));
-		fluids.add(DistilleryRecipeManager.getOutput(stack, 1));
-		fluids.add(DistilleryRecipeManager.getOutput(stack, 2));
-		return fluids;
+		return FluidStackUtil.removeEqualFluids(allFluids);
 	}
 
 	protected Collection<ItemStack> getAllProductsAndFluids(Collection<ItemStack> collection) {
@@ -152,21 +67,18 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
 		products.addAll(products2);
 		products.addAll(products3);
 		Collection<FluidStack> allFluids = new UniqueFluidStackSet();
-		for (ItemStack stack4 : collection) {
-			allFluids.addAll(getAllFluids(stack4));
-		}
+		allFluids.addAll(getAllFluidsFromItems(collection));
+
 		Collection<FluidStack> fluids2 = new UniqueFluidStackSet();
-		for (FluidStack stack5 : allFluids) {
-			fluids2.addAll(getAllProducts(stack5));
-		}
+		fluids2.addAll(getAllFluidsFromFluids(allFluids));
+
 		Collection<FluidStack> fluids3 = new UniqueFluidStackSet();
-		for (FluidStack stack6 : fluids2) {
-			fluids3.addAll(getAllProducts(stack6));
-		}
+		fluids3.addAll(getAllFluidsFromFluids(fluids2));
+
 		allFluids.addAll(fluids2);
 		allFluids.addAll(fluids3);
 		for (FluidStack fluid : allFluids) {
-			ItemStack container = AnalystPageProducts.getContainer(fluid);
+			ItemStack container = FluidStackUtil.getContainer(fluid);
 			if (container != null) {
 				products.add(container);
 			}

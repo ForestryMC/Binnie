@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.List;
 
 import binnie.core.api.genetics.IBreedingSystem;
+import binnie.core.api.gui.IArea;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
@@ -21,10 +22,9 @@ import binnie.core.Binnie;
 import binnie.core.Mods;
 import binnie.core.genetics.ForestryAllele;
 import binnie.core.gui.Attribute;
-import binnie.core.gui.IWidget;
+import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.ControlTextCentered;
 import binnie.core.gui.controls.core.Control;
-import binnie.core.gui.geometry.Area;
 import binnie.core.gui.geometry.Point;
 import binnie.core.gui.geometry.TextJustification;
 import binnie.core.gui.minecraft.EnumColor;
@@ -35,7 +35,7 @@ import binnie.core.integration.extrabees.ExtraBeesIntegration;
 import binnie.core.util.I18N;
 
 public class AnalystPageMutations extends ControlAnalystPage {
-	public AnalystPageMutations(IWidget parent, Area area, IIndividual ind, boolean isMaster) {
+	public AnalystPageMutations(IWidget parent, IArea area, IIndividual ind, boolean isMaster) {
 		super(parent, area);
 		setColor(3355392);
 		int y = 4;

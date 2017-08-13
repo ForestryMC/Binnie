@@ -2,7 +2,8 @@ package binnie.core.gui.events;
 
 import javax.annotation.Nullable;
 
-import binnie.core.gui.IWidget;
+import binnie.core.api.gui.IWidget;
+import binnie.core.api.gui.events.Event;
 
 public class EventValueChanged<T> extends Event {
 	@Nullable

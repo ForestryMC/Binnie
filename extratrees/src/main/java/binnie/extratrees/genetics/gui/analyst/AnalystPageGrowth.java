@@ -1,5 +1,7 @@
-package binnie.genetics.gui.analyst.tree;
+package binnie.extratrees.genetics.gui.analyst;
 
+import binnie.core.api.gui.IArea;
+import binnie.core.util.TimeUtil;
 import net.minecraft.util.text.TextFormatting;
 
 import forestry.api.arboriculture.EnumTreeChromosome;
@@ -7,16 +9,15 @@ import forestry.api.arboriculture.ITree;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IIndividual;
 
-import binnie.core.gui.IWidget;
+import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.ControlTextCentered;
-import binnie.core.gui.geometry.Area;
 import binnie.core.util.I18N;
 import binnie.extratrees.modules.ModuleWood;
 import binnie.genetics.gui.analyst.AnalystConstants;
 import binnie.genetics.gui.analyst.ControlAnalystPage;
 
 public class AnalystPageGrowth extends ControlAnalystPage {
-	public AnalystPageGrowth(IWidget parent, Area area, IIndividual ind) {
+	public AnalystPageGrowth(IWidget parent, IArea area, IIndividual ind) {
 		super(parent, area);
 		setColor(3355443);
 		int y = 4;
@@ -28,7 +29,7 @@ public class AnalystPageGrowth extends ControlAnalystPage {
 			int mat = tree.getGenome().getMaturationTime();
 			new ControlTextCentered(this, y, I18N.localise(AnalystConstants.GROWTH_KEY + ".mature")).setColor(getColor());
 			y += 12;
-			new ControlTextCentered(this, y, TextFormatting.BOLD + getTimeString(Math.round(1373.3999f * mat))).setColor(getColor());
+			new ControlTextCentered(this, y, TextFormatting.BOLD + TimeUtil.getTimeString(Math.round(1373.3999f * mat))).setColor(getColor());
 			y += 22;
 			new ControlTextCentered(this, y, TextFormatting.ITALIC + I18N.localise(AnalystConstants.GROWTH_KEY + ".height") + ": " + ModuleWood.treeBreedingSystem.getAlleleName(EnumTreeChromosome.HEIGHT, ind.getGenome().getActiveAllele(EnumTreeChromosome.HEIGHT))).setColor(getColor());
 			y += 12;

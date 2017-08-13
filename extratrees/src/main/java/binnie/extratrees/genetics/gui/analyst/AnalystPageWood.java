@@ -1,7 +1,8 @@
-package binnie.genetics.gui.analyst.tree;
+package binnie.extratrees.genetics.gui.analyst;
 
 import java.util.Collection;
 
+import binnie.core.api.gui.IArea;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
 
@@ -14,9 +15,8 @@ import forestry.api.arboriculture.ITree;
 import forestry.api.arboriculture.ITreeGenome;
 import forestry.api.genetics.IAlleleBoolean;
 
-import binnie.core.gui.IWidget;
+import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.ControlTextCentered;
-import binnie.core.gui.geometry.Area;
 import binnie.core.gui.geometry.Point;
 import binnie.core.gui.minecraft.control.ControlIconDisplay;
 import binnie.core.gui.minecraft.control.ControlItemDisplay;
@@ -28,7 +28,7 @@ import binnie.genetics.item.ModuleItems;
 
 @SideOnly(Side.CLIENT)
 public class AnalystPageWood extends AnalystPageProduce {
-	public AnalystPageWood(IWidget parent, Area area, ITree ind) {
+	public AnalystPageWood(IWidget parent, IArea area, ITree ind) {
 		super(parent, area);
 		setColor(6697728);
 		ITreeGenome genome = ind.getGenome();

@@ -1,19 +1,17 @@
-package binnie.genetics.gui.analyst.flower;
+package binnie.botany.genetics.gui.analyst;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
-
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.TextFormatting;
 
 import binnie.botany.api.gardening.EnumAcidity;
 import binnie.botany.api.gardening.EnumMoisture;
 import binnie.botany.api.genetics.IFlower;
 import binnie.botany.blocks.BlockSoil;
 import binnie.botany.modules.ModuleGardening;
+import binnie.core.api.gui.IArea;
+import binnie.core.api.gui.IWidget;
 import binnie.core.genetics.Tolerance;
-import binnie.core.gui.IWidget;
 import binnie.core.gui.controls.ControlText;
 import binnie.core.gui.controls.ControlTextCentered;
 import binnie.core.gui.geometry.Area;
@@ -23,9 +21,11 @@ import binnie.core.util.I18N;
 import binnie.genetics.gui.analyst.AnalystConstants;
 import binnie.genetics.gui.analyst.ControlAnalystPage;
 import binnie.genetics.gui.analyst.ControlToleranceBar;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.TextFormatting;
 
 public class AnalystPageSoil extends ControlAnalystPage {
-	public AnalystPageSoil(IWidget parent, Area area, IFlower flower) {
+	public AnalystPageSoil(IWidget parent, IArea area, IFlower flower) {
 		super(parent, area);
 		setColor(6697728);
 		EnumMoisture moisture = flower.getGenome().getPrimary().getMoisture();

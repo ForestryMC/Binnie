@@ -4,6 +4,7 @@ import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 
+import binnie.core.api.gui.IArea;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -11,10 +12,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import binnie.core.gui.Attribute;
 import binnie.core.gui.ITooltip;
 import binnie.core.gui.ITooltipHelp;
-import binnie.core.gui.IWidget;
+import binnie.core.api.gui.IWidget;
 import binnie.core.gui.Tooltip;
 import binnie.core.gui.Widget;
-import binnie.core.gui.geometry.Area;
 import binnie.core.gui.geometry.Point;
 import binnie.core.gui.minecraft.Window;
 
@@ -33,7 +33,7 @@ public class Control extends Widget implements ITooltipHelp, ITooltip {
 		this.initialise();
 	}
 
-	public Control(IWidget parent, Area area) {
+	public Control(IWidget parent, IArea area) {
 		this(parent, area.xPos(), area.yPos(), area.width(), area.height());
 	}
 

@@ -1,7 +1,7 @@
 package binnie.botany.gui.database;
 
 import binnie.botany.api.genetics.IColorMix;
-import binnie.core.gui.IWidget;
+import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.listbox.ControlListBox;
 
 public class ControlColorMixBox extends ControlListBox<IColorMix> {

@@ -2,6 +2,7 @@ package binnie.genetics.gui.analyst;
 
 import java.util.List;
 
+import binnie.core.api.gui.ITitledWidget;
 import net.minecraft.client.renderer.GlStateManager;
 
 import net.minecraft.client.util.ITooltipFlag;
@@ -10,7 +11,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.core.gui.Attribute;
 import binnie.core.gui.CraftGUI;
-import binnie.core.gui.IWidget;
+import binnie.core.api.gui.IWidget;
 import binnie.core.gui.Tooltip;
 import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.events.EventMouse;
@@ -18,16 +19,16 @@ import binnie.core.gui.renderer.RenderUtil;
 import binnie.core.gui.resource.textures.CraftGUITexture;
 
 public class ControlAnalystButton extends Control {
-	ControlAnalystPage value;
+	ITitledWidget value;
 	WindowAnalyst window;
 
-	public ControlAnalystButton(IWidget parent, int x, int y, int width, int height, WindowAnalyst window, ControlAnalystPage page) {
+	public ControlAnalystButton(IWidget parent, int x, int y, int width, int height, WindowAnalyst window, ITitledWidget page) {
 		super(parent, x, y, width, height);
 		this.window = window;
 		addAttribute(Attribute.MOUSE_OVER);
 		this.value = page;
 		addSelfEventHandler(EventMouse.Down.class, event -> {
-			List<ControlAnalystPage> pages = window.analystPages;
+			List<ITitledWidget> pages = window.analystPages;
 			int currentIndex = pages.indexOf(window.rightPage.getContent());
 			int clickedIndex = pages.indexOf(value);
 			if (window.isDatabase) {

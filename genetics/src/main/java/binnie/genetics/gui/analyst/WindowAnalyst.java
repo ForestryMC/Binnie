@@ -4,35 +4,19 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-import binnie.core.api.genetics.IBreedingSystem;
-import binnie.core.genetics.ManagerGenetics;
-import binnie.extrabees.api.ExtraBeesAPI;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import forestry.api.apiculture.IBee;
-import forestry.api.arboriculture.ITree;
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IBreedingTracker;
-import forestry.api.genetics.IIndividual;
-import forestry.api.genetics.ISpeciesRoot;
-import forestry.api.lepidopterology.IButterfly;
-
-import binnie.core.Binnie;
-import binnie.botany.api.genetics.IFlower;
 import binnie.core.AbstractMod;
-import binnie.core.gui.IWidget;
+import binnie.core.Binnie;
+import binnie.core.api.genetics.IBreedingSystem;
+import binnie.core.api.gui.Alignment;
+import binnie.core.api.gui.IArea;
+import binnie.core.api.gui.ITitledWidget;
+import binnie.core.api.gui.IWidget;
+import binnie.core.genetics.ManagerGenetics;
 import binnie.core.gui.Widget;
 import binnie.core.gui.controls.ControlTextCentered;
 import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.controls.scroll.ControlScrollableContent;
 import binnie.core.gui.events.EventKey;
-import binnie.core.gui.geometry.Area;
-import binnie.core.api.gui.Alignment;
 import binnie.core.gui.minecraft.InventoryType;
 import binnie.core.gui.minecraft.Window;
 import binnie.core.gui.minecraft.WindowInventory;
@@ -42,18 +26,23 @@ import binnie.core.gui.minecraft.control.ControlSlot;
 import binnie.core.gui.window.Panel;
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.util.I18N;
+import binnie.core.util.Log;
+import binnie.extrabees.api.ExtraBeesAPI;
 import binnie.genetics.Genetics;
+import binnie.genetics.api.GeneticsApi;
+import binnie.genetics.api.IAnalystPagePlugin;
 import binnie.genetics.core.GeneticsGUI;
-import binnie.genetics.gui.analyst.bee.AnalystPageProducts;
-import binnie.genetics.gui.analyst.butterfly.AnalystPageSpecimen;
-import binnie.genetics.gui.analyst.flower.AnalystPageAppearance;
-import binnie.genetics.gui.analyst.flower.AnalystPageSoil;
-import binnie.genetics.gui.analyst.tree.AnalystPageClimate;
-import binnie.genetics.gui.analyst.tree.AnalystPageFruit;
-import binnie.genetics.gui.analyst.tree.AnalystPageGrowth;
-import binnie.genetics.gui.analyst.tree.AnalystPageWood;
 import binnie.genetics.item.GeneticsItems;
 import binnie.genetics.machine.ModuleMachine;
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.IBreedingTracker;
+import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.ISpeciesRoot;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WindowAnalyst extends Window {
 	@Nullable
@@ -63,9 +52,9 @@ public class WindowAnalyst extends Window {
 	@Nullable
 	Control tabBar;
 	Panel analystPanel;
-	List<ControlAnalystPage> analystPages;
+	List<ITitledWidget> analystPages;
 	@Nullable
-	Area analystPageSize;
+	IArea analystPageSize;
 	boolean isDatabase;
 	boolean isMaster;
 	boolean lockedSearch;
@@ -78,15 +67,7 @@ public class WindowAnalyst extends Window {
 
 	public WindowAnalyst(EntityPlayer player, @Nullable IInventory inventory, Side side, boolean database, boolean master) {
 		super(312, 230, player, inventory, side);
-		baseWidget = null;
-		tabBar = null;
 		analystPages = new ArrayList<>();
-		analystPageSize = null;
-		isDatabase = false;
-		isMaster = false;
-		lockedSearch = false;
-		current = null;
-		currentSystem = null;
 		isDatabase = database;
 		isMaster = master;
 		lockedSearch = isDatabase;
@@ -191,7 +172,7 @@ public class WindowAnalyst extends Window {
 			oldLeft = analystPages.indexOf(leftPage.getContent());
 			oldRight = analystPages.indexOf(rightPage.getContent());
 		}
-		ControlAnalystPage databasePage = null;
+		ITitledWidget databasePage = null;
 		if (isDatabase && !systemChange) {
 			databasePage = ((analystPages.size() > 0) ? analystPages.get(0) : null);
 		}
@@ -203,7 +184,7 @@ public class WindowAnalyst extends Window {
 		if (analystPages.size() > 0) {
 			int width = tabBar.getWidth() / analystPages.size();
 			int x = 0;
-			for (ControlAnalystPage page : analystPages) {
+			for (ITitledWidget page : analystPages) {
 				new ControlAnalystButton(tabBar, x, 0, width, tabBar.getHeight(), this, page);
 				x += width;
 			}
@@ -215,7 +196,7 @@ public class WindowAnalyst extends Window {
 	}
 
 	@SideOnly(Side.CLIENT)
-	private void createPages(ControlAnalystPage databasePage){
+	private void createPages(@Nullable ITitledWidget databasePage){
 		if (isDatabase) {
 			analystPages.add((databasePage != null) ? databasePage : new AnalystPageDatabase(analystPanel, analystPageSize, currentSystem, isMaster));
 		}
@@ -226,28 +207,20 @@ public class WindowAnalyst extends Window {
 				analystPages.add(new AnalystPageGenome(analystPanel, analystPageSize, false, current));
 				analystPages.add(new AnalystPageKaryogram(analystPanel, analystPageSize, current));
 			}
-			if (!(current instanceof ITree)) {
-				analystPages.add(new AnalystPageClimate(analystPanel, analystPageSize, current));
-			}
-			if (current instanceof IBee) {
-				analystPages.add(new AnalystPageProducts(analystPanel, analystPageSize, (IBee) current));
-			} else if (current instanceof ITree) {
-				analystPages.add(new AnalystPageFruit(analystPanel, analystPageSize, (ITree) current));
-				analystPages.add(new AnalystPageWood(analystPanel, analystPageSize, (ITree) current));
-			} else if (current instanceof IFlower) {
-				analystPages.add(new AnalystPageSoil(analystPanel, analystPageSize, (IFlower) current));
-			} else if (current instanceof IButterfly) {
-				analystPages.add(new AnalystPageSpecimen(analystPanel, analystPageSize, (IButterfly) current));
-			}
-			analystPages.add(new AnalystPageBiology(analystPanel, analystPageSize, current));
-			if (current instanceof IBee || current instanceof IButterfly) {
-				analystPages.add(new AnalystPageBehaviour(analystPanel, analystPageSize, current));
-			} else if (current instanceof ITree) {
-				analystPages.add(new AnalystPageGrowth(analystPanel, analystPageSize, current));
-			} else if (current instanceof IFlower) {
-				analystPages.add(new AnalystPageAppearance(analystPanel, analystPageSize, (IFlower) current));
-			}
+
+			createPages(current, analystPanel, analystPageSize, analystPages);
+
 			analystPages.add(new AnalystPageMutations(analystPanel, analystPageSize, current, isMaster));
+		}
+	}
+
+	@SideOnly(Side.CLIENT)
+	private static <T extends IIndividual> void createPages(T individual, IWidget parent, IArea pageSize, List<ITitledWidget> analystPages) {
+		IAnalystPagePlugin<T> analystPageFactory = GeneticsApi.getAnalystPagePlugin(individual);
+		if (analystPageFactory != null) {
+			analystPageFactory.addAnalystPages(individual, parent, pageSize, analystPages);
+		} else {
+			Log.error("Could not find IAnalystPagePlugin for {}", individual.getClass());
 		}
 	}
 
@@ -289,8 +262,8 @@ public class WindowAnalyst extends Window {
 		}
 	}
 
-	public void setPage(ControlScrollableContent side, @Nullable ControlAnalystPage page) {
-		ControlAnalystPage existingPage = (ControlAnalystPage) side.getContent();
+	public void setPage(ControlScrollableContent side, @Nullable IWidget page) {
+		Control existingPage = (Control) side.getContent();
 		if (existingPage != null) {
 			existingPage.hide();
 			side.setScrollableContent(null);
@@ -330,7 +303,7 @@ public class WindowAnalyst extends Window {
 	}
 
 	@SideOnly(Side.CLIENT)
-	public void setIndividual(IIndividual ind) {
+	public void setIndividual(@Nullable IIndividual ind) {
 		if (!isDatabase) {
 			if (ind == null) {
 				analystNone.show();
@@ -340,14 +313,14 @@ public class WindowAnalyst extends Window {
 				slideUpInv.show();
 			}
 		}
-		if (ind == current || (ind != null && current != null && ind.isGeneticEqual(current))) {
-			return;
+		if (ind != current && (ind == null || current == null || !ind.isGeneticEqual(current))) {
+			current = ind;
+			boolean systemChange = current != null && ind.getGenome().getSpeciesRoot() != getSystem().getSpeciesRoot();
+			if (systemChange) {
+				currentSystem = Binnie.GENETICS.getSystem(ind.getGenome().getSpeciesRoot());
+			}
+			updatePages(systemChange);
 		}
-		boolean systemChange = (current = ind) != null && ind.getGenome().getSpeciesRoot() != getSystem().getSpeciesRoot();
-		if (systemChange) {
-			currentSystem = Binnie.GENETICS.getSystem(ind.getGenome().getSpeciesRoot());
-		}
-		updatePages(systemChange);
 	}
 
 	public IBreedingSystem getSystem() {

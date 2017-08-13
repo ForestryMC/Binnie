@@ -1,13 +1,13 @@
 package binnie.core.gui.controls.tab;
 
+import binnie.core.api.gui.events.EventHandlerOrigin;
 import com.google.common.collect.Iterables;
 
 import java.util.Collection;
 
-import binnie.core.gui.IWidget;
+import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.controls.core.IControlValue;
-import binnie.core.gui.events.EventHandler;
 import binnie.core.gui.events.EventValueChanged;
 import binnie.core.api.gui.Alignment;
 
@@ -24,7 +24,7 @@ public class ControlTabBar<T> extends Control implements IControlValue<T> {
 		super(parent, x, y, width, height);
 		this.value = value;
 		this.alignment = alignment;
-		this.addEventHandler(EventValueChanged.class, EventHandler.Origin.DIRECT_CHILD, this, event -> {
+		this.addEventHandler(EventValueChanged.class, EventHandlerOrigin.DIRECT_CHILD, this, event -> {
 			ControlTabBar.this.setValue((T) event.getValue());
 		});
 	}

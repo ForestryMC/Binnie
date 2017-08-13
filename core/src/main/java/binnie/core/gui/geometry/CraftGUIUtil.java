@@ -1,7 +1,7 @@
 package binnie.core.gui.geometry;
 
 import binnie.core.api.gui.IPoint;
-import binnie.core.gui.IWidget;
+import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.core.IControlValue;
 import binnie.core.gui.events.EventValueChanged;
 

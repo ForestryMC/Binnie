@@ -2,6 +2,7 @@ package binnie.genetics.gui.analyst;
 
 import java.util.Objects;
 
+import binnie.core.api.gui.IArea;
 import net.minecraft.util.text.TextFormatting;
 
 import net.minecraftforge.fml.relauncher.Side;
@@ -11,7 +12,7 @@ import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IIndividual;
 
 import binnie.core.gui.CraftGUI;
-import binnie.core.gui.IWidget;
+import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.ControlText;
 import binnie.core.gui.controls.ControlTextCentered;
 import binnie.core.gui.geometry.Area;
@@ -21,7 +22,7 @@ import binnie.core.util.I18N;
 
 @SideOnly(Side.CLIENT)
 public class AnalystPageDescription extends ControlAnalystPage {
-	public AnalystPageDescription(IWidget parent, Area area, IIndividual ind) {
+	public AnalystPageDescription(IWidget parent, IArea area, IIndividual ind) {
 		super(parent, area);
 		setColor(3355443);
 		int y = 4;

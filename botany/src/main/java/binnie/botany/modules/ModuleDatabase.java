@@ -18,6 +18,7 @@ import binnie.botany.items.ItemDatabaseBotany;
 import binnie.core.liquid.ManagerLiquid;
 import binnie.core.modules.BinnieModule;
 import binnie.core.modules.Module;
+import net.minecraftforge.oredict.OreDictionary;
 
 @BinnieModule(moduleID = BotanyModuleUIDs.DATABASE, moduleContainerID = Constants.BOTANY_MOD_ID, name = "Database", unlocalizedDescription = "botany.module.database")
 public class ModuleDatabase extends Module {
@@ -27,6 +28,7 @@ public class ModuleDatabase extends Module {
 	public void registerItemsAndBlocks() {
 		database = new ItemDatabaseBotany();
 		Botany.proxy.registerItem(database);
+		OreDictionary.registerOre("binnie_database", database);
 	}
 
 	@Override

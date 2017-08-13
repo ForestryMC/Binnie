@@ -1,10 +1,12 @@
-package binnie.genetics.gui.analyst.tree;
+package binnie.extratrees.genetics.gui.analyst;
 
 import java.lang.reflect.Field;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
 
+import binnie.core.api.gui.IArea;
+import forestry.api.arboriculture.TreeManager;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
@@ -13,15 +15,13 @@ import forestry.api.arboriculture.EnumTreeChromosome;
 import forestry.api.arboriculture.IAlleleFruit;
 import forestry.api.arboriculture.ITree;
 import forestry.api.arboriculture.ITreeGenome;
-import forestry.api.arboriculture.TreeManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IFruitFamily;
 import forestry.arboriculture.FruitProviderPod;
 
 import binnie.core.Binnie;
-import binnie.core.gui.IWidget;
+import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.ControlTextCentered;
-import binnie.core.gui.geometry.Area;
 import binnie.core.gui.geometry.Point;
 import binnie.core.gui.minecraft.control.ControlItemDisplay;
 import binnie.core.util.I18N;
@@ -31,7 +31,7 @@ import binnie.genetics.gui.analyst.AnalystConstants;
 import binnie.genetics.gui.analyst.AnalystPageProduce;
 
 public class AnalystPageFruit extends AnalystPageProduce {
-	public AnalystPageFruit(IWidget parent, Area area, ITree ind) {
+	public AnalystPageFruit(IWidget parent, IArea area, ITree ind) {
 		super(parent, area);
 		setColor(13382400);
 		ITreeGenome genome = ind.getGenome();

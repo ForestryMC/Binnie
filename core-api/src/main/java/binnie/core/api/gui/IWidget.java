@@ -1,19 +1,16 @@
-package binnie.core.gui;
+package binnie.core.api.gui;
 
 import javax.annotation.Nullable;
 import java.util.List;
 
-import binnie.core.api.gui.IArea;
-import binnie.core.api.gui.IPoint;
+import binnie.core.api.gui.events.Event;
+import binnie.core.api.gui.events.EventHandlerOrigin;
+import binnie.core.api.gui.events.OnEventHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.core.gui.events.Event;
-import binnie.core.gui.events.EventHandler;
-
 public interface IWidget {
 	/**
-	 *
 	 * @return the parent of this widget
 	 */
 	@Nullable
@@ -82,7 +79,7 @@ public interface IWidget {
 	List<IWidget> getChildren();
 
 	@Nullable
-	<W> W getWidget(Class<W> widgetClass);
+	<W extends IWidget> W getWidget(Class<W> widgetClass);
 
 	void deleteChild(IWidget child);
 
@@ -93,14 +90,14 @@ public interface IWidget {
 	 */
 	void receiveEvent(Event event);
 
-	<E extends Event> void addEventHandler(Class<? super E> eventClass, EventHandler.OnEventHandler<E> handler);
+	<E extends Event> void addEventHandler(Class<? super E> eventClass, OnEventHandler<E> handler);
 
-	<E extends Event> void addEventHandler(Class<? super E> eventClass, EventHandler.Origin origin, IWidget relative, EventHandler.OnEventHandler<E> handler);
+	<E extends Event> void addEventHandler(Class<? super E> eventClass, EventHandlerOrigin origin, IWidget relative, OnEventHandler<E> handler);
 
 	/**
 	 * Adds an event handler to this widget and sets his origin to self
 	 */
-	<E extends Event> void addSelfEventHandler(Class<? super E> eventClass, EventHandler.OnEventHandler<E> handler);
+	<E extends Event> void addSelfEventHandler(Class<? super E> eventClass, OnEventHandler<E> handler);
 
 	void delete();
 

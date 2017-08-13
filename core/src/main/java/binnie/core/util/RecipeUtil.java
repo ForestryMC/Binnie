@@ -4,10 +4,11 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
+import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
-
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 public class RecipeUtil {
 	private final String modId;
@@ -33,6 +34,11 @@ public class RecipeUtil {
 	public void addShapelessRecipe(String recipeName, ItemStack itemstack, Object... obj) {
 		ShapelessOreRecipe recipe = new ShapelessOreRecipe(null, itemstack, obj);
 		recipe.setRegistryName(modId, recipeName);
+		ForgeRegistries.RECIPES.register(recipe);
+	}
+
+	public void addRecipe(String recipeName, IRecipe recipe) {
+		recipe.setRegistryName(new ResourceLocation(modId, recipeName));
 		ForgeRegistries.RECIPES.register(recipe);
 	}
 }

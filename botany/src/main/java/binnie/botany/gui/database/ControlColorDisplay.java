@@ -7,7 +7,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import binnie.botany.api.genetics.IFlowerColor;
 import binnie.core.gui.Attribute;
 import binnie.core.gui.ITooltip;
-import binnie.core.gui.IWidget;
+import binnie.core.api.gui.IWidget;
 import binnie.core.gui.Tooltip;
 import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.controls.core.IControlValue;
@@ -40,6 +40,7 @@ public class ControlColorDisplay extends Control implements IControlValue<IFlowe
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void getTooltip(Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		super.getTooltip(tooltip, tooltipFlag);
 		tooltip.add(value.getColorName());

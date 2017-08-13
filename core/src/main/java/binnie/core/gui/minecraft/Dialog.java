@@ -1,14 +1,14 @@
 package binnie.core.gui.minecraft;
 
 import binnie.core.api.gui.IPoint;
+import binnie.core.api.gui.events.EventHandlerOrigin;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.core.gui.Attribute;
 import binnie.core.gui.CraftGUI;
-import binnie.core.gui.IWidget;
+import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.core.Control;
-import binnie.core.gui.events.EventHandler;
 import binnie.core.gui.events.EventMouse;
 import binnie.core.gui.renderer.RenderUtil;
 import binnie.core.gui.resource.textures.CraftGUITexture;
@@ -21,7 +21,7 @@ public abstract class Dialog extends Control {
 		this.addAttribute(Attribute.ALWAYS_ON_TOP);
 		this.addAttribute(Attribute.BLOCK_TOOLTIP);
 		this.initialise();
-		this.addEventHandler(EventMouse.Down.class, EventHandler.Origin.ANY, this, event -> {
+		this.addEventHandler(EventMouse.Down.class, EventHandlerOrigin.ANY, this, event -> {
 			if (!Dialog.this.getArea().contains(Dialog.this.getRelativeMousePosition())) {
 				Dialog.this.onClose();
 				Dialog.this.getParent().deleteChild(Dialog.this);

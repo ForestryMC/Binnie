@@ -1,37 +1,27 @@
 package binnie.genetics.item;
 
-import com.google.common.base.Preconditions;
-
 import javax.annotation.Nullable;
 
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-
-import net.minecraftforge.fml.common.registry.GameRegistry;
-
-import forestry.api.recipes.RecipeManagers;
-
 import binnie.core.Binnie;
-import binnie.core.Constants;
-import binnie.core.modules.BotanyModuleUIDs;
-import binnie.botany.modules.ModuleDatabase;
 import binnie.core.BinnieCore;
+import binnie.core.Constants;
 import binnie.core.IInitializable;
 import binnie.core.Mods;
-import binnie.core.integration.extrabees.ExtraBeesIntegration;
 import binnie.core.item.ItemMisc;
 import binnie.core.liquid.FluidContainerType;
 import binnie.core.liquid.ManagerLiquid;
 import binnie.core.resource.BinnieSprite;
 import binnie.core.util.RecipeUtil;
-import binnie.core.modules.ExtraTreesModuleUIDs;
-import binnie.extratrees.modules.ModuleMothDatabase;
-import binnie.extratrees.modules.ModuleTreeDatabase;
 import binnie.genetics.CreativeTabGenetics;
 import binnie.genetics.Genetics;
-import binnie.core.modules.ModuleManager;
+import binnie.genetics.recipes.RegistryRecipe;
+import com.google.common.base.Preconditions;
+import forestry.api.recipes.RecipeManagers;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class ModuleItems implements IInitializable {
 	public static BinnieSprite iconNight;
@@ -180,26 +170,7 @@ public class ModuleItems implements IInitializable {
 			'c', GeneticsItems.IntegratedCircuit.get(itemGenetics, 1), 'a', Mods.Forestry.item("portable_alyzer"), 'd', new ItemStack(Items.DIAMOND)
 		);
 
-		// TODO: make this crazy list of recipes into one custom recipe
-		Item[] databases = {ExtraBeesIntegration.dictionary, ModuleTreeDatabase.itemDictionary, ModuleMothDatabase.itemDictionaryLepi, ModuleDatabase.database};
-		if (ModuleManager.isModuleEnabled(Constants.BOTANY_MOD_ID, BotanyModuleUIDs.DATABASE) && BinnieCore.isExtraBeesActive() && ModuleManager.isModuleEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.TREE_DATABASE) && ModuleManager.isModuleEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.MOTH_DATABASE)) {
-			int recipeNum = 0;
-			for (Item databaseA : databases) {
-				for (Item databaseB : databases) {
-					for (Item databaseC : databases) {
-						for (Item databaseD : databases) {
-							if (databaseA != databaseB && databaseA != databaseC && databaseA != databaseD && databaseB != databaseC && databaseB != databaseD && databaseC != databaseD) {
-								recipeUtil.addRecipe("registry_" + recipeNum, new ItemStack(registry),
-									" b ",
-									"fct",
-									" l ", 'c', GeneticsItems.IntegratedCircuit.get(itemGenetics, 1), 'b', databaseA, 't', databaseB, 'f', databaseC, 'l', databaseD
-								);
-								recipeNum++;
-							}
-						}
-					}
-				}
-			}
-		}
+		RegistryRecipe recipe = RegistryRecipe.create(registry, itemGenetics);
+		recipeUtil.addRecipe("registry", recipe);
 	}
 }

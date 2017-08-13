@@ -16,6 +16,7 @@ import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.items.ItemArboristDatabase;
 import binnie.core.modules.BinnieModule;
 import binnie.core.modules.Module;
+import net.minecraftforge.oredict.OreDictionary;
 
 @BinnieModule(moduleID = ExtraTreesModuleUIDs.TREE_DATABASE, moduleContainerID = Constants.EXTRA_TREES_MOD_ID, name = "Database", unlocalizedDescription = "extratrees.module.database.tree")
 public class ModuleTreeDatabase extends Module {
@@ -25,6 +26,7 @@ public class ModuleTreeDatabase extends Module {
 	public void registerItemsAndBlocks() {
 		itemDictionary = new ItemArboristDatabase();
 		ExtraTrees.proxy.registerItem(itemDictionary);
+		OreDictionary.registerOre("binnie_database", itemDictionary);
 	}
 
 	@Override

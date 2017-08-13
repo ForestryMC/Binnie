@@ -15,7 +15,7 @@ import binnie.botany.api.genetics.IFlowerColor;
 import binnie.botany.api.genetics.EnumFlowerColor;
 import binnie.botany.modules.ModuleFlowers;
 import binnie.core.AbstractMod;
-import binnie.core.gui.IWidget;
+import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.listbox.ControlListBox;
 import binnie.core.gui.database.DatabaseConstants;
 import binnie.core.gui.database.DatabaseTab;

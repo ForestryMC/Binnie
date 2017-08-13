@@ -2,7 +2,7 @@ package binnie.core.gui.database;
 
 import forestry.api.genetics.IClassification;
 
-import binnie.core.gui.IWidget;
+import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.listbox.ControlListBox;
 
 class ControlBranchBox extends ControlListBox<IClassification> {

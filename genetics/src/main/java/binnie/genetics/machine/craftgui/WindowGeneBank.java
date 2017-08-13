@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import binnie.core.api.genetics.IBreedingSystem;
+import binnie.core.api.gui.events.EventHandlerOrigin;
 import binnie.core.gui.geometry.Point;
 import binnie.core.gui.window.WindowMachine;
 import binnie.extrabees.api.ExtraBeesAPI;
@@ -31,7 +32,6 @@ import binnie.core.gui.controls.ControlTextEdit;
 import binnie.core.gui.controls.scroll.ControlScrollableContent;
 import binnie.core.gui.controls.tab.ControlTab;
 import binnie.core.gui.controls.tab.ControlTabBar;
-import binnie.core.gui.events.EventHandler;
 import binnie.core.gui.events.EventTextEdit;
 import binnie.core.gui.events.EventValueChanged;
 import binnie.core.api.gui.Alignment;
@@ -102,7 +102,7 @@ public class WindowGeneBank extends WindowMachine {
 		new Panel(this, boxX + 24 + geneBoxWidth, 32, 14, 120, MinecraftGUI.PanelType.GRAY);
 		final ControlScrollableContent<ControlGeneScroll> scroll = new ControlScrollableContent<>(this, boxX + 24 + 2, 34, geneBoxWidth + 10, 116, 12);
 		final ControlTextEdit edit = new ControlTextEdit(this, boxX + 27 + geneBoxWidth - 70, 18, 80, 12);
-		this.addEventHandler(EventTextEdit.class, EventHandler.Origin.SELF, edit, event -> {
+		this.addEventHandler(EventTextEdit.class, EventHandlerOrigin.SELF, edit, event -> {
 			String value = event.getValue();
 			if (value == null) {
 				value = "";

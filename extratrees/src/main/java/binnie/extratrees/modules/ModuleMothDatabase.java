@@ -17,6 +17,7 @@ import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.items.ItemMothDatabase;
 import binnie.core.modules.BinnieModule;
 import binnie.core.modules.Module;
+import net.minecraftforge.oredict.OreDictionary;
 
 @BinnieModule(moduleID = ExtraTreesModuleUIDs.MOTH_DATABASE, moduleContainerID = Constants.EXTRA_TREES_MOD_ID, name = "Database", unlocalizedDescription = "extratrees.module.database.moth")
 public class ModuleMothDatabase extends Module {
@@ -27,6 +28,7 @@ public class ModuleMothDatabase extends Module {
 	public void registerItemsAndBlocks() {
 		itemDictionaryLepi = new ItemMothDatabase();
 		ExtraTrees.proxy.registerItem(itemDictionaryLepi);
+		OreDictionary.registerOre("binnie_database", itemDictionaryLepi);
 	}
 
 	@Override

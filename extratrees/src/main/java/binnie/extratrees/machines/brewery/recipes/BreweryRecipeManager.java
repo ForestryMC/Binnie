@@ -7,6 +7,7 @@ import java.util.Set;
 
 import net.minecraft.item.ItemStack;
 
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.fluids.FluidStack;
 
 import net.minecraftforge.fml.common.Optional;
@@ -39,16 +40,14 @@ public class BreweryRecipeManager implements IBreweryManager {
 		return false;
 	}
 
-	@Nullable
-	public static FluidStack getOutput(final FluidStack stack) {
+	public static void getOutput(final FluidStack stack, NonNullList<FluidStack> outputFluids) {
 		final BreweryCrafting crafting = new BreweryCrafting(stack, ItemStack.EMPTY, null, ItemStack.EMPTY);
 		for (final IBreweryRecipe recipe : recipes) {
 			FluidStack output = recipe.getOutput(crafting);
 			if (output != null) {
-				return output;
+				outputFluids.add(output);
 			}
 		}
-		return null;
 	}
 
 	@Nullable

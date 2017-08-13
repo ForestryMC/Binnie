@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import binnie.core.api.gui.events.EventHandlerOrigin;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
@@ -31,7 +32,6 @@ import binnie.core.genetics.ManagerGenetics;
 import binnie.core.gui.CraftGUI;
 import binnie.core.gui.controls.ControlText;
 import binnie.core.gui.controls.core.Control;
-import binnie.core.gui.events.EventHandler;
 import binnie.core.gui.events.EventValueChanged;
 import binnie.core.gui.geometry.Area;
 import binnie.core.gui.geometry.Point;
@@ -109,7 +109,7 @@ public class WindowFieldKit extends Window {
 		(this.text = new ControlText(this, new Point(232, 13), I18N.localise("binniecore.gui.fieldkit.paper"))).setColor(2236962);
 		(this.text = new ControlText(this, new Area(0, 120, this.getWidth(), 24), "", TextJustification.MIDDLE_CENTER)).setColor(2236962);
 		this.chromo = new ControlChromosome(this, 150, 24);
-		this.addEventHandler(EventValueChanged.class, EventHandler.Origin.DIRECT_CHILD, this.chromo, event -> {
+		this.addEventHandler(EventValueChanged.class, EventHandlerOrigin.DIRECT_CHILD, this.chromo, event -> {
 			final IChromosomeType type = (IChromosomeType) event.getValue();
 			if (type != null && WindowFieldKit.this.info.containsKey(type)) {
 				final String t = WindowFieldKit.this.info.get(type);

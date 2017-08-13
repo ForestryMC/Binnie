@@ -2,7 +2,7 @@ package binnie.extratrees.gui.database;
 
 import forestry.api.genetics.IAlleleSpecies;
 
-import binnie.core.gui.IWidget;
+import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.ControlTextCentered;
 import binnie.core.gui.database.ControlIndividualDisplay;
 import binnie.core.gui.database.DatabaseTab;

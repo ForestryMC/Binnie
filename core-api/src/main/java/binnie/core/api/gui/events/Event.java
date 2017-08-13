@@ -1,6 +1,6 @@
-package binnie.core.gui.events;
+package binnie.core.api.gui.events;
 
-import binnie.core.gui.IWidget;
+import binnie.core.api.gui.IWidget;
 
 public class Event {
 	IWidget origin;

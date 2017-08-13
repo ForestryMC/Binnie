@@ -3,6 +3,7 @@ package binnie.genetics.gui.analyst.tree;
 import java.util.ArrayList;
 import java.util.List;
 
+import binnie.core.api.gui.IArea;
 import net.minecraft.init.Biomes;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.biome.Biome;
@@ -19,7 +20,7 @@ import forestry.api.lepidopterology.IButterfly;
 import binnie.botany.api.genetics.EnumFlowerChromosome;
 import binnie.botany.api.genetics.IFlower;
 import binnie.core.genetics.Tolerance;
-import binnie.core.gui.IWidget;
+import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.ControlText;
 import binnie.core.gui.controls.ControlTextCentered;
 import binnie.core.gui.geometry.Area;
@@ -33,7 +34,7 @@ import binnie.genetics.gui.analyst.ControlToleranceBar;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 public class AnalystPageClimate extends ControlAnalystPage {
-	public AnalystPageClimate(IWidget parent, Area area, IIndividual ind) {
+	public AnalystPageClimate(IWidget parent, IArea area, IIndividual ind) {
 		super(parent, area);
 		setColor(26163);
 		EnumTemperature temp = ind.getGenome().getPrimary().getTemperature();

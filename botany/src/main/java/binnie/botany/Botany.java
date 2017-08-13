@@ -1,5 +1,7 @@
 package binnie.botany;
 
+import binnie.botany.genetics.gui.analyst.FlowerAnalystPagePlugin;
+import binnie.genetics.api.GeneticsApi;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -35,6 +37,7 @@ public class Botany extends BlankModuleContainer {
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent evt) {
 		super.preInit(evt);
+		GeneticsApi.registerAnalystPagePlugin(new FlowerAnalystPagePlugin());
 	}
 
 	@Mod.EventHandler

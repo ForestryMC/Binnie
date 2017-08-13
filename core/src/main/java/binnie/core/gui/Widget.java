@@ -8,11 +8,17 @@ import java.util.List;
 
 import binnie.core.api.gui.IArea;
 import binnie.core.api.gui.IPoint;
+import binnie.core.api.gui.ITopLevelWidget;
+import binnie.core.api.gui.IWidget;
+import binnie.core.api.gui.IWidgetAttribute;
+import binnie.core.api.gui.RenderStage;
+import binnie.core.api.gui.events.EventHandlerOrigin;
+import binnie.core.api.gui.events.OnEventHandler;
 import binnie.core.gui.geometry.Point;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.core.gui.events.Event;
+import binnie.core.api.gui.events.Event;
 import binnie.core.gui.events.EventHandler;
 import binnie.core.gui.events.EventWidget;
 import binnie.core.gui.geometry.Area;
@@ -104,7 +110,7 @@ public class Widget implements IWidget {
 
 	@Override
 	@Nullable
-	public <W> W getWidget(Class<W> widgetClass) {
+	public <W extends IWidget> W getWidget(Class<W> widgetClass) {
 		for (IWidget child : this.getChildren()) {
 			if (widgetClass.isInstance(child)) {
 				return widgetClass.cast(child);
@@ -239,18 +245,18 @@ public class Widget implements IWidget {
 	}
 
 	@Override
-	public <E extends Event> void addEventHandler(Class<? super E> eventClass, EventHandler.OnEventHandler<E> handler) {
+	public <E extends Event> void addEventHandler(Class<? super E> eventClass, OnEventHandler<E> handler) {
 		this.eventHandlers.add(new EventHandler<>(eventClass, handler));
 	}
 
 	@Override
-	public <E extends Event> void addEventHandler(Class<? super E> eventClass, EventHandler.Origin origin, IWidget relative, EventHandler.OnEventHandler<E> handler) {
+	public <E extends Event> void addEventHandler(Class<? super E> eventClass, EventHandlerOrigin origin, IWidget relative, OnEventHandler<E> handler) {
 		this.eventHandlers.add(new EventHandler<>(eventClass, origin, relative, handler));
 	}
 
 	@Override
-	public <E extends Event> void addSelfEventHandler(Class<? super E> eventClass, EventHandler.OnEventHandler<E> handler) {
-		this.eventHandlers.add(new EventHandler<>(eventClass, EventHandler.Origin.SELF, this, handler));
+	public <E extends Event> void addSelfEventHandler(Class<? super E> eventClass, OnEventHandler<E> handler) {
+		this.eventHandlers.add(new EventHandler<>(eventClass, EventHandlerOrigin.SELF, this, handler));
 	}
 
 	public void callEvent(final Event event) {

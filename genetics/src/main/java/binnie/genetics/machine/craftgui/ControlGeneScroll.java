@@ -11,7 +11,7 @@ import forestry.api.genetics.IChromosomeType;
 
 import binnie.core.Binnie;
 import binnie.core.genetics.Gene;
-import binnie.core.gui.IWidget;
+import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.ControlText;
 import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.controls.core.IControlValue;

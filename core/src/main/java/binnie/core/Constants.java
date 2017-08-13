@@ -9,4 +9,5 @@ public final class Constants {
 	public static final String EXTRA_TREES_MOD_ID = "extratrees";
 	public static final String GENETICS_MOD_ID = "genetics";
 
+	public static final float SPAWN_KOEF = 1365.3999f;
 }
