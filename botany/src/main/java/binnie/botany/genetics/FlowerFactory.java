@@ -1,5 +1,8 @@
 package binnie.botany.genetics;
 
+import java.awt.Color;
+
+import binnie.botany.api.genetics.IAlleleFlowerColor;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IClassification;
 
@@ -24,5 +27,10 @@ public class FlowerFactory implements IFlowerFactory {
 		FlowerMutation mutation = new FlowerMutation(allele0, allele1, result, chance);
 		BotanyAPI.flowerRoot.registerMutation(mutation);
 		return mutation;
+	}
+
+	@Override
+	public IAlleleFlowerColor createFlowerColorAllele(String uid, int id, Color color, Color colorWilted, String name, String unlocalizedName, boolean isDominant) {
+		return new AlleleFlowerColor(uid, id, color, colorWilted, name, unlocalizedName, isDominant);
 	}
 }

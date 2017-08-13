@@ -1,5 +1,6 @@
 package binnie.botany.modules;
 
+import binnie.botany.genetics.FlowerColorMutations;
 import com.google.common.collect.ImmutableSet;
 
 import javax.annotation.Nullable;
@@ -36,7 +37,6 @@ import binnie.botany.Botany;
 import binnie.botany.CreativeTabBotany;
 import binnie.botany.api.BotanyAPI;
 import binnie.botany.api.gardening.IBlockSoil;
-import binnie.botany.api.genetics.EnumFlowerColor;
 import binnie.botany.api.genetics.EnumFlowerStage;
 import binnie.botany.api.genetics.IFlower;
 import binnie.botany.api.genetics.IFlowerRoot;
@@ -79,7 +79,7 @@ public class ModuleFlowers extends Module {
 	@Override
 	public void registerItemsAndBlocks() {
 		AlleleManager.alleleRegistry.registerAllele(ModuleFlowers.alleleEffectNone);
-		EnumFlowerColor.setupMutations();
+		FlowerColorMutations.registerFlowerColorMutations();
 		FlowerDefinition.preInitFlowers();
 
 		IBackpackInterface backpackInterface = BackpackManager.backpackInterface;
@@ -117,7 +117,7 @@ public class ModuleFlowers extends Module {
 
 	@Override
 	public void init() {
-		EnumFlowerColor.initColours();
+		FlowerColorMutations.registerFlowerColorAlleles();
 		FlowerDefinition.initFlowers();
 	}
 
