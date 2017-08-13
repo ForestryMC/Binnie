@@ -11,7 +11,7 @@ import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.events.EventHandler;
 import binnie.core.gui.events.EventMouse;
 import binnie.core.gui.renderer.RenderUtil;
-import binnie.core.gui.resource.minecraft.CraftGUITexture;
+import binnie.core.gui.resource.textures.CraftGUITexture;
 
 @SideOnly(Side.CLIENT)
 public abstract class Dialog extends Control {

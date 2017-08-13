@@ -27,7 +27,7 @@ import binnie.core.gui.events.EventMouse;
 import binnie.core.gui.geometry.Point;
 import binnie.core.gui.minecraft.Window;
 import binnie.core.gui.renderer.RenderUtil;
-import binnie.core.gui.resource.minecraft.CraftGUITexture;
+import binnie.core.gui.resource.textures.CraftGUITexture;
 import binnie.core.machines.TileEntityMachine;
 import binnie.core.util.I18N;
 import binnie.extratrees.api.CarpentryManager;

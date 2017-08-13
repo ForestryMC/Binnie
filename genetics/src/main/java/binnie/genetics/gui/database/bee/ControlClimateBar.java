@@ -3,11 +3,12 @@ package binnie.genetics.gui.database.bee;
 import java.util.ArrayList;
 import java.util.List;
 
-import forestry.api.apiculture.BeeManager;
 import net.minecraft.client.util.ITooltipFlag;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import forestry.api.apiculture.BeeManager;
 import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.core.EnumHumidity;
@@ -23,7 +24,7 @@ import binnie.core.gui.Tooltip;
 import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.geometry.Area;
 import binnie.core.gui.renderer.RenderUtil;
-import binnie.core.gui.resource.minecraft.CraftGUITexture;
+import binnie.core.gui.resource.textures.CraftGUITexture;
 
 public class ControlClimateBar extends Control implements ITooltip {
 	private final int[] TEMP_COLORS = new int[]{

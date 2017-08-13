@@ -1,4 +1,4 @@
-package binnie.core.gui.resource.minecraft;
+package binnie.core.gui.resource.stylesheet;
 
 import javax.annotation.Nullable;
 
@@ -10,7 +10,6 @@ import binnie.core.resource.IBinnieTexture;
 import binnie.core.resource.ResourceType;
 
 class ParsedTextureSheet implements IBinnieTexture {
-	private String name;
 	private String modid;
 	private String path;
 
@@ -18,8 +17,7 @@ class ParsedTextureSheet implements IBinnieTexture {
 	@Nullable
 	private BinnieResource resource;
 
-	public ParsedTextureSheet(final String name, final String modid, final String path) {
-		this.name = name;
+	public ParsedTextureSheet(final String modid, final String path) {
 		this.modid = modid;
 		this.path = path;
 	}

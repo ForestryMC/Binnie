@@ -10,7 +10,7 @@ import binnie.core.gui.controls.scroll.ControlScrollableContent;
 import binnie.core.gui.geometry.Area;
 import binnie.core.gui.minecraft.MinecraftGUI;
 import binnie.core.gui.renderer.RenderUtil;
-import binnie.core.gui.resource.minecraft.CraftGUITexture;
+import binnie.core.gui.resource.textures.CraftGUITexture;
 import binnie.core.gui.window.Panel;
 
 public class AnalystPanel extends Panel {

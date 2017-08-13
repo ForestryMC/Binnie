@@ -14,7 +14,7 @@ import binnie.core.gui.events.EventKey;
 import binnie.core.gui.events.EventMouse;
 import binnie.core.gui.events.EventTextEdit;
 import binnie.core.gui.events.EventWidget;
-import binnie.core.gui.resource.minecraft.CraftGUITexture;
+import binnie.core.gui.resource.textures.CraftGUITexture;
 
 @SideOnly(Side.CLIENT)
 public class ControlTextEdit extends Control implements IControlValue<String> {

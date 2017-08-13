@@ -18,8 +18,8 @@ import com.mojang.authlib.GameProfile;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.core.Binnie;
 import binnie.core.AbstractMod;
+import binnie.core.Binnie;
 import binnie.core.BinnieCore;
 import binnie.core.gui.Attribute;
 import binnie.core.gui.CraftGUI;
@@ -39,10 +39,10 @@ import binnie.core.gui.minecraft.control.ControlSlot;
 import binnie.core.gui.minecraft.control.ControlUser;
 import binnie.core.gui.minecraft.control.EnumHighlighting;
 import binnie.core.gui.renderer.RenderUtil;
-import binnie.core.gui.resource.StyleSheetManager;
-import binnie.core.gui.resource.Texture;
-import binnie.core.gui.resource.minecraft.CraftGUITexture;
-import binnie.core.gui.resource.minecraft.StandardTexture;
+import binnie.core.gui.resource.textures.Texture;
+import binnie.core.gui.resource.textures.CraftGUITexture;
+import binnie.core.gui.resource.textures.StandardTexture;
+import binnie.core.gui.resource.stylesheet.StyleSheetManager;
 import binnie.core.machines.Machine;
 import binnie.core.machines.inventory.IInventoryMachine;
 import binnie.core.machines.network.INetwork;
@@ -89,7 +89,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 			for (final EnumHighlighting h : EnumHighlighting.values()) {
 				ControlSlot.highlighting.put(h, new ArrayList<>());
 			}
-			CraftGUI.RENDER.setStyleSheet(StyleSheetManager.getDefault());
+			CraftGUI.RENDER.setStyleSheet(StyleSheetManager.getDefaultSheet());
 			this.titleButtonLeft = -14;
 			if (this.showHelpButton()) {
 				new ControlHelp(this, this.titleButtonLeft += 22, 8);

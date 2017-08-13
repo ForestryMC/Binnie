@@ -1,4 +1,4 @@
-package binnie.core.gui.resource.minecraft;
+package binnie.core.gui.resource.textures;
 
 public enum CraftGUITexture {
 	WINDOW("window"),

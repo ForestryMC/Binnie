@@ -20,7 +20,7 @@ import binnie.core.gui.geometry.Area;
 import binnie.core.gui.geometry.Point;
 import binnie.core.gui.minecraft.Window;
 import binnie.core.gui.renderer.RenderUtil;
-import binnie.core.gui.resource.minecraft.CraftGUITexture;
+import binnie.core.gui.resource.textures.CraftGUITexture;
 
 public abstract class ControlSlotBase extends Control implements ITooltip {
 	private ControlItemDisplay itemDisplay;

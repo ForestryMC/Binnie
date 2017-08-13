@@ -1,12 +1,13 @@
 package binnie.core.gui.controls.tab;
 
-import binnie.core.api.gui.IArea;
-import binnie.core.api.gui.ITexture;
-import binnie.core.gui.geometry.Point;
 import net.minecraft.client.util.ITooltipFlag;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import binnie.core.api.gui.Alignment;
+import binnie.core.api.gui.IArea;
+import binnie.core.api.gui.ITexture;
 import binnie.core.gui.Attribute;
 import binnie.core.gui.CraftGUI;
 import binnie.core.gui.ITooltip;
@@ -15,11 +16,11 @@ import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.controls.core.IControlValue;
 import binnie.core.gui.events.EventMouse;
 import binnie.core.gui.events.EventValueChanged;
-import binnie.core.api.gui.Alignment;
+import binnie.core.gui.geometry.Point;
 import binnie.core.gui.minecraft.control.ControlItemDisplay;
 import binnie.core.gui.minecraft.control.ControlTabIcon;
 import binnie.core.gui.renderer.RenderUtil;
-import binnie.core.gui.resource.minecraft.CraftGUITexture;
+import binnie.core.gui.resource.textures.CraftGUITexture;
 
 public class ControlTab<T> extends Control implements ITooltip, IControlValue<T> {
 	protected T value;

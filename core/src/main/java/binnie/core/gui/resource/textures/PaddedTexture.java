@@ -1,8 +1,7 @@
-package binnie.core.gui.resource.minecraft;
+package binnie.core.gui.resource.textures;
 
 import binnie.core.gui.geometry.Area;
 import binnie.core.gui.geometry.Border;
-import binnie.core.gui.resource.Texture;
 import binnie.core.resource.IBinnieTexture;
 
 public class PaddedTexture extends Texture {

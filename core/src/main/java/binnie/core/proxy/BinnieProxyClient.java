@@ -27,9 +27,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.core.Constants;
-import binnie.core.gui.resource.minecraft.CraftGUIResourceManager;
+import binnie.core.gui.resource.stylesheet.StyleSheetManager;
 import binnie.core.models.ModelManager;
-import binnie.core.resource.BinnieResource;
 
 @SideOnly(Side.CLIENT)
 public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy {
@@ -140,7 +139,7 @@ public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy
 	public void preInit() {
 		final IResourceManager manager = Minecraft.getMinecraft().getResourceManager();
 		if (manager instanceof IReloadableResourceManager) {
-			((IReloadableResourceManager) manager).registerReloadListener(new CraftGUIResourceManager());
+			((IReloadableResourceManager) manager).registerReloadListener(new StyleSheetManager());
 		}
 	}
 }

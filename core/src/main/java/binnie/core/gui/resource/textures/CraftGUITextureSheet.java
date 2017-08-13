@@ -1,13 +1,15 @@
-package binnie.core.gui.resource.minecraft;
+package binnie.core.gui.resource.textures;
 
 import javax.annotation.Nullable;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.core.gui.CraftGUI;
+import binnie.core.Binnie;
+import binnie.core.Constants;
 import binnie.core.resource.BinnieResource;
 import binnie.core.resource.IBinnieTexture;
+import binnie.core.resource.ResourceType;
 
 public enum CraftGUITextureSheet implements IBinnieTexture {
 	CONTROLS("controls"),
@@ -20,7 +22,7 @@ public enum CraftGUITextureSheet implements IBinnieTexture {
 	@Nullable
 	private BinnieResource resource;
 
-	private CraftGUITextureSheet(final String name) {
+	CraftGUITextureSheet(final String name) {
 		this.name = name;
 	}
 
@@ -33,7 +35,7 @@ public enum CraftGUITextureSheet implements IBinnieTexture {
 	@SideOnly(Side.CLIENT)
 	public BinnieResource getTexture() {
 		if (resource == null) {
-			resource = CraftGUI.resourceManager.getTextureSheet(this.name).getTexture();
+			resource = Binnie.RESOURCE.getPNG(Constants.CORE_MOD_ID, ResourceType.GUI, "craftgui-" + name);
 		}
 		return resource;
 	}

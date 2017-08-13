@@ -15,7 +15,7 @@ import binnie.core.gui.Tooltip;
 import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.controls.core.IControlValue;
 import binnie.core.gui.renderer.RenderUtil;
-import binnie.core.gui.resource.GeneticsGUITexture;
+import binnie.core.gui.resource.textures.PunnettGUITexture;
 
 public class ControlChromosome extends Control implements IControlValue<IChromosomeType>, ITooltip {
 	private IChromosomeType value;
@@ -39,9 +39,9 @@ public class ControlChromosome extends Control implements IControlValue<IChromos
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		CraftGUI.RENDER.texture(GeneticsGUITexture.CHROMOSOME, getArea());
+		CraftGUI.RENDER.texture(PunnettGUITexture.CHROMOSOME, getArea());
 		RenderUtil.setColour(16711680);
-		CraftGUI.RENDER.texture(GeneticsGUITexture.CHROMOSOME_OVERLAY, getArea());
+		CraftGUI.RENDER.texture(PunnettGUITexture.CHROMOSOME_OVERLAY, getArea());
 	}
 
 	@Override

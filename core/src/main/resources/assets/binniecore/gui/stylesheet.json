@@ -1,7 +1,4 @@
 {
-    "name": "default",
-    "author": "Binnie",
-    
     "texture-sheets": [
         {
             "name": "controls",

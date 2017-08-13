@@ -12,14 +12,11 @@ import forestry.api.genetics.ISpeciesRoot;
 
 import binnie.core.AbstractMod;
 import binnie.core.Binnie;
+import binnie.core.Constants;
 import binnie.core.gui.CraftGUI;
 import binnie.core.gui.minecraft.Window;
 import binnie.core.gui.minecraft.control.ControlSlot;
-import binnie.core.gui.resource.GeneticsGUITexture;
-import binnie.core.gui.resource.StyleSheet;
-import binnie.core.gui.resource.minecraft.CraftGUITexture;
-import binnie.core.gui.resource.minecraft.PaddedTexture;
-import binnie.core.gui.resource.minecraft.StandardTexture;
+import binnie.core.gui.resource.stylesheet.StyleSheetManager;
 import binnie.core.resource.BinnieResource;
 import binnie.core.resource.IBinnieTexture;
 import binnie.core.resource.ResourceType;
@@ -57,16 +54,7 @@ public class WindowPunnettSquare extends Window {
 	@SideOnly(Side.CLIENT)
 	public void initialiseClient() {
 		setTitle("Punnett Square");
-		CraftGUI.RENDER.setStyleSheet(new StyleSheetPunnett());
-	}
-
-	static class StyleSheetPunnett extends StyleSheet {
-		public StyleSheetPunnett() {
-			textures.put(CraftGUITexture.WINDOW, new PaddedTexture(0, 0, 160, 160, 0, texture, 32, 32, 32, 32));
-			textures.put(CraftGUITexture.SLOT, new StandardTexture(160, 0, 18, 18, 0, texture));
-			textures.put(GeneticsGUITexture.CHROMOSOME, new StandardTexture(160, 36, 16, 16, 0, texture));
-			textures.put(GeneticsGUITexture.CHROMOSOME_OVERLAY, new StandardTexture(160, 52, 16, 16, 0, texture));
-		}
+		CraftGUI.RENDER.setStyleSheet(StyleSheetManager.getSheet(StyleSheetManager.PUNNETT_SHEET));
 	}
 
 	private static class GuiTexture implements IBinnieTexture {
@@ -79,7 +67,7 @@ public class WindowPunnettSquare extends Window {
 		@SideOnly(Side.CLIENT)
 		public BinnieResource getTexture() {
 			if (resource == null) {
-				resource = Binnie.RESOURCE.getPNG("binniecore", ResourceType.GUI, "punnett");
+				resource = Binnie.RESOURCE.getPNG(Constants.CORE_MOD_ID, ResourceType.GUI, "punnett");
 			}
 			return resource;
 		}

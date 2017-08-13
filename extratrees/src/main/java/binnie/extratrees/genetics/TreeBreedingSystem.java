@@ -16,7 +16,7 @@ import binnie.core.api.gui.ITexture;
 import binnie.core.genetics.BreedingSystem;
 import binnie.core.genetics.ForestryAllele;
 import binnie.core.gui.geometry.Point;
-import binnie.core.gui.resource.minecraft.StandardTexture;
+import binnie.core.gui.resource.textures.StandardTexture;
 import binnie.core.texture.BinnieCoreTexture;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

@@ -10,10 +10,10 @@ import binnie.core.gui.IWidget;
 import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.geometry.Point;
 import binnie.core.gui.renderer.RenderUtil;
-import binnie.core.gui.resource.Texture;
-import binnie.core.gui.resource.minecraft.CraftGUITexture;
-import binnie.core.gui.resource.minecraft.CraftGUITextureSheet;
-import binnie.core.gui.resource.minecraft.StandardTexture;
+import binnie.core.gui.resource.textures.Texture;
+import binnie.core.gui.resource.textures.CraftGUITexture;
+import binnie.core.gui.resource.textures.CraftGUITextureSheet;
+import binnie.core.gui.resource.textures.StandardTexture;
 
 class ControlBreedingProgress extends Control {
 	private static Texture Progress = new StandardTexture(80, 22, 4, 4, CraftGUITextureSheet.CONTROLS);

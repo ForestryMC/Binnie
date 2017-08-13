@@ -7,7 +7,7 @@ import binnie.core.gui.CraftGUI;
 import binnie.core.gui.IWidget;
 import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.geometry.Point;
-import binnie.core.gui.resource.Texture;
+import binnie.core.gui.resource.textures.Texture;
 
 public class ControlImage extends Control {
 	private Object key;

@@ -18,7 +18,7 @@ import binnie.core.gui.geometry.Point;
 import binnie.core.gui.minecraft.CustomSlot;
 import binnie.core.gui.minecraft.MinecraftTooltip;
 import binnie.core.gui.minecraft.Window;
-import binnie.core.gui.resource.minecraft.CraftGUITexture;
+import binnie.core.gui.resource.textures.CraftGUITexture;
 import binnie.core.machines.errors.ErrorState;
 
 public class ControlErrorState extends Control implements ITooltip {

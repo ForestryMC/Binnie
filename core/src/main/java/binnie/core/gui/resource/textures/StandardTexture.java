@@ -1,4 +1,4 @@
-package binnie.core.gui.resource.minecraft;
+package binnie.core.gui.resource.textures;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
@@ -6,7 +6,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.core.gui.geometry.Area;
 import binnie.core.gui.geometry.Border;
-import binnie.core.gui.resource.Texture;
 import binnie.core.resource.IBinnieTexture;
 
 public class StandardTexture extends Texture {

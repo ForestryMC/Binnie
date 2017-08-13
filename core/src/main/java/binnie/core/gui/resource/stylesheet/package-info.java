@@ -1,7 +1,7 @@
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 @FieldsAreNonnullByDefault
-package binnie.core.gui.resource.minecraft;
+package binnie.core.gui.resource.stylesheet;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 

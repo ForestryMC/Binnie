@@ -13,7 +13,7 @@ import binnie.core.gui.events.EventValueChanged;
 import binnie.core.gui.geometry.Area;
 import binnie.core.gui.geometry.Point;
 import binnie.core.gui.geometry.TextJustification;
-import binnie.core.gui.resource.minecraft.CraftGUITexture;
+import binnie.core.gui.resource.textures.CraftGUITexture;
 
 public class ControlCheckbox extends Control implements IControlValue<Boolean> {
 	private boolean value;

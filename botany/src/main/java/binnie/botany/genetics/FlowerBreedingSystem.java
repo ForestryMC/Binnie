@@ -4,14 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeSet;
 
-import binnie.botany.api.BotanyAPI;
-import binnie.botany.api.genetics.EnumFlowerColor;
-import binnie.core.api.genetics.IFieldKitPlugin;
-import binnie.core.api.gui.IPoint;
-import binnie.core.api.gui.ITexture;
-import binnie.core.gui.geometry.Point;
-import binnie.core.gui.resource.minecraft.StandardTexture;
-import binnie.core.texture.BinnieCoreTexture;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
@@ -24,14 +16,22 @@ import forestry.api.genetics.IMutation;
 import forestry.api.genetics.ISpeciesRoot;
 import forestry.api.genetics.ISpeciesType;
 
-import binnie.core.Binnie;
+import binnie.botany.api.BotanyAPI;
 import binnie.botany.api.genetics.EnumFlowerChromosome;
+import binnie.botany.api.genetics.EnumFlowerColor;
 import binnie.botany.api.genetics.EnumFlowerStage;
 import binnie.botany.api.genetics.IBotanistTracker;
 import binnie.botany.core.BotanyCore;
+import binnie.core.Binnie;
+import binnie.core.api.genetics.IFieldKitPlugin;
+import binnie.core.api.gui.IPoint;
+import binnie.core.api.gui.ITexture;
 import binnie.core.genetics.BreedingSystem;
 import binnie.core.genetics.ForestryAllele;
 import binnie.core.genetics.Tolerance;
+import binnie.core.gui.geometry.Point;
+import binnie.core.gui.resource.textures.StandardTexture;
+import binnie.core.texture.BinnieCoreTexture;
 import binnie.core.util.I18N;
 
 public class FlowerBreedingSystem extends BreedingSystem {

@@ -33,7 +33,7 @@ import binnie.core.gui.minecraft.GuiCraftGUI;
 import binnie.core.gui.minecraft.MinecraftTooltip;
 import binnie.core.gui.minecraft.Window;
 import binnie.core.gui.renderer.RenderUtil;
-import binnie.core.gui.resource.minecraft.CraftGUITexture;
+import binnie.core.gui.resource.textures.CraftGUITexture;
 import binnie.core.machines.Machine;
 import binnie.core.machines.inventory.MachineSide;
 import binnie.core.machines.inventory.TankSlot;

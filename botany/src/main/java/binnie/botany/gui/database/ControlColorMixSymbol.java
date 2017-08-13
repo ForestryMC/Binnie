@@ -13,9 +13,9 @@ import binnie.core.gui.Tooltip;
 import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.database.DatabaseConstants;
 import binnie.core.gui.geometry.Point;
-import binnie.core.gui.resource.Texture;
-import binnie.core.gui.resource.minecraft.CraftGUITextureSheet;
-import binnie.core.gui.resource.minecraft.StandardTexture;
+import binnie.core.gui.resource.textures.Texture;
+import binnie.core.gui.resource.textures.CraftGUITextureSheet;
+import binnie.core.gui.resource.textures.StandardTexture;
 import binnie.core.util.I18N;
 
 public class ControlColorMixSymbol extends Control implements ITooltip {

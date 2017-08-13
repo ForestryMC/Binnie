@@ -7,9 +7,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import binnie.core.api.genetics.IBreedingSystem;
-import binnie.core.genetics.ManagerGenetics;
-import binnie.core.gui.geometry.Point;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
@@ -26,15 +23,18 @@ import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.ISpeciesRoot;
 
-import binnie.core.Binnie;
 import binnie.core.AbstractMod;
+import binnie.core.Binnie;
 import binnie.core.BinnieCore;
+import binnie.core.api.genetics.IBreedingSystem;
+import binnie.core.genetics.ManagerGenetics;
 import binnie.core.gui.CraftGUI;
 import binnie.core.gui.controls.ControlText;
 import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.events.EventHandler;
 import binnie.core.gui.events.EventValueChanged;
 import binnie.core.gui.geometry.Area;
+import binnie.core.gui.geometry.Point;
 import binnie.core.gui.geometry.TextJustification;
 import binnie.core.gui.minecraft.InventoryType;
 import binnie.core.gui.minecraft.Window;
@@ -42,8 +42,8 @@ import binnie.core.gui.minecraft.WindowInventory;
 import binnie.core.gui.minecraft.control.ControlImage;
 import binnie.core.gui.minecraft.control.ControlPlayerInventory;
 import binnie.core.gui.minecraft.control.ControlSlot;
-import binnie.core.gui.resource.StyleSheetPunnett;
-import binnie.core.gui.resource.minecraft.StandardTexture;
+import binnie.core.gui.resource.stylesheet.StyleSheetManager;
+import binnie.core.gui.resource.textures.StandardTexture;
 import binnie.core.texture.BinnieCoreTexture;
 import binnie.core.util.I18N;
 
@@ -96,7 +96,7 @@ public class WindowFieldKit extends Window {
 	@SideOnly(Side.CLIENT)
 	public void initialiseClient() {
 		this.setTitle(I18N.localise("binniecore.gui.fieldkit.title"));
-		CraftGUI.RENDER.setStyleSheet(new StyleSheetPunnett());
+		CraftGUI.RENDER.setStyleSheet(StyleSheetManager.getSheet(StyleSheetManager.PUNNETT_SHEET));
 		WindowInventory inventory = this.getWindowInventory();
 		inventory.createSlot(INDIVIDUAL_SLOT);
 		inventory.createSlot(PAPER_SLOT);

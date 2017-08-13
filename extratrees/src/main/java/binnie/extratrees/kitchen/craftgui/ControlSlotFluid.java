@@ -18,7 +18,7 @@ import binnie.core.gui.events.EventWidget;
 import binnie.core.gui.geometry.Area;
 import binnie.core.gui.geometry.Point;
 import binnie.core.gui.renderer.RenderUtil;
-import binnie.core.gui.resource.minecraft.CraftGUITexture;
+import binnie.core.gui.resource.textures.CraftGUITexture;
 
 public class ControlSlotFluid extends Control implements ITooltip {
 	ControlFluidDisplay itemDisplay;

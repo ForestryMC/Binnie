@@ -12,7 +12,7 @@ import binnie.core.gui.ITooltip;
 import binnie.core.gui.IWidget;
 import binnie.core.gui.Tooltip;
 import binnie.core.gui.controls.core.Control;
-import binnie.core.gui.resource.minecraft.CraftGUITexture;
+import binnie.core.gui.resource.textures.CraftGUITexture;
 
 public class ControlUser extends Control implements ITooltip {
 	private final String username;
