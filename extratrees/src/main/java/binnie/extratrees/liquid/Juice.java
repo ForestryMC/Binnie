@@ -1,4 +1,4 @@
-package binnie.extratrees.alcohol;
+package binnie.extratrees.liquid;
 
 import net.minecraft.util.ResourceLocation;
 
@@ -8,7 +8,11 @@ import binnie.core.Constants;
 import binnie.core.liquid.FluidContainerType;
 import binnie.core.liquid.FluidType;
 import binnie.core.liquid.IFluidDefinition;
+import binnie.extratrees.alcohol.CocktailLiquid;
+import binnie.extratrees.alcohol.ICocktailIngredient;
+import binnie.extratrees.alcohol.ICocktailIngredientProvider;
 
+//TODO:Localise
 public enum Juice implements IFluidDefinition, ICocktailIngredientProvider {
 	Apple("Apple Juice", "juice.apple", 16763442, 0.7, "Apple"),
 	Apricot("Apricot Juice", "juice.apricot", 16758046, 0.6, "Apricot"),

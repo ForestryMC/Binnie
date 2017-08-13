@@ -1,43 +1,46 @@
-package binnie.extratrees.alcohol;
+package binnie.extratrees.liquid;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import binnie.extratrees.alcohol.GlasswareType;
+import binnie.extratrees.alcohol.ICocktailIngredient;
+import binnie.extratrees.alcohol.ICocktailIngredientProvider;
 import binnie.extratrees.alcohol.drink.DrinkLiquid;
 import binnie.core.liquid.DrinkManager;
 
 public enum Cocktail {
-	Bellini("Bellini", Glassware.Flute, 15974764),
-	BlackRussian("Black Russian", Glassware.OldFashioned, 3347992),
-	BloodyMary("Bloody Mary", Glassware.Highball, 12660480),
-	Cosmopolitan("Cosmopolitan", Glassware.Cocktail, 14811136),
-	CubaLibre("Cuba Libre", Glassware.Highball, 9044996),
-	FrenchConnection("French Connection", Glassware.OldFashioned, 16166183),
-	GodFather("God Father", Glassware.OldFashioned, 13134109),
-	GodMother("God Mother", Glassware.OldFashioned, 14644737),
-	Grasshopper("Grasshopper", Glassware.Cocktail, 4441194),
-	French75("French 75", Glassware.Flute, 15521949),
-	HarveyWallbanger("Harvey Wallbanger", Glassware.Highball, 16371968),
-	HemingwaySpecial("Hemingway Special", Glassware.Cocktail, 15201205),
-	HorsesNeck("Horse's Neck", Glassware.OldFashioned, 16692480),
-	IrishCoffee("Irish Coffee", Glassware.Wine, 4460034),
-	Kir("Kir", Glassware.Wine, 16004638),
-	Bramble("Bramble", Glassware.OldFashioned, 12804974),
-	B52("B-52", Glassware.Shot, 12934656),
-	DarkNStormy("Dark 'N' Stormy", Glassware.Highball, 12215848),
-	DirtyMartini("Dirty Martini", Glassware.Cocktail, 14332499),
-	ExpressoMartini("Expresso Martini", Glassware.Cocktail, 6498346),
-	FrenchMartini("French Martini", Glassware.Cocktail, 12660045),
-	Kamikaze("Kamikaze", Glassware.Cocktail, 14801069),
-	LemonDropMartini("Lemon Drop Martini", Glassware.Cocktail, 16375437),
-	PiscoSour("Pisco Sour", Glassware.OldFashioned, 15394463),
-	RussianSpringPunch("Russian Spring Punch", Glassware.Highball, 11805740),
-	SpritzVeneziano("Spritz Veneziano", Glassware.OldFashioned, 15355648),
-	TommysMargarita("Tommy's Margartita", Glassware.Cocktail, 14867592),
-	Vesper("Vesper", Glassware.Cocktail, 15658732),
-	SexOnTheBeach("Sex on the Beach", Glassware.Highball, 16677426);
+	Bellini("Bellini", GlasswareType.FLUTE, 15974764),
+	BlackRussian("Black Russian", GlasswareType.OLD_FASHIONED, 3347992),
+	BloodyMary("Bloody Mary", GlasswareType.HIGHBALL, 12660480),
+	Cosmopolitan("Cosmopolitan", GlasswareType.COCKTAIL, 14811136),
+	CubaLibre("Cuba Libre", GlasswareType.HIGHBALL, 9044996),
+	FrenchConnection("French Connection", GlasswareType.OLD_FASHIONED, 16166183),
+	GodFather("God Father", GlasswareType.OLD_FASHIONED, 13134109),
+	GodMother("God Mother", GlasswareType.OLD_FASHIONED, 14644737),
+	Grasshopper("Grasshopper", GlasswareType.COCKTAIL, 4441194),
+	French75("French 75", GlasswareType.FLUTE, 15521949),
+	HarveyWallbanger("Harvey Wallbanger", GlasswareType.HIGHBALL, 16371968),
+	HemingwaySpecial("Hemingway Special", GlasswareType.COCKTAIL, 15201205),
+	HorsesNeck("Horse's Neck", GlasswareType.OLD_FASHIONED, 16692480),
+	IrishCoffee("Irish Coffee", GlasswareType.WINE, 4460034),
+	Kir("Kir", GlasswareType.WINE, 16004638),
+	Bramble("Bramble", GlasswareType.OLD_FASHIONED, 12804974),
+	B52("B-52", GlasswareType.SHOT, 12934656),
+	DarkNStormy("Dark 'N' Stormy", GlasswareType.HIGHBALL, 12215848),
+	DirtyMartini("Dirty Martini", GlasswareType.COCKTAIL, 14332499),
+	ExpressoMartini("Expresso Martini", GlasswareType.COCKTAIL, 6498346),
+	FrenchMartini("French Martini", GlasswareType.COCKTAIL, 12660045),
+	Kamikaze("Kamikaze", GlasswareType.COCKTAIL, 14801069),
+	LemonDropMartini("Lemon Drop Martini", GlasswareType.COCKTAIL, 16375437),
+	PiscoSour("Pisco Sour", GlasswareType.OLD_FASHIONED, 15394463),
+	RussianSpringPunch("Russian Spring Punch", GlasswareType.HIGHBALL, 11805740),
+	SpritzVeneziano("Spritz Veneziano", GlasswareType.OLD_FASHIONED, 15355648),
+	TommysMargarita("Tommy's Margartita", GlasswareType.COCKTAIL, 14867592),
+	Vesper("Vesper", GlasswareType.COCKTAIL, 15658732),
+	SexOnTheBeach("Sex on the Beach", GlasswareType.HIGHBALL, 16677426);
 
 	static final Map<String, ICocktailIngredient> cocktailIngredients = new HashMap<>();
 
@@ -128,14 +131,14 @@ public enum Cocktail {
 	}
 
 	public String name;
-	public Glassware glassware;
+	public GlasswareType glasswareType;
 	public int colour;
 	public Map<ICocktailIngredient, Integer> ingredients;
 
-	Cocktail(final String name, final Glassware glassware, final int colour) {
+	Cocktail(final String name, final GlasswareType glasswareType, final int colour) {
 		this.ingredients = new HashMap<>();
 		this.name = name;
-		this.glassware = glassware;
+		this.glasswareType = glasswareType;
 		this.colour = colour;
 	}
 

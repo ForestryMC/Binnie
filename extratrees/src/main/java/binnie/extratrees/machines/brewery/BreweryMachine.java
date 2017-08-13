@@ -11,7 +11,7 @@ import binnie.core.machines.inventory.InventorySlot;
 import binnie.core.machines.inventory.MachineSide;
 import binnie.core.machines.inventory.TankSlot;
 import binnie.core.machines.power.ComponentPowerReceptor;
-import binnie.extratrees.core.ExtraTreesGUID;
+import binnie.extratrees.gui.ExtraTreesGUID;
 import binnie.extratrees.machines.ExtraTreeMachine;
 import binnie.extratrees.machines.brewery.window.SlotValidatorBreweryGrain;
 import binnie.extratrees.machines.brewery.window.SlotValidatorBreweryIngredient;

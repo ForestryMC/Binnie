@@ -27,14 +27,14 @@ import binnie.core.modules.Module;
 import binnie.core.resource.BinnieSprite;
 import binnie.core.util.OreDictionaryUtil;
 import binnie.extratrees.ExtraTrees;
-import binnie.extratrees.alcohol.Alcohol;
-import binnie.extratrees.alcohol.Cocktail;
-import binnie.extratrees.alcohol.Glassware;
-import binnie.extratrees.alcohol.Juice;
-import binnie.extratrees.alcohol.Liqueur;
-import binnie.extratrees.alcohol.Spirit;
+import binnie.extratrees.liquid.Alcohol;
+import binnie.extratrees.liquid.Cocktail;
+import binnie.extratrees.alcohol.GlasswareType;
+import binnie.extratrees.liquid.Juice;
+import binnie.extratrees.liquid.Liqueur;
+import binnie.extratrees.liquid.Spirit;
 import binnie.extratrees.alcohol.drink.DrinkLiquid;
-import binnie.extratrees.alcohol.drink.ItemDrink;
+import binnie.extratrees.items.ItemDrink;
 import binnie.extratrees.api.recipes.ExtraTreesRecipeManager;
 import binnie.extratrees.api.recipes.IBreweryManager;
 import binnie.extratrees.api.recipes.IDistilleryManager;
@@ -93,10 +93,10 @@ public class ModuleAlcohol extends Module {
 		if(fruitPressManager != null) {
 			ItemStack wax = Mods.Forestry.stack("beeswax");
 			ItemStack waxCast = Mods.Forestry.stackWildcard("wax_cast");
-			for (Glassware glassware : Glassware.values()) {
-				ItemStack result = drink.getStack(glassware, null, 8);
-				Object[] recipe = glassware.getRecipePattern(wax.getItem());
-				RecipeManagers.fabricatorManager.addRecipe(waxCast, Fluids.GLASS.getFluid(glassware.getRecipeGlassCost()), result, recipe);
+			for (GlasswareType glasswareType : GlasswareType.values()) {
+				ItemStack result = drink.getStack(glasswareType, null, 8);
+				Object[] recipe = glasswareType.getRecipePattern(wax.getItem());
+				RecipeManagers.fabricatorManager.addRecipe(waxCast, Fluids.GLASS.getFluid(glasswareType.getRecipeGlassCost()), result, recipe);
 			}
 			for (final Juice juice : Juice.values()) {
 				final String oreDict = juice.squeezing;

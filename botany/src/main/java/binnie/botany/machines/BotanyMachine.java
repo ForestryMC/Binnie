@@ -14,7 +14,7 @@ import binnie.core.machines.TileEntityMachine;
 import binnie.core.machines.component.IInteraction;
 import binnie.core.modules.BotanyModuleUIDs;
 import binnie.core.modules.ModuleManager;
-import binnie.extratrees.core.ExtraTreesGUID;
+import binnie.extratrees.gui.ExtraTreesGUID;
 import binnie.extratrees.machines.designer.PackageDesigner;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

@@ -1,4 +1,4 @@
-package binnie.extratrees.carpentry;
+package binnie.extratrees.blocks;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -58,6 +58,7 @@ import binnie.extratrees.api.IDesign;
 import binnie.extratrees.api.IDesignSystem;
 import binnie.extratrees.api.IToolHammer;
 import binnie.extratrees.api.carpentry.DesignerManager;
+import binnie.extratrees.carpentry.DesignBlock;
 import binnie.extratrees.modules.ModuleCarpentry;
 
 public abstract class BlockDesign extends BlockMetadata implements IMultipassBlock<BlockDesign.Key>, IColoredBlock, ISpriteRegister, IItemModelRegister, IStateMapperRegister {

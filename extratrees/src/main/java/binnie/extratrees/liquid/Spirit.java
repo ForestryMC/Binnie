@@ -1,4 +1,4 @@
-package binnie.extratrees.alcohol;
+package binnie.extratrees.liquid;
 
 import net.minecraft.util.ResourceLocation;
 
@@ -8,7 +8,11 @@ import binnie.core.Constants;
 import binnie.core.liquid.FluidContainerType;
 import binnie.core.liquid.FluidType;
 import binnie.core.liquid.IFluidDefinition;
+import binnie.extratrees.alcohol.CocktailLiquid;
+import binnie.extratrees.alcohol.ICocktailIngredient;
+import binnie.extratrees.alcohol.ICocktailIngredientProvider;
 
+//TODO:Localise
 public enum Spirit implements IFluidDefinition, ICocktailIngredientProvider {
 	NeutralSpirit("Neutral Spirit", "spirit.neutral", 16777215, 0.05, 0.8F),
 	Vodka("Vodka", "vodka", 16053751, 0.05, 0.4F),

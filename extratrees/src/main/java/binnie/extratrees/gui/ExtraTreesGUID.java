@@ -1,4 +1,4 @@
-package binnie.extratrees.core;
+package binnie.extratrees.gui;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -10,7 +10,6 @@ import net.minecraftforge.fml.relauncher.Side;
 
 import binnie.core.gui.IBinnieGUID;
 import binnie.core.gui.minecraft.Window;
-import binnie.extratrees.gui.WindowSetSquare;
 import binnie.extratrees.gui.database.WindowArboristDatabase;
 import binnie.extratrees.gui.database.WindowLepidopteristDatabase;
 import binnie.extratrees.kitchen.craftgui.WindowBottleRack;
@@ -24,10 +23,10 @@ public enum ExtraTreesGUID implements IBinnieGUID {
 	DATABASE,
 	WOODWORKER,
 	LUMBERMILL,
-	DATABASE_NEI,
+	DATABASE_MASTER,
 	INCUBATOR,
 	MOTH_DATABASE,
-	MOTH_DATABASE_NEI,
+	MOTH_DATABASE_MASTER,
 	PRESS,
 	BREWERY,
 	DISTILLERY,
@@ -45,7 +44,7 @@ public enum ExtraTreesGUID implements IBinnieGUID {
 		}
 		switch (this) {
 			case DATABASE:
-			case DATABASE_NEI: {
+			case DATABASE_MASTER: {
 				window = WindowArboristDatabase.create(player, side, this != ExtraTreesGUID.DATABASE);
 				break;
 			}
@@ -74,7 +73,7 @@ public enum ExtraTreesGUID implements IBinnieGUID {
 				break;
 			}
 			case MOTH_DATABASE:
-			case MOTH_DATABASE_NEI: {
+			case MOTH_DATABASE_MASTER: {
 				window = WindowLepidopteristDatabase.create(player, side, this != ExtraTreesGUID.MOTH_DATABASE);
 				break;
 			}

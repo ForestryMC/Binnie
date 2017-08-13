@@ -18,7 +18,7 @@ import forestry.core.fluids.Fluids;
 import binnie.core.Mods;
 import binnie.core.item.IItemMiscProvider;
 import binnie.core.util.I18N;
-import binnie.extratrees.alcohol.Juice;
+import binnie.extratrees.liquid.Juice;
 import binnie.extratrees.modules.ModuleCore;
 
 public enum Food implements IItemMiscProvider {

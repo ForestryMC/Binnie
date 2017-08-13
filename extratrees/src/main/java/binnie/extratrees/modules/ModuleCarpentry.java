@@ -19,14 +19,14 @@ import binnie.extratrees.api.IDesignSystem;
 import binnie.core.modules.ExtraTreesModuleUIDs;
 import binnie.core.modules.BinnieModule;
 import binnie.core.modules.Module;
-import binnie.extratrees.carpentry.BlockCarpentry;
-import binnie.extratrees.carpentry.BlockCarpentryPanel;
-import binnie.extratrees.carpentry.BlockDesign;
-import binnie.extratrees.carpentry.BlockStainedDesign;
+import binnie.extratrees.blocks.BlockCarpentry;
+import binnie.extratrees.blocks.BlockCarpentryPanel;
+import binnie.extratrees.blocks.BlockDesign;
+import binnie.extratrees.blocks.BlockStainedDesign;
 import binnie.extratrees.carpentry.CarpentryInterface;
 import binnie.extratrees.carpentry.DesignBlock;
 import binnie.extratrees.carpentry.EnumDesign;
-import binnie.extratrees.carpentry.ItemDesign;
+import binnie.extratrees.items.ItemDesign;
 
 @BinnieModule(moduleID = ExtraTreesModuleUIDs.CARPENTRY, moduleContainerID = Constants.EXTRA_TREES_MOD_ID, name = "Carpentry", unlocalizedDescription = "extratrees.module.carpentry")
 public class ModuleCarpentry extends Module {

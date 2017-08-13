@@ -2,8 +2,6 @@ package binnie.extratrees.machines;
 
 import java.util.function.Supplier;
 
-import binnie.extratrees.machines.designer.DesignerType;
-import binnie.extratrees.machines.designer.PackageDesigner;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -17,14 +15,16 @@ import binnie.core.machines.MachineComponent;
 import binnie.core.machines.MachinePackage;
 import binnie.core.machines.TileEntityMachine;
 import binnie.core.machines.component.IInteraction;
+import binnie.core.modules.ExtraTreesModuleUIDs;
+import binnie.core.modules.ModuleManager;
 import binnie.extratrees.ExtraTrees;
-import binnie.extratrees.core.ExtraTreesGUID;
+import binnie.extratrees.gui.ExtraTreesGUID;
 import binnie.extratrees.machines.brewery.BreweryMachine;
+import binnie.extratrees.machines.designer.DesignerType;
+import binnie.extratrees.machines.designer.PackageDesigner;
 import binnie.extratrees.machines.distillery.DistilleryMachine;
 import binnie.extratrees.machines.fruitpress.FruitPressMachine;
 import binnie.extratrees.machines.lumbermill.LumbermillMachine;
-import binnie.core.modules.ExtraTreesModuleUIDs;
-import binnie.core.modules.ModuleManager;
 import binnie.extratrees.modules.ModuleMachine;
 
 public enum ExtraTreeMachine implements IMachineType {

@@ -1,10 +1,12 @@
-package binnie.extratrees.alcohol.drink;
+package binnie.extratrees.blocks;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+
+import binnie.extratrees.tiles.TileEntityDrink;
 
 public class BlockDrink extends BlockContainer {
 	public BlockDrink() {

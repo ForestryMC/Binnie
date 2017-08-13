@@ -1,4 +1,4 @@
-package binnie.extratrees.alcohol.drink;
+package binnie.extratrees.tiles;
 
 import net.minecraft.tileentity.TileEntity;
 

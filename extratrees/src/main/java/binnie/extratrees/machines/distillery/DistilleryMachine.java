@@ -10,7 +10,7 @@ import binnie.core.machines.inventory.ComponentTankContainer;
 import binnie.core.machines.inventory.MachineSide;
 import binnie.core.machines.inventory.TankSlot;
 import binnie.core.machines.power.ComponentPowerReceptor;
-import binnie.extratrees.core.ExtraTreesGUID;
+import binnie.extratrees.gui.ExtraTreesGUID;
 import binnie.extratrees.machines.ExtraTreeMachine;
 import binnie.extratrees.machines.distillery.window.TankValidatorDistilleryInput;
 import binnie.extratrees.machines.distillery.window.TankValidatorDistilleryOutput;

@@ -17,7 +17,7 @@ import binnie.core.modules.BlankModuleContainer;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.proxy.IProxyCore;
 import binnie.extratrees.config.ConfigurationMain;
-import binnie.extratrees.core.ExtraTreesGUID;
+import binnie.extratrees.gui.ExtraTreesGUID;
 import binnie.extratrees.genetics.MothBreedingSystem;
 import binnie.extratrees.modules.ModuleWood;
 import binnie.extratrees.proxy.Proxy;

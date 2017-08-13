@@ -1,4 +1,4 @@
-package binnie.extratrees.carpentry;
+package binnie.extratrees.items;
 
 import net.minecraft.item.ItemStack;
 
@@ -9,6 +9,8 @@ import forestry.core.items.IColoredItem;
 
 import binnie.core.block.ItemMetadata;
 import binnie.core.api.block.TileEntityMetadata;
+import binnie.extratrees.blocks.BlockDesign;
+import binnie.extratrees.carpentry.DesignBlock;
 import binnie.extratrees.modules.ModuleCarpentry;
 
 public class ItemDesign extends ItemMetadata implements IColoredItem {

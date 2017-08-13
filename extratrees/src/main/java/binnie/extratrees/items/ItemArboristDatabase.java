@@ -24,7 +24,7 @@ import forestry.api.core.Tabs;
 
 import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
-import binnie.extratrees.core.ExtraTreesGUID;
+import binnie.extratrees.gui.ExtraTreesGUID;
 
 public class ItemArboristDatabase extends Item implements IItemModelRegister {
 
@@ -63,7 +63,7 @@ public class ItemArboristDatabase extends Item implements IItemModelRegister {
 		ItemStack itemStack = player.getHeldItem(hand);
 		final ExtraTreesGUID id;
 		if (isMaster(itemStack)) {
-			id = ExtraTreesGUID.DATABASE_NEI;
+			id = ExtraTreesGUID.DATABASE_MASTER;
 		} else {
 			id = ExtraTreesGUID.DATABASE;
 		}

@@ -1,4 +1,4 @@
-package binnie.extratrees.alcohol;
+package binnie.extratrees.liquid;
 
 import net.minecraft.util.ResourceLocation;
 
@@ -8,7 +8,9 @@ import binnie.core.Constants;
 import binnie.core.liquid.FluidContainerType;
 import binnie.core.liquid.FluidType;
 import binnie.core.liquid.IFluidDefinition;
+import binnie.extratrees.alcohol.ICocktailLiquid;
 
+//TODO:Localise
 public enum MiscFluid implements IFluidDefinition, ICocktailLiquid {
 	CarbonatedWater("Carbonated Water", "water.carbonated", 13421823, 0.10000000149011612),
 	TonicWater("Tonic Water", "water.tonic", 13421823, 0.10000000149011612),

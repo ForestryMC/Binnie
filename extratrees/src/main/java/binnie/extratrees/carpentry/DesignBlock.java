@@ -17,6 +17,7 @@ import binnie.extratrees.api.IDesignMaterial;
 import binnie.extratrees.api.IDesignSystem;
 import binnie.extratrees.api.ILayout;
 import binnie.extratrees.api.IToolHammer;
+import binnie.extratrees.blocks.BlockCarpentryPanel;
 import binnie.extratrees.modules.ModuleCarpentry;
 
 public class DesignBlock {

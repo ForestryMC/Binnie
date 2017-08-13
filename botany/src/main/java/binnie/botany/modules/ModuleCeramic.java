@@ -30,7 +30,7 @@ import binnie.botany.recipes.PigmentRecipe;
 import binnie.core.api.block.TileEntityMetadata;
 import binnie.core.item.ItemMisc;
 import binnie.core.util.RecipeUtil;
-import binnie.extratrees.carpentry.ItemDesign;
+import binnie.extratrees.items.ItemDesign;
 import binnie.core.modules.BinnieModule;
 import binnie.core.modules.Module;
 import binnie.core.modules.ModuleManager;

@@ -9,7 +9,7 @@ import binnie.core.util.I18N;
 import binnie.extratrees.api.IDesign;
 import binnie.extratrees.api.IDesignMaterial;
 import binnie.extratrees.api.IDesignSystem;
-import binnie.extratrees.carpentry.BlockDesign;
+import binnie.extratrees.blocks.BlockDesign;
 import binnie.extratrees.carpentry.EnumDesign;
 import binnie.extratrees.modules.ModuleCarpentry;
 

@@ -1,4 +1,4 @@
-package binnie.extratrees.alcohol;
+package binnie.extratrees.liquid;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,11 @@ import binnie.core.Constants;
 import binnie.core.liquid.FluidContainerType;
 import binnie.core.liquid.FluidType;
 import binnie.core.liquid.IFluidDefinition;
+import binnie.extratrees.alcohol.CocktailLiquid;
+import binnie.extratrees.alcohol.ICocktailIngredient;
+import binnie.extratrees.alcohol.ICocktailIngredientProvider;
 
+//TODO:Localise
 public enum Alcohol implements IFluidDefinition, ICocktailIngredientProvider {
 	Apple("cider.apple", 16432700, 0.3, 0.05F){
 		@Override

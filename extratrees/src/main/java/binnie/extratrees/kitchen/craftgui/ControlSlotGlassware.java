@@ -5,28 +5,28 @@ import net.minecraft.item.ItemStack;
 import binnie.core.gui.IWidget;
 import binnie.core.gui.controls.core.IControlValue;
 import binnie.core.gui.minecraft.control.ControlSlotBase;
-import binnie.extratrees.alcohol.Glassware;
+import binnie.extratrees.alcohol.GlasswareType;
 
-public class ControlSlotGlassware extends ControlSlotBase implements IControlValue<Glassware> {
-	Glassware glassware;
+public class ControlSlotGlassware extends ControlSlotBase implements IControlValue<GlasswareType> {
+	GlasswareType glasswareType;
 
-	public ControlSlotGlassware(final IWidget parent, final int x, final int y, final Glassware glassware) {
+	public ControlSlotGlassware(final IWidget parent, final int x, final int y, final GlasswareType glasswareType) {
 		super(parent, x, y);
-		this.glassware = glassware;
+		this.glasswareType = glasswareType;
 	}
 
 	@Override
-	public Glassware getValue() {
-		return this.glassware;
+	public GlasswareType getValue() {
+		return this.glasswareType;
 	}
 
 	@Override
-	public void setValue(final Glassware value) {
-		this.glassware = value;
+	public void setValue(final GlasswareType value) {
+		this.glasswareType = value;
 	}
 
 	@Override
 	public ItemStack getItemStack() {
-		return this.glassware.get(1);
+		return this.glasswareType.get(1);
 	}
 }

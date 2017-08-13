@@ -1,4 +1,4 @@
-package binnie.extratrees.carpentry;
+package binnie.extratrees.blocks;
 
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -6,6 +6,8 @@ import net.minecraft.item.ItemStack;
 
 import binnie.core.util.I18N;
 import binnie.extratrees.api.IDesign;
+import binnie.extratrees.carpentry.DesignBlock;
+import binnie.extratrees.carpentry.DesignSystem;
 import binnie.extratrees.wood.PlankType;
 import binnie.extratrees.modules.ModuleCarpentry;
 

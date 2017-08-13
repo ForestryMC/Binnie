@@ -1,4 +1,4 @@
-package binnie.extratrees.carpentry;
+package binnie.extratrees.blocks;
 
 import javax.annotation.Nullable;
 
@@ -15,6 +15,7 @@ import net.minecraft.world.World;
 import binnie.core.api.block.BlockMetadata;
 import binnie.core.api.block.TileEntityMetadata;
 import binnie.core.util.I18N;
+import binnie.extratrees.carpentry.DesignBlock;
 import binnie.extratrees.modules.ModuleCarpentry;
 
 public class BlockCarpentryPanel extends BlockCarpentry {

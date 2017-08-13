@@ -3,7 +3,7 @@ package binnie.extratrees.machines.designer;
 import binnie.core.gui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
 import binnie.core.machines.inventory.ComponentInventorySlots;
-import binnie.extratrees.core.ExtraTreesGUID;
+import binnie.extratrees.gui.ExtraTreesGUID;
 import binnie.extratrees.machines.ExtraTreeMachine;
 import binnie.extratrees.machines.designer.window.ComponentDesignerRecipe;
 import binnie.extratrees.machines.designer.window.SlotValidatorBeeswax;

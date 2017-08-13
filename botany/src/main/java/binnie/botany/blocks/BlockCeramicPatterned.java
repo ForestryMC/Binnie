@@ -8,7 +8,7 @@ import binnie.botany.ceramic.CeramicDesignSystem;
 import binnie.botany.api.genetics.EnumFlowerColor;
 import binnie.core.util.I18N;
 import binnie.extratrees.api.IDesign;
-import binnie.extratrees.carpentry.BlockDesign;
+import binnie.extratrees.blocks.BlockDesign;
 import binnie.extratrees.carpentry.DesignBlock;
 import binnie.extratrees.modules.ModuleCarpentry;
 
