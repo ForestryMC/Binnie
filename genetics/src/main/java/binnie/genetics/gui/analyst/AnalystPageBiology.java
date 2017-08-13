@@ -2,7 +2,6 @@ package binnie.genetics.gui.analyst;
 
 import java.text.DecimalFormat;
 
-import binnie.extratrees.ExtraTrees;
 import net.minecraft.util.text.TextFormatting;
 
 import net.minecraftforge.fml.relauncher.Side;
@@ -22,6 +21,7 @@ import binnie.core.gui.geometry.Area;
 import binnie.core.gui.geometry.Point;
 import binnie.core.gui.minecraft.control.ControlIconDisplay;
 import binnie.core.util.I18N;
+import binnie.extratrees.modules.ModuleWood;
 import binnie.genetics.item.ModuleItems;
 
 @SideOnly(Side.CLIENT)
@@ -241,7 +241,7 @@ public class AnalystPageBiology extends ControlAnalystPage {
 	}
 
 	private void addTreePages(ITree tree, int y){
-		String alleleName = ExtraTrees.treeBreedingSystem.getAlleleName(EnumTreeChromosome.SAPPINESS, tree.getGenome().getActiveAllele(EnumTreeChromosome.SAPPINESS));
+		String alleleName = ModuleWood.treeBreedingSystem.getAlleleName(EnumTreeChromosome.SAPPINESS, tree.getGenome().getActiveAllele(EnumTreeChromosome.SAPPINESS));
 		new ControlTextCentered(this, y, TextFormatting.ITALIC + I18N.localise(AnalystConstants.BIOLOGY_KEY + ".sappiness", alleleName))
 			.setColor(getColor());
 		y += 20;

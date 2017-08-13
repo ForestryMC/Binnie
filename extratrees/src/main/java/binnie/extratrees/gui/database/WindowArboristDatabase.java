@@ -28,6 +28,7 @@ import binnie.core.gui.minecraft.Window;
 import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.api.IDesignMaterial;
+import binnie.extratrees.modules.ModuleWood;
 import binnie.extratrees.wood.WoodManager;
 
 public class WindowArboristDatabase extends WindowAbstractDatabase {
@@ -36,7 +37,7 @@ public class WindowArboristDatabase extends WindowAbstractDatabase {
 	ControlListBox<ItemStack> selectionBoxPlanks;
 
 	public WindowArboristDatabase(final EntityPlayer player, final Side side, final boolean nei) {
-		super(player, side, nei, ExtraTrees.treeBreedingSystem, 120);
+		super(player, side, nei, ModuleWood.treeBreedingSystem, 120);
 	}
 
 	public static Window create(final EntityPlayer player, final Side side, final boolean nei) {

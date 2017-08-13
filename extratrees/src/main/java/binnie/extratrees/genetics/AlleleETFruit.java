@@ -1,6 +1,5 @@
 package binnie.extratrees.genetics;
 
-import binnie.extratrees.ExtraTrees;
 import com.google.common.base.Preconditions;
 
 import javax.annotation.Nullable;
@@ -37,10 +36,11 @@ import forestry.core.genetics.alleles.AlleleCategorized;
 
 import binnie.core.Constants;
 import binnie.core.util.I18N;
-import binnie.extratrees.wood.FruitPod;
 import binnie.extratrees.config.ConfigurationMain;
-import binnie.extratrees.modules.ModuleCore;
 import binnie.extratrees.items.Food;
+import binnie.extratrees.modules.ModuleCore;
+import binnie.extratrees.modules.ModuleWood;
+import binnie.extratrees.wood.FruitPod;
 
 public class AlleleETFruit extends AlleleCategorized implements IAlleleFruit, IFruitProvider {
 	public static final AlleleETFruit Blackthorn = new AlleleETFruit("Blackthorn", 10, 7180062, 14561129, FruitSprite.SMALL);
@@ -304,7 +304,7 @@ public class AlleleETFruit extends AlleleCategorized implements IAlleleFruit, IF
 				throw new RuntimeException(e);
 			}
 		}
-		for (final IAlleleSpecies tree : ExtraTrees.treeBreedingSystem.getAllSpecies()) {
+		for (final IAlleleSpecies tree : ModuleWood.treeBreedingSystem.getAllSpecies()) {
 			if (tree instanceof AlleleTreeSpecies && ((IAlleleTreeSpecies) tree).getSuitableFruit().contains(familyPrune)) {
 				((AlleleTreeSpecies) tree).addFruitFamily(familyCitrus);
 			}

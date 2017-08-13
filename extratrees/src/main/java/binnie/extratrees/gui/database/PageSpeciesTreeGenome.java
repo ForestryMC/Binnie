@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import binnie.core.api.genetics.IBreedingSystem;
-import binnie.extratrees.ExtraTrees;
-import forestry.api.arboriculture.TreeManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
@@ -22,9 +19,11 @@ import forestry.api.arboriculture.IFruitProvider;
 import forestry.api.arboriculture.ILeafSpriteProvider;
 import forestry.api.arboriculture.ITree;
 import forestry.api.arboriculture.ITreeGenome;
+import forestry.api.arboriculture.TreeManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IAlleleSpecies;
 
+import binnie.core.api.genetics.IBreedingSystem;
 import binnie.core.gui.IWidget;
 import binnie.core.gui.controls.ControlText;
 import binnie.core.gui.controls.core.Control;
@@ -36,6 +35,7 @@ import binnie.core.gui.geometry.Point;
 import binnie.core.gui.geometry.TextJustification;
 import binnie.core.gui.minecraft.control.ControlItemDisplay;
 import binnie.core.util.I18N;
+import binnie.extratrees.modules.ModuleWood;
 
 @SideOnly(Side.CLIENT)
 public class PageSpeciesTreeGenome extends PageSpecies {
@@ -73,7 +73,7 @@ public class PageSpeciesTreeGenome extends PageSpecies {
 		int y = 0;
 		final int th = 14;
 		final int th2 = 18;
-		final IBreedingSystem syst = ExtraTrees.treeBreedingSystem;
+		final IBreedingSystem syst = ModuleWood.treeBreedingSystem;
 		new ControlText(contents, new Area(w2, y, w3, th), treeSpecies.getPlantType().toString(), TextJustification.MIDDLE_LEFT);
 		y += th;
 		new ControlText(contents, new Area(0, y, w2, th), I18N.localise("binniecore.gui.temperature.short") + " : ", TextJustification.MIDDLE_RIGHT);

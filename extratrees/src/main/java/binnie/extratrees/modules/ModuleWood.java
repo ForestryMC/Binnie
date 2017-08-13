@@ -55,9 +55,11 @@ import forestry.core.fluids.Fluids;
 import forestry.core.utils.OreDictUtil;
 import forestry.plugins.ForestryPluginUids;
 
+import binnie.core.Binnie;
 import binnie.core.BinnieCore;
 import binnie.core.Constants;
 import binnie.core.Mods;
+import binnie.core.api.genetics.IBreedingSystem;
 import binnie.core.block.ItemMetadata;
 import binnie.core.liquid.ILiquidDefinition;
 import binnie.core.models.DoublePassBakedModel;
@@ -87,6 +89,7 @@ import binnie.extratrees.genetics.ButterflySpecies;
 import binnie.extratrees.genetics.ETTreeDefinition;
 import binnie.extratrees.genetics.ExtraTreeMutation;
 import binnie.extratrees.genetics.FruitSprite;
+import binnie.extratrees.genetics.TreeBreedingSystem;
 import binnie.extratrees.items.ExtraTreeLiquid;
 import binnie.extratrees.items.ItemBlockETDecorativeLeaves;
 import binnie.extratrees.wood.EnumETLog;
@@ -118,6 +121,8 @@ public class ModuleWood extends Module {
 	public static BlockMultiFence blockMultiFence;
 	@Nullable
 	public static BlockShrubLog shrubLog;
+
+	public static IBreedingSystem treeBreedingSystem;
 
 	//TODO: Unused ?
 	public static String[] branches = new String[]{"Malus Maleae Amygdaloideae Rosaceae", "Musa   Musaceae Zingiberales Commelinids Angiosperms", "Sorbus Maleae", "Tsuga   Pinaceae", "Fraxinus Oleeae  Oleaceae Lamiales Asterids Angiospems"};;
@@ -318,6 +323,9 @@ public class ModuleWood extends Module {
 		ExtraTrees.proxy.registerBlock(shrubLog, new ItemBlockETWood<BlockShrubLog>(shrubLog));
 		woodAccess.register(EnumShrubLog.INSTANCE, WoodBlockKind.LOG, false, shrubLog.getStateFromMeta(0), new ItemStack(shrubLog, 1, 0));
 		woodAccess.register(EnumShrubLog.INSTANCE, WoodBlockKind.LOG, true, shrubLog.getStateFromMeta(1), new ItemStack(shrubLog, 1, 1));
+
+		treeBreedingSystem = new TreeBreedingSystem();
+		Binnie.GENETICS.registerBreedingSystem(treeBreedingSystem);
 	}
 	
 	private void registerDoors(WoodAccess woodAccess, List<BlockETDoor> blocks) {

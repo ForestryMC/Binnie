@@ -16,11 +16,10 @@ import binnie.core.gui.IBinnieGUID;
 import binnie.core.modules.BlankModuleContainer;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.proxy.IProxyCore;
-import binnie.extratrees.modules.ModuleWood;
 import binnie.extratrees.config.ConfigurationMain;
 import binnie.extratrees.core.ExtraTreesGUID;
 import binnie.extratrees.genetics.MothBreedingSystem;
-import binnie.extratrees.genetics.TreeBreedingSystem;
+import binnie.extratrees.modules.ModuleWood;
 import binnie.extratrees.proxy.Proxy;
 
 @Mod(
@@ -37,7 +36,6 @@ public class ExtraTrees extends BlankModuleContainer {
 	@SuppressWarnings("NullableProblems")
 	@SidedProxy(clientSide = "binnie.extratrees.proxy.ProxyClient", serverSide = "binnie.extratrees.proxy.ProxyServer")
 	public static Proxy proxy;
-	public static IBreedingSystem treeBreedingSystem;
 	public static IBreedingSystem mothBreedingSystem;
 
 	public ExtraTrees() {
@@ -49,9 +47,7 @@ public class ExtraTrees extends BlankModuleContainer {
 	public void preInit(final FMLPreInitializationEvent evt) {
 		container.registerConfigHandler(new ConfigurationMain(container));
 		super.preInit(evt);
-		treeBreedingSystem = new TreeBreedingSystem();
 		mothBreedingSystem = new MothBreedingSystem();
-		Binnie.GENETICS.registerBreedingSystem(treeBreedingSystem);
 		Binnie.GENETICS.registerBreedingSystem(mothBreedingSystem);
 	}
 

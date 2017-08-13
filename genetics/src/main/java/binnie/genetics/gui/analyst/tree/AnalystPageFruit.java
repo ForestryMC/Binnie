@@ -5,8 +5,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
 
-import binnie.extratrees.ExtraTrees;
-import forestry.api.arboriculture.TreeManager;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
@@ -15,6 +13,7 @@ import forestry.api.arboriculture.EnumTreeChromosome;
 import forestry.api.arboriculture.IAlleleFruit;
 import forestry.api.arboriculture.ITree;
 import forestry.api.arboriculture.ITreeGenome;
+import forestry.api.arboriculture.TreeManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IFruitFamily;
 import forestry.arboriculture.FruitProviderPod;
@@ -27,6 +26,7 @@ import binnie.core.gui.geometry.Point;
 import binnie.core.gui.minecraft.control.ControlItemDisplay;
 import binnie.core.util.I18N;
 import binnie.core.util.UniqueItemStackSet;
+import binnie.extratrees.modules.ModuleWood;
 import binnie.genetics.gui.analyst.AnalystConstants;
 import binnie.genetics.gui.analyst.AnalystPageProduce;
 
@@ -38,7 +38,7 @@ public class AnalystPageFruit extends AnalystPageProduce {
 		int y = 4;
 		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColor(getColor());
 		y += 12;
-		new ControlTextCentered(this, y, TextFormatting.ITALIC + I18N.localise(AnalystConstants.FRUIT_KEY + ".yield") + ": " + ExtraTrees.treeBreedingSystem.getAlleleName(EnumTreeChromosome.YIELD, ind.getGenome().getActiveAllele(EnumTreeChromosome.YIELD))).setColor(getColor());
+		new ControlTextCentered(this, y, TextFormatting.ITALIC + I18N.localise(AnalystConstants.FRUIT_KEY + ".yield") + ": " + ModuleWood.treeBreedingSystem.getAlleleName(EnumTreeChromosome.YIELD, ind.getGenome().getActiveAllele(EnumTreeChromosome.YIELD))).setColor(getColor());
 		y += 20;
 		Collection<ItemStack> products = new UniqueItemStackSet();
 		Collection<ItemStack> specialties = new UniqueItemStackSet();
