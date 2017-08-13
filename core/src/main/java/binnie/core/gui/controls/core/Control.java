@@ -20,8 +20,8 @@ import binnie.core.gui.minecraft.Window;
 
 public class Control extends Widget implements ITooltipHelp, ITooltip {
 	public int extraLevel;
-	List<String> helpStrings;
-	List<String> tooltipStrings;
+	private List<String> helpStrings;
+	private List<String> tooltipStrings;
 
 	public Control(IWidget parent, int xPos, int yPos, int width, int height) {
 		super(parent);
@@ -37,12 +37,10 @@ public class Control extends Widget implements ITooltipHelp, ITooltip {
 		this(parent, area.xPos(), area.yPos(), area.width(), area.height());
 	}
 
+	/**
+	 * Called at the end of the constructor of control class.
+	 */
 	protected void initialise() {
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void onUpdateClient() {
 	}
 
 	@Nonnull

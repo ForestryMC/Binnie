@@ -212,9 +212,15 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 		this.hasBeenInitialised = true;
 	}
 
+	/**
+	 * Initialise the window on the client side.
+	 */
 	@SideOnly(Side.CLIENT)
 	public abstract void initialiseClient();
 
+	/**
+	 * Initialise the window on the server side.
+	 */
 	public void initialiseServer() {
 	}
 
@@ -257,6 +263,9 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 		return this.entityInventory;
 	}
 
+	/**
+	 * Called if the player closes the window.
+	 */
 	public void onClose() {
 	}
 

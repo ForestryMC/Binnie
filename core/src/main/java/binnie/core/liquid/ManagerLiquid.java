@@ -22,6 +22,7 @@ import forestry.core.utils.OreDictUtil;
 
 import binnie.core.Constants;
 import binnie.core.ManagerBase;
+import binnie.core.util.Log;
 import binnie.core.util.RecipeUtil;
 
 public class ManagerLiquid extends ManagerBase {
@@ -29,7 +30,7 @@ public class ManagerLiquid extends ManagerBase {
 	//TODO: test if the name is "Creosote Oil" and not "fluid.creosote"
 	public static final String CREOSOTE = "fluid.creosote";
 
-	Map<String, FluidType> fluids;
+	private Map<String, FluidType> fluids;
 
 	public ManagerLiquid() {
 		this.fluids = new LinkedHashMap<>();
@@ -40,7 +41,7 @@ public class ManagerLiquid extends ManagerBase {
 			FluidType type = liquid.getType();
 			final BinnieFluid fluid = this.createLiquid(type);
 			if (fluid == null) {
-				throw new RuntimeException("Liquid registered incorrectly - " + type.getIdentifier());
+				Log.error("Liquid registered incorrectly - {} ", type.getIdentifier());
 			}
 		}
 	}
@@ -86,5 +87,9 @@ public class ManagerLiquid extends ManagerBase {
 			textureMap.registerSprite(definition.getFlowing());
 			textureMap.registerSprite(definition.getStill());
 		}
+	}
+
+	public Map<String, FluidType> getFluids() {
+		return fluids;
 	}
 }

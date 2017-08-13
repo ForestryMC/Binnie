@@ -27,7 +27,7 @@ class BinnieFluid extends Fluid {
 		return color;
 	}
 
-	FluidType getDefinition() {
+	public FluidType getType() {
 		return this.fluidType;
 	}
 }

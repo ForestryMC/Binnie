@@ -26,13 +26,13 @@ public class PageSpeciesOverview extends PageSpecies {
 	private ControlText controlComplexity;
 	private ControlText controlDescription;
 	private ControlText controlSignature;
-	private ControlDatabaseIndividualDisplay controlInd1;
-	private ControlDatabaseIndividualDisplay controlInd2;
+	private ControlIndividualDisplay controlInd1;
+	private ControlIndividualDisplay controlInd2;
 
 	public PageSpeciesOverview(final IWidget parent, final DatabaseTab tab) {
 		super(parent, tab);
-		this.controlInd1 = new ControlDatabaseIndividualDisplay(this, 5, 5);
-		this.controlInd2 = new ControlDatabaseIndividualDisplay(this, 123, 5);
+		this.controlInd1 = new ControlIndividualDisplay(this, 5, 5);
+		this.controlInd2 = new ControlIndividualDisplay(this, 123, 5);
 		this.controlName = new ControlTextCentered(this, 8, "");
 		this.controlScientific = new ControlTextCentered(this, 32, "");
 		this.controlAuthority = new ControlTextCentered(this, 44, "");
@@ -43,8 +43,8 @@ public class PageSpeciesOverview extends PageSpecies {
 
 	@Override
 	public void onValueChanged(final IAlleleSpecies species) {
-		this.controlInd1.setSpecies(species, EnumDiscoveryState.Show);
-		this.controlInd2.setSpecies(species, EnumDiscoveryState.Show);
+		this.controlInd1.setSpecies(species, EnumDiscoveryState.SHOW);
+		this.controlInd2.setSpecies(species, EnumDiscoveryState.SHOW);
 		final String branchBinomial = species.getBranch().getScientific();
 		this.controlName.setValue(TextFormatting.UNDERLINE + species.getAlleleName());
 		this.controlScientific.setValue(TextFormatting.ITALIC + branchBinomial + " " + species.getBinomial());

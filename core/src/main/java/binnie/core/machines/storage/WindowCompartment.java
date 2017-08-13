@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import binnie.core.gui.window.WindowMachine;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -59,12 +58,12 @@ import binnie.core.gui.renderer.RenderUtil;
 import binnie.core.gui.resource.Texture;
 import binnie.core.gui.resource.minecraft.CraftGUITexture;
 import binnie.core.gui.window.Panel;
+import binnie.core.gui.window.WindowMachine;
 import binnie.core.machines.Machine;
 import binnie.core.machines.transfer.TransferRequest;
 
 public class WindowCompartment extends WindowMachine implements IWindowAffectsShiftClick {
 	private final Map<Panel, Integer> panels;
-	boolean dueUpdate;
 	private ControlTextEdit tabName;
 	private ControlItemDisplay tabIcon;
 	private ControlColourSelector tabColour;
@@ -76,6 +75,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		this.currentTab = 0;
 	}
 
+	//TODO: Clean Up, Localise
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void initialiseClient() {

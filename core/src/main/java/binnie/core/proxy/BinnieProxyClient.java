@@ -77,11 +77,6 @@ public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy
 	}
 
 	@Override
-	public void bindTexture(final BinnieResource texture) {
-		this.bindTexture(texture.getResourceLocation());
-	}
-
-	@Override
 	public void bindTexture(final ResourceLocation location) {
 		this.getMinecraftInstance().getTextureManager().bindTexture(location);
 	}
@@ -129,17 +124,6 @@ public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy
 		} else {
 			GameRegistry.registerTileEntity(tile, id);
 		}
-	}
-
-	@Override
-	public void registerBlockRenderer(final Object renderer) {
-		//if (renderer != null && renderer instanceof FastTESR) {
-		//ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMachine.class, new RendererMachine());//.registerBlockHandler((ISimpleBlockRenderingHandler) renderer);
-		//}
-	}
-
-	@Override
-	public void createPipe(final Item pipe) {
 	}
 
 	@Override

@@ -14,17 +14,18 @@ import binnie.core.gui.geometry.Point;
 
 @SideOnly(Side.CLIENT)
 class ControlSpeciesBoxOption extends ControlTextOption<IAlleleSpecies> {
-	private ControlDatabaseIndividualDisplay controlBee;
+	private ControlIndividualDisplay controlBee;
 
 	public ControlSpeciesBoxOption(final ControlList<IAlleleSpecies> controlList, final IAlleleSpecies option, final int y) {
 		super(controlList, option, option.getAlleleName(), y);
 		this.setSize(new Point(this.getSize().xPos(), 20));
-		(this.controlBee = new ControlDatabaseIndividualDisplay(this, 2, 2)).setSpecies(this.getValue(), EnumDiscoveryState.Undetermined);
-		if (this.controlBee.discovered == EnumDiscoveryState.Discovered) {
-			this.controlBee.discovered = EnumDiscoveryState.Show;
+		(this.controlBee = new ControlIndividualDisplay(this, 2, 2)).setSpecies(this.getValue(), EnumDiscoveryState.UNDETERMINED);
+		EnumDiscoveryState discovered = controlBee.getDiscovered();
+		if (discovered == EnumDiscoveryState.DISCOVERED) {
+			this.controlBee.setDiscovered(discovered = EnumDiscoveryState.SHOW);
 		}
-		this.textWidget.setValue((this.controlBee.discovered == EnumDiscoveryState.Show) ? option.getAlleleName() : DatabaseConstants.CONTROL_KEY + ".undiscovered");
-		if (this.controlBee.discovered == EnumDiscoveryState.Show) {
+		this.textWidget.setValue((discovered == EnumDiscoveryState.SHOW) ? option.getAlleleName() : DatabaseConstants.CONTROL_KEY + ".undiscovered");
+		if (discovered == EnumDiscoveryState.SHOW) {
 			this.addAttribute(Attribute.MOUSE_OVER);
 		}
 		CraftGUIUtil.moveWidget(this.textWidget, new Point(22, 0));

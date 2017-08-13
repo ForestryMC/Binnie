@@ -8,9 +8,9 @@ public abstract class EventMouse extends Event {
 	}
 
 	public static class Button extends EventMouse {
-		int x;
-		int y;
-		int button;
+		private int x;
+		private int y;
+		private int button;
 
 		public Button(final IWidget currentMousedOverWidget, final int x, final int y, final int button) {
 			super(currentMousedOverWidget);
@@ -45,8 +45,8 @@ public abstract class EventMouse extends Event {
 	}
 
 	public static class Move extends EventMouse {
-		float dx;
-		float dy;
+		private float dx;
+		private float dy;
 
 		public Move(final IWidget origin, final float dx, final float dy) {
 			super(origin);
@@ -70,7 +70,7 @@ public abstract class EventMouse extends Event {
 	}
 
 	public static class Wheel extends EventMouse {
-		int dWheel;
+		private int dWheel;
 
 		public Wheel(final IWidget origin, final int dWheel) {
 			super(origin);

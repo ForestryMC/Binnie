@@ -62,7 +62,7 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister {
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
 		super.getSubItems(tab, items);
 		if (this.isInCreativeTab(tab)) {
-			for (FluidType type : Binnie.LIQUID.fluids.values()) {
+			for (FluidType type : Binnie.LIQUID.getFluids().values()) {
 				if (!type.canPlaceIn(this.container)) {
 					continue;
 				}

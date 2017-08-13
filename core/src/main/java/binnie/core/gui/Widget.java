@@ -19,11 +19,11 @@ public class Widget implements IWidget {
 	@Nullable
 	private final IWidget parent;
 	@Nullable
-	Area cropArea;
+	private Area cropArea;
 	@Nullable
-	IWidget cropWidget;
-	boolean cropped;
-	int colour;
+	private IWidget cropWidget;
+	private boolean cropped;
+	private int color;
 	private List<IWidget> children;
 	private List<IWidgetAttribute> attributes;
 	private Point position;
@@ -39,7 +39,7 @@ public class Widget implements IWidget {
 		this.size = Point.ZERO;
 		this.offset = Point.ZERO;
 		this.cropped = false;
-		this.colour = 0xffffff;
+		this.color = 0xffffff;
 		this.eventHandlers = new ArrayList<>();
 		this.visible = true;
 		this.parent = parent;
@@ -219,13 +219,13 @@ public class Widget implements IWidget {
 
 	@Override
 	public final int getColor() {
-		return this.colour;
+		return this.color;
 	}
 
 	@Override
 	public final void setColor(final int colour) {
-		if (this.colour != colour) {
-			this.colour = colour;
+		if (this.color != colour) {
+			this.color = colour;
 			this.callEvent(new EventWidget.ChangeColour(this));
 		}
 	}
@@ -354,14 +354,23 @@ public class Widget implements IWidget {
 		}
 	}
 
+	/**
+	 * Called before the children of this widget are rendered.
+	 */
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 	}
 
+	/**
+	 * Called after the children of this widget are rendered.
+	 */
 	@SideOnly(Side.CLIENT)
 	public void onRenderForeground(int guiWidth, int guiHeight) {
 	}
 
+	/**
+	 * Called after the siblings of this widget are rendered.
+	 */
 	@SideOnly(Side.CLIENT)
 	public void onRenderOverlay() {
 	}
@@ -370,10 +379,8 @@ public class Widget implements IWidget {
 	@Override
 	public boolean isEnabled() {
 		IWidget parent = this.getParent();
-		if (parent != null) {
-			if (!parent.isEnabled()) {
-				return false;
-			}
+		if (parent != null && !parent.isEnabled()) {
+			return false;
 		}
 		return true;
 	}
@@ -410,10 +417,17 @@ public class Widget implements IWidget {
 	}
 
 	/* UPDATE */
+
+	/**
+	 * Called if this widget get updated on the client side.
+	 */
 	@SideOnly(Side.CLIENT)
 	public void onUpdateClient() {
 	}
 
+	/**
+	 * Called to update this widget on the client side.
+	 */
 	@Override
 	@SideOnly(Side.CLIENT)
 	public final void updateClient() {
@@ -435,6 +449,7 @@ public class Widget implements IWidget {
 		this.getTopParent().widgetDeleted(this);
 	}
 
+	//TODO: Why not use this ?
 	public IWidget getWidget() {
 		return this;
 	}

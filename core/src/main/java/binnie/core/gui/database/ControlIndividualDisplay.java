@@ -2,12 +2,11 @@ package binnie.core.gui.database;
 
 import javax.annotation.Nullable;
 
-import binnie.core.api.genetics.IBreedingSystem;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.util.ITooltipFlag;
 
 import com.mojang.authlib.GameProfile;
 
-import net.minecraft.client.util.ITooltipFlag;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -17,6 +16,7 @@ import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.ISpeciesRoot;
 
 import binnie.core.Binnie;
+import binnie.core.api.genetics.IBreedingSystem;
 import binnie.core.gui.Attribute;
 import binnie.core.gui.ITooltip;
 import binnie.core.gui.IWidget;
@@ -28,28 +28,28 @@ import binnie.core.gui.minecraft.control.ControlItemDisplay;
 import binnie.core.gui.renderer.RenderUtil;
 import binnie.core.util.I18N;
 
-public class ControlDatabaseIndividualDisplay extends ControlItemDisplay implements ITooltip {
-	EnumDiscoveryState discovered;
+public class ControlIndividualDisplay extends ControlItemDisplay implements ITooltip {
+	private EnumDiscoveryState discovered;
 	@Nullable
 	private IAlleleSpecies species;
 
-	public ControlDatabaseIndividualDisplay(final IWidget parent, final int x, final int y) {
+	public ControlIndividualDisplay(final IWidget parent, final int x, final int y) {
 		this(parent, x, y, 16);
 	}
 
-	public ControlDatabaseIndividualDisplay(final IWidget parent, final int x, final int y, final int size) {
+	public ControlIndividualDisplay(final IWidget parent, final int x, final int y, final int size) {
 		super(parent, x, y, size);
 		this.species = null;
-		this.discovered = EnumDiscoveryState.Show;
+		this.discovered = EnumDiscoveryState.SHOW;
 		this.addSelfEventHandler(EventMouse.Down.class, event -> {
-			if (event.getButton() == 0 && ControlDatabaseIndividualDisplay.this.species != null && EnumDiscoveryState.Show == ControlDatabaseIndividualDisplay.this.discovered) {
-				((WindowAbstractDatabase) ControlDatabaseIndividualDisplay.this.getTopParent()).gotoSpeciesDelayed(ControlDatabaseIndividualDisplay.this.species);
+			if (event.getButton() == 0 && ControlIndividualDisplay.this.species != null && EnumDiscoveryState.SHOW == ControlIndividualDisplay.this.discovered) {
+				((WindowAbstractDatabase) ControlIndividualDisplay.this.getTopParent()).gotoSpeciesDelayed(ControlIndividualDisplay.this.species);
 			}
 		});
 	}
 
 	public void setSpecies(final IAlleleSpecies species) {
-		this.setSpecies(species, EnumDiscoveryState.Show);
+		this.setSpecies(species, EnumDiscoveryState.SHOW);
 	}
 
 	public void setSpecies(final IAlleleSpecies species, EnumDiscoveryState state) {
@@ -60,11 +60,11 @@ public class ControlDatabaseIndividualDisplay extends ControlItemDisplay impleme
 		super.setItemStack(system.getSpeciesRoot().getMemberStack(ind, system.getDefaultType()));
 		this.species = species;
 		final GameProfile username = Window.get(this).getUsername();
-		if (state == EnumDiscoveryState.Undetermined) {
-			state = (system.isSpeciesDiscovered(species, Window.get(this).getWorld(), username) ? EnumDiscoveryState.Discovered : EnumDiscoveryState.Undiscovered);
+		if (state == EnumDiscoveryState.UNDETERMINED) {
+			state = (system.isSpeciesDiscovered(species, Window.get(this).getWorld(), username) ? EnumDiscoveryState.DISCOVERED : EnumDiscoveryState.UNDISCOVERED);
 		}
 		if (Window.get(this) instanceof WindowAbstractDatabase && ((WindowAbstractDatabase) Window.get(this)).isNEI) {
-			state = EnumDiscoveryState.Show;
+			state = EnumDiscoveryState.SHOW;
 		}
 		this.discovered = state;
 		this.addAttribute(Attribute.MOUSE_OVER);
@@ -80,15 +80,15 @@ public class ControlDatabaseIndividualDisplay extends ControlItemDisplay impleme
 		}
 		IBreedingSystem system = Binnie.GENETICS.getSystem(this.species.getRoot());
 		switch (this.discovered) {
-			case Show: {
+			case SHOW: {
 				super.onRenderForeground(guiWidth, guiHeight);
 				return;
 			}
-			case Discovered: {
+			case DISCOVERED: {
 				icon = system.getDiscoveredIcon();
 				break;
 			}
-			case Undiscovered: {
+			case UNDISCOVERED: {
 				icon = system.getUndiscoveredIcon();
 				break;
 			}
@@ -102,19 +102,27 @@ public class ControlDatabaseIndividualDisplay extends ControlItemDisplay impleme
 	public void getTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		if (this.species != null) {
 			switch (this.discovered) {
-				case Show: {
+				case SHOW: {
 					tooltip.add(this.species.getAlleleName());
 					break;
 				}
-				case Discovered: {
+				case DISCOVERED: {
 					tooltip.add(I18N.localise(DatabaseConstants.DISCOVERED_KEY + ".discovered"));
 					break;
 				}
-				case Undiscovered: {
+				case UNDISCOVERED: {
 					tooltip.add(I18N.localise(DatabaseConstants.DISCOVERED_KEY + ".undiscovered"));
 					break;
 				}
 			}
 		}
+	}
+
+	public void setDiscovered(EnumDiscoveryState discovered) {
+		this.discovered = discovered;
+	}
+
+	public EnumDiscoveryState getDiscovered() {
+		return discovered;
 	}
 }

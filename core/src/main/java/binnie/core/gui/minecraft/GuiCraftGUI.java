@@ -1,5 +1,6 @@
 package binnie.core.gui.minecraft;
 
+import javax.annotation.Nonnull;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +34,7 @@ import binnie.core.gui.renderer.RenderUtil;
 
 @SideOnly(Side.CLIENT)
 public class GuiCraftGUI extends GuiContainer {
-	Point mousePos;
+	private Point mousePos;
 	private Window window;
 	private ItemStack draggedItem;
 
@@ -123,100 +124,162 @@ public class GuiCraftGUI extends GuiContainer {
 		final int mouseX = mousePosition.xPos();
 		final int mouseY = mousePosition.yPos();
 		final FontRenderer font = this.getFontRenderer();
+		ItemStack itemStack = tooltip.getItemStack();
 
 		boolean containsItemRender = false;
 
-		int k = 0;
-		final List<String> strings = new ArrayList<>();
+		List<String> textLines = new ArrayList<>();
 		for (final String string : tooltip.getList()) {
 			if (string != null) {
 				if (!string.contains(Tooltip.NBT_SEPARATOR)) {
-					strings.addAll(font.listFormattedStringToWidth(string, tooltip.maxWidth));
+					textLines.addAll(font.listFormattedStringToWidth(string, tooltip.maxWidth));
 				} else {
-					strings.add(string);
+					textLines.add(string);
 					containsItemRender = true;
 				}
 			}
 		}
-		for (final String s : strings) {
-			int l = font.getStringWidth(s);
-			if (s.contains(Tooltip.NBT_SEPARATOR)) {
-				l = 12 + font.getStringWidth(s.replaceAll(Tooltip.NBT_SEPARATOR + "(.*?)" + Tooltip.NBT_SEPARATOR, ""));
+		int tooltipTextWidth = 0;
+		for (String textLine : textLines) {
+			int textLineWidth = font.getStringWidth(textLine);
+			if (textLine.contains(Tooltip.NBT_SEPARATOR)) {
+				textLineWidth = 12 + font.getStringWidth(textLine.replaceAll(Tooltip.NBT_SEPARATOR + "(.*?)" + Tooltip.NBT_SEPARATOR, ""));
 			}
-			if (l > k) {
-				k = l;
+			if (textLineWidth > tooltipTextWidth) {
+				tooltipTextWidth =  textLineWidth;
 			}
 		}
 
 		if (!containsItemRender) {
-			ItemStack itemStack = tooltip.getItemStack();
-			GuiUtils.drawHoveringText(itemStack, strings, mouseX, mouseY, width, height, tooltip.maxWidth, font);
+			GuiUtils.drawHoveringText(itemStack, textLines, mouseX, mouseY, width, height, tooltip.maxWidth, font);
 		} else {
-			GlStateManager.disableRescaleNormal();
-			RenderHelper.disableStandardItemLighting();
-			GlStateManager.disableLighting();
-			GlStateManager.disableDepth();
+			drawHoveringText(itemStack, textLines, mouseX, mouseY, font, tooltipTextWidth, tooltip);
+		}
+	}
 
-			int i1 = mouseX + 12;
-			int j1 = mouseY - 12;
-			int k2 = 8;
-			if (strings.size() > 1) {
-				k2 += 2 + (strings.size() - 1) * 10;
-			}
-			if (i1 + k > this.width) {
-				i1 -= 28 + k;
-			}
-			if (j1 + k2 + 6 > this.height) {
-				j1 = this.height - k2 - 6;
-			}
-			this.zLevel = 300.0f;
-			//GuiScreen.itemRender.zLevel = 300.0f;
-			final int l2 = -267386864;
-			final int j2;
-			final int i2 = j2 = 1342177280 + MinecraftTooltip.getOutline(tooltip.getType());
-			this.drawGradientRect(i1 - 3, j1 - 4, i1 + k + 3, j1 - 3, l2, l2);
-			this.drawGradientRect(i1 - 3, j1 + k2 + 3, i1 + k + 3, j1 + k2 + 4, l2, l2);
-			this.drawGradientRect(i1 - 3, j1 - 3, i1 + k + 3, j1 + k2 + 3, l2, l2);
-			this.drawGradientRect(i1 - 4, j1 - 3, i1 - 3, j1 + k2 + 3, l2, l2);
-			this.drawGradientRect(i1 + k + 3, j1 - 3, i1 + k + 4, j1 + k2 + 3, l2, l2);
-			this.drawGradientRect(i1 - 3, j1 - 3 + 1, i1 - 3 + 1, j1 + k2 + 3 - 1, i2, j2);
-			this.drawGradientRect(i1 + k + 2, j1 - 3 + 1, i1 + k + 3, j1 + k2 + 3 - 1, i2, j2);
-			this.drawGradientRect(i1 - 3, j1 - 3, i1 + k + 3, j1 - 3 + 1, i2, i2);
-			this.drawGradientRect(i1 - 3, j1 + k2 + 2, i1 + k + 3, j1 + k2 + 3, j2, j2);
-			for (int k3 = 0; k3 < strings.size(); ++k3) {
-				String s2 = strings.get(k3);
-				if (k3 == 0) {
-					s2 = MinecraftTooltip.getTitle(tooltip.getType()) + s2;
+	private void drawHoveringText(@Nonnull ItemStack itemStack, List<String> textLines, int mouseX, int mouseY, FontRenderer font, int tooltipTextWidth, MinecraftTooltip tooltip){
+		GlStateManager.disableRescaleNormal();
+		RenderHelper.disableStandardItemLighting();
+		GlStateManager.disableLighting();
+		GlStateManager.disableDepth();
+
+		boolean needsWrap = false;
+
+		int maxTextWidth = tooltip.maxWidth;
+		int titleLinesCount = 1;
+		int tooltipX = mouseX + 12;
+		if (tooltipX + tooltipTextWidth + 4 > width) {
+			tooltipX = mouseX - 16 - tooltipTextWidth;
+			if (tooltipX < 4) { // if the tooltip doesn't fit on the screen
+				if (mouseX > width / 2) {
+					tooltipTextWidth = mouseX - 12 - 8;
 				} else {
-					s2 = MinecraftTooltip.getBody(tooltip.getType()) + s2;
+					tooltipTextWidth = width - 16 - mouseX;
 				}
-				if (s2.contains(Tooltip.NBT_SEPARATOR)) {
-					final String split = s2.split(Tooltip.NBT_SEPARATOR)[1];
-					try {
-						final NBTTagCompound nbt = JsonToNBT.getTagFromJson(split);
-						final ItemStack stack = new ItemStack(nbt);
-						GlStateManager.pushMatrix();
-						GlStateManager.translate(i1, j1 - 1.5f, 0.0f);
-						GlStateManager.scale(0.6f, 0.6f, 1.0f);
-						RenderUtil.drawItem(Point.ZERO, stack, false);
-						GlStateManager.popMatrix();
-					} catch (NBTException e) {
-						e.printStackTrace();
-					}
-					s2 = "   " + s2.replaceAll(Tooltip.NBT_SEPARATOR + "(.*?)" + Tooltip.NBT_SEPARATOR, "");
-				}
-				font.drawStringWithShadow(s2, i1, j1, -1);
-				if (k3 == 0) {
-					j1 += 2;
-				}
-				j1 += 10;
+				needsWrap = true;
 			}
-			this.zLevel = 0.0f;
-			//GuiScreen.itemRender.zLevel = 0.0f;
-			GlStateManager.enableLighting();
-			GlStateManager.enableDepth();
-			RenderHelper.enableStandardItemLighting();
-			GlStateManager.enableRescaleNormal();
+		}
+
+		if (maxTextWidth > 0 && tooltipTextWidth > maxTextWidth) {
+			tooltipTextWidth = maxTextWidth;
+			needsWrap = true;
+		}
+
+		if (needsWrap) {
+			int wrappedTooltipWidth = 0;
+			List<String> wrappedTextLines = new ArrayList<String>();
+			for (int i = 0; i < textLines.size(); i++) {
+				String textLine = textLines.get(i);
+				List<String> wrappedLine = font.listFormattedStringToWidth(textLine, tooltipTextWidth);
+				if (i == 0) {
+					titleLinesCount = wrappedLine.size();
+				}
+
+				for (String line : wrappedLine) {
+					int lineWidth = font.getStringWidth(line);
+					if (textLine.contains(Tooltip.NBT_SEPARATOR)) {
+						lineWidth = 12 + font.getStringWidth(textLine.replaceAll(Tooltip.NBT_SEPARATOR + "(.*?)" + Tooltip.NBT_SEPARATOR, ""));
+					}
+					if (lineWidth > wrappedTooltipWidth) {
+						wrappedTooltipWidth = lineWidth;
+					}
+					wrappedTextLines.add(line);
+				}
+			}
+			tooltipTextWidth = wrappedTooltipWidth;
+			textLines = wrappedTextLines;
+
+			if (mouseX > width / 2) {
+				tooltipX = mouseX - 16 - tooltipTextWidth;
+			} else {
+				tooltipX = mouseX + 12;
+			}
+		}
+
+		int tooltipY = mouseY - 12;
+		int tooltipHeight = 8;
+
+		if (textLines.size() > 1) {
+			tooltipHeight += 2 + (textLines.size() - 1) * 10;
+			if (textLines.size() > titleLinesCount) {
+				tooltipHeight += 2; // gap between title lines and next lines
+			}
+		}
+		/*if (tooltipX + tooltipTextWidth > this.width) {
+			tooltipX -= 28 + tooltipTextWidth;
+		}*/
+		if (tooltipY + tooltipHeight + 6 > this.height) {
+			tooltipY = this.height - tooltipHeight - 6;
+		}
+		this.zLevel = 300.0f;
+		final int backgroundColor = 0xF0100010;
+		drawGradientRect(tooltipX - 3, tooltipY - 4, tooltipX + tooltipTextWidth + 3, tooltipY - 3, backgroundColor, backgroundColor);
+		drawGradientRect(tooltipX - 3, tooltipY + tooltipHeight + 3, tooltipX + tooltipTextWidth + 3, tooltipY + tooltipHeight + 4, backgroundColor, backgroundColor);
+		drawGradientRect(tooltipX - 3, tooltipY - 3, tooltipX + tooltipTextWidth + 3, tooltipY + tooltipHeight + 3, backgroundColor, backgroundColor);
+		drawGradientRect(tooltipX - 4, tooltipY - 3, tooltipX - 3, tooltipY + tooltipHeight + 3, backgroundColor, backgroundColor);
+		drawGradientRect(tooltipX + tooltipTextWidth + 3, tooltipY - 3, tooltipX + tooltipTextWidth + 4, tooltipY + tooltipHeight + 3, backgroundColor, backgroundColor);
+		final int borderColorStart = 0x50000000 + MinecraftTooltip.getOutline(tooltip.getType());
+		final int borderColorEnd = (borderColorStart & 0xFEFEFE) >> 1 | borderColorStart & 0xFF000000;
+		drawGradientRect(tooltipX - 3, tooltipY - 3 + 1, tooltipX - 3 + 1, tooltipY + tooltipHeight + 3 - 1, borderColorStart, borderColorEnd);
+		drawGradientRect(tooltipX + tooltipTextWidth + 2, tooltipY - 3 + 1, tooltipX + tooltipTextWidth + 3, tooltipY + tooltipHeight + 3 - 1, borderColorStart, borderColorEnd);
+		drawGradientRect(tooltipX - 3, tooltipY - 3, tooltipX + tooltipTextWidth + 3, tooltipY - 3 + 1, borderColorStart, borderColorStart);
+		drawGradientRect(tooltipX - 3, tooltipY + tooltipHeight + 2, tooltipX + tooltipTextWidth + 3, tooltipY + tooltipHeight + 3, borderColorEnd, borderColorEnd);
+		for (int lineNumber = 0; lineNumber < textLines.size(); ++lineNumber) {
+			String line = textLines.get(lineNumber);
+			if (lineNumber == 0) {
+				line = MinecraftTooltip.getTitle(tooltip.getType()) + line;
+			} else {
+				line = MinecraftTooltip.getBody(tooltip.getType()) + line;
+			}
+			if (line.contains(Tooltip.NBT_SEPARATOR)) {
+				drawItem(line, tooltipX, tooltipY);
+				line = "   " + line.replaceAll(Tooltip.NBT_SEPARATOR + "(.*?)" + Tooltip.NBT_SEPARATOR, "");
+			}
+			font.drawStringWithShadow(line, tooltipX, tooltipY, -1);
+			if (lineNumber + 1 == titleLinesCount) {
+				tooltipY += 2;
+			}
+			tooltipY += 10;
+		}
+		this.zLevel = 0.0f;
+		GlStateManager.enableLighting();
+		GlStateManager.enableDepth();
+		RenderHelper.enableStandardItemLighting();
+		GlStateManager.enableRescaleNormal();
+	}
+
+	private void drawItem(String line, int tooltipX, int tooltipY){
+		String itemTag = line.split(Tooltip.NBT_SEPARATOR)[1];
+		try {
+			NBTTagCompound nbt = JsonToNBT.getTagFromJson(itemTag);
+			ItemStack stack = new ItemStack(nbt);
+			GlStateManager.pushMatrix();
+			GlStateManager.translate(tooltipX, tooltipY - 1.5f, 0.0f);
+			GlStateManager.scale(0.6f, 0.6f, 1.0f);
+			RenderUtil.drawItem(Point.ZERO, stack, false);
+			GlStateManager.popMatrix();
+		} catch (NBTException e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -253,10 +316,7 @@ public class GuiCraftGUI extends GuiContainer {
 	//@Override
 	protected void mouseMovedOrUp(final int x, final int y, final int button) {
 		final IWidget origin = (this.window.getMousedOverWidget() == null) ? this.window : this.window.getMousedOverWidget();
-		if (button == 0) {
-			final float dx = Mouse.getEventDX() * this.width / (float) this.mc.displayWidth;
-			final float dy = -(Mouse.getEventDY() * this.height / (float) this.mc.displayHeight);
-		} else {
+		if (button != 0) {
 			this.window.callEvent(new EventMouse.Up(origin, x, y, button));
 		}
 	}
@@ -265,7 +325,6 @@ public class GuiCraftGUI extends GuiContainer {
 	public void handleMouseInput() throws IOException {
 		super.handleMouseInput();
 		final int dWheel = Mouse.getDWheel();
-		final IWidget origin = (this.window.getFocusedWidget() == null) ? this.window : this.window.getFocusedWidget();
 		if (dWheel != 0) {
 			this.window.callEvent(new EventMouse.Wheel(this.window, dWheel));
 		}

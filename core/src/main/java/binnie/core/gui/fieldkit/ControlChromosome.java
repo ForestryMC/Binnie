@@ -1,22 +1,22 @@
 package binnie.core.gui.fieldkit;
 
-import binnie.botany.api.BotanyAPI;
 import com.google.common.base.Preconditions;
 
 import javax.annotation.Nullable;
 
-import forestry.api.apiculture.BeeManager;
-import forestry.api.arboriculture.TreeManager;
-import forestry.api.lepidopterology.ButterflyManager;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import forestry.api.apiculture.BeeManager;
 import forestry.api.apiculture.EnumBeeChromosome;
 import forestry.api.arboriculture.EnumTreeChromosome;
+import forestry.api.arboriculture.TreeManager;
 import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.ISpeciesRoot;
+import forestry.api.lepidopterology.ButterflyManager;
 import forestry.api.lepidopterology.EnumButterflyChromosome;
 
+import binnie.botany.api.BotanyAPI;
 import binnie.botany.api.genetics.EnumFlowerChromosome;
 import binnie.core.gui.CraftGUI;
 import binnie.core.gui.IWidget;
@@ -28,14 +28,14 @@ import binnie.core.gui.resource.minecraft.StandardTexture;
 import binnie.core.texture.BinnieCoreTexture;
 
 public class ControlChromosome extends Control implements IControlValue<IChromosomeType> {
-	Texture BeeTexture;
-	Texture TreeTexture;
-	Texture MothTexture;
-	Texture FlowerTexture;
+	private Texture BeeTexture;
+	private Texture TreeTexture;
+	private Texture MothTexture;
+	private Texture FlowerTexture;
 	@Nullable
-	IChromosomeType chromo;
+	private IChromosomeType chromo;
 	@Nullable
-	ISpeciesRoot species;
+	private ISpeciesRoot species;
 
 	public ControlChromosome(IWidget parent, int x, int y) {
 		super(parent, x, y, 96, 96);

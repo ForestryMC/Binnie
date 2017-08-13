@@ -22,27 +22,11 @@ import binnie.core.network.INetworkedEntity;
 import binnie.core.network.packet.MessageUpdate;
 import binnie.core.resource.BinnieResource;
 
-public class BinnieProxy extends BinnieModProxy implements IBinnieProxy {
+public abstract class BinnieProxy extends BinnieModProxy implements IBinnieProxy {
 	private short uniqueTextureUID;
 
 	public BinnieProxy() {
 		this.uniqueTextureUID = 1200;
-	}
-
-	@Override
-	public void preInit() {
-	}
-
-	@Override
-	public void init() {
-	}
-
-	@Override
-	public void postInit() {
-	}
-
-	@Override
-	public void bindTexture(final BinnieResource texture) {
 	}
 
 	public boolean checkTexture(final BinnieResource location) {
@@ -98,19 +82,6 @@ public class BinnieProxy extends BinnieModProxy implements IBinnieProxy {
 		GameRegistry.registerTileEntity(tile, id);
 	}
 
-	@Override
-	public void createPipe(final Item pipe) {
-	}
-
-	@Override
-	public boolean isDebug() {
-		return System.getenv().containsKey("BINNIE_DEBUG");
-	}
-
-	@Override
-	public void registerBlockRenderer(final Object renderer) {
-	}
-
 	public void sendNetworkEntityPacket(final INetworkedEntity entity) {
 		final MessageUpdate packet = new MessageUpdate(BinnieCorePacketID.NETWORK_ENTITY_UPDATE.ordinal(), entity);
 		this.sendToAll(packet);
@@ -120,27 +91,22 @@ public class BinnieProxy extends BinnieModProxy implements IBinnieProxy {
 
 	}
 
-	/*@Override
-	public IIcon getIcon(final IIconRegister register, final String mod, final String name) {
-		return null;
-	}
-
-	public void handleTextureRefresh(final IIconRegister register, final int type) {
-	}
-
-	public void handlePostTextureRefresh(final IIconRegister register, final int type) {
-	}*/
-
 	public short getUniqueTextureUID() {
 		final short uniqueTextureUID = this.uniqueTextureUID;
 		this.uniqueTextureUID = (short) (uniqueTextureUID + 1);
 		return uniqueTextureUID;
 	}
 
+	/**
+	 * Binds GL to this texture location.
+	 */
 	@Override
 	public void bindTexture(final ResourceLocation location) {
 	}
 
+	/**
+	 * Reloads the sprites on the client side.
+	 */
 	public void reloadSprites() {
 	}
 

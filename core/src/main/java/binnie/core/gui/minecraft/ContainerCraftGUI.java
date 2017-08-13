@@ -67,14 +67,12 @@ public class ContainerCraftGUI extends Container {
 		this.mousedOverSlotNumber = -1;
 		this.window = window;
 		final IMachine machine = Machine.getMachine(window.getInventory());
-		if (this.getSide() == Side.SERVER) {
-			if (machine != null) {
-				final GameProfile user = machine.getOwner();
-				if (user != null) {
-					final NBTTagCompound nbt = new NBTTagCompound();
-					nbt.setString("username", user.getName());
-					this.sendNBTToClient("username", nbt);
-				}
+		if (this.getSide() == Side.SERVER && machine != null) {
+			final GameProfile user = machine.getOwner();
+			if (user != null) {
+				final NBTTagCompound nbt = new NBTTagCompound();
+				nbt.setString("username", user.getName());
+				this.sendNBTToClient("username", nbt);
 			}
 		}
 		detectAndSendChanges();
@@ -219,7 +217,7 @@ public class ContainerCraftGUI extends Container {
 		} else if (name.equals("mouse-over-slot")) {
 			this.onMouseOverSlot(player, action);
 		} else if (name.equals("shift-click-info")) {
-			this.onRecieveShiftClickHighlights(player, action);
+			this.onRecieveShiftClickHighlights(action);
 		}
 		return false;
 	}
@@ -230,19 +228,10 @@ public class ContainerCraftGUI extends Container {
 		if (crafters.size() <= 0) {
 			return;
 		}
-		final ITankMachine tanks = Machine.getInterface(ITankMachine.class, this.window.getInventory());
+		sendTankChanges();
 		final IPoweredMachine powered = Machine.getInterface(IPoweredMachine.class, this.window.getInventory());
 		final IErrorStateSource error = Machine.getInterface(IErrorStateSource.class, this.window.getInventory());
 		final IProcess process = Machine.getInterface(IProcess.class, this.window.getInventory());
-		if (tanks != null && this.window.isServer()) {
-			for (int i = 0; i < tanks.getTankInfos().length; ++i) {
-				final TankInfo tank = tanks.getTankInfos()[i];
-				if (!this.getTankInfo(i).equals(tank)) {
-					this.syncedNBT.put("tank-update-" + i, this.createTankNBT(i, tank));
-					this.syncedTanks.put(i, tank);
-				}
-			}
-		}
 		if (powered != null && this.window.isServer()) {
 			this.syncedNBT.put("power-update", this.createPowerNBT(powered.getPowerInfo()));
 		}
@@ -256,6 +245,23 @@ public class ContainerCraftGUI extends Container {
 		if (machineSync != null) {
 			machineSync.sendGuiNBTToClient(this.syncedNBT);
 		}
+		sendChangesToPlayers();
+	}
+
+	private void sendTankChanges(){
+		ITankMachine tanks = Machine.getInterface(ITankMachine.class, this.window.getInventory());
+		if (tanks != null && this.window.isServer()) {
+			for (int i = 0; i < tanks.getTankInfos().length; ++i) {
+				final TankInfo tank = tanks.getTankInfos()[i];
+				if (!this.getTankInfo(i).equals(tank)) {
+					this.syncedNBT.put("tank-update-" + i, this.createTankNBT(i, tank));
+					this.syncedTanks.put(i, tank);
+				}
+			}
+		}
+	}
+
+	private void sendChangesToPlayers(){
 		final Map<String, NBTTagCompound> sentThisTime = new HashMap<>();
 		for (final Map.Entry<String, NBTTagCompound> nbt : this.syncedNBT.entrySet()) {
 			nbt.getValue().setString("type", nbt.getKey());
@@ -266,8 +272,11 @@ public class ContainerCraftGUI extends Container {
 			}
 			if (shouldSend) {
 				//TODO INVENTORY
-				this.crafters.stream().filter(Objects::nonNull).forEach(entityPlayer ->
-						BinnieCore.getBinnieProxy().sendToPlayer(new MessageContainerUpdate(nbt.getValue()), entityPlayer));
+				this.crafters.stream()
+					.filter(Objects::nonNull)
+					.forEach(
+						entityPlayer -> BinnieCore.getBinnieProxy().sendToPlayer(new MessageContainerUpdate(nbt.getValue()), entityPlayer)
+					);
 				sentThisTime.put(nbt.getKey(), nbt.getValue());
 			}
 		}
@@ -398,7 +407,7 @@ public class ContainerCraftGUI extends Container {
 	}
 
 	@SideOnly(Side.CLIENT)
-	private void onRecieveShiftClickHighlights(final EntityPlayer player, final NBTTagCompound data) {
+	private void onRecieveShiftClickHighlights(NBTTagCompound data) {
 		ControlSlot.highlighting.get(EnumHighlighting.SHIFT_CLICK).clear();
 		for (final int slotnumber : data.getIntArray("slots")) {
 			ControlSlot.highlighting.get(EnumHighlighting.SHIFT_CLICK).add(slotnumber);

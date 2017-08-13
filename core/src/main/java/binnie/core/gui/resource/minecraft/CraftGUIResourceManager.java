@@ -41,6 +41,7 @@ public class CraftGUIResourceManager implements IResourceManagerReloadListener {
 		CraftGUI.resourceManager = this;
 	}
 
+	//TODO: Clean Up
 	@Override
 	public void onResourceManagerReload(final IResourceManager manager) {
 		this.textureSheets.clear();
