@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import binnie.core.api.genetics.IBreedingSystem;
+import binnie.core.gui.geometry.Point;
 import binnie.core.gui.window.WindowMachine;
 import binnie.extrabees.api.ExtraBeesAPI;
 import net.minecraft.client.util.ITooltipFlag;
@@ -33,8 +34,7 @@ import binnie.core.gui.controls.tab.ControlTabBar;
 import binnie.core.gui.events.EventHandler;
 import binnie.core.gui.events.EventTextEdit;
 import binnie.core.gui.events.EventValueChanged;
-import binnie.core.gui.geometry.Point;
-import binnie.core.gui.geometry.Position;
+import binnie.core.api.gui.Alignment;
 import binnie.core.gui.minecraft.MinecraftGUI;
 import binnie.core.gui.minecraft.control.ControlPlayerInventory;
 import binnie.core.gui.minecraft.control.ControlTabIcon;
@@ -112,7 +112,7 @@ public class WindowGeneBank extends WindowMachine {
 		this.genes = new ControlGeneScroll(scroll, 1, 1, geneBoxWidth, 116);
 		scroll.setScrollableContent(this.genes);
 		this.genes.setGenes(ExtraBeesAPI.beeBreedingSystem);
-		final ControlTabBar<IBreedingSystem> tabBar = new ControlTabBar<IBreedingSystem>(this, boxX, 32, 24, 120, Position.LEFT, Binnie.GENETICS.getActiveSystems()) {
+		final ControlTabBar<IBreedingSystem> tabBar = new ControlTabBar<IBreedingSystem>(this, boxX, 32, 24, 120, Alignment.LEFT, Binnie.GENETICS.getActiveSystems()) {
 			@Override
 			public ControlTab<IBreedingSystem> createTab(final int x, final int y, final int w, final int h, final IBreedingSystem value) {
 				return new ControlTabIcon<IBreedingSystem>(this, x, y, w, h, value) {
@@ -139,7 +139,7 @@ public class WindowGeneBank extends WindowMachine {
 		};
 		tabBar.setValue(ExtraBeesAPI.beeBreedingSystem);
 		boxX -= 8;
-		final ControlTabBar<String> infoTabs = new ControlTabBar<>(this, boxX + 8, 160, 16, 50, Position.LEFT, Arrays.asList("Info", "Stats", "Ranking"));
+		final ControlTabBar<String> infoTabs = new ControlTabBar<>(this, boxX + 8, 160, 16, 50, Alignment.LEFT, Arrays.asList("Info", "Stats", "Ranking"));
 		final Panel panelProject = new Panel(this, boxX + 24, 160, geneBoxWidth + 20, 50, MinecraftGUI.PanelType.BLACK);
 		int totalGenes = 0;
 		int seqGenes = 0;

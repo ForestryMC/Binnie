@@ -1,5 +1,5 @@
 archivesBaseName = 'core-' + mcversion
 
 dependencies {
-	compile project(":api")
+	compile project(":core-api")
 }

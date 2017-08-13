@@ -6,6 +6,8 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
+import binnie.core.api.gui.IArea;
+import binnie.core.gui.geometry.Point;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.multiplayer.PlayerControllerMP;
@@ -24,7 +26,6 @@ import binnie.core.gui.IWidget;
 import binnie.core.gui.Tooltip;
 import binnie.core.gui.events.EventMouse;
 import binnie.core.gui.geometry.Area;
-import binnie.core.gui.geometry.Point;
 import binnie.core.gui.minecraft.CustomSlot;
 import binnie.core.gui.minecraft.GuiCraftGUI;
 import binnie.core.gui.minecraft.InventoryType;
@@ -131,7 +132,7 @@ public class ControlSlot extends ControlSlotBase {
 			}
 			highlighted = true;
 			final int c = highlight.getKey().getColour();
-			Area area = this.getArea();
+			IArea area = this.getArea();
 			if (this.getParent() instanceof ControlSlotArray || this.getParent() instanceof ControlPlayerInventory) {
 				area = this.getParent().getArea();
 				area.setPosition(Point.ZERO.sub(this.getPosition()));

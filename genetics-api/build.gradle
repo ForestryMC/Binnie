@@ -1,0 +1,5 @@
+archivesBaseName = 'genetics-api-' + mcversion
+
+dependencies {
+	compile project(":core-api")
+}

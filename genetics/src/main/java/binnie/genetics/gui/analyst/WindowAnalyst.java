@@ -32,7 +32,7 @@ import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.controls.scroll.ControlScrollableContent;
 import binnie.core.gui.events.EventKey;
 import binnie.core.gui.geometry.Area;
-import binnie.core.gui.geometry.Position;
+import binnie.core.api.gui.Alignment;
 import binnie.core.gui.minecraft.InventoryType;
 import binnie.core.gui.minecraft.Window;
 import binnie.core.gui.minecraft.WindowInventory;
@@ -158,7 +158,7 @@ public class WindowAnalyst extends Window {
 		tabBar = new Control(this, x, 28, getWidth() - 16 - x, 20);
 		analystPanel = new AnalystPanel(this);
 		if (!isDatabase) {
-			slideUpInv = new ControlSlide(this, (getSize().xPos() - 244) / 2, getSize().yPos() - 80 + 1, 244, 80, Position.BOTTOM);
+			slideUpInv = new ControlSlide(this, (getSize().xPos() - 244) / 2, getSize().yPos() - 80 + 1, 244, 80, Alignment.BOTTOM);
 			new ControlPlayerInventory(slideUpInv, true);
 			slideUpInv.setSlide(false);
 		}

@@ -1,5 +1,9 @@
 package binnie.core.gui.minecraft.control;
 
+import binnie.core.api.gui.IArea;
+import binnie.core.api.gui.IPoint;
+import binnie.core.api.gui.ITexture;
+import binnie.core.gui.geometry.Point;
 import net.minecraft.client.renderer.GlStateManager;
 
 import net.minecraftforge.fml.relauncher.Side;
@@ -11,21 +15,19 @@ import binnie.core.gui.IWidget;
 import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.geometry.Area;
 import binnie.core.gui.geometry.Border;
-import binnie.core.gui.geometry.Point;
-import binnie.core.gui.geometry.Position;
+import binnie.core.api.gui.Alignment;
 import binnie.core.gui.geometry.TextJustification;
 import binnie.core.gui.renderer.RenderUtil;
-import binnie.core.gui.resource.Texture;
 import binnie.core.gui.resource.minecraft.CraftGUITexture;
 
 public class ControlSlide extends Control {
-	private Area expanded;
-	private Area shrunk;
+	private IArea expanded;
+	private IArea shrunk;
 	private boolean slideActive;
-	private Position anchor;
+	private Alignment anchor;
 	private String label;
 
-	public ControlSlide(final IWidget parent, final int x, final int y, final int w, final int h, final Position anchor2) {
+	public ControlSlide(final IWidget parent, final int x, final int y, final int w, final int h, final Alignment anchor2) {
 		super(parent, x, y, w, h);
 		this.slideActive = true;
 		this.label = null;
@@ -46,11 +48,11 @@ public class ControlSlide extends Control {
 			final int lw = RenderUtil.getTextWidth(this.label) + 16;
 			final int lh = RenderUtil.getTextHeight() + 16;
 			final boolean hor = this.anchor.x() != 0;
-			final Area ar = this.isSlideActive() ? this.expanded : this.shrunk;
-			Area tabArea = new Area(hor ? (-lh / 2) : (-lw / 2), hor ? (-lw / 2) : (-lh / 2), hor ? lh : lw, hor ? lw : lh);
+			final IArea ar = this.isSlideActive() ? this.expanded : this.shrunk;
+			IArea tabArea = new Area(hor ? (-lh / 2) : (-lw / 2), hor ? (-lw / 2) : (-lh / 2), hor ? lh : lw, hor ? lw : lh);
 			final Point shift = new Point(ar.width() * (1 - this.anchor.x()) / 2, ar.height() * (1 - this.anchor.y()) / 2);
 			tabArea = tabArea.shift(shift.xPos() - (-3 + lh / 2) * this.anchor.x(), shift.yPos() - (-3 + lh / 2) * this.anchor.y());
-			Texture texture = CraftGUI.RENDER.getTexture(this.isSlideActive() ? CraftGUITexture.TAB : CraftGUITexture.TAB_DISABLED).crop(this.anchor.opposite(), 8);
+			ITexture texture = CraftGUI.RENDER.getTexture(this.isSlideActive() ? CraftGUITexture.TAB : CraftGUITexture.TAB_DISABLED).crop(this.anchor.opposite(), 8);
 			CraftGUI.RENDER.texture(texture, tabArea);
 			texture = CraftGUI.RENDER.getTexture(CraftGUITexture.TAB_OUTLINE).crop(this.anchor.opposite(), 8);
 			CraftGUI.RENDER.texture(texture, tabArea.inset(2));
@@ -67,7 +69,7 @@ public class ControlSlide extends Control {
 			GlStateManager.popMatrix();
 		}
 		CraftGUI.RENDER.texture(CraftGUITexture.WINDOW, this.getArea());
-		final Object slideTexture = (this.anchor == Position.BOTTOM) ? CraftGUITexture.SLIDE_DOWN : ((this.anchor == Position.Top) ? CraftGUITexture.SLIDE_UP : ((this.anchor == Position.LEFT) ? CraftGUITexture.SLIDE_LEFT : CraftGUITexture.SLIDE_RIGHT));
+		final Object slideTexture = (this.anchor == Alignment.BOTTOM) ? CraftGUITexture.SLIDE_DOWN : ((this.anchor == Alignment.TOP) ? CraftGUITexture.SLIDE_UP : ((this.anchor == Alignment.LEFT) ? CraftGUITexture.SLIDE_LEFT : CraftGUITexture.SLIDE_RIGHT));
 		CraftGUI.RENDER.texture(slideTexture, new Point((this.anchor.x() + 1) * this.getWidth() / 2 - 8, (this.anchor.y() + 1) * this.getHeight() / 2 - 8));
 	}
 
@@ -84,7 +86,7 @@ public class ControlSlide extends Control {
 	}
 
 	@Override
-	public boolean isMouseOverWidget(final Point relativeMouse) {
+	public boolean isMouseOverWidget(final IPoint relativeMouse) {
 		return this.getArea().outset(this.isSlideActive() ? 16 : 8).outset(new Border(this.anchor.opposite(), 16)).contains(relativeMouse);
 	}
 
@@ -95,7 +97,7 @@ public class ControlSlide extends Control {
 
 	public void setSlide(final boolean b) {
 		this.slideActive = b;
-		final Area area = this.isSlideActive() ? this.expanded : this.shrunk;
+		final IArea area = this.isSlideActive() ? this.expanded : this.shrunk;
 		this.setSize(area.size());
 		this.setPosition(area.pos());
 	}

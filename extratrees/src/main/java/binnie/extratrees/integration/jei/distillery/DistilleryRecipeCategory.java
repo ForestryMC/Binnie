@@ -1,5 +1,6 @@
 package binnie.extratrees.integration.jei.distillery;
 
+import binnie.core.gui.geometry.Point;
 import mezz.jei.api.recipe.IRecipeCategory;
 import net.minecraft.client.Minecraft;
 
@@ -8,8 +9,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.core.gui.CraftGUI;
 import binnie.core.gui.geometry.Area;
-import binnie.core.gui.geometry.Point;
-import binnie.core.gui.geometry.Position;
+import binnie.core.api.gui.Alignment;
 import binnie.core.gui.resource.Texture;
 import binnie.core.gui.resource.minecraft.StandardTexture;
 import binnie.extratrees.ExtraTrees;
@@ -58,7 +58,7 @@ public class DistilleryRecipeCategory implements IRecipeCategory<DistilleryRecip
 	@SideOnly(Side.CLIENT)
 	public void drawExtras(Minecraft minecraft) {
 		CraftGUI.RENDER.texture(DISTILLERY_BASE, Point.ZERO);
-		CraftGUI.RENDER.texturePercentage(LIQUID_FLOW, new Area(18, 0, 38, 60), Position.LEFT, progress.getValue() / 100f);
+		CraftGUI.RENDER.texturePercentage(LIQUID_FLOW, new Area(18, 0, 38, 60), Alignment.LEFT, progress.getValue() / 100f);
 	}
 
 	@Override

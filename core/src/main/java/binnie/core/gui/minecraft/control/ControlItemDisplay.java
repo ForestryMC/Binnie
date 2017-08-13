@@ -2,6 +2,8 @@ package binnie.core.gui.minecraft.control;
 
 import java.util.List;
 
+import binnie.core.api.gui.IPoint;
+import binnie.core.gui.geometry.Point;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
@@ -14,7 +16,6 @@ import binnie.core.gui.ITooltip;
 import binnie.core.gui.IWidget;
 import binnie.core.gui.Tooltip;
 import binnie.core.gui.controls.core.Control;
-import binnie.core.gui.geometry.Point;
 import binnie.core.gui.minecraft.Window;
 import binnie.core.gui.renderer.RenderUtil;
 
@@ -54,7 +55,7 @@ public class ControlItemDisplay extends Control implements ITooltip {
 			return;
 		}
 
-		final Point relativeToWindow = this.getAbsolutePosition().sub(this.getTopParent().getPosition());
+		final IPoint relativeToWindow = this.getAbsolutePosition().sub(this.getTopParent().getPosition());
 		if (relativeToWindow.xPos() > Window.get(this).getSize().xPos() + 100 || relativeToWindow.yPos() > Window.get(this).getSize().yPos() + 100) {
 			return;
 		}

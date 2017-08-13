@@ -8,7 +8,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraftforge.fml.relauncher.Side;
 
 import binnie.core.AbstractMod;
-import binnie.core.gui.geometry.Position;
+import binnie.core.api.gui.Alignment;
 import binnie.core.gui.minecraft.Window;
 import binnie.core.gui.minecraft.control.ControlEnergyBar;
 import binnie.core.gui.minecraft.control.ControlErrorState;
@@ -53,7 +53,7 @@ public class WindowBrewery extends Window {
 		new ControlSlot.Builder(this, 105, 77).assign(BreweryMachine.SLOT_YEAST);
 		new ControlLiquidTank(this, 76, 32).setTankID(BreweryMachine.TANK_INPUT);
 		new ControlLiquidTank(this, 162, 32).setTankID(BreweryMachine.TANK_OUTPUT);
-		new ControlEnergyBar(this, 196, 32, 16, 60, Position.BOTTOM);
+		new ControlEnergyBar(this, 196, 32, 16, 60, Alignment.BOTTOM);
 		new ControlBreweryProgress(this, 110, 32);
 		new ControlSlotArray.Builder(this, this.getSize().xPos() / 2 - 81, 104, 9, 1).create(BreweryMachine.SLOTS_INVENTORY);
 		new ControlPlayerInventory(this);

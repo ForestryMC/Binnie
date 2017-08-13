@@ -145,4 +145,6 @@ public interface IBreedingSystem {
 	Collection<IChromosomeType> getActiveKaryotype();
 
 	ItemStack getDefaultMember(String uid);
+
+	IFieldKitPlugin getFieldKitPlugin();
 }

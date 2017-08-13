@@ -1,5 +1,6 @@
 package binnie.extratrees.gui.database;
 
+import binnie.core.api.gui.IPoint;
 import net.minecraft.item.ItemStack;
 
 import net.minecraftforge.fml.relauncher.Side;
@@ -32,7 +33,7 @@ public class PagePlanksOverview extends PageAbstract<ItemStack> {
 	public void onValueChanged(final ItemStack species) {
 		this.deleteAllChildren();
 		final WindowAbstractDatabase database = Window.get(this);
-		Point size = getSize();
+		IPoint size = getSize();
 		new ControlText(this, new Area(0, 0, size.xPos(), 24), species.getDisplayName(), TextJustification.MIDDLE_CENTER);
 		new ControlText(this, new Area(12, 24, size.xPos() - 24, 24), I18N.localise("extratrees.gui.database.planks.use"), TextJustification.MIDDLE_LEFT);
 		final IPlankType type = WoodManager.getPlankType(species);

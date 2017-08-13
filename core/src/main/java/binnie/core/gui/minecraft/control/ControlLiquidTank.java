@@ -4,6 +4,9 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
+import binnie.core.api.gui.IArea;
+import binnie.core.api.gui.IPoint;
+import binnie.core.gui.geometry.Point;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
@@ -26,7 +29,6 @@ import binnie.core.gui.Tooltip;
 import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.events.EventMouse;
 import binnie.core.gui.geometry.Area;
-import binnie.core.gui.geometry.Point;
 import binnie.core.gui.minecraft.GuiCraftGUI;
 import binnie.core.gui.minecraft.MinecraftTooltip;
 import binnie.core.gui.minecraft.Window;
@@ -110,9 +112,9 @@ public class ControlLiquidTank extends Control implements ITooltip {
 			GlStateManager.enableBlend();
 			{
 				GlStateManager.blendFunc(770, 771);
-				final Point pos = this.getAbsolutePosition();
-				final Point offset = new Point(0, height - squaled);
-				final Area limited = this.getArea().inset(1);
+				final IPoint pos = this.getAbsolutePosition();
+				final IPoint offset = new Point(0, height - squaled);
+				final IArea limited = this.getArea().inset(1);
 				if (this.horizontal) {
 					limited.setSize(new Point(limited.width() - 1, limited.height()));
 				}
@@ -140,12 +142,12 @@ public class ControlLiquidTank extends Control implements ITooltip {
 		CraftGUI.RENDER.texture(this.horizontal ? CraftGUITexture.HORIZONTAL_LIQUID_TANK_OVERLAY : CraftGUITexture.LIQUID_TANK_OVERLAY, Point.ZERO);
 		GuiCraftGUI gui = Window.get(this).getGui();
 		if (this.isMouseOver() && gui.isHelpMode()) {
-			final Area area = this.getArea();
+			final IArea area = this.getArea();
 			RenderUtil.setColour(MinecraftTooltip.getOutline(Tooltip.Type.HELP));
 			CraftGUI.RENDER.texture(CraftGUITexture.OUTLINE, area.outset(1));
 		}
 		if (ControlLiquidTank.tankError.contains(this.tankID)) {
-			final Area area = this.getArea();
+			final IArea area = this.getArea();
 			RenderUtil.setColour(MinecraftTooltip.getOutline(MinecraftTooltip.Type.ERROR));
 			CraftGUI.RENDER.texture(CraftGUITexture.OUTLINE, area.outset(1));
 		}

@@ -2,6 +2,7 @@ package binnie.genetics.api;
 
 import javax.annotation.Nullable;
 
+import binnie.core.api.genetics.IGene;
 import net.minecraft.item.ItemStack;
 
 public interface IItemSerum extends IItemChargeable {

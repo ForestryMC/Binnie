@@ -1,12 +1,12 @@
 package binnie.core.gui.resource.minecraft;
 
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.core.gui.geometry.Area;
 import binnie.core.gui.geometry.Border;
 import binnie.core.gui.resource.Texture;
-import binnie.core.resource.BinnieResource;
 import binnie.core.resource.IBinnieTexture;
 
 public class StandardTexture extends Texture {
@@ -19,7 +19,7 @@ public class StandardTexture extends Texture {
 	}
 
 	@SideOnly(Side.CLIENT)
-	public BinnieResource getTexture() {
-		return this.getFilename();
+	public ResourceLocation getTexture() {
+		return this.getResourceLocation();
 	}
 }

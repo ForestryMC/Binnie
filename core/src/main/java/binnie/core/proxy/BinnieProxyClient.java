@@ -82,8 +82,8 @@ public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy
 	}
 
 	@Override
-	public boolean checkTexture(final BinnieResource location) {
-		final SimpleTexture texture = new SimpleTexture(location.getResourceLocation());
+	public boolean checkTexture(final ResourceLocation location) {
+		final SimpleTexture texture = new SimpleTexture(location);
 		try {
 			texture.loadTexture(this.getMinecraftInstance().getResourceManager());
 		} catch (IOException e) {

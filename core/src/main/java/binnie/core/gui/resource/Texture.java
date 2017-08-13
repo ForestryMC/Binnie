@@ -1,15 +1,17 @@
 package binnie.core.gui.resource;
 
+import binnie.core.api.gui.IBorder;
+import binnie.core.api.gui.ITexture;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.core.gui.geometry.Area;
 import binnie.core.gui.geometry.Border;
-import binnie.core.gui.geometry.Position;
-import binnie.core.resource.BinnieResource;
+import binnie.core.api.gui.Alignment;
 import binnie.core.resource.IBinnieTexture;
 
-public class Texture {
+public class Texture implements ITexture {
 	private final Area area;
 	private final Border padding;
 	private final Border border;
@@ -22,58 +24,66 @@ public class Texture {
 		this.binnieTexture = binnieTexture;
 	}
 
+	@Override
 	public Area getArea() {
 		return this.area;
 	}
 
-	public Border getBorder() {
+	@Override
+	public IBorder getBorder() {
 		return this.border;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
-	public BinnieResource getFilename() {
-		return this.binnieTexture.getTexture();
+	public ResourceLocation getResourceLocation() {
+		return this.binnieTexture.getTexture().getResourceLocation();
 	}
 
-	public Border getTotalPadding() {
+	@Override
+	public IBorder getTotalPadding() {
 		return this.padding.add(this.border);
 	}
 
+	@Override
 	public int width() {
 		return this.getArea().width();
 	}
 
+	@Override
 	public int height() {
 		return this.getArea().height();
 	}
 
-	public Texture crop(final Position anchor, final int dist) {
+	@Override
+	public ITexture crop(final Alignment anchor, final int dist) {
 		return this.crop(new Border(anchor.opposite(), dist));
 	}
 
-	public Texture crop(final Border crop) {
+	@Override
+	public ITexture crop(final IBorder crop) {
 		final Texture copy = new Texture(this.area, this.padding, this.border, this.binnieTexture);
-		if (crop.b() > 0) {
-			copy.border.b(0);
-			copy.padding.b(copy.padding.b() - Math.min(crop.b(), copy.padding.b()));
-			copy.area.setHeight(copy.area.height() - crop.b());
+		if (crop.getBottom() > 0) {
+			copy.border.setBottom(0);
+			copy.padding.setBottom(copy.padding.getBottom() - Math.min(crop.getBottom(), copy.padding.getBottom()));
+			copy.area.setHeight(copy.area.height() - crop.getBottom());
 		}
-		if (crop.t() > 0) {
-			copy.border.t(0);
-			copy.padding.t(copy.padding.t() - Math.min(crop.t(), copy.padding.t()));
-			copy.area.setHeight(copy.area.height() - crop.t());
-			copy.area.setYPos(copy.area.yPos() + crop.t());
+		if (crop.getTop() > 0) {
+			copy.border.setTop(0);
+			copy.padding.setTop(copy.padding.getTop() - Math.min(crop.getTop(), copy.padding.getTop()));
+			copy.area.setHeight(copy.area.height() - crop.getTop());
+			copy.area.setYPos(copy.area.yPos() + crop.getTop());
 		}
-		if (crop.r() > 0) {
-			copy.border.r(0);
-			copy.padding.r(copy.padding.r() - Math.min(crop.r(), copy.padding.r()));
-			copy.area.setWidth(copy.area.width() - crop.r());
+		if (crop.getRight() > 0) {
+			copy.border.setRight(0);
+			copy.padding.setRight(copy.padding.getRight() - Math.min(crop.getRight(), copy.padding.getRight()));
+			copy.area.setWidth(copy.area.width() - crop.getRight());
 		}
-		if (crop.l() > 0) {
-			copy.border.l(0);
-			copy.padding.l(copy.padding.l() - Math.min(crop.l(), copy.padding.l()));
-			copy.area.setWidth(copy.area.width() - crop.l());
-			copy.area.setXPos(copy.area.xPos() + crop.l());
+		if (crop.getLeft() > 0) {
+			copy.border.setLeft(0);
+			copy.padding.setLeft(copy.padding.getLeft() - Math.min(crop.getLeft(), copy.padding.getLeft()));
+			copy.area.setWidth(copy.area.width() - crop.getLeft());
+			copy.area.setXPos(copy.area.xPos() + crop.getLeft());
 		}
 		return copy;
 	}

@@ -2,10 +2,10 @@ package binnie.core.gui;
 
 import javax.annotation.Nullable;
 
-import binnie.core.gui.geometry.Point;
+import binnie.core.api.gui.IPoint;
 
 public interface ITopLevelWidget extends IWidget {
-	Point getAbsoluteMousePosition();
+	IPoint getAbsoluteMousePosition();
 
 	@Nullable
 	IWidget getMousedOverWidget();

@@ -7,7 +7,7 @@ import binnie.core.gui.CraftGUI;
 import binnie.core.gui.IWidget;
 import binnie.core.gui.Tooltip;
 import binnie.core.gui.controls.core.Control;
-import binnie.core.gui.geometry.Position;
+import binnie.core.api.gui.Alignment;
 import binnie.core.gui.minecraft.Window;
 import binnie.core.gui.resource.minecraft.CraftGUITexture;
 import binnie.core.machines.Machine;
@@ -30,7 +30,7 @@ public class ControlSlotCharge extends Control {
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		CraftGUI.RENDER.texture(CraftGUITexture.PANEL_BLACK, this.getArea());
-		CraftGUI.RENDER.texturePercentage(CraftGUI.RENDER.getTexture(CraftGUITexture.SLOT_CHARGE), this.getArea().inset(1), Position.BOTTOM, this.getCharge());
+		CraftGUI.RENDER.texturePercentage(CraftGUI.RENDER.getTexture(CraftGUITexture.SLOT_CHARGE), this.getArea().inset(1), Alignment.BOTTOM, this.getCharge());
 	}
 
 	@Override

@@ -7,7 +7,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.core.AbstractMod;
-import binnie.core.gui.geometry.Position;
+import binnie.core.api.gui.Alignment;
 import binnie.core.gui.minecraft.control.ControlEnergyBar;
 import binnie.core.gui.minecraft.control.ControlErrorState;
 import binnie.core.gui.minecraft.control.ControlPlayerInventory;
@@ -33,7 +33,7 @@ public class WindowAcclimatiser extends WindowMachine {
 	@SideOnly(Side.CLIENT)
 	public void initialiseClient() {
 		super.initialiseClient();
-		new ControlProgress(this, 65, 28 , WindowAcclimatiser.ProgressBase, WindowAcclimatiser.Progress, Position.RIGHT);
+		new ControlProgress(this, 65, 28 , WindowAcclimatiser.ProgressBase, WindowAcclimatiser.Progress, Alignment.RIGHT);
 		int x = 16;
 		final int y = 32;
 		new ControlSlotArray.Builder(this, x, y, 2, 2).create(Acclimatiser.SLOT_RESERVE);
@@ -42,7 +42,7 @@ public class WindowAcclimatiser extends WindowMachine {
 		new ControlSlotArray.Builder(this, x, y + 18 + 18, 3, 1).create(Acclimatiser.SLOT_ACCLIMATISER);
 		x += 72;
 		new ControlSlotArray.Builder(this, x, y, 2, 2).create(Acclimatiser.SLOT_DRONE);
-		new ControlEnergyBar(this, 21, 115, 16, 60, Position.BOTTOM);
+		new ControlEnergyBar(this, 21, 115, 16, 60, Alignment.BOTTOM);
 		new ControlErrorState(this, 181, 83);
 		new ControlPlayerInventory(this);
 	}

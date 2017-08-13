@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import binnie.core.api.gui.ITexture;
+import binnie.core.gui.geometry.Point;
+import binnie.core.gui.window.WindowMachine;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -41,8 +44,7 @@ import binnie.core.gui.events.EventTextEdit;
 import binnie.core.gui.events.EventValueChanged;
 import binnie.core.gui.geometry.Border;
 import binnie.core.gui.geometry.CraftGUIUtil;
-import binnie.core.gui.geometry.Point;
-import binnie.core.gui.geometry.Position;
+import binnie.core.api.gui.Alignment;
 import binnie.core.gui.minecraft.Dialog;
 import binnie.core.gui.minecraft.EnumColor;
 import binnie.core.gui.minecraft.IWindowAffectsShiftClick;
@@ -55,10 +57,8 @@ import binnie.core.gui.minecraft.control.ControlSlot;
 import binnie.core.gui.minecraft.control.ControlSlotArray;
 import binnie.core.gui.minecraft.control.ControlTabIcon;
 import binnie.core.gui.renderer.RenderUtil;
-import binnie.core.gui.resource.Texture;
 import binnie.core.gui.resource.minecraft.CraftGUITexture;
 import binnie.core.gui.window.Panel;
-import binnie.core.gui.window.WindowMachine;
 import binnie.core.machines.Machine;
 import binnie.core.machines.transfer.TransferRequest;
 
@@ -103,7 +103,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		final int compartmentWidth = compartmentPageWidth + (doubleTabbed ? 48 : 24);
 		final int compartmentHeight = compartmentPageHeight;
 		final Control controlCompartment = new Control(this, x, y, compartmentWidth, compartmentHeight);
-		final ControlTabBar<Integer> tab = new ControlTabBar<Integer>(controlCompartment, 0, 0, 24, compartmentPageHeight, Position.LEFT, Arrays.asList(tabs1)) {
+		final ControlTabBar<Integer> tab = new ControlTabBar<Integer>(controlCompartment, 0, 0, 24, compartmentPageHeight, Alignment.LEFT, Arrays.asList(tabs1)) {
 			@Override
 			public ControlTab<Integer> createTab(final int x, final int y, final int w, final int h, final Integer value) {
 				return new ControlTabIcon<Integer>(this, x, y, w, h, value) {
@@ -155,7 +155,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 				@Override
 				@SideOnly(Side.CLIENT)
 				public void onRenderForeground(int guiWidth, int guiHeight) {
-					final Texture iTexture = CraftGUI.RENDER.getTexture(CraftGUITexture.TAB_OUTLINE);
+					final ITexture iTexture = CraftGUI.RENDER.getTexture(CraftGUITexture.TAB_OUTLINE);
 					RenderUtil.setColour(WindowCompartment.this.getTab(WindowCompartment.this.panels.get(this)).getColor().getColor());
 					CraftGUI.RENDER.texture(iTexture, this.getArea().inset(3));
 				}
@@ -169,7 +169,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		}
 		x += compartmentPageWidth;
 		if (tabs2.length > 0) {
-			final ControlTabBar<Integer> tab2 = new ControlTabBar<Integer>(controlCompartment, 24 + compartmentPageWidth, 0, 24, compartmentPageHeight, Position.RIGHT, Arrays.asList(tabs2)) {
+			final ControlTabBar<Integer> tab2 = new ControlTabBar<Integer>(controlCompartment, 24 + compartmentPageWidth, 0, 24, compartmentPageHeight, Alignment.RIGHT, Arrays.asList(tabs2)) {
 				@Override
 				public ControlTab<Integer> createTab(final int x, final int y, final int w, final int h, final Integer value) {
 					return new ControlTabIcon<Integer>(this, x, y, w, h, value) {
@@ -213,7 +213,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		this.setSize(new Point(Math.max(32 + compartmentWidth, 252), this.getHeight()));
 		controlCompartment.setPosition(new Point((this.getWidth() - controlCompartment.getWidth()) / 2, controlCompartment.getYPos()));
 		final ControlPlayerInventory invent = new ControlPlayerInventory(this, true);
-		final ControlSlide slide = new ControlSlide(this, 0, 134, 136, 92, Position.LEFT);
+		final ControlSlide slide = new ControlSlide(this, 0, 134, 136, 92, Alignment.LEFT);
 		slide.setLabel("Tab Properties");
 		slide.setSlide(false);
 		slide.addHelp("Tab Properties");
@@ -278,7 +278,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 			@SideOnly(Side.CLIENT)
 			public void onRenderBackground(int guiWidth, int guiHeight) {
 				final Object texture = this.isMouseOver() ? CraftGUITexture.TAB_HIGHLIGHTED : CraftGUITexture.TAB;
-				CraftGUI.RENDER.texture(CraftGUI.RENDER.getTexture(texture).crop(Position.BOTTOM, 8), this.getArea());
+				CraftGUI.RENDER.texture(CraftGUI.RENDER.getTexture(texture).crop(Alignment.BOTTOM, 8), this.getArea());
 			}
 		};
 		searchButton.addHelp("Search Button");

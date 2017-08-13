@@ -1,4 +1,4 @@
-package binnie.genetics.api;
+package binnie.core.api.genetics;
 
 import net.minecraft.nbt.NBTTagCompound;
 

@@ -1,6 +1,9 @@
 package binnie.core.gui.geometry;
 
-public class Border {
+import binnie.core.api.gui.Alignment;
+import binnie.core.api.gui.IBorder;
+
+public class Border implements IBorder {
 	public static final Border ZERO = new Border(0);
 	int t;
 	int b;
@@ -26,76 +29,66 @@ public class Border {
 		this.r = r;
 	}
 
-	public Border(final Position edge, final int n) {
-		this((edge == Position.Top) ? n : 0, (edge == Position.RIGHT) ? n : 0, (edge == Position.BOTTOM) ? n : 0, (edge == Position.LEFT) ? n : 0);
+	public Border(final Alignment edge, final int n) {
+		this((edge == Alignment.TOP) ? n : 0, (edge == Alignment.RIGHT) ? n : 0, (edge == Alignment.BOTTOM) ? n : 0, (edge == Alignment.LEFT) ? n : 0);
 	}
 
 	public Border(final Border padding) {
-		this(padding.t(), padding.r(), padding.b(), padding.l());
+		this(padding.getTop(), padding.getRight(), padding.getBottom(), padding.getLeft());
 	}
 
-	public int t() {
+	@Override
+	public int getTop() {
 		return this.t;
 	}
 
-	public int b() {
+	@Override
+	public int getBottom() {
 		return this.b;
 	}
 
-	public int l() {
+	@Override
+	public int getLeft() {
 		return this.l;
 	}
 
-	public int r() {
+	@Override
+	public int getRight() {
 		return this.r;
 	}
 
-	public int t(final int n) {
-		return this.t = n;
+	@Override
+	public void setTop(final int amount) {
+		this.t = amount;
 	}
 
-	public int b(final int n) {
-		return this.b = n;
+	@Override
+	public void setBottom(final int amount) {
+		this.b = amount;
 	}
 
-	public int l(final int n) {
-		return this.l = n;
+	@Override
+	public void setLeft(final int amount) {
+		this.l = amount;
 	}
 
-	public int r(final int n) {
-		return this.r = n;
+	@Override
+	public void setRight(final int amount) {
+		this.r = amount;
 	}
 
+	@Override
 	public boolean isNonZero() {
 		return this.t != 0.0f || this.b != 0.0f || this.l != 0.0f || this.r != 0.0f;
 	}
 
-	@Deprecated
-	public Point tl() {
-		return new Point(this.l(), this.t());
-	}
-
-	@Deprecated
-	public Point tr() {
-		return new Point(this.r(), this.t());
-	}
-
-	@Deprecated
-	public Point bl() {
-		return new Point(this.l(), this.b());
-	}
-
-	@Deprecated
-	public Point br() {
-		return new Point(this.r(), this.b());
-	}
-
-	public Border add(final Border o) {
-		return new Border(this.t() + o.t(), this.r() + o.r(), this.b() + o.b(), this.l() + o.l());
+	@Override
+	public IBorder add(final IBorder o) {
+		return new Border(this.getTop() + o.getTop(), this.getRight() + o.getRight(), this.getBottom() + o.getBottom(), this.getLeft() + o.getLeft());
 	}
 
 	@Override
 	public String toString() {
-		return this.t() + "-" + this.r() + "-" + this.b() + "-" + this.l();
+		return this.getTop() + "-" + this.getRight() + "-" + this.getBottom() + "-" + this.getLeft();
 	}
 }

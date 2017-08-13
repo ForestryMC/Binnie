@@ -1,6 +1,8 @@
 package binnie.core.gui.geometry;
 
-public class Point {
+import binnie.core.api.gui.IPoint;
+
+public class Point implements IPoint {
 	public static final Point ZERO = new Point(0, 0);
 
 	private final int xPos;
@@ -11,44 +13,56 @@ public class Point {
 		this.yPos = yPos;
 	}
 
-	public Point(Point point) {
+	public Point(IPoint point) {
 		this.xPos = point.xPos();
 		this.yPos = point.yPos();
 	}
 
-	public static Point add(Point firstPoint, Point secondPoint) {
+	public static IPoint add(IPoint firstPoint, IPoint secondPoint) {
 		return new Point(firstPoint.xPos() + secondPoint.xPos(), firstPoint.yPos() + secondPoint.yPos());
 	}
 
-	public static Point sub(Point firstPoint, Point secondPoint) {
+	public static IPoint sub(IPoint firstPoint, IPoint secondPoint) {
 		return new Point(firstPoint.xPos() - secondPoint.xPos(), firstPoint.yPos() - secondPoint.yPos());
 	}
 
-	public Point sub(Point point) {
+	@Override
+	public IPoint sub(IPoint point) {
 		return sub(this, point);
 	}
 
-	public Point add(Point other) {
+	@Override
+	public IPoint sub(int xPos, int yPos) {
+		return new Point(xPos() - xPos, yPos() - yPos);
+	}
+
+	@Override
+	public IPoint add(IPoint other) {
 		return add(this, other);
 	}
 
-	public Point add(int xPos, int yPos) {
-		return add(this, new Point(xPos, yPos));
+	@Override
+	public IPoint add(int xPos, int yPos) {
+		return new Point(xPos() + xPos, yPos() + yPos);
 	}
 
-	public Point copy() {
+	@Override
+	public IPoint copy() {
 		return new Point(this);
 	}
 
+	@Override
 	public int xPos() {
 		return this.xPos;
 	}
 
+	@Override
 	public int yPos() {
 		return this.yPos;
 	}
 
-	public boolean equals(final Point other) {
+	@Override
+	public boolean equals(final IPoint other) {
 		return this.xPos() == other.xPos() && this.yPos() == other.yPos();
 	}
 }

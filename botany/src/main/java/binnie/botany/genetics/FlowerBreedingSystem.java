@@ -1,9 +1,17 @@
 package binnie.botany.genetics;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.TreeSet;
 
 import binnie.botany.api.BotanyAPI;
 import binnie.botany.api.genetics.EnumFlowerColor;
+import binnie.core.api.genetics.IFieldKitPlugin;
+import binnie.core.api.gui.IPoint;
+import binnie.core.api.gui.ITexture;
+import binnie.core.gui.geometry.Point;
+import binnie.core.gui.resource.minecraft.StandardTexture;
+import binnie.core.texture.BinnieCoreTexture;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
@@ -135,5 +143,33 @@ public class FlowerBreedingSystem extends BreedingSystem {
 				}
 				break;
 		}
+	}
+
+	@Override
+	public IFieldKitPlugin getFieldKitPlugin() {
+		return new IFieldKitPlugin() {
+			@Override
+			public Map<IChromosomeType, IPoint> getChromosomePickerPositions() {
+				Map<IChromosomeType, IPoint> positions = new HashMap<>();
+				positions.put(EnumFlowerChromosome.SPECIES, new Point(35, 81));
+				positions.put(EnumFlowerChromosome.PRIMARY, new Point(36, 28));
+				positions.put(EnumFlowerChromosome.SECONDARY, new Point(27, 13));
+				positions.put(EnumFlowerChromosome.FERTILITY, new Point(47, 15));
+				positions.put(EnumFlowerChromosome.TERRITORY, new Point(54, 31));
+				positions.put(EnumFlowerChromosome.EFFECT, new Point(15, 55));
+				positions.put(EnumFlowerChromosome.LIFESPAN, new Point(23, 38));
+				positions.put(EnumFlowerChromosome.TEMPERATURE_TOLERANCE, new Point(17, 77));
+				positions.put(EnumFlowerChromosome.HUMIDITY_TOLERANCE, new Point(52, 51));
+				positions.put(EnumFlowerChromosome.PH_TOLERANCE, new Point(54, 80));
+				positions.put(EnumFlowerChromosome.SAPPINESS, new Point(41, 42));
+				positions.put(EnumFlowerChromosome.STEM, new Point(37, 63));
+				return positions;
+			}
+
+			@Override
+			public ITexture getTypeTexture() {
+				return new StandardTexture(0, 96, 96, 96, BinnieCoreTexture.GUI_BREEDING);
+			}
+		};
 	}
 }

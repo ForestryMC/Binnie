@@ -1,8 +1,9 @@
 archivesBaseName = 'botany-' + mcversion
 
 dependencies {
-	compile project(":api")
 	compile project(":core")
+	compile project(":botany-api")
+	compile project(":extratrees-api")
 
 	// TODO: remove
 	compile project(":extratrees")

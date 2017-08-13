@@ -1,0 +1,5 @@
+archivesBaseName = 'botany-api-' + mcversion
+
+dependencies {
+	compile project(":core-api")
+}

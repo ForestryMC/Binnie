@@ -7,7 +7,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import binnie.core.api.genetics.IBreedingSystem;
 import binnie.core.genetics.ManagerGenetics;
+import binnie.core.gui.geometry.Point;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
@@ -33,7 +35,6 @@ import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.events.EventHandler;
 import binnie.core.gui.events.EventValueChanged;
 import binnie.core.gui.geometry.Area;
-import binnie.core.gui.geometry.Point;
 import binnie.core.gui.geometry.TextJustification;
 import binnie.core.gui.minecraft.InventoryType;
 import binnie.core.gui.minecraft.Window;
@@ -168,7 +169,11 @@ public class WindowFieldKit extends Window {
 			return;
 		}
 		final ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(item);
-		this.chromo.setRoot(root);
+		if (root == null) {
+			return;
+		}
+		IBreedingSystem system = Binnie.GENETICS.getSystem(root);
+		this.chromo.setSystem(system);
 		final Random rand = new Random();
 		this.info.clear();
 		for (final IChromosomeType type : root.getKaryotype()) {
@@ -179,12 +184,12 @@ public class WindowFieldKit extends Window {
 				for (String pref = root.getUID() + ".fieldkit." + type.getName().toLowerCase() + "."; I18N.canLocalise(pref + i); ++i) {
 					infos.add(I18N.localise(pref + i));
 				}
-				String text = Binnie.GENETICS.getSystem(root).getAlleleName(type, allele);
+				String text = system.getAlleleName(type, allele);
 				if (!infos.isEmpty()) {
 					text = infos.get(rand.nextInt(infos.size()));
 				}
 				this.info.put(type, text);
-				this.chromo.setRoot(root);
+				this.chromo.setSystem(system);
 			}
 		}
 	}
@@ -213,7 +218,7 @@ public class WindowFieldKit extends Window {
 					this.analyseProgress = 1;
 				} else {
 					this.startAnalysing();
-					this.chromo.setRoot(null);
+					this.chromo.setSystem(null);
 					if (this.damageKit()) {
 						return;
 					}
@@ -228,7 +233,7 @@ public class WindowFieldKit extends Window {
 			} else {
 				this.isAnalysing = false;
 				this.analyseProgress = 1;
-				this.chromo.setRoot(null);
+				this.chromo.setSystem(null);
 			}
 		}
 	}

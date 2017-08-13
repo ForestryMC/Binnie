@@ -8,7 +8,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.core.AbstractMod;
 import binnie.core.gui.geometry.CraftGUIUtil;
-import binnie.core.gui.geometry.Position;
+import binnie.core.api.gui.Alignment;
 import binnie.core.gui.geometry.TextJustification;
 import binnie.core.gui.minecraft.GUIIcon;
 import binnie.core.gui.minecraft.control.ControlEnergyBar;
@@ -46,7 +46,7 @@ public class WindowSplicer extends WindowMachine {
 		);
 		new ControlSlotArray.Builder(this, x + 12, 84, 2, 1).create(Splicer.SLOT_SERUM_EXPENDED);
 		new ControlIconDisplay(this, x + 12 + 36 + 4, 86, GUIIcon.ARROW_UP_LEFT.getIcon().getResourceLocation());
-		new ControlEnergyBar(this, 196, 64, 60, 16, Position.LEFT);
+		new ControlEnergyBar(this, 196, 64, 60, 16, Alignment.LEFT);
 		new ControlErrorState(this, 218, 86);
 		x += 142;
 		CraftGUIUtil.verticalGrid((this.getWidth() - 72) / 2, 32, TextJustification.MIDDLE_CENTER, 4,

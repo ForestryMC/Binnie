@@ -8,22 +8,23 @@ import java.util.Deque;
 import java.util.List;
 import java.util.ListIterator;
 
+import binnie.core.api.gui.IArea;
+import binnie.core.api.gui.IPoint;
+import binnie.core.gui.geometry.Point;
 import org.lwjgl.input.Mouse;
 
 import binnie.core.gui.events.EventMouse;
 import binnie.core.gui.events.EventWidget;
-import binnie.core.gui.geometry.Area;
-import binnie.core.gui.geometry.Point;
 
 public abstract class TopLevelWidget extends Widget implements ITopLevelWidget {
-	protected Point mousePosition;
+	protected IPoint mousePosition;
 	@Nullable
 	IWidget mousedOverWidget;
 	@Nullable
 	IWidget draggedWidget;
 	@Nullable
 	IWidget focusedWidget;
-	Point dragStart;
+	IPoint dragStart;
 
 	public TopLevelWidget() {
 		super(null);
@@ -156,7 +157,7 @@ public abstract class TopLevelWidget extends Widget implements ITopLevelWidget {
 	private Collection<IWidget> getQueuedWidgets(final IWidget widget) {
 		List<IWidget> widgets = new ArrayList<>();
 		boolean addChildren = true;
-		Area croppedZone = widget.getCroppedZone();
+		IArea croppedZone = widget.getCroppedZone();
 		if (croppedZone != null) {
 			addChildren = croppedZone.contains(widget.getCropWidget().getRelativeMousePosition());
 		}
@@ -188,7 +189,7 @@ public abstract class TopLevelWidget extends Widget implements ITopLevelWidget {
 	}
 
 	@Override
-	public Point getAbsoluteMousePosition() {
+	public IPoint getAbsoluteMousePosition() {
 		return this.mousePosition;
 	}
 

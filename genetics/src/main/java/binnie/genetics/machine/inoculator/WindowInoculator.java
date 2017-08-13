@@ -8,7 +8,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.core.AbstractMod;
 import binnie.core.gui.geometry.CraftGUIUtil;
-import binnie.core.gui.geometry.Position;
+import binnie.core.api.gui.Alignment;
 import binnie.core.gui.geometry.TextJustification;
 import binnie.core.gui.minecraft.GUIIcon;
 import binnie.core.gui.minecraft.control.ControlEnergyBar;
@@ -49,8 +49,8 @@ public class WindowInoculator extends WindowMachine {
 			new ControlSlotArray.Builder(this, 0, 0, 2, 1).create(Inoculator.SLOT_SERUM_EXPENDED)
 		);
 		x += 18;
-		new ControlMachineProgress(this, x, y + 24, WindowInoculator.ProgressBase, WindowInoculator.Progress, Position.LEFT);
-		new ControlEnergyBar(this, 91, 118, 60, 16, Position.LEFT);
+		new ControlMachineProgress(this, x, y + 24, WindowInoculator.ProgressBase, WindowInoculator.Progress, Alignment.LEFT);
+		new ControlEnergyBar(this, 91, 118, 60, 16, Alignment.LEFT);
 		new ControlErrorState(this, 161, 118);
 		x += 142;
 		CraftGUIUtil.verticalGrid(x, y, TextJustification.MIDDLE_LEFT, 8,

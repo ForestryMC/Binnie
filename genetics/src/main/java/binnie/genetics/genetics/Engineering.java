@@ -6,7 +6,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import binnie.genetics.Genetics;
-import binnie.genetics.api.IGene;
+import binnie.core.api.genetics.IGene;
 import binnie.genetics.api.IItemChargeable;
 import binnie.genetics.api.IItemSerum;
 import binnie.genetics.item.GeneticsItems;

@@ -3,13 +3,21 @@ package binnie.extratrees.genetics;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
+import binnie.core.api.genetics.IFieldKitPlugin;
+import binnie.core.api.gui.IPoint;
+import binnie.core.api.gui.ITexture;
 import binnie.core.genetics.BreedingSystem;
 import binnie.core.genetics.ForestryAllele;
+import binnie.core.gui.geometry.Point;
+import binnie.core.gui.resource.minecraft.StandardTexture;
+import binnie.core.texture.BinnieCoreTexture;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -285,5 +293,31 @@ public class TreeBreedingSystem extends BreedingSystem {
 				break;
 			}
 		}
+	}
+
+	@Override
+	public IFieldKitPlugin getFieldKitPlugin() {
+		return new IFieldKitPlugin() {
+			@Override
+			public Map<IChromosomeType, IPoint> getChromosomePickerPositions() {
+				Map<IChromosomeType, IPoint> positions = new HashMap<>();
+				positions.put(EnumTreeChromosome.SPECIES, new Point(48, 48));
+				positions.put(EnumTreeChromosome.HEIGHT, new Point(43, 84));
+				positions.put(EnumTreeChromosome.FERTILITY, new Point(25, 63));
+				positions.put(EnumTreeChromosome.FRUITS, new Point(72, 57));
+				positions.put(EnumTreeChromosome.YIELD, new Point(21, 43));
+				positions.put(EnumTreeChromosome.SAPPINESS, new Point(15, 17));
+				positions.put(EnumTreeChromosome.EFFECT, new Point(67, 15));
+				positions.put(EnumTreeChromosome.MATURATION, new Point(70, 34));
+				positions.put(EnumTreeChromosome.GIRTH, new Point(45, 67));
+				positions.put(EnumTreeChromosome.FIREPROOF, new Point(5, 70));
+				return positions;
+			}
+
+			@Override
+			public ITexture getTypeTexture() {
+				return new StandardTexture(96, 0, 96, 96, BinnieCoreTexture.GUI_BREEDING);
+			}
+		};
 	}
 }

@@ -1,6 +1,7 @@
 archivesBaseName = 'extrabees-' + mcversion
 
 dependencies {
-	compile project(":api")
 	compile project(":core")
+	compile project(":core-api")
+	compile project(":extrabees-api")
 }
