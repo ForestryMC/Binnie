@@ -35,7 +35,7 @@ import binnie.core.gui.events.EventHandler;
 import binnie.core.gui.events.EventMouse;
 import binnie.core.gui.events.EventValueChanged;
 import binnie.core.gui.geometry.Area;
-import binnie.core.gui.geometry.Position;
+import binnie.core.api.gui.Alignment;
 import binnie.core.gui.minecraft.MinecraftGUI;
 import binnie.core.gui.minecraft.Window;
 import binnie.core.gui.minecraft.control.ControlItemDisplay;
@@ -72,7 +72,7 @@ public class WindowGenesis extends Window {
 	public void initialiseClient() {
 		new ControlPlayerInventory(this);
 		this.setTitle(I18N.localise("binniecore.gui.genesis.title"));
-		final ControlTabBar<IBreedingSystem> tabSystems = new ControlTabBar<IBreedingSystem>(this, 8, 28, 23, 100, Position.LEFT, Binnie.GENETICS.getActiveSystems()) {
+		final ControlTabBar<IBreedingSystem> tabSystems = new ControlTabBar<IBreedingSystem>(this, 8, 28, 23, 100, Alignment.LEFT, Binnie.GENETICS.getActiveSystems()) {
 			@Override
 			public ControlTab<IBreedingSystem> createTab(final int x, final int y, final int w, final int h, final IBreedingSystem value) {
 				return new ControlTabIcon<IBreedingSystem>(this, x, y, w, h, value) {

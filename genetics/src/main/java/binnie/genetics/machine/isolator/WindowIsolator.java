@@ -7,7 +7,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.core.AbstractMod;
-import binnie.core.gui.geometry.Position;
+import binnie.core.api.gui.Alignment;
 import binnie.core.gui.minecraft.GUIIcon;
 import binnie.core.gui.minecraft.control.ControlEnergyBar;
 import binnie.core.gui.minecraft.control.ControlErrorState;
@@ -49,7 +49,7 @@ public class WindowIsolator extends WindowMachine {
 		new ControlSlot.Builder(this, x, y + 36 + 3).assign(0);
 		new ControlSlotCharge(this, x + 18 + 2, y + 36 + 3, 0).setColor(15722671);
 		x += 18;
-		new ControlProgress(this, x, y + 3, WindowIsolator.ProgressBase, WindowIsolator.Progress, Position.LEFT);
+		new ControlProgress(this, x, y + 3, WindowIsolator.ProgressBase, WindowIsolator.Progress, Alignment.LEFT);
 		x += 142;
 		new ControlSlot.Builder(this, x, y + 3).assign(6);
 		new ControlSlot.Builder(this, x, y + 3 + 36).assign(1);
@@ -58,7 +58,7 @@ public class WindowIsolator extends WindowMachine {
 		new ControlIconDisplay(this, x, y + 3 + 1, GUIIcon.ARROW_RIGHT.getIcon().getResourceLocation());
 		x += 18;
 		new ControlSlotArray.Builder(this, x, y + 3, 2, 3).create(Isolator.SLOT_FINISHED);
-		new ControlEnergyBar(this, 260, 130, 16, 60, Position.BOTTOM);
+		new ControlEnergyBar(this, 260, 130, 16, 60, Alignment.BOTTOM);
 		new ControlErrorState(this, 153, 81);
 		new ControlPlayerInventory(this);
 	}

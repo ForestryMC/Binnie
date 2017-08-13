@@ -1,5 +1,8 @@
 package binnie.core.gui.renderer;
 
+import binnie.core.api.gui.IArea;
+import binnie.core.api.gui.IPoint;
+import binnie.core.gui.geometry.Point;
 import com.google.common.base.Preconditions;
 
 import javax.annotation.Nullable;
@@ -29,7 +32,6 @@ import forestry.api.core.ForestryAPI;
 
 import binnie.core.BinnieCore;
 import binnie.core.gui.geometry.Area;
-import binnie.core.gui.geometry.Point;
 import binnie.core.gui.geometry.TextJustification;
 
 @SideOnly(Side.CLIENT)
@@ -128,12 +130,12 @@ public class RenderUtil {
 		return (fontRenderer == null) ? 0 : fontRenderer.FONT_HEIGHT;
 	}
 
-	public static void drawText(final Point pos, final String text, final int colour) {
+	public static void drawText(final IPoint pos, final String text, final int colour) {
 		drawText(new Area(pos, new Point(500, 500)), TextJustification.TOP_LEFT, text, colour);
 	}
 
-	public static void drawText(final Area area, final TextJustification justification, final String text, final int colour) {
-		final Point pos = area.pos();
+	public static void drawText(final IArea area, final TextJustification justification, final String text, final int colour) {
+		final IPoint pos = area.pos();
 		if (area.size().xPos() <= 0.0f) {
 			return;
 		}
@@ -159,15 +161,15 @@ public class RenderUtil {
 		GuiUtils.drawGradientRect(0, (int) left, (int) top, (int) right, (int) bottom, color, color);
 	}
 
-	public static void drawSolidRect(final Area area, final int colour) {
+	public static void drawSolidRect(final IArea area, final int colour) {
 		drawSolidRect(area.pos().xPos(), area.pos().yPos(), area.pos().xPos() + area.size().xPos(), area.pos().yPos() + area.size().yPos(), 0xFF000000 | colour);
 	}
 
-	public static void drawSolidRectWithAlpha(final Area area, final int color) {
+	public static void drawSolidRectWithAlpha(final IArea area, final int color) {
 		drawSolidRect(area.pos().xPos(), area.pos().yPos(), area.pos().xPos() + area.size().xPos(), area.pos().yPos() + area.size().yPos(), color);
 	}
 
-	public static void drawGradientRect(final Area area, final int startColor, final int endColor) {
+	public static void drawGradientRect(final IArea area, final int startColor, final int endColor) {
 		GuiUtils.drawGradientRect(0, area.pos().xPos(), area.pos().yPos(), area.pos().xPos() + area.size().xPos(), area.pos().yPos() + area.size().yPos(), startColor, endColor);
 	}
 

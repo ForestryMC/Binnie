@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import binnie.core.api.gui.IPoint;
+import binnie.core.gui.geometry.Point;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -29,7 +31,6 @@ import binnie.core.gui.IWidget;
 import binnie.core.gui.Tooltip;
 import binnie.core.gui.events.EventKey;
 import binnie.core.gui.events.EventMouse;
-import binnie.core.gui.geometry.Point;
 import binnie.core.gui.renderer.RenderUtil;
 
 @SideOnly(Side.CLIENT)
@@ -346,7 +347,7 @@ public class GuiCraftGUI extends GuiContainer {
 		return this.fontRenderer;
 	}
 
-	public void resize(final Point size) {
+	public void resize(final IPoint size) {
 		this.xSize = size.xPos();
 		this.ySize = size.yPos();
 		this.guiLeft = (this.width - this.xSize) / 2;

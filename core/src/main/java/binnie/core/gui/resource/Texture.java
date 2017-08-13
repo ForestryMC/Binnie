@@ -1,15 +1,17 @@
 package binnie.core.gui.resource;
 
+import binnie.core.api.gui.IBorder;
+import binnie.core.api.gui.ITexture;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.core.gui.geometry.Area;
 import binnie.core.gui.geometry.Border;
-import binnie.core.gui.geometry.Position;
-import binnie.core.resource.BinnieResource;
+import binnie.core.api.gui.Alignment;
 import binnie.core.resource.IBinnieTexture;
 
-public class Texture {
+public class Texture implements ITexture {
 	private final Area area;
 	private final Border padding;
 	private final Border border;
@@ -22,36 +24,44 @@ public class Texture {
 		this.binnieTexture = binnieTexture;
 	}
 
+	@Override
 	public Area getArea() {
 		return this.area;
 	}
 
-	public Border getBorder() {
+	@Override
+	public IBorder getBorder() {
 		return this.border;
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
-	public BinnieResource getFilename() {
-		return this.binnieTexture.getTexture();
+	public ResourceLocation getResourceLocation() {
+		return this.binnieTexture.getTexture().getResourceLocation();
 	}
 
-	public Border getTotalPadding() {
+	@Override
+	public IBorder getTotalPadding() {
 		return this.padding.add(this.border);
 	}
 
+	@Override
 	public int width() {
 		return this.getArea().width();
 	}
 
+	@Override
 	public int height() {
 		return this.getArea().height();
 	}
 
-	public Texture crop(final Position anchor, final int dist) {
+	@Override
+	public ITexture crop(final Alignment anchor, final int dist) {
 		return this.crop(new Border(anchor.opposite(), dist));
 	}
 
-	public Texture crop(final Border crop) {
+	@Override
+	public ITexture crop(final IBorder crop) {
 		final Texture copy = new Texture(this.area, this.padding, this.border, this.binnieTexture);
 		if (crop.b() > 0) {
 			copy.border.b(0);

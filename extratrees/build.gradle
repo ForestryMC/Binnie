@@ -3,4 +3,5 @@ archivesBaseName = 'extratrees-' + mcversion
 dependencies {
 	compile project(":api")
 	compile project(":core")
+	compile project(":core_api")
 }

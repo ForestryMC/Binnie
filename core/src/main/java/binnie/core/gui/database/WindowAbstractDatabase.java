@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.Objects;
 
 import binnie.core.api.genetics.IBreedingSystem;
+import binnie.core.api.gui.IArea;
+import binnie.core.gui.geometry.Point;
 import net.minecraft.entity.player.EntityPlayer;
 
 import com.mojang.authlib.GameProfile;
@@ -29,10 +31,8 @@ import binnie.core.gui.controls.tab.ControlTabBar;
 import binnie.core.gui.events.EventHandler;
 import binnie.core.gui.events.EventTextEdit;
 import binnie.core.gui.events.EventValueChanged;
-import binnie.core.gui.geometry.Area;
 import binnie.core.gui.geometry.CraftGUIUtil;
-import binnie.core.gui.geometry.Point;
-import binnie.core.gui.geometry.Position;
+import binnie.core.api.gui.Alignment;
 import binnie.core.gui.minecraft.MinecraftGUI;
 import binnie.core.gui.minecraft.Window;
 import binnie.core.gui.minecraft.control.ControlHelp;
@@ -134,7 +134,7 @@ public abstract class WindowAbstractDatabase extends Window {
 		this.createMode(Mode.BRANCHES, new BranchesModeWidgets());
 		this.createMode(Mode.BREEDER, new BreederModeWidgets());
 		this.addTabs();
-		final ControlTabBar<IDatabaseMode> tab = new ControlTabBar<IDatabaseMode>(this, 176 + this.selectionBoxWidth, 24, 22, 176, Position.RIGHT, this.modePages.getValues()) {
+		final ControlTabBar<IDatabaseMode> tab = new ControlTabBar<IDatabaseMode>(this, 176 + this.selectionBoxWidth, 24, 22, 176, Alignment.RIGHT, this.modePages.getValues()) {
 			@Override
 			public ControlTab<IDatabaseMode> createTab(final int x, final int y, final int w, final int h, final IDatabaseMode value) {
 				return new ControlTab<IDatabaseMode>(this, x, y, w, h, value) {
@@ -148,7 +148,7 @@ public abstract class WindowAbstractDatabase extends Window {
 		CraftGUIUtil.linkWidgets(tab, this.modePages);
 		this.changeMode(Mode.SPECIES);
 		for (final IDatabaseMode mode : this.modes.keySet()) {
-			this.modes.get(mode).infoTabs = new ControlTabBar<>(this.modes.get(mode).modePage, 8, 24, 16, 176, Position.LEFT, this.modes.get(mode).infoPages.getValues());
+			this.modes.get(mode).infoTabs = new ControlTabBar<>(this.modes.get(mode).modePage, 8, 24, 16, 176, Alignment.LEFT, this.modes.get(mode).infoPages.getValues());
 			CraftGUIUtil.linkWidgets(this.modes.get(mode).infoTabs, this.modes.get(mode).infoPages);
 		}
 	}
@@ -208,14 +208,14 @@ public abstract class WindowAbstractDatabase extends Window {
 		public ModeWidgets(final IDatabaseMode mode, final WindowAbstractDatabase database) {
 			this.database = database;
 			this.modePage = new ControlPage<>(database.modePages, 0, 0, database.getSize().xPos(), database.getSize().yPos(), mode);
-			final Area listBoxArea = database.panelSearch.getArea().inset(2);
+			final IArea listBoxArea = database.panelSearch.getArea().inset(2);
 			this.createListBox(listBoxArea);
 			CraftGUIUtil.alignToWidget(this.listBox, database.panelSearch);
 			CraftGUIUtil.moveWidget(this.listBox, new Point(2, 2));
 			CraftGUIUtil.alignToWidget(this.infoPages = new ControlPages<>(this.modePage, 0, 0, 144, 176), database.panelInformation);
 		}
 
-		public abstract void createListBox(final Area p0);
+		public abstract void createListBox(final IArea p0);
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -225,7 +225,7 @@ public abstract class WindowAbstractDatabase extends Window {
 		}
 
 		@Override
-		public void createListBox(final Area area) {
+		public void createListBox(final IArea area) {
 			final GameProfile playerName = WindowAbstractDatabase.this.getUsername();
 			final Collection<IAlleleSpecies> speciesList = this.database.isNEI ? this.database.system.getAllSpecies() : this.database.system.getDiscoveredSpecies(this.database.getWorld(), playerName);
 			ControlSpeciesBox controlSpeciesBox = new ControlSpeciesBox(this.modePage, area.xPos(), area.yPos(), area.width(), area.height());
@@ -241,7 +241,7 @@ public abstract class WindowAbstractDatabase extends Window {
 		}
 
 		@Override
-		public void createListBox(final Area area) {
+		public void createListBox(final IArea area) {
 			final EntityPlayer player = this.database.getPlayer();
 			final GameProfile playerName = player.getGameProfile();
 			final Collection<IClassification> speciesList = this.database.isNEI ? this.database.system.getAllBranches() : this.database.system.getDiscoveredBranches(this.database.getWorld(), playerName);
@@ -258,7 +258,7 @@ public abstract class WindowAbstractDatabase extends Window {
 		}
 
 		@Override
-		public void createListBox(final Area area) {
+		public void createListBox(final IArea area) {
 			this.listBox = new ControlListBox(this.modePage, area.xPos(), area.yPos(), area.width(), area.height(), 12);
 		}
 	}

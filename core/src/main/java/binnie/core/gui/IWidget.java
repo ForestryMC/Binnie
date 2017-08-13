@@ -3,13 +3,13 @@ package binnie.core.gui;
 import javax.annotation.Nullable;
 import java.util.List;
 
+import binnie.core.api.gui.IArea;
+import binnie.core.api.gui.IPoint;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.core.gui.events.Event;
 import binnie.core.gui.events.EventHandler;
-import binnie.core.gui.geometry.Area;
-import binnie.core.gui.geometry.Point;
 
 public interface IWidget {
 	/**
@@ -24,25 +24,25 @@ public interface IWidget {
 	/**
 	 * @return the position of this widget
 	 */
-	Point getPosition();
+	IPoint getPosition();
 
-	Point getAbsolutePosition();
+	IPoint getAbsolutePosition();
 
-	void setPosition(Point position);
+	void setPosition(IPoint position);
 
 	/**
 	 * @return the size of this widget
 	 */
-	Point getSize();
+	IPoint getSize();
 
-	void setOffset(final Point p0);
+	void setOffset(final IPoint p0);
 
 	/**
 	 * @return the area of this widget
 	 */
-	Area getArea();
+	IArea getArea();
 
-	Point getRelativeMousePosition();
+	IPoint getRelativeMousePosition();
 
 	int getYPos();
 
@@ -105,9 +105,9 @@ public interface IWidget {
 	void delete();
 
 	@Nullable
-	Area getCroppedZone();
+	IArea getCroppedZone();
 
-	void setCroppedZone(IWidget widget, Area area);
+	void setCroppedZone(IWidget widget, IArea area);
 
 	boolean isCroppedWidet();
 

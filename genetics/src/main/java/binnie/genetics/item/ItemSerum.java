@@ -1,7 +1,7 @@
 package binnie.genetics.item;
 
 import binnie.core.api.genetics.IBreedingSystem;
-import binnie.genetics.api.IGene;
+import binnie.core.api.genetics.IGene;
 import com.google.common.base.Preconditions;
 
 import javax.annotation.Nullable;

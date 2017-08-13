@@ -1,5 +1,8 @@
 package binnie.core.gui.controls.tab;
 
+import binnie.core.api.gui.IArea;
+import binnie.core.api.gui.ITexture;
+import binnie.core.gui.geometry.Point;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -12,13 +15,10 @@ import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.controls.core.IControlValue;
 import binnie.core.gui.events.EventMouse;
 import binnie.core.gui.events.EventValueChanged;
-import binnie.core.gui.geometry.Area;
-import binnie.core.gui.geometry.Point;
-import binnie.core.gui.geometry.Position;
+import binnie.core.api.gui.Alignment;
 import binnie.core.gui.minecraft.control.ControlItemDisplay;
 import binnie.core.gui.minecraft.control.ControlTabIcon;
 import binnie.core.gui.renderer.RenderUtil;
-import binnie.core.gui.resource.Texture;
 import binnie.core.gui.resource.minecraft.CraftGUITexture;
 
 public class ControlTab<T> extends Control implements ITooltip, IControlValue<T> {
@@ -61,7 +61,7 @@ public class ControlTab<T> extends Control implements ITooltip, IControlValue<T>
 		return this.getValue().equals(this.tabBar.getValue());
 	}
 
-	public Position getTabPosition() {
+	public Alignment getTabPosition() {
 		return this.tabBar.getDirection();
 	}
 
@@ -78,16 +78,16 @@ public class ControlTab<T> extends Control implements ITooltip, IControlValue<T>
 		} else if (this.isCurrentSelection()) {
 			texture = CraftGUITexture.TAB;
 		}
-		final Texture lTexture = CraftGUI.RENDER.getTexture(texture);
-		final Position position = this.getTabPosition();
-		Texture iTexture = lTexture.crop(position, 8);
-		final Area area = this.getArea();
+		final ITexture lTexture = CraftGUI.RENDER.getTexture(texture);
+		final Alignment alignment = this.getTabPosition();
+		ITexture iTexture = lTexture.crop(alignment, 8);
+		final IArea area = this.getArea();
 		if (texture == CraftGUITexture.TAB_DISABLED) {
-			if (position == Position.Top || position == Position.LEFT) {
-				area.setPosition(area.getPosition().sub(new Point(4 * position.x(), 4 * position.y())));
-				area.setSize(area.getSize().add(new Point(4 * position.x(), 4 * position.y())));
+			if (alignment == Alignment.TOP || alignment == Alignment.LEFT) {
+				area.setPosition(area.getPosition().sub(new Point(4 * alignment.x(), 4 * alignment.y())));
+				area.setSize(area.getSize().add(new Point(4 * alignment.x(), 4 * alignment.y())));
 			} else {
-				area.setSize(area.getSize().sub(new Point(4 * position.x(), 4 * position.y())));
+				area.setSize(area.getSize().sub(new Point(4 * alignment.x(), 4 * alignment.y())));
 			}
 		}
 		CraftGUI.RENDER.texture(iTexture, area);
@@ -101,7 +101,7 @@ public class ControlTab<T> extends Control implements ITooltip, IControlValue<T>
 			}
 			if (icon.hasOutline()) {
 				iTexture = CraftGUI.RENDER.getTexture(CraftGUITexture.TAB_OUTLINE);
-				iTexture = iTexture.crop(position, 8);
+				iTexture = iTexture.crop(alignment, 8);
 				RenderUtil.setColour(icon.getOutlineColour());
 				CraftGUI.RENDER.texture(iTexture, area.inset(2));
 			}

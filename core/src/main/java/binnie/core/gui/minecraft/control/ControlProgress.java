@@ -5,15 +5,15 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.core.gui.CraftGUI;
 import binnie.core.gui.IWidget;
-import binnie.core.gui.geometry.Position;
+import binnie.core.api.gui.Alignment;
 import binnie.core.gui.resource.Texture;
 
 public class ControlProgress extends ControlProgressBase {
 	private Texture progressBlank;
 	private Texture progressBar;
-	private Position direction;
+	private Alignment direction;
 
-	public ControlProgress(final IWidget parent, final int x, final int y, final Texture progressBlank, final Texture progressBar, final Position dir) {
+	public ControlProgress(final IWidget parent, final int x, final int y, final Texture progressBlank, final Texture progressBar, final Alignment dir) {
 		super(parent, x, y, (progressBlank == null) ? 0 : progressBlank.width(), (progressBlank == null) ? 0 : progressBlank.height());
 		this.progressBlank = progressBlank;
 		this.progressBar = progressBar;

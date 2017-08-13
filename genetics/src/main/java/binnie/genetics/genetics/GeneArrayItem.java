@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import binnie.core.api.genetics.IBreedingSystem;
-import binnie.genetics.api.IGene;
+import binnie.core.api.genetics.IGene;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

@@ -11,10 +11,6 @@ import forestry.api.genetics.EnumTolerance;
 import forestry.api.genetics.IAllele;
 import forestry.core.genetics.alleles.EnumAllele;
 
-import binnie.botany.api.gardening.EnumAcidity;
-import binnie.botany.api.gardening.EnumMoisture;
-import binnie.botany.api.gardening.EnumSoilType;
-import binnie.botany.api.genetics.EnumFlowerColor;
 import binnie.core.util.I18N;
 
 public class AlleleHelper extends forestry.core.genetics.alleles.AlleleHelper {
@@ -70,10 +66,6 @@ public class AlleleHelper extends forestry.core.genetics.alleles.AlleleHelper {
 		return getAllele(getUid(saplings));
 	}
 
-	public static IAllele getAllele(EnumFlowerColor color) {
-		return color.getFlowerColorAllele();
-	}
-
 	public static IAllele getAllele(int number) {
 		return getAllele("forestry.i" + number + "d");
 	}
@@ -97,17 +89,17 @@ public class AlleleHelper extends forestry.core.genetics.alleles.AlleleHelper {
 		return AlleleManager.climateHelper.toDisplay(humidity);
 	}
 
-	public static String toDisplay(EnumMoisture moisture) {
-		return I18N.localise("botany.moisture." + moisture.getName());
-	}
-
-	public static String toDisplay(EnumAcidity acidity) {
-		return I18N.localise("botany.ph." + acidity.getName());
-	}
-
-	public static String toDisplay(EnumSoilType soilType) {
-		return I18N.localise("botany.soil." + soilType.getName());
-	}
+//	public static String toDisplay(EnumMoisture moisture) {
+//		return I18N.localise("botany.moisture." + moisture.getName());
+//	}
+//
+//	public static String toDisplay(EnumAcidity acidity) {
+//		return I18N.localise("botany.ph." + acidity.getName());
+//	}
+//
+//	public static String toDisplay(EnumSoilType soilType) {
+//		return I18N.localise("botany.soil." + soilType.getName());
+//	}
 
 	public static String toDisplay(EnumTolerance tolerance) {
 		return toAlleleDisplay("tolerance", tolerance.name());

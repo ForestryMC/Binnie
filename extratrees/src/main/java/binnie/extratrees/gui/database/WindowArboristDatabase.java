@@ -2,6 +2,7 @@ package binnie.extratrees.gui.database;
 
 import java.util.stream.Collectors;
 
+import binnie.core.api.gui.IArea;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
@@ -23,7 +24,6 @@ import binnie.core.gui.database.PageSpeciesMutations;
 import binnie.core.gui.database.PageSpeciesOverview;
 import binnie.core.gui.database.PageSpeciesResultant;
 import binnie.core.gui.database.WindowAbstractDatabase;
-import binnie.core.gui.geometry.Area;
 import binnie.core.gui.minecraft.Window;
 import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
@@ -56,7 +56,7 @@ public class WindowArboristDatabase extends WindowAbstractDatabase {
 		new PageBreeder(this.getInfoPages(Mode.BREEDER), this.getUsername(), new DatabaseTab(ExtraTrees.instance, "breeder"));
 		this.createMode(TreeMode.FRUIT, new ModeWidgets(TreeMode.FRUIT, this) {
 			@Override
-			public void createListBox(final Area area) {
+			public void createListBox(final IArea area) {
 				ControlListBox<ItemStack> controlListBox = new ControlListBox<ItemStack>(this.modePage, area.xPos(), area.yPos(), area.width(), area.height(), 12) {
 					@Override
 					@SideOnly(Side.CLIENT)
@@ -71,7 +71,7 @@ public class WindowArboristDatabase extends WindowAbstractDatabase {
 		});
 		this.createMode(TreeMode.WOOD, new ModeWidgets(TreeMode.WOOD, this) {
 			@Override
-			public void createListBox(final Area area) {
+			public void createListBox(final IArea area) {
 				ControlListBox<ItemStack> controlListBox = new ControlListBox<ItemStack>(this.modePage, area.xPos(), area.yPos(), area.width(), area.height(), 12) {
 					@Override
 					@SideOnly(Side.CLIENT)
@@ -86,7 +86,7 @@ public class WindowArboristDatabase extends WindowAbstractDatabase {
 		});
 		this.createMode(TreeMode.PLANKS, new ModeWidgets(TreeMode.PLANKS, this) {
 			@Override
-			public void createListBox(final Area area) {
+			public void createListBox(final IArea area) {
 				ControlListBox<ItemStack> controlListBox = new ControlListBox<ItemStack>(this.modePage, area.xPos(), area.yPos(), area.width(), area.height(), 12) {
 					@Override
 					@SideOnly(Side.CLIENT)

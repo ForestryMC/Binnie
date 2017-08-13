@@ -1,13 +1,13 @@
 package binnie.core.gui.database;
 
 import binnie.core.api.genetics.IBreedingSystem;
+import binnie.core.api.gui.IArea;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.core.gui.CraftGUI;
 import binnie.core.gui.IWidget;
 import binnie.core.gui.controls.core.Control;
-import binnie.core.gui.geometry.Area;
 import binnie.core.gui.geometry.Point;
 import binnie.core.gui.renderer.RenderUtil;
 import binnie.core.gui.resource.Texture;
@@ -30,7 +30,7 @@ class ControlBreedingProgress extends Control {
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		CraftGUI.RENDER.texture(CraftGUITexture.PANEL_BLACK, this.getArea());
-		final Area area = this.getArea().inset(1);
+		final IArea area = this.getArea().inset(1);
 		area.setSize(new Point(Math.round(area.size().xPos() * this.percentage), area.size().yPos()));
 		RenderUtil.setColour(this.colour);
 		CraftGUI.RENDER.texture(ControlBreedingProgress.Progress, area);

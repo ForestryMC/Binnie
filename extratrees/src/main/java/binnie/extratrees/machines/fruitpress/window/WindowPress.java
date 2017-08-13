@@ -10,7 +10,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.relauncher.Side;
 
 import binnie.core.AbstractMod;
-import binnie.core.gui.geometry.Position;
+import binnie.core.api.gui.Alignment;
 import binnie.core.gui.minecraft.InventoryType;
 import binnie.core.gui.minecraft.Window;
 import binnie.core.gui.minecraft.control.ControlEnergyBar;
@@ -51,7 +51,7 @@ public class WindowPress extends Window {
 		this.setTitle(Machine.getMachine(this.getInventory()).getPackage().getDisplayName());
 		new ControlSlot.Builder(this, 24, 52).assign(FruitPressMachine.SLOT_FRUIT);
 		new ControlLiquidTank(this, 99, 32).setTankID(FruitPressMachine.TANK_OUTPUT);
-		new ControlEnergyBar(this, 154, 32, 16, 60, Position.BOTTOM);
+		new ControlEnergyBar(this, 154, 32, 16, 60, Alignment.BOTTOM);
 		new ControlPlayerInventory(this);
 		new ControlErrorState(this, 128, 54);
 		new ControlFruitPressProgress(this, 62, 24);

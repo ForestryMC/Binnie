@@ -6,6 +6,9 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
+import binnie.core.api.gui.IArea;
+import binnie.core.api.gui.IPoint;
+import binnie.core.gui.geometry.Point;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -13,22 +16,21 @@ import binnie.core.gui.events.Event;
 import binnie.core.gui.events.EventHandler;
 import binnie.core.gui.events.EventWidget;
 import binnie.core.gui.geometry.Area;
-import binnie.core.gui.geometry.Point;
 
 public class Widget implements IWidget {
 	@Nullable
 	private final IWidget parent;
 	@Nullable
-	private Area cropArea;
+	private IArea cropArea;
 	@Nullable
 	private IWidget cropWidget;
 	private boolean cropped;
 	private int color;
 	private List<IWidget> children;
 	private List<IWidgetAttribute> attributes;
-	private Point position;
-	private Point size;
-	private Point offset;
+	private IPoint position;
+	private IPoint size;
+	private IPoint offset;
 	private Collection<EventHandler<? extends Event>> eventHandlers;
 	private boolean visible;
 
@@ -142,7 +144,7 @@ public class Widget implements IWidget {
 
 	/* GEOMETRY */
 	@Override
-	public final void setPosition(Point position) {
+	public final void setPosition(IPoint position) {
 		if (!position.equals(this.position)) {
 			this.position = new Point(position);
 			this.callEvent(new EventWidget.ChangePosition(this));
@@ -150,40 +152,40 @@ public class Widget implements IWidget {
 	}
 
 	@Override
-	public final Point getPosition() {
+	public final IPoint getPosition() {
 		return this.position.add(this.offset);
 	}
 
 	@Override
-	public final Point getSize() {
+	public final IPoint getSize() {
 		return this.size;
 	}
 
 	@Override
-	public final Area getArea() {
+	public final IArea getArea() {
 		return new Area(Point.ZERO, this.getSize());
 	}
 
 	@Override
 	@Nullable
-	public final Area getCroppedZone() {
+	public final IArea getCroppedZone() {
 		return this.cropArea;
 	}
 
 	@Override
-	public final void setCroppedZone(final IWidget relative, final Area area) {
+	public final void setCroppedZone(final IWidget relative, final IArea area) {
 		this.cropArea = area;
 		this.cropped = true;
 		this.cropWidget = relative;
 	}
 
 	@Override
-	public final Point getAbsolutePosition() {
+	public final IPoint getAbsolutePosition() {
 		IWidget parent = this.getParent();
 		return parent == null ? this.getPosition() : parent.getAbsolutePosition().add(this.getPosition());
 	}
 
-	public final void setSize(final Point vector) {
+	public final void setSize(final IPoint vector) {
 		if (!vector.equals(this.size)) {
 			this.size = new Point(vector);
 			this.callEvent(new EventWidget.ChangeSize(this));
@@ -191,7 +193,7 @@ public class Widget implements IWidget {
 	}
 
 	@Override
-	public final void setOffset(final Point vector) {
+	public final void setOffset(final IPoint vector) {
 		if (vector != this.offset) {
 			this.offset = new Point(vector);
 			this.callEvent(new EventWidget.ChangeOffset(this));
@@ -277,30 +279,30 @@ public class Widget implements IWidget {
 		return this.hasAttribute(Attribute.MOUSE_OVER);
 	}
 
-	public Point getMousePosition() {
+	public IPoint getMousePosition() {
 		return this.getTopParent().getAbsoluteMousePosition();
 	}
 
 	@Override
-	public final Point getRelativeMousePosition() {
+	public final IPoint getRelativeMousePosition() {
 		IWidget parent = this.getParent();
 		return parent == null ? this.getMousePosition() : parent.getRelativeMousePosition().sub(this.getPosition());
 	}
 
 	@Override
 	public final boolean calculateIsMouseOver() {
-		final Point mouse = this.getRelativeMousePosition();
+		final IPoint mouse = this.getRelativeMousePosition();
 		if (!this.cropped || this.cropArea == null) {
 			return this.isMouseOverWidget(mouse);
 		}
 		final IWidget cropRelative = (this.cropWidget != null) ? this.cropWidget : this;
-		final Point pos = Point.sub(cropRelative.getAbsolutePosition(), this.getAbsolutePosition());
-		final Point size = new Point(this.cropArea.size().xPos(), this.cropArea.size().yPos());
+		final IPoint pos = Point.sub(cropRelative.getAbsolutePosition(), this.getAbsolutePosition());
+		final IPoint size = new Point(this.cropArea.size().xPos(), this.cropArea.size().yPos());
 		final boolean inCrop = mouse.xPos() > pos.xPos() && mouse.yPos() > pos.yPos() && mouse.xPos() < pos.xPos() + size.xPos() && mouse.yPos() < pos.yPos() + size.yPos();
 		return inCrop && this.isMouseOverWidget(mouse);
 	}
 
-	public boolean isMouseOverWidget(final Point relativeMouse) {
+	public boolean isMouseOverWidget(final IPoint relativeMouse) {
 		return this.getArea().contains(relativeMouse);
 	}
 

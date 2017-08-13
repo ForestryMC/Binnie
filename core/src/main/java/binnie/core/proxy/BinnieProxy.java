@@ -20,7 +20,6 @@ import binnie.core.AbstractMod;
 import binnie.core.network.BinnieCorePacketID;
 import binnie.core.network.INetworkedEntity;
 import binnie.core.network.packet.MessageUpdate;
-import binnie.core.resource.BinnieResource;
 
 public abstract class BinnieProxy extends BinnieModProxy implements IBinnieProxy {
 	private short uniqueTextureUID;
@@ -29,7 +28,7 @@ public abstract class BinnieProxy extends BinnieModProxy implements IBinnieProxy
 		this.uniqueTextureUID = 1200;
 	}
 
-	public boolean checkTexture(final BinnieResource location) {
+	public boolean checkTexture(final ResourceLocation location) {
 		return false;
 	}
 

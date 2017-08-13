@@ -4,7 +4,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 import binnie.core.api.genetics.IBreedingSystem;
-import binnie.genetics.api.IGene;
+import binnie.core.api.genetics.IGene;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.text.TextFormatting;

@@ -9,7 +9,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.relauncher.Side;
 
 import binnie.core.AbstractMod;
-import binnie.core.gui.geometry.Position;
+import binnie.core.api.gui.Alignment;
 import binnie.core.gui.minecraft.Window;
 import binnie.core.gui.minecraft.control.ControlEnergyBar;
 import binnie.core.gui.minecraft.control.ControlErrorState;
@@ -53,7 +53,7 @@ public class WindowDistillery extends Window {
 		x += 64;
 		new ControlLiquidTank(this, x, 35).setTankID(DistilleryMachine.TANK_OUTPUT);
 		x += 34;
-		new ControlEnergyBar(this, x, 36, 60, 16, Position.LEFT);
+		new ControlEnergyBar(this, x, 36, 60, 16, Alignment.LEFT);
 		new ControlPlayerInventory(this);
 		new ControlErrorState(this, x + 21, 62);
 	}

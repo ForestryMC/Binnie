@@ -7,7 +7,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.core.AbstractMod;
-import binnie.core.gui.geometry.Position;
+import binnie.core.api.gui.Alignment;
 import binnie.core.gui.minecraft.GUIIcon;
 import binnie.core.gui.minecraft.MinecraftGUI;
 import binnie.core.gui.minecraft.control.ControlEnergyBar;
@@ -46,13 +46,13 @@ public class WindowAnalyser extends WindowMachine {
 		x += 28;
 		new ControlSlot.Builder(this, x, y + 54 + 8).assign(13);
 		new ControlSlotCharge(this, x + 20, y + 54 + 8, 13).setColor(10040319);
-		new ControlEnergyBar(this, x + 24 + 16, y + 54 + 8 + 1, 60, 16, Position.LEFT);
+		new ControlEnergyBar(this, x + 24 + 16, y + 54 + 8 + 1, 60, 16, Alignment.LEFT);
 		new ControlErrorState(this, x + 24 + 16 + 60 + 16, y + 54 + 8 + 1);
 		x -= 28;
 		new ControlIconDisplay(this, x + 36 + 2, y + 18, GUIIcon.ARROW_RIGHT.getIcon().getResourceLocation());
 		x += 56;
 		new Panel(this, x, y, 76, 50, MinecraftGUI.PanelType.TINTED);
-		new ControlProgress(this, x + 5, y + 5, WindowAnalyser.ProgressBase, WindowAnalyser.Progress, Position.LEFT);
+		new ControlProgress(this, x + 5, y + 5, WindowAnalyser.ProgressBase, WindowAnalyser.Progress, Alignment.LEFT);
 		new ControlSlot.Builder(this, x + 38 - 9, y + 25 - 9).assign(6);
 		new ControlIconDisplay(this, x + 76 + 2, y + 18, GUIIcon.ARROW_RIGHT.getIcon().getResourceLocation());
 		x += 96;

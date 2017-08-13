@@ -1,11 +1,5 @@
 package binnie.core.gui.fieldkit;
 
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import forestry.api.genetics.IChromosomeType;
-
 import binnie.core.Binnie;
 import binnie.core.gui.Attribute;
 import binnie.core.gui.CraftGUI;
@@ -18,6 +12,10 @@ import binnie.core.gui.geometry.Point;
 import binnie.core.gui.resource.Texture;
 import binnie.core.gui.resource.minecraft.StandardTexture;
 import binnie.core.texture.BinnieCoreTexture;
+import forestry.api.genetics.IChromosomeType;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ControlChromoPicker extends Control implements ITooltip {
 	Texture Selected;

@@ -12,7 +12,7 @@ import binnie.core.AbstractMod;
 import binnie.core.gui.controls.ControlText;
 import binnie.core.gui.geometry.Area;
 import binnie.core.gui.geometry.CraftGUIUtil;
-import binnie.core.gui.geometry.Position;
+import binnie.core.api.gui.Alignment;
 import binnie.core.gui.geometry.TextJustification;
 import binnie.core.gui.minecraft.GUIIcon;
 import binnie.core.gui.minecraft.control.ControlEnergyBar;
@@ -69,7 +69,7 @@ public class WindowSequencer extends WindowMachine {
 		x += 20;
 		new ControlSlotCharge(this, x, y, 0).setColor(16750848);
 		x += 32;
-		new ControlEnergyBar(this, x, y, 60, 16, Position.LEFT);
+		new ControlEnergyBar(this, x, y, 60, 16, Alignment.LEFT);
 		x += 92;
 		final ControlErrorState errorState = new ControlErrorState(this, x, y + 1);
 		new ControlPlayerInventory(this);

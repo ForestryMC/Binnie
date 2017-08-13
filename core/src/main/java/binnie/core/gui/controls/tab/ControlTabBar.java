@@ -9,21 +9,21 @@ import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.controls.core.IControlValue;
 import binnie.core.gui.events.EventHandler;
 import binnie.core.gui.events.EventValueChanged;
-import binnie.core.gui.geometry.Position;
+import binnie.core.api.gui.Alignment;
 
 public class ControlTabBar<T> extends Control implements IControlValue<T> {
 	private T value;
-	private Position position;
+	private Alignment alignment;
 
-	public ControlTabBar(final IWidget parent, final int x, final int y, final int width, final int height, final Position position, final Collection<T> values) {
-		this(parent, x, y, width, height, position, Iterables.get(values, 0));
+	public ControlTabBar(final IWidget parent, final int x, final int y, final int width, final int height, final Alignment alignment, final Collection<T> values) {
+		this(parent, x, y, width, height, alignment, Iterables.get(values, 0));
 		setValues(values);
 	}
 
-	public ControlTabBar(final IWidget parent, final int x, final int y, final int width, final int height, final Position position, final T value) {
+	public ControlTabBar(final IWidget parent, final int x, final int y, final int width, final int height, final Alignment alignment, final T value) {
 		super(parent, x, y, width, height);
 		this.value = value;
-		this.position = position;
+		this.alignment = alignment;
 		this.addEventHandler(EventValueChanged.class, EventHandler.Origin.DIRECT_CHILD, this, event -> {
 			ControlTabBar.this.setValue((T) event.getValue());
 		});
@@ -33,12 +33,12 @@ public class ControlTabBar<T> extends Control implements IControlValue<T> {
 		deleteAllChildren();
 		final float length = values.size();
 		int tabDimension = (int) (this.getSize().yPos() / length);
-		if (this.position == Position.Top || this.position == Position.BOTTOM) {
+		if (this.alignment == Alignment.TOP || this.alignment == Alignment.BOTTOM) {
 			tabDimension = (int) (this.getSize().xPos() / length);
 		}
 		int j = 0;
 		for (final T value : values) {
-			if (this.position == Position.Top || this.position == Position.BOTTOM) {
+			if (this.alignment == Alignment.TOP || this.alignment == Alignment.BOTTOM) {
 				this.createTab(j * tabDimension, 0, tabDimension, this.getSize().yPos(), value);
 			} else {
 				this.createTab(0, j * tabDimension, this.getSize().xPos(), tabDimension, value);
@@ -65,7 +65,7 @@ public class ControlTabBar<T> extends Control implements IControlValue<T> {
 		}
 	}
 
-	public Position getDirection() {
-		return this.position;
+	public Alignment getDirection() {
+		return this.alignment;
 	}
 }

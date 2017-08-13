@@ -20,7 +20,7 @@ import forestry.api.genetics.ISpeciesRoot;
 import binnie.core.genetics.Gene;
 import binnie.core.network.packet.MessageNBT;
 import binnie.genetics.Genetics;
-import binnie.genetics.api.IGene;
+import binnie.core.api.genetics.IGene;
 import binnie.genetics.core.GeneticsPacket;
 
 public class GeneTracker extends WorldSavedData {

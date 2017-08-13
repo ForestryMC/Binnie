@@ -1,7 +1,7 @@
-package binnie.core.gui.geometry;
+package binnie.core.api.gui;
 
-public enum Position {
-	Top(0, -1),
+public enum Alignment {
+	TOP(0, -1),
 	BOTTOM(0, 1),
 	LEFT(-1, 0),
 	RIGHT(1, 0);
@@ -9,7 +9,7 @@ public enum Position {
 	int x;
 	int y;
 
-	Position(int x, final int y) {
+	Alignment(int x, final int y) {
 		this.x = x;
 		this.y = y;
 	}
@@ -22,19 +22,19 @@ public enum Position {
 		return this.y;
 	}
 
-	public Position opposite() {
+	public Alignment opposite() {
 		switch (this) {
 			case BOTTOM: {
-				return Position.Top;
+				return Alignment.TOP;
 			}
 			case LEFT: {
-				return Position.RIGHT;
+				return Alignment.RIGHT;
 			}
 			case RIGHT: {
-				return Position.LEFT;
+				return Alignment.LEFT;
 			}
-			case Top: {
-				return Position.BOTTOM;
+			case TOP: {
+				return Alignment.BOTTOM;
 			}
 			default: {
 				throw new IllegalStateException();

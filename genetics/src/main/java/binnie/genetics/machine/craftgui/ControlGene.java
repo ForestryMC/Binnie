@@ -1,6 +1,7 @@
 package binnie.genetics.machine.craftgui;
 
 import binnie.core.api.genetics.IBreedingSystem;
+import binnie.core.gui.geometry.Point;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -16,10 +17,9 @@ import binnie.core.gui.Tooltip;
 import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.controls.core.IControlValue;
 import binnie.core.gui.events.EventMouse;
-import binnie.core.gui.geometry.Point;
 import binnie.core.gui.minecraft.Window;
 import binnie.core.gui.renderer.RenderUtil;
-import binnie.genetics.api.IGene;
+import binnie.core.api.genetics.IGene;
 import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.genetics.Engineering;
 

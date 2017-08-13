@@ -1,5 +1,6 @@
 package binnie.extratrees.machines.distillery.window;
 
+import binnie.core.gui.geometry.Point;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -12,8 +13,7 @@ import binnie.core.gui.CraftGUI;
 import binnie.core.gui.IWidget;
 import binnie.core.gui.events.EventMouse;
 import binnie.core.gui.geometry.Area;
-import binnie.core.gui.geometry.Point;
-import binnie.core.gui.geometry.Position;
+import binnie.core.api.gui.Alignment;
 import binnie.core.gui.minecraft.Window;
 import binnie.core.gui.minecraft.control.ControlProgressBase;
 import binnie.core.gui.renderer.RenderUtil;
@@ -52,7 +52,7 @@ public class ControlDistilleryProgress extends ControlProgressBase {
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		CraftGUI.RENDER.texture(DISTILLERY_BASE, Point.ZERO);
-		CraftGUI.RENDER.texturePercentage(LIQUID_FLOW, new Area(18, 0, 38, 66), Position.LEFT, this.progress);
+		CraftGUI.RENDER.texturePercentage(LIQUID_FLOW, new Area(18, 0, 38, 66), Alignment.LEFT, this.progress);
 		final DistilleryLogic component = Machine.getInterface(DistilleryLogic.class, Window.get(this).getInventory());
 		FluidStack stack = null;
 		if (component != null) {

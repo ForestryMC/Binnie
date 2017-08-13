@@ -1,5 +1,6 @@
 package binnie.extratrees.machines.lumbermill.window;
 
+import binnie.core.api.gui.IPoint;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
@@ -91,7 +92,7 @@ public class ControlLumbermillProgress extends ControlProgressBase {
 		}
 		//final IIcon icon2 = block2.getIcon(2, result.getItemDamage());
 		TextureAtlasSprite sprite = getWoodSprite(result);
-		final Point pos = this.getAbsolutePosition();
+		final IPoint pos = this.getAbsolutePosition();
 		CraftGUI.RENDER.limitArea(new Area(pos.add(Point.ZERO), new Point(Math.round(this.progress * 64) + 2, 18)), guiWidth, guiHeight);
 		GL11.glEnable(GL11.GL_SCISSOR_TEST);
 		for (int j = 0; j < 4; ++j) {

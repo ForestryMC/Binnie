@@ -1,17 +1,18 @@
 package binnie.core.gui.geometry;
 
+import binnie.core.api.gui.IPoint;
 import binnie.core.gui.IWidget;
 import binnie.core.gui.controls.core.IControlValue;
 import binnie.core.gui.events.EventValueChanged;
 
 public class CraftGUIUtil {
 	public static void alignToWidget(final IWidget target, final IWidget relativeTo) {
-		final Point startPos = target.getAbsolutePosition();
-		final Point endPos = relativeTo.getAbsolutePosition();
+		final IPoint startPos = target.getAbsolutePosition();
+		final IPoint endPos = relativeTo.getAbsolutePosition();
 		moveWidget(target, endPos.sub(startPos));
 	}
 
-	public static void moveWidget(final IWidget target, final Point movement) {
+	public static void moveWidget(final IWidget target, final IPoint movement) {
 		target.setPosition(target.getPosition().add(movement));
 	}
 

@@ -20,7 +20,7 @@ import binnie.core.Binnie;
 import binnie.core.genetics.Gene;
 import binnie.core.util.I18N;
 import binnie.genetics.Genetics;
-import binnie.genetics.api.IGene;
+import binnie.core.api.genetics.IGene;
 import binnie.genetics.api.IItemSerum;
 import binnie.genetics.genetics.GeneArrayItem;
 import binnie.genetics.genetics.IGeneItem;

@@ -18,7 +18,7 @@ import binnie.core.machines.errors.ErrorState;
 import binnie.core.machines.power.ComponentProcess;
 import binnie.core.machines.power.IProcess;
 import binnie.core.util.I18N;
-import binnie.genetics.api.IGene;
+import binnie.core.api.genetics.IGene;
 import binnie.genetics.api.IItemSerum;
 import binnie.genetics.genetics.Engineering;
 import binnie.genetics.machine.GeneticsErrorCode;

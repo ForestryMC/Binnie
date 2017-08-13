@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import binnie.core.api.gui.IArea;
 import net.minecraft.entity.player.EntityPlayer;
 
 import net.minecraftforge.fml.relauncher.Side;
@@ -27,7 +28,6 @@ import binnie.core.gui.database.PageSpeciesMutations;
 import binnie.core.gui.database.PageSpeciesOverview;
 import binnie.core.gui.database.PageSpeciesResultant;
 import binnie.core.gui.database.WindowAbstractDatabase;
-import binnie.core.gui.geometry.Area;
 import binnie.core.gui.minecraft.Window;
 import binnie.core.util.I18N;
 
@@ -82,7 +82,7 @@ public class WindowBotanistDatabase extends WindowAbstractDatabase {
 		}
 
 		@Override
-		public void createListBox(Area area) {
+		public void createListBox(IArea area) {
 			listBox = new ControlListBox<IFlowerColor>(modePage, area.xPos(), area.yPos(), area.width(), area.height(), 12) {
 				@Override
 				public IWidget createOption(IFlowerColor value, int y) {

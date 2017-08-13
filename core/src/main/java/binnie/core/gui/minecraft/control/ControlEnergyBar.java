@@ -2,6 +2,8 @@ package binnie.core.gui.minecraft.control;
 
 import javax.annotation.Nullable;
 
+import binnie.core.api.gui.IArea;
+import binnie.core.gui.geometry.Point;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.inventory.IInventory;
@@ -15,9 +17,7 @@ import binnie.core.gui.ITooltip;
 import binnie.core.gui.IWidget;
 import binnie.core.gui.Tooltip;
 import binnie.core.gui.controls.core.Control;
-import binnie.core.gui.geometry.Area;
-import binnie.core.gui.geometry.Point;
-import binnie.core.gui.geometry.Position;
+import binnie.core.api.gui.Alignment;
 import binnie.core.gui.minecraft.MinecraftTooltip;
 import binnie.core.gui.minecraft.Window;
 import binnie.core.gui.renderer.RenderUtil;
@@ -29,9 +29,9 @@ import binnie.core.machines.power.IProcess;
 
 public class ControlEnergyBar extends Control implements ITooltip {
 	public static boolean isError;
-	private Position direction;
+	private Alignment direction;
 
-	public ControlEnergyBar(final IWidget parent, final int x, final int y, final int width, final int height, final Position direction) {
+	public ControlEnergyBar(final IWidget parent, final int x, final int y, final int width, final int height, final Alignment direction) {
 		super(parent, x, y, width, height);
 		this.direction = direction;
 		this.addAttribute(Attribute.MOUSE_OVER);
@@ -87,9 +87,9 @@ public class ControlEnergyBar extends Control implements ITooltip {
 		final float percentage = this.getPercentage() / 100.0f;
 		int colourFromPercentage = this.getColourFromPercentage(percentage);
 		RenderUtil.setColour(colourFromPercentage);
-		final Area area = this.getArea();
+		final IArea area = this.getArea();
 		switch (this.direction) {
-			case Top:
+			case TOP:
 			case BOTTOM: {
 				final int height = Math.round(area.size().yPos() * percentage);
 				area.setSize(new Point(area.size().xPos(), height));
@@ -118,11 +118,11 @@ public class ControlEnergyBar extends Control implements ITooltip {
 	@SideOnly(Side.CLIENT)
 	public void onRenderForeground(int guiWidth, int guiHeight) {
 		if (this.isMouseOver() && Window.get(this).getGui().isHelpMode()) {
-			final Area area = this.getArea();
+			final IArea area = this.getArea();
 			RenderUtil.setColour(MinecraftTooltip.getOutline(Tooltip.Type.HELP));
 			CraftGUI.RENDER.texture(CraftGUITexture.OUTLINE, area.outset(1));
 		} else if (ControlEnergyBar.isError) {
-			final Area area = this.getArea();
+			final IArea area = this.getArea();
 			RenderUtil.setColour(MinecraftTooltip.getOutline(MinecraftTooltip.Type.ERROR));
 			CraftGUI.RENDER.texture(CraftGUITexture.OUTLINE, area.outset(1));
 		}
