@@ -1,4 +1,4 @@
-archivesBaseName = 'core-' + mcversion
+archivesBaseName = 'extrabees-api-' + mcversion
 
 dependencies {
 	compile project(":core-api")

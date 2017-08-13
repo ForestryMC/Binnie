@@ -1,9 +1,9 @@
 archivesBaseName = 'all-' + mcversion
 
 dependencies {
-	compile project(":botany")
-	compile project(":core")
-	compile project(":extrabees")
-	compile project(":extratrees")
-	compile project(":genetics")
+	runtimeOnly project(":botany")
+	runtimeOnly project(":core")
+	runtimeOnly project(":extrabees")
+	runtimeOnly project(":extratrees")
+	runtimeOnly project(":genetics")
 }

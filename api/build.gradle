@@ -1,5 +1,0 @@
-archivesBaseName = 'api-' + mcversion
-
-dependencies {
-	compile project(":core").sourceSets.api.output
-}
