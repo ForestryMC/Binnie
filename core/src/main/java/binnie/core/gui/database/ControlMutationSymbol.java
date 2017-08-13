@@ -1,13 +1,14 @@
 package binnie.core.gui.database;
 
-import binnie.core.api.genetics.IBreedingSystem;
 import net.minecraft.client.util.ITooltipFlag;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IMutation;
 
+import binnie.core.api.genetics.IBreedingSystem;
 import binnie.core.gui.Attribute;
 import binnie.core.gui.CraftGUI;
 import binnie.core.gui.ITooltip;
@@ -22,8 +23,8 @@ import binnie.core.gui.resource.minecraft.StandardTexture;
 import binnie.core.util.I18N;
 
 class ControlMutationSymbol extends Control implements ITooltip {
-	private static Texture MutationPlus = new StandardTexture(2, 94, 16, 16, CraftGUITextureSheet.CONTROLS_2);
-	private static Texture MutationArrow = new StandardTexture(20, 94, 32, 16, CraftGUITextureSheet.CONTROLS_2);
+	private static Texture MutationPlus = new StandardTexture(2, 94, 16, 16, CraftGUITextureSheet.CONTROLS);
+	private static Texture MutationArrow = new StandardTexture(20, 94, 32, 16, CraftGUITextureSheet.CONTROLS);
 	private IMutation value;
 	private boolean discovered;
 	private int type;

@@ -110,8 +110,7 @@ public class BlockShrubLog extends Block implements IWoodTyped, IStateMapperRegi
 	}
 
 	@Override
-	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox,
-	                                  List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean p_185477_7_) {
+	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean p_185477_7_) {
 		if (!p_185477_7_) {
 			state = state.getActualState(worldIn, pos);
 		}
@@ -229,9 +228,6 @@ public class BlockShrubLog extends Block implements IWoodTyped, IStateMapperRegi
 
 	@Override
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
-		int i = 4;
-		int j = 5;
-
 		if (worldIn.isAreaLoaded(pos.add(-5, -5, -5), pos.add(5, 5, 5))) {
 			for (BlockPos blockpos : BlockPos.getAllInBox(pos.add(-4, -4, -4), pos.add(4, 4, 4))) {
 				IBlockState iblockstate = worldIn.getBlockState(blockpos);

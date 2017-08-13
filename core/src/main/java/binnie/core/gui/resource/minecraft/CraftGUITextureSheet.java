@@ -10,8 +10,8 @@ import binnie.core.resource.BinnieResource;
 import binnie.core.resource.IBinnieTexture;
 
 public enum CraftGUITextureSheet implements IBinnieTexture {
-	CONTROLS_2("controls"),
-	PANEL_2("panels"),
+	CONTROLS("controls"),
+	PANEL("panels"),
 	SLOTS("slots");
 
 	private final String name;
@@ -20,7 +20,7 @@ public enum CraftGUITextureSheet implements IBinnieTexture {
 	@Nullable
 	private BinnieResource resource;
 
-	CraftGUITextureSheet(final String name) {
+	private CraftGUITextureSheet(final String name) {
 		this.name = name;
 	}
 
