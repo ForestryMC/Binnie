@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeSet;
 
+import com.google.common.collect.Iterables;
 import com.mojang.authlib.GameProfile;
 import forestry.api.genetics.IBreedingTracker;
 import net.minecraft.item.ItemStack;
@@ -121,6 +122,15 @@ public class ManagerGenetics extends ManagerBase {
 
 	public Collection<IBreedingSystem> getActiveSystems() {
 		return this.BREEDING_SYSTEMS.values();
+	}
+
+	public IBreedingSystem getFirstActiveSystem() {
+		Collection<IBreedingSystem> activeSystems = getActiveSystems();
+		IBreedingSystem first = Iterables.getFirst(activeSystems, null);
+		if (first == null) {
+			throw new IllegalStateException("There are no breeding systems");
+		}
+		return first;
 	}
 
 	public void registerBreedingSystem(final IBreedingSystem system) {

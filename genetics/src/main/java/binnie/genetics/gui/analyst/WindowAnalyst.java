@@ -2,6 +2,7 @@ package binnie.genetics.gui.analyst;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import binnie.core.AbstractMod;
@@ -27,7 +28,6 @@ import binnie.core.gui.window.Panel;
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.util.I18N;
 import binnie.core.util.Log;
-import binnie.extrabees.api.ExtraBeesAPI;
 import binnie.genetics.Genetics;
 import binnie.genetics.api.GeneticsApi;
 import binnie.genetics.api.IAnalystPagePlugin;
@@ -124,8 +124,9 @@ public class WindowAnalyst extends Window {
 		baseWidget = new Widget(this);
 		int x = 16;
 		int y = 28;
+		Collection<IBreedingSystem> activeSystems = Binnie.GENETICS.getActiveSystems();
 		if (isDatabase) {
-			for (IBreedingSystem syst : Binnie.GENETICS.getActiveSystems()) {
+			for (IBreedingSystem syst : activeSystems) {
 				new ControlSystemButton(x, y, this, syst);
 				x += 22;
 			}
@@ -161,7 +162,9 @@ public class WindowAnalyst extends Window {
 			};
 		}
 		setIndividual(null);
-		setSystem(ExtraBeesAPI.beeBreedingSystem);
+
+		IBreedingSystem first = Binnie.GENETICS.getFirstActiveSystem();
+		setSystem(first);
 	}
 
 	@SideOnly(Side.CLIENT)

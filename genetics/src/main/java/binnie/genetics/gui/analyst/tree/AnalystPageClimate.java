@@ -4,23 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import binnie.core.api.gui.IArea;
-import net.minecraft.init.Biomes;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.biome.Biome;
-
-import forestry.api.apiculture.EnumBeeChromosome;
-import forestry.api.apiculture.IBee;
-import forestry.api.core.EnumHumidity;
-import forestry.api.core.EnumTemperature;
-import forestry.api.genetics.IAlleleTolerance;
-import forestry.api.genetics.IIndividual;
-import forestry.api.lepidopterology.EnumButterflyChromosome;
-import forestry.api.lepidopterology.IButterfly;
-
-import binnie.botany.api.genetics.EnumFlowerChromosome;
-import binnie.botany.api.genetics.IFlower;
-import binnie.core.genetics.Tolerance;
 import binnie.core.api.gui.IWidget;
+import binnie.core.genetics.Tolerance;
 import binnie.core.gui.controls.ControlText;
 import binnie.core.gui.controls.ControlTextCentered;
 import binnie.core.gui.geometry.Area;
@@ -31,28 +16,31 @@ import binnie.genetics.gui.analyst.AnalystConstants;
 import binnie.genetics.gui.analyst.ControlAnalystPage;
 import binnie.genetics.gui.analyst.ControlBiome;
 import binnie.genetics.gui.analyst.ControlToleranceBar;
+import forestry.api.core.EnumHumidity;
+import forestry.api.core.EnumTemperature;
+import forestry.api.genetics.EnumTolerance;
+import forestry.api.genetics.IIndividual;
+import net.minecraft.init.Biomes;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
-public class AnalystPageClimate extends ControlAnalystPage {
-	public AnalystPageClimate(IWidget parent, IArea area, IIndividual ind) {
+public class AnalystPageClimate<T extends IIndividual> extends ControlAnalystPage {
+	public interface IClimatePlugin<T extends IIndividual> {
+		EnumTolerance getTemperatureTolerance(T individual);
+
+		EnumTolerance getHumidityTolerance(T individual);
+
+		boolean showHumiditySection();
+	}
+
+	public AnalystPageClimate(IWidget parent, IArea area, T ind, IClimatePlugin<T> plugin) {
 		super(parent, area);
 		setColor(26163);
 		EnumTemperature temp = ind.getGenome().getPrimary().getTemperature();
-		forestry.api.genetics.EnumTolerance tempTol = forestry.api.genetics.EnumTolerance.NONE;
+		EnumTolerance tempTol = plugin.getTemperatureTolerance(ind);
 		EnumHumidity humid = ind.getGenome().getPrimary().getHumidity();
-		forestry.api.genetics.EnumTolerance humidTol = forestry.api.genetics.EnumTolerance.NONE;
-		if (ind instanceof IBee) {
-			tempTol = ((IAlleleTolerance) ind.getGenome().getActiveAllele(EnumBeeChromosome.TEMPERATURE_TOLERANCE)).getValue();
-			humidTol = ((IAlleleTolerance) ind.getGenome().getActiveAllele(EnumBeeChromosome.HUMIDITY_TOLERANCE)).getValue();
-		}
-		if (ind instanceof IFlower) {
-			tempTol = ((IAlleleTolerance) ind.getGenome().getActiveAllele(EnumFlowerChromosome.TEMPERATURE_TOLERANCE)).getValue();
-			humidTol = forestry.api.genetics.EnumTolerance.BOTH_5;
-		}
-		if (ind instanceof IButterfly) {
-			tempTol = ((IAlleleTolerance) ind.getGenome().getActiveAllele(EnumButterflyChromosome.TEMPERATURE_TOLERANCE)).getValue();
-			humidTol = ((IAlleleTolerance) ind.getGenome().getActiveAllele(EnumButterflyChromosome.HUMIDITY_TOLERANCE)).getValue();
-		}
+		EnumTolerance humidTol = plugin.getHumidityTolerance(ind);
 		int y = 4;
 		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColor(getColor());
 		y += 16;
@@ -60,7 +48,7 @@ public class AnalystPageClimate extends ControlAnalystPage {
 		y += 12;
 		createTemperatureBar(this, (getWidth() - 100) / 2, y, 100, 10, temp, tempTol);
 		y += 16;
-		if (!(ind instanceof IFlower)) {
+		if (plugin.showHumiditySection()) {
 			new ControlText(this, new Area(4, y, getWidth() - 8, 14), I18N.localise(AnalystConstants.CLIMATE_KEY + ".hum"), TextJustification.MIDDLE_CENTER).setColor(getColor());
 			y += 12;
 			createHumidity(this, (getWidth() - 100) / 2, y, 100, 10, humid, humidTol);

@@ -1,6 +1,6 @@
 package binnie.genetics.gui.database.bee;
 
-import binnie.extrabees.api.ExtraBeesAPI;
+import binnie.core.Binnie;
 import net.minecraft.entity.player.EntityPlayer;
 
 import net.minecraftforge.fml.relauncher.Side;
@@ -21,7 +21,7 @@ import binnie.genetics.Genetics;
 
 public class WindowApiaristDatabase extends WindowAbstractDatabase {
 	public WindowApiaristDatabase(EntityPlayer player, Side side, boolean nei) {
-		super(player, side, nei, ExtraBeesAPI.beeBreedingSystem, 110);
+		super(player, side, nei, Binnie.GENETICS.getFirstActiveSystem(), 110);
 	}
 
 	public static Window create(EntityPlayer player, Side side, boolean nei) {

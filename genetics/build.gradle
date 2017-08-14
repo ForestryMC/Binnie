@@ -5,8 +5,5 @@ dependencies {
 	compile project(":genetics-api")
 
 	// TODO: remove these, they should add on to genetics instead
-//	compile project(":botany")
 	compile project(":botany-api")
-	compile project(":extrabees-api")
-//	compile project(":extratrees")
 }
