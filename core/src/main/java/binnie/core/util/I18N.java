@@ -4,8 +4,6 @@ import java.util.IllegalFormatException;
 
 import net.minecraft.util.text.translation.I18n;
 
-import forestry.core.utils.Log;
-
 public class I18N {
 	
 	public static String localiseOrBlank(String key) {

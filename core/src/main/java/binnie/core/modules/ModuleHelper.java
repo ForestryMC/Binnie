@@ -6,9 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import binnie.core.util.Log;
 import net.minecraftforge.fml.common.discovery.ASMDataTable;
-
-import forestry.core.utils.Log;
 
 public class ModuleHelper {
 	private ModuleHelper() {
