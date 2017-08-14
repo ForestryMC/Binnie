@@ -1,29 +1,20 @@
 package binnie.extrabees;
 
-import binnie.core.api.genetics.IBreedingSystem;
-import binnie.core.gui.BinnieGUIHandler;
-import binnie.core.liquid.ManagerLiquid;
-import binnie.extrabees.genetics.gui.analyst.AnalystPagePlugin;
-import binnie.extrabees.gui.ExtraBeesGUID;
-import binnie.genetics.api.GeneticsApi;
 import com.google.common.collect.Lists;
 
+import javax.annotation.Nullable;
 import java.io.File;
 import java.lang.reflect.Method;
 import java.util.List;
 
-import forestry.api.recipes.RecipeManagers;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.MinecraftForge;
 
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
+
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -43,11 +34,15 @@ import forestry.core.proxy.Proxies;
 
 import binnie.core.Binnie;
 import binnie.core.Constants;
+import binnie.core.api.genetics.IBreedingSystem;
+import binnie.core.gui.BinnieGUIHandler;
 import binnie.extrabees.alveary.TileEntityExtraBeesAlvearyPart;
 import binnie.extrabees.genetics.BeeBreedingSystem;
 import binnie.extrabees.genetics.ExtraBeeDefinition;
 import binnie.extrabees.genetics.ExtraBeesFlowers;
 import binnie.extrabees.genetics.effect.ExtraBeesEffect;
+import binnie.extrabees.genetics.gui.analyst.AnalystPagePlugin;
+import binnie.extrabees.gui.ExtraBeesGUID;
 import binnie.extrabees.init.BlockRegister;
 import binnie.extrabees.init.ItemRegister;
 import binnie.extrabees.init.RecipeRegister;
@@ -60,6 +55,7 @@ import binnie.extrabees.utils.MaterialBeehive;
 import binnie.extrabees.utils.config.ConfigHandler;
 import binnie.extrabees.utils.config.ConfigurationMain;
 import binnie.extrabees.worldgen.ExtraBeesWorldGenerator;
+import binnie.genetics.api.GeneticsApi;
 
 @Mod(
 	modid = ExtraBees.MODID,
@@ -84,16 +80,25 @@ public class ExtraBees {
 	
 	public static ConfigHandler configHandler;
 
+	@Nullable
 	public static Material materialBeehive;
+	@Nullable
 	public static Block hive;
+	@Nullable
 	public static Block alveary;
+	@Nullable
 	public static Block ectoplasm;
+	@Nullable
 	public static Item comb;
+	@Nullable
 	public static Item propolis;
+	@Nullable
 	public static Item honeyDrop;
+	@Nullable
 	public static ItemHoneyCrystal honeyCrystal;
-	public static Item dictionary;
+	@Nullable
 	public static ItemMiscProduct itemMisc;
+	@Nullable
 	public static Item dictionaryBees;
 
 	@Mod.EventHandler
@@ -104,13 +109,7 @@ public class ExtraBees {
 		configHandler.addConfigurable(new ConfigurationMain());
 		BlockRegister.preInitBlocks();
 		ItemRegister.preInitItems();
-		try {
-			Method m = GuiIdRegistry.class.getDeclaredMethod("registerGuiHandlers", GuiType.class, List.class);
-			m.setAccessible(true);
-			m.invoke(null, new Object[]{GuiType.Tile, Lists.newArrayList(TileEntityExtraBeesAlvearyPart.class)});
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
+		registerGuis();
 		Proxies.render.registerModels();
 
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new BinnieGUIHandler(ExtraBeesGUID.values()));
@@ -131,27 +130,24 @@ public class ExtraBees {
 		ExtraBeesEffect.doInit();
 		ExtraBeesFlowers.doInit();
 		ExtraBeeDefinition.doInit();
+		BlockRegister.doInitBlocks();
+		RecipeRegister.doInitRecipes();
 	}
 
 	@Mod.EventHandler
 	public void postInit(final FMLPostInitializationEvent evt) {
-		BlockRegister.postInitBlocks();
-		RecipeRegister.postInitRecipes();
 		//Register mutations
 		AlvearyMutationHandler.registerMutationItems();
-		RecipeManagers.carpenterManager.addRecipe(
-				100,
-				Binnie.LIQUID.getFluidStack(ManagerLiquid.WATER, 2000),
-				ItemStack.EMPTY,
-				new ItemStack(dictionaryBees),
-				"X#X", "YEY", "RDR",
-				'#', Blocks.GLASS_PANE,
-				'X', Items.GOLD_INGOT,
-				'Y', "ingotTin",
-				'R', Items.REDSTONE,
-				'D', Items.DIAMOND,
-				'E', Items.EMERALD
-		);
+	}
+
+	private void registerGuis(){
+		try {
+			Method m = GuiIdRegistry.class.getDeclaredMethod("registerGuiHandlers", GuiType.class, List.class);
+			m.setAccessible(true);
+			m.invoke(null, new Object[]{GuiType.Tile, Lists.newArrayList(TileEntityExtraBeesAlvearyPart.class)});
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 	}
 	
 	@SubscribeEvent

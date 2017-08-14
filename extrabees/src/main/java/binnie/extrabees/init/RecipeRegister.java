@@ -18,6 +18,8 @@ import forestry.apiculture.blocks.BlockAlvearyType;
 import forestry.core.PluginCore;
 import forestry.core.fluids.Fluids;
 
+import binnie.core.Binnie;
+import binnie.core.liquid.ManagerLiquid;
 import binnie.core.util.RecipeUtil;
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.alveary.EnumAlvearyLogicType;
@@ -29,12 +31,11 @@ import binnie.extrabees.items.types.EnumHoneyComb;
 import binnie.extrabees.items.types.EnumHoneyDrop;
 import binnie.extrabees.items.types.EnumPropolis;
 import binnie.extrabees.items.types.ExtraBeeItems;
-import binnie.extrabees.utils.Utils;
 
 public final class RecipeRegister {
 	private static final RecipeUtil RECIPE_UTIL = new RecipeUtil(ExtraBees.MODID);
 	
-	public static void postInitRecipes() {
+	public static void doInitRecipes() {
 		if (Loader.isModLoaded("ic2")) {
 			RECIPE_UTIL.addRecipe("honey_crystal", ExtraBees.honeyCrystal.getCharged(0), "#@#", "@#@", "#@#", '@', PluginApiculture.getItems().honeyDrop, '#', EnumHoneyDrop.ENERGY.get(1));
 		}
@@ -48,7 +49,6 @@ public final class RecipeRegister {
 			info3.addRecipe();
 		}
 		EnumHiveFrame.init(RECIPE_UTIL);
-		addForestryRecipes();
 		addForestryRecipes();
 		addMiscItemRecipes();
 		addAlvearyRecipes();
@@ -77,7 +77,19 @@ public final class RecipeRegister {
 	}
 	
 	private static void addForestryRecipes() {
-		RecipeManagers.carpenterManager.addRecipe(100, Utils.getFluidFromName("water", 2000), ItemStack.EMPTY, new ItemStack(ExtraBees.dictionary), "X#X", "YEY", "RDR", '#', Blocks.GLASS_PANE, 'X', Items.GOLD_INGOT, 'Y', "ingotTin", 'R', Items.REDSTONE, 'D', Items.DIAMOND, 'E', Items.EMERALD);
+		RecipeManagers.carpenterManager.addRecipe(
+			100,
+			Binnie.LIQUID.getFluidStack(ManagerLiquid.WATER, 2000),
+			ItemStack.EMPTY,
+			new ItemStack(ExtraBees.dictionaryBees),
+			"X#X", "YEY", "RDR",
+			'#', Blocks.GLASS_PANE,
+			'X', Items.GOLD_INGOT,
+			'Y', "ingotTin",
+			'R', Items.REDSTONE,
+			'D', Items.DIAMOND,
+			'E', Items.EMERALD
+		);
 	}
 	
 	private static void addMiscItemRecipes() {

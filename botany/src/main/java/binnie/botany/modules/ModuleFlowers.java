@@ -1,6 +1,5 @@
 package binnie.botany.modules;
 
-import binnie.botany.genetics.FlowerColorMutations;
 import com.google.common.collect.ImmutableSet;
 
 import javax.annotation.Nullable;
@@ -43,6 +42,7 @@ import binnie.botany.api.genetics.IFlowerRoot;
 import binnie.botany.blocks.BlockFlower;
 import binnie.botany.core.BotanyCore;
 import binnie.botany.genetics.FlowerBreedingSystem;
+import binnie.botany.genetics.FlowerColorMutations;
 import binnie.botany.genetics.FlowerDefinition;
 import binnie.botany.genetics.FlowerFactory;
 import binnie.botany.genetics.allele.AlleleEffectNone;
@@ -119,10 +119,7 @@ public class ModuleFlowers extends Module {
 	public void init() {
 		FlowerColorMutations.registerFlowerColorAlleles();
 		FlowerDefinition.initFlowers();
-	}
 
-	@Override
-	public void postInit() {
 		RecipeUtil recipeUtil = new RecipeUtil(Constants.BOTANY_MOD_ID);
 		FlowerManager.flowerRegistry.registerAcceptableFlower(flower, "flowersVanilla");
 		recipeUtil.addRecipe("botanist_backpack", botanistBackpack,

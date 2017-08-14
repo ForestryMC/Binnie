@@ -21,12 +21,4 @@ public class ModuleKitchen extends Module {
 		machineGroup.customRenderer = false;
 		blockKitchen = machineGroup.getBlock();*/
 	}
-
-	@Override
-	public void init() {
-	}
-
-	@Override
-	public void postInit() {
-	}
 }

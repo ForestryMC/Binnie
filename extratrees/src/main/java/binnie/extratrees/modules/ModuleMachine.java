@@ -61,7 +61,7 @@ public class ModuleMachine extends Module {
 	}
 
 	@Override
-	public void postInit() {
+	public void init() {
 		RecipeUtil recipeUtil = new RecipeUtil(Constants.EXTRA_TREES_MOD_ID);
 		recipeUtil.addRecipe("lumbermill", ExtraTreeMachine.Lumbermill.get(1), "gAg", "GsG", "gPg", 'G', Blocks.GLASS, 'g', ExtraTreeItems.PROVEN_GEAR.get(1), 'A', Items.IRON_AXE, 's', Mods.Forestry.stack("sturdy_machine"), 'P', "gearBronze");
 		recipeUtil.addRecipe("press", ExtraTreeMachine.Press.get(1), "iGi", "tSt", "tPt", 'i', "ingotIron", 'G', Blocks.GLASS, 't', "ingotTin", 'S', Mods.Forestry.stack("sturdy_machine"), 'P', "gearBronze");

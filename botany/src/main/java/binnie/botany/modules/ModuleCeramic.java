@@ -1,6 +1,5 @@
 package binnie.botany.modules;
 
-import binnie.core.modules.BotanyModuleUIDs;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -10,14 +9,13 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-import binnie.core.Constants;
 import binnie.botany.Botany;
 import binnie.botany.CreativeTabBotany;
+import binnie.botany.api.genetics.EnumFlowerColor;
 import binnie.botany.blocks.BlockCeramic;
 import binnie.botany.blocks.BlockCeramicBrick;
 import binnie.botany.blocks.BlockCeramicPatterned;
 import binnie.botany.blocks.BlockStainedGlass;
-import binnie.botany.api.genetics.EnumFlowerColor;
 import binnie.botany.items.BotanyItems;
 import binnie.botany.items.CeramicItems;
 import binnie.botany.items.ItemCeramic;
@@ -27,13 +25,15 @@ import binnie.botany.items.ItemPigment;
 import binnie.botany.items.ItemStainedGlass;
 import binnie.botany.recipes.CeramicTileRecipe;
 import binnie.botany.recipes.PigmentRecipe;
+import binnie.core.Constants;
 import binnie.core.api.block.TileEntityMetadata;
 import binnie.core.item.ItemMisc;
-import binnie.core.util.RecipeUtil;
-import binnie.extratrees.items.ItemDesign;
 import binnie.core.modules.BinnieModule;
+import binnie.core.modules.BotanyModuleUIDs;
 import binnie.core.modules.Module;
 import binnie.core.modules.ModuleManager;
+import binnie.core.util.RecipeUtil;
+import binnie.extratrees.items.ItemDesign;
 
 @BinnieModule(moduleID = BotanyModuleUIDs.CERAMIC, moduleContainerID = Constants.BOTANY_MOD_ID, name = "Ceramic", unlocalizedDescription = "botany.module.ceramic")
 public class ModuleCeramic extends Module {
@@ -70,7 +70,7 @@ public class ModuleCeramic extends Module {
 	}
 
 	@Override
-	public void postInit() {
+	public void init() {
 		RecipeUtil recipeUtil = new RecipeUtil(Constants.BOTANY_MOD_ID);
 		ForgeRegistries.RECIPES.register(new CeramicTileRecipe());
 

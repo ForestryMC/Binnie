@@ -25,7 +25,7 @@ import binnie.genetics.api.acclimatiser.IAcclimatiserManager;
 @Mod(
 	modid = Constants.BOTANY_MOD_ID,
 	name = "Binnie's Botany",
-	dependencies = "required-after:" + Constants.CORE_MOD_ID
+	dependencies = "required-after:" + Constants.CORE_MOD_ID + ";"
 			+	   "after:" + Constants.GENETICS_MOD_ID
 )
 public class Botany extends BlankModuleContainer {
@@ -45,9 +45,11 @@ public class Botany extends BlankModuleContainer {
 		GeneticsApi.registerAnalystPagePlugin(new FlowerAnalystPagePlugin());
 
 		IAcclimatiserManager acclimatiserManager = GeneticsApi.acclimatiserManager;
-		acclimatiserManager.addTolerance(EnumFlowerChromosome.HUMIDITY_TOLERANCE, acclimatiserManager.getHumidityToleranceType());
-		acclimatiserManager.addTolerance(EnumFlowerChromosome.TEMPERATURE_TOLERANCE, acclimatiserManager.getTemperatureToleranceType());
-		acclimatiserManager.addTolerance(EnumFlowerChromosome.PH_TOLERANCE, new TolerancePh());
+		if(acclimatiserManager != null) {
+			acclimatiserManager.addTolerance(EnumFlowerChromosome.HUMIDITY_TOLERANCE, acclimatiserManager.getHumidityToleranceType());
+			acclimatiserManager.addTolerance(EnumFlowerChromosome.TEMPERATURE_TOLERANCE, acclimatiserManager.getTemperatureToleranceType());
+			acclimatiserManager.addTolerance(EnumFlowerChromosome.PH_TOLERANCE, new TolerancePh());
+		}
 	}
 
 	@Mod.EventHandler

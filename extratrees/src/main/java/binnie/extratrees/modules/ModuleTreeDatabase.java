@@ -5,18 +5,19 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
+import net.minecraftforge.oredict.OreDictionary;
+
 import forestry.api.recipes.ICarpenterManager;
 import forestry.api.recipes.RecipeManagers;
 
 import binnie.core.Binnie;
 import binnie.core.Constants;
 import binnie.core.liquid.ManagerLiquid;
+import binnie.core.modules.BinnieModule;
 import binnie.core.modules.ExtraTreesModuleUIDs;
+import binnie.core.modules.Module;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.items.ItemArboristDatabase;
-import binnie.core.modules.BinnieModule;
-import binnie.core.modules.Module;
-import net.minecraftforge.oredict.OreDictionary;
 
 @BinnieModule(moduleID = ExtraTreesModuleUIDs.TREE_DATABASE, moduleContainerID = Constants.EXTRA_TREES_MOD_ID, name = "Database", unlocalizedDescription = "extratrees.module.database.tree")
 public class ModuleTreeDatabase extends Module {
@@ -30,7 +31,7 @@ public class ModuleTreeDatabase extends Module {
 	}
 
 	@Override
-	public void postInit() {
+	public void init() {
 		ICarpenterManager carpenterManager = RecipeManagers.carpenterManager;
 		carpenterManager.addRecipe(100, Binnie.LIQUID.getFluidStack(ManagerLiquid.WATER, 2000), ItemStack.EMPTY, new ItemStack(ModuleTreeDatabase.itemDictionary), "X#X", "YEY", "RDR", '#', Blocks.GLASS_PANE, 'X', Items.GOLD_INGOT, 'Y', "ingotCopper", 'R', Items.REDSTONE, 'D', Items.DIAMOND, 'E', Items.EMERALD);
 	}

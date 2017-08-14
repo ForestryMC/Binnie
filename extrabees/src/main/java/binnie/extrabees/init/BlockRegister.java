@@ -26,7 +26,7 @@ public final class BlockRegister {
 		GameRegistry.registerTileEntity(TileEntityExtraBeesAlvearyPart.class, "TileEntityExtraBeesAlvearyPart");
 	}
 
-	public static void postInitBlocks() {
+	public static void doInitBlocks() {
 		registerHiveDrops();
 	}
 

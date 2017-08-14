@@ -148,10 +148,7 @@ public class ModuleCore extends Module {
 		Food.MANGO.addJuice(10, 400, 20);
 		Food.STARFRUIT.addJuice(10, 300, 10);
 		Food.CANDLENUT.addJuice(20, 50, 10);
-	}
 
-	@Override
-	public void postInit() {
 		RecipeUtil recipeUtil = new RecipeUtil(Constants.EXTRA_TREES_MOD_ID);
 		MinecraftForge.addGrassSeed(new ItemStack(itemHops), 5);
 
@@ -185,107 +182,6 @@ public class ModuleCore extends Module {
 
 		FuelManager.bronzeEngineFuel.put(ExtraTreeLiquid.Sap.get(1).getFluid(), new EngineBronzeFuel(ExtraTreeLiquid.Sap.get(1).getFluid(), 20, 10000, 1));
 		FuelManager.bronzeEngineFuel.put(ExtraTreeLiquid.Resin.get(1).getFluid(), new EngineBronzeFuel(ExtraTreeLiquid.Resin.get(1).getFluid(), 30, 10000, 1));
-	/*	if (BinnieCore.getBinnieProxy().isDebug()) {
-			try {
-				final PrintWriter outputSpecies = new PrintWriter(new FileWriter("data/species.html"));
-				final PrintWriter outputLogs = new PrintWriter(new FileWriter("data/logs.html"));
-				final PrintWriter outputPlanks = new PrintWriter(new FileWriter("data/planks.html"));
-				final PrintWriter outputFruit = new PrintWriter(new FileWriter("data/fruit.html"));
-				final PrintWriter outputDesigns = new PrintWriter(new FileWriter("data/designs.html"));
-				final Queue<IAlleleTreeSpecies> speciesQueue = new LinkedList<>();
-				for (final ETTreeDefinition s : ETTreeDefinition.values()) {
-					speciesQueue.add(s.getSpecies());
-				}
-				final Queue<IWoodType> logQueue = new LinkedList<>();
-				Collections.addAll(logQueue, EnumETLog.values());
-				final Queue<IDesignMaterial> plankQueue = new LinkedList<>();
-				Collections.addAll(plankQueue, PlankType.ExtraTreePlanks.values());
-				final Queue<AlleleETFruit> fruitQueue = new LinkedList<>();
-				fruitQueue.addAll(AlleleETFruit.values());
-				final Queue<IDesign> designQueue = new LinkedList<>();
-				designQueue.addAll(CarpentryManager.carpentryInterface.getSortedDesigns());
-				fruitQueue.remove(AlleleETFruit.Apple);
-				outputSpecies.println("<table style=\"width: 100%;\">");
-				while (!speciesQueue.isEmpty()) {
-					outputSpecies.println("<tr>");
-					for (int i = 0; i < 4; ++i) {
-						final IAlleleTreeSpecies species = speciesQueue.poll();
-						outputSpecies.println("<td>" + ((species == null) ? "" : species.getAlleleName()) + "</td>");
-					}
-					outputSpecies.println("</tr>");
-				}
-				outputSpecies.println("</table>");
-				outputLogs.println("<table style=\"width: 100%;\">");
-				while (!logQueue.isEmpty()) {
-					outputLogs.println("<tr>");
-					for (int i = 0; i < 4; ++i) {
-						final EnumETLog wood5 = (EnumETLog) logQueue.poll();
-						if (wood5 == null) {
-							outputLogs.println("<td></td>");
-						} else {
-							final String img = "<img alt=\"" + wood5.getName() + "\" src=\"images/logs/" + wood5.toString().toLowerCase() + "Bark.png\">";
-							outputLogs.println("<td>" + img + " " + wood5.getName() + "</td>");
-						}
-					}
-					outputLogs.println("</tr>");
-				}
-				outputLogs.println("</table>");
-				outputPlanks.println("<table style=\"width: 100%;\">");
-				while (!plankQueue.isEmpty()) {
-					outputPlanks.println("<tr>");
-					for (int i = 0; i < 4; ++i) {
-						final IDesignMaterial wood2 = plankQueue.poll();
-						if (wood2 == null) {
-							outputPlanks.println("<td></td>");
-						} else {
-							final String img = "<img alt=\"" + wood2.getDesignMaterialName() + "\" src=\"images/planks/" + wood2.getDesignMaterialName() + ".png\">";
-							outputPlanks.println("<td>" + img + " " + wood2.getDesignMaterialName() + "</td>");
-						}
-					}
-					outputPlanks.println("</tr>");
-				}
-				outputPlanks.println("</table>");
-				outputFruit.println("<table style=\"width: 100%;\">");
-				while (!fruitQueue.isEmpty()) {
-					outputFruit.println("<tr>");
-					for (int i = 0; i < 4; ++i) {
-						final AlleleETFruit wood6 = fruitQueue.poll();
-						if (wood6 == null) {
-							outputFruit.println("<td></td>");
-						} else {
-							final String fruit = wood6.getNameOfFruit();
-							final String img2 = "<img alt=\"" + wood6.getAlleleName() + "\" src=\"images/fruits/" + fruit + ".png\">";
-							outputFruit.println("<td>" + img2 + " " + wood6.getAlleleName() + "</td>");
-						}
-					}
-					outputFruit.println("</tr>");
-				}
-				outputFruit.println("</table>");
-				outputDesigns.println("<table style=\"width: 100%;\">");
-				while (!designQueue.isEmpty()) {
-					outputDesigns.println("<tr>");
-					for (int i = 0; i < 4; ++i) {
-						final IDesign wood4 = designQueue.poll();
-						if (wood4 == null) {
-							outputDesigns.println("<td></td>");
-						} else {
-							final String texture = wood4.getTopPattern().getPattern().toString().toLowerCase();
-							final String img2 = "<img alt=\"" + texture + "\" src=\"images/pattern/" + texture + ".png\">";
-							outputDesigns.println("<td>" + img2 + " " + wood4.getName() + "</td>");
-						}
-					}
-					outputDesigns.println("</tr>");
-				}
-				outputDesigns.println("</table>");
-				outputSpecies.close();
-				outputLogs.close();
-				outputPlanks.close();
-				outputFruit.close();
-				outputDesigns.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}*/
 	}
 
 	@Override

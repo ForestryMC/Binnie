@@ -1,17 +1,17 @@
 package binnie.genetics.machine;
 
-import binnie.core.Constants;
-import binnie.core.util.RecipeUtil;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 
 import net.minecraftforge.oredict.OreDictionary;
 
+import binnie.core.Constants;
 import binnie.core.IInitializable;
 import binnie.core.Mods;
 import binnie.core.machines.MachineGroup;
 import binnie.core.machines.inventory.ValidatorSprite;
+import binnie.core.util.RecipeUtil;
 import binnie.genetics.CreativeTabGenetics;
 import binnie.genetics.Genetics;
 import binnie.genetics.item.GeneticsItems;
@@ -47,10 +47,7 @@ public class ModuleMachine implements IInitializable {
 	@Override
 	public void init() {
 		Incubator.addRecipes();
-	}
 
-	@Override
-	public void postInit() {
 		RecipeUtil recipeUtil = new RecipeUtil(Constants.GENETICS_MOD_ID);
 		Acclimatiser.setupRecipes();
 		final Object[] standardCircuit = {Mods.Forestry.stack("chipsets", 1, 1)};

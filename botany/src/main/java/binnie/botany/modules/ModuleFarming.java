@@ -1,6 +1,5 @@
 package binnie.botany.modules;
 
-import binnie.core.modules.BotanyModuleUIDs;
 import com.google.common.collect.ImmutableSet;
 
 import java.util.Set;
@@ -8,7 +7,6 @@ import java.util.Set;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 
-import binnie.core.Constants;
 import binnie.botany.Botany;
 import binnie.botany.api.gardening.EnumAcidity;
 import binnie.botany.api.gardening.EnumMoisture;
@@ -16,10 +14,12 @@ import binnie.botany.farming.CircuitGarden;
 import binnie.botany.items.EnumTubeInsulate;
 import binnie.botany.items.EnumTubeMaterial;
 import binnie.botany.items.ItemInsulatedTube;
+import binnie.core.Constants;
 import binnie.core.Mods;
-import binnie.core.util.RecipeUtil;
 import binnie.core.modules.BinnieModule;
+import binnie.core.modules.BotanyModuleUIDs;
 import binnie.core.modules.Module;
+import binnie.core.util.RecipeUtil;
 
 @BinnieModule(moduleID = BotanyModuleUIDs.FARMING, moduleContainerID = Constants.BOTANY_MOD_ID, name = "Farming", unlocalizedDescription = "botany.module.farming")
 public class ModuleFarming extends Module {
@@ -63,10 +63,7 @@ public class ModuleFarming extends Module {
 				}
 			}
 		}
-	}
 
-	@Override
-	public void postInit() {
 		for (EnumTubeMaterial mat: EnumTubeMaterial.VALUES) {
 			RecipeUtil recipeUtil = new RecipeUtil(Constants.BOTANY_MOD_ID);
 			for (EnumTubeInsulate insulate : EnumTubeInsulate.VALUES) {

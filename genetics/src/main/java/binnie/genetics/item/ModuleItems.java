@@ -1,6 +1,17 @@
 package binnie.genetics.item;
 
+import com.google.common.base.Preconditions;
+
 import javax.annotation.Nullable;
+
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+
+import net.minecraftforge.fml.common.registry.GameRegistry;
+
+import forestry.api.recipes.RecipeManagers;
 
 import binnie.core.Binnie;
 import binnie.core.BinnieCore;
@@ -15,13 +26,6 @@ import binnie.core.util.RecipeUtil;
 import binnie.genetics.CreativeTabGenetics;
 import binnie.genetics.Genetics;
 import binnie.genetics.recipes.RegistryRecipe;
-import com.google.common.base.Preconditions;
-import forestry.api.recipes.RecipeManagers;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class ModuleItems implements IInitializable {
 	public static BinnieSprite iconNight;
@@ -94,7 +98,7 @@ public class ModuleItems implements IInitializable {
 	}
 
 	@Override
-	public void postInit() {
+	public void init() {
 		RecipeUtil recipeUtil = new RecipeUtil(Constants.GENETICS_MOD_ID);
 		recipeUtil.addShapelessRecipe("dna_dye_from_glowstone", GeneticsItems.DNADye.get(8),
 			Items.GLOWSTONE_DUST, new ItemStack(Items.DYE, 1, 5)

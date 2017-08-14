@@ -68,7 +68,7 @@ public class ModuleAlcohol extends Module {
 	}
 
 	@Override
-	public void postInit() {
+	public void init() {
 		IBreweryManager breweryManager = ExtraTreesRecipeManager.breweryManager;
 		IFruitPressManager fruitPressManager = ExtraTreesRecipeManager.fruitPressManager;
 

@@ -3,7 +3,6 @@ package binnie.botany.modules;
 import java.util.Locale;
 import java.util.Map;
 
-import binnie.core.modules.BotanyModuleUIDs;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -21,7 +20,6 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-import binnie.core.Constants;
 import binnie.botany.Botany;
 import binnie.botany.CreativeTabBotany;
 import binnie.botany.api.gardening.EnumAcidity;
@@ -41,12 +39,14 @@ import binnie.botany.items.ItemWeed;
 import binnie.botany.tile.TileCeramic;
 import binnie.botany.tile.TileCeramicBrick;
 import binnie.core.BinnieCore;
+import binnie.core.Constants;
 import binnie.core.Mods;
 import binnie.core.item.ItemMisc;
+import binnie.core.modules.BinnieModule;
+import binnie.core.modules.BotanyModuleUIDs;
+import binnie.core.modules.Module;
 import binnie.core.util.OreDictionaryUtil;
 import binnie.core.util.RecipeUtil;
-import binnie.core.modules.BinnieModule;
-import binnie.core.modules.Module;
 
 @BinnieModule(moduleID = BotanyModuleUIDs.GARDENING, moduleContainerID = Constants.BOTANY_MOD_ID, name = "Gardening", unlocalizedDescription = "botany.module.gardening")
 public class ModuleGardening extends Module {
@@ -118,7 +118,7 @@ public class ModuleGardening extends Module {
 	}
 
 	@Override
-	public void postInit() {
+	public void init() {
 		RecipeUtil recipeUtil = new RecipeUtil(Constants.BOTANY_MOD_ID);
 		IGardeningManager gardening = BotanyCore.getGardening();
 

@@ -128,10 +128,6 @@ public class ModuleWood extends Module {
 
 	public static IBreedingSystem treeBreedingSystem;
 
-	//TODO: Unused ?
-	public static String[] branches = new String[]{"Malus Maleae Amygdaloideae Rosaceae", "Musa   Musaceae Zingiberales Commelinids Angiosperms", "Sorbus Maleae", "Tsuga   Pinaceae", "Fraxinus Oleeae  Oleaceae Lamiales Asterids Angiospems"};;
-	public static List<List<String>> classifications = new ArrayList<>();
-
 	private static void registerOreDictWildcard(String oreDictName, Block block) {
 		OreDictionary.registerOre(oreDictName, new ItemStack(block, 1, OreDictionary.WILDCARD_VALUE));
 	}
@@ -142,7 +138,7 @@ public class ModuleWood extends Module {
 	}
 
 	@Override
-	public void preInit() {
+	public void registerItemsAndBlocks() {
 		MinecraftForge.EVENT_BUS.register(this);
 		WoodAccess woodAccess = WoodAccess.getInstance();
 		registerPlanks();
@@ -372,10 +368,7 @@ public class ModuleWood extends Module {
 		if (BinnieCore.isLepidopteryActive()) {
 			ButterflySpecies.initButterflies();
 		}
-	}
 
-	@Override
-	public void postInit() {
 		RecipeUtil recipeUtil = new RecipeUtil(Constants.EXTRA_TREES_MOD_ID);
 		for (BlockETLog log : logs) {
 			ItemStack logInput = new ItemStack(log, 1, OreDictionary.WILDCARD_VALUE);

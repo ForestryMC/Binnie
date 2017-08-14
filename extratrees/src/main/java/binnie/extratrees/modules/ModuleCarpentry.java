@@ -102,10 +102,6 @@ public class ModuleCarpentry extends Module {
 	}
 
 	@Override
-	public void init() {
-	}
-
-	@Override
 	public void postInit() {
 		for (final EnumDesign design : EnumDesign.values()) {
 			CarpentryManager.carpentryInterface.registerDesign(design.ordinal(), design);
