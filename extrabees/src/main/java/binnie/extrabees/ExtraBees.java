@@ -1,5 +1,6 @@
 package binnie.extrabees;
 
+import binnie.core.api.genetics.IBreedingSystem;
 import binnie.extrabees.genetics.gui.analyst.AnalystPagePlugin;
 import binnie.genetics.api.GeneticsApi;
 import com.google.common.collect.Lists;
@@ -32,7 +33,6 @@ import forestry.core.proxy.Proxies;
 import binnie.core.Binnie;
 import binnie.core.Constants;
 import binnie.extrabees.alveary.TileEntityExtraBeesAlvearyPart;
-import binnie.extrabees.api.ExtraBeesAPI;
 import binnie.extrabees.genetics.BeeBreedingSystem;
 import binnie.extrabees.genetics.ExtraBeeDefinition;
 import binnie.extrabees.genetics.ExtraBeesFlowers;
@@ -64,6 +64,8 @@ public class ExtraBees {
 
 	@SidedProxy(clientSide = "binnie.extrabees.proxy.ExtraBeesClientProxy", serverSide = "binnie.extrabees.proxy.ExtraBeesCommonProxy")
 	public static ExtraBeesCommonProxy proxy;
+
+	public static IBreedingSystem beeBreedingSystem;
 
 	public ExtraBees(){
 		MinecraftForge.EVENT_BUS.register(this);
@@ -101,7 +103,7 @@ public class ExtraBees {
 		Proxies.render.registerModels();
 
 		BeeBreedingSystem beeBreedingSystem = new BeeBreedingSystem();
-		ExtraBeesAPI.beeBreedingSystem = beeBreedingSystem;
+		beeBreedingSystem = beeBreedingSystem;
 		Binnie.GENETICS.registerBreedingSystem(beeBreedingSystem);
 
 		GeneticsApi.registerAnalystPagePlugin(new AnalystPagePlugin());

@@ -9,7 +9,7 @@ import binnie.core.gui.controls.ControlFluidDisplay;
 import binnie.core.util.FluidStackUtil;
 import binnie.core.util.ForestryRecipeUtil;
 import binnie.core.util.TimeUtil;
-import binnie.extrabees.api.ExtraBeesAPI;
+import binnie.extrabees.ExtraBees;
 import forestry.api.apiculture.BeeManager;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
@@ -52,7 +52,7 @@ public class AnalystPageBeeProducts extends AnalystPageProduce {
 		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColor(getColor());
 
 		y += 12;
-		new ControlTextCentered(this, y, TextFormatting.ITALIC + I18N.localise(AnalystConstants.PRODUCTS_KEY + ".rate") + ": " + ExtraBeesAPI.beeBreedingSystem.getAlleleName(EnumBeeChromosome.SPEED, ind.getGenome().getActiveAllele(EnumBeeChromosome.SPEED))).setColor(getColor());
+		new ControlTextCentered(this, y, TextFormatting.ITALIC + I18N.localise(AnalystConstants.PRODUCTS_KEY + ".rate") + ": " + ExtraBees.beeBreedingSystem.getAlleleName(EnumBeeChromosome.SPEED, ind.getGenome().getActiveAllele(EnumBeeChromosome.SPEED))).setColor(getColor());
 
 		y += 20;
 		Collection<ItemStack> refinedProducts = new UniqueItemStackSet();
