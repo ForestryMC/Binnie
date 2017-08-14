@@ -1,16 +1,14 @@
 package binnie.botany;
 
-import binnie.botany.api.genetics.EnumFlowerChromosome;
-import binnie.botany.genetics.TolerancePh;
-import binnie.botany.genetics.gui.analyst.FlowerAnalystPagePlugin;
-import binnie.genetics.api.GeneticsApi;
-import binnie.genetics.api.acclimatiser.IAcclimatiserManager;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
+import binnie.botany.api.genetics.EnumFlowerChromosome;
+import binnie.botany.genetics.TolerancePh;
+import binnie.botany.genetics.gui.analyst.FlowerAnalystPagePlugin;
 import binnie.botany.gui.BotanyGUI;
 import binnie.botany.network.PacketID;
 import binnie.botany.proxy.Proxy;
@@ -21,11 +19,14 @@ import binnie.core.modules.BlankModuleContainer;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.network.IPacketID;
 import binnie.core.proxy.IProxyCore;
+import binnie.genetics.api.GeneticsApi;
+import binnie.genetics.api.acclimatiser.IAcclimatiserManager;
 
 @Mod(
 	modid = Constants.BOTANY_MOD_ID,
 	name = "Binnie's Botany",
 	dependencies = "required-after:" + Constants.CORE_MOD_ID
+			+	   "after:" + Constants.GENETICS_MOD_ID
 )
 public class Botany extends BlankModuleContainer {
 	public static final float AGE_CHANCE = 0.2f;
