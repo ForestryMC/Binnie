@@ -13,6 +13,8 @@ import binnie.core.api.gui.ITexture;
 import binnie.core.api.gui.events.EventHandlerOrigin;
 import binnie.core.gui.geometry.Point;
 import binnie.core.gui.window.WindowMachine;
+import binnie.core.machines.IMachine;
+import binnie.core.machines.MachinePackage;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -79,10 +81,13 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void initialiseClient() {
-		this.setTitle(Machine.getMachine(this.getInventory()).getPackage().getDisplayName());
+		IInventory inventory = this.getInventory();
+		IMachine machine = Machine.getMachine(inventory);
+		MachinePackage machinePackage = machine.getPackage();
+		this.setTitle(machinePackage.getDisplayName());
 		int x = 16;
 		final int y = 32;
-		final ComponentCompartmentInventory inv = Machine.getMachine(this.getInventory()).getInterface(ComponentCompartmentInventory.class);
+		final ComponentCompartmentInventory inv = machine.getInterface(ComponentCompartmentInventory.class);
 		Integer[] tabs1 = new Integer[0];
 		Integer[] tabs2 = new Integer[0];
 		if (inv.getTabNumber() == 4) {

@@ -19,7 +19,7 @@ class ControlMutationItem extends ControlOption<IMutation> {
 		ControlIndividualDisplay resultIndividual = new ControlIndividualDisplay(this, 104, 4);
 		ControlMutationSymbol addSymbol = new ControlMutationSymbol(this, 24, 4, 0);
 		ControlMutationSymbol arrowSymbol = new ControlMutationSymbol(this, 64, 4, 1);
-		final boolean isNEI = ((WindowAbstractDatabase) this.getTopParent()).isNEI();
+		final boolean isNEI = ((WindowAbstractDatabase) this.getTopParent()).isMaster();
 		final IBreedingSystem system = ((WindowAbstractDatabase) this.getTopParent()).getBreedingSystem();
 		if (this.getValue() != null) {
 			final boolean isMutationDiscovered = system.isMutationDiscovered(this.getValue(), Window.get(this).getWorld(), Window.get(this).getUsername());

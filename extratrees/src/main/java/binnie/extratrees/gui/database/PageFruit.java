@@ -38,9 +38,9 @@ public class PageFruit extends PageAbstract<ItemStack> {
 		TreeBreedingSystem breedingSystem = (TreeBreedingSystem) database.getBreedingSystem();
 		final Collection<IAlleleSpecies> trees;
 		if (this.treesThatBearFruit) {
-			trees = breedingSystem.getTreesThatBearFruit(species, database.isNEI(), database.getWorld(), database.getUsername());
+			trees = breedingSystem.getTreesThatBearFruit(species, database.isMaster(), database.getWorld(), database.getUsername());
 		} else {
-			trees = breedingSystem.getTreesThatCanBearFruit(species, database.isNEI(), database.getWorld(), database.getUsername());
+			trees = breedingSystem.getTreesThatCanBearFruit(species, database.isMaster(), database.getWorld(), database.getUsername());
 		}
 		new ControlSpeciesBox(this, 4, 24, this.getSize().xPos() - 8, this.getSize().yPos() - 4 - 24).setOptions(trees);
 	}

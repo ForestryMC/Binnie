@@ -9,14 +9,13 @@ import net.minecraftforge.fml.common.network.IGuiHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.core.AbstractMod;
 import binnie.core.gui.minecraft.Window;
 
 public final class BinnieGUIHandler implements IGuiHandler {
-	private AbstractMod mod;
+	private IBinnieGUID[] guiIds;
 
-	public BinnieGUIHandler(final AbstractMod mod) {
-		this.mod = mod;
+	public BinnieGUIHandler(final IBinnieGUID[] guiIds) {
+		this.guiIds = guiIds;
 	}
 
 	@Override
@@ -46,7 +45,7 @@ public final class BinnieGUIHandler implements IGuiHandler {
 
 	@Nullable
 	public Window getWindow(final int id, final EntityPlayer player, final World world, final int x, final int y, final int z, final Side side) {
-		for (IBinnieGUID guid : this.mod.getGUIDs()) {
+		for (IBinnieGUID guid : guiIds) {
 			if (guid.ordinal() == id) {
 				return guid.getWindow(player, world, x, y, z, side);
 			}

@@ -32,12 +32,10 @@ import binnie.core.network.IPacketID;
 import binnie.core.proxy.IProxyCore;
 import binnie.genetics.core.GeneticsGUI;
 import binnie.genetics.core.GeneticsPacket;
-import binnie.genetics.item.ItemBeeDictionary;
 import binnie.genetics.item.ItemPunnettSquare;
 import binnie.genetics.item.ModuleItems;
 import binnie.genetics.machine.ModuleMachine;
 import binnie.genetics.proxy.Proxy;
-import net.minecraftforge.oredict.OreDictionary;
 
 @Mod(
 	modid = Constants.GENETICS_MOD_ID,
@@ -55,8 +53,6 @@ public class Genetics extends AbstractMod {
 	@Nullable
 	private static ModuleMachine machine;
 
-	private static Item dictionaryBees;
-
 	public static ModuleItems items() {
 		Preconditions.checkState(items != null);
 		return items;
@@ -69,9 +65,7 @@ public class Genetics extends AbstractMod {
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent evt) {
-		dictionaryBees = proxy.registerItem(new ItemBeeDictionary());
 		proxy.registerItem(new ItemPunnettSquare());
-		OreDictionary.registerOre("binnie_database", dictionaryBees);
 		super.preInit(evt);
 
 		GeneticsTexture.dnaIcon = Binnie.RESOURCE.getItemSprite(Genetics.instance, "dna");
@@ -91,19 +85,6 @@ public class Genetics extends AbstractMod {
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent evt) {
 		super.postInit(evt);
-		RecipeManagers.carpenterManager.addRecipe(
-			100,
-			Binnie.LIQUID.getFluidStack(ManagerLiquid.WATER, 2000),
-			ItemStack.EMPTY,
-			new ItemStack(dictionaryBees),
-			"X#X", "YEY", "RDR",
-			'#', Blocks.GLASS_PANE,
-			'X', Items.GOLD_INGOT,
-			'Y', "ingotTin",
-			'R', Items.REDSTONE,
-			'D', Items.DIAMOND,
-			'E', Items.EMERALD
-		);
 	}
 
 	@Override

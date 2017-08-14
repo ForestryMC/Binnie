@@ -46,9 +46,10 @@ public class ItemHiveFrame extends Item implements IHiveFrame, IBeeModifier, IIt
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	@SuppressWarnings("all")
 	public void registerModel(Item item, IModelManager manager) {
-		ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(new ExtraBeesResourceLocation("frames/" + getRegistryName().getResourcePath()), "inventroy"));
+		ExtraBeesResourceLocation location = new ExtraBeesResourceLocation("frames/" + getRegistryName().getResourcePath());
+		ModelResourceLocation inventory = new ModelResourceLocation(location, "inventory");
+		ModelLoader.setCustomModelResourceLocation(item, 0, inventory);
 	}
 
 	@Override

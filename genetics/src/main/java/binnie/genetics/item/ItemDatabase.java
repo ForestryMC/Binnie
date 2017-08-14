@@ -50,7 +50,7 @@ public class ItemDatabase extends ItemCore {
 		ItemStack itemStack = player.getHeldItem(hand);
 		final GeneticsGUI id;
 		if (isMaster(itemStack)) {
-			id = GeneticsGUI.DATABASE_NEI;
+			id = GeneticsGUI.DATABASE_MASTER;
 		} else {
 			id = GeneticsGUI.DATABASE;
 		}

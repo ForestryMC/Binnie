@@ -40,7 +40,7 @@ import binnie.core.gui.window.Panel;
 import binnie.core.util.I18N;
 
 public abstract class WindowAbstractDatabase extends Window {
-	boolean isNEI;
+	private final boolean master;
 	private int selectionBoxWidth;
 	private Map<IDatabaseMode, ModeWidgets> modes;
 	private IBreedingSystem system;
@@ -53,7 +53,7 @@ public abstract class WindowAbstractDatabase extends Window {
 	@Nullable
 	private IAlleleSpecies gotoSpecies;
 
-	public WindowAbstractDatabase(final EntityPlayer player, final Side side, final boolean nei, final IBreedingSystem system, final int wid) {
+	public WindowAbstractDatabase(final EntityPlayer player, final Side side, final boolean master, final IBreedingSystem system, final int wid) {
 		super(100, 192, player, null, side);
 		this.selectionBoxWidth = 95;
 		this.modes = new HashMap<>();
@@ -61,7 +61,7 @@ public abstract class WindowAbstractDatabase extends Window {
 		this.panelSearch = null;
 		this.modePages = null;
 		this.gotoSpecies = null;
-		this.isNEI = nei;
+		this.master = master;
 		this.system = system;
 		this.selectionBoxWidth = wid;
 	}
@@ -74,8 +74,8 @@ public abstract class WindowAbstractDatabase extends Window {
 		return this.modes.get(mode).infoPages;
 	}
 
-	public boolean isNEI() {
-		return this.isNEI;
+	public boolean isMaster() {
+		return this.master;
 	}
 
 	public IBreedingSystem getBreedingSystem() {
@@ -227,7 +227,7 @@ public abstract class WindowAbstractDatabase extends Window {
 		@Override
 		public void createListBox(final IArea area) {
 			final GameProfile playerName = WindowAbstractDatabase.this.getUsername();
-			final Collection<IAlleleSpecies> speciesList = this.database.isNEI ? this.database.system.getAllSpecies() : this.database.system.getDiscoveredSpecies(this.database.getWorld(), playerName);
+			final Collection<IAlleleSpecies> speciesList = this.database.master ? this.database.system.getAllSpecies() : this.database.system.getDiscoveredSpecies(this.database.getWorld(), playerName);
 			ControlSpeciesBox controlSpeciesBox = new ControlSpeciesBox(this.modePage, area.xPos(), area.yPos(), area.width(), area.height());
 			controlSpeciesBox.setOptions(speciesList);
 			this.listBox = controlSpeciesBox;
@@ -244,7 +244,7 @@ public abstract class WindowAbstractDatabase extends Window {
 		public void createListBox(final IArea area) {
 			final EntityPlayer player = this.database.getPlayer();
 			final GameProfile playerName = player.getGameProfile();
-			final Collection<IClassification> speciesList = this.database.isNEI ? this.database.system.getAllBranches() : this.database.system.getDiscoveredBranches(this.database.getWorld(), playerName);
+			final Collection<IClassification> speciesList = this.database.master ? this.database.system.getAllBranches() : this.database.system.getDiscoveredBranches(this.database.getWorld(), playerName);
 			ControlBranchBox controlBranchBox = new ControlBranchBox(this.modePage, area.xPos(), area.yPos(), area.width(), area.height());
 			controlBranchBox.setOptions(speciesList);
 			this.listBox = controlBranchBox;

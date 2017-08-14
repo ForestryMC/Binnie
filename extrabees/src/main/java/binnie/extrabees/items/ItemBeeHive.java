@@ -19,7 +19,6 @@ import binnie.extrabees.blocks.type.EnumHiveType;
 
 public class ItemBeeHive extends ItemBlock implements IItemModelProvider {
 
-	@SuppressWarnings("all")
 	public ItemBeeHive(@Nonnull final Block block) {
 		super(block);
 		setRegistryName(block.getRegistryName());

@@ -63,7 +63,7 @@ public class ControlIndividualDisplay extends ControlItemDisplay implements IToo
 		if (state == EnumDiscoveryState.UNDETERMINED) {
 			state = (system.isSpeciesDiscovered(species, Window.get(this).getWorld(), username) ? EnumDiscoveryState.DISCOVERED : EnumDiscoveryState.UNDISCOVERED);
 		}
-		if (Window.get(this) instanceof WindowAbstractDatabase && ((WindowAbstractDatabase) Window.get(this)).isNEI) {
+		if (Window.get(this) instanceof WindowAbstractDatabase && ((WindowAbstractDatabase) Window.get(this)).isMaster()) {
 			state = EnumDiscoveryState.SHOW;
 		}
 		this.discovered = state;

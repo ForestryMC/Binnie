@@ -32,7 +32,7 @@ public class PageWood extends PageAbstract<ItemStack> {
 		final WindowAbstractDatabase database = Window.get(this);
 		new ControlText(this, new Area(0, 0, this.getSize().xPos(), 24), this.getValue().toString(), TextJustification.MIDDLE_CENTER);
 		TreeBreedingSystem breedingSystem = (TreeBreedingSystem) database.getBreedingSystem();
-		final Collection<IAlleleSpecies> trees = breedingSystem.getTreesThatHaveWood(species, database.isNEI(), database.getWorld(), database.getUsername());
+		final Collection<IAlleleSpecies> trees = breedingSystem.getTreesThatHaveWood(species, database.isMaster(), database.getWorld(), database.getUsername());
 		new ControlSpeciesBox(this, 4, 24, this.getSize().xPos() - 8, this.getSize().yPos() - 4 - 24).setOptions(trees);
 	}
 }

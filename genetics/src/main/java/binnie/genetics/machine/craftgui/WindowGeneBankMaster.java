@@ -5,8 +5,8 @@ import net.minecraft.inventory.IInventory;
 
 import net.minecraftforge.fml.relauncher.Side;
 
-public class WindowGeneBankNEI extends WindowGeneBank {
-	public WindowGeneBankNEI(final EntityPlayer player, final IInventory inventory, final Side side) {
+public class WindowGeneBankMaster extends WindowGeneBank {
+	public WindowGeneBankMaster(final EntityPlayer player, final IInventory inventory, final Side side) {
 		super(player, inventory, side, true);
 	}
 }

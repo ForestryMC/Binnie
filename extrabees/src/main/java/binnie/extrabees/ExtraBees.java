@@ -1,7 +1,10 @@
 package binnie.extrabees;
 
 import binnie.core.api.genetics.IBreedingSystem;
+import binnie.core.gui.BinnieGUIHandler;
+import binnie.core.liquid.ManagerLiquid;
 import binnie.extrabees.genetics.gui.analyst.AnalystPagePlugin;
+import binnie.extrabees.gui.ExtraBeesGUID;
 import binnie.genetics.api.GeneticsApi;
 import com.google.common.collect.Lists;
 
@@ -9,18 +12,26 @@ import java.io.File;
 import java.lang.reflect.Method;
 import java.util.List;
 
+import forestry.api.recipes.RecipeManagers;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import forestry.api.apiculture.BeeManager;
@@ -83,9 +94,9 @@ public class ExtraBees {
 	public static ItemHoneyCrystal honeyCrystal;
 	public static Item dictionary;
 	public static ItemMiscProduct itemMisc;
+	public static Item dictionaryBees;
 
 	@Mod.EventHandler
-	@SuppressWarnings("all")
 	public void preInit(final FMLPreInitializationEvent event) {
 		materialBeehive = new MaterialBeehive();
 		File configFile = new File(event.getModConfigurationDirectory(), "forestry/extrabees/main.conf");
@@ -102,8 +113,9 @@ public class ExtraBees {
 		}
 		Proxies.render.registerModels();
 
-		BeeBreedingSystem beeBreedingSystem = new BeeBreedingSystem();
-		beeBreedingSystem = beeBreedingSystem;
+		NetworkRegistry.INSTANCE.registerGuiHandler(this, new BinnieGUIHandler(ExtraBeesGUID.values()));
+
+		beeBreedingSystem = new BeeBreedingSystem();
 		Binnie.GENETICS.registerBreedingSystem(beeBreedingSystem);
 
 		GeneticsApi.registerAnalystPagePlugin(new AnalystPagePlugin());
@@ -127,6 +139,19 @@ public class ExtraBees {
 		RecipeRegister.postInitRecipes();
 		//Register mutations
 		AlvearyMutationHandler.registerMutationItems();
+		RecipeManagers.carpenterManager.addRecipe(
+				100,
+				Binnie.LIQUID.getFluidStack(ManagerLiquid.WATER, 2000),
+				ItemStack.EMPTY,
+				new ItemStack(dictionaryBees),
+				"X#X", "YEY", "RDR",
+				'#', Blocks.GLASS_PANE,
+				'X', Items.GOLD_INGOT,
+				'Y', "ingotTin",
+				'R', Items.REDSTONE,
+				'D', Items.DIAMOND,
+				'E', Items.EMERALD
+		);
 	}
 	
 	@SubscribeEvent
@@ -135,5 +160,18 @@ public class ExtraBees {
 			return;
 		}
 		ExtraBeeDefinition.doPreInit();
+	}
+
+	@SubscribeEvent
+	public void onMissingItem(RegistryEvent.MissingMappings<Item> event) {
+		for (RegistryEvent.MissingMappings.Mapping<Item> entry : event.getAllMappings()) {
+			if (entry.key.toString().equals("genetics:dictionary")) {
+				ResourceLocation newTotem = new ResourceLocation("extrabees:dictionary");
+				Item value = ForgeRegistries.ITEMS.getValue(newTotem);
+				if (value != null) {
+					entry.remap(value);
+				}
+			}
+		}
 	}
 }

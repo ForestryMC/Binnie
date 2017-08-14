@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import binnie.core.api.genetics.IBreedingSystem;
 import com.mojang.authlib.GameProfile;
 
 import net.minecraftforge.fml.relauncher.Side;
@@ -39,7 +40,8 @@ public class ControlSpeciesBox extends ControlListBox<IAlleleSpecies> {
 			//final EntityPlayer player = Window.get(this).getPlayer();
 			final GameProfile playerName = Window.get(this).getUsername();
 			final WindowAbstractDatabase db = Window.get(this);
-			final Collection<IAlleleSpecies> speciesList3 = db.isNEI ? db.getBreedingSystem().getAllSpecies() : db.getBreedingSystem().getDiscoveredSpecies(db.getWorld(), playerName);
+			IBreedingSystem breedingSystem = db.getBreedingSystem();
+			final Collection<IAlleleSpecies> speciesList3 = db.isMaster() ? breedingSystem.getAllSpecies() : breedingSystem.getDiscoveredSpecies(db.getWorld(), playerName);
 			if (branch != null) {
 				for (final IAlleleSpecies species : branch.getMemberSpecies()) {
 					if (speciesList3.contains(species)) {

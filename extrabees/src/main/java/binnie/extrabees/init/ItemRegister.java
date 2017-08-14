@@ -1,5 +1,7 @@
 package binnie.extrabees.init;
 
+import binnie.extrabees.items.ItemBeeDictionary;
+import binnie.genetics.item.ItemPunnettSquare;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemBlock;
 
@@ -27,14 +29,14 @@ public final class ItemRegister {
 		registerOreDict();
 	}
 
-	@SuppressWarnings("all")
 	private static void registerMisc() {
 		ItemBlockAlveary itemAlveary = new ItemBlockAlveary(ExtraBees.alveary);
 		ItemBeeHive itemBeeHive = new ItemBeeHive(ExtraBees.hive);
 		ItemBlock ectoplasm = new ItemBlock(ExtraBees.ectoplasm);
 		ectoplasm.setRegistryName(ExtraBees.ectoplasm.getRegistryName());
 		ItemMiscProduct itemMisc = ExtraBees.itemMisc = new ItemMiscProduct(Tabs.tabApiculture, ExtraBeeItems.values());
-		
+		ExtraBees.dictionaryBees = new ItemBeeDictionary();
+
 		ExtraBees.proxy.registerItem(ectoplasm);
 		ExtraBees.proxy.registerModel(ectoplasm, 0);
 		ExtraBees.proxy.registerItem(itemAlveary);
@@ -43,6 +45,7 @@ public final class ItemRegister {
 		for (final EnumHiveFrame frame : EnumHiveFrame.values()) {
 			ExtraBees.proxy.registerItem(frame.getItem());
 		}
+		ExtraBees.proxy.registerItem(ExtraBees.dictionaryBees);
 	}
 
 	private static void registerProducts() {
@@ -76,5 +79,7 @@ public final class ItemRegister {
 		OreDictionary.registerOre("dyeBrown", ExtraBeeItems.BROWN_DYE.get(1));
 
 		OreDictionary.registerOre("gearWood", ExtraBeeItems.SCENTED_GEAR.get(1));
+
+		OreDictionary.registerOre("binnie_database", ExtraBees.dictionaryBees);
 	}
 }

@@ -49,7 +49,7 @@ class ControlMutationSymbol extends Control implements ITooltip {
 
 	public void setValue(final IMutation value) {
 		this.value = value;
-		final boolean isNEI = ((WindowAbstractDatabase) this.getTopParent()).isNEI();
+		final boolean isNEI = ((WindowAbstractDatabase) this.getTopParent()).isMaster();
 		final IBreedingSystem system = ((WindowAbstractDatabase) this.getTopParent()).getBreedingSystem();
 		this.discovered = (isNEI || system.isMutationDiscovered(value, Window.get(this).getWorld(), Window.get(this).getUsername()));
 		if (this.discovered) {

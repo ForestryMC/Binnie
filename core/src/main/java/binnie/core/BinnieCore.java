@@ -173,7 +173,7 @@ public final class BinnieCore extends AbstractMod {
 	public void init(final FMLInitializationEvent evt) {
 		super.init(evt);
 		for (final AbstractMod mod : getActiveMods()) {
-			NetworkRegistry.INSTANCE.registerGuiHandler(mod.getMod(), new BinnieGUIHandler(mod));
+			NetworkRegistry.INSTANCE.registerGuiHandler(mod.getMod(), new BinnieGUIHandler(mod.getGUIDs()));
 		}
 		GameRegistry.registerTileEntity(TileEntityMetadata.class, "binnie.tile.metadata");
 	}

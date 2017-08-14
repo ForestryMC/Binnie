@@ -15,7 +15,6 @@ import forestry.core.genetics.alleles.EnumAllele;
 import binnie.extrabees.genetics.effect.ExtraBeesEffect;
 import binnie.core.genetics.AlleleHelper;
 
-@SuppressWarnings("Duplicates")
 public enum ExtraBeeBranchDefinition implements IBranchDefinition {
 	BARREN("Vacapis") {
 		@Override

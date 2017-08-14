@@ -8,8 +8,10 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -79,27 +81,24 @@ public class PageSpeciesTreeGenome extends PageSpecies {
 		new ControlText(contents, new Area(0, y, w2, th), I18N.localise("binniecore.gui.temperature.short") + " : ", TextJustification.MIDDLE_RIGHT);
 		new ControlText(contents, new Area(w2, y, w3, th), treeSpecies.getTemperature().getName(), TextJustification.MIDDLE_LEFT);
 		y += th;
-		TextureMap map = Minecraft.getMinecraft().getTextureMapBlocks();
+		Minecraft minecraft = Minecraft.getMinecraft();
+		World world = minecraft.world;
+		TextureMap map = minecraft.getTextureMapBlocks();
 		ILeafSpriteProvider spriteProvider = treeSpecies.getLeafSpriteProvider();
 		TextureAtlasSprite leaf = map.getAtlasSprite(spriteProvider.getSprite(false, false).toString());
 		int leafColour = spriteProvider.getColor(false);
-		TextureAtlasSprite fruit = null;
-		int fruitColour = 16777215;
+		new ControlText(contents, new Area(0, y, w2, th2), I18N.localise("extratrees.gui.database.leaves") + " : ", TextJustification.MIDDLE_RIGHT);
+		new ControlBlockIconDisplay(contents, w2, y, leaf).setColor(leafColour);
+
 		IFruitProvider fruitProvider = genome.getFruitProvider();
-		try {
-			fruit = map.getAtlasSprite(fruitProvider.getSprite(genome, null, BlockPos.ORIGIN, 100).toString());
-			fruitColour = fruitProvider.getColour(genome, null, BlockPos.ORIGIN, 100);
-		} catch (Exception ex) {
-			ex.printStackTrace();
+		ResourceLocation fruitSprite = fruitProvider.getSprite(genome, world, BlockPos.ORIGIN, 100);
+		if (fruitSprite != null && !treeSpecies.getUID().equals("forestry.treeOak")) {
+			TextureAtlasSprite fruit = map.getAtlasSprite(fruitSprite.toString());
+			int fruitColour = fruitProvider.getColour(genome, world, BlockPos.ORIGIN, 100);
+			new ControlBlockIconDisplay(contents, w2, y, fruit).setColor(fruitColour);
 		}
-		if (leaf != null) {
-			new ControlText(contents, new Area(0, y, w2, th2), I18N.localise("extratrees.gui.database.leaves") + " : ", TextJustification.MIDDLE_RIGHT);
-			new ControlBlockIconDisplay(contents, w2, y, leaf).setColor(leafColour);
-			if (fruit != null && !treeSpecies.getUID().equals("forestry.treeOak")) {
-				new ControlBlockIconDisplay(contents, w2, y, fruit).setColor(fruitColour);
-			}
-			y += th2;
-		}
+
+		y += th2;
 		Map<ItemStack, Float> products = fruitProvider.getProducts();
 		ItemStack log = treeSpecies.getWoodProvider().getWoodStack();
 		if (log.isEmpty()) {

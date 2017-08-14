@@ -1,0 +1,9 @@
+@ParametersAreNonnullByDefault
+@MethodsReturnNonnullByDefault
+@FieldsAreNonnullByDefault
+package binnie.extrabees.gui;
+
+import javax.annotation.ParametersAreNonnullByDefault;
+
+import binnie.extrabees.utils.FieldsAreNonnullByDefault;
+import mcp.MethodsReturnNonnullByDefault;

@@ -1,9 +1,11 @@
-package binnie.genetics.item;
+package binnie.extrabees.items;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 
+import binnie.extrabees.ExtraBees;
+import binnie.extrabees.gui.ExtraBeesGUID;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
@@ -13,6 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import net.minecraftforge.client.model.ModelLoader;
@@ -23,9 +26,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
 import forestry.api.core.Tabs;
-
-import binnie.genetics.Genetics;
-import binnie.genetics.core.GeneticsGUI;
 
 public class ItemBeeDictionary extends Item implements IItemModelRegister {
 
@@ -57,13 +57,14 @@ public class ItemBeeDictionary extends Item implements IItemModelRegister {
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 		final ItemStack itemStack = playerIn.getHeldItem(handIn);
-		final GeneticsGUI id;
+		final ExtraBeesGUID id;
 		if (itemStack.getItemDamage() == 0) {
-			id = GeneticsGUI.BEE_DATABASE;
+			id = ExtraBeesGUID.DATABASE;
 		} else {
-			id = GeneticsGUI.BEE_DATABASE_NEI;
+			id = ExtraBeesGUID.DATABASE_MASTER;
 		}
-		Genetics.proxy.openGui(id, playerIn, playerIn.getPosition());
+		BlockPos pos = playerIn.getPosition();
+		playerIn.openGui(ExtraBees.instance, id.ordinal(), worldIn, pos.getX(), pos.getY(), pos.getZ());
 
 		return super.onItemRightClick(worldIn, playerIn, handIn);
 	}

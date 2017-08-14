@@ -13,12 +13,11 @@ import net.minecraftforge.fml.relauncher.Side;
 import binnie.core.gui.IBinnieGUID;
 import binnie.core.gui.minecraft.Window;
 import binnie.genetics.gui.analyst.WindowAnalyst;
-import binnie.genetics.gui.database.bee.WindowApiaristDatabase;
 import binnie.genetics.gui.punnett.WindowPunnettSquare;
 import binnie.genetics.machine.acclimatiser.WindowAcclimatiser;
 import binnie.genetics.machine.analyser.WindowAnalyser;
 import binnie.genetics.machine.craftgui.WindowGeneBank;
-import binnie.genetics.machine.craftgui.WindowGeneBankNEI;
+import binnie.genetics.machine.craftgui.WindowGeneBankMaster;
 import binnie.genetics.machine.genepool.WindowGenepool;
 import binnie.genetics.machine.incubator.WindowIncubator;
 import binnie.genetics.machine.inoculator.WindowInoculator;
@@ -37,14 +36,12 @@ public enum GeneticsGUI implements IBinnieGUID {
 	ANALYSER(WindowAnalyser::new),
 	INCUBATOR(WindowIncubator::new),
 	DATABASE(WindowGeneBank::new),
-	DATABASE_NEI(WindowGeneBankNEI::new),
+	DATABASE_MASTER(WindowGeneBankMaster::new),
 	ACCLIMATISER(WindowAcclimatiser::new),
 	SPLICER(WindowSplicer::new),
 	ANALYST(WindowAnalyst.create(false, false)),
 	REGISTRY(WindowAnalyst.create(true, false)),
 	MASTER_REGISTRY(WindowAnalyst.create(true, true)),
-	BEE_DATABASE((player, inventory, side) -> WindowApiaristDatabase.create(player, side, false)),
-	BEE_DATABASE_NEI((player, inventory, side) -> WindowApiaristDatabase.create(player, side, true)),
 	PUNNETT_SQUARE(WindowPunnettSquare::create);
 
 	private final WindowFactory windowFactory;
