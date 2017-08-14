@@ -3,7 +3,4 @@ archivesBaseName = 'genetics-' + mcversion
 dependencies {
 	compile project(":core")
 	compile project(":genetics-api")
-
-	// TODO: remove these, they should add on to genetics instead
-	compile project(":botany-api")
 }

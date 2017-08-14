@@ -2,6 +2,7 @@ package binnie.genetics.machine.acclimatiser;
 
 import java.util.Random;
 
+import binnie.genetics.api.acclimatiser.IToleranceType;
 import net.minecraft.item.ItemStack;
 
 import forestry.api.genetics.AlleleManager;
@@ -16,20 +17,20 @@ import binnie.core.genetics.Tolerance;
 import binnie.genetics.machine.inoculator.Inoculator;
 
 class ToleranceSystem {
-	String uid;
-	IChromosomeType chromosomeOrdinal;
-	ToleranceType type;
+	private final String speciesRootUid;
+	private final IChromosomeType chromosomeType;
+	private final IToleranceType type;
 
-	ToleranceSystem(final String uid, final IChromosomeType chromosomeOrdinal, final ToleranceType type) {
-		this.uid = uid;
-		this.chromosomeOrdinal = chromosomeOrdinal;
+	ToleranceSystem(final IChromosomeType chromosomeType, final IToleranceType type) {
+		this.speciesRootUid = chromosomeType.getSpeciesRoot().getUID();
+		this.chromosomeType = chromosomeType;
 		this.type = type;
 	}
 
 	public boolean canAlter(final ItemStack stack, final ItemStack acclim) {
 		final IIndividual member = AlleleManager.alleleRegistry.getIndividual(stack);
 		final IGenome genome = member.getGenome();
-		final IAlleleTolerance tolAllele = (IAlleleTolerance) genome.getActiveAllele(this.chromosomeOrdinal);
+		final IAlleleTolerance tolAllele = (IAlleleTolerance) genome.getActiveAllele(this.chromosomeType);
 		final Tolerance tol = Tolerance.get(tolAllele.getValue());
 		final float effect = this.type.getEffect(acclim);
 		return (effect > 0.0f && tol.getBounds()[1] < 5) || (effect < 0.0f && tol.getBounds()[0] > -5);
@@ -43,14 +44,22 @@ class ToleranceSystem {
 		}
 		final IIndividual member = AlleleManager.alleleRegistry.getIndividual(stack);
 		final IGenome genome = member.getGenome();
-		final IAlleleTolerance tolAllele = (IAlleleTolerance) genome.getActiveAllele(this.chromosomeOrdinal);
+		final IAlleleTolerance tolAllele = (IAlleleTolerance) genome.getActiveAllele(this.chromosomeType);
 		final Tolerance tol = Tolerance.get(tolAllele.getValue());
 		final Tolerance newTol = Acclimatiser.alterTolerance(tol, effect);
 		if (rand.nextFloat() > 1.0f / (-newTol.getBounds()[0] + newTol.getBounds()[1])) {
 			return stack;
 		}
 		final ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(stack);
-		Inoculator.setGene(new Gene(newTol.getAllele(), this.chromosomeOrdinal, root), stack, rand.nextInt(2));
+		Inoculator.setGene(new Gene(newTol.getAllele(), this.chromosomeType, root), stack, rand.nextInt(2));
 		return stack;
+	}
+
+	public String getSpeciesRootUid() {
+		return speciesRootUid;
+	}
+
+	public IToleranceType getType() {
+		return type;
 	}
 }

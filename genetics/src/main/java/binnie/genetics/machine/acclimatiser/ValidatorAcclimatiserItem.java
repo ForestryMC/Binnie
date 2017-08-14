@@ -1,5 +1,6 @@
 package binnie.genetics.machine.acclimatiser;
 
+import binnie.genetics.api.acclimatiser.IToleranceType;
 import net.minecraft.item.ItemStack;
 
 import binnie.core.machines.inventory.SlotValidator;
@@ -12,7 +13,7 @@ public class ValidatorAcclimatiserItem extends SlotValidator {
 
 	@Override
 	public boolean isValid(final ItemStack stack) {
-		for (final ToleranceType type : ToleranceType.values()) {
+		for (final IToleranceType type : Acclimatiser.getToleranceTypes()) {
 			if (type.hasEffect(stack)) {
 				return true;
 			}

@@ -5,11 +5,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
+import binnie.genetics.api.acclimatiser.IAcclimatiserManager;
 import forestry.api.genetics.IIndividual;
 
 public class GeneticsApi {
 	private static Collection<IAnalystPagePlugin> analystPagePlugins = new ArrayList<>();
 	private static Collection<IProducePlugin> producePlugins = new ArrayList<>();
+
+	public static IAcclimatiserManager acclimatiserManager;
 
 	public static void registerAnalystPagePlugin(IAnalystPagePlugin<?> analystPageFactory) {
 		analystPagePlugins.add(analystPageFactory);

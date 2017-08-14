@@ -3,15 +3,11 @@ package binnie.genetics;
 import binnie.genetics.api.GeneticsApi;
 import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.gui.analyst.GeneticsProducePlugin;
+import binnie.genetics.machine.acclimatiser.AcclimatiserManager;
 import binnie.genetics.machine.sequencer.Sequencer;
 import com.google.common.base.Preconditions;
 
 import javax.annotation.Nullable;
-
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -19,14 +15,11 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-import forestry.api.recipes.RecipeManagers;
-
 import binnie.core.Binnie;
 import binnie.core.Constants;
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
 import binnie.core.gui.IBinnieGUID;
-import binnie.core.liquid.ManagerLiquid;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.network.IPacketID;
 import binnie.core.proxy.IProxyCore;
@@ -74,6 +67,7 @@ public class Genetics extends AbstractMod {
 		Sequencer.fxSeqT = Binnie.RESOURCE.getBlockSprite(Genetics.instance, "fx/sequencer.t");
 		Sequencer.fxSeqC = Binnie.RESOURCE.getBlockSprite(Genetics.instance, "fx/sequencer.c");
 
+		GeneticsApi.acclimatiserManager = new AcclimatiserManager();
 		GeneticsApi.registerProducePlugin(new GeneticsProducePlugin());
 	}
 

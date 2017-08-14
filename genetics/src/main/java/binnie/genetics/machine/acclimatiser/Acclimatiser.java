@@ -7,9 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import binnie.botany.api.BotanyAPI;
-import forestry.api.apiculture.BeeManager;
-import forestry.api.lepidopterology.ButterflyManager;
+import binnie.genetics.api.acclimatiser.IToleranceType;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -23,13 +21,9 @@ import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.ISpeciesRoot;
 import forestry.api.lepidopterology.EnumButterflyChromosome;
 
-import binnie.core.Constants;
-import binnie.botany.api.genetics.EnumFlowerChromosome;
-import binnie.core.modules.BotanyModuleUIDs;
 import binnie.core.BinnieCore;
 import binnie.core.genetics.Tolerance;
 import binnie.core.liquid.FluidContainerType;
-import binnie.core.modules.ModuleManager;
 
 public class Acclimatiser {
 	public static final int[] SLOT_RESERVE = new int[]{0, 1, 2, 3};
@@ -37,6 +31,7 @@ public class Acclimatiser {
 	public static final int[] SLOT_ACCLIMATISER = new int[]{5, 6, 7};
 	public static final int[] SLOT_DRONE = new int[]{8, 9, 10, 11};
 	private static List<ToleranceSystem> toleranceSystems = new ArrayList<>();
+	private static List<IToleranceType> toleranceTypes = new ArrayList<>();
 	private static Map<ItemStack, Float> temperatureItems = new HashMap<>();
 	private static Map<ItemStack, Float> humidityItems = new HashMap<>();
 
@@ -45,7 +40,7 @@ public class Acclimatiser {
 		final ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(stack);
 		if (root != null) {
 			for (final ToleranceSystem system : Acclimatiser.toleranceSystems) {
-				if (Objects.equals(root.getUID(), system.uid) && system.type.hasEffect(acclim)) {
+				if (Objects.equals(root.getUID(), system.getSpeciesRootUid()) && system.getType().hasEffect(acclim)) {
 					return system;
 				}
 			}
@@ -53,8 +48,13 @@ public class Acclimatiser {
 		return null;
 	}
 
-	public static void addTolerance(final String uid, final IChromosomeType chromosome, final ToleranceType type) {
-		Acclimatiser.toleranceSystems.add(new ToleranceSystem(uid, chromosome, type));
+	public static void addTolerance(IChromosomeType chromosome, IToleranceType type) {
+		Acclimatiser.toleranceSystems.add(new ToleranceSystem(chromosome, type));
+		Acclimatiser.toleranceTypes.add(type);
+	}
+
+	public static List<IToleranceType> getToleranceTypes() {
+		return toleranceTypes;
 	}
 
 	public static float getTemperatureEffect(final ItemStack item) {
@@ -91,17 +91,12 @@ public class Acclimatiser {
 
 	public static void setupRecipes() {
 		if (BinnieCore.isApicultureActive()) {
-			addTolerance(BeeManager.beeRoot.getUID(), EnumBeeChromosome.HUMIDITY_TOLERANCE, ToleranceType.Humidity);
-			addTolerance(BeeManager.beeRoot.getUID(), EnumBeeChromosome.TEMPERATURE_TOLERANCE, ToleranceType.Temperature);
+			addTolerance(EnumBeeChromosome.HUMIDITY_TOLERANCE, ToleranceType.Humidity);
+			addTolerance(EnumBeeChromosome.TEMPERATURE_TOLERANCE, ToleranceType.Temperature);
 		}
 		if (BinnieCore.isLepidopteryActive()) {
-			addTolerance(ButterflyManager.butterflyRoot.getUID(), EnumButterflyChromosome.HUMIDITY_TOLERANCE, ToleranceType.Humidity);
-			addTolerance(ButterflyManager.butterflyRoot.getUID(), EnumButterflyChromosome.TEMPERATURE_TOLERANCE, ToleranceType.Temperature);
-		}
-		if (ModuleManager.isModuleEnabled(Constants.BOTANY_MOD_ID, BotanyModuleUIDs.FLOWERS)) {
-			addTolerance(BotanyAPI.flowerRoot.getUID(), EnumFlowerChromosome.HUMIDITY_TOLERANCE, ToleranceType.Humidity);
-			addTolerance(BotanyAPI.flowerRoot.getUID(), EnumFlowerChromosome.TEMPERATURE_TOLERANCE, ToleranceType.Temperature);
-			addTolerance(BotanyAPI.flowerRoot.getUID(), EnumFlowerChromosome.PH_TOLERANCE, ToleranceType.PH);
+			addTolerance(EnumButterflyChromosome.HUMIDITY_TOLERANCE, ToleranceType.Humidity);
+			addTolerance(EnumButterflyChromosome.TEMPERATURE_TOLERANCE, ToleranceType.Temperature);
 		}
 		addTemperatureItem(new ItemStack(Items.BLAZE_POWDER), 0.5f);
 		addTemperatureItem(new ItemStack(Items.BLAZE_ROD), 0.75f);

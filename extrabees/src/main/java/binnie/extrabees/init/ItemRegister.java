@@ -1,7 +1,6 @@
 package binnie.extrabees.init;
 
 import binnie.extrabees.items.ItemBeeDictionary;
-import binnie.genetics.item.ItemPunnettSquare;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemBlock;
 
