@@ -57,7 +57,7 @@ public enum ForestryPlanks implements IPlankType, IFenceProvider {
 		this.woodType = woodType;
 	}
 
-	private String getPlankTextureName() {
+	public String getPlankTextureName() {
 		return "forestry:blocks/wood/planks." + name().toLowerCase();
 	}
 

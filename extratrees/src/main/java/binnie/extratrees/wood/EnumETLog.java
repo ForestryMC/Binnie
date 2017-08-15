@@ -139,7 +139,7 @@ public enum EnumETLog implements IWoodType {
 
 	@Override
 	public String getPlankTexture() {
-		return Constants.EXTRA_TREES_MOD_ID + ":blocks/planks/" + name();
+		return plank.getPlankTextureName();
 	}
 
 	public IPlankType getPlank() {

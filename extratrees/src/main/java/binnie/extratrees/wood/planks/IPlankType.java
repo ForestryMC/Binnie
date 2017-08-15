@@ -15,6 +15,8 @@ public interface IPlankType extends IDesignMaterial {
 
 	IWoodType getWoodType();
 
+	String getPlankTextureName();
+
 	@SideOnly(Side.CLIENT)
 	TextureAtlasSprite getSprite();
 

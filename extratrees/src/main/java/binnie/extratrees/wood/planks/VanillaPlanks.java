@@ -43,7 +43,7 @@ public enum VanillaPlanks implements IPlankType {
 		return I18N.localise("extratrees.block.planks.vanilla." + this.toString().toLowerCase() + ".desc");
 	}
 
-	private String getPlankTextureName() {
+	public String getPlankTextureName() {
 		return "minecraft:blocks/planks_" + name().toLowerCase();
 	}
 

@@ -123,7 +123,7 @@ public enum ExtraTreePlanks implements IPlankType, IFenceProvider, IStringSerial
 		return I18N.localise("extratrees.block.planks." + this.toString().toLowerCase());
 	}
 
-	private String getPlankTextureName() {
+	public String getPlankTextureName() {
 		return Constants.EXTRA_TREES_MOD_ID + ":blocks/planks/" + name();
 	}
 
