@@ -1,4 +1,4 @@
-package binnie.extratrees.genetics;
+package binnie.extratrees.genetics.fruits;
 
 import java.util.Locale;
 
@@ -20,6 +20,7 @@ public enum FruitSprite {
 	PEAR;
 
 	public static final FruitSprite[] VALUES = values();
+	protected boolean isRegistered = false;
 	private final ResourceLocation location;
 
 	FruitSprite() {
@@ -32,7 +33,10 @@ public enum FruitSprite {
 
 	@SideOnly(Side.CLIENT)
 	public void registerSprites() {
-		TextureMap map = Minecraft.getMinecraft().getTextureMapBlocks();
-		map.registerSprite(location);
+		if(!isRegistered) {
+			TextureMap map = Minecraft.getMinecraft().getTextureMapBlocks();
+			map.registerSprite(location);
+			isRegistered = true;
+		}
 	}
 }

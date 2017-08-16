@@ -85,11 +85,11 @@ import binnie.extratrees.blocks.wood.BlockShrubLog;
 import binnie.extratrees.blocks.wood.ItemBlockETWood;
 import binnie.extratrees.blocks.wood.ItemBlockETWoodDoor;
 import binnie.extratrees.blocks.wood.ItemETSlab;
-import binnie.extratrees.genetics.AlleleETFruit;
+import binnie.extratrees.genetics.AlleleETFruitDefinition;
 import binnie.extratrees.genetics.ButterflySpecies;
 import binnie.extratrees.genetics.ETTreeDefinition;
 import binnie.extratrees.genetics.ExtraTreeMutation;
-import binnie.extratrees.genetics.FruitSprite;
+import binnie.extratrees.genetics.fruits.FruitSprite;
 import binnie.extratrees.genetics.TreeBreedingSystem;
 import binnie.extratrees.items.ExtraTreeLiquid;
 import binnie.extratrees.items.ItemBlockETDecorativeLeaves;
@@ -362,7 +362,7 @@ public class ModuleWood extends Module {
 	
 	@Override
 	public void init() {
-		AlleleETFruit.init();
+		AlleleETFruitDefinition.init();
 		ETTreeDefinition.initTrees();
 		ExtraTreeMutation.init();
 		if (BinnieCore.isLepidopteryActive()) {
@@ -495,7 +495,7 @@ public class ModuleWood extends Module {
 	@SubscribeEvent
 	public static void onRegisterAllele(AlleleRegisterEvent<IAlleleFruit> event) {
 		if (event.getAlleleClass() == IAlleleFruit.class) {
-			AlleleETFruit.preInit();
+			AlleleETFruitDefinition.preInit();
 		}
 	}
 

@@ -1,10 +1,10 @@
-package binnie.extratrees.genetics;
+package binnie.extratrees.genetics.fruits;
 
 import forestry.api.genetics.IFruitFamily;
 
 public enum ETFruitFamily implements IFruitFamily {
-	Berry("Berries", "berry", "berri"),
-	Citrus("Citrus", "citrus", "citrus");
+	BERRY("Berries", "berry", "berri"),
+	CITRUS("Citrus", "citrus", "citrus");
 
 	String name;
 	String uid;

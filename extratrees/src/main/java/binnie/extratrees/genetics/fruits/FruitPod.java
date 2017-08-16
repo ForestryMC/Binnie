@@ -1,4 +1,4 @@
-package binnie.extratrees.wood;
+package binnie.extratrees.genetics.fruits;
 
 import java.util.Locale;
 

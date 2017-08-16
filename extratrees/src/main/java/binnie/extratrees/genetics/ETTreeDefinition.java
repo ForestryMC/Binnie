@@ -2,6 +2,7 @@ package binnie.extratrees.genetics;
 
 import com.google.common.base.Preconditions;
 
+import javax.annotation.Nullable;
 import java.awt.Color;
 import java.util.Arrays;
 import java.util.Locale;
@@ -55,8 +56,6 @@ import forestry.core.tiles.TileUtil;
 
 import binnie.core.Constants;
 import binnie.core.genetics.ForestryAllele;
-import binnie.extratrees.wood.EnumETLog;
-import binnie.extratrees.wood.EnumShrubLog;
 import binnie.extratrees.gen.WorldGenAlder;
 import binnie.extratrees.gen.WorldGenApple;
 import binnie.extratrees.gen.WorldGenAsh;
@@ -78,8 +77,9 @@ import binnie.extratrees.gen.WorldGenTree2;
 import binnie.extratrees.gen.WorldGenTree3;
 import binnie.extratrees.gen.WorldGenTropical;
 import binnie.extratrees.gen.WorldGenWalnut;
-
-import javax.annotation.Nullable;
+import binnie.extratrees.genetics.fruits.ETFruitFamily;
+import binnie.extratrees.wood.EnumETLog;
+import binnie.extratrees.wood.EnumShrubLog;
 
 public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, ITreeGenerator {
 	OrchardApple("malus", "domestica", EnumLeafType.DECIDUOUS, new Color(0x09E67E), new Color(0xFF9CF3), EnumSaplingType.Default, EnumETLog.Apple, new Color(0x7B7A7B)) {
@@ -90,7 +90,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.Apple);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Apple.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.Higher.getAllele());
 		}
 
@@ -98,7 +98,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ETFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
 	},
 	SweetCrabapple("malus", "coronaria", EnumLeafType.DECIDUOUS, new Color(0x7A9953), new Color(0xFC359F), EnumSaplingType.Default, EnumETLog.Apple, new Color(0x7B7A7B)) {
@@ -109,7 +109,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.Crabapple);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Crabapple.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.High.getAllele());
 			template.set(EnumTreeChromosome.SAPPINESS, ForestryAllele.Sappiness.Average.getAllele());
 			template.set(EnumTreeChromosome.MATURATION, ForestryAllele.Maturation.Fast.getAllele());
@@ -119,7 +119,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ETFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
 	},
 	FloweringCrabapple("malus", "hopa", EnumLeafType.DECIDUOUS, new Color(0x7A9953), new Color(0xFC359F), EnumSaplingType.Default, EnumETLog.Apple, new Color(0x7B7A7B)) {
@@ -130,7 +130,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.Crabapple);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Crabapple.getAllele());
 			template.set(EnumTreeChromosome.FERTILITY, ForestryAllele.Saplings.Average.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.Average.getAllele());
 			template.set(EnumTreeChromosome.SAPPINESS, ForestryAllele.Sappiness.Low.getAllele());
@@ -141,7 +141,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ETFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
 	},
 	PrairieCrabapple("malus", "ioensis", EnumLeafType.DECIDUOUS, new Color(0x7A9953), new Color(0xFC359F), EnumSaplingType.Default, EnumETLog.Apple, new Color(0x7B7A7B)) {
@@ -152,7 +152,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.Crabapple);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Crabapple.getAllele());
 			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Smallest.getAllele());
 			template.set(EnumTreeChromosome.FERTILITY, ForestryAllele.Saplings.Low.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.Average.getAllele());
@@ -163,7 +163,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ETFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
 	},
 	Blackthorn("prunus", "spinosa", EnumLeafType.DECIDUOUS, new Color(0x6D8F1E), new Color(0xFF87C7), EnumSaplingType.Fruit, EnumForestryWoodType.PLUM, new Color(0xB68661)) {
@@ -174,7 +174,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.Blackthorn);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Blackthorn.getAllele());
 			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Smallest.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.Low.getAllele());
 			template.set(EnumTreeChromosome.SAPPINESS, ForestryAllele.Sappiness.Average.getAllele());
@@ -185,7 +185,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ETFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
 	},
 	CherryPlum("prunus", "cerasifera", EnumLeafType.DECIDUOUS, new Color(0x6D8F1E), new Color(0xFF87C7), EnumSaplingType.Fruit, EnumForestryWoodType.PLUM, new Color(0xB68661)) {
@@ -196,7 +196,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.CherryPlum);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.CherryPlum.getAllele());
 			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Smallest.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.Lower.getAllele());
 			template.set(EnumTreeChromosome.SAPPINESS, ForestryAllele.Sappiness.Average.getAllele());
@@ -207,7 +207,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ETFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
 	},
 	Peach("prunus", "persica", EnumLeafType.DECIDUOUS, new Color(0x6D8F1E), new Color(0xFF269A), EnumSaplingType.Fruit, EnumForestryWoodType.PLUM, new Color(0xB68661)) {
@@ -218,7 +218,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.Peach);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Peach.getAllele());
 			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Smallest.getAllele());
 			template.set(EnumTreeChromosome.FERTILITY, ForestryAllele.Saplings.Low.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.Average.getAllele());
@@ -229,7 +229,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ETFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
 	},
 	Nectarine("prunus", "nectarina", EnumLeafType.DECIDUOUS, new Color(0x6D8F1E), new Color(0xFF269A), EnumSaplingType.Fruit, EnumForestryWoodType.PLUM, new Color(0xB68661)) {
@@ -240,7 +240,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.Nectarine);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Nectarine.getAllele());
 			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Smallest.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.Average.getAllele());
 			template.set(EnumTreeChromosome.SAPPINESS, ForestryAllele.Sappiness.Average.getAllele());
@@ -250,7 +250,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ETFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
 	},
 	Apricot("prunus", "armeniaca", EnumLeafType.DECIDUOUS, new Color(0x6D8F1E), new Color(0xF5B8D8), EnumSaplingType.Fruit, EnumForestryWoodType.PLUM, new Color(0xB68661)) {
@@ -261,7 +261,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.Apricot);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Apricot.getAllele());
 			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Smallest.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.Low.getAllele());
 			template.set(EnumTreeChromosome.SAPPINESS, ForestryAllele.Sappiness.Average.getAllele());
@@ -271,7 +271,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ETFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
 	},
 	Almond("prunus", "amygdalus", EnumLeafType.DECIDUOUS, new Color(0x6D8F1E), new Color(0xF584C0), EnumSaplingType.Fruit, EnumForestryWoodType.PLUM, new Color(0xB68661)) {
@@ -282,7 +282,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.Almond);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Almond.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.Lower.getAllele());
 			template.set(EnumTreeChromosome.SAPPINESS, ForestryAllele.Sappiness.Lower.getAllele());
 			template.set(EnumTreeChromosome.MATURATION, ForestryAllele.Maturation.Fast.getAllele());
@@ -292,7 +292,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ETFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
 	},
 	WildCherry("prunus", "avium", EnumLeafType.DECIDUOUS, new Color(0x6D8F1E), new Color(0xF7EBF6), EnumSaplingType.Fruit, EnumETLog.Cherry, new Color(0x716850)) {
@@ -303,7 +303,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.WildCherry);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.WildCherry.getAllele());
 			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Smallest.getAllele());
 			template.set(EnumTreeChromosome.FERTILITY, ForestryAllele.Saplings.Low.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.Lower.getAllele());
@@ -315,7 +315,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ETFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.CITRUS);
 			species.setTemperature(EnumTemperature.NORMAL);
 			species.setRarity(0.0015F);
 		}
@@ -328,7 +328,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.SourCherry);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.SourCherry.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.Lower.getAllele());
 			template.set(EnumTreeChromosome.SAPPINESS, ForestryAllele.Sappiness.Low.getAllele());
 		}
@@ -337,7 +337,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ETFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
 	},
 	BlackCherry("prunus", "serotina", EnumLeafType.DECIDUOUS, new Color(0x6D8F1E), new Color(0xFAE1F8), EnumSaplingType.Fruit, EnumETLog.Cherry, new Color(0x716850)) {
@@ -348,7 +348,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.BlackCherry);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.BlackCherry.getAllele());
 			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Smallest.getAllele());
 			template.set(EnumTreeChromosome.FERTILITY, ForestryAllele.Saplings.Lowest.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.Average.getAllele());
@@ -360,7 +360,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ETFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
 	},
 	Orange("citrus", "sinensis", EnumLeafType.JUNGLE, new Color(0x88AF54), new Color(0xA3B850), EnumSaplingType.Fruit, EnumForestryWoodType.CITRUS, new Color(0x5B4B39)) {
@@ -371,7 +371,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.Orange);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Orange.getAllele());
 			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Smallest.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.Average.getAllele());
 			template.set(EnumTreeChromosome.SAPPINESS, ForestryAllele.Sappiness.Average.getAllele());
@@ -382,7 +382,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ETFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
 	},
 	Manderin("citrus", "reticulata", EnumLeafType.JUNGLE, new Color(0x88AF54), new Color(0xA3B850), EnumSaplingType.Fruit, EnumForestryWoodType.CITRUS, new Color(0x5B4B39)) {
@@ -393,7 +393,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.Manderin);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Manderin.getAllele());
 			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Smallest.getAllele());
 			template.set(EnumTreeChromosome.FERTILITY, ForestryAllele.Saplings.Low.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.High.getAllele());
@@ -404,7 +404,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ETFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
 	},
 	Satsuma("citrus", "unshiu", EnumLeafType.JUNGLE, new Color(0x88AF54), new Color(0xA3B850), EnumSaplingType.Fruit, EnumForestryWoodType.CITRUS, new Color(0x5B4B39)) {
@@ -415,7 +415,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.Satsuma);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Satsuma.getAllele());
 			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Smallest.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.Low.getAllele());
 			template.set(EnumTreeChromosome.SAPPINESS, ForestryAllele.Sappiness.Low.getAllele());
@@ -426,7 +426,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ETFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
 	},
 	Tangerine("citrus", "tangerina", EnumLeafType.JUNGLE, new Color(0x88AF54), new Color(0xA3B850), EnumSaplingType.Fruit, EnumForestryWoodType.CITRUS, new Color(0x5B4B39)) {
@@ -437,7 +437,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.Tangerine);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Tangerine.getAllele());
 			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Smallest.getAllele());
 			template.set(EnumTreeChromosome.FERTILITY, ForestryAllele.Saplings.Low.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.Average.getAllele());
@@ -449,7 +449,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ETFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
 	},
 	Lime("citrus", "latifolia", EnumLeafType.JUNGLE, new Color(0x88AF54), new Color(0xA3B850), EnumSaplingType.Fruit, EnumForestryWoodType.CITRUS, new Color(0x5B4B39)) {
@@ -460,7 +460,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.Lime);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Lime.getAllele());
 			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Smallest.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.Average.getAllele());
 			template.set(EnumTreeChromosome.SAPPINESS, ForestryAllele.Sappiness.Low.getAllele());
@@ -470,7 +470,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ETFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
 	},
 	KeyLime("citrus", "aurantifolia", EnumLeafType.JUNGLE, new Color(0x88AF54), new Color(0xA3B850), EnumSaplingType.Fruit, EnumForestryWoodType.CITRUS, new Color(0x5B4B39)) {
@@ -481,7 +481,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.KeyLime);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.KeyLime.getAllele());
 			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Smallest.getAllele());
 			template.set(EnumTreeChromosome.FERTILITY, ForestryAllele.Saplings.Lowest.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.Average.getAllele());
@@ -493,7 +493,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ETFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
 	},
 	FingerLime("citrus", "australasica", EnumLeafType.JUNGLE, new Color(0x88AF54), new Color(0xA3B850), EnumSaplingType.Fruit, EnumForestryWoodType.CITRUS, new Color(0x5B4B39)) {
@@ -504,7 +504,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.FingerLime);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.FingerLime.getAllele());
 			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Smallest.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.High.getAllele());
 			template.set(EnumTreeChromosome.SAPPINESS, ForestryAllele.Sappiness.Low.getAllele());
@@ -515,7 +515,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ETFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
 	},
 	Pomelo("citrus", "maxima", EnumLeafType.JUNGLE, new Color(0x88AF54), new Color(0xA3B850), EnumSaplingType.Fruit, EnumForestryWoodType.CITRUS, new Color(0x5B4B39)) {
@@ -526,7 +526,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.Pomelo);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Pomelo.getAllele());
 			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Smallest.getAllele());
 			template.set(EnumTreeChromosome.FERTILITY, ForestryAllele.Saplings.Low.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.Average.getAllele());
@@ -537,7 +537,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ETFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
 	},
 	Grapefruit("citrus", "paradisi", EnumLeafType.JUNGLE, new Color(0x88AF54), new Color(0xA3B850), EnumSaplingType.Fruit, EnumForestryWoodType.CITRUS, new Color(0x5B4B39)) {
@@ -548,7 +548,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.Grapefruit);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Grapefruit.getAllele());
 			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Smallest.getAllele());
 			template.set(EnumTreeChromosome.FERTILITY, ForestryAllele.Saplings.Low.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.Average.getAllele());
@@ -560,7 +560,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ETFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
 	},
 	Kumquat("citrus", "margarita", EnumLeafType.JUNGLE, new Color(0x88AF54), new Color(0xA3B850), EnumSaplingType.Fruit, EnumForestryWoodType.CITRUS, new Color(0x5B4B39)) {
@@ -571,7 +571,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.Kumquat);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Kumquat.getAllele());
 			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Smallest.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.High.getAllele());
 			template.set(EnumTreeChromosome.SAPPINESS, ForestryAllele.Sappiness.Low.getAllele());
@@ -581,7 +581,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ETFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
 	},
 	Citron("citrus", "medica", EnumLeafType.JUNGLE, new Color(0x88AF54), new Color(0xA3B850), EnumSaplingType.Fruit, EnumForestryWoodType.CITRUS, new Color(0x5B4B39)) {
@@ -592,7 +592,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.Citron);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Citron.getAllele());
 			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Smallest.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.High.getAllele());
 			template.set(EnumTreeChromosome.SAPPINESS, ForestryAllele.Sappiness.Average.getAllele());
@@ -602,7 +602,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ETFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
 	},
 	BuddhaHand("citrus", "sarcodactylus", EnumLeafType.JUNGLE, new Color(0x88AF54), new Color(0xA3B850), EnumSaplingType.Fruit, EnumForestryWoodType.CITRUS, new Color(0x5B4B39)) {
@@ -613,7 +613,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.BuddhaHand);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.BuddhaHand.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.Average.getAllele());
 			template.set(EnumTreeChromosome.SAPPINESS, ForestryAllele.Sappiness.Low.getAllele());
 		}
@@ -622,7 +622,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ETFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
 	},
 	Banana("musa", "sinensis", EnumLeafType.PALM, new Color(0xA1CD8E), new Color(0x44E500), EnumSaplingType.Default, EnumETLog.Banana, new Color(0x85924F)) {
@@ -633,7 +633,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.Banana);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Banana.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.Low.getAllele());
 			template.set(EnumTreeChromosome.SAPPINESS, ForestryAllele.Sappiness.Low.getAllele());
 			template.set(EnumTreeChromosome.MATURATION, ForestryAllele.Maturation.Fast.getAllele());
@@ -653,7 +653,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.RedBanana);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.RedBanana.getAllele());
 		}
 
 		@Override
@@ -670,7 +670,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.Plantain);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Plantain.getAllele());
 			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Average.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.Lower.getAllele());
 		}
@@ -689,7 +689,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.Butternut);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Butternut.getAllele());
 			template.set(EnumTreeChromosome.GIRTH, ForestryAllele.Int.Int2.getAllele());
 			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Smaller.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.Low.getAllele());
@@ -700,7 +700,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
-			species.addFruitFamily(ETFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
 	},
 	Rowan("sorbus", "aucuparia", EnumLeafType.DECIDUOUS, new Color(0x9EC79B), new Color(0x9EE8B2), EnumSaplingType.Default, EnumETLog.Rowan, new Color(0xB6B09B)) {
@@ -719,7 +719,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		@Override
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
-			species.addFruitFamily(ETFruitFamily.Berry);
+			species.addFruitFamily(ETFruitFamily.BERRY);
 		}
 	},
 	Hemlock("tsuga", "heterophylla", EnumLeafType.CONIFERS, new Color(0x5CAC72), new Color(0x5CD172), EnumSaplingType.Default, EnumETLog.Hemlock, new Color(0xADA39B)) {
@@ -753,7 +753,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
-			species.addFruitFamily(ETFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
 	},
 	Alder("alnus", "glutinosa", EnumLeafType.DECIDUOUS, new Color(0x698A33), new Color(0x69AE33), EnumSaplingType.Default, EnumETLog.Alder, new Color(0xC6C0B8)) {
@@ -783,7 +783,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.Beechnut);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Beechnut.getAllele());
 			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Average.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.Lower.getAllele());
 		}
@@ -802,7 +802,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.Beechnut);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Beechnut.getAllele());
 			template.set(EnumTreeChromosome.MATURATION, ForestryAllele.Maturation.Slow.getAllele());
 		}
 
@@ -878,7 +878,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.Hazelnut);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Hazelnut.getAllele());
 			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Average.getAllele());
 			template.set(EnumTreeChromosome.FERTILITY, ForestryAllele.Saplings.Low.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.Low.getAllele());
@@ -899,7 +899,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.Fig);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Fig.getAllele());
 			template.set(EnumTreeChromosome.FERTILITY, ForestryAllele.Saplings.Lowest.getAllele());
 			template.set(EnumTreeChromosome.SAPPINESS, ForestryAllele.Sappiness.Lower.getAllele());
 		}
@@ -908,7 +908,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
-			species.addFruitFamily(ETFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
 	},
 	Whitebeam("sorbus", "aria", EnumLeafType.DECIDUOUS, new Color(0xBACE99), new Color(0x72863F), EnumSaplingType.Default, EnumETLog.Whitebeam, new Color(0x786A6D)) {
@@ -953,7 +953,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.Pecan);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Pecan.getAllele());
 			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Large.getAllele());
 			template.set(EnumTreeChromosome.SAPPINESS, ForestryAllele.Sappiness.Lower.getAllele());
 			template.set(EnumTreeChromosome.MATURATION, ForestryAllele.Maturation.Slow.getAllele());
@@ -964,7 +964,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
-			species.addFruitFamily(ETFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
 	},
 	Elm("ulmus", "procera", EnumLeafType.DECIDUOUS, new Color(0x7C9048), new Color(0x7CBE48), EnumSaplingType.Default, EnumETLog.Elm, new Color(0x848386)) {
@@ -994,7 +994,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.Elderberry);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Elderberry.getAllele());
 			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Smaller.getAllele());
 			template.set(EnumTreeChromosome.SAPPINESS, ForestryAllele.Sappiness.Low.getAllele());
 		}
@@ -1003,8 +1003,8 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
-			species.addFruitFamily(ETFruitFamily.Berry);
-			species.addFruitFamily(ETFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.BERRY);
+			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
 	},
 	Holly("ilex", "aquifolium", EnumLeafType.DECIDUOUS, new Color(0x254B4C), new Color(0x6E9284), EnumSaplingType.Default, EnumETLog.Holly, new Color(0xB5AA85)) {
@@ -1023,7 +1023,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ETFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
 	},
 	Hornbeam("carpinus", "betulus", EnumLeafType.DECIDUOUS, new Color(0x96A71B), new Color(0x96DD1B), EnumSaplingType.Default, EnumETLog.Hornbeam, new Color(0xA39276)) {
@@ -1062,7 +1062,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ETFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
 	},
 	AcornOak("quercus", "robur", EnumLeafType.DECIDUOUS, new Color(0x66733E), new Color(0x9EA231), EnumSaplingType.Default, EnumVanillaWoodType.OAK, new Color(0x614D30)) {
@@ -1073,7 +1073,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.Acorn);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Acorn.getAllele());
 			template.set(EnumTreeChromosome.GIRTH, ForestryAllele.Int.Int2.getAllele());
 			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Large.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.Low.getAllele());
@@ -1122,7 +1122,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.Olive);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Olive.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.Average.getAllele());
 		}
 
@@ -1130,7 +1130,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
-			species.addFruitFamily(ETFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
 	},
 	RedMaple("acer", "ubrum", EnumLeafType.MAPLE, new Color(0xE82E17), new Color(0xE82E17), EnumSaplingType.Default, EnumForestryWoodType.MAPLE, new Color(0x8A8781)) {
@@ -1149,7 +1149,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ETFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
 	},
 	BalsamFir("abies", "balsamea", EnumLeafType.CONIFERS, new Color(0x74A07C), new Color(0x74A07C), EnumSaplingType.Default, EnumETLog.Fir, new Color(0x828382)) {
@@ -1212,7 +1212,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
-			species.addFruitFamily(ETFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
 	},
 	Pear("pyrus", "communis", EnumLeafType.DECIDUOUS, new Color(0x5E8826), new Color(0x5E8826), EnumSaplingType.Default, EnumETLog.Pear, new Color(0xA89779)) {
@@ -1223,7 +1223,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.Pear);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Pear.getAllele());
 			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Smaller.getAllele());
 			template.set(EnumTreeChromosome.FERTILITY, ForestryAllele.Saplings.Low.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.High.getAllele());
@@ -1235,7 +1235,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ETFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
 	},
 	OsangeOrange("maclura", "pomifera", EnumLeafType.JUNGLE, new Color(0x687A50), new Color(0x687A50), EnumSaplingType.Default, EnumETLog.Maclura, new Color(0x8B5734)) {
@@ -1246,7 +1246,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.OsangeOsange);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.OsangeOsange.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.Lower.getAllele());
 		}
 
@@ -1255,7 +1255,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.jungle"));
-			species.addFruitFamily(ETFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
 	},
 	OldFustic("maclura", "tinctoria", EnumLeafType.JUNGLE, new Color(0x687A50), new Color(0x687A50), EnumSaplingType.Default, EnumETLog.Maclura, new Color(0x8B5734)) {
@@ -1372,7 +1372,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.GingkoNut);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.GingkoNut.getAllele());
 			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Large.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.Lower.getAllele());
 			template.set(EnumTreeChromosome.SAPPINESS, ForestryAllele.Sappiness.Low.getAllele());
@@ -1392,7 +1392,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.BrazilNut);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.BrazilNut.getAllele());
 			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Larger.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.Low.getAllele());
 			template.set(EnumTreeChromosome.SAPPINESS, ForestryAllele.Sappiness.Low.getAllele());
@@ -1460,7 +1460,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
-			species.addFruitFamily(ETFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
 	},
 	Clove("syzygium", "aromaticum", EnumLeafType.DECIDUOUS, new Color(0x7A821F), new Color(0x7A821F), EnumSaplingType.Default, EnumETLog.Syzgium, new Color(0xAB6F57)) {
@@ -1471,7 +1471,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.Clove);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Clove.getAllele());
 			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Smaller.getAllele());
 			template.set(EnumTreeChromosome.FERTILITY, ForestryAllele.Saplings.Low.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.High.getAllele());
@@ -1493,7 +1493,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.Coffee);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Coffee.getAllele());
 			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Large.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.Average.getAllele());
 			template.set(EnumTreeChromosome.MATURATION, ForestryAllele.Maturation.Fast.getAllele());
@@ -1568,7 +1568,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.Blackcurrant);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Blackcurrant.getAllele());
 			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Smallest.getAllele());
 			template.set(EnumTreeChromosome.FERTILITY, ForestryAllele.Saplings.Low.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.Average.getAllele());
@@ -1580,7 +1580,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
-			species.addFruitFamily(ETFruitFamily.Berry);
+			species.addFruitFamily(ETFruitFamily.BERRY);
 			species.setRarity(0.0025F);
 			species.setGrowthProvider(new ClimateGrowthProvider(EnumTemperature.NORMAL, EnumTolerance.BOTH_1, EnumHumidity.NORMAL, EnumTolerance.NONE));
 		}
@@ -1593,7 +1593,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.Redcurrant);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Redcurrant.getAllele());
 			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Smallest.getAllele());
 			template.set(EnumTreeChromosome.FERTILITY, ForestryAllele.Saplings.Average.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.Average.getAllele());
@@ -1605,7 +1605,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
-			species.addFruitFamily(ETFruitFamily.Berry);
+			species.addFruitFamily(ETFruitFamily.BERRY);
 			species.setRarity(0.0025F);
 			species.setGrowthProvider(new ClimateGrowthProvider(EnumTemperature.NORMAL, EnumTolerance.BOTH_1, EnumHumidity.NORMAL, EnumTolerance.NONE));
 		}
@@ -1618,7 +1618,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.Blackberry);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Blackberry.getAllele());
 			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Smallest.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.High.getAllele());
 			template.set(EnumTreeChromosome.SAPPINESS, ForestryAllele.Sappiness.Lower.getAllele());
@@ -1629,7 +1629,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
-			species.addFruitFamily(ETFruitFamily.Berry);
+			species.addFruitFamily(ETFruitFamily.BERRY);
 		}
 	},
 	Raspberry("rubus", "idaeus", EnumLeafType.DECIDUOUS, new Color(0x83B96E), new Color(0x83B96E), EnumSaplingType.Shrub, EnumShrubLog.INSTANCE, new Color(0xFFFFFF)) {
@@ -1640,7 +1640,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.Raspberry);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Raspberry.getAllele());
 			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Smallest.getAllele());
 			template.set(EnumTreeChromosome.FERTILITY, ForestryAllele.Saplings.Low.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.Average.getAllele());
@@ -1652,7 +1652,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
-			species.addFruitFamily(ETFruitFamily.Berry);
+			species.addFruitFamily(ETFruitFamily.BERRY);
 			species.setRarity(0.0025F);
 			species.setGrowthProvider(new ClimateGrowthProvider(EnumTemperature.NORMAL, EnumTolerance.BOTH_1, EnumHumidity.NORMAL, EnumTolerance.NONE));
 		}
@@ -1665,7 +1665,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.Blueberry);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Blueberry.getAllele());
 			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Smallest.getAllele());
 			template.set(EnumTreeChromosome.FERTILITY, ForestryAllele.Saplings.Average.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.Average.getAllele());
@@ -1677,7 +1677,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
-			species.addFruitFamily(ETFruitFamily.Berry);
+			species.addFruitFamily(ETFruitFamily.BERRY);
 			species.setRarity(0.0025F);
 			species.setGrowthProvider(new ClimateGrowthProvider(EnumTemperature.NORMAL, EnumTolerance.BOTH_1, EnumHumidity.NORMAL, EnumTolerance.NONE));
 		}
@@ -1690,7 +1690,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.Cranberry);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Cranberry.getAllele());
 			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Smallest.getAllele());
 			template.set(EnumTreeChromosome.FERTILITY, ForestryAllele.Saplings.Average.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.High.getAllele());
@@ -1702,7 +1702,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
-			species.addFruitFamily(ETFruitFamily.Berry);
+			species.addFruitFamily(ETFruitFamily.BERRY);
 			species.setRarity(0.0025F);
 			species.setGrowthProvider(new ClimateGrowthProvider(EnumTemperature.NORMAL, EnumTolerance.BOTH_1, EnumHumidity.NORMAL, EnumTolerance.NONE));
 		}
@@ -1715,7 +1715,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.Juniper);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Juniper.getAllele());
 			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Smallest.getAllele());
 			template.set(EnumTreeChromosome.FERTILITY, ForestryAllele.Saplings.Low.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.Low.getAllele());
@@ -1727,7 +1727,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
-			species.addFruitFamily(ETFruitFamily.Berry);
+			species.addFruitFamily(ETFruitFamily.BERRY);
 			species.setRarity(0.0025F);
 			species.setGrowthProvider(new ClimateGrowthProvider(EnumTemperature.NORMAL, EnumTolerance.BOTH_1, EnumHumidity.NORMAL, EnumTolerance.NONE));
 		}
@@ -1740,7 +1740,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.Gooseberry);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Gooseberry.getAllele());
 			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Smallest.getAllele());
 			template.set(EnumTreeChromosome.FERTILITY, ForestryAllele.Saplings.High.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.High.getAllele());
@@ -1751,7 +1751,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
-			species.addFruitFamily(ETFruitFamily.Berry);
+			species.addFruitFamily(ETFruitFamily.BERRY);
 		}
 	},
 	GoldenRaspberry("rubus", "occidentalis", EnumLeafType.DECIDUOUS, new Color(0x83B96E), new Color(0x83B96E), EnumSaplingType.Shrub, EnumShrubLog.INSTANCE, new Color(0xFFFFFF)) {
@@ -1762,7 +1762,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.GoldenRaspberry);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.GoldenRaspberry.getAllele());
 			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Smaller.getAllele());
 			template.set(EnumTreeChromosome.FERTILITY, ForestryAllele.Saplings.Low.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.Average.getAllele());
@@ -1774,7 +1774,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
-			species.addFruitFamily(ETFruitFamily.Berry);
+			species.addFruitFamily(ETFruitFamily.BERRY);
 			species.setRarity(0.0025F);
 			species.setGrowthProvider(new ClimateGrowthProvider(EnumTemperature.NORMAL, EnumTolerance.BOTH_1, EnumHumidity.NORMAL, EnumTolerance.NONE));
 		}
@@ -1806,7 +1806,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.Coconut);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Coconut.getAllele());
 			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Smaller.getAllele());
 			template.set(EnumTreeChromosome.FERTILITY, ForestryAllele.Saplings.Low.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.Average.getAllele());
@@ -1826,7 +1826,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.Cashew);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Cashew.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.Low.getAllele());
 		}
 
@@ -1844,7 +1844,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.Avacado);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Avacado.getAllele());
 			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Smallest.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.Average.getAllele());
 		}
@@ -1853,7 +1853,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.jungle"));
-			species.addFruitFamily(ETFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
 	},
 	Nutmeg("myristica", "fragrans", EnumLeafType.JUNGLE, new Color(0x488D4C), new Color(0x488D4C), EnumSaplingType.Default, EnumVanillaWoodType.JUNGLE, new Color(0x53411A)) {
@@ -1864,7 +1864,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.Nutmeg);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Nutmeg.getAllele());
 			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Smaller.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.High.getAllele());
 			template.set(EnumTreeChromosome.SAPPINESS, ForestryAllele.Sappiness.Low.getAllele());
@@ -1884,7 +1884,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.Allspice);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Allspice.getAllele());
 			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Smallest.getAllele());
 			template.set(EnumTreeChromosome.FERTILITY, ForestryAllele.Saplings.Low.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.High.getAllele());
@@ -1904,7 +1904,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.Chilli);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Chilli.getAllele());
 			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Smaller.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.Higher.getAllele());
 			template.set(EnumTreeChromosome.SAPPINESS, ForestryAllele.Sappiness.Lower.getAllele());
@@ -1925,7 +1925,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.StarAnise);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.StarAnise.getAllele());
 			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Average.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.High.getAllele());
 		}
@@ -1944,7 +1944,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.Mango);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Mango.getAllele());
 			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Smaller.getAllele());
 			template.set(EnumTreeChromosome.FERTILITY, ForestryAllele.Saplings.Low.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.Average.getAllele());
@@ -1957,7 +1957,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.jungle"));
-			species.addFruitFamily(ETFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
 	},
 	Starfruit("averrhoa", "carambola", EnumLeafType.JUNGLE, new Color(0x6DA92D), new Color(0x6DA92D), EnumSaplingType.Default, EnumVanillaWoodType.JUNGLE, new Color(0x53411A)) {
@@ -1968,7 +1968,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.Starfruit);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Starfruit.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.Average.getAllele());
 			template.set(EnumTreeChromosome.MATURATION, ForestryAllele.Maturation.Fast.getAllele());
 		}
@@ -1977,7 +1977,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.jungle"));
-			species.addFruitFamily(ETFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
 	},
 	Candlenut("aleurites", "moluccana", EnumLeafType.DECIDUOUS, new Color(0x8AA36C), new Color(0x8AA36C), EnumSaplingType.Default, EnumVanillaWoodType.JUNGLE, new Color(0x53411A)) {
@@ -1988,7 +1988,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.Candlenut);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Candlenut.getAllele());
 			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Smallest.getAllele());
 			template.set(EnumTreeChromosome.FERTILITY, ForestryAllele.Saplings.Lowest.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.Low.getAllele());
@@ -2009,7 +2009,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.Hazelnut);
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Hazelnut.getAllele());
 			template.set(EnumTreeChromosome.FERTILITY, ForestryAllele.Saplings.Average.getAllele());
 			template.set(EnumTreeChromosome.SAPPINESS, ForestryAllele.Sappiness.Lower.getAllele());
 			template.set(EnumTreeChromosome.MATURATION, ForestryAllele.Maturation.Faster.getAllele());

@@ -397,6 +397,69 @@ extratrees.species.candlenut.name=Candlenut
 extratrees.species.dwarfhazel.name=Dwarf Hazel
 
 ##################################################
+## Fruits
+
+extratrees.fruits.blackthorn=Blackthorn
+extratrees.fruits.cherry_plum=Cherry Plum
+extratrees.fruits.peach=Peach
+extratrees.fruits.nectarine=Nectarine
+extratrees.fruits.apricot=Apricot
+extratrees.fruits.almond=Almond
+extratrees.fruits.wild_cherry=Wild Cherry
+extratrees.fruits.sour_cherry=Sour Cherry
+extratrees.fruits.black_cherry=Black Cherry
+extratrees.fruits.fig=Fig
+extratrees.fruits.elderberry=Elderberry
+extratrees.fruits.olive=Olive
+extratrees.fruits.orange=Orange
+extratrees.fruits.manderin=Manderin
+extratrees.fruits.tangerine=Tangerine
+extratrees.fruits.satsuma=Satsuma
+extratrees.fruits.key_lime=Key Lime
+extratrees.fruits.lime=Lime
+extratrees.fruits.finger_lime=Finger Lime
+extratrees.fruits.pomelo=Pomelo
+extratrees.fruits.grapefruit=Grapefruit
+extratrees.fruits.kumquat=Kumquat
+extratrees.fruits.citron=Citron
+extratrees.fruits.buddha_hand=Buddha Hand
+extratrees.fruits.apple=Apple
+extratrees.fruits.crabapple=Crabapple
+extratrees.fruits.mango=Mango
+extratrees.fruits.pear=Pear
+extratrees.fruits.osange_osange=Osange Osange
+extratrees.fruits.banana=Banana
+extratrees.fruits.red_banana=Red Banana
+extratrees.fruits.platain=Platain
+extratrees.fruits.coffee=Coffee
+extratrees.fruits.coconut=Coconut
+extratrees.fruits.cashew=Cashew
+extratrees.fruits.avacado=Avacado
+extratrees.fruits.nutmeg=Nutmeg
+extratrees.fruits.allspice=Allspice
+extratrees.fruits.chilli=Chilli
+extratrees.fruits.star_anise=Star Anise
+extratrees.fruits.starfruit=Starfruit
+extratrees.fruits.candlenut=Candlenut
+extratrees.fruits.hazelnut=Hazelnut
+extratrees.fruits.butternut=Butternut
+extratrees.fruits.beechnut=Beechnut
+extratrees.fruits.pecan=Pecan
+extratrees.fruits.brazil_nut=Brazil Nut
+extratrees.fruits.acorn=Acorn
+extratrees.fruits.gingko_nut=Gingko Nut
+extratrees.fruits.clove=Clove
+extratrees.fruits.blackcurrant=Blackcurrant
+extratrees.fruits.redcurrant=Redcurrant
+extratrees.fruits.blackberry=Blackberry
+extratrees.fruits.raspberry=Raspberry
+extratrees.fruits.blueberry=Blueberry
+extratrees.fruits.cranberry=Cranberry
+extratrees.fruits.juniper=Juniper
+extratrees.fruits.gooseberry=Gooseberry
+extratrees.fruits.golden_raspberry=Golden Raspberry
+
+##################################################
 ## Butterfly Species
 
 extrabutterflies.species.whiteadmiral.name=White Admiral
