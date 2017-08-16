@@ -3,6 +3,9 @@ package binnie.genetics.gui.analyst;
 import java.util.Objects;
 
 import binnie.core.api.gui.IArea;
+import binnie.core.api.gui.ITitledWidget;
+import binnie.core.gui.controls.core.Control;
+import binnie.genetics.api.analyst.AnalystConstants;
 import net.minecraft.util.text.TextFormatting;
 
 import net.minecraftforge.fml.relauncher.Side;
@@ -21,7 +24,7 @@ import binnie.core.gui.geometry.TextJustification;
 import binnie.core.util.I18N;
 
 @SideOnly(Side.CLIENT)
-public class AnalystPageDescription extends ControlAnalystPage {
+public class AnalystPageDescription extends Control implements ITitledWidget {
 	public AnalystPageDescription(IWidget parent, IArea area, IIndividual ind) {
 		super(parent, area);
 		setColor(3355443);

@@ -23,7 +23,7 @@ public class SequencerRecipeCategory implements IRecipeCategory<SequencerRecipeW
 
 	@Override
 	public String getModName() {
-		return Genetics.instance.getModID();
+		return Genetics.instance.getModId();
 	}
 
 	@Override

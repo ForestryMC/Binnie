@@ -13,7 +13,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.core.AbstractMod;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.api.CarpentryManager;
 import binnie.extratrees.api.IDesignMaterial;
@@ -167,14 +166,14 @@ public enum DesignSystem implements IDesignSystem {
 	public void registerSprites() {
 		TextureMap textureMap = Minecraft.getMinecraft().getTextureMapBlocks();
 		for (final EnumPattern pattern : EnumPattern.values()) {
-			ResourceLocation primaryLocation = new ResourceLocation(getMod().getModID(), "blocks/" + getTexturePath() + "/" + pattern.toString().toLowerCase() + ".0");
-			ResourceLocation secondaryLocation = new ResourceLocation(getMod().getModID(), "blocks/" + getTexturePath() + "/" + pattern.toString().toLowerCase() + ".1");
+			ResourceLocation primaryLocation = new ResourceLocation(getModId(), "blocks/" + getTexturePath() + "/" + pattern.toString().toLowerCase() + ".0");
+			ResourceLocation secondaryLocation = new ResourceLocation(getModId(), "blocks/" + getTexturePath() + "/" + pattern.toString().toLowerCase() + ".1");
 			this.primary.put(pattern.ordinal(), textureMap.registerSprite(primaryLocation));
 			this.secondary.put(pattern.ordinal(), textureMap.registerSprite(secondaryLocation));
 		}
 	}
 
-	public AbstractMod getMod() {
-		return ExtraTrees.instance;
+	public String getModId() {
+		return ExtraTrees.instance.getModId();
 	}
 }

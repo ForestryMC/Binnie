@@ -10,7 +10,6 @@ import net.minecraft.inventory.IInventory;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.core.AbstractMod;
 import binnie.core.gui.controls.ControlText;
 import binnie.core.gui.controls.ControlTextEdit;
 import binnie.core.gui.controls.scroll.ControlScrollableContent;
@@ -68,8 +67,8 @@ public class WindowDesigner extends Window {
 	}
 
 	@Override
-	protected AbstractMod getMod() {
-		return ExtraTrees.instance;
+	protected String getModId() {
+		return ExtraTrees.instance.getModId();
 	}
 
 	@Override

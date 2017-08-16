@@ -10,7 +10,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import forestry.api.genetics.ISpeciesRoot;
 
-import binnie.core.AbstractMod;
 import binnie.core.Binnie;
 import binnie.core.Constants;
 import binnie.core.gui.CraftGUI;
@@ -41,8 +40,8 @@ public class WindowPunnettSquare extends Window {
 	}
 
 	@Override
-	public AbstractMod getMod() {
-		return Genetics.instance;
+	public String getModId() {
+		return Genetics.instance.getModId();
 	}
 
 	@Override

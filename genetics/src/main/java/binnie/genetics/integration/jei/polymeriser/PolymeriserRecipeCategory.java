@@ -27,7 +27,7 @@ public class PolymeriserRecipeCategory implements IRecipeCategory<PolymeriserRec
 
 	@Override
 	public String getModName() {
-		return Genetics.instance.getModID();
+		return Genetics.instance.getModId();
 	}
 
 	@Override

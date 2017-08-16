@@ -18,7 +18,6 @@ import com.mojang.authlib.GameProfile;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.core.AbstractMod;
 import binnie.core.Binnie;
 import binnie.core.BinnieCore;
 import binnie.core.gui.Attribute;
@@ -150,7 +149,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 		}
 	}
 
-	protected abstract AbstractMod getMod();
+	protected abstract String getModId();
 
 	protected abstract String getBackgroundTextureName();
 
@@ -159,7 +158,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 			@Override
 			@SideOnly(Side.CLIENT)
 			public BinnieResource getTexture() {
-				return Binnie.RESOURCE.getPNG(getMod(), ResourceType.GUI, getBackgroundTextureName() + ((i == 1) ? "" : i));
+				return Binnie.RESOURCE.getPNG(getModId(), ResourceType.GUI, getBackgroundTextureName() + ((i == 1) ? "" : i));
 			}
 		};
 	}

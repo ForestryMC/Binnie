@@ -38,7 +38,7 @@ public class IsolatorRecipeCategory implements IRecipeCategory<IsolatorRecipeWra
 
 	@Override
 	public String getModName() {
-		return Genetics.instance.getModID();
+		return Genetics.instance.getModId();
 	}
 
 	@Override

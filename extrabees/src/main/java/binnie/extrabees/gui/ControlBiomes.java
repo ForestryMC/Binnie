@@ -1,4 +1,4 @@
-package binnie.genetics.gui.database.bee;
+package binnie.extrabees.gui;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -10,21 +10,22 @@ import binnie.botany.api.genetics.IFlower;
 import binnie.botany.blocks.BlockSoil;
 import binnie.botany.modules.ModuleGardening;
 import binnie.core.api.gui.IArea;
+import binnie.core.api.gui.ITitledWidget;
 import binnie.core.api.gui.IWidget;
 import binnie.core.genetics.Tolerance;
 import binnie.core.gui.controls.ControlText;
 import binnie.core.gui.controls.ControlTextCentered;
+import binnie.core.gui.controls.ControlToleranceBar;
+import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.geometry.Area;
 import binnie.core.gui.geometry.TextJustification;
 import binnie.core.gui.minecraft.control.ControlItemDisplay;
 import binnie.core.util.I18N;
-import binnie.genetics.gui.analyst.AnalystConstants;
-import binnie.genetics.gui.analyst.ControlAnalystPage;
-import binnie.genetics.gui.analyst.ControlToleranceBar;
+import binnie.genetics.api.analyst.AnalystConstants;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
 
-public class AnalystPageSoil extends ControlAnalystPage {
+public class AnalystPageSoil extends Control implements ITitledWidget {
 	public AnalystPageSoil(IWidget parent, IArea area, IFlower flower) {
 		super(parent, area);
 		setColor(6697728);

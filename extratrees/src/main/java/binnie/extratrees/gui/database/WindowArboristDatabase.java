@@ -9,7 +9,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.core.AbstractMod;
 import binnie.extratrees.genetics.TreeBreedingSystem;
 import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.listbox.ControlListBox;
@@ -103,8 +102,8 @@ public class WindowArboristDatabase extends WindowAbstractDatabase {
 	}
 
 	@Override
-	protected AbstractMod getMod() {
-		return ExtraTrees.instance;
+	protected String getModId() {
+		return ExtraTrees.instance.getModId();
 	}
 
 	@Override

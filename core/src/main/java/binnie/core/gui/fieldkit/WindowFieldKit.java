@@ -24,7 +24,6 @@ import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.ISpeciesRoot;
 
-import binnie.core.AbstractMod;
 import binnie.core.Binnie;
 import binnie.core.BinnieCore;
 import binnie.core.api.genetics.IBreedingSystem;
@@ -76,8 +75,8 @@ public class WindowFieldKit extends Window {
 	}
 
 	@Override
-	protected AbstractMod getMod() {
-		return BinnieCore.getInstance();
+	protected String getModId() {
+		return BinnieCore.getInstance().getModId();
 	}
 
 	@Override

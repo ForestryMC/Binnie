@@ -3,7 +3,7 @@ package binnie.extratrees.genetics.gui.analyst;
 import binnie.extratrees.machines.brewery.recipes.BreweryRecipeManager;
 import binnie.extratrees.machines.distillery.recipes.DistilleryRecipeManager;
 import binnie.extratrees.machines.fruitpress.recipes.FruitPressRecipeManager;
-import binnie.genetics.api.IProducePlugin;
+import binnie.genetics.api.analyst.IProducePlugin;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.fluids.FluidStack;

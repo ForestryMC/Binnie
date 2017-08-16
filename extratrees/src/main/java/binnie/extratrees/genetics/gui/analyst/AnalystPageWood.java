@@ -3,6 +3,9 @@ package binnie.extratrees.genetics.gui.analyst;
 import java.util.Collection;
 
 import binnie.core.api.gui.IArea;
+import binnie.core.api.gui.ITitledWidget;
+import binnie.core.gui.controls.core.Control;
+import binnie.genetics.api.analyst.IAnalystManager;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
 
@@ -22,13 +25,11 @@ import binnie.core.gui.minecraft.control.ControlIconDisplay;
 import binnie.core.gui.minecraft.control.ControlItemDisplay;
 import binnie.core.util.I18N;
 import binnie.core.util.UniqueItemStackSet;
-import binnie.genetics.gui.analyst.AnalystConstants;
-import binnie.genetics.gui.analyst.AnalystPageProduce;
-import binnie.genetics.item.ModuleItems;
+import binnie.genetics.api.analyst.AnalystConstants;
 
 @SideOnly(Side.CLIENT)
-public class AnalystPageWood extends AnalystPageProduce {
-	public AnalystPageWood(IWidget parent, IArea area, ITree ind) {
+public class AnalystPageWood extends Control implements ITitledWidget {
+	public AnalystPageWood(IWidget parent, IArea area, ITree ind, IAnalystManager analystManager) {
 		super(parent, area);
 		setColor(6697728);
 		ITreeGenome genome = ind.getGenome();
@@ -36,9 +37,9 @@ public class AnalystPageWood extends AnalystPageProduce {
 		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColor(getColor());
 		y += 12;
 		if (((IAlleleBoolean) ind.getGenome().getActiveAllele(EnumTreeChromosome.FIREPROOF)).getValue()) {
-			new ControlIconDisplay(this, (getWidth() - 16) / 2, y, ModuleItems.iconNoFire).addTooltip(I18N.localise(AnalystConstants.WOOD_KEY + ".fireproof"));
+			new ControlIconDisplay(this, (getWidth() - 16) / 2, y, analystManager.getIcons().getIconNoFire()).addTooltip(I18N.localise(AnalystConstants.WOOD_KEY + ".fireproof"));
 		} else {
-			new ControlIconDisplay(this, (getWidth() - 16) / 2, y, ModuleItems.iconFire).addTooltip(I18N.localise(AnalystConstants.WOOD_KEY + ".flammable"));
+			new ControlIconDisplay(this, (getWidth() - 16) / 2, y, analystManager.getIcons().getIconFire()).addTooltip(I18N.localise(AnalystConstants.WOOD_KEY + ".flammable"));
 		}
 		y += 30;
 		Collection<ItemStack> products = new UniqueItemStackSet();
@@ -66,9 +67,9 @@ public class AnalystPageWood extends AnalystPageProduce {
 		Collection<ItemStack> allProducts = new UniqueItemStackSet();
 		allProducts.addAll(products);
 		Collection<ItemStack> refinedProducts = new UniqueItemStackSet();
-		refinedProducts.addAll(getAllProductsAndFluids(allProducts));
+		refinedProducts.addAll(analystManager.getAllProductsAndFluids(allProducts));
 		if (refinedProducts.size() > 0) {
-			y = getRefined(I18N.localise(AnalystConstants.WOOD_KEY + ".refined"), y, refinedProducts);
+			y = analystManager.drawRefined(this, I18N.localise(AnalystConstants.WOOD_KEY + ".refined"), y, refinedProducts);
 			y += 8;
 		}
 		if (products.size() == 0) {

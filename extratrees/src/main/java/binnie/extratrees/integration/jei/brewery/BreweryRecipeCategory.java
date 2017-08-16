@@ -38,7 +38,7 @@ public class BreweryRecipeCategory implements IRecipeCategory<BreweryRecipeWrapp
 
 	@Override
 	public String getModName() {
-		return ExtraTrees.instance.getModID();
+		return ExtraTrees.instance.getModId();
 	}
 
 	@Override

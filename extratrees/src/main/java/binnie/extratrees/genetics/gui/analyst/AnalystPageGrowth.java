@@ -1,6 +1,8 @@
 package binnie.extratrees.genetics.gui.analyst;
 
 import binnie.core.api.gui.IArea;
+import binnie.core.api.gui.ITitledWidget;
+import binnie.core.gui.controls.core.Control;
 import binnie.core.util.TimeUtil;
 import net.minecraft.util.text.TextFormatting;
 
@@ -13,10 +15,9 @@ import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.ControlTextCentered;
 import binnie.core.util.I18N;
 import binnie.extratrees.modules.ModuleWood;
-import binnie.genetics.gui.analyst.AnalystConstants;
-import binnie.genetics.gui.analyst.ControlAnalystPage;
+import binnie.genetics.api.analyst.AnalystConstants;
 
-public class AnalystPageGrowth extends ControlAnalystPage {
+public class AnalystPageGrowth extends Control implements ITitledWidget {
 	public AnalystPageGrowth(IWidget parent, IArea area, IIndividual ind) {
 		super(parent, area);
 		setColor(3355443);

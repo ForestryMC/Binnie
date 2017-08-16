@@ -1,7 +1,11 @@
 package binnie.genetics;
 
 import binnie.genetics.api.GeneticsApi;
+import binnie.genetics.api.acclimatiser.IAcclimatiserManager;
+import binnie.genetics.api.analyst.IAnalystManager;
 import binnie.genetics.core.GeneticsTexture;
+import binnie.genetics.gui.Icons;
+import binnie.genetics.gui.analyst.AnalystManager;
 import binnie.genetics.gui.analyst.GeneticsProducePlugin;
 import binnie.genetics.machine.acclimatiser.AcclimatiserManager;
 import binnie.genetics.machine.sequencer.Sequencer;
@@ -45,6 +49,12 @@ public class Genetics extends AbstractMod {
 	private static ModuleItems items;
 	@Nullable
 	private static ModuleMachine machine;
+	@Nullable
+	private static IAnalystManager analystManager;
+	@Nullable
+	private static IAcclimatiserManager acclimatiserManager;
+	@Nullable
+	private static Icons icons;
 
 	public static ModuleItems items() {
 		Preconditions.checkState(items != null);
@@ -54,6 +64,21 @@ public class Genetics extends AbstractMod {
 	public static ModuleMachine machine() {
 		Preconditions.checkState(machine != null);
 		return machine;
+	}
+
+	public static IAnalystManager getAnalystManager() {
+		Preconditions.checkNotNull(analystManager);
+		return analystManager;
+	}
+
+	public static IAcclimatiserManager getAcclimatiserManager() {
+		Preconditions.checkNotNull(acclimatiserManager);
+		return acclimatiserManager;
+	}
+
+	public static Icons getIcons() {
+		Preconditions.checkNotNull(icons);
+		return icons;
 	}
 
 	@Mod.EventHandler
@@ -67,8 +92,14 @@ public class Genetics extends AbstractMod {
 		Sequencer.fxSeqT = Binnie.RESOURCE.getBlockSprite(Genetics.instance, "fx/sequencer.t");
 		Sequencer.fxSeqC = Binnie.RESOURCE.getBlockSprite(Genetics.instance, "fx/sequencer.c");
 
-		GeneticsApi.acclimatiserManager = new AcclimatiserManager();
-		GeneticsApi.registerProducePlugin(new GeneticsProducePlugin());
+		AnalystManager analystManager = new AnalystManager();
+		Genetics.analystManager = GeneticsApi.analystManager = analystManager;
+		AcclimatiserManager acclimatiserManager = new AcclimatiserManager();
+		Genetics.acclimatiserManager = GeneticsApi.acclimatiserManager = acclimatiserManager;
+
+		analystManager.registerProducePlugin(new GeneticsProducePlugin());
+
+		Genetics.icons = new Icons();
 	}
 
 	@Mod.EventHandler
@@ -108,7 +139,7 @@ public class Genetics extends AbstractMod {
 	}
 
 	@Override
-	public String getModID() {
+	public String getModId() {
 		return Constants.GENETICS_MOD_ID;
 	}
 

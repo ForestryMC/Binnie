@@ -1,6 +1,8 @@
 package binnie.botany.genetics.gui.analyst;
 
 import binnie.core.api.gui.IArea;
+import binnie.core.api.gui.ITitledWidget;
+import binnie.core.gui.controls.core.Control;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.text.TextFormatting;
 
@@ -20,10 +22,9 @@ import binnie.core.gui.geometry.Point;
 import binnie.core.gui.minecraft.control.ControlIconDisplay;
 import binnie.core.gui.renderer.RenderUtil;
 import binnie.core.util.I18N;
-import binnie.genetics.gui.analyst.AnalystConstants;
-import binnie.genetics.gui.analyst.ControlAnalystPage;
+import binnie.genetics.api.analyst.AnalystConstants;
 
-public class AnalystPageAppearance extends ControlAnalystPage {
+public class AnalystPageAppearance extends Control implements ITitledWidget {
 	public AnalystPageAppearance(IWidget parent, IArea area, IFlower flower) {
 		super(parent, area);
 		setColor(3355443);

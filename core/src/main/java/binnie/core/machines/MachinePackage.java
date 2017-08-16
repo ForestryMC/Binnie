@@ -29,7 +29,7 @@ public abstract class MachinePackage {
 	public abstract void register();
 
 	public final String getDisplayName() {
-		return I18N.localise(this.group.getMod().getModID() + '.' + "machine." + this.group.getShortUID() + "." + this.getUID());
+		return I18N.localise(this.group.getMod().getModId() + '.' + "machine." + this.group.getShortUID() + "." + this.getUID());
 	}
 
 	public final Integer getMetadata() {
@@ -57,6 +57,6 @@ public abstract class MachinePackage {
 	}
 
 	public final String getInformation() {
-		return I18N.localise(this.group.getMod().getModID() + '.' + "machine." + this.group.getShortUID() + "." + this.getUID() + ".info");
+		return I18N.localise(this.group.getMod().getModId() + '.' + "machine." + this.group.getShortUID() + "." + this.getUID() + ".info");
 	}
 }

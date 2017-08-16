@@ -33,7 +33,7 @@ public class GenepoolRecipeCategory implements IRecipeCategory<GenepoolRecipeWra
 
 	@Override
 	public String getModName() {
-		return Genetics.instance.getModID();
+		return Genetics.instance.getModId();
 	}
 
 	@Override

@@ -5,6 +5,8 @@ import java.util.List;
 
 import binnie.core.api.genetics.IBreedingSystem;
 import binnie.core.api.gui.IArea;
+import binnie.core.api.gui.ITitledWidget;
+import binnie.genetics.api.analyst.AnalystConstants;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
@@ -34,7 +36,7 @@ import binnie.core.gui.renderer.RenderUtil;
 import binnie.core.integration.extrabees.ExtraBeesIntegration;
 import binnie.core.util.I18N;
 
-public class AnalystPageMutations extends ControlAnalystPage {
+public class AnalystPageMutations extends Control implements ITitledWidget {
 	public AnalystPageMutations(IWidget parent, IArea area, IIndividual ind, boolean isMaster) {
 		super(parent, area);
 		setColor(3355392);

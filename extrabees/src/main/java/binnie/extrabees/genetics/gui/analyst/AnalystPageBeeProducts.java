@@ -5,11 +5,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 import binnie.core.api.gui.IArea;
+import binnie.core.api.gui.ITitledWidget;
 import binnie.core.gui.controls.ControlFluidDisplay;
+import binnie.core.gui.controls.core.Control;
 import binnie.core.util.FluidStackUtil;
 import binnie.core.util.ForestryRecipeUtil;
 import binnie.core.util.TimeUtil;
 import binnie.extrabees.ExtraBees;
+import binnie.genetics.api.analyst.AnalystConstants;
+import binnie.genetics.api.analyst.IAnalystManager;
 import forestry.api.apiculture.BeeManager;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
@@ -37,11 +41,9 @@ import binnie.core.gui.geometry.Point;
 import binnie.core.gui.minecraft.control.ControlItemDisplay;
 import binnie.core.util.I18N;
 import binnie.core.util.UniqueItemStackSet;
-import binnie.genetics.gui.analyst.AnalystConstants;
-import binnie.genetics.gui.analyst.AnalystPageProduce;
 
-public class AnalystPageBeeProducts extends AnalystPageProduce {
-	public AnalystPageBeeProducts(IWidget parent, IArea area, IBee ind) {
+public class AnalystPageBeeProducts extends Control implements ITitledWidget {
+	public AnalystPageBeeProducts(IWidget parent, IArea area, IBee ind, IAnalystManager analystManager) {
 		super(parent, area);
 		setColor(0xcc3300);
 		IBeeGenome genome = ind.getGenome();
@@ -69,7 +71,7 @@ public class AnalystPageBeeProducts extends AnalystPageProduce {
 				if (!productList.add(entry.getKey())) {
 					continue;
 				}
-				refinedProducts.addAll(getAllProducts(entry.getKey()));
+				refinedProducts.addAll(analystManager.getAllProducts(entry.getKey()));
 				createProductEntry(entry.getKey(), entry.getValue(), y, speed * modeSpeed);
 				y += 18;
 			}
@@ -81,7 +83,7 @@ public class AnalystPageBeeProducts extends AnalystPageProduce {
 			new ControlTextCentered(this, y, I18N.localise(AnalystConstants.PRODUCTS_KEY + ".specialty")).setColor(getColor());
 			y += 12;
 			for (Map.Entry<ItemStack, Float> entry : products.entrySet()) {
-				refinedProducts.addAll(getAllProducts(entry.getKey()));
+				refinedProducts.addAll(analystManager.getAllProducts(entry.getKey()));
 				createProductEntry(entry.getKey(), entry.getValue(), y, speed * modeSpeed);
 				y += 18;
 			}
@@ -93,17 +95,17 @@ public class AnalystPageBeeProducts extends AnalystPageProduce {
 		y += 12;
 		Collection<ItemStack> level2Products = new UniqueItemStackSet();
 		for (ItemStack stack : refinedProducts) {
-			level2Products.addAll(getAllProducts(stack));
+			level2Products.addAll(analystManager.getAllProducts(stack));
 		}
 
 		refinedProducts.addAll(level2Products);
 		level2Products = new UniqueItemStackSet();
 		for (ItemStack stack : refinedProducts) {
-			level2Products.addAll(getAllProducts(stack));
+			level2Products.addAll(analystManager.getAllProducts(stack));
 		}
 
 		refinedProducts.addAll(level2Products);
-		NonNullList<FluidStack> allFluids = getAllFluidsFromItems(refinedProducts);
+		NonNullList<FluidStack> allFluids = analystManager.getAllFluidsFromItems(refinedProducts);
 
 		int maxBiomePerLine = (int) ((getWidth() + 2.0f - 16.0f) / 18.0f);
 		int biomeListX = (getWidth() - (Math.min(maxBiomePerLine, allFluids.size() + refinedProducts.size()) * 18 - 2)) / 2;

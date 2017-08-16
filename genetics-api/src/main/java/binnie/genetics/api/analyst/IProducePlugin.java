@@ -1,4 +1,4 @@
-package binnie.genetics.api;
+package binnie.genetics.api.analyst;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;

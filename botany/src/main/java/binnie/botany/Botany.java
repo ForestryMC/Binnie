@@ -1,5 +1,6 @@
 package binnie.botany;
 
+import binnie.genetics.api.analyst.IAnalystManager;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -42,7 +43,10 @@ public class Botany extends BlankModuleContainer {
 	public void preInit(FMLPreInitializationEvent evt) {
 		super.preInit(evt);
 
-		GeneticsApi.registerAnalystPagePlugin(new FlowerAnalystPagePlugin());
+		IAnalystManager analystManager = GeneticsApi.analystManager;
+		if (analystManager != null) {
+			analystManager.registerAnalystPagePlugin(new FlowerAnalystPagePlugin());
+		}
 
 		IAcclimatiserManager acclimatiserManager = GeneticsApi.acclimatiserManager;
 		if(acclimatiserManager != null) {
@@ -92,7 +96,7 @@ public class Botany extends BlankModuleContainer {
 	}
 
 	@Override
-	public String getModID() {
+	public String getModId() {
 		return Constants.BOTANY_MOD_ID;
 	}
 

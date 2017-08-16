@@ -6,6 +6,8 @@ import java.util.Objects;
 
 import binnie.core.api.genetics.IBreedingSystem;
 import binnie.core.api.gui.IArea;
+import binnie.core.api.gui.ITitledWidget;
+import binnie.core.gui.controls.ControlIndividualDisplay;
 import net.minecraft.util.text.TextFormatting;
 
 import net.minecraftforge.fml.relauncher.Side;
@@ -32,7 +34,7 @@ import binnie.core.gui.resource.textures.CraftGUITexture;
 import binnie.core.gui.window.Panel;
 import binnie.core.util.I18N;
 
-public class AnalystPageDatabase extends ControlAnalystPage {
+public class AnalystPageDatabase extends Control implements ITitledWidget {
 	private final ControlScrollableContent scroll;
 	boolean isMaster;
 

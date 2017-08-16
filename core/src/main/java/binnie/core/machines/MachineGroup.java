@@ -74,7 +74,7 @@ public class MachineGroup {
 	}
 
 	public String getUID() {
-		return this.mod.getModID() + "." + this.uid;
+		return this.mod.getModId() + "." + this.uid;
 	}
 
 	public String getShortUID() {

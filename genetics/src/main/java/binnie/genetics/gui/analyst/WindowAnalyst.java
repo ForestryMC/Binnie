@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import binnie.core.AbstractMod;
 import binnie.core.Binnie;
 import binnie.core.api.genetics.IBreedingSystem;
 import binnie.core.api.gui.Alignment;
@@ -29,8 +28,7 @@ import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.util.I18N;
 import binnie.core.util.Log;
 import binnie.genetics.Genetics;
-import binnie.genetics.api.GeneticsApi;
-import binnie.genetics.api.IAnalystPagePlugin;
+import binnie.genetics.api.analyst.IAnalystPagePlugin;
 import binnie.genetics.core.GeneticsGUI;
 import binnie.genetics.item.GeneticsItems;
 import binnie.genetics.machine.ModuleMachine;
@@ -78,8 +76,8 @@ public class WindowAnalyst extends Window {
 	}
 
 	@Override
-	protected AbstractMod getMod() {
-		return Genetics.instance;
+	protected String getModId() {
+		return Genetics.instance.getModId();
 	}
 
 	@Override
@@ -215,13 +213,16 @@ public class WindowAnalyst extends Window {
 
 			analystPages.add(new AnalystPageMutations(analystPanel, analystPageSize, current, isMaster));
 		}
+		for (ITitledWidget page : analystPages) {
+			page.hide();
+		}
 	}
 
 	@SideOnly(Side.CLIENT)
 	private static <T extends IIndividual> void createPages(T individual, IWidget parent, IArea pageSize, List<ITitledWidget> analystPages) {
-		IAnalystPagePlugin<T> analystPageFactory = GeneticsApi.getAnalystPagePlugin(individual);
+		IAnalystPagePlugin<T> analystPageFactory = Genetics.getAnalystManager().getAnalystPagePlugin(individual);
 		if (analystPageFactory != null) {
-			analystPageFactory.addAnalystPages(individual, parent, pageSize, analystPages);
+			analystPageFactory.addAnalystPages(individual, parent, pageSize, analystPages, Genetics.getAnalystManager());
 		} else {
 			Log.error("Could not find IAnalystPagePlugin for {}", individual.getClass());
 		}

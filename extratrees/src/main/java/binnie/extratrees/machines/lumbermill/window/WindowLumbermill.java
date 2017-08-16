@@ -7,7 +7,6 @@ import net.minecraft.inventory.IInventory;
 
 import net.minecraftforge.fml.relauncher.Side;
 
-import binnie.core.AbstractMod;
 import binnie.core.api.gui.Alignment;
 import binnie.core.gui.minecraft.Window;
 import binnie.core.gui.minecraft.control.ControlEnergyBar;
@@ -33,8 +32,8 @@ public class WindowLumbermill extends Window {
 	}
 
 	@Override
-	protected AbstractMod getMod() {
-		return ExtraTrees.instance;
+	protected String getModId() {
+		return ExtraTrees.instance.getModId();
 	}
 
 	@Override

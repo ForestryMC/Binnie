@@ -22,7 +22,6 @@ import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IChromosomeType;
 
 import binnie.core.Binnie;
-import binnie.core.AbstractMod;
 import binnie.core.genetics.BreedingSystem;
 import binnie.core.genetics.Gene;
 import binnie.core.gui.Tooltip;
@@ -165,8 +164,8 @@ public class WindowGeneBank extends WindowMachine {
 	}
 
 	@Override
-	protected AbstractMod getMod() {
-		return Genetics.instance;
+	protected String getModId() {
+		return Genetics.instance.getModId();
 	}
 
 	@Override

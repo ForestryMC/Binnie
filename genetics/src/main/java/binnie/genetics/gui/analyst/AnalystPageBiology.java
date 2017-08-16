@@ -1,30 +1,30 @@
 package binnie.genetics.gui.analyst;
 
 import binnie.core.api.gui.IArea;
+import binnie.core.api.gui.ITitledWidget;
 import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.ControlTextCentered;
+import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.geometry.Point;
 import binnie.core.util.I18N;
+import binnie.genetics.api.analyst.AnalystConstants;
+import binnie.genetics.api.analyst.IAnalystManager;
+import binnie.genetics.api.analyst.IBiologyPlugin;
 import forestry.api.genetics.IIndividual;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class AnalystPageBiology<T extends IIndividual> extends ControlAnalystPage {
+public class AnalystPageBiology<T extends IIndividual> extends Control implements ITitledWidget {
 
-	public interface IBiologyPlugin<T extends IIndividual> {
-		@SideOnly(Side.CLIENT)
-		int addBiologyPages(T individual, IWidget parent, int y);
-	}
-
-	public AnalystPageBiology(IWidget parent, IArea area, T ind, IBiologyPlugin<T> plugin) {
+	public AnalystPageBiology(IWidget parent, IArea area, T ind, IBiologyPlugin<T> plugin, IAnalystManager analystManager) {
 		super(parent, area);
 		setColor(0x006666);
 		int y = 4;
 		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColor(getColor());
 		y += 12;
-		y = plugin.addBiologyPages(ind, this, y);
+		y = plugin.addBiologyPages(ind, this, y, analystManager);
 		setSize(new Point(getWidth(), y));
 	}
 

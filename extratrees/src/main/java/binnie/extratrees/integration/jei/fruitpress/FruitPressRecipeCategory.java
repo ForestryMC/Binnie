@@ -33,7 +33,7 @@ public class FruitPressRecipeCategory implements IRecipeCategory<FruitPressRecip
 
 	@Override
 	public String getModName() {
-		return ExtraTrees.instance.getModID();
+		return ExtraTrees.instance.getModId();
 	}
 
 	@Override

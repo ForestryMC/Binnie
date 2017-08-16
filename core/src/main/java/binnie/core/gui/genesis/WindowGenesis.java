@@ -23,7 +23,6 @@ import forestry.api.genetics.ISpeciesRoot;
 import forestry.api.genetics.ISpeciesType;
 
 import binnie.core.Binnie;
-import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
 import binnie.core.genetics.BreedingSystem;
 import binnie.core.genetics.Gene;
@@ -59,8 +58,8 @@ public class WindowGenesis extends Window {
 	}
 
 	@Override
-	protected AbstractMod getMod() {
-		return BinnieCore.getInstance();
+	protected String getModId() {
+		return BinnieCore.getInstance().getModId();
 	}
 
 	@Override

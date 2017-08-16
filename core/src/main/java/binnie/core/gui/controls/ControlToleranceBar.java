@@ -1,4 +1,4 @@
-package binnie.genetics.gui.analyst;
+package binnie.core.gui.controls;
 
 import java.util.EnumSet;
 

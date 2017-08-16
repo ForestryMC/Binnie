@@ -12,10 +12,11 @@ import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.ControlTextCentered;
 import binnie.core.util.I18N;
 import binnie.core.util.TimeUtil;
-import binnie.genetics.api.IAnalystPagePlugin;
-import binnie.genetics.gui.analyst.AnalystConstants;
-import binnie.genetics.gui.analyst.AnalystPageBiology;
-import binnie.genetics.gui.analyst.tree.AnalystPageClimate;
+import binnie.genetics.api.analyst.IAnalystManager;
+import binnie.genetics.api.analyst.IAnalystPagePlugin;
+import binnie.genetics.api.analyst.IBiologyPlugin;
+import binnie.genetics.api.analyst.IClimatePlugin;
+import binnie.genetics.api.analyst.AnalystConstants;
 import forestry.api.genetics.EnumTolerance;
 import forestry.api.genetics.IAlleleTolerance;
 import forestry.api.genetics.IIndividual;
@@ -31,17 +32,17 @@ public class FlowerAnalystPagePlugin implements IAnalystPagePlugin<IFlower> {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addAnalystPages(IFlower individual, IWidget parent, IArea pageSize, List<ITitledWidget> analystPages) {
-		analystPages.add(new AnalystPageClimate<>(parent, pageSize, individual, new ClimatePlugin()));
+	public void addAnalystPages(IFlower individual, IWidget parent, IArea pageSize, List<ITitledWidget> analystPages, IAnalystManager analystManager) {
+		analystPages.add(analystManager.createClimatePage(parent, pageSize, individual, new ClimatePlugin()));
 		analystPages.add(new AnalystPageSoil(parent, pageSize, individual));
-		analystPages.add(new AnalystPageBiology<>(parent, pageSize, individual, new BiologyPlugin()));
+		analystPages.add(analystManager.createBiologyPage(parent, pageSize, individual, new BiologyPlugin()));
 		analystPages.add(new AnalystPageAppearance(parent, pageSize, individual));
 	}
 
-	private static class BiologyPlugin implements AnalystPageBiology.IBiologyPlugin<IFlower> {
+	private static class BiologyPlugin implements IBiologyPlugin<IFlower> {
 		@Override
 		@SideOnly(Side.CLIENT)
-		public int addBiologyPages(IFlower flower, IWidget parent, int y) {
+		public int addBiologyPages(IFlower flower, IWidget parent, int y, IAnalystManager analystManager) {
 			y += 10;
 			int butterflySpawn2 = Math.round(Constants.SPAWN_KOEF / (flower.getGenome().getSappiness() * 0.2f));
 			new ControlTextCentered(parent, y, I18N.localise(AnalystConstants.BIOLOGY_KEY + ".mothSpawn", TimeUtil.getTimeString(butterflySpawn2)))
@@ -95,7 +96,7 @@ public class FlowerAnalystPagePlugin implements IAnalystPagePlugin<IFlower> {
 		}
 	}
 
-	private static class ClimatePlugin implements AnalystPageClimate.IClimatePlugin<IFlower> {
+	private static class ClimatePlugin implements IClimatePlugin<IFlower> {
 
 		@Override
 		public EnumTolerance getTemperatureTolerance(IFlower flower) {

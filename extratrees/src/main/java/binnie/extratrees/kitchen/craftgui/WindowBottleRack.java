@@ -7,7 +7,6 @@ import net.minecraft.inventory.IInventory;
 
 import net.minecraftforge.fml.relauncher.Side;
 
-import binnie.core.AbstractMod;
 import binnie.core.gui.minecraft.Window;
 import binnie.core.gui.minecraft.control.ControlPlayerInventory;
 import binnie.core.machines.Machine;
@@ -27,8 +26,8 @@ public class WindowBottleRack extends Window {
 	}
 
 	@Override
-	protected AbstractMod getMod() {
-		return ExtraTrees.instance;
+	protected String getModId() {
+		return ExtraTrees.instance.getModId();
 	}
 
 	@Override
