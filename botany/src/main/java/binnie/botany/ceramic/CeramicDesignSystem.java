@@ -18,7 +18,6 @@ import binnie.botany.Botany;
 import binnie.botany.api.genetics.EnumFlowerColor;
 import binnie.botany.items.CeramicItems;
 import binnie.botany.modules.ModuleCeramic;
-import binnie.core.AbstractMod;
 import binnie.extratrees.api.IDesignMaterial;
 import binnie.extratrees.api.IDesignSystem;
 import binnie.extratrees.api.IPattern;
@@ -87,15 +86,15 @@ public class CeramicDesignSystem implements IDesignSystem {
 	public void registerSprites() {
 		TextureMap textureMap = Minecraft.getMinecraft().getTextureMapBlocks();
 		for (EnumPattern pattern : EnumPattern.values()) {
-			ResourceLocation primaryLocation = new ResourceLocation(getMod().getModID(), getTexturePath() + "/" + pattern.toString().toLowerCase() + ".0");
-			ResourceLocation secondaryLocation = new ResourceLocation(getMod().getModID(), getTexturePath() + "/" + pattern.toString().toLowerCase() + ".1");
+			ResourceLocation primaryLocation = new ResourceLocation(getModId(), getTexturePath() + "/" + pattern.toString().toLowerCase() + ".0");
+			ResourceLocation secondaryLocation = new ResourceLocation(getModId(), getTexturePath() + "/" + pattern.toString().toLowerCase() + ".1");
 			primary.put(pattern.getIndex(), textureMap.registerSprite(primaryLocation));
 			secondary.put(pattern.getIndex(), textureMap.registerSprite(secondaryLocation));
 		}
 	}
 
-	public AbstractMod getMod() {
-		return Botany.instance;
+	public String getModId() {
+		return Botany.instance.getModId();
 	}
 
 	@Override

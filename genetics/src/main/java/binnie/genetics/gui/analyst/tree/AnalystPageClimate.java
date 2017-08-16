@@ -4,18 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import binnie.core.api.gui.IArea;
+import binnie.core.api.gui.ITitledWidget;
 import binnie.core.api.gui.IWidget;
 import binnie.core.genetics.Tolerance;
 import binnie.core.gui.controls.ControlText;
 import binnie.core.gui.controls.ControlTextCentered;
+import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.geometry.Area;
 import binnie.core.gui.geometry.Point;
 import binnie.core.gui.geometry.TextJustification;
 import binnie.core.util.I18N;
-import binnie.genetics.gui.analyst.AnalystConstants;
-import binnie.genetics.gui.analyst.ControlAnalystPage;
+import binnie.genetics.api.analyst.IClimatePlugin;
+import binnie.genetics.api.analyst.AnalystConstants;
 import binnie.genetics.gui.analyst.ControlBiome;
-import binnie.genetics.gui.analyst.ControlToleranceBar;
+import binnie.core.gui.controls.ControlToleranceBar;
 import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
 import forestry.api.genetics.EnumTolerance;
@@ -24,15 +26,11 @@ import net.minecraft.init.Biomes;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class AnalystPageClimate<T extends IIndividual> extends ControlAnalystPage {
-	public interface IClimatePlugin<T extends IIndividual> {
-		EnumTolerance getTemperatureTolerance(T individual);
-
-		EnumTolerance getHumidityTolerance(T individual);
-
-		boolean showHumiditySection();
-	}
+@SideOnly(Side.CLIENT)
+public class AnalystPageClimate<T extends IIndividual> extends Control implements ITitledWidget {
 
 	public AnalystPageClimate(IWidget parent, IArea area, T ind, IClimatePlugin<T> plugin) {
 		super(parent, area);

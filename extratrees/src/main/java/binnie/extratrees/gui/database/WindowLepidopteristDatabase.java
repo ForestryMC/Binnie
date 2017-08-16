@@ -5,7 +5,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.core.AbstractMod;
 import binnie.core.gui.database.DatabaseTab;
 import binnie.core.gui.database.PageBranchOverview;
 import binnie.core.gui.database.PageBranchSpecies;
@@ -41,8 +40,8 @@ public class WindowLepidopteristDatabase extends WindowAbstractDatabase {
 	}
 
 	@Override
-	protected AbstractMod getMod() {
-		return ExtraTrees.instance;
+	protected String getModId() {
+		return ExtraTrees.instance.getModId();
 	}
 
 	@Override

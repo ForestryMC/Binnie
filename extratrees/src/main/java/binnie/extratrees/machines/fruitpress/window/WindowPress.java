@@ -9,7 +9,6 @@ import net.minecraft.nbt.NBTTagCompound;
 
 import net.minecraftforge.fml.relauncher.Side;
 
-import binnie.core.AbstractMod;
 import binnie.core.api.gui.Alignment;
 import binnie.core.gui.minecraft.InventoryType;
 import binnie.core.gui.minecraft.Window;
@@ -37,8 +36,8 @@ public class WindowPress extends Window {
 	}
 
 	@Override
-	protected AbstractMod getMod() {
-		return ExtraTrees.instance;
+	protected String getModId() {
+		return ExtraTrees.instance.getModId();
 	}
 
 	@Override

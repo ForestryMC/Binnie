@@ -1,4 +1,4 @@
-package binnie.genetics.gui.database.bee;
+package binnie.extrabees.gui;
 
 import forestry.api.apiculture.BeeManager;
 import net.minecraft.util.math.Vec3i;

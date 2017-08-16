@@ -1,5 +1,6 @@
 package binnie.core.gui.minecraft.control;
 
+import binnie.core.api.gui.IBinnieSprite;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.ResourceLocation;
 
@@ -11,7 +12,6 @@ import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.geometry.Point;
 import binnie.core.gui.renderer.RenderUtil;
-import binnie.core.resource.BinnieSprite;
 
 @SideOnly(Side.CLIENT)
 public class ControlIconDisplay extends Control {
@@ -27,7 +27,7 @@ public class ControlIconDisplay extends Control {
 		this.sprite = BinnieCore.getBinnieProxy().getTextureAtlasSprite(icon);
 	}
 
-	public ControlIconDisplay(final IWidget parent, final int x, final int y, BinnieSprite sprite) {
+	public ControlIconDisplay(final IWidget parent, final int x, final int y, IBinnieSprite sprite) {
 		super(parent, x, y, 16, 16);
 		this.sprite = sprite.getSprite();
 	}

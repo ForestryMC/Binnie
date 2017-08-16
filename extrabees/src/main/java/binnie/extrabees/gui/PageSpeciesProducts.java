@@ -1,4 +1,4 @@
-package binnie.genetics.gui.database.bee;
+package binnie.extrabees.gui;
 
 import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.genetics.IAlleleSpecies;

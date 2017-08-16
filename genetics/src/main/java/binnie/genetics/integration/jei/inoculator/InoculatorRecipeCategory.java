@@ -49,7 +49,7 @@ public class InoculatorRecipeCategory implements IRecipeCategory<InoculatorRecip
 
 	@Override
 	public String getModName() {
-		return Genetics.instance.getModID();
+		return Genetics.instance.getModId();
 	}
 
 	@Override

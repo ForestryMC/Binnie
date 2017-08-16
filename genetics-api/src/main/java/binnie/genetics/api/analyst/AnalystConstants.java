@@ -1,4 +1,4 @@
-package binnie.genetics.gui.analyst;
+package binnie.genetics.api.analyst;
 
 public class AnalystConstants {
 	public static final String KEY = "genetics.gui.analyst";

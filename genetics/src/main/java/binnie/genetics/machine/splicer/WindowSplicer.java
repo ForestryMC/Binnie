@@ -6,7 +6,6 @@ import net.minecraft.inventory.IInventory;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.core.AbstractMod;
 import binnie.core.gui.geometry.CraftGUIUtil;
 import binnie.core.api.gui.Alignment;
 import binnie.core.gui.geometry.TextJustification;
@@ -65,8 +64,8 @@ public class WindowSplicer extends WindowMachine {
 	}
 
 	@Override
-	protected AbstractMod getMod() {
-		return Genetics.instance;
+	protected String getModId() {
+		return Genetics.instance.getModId();
 	}
 
 	@Override

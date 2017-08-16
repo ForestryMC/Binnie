@@ -1,5 +1,6 @@
 package binnie.core.resource;
 
+import binnie.core.api.gui.IBinnieSprite;
 import com.google.common.base.Preconditions;
 
 import javax.annotation.Nullable;
@@ -14,13 +15,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import binnie.core.Binnie;
 import binnie.core.AbstractMod;
 
-public class BinnieSprite extends BinnieResource {
+public class BinnieSprite extends BinnieResource implements IBinnieSprite {
 
 	@Nullable
 	private TextureAtlasSprite sprite;
 
 	public BinnieSprite(final AbstractMod mod, final ResourceType type, final String path) {
-		this(mod.getModID(), type, path);
+		this(mod.getModId(), type, path);
 	}
 
 	public BinnieSprite(final String modid, final ResourceType type, final String path) {

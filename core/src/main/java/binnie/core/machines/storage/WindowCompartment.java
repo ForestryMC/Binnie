@@ -26,7 +26,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
 import binnie.core.gui.Attribute;
 import binnie.core.gui.CraftGUI;
@@ -323,8 +322,8 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 	}
 
 	@Override
-	protected AbstractMod getMod() {
-		return BinnieCore.getInstance();
+	protected String getModId() {
+		return BinnieCore.getInstance().getModId();
 	}
 
 	@Override

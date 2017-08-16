@@ -1,6 +1,8 @@
 package binnie.genetics.gui.analyst;
 
 import binnie.core.api.genetics.IBreedingSystem;
+import binnie.genetics.Genetics;
+import binnie.genetics.api.analyst.AnalystConstants;
 import net.minecraft.client.renderer.GlStateManager;
 
 import net.minecraftforge.fml.relauncher.Side;
@@ -13,7 +15,6 @@ import binnie.core.api.gui.IWidget;
 import binnie.core.gui.geometry.Point;
 import binnie.core.gui.renderer.RenderUtil;
 import binnie.core.util.I18N;
-import binnie.genetics.item.ModuleItems;
 
 public class ControlResultantMutation extends ControlMutation {
 
@@ -45,12 +46,12 @@ public class ControlResultantMutation extends ControlMutation {
 		GlStateManager.disableBlend();
 		if (specificChance != mutation.getBaseChance()) {
 			RenderUtil.setColour(getMutationColour(mutation.getBaseChance()).getColor());
-			drawSprite(ModuleItems.iconAdd0);
+			drawSprite(Genetics.getIcons().getIconAdd0());
 			RenderUtil.setColour(getMutationColour(specificChance).getColor());
-			drawSprite(ModuleItems.iconAdd1);
+			drawSprite(Genetics.getIcons().getIconAdd1());
 		} else {
 			RenderUtil.setColour(getMutationColour(mutation.getBaseChance()).getColor());
-			drawSprite(ModuleItems.iconAdd);
+			drawSprite(Genetics.getIcons().getIconAdd());
 		}
 	}
 }

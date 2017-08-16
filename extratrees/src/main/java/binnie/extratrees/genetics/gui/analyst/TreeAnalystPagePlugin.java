@@ -10,9 +10,10 @@ import binnie.core.gui.controls.ControlTextCentered;
 import binnie.core.util.I18N;
 import binnie.core.util.TimeUtil;
 import binnie.extratrees.modules.ModuleWood;
-import binnie.genetics.api.IAnalystPagePlugin;
-import binnie.genetics.gui.analyst.AnalystConstants;
-import binnie.genetics.gui.analyst.AnalystPageBiology;
+import binnie.genetics.api.analyst.IAnalystManager;
+import binnie.genetics.api.analyst.IAnalystPagePlugin;
+import binnie.genetics.api.analyst.IBiologyPlugin;
+import binnie.genetics.api.analyst.AnalystConstants;
 import forestry.api.arboriculture.EnumTreeChromosome;
 import forestry.api.arboriculture.ITree;
 import forestry.api.genetics.IIndividual;
@@ -28,17 +29,17 @@ public class TreeAnalystPagePlugin implements IAnalystPagePlugin<ITree> {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addAnalystPages(ITree individual, IWidget parent, IArea pageSize, List<ITitledWidget> analystPages) {
-		analystPages.add(new AnalystPageFruit(parent, pageSize, individual));
-		analystPages.add(new AnalystPageWood(parent, pageSize, individual));
-		analystPages.add(new AnalystPageBiology<>(parent, pageSize, individual, new BiologyPlugin()));
+	public void addAnalystPages(ITree individual, IWidget parent, IArea pageSize, List<ITitledWidget> analystPages, IAnalystManager analystManager) {
+		analystPages.add(new AnalystPageFruit(parent, pageSize, individual, analystManager));
+		analystPages.add(new AnalystPageWood(parent, pageSize, individual, analystManager));
+		analystPages.add(analystManager.createBiologyPage(parent, pageSize, individual, new BiologyPlugin()));
 		analystPages.add(new AnalystPageGrowth(parent, pageSize, individual));
 	}
 
-	private static class BiologyPlugin implements AnalystPageBiology.IBiologyPlugin<ITree> {
+	private static class BiologyPlugin implements IBiologyPlugin<ITree> {
 		@Override
 		@SideOnly(Side.CLIENT)
-		public int addBiologyPages(ITree tree, IWidget parent, int y) {
+		public int addBiologyPages(ITree tree, IWidget parent, int y, IAnalystManager analystManager) {
 			String alleleName = ModuleWood.treeBreedingSystem.getAlleleName(EnumTreeChromosome.SAPPINESS, tree.getGenome().getActiveAllele(EnumTreeChromosome.SAPPINESS));
 			new ControlTextCentered(parent, y, TextFormatting.ITALIC + I18N.localise(AnalystConstants.BIOLOGY_KEY + ".sappiness", alleleName))
 					.setColor(parent.getColor());

@@ -13,12 +13,13 @@ import binnie.core.gui.geometry.TextJustification;
 import binnie.core.gui.minecraft.control.ControlIconDisplay;
 import binnie.core.util.I18N;
 import binnie.core.util.TimeUtil;
-import binnie.genetics.api.IAnalystPagePlugin;
-import binnie.genetics.gui.analyst.AnalystConstants;
-import binnie.genetics.gui.analyst.AnalystPageBehaviour;
-import binnie.genetics.gui.analyst.AnalystPageBiology;
-import binnie.genetics.gui.analyst.tree.AnalystPageClimate;
-import binnie.genetics.item.ModuleItems;
+import binnie.genetics.api.analyst.AnalystConstants;
+import binnie.genetics.api.analyst.IAnalystIcons;
+import binnie.genetics.api.analyst.IAnalystManager;
+import binnie.genetics.api.analyst.IAnalystPagePlugin;
+import binnie.genetics.api.analyst.IBehaviourPlugin;
+import binnie.genetics.api.analyst.IBiologyPlugin;
+import binnie.genetics.api.analyst.IClimatePlugin;
 import forestry.api.apiculture.EnumBeeChromosome;
 import forestry.api.apiculture.IAlleleBeeEffect;
 import forestry.api.apiculture.IBee;
@@ -40,41 +41,42 @@ public class AnalystPagePlugin implements IAnalystPagePlugin<IBee> {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addAnalystPages(IBee individual, IWidget parent, IArea pageSize, List<ITitledWidget> analystPages) {
-		analystPages.add(new AnalystPageClimate<>(parent, pageSize, individual, new ClimatePlugin()));
-		analystPages.add(new AnalystPageBeeProducts(parent, pageSize, individual));
-		analystPages.add(new AnalystPageBiology<>(parent, pageSize, individual, new BiologyPlugin()));
-		analystPages.add(new AnalystPageBehaviour<>(parent, pageSize, individual, new BehaviorPlugin()));
+	public void addAnalystPages(IBee individual, IWidget parent, IArea pageSize, List<ITitledWidget> analystPages, IAnalystManager analystManager) {
+		analystPages.add(analystManager.createClimatePage(parent, pageSize, individual, new ClimatePlugin()));
+		analystPages.add(new AnalystPageBeeProducts(parent, pageSize, individual, analystManager));
+		analystPages.add(analystManager.createBiologyPage(parent, pageSize, individual, new BiologyPlugin()));
+		analystPages.add(analystManager.createBehaviorPage(parent, pageSize, individual, new BehaviorPlugin()));
 	}
 
-	private static class BiologyPlugin implements AnalystPageBiology.IBiologyPlugin<IBee> {
+	private static class BiologyPlugin implements IBiologyPlugin<IBee> {
 		@Override
 		@SideOnly(Side.CLIENT)
-		public int addBiologyPages(IBee bee, IWidget parent, int y) {
+		public int addBiologyPages(IBee bee, IWidget parent, int y, IAnalystManager analystManager) {
+			IAnalystIcons icons = analystManager.getIcons();
 			if (bee.getGenome().getNeverSleeps()) {
-				new ControlIconDisplay(parent, (parent.getWidth() - 64) / 2, y, ModuleItems.iconAllDay)
+				new ControlIconDisplay(parent, (parent.getWidth() - 64) / 2, y, icons.getIconAllDay())
 						.addTooltip(I18N.localise(AnalystConstants.BIOLOGY_KEY + ".allDay"));
 			} else if (bee.getGenome().getPrimary().isNocturnal()) {
-				new ControlIconDisplay(parent, (parent.getWidth() - 64) / 2, y, ModuleItems.iconNight)
+				new ControlIconDisplay(parent, (parent.getWidth() - 64) / 2, y, icons.getIconNight())
 						.addTooltip(I18N.localise(AnalystConstants.BIOLOGY_KEY + ".night"));
 			} else {
-				new ControlIconDisplay(parent, (parent.getWidth() - 64) / 2, y, ModuleItems.iconDaytime)
+				new ControlIconDisplay(parent, (parent.getWidth() - 64) / 2, y, icons.getIconDaytime())
 						.addTooltip(I18N.localise(AnalystConstants.BIOLOGY_KEY + ".day"));
 			}
 
 			if (!bee.getGenome().getToleratesRain()) {
-				new ControlIconDisplay(parent, (parent.getWidth() - 64) / 2 + 24, y, ModuleItems.iconNoRain)
+				new ControlIconDisplay(parent, (parent.getWidth() - 64) / 2 + 24, y, icons.getIconNoRain())
 						.addTooltip(I18N.localise(AnalystConstants.BIOLOGY_KEY + ".notRain"));
 			} else {
-				new ControlIconDisplay(parent, (parent.getWidth() - 64) / 2 + 24, y, ModuleItems.iconRain)
+				new ControlIconDisplay(parent, (parent.getWidth() - 64) / 2 + 24, y, icons.getIconRain())
 						.addTooltip(I18N.localise(AnalystConstants.BIOLOGY_KEY + ".rain"));
 			}
 
 			if (bee.getGenome().getCaveDwelling()) {
-				new ControlIconDisplay(parent, (parent.getWidth() - 64) / 2 + 48, y, ModuleItems.iconNoSky)
+				new ControlIconDisplay(parent, (parent.getWidth() - 64) / 2 + 48, y, icons.getIconNoSky())
 						.addTooltip(I18N.localise(AnalystConstants.BIOLOGY_KEY + ".underground"));
 			} else {
-				new ControlIconDisplay(parent, (parent.getWidth() - 64) / 2 + 48, y, ModuleItems.iconSky)
+				new ControlIconDisplay(parent, (parent.getWidth() - 64) / 2 + 48, y, icons.getIconSky())
 						.addTooltip(I18N.localise(AnalystConstants.BIOLOGY_KEY + ".notUnderground"));
 			}
 			y += 30;
@@ -101,7 +103,7 @@ public class AnalystPagePlugin implements IAnalystPagePlugin<IBee> {
 		}
 	}
 
-	private static class BehaviorPlugin implements AnalystPageBehaviour.IBehaviourPlugin<IBee> {
+	private static class BehaviorPlugin implements IBehaviourPlugin<IBee> {
 		@Override
 		@SideOnly(Side.CLIENT)
 		public int addBehaviourPages(IBee bee, IWidget parent, int y) {
@@ -139,7 +141,7 @@ public class AnalystPagePlugin implements IAnalystPagePlugin<IBee> {
 		}
 	}
 
-	private static class ClimatePlugin implements AnalystPageClimate.IClimatePlugin<IBee> {
+	private static class ClimatePlugin implements IClimatePlugin<IBee> {
 
 		@Override
 		public EnumTolerance getTemperatureTolerance(IBee bee) {

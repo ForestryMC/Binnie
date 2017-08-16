@@ -2,6 +2,8 @@ package binnie.genetics.gui.analyst;
 
 import binnie.core.api.genetics.IBreedingSystem;
 import binnie.core.api.gui.IArea;
+import binnie.core.api.gui.ITitledWidget;
+import binnie.genetics.api.analyst.AnalystConstants;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.text.TextFormatting;
 
@@ -26,7 +28,7 @@ import binnie.core.gui.geometry.TextJustification;
 import binnie.core.util.I18N;
 
 @SideOnly(Side.CLIENT)
-public class AnalystPageGenome extends ControlAnalystPage {
+public class AnalystPageGenome extends Control implements ITitledWidget {
 	boolean active;
 
 	public AnalystPageGenome(IWidget parent, IArea area, boolean active, IIndividual ind) {

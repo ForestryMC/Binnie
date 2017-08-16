@@ -1,6 +1,5 @@
 package binnie.core.gui.controls.core;
 
-import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,13 +40,6 @@ public class Control extends Widget implements ITooltipHelp, ITooltip {
 	 * Called at the end of the constructor of control class.
 	 */
 	protected void initialise() {
-	}
-
-	@Nonnull
-	@Override
-	public IWidget getParent() {
-		//noinspection ConstantConditions
-		return super.getParent();
 	}
 
 	public void addHelp(final String string) {

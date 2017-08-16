@@ -14,35 +14,18 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import forestry.api.recipes.RecipeManagers;
 
 import binnie.core.Binnie;
-import binnie.core.BinnieCore;
 import binnie.core.Constants;
 import binnie.core.IInitializable;
 import binnie.core.Mods;
 import binnie.core.item.ItemMisc;
 import binnie.core.liquid.FluidContainerType;
 import binnie.core.liquid.ManagerLiquid;
-import binnie.core.resource.BinnieSprite;
 import binnie.core.util.RecipeUtil;
 import binnie.genetics.CreativeTabGenetics;
 import binnie.genetics.Genetics;
 import binnie.genetics.recipes.RegistryRecipe;
 
 public class ModuleItems implements IInitializable {
-	public static BinnieSprite iconNight;
-	public static BinnieSprite iconDaytime;
-	public static BinnieSprite iconAllDay;
-	public static BinnieSprite iconRain;
-	public static BinnieSprite iconNoRain;
-	public static BinnieSprite iconSky;
-	public static BinnieSprite iconNoSky;
-	public static BinnieSprite iconFire;
-	public static BinnieSprite iconNoFire;
-	public static BinnieSprite iconAdd;
-	public static BinnieSprite iconArrow;
-	public static BinnieSprite iconAdd0;
-	public static BinnieSprite iconArrow0;
-	public static BinnieSprite iconAdd1;
-	public static BinnieSprite iconArrow1;
 	public ItemSerum itemSerum;
 	public ItemSequence itemSequencer;
 	public ItemDatabase database;
@@ -74,22 +57,6 @@ public class ModuleItems implements IInitializable {
 		Genetics.proxy.registerItem(itemSequencer);
 
 		Binnie.LIQUID.createLiquids(GeneticLiquid.values());
-
-		ModuleItems.iconNight = Binnie.RESOURCE.getItemSprite(BinnieCore.getInstance(), "gui/analyst.night");
-		ModuleItems.iconDaytime = Binnie.RESOURCE.getItemSprite(BinnieCore.getInstance(), "gui/analyst.day");
-		ModuleItems.iconAllDay = Binnie.RESOURCE.getItemSprite(BinnieCore.getInstance(), "gui/analyst.allday");
-		ModuleItems.iconRain = Binnie.RESOURCE.getItemSprite(BinnieCore.getInstance(), "gui/analyst.rain");
-		ModuleItems.iconNoRain = Binnie.RESOURCE.getItemSprite(BinnieCore.getInstance(), "gui/analyst.norain");
-		ModuleItems.iconSky = Binnie.RESOURCE.getItemSprite(BinnieCore.getInstance(), "gui/analyst.sky");
-		ModuleItems.iconNoSky = Binnie.RESOURCE.getItemSprite(BinnieCore.getInstance(), "gui/analyst.nosky");
-		ModuleItems.iconFire = Binnie.RESOURCE.getItemSprite(BinnieCore.getInstance(), "gui/analyst.fire");
-		ModuleItems.iconNoFire = Binnie.RESOURCE.getItemSprite(BinnieCore.getInstance(), "gui/analyst.nofire");
-		ModuleItems.iconAdd = Binnie.RESOURCE.getItemSprite(BinnieCore.getInstance(), "gui/analyst.add");
-		ModuleItems.iconArrow = Binnie.RESOURCE.getItemSprite(BinnieCore.getInstance(), "gui/analyst.arrow");
-		ModuleItems.iconAdd0 = Binnie.RESOURCE.getItemSprite(BinnieCore.getInstance(), "gui/analyst.add.0");
-		ModuleItems.iconArrow0 = Binnie.RESOURCE.getItemSprite(BinnieCore.getInstance(), "gui/analyst.arrow.0");
-		ModuleItems.iconAdd1 = Binnie.RESOURCE.getItemSprite(BinnieCore.getInstance(), "gui/analyst.add.1");
-		ModuleItems.iconArrow1 = Binnie.RESOURCE.getItemSprite(BinnieCore.getInstance(), "gui/analyst.arrow.1");
 	}
 
 	public Item getItemGenetics() {

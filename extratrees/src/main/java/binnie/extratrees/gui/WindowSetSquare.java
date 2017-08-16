@@ -8,7 +8,6 @@ import net.minecraft.world.World;
 
 import net.minecraftforge.fml.relauncher.Side;
 
-import binnie.core.AbstractMod;
 import binnie.core.gui.minecraft.Window;
 import binnie.extratrees.ExtraTrees;
 
@@ -22,8 +21,8 @@ public class WindowSetSquare extends Window {
 	}
 
 	@Override
-	protected AbstractMod getMod() {
-		return ExtraTrees.instance;
+	protected String getModId() {
+		return ExtraTrees.instance.getModId();
 	}
 
 	@Override

@@ -20,7 +20,7 @@ public enum GeneticLiquid implements IFluidDefinition {
 
 	GeneticLiquid(final String name, final String ident, final int color) {
 		type = new FluidType(ident, name, color)
-			.setTextures(new ResourceLocation(Genetics.instance.getModID(), "blocks/liquids/" + ident.replace(".", "_")))
+			.setTextures(new ResourceLocation(Genetics.instance.getModId(), "blocks/liquids/" + ident.replace(".", "_")))
 			.setColor(16777215)
 			.setContainerColor(color)
 			.setPlaceHandler((type)-> ordinal() == 0 || type == FluidContainerType.CYLINDER)

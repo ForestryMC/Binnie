@@ -8,7 +8,6 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.core.AbstractMod;
 import binnie.core.gui.controls.ControlText;
 import binnie.core.gui.geometry.Area;
 import binnie.core.gui.geometry.CraftGUIUtil;
@@ -81,8 +80,8 @@ public class WindowSequencer extends WindowMachine {
 	}
 
 	@Override
-	protected AbstractMod getMod() {
-		return Genetics.instance;
+	protected String getModId() {
+		return Genetics.instance.getModId();
 	}
 
 	@Override

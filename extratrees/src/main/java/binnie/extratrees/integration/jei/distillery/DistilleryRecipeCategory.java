@@ -46,7 +46,7 @@ public class DistilleryRecipeCategory implements IRecipeCategory<DistilleryRecip
 
 	@Override
 	public String getModName() {
-		return ExtraTrees.instance.getModID();
+		return ExtraTrees.instance.getModId();
 	}
 
 	@Override

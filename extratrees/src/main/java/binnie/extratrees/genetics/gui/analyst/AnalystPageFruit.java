@@ -6,6 +6,9 @@ import java.util.Collections;
 import java.util.Map;
 
 import binnie.core.api.gui.IArea;
+import binnie.core.api.gui.ITitledWidget;
+import binnie.core.gui.controls.core.Control;
+import binnie.genetics.api.analyst.IAnalystManager;
 import forestry.api.arboriculture.TreeManager;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -27,11 +30,13 @@ import binnie.core.gui.minecraft.control.ControlItemDisplay;
 import binnie.core.util.I18N;
 import binnie.core.util.UniqueItemStackSet;
 import binnie.extratrees.modules.ModuleWood;
-import binnie.genetics.gui.analyst.AnalystConstants;
-import binnie.genetics.gui.analyst.AnalystPageProduce;
+import binnie.genetics.api.analyst.AnalystConstants;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class AnalystPageFruit extends AnalystPageProduce {
-	public AnalystPageFruit(IWidget parent, IArea area, ITree ind) {
+@SideOnly(Side.CLIENT)
+public class AnalystPageFruit extends Control implements ITitledWidget {
+	public AnalystPageFruit(IWidget parent, IArea area, ITree ind, IAnalystManager analystManager) {
 		super(parent, area);
 		setColor(13382400);
 		ITreeGenome genome = ind.getGenome();
@@ -83,9 +88,9 @@ public class AnalystPageFruit extends AnalystPageProduce {
 		allProducts.addAll(products);
 		allProducts.addAll(specialties);
 		Collection<ItemStack> refinedProducts = new UniqueItemStackSet();
-		refinedProducts.addAll(getAllProductsAndFluids(allProducts));
+		refinedProducts.addAll(analystManager.getAllProductsAndFluids(allProducts));
 		if (refinedProducts.size() > 0) {
-			y = getRefined(I18N.localise(AnalystConstants.FRUIT_KEY + ".refined"), y, refinedProducts);
+			y = analystManager.drawRefined(this, I18N.localise(AnalystConstants.FRUIT_KEY + ".refined"), y, refinedProducts);
 			y += 8;
 		}
 		if (products.size() == 0 && specialties.size() == 0) {
@@ -118,7 +123,7 @@ public class AnalystPageFruit extends AnalystPageProduce {
 					}
 				}
 			}
-			y = getRefined(TextFormatting.ITALIC + fam.getName(), y, stacks);
+			y = analystManager.drawRefined(this, TextFormatting.ITALIC + fam.getName(), y, stacks);
 			y += 2;
 		}
 		setSize(new Point(getWidth(), y + 8));

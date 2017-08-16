@@ -1,5 +1,6 @@
 package binnie.extrabees;
 
+import binnie.genetics.api.analyst.IAnalystManager;
 import com.google.common.collect.Lists;
 
 import javax.annotation.Nullable;
@@ -117,7 +118,10 @@ public class ExtraBees {
 		beeBreedingSystem = new BeeBreedingSystem();
 		Binnie.GENETICS.registerBreedingSystem(beeBreedingSystem);
 
-		GeneticsApi.registerAnalystPagePlugin(new AnalystPagePlugin());
+		IAnalystManager analystManager = GeneticsApi.analystManager;
+		if (analystManager != null) {
+			analystManager.registerAnalystPagePlugin(new AnalystPagePlugin());
+		}
 	}
 
 	@Mod.EventHandler

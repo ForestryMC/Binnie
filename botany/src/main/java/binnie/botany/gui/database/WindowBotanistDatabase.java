@@ -14,7 +14,6 @@ import binnie.botany.Botany;
 import binnie.botany.api.genetics.IFlowerColor;
 import binnie.botany.api.genetics.EnumFlowerColor;
 import binnie.botany.modules.ModuleFlowers;
-import binnie.core.AbstractMod;
 import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.listbox.ControlListBox;
 import binnie.core.gui.database.DatabaseConstants;
@@ -57,8 +56,8 @@ public class WindowBotanistDatabase extends WindowAbstractDatabase {
 	}
 
 	@Override
-	protected AbstractMod getMod() {
-		return Botany.instance;
+	protected String getModId() {
+		return Botany.instance.getModId();
 	}
 
 	@Override

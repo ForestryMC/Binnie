@@ -11,7 +11,7 @@ public abstract class BlankModuleContainer extends AbstractMod {
 
 	public BlankModuleContainer() {
 		super();
-		this.container = new ModuleContainer(getModID(), this::isAvailable);
+		this.container = new ModuleContainer(getModId(), this::isAvailable);
 		ModuleManager.register(container);
 	}
 

@@ -22,7 +22,7 @@ public class DatabaseRecipeCategory implements IRecipeCategory<DatabaseRecipeWra
 
 	@Override
 	public String getModName() {
-		return Genetics.instance.getModID();
+		return Genetics.instance.getModId();
 	}
 
 	@Override

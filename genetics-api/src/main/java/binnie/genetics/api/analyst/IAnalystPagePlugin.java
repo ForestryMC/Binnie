@@ -1,4 +1,4 @@
-package binnie.genetics.api;
+package binnie.genetics.api.analyst;
 
 import java.util.List;
 
@@ -13,5 +13,5 @@ public interface IAnalystPagePlugin<T extends IIndividual> {
 	boolean handles(IIndividual individual);
 
 	@SideOnly(Side.CLIENT)
-	void addAnalystPages(T individual, IWidget parent, IArea pageSize, List<ITitledWidget> analystPages);
+	void addAnalystPages(T individual, IWidget parent, IArea pageSize, List<ITitledWidget> analystPages, IAnalystManager analystManager);
 }

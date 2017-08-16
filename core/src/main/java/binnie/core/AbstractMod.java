@@ -53,7 +53,7 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
 
 	public abstract IProxyCore getProxy();
 
-	public abstract String getModID();
+	public abstract String getModId();
 
 	public SimpleNetworkWrapper getNetworkWrapper() {
 		Preconditions.checkState(wrapper != null, "Tried to get network wrapper before it has been init.");

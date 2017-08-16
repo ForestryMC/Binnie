@@ -33,7 +33,7 @@ public class IncubatorRecipeCategory implements IRecipeCategory<IncubatorRecipeW
 
 	@Override
 	public String getModName() {
-		return Genetics.instance.getModID();
+		return Genetics.instance.getModId();
 	}
 
 	@Override

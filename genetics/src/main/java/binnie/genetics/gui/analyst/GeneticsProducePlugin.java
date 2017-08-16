@@ -1,7 +1,7 @@
 package binnie.genetics.gui.analyst;
 
 import binnie.core.util.ForestryRecipeUtil;
-import binnie.genetics.api.IProducePlugin;
+import binnie.genetics.api.analyst.IProducePlugin;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.item.crafting.IRecipe;
