@@ -219,4 +219,8 @@ public class MachineUtil {
 	public boolean isServer() {
 		return !this.machine.getWorld().isRemote;
 	}
+
+	public World getWorld() {
+		return this.machine.getWorld();
+	}
 }

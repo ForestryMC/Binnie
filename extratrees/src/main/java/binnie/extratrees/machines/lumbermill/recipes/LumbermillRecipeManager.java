@@ -1,34 +1,40 @@
 package binnie.extratrees.machines.lumbermill.recipes;
 
+import javax.annotation.Nullable;
+
+import binnie.core.util.UniqueItemStackSet;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 
 import java.util.Collection;
+import java.util.List;
 
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.NonNullList;
 
+import net.minecraft.world.World;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.oredict.OreDictionary;
 
-import binnie.core.util.FakeCraftingWorld;
 import binnie.core.util.OreDictionaryUtil;
 import binnie.extratrees.api.recipes.ILumbermillManager;
 import binnie.extratrees.api.recipes.ILumbermillRecipe;
 
 public class LumbermillRecipeManager implements ILumbermillManager {
-	//Map<input log item, Pair<input log, output planks>>
 	private static Multimap<Item, ILumbermillRecipe> recipes = ArrayListMultimap.create();
+	private static boolean calculatedRecipes = false;
 
-	public static ItemStack getPlankProduct(final ItemStack logStack) {
-		if (recipes.isEmpty()) {
-			calculateProducts();
+	public static ItemStack getPlankProduct(ItemStack logStack, World world) {
+		if (!calculatedRecipes) {
+			calculateProducts(world);
+			calculatedRecipes = true;
 		}
 
 		Item logItem = logStack.getItem();
@@ -40,44 +46,60 @@ public class LumbermillRecipeManager implements ILumbermillManager {
 		return ItemStack.EMPTY;
 	}
 
-	public static void calculateProducts() {
+	private static void calculateProducts(World world) {
 		InventoryCrafting fakeCraftingInventory = new InventoryCrafting(new FakeCraftingHandler(), 3, 3){};
+		NonNullList<ItemStack> oreDictLogs = OreDictionary.getOres("logWood");
+		UniqueItemStackSet logsSet = new UniqueItemStackSet();
+		for (ItemStack logStack : oreDictLogs) {
+			List<ItemStack> subtypes = getSubtypes(logStack);
+			logsSet.addAll(subtypes);
+		}
 
-		NonNullList<ItemStack> logs = OreDictionary.getOres("logWood");
-		for (ItemStack logStack : logs) {
-			if (logStack.getItemDamage() == OreDictionary.WILDCARD_VALUE) {
-				for (int i = 0; i < 16; i++) {
-					ItemStack logCopy = logStack.copy();
-					logCopy.setCount(1);
-					logCopy.setItemDamage(i);
+		for (ItemStack log : logsSet) {
+			ItemStack logCopy = log.copy();
+			logCopy.setCount(1);
+			fakeCraftingInventory.clear();
+			fakeCraftingInventory.setInventorySlotContents(0, logCopy.copy());
 
-					fakeCraftingInventory.clear();
-					fakeCraftingInventory.setInventorySlotContents(0, logCopy);
-					IRecipe recipe = CraftingManager.findMatchingRecipe(fakeCraftingInventory, FakeCraftingWorld.getInstance());
-					if (recipe != null) {
-						ItemStack recipeOutput = recipe.getCraftingResult(fakeCraftingInventory);
-						if (!recipeOutput.isEmpty()) {
-							if (OreDictionaryUtil.hasOreName(recipeOutput, "plankWood")) {
-								addLogToPlankRecipe(logCopy.copy(), recipeOutput.copy());
-							}
-						}
-					}
-				}
-			} else {
-				fakeCraftingInventory.clear();
-				fakeCraftingInventory.setInventorySlotContents(0, logStack.copy());
+			ItemStack recipeOutput = getRecipeWithPlanksOutput(fakeCraftingInventory, world);
+			if (recipeOutput != null) {
+				addLogToPlankRecipe(logCopy, recipeOutput.copy());
+			}
+		}
+	}
 
-				IRecipe recipe = CraftingManager.findMatchingRecipe(fakeCraftingInventory, FakeCraftingWorld.getInstance());
-				if (recipe != null) {
-					ItemStack recipeOutput = recipe.getCraftingResult(fakeCraftingInventory);
-					if (!recipeOutput.isEmpty()) {
-						if (OreDictionaryUtil.hasOreName(recipeOutput, "plankWood")) {
-							addLogToPlankRecipe(logStack.copy(), recipeOutput.copy());
-						}
+	@Nullable
+	private static ItemStack getRecipeWithPlanksOutput(InventoryCrafting fakeCraftingInventory, World world) {
+		for (IRecipe recipe : ForgeRegistries.RECIPES.getValues()) {
+			boolean matches;
+			try {
+				matches = recipe.matches(fakeCraftingInventory, world);
+			} catch (RuntimeException | LinkageError e) {
+				matches  = false;
+			}
+			if (matches) {
+				ItemStack recipeOutput = recipe.getCraftingResult(fakeCraftingInventory);
+				if (!recipeOutput.isEmpty()) {
+					if (OreDictionaryUtil.hasOreName(recipeOutput, "plankWood")) {
+						return recipeOutput;
 					}
 				}
 			}
 		}
+		return null;
+	}
+
+	private static List<ItemStack> getSubtypes(ItemStack itemStack) {
+		NonNullList<ItemStack> subtypes = NonNullList.create();
+		if (itemStack.getItemDamage() == OreDictionary.WILDCARD_VALUE && itemStack.getHasSubtypes()) {
+			Item item = itemStack.getItem();
+			for (CreativeTabs creativeTab : item.getCreativeTabs()) {
+				item.getSubItems(creativeTab, subtypes);
+			}
+		} else {
+			subtypes.add(itemStack);
+		}
+		return subtypes;
 	}
 
 	private static void addLogToPlankRecipe(ItemStack logStack, ItemStack plankStack){

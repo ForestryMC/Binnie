@@ -34,7 +34,7 @@ public class LumbermillMachine extends ExtraTreeMachine.PackageExtraTreeMachine 
 		final ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
 
 		InventorySlot slotLog = inventory.addSlot(SLOT_LOG, "input");
-		slotLog.setValidator(new SlotValidatorLog());
+		slotLog.setValidator(new SlotValidatorLog(machine.getWorld()));
 		slotLog.forbidExtraction();
 
 		inventory.addSlot(SLOT_PLANKS, "output").setReadOnly();

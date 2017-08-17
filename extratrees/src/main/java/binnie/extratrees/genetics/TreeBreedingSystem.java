@@ -212,7 +212,7 @@ public class TreeBreedingSystem extends BreedingSystem {
 			ITreeGenome genome = TreeManager.treeRoot.templateAsGenome(TreeManager.treeRoot.getTemplate(tSpecies));
 			IAlleleTreeSpecies treeSpecies = genome.getPrimary();
 			final ItemStack woodStack = treeSpecies.getWoodProvider().getWoodStack();
-			ItemStack plankProduct = LumbermillRecipeManager.getPlankProduct(woodStack);
+			ItemStack plankProduct = LumbermillRecipeManager.getPlankProduct(woodStack, world);
 			if (!plankProduct.isEmpty() && fruit.isItemEqual(plankProduct)) {
 				found.add(species);
 			}

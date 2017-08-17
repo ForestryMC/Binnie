@@ -79,8 +79,8 @@ public class ControlLumbermillProgress extends ControlProgressBase {
 			//CraftGUI.Render.iconBlock(new IPoint(1 + i * 16, 1), icon);
 			RenderUtil.drawSprite(new Point(1 + i * 16, 1), icon);
 		}
-		final ItemStack result = LumbermillRecipeManager.getPlankProduct(item);
-		if (result == null) {
+		final ItemStack result = LumbermillRecipeManager.getPlankProduct(item, Minecraft.getMinecraft().world);
+		if (result.isEmpty()) {
 			return;
 		}
 		Block block2 = null;

@@ -27,7 +27,7 @@ public class LumbermillLogic extends ComponentProcessSetCost implements IProcess
 		if (logStack.isEmpty()) {
 			return new ErrorState(ExtraTreesErrorCode.LUMBERMILL_NO_WOOD, LumbermillMachine.SLOT_LOG);
 		}
-		ItemStack plankResult = LumbermillRecipeManager.getPlankProduct(logStack);
+		ItemStack plankResult = LumbermillRecipeManager.getPlankProduct(logStack, util.getWorld());
 		if (!util.isSlotEmpty(LumbermillMachine.SLOT_PLANKS) && !plankResult.isEmpty()) {
 			final ItemStack currentPlank = util.getStack(LumbermillMachine.SLOT_PLANKS);
 			if (!plankResult.isItemEqual(currentPlank) || plankResult.getCount() + currentPlank.getCount() > currentPlank.getMaxStackSize()) {
@@ -61,8 +61,8 @@ public class LumbermillLogic extends ComponentProcessSetCost implements IProcess
 	protected void onFinishTask() {
 		MachineUtil util = getUtil();
 		final ItemStack logStack = util.getStack(LumbermillMachine.SLOT_LOG);
-		final ItemStack result = LumbermillRecipeManager.getPlankProduct(logStack);
-		if (result == null) {
+		final ItemStack result = LumbermillRecipeManager.getPlankProduct(logStack, util.getWorld());
+		if (result.isEmpty()) {
 			return;
 		}
 		util.addStack(LumbermillMachine.SLOT_PLANKS, result);
