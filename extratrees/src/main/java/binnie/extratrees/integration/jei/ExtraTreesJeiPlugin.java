@@ -1,17 +1,9 @@
 package binnie.extratrees.integration.jei;
 
-import mezz.jei.api.IModPlugin;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidUtil;
-
 import binnie.core.Constants;
 import binnie.core.integration.jei.Drawables;
-import binnie.extratrees.modules.ModuleAlcohol;
-import binnie.extratrees.modules.ModuleWood;
-import binnie.extratrees.wood.WoodManager;
+import binnie.core.modules.ExtraTreesModuleUIDs;
+import binnie.core.modules.ModuleManager;
 import binnie.extratrees.blocks.decor.FenceDescription;
 import binnie.extratrees.blocks.decor.FenceType;
 import binnie.extratrees.integration.jei.brewery.BreweryRecipeCategory;
@@ -24,15 +16,20 @@ import binnie.extratrees.integration.jei.lumbermill.LumbermillRecipeCategory;
 import binnie.extratrees.integration.jei.lumbermill.LumbermillRecipeMaker;
 import binnie.extratrees.integration.jei.multifence.MultiFenceRecipeRegistryPlugin;
 import binnie.extratrees.machines.ExtraTreeMachine;
-import binnie.core.modules.ExtraTreesModuleUIDs;
-import binnie.core.modules.ModuleManager;
-
+import binnie.extratrees.modules.ModuleAlcohol;
+import binnie.extratrees.modules.ModuleWood;
+import binnie.extratrees.wood.WoodManager;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.IJeiHelpers;
+import mezz.jei.api.IModPlugin;
 import mezz.jei.api.IModRegistry;
 import mezz.jei.api.ISubtypeRegistry;
 import mezz.jei.api.JEIPlugin;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
 
 @JEIPlugin
 public class ExtraTreesJeiPlugin implements IModPlugin {
@@ -82,13 +79,14 @@ public class ExtraTreesJeiPlugin implements IModPlugin {
 
 	@Override
 	public void register(IModRegistry registry) {
+		IJeiHelpers jeiHelpers = registry.getJeiHelpers();
 		if(ModuleManager.isModuleEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.MACHINES)) {
 			registry.addRecipeCatalyst(ExtraTreeMachine.Lumbermill.get(1), RecipeUids.LUMBERMILL);
 			registry.addRecipeCatalyst(ExtraTreeMachine.Press.get(1), RecipeUids.FRUIT_PRESS);
 			registry.addRecipeCatalyst(ExtraTreeMachine.BREWERY.get(1), RecipeUids.BREWING);
 			registry.addRecipeCatalyst(ExtraTreeMachine.Distillery.get(1), RecipeUids.DISTILLING);
 
-			registry.addRecipes(LumbermillRecipeMaker.create(), RecipeUids.LUMBERMILL);
+			registry.addRecipes(LumbermillRecipeMaker.create(jeiHelpers), RecipeUids.LUMBERMILL);
 			registry.addRecipes(FruitPressRecipeMaker.create(), RecipeUids.FRUIT_PRESS);
 			registry.addRecipes(BreweryRecipeMaker.create(), RecipeUids.BREWING);
 			registry.addRecipes(DistilleryRecipeMaker.create(), RecipeUids.DISTILLING);

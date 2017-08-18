@@ -65,8 +65,8 @@ allprojects {
         deobfCompile("net.sengir.forestry:forestry_${mcversion}:${forestry_version}") {
             transitive = false
         }
-        deobfProvided "mezz.jei:jei_${mcversion}:${jei_version}:api"
-        runtime "mezz.jei:jei_${mcversion}:${jei_version}"
+        deobfProvided "mezz.jei:jei_${jei_mcversion}:${jei_version}:api"
+        runtime "mezz.jei:jei_${jei_mcversion}:${jei_version}"
         runtime "jei-bees:jeibees:${jeibees_version}:mc${mcversion}"
         deobfProvided "net.industrial-craft:industrialcraft-2:${ic2_version}:api"
         runtime "net.industrial-craft:industrialcraft-2:${ic2_version}"
