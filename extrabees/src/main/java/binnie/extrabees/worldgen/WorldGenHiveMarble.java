@@ -31,19 +31,18 @@ public class WorldGenHiveMarble extends WorldGenHive {
 			return false;
 		}
 
-		//generate when one face is different from marble
+		//generate when at least two faces are different from marble
 		int otherFace = 0;
 		for (EnumFacing face : EnumFacing.values()) {
 			if (!world.getBlockState(position.offset(face)).getBlock().equals(blockAtPos)) {
 				otherFace++;
 				if (otherFace > 1) {
+					world.setBlockState(position, ExtraBees.hive.getDefaultState().withProperty(BlockExtraBeeHives.HIVE_TYPE, EnumHiveType.MARBLE));
 					return true;
 				}
 			}
 		}
 
-		world.setBlockState(position, ExtraBees.hive.getDefaultState().withProperty(BlockExtraBeeHives.HIVE_TYPE, EnumHiveType.MARBLE));
-
-		return true;
+		return false;
 	}
 }
