@@ -26,7 +26,7 @@ import binnie.botany.items.ItemStainedGlass;
 import binnie.botany.recipes.CeramicTileRecipe;
 import binnie.botany.recipes.PigmentRecipe;
 import binnie.core.Constants;
-import binnie.core.api.block.TileEntityMetadata;
+import binnie.core.block.TileEntityMetadata;
 import binnie.core.item.ItemMisc;
 import binnie.core.modules.BinnieModule;
 import binnie.core.modules.BotanyModuleUIDs;

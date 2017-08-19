@@ -1,4 +1,4 @@
-package binnie.core.api.block;
+package binnie.core.block;
 
 import com.google.common.base.Preconditions;
 
@@ -15,7 +15,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 
-// TODO: move out of API
 public class TileEntityMetadata extends TileEntity {
 	private int meta;
 	private boolean droppedBlock;

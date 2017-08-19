@@ -27,7 +27,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import forestry.plugins.PluginManager;
 
-import binnie.core.api.block.TileEntityMetadata;
+import binnie.core.block.TileEntityMetadata;
 import binnie.core.gui.BinnieCoreGUI;
 import binnie.core.gui.BinnieGUIHandler;
 import binnie.core.gui.IBinnieGUID;

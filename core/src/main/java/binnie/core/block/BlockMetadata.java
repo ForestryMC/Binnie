@@ -1,4 +1,4 @@
-package binnie.core.api.block;
+package binnie.core.block;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -18,7 +18,6 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-// TODO: move out of API
 public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 	public BlockMetadata(final Material material) {
 		super(material);

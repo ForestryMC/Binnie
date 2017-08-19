@@ -22,8 +22,4 @@ public final class DesignerManager {
 	public Collection<IDesignSystem> getDesignSystems() {
 		return this.systems;
 	}
-
-	public void addDesignSystem(final IDesignSystem system) {
-		this.systems.add(system);
-	}
 }

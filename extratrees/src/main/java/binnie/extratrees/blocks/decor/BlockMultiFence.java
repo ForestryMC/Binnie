@@ -41,9 +41,9 @@ import forestry.core.blocks.properties.UnlistedBlockAccess;
 import forestry.core.blocks.properties.UnlistedBlockPos;
 import forestry.core.models.BlockModelEntry;
 
-import binnie.core.api.block.BlockMetadata;
-import binnie.core.api.block.IBlockMetadata;
-import binnie.core.api.block.TileEntityMetadata;
+import binnie.core.block.BlockMetadata;
+import binnie.core.block.IBlockMetadata;
+import binnie.core.block.TileEntityMetadata;
 import binnie.core.models.DefaultStateMapper;
 import binnie.core.models.ModelManager;
 import binnie.core.util.I18N;

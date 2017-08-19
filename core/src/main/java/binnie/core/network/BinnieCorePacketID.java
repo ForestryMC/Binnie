@@ -8,7 +8,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 
 import binnie.core.BinnieCore;
-import binnie.core.api.block.TileEntityMetadata;
+import binnie.core.block.TileEntityMetadata;
 import binnie.core.gui.minecraft.ContainerCraftGUI;
 import binnie.core.machines.IMachine;
 import binnie.core.machines.Machine;

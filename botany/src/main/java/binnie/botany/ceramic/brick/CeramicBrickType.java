@@ -14,7 +14,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import binnie.botany.api.genetics.EnumFlowerColor;
 import binnie.botany.items.CeramicItems;
 import binnie.botany.modules.ModuleCeramic;
-import binnie.core.api.block.TileEntityMetadata;
+import binnie.core.block.TileEntityMetadata;
 
 public enum CeramicBrickType implements IStringSerializable {
 	TILE("tile") {
