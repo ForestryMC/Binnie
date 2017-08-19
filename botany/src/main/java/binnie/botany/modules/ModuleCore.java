@@ -6,7 +6,7 @@ import binnie.core.modules.BotanyModuleUIDs;
 import binnie.core.modules.Module;
 
 @BinnieModule(moduleID = BotanyModuleUIDs.CORE, moduleContainerID = Constants.BOTANY_MOD_ID, name = "Core", coreModule = true)
-public class ModuleCore extends Module {
+public class ModuleCore implements Module {
 	@Override
 	public void preInit() {
 		// ignored

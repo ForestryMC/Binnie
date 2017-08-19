@@ -6,12 +6,14 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import binnie.core.Constants;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 
@@ -158,12 +160,32 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 		return nbttagcompound;
 	}
 
-	public final InventorySlot addSlot(final int index, final String unlocName) {
-		InventorySlot slot = new InventorySlot(index, unlocName);
+	public final InventorySlot addSlot(final int index, final ResourceLocation unlocLocation) {
+		InventorySlot slot = new InventorySlot(index, unlocLocation);
 		this.inventory.put(index, slot);
 		return slot;
 	}
 
+	/**
+	 * @deprecated use {@link #addSlot(int, ResourceLocation)}
+	 */
+	@Deprecated
+	public final InventorySlot addSlot(final int index, final String unlocName) {
+		ResourceLocation unlocLocation = new ResourceLocation(Constants.CORE_MOD_ID, "gui.slot." + unlocName);
+		return addSlot(index, unlocLocation);
+	}
+
+	public final InventorySlot[] addSlotArray(final int[] indexes, final ResourceLocation unlocName) {
+		for (final int k : indexes) {
+			this.addSlot(k, unlocName);
+		}
+		return this.getSlots(indexes);
+	}
+
+	/**
+	 * @deprecated use {@link #addSlotArray(int[], ResourceLocation)}
+	 */
+	@Deprecated
 	public final InventorySlot[] addSlotArray(final int[] indexes, final String unlocName) {
 		for (final int k : indexes) {
 			this.addSlot(k, unlocName);

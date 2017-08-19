@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
+import binnie.design.api.DesignAPI;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
@@ -15,11 +16,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.api.CarpentryManager;
-import binnie.extratrees.api.IDesignMaterial;
-import binnie.extratrees.api.IDesignSystem;
-import binnie.extratrees.api.IPattern;
-import binnie.extratrees.api.carpentry.DesignerManager;
-import binnie.extratrees.api.carpentry.EnumPattern;
+import binnie.design.api.IDesignMaterial;
+import binnie.design.api.IDesignSystem;
+import binnie.design.api.IPattern;
+import binnie.design.EnumPattern;
 import binnie.extratrees.items.ExtraTreeItems;
 import binnie.extratrees.wood.planks.ExtraTreePlanks;
 
@@ -33,7 +33,7 @@ public enum DesignSystem implements IDesignSystem {
 	DesignSystem() {
 		this.primary = new HashMap<>();
 		this.secondary = new HashMap<>();
-		DesignerManager.instance.registerDesignSystem(this);
+		DesignAPI.manager.registerDesignSystem(this);
 	}
 
 	@Override

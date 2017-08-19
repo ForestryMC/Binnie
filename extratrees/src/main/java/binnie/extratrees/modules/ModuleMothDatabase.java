@@ -21,7 +21,7 @@ import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.items.ItemMothDatabase;
 
 @BinnieModule(moduleID = ExtraTreesModuleUIDs.MOTH_DATABASE, moduleContainerID = Constants.EXTRA_TREES_MOD_ID, name = "Database", unlocalizedDescription = "extratrees.module.database.moth")
-public class ModuleMothDatabase extends Module {
+public class ModuleMothDatabase implements Module {
 
 	public static Item itemDictionaryLepi;
 

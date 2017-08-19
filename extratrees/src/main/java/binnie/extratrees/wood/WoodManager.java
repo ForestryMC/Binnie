@@ -21,7 +21,7 @@ import forestry.core.utils.Translator;
 
 import binnie.core.block.TileEntityMetadata;
 import binnie.extratrees.api.CarpentryManager;
-import binnie.extratrees.api.IDesignMaterial;
+import binnie.design.api.IDesignMaterial;
 import binnie.extratrees.blocks.decor.FenceDescription;
 import binnie.extratrees.blocks.decor.FenceType;
 import binnie.extratrees.modules.ModuleWood;

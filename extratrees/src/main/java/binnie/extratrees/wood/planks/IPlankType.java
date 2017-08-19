@@ -8,7 +8,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import forestry.api.arboriculture.IWoodType;
 
-import binnie.extratrees.api.IDesignMaterial;
+import binnie.design.api.IDesignMaterial;
 
 public interface IPlankType extends IDesignMaterial {
 	String getDescription();

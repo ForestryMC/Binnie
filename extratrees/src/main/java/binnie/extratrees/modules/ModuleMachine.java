@@ -10,7 +10,6 @@ import binnie.core.Constants;
 import binnie.core.BinnieCore;
 import binnie.core.Mods;
 import binnie.core.machines.MachineGroup;
-import binnie.core.machines.inventory.ValidatorSprite;
 import binnie.core.util.RecipeUtil;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.api.recipes.ExtraTreesRecipeManager;
@@ -27,8 +26,7 @@ import binnie.core.modules.Module;
 import binnie.core.modules.ModuleManager;
 
 @BinnieModule(moduleID = ExtraTreesModuleUIDs.MACHINES, moduleContainerID = Constants.EXTRA_TREES_MOD_ID, name = "Machines", unlocalizedDescription = "extratrees.module.machines")
-public class ModuleMachine extends Module {
-	public static ValidatorSprite spritePolish;
+public class ModuleMachine implements Module {
 
 	public static Block blockMachine;
 
@@ -41,11 +39,6 @@ public class ModuleMachine extends Module {
 	}
 
 	@Override
-	public void disabledSetupAPI() {
-		super.disabledSetupAPI();
-	}
-
-	@Override
 	public void registerItemsAndBlocks() {
 		final MachineGroup machineGroup = new MachineGroup(ExtraTrees.instance, "machine", "machine", ExtraTreeMachine.values());
 		machineGroup.setCreativeTab(Tabs.tabArboriculture);
@@ -53,11 +46,6 @@ public class ModuleMachine extends Module {
 		// TODO fix rendering
 		Object rendererMachine = null;// BinnieCore.proxy.createObject("binnie.core.machines.RendererMachine");
 		BinnieCore.getBinnieProxy().registerTileEntity(TileEntityNursery.class, "binnie.tile.nursery", rendererMachine);
-	}
-
-	@Override
-	public void preInit() {
-		ModuleMachine.spritePolish = new ValidatorSprite(ExtraTrees.instance, "validator/polish.0", "validator/polish.1");
 	}
 
 	@Override

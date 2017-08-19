@@ -2,6 +2,7 @@ package binnie.extratrees.gui.database;
 
 import java.util.Collection;
 
+import binnie.genetics.api.ITreeBreedingSystem;
 import net.minecraft.item.ItemStack;
 
 import net.minecraftforge.fml.relauncher.Side;
@@ -9,7 +10,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import forestry.api.genetics.IAlleleSpecies;
 
-import binnie.extratrees.genetics.TreeBreedingSystem;
 import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.ControlText;
 import binnie.core.gui.database.ControlSpeciesBox;
@@ -35,7 +35,7 @@ public class PageFruit extends PageAbstract<ItemStack> {
 		this.deleteAllChildren();
 		final WindowAbstractDatabase database = Window.get(this);
 		new ControlText(this, new Area(0, 0, this.getSize().xPos(), 24), I18N.localise("extratrees.gui.database.tab.fruit." + (this.treesThatBearFruit ? "natural" : "potential")), TextJustification.MIDDLE_CENTER);
-		TreeBreedingSystem breedingSystem = (TreeBreedingSystem) database.getBreedingSystem();
+		ITreeBreedingSystem breedingSystem = (ITreeBreedingSystem) database.getBreedingSystem();
 		final Collection<IAlleleSpecies> trees;
 		if (this.treesThatBearFruit) {
 			trees = breedingSystem.getTreesThatBearFruit(species, database.isMaster(), database.getWorld(), database.getUsername());

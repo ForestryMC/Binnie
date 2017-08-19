@@ -1,9 +1,8 @@
 package binnie.extratrees.api;
 
 import javax.annotation.Nullable;
-import java.util.Collection;
-import java.util.List;
 
+import binnie.design.api.IDesignMaterial;
 import net.minecraft.item.ItemStack;
 
 public interface ICarpentryInterface {
@@ -13,18 +12,9 @@ public interface ICarpentryInterface {
 
 	IDesignMaterial getWoodMaterial(final int p0);
 
-	boolean registerDesign(final int p0, final IDesign p1);
-
-	int getDesignIndex(final IDesign p0);
-
-	IDesign getDesign(final int p0);
 
 	@Nullable
 	IDesignMaterial getWoodMaterial(final ItemStack stack);
 
-	boolean registerDesignCategory(final IDesignCategory p0);
 
-	Collection<IDesignCategory> getAllDesignCategories();
-
-	List<IDesign> getSortedDesigns();
 }

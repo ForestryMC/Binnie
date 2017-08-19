@@ -11,6 +11,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
 
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.FluidTankProperties;
@@ -38,6 +39,13 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 
 	@Override
 	public final TankSlot addTank(final int index, final String name, final int capacity) {
+		TankSlot tank = new TankSlot(index, name, capacity);
+		this.tanks.put(index, tank);
+		return tank;
+	}
+
+	@Override
+	public final TankSlot addTank(final int index, final ResourceLocation name, final int capacity) {
 		TankSlot tank = new TankSlot(index, name, capacity);
 		this.tanks.put(index, tank);
 		return tank;

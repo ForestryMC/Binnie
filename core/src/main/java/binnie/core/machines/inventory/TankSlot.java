@@ -1,7 +1,9 @@
 package binnie.core.machines.inventory;
 
+import binnie.core.Constants;
 import net.minecraft.nbt.NBTTagCompound;
 
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.IFluidTank;
@@ -11,7 +13,12 @@ import binnie.core.util.I18N;
 public class TankSlot extends BaseSlot<FluidStack> {
 	private FluidTank tank;
 
+	@Deprecated
 	public TankSlot(final int index, final String name, final int capacity) {
+		this(index, new ResourceLocation(Constants.CORE_MOD_ID, "gui.slot." + name), capacity);
+	}
+
+	public TankSlot(final int index, final ResourceLocation name, final int capacity) {
 		super(index, name);
 		this.tank = new FluidTank(capacity);
 	}
@@ -45,6 +52,9 @@ public class TankSlot extends BaseSlot<FluidStack> {
 
 	@Override
 	public String getName() {
-		return I18N.localise("binniecore.gui.slot." + this.unlocName);
+		if (this.unlocLocation == null) {
+			return "";
+		}
+		return I18N.localise(this.unlocLocation);
 	}
 }

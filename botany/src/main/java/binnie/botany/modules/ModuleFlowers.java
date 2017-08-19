@@ -59,7 +59,7 @@ import binnie.core.util.RecipeUtil;
 import binnie.core.util.TileUtil;
 
 @BinnieModule(moduleID = BotanyModuleUIDs.FLOWERS, moduleContainerID = Constants.BOTANY_MOD_ID, name = "Flowers", unlocalizedDescription = "botany.module.flowers")
-public class ModuleFlowers extends Module {
+public class ModuleFlowers implements Module {
 	public static AlleleEffectNone alleleEffectNone = new AlleleEffectNone();
 	@Nullable
 	public static Item botanistBackpack;

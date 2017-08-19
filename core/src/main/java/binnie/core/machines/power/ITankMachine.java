@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 
 import net.minecraft.util.EnumFacing;
 
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 
@@ -15,7 +16,13 @@ public interface ITankMachine extends IValidatedTankContainer {
 
 	IFluidTank[] getTanks();
 
-	TankSlot addTank(final int index, final String p1, final int p2);
+	/**
+	 * @deprecated use {@link #addTank(int, ResourceLocation, int)}
+	 */
+	@Deprecated
+	TankSlot addTank(final int index, final String name, final int capacity);
+
+	TankSlot addTank(final int index, final ResourceLocation name, final int capacity);
 
 	IFluidTank getTank(final int index);
 

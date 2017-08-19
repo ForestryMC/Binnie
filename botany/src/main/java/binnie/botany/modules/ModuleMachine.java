@@ -1,11 +1,5 @@
 package binnie.botany.modules;
 
-import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-
-import forestry.api.core.Tabs;
-
 import binnie.botany.Botany;
 import binnie.botany.machines.BotanyMachine;
 import binnie.core.Constants;
@@ -13,14 +7,19 @@ import binnie.core.Mods;
 import binnie.core.machines.MachineGroup;
 import binnie.core.modules.BinnieModule;
 import binnie.core.modules.BotanyModuleUIDs;
-import binnie.core.modules.ExtraTreesModuleUIDs;
 import binnie.core.modules.Module;
-import binnie.core.modules.ModuleManager;
 import binnie.core.util.RecipeUtil;
-import binnie.extratrees.items.ExtraTreeItems;
+import forestry.api.core.Tabs;
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 @BinnieModule(moduleID = BotanyModuleUIDs.MACHINES, moduleContainerID = Constants.BOTANY_MOD_ID, name = "Machines", unlocalizedDescription = "botany.module.machines")
-public class ModuleMachine extends Module {
+public class ModuleMachine implements Module {
 	public static Block blockMachine;
 
 	@Override
@@ -33,8 +32,19 @@ public class ModuleMachine extends Module {
 	@Override
 	public void init() {
 		RecipeUtil recipeUtil = new RecipeUtil(Constants.BOTANY_MOD_ID);
-		if (ModuleManager.isModuleEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.CARPENTRY)) {
-			recipeUtil.addRecipe("tileworker", BotanyMachine.Tileworker.get(1), "wGw", "GsG", "ggg", 'G', Blocks.GLASS, 'g', ExtraTreeItems.PROVEN_GEAR.get(1), 'w', Items.CLAY_BALL, 's', Mods.Forestry.stack("impregnated_casing"));
+		ItemStack tileworkerBase;
+		Item provenGear = ForgeRegistries.ITEMS.getValue(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "proven_gear"));
+		if (provenGear != null) {
+			tileworkerBase = new ItemStack(provenGear);
+		} else {
+			tileworkerBase = Mods.Forestry.stack("oak_stick");
 		}
+		recipeUtil.addRecipe("tileworker", BotanyMachine.Tileworker.get(1),
+				"wGw", "GsG", "ggg",
+				'G', Blocks.GLASS,
+				'g', tileworkerBase,
+				'w', Items.CLAY_BALL,
+				's', Mods.Forestry.stack("impregnated_casing")
+		);
 	}
 }

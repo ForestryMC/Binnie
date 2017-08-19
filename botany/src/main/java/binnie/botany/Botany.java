@@ -28,7 +28,8 @@ import binnie.genetics.api.acclimatiser.IAcclimatiserManager;
 	name = "Binnie's Botany",
 	acceptedMinecraftVersions = "[1.12, 1.12.1]",
 	dependencies = "required-after:" + Constants.CORE_MOD_ID + ";"
-			+	   "after:" + Constants.GENETICS_MOD_ID
+			+	   "after:" + Constants.GENETICS_MOD_ID + ";"
+			+      "after:" + Constants.DESIGN_MOD_ID + ";"
 )
 public class Botany extends BlankModuleContainer {
 	public static final float AGE_CHANCE = 0.2f;

@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
+import binnie.design.Design;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
@@ -18,11 +19,10 @@ import binnie.botany.Botany;
 import binnie.botany.api.genetics.EnumFlowerColor;
 import binnie.botany.items.CeramicItems;
 import binnie.botany.modules.ModuleCeramic;
-import binnie.extratrees.api.IDesignMaterial;
-import binnie.extratrees.api.IDesignSystem;
-import binnie.extratrees.api.IPattern;
-import binnie.extratrees.api.carpentry.DesignerManager;
-import binnie.extratrees.api.carpentry.EnumPattern;
+import binnie.design.api.IDesignMaterial;
+import binnie.design.api.IDesignSystem;
+import binnie.design.api.IPattern;
+import binnie.design.EnumPattern;
 
 public class CeramicDesignSystem implements IDesignSystem {
 	public static CeramicDesignSystem instance = new CeramicDesignSystem();
@@ -32,7 +32,7 @@ public class CeramicDesignSystem implements IDesignSystem {
 	CeramicDesignSystem() {
 		primary = new HashMap<>();
 		secondary = new HashMap<>();
-		DesignerManager.instance.registerDesignSystem(this);
+		Design.getDesignManager().registerDesignSystem(this);
 	}
 
 	@Override

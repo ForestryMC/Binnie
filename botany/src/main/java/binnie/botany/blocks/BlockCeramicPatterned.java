@@ -1,5 +1,8 @@
 package binnie.botany.blocks;
 
+import binnie.design.DesignHelper;
+import binnie.design.blocks.BlockDesign;
+import binnie.design.blocks.DesignBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemStack;
 
@@ -7,10 +10,7 @@ import binnie.botany.ceramic.CeramicColor;
 import binnie.botany.ceramic.CeramicDesignSystem;
 import binnie.botany.api.genetics.EnumFlowerColor;
 import binnie.core.util.I18N;
-import binnie.extratrees.api.IDesign;
-import binnie.extratrees.blocks.BlockDesign;
-import binnie.extratrees.carpentry.DesignBlock;
-import binnie.extratrees.modules.ModuleCarpentry;
+import binnie.design.api.IDesign;
 
 public class BlockCeramicPatterned extends BlockDesign {
 	public BlockCeramicPatterned() {
@@ -22,7 +22,7 @@ public class BlockCeramicPatterned extends BlockDesign {
 
 	@Override
 	public ItemStack getCreativeStack(IDesign design) {
-		return ModuleCarpentry.getItemStack(this, CeramicColor.get(EnumFlowerColor.White), CeramicColor.get(EnumFlowerColor.Black), design);
+		return DesignHelper.getItemStack(this, CeramicColor.get(EnumFlowerColor.White), CeramicColor.get(EnumFlowerColor.Black), design);
 	}
 
 	@Override

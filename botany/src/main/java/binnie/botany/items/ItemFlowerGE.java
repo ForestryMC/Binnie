@@ -132,11 +132,11 @@ public class ItemFlowerGE extends Item implements IColoredItem, IItemModelRegist
 	}
 
 	private IAlleleFlowerSpecies getPrimarySpecies(ItemStack itemstack) {
-		IFlower tree = BotanyCore.getFlowerRoot().getMember(itemstack);
-		if (tree == null) {
+		IFlower flower = BotanyCore.getFlowerRoot().getMember(itemstack);
+		if (flower == null) {
 			return (IAlleleFlowerSpecies) BotanyCore.getFlowerRoot().getDefaultTemplate()[EnumFlowerChromosome.SPECIES.ordinal()];
 		}
-		return tree.getGenome().getPrimary();
+		return flower.getGenome().getPrimary();
 	}
 
 	@Override

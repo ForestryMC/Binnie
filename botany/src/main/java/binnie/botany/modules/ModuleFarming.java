@@ -22,7 +22,7 @@ import binnie.core.modules.Module;
 import binnie.core.util.RecipeUtil;
 
 @BinnieModule(moduleID = BotanyModuleUIDs.FARMING, moduleContainerID = Constants.BOTANY_MOD_ID, name = "Farming", unlocalizedDescription = "botany.module.farming")
-public class ModuleFarming extends Module {
+public class ModuleFarming implements Module {
 	public ItemInsulatedTube insulatedTube;
 
 	@Override

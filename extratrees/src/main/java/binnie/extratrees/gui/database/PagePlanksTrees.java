@@ -1,15 +1,25 @@
 package binnie.extratrees.gui.database;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
+import binnie.core.Binnie;
+import binnie.core.api.genetics.IBreedingSystem;
+import binnie.extratrees.machines.lumbermill.recipes.LumbermillRecipeManager;
+import com.mojang.authlib.GameProfile;
+import forestry.api.arboriculture.IAlleleTreeSpecies;
+import forestry.api.arboriculture.ITreeGenome;
+import forestry.api.arboriculture.ITreeRoot;
+import forestry.api.arboriculture.TreeManager;
 import net.minecraft.item.ItemStack;
 
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import forestry.api.genetics.IAlleleSpecies;
 
-import binnie.extratrees.genetics.TreeBreedingSystem;
 import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.ControlText;
 import binnie.core.gui.database.ControlSpeciesBox;
@@ -31,8 +41,28 @@ public class PagePlanksTrees extends PageAbstract<ItemStack> {
 		this.deleteAllChildren();
 		final WindowAbstractDatabase database = Window.get(this);
 		new ControlText(this, new Area(0, 0, this.getSize().xPos(), 24), species.getDisplayName(), TextJustification.MIDDLE_CENTER);
-		TreeBreedingSystem breedingSystem = (TreeBreedingSystem) database.getBreedingSystem();
-		final Collection<IAlleleSpecies> trees = breedingSystem.getTreesThatMakePlanks(species, database.isMaster(), database.getWorld(), database.getUsername());
+		final Collection<IAlleleSpecies> trees = getTreesThatMakePlanks(species, database.isMaster(), database.getWorld(), database.getUsername());
 		new ControlSpeciesBox(this, 4, 24, this.getSize().xPos() - 8, this.getSize().yPos() - 4 - 24).setOptions(trees);
+	}
+
+	private static Collection<IAlleleSpecies> getTreesThatMakePlanks(final ItemStack fruit, final boolean nei, final World world, final GameProfile player) {
+		if (fruit == null) {
+			return new ArrayList<>();
+		}
+		ITreeRoot treeRoot = TreeManager.treeRoot;
+		IBreedingSystem system = Binnie.GENETICS.getSystem(treeRoot);
+		final Collection<IAlleleSpecies> set = nei ? system.getAllSpecies() : system.getDiscoveredSpecies(world, player);
+		final List<IAlleleSpecies> found = new ArrayList<>();
+		for (final IAlleleSpecies species : set) {
+			final IAlleleTreeSpecies tSpecies = (IAlleleTreeSpecies) species;
+			ITreeGenome genome = treeRoot.templateAsGenome(treeRoot.getTemplate(tSpecies));
+			IAlleleTreeSpecies treeSpecies = genome.getPrimary();
+			final ItemStack woodStack = treeSpecies.getWoodProvider().getWoodStack();
+			ItemStack plankProduct = LumbermillRecipeManager.getPlankProduct(woodStack, world);
+			if (!plankProduct.isEmpty() && fruit.isItemEqual(plankProduct)) {
+				found.add(species);
+			}
+		}
+		return found;
 	}
 }

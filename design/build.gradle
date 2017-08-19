@@ -1,0 +1,7 @@
+archivesBaseName = 'design-' + mcversion
+
+dependencies {
+	compile project(":core")
+	compile project(":core-api")
+	compile project(":design-api")
+}

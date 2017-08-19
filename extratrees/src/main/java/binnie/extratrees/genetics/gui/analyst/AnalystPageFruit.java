@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
 
+import binnie.core.api.genetics.IBreedingSystem;
 import binnie.core.api.gui.IArea;
 import binnie.core.api.gui.ITitledWidget;
 import binnie.core.gui.controls.core.Control;
@@ -29,7 +30,6 @@ import binnie.core.gui.geometry.Point;
 import binnie.core.gui.minecraft.control.ControlItemDisplay;
 import binnie.core.util.I18N;
 import binnie.core.util.UniqueItemStackSet;
-import binnie.extratrees.modules.ModuleWood;
 import binnie.genetics.api.analyst.AnalystConstants;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -43,7 +43,9 @@ public class AnalystPageFruit extends Control implements ITitledWidget {
 		int y = 4;
 		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColor(getColor());
 		y += 12;
-		new ControlTextCentered(this, y, TextFormatting.ITALIC + I18N.localise(AnalystConstants.FRUIT_KEY + ".yield") + ": " + ModuleWood.treeBreedingSystem.getAlleleName(EnumTreeChromosome.YIELD, ind.getGenome().getActiveAllele(EnumTreeChromosome.YIELD))).setColor(getColor());
+		IBreedingSystem treeSystem = Binnie.GENETICS.getSystem(TreeManager.treeRoot);
+		String yieldAlleleName = treeSystem.getAlleleName(EnumTreeChromosome.YIELD, ind.getGenome().getActiveAllele(EnumTreeChromosome.YIELD));
+		new ControlTextCentered(this, y, TextFormatting.ITALIC + I18N.localise(AnalystConstants.FRUIT_KEY + ".yield") + ": " + yieldAlleleName).setColor(getColor());
 		y += 20;
 		Collection<ItemStack> products = new UniqueItemStackSet();
 		Collection<ItemStack> specialties = new UniqueItemStackSet();

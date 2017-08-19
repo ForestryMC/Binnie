@@ -9,7 +9,7 @@ import binnie.core.modules.BinnieModule;
 import binnie.core.modules.Module;
 
 @BinnieModule(moduleID = ExtraTreesModuleUIDs.KITCHEN, moduleContainerID = Constants.EXTRA_TREES_MOD_ID, name = "Kitchen", unlocalizedDescription = "extratrees.module.kitchen")
-public class ModuleKitchen extends Module {
+public class ModuleKitchen implements Module {
 
 	public static Block blockKitchen = Blocks.AIR;
 

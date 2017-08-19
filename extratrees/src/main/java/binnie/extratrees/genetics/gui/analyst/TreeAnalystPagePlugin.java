@@ -2,20 +2,22 @@ package binnie.extratrees.genetics.gui.analyst;
 
 import java.util.List;
 
+import binnie.core.Binnie;
 import binnie.core.Constants;
+import binnie.core.api.genetics.IBreedingSystem;
 import binnie.core.api.gui.IArea;
 import binnie.core.api.gui.ITitledWidget;
 import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.ControlTextCentered;
 import binnie.core.util.I18N;
 import binnie.core.util.TimeUtil;
-import binnie.extratrees.modules.ModuleWood;
 import binnie.genetics.api.analyst.IAnalystManager;
 import binnie.genetics.api.analyst.IAnalystPagePlugin;
 import binnie.genetics.api.analyst.IBiologyPlugin;
 import binnie.genetics.api.analyst.AnalystConstants;
 import forestry.api.arboriculture.EnumTreeChromosome;
 import forestry.api.arboriculture.ITree;
+import forestry.api.arboriculture.TreeManager;
 import forestry.api.genetics.IIndividual;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.relauncher.Side;
@@ -40,7 +42,8 @@ public class TreeAnalystPagePlugin implements IAnalystPagePlugin<ITree> {
 		@Override
 		@SideOnly(Side.CLIENT)
 		public int addBiologyPages(ITree tree, IWidget parent, int y, IAnalystManager analystManager) {
-			String alleleName = ModuleWood.treeBreedingSystem.getAlleleName(EnumTreeChromosome.SAPPINESS, tree.getGenome().getActiveAllele(EnumTreeChromosome.SAPPINESS));
+			IBreedingSystem treeSystem = Binnie.GENETICS.getSystem(TreeManager.treeRoot);
+			String alleleName = treeSystem.getAlleleName(EnumTreeChromosome.SAPPINESS, tree.getGenome().getActiveAllele(EnumTreeChromosome.SAPPINESS));
 			new ControlTextCentered(parent, y, TextFormatting.ITALIC + I18N.localise(AnalystConstants.BIOLOGY_KEY + ".sappiness", alleleName))
 					.setColor(parent.getColor());
 			y += 20;

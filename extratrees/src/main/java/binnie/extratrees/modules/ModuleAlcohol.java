@@ -44,7 +44,7 @@ import binnie.extratrees.liquid.Spirit;
 import binnie.extratrees.machines.distillery.DistilleryLogic;
 
 @BinnieModule(moduleID = ExtraTreesModuleUIDs.ALCOHOL, moduleContainerID = Constants.EXTRA_TREES_MOD_ID, name = "Alcohol", unlocalizedDescription = "extratrees.module.alcohol")
-public class ModuleAlcohol extends Module {
+public class ModuleAlcohol implements Module {
 	@Nullable
 	public static ItemDrink drink;
 	@Nullable

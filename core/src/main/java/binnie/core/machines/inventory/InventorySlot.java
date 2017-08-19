@@ -6,13 +6,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
 import binnie.core.util.I18N;
+import net.minecraft.util.ResourceLocation;
 
 public class InventorySlot extends BaseSlot<ItemStack> {
 	private ItemStack itemStack;
 	private Type type;
 
-	public InventorySlot(final int index, final String unlocName) {
-		super(index, unlocName);
+	public InventorySlot(final int index, final ResourceLocation unlocLocation) {
+		super(index, unlocLocation);
 		this.itemStack = ItemStack.EMPTY;
 		this.type = Type.Standard;
 	}
@@ -86,7 +87,10 @@ public class InventorySlot extends BaseSlot<ItemStack> {
 
 	@Override
 	public String getName() {
-		return I18N.localise("binniecore.gui.slot." + this.unlocName);
+		if (this.unlocLocation == null) {
+			return "";
+		}
+		return I18N.localise(this.unlocLocation);
 	}
 
 	public enum Type {

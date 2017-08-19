@@ -12,7 +12,7 @@ import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
 
 import binnie.core.util.I18N;
-import binnie.extratrees.api.IToolHammer;
+import binnie.design.api.IToolHammer;
 
 public class ItemHammer extends Item implements IToolHammer, IItemModelRegister {
 	private boolean isDurableHammer;

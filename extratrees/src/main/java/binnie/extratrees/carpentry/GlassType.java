@@ -13,7 +13,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 import binnie.botany.api.genetics.EnumFlowerColor;
 import binnie.core.Constants;
 import binnie.core.block.TileEntityMetadata;
-import binnie.extratrees.api.IDesignMaterial;
+import binnie.design.api.IDesignMaterial;
 
 public class GlassType implements IDesignMaterial {
 	private static Map<Integer, GlassType> types;

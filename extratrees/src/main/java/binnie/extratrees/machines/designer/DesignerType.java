@@ -1,14 +1,16 @@
 package binnie.extratrees.machines.designer;
 
+import binnie.design.DesignHelper;
+import binnie.design.api.IDesignerType;
 import net.minecraft.item.ItemStack;
 
 import binnie.core.util.I18N;
-import binnie.extratrees.api.IDesign;
-import binnie.extratrees.api.IDesignMaterial;
-import binnie.extratrees.api.IDesignSystem;
-import binnie.extratrees.blocks.BlockDesign;
+import binnie.design.api.IDesign;
+import binnie.design.api.IDesignMaterial;
+import binnie.design.api.IDesignSystem;
+import binnie.design.blocks.BlockDesign;
 import binnie.extratrees.carpentry.DesignSystem;
-import binnie.extratrees.carpentry.EnumDesign;
+import binnie.design.EnumDesign;
 import binnie.extratrees.modules.ModuleCarpentry;
 
 public enum DesignerType implements IDesignerType {
@@ -41,7 +43,7 @@ public enum DesignerType implements IDesignerType {
 			type2 = type1;
 			stackSize = 1;
 		}
-		final ItemStack stack = ModuleCarpentry.getItemStack(this.getBlock(), type1, type2, design);
+		final ItemStack stack = DesignHelper.getItemStack(this.getBlock(), type1, type2, design);
 		stack.setCount(stackSize);
 		return stack;
 	}

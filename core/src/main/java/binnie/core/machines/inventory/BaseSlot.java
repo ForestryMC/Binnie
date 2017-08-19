@@ -10,22 +10,21 @@ import forestry.api.core.INbtReadable;
 import forestry.api.core.INbtWritable;
 
 import binnie.core.util.IValidator;
+import net.minecraft.util.ResourceLocation;
 
 public abstract class BaseSlot<T> implements INbtWritable, INbtReadable, IValidator<T> {
-	protected String unlocName;
+	@Nullable
+	protected ResourceLocation unlocLocation;
 	@Nullable
 	Validator<T> validator;
 	private SidedAccess access;
 	private boolean readOnly;
 	private int index;
 
-	public BaseSlot(final int index, final String unlocName) {
+	public BaseSlot(final int index, final ResourceLocation unlocLocation) {
 		this.access = new SidedAccess();
-		this.validator = null;
-		this.readOnly = false;
-		this.unlocName = "";
 		this.setIndex(index);
-		this.setUnlocalisedName(unlocName);
+		this.unlocLocation = unlocLocation;
 	}
 
 	public void setReadOnly() {
@@ -98,10 +97,6 @@ public abstract class BaseSlot<T> implements INbtWritable, INbtReadable, IValida
 			this.access.setExtract(side, false);
 			//}
 		}
-	}
-
-	public void setUnlocalisedName(final String name) {
-		this.unlocName = name;
 	}
 
 	public abstract String getName();

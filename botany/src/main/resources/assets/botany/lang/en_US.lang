@@ -8,6 +8,9 @@ botany.module.flowers=Adds an entirely new breeding system to Forestry: Flowers.
 
 botany.machine.machine.tileworker=Tileworker
 botany.machine.machine.tileworker.info=The Tileworker creates patterned ceramic tiles.
+botany.machine.machine.designer.material.tile=Ceramic Block
+botany.gui.slot.mortar=Mortar Slot
+botany.gui.slot.ceramic=Ceramic Block Slot
 
 botany.ph=PH
 botany.ph.acid=Acidic

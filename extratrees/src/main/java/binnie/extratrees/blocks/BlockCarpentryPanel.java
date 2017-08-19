@@ -1,7 +1,6 @@
 package binnie.extratrees.blocks;
 
-import javax.annotation.Nullable;
-
+import binnie.design.DesignHelper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
@@ -15,7 +14,7 @@ import net.minecraft.world.World;
 import binnie.core.block.BlockMetadata;
 import binnie.core.block.TileEntityMetadata;
 import binnie.core.util.I18N;
-import binnie.extratrees.carpentry.DesignBlock;
+import binnie.design.blocks.DesignBlock;
 import binnie.extratrees.modules.ModuleCarpentry;
 
 public class BlockCarpentryPanel extends BlockCarpentry {
@@ -23,15 +22,6 @@ public class BlockCarpentryPanel extends BlockCarpentry {
 		super("carpentryPanel");
 		this.useNeighborBrightness = true;
 		this.setLightOpacity(0);
-	}
-
-	public static boolean isValidPanelPlacement(IBlockAccess world, BlockPos pos, @Nullable EnumFacing facing) {
-		if (facing == null) {
-			return false;
-		}
-		pos = pos.offset(facing);
-		IBlockState state = world.getBlockState(pos);
-		return state.isSideSolid(world, pos, facing.getOpposite());
 	}
 
 	@Override
@@ -71,7 +61,7 @@ public class BlockCarpentryPanel extends BlockCarpentry {
 
 	@Override
 	public String getDisplayName(final ItemStack itemStack) {
-		final DesignBlock block = ModuleCarpentry.getDesignBlock(this.getDesignSystem(), TileEntityMetadata.getItemDamage(itemStack));
+		final DesignBlock block = DesignHelper.getDesignBlock(this.getDesignSystem(), TileEntityMetadata.getItemDamage(itemStack));
 		return I18N.localise("extratrees.block.woodenpanel.name", block.getDesign().getName());
 	}
 
@@ -95,10 +85,10 @@ public class BlockCarpentryPanel extends BlockCarpentry {
 		final DesignBlock block = ModuleCarpentry.getCarpentryPanel(this.getDesignSystem(), TileEntityMetadata.getItemDamage(item));
 		EnumFacing facing = clickedBlock;
 		boolean valid = true;
-		if (!isValidPanelPlacement(world, pos, facing)) {
+		if (!DesignHelper.isValidPanelPlacement(world, pos, facing)) {
 			valid = false;
 			for (EnumFacing direction : EnumFacing.VALUES) {
-				if (isValidPanelPlacement(world, pos, direction)) {
+				if (DesignHelper.isValidPanelPlacement(world, pos, direction)) {
 					facing = direction;
 					valid = true;
 					break;
@@ -122,7 +112,7 @@ public class BlockCarpentryPanel extends BlockCarpentry {
 		super.onNeighborChange(blockAccess, pos, neighbor);
 		World world = (World) blockAccess;
 		final DesignBlock block = this.getCarpentryBlock(blockAccess, pos);
-		if (!isValidPanelPlacement(blockAccess, pos, block.getFacing())) {
+		if (!DesignHelper.isValidPanelPlacement(blockAccess, pos, block.getFacing())) {
 			NonNullList<ItemStack> drops = NonNullList.create();
 			BlockMetadata.getDrops(drops, this, blockAccess, pos);
 			for (ItemStack stack : drops) {

@@ -218,9 +218,6 @@ binniecore.errors.invalid.recipe.name=Invalid Recipe
 binniecore.errors.no.recipe.name=No Recipe
 binniecore.errors.no.recipe.desc=There is no valid recipe
 
-< %1$s is the name of the pattern >
-binniecore.gui.designer.pattern=%1$s Pattern
-
 binniecore.gui.database.nodescription=No Description Provided.
 
 binniecore.gui.database.mode.species=Species
@@ -263,8 +260,6 @@ binniecore.gui.humidity.short=Humid.
 
 binniecore.gui.tolerated=Tolerated
 binniecore.gui.nottolerated=Not Tolerated
-
-binniecore.gui.design=Design
 
 binniecore.gui.genesis.title=Genesis
 

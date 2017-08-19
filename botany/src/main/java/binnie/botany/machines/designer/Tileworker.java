@@ -1,17 +1,17 @@
 package binnie.botany.machines.designer;
 
-import binnie.extratrees.machines.designer.IDesignerType;
+import binnie.design.DesignHelper;
+import binnie.design.EnumDesign;
+import binnie.design.api.IDesignerType;
+import binnie.design.blocks.BlockDesign;
 import net.minecraft.item.ItemStack;
 
 import binnie.botany.ceramic.CeramicDesignSystem;
 import binnie.botany.modules.ModuleCeramic;
 import binnie.core.util.I18N;
-import binnie.extratrees.api.IDesign;
-import binnie.extratrees.api.IDesignMaterial;
-import binnie.extratrees.api.IDesignSystem;
-import binnie.extratrees.blocks.BlockDesign;
-import binnie.extratrees.carpentry.EnumDesign;
-import binnie.extratrees.modules.ModuleCarpentry;
+import binnie.design.api.IDesign;
+import binnie.design.api.IDesignMaterial;
+import binnie.design.api.IDesignSystem;
 
 public class Tileworker implements IDesignerType {
 	private static final String name = "tileworker";
@@ -28,7 +28,7 @@ public class Tileworker implements IDesignerType {
 			type2 = type1;
 			stackSize = 1;
 		}
-		final ItemStack stack = ModuleCarpentry.getItemStack(this.getBlock(), type1, type2, design);
+		final ItemStack stack = DesignHelper.getItemStack(this.getBlock(), type1, type2, design);
 		stack.setCount(stackSize);
 		return stack;
 	}
@@ -44,7 +44,7 @@ public class Tileworker implements IDesignerType {
 
 	@Override
 	public String getMaterialTooltip() {
-		return I18N.localise("extratrees.machine.machine.designer.material.tile");
+		return I18N.localise("botany.machine.machine.designer.material.tile");
 	}
 
 	@Override

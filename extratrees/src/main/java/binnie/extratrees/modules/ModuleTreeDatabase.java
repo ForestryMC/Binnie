@@ -20,7 +20,7 @@ import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.items.ItemArboristDatabase;
 
 @BinnieModule(moduleID = ExtraTreesModuleUIDs.TREE_DATABASE, moduleContainerID = Constants.EXTRA_TREES_MOD_ID, name = "Database", unlocalizedDescription = "extratrees.module.database.tree")
-public class ModuleTreeDatabase extends Module {
+public class ModuleTreeDatabase implements Module {
 	public static Item itemDictionary;
 
 	@Override

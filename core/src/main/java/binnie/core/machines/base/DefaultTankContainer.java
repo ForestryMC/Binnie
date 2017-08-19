@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 
 import net.minecraft.util.EnumFacing;
 
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.IFluidHandler;
@@ -30,6 +31,11 @@ class DefaultTankContainer implements ITankMachine {
 
 	@Override
 	public TankSlot addTank(final int index, final String name, final int capacity) {
+		return null;
+	}
+
+	@Override
+	public TankSlot addTank(int index, ResourceLocation name, int capacity) {
 		return null;
 	}
 

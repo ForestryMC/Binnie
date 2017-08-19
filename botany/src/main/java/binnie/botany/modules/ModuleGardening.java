@@ -49,7 +49,7 @@ import binnie.core.util.OreDictionaryUtil;
 import binnie.core.util.RecipeUtil;
 
 @BinnieModule(moduleID = BotanyModuleUIDs.GARDENING, moduleContainerID = Constants.BOTANY_MOD_ID, name = "Gardening", unlocalizedDescription = "botany.module.gardening")
-public class ModuleGardening extends Module {
+public class ModuleGardening implements Module {
 	public static BlockPlant plant;
 	public static ItemTrowel trowelWood;
 	public static ItemTrowel trowelStone;

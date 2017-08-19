@@ -18,8 +18,7 @@ public enum ExtraTreesErrorCode implements IErrorStateDefinition {
 	LUMBERMILL_NO_WOOD("lumbermill.no.wood", CoreErrorCode.NO_ITEM),
 	LUMBERMILL_NO_SPACE_BARK("lumbermill.space.bark", CoreErrorCode.NO_SPACE),
 	LUMBERMILL_NO_SPACE_PLANKS("lumbermill.space.planks", CoreErrorCode.NO_SPACE),
-	LUMBERMILL_NO_SPACE_SAW_DUST("lumbermill.space.saw_dust", CoreErrorCode.NO_SPACE),
-	DESIGNER_NO_ADHESIVE("designer.no.adhesive", CoreErrorCode.NO_ITEM);
+	LUMBERMILL_NO_SPACE_SAW_DUST("lumbermill.space.saw_dust", CoreErrorCode.NO_SPACE);
 
 	String name;
 	@Nullable

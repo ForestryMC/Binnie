@@ -6,4 +6,6 @@ dependencies {
 	compile project(":extratrees-api")
 	compile project(":botany-api")
 	compile project(":genetics-api")
+	compile project(":design")
+	compile project(":design-api")
 }

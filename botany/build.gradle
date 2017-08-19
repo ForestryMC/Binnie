@@ -5,7 +5,5 @@ dependencies {
 	compile project(":botany-api")
 	compile project(":extratrees-api")
 	compile project(":genetics-api")
-
-	// TODO: remove
-	compile project(":extratrees")
+	compile project(":design")
 }

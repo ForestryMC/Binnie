@@ -22,7 +22,7 @@ import binnie.core.modules.BotanyModuleUIDs;
 import binnie.core.modules.Module;
 
 @BinnieModule(moduleID = BotanyModuleUIDs.DATABASE, moduleContainerID = Constants.BOTANY_MOD_ID, name = "Database", unlocalizedDescription = "botany.module.database")
-public class ModuleDatabase extends Module {
+public class ModuleDatabase implements Module {
 	public static ItemDatabaseBotany database;
 
 	@Override

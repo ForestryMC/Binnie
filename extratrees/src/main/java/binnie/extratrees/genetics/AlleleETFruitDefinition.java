@@ -3,6 +3,9 @@ package binnie.extratrees.genetics;
 import java.awt.Color;
 import java.lang.reflect.Field;
 
+import binnie.core.Binnie;
+import binnie.core.api.genetics.IBreedingSystem;
+import forestry.api.arboriculture.TreeManager;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
@@ -22,7 +25,6 @@ import binnie.extratrees.genetics.fruits.ETFruitProviderRipening;
 import binnie.extratrees.genetics.fruits.FruitPod;
 import binnie.extratrees.genetics.fruits.FruitSprite;
 import binnie.extratrees.items.Food;
-import binnie.extratrees.modules.ModuleWood;
 import static binnie.extratrees.genetics.fruits.ETFruitFamily.BERRY;
 import static binnie.extratrees.genetics.fruits.ETFruitFamily.CITRUS;
 import static forestry.api.arboriculture.EnumFruitFamily.JUNGLE;
@@ -427,7 +429,8 @@ public enum AlleleETFruitDefinition {
 				throw new RuntimeException(e);
 			}
 		}
-		for (IAlleleSpecies tree : ModuleWood.treeBreedingSystem.getAllSpecies()) {
+		IBreedingSystem treeSystem = Binnie.GENETICS.getSystem(TreeManager.treeRoot);
+		for (IAlleleSpecies tree : treeSystem.getAllSpecies()) {
 			if (tree instanceof AlleleTreeSpecies && ((IAlleleTreeSpecies) tree).getSuitableFruit().contains(PRUNES)) {
 				((AlleleTreeSpecies) tree).addFruitFamily(CITRUS);
 			}

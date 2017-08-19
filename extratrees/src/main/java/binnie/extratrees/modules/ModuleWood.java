@@ -55,11 +55,9 @@ import forestry.core.fluids.Fluids;
 import forestry.core.utils.OreDictUtil;
 import forestry.plugins.ForestryPluginUids;
 
-import binnie.core.Binnie;
 import binnie.core.BinnieCore;
 import binnie.core.Constants;
 import binnie.core.Mods;
-import binnie.core.api.genetics.IBreedingSystem;
 import binnie.core.block.ItemMetadata;
 import binnie.core.liquid.ILiquidDefinition;
 import binnie.core.models.DoublePassBakedModel;
@@ -90,7 +88,6 @@ import binnie.extratrees.genetics.ButterflySpecies;
 import binnie.extratrees.genetics.ETTreeDefinition;
 import binnie.extratrees.genetics.ExtraTreeMutation;
 import binnie.extratrees.genetics.fruits.FruitSprite;
-import binnie.extratrees.genetics.TreeBreedingSystem;
 import binnie.extratrees.items.ExtraTreeLiquid;
 import binnie.extratrees.items.ItemBlockETDecorativeLeaves;
 import binnie.extratrees.wood.EnumETLog;
@@ -101,8 +98,13 @@ import binnie.extratrees.wood.planks.ForestryPlanks;
 import binnie.extratrees.wood.planks.IPlankType;
 import binnie.extratrees.wood.planks.VanillaPlanks;
 
-@BinnieModule(moduleID = ExtraTreesModuleUIDs.WOOD, moduleContainerID = Constants.EXTRA_TREES_MOD_ID, name = "Wood", unlocalizedDescription = "extratrees.module.wood")
-public class ModuleWood extends Module {
+@BinnieModule(
+		moduleID = ExtraTreesModuleUIDs.WOOD,
+		moduleContainerID = Constants.EXTRA_TREES_MOD_ID,
+		name = "Wood",
+		unlocalizedDescription = "extratrees.module.wood"
+)
+public class ModuleWood implements Module {
 	public static List<BlockETLog> logs = new ArrayList<>();
 	public static List<BlockETLog> logsFireproof = new ArrayList<>();
 	public static List<BlockETPlank> planks = new ArrayList<>();
@@ -125,8 +127,6 @@ public class ModuleWood extends Module {
 	public static BlockMultiFence blockMultiFence;
 	@Nullable
 	public static BlockShrubLog shrubLog;
-
-	public static IBreedingSystem treeBreedingSystem;
 
 	private static void registerOreDictWildcard(String oreDictName, Block block) {
 		OreDictionary.registerOre(oreDictName, new ItemStack(block, 1, OreDictionary.WILDCARD_VALUE));
@@ -323,9 +323,6 @@ public class ModuleWood extends Module {
 		ExtraTrees.proxy.registerBlock(shrubLog, new ItemBlockETWood<BlockShrubLog>(shrubLog));
 		woodAccess.register(EnumShrubLog.INSTANCE, WoodBlockKind.LOG, false, shrubLog.getStateFromMeta(0), new ItemStack(shrubLog, 1, 0));
 		woodAccess.register(EnumShrubLog.INSTANCE, WoodBlockKind.LOG, true, shrubLog.getStateFromMeta(1), new ItemStack(shrubLog, 1, 1));
-
-		treeBreedingSystem = new TreeBreedingSystem();
-		Binnie.GENETICS.registerBreedingSystem(treeBreedingSystem);
 	}
 
 	public static void registerPlanks() {

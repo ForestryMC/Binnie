@@ -3,4 +3,5 @@ archivesBaseName = 'genetics-' + mcversion
 dependencies {
 	compile project(":core")
 	compile project(":genetics-api")
+	compile project(":design-api")
 }

@@ -3,39 +3,39 @@ package binnie.core.modules;
 import java.util.Collections;
 import java.util.Set;
 
-public abstract class Module{
-	public String getFailMessage(){
+public interface Module {
+	default String getFailMessage(){
 		return "";
 	}
 
-	public Set<String> getDependencyUids(){
+	default Set<String> getDependencyUids(){
 		return Collections.emptySet();
 	}
 
-	public boolean canBeDisabled(){
+	default boolean canBeDisabled(){
 		return true;
 	}
 
-	public boolean isAvailable(){
+	default boolean isAvailable(){
 		return true;
 	}
 
-	public void setupAPI(){
+	default void setupAPI(){
 	}
 
-	public void disabledSetupAPI(){
+	default void disabledSetupAPI(){
 	}
 
-	public void registerItemsAndBlocks(){
+	default void registerItemsAndBlocks(){
 	}
 
 
-	public void preInit() {
+	default void preInit() {
 	}
 
-	public void init() {
+	default void init() {
 	}
 
-	public void postInit() {
+	default void postInit() {
 	}
 }

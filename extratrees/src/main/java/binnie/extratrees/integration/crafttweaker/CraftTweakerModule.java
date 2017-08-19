@@ -18,7 +18,7 @@ import binnie.core.modules.Module;
 import crafttweaker.CraftTweakerAPI;
 
 @BinnieModule(moduleID = ExtraTreesModuleUIDs.CRAFT_TWEAKER, moduleContainerID = Constants.EXTRA_TREES_MOD_ID, name = "Craft Tweaker", unlocalizedDescription = "extratrees.module.crafttweaker")
-public class CraftTweakerModule extends Module {
+public class CraftTweakerModule implements Module {
 	public static final String MOD_ID = "crafttweaker";
 
 	@Override

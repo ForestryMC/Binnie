@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import binnie.core.Binnie;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
@@ -37,7 +38,6 @@ import binnie.core.gui.geometry.Point;
 import binnie.core.gui.geometry.TextJustification;
 import binnie.core.gui.minecraft.control.ControlItemDisplay;
 import binnie.core.util.I18N;
-import binnie.extratrees.modules.ModuleWood;
 
 @SideOnly(Side.CLIENT)
 public class PageSpeciesTreeGenome extends PageSpecies {
@@ -75,7 +75,7 @@ public class PageSpeciesTreeGenome extends PageSpecies {
 		int y = 0;
 		final int th = 14;
 		final int th2 = 18;
-		final IBreedingSystem syst = ModuleWood.treeBreedingSystem;
+		final IBreedingSystem syst = Binnie.GENETICS.getSystem(TreeManager.treeRoot);
 		new ControlText(contents, new Area(w2, y, w3, th), treeSpecies.getPlantType().toString(), TextJustification.MIDDLE_LEFT);
 		y += th;
 		new ControlText(contents, new Area(0, y, w2, th), I18N.localise("binniecore.gui.temperature.short") + " : ", TextJustification.MIDDLE_RIGHT);

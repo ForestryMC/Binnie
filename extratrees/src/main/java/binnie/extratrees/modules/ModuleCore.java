@@ -40,7 +40,7 @@ import binnie.extratrees.items.ItemHops;
 import binnie.extratrees.village.VillageCreationExtraTrees;
 
 @BinnieModule(moduleID = ExtraTreesModuleUIDs.CORE, moduleContainerID = Constants.EXTRA_TREES_MOD_ID, coreModule = true, name = "Core", unlocalizedDescription = "extratrees.module.core")
-public class ModuleCore extends Module {
+public class ModuleCore implements Module {
 	public static ItemMisc itemMisc;
 	public static Item itemFood;
 	public static Item itemHammer;

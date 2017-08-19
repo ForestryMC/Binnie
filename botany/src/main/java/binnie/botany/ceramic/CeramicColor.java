@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 import binnie.botany.api.genetics.EnumFlowerColor;
 import binnie.botany.modules.ModuleCeramic;
 import binnie.core.block.TileEntityMetadata;
-import binnie.extratrees.api.IDesignMaterial;
+import binnie.design.api.IDesignMaterial;
 
 public class CeramicColor implements IDesignMaterial {
 	private final static Map<EnumFlowerColor, CeramicColor> map = new LinkedHashMap<>();

@@ -33,10 +33,10 @@ import binnie.core.modules.BotanyModuleUIDs;
 import binnie.core.modules.Module;
 import binnie.core.modules.ModuleManager;
 import binnie.core.util.RecipeUtil;
-import binnie.extratrees.items.ItemDesign;
+import binnie.design.items.ItemDesign;
 
 @BinnieModule(moduleID = BotanyModuleUIDs.CERAMIC, moduleContainerID = Constants.BOTANY_MOD_ID, name = "Ceramic", unlocalizedDescription = "botany.module.ceramic")
-public class ModuleCeramic extends Module {
+public class ModuleCeramic implements Module {
 	public static BlockCeramic ceramic;
 	public static BlockCeramicPatterned ceramicTile;
 	public static BlockStainedGlass stained;

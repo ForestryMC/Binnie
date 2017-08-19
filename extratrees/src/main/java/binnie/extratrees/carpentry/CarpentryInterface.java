@@ -1,24 +1,16 @@
 package binnie.extratrees.carpentry;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 import net.minecraft.item.ItemStack;
 
 import binnie.extratrees.api.ICarpentryInterface;
-import binnie.extratrees.api.IDesign;
-import binnie.extratrees.api.IDesignCategory;
-import binnie.extratrees.api.IDesignMaterial;
+import binnie.design.api.IDesignMaterial;
 
 public class CarpentryInterface implements ICarpentryInterface {
 	private static Map<Integer, IDesignMaterial> woodMap = new LinkedHashMap<>();
-	private static Map<Integer, IDesign> designMap = new LinkedHashMap<>();
-	private static Map<String, IDesignCategory> designCategories = new HashMap<>();
 
 	@Override
 	public boolean registerCarpentryWood(final int index, final IDesignMaterial wood) {
@@ -40,50 +32,7 @@ public class CarpentryInterface implements ICarpentryInterface {
 		return CarpentryInterface.woodMap.get(index);
 	}
 
-	@Override
-	public boolean registerDesign(final int index, final IDesign wood) {
-		return CarpentryInterface.designMap.put(index, wood) == null;
-	}
 
-	@Override
-	public int getDesignIndex(final IDesign wood) {
-		for (final Integer integer : CarpentryInterface.designMap.keySet()) {
-			if (CarpentryInterface.designMap.get(integer).equals(wood)) {
-				return integer;
-			}
-		}
-		return -1;
-	}
-
-	@Override
-	public IDesign getDesign(final int index) {
-		return CarpentryInterface.designMap.get(index);
-	}
-
-	@Override
-	public boolean registerDesignCategory(final IDesignCategory category) {
-		return CarpentryInterface.designCategories.put(category.getId(), category) == null;
-	}
-
-	@Override
-	public Collection<IDesignCategory> getAllDesignCategories() {
-		final List<IDesignCategory> categories = new ArrayList<>();
-		for (final IDesignCategory category : CarpentryInterface.designCategories.values()) {
-			if (category.getDesigns().size() > 0) {
-				categories.add(category);
-			}
-		}
-		return categories;
-	}
-
-	@Override
-	public List<IDesign> getSortedDesigns() {
-		final List<IDesign> designs = new ArrayList<>();
-		for (final IDesignCategory category : this.getAllDesignCategories()) {
-			designs.addAll(category.getDesigns());
-		}
-		return designs;
-	}
 
 	@Override
 	@Nullable

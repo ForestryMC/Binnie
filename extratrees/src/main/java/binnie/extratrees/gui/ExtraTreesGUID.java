@@ -14,7 +14,7 @@ import binnie.extratrees.gui.database.WindowArboristDatabase;
 import binnie.extratrees.gui.database.WindowLepidopteristDatabase;
 import binnie.extratrees.kitchen.craftgui.WindowBottleRack;
 import binnie.extratrees.machines.brewery.window.WindowBrewery;
-import binnie.extratrees.machines.designer.window.WindowDesigner;
+import binnie.design.gui.WindowDesigner;
 import binnie.extratrees.machines.distillery.window.WindowDistillery;
 import binnie.extratrees.machines.fruitpress.window.WindowPress;
 import binnie.extratrees.machines.lumbermill.window.WindowLumbermill;
@@ -38,9 +38,9 @@ public enum ExtraTreesGUID implements IBinnieGUID {
 	public Window getWindow(final EntityPlayer player, final World world, final int x, final int y, final int z, final Side side) {
 		Window window = null;
 		final TileEntity tileEntity = world.getTileEntity(new BlockPos(x, y, z));
-		IInventory object = null;
+		IInventory inventory = null;
 		if (tileEntity instanceof IInventory) {
-			object = (IInventory) tileEntity;
+			inventory = (IInventory) tileEntity;
 		}
 		switch (this) {
 			case DATABASE:
@@ -49,27 +49,27 @@ public enum ExtraTreesGUID implements IBinnieGUID {
 				break;
 			}
 			case WOODWORKER: {
-				window = WindowDesigner.create(player, object, side);
+				window = WindowDesigner.create(player, inventory, side);
 				break;
 			}
 			case LUMBERMILL: {
-				window = WindowLumbermill.create(player, object, side);
+				window = WindowLumbermill.create(player, inventory, side);
 				break;
 			}
 			case KITCHEN_BOTTLE_RACK: {
-				window = WindowBottleRack.create(player, object, side);
+				window = WindowBottleRack.create(player, inventory, side);
 				break;
 			}
 			case PRESS: {
-				window = WindowPress.create(player, object, side);
+				window = WindowPress.create(player, inventory, side);
 				break;
 			}
 			case BREWERY: {
-				window = WindowBrewery.create(player, object, side);
+				window = WindowBrewery.create(player, inventory, side);
 				break;
 			}
 			case DISTILLERY: {
-				window = WindowDistillery.create(player, object, side);
+				window = WindowDistillery.create(player, inventory, side);
 				break;
 			}
 			case MOTH_DATABASE:

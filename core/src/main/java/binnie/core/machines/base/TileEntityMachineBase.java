@@ -8,6 +8,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.fluids.FluidStack;
@@ -105,6 +106,11 @@ public class TileEntityMachineBase extends TileEntity implements IInventoryMachi
 
 	@Override
 	public TankSlot addTank(final int index, final String name, final int capacity) {
+		return this.getTankContainer().addTank(index, name, capacity);
+	}
+
+	@Override
+	public TankSlot addTank(final int index, final ResourceLocation name, final int capacity) {
 		return this.getTankContainer().addTank(index, name, capacity);
 	}
 

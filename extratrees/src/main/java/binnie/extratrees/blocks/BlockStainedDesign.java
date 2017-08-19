@@ -3,6 +3,8 @@ package binnie.extratrees.blocks;
 import javax.annotation.Nullable;
 import java.util.Random;
 
+import binnie.design.DesignHelper;
+import binnie.design.blocks.BlockDesign;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -27,11 +29,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.core.block.TileEntityMetadata;
 import binnie.core.util.I18N;
-import binnie.extratrees.api.IDesign;
-import binnie.extratrees.carpentry.DesignBlock;
+import binnie.design.api.IDesign;
+import binnie.design.blocks.DesignBlock;
 import binnie.extratrees.carpentry.DesignSystem;
 import binnie.extratrees.carpentry.GlassType;
-import binnie.extratrees.modules.ModuleCarpentry;
 
 public class BlockStainedDesign extends BlockDesign {
 	public BlockStainedDesign() {
@@ -104,7 +105,7 @@ public class BlockStainedDesign extends BlockDesign {
 
 	@Override
 	public ItemStack getCreativeStack(final IDesign design) {
-		return ModuleCarpentry.getItemStack(this, GlassType.get(0), GlassType.get(1), design);
+		return DesignHelper.getItemStack(this, GlassType.get(0), GlassType.get(1), design);
 	}
 
 	@Override

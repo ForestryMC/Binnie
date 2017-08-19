@@ -2,14 +2,16 @@ package binnie.extratrees.gui.database;
 
 import java.util.stream.Collectors;
 
+import binnie.core.Binnie;
 import binnie.core.api.gui.IArea;
+import binnie.genetics.api.ITreeBreedingSystem;
+import forestry.api.arboriculture.TreeManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.extratrees.genetics.TreeBreedingSystem;
 import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.listbox.ControlListBox;
 import binnie.core.gui.database.ControlItemStackOption;
@@ -26,13 +28,12 @@ import binnie.core.gui.database.WindowAbstractDatabase;
 import binnie.core.gui.minecraft.Window;
 import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
-import binnie.extratrees.api.IDesignMaterial;
-import binnie.extratrees.modules.ModuleWood;
+import binnie.design.api.IDesignMaterial;
 import binnie.extratrees.wood.WoodManager;
 
 public class WindowArboristDatabase extends WindowAbstractDatabase {
 	public WindowArboristDatabase(final EntityPlayer player, final Side side, final boolean nei) {
-		super(player, side, nei, ModuleWood.treeBreedingSystem, 120);
+		super(player, side, nei, Binnie.GENETICS.getSystem(TreeManager.treeRoot), 120);
 	}
 
 	public static Window create(final EntityPlayer player, final Side side, final boolean nei) {
@@ -60,8 +61,8 @@ public class WindowArboristDatabase extends WindowAbstractDatabase {
 						return new ControlItemStackOption(this.getContent(), value, y);
 					}
 				};
-				TreeBreedingSystem breedingSystem = (TreeBreedingSystem) WindowArboristDatabase.this.getBreedingSystem();
-				controlListBox.setOptions(breedingSystem.allFruits);
+				ITreeBreedingSystem breedingSystem = (ITreeBreedingSystem) WindowArboristDatabase.this.getBreedingSystem();
+				controlListBox.setOptions(breedingSystem.getAllFruits());
 				this.listBox = controlListBox;
 			}
 		});
@@ -75,8 +76,8 @@ public class WindowArboristDatabase extends WindowAbstractDatabase {
 						return new ControlItemStackOption(this.getContent(), value, y);
 					}
 				};
-				TreeBreedingSystem breedingSystem = (TreeBreedingSystem) WindowArboristDatabase.this.getBreedingSystem();
-				controlListBox.setOptions(breedingSystem.allWoods);
+				ITreeBreedingSystem breedingSystem = (ITreeBreedingSystem) WindowArboristDatabase.this.getBreedingSystem();
+				controlListBox.setOptions(breedingSystem.getAllWoods());
 				this.listBox = controlListBox;
 			}
 		});

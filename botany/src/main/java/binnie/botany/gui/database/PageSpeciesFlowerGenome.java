@@ -39,9 +39,9 @@ public class PageSpeciesFlowerGenome extends PageSpecies {
 			return;
 		}
 
-		IFlower tree = BotanyAPI.flowerRoot.templateAsIndividual(template);
-		IFlowerGenome genome = tree.getGenome();
-		IAlleleFlowerSpecies treeSpecies = genome.getPrimary();
+		IFlower flower = BotanyAPI.flowerRoot.templateAsIndividual(template);
+		IFlowerGenome genome = flower.getGenome();
+		IAlleleFlowerSpecies flowerSpecies = genome.getPrimary();
 		int w = 144;
 		int h = 176;
 		new ControlText(this, new Area(0, 4, w, 16), I18N.localise(DatabaseConstants.BOTANY_GENOME_KEY + ".title"), TextJustification.MIDDLE_CENTER);
@@ -54,15 +54,15 @@ public class PageSpeciesFlowerGenome extends PageSpecies {
 		int th = 14;
 		int th2 = 18;
 		new ControlText(contents, new Area(0, y, w2, th), I18N.localise(DatabaseConstants.BOTANY_GENOME_KEY + ".temp"), TextJustification.MIDDLE_RIGHT);
-		new ControlText(contents, new Area(w2, y, w3, th), treeSpecies.getTemperature().getName(), TextJustification.MIDDLE_LEFT);
+		new ControlText(contents, new Area(w2, y, w3, th), flowerSpecies.getTemperature().getName(), TextJustification.MIDDLE_LEFT);
 
 		y += th;
 		new ControlText(contents, new Area(0, y, w2, th), I18N.localise(DatabaseConstants.BOTANY_GENOME_KEY + ".moist"), TextJustification.MIDDLE_RIGHT);
-		new ControlText(contents, new Area(w2, y, w3, th), treeSpecies.getMoisture().getLocalisedName(false), TextJustification.MIDDLE_LEFT);
+		new ControlText(contents, new Area(w2, y, w3, th), flowerSpecies.getMoisture().getLocalisedName(false), TextJustification.MIDDLE_LEFT);
 
 		y += th;
 		new ControlText(contents, new Area(0, y, w2, th), I18N.localise(DatabaseConstants.BOTANY_GENOME_KEY + ".ph"), TextJustification.MIDDLE_RIGHT);
-		new ControlText(contents, new Area(w2, y, w3, th), treeSpecies.getPH().getLocalisedName(false), TextJustification.MIDDLE_LEFT);
+		new ControlText(contents, new Area(w2, y, w3, th), flowerSpecies.getPH().getLocalisedName(false), TextJustification.MIDDLE_LEFT);
 
 		y += th;
 		new ControlText(contents, new Area(0, y, w2, th), I18N.localise(DatabaseConstants.BOTANY_GENOME_KEY + ".fertility"), TextJustification.MIDDLE_RIGHT);
@@ -82,7 +82,7 @@ public class PageSpeciesFlowerGenome extends PageSpecies {
 		int x = w2;
 		int tot = 0;
 		for (IIndividual vid : BotanyCore.getFlowerRoot().getIndividualTemplates()) {
-			if (vid.getGenome().getPrimary() == treeSpecies) {
+			if (vid.getGenome().getPrimary() == flowerSpecies) {
 				if (tot > 0 && tot % 3 == 0) {
 					x -= 54;
 					y += 18;

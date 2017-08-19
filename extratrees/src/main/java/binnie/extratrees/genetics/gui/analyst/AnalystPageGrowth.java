@@ -1,9 +1,12 @@
 package binnie.extratrees.genetics.gui.analyst;
 
+import binnie.core.Binnie;
+import binnie.core.api.genetics.IBreedingSystem;
 import binnie.core.api.gui.IArea;
 import binnie.core.api.gui.ITitledWidget;
 import binnie.core.gui.controls.core.Control;
 import binnie.core.util.TimeUtil;
+import forestry.api.arboriculture.TreeManager;
 import net.minecraft.util.text.TextFormatting;
 
 import forestry.api.arboriculture.EnumTreeChromosome;
@@ -14,7 +17,6 @@ import forestry.api.genetics.IIndividual;
 import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.ControlTextCentered;
 import binnie.core.util.I18N;
-import binnie.extratrees.modules.ModuleWood;
 import binnie.genetics.api.analyst.AnalystConstants;
 
 public class AnalystPageGrowth extends Control implements ITitledWidget {
@@ -32,9 +34,10 @@ public class AnalystPageGrowth extends Control implements ITitledWidget {
 			y += 12;
 			new ControlTextCentered(this, y, TextFormatting.BOLD + TimeUtil.getTimeString(Math.round(1373.3999f * mat))).setColor(getColor());
 			y += 22;
-			new ControlTextCentered(this, y, TextFormatting.ITALIC + I18N.localise(AnalystConstants.GROWTH_KEY + ".height") + ": " + ModuleWood.treeBreedingSystem.getAlleleName(EnumTreeChromosome.HEIGHT, ind.getGenome().getActiveAllele(EnumTreeChromosome.HEIGHT))).setColor(getColor());
+			IBreedingSystem treeSystem = Binnie.GENETICS.getSystem(TreeManager.treeRoot);
+			new ControlTextCentered(this, y, TextFormatting.ITALIC + I18N.localise(AnalystConstants.GROWTH_KEY + ".height") + ": " + treeSystem.getAlleleName(EnumTreeChromosome.HEIGHT, ind.getGenome().getActiveAllele(EnumTreeChromosome.HEIGHT))).setColor(getColor());
 			y += 12;
-			new ControlTextCentered(this, y, TextFormatting.ITALIC + I18N.localise(AnalystConstants.GROWTH_KEY + ".girth") + ": " + ModuleWood.treeBreedingSystem.getAlleleName(EnumTreeChromosome.GIRTH, ind.getGenome().getActiveAllele(EnumTreeChromosome.GIRTH))).setColor(getColor());
+			new ControlTextCentered(this, y, TextFormatting.ITALIC + I18N.localise(AnalystConstants.GROWTH_KEY + ".girth") + ": " + treeSystem.getAlleleName(EnumTreeChromosome.GIRTH, ind.getGenome().getActiveAllele(EnumTreeChromosome.GIRTH))).setColor(getColor());
 		}
 	}
 

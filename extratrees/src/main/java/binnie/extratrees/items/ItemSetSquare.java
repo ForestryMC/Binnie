@@ -11,7 +11,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
 
-import binnie.extratrees.api.IToolHammer;
+import binnie.design.api.IToolHammer;
 
 public class ItemSetSquare extends Item implements IToolHammer, IItemModelRegister {
 	private EnumSetSquareMode mode;
