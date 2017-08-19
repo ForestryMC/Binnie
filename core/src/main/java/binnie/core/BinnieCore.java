@@ -55,6 +55,7 @@ import binnie.core.modules.ModuleManager;
 	modid = Constants.CORE_MOD_ID,
 	name = "Binnie Core",
 	version = "@VERSION@",
+	acceptedMinecraftVersions = "[1.12, 1.12.1]",
 	dependencies = "required-after:forge@[13.20.0.2279,);" +
 		"required-after:forestry@[5.3.4.102,);" +
 		"after:jei@[4.3.1,);"

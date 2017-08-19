@@ -26,6 +26,7 @@ import binnie.genetics.api.acclimatiser.IAcclimatiserManager;
 @Mod(
 	modid = Constants.BOTANY_MOD_ID,
 	name = "Binnie's Botany",
+	acceptedMinecraftVersions = "[1.12, 1.12.1]",
 	dependencies = "required-after:" + Constants.CORE_MOD_ID + ";"
 			+	   "after:" + Constants.GENETICS_MOD_ID
 )

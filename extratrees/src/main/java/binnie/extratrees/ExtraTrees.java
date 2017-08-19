@@ -30,6 +30,7 @@ import binnie.extratrees.proxy.Proxy;
 @Mod(
 	modid = Constants.EXTRA_TREES_MOD_ID,
 	name = "Binnie's Extra Trees",
+	acceptedMinecraftVersions = "[1.12, 1.12.1]",
 	dependencies = "required-after:" + Constants.CORE_MOD_ID
 )
 public class ExtraTrees extends BlankModuleContainer {
