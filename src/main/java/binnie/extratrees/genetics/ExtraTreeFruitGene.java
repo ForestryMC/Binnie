@@ -313,7 +313,7 @@ public enum ExtraTreeFruitGene implements IAlleleFruit, IFruitProvider {
 
 	@Override
 	public String getDescription() {
-		return I18N.localise("extratrees.item.food." + name().toLowerCase());
+		return "extratrees.item.food." + name().toLowerCase();
 	}
 
 	@Override
@@ -418,7 +418,7 @@ public enum ExtraTreeFruitGene implements IAlleleFruit, IFruitProvider {
 
 	@Override
 	public String getName() {
-		return getDescription();
+		return I18N.localise("for." + getDescription());
 	}
 
 	public String getNameOfFruit() {

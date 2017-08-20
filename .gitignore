@@ -4,6 +4,7 @@
 /run
 /eclipse
 /out
+/classes
 .idea
 *.iml
 *.ipr

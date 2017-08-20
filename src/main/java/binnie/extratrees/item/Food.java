@@ -148,7 +148,7 @@ public enum Food implements IItemMisc {
 
 	@Override
 	public String getName(ItemStack itemStack) {
-		return I18N.localise("extratrees.item.food." + name().toLowerCase());
+		return I18N.localise("for.extratrees.item.food." + name().toLowerCase());
 	}
 
 	@Override
