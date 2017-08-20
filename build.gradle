@@ -19,12 +19,15 @@ buildscript {
     }
 }
 
+plugins {
+    id "com.matthewprenger.cursegradle" version "1.0.6"
+}
 apply plugin: "se.bjurr.gitchangelog.git-changelog-gradle-plugin"
 apply plugin: 'forge'
 
 version = "2.0.21"
 if (System.getenv("BUILD_NUMBER") != null) {
-    version = version + "-" + System.getenv("BUILD_NUMBER")
+    version = version + "." + System.getenv("BUILD_NUMBER")
 }
 group = "binnie" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "binnie-mods-1.7.10"
@@ -65,4 +68,24 @@ task gitChangelogTask(type: se.bjurr.gitchangelog.plugin.gradle.GitChangelogTask
     fromCommit = "dbc5c1a564c39e4a9c042411d1bdbe450985ce2c"
     toRef =  "HEAD"
     templateContent = file('changelog.mustache').getText('UTF-8')
+}
+
+curseforge {
+    apiKey = project.hasProperty('curseforge_apikey') ? project.curseforge_apikey : '0'
+    project {
+        id = '223525'
+        changelog = file('changelog.html')
+        changelogType = 'html'
+        releaseType = 'release'
+        relations {
+            requiredLibrary 'forestry'
+            incompatible 'binnie-fix'
+            incompatible 'binniepatcher'
+            incompatible 'more-binnie-fixes'
+        }
+    }
+}
+
+afterEvaluate {
+    tasks.curseforge223525.dependsOn.add(gitChangelogTask)
 }
