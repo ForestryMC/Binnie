@@ -87,35 +87,47 @@ public class AnalystPageClimate<T extends IIndividual> extends Control implement
 	}
 
 	protected void createTemperatureBar(IWidget parent, int x, int y, int w, int h, EnumTemperature value, forestry.api.genetics.EnumTolerance tol) {
-		new ControlToleranceBar<EnumTemperature>(parent, x, y, w, h, EnumTemperature.class) {
-			@Override
-			protected String getName(EnumTemperature value) {
-				return value.name;
-			}
-
-			@Override
-			protected int getColour(EnumTemperature value) {
-				return (new int[]{65531, 7912447, 5242672, 16776960, 16753152, 16711680})[value.ordinal() - 1];
-			}
-		}.setValues(value, tol);
+		new TemperatureBar(parent, x, y, w, h).setValues(value, tol);
 	}
 
 	protected void createHumidity(IWidget parent, int x, int y, int w, int h, EnumHumidity value, forestry.api.genetics.EnumTolerance tol) {
-		new ControlToleranceBar<EnumHumidity>(parent, x, y, w, h, EnumHumidity.class) {
-			@Override
-			protected String getName(EnumHumidity value) {
-				return value.name;
-			}
-
-			@Override
-			protected int getColour(EnumHumidity value) {
-				return (new int[]{16770979, 1769216, 3177727})[value.ordinal()];
-			}
-		}.setValues(value, tol);
+		new HumidityBar(parent, x, y, w, h).setValues(value, tol);
 	}
 
 	@Override
 	public String getTitle() {
 		return I18N.localise(AnalystConstants.CLIMATE_KEY + ".title");
+	}
+
+	private static class TemperatureBar extends ControlToleranceBar<EnumTemperature> {
+		public TemperatureBar(IWidget parent, int x, int y, int w, int h) {
+			super(parent, x, y, w, h, EnumTemperature.class);
+		}
+
+		@Override
+		protected String getName(EnumTemperature value) {
+			return value.name;
+		}
+
+		@Override
+		protected int getColour(EnumTemperature value) {
+			return (new int[]{65531, 7912447, 5242672, 16776960, 16753152, 16711680})[value.ordinal() - 1];
+		}
+	}
+
+	private static class HumidityBar extends ControlToleranceBar<EnumHumidity> {
+		public HumidityBar(IWidget parent, int x, int y, int w, int h) {
+			super(parent, x, y, w, h, EnumHumidity.class);
+		}
+
+		@Override
+		protected String getName(EnumHumidity value) {
+			return value.name;
+		}
+
+		@Override
+		protected int getColour(EnumHumidity value) {
+			return (new int[]{16770979, 1769216, 3177727})[value.ordinal()];
+		}
 	}
 }

@@ -21,56 +21,10 @@ public class AnalystPanel extends Panel {
 		this.window = window;
 		setColor(4473924);
 		int sectionWidth = (getWidth() - 8 - 4) / 2;
-		window.leftPage = new ControlScrollableContent<IWidget>(this, 3, 3, sectionWidth + 2, getHeight() - 8 + 2, 0) {
-			@Override
-			@SideOnly(Side.CLIENT)
-			public void onRenderBackground(int guiWidth, int guiHeight) {
-				if (getContent() == null) {
-					return;
-				}
-				RenderUtil.setColour(getContent().getColor());
-				CraftGUI.RENDER.texture(CraftGUITexture.TAB_OUTLINE, getArea());
-			}
-		};
-		new ControlScrollBar(this, sectionWidth + 2 - 3, 6, 3, getHeight() - 8 + 2 - 6, window.leftPage) {
-			@Override
-			@SideOnly(Side.CLIENT)
-			public void onRenderBackground(int guiWidth, int guiHeight) {
-				if (!isEnabled()) {
-					return;
-				}
-				if (window.leftPage.getContent() == null) {
-					return;
-				}
-				RenderUtil.drawGradientRect(getArea(), 1140850688 + window.leftPage.getContent().getColor(), 1140850688 + window.leftPage.getContent().getColor());
-				RenderUtil.drawSolidRect(getRenderArea(), window.leftPage.getContent().getColor());
-			}
-		};
-		window.rightPage = new ControlScrollableContent<IWidget>(this, 3 + sectionWidth + 4, 3, sectionWidth + 2, getHeight() - 8 + 2, 0) {
-			@Override
-			@SideOnly(Side.CLIENT)
-			public void onRenderBackground(int guiWidth, int guiHeight) {
-				if (getContent() == null) {
-					return;
-				}
-				RenderUtil.setColour(getContent().getColor());
-				CraftGUI.RENDER.texture(CraftGUITexture.TAB_OUTLINE, getArea());
-			}
-		};
-		new ControlScrollBar(this, sectionWidth + 2 - 3 + sectionWidth + 4, 6, 3, getHeight() - 8 + 2 - 6, window.rightPage) {
-			@Override
-			@SideOnly(Side.CLIENT)
-			public void onRenderBackground(int guiWidth, int guiHeight) {
-				if (!isEnabled()) {
-					return;
-				}
-				if (window.rightPage.getContent() == null) {
-					return;
-				}
-				RenderUtil.drawGradientRect(getArea(), 1140850688 + window.rightPage.getContent().getColor(), 1140850688 + window.rightPage.getContent().getColor());
-				RenderUtil.drawSolidRect(getRenderArea(), window.rightPage.getContent().getColor());
-			}
-		};
+		window.leftPage = new LeftPage(this, sectionWidth);
+		new LeftPageScrollBar(this, sectionWidth, window);
+		window.rightPage = new RightPage(this, sectionWidth);
+		new RightPageScrollBar(this, sectionWidth, window);
 		window.analystPageSize = new Area(1, 1, sectionWidth, getHeight() - 8);
 	}
 
@@ -79,5 +33,81 @@ public class AnalystPanel extends Panel {
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		RenderUtil.drawGradientRect(getArea(), 1157627903, 1728053247);
 		super.onRenderBackground(guiWidth, guiHeight);
+	}
+
+	private static class LeftPage extends ControlScrollableContent<IWidget> {
+		public LeftPage(AnalystPanel analystPanel, int sectionWidth) {
+			super(analystPanel, 3, 3, sectionWidth + 2, analystPanel.getHeight() - 8 + 2, 0);
+		}
+
+		@Override
+		@SideOnly(Side.CLIENT)
+		public void onRenderBackground(int guiWidth, int guiHeight) {
+			if (getContent() == null) {
+				return;
+			}
+			RenderUtil.setColour(getContent().getColor());
+			CraftGUI.RENDER.texture(CraftGUITexture.TAB_OUTLINE, getArea());
+		}
+	}
+
+	private static class LeftPageScrollBar extends ControlScrollBar {
+		private final WindowAnalyst window;
+
+		public LeftPageScrollBar(AnalystPanel analystPanel, int sectionWidth, WindowAnalyst window) {
+			super(analystPanel, sectionWidth + 2 - 3, 6, 3, analystPanel.getHeight() - 8 + 2 - 6, window.leftPage);
+			this.window = window;
+		}
+
+		@Override
+		@SideOnly(Side.CLIENT)
+		public void onRenderBackground(int guiWidth, int guiHeight) {
+			if (!isEnabled()) {
+				return;
+			}
+			if (window.leftPage.getContent() == null) {
+				return;
+			}
+			RenderUtil.drawGradientRect(getArea(), 1140850688 + window.leftPage.getContent().getColor(), 1140850688 + window.leftPage.getContent().getColor());
+			RenderUtil.drawSolidRect(getRenderArea(), window.leftPage.getContent().getColor());
+		}
+	}
+
+	private static class RightPage extends ControlScrollableContent<IWidget> {
+		public RightPage(AnalystPanel analystPanel, int sectionWidth) {
+			super(analystPanel, 3 + sectionWidth + 4, 3, sectionWidth + 2, analystPanel.getHeight() - 8 + 2, 0);
+		}
+
+		@Override
+		@SideOnly(Side.CLIENT)
+		public void onRenderBackground(int guiWidth, int guiHeight) {
+			if (getContent() == null) {
+				return;
+			}
+			RenderUtil.setColour(getContent().getColor());
+			CraftGUI.RENDER.texture(CraftGUITexture.TAB_OUTLINE, getArea());
+		}
+	}
+
+	private static class RightPageScrollBar extends ControlScrollBar {
+		private final WindowAnalyst window;
+
+		public RightPageScrollBar(AnalystPanel analystPanel, int sectionWidth, WindowAnalyst window) {
+			super(analystPanel, sectionWidth + 2 - 3 + sectionWidth + 4, 6, 3, analystPanel.getHeight() - 8 + 2 - 6, window.rightPage);
+			this.window = window;
+		}
+
+		@Override
+		@SideOnly(Side.CLIENT)
+		public void onRenderBackground(int guiWidth, int guiHeight) {
+			if (!isEnabled()) {
+				return;
+			}
+			if (window.rightPage.getContent() == null) {
+				return;
+			}
+			RenderUtil.drawGradientRect(getArea(), 1140850688 + window.rightPage.getContent().getColor(), 1140850688 + window.rightPage.getContent().getColor());
+			RenderUtil.drawSolidRect(getRenderArea(), window.rightPage.getContent().getColor());
+		}
 	}
 }

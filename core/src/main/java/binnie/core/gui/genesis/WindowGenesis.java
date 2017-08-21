@@ -71,52 +71,15 @@ public class WindowGenesis extends Window {
 	public void initialiseClient() {
 		new ControlPlayerInventory(this);
 		this.setTitle(I18N.localise("binniecore.gui.genesis.title"));
-		final ControlTabBar<IBreedingSystem> tabSystems = new ControlTabBar<IBreedingSystem>(this, 8, 28, 23, 100, Alignment.LEFT, Binnie.GENETICS.getActiveSystems()) {
-			@Override
-			public ControlTab<IBreedingSystem> createTab(final int x, final int y, final int w, final int h, final IBreedingSystem value) {
-				return new ControlTabIcon<IBreedingSystem>(this, x, y, w, h, value) {
-					@Override
-					public ItemStack getItemStack() {
-						final ISpeciesType type = this.value.getDefaultType();
-						final IIndividual ind = this.value.getDefaultIndividual();
-						return this.value.getSpeciesRoot().getMemberStack(ind, type);
-					}
-
-					@Override
-					public String getName() {
-						return this.value.getName();
-					}
-
-					@Override
-					public int getOutlineColour() {
-						return this.value.getColour();
-					}
-
-					@Override
-					public boolean hasOutline() {
-						return true;
-					}
-				};
-			}
-		};
+		final ControlTabBar<IBreedingSystem> tabSystems = new GenesisTabSystems(this);
 		this.root = Binnie.GENETICS.getActiveSystems().iterator().next().getSpeciesRoot();
 		this.template = this.root.getDefaultTemplate();
 		final Area one = new Area(32, 28, 170, 100);
 		final Area two = new Area(214, 28, 100, 100);
 		new Panel(this, one.outset(1), MinecraftGUI.PanelType.BLACK);
 		new Panel(this, two.outset(1), MinecraftGUI.PanelType.BLACK);
-		this.geneList = new ControlListBox<Gene>(this, one.xPos(), one.yPos(), one.width(), one.height(), 10) {
-			@Override
-			public IWidget createOption(final Gene value, final int y) {
-				return new ControlGenesisOption(this.getContent(), value, y);
-			}
-		};
-		this.geneOptions = new ControlListBox<Gene>(this, two.xPos(), two.yPos(), two.width(), two.height(), 10) {
-			@Override
-			public IWidget createOption(final Gene value, final int y) {
-				return new ControlTextOption<>(this.getContent(), value, y);
-			}
-		};
+		this.geneList = new GeneList(this, one);
+		this.geneOptions = new GeneOptions(this, two);
 		tabSystems.addEventHandler(EventValueChanged.class, EventHandlerOrigin.SELF, tabSystems, event -> {
 			Object value = event.getValue();
 			if (!(value instanceof BreedingSystem)) {
@@ -225,6 +188,67 @@ public class WindowGenesis extends Window {
 			if (player instanceof EntityPlayerMP) {
 				((EntityPlayerMP) player).updateHeldItem();
 			}
+		}
+	}
+
+	private static class GenesisTabSystems extends ControlTabBar<IBreedingSystem> {
+		public GenesisTabSystems(WindowGenesis windowGenesis) {
+			super(windowGenesis, 8, 28, 23, 100, Alignment.LEFT, Binnie.GENETICS.getActiveSystems());
+		}
+
+		@Override
+		public ControlTab<IBreedingSystem> createTab(final int x, final int y, final int w, final int h, final IBreedingSystem value) {
+			return new GenesisTabIcon(this, x, y, w, h, value);
+		}
+
+		private static class GenesisTabIcon extends ControlTabIcon<IBreedingSystem> {
+			public GenesisTabIcon(GenesisTabSystems genesisTabSystems, int x, int y, int w, int h, IBreedingSystem value) {
+				super(genesisTabSystems, x, y, w, h, value);
+			}
+
+			@Override
+			public ItemStack getItemStack() {
+				final ISpeciesType type = this.value.getDefaultType();
+				final IIndividual ind = this.value.getDefaultIndividual();
+				return this.value.getSpeciesRoot().getMemberStack(ind, type);
+			}
+
+			@Override
+			public String getName() {
+				return this.value.getName();
+			}
+
+			@Override
+			public int getOutlineColour() {
+				return this.value.getColour();
+			}
+
+			@Override
+			public boolean hasOutline() {
+				return true;
+			}
+		}
+	}
+
+	private static class GeneList extends ControlListBox<Gene> {
+		public GeneList(WindowGenesis windowGenesis, Area one) {
+			super(windowGenesis, one.xPos(), one.yPos(), one.width(), one.height(), 10);
+		}
+
+		@Override
+		public IWidget createOption(final Gene value, final int y) {
+			return new ControlGenesisOption(this.getContent(), value, y);
+		}
+	}
+
+	private static class GeneOptions extends ControlListBox<Gene> {
+		public GeneOptions(WindowGenesis windowGenesis, Area two) {
+			super(windowGenesis, two.xPos(), two.yPos(), two.width(), two.height(), 10);
+		}
+
+		@Override
+		public IWidget createOption(final Gene value, final int y) {
+			return new ControlTextOption<>(this.getContent(), value, y);
 		}
 	}
 }

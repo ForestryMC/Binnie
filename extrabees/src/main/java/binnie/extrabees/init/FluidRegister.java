@@ -19,13 +19,7 @@ public final class FluidRegister {
 
 	private static Fluid createFluid(String name) {
 		name = name.toLowerCase();
-		Fluid ret = new Fluid(name, new ExtraBeesResourceLocation("blocks/liquids/" + name), new ExtraBeesResourceLocation("blocks/liquids/" + name)) {
-
-			@Override
-			public int getColor() {
-				return 16777215;
-			}
-		};
+		Fluid ret = new Fluid(name, new ExtraBeesResourceLocation("blocks/liquids/" + name), new ExtraBeesResourceLocation("blocks/liquids/" + name));
 		FluidRegistry.registerFluid(ret);
 		return ret;
 	}

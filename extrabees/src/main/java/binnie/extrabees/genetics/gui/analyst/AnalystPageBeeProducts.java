@@ -143,33 +143,7 @@ public class AnalystPageBeeProducts extends Control implements ITitledWidget {
 	}
 
 	private void createProductEntry(ItemStack key, Float value, int y, float speed) {
-		ControlItemDisplay item = new ControlItemDisplay(this, 16, y) {
-			@Override
-			@SideOnly(Side.CLIENT)
-			public void getTooltip(Tooltip tooltip, ITooltipFlag tooltipFlag) {
-				super.getTooltip(tooltip, tooltipFlag);
-				NonNullList<ItemStack> centrifugeProducts = NonNullList.create();
-				ForestryRecipeUtil.getCentrifugeOutputs(key, centrifugeProducts);
-				if (!centrifugeProducts.isEmpty()) {
-					tooltip.add(I18N.localise(AnalystConstants.PRODUCTS_KEY + ".centrifuges") + ": ");
-					for (ItemStack prod : centrifugeProducts) {
-						NBTTagCompound nbt = new NBTTagCompound();
-						prod.writeToNBT(nbt);
-						tooltip.add(prod, prod.getDisplayName());
-					}
-				}
-				NonNullList<ItemStack> squeezerProducts = NonNullList.create();
-				ForestryRecipeUtil.getSqueezerOutputs(key, squeezerProducts);
-				if (!squeezerProducts.isEmpty()) {
-					tooltip.add(I18N.localise(AnalystConstants.PRODUCTS_KEY + ".squeezes") + ": ");
-					for (ItemStack prod2 : squeezerProducts) {
-						NBTTagCompound nbt2 = new NBTTagCompound();
-						prod2.writeToNBT(nbt2);
-						tooltip.add(prod2, prod2.getDisplayName());
-					}
-				}
-			}
-		};
+		ControlItemDisplay item = new BeeProductItem(this, y, key);
 
 		item.setTooltip();
 		ControlText textWidget = new ControlTextCentered(this, y + 4, "");
@@ -183,5 +157,40 @@ public class AnalystPageBeeProducts extends Control implements ITitledWidget {
 	@Override
 	public String getTitle() {
 		return I18N.localise(AnalystConstants.PRODUCTS_KEY + ".title");
+	}
+
+	private static class BeeProductItem extends ControlItemDisplay {
+		private final ItemStack key;
+
+		public BeeProductItem(AnalystPageBeeProducts analystPageBeeProducts, int y, ItemStack key) {
+			super(analystPageBeeProducts, 16, y);
+			this.key = key;
+		}
+
+		@Override
+		@SideOnly(Side.CLIENT)
+		public void getTooltip(Tooltip tooltip, ITooltipFlag tooltipFlag) {
+			super.getTooltip(tooltip, tooltipFlag);
+			NonNullList<ItemStack> centrifugeProducts = NonNullList.create();
+			ForestryRecipeUtil.getCentrifugeOutputs(key, centrifugeProducts);
+			if (!centrifugeProducts.isEmpty()) {
+				tooltip.add(I18N.localise(AnalystConstants.PRODUCTS_KEY + ".centrifuges") + ": ");
+				for (ItemStack prod : centrifugeProducts) {
+					NBTTagCompound nbt = new NBTTagCompound();
+					prod.writeToNBT(nbt);
+					tooltip.add(prod, prod.getDisplayName());
+				}
+			}
+			NonNullList<ItemStack> squeezerProducts = NonNullList.create();
+			ForestryRecipeUtil.getSqueezerOutputs(key, squeezerProducts);
+			if (!squeezerProducts.isEmpty()) {
+				tooltip.add(I18N.localise(AnalystConstants.PRODUCTS_KEY + ".squeezes") + ": ");
+				for (ItemStack prod2 : squeezerProducts) {
+					NBTTagCompound nbt2 = new NBTTagCompound();
+					prod2.writeToNBT(nbt2);
+					tooltip.add(prod2, prod2.getDisplayName());
+				}
+			}
+		}
 	}
 }

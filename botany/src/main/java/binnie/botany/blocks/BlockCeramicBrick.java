@@ -256,7 +256,7 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 		}
 	}
 
-	private class CeramicBrickMeshDefinition implements ItemMeshDefinition {
+	private static class CeramicBrickMeshDefinition implements ItemMeshDefinition {
 		@Override
 		public ModelResourceLocation getModelLocation(ItemStack stack) {
 			return new ModelResourceLocation(Constants.BOTANY_MOD_ID + ":ceramicBrick", "inventory");

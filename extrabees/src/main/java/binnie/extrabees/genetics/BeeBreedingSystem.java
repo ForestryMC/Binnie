@@ -158,30 +158,32 @@ public class BeeBreedingSystem extends BreedingSystem {
 
 	@Override
 	public IFieldKitPlugin getFieldKitPlugin() {
-		return new IFieldKitPlugin() {
-			@Override
-			public Map<IChromosomeType, IPoint> getChromosomePickerPositions() {
-				Map<IChromosomeType, IPoint> positions = new HashMap<>();
-				positions.put(EnumBeeChromosome.SPECIES, new Point(28, 47));
-				positions.put(EnumBeeChromosome.SPEED, new Point(28, 72));
-				positions.put(EnumBeeChromosome.LIFESPAN, new Point(19, 20));
-				positions.put(EnumBeeChromosome.FERTILITY, new Point(55, 65));
-				positions.put(EnumBeeChromosome.TEMPERATURE_TOLERANCE, new Point(28, 1));
-				positions.put(EnumBeeChromosome.NEVER_SLEEPS, new Point(61, 37));
-				positions.put(EnumBeeChromosome.HUMIDITY_TOLERANCE, new Point(81, 76));
-				positions.put(EnumBeeChromosome.TOLERATES_RAIN, new Point(44, 21));
-				positions.put(EnumBeeChromosome.CAVE_DWELLING, new Point(3, 37));
-				positions.put(EnumBeeChromosome.FLOWER_PROVIDER, new Point(4, 65));
-				positions.put(EnumBeeChromosome.FLOWERING, new Point(83, 27));
-				positions.put(EnumBeeChromosome.TERRITORY, new Point(71, 10));
-				positions.put(EnumBeeChromosome.EFFECT, new Point(84, 54));
-				return positions;
-			}
+		return new FieldKitPlugin();
+	}
 
-			@Override
-			public ITexture getTypeTexture() {
-				return new StandardTexture(0, 0, 96, 96, BinnieCoreTexture.GUI_BREEDING);
-			}
-		};
+	private static class FieldKitPlugin implements IFieldKitPlugin {
+		@Override
+		public Map<IChromosomeType, IPoint> getChromosomePickerPositions() {
+			Map<IChromosomeType, IPoint> positions = new HashMap<>();
+			positions.put(EnumBeeChromosome.SPECIES, new Point(28, 47));
+			positions.put(EnumBeeChromosome.SPEED, new Point(28, 72));
+			positions.put(EnumBeeChromosome.LIFESPAN, new Point(19, 20));
+			positions.put(EnumBeeChromosome.FERTILITY, new Point(55, 65));
+			positions.put(EnumBeeChromosome.TEMPERATURE_TOLERANCE, new Point(28, 1));
+			positions.put(EnumBeeChromosome.NEVER_SLEEPS, new Point(61, 37));
+			positions.put(EnumBeeChromosome.HUMIDITY_TOLERANCE, new Point(81, 76));
+			positions.put(EnumBeeChromosome.TOLERATES_RAIN, new Point(44, 21));
+			positions.put(EnumBeeChromosome.CAVE_DWELLING, new Point(3, 37));
+			positions.put(EnumBeeChromosome.FLOWER_PROVIDER, new Point(4, 65));
+			positions.put(EnumBeeChromosome.FLOWERING, new Point(83, 27));
+			positions.put(EnumBeeChromosome.TERRITORY, new Point(71, 10));
+			positions.put(EnumBeeChromosome.EFFECT, new Point(84, 54));
+			return positions;
+		}
+
+		@Override
+		public ITexture getTypeTexture() {
+			return new StandardTexture(0, 0, 96, 96, BinnieCoreTexture.GUI_BREEDING);
+		}
 	}
 }

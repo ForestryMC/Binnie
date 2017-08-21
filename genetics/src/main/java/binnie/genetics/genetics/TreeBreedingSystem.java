@@ -280,28 +280,7 @@ public class TreeBreedingSystem extends BreedingSystem implements binnie.genetic
 
 	@Override
 	public IFieldKitPlugin getFieldKitPlugin() {
-		return new IFieldKitPlugin() {
-			@Override
-			public Map<IChromosomeType, IPoint> getChromosomePickerPositions() {
-				Map<IChromosomeType, IPoint> positions = new HashMap<>();
-				positions.put(EnumTreeChromosome.SPECIES, new Point(48, 48));
-				positions.put(EnumTreeChromosome.HEIGHT, new Point(43, 84));
-				positions.put(EnumTreeChromosome.FERTILITY, new Point(25, 63));
-				positions.put(EnumTreeChromosome.FRUITS, new Point(72, 57));
-				positions.put(EnumTreeChromosome.YIELD, new Point(21, 43));
-				positions.put(EnumTreeChromosome.SAPPINESS, new Point(15, 17));
-				positions.put(EnumTreeChromosome.EFFECT, new Point(67, 15));
-				positions.put(EnumTreeChromosome.MATURATION, new Point(70, 34));
-				positions.put(EnumTreeChromosome.GIRTH, new Point(45, 67));
-				positions.put(EnumTreeChromosome.FIREPROOF, new Point(5, 70));
-				return positions;
-			}
-
-			@Override
-			public ITexture getTypeTexture() {
-				return new StandardTexture(96, 0, 96, 96, BinnieCoreTexture.GUI_BREEDING);
-			}
-		};
+		return new FieldKitPlugin();
 	}
 
 	@Override
@@ -312,5 +291,28 @@ public class TreeBreedingSystem extends BreedingSystem implements binnie.genetic
 	@Override
 	public Set<ItemStack> getAllWoods() {
 		return allWoods;
+	}
+
+	private static class FieldKitPlugin implements IFieldKitPlugin {
+		@Override
+		public Map<IChromosomeType, IPoint> getChromosomePickerPositions() {
+			Map<IChromosomeType, IPoint> positions = new HashMap<>();
+			positions.put(EnumTreeChromosome.SPECIES, new Point(48, 48));
+			positions.put(EnumTreeChromosome.HEIGHT, new Point(43, 84));
+			positions.put(EnumTreeChromosome.FERTILITY, new Point(25, 63));
+			positions.put(EnumTreeChromosome.FRUITS, new Point(72, 57));
+			positions.put(EnumTreeChromosome.YIELD, new Point(21, 43));
+			positions.put(EnumTreeChromosome.SAPPINESS, new Point(15, 17));
+			positions.put(EnumTreeChromosome.EFFECT, new Point(67, 15));
+			positions.put(EnumTreeChromosome.MATURATION, new Point(70, 34));
+			positions.put(EnumTreeChromosome.GIRTH, new Point(45, 67));
+			positions.put(EnumTreeChromosome.FIREPROOF, new Point(5, 70));
+			return positions;
+		}
+
+		@Override
+		public ITexture getTypeTexture() {
+			return new StandardTexture(96, 0, 96, 96, BinnieCoreTexture.GUI_BREEDING);
+		}
 	}
 }

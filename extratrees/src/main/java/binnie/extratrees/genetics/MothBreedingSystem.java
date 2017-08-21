@@ -160,31 +160,33 @@ public class MothBreedingSystem extends BreedingSystem {
 
 	@Override
 	public IFieldKitPlugin getFieldKitPlugin() {
-		return new IFieldKitPlugin() {
-			@Override
-			public Map<IChromosomeType, IPoint> getChromosomePickerPositions() {
-				Map<IChromosomeType, IPoint> positions = new HashMap<>();
-				positions.put(EnumButterflyChromosome.SPECIES, new Point(40, 40));
-				positions.put(EnumButterflyChromosome.SIZE, new Point(63, 32));
-				positions.put(EnumButterflyChromosome.SPEED, new Point(32, 63));
-				positions.put(EnumButterflyChromosome.LIFESPAN, new Point(11, 27));
-				positions.put(EnumButterflyChromosome.METABOLISM, new Point(16, 12));
-				positions.put(EnumButterflyChromosome.FERTILITY, new Point(17, 63));
-				positions.put(EnumButterflyChromosome.TEMPERATURE_TOLERANCE, new Point(34, 12));
-				positions.put(EnumButterflyChromosome.HUMIDITY_TOLERANCE, new Point(22, 46));
-				positions.put(EnumButterflyChromosome.NOCTURNAL, new Point(53, 26));
-				positions.put(EnumButterflyChromosome.TOLERANT_FLYER, new Point(71, 53));
-				positions.put(EnumButterflyChromosome.FIRE_RESIST, new Point(78, 12));
-				positions.put(EnumButterflyChromosome.FLOWER_PROVIDER, new Point(55, 55));
-				positions.put(EnumButterflyChromosome.EFFECT, new Point(27, 31));
-				positions.put(EnumButterflyChromosome.COCOON, new Point(87, 45));
-				return positions;
-			}
+		return new FieldKitPlugin();
+	}
 
-			@Override
-			public ITexture getTypeTexture() {
-				return new StandardTexture(96, 96, 96, 96, BinnieCoreTexture.GUI_BREEDING);
-			}
-		};
+	private static class FieldKitPlugin implements IFieldKitPlugin {
+		@Override
+		public Map<IChromosomeType, IPoint> getChromosomePickerPositions() {
+			Map<IChromosomeType, IPoint> positions = new HashMap<>();
+			positions.put(EnumButterflyChromosome.SPECIES, new Point(40, 40));
+			positions.put(EnumButterflyChromosome.SIZE, new Point(63, 32));
+			positions.put(EnumButterflyChromosome.SPEED, new Point(32, 63));
+			positions.put(EnumButterflyChromosome.LIFESPAN, new Point(11, 27));
+			positions.put(EnumButterflyChromosome.METABOLISM, new Point(16, 12));
+			positions.put(EnumButterflyChromosome.FERTILITY, new Point(17, 63));
+			positions.put(EnumButterflyChromosome.TEMPERATURE_TOLERANCE, new Point(34, 12));
+			positions.put(EnumButterflyChromosome.HUMIDITY_TOLERANCE, new Point(22, 46));
+			positions.put(EnumButterflyChromosome.NOCTURNAL, new Point(53, 26));
+			positions.put(EnumButterflyChromosome.TOLERANT_FLYER, new Point(71, 53));
+			positions.put(EnumButterflyChromosome.FIRE_RESIST, new Point(78, 12));
+			positions.put(EnumButterflyChromosome.FLOWER_PROVIDER, new Point(55, 55));
+			positions.put(EnumButterflyChromosome.EFFECT, new Point(27, 31));
+			positions.put(EnumButterflyChromosome.COCOON, new Point(87, 45));
+			return positions;
+		}
+
+		@Override
+		public ITexture getTypeTexture() {
+			return new StandardTexture(96, 96, 96, 96, BinnieCoreTexture.GUI_BREEDING);
+		}
 	}
 }

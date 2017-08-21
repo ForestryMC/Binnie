@@ -44,22 +44,8 @@ public class Incubator {
 		Incubator.RECIPES.add(new IncubatorRecipe(new ItemStack(Items.BLAZE_POWDER), GeneticLiquid.Bacteria.get(10), GeneticLiquid.BacteriaVector.get(10), 0.05f));
 		if (BinnieCore.isApicultureActive()) {
 			final ItemStack beeLarvaeWildcard = Mods.Forestry.stack("bee_larvae_ge", 1, OreDictionary.WILDCARD_VALUE);
-			Incubator.RECIPES.add(LARVAE_RECIPE = new IncubatorRecipeLarvae(beeLarvaeWildcard, GeneticLiquid.GrowthMedium.get(50), null, 1.0f, 0.05f) {
-				@Override
-				public ItemStack getOutputStack(final MachineUtil machine) {
-					final ItemStack larvae = machine.getStack(3);
-					final IBee bee = BeeManager.beeRoot.getMember(larvae);
-					if (bee == null) {
-						return ItemStack.EMPTY;
-					}
-					return BeeManager.beeRoot.getMemberStack(bee, EnumBeeType.DRONE);
-				}
-
-				@Override
-				public ItemStack getExpectedOutput() {
-					return Mods.Forestry.stack("bee_drone_ge", 1, OreDictionary.WILDCARD_VALUE);
-				}
-			});
+			LARVAE_RECIPE = new IncubatorRecipeLarvae(beeLarvaeWildcard);
+			Incubator.RECIPES.add(LARVAE_RECIPE);
 		}
 	}
 

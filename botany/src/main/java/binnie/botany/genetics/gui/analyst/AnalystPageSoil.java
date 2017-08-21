@@ -108,35 +108,47 @@ public class AnalystPageSoil extends Control implements ITitledWidget {
 	}
 
 	protected void createMoisture(IWidget parent, int x, int y, int w, int h, EnumMoisture value, forestry.api.genetics.EnumTolerance tol) {
-		new ControlToleranceBar<EnumMoisture>(parent, x, y, w, h, EnumMoisture.class) {
-			@Override
-			protected String getName(EnumMoisture value) {
-				return value.getLocalisedName(false);
-			}
-
-			@Override
-			protected int getColour(EnumMoisture value) {
-				return (new int[]{13434828, 6737151, 3368703})[value.ordinal()];
-			}
-		}.setValues(value, tol);
+		new MoistureBar(parent, x, y, w, h).setValues(value, tol);
 	}
 
 	protected void createAcidity(IWidget parent, int x, int y, int w, int h, EnumAcidity value, forestry.api.genetics.EnumTolerance tol) {
-		new ControlToleranceBar<EnumAcidity>(parent, x, y, w, h, EnumAcidity.class) {
-			@Override
-			protected String getName(EnumAcidity value) {
-				return value.getLocalisedName(false);
-			}
-
-			@Override
-			protected int getColour(EnumAcidity value) {
-				return (new int[]{16711782, 65280, 26367})[value.ordinal()];
-			}
-		}.setValues(value, tol);
+		new AcidityBar(parent, x, y, w, h).setValues(value, tol);
 	}
 
 	@Override
 	public String getTitle() {
 		return I18N.localise(AnalystConstants.SOIL_KEY + ".title");
+	}
+
+	private static class MoistureBar extends ControlToleranceBar<EnumMoisture> {
+		public MoistureBar(IWidget parent, int x, int y, int w, int h) {
+			super(parent, x, y, w, h, EnumMoisture.class);
+		}
+
+		@Override
+		protected String getName(EnumMoisture value) {
+			return value.getLocalisedName(false);
+		}
+
+		@Override
+		protected int getColour(EnumMoisture value) {
+			return (new int[]{13434828, 6737151, 3368703})[value.ordinal()];
+		}
+	}
+
+	private static class AcidityBar extends ControlToleranceBar<EnumAcidity> {
+		public AcidityBar(IWidget parent, int x, int y, int w, int h) {
+			super(parent, x, y, w, h, EnumAcidity.class);
+		}
+
+		@Override
+		protected String getName(EnumAcidity value) {
+			return value.getLocalisedName(false);
+		}
+
+		@Override
+		protected int getColour(EnumAcidity value) {
+			return (new int[]{16711782, 65280, 26367})[value.ordinal()];
+		}
 	}
 }

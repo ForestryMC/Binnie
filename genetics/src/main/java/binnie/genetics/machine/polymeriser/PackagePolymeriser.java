@@ -1,5 +1,6 @@
 package binnie.genetics.machine.polymeriser;
 
+import binnie.core.machines.inventory.TankValidator;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -51,35 +52,10 @@ public class PackagePolymeriser extends GeneticMachine.PackageGeneticBase implem
 		}
 		ComponentInventoryTransfer transfer = new ComponentInventoryTransfer(machine);
 		transfer.addRestock(Polymeriser.SLOT_SERUM_RESERVE, Polymeriser.SLOT_SERUM, 1);
-		transfer.addStorage(Polymeriser.SLOT_SERUM, Polymeriser.SLOT_SERUM_FINISHED, new ComponentInventoryTransfer.Condition() {
-			@Override
-			public boolean fulfilled(final ItemStack stack) {
-				return !stack.isItemDamaged();
-			}
-		});
+		transfer.addStorage(Polymeriser.SLOT_SERUM, Polymeriser.SLOT_SERUM_FINISHED, (stack) -> !stack.isItemDamaged());
 		ComponentTankContainer tank = new ComponentTankContainer(machine);
-		tank.addTank(Polymeriser.TANK_BACTERIA, "input", 1000).setValidator(new Validator<FluidStack>() {
-			@Override
-			public boolean isValid(final FluidStack itemStack) {
-				return GeneticLiquid.BacteriaPoly.get(1).isFluidEqual(itemStack);
-			}
-
-			@Override
-			public String getTooltip() {
-				return GeneticLiquid.BacteriaPoly.get(1).getLocalizedName();
-			}
-		});
-		tank.addTank(Polymeriser.TANK_DNA, "input", 1000).setValidator(new Validator<FluidStack>() {
-			@Override
-			public boolean isValid(final FluidStack itemStack) {
-				return GeneticLiquid.RawDNA.get(1).isFluidEqual(itemStack);
-			}
-
-			@Override
-			public String getTooltip() {
-				return GeneticLiquid.RawDNA.get(1).getLocalizedName();
-			}
-		});
+		tank.addTank(Polymeriser.TANK_BACTERIA, "input", 1000).setValidator(new BacteriaTankValidator());
+		tank.addTank(Polymeriser.TANK_DNA, "input", 1000).setValidator(new DnaTankValidator());
 		new ComponentChargedSlots(machine).addCharge(1);
 		new ComponentPowerReceptor(machine, 8000);
 		new PolymeriserLogic(machine);
@@ -93,5 +69,29 @@ public class PackagePolymeriser extends GeneticMachine.PackageGeneticBase implem
 
 	@Override
 	public void register() {
+	}
+
+	private static class BacteriaTankValidator extends TankValidator {
+		@Override
+		public boolean isValid(final FluidStack itemStack) {
+			return GeneticLiquid.BacteriaPoly.get(1).isFluidEqual(itemStack);
+		}
+
+		@Override
+		public String getTooltip() {
+			return GeneticLiquid.BacteriaPoly.get(1).getLocalizedName();
+		}
+	}
+
+	private static class DnaTankValidator extends TankValidator {
+		@Override
+		public boolean isValid(final FluidStack itemStack) {
+			return GeneticLiquid.RawDNA.get(1).isFluidEqual(itemStack);
+		}
+
+		@Override
+		public String getTooltip() {
+			return GeneticLiquid.RawDNA.get(1).getLocalizedName();
+		}
 	}
 }

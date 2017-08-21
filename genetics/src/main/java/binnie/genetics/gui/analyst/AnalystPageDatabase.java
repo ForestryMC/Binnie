@@ -34,6 +34,7 @@ import binnie.core.gui.resource.textures.CraftGUITexture;
 import binnie.core.gui.window.Panel;
 import binnie.core.util.I18N;
 
+@SideOnly(Side.CLIENT)
 public class AnalystPageDatabase extends Control implements ITitledWidget {
 	private final ControlScrollableContent scroll;
 	boolean isMaster;
@@ -45,35 +46,7 @@ public class AnalystPageDatabase extends Control implements ITitledWidget {
 		int y = 4;
 		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColor(getColor());
 		y += 16;
-		new ControlTextEdit(this, 20, y, getWidth() - 40, 16) {
-			@Override
-			public void onTextEdit(String value) {
-				Collection<IAlleleSpecies> options = new ArrayList<>();
-				getSpecies(system);
-				for (IAlleleSpecies species : getSpecies(system)) {
-					if (value != null) {
-						if (!Objects.equals(value, "")) {
-							if (!species.getAlleleName().toLowerCase().contains(value.toLowerCase())) {
-								continue;
-							}
-						}
-					}
-					options.add(species);
-				}
-				scroll.deleteAllChildren();
-				scroll.setScrollableContent(getItemScrollList(system, options));
-			}
-
-			@Override
-			@SideOnly(Side.CLIENT)
-			public void onRenderBackground(int guiWidth, int guiHeight) {
-				RenderUtil.setColour(5592405);
-				CraftGUI.RENDER.texture(CraftGUITexture.TAB_SOLID, getArea().inset(1));
-				RenderUtil.setColour(AnalystPageDatabase.this.getColor());
-				CraftGUI.RENDER.texture(CraftGUITexture.TAB_OUTLINE, getArea());
-				renderTextField();
-			}
-		};
+		new SpeciesSearch(this, y, system);
 		y += 22;
 		new Panel(this, 3, y - 1, getWidth() - 6, getHeight() - y - 8 + 2, MinecraftGUI.PanelType.TAB_OUTLINE).setColor(getColor());
 		boolean textView = false;
@@ -86,41 +59,12 @@ public class AnalystPageDatabase extends Control implements ITitledWidget {
 			String maturation = system.getAlleleName(EnumTreeChromosome.MATURATION, system.getIndividual(species.getUID()).getGenome().getActiveAllele(EnumTreeChromosome.MATURATION));
 		}
 		if (textView) {
-			scroll = new ControlListBox<IAlleleSpecies>(this, 4, y, getWidth() - 8, getHeight() - y - 8 - 20, 0) {
-				@Override
-				public void initialise() {
-					super.initialise();
-					setOptions(options);
-				}
-
-				@Override
-				public IWidget createOption(IAlleleSpecies v, int y) {
-					return new Control(getContent(), 0, y, getWidth(), 12) {
-						IAlleleSpecies value = v;
-
-						@Override
-						@SideOnly(Side.CLIENT)
-						public void onRenderBackground(int guiWidth, int guiHeight) {
-							RenderUtil.drawText(getArea(), TextJustification.MIDDLE_CENTER, value.getAlleleName(), 16777215);
-						}
-					};
-				}
-			};
+			scroll = new Scroll(this, y, options);
 		} else {
 			scroll = new ControlScrollableContent(this, 4, y, getWidth() - 8, getHeight() - y - 8, 0);
 			scroll.setScrollableContent(getItemScrollList(system, options));
 		}
-		new ControlScrollBar(this, scroll.getXPos() + scroll.getWidth() - 6, scroll.getYPos() + 3, 3, scroll.getHeight() - 6, scroll) {
-			@Override
-			@SideOnly(Side.CLIENT)
-			public void onRenderBackground(int guiWidth, int guiHeight) {
-				if (!isEnabled()) {
-					return;
-				}
-				RenderUtil.drawGradientRect(getArea(), 1140850688 + AnalystPageDatabase.this.getColor(), 1140850688 + AnalystPageDatabase.this.getColor());
-				RenderUtil.drawSolidRect(getRenderArea(), AnalystPageDatabase.this.getColor());
-			}
-		};
+		new DatabaseScrollBar(this);
 	}
 
 	private static int getColor(IBreedingSystem system){
@@ -137,49 +81,7 @@ public class AnalystPageDatabase extends Control implements ITitledWidget {
 	}
 
 	private IWidget getItemScrollList(IBreedingSystem system, Collection<IAlleleSpecies> options) {
-		return new Control(scroll, 0, 0, scroll.getWidth(), scroll.getHeight()) {
-			@Override
-			public void initialise() {
-				int maxBiomePerLine = (getWidth() - 4 + 2) / 18;
-				int biomeListX = -6 + (getWidth() - (maxBiomePerLine * 18 - 2)) / 2;
-				int dx = 0;
-				int dy = 0;
-				for (IAlleleSpecies species : options) {
-					IIndividual ind = system.getSpeciesRoot().templateAsIndividual(system.getSpeciesRoot().getTemplate(species));
-					new ControlIndividualDisplay(this, biomeListX + dx, 2 + dy, ind) {
-						@Override
-						public void initialise() {
-							addSelfEventHandler(EventMouse.Down.class, event -> {
-								WindowAnalyst window = (WindowAnalyst) AnalystPageDatabase.this.getTopParent();
-								window.setIndividual(ind);
-							});
-						}
-
-						@Override
-						@SideOnly(Side.CLIENT)
-						public void onRenderBackground(int guiWidth, int guiHeight) {
-							WindowAnalyst window = (WindowAnalyst) AnalystPageDatabase.this.getTopParent();
-							if (window.getIndividual() != null && window.getIndividual().getGenome().getPrimary() == species) {
-								RenderUtil.setColour(15658734);
-								CraftGUI.RENDER.texture(CraftGUITexture.TAB_SOLID, getArea().outset(1));
-								RenderUtil.setColour(AnalystPageDatabase.this.getColor());
-								CraftGUI.RENDER.texture(CraftGUITexture.TAB_OUTLINE, getArea().outset(1));
-							} else if (calculateIsMouseOver()) {
-								RenderUtil.setColour(15658734);
-								CraftGUI.RENDER.texture(CraftGUITexture.TAB_SOLID, getArea().outset(1));
-							}
-							super.onRenderBackground(guiWidth, guiHeight);
-						}
-					};
-					dx += 18;
-					if (dx >= 18 * maxBiomePerLine) {
-						dx = 0;
-						dy += 18;
-					}
-				}
-				setSize(new Point(getWidth(), 4 + dy + 18));
-			}
-		};
+		return new ItemScrollList(this, options, system);
 	}
 
 	@Override
@@ -191,5 +93,163 @@ public class AnalystPageDatabase extends Control implements ITitledWidget {
 		Collection<IAlleleSpecies> species = new ArrayList<>();
 		species.addAll(isMaster ? system.getAllSpecies() : system.getDiscoveredSpecies(getWindow().getWorld(), getWindow().getPlayer().getGameProfile()));
 		return species;
+	}
+
+	private static class Scroll extends ControlListBox<IAlleleSpecies> {
+		private final Collection<IAlleleSpecies> options;
+
+		public Scroll(AnalystPageDatabase analystPageDatabase, int y, Collection<IAlleleSpecies> options) {
+			super(analystPageDatabase, 4, y, analystPageDatabase.getWidth() - 8, analystPageDatabase.getHeight() - y - 8 - 20, 0);
+			this.options = options;
+		}
+
+		@Override
+		public void initialise() {
+			super.initialise();
+			setOptions(options);
+		}
+
+		@Override
+		public IWidget createOption(IAlleleSpecies v, int y) {
+			return new ScrollOption(this, y, v);
+		}
+
+		private static class ScrollOption extends Control {
+			private final IAlleleSpecies v;
+			IAlleleSpecies value;
+
+			public ScrollOption(Scroll scroll, int y, IAlleleSpecies v) {
+				super(scroll.getContent(), 0, y, scroll.getWidth(), 12);
+				this.v = v;
+				value = v;
+			}
+
+			@Override
+			@SideOnly(Side.CLIENT)
+			public void onRenderBackground(int guiWidth, int guiHeight) {
+				RenderUtil.drawText(getArea(), TextJustification.MIDDLE_CENTER, value.getAlleleName(), 16777215);
+			}
+		}
+	}
+
+	private static class SpeciesSearch extends ControlTextEdit {
+		private final IBreedingSystem system;
+		private AnalystPageDatabase analystPageDatabase;
+
+		public SpeciesSearch(AnalystPageDatabase analystPageDatabase, int y, IBreedingSystem system) {
+			super(analystPageDatabase, 20, y, analystPageDatabase.getWidth() - 40, 16);
+			this.system = system;
+			this.analystPageDatabase = analystPageDatabase;
+		}
+
+		@Override
+		public void onTextEdit(String value) {
+			Collection<IAlleleSpecies> options = new ArrayList<>();
+			analystPageDatabase.getSpecies(system);
+			for (IAlleleSpecies species : analystPageDatabase.getSpecies(system)) {
+				if (value == null || Objects.equals(value, "") || species.getAlleleName().toLowerCase().contains(value.toLowerCase())) {
+					options.add(species);
+				}
+			}
+			analystPageDatabase.scroll.deleteAllChildren();
+			analystPageDatabase.scroll.setScrollableContent(analystPageDatabase.getItemScrollList(system, options));
+		}
+
+		@Override
+		@SideOnly(Side.CLIENT)
+		public void onRenderBackground(int guiWidth, int guiHeight) {
+			RenderUtil.setColour(5592405);
+			CraftGUI.RENDER.texture(CraftGUITexture.TAB_SOLID, getArea().inset(1));
+			RenderUtil.setColour(analystPageDatabase.getColor());
+			CraftGUI.RENDER.texture(CraftGUITexture.TAB_OUTLINE, getArea());
+			renderTextField();
+		}
+	}
+
+	private static class DatabaseScrollBar extends ControlScrollBar {
+		private AnalystPageDatabase analystPageDatabase;
+
+		public DatabaseScrollBar(AnalystPageDatabase analystPageDatabase) {
+			super(analystPageDatabase, analystPageDatabase.scroll.getXPos() + analystPageDatabase.scroll.getWidth() - 6, analystPageDatabase.scroll.getYPos() + 3, 3, analystPageDatabase.scroll.getHeight() - 6, analystPageDatabase.scroll);
+			this.analystPageDatabase = analystPageDatabase;
+		}
+
+		@Override
+		@SideOnly(Side.CLIENT)
+		public void onRenderBackground(int guiWidth, int guiHeight) {
+			if (!isEnabled()) {
+				return;
+			}
+			RenderUtil.drawGradientRect(getArea(), 1140850688 + analystPageDatabase.getColor(), 1140850688 + analystPageDatabase.getColor());
+			RenderUtil.drawSolidRect(getRenderArea(), analystPageDatabase.getColor());
+		}
+	}
+
+	private static class ItemScrollList extends Control {
+		private final Collection<IAlleleSpecies> options;
+		private final IBreedingSystem system;
+		private AnalystPageDatabase analystPageDatabase;
+
+		public ItemScrollList(final AnalystPageDatabase analystPageDatabase, Collection<IAlleleSpecies> options, IBreedingSystem system) {
+			super(analystPageDatabase.scroll, 0, 0, analystPageDatabase.scroll.getWidth(), analystPageDatabase.scroll.getHeight());
+			this.options = options;
+			this.system = system;
+			this.analystPageDatabase = analystPageDatabase;
+		}
+
+		@Override
+		public void initialise() {
+			int maxBiomePerLine = (getWidth() - 4 + 2) / 18;
+			int biomeListX = -6 + (getWidth() - (maxBiomePerLine * 18 - 2)) / 2;
+			int dx = 0;
+			int dy = 0;
+			for (IAlleleSpecies species : options) {
+				IIndividual ind = system.getSpeciesRoot().templateAsIndividual(system.getSpeciesRoot().getTemplate(species));
+				new SpeciesIndividualDisplay(this, biomeListX, dx, dy, ind, species);
+				dx += 18;
+				if (dx >= 18 * maxBiomePerLine) {
+					dx = 0;
+					dy += 18;
+				}
+			}
+			setSize(new Point(getWidth(), 4 + dy + 18));
+		}
+
+		private static class SpeciesIndividualDisplay extends ControlIndividualDisplay {
+			private final IIndividual ind;
+			private final IAlleleSpecies species;
+			private ItemScrollList itemScrollList;
+
+			public SpeciesIndividualDisplay(ItemScrollList itemScrollList, int biomeListX, int dx, int dy, IIndividual ind, IAlleleSpecies species) {
+				super(itemScrollList, biomeListX + dx, 2 + dy, ind);
+				this.ind = ind;
+				this.species = species;
+				this.itemScrollList = itemScrollList;
+			}
+
+			@Override
+			public void initialise() {
+				addSelfEventHandler(EventMouse.Down.class, event -> {
+					WindowAnalyst window = (WindowAnalyst) itemScrollList.analystPageDatabase.getTopParent();
+					window.setIndividual(ind);
+				});
+			}
+
+			@Override
+			@SideOnly(Side.CLIENT)
+			public void onRenderBackground(int guiWidth, int guiHeight) {
+				WindowAnalyst window = (WindowAnalyst) itemScrollList.analystPageDatabase.getTopParent();
+				if (window.getIndividual() != null && window.getIndividual().getGenome().getPrimary() == species) {
+					RenderUtil.setColour(15658734);
+					CraftGUI.RENDER.texture(CraftGUITexture.TAB_SOLID, getArea().outset(1));
+					RenderUtil.setColour(itemScrollList.analystPageDatabase.getColor());
+					CraftGUI.RENDER.texture(CraftGUITexture.TAB_OUTLINE, getArea().outset(1));
+				} else if (calculateIsMouseOver()) {
+					RenderUtil.setColour(15658734);
+					CraftGUI.RENDER.texture(CraftGUITexture.TAB_SOLID, getArea().outset(1));
+				}
+				super.onRenderBackground(guiWidth, guiHeight);
+			}
+		}
 	}
 }

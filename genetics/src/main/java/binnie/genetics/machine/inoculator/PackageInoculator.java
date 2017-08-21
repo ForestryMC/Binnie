@@ -1,5 +1,6 @@
 package binnie.genetics.machine.inoculator;
 
+import binnie.core.machines.inventory.TankValidator;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 
@@ -15,7 +16,6 @@ import binnie.core.machines.inventory.ComponentInventoryTransfer;
 import binnie.core.machines.inventory.ComponentTankContainer;
 import binnie.core.machines.inventory.InventorySlot;
 import binnie.core.machines.inventory.SlotValidator;
-import binnie.core.machines.inventory.Validator;
 import binnie.core.machines.power.ComponentPowerReceptor;
 import binnie.genetics.api.IItemSerum;
 import binnie.genetics.core.GeneticsGUI;
@@ -37,17 +37,7 @@ public class PackageInoculator extends GeneticMachine.PackageGeneticBase impleme
 		InventorySlot slotSerumVial = inventory.addSlot(Inoculator.SLOT_SERUM_VIAL, "serum.active");
 		slotSerumVial.forbidInteraction();
 		slotSerumVial.setReadOnly();
-		final SlotValidator serumValid = new SlotValidator(ModuleMachine.spriteSerum) {
-			@Override
-			public boolean isValid(final ItemStack itemStack) {
-				return itemStack.getItem() instanceof IItemSerum;
-			}
-
-			@Override
-			public String getTooltip() {
-				return "Serum Vials & Arrays";
-			}
-		};
+		final SlotValidator serumValid = new SerumSlotValidator();
 		slotSerumVial.setValidator(serumValid);
 		for (InventorySlot slot : inventory.addSlotArray(Inoculator.SLOT_SERUM_RESERVE, "serum.input")) {
 			slot.setValidator(serumValid);
@@ -73,39 +63,21 @@ public class PackageInoculator extends GeneticMachine.PackageGeneticBase impleme
 		final ComponentInventoryTransfer transfer = new ComponentInventoryTransfer(machine);
 		transfer.addRestock(Inoculator.SLOT_RESERVE, 9, 1);
 		transfer.addRestock(Inoculator.SLOT_SERUM_RESERVE, 0);
-		transfer.addStorage(Inoculator.SLOT_SERUM_VIAL, Inoculator.SLOT_SERUM_EXPENDED, new ComponentInventoryTransfer.Condition() {
-			@Override
-			public boolean fulfilled(final ItemStack stack) {
-				return Engineering.getCharges(stack) == 0;
-			}
-		});
-		transfer.addStorage(Inoculator.SLOT_TARGET, Inoculator.SLOT_FINISHED, new ComponentInventoryTransfer.Condition() {
-			@Override
-			public boolean fulfilled(final ItemStack stack) {
-				if (!stack.isEmpty()) {
-					IMachine machine = this.transfer.getMachine();
-					MachineUtil machineUtil = machine.getMachineUtil();
-					if (!machineUtil.getStack(Inoculator.SLOT_SERUM_VIAL).isEmpty() && machine.getInterface(InoculatorLogic.class).isValidSerum() != null) {
-						return true;
-					}
+		transfer.addStorage(Inoculator.SLOT_SERUM_VIAL, Inoculator.SLOT_SERUM_EXPENDED, (stack) -> Engineering.getCharges(stack) == 0);
+		transfer.addStorage(Inoculator.SLOT_TARGET, Inoculator.SLOT_FINISHED, (stack) -> {
+			if (!stack.isEmpty()) {
+				IMachine machine1 = transfer.getMachine();
+				MachineUtil machineUtil = machine1.getMachineUtil();
+				if (!machineUtil.getStack(Inoculator.SLOT_SERUM_VIAL).isEmpty() && machine1.getInterface(InoculatorLogic.class).isValidSerum() != null) {
+					return true;
 				}
-				return false;
 			}
+			return false;
 		});
 		new ComponentPowerReceptor(machine, 15000);
 		new InoculatorLogic(machine);
 		new InoculatorFX(machine);
-		new ComponentTankContainer(machine).addTank(Inoculator.TANK_VEKTOR, "input", 1000).setValidator(new Validator<FluidStack>() {
-			@Override
-			public boolean isValid(final FluidStack object) {
-				return GeneticLiquid.BacteriaVector.get(1).isFluidEqual(object);
-			}
-
-			@Override
-			public String getTooltip() {
-				return GeneticLiquid.BacteriaVector.toString();
-			}
-		});
+		new ComponentTankContainer(machine).addTank(Inoculator.TANK_VEKTOR, "input", 1000).setValidator(new BacteriaVectorTankValidator());
 	}
 
 	@Override
@@ -115,5 +87,33 @@ public class PackageInoculator extends GeneticMachine.PackageGeneticBase impleme
 
 	@Override
 	public void register() {
+	}
+
+	private static class SerumSlotValidator extends SlotValidator {
+		public SerumSlotValidator() {
+			super(ModuleMachine.spriteSerum);
+		}
+
+		@Override
+		public boolean isValid(final ItemStack itemStack) {
+			return itemStack.getItem() instanceof IItemSerum;
+		}
+
+		@Override
+		public String getTooltip() {
+			return "Serum Vials & Arrays";
+		}
+	}
+
+	private static class BacteriaVectorTankValidator extends TankValidator {
+		@Override
+		public boolean isValid(final FluidStack object) {
+			return GeneticLiquid.BacteriaVector.get(1).isFluidEqual(object);
+		}
+
+		@Override
+		public String getTooltip() {
+			return GeneticLiquid.BacteriaVector.toString();
+		}
 	}
 }

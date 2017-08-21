@@ -40,17 +40,7 @@ public class AlvearyLogicStimulator extends AbstractAlvearyLogic {
 		this.powered = false;
 		this.modifiers = new StimulatorCircuit[0];
 		this.energyStorage = new EnergyStorage(10000);
-		this.inv = new ItemStackHandler(1) {
-
-			@Nonnull
-			@Override
-			public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
-				if (!ChipsetManager.circuitRegistry.isChipset(stack)) {
-					return stack;
-				}
-				return super.insertItem(slot, stack, simulate);
-			}
-		};
+		this.inv = new ChipsetItemStackHandler();
 	}
 
 	public IItemHandlerModifiable getInventory() {
@@ -250,5 +240,21 @@ public class AlvearyLogicStimulator extends AbstractAlvearyLogic {
 	@Override
 	public boolean hasGui() {
 		return true;
+	}
+
+	private static class ChipsetItemStackHandler extends ItemStackHandler {
+
+		public ChipsetItemStackHandler() {
+			super(1);
+		}
+
+		@Nonnull
+		@Override
+		public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
+			if (!ChipsetManager.circuitRegistry.isChipset(stack)) {
+				return stack;
+			}
+			return super.insertItem(slot, stack, simulate);
+		}
 	}
 }

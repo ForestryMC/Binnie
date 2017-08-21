@@ -37,29 +37,14 @@ public class PackageAnalyser extends GeneticMachine.PackageGeneticBase implement
 		slotTarget.forbidInteraction();
 		InventorySlot slotDye = inventory.addSlot(Analyser.SLOT_DYE, "dye");
 		slotDye.forbidExtraction();
-		slotDye.setValidator(new SlotValidator(ModuleMachine.spriteDye) {
-			@Override
-			public boolean isValid(final ItemStack itemStack) {
-				return itemStack.isItemEqual(GeneticsItems.DNADye.get(1));
-			}
-
-			@Override
-			public String getTooltip() {
-				return GeneticsItems.DNADye.get(1).getDisplayName();
-			}
-		});
+		slotDye.setValidator(new DyeSlotValidator());
 		for (InventorySlot slot : inventory.addSlotArray(Analyser.SLOT_FINISHED, "output")) {
 			slot.forbidInsertion();
 			slot.setReadOnly();
 		}
 		ComponentInventoryTransfer transfer = new ComponentInventoryTransfer(machine);
 		transfer.addRestock(Analyser.SLOT_RESERVE, 6, 1);
-		transfer.addStorage(6, Analyser.SLOT_FINISHED, new ComponentInventoryTransfer.Condition() {
-			@Override
-			public boolean fulfilled(final ItemStack stack) {
-				return ManagerGenetics.isAnalysed(stack);
-			}
-		});
+		transfer.addStorage(6, Analyser.SLOT_FINISHED, (stack) -> ManagerGenetics.isAnalysed(stack));
 		new ComponentChargedSlots(machine).addCharge(13);
 		new ComponentPowerReceptor(machine, 500);
 		new AnalyserLogic(machine);
@@ -73,5 +58,21 @@ public class PackageAnalyser extends GeneticMachine.PackageGeneticBase implement
 
 	@Override
 	public void register() {
+	}
+
+	private static class DyeSlotValidator extends SlotValidator {
+		public DyeSlotValidator() {
+			super(ModuleMachine.spriteDye);
+		}
+
+		@Override
+		public boolean isValid(final ItemStack itemStack) {
+			return itemStack.isItemEqual(GeneticsItems.DNADye.get(1));
+		}
+
+		@Override
+		public String getTooltip() {
+			return GeneticsItems.DNADye.get(1).getDisplayName();
+		}
 	}
 }

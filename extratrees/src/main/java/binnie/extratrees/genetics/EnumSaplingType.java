@@ -24,28 +24,30 @@ public enum EnumSaplingType {
 	Shrub;
 
 	public IGermlingModelProvider getGermlingModelProvider(Color leaf, Color wood) {
-		return new DefaultGermlingModelProvider(this, leaf, wood);
+		return new DefaultGermlingModelProvider(this, this, leaf, wood);
 	}
 
-	private class DefaultGermlingModelProvider implements IGermlingModelProvider {
+	private static class DefaultGermlingModelProvider implements IGermlingModelProvider {
 		private ModelResourceLocation germlingModel;
 		private ModelResourceLocation pollenModel;
 		private EnumSaplingType saplingType;
 		private Color leaf;
 		private Color wood;
+		private EnumSaplingType enumSaplingType;
 
-		public DefaultGermlingModelProvider(EnumSaplingType saplingType, Color leaf, Color wood) {
+		public DefaultGermlingModelProvider(EnumSaplingType enumSaplingType, EnumSaplingType saplingType, Color leaf, Color wood) {
 			this.saplingType = saplingType;
 			this.wood = wood;
 			this.leaf = leaf;
+			this.enumSaplingType = enumSaplingType;
 		}
 
 		@SideOnly(Side.CLIENT)
 		@Override
 		public void registerModels(Item item, IModelManager manager, EnumGermlingType type) {
 			if (type == EnumGermlingType.SAPLING) {
-				germlingModel = manager.getModelLocation("extratrees", "saplings/tree_" + name());
-				ModelBakery.registerItemVariants(item, new ResourceLocation("extratrees", "saplings/tree_" + name()));
+				germlingModel = manager.getModelLocation("extratrees", "saplings/tree_" + enumSaplingType.name());
+				ModelBakery.registerItemVariants(item, new ResourceLocation("extratrees", "saplings/tree_" + enumSaplingType.name()));
 			}
 			if (type == EnumGermlingType.POLLEN) {
 				pollenModel = manager.getModelLocation("pollen");

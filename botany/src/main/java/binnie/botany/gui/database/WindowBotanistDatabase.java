@@ -49,7 +49,7 @@ public class WindowBotanistDatabase extends WindowAbstractDatabase {
 		new PageSpeciesMutations(getInfoPages(Mode.SPECIES), new DatabaseTab(Botany.instance, "species.further"));
 		new PageBranchOverview(getInfoPages(Mode.BRANCHES), new DatabaseTab(Botany.instance, "branches.overview"));
 		new PageBranchSpecies(getInfoPages(Mode.BRANCHES), new DatabaseTab(Botany.instance, "branches.species"));
-		createMode(FlowerMode.Color, new FlowerColorModeWidgets());
+		createMode(FlowerMode.Color, new FlowerColorModeWidgets(this));
 		new PageColorMixResultant(getInfoPages(FlowerMode.Color), new DatabaseTab(Botany.instance, "color.resultant"));
 		new PageColorMix(getInfoPages(FlowerMode.Color), new DatabaseTab(Botany.instance, "color.further"));
 		new PageBreeder(getInfoPages(Mode.BREEDER), getUsername(), new DatabaseTab(Botany.instance, "breeder"));
@@ -75,22 +75,29 @@ public class WindowBotanistDatabase extends WindowAbstractDatabase {
 	}
 
 	@SideOnly(Side.CLIENT)
-	private class FlowerColorModeWidgets extends ModeWidgets {
-		public FlowerColorModeWidgets() {
-			super(FlowerMode.Color, WindowBotanistDatabase.this);
+	private static class FlowerColorModeWidgets extends ModeWidgets {
+		public FlowerColorModeWidgets(WindowBotanistDatabase windowBotanistDatabase) {
+			super(FlowerMode.Color, windowBotanistDatabase);
 		}
 
 		@Override
 		public void createListBox(IArea area) {
-			listBox = new ControlListBox<IFlowerColor>(modePage, area.xPos(), area.yPos(), area.width(), area.height(), 12) {
-				@Override
-				public IWidget createOption(IFlowerColor value, int y) {
-					return new ControlColorOption(getContent(), value, y);
-				}
-			};
+			listBox = new FlowerColorControlListBox(this, area);
 
 			List<IFlowerColor> colors = Arrays.stream(EnumFlowerColor.values()).map(EnumFlowerColor::getFlowerColorAllele).collect(Collectors.toList());
 			listBox.setOptions(colors);
+		}
+
+		private static class FlowerColorControlListBox extends ControlListBox<IFlowerColor> {
+
+			public FlowerColorControlListBox(FlowerColorModeWidgets flowerColorModeWidgets, IArea area) {
+				super(flowerColorModeWidgets.modePage, area.xPos(), area.yPos(), area.width(), area.height(), 12);
+			}
+
+			@Override
+			public IWidget createOption(IFlowerColor value, int y) {
+				return new ControlColorOption(getContent(), value, y);
+			}
 		}
 	}
 }

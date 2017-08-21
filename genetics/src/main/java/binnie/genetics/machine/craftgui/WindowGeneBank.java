@@ -110,31 +110,7 @@ public class WindowGeneBank extends WindowMachine {
 		this.genes = new ControlGeneScroll(scroll, 1, 1, geneBoxWidth, 116);
 		scroll.setScrollableContent(this.genes);
 		this.genes.setGenes(Binnie.GENETICS.getFirstActiveSystem());
-		final ControlTabBar<IBreedingSystem> tabBar = new ControlTabBar<IBreedingSystem>(this, boxX, 32, 24, 120, Alignment.LEFT, Binnie.GENETICS.getActiveSystems()) {
-			@Override
-			public ControlTab<IBreedingSystem> createTab(final int x, final int y, final int w, final int h, final IBreedingSystem value) {
-				return new ControlTabIcon<IBreedingSystem>(this, x, y, w, h, value) {
-					@Override
-					public void getTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
-						tooltip.add(this.getValue().toString());
-						int totalGenes = 0;
-						int seqGenes = 0;
-						final GeneTracker tracker = GeneTracker.getTracker(WindowGeneBank.this.getWorld(), WindowGeneBank.this.getUsername());
-						final Map<IChromosomeType, List<IAllele>> genes = Binnie.GENETICS.getChromosomeMap(this.getValue().getSpeciesRoot());
-						for (final Map.Entry<IChromosomeType, List<IAllele>> entry : genes.entrySet()) {
-							totalGenes += entry.getValue().size();
-							for (final IAllele allele : entry.getValue()) {
-								final Gene gene = new Gene(allele, entry.getKey(), this.getValue().getSpeciesRoot());
-								if (tracker.isSequenced(gene)) {
-									++seqGenes;
-								}
-							}
-						}
-						tooltip.add("" + seqGenes + "/" + totalGenes + " Genes");
-					}
-				};
-			}
-		};
+		final ControlTabBar<IBreedingSystem> tabBar = new GeneBankTabBar(this, boxX);
 		tabBar.setValue(Binnie.GENETICS.getFirstActiveSystem());
 		boxX -= 8;
 		final ControlTabBar<String> infoTabs = new ControlTabBar<>(this, boxX + 8, 160, 16, 50, Alignment.LEFT, Arrays.asList("Info", "Stats", "Ranking"));
@@ -185,6 +161,48 @@ public class WindowGeneBank extends WindowMachine {
 		@Override
 		public String toString() {
 			return this.system.getChromosomeName(this.chromosome);
+		}
+	}
+
+	private static class GeneBankTabBar extends ControlTabBar<IBreedingSystem> {
+		private WindowGeneBank windowGeneBank;
+
+		public GeneBankTabBar(final WindowGeneBank windowGeneBank, int boxX) {
+			super(windowGeneBank, boxX, 32, 24, 120, Alignment.LEFT, Binnie.GENETICS.getActiveSystems());
+			this.windowGeneBank = windowGeneBank;
+		}
+
+		@Override
+		public ControlTab<IBreedingSystem> createTab(final int x, final int y, final int w, final int h, final IBreedingSystem value) {
+			return new GeneBankTab(this, x, y, w, h, value);
+		}
+
+		private static class GeneBankTab extends ControlTabIcon<IBreedingSystem> {
+			private GeneBankTabBar geneBankTabBar;
+
+			public GeneBankTab(GeneBankTabBar geneBankTabBar, int x, int y, int w, int h, IBreedingSystem value) {
+				super(geneBankTabBar, x, y, w, h, value);
+				this.geneBankTabBar = geneBankTabBar;
+			}
+
+			@Override
+			public void getTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
+				tooltip.add(this.getValue().toString());
+				int totalGenes = 0;
+				int seqGenes = 0;
+				final GeneTracker tracker = GeneTracker.getTracker(geneBankTabBar.windowGeneBank.getWorld(), geneBankTabBar.windowGeneBank.getUsername());
+				final Map<IChromosomeType, List<IAllele>> genes = Binnie.GENETICS.getChromosomeMap(this.getValue().getSpeciesRoot());
+				for (final Map.Entry<IChromosomeType, List<IAllele>> entry : genes.entrySet()) {
+					totalGenes += entry.getValue().size();
+					for (final IAllele allele : entry.getValue()) {
+						final Gene gene = new Gene(allele, entry.getKey(), this.getValue().getSpeciesRoot());
+						if (tracker.isSequenced(gene)) {
+							++seqGenes;
+						}
+					}
+				}
+				tooltip.add("" + seqGenes + "/" + totalGenes + " Genes");
+			}
 		}
 	}
 }

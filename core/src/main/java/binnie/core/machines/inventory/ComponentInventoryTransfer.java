@@ -52,14 +52,12 @@ public class ComponentInventoryTransfer extends MachineComponent {
 		this.transfers.add(transfer);
 	}
 
-	public abstract static class Condition {
-		@Nullable
-		public Transfer transfer;
-
-		public abstract boolean fulfilled(final ItemStack p0);
+	@FunctionalInterface
+	public interface Condition {
+		boolean fulfilled(final ItemStack itemStack);
 	}
 
-	public abstract class Transfer {
+	public abstract static class Transfer {
 		protected final IMachine machine;
 		@Nullable
 		protected Condition condition;
@@ -83,7 +81,7 @@ public class ComponentInventoryTransfer extends MachineComponent {
 
 		public final Transfer setCondition(final Condition condition) {
 			this.condition = condition;
-			return condition.transfer = this;
+			return this;
 		}
 
 		public final IMachine getMachine() {

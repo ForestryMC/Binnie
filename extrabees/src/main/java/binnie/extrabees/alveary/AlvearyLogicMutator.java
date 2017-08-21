@@ -25,17 +25,7 @@ public class AlvearyLogicMutator extends AbstractAlvearyLogic {
 	private final IItemHandlerModifiable inv;
 
 	public AlvearyLogicMutator() {
-		this.inv = new ItemStackHandler(1) {
-
-			@Nonnull
-			@Override
-			public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
-				if (!AlvearyMutationHandler.isMutationItem(stack)) {
-					return stack;
-				}
-				return super.insertItem(slot, stack, simulate);
-			}
-		};
+		this.inv = new MutationItemStackHandler();
 	}
 
 	public IItemHandlerModifiable getInventory() {
@@ -70,5 +60,21 @@ public class AlvearyLogicMutator extends AbstractAlvearyLogic {
 	@Override
 	public boolean hasGui() {
 		return true;
+	}
+
+	private static class MutationItemStackHandler extends ItemStackHandler {
+
+		public MutationItemStackHandler() {
+			super(1);
+		}
+
+		@Nonnull
+		@Override
+		public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
+			if (!AlvearyMutationHandler.isMutationItem(stack)) {
+				return stack;
+			}
+			return super.insertItem(slot, stack, simulate);
+		}
 	}
 }

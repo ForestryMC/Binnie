@@ -32,17 +32,7 @@ public class AlvearyLogicFrameHousing extends AbstractAlvearyLogic {
 
 	public AlvearyLogicFrameHousing(TileEntityExtraBeesAlvearyPart tile) {
 		this.tile = tile;
-		inv = new ItemStackHandler(1) {
-
-			@Nonnull
-			@Override
-			public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
-				if (!(stack.getItem() instanceof IHiveFrame)) {
-					return stack;
-				}
-				return super.insertItem(slot, stack, simulate);
-			}
-		};
+		inv = new HiveFrameItemStackHandler();
 	}
 
 	public IItemHandlerModifiable getInventory() {
@@ -117,5 +107,21 @@ public class AlvearyLogicFrameHousing extends AbstractAlvearyLogic {
 	@Override
 	public boolean hasGui() {
 		return true;
+	}
+
+	private static class HiveFrameItemStackHandler extends ItemStackHandler {
+
+		public HiveFrameItemStackHandler() {
+			super(1);
+		}
+
+		@Nonnull
+		@Override
+		public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
+			if (!(stack.getItem() instanceof IHiveFrame)) {
+				return stack;
+			}
+			return super.insertItem(slot, stack, simulate);
+		}
 	}
 }

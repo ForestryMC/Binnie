@@ -3,6 +3,7 @@ package binnie.genetics.machine.splicer;
 import java.util.Random;
 
 import net.minecraft.client.particle.Particle;
+import net.minecraft.client.particle.ParticleManager;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.entity.item.EntityItem;
@@ -34,40 +35,8 @@ public class SplicerFX extends MachineComponent implements IRender.DisplayTick, 
 	public void onDisplayTick(World world, BlockPos pos, Random rand) {
 		final int tick = (int) (world.getTotalWorldTime() % 3L);
 		if (tick == 0 && this.getUtil().getProcess().isInProgress()) {
-			BinnieCore.getBinnieProxy().getMinecraftInstance().effectRenderer.addEffect(new Particle(world, pos.getX() + 0.5, pos.getY() + 1.5, pos.getZ() + 0.5, 0.0, 0.0, 0.0) {
-				double axisX = this.posX;
-				double axisZ = this.posZ;
-				double angle = (int) (this.world.getTotalWorldTime() % 4L) * 0.5 * 3.1415;
-
-				{
-					this.axisX = 0.0;
-					this.axisZ = 0.0;
-					this.angle = 0.0;
-					this.motionX = 0.0;
-					this.motionZ = 0.0;
-					this.motionY = (this.rand.nextDouble() - 0.5) * 0.02;
-					this.particleMaxAge = 240;
-					this.particleGravity = 0.0f;
-					this.canCollide = true;
-					this.setRBGColorF(0.3f + this.rand.nextFloat() * 0.5f, 0.3f + this.rand.nextFloat() * 0.5f, 0.0f);
-				}
-
-				@Override
-				@SideOnly(Side.CLIENT)
-				public void onUpdate() {
-					super.onUpdate();
-					final double speed = 0.04;
-					this.angle -= speed;
-					final double dist = 0.25 + 0.2 * Math.sin(this.particleAge / 50.0f);
-					this.setPosition(this.axisX + dist * Math.sin(this.angle), this.posY, this.axisZ + dist * Math.cos(this.angle));
-					this.setAlphaF((float) Math.cos(1.57 * this.particleAge / this.particleMaxAge));
-				}
-
-				@Override
-				public int getFXLayer() {
-					return 0;
-				}
-			});
+			ParticleManager effectRenderer = BinnieCore.getBinnieProxy().getMinecraftInstance().effectRenderer;
+			effectRenderer.addEffect(new SplicerParticle(world, pos));
 		}
 	}
 
@@ -122,5 +91,44 @@ public class SplicerFX extends MachineComponent implements IRender.DisplayTick, 
 			return;
 		}
 		this.getUtil().refreshBlock();
+	}
+
+	private static class SplicerParticle extends Particle {
+		private double axisX;
+		private double axisZ;
+		private double angle;
+
+		public SplicerParticle(World world, BlockPos pos) {
+			super(world, pos.getX() + 0.5, pos.getY() + 1.5, pos.getZ() + 0.5, 0.0, 0.0, 0.0);
+			axisX = this.posX;
+			axisZ = this.posZ;
+			angle = (int) (this.world.getTotalWorldTime() % 4L) * 0.5 * 3.1415;
+			this.axisX = 0.0;
+			this.axisZ = 0.0;
+			this.angle = 0.0;
+			this.motionX = 0.0;
+			this.motionZ = 0.0;
+			this.motionY = (this.rand.nextDouble() - 0.5) * 0.02;
+			this.particleMaxAge = 240;
+			this.particleGravity = 0.0f;
+			this.canCollide = true;
+			this.setRBGColorF(0.3f + this.rand.nextFloat() * 0.5f, 0.3f + this.rand.nextFloat() * 0.5f, 0.0f);
+		}
+
+		@Override
+		@SideOnly(Side.CLIENT)
+		public void onUpdate() {
+			super.onUpdate();
+			final double speed = 0.04;
+			this.angle -= speed;
+			final double dist = 0.25 + 0.2 * Math.sin(this.particleAge / 50.0f);
+			this.setPosition(this.axisX + dist * Math.sin(this.angle), this.posY, this.axisZ + dist * Math.cos(this.angle));
+			this.setAlphaF((float) Math.cos(1.57 * this.particleAge / this.particleMaxAge));
+		}
+
+		@Override
+		public int getFXLayer() {
+			return 0;
+		}
 	}
 }

@@ -2,6 +2,7 @@ package binnie.genetics.machine.isolator;
 
 import java.util.Objects;
 
+import binnie.genetics.machine.EthanolTankValidator;
 import net.minecraft.tileentity.TileEntity;
 
 import net.minecraftforge.fluids.FluidRegistry;
@@ -57,17 +58,7 @@ public class PackageIsolator extends GeneticMachine.PackageGeneticBase implement
 			slot.forbidInsertion();
 		}
 		final ComponentTankContainer tanks = new ComponentTankContainer(machine);
-		tanks.addTank(Isolator.TANK_ETHANOL, "input", 1000).setValidator(new TankValidator() {
-			@Override
-			public String getTooltip() {
-				return FluidRegistry.getFluidStack(Fluids.BIO_ETHANOL.getTag(), 1).getLocalizedName();
-			}
-
-			@Override
-			public boolean isValid(final FluidStack stack) {
-				return Objects.equals(stack.getFluid().getName(), Fluids.BIO_ETHANOL.getTag());
-			}
-		});
+		tanks.addTank(Isolator.TANK_ETHANOL, "input", 1000).setValidator(new EthanolTankValidator());
 		final ComponentChargedSlots chargedSlots = new ComponentChargedSlots(machine);
 		chargedSlots.addCharge(Isolator.SLOT_ENZYME);
 		final ComponentInventoryTransfer transfer = new ComponentInventoryTransfer(machine);

@@ -42,21 +42,7 @@ public class AnalystPageGenome extends Control implements ITitledWidget {
 		y += 16;
 		ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(ind);
 		IBreedingSystem system = Binnie.GENETICS.getSystem(root);
-		Control scaled = new Control(this, 0, y, 0, 0) {
-			@Override
-			@SideOnly(Side.CLIENT)
-			public void onRenderBackground(int guiWidth, int guiHeight) {
-				GlStateManager.pushMatrix();
-				GlStateManager.translate(10.0f, -15.0f, 0.0f);
-				GlStateManager.scale(0.9f, 0.95f, 1.0f);
-			}
-
-			@Override
-			@SideOnly(Side.CLIENT)
-			public void onRenderForeground(int guiWidth, int guiHeight) {
-				GlStateManager.popMatrix();
-			}
-		};
+		Control scaled = new Scaled(this, y);
 		for (IChromosomeType chromo : system.getActiveKaryotype()) {
 			IAllele allele = active ? ind.getGenome().getActiveAllele(chromo) : ind.getGenome().getInactiveAllele(chromo);
 			String alleleName = system.getAlleleName(chromo, allele);
@@ -77,5 +63,25 @@ public class AnalystPageGenome extends Control implements ITitledWidget {
 			stateKey+=".inactive";
 		}
 		return I18N.localise(AnalystConstants.GENOME_KEY + ".title", I18N.localise(stateKey));
+	}
+
+	private static class Scaled extends Control {
+		public Scaled(AnalystPageGenome analystPageGenome, int y) {
+			super(analystPageGenome, 0, y, 0, 0);
+		}
+
+		@Override
+		@SideOnly(Side.CLIENT)
+		public void onRenderBackground(int guiWidth, int guiHeight) {
+			GlStateManager.pushMatrix();
+			GlStateManager.translate(10.0f, -15.0f, 0.0f);
+			GlStateManager.scale(0.9f, 0.95f, 1.0f);
+		}
+
+		@Override
+		@SideOnly(Side.CLIENT)
+		public void onRenderForeground(int guiWidth, int guiHeight) {
+			GlStateManager.popMatrix();
+		}
 	}
 }

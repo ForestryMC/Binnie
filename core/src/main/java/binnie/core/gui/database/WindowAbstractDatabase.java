@@ -134,17 +134,7 @@ public abstract class WindowAbstractDatabase extends Window {
 		this.createMode(Mode.BRANCHES, new BranchesModeWidgets());
 		this.createMode(Mode.BREEDER, new BreederModeWidgets());
 		this.addTabs();
-		final ControlTabBar<IDatabaseMode> tab = new ControlTabBar<IDatabaseMode>(this, 176 + this.selectionBoxWidth, 24, 22, 176, Alignment.RIGHT, this.modePages.getValues()) {
-			@Override
-			public ControlTab<IDatabaseMode> createTab(final int x, final int y, final int w, final int h, final IDatabaseMode value) {
-				return new ControlTab<IDatabaseMode>(this, x, y, w, h, value) {
-					@Override
-					public String getName() {
-						return this.value.getName();
-					}
-				};
-			}
-		};
+		final ControlTabBar<IDatabaseMode> tab = new DatabaseTabBar(this);
 		CraftGUIUtil.linkWidgets(tab, this.modePages);
 		this.changeMode(Mode.SPECIES);
 		for (final IDatabaseMode mode : this.modes.keySet()) {
@@ -260,6 +250,28 @@ public abstract class WindowAbstractDatabase extends Window {
 		@Override
 		public void createListBox(final IArea area) {
 			this.listBox = new ControlListBox(this.modePage, area.xPos(), area.yPos(), area.width(), area.height(), 12);
+		}
+	}
+
+	private static class DatabaseTabBar extends ControlTabBar<IDatabaseMode> {
+		public DatabaseTabBar(WindowAbstractDatabase windowAbstractDatabase) {
+			super(windowAbstractDatabase, 176 + windowAbstractDatabase.selectionBoxWidth, 24, 22, 176, Alignment.RIGHT, windowAbstractDatabase.modePages.getValues());
+		}
+
+		@Override
+		public ControlTab<IDatabaseMode> createTab(final int x, final int y, final int w, final int h, final IDatabaseMode value) {
+			return new DatabaseTab(this, x, y, w, h, value);
+		}
+
+		private static class DatabaseTab extends ControlTab<IDatabaseMode> {
+			public DatabaseTab(DatabaseTabBar databaseTabBar, int x, int y, int w, int h, IDatabaseMode value) {
+				super(databaseTabBar, x, y, w, h, value);
+			}
+
+			@Override
+			public String getName() {
+				return this.value.getName();
+			}
 		}
 	}
 }

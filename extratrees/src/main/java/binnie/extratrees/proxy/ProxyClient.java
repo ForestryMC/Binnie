@@ -94,7 +94,7 @@ public class ProxyClient extends Proxy implements IExtraTreeProxy {
 		getModelManager().registerItemAndBlockColors();
 	}
 
-	class CustomMapper extends StateMapperBase {
+	static class CustomMapper extends StateMapperBase {
 		ResourceLocation rl;
 
 		public CustomMapper(String name) {

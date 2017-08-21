@@ -107,32 +107,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		final int compartmentWidth = compartmentPageWidth + (doubleTabbed ? 48 : 24);
 		final int compartmentHeight = compartmentPageHeight;
 		final Control controlCompartment = new Control(this, x, y, compartmentWidth, compartmentHeight);
-		final ControlTabBar<Integer> tab = new ControlTabBar<Integer>(controlCompartment, 0, 0, 24, compartmentPageHeight, Alignment.LEFT, Arrays.asList(tabs1)) {
-			@Override
-			public ControlTab<Integer> createTab(final int x, final int y, final int w, final int h, final Integer value) {
-				return new ControlTabIcon<Integer>(this, x, y, w, h, value) {
-					@Override
-					public ItemStack getItemStack() {
-						return WindowCompartment.this.getTab(this.value).getIcon();
-					}
-
-					@Override
-					public String getName() {
-						return WindowCompartment.this.getTab(this.value).getName();
-					}
-
-					@Override
-					public int getOutlineColour() {
-						return WindowCompartment.this.getTab(this.value).getColor().getColor();
-					}
-
-					@Override
-					public boolean hasOutline() {
-						return true;
-					}
-				};
-			}
-		};
+		final ControlTabBar<Integer> tab = new CompartmentTabBar1(this, controlCompartment, compartmentPageHeight, tabs1);
 		final String[] tabHelp = {"Compartment Tab", "Tabs that divide the inventory into sections. Each one can be labelled seperately."};
 		tab.addHelp(tabHelp);
 		tab.addEventHandler(EventValueChanged.class, EventHandlerOrigin.DIRECT_CHILD, tab, event -> {
@@ -155,15 +130,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		int i = 0;
 		for (int p2 = 0; p2 < inv.getTabNumber(); ++p2) {
 			final ControlPage thisPage = page[p2];
-			final Panel panel = new Panel(thisPage, 0, 0, thisPage.getWidth(), thisPage.getHeight(), MinecraftGUI.PanelType.BLACK) {
-				@Override
-				@SideOnly(Side.CLIENT)
-				public void onRenderForeground(int guiWidth, int guiHeight) {
-					final ITexture iTexture = CraftGUI.RENDER.getTexture(CraftGUITexture.TAB_OUTLINE);
-					RenderUtil.setColour(WindowCompartment.this.getTab(WindowCompartment.this.panels.get(this)).getColor().getColor());
-					CraftGUI.RENDER.texture(iTexture, this.getArea().inset(3));
-				}
-			};
+			final Panel panel = new CompartmentPanel(this, thisPage);
 			this.panels.put(panel, p2);
 			final int[] slotsIDs = new int[inv.getPageSize()];
 			for (int k = 0; k < inv.getPageSize(); ++k) {
@@ -173,32 +140,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		}
 		x += compartmentPageWidth;
 		if (tabs2.length > 0) {
-			final ControlTabBar<Integer> tab2 = new ControlTabBar<Integer>(controlCompartment, 24 + compartmentPageWidth, 0, 24, compartmentPageHeight, Alignment.RIGHT, Arrays.asList(tabs2)) {
-				@Override
-				public ControlTab<Integer> createTab(final int x, final int y, final int w, final int h, final Integer value) {
-					return new ControlTabIcon<Integer>(this, x, y, w, h, value) {
-						@Override
-						public ItemStack getItemStack() {
-							return WindowCompartment.this.getTab(this.value).getIcon();
-						}
-
-						@Override
-						public String getName() {
-							return WindowCompartment.this.getTab(this.value).getName();
-						}
-
-						@Override
-						public int getOutlineColour() {
-							return WindowCompartment.this.getTab(this.value).getColor().getColor();
-						}
-
-						@Override
-						public boolean hasOutline() {
-							return true;
-						}
-					};
-				}
-			};
+			final ControlTabBar<Integer> tab2 = new CompartmentTabBar2(this, controlCompartment, compartmentPageWidth, compartmentPageHeight, tabs2);
 			tab2.addHelp(tabHelp);
 			tab2.addEventHandler(EventValueChanged.class, EventHandlerOrigin.DIRECT_CHILD, tab2, event -> {
 				if (event.getValue() == null) {
@@ -271,27 +213,14 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 			color.addHelp("Select a colour to highlight the current tab");
 		}
 		y2 += 20;
-		final ControlButton searchButton = new ControlButton(controlCompartment, compartmentWidth - 24 - 64 - 8, compartmentPageHeight, 64, 16, "Search") {
-			@Override
-			@SideOnly(Side.CLIENT)
-			protected void onMouseClick(final EventMouse.Down event) {
-				WindowCompartment.this.createSearchDialog();
-			}
-
-			@Override
-			@SideOnly(Side.CLIENT)
-			public void onRenderBackground(int guiWidth, int guiHeight) {
-				final Object texture = this.isMouseOver() ? CraftGUITexture.TAB_HIGHLIGHTED : CraftGUITexture.TAB;
-				CraftGUI.RENDER.texture(CraftGUI.RENDER.getTexture(texture).crop(Alignment.BOTTOM, 8), this.getArea());
-			}
-		};
+		final ControlButton searchButton = new SearchButton(this, controlCompartment, compartmentWidth, compartmentPageHeight);
 		searchButton.addHelp("Search Button");
 		searchButton.addHelp("Clicking this will open the Search dialog. This allows you to search the inventory for specific items.");
 	}
 
 	@SideOnly(Side.CLIENT)
 	public void createSearchDialog() {
-		new SearchDialog();
+		new SearchDialog(this);
 	}
 
 	@Override
@@ -347,15 +276,17 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		return this.getTab(this.currentTab);
 	}
 
-	private class SearchDialog extends Dialog {
+	private static class SearchDialog extends Dialog {
 		Control slotGrid;
 		String textSearch = "";
 		boolean sortByName = false;
 		boolean includeItems = true;
 		boolean includeBlocks = true;
+		private WindowCompartment windowCompartment;
 
-		public SearchDialog() {
-			super(WindowCompartment.this, 252, 192);
+		public SearchDialog(WindowCompartment windowCompartment) {
+			super(windowCompartment, 252, 192);
+			this.windowCompartment = windowCompartment;
 		}
 
 		@Override
@@ -364,14 +295,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 
 		@Override
 		public void initialise() {
-			final ControlScrollableContent<IWidget> scroll = new ControlScrollableContent<IWidget>(this, 124, 16, 116, 92, 6) {
-				@Override
-				@SideOnly(Side.CLIENT)
-				public void onRenderBackground(int guiWidth, int guiHeight) {
-					RenderUtil.setColour(11184810);
-					CraftGUI.RENDER.texture(CraftGUITexture.OUTLINE, this.getArea().inset(new Border(0, 6, 0, 0)));
-				}
-			};
+			final ControlScrollableContent<IWidget> scroll = new SearchScrollContent(this);
 			scroll.setScrollableContent(this.slotGrid = new Control(scroll, 1, 1, 108, 18));
 			new ControlPlayerInventory(this, true);
 			new ControlTextEdit(this, 16, 16, 100, 14).addEventHandler(EventTextEdit.class, event -> {
@@ -380,33 +304,15 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 			});
 			this.includeItems = true;
 			this.includeBlocks = true;
-			new ControlCheckbox(this, 16, 40, 100, "Sort A-Z", this.sortByName) {
-				@Override
-				protected void onValueChanged(final boolean value) {
-					sortByName = value;
-					updateSearch();
-				}
-			};
-			new ControlCheckbox(this, 16, 64, 100, "Include Items", this.includeItems) {
-				@Override
-				protected void onValueChanged(final boolean value) {
-					includeItems = value;
-					updateSearch();
-				}
-			};
-			new ControlCheckbox(this, 16, 88, 100, "Include Blocks", this.includeBlocks) {
-				@Override
-				protected void onValueChanged(final boolean value) {
-					includeBlocks = value;
-					updateSearch();
-				}
-			};
+			new SortAlphabeticalCheckbox(this);
+			new IncludeItemsCheckbox(this);
+			new IncludeBlocksCheckbox(this);
 			this.updateSearch();
 		}
 
 		private void updateSearch() {
 			Map<Integer, String> slotIds = new HashMap<>();
-			final IInventory inv = WindowCompartment.this.getInventory();
+			final IInventory inv = windowCompartment.getInventory();
 			for (int i = 0; i < inv.getSizeInventory(); ++i) {
 				final ItemStack stack = inv.getStackInSlot(i);
 				if (!stack.isEmpty()) {
@@ -452,6 +358,164 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 					y += 18;
 				}
 			}
+		}
+
+		private static class SearchScrollContent extends ControlScrollableContent<IWidget> {
+			private SearchDialog searchDialog;
+
+			public SearchScrollContent(SearchDialog searchDialog) {
+				super(searchDialog, 124, 16, 116, 92, 6);
+				this.searchDialog = searchDialog;
+			}
+
+			@Override
+			@SideOnly(Side.CLIENT)
+			public void onRenderBackground(int guiWidth, int guiHeight) {
+				RenderUtil.setColour(11184810);
+				CraftGUI.RENDER.texture(CraftGUITexture.OUTLINE, searchDialog.windowCompartment.getArea().inset(new Border(0, 6, 0, 0)));
+			}
+		}
+
+		private static class SortAlphabeticalCheckbox extends ControlCheckbox {
+			private SearchDialog searchDialog;
+
+			public SortAlphabeticalCheckbox(SearchDialog searchDialog) {
+				super(searchDialog, 16, 40, 100, "Sort A-Z", searchDialog.sortByName);
+				this.searchDialog = searchDialog;
+			}
+
+			@Override
+			protected void onValueChanged(final boolean value) {
+				searchDialog.sortByName = value;
+				searchDialog.updateSearch();
+			}
+		}
+
+		private static class IncludeItemsCheckbox extends ControlCheckbox {
+			private SearchDialog searchDialog;
+
+			public IncludeItemsCheckbox(SearchDialog searchDialog) {
+				super(searchDialog, 16, 64, 100, "Include Items", searchDialog.includeItems);
+				this.searchDialog = searchDialog;
+			}
+
+			@Override
+			protected void onValueChanged(final boolean value) {
+				searchDialog.includeItems = value;
+				searchDialog.updateSearch();
+			}
+		}
+
+		private static class IncludeBlocksCheckbox extends ControlCheckbox {
+			private SearchDialog searchDialog;
+
+			public IncludeBlocksCheckbox(SearchDialog searchDialog) {
+				super(searchDialog, 16, 88, 100, "Include Blocks", searchDialog.includeBlocks);
+				this.searchDialog = searchDialog;
+			}
+
+			@Override
+			protected void onValueChanged(final boolean value) {
+				searchDialog.includeBlocks = value;
+				searchDialog.updateSearch();
+			}
+		}
+	}
+
+	private static class CompartmentTabBar1 extends ControlTabBar<Integer> {
+		private WindowCompartment windowCompartment;
+
+		public CompartmentTabBar1(final WindowCompartment windowCompartment, Control controlCompartment, int compartmentPageHeight, Integer[] tabs1) {
+			super(controlCompartment, 0, 0, 24, compartmentPageHeight, Alignment.LEFT, Arrays.asList(tabs1));
+			this.windowCompartment = windowCompartment;
+		}
+
+		@Override
+		public ControlTab<Integer> createTab(final int x, final int y, final int w, final int h, final Integer value) {
+			return new CompartmentTabIcon(this, this.windowCompartment, x, y, w, h, value);
+		}
+	}
+
+	private static class CompartmentTabBar2 extends ControlTabBar<Integer> {
+		private WindowCompartment windowCompartment;
+
+		public CompartmentTabBar2(WindowCompartment windowCompartment, Control controlCompartment, int compartmentPageWidth, int compartmentPageHeight, Integer[] tabs2) {
+			super(controlCompartment, 24 + compartmentPageWidth, 0, 24, compartmentPageHeight, Alignment.RIGHT, Arrays.asList(tabs2));
+			this.windowCompartment = windowCompartment;
+		}
+
+		@Override
+		public ControlTab<Integer> createTab(final int x, final int y, final int w, final int h, final Integer value) {
+			return new CompartmentTabIcon(this, this.windowCompartment, x, y, w, h, value);
+		}
+	}
+
+	private static class CompartmentTabIcon extends ControlTabIcon<Integer> {
+		private WindowCompartment windowCompartment;
+
+		public CompartmentTabIcon(ControlTabBar<Integer> compartmentTabBar, WindowCompartment windowCompartment, int x, int y, int w, int h, Integer value) {
+			super(compartmentTabBar, x, y, w, h, value);
+			this.windowCompartment = windowCompartment;
+		}
+
+		@Override
+		public ItemStack getItemStack() {
+			return windowCompartment.getTab(this.value).getIcon();
+		}
+
+		@Override
+		public String getName() {
+			return windowCompartment.getTab(this.value).getName();
+		}
+
+		@Override
+		public int getOutlineColour() {
+			return windowCompartment.getTab(this.value).getColor().getColor();
+		}
+
+		@Override
+		public boolean hasOutline() {
+			return true;
+		}
+	}
+
+	private static class CompartmentPanel extends Panel {
+		private WindowCompartment windowCompartment;
+
+		public CompartmentPanel(WindowCompartment windowCompartment, ControlPage thisPage) {
+			super(thisPage, 0, 0, thisPage.getWidth(), thisPage.getHeight(), MinecraftGUI.PanelType.BLACK);
+			this.windowCompartment = windowCompartment;
+		}
+
+		@Override
+		@SideOnly(Side.CLIENT)
+		public void onRenderForeground(int guiWidth, int guiHeight) {
+			final ITexture iTexture = CraftGUI.RENDER.getTexture(CraftGUITexture.TAB_OUTLINE);
+			CompartmentTab tab = windowCompartment.getTab(windowCompartment.panels.get(this));
+			RenderUtil.setColour(tab.getColor().getColor());
+			CraftGUI.RENDER.texture(iTexture, this.getArea().inset(3));
+		}
+	}
+
+	private static class SearchButton extends ControlButton {
+		private WindowCompartment windowCompartment;
+
+		public SearchButton(WindowCompartment windowCompartment, Control controlCompartment, int compartmentWidth, int compartmentPageHeight) {
+			super(controlCompartment, compartmentWidth - 24 - 64 - 8, compartmentPageHeight, 64, 16, "Search");
+			this.windowCompartment = windowCompartment;
+		}
+
+		@Override
+		@SideOnly(Side.CLIENT)
+		protected void onMouseClick(final EventMouse.Down event) {
+			windowCompartment.createSearchDialog();
+		}
+
+		@Override
+		@SideOnly(Side.CLIENT)
+		public void onRenderBackground(int guiWidth, int guiHeight) {
+			final Object texture = this.isMouseOver() ? CraftGUITexture.TAB_HIGHLIGHTED : CraftGUITexture.TAB;
+			CraftGUI.RENDER.texture(CraftGUI.RENDER.getTexture(texture).crop(Alignment.BOTTOM, 8), this.getArea());
 		}
 	}
 }

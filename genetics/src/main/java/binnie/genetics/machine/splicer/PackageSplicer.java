@@ -33,17 +33,7 @@ public class PackageSplicer extends AdvGeneticMachine.PackageAdvGeneticBase impl
 		InventorySlot slotSerumVial = inventory.addSlot(Splicer.SLOT_SERUM_VIAL, "serum.active");
 		slotSerumVial.forbidInteraction();
 		slotSerumVial.setReadOnly();
-		final SlotValidator serumValid = new SlotValidator(ModuleMachine.spriteSerum) {
-			@Override
-			public boolean isValid(final ItemStack itemStack) {
-				return itemStack.getItem() instanceof IItemSerum;
-			}
-
-			@Override
-			public String getTooltip() {
-				return I18N.localise("genetics.machine.adv_machine.splicer.tooltips.slots.serum");
-			}
-		};
+		final SlotValidator serumValid = new SerumSlotValidator();
 		slotSerumVial.setValidator(serumValid);
 		for (InventorySlot slot : inventory.addSlotArray(Splicer.SLOT_SERUM_RESERVE, "serum.input")) {
 			slot.setValidator(serumValid);
@@ -69,24 +59,16 @@ public class PackageSplicer extends AdvGeneticMachine.PackageAdvGeneticBase impl
 		final ComponentInventoryTransfer transfer = new ComponentInventoryTransfer(machine);
 		transfer.addRestock(Splicer.SLOT_RESERVE, Splicer.SLOT_TARGET, 1);
 		transfer.addRestock(Splicer.SLOT_SERUM_RESERVE, Splicer.SLOT_SERUM_VIAL);
-		transfer.addStorage(Splicer.SLOT_SERUM_VIAL, Splicer.SLOT_SERUM_EXPENDED, new ComponentInventoryTransfer.Condition() {
-			@Override
-			public boolean fulfilled(final ItemStack stack) {
-				return Engineering.getCharges(stack) == 0;
-			}
-		});
-		transfer.addStorage(Splicer.SLOT_TARGET, Splicer.SLOT_FINISHED, new ComponentInventoryTransfer.Condition() {
-			@Override
-			public boolean fulfilled(final ItemStack stack) {
-				if (!stack.isEmpty()) {
-					IMachine machine = this.transfer.getMachine();
-					MachineUtil machineUtil = machine.getMachineUtil();
-					if (!machineUtil.getStack(Splicer.SLOT_SERUM_VIAL).isEmpty() && machine.getInterface(SplicerLogic.class).isValidSerum() != null) {
-						return true;
-					}
+		transfer.addStorage(Splicer.SLOT_SERUM_VIAL, Splicer.SLOT_SERUM_EXPENDED, (stack) -> Engineering.getCharges(stack) == 0);
+		transfer.addStorage(Splicer.SLOT_TARGET, Splicer.SLOT_FINISHED, (stack) -> {
+			if (!stack.isEmpty()) {
+				IMachine machine1 = transfer.getMachine();
+				MachineUtil machineUtil = machine1.getMachineUtil();
+				if (!machineUtil.getStack(Splicer.SLOT_SERUM_VIAL).isEmpty() && machine1.getInterface(SplicerLogic.class).isValidSerum() != null) {
+					return true;
 				}
-				return false;
 			}
+			return false;
 		});
 		new ComponentPowerReceptor(machine, 20000);
 		new SplicerLogic(machine);
@@ -100,5 +82,21 @@ public class PackageSplicer extends AdvGeneticMachine.PackageAdvGeneticBase impl
 
 	@Override
 	public void register() {
+	}
+
+	private static class SerumSlotValidator extends SlotValidator {
+		public SerumSlotValidator() {
+			super(ModuleMachine.spriteSerum);
+		}
+
+		@Override
+		public boolean isValid(final ItemStack itemStack) {
+			return itemStack.getItem() instanceof IItemSerum;
+		}
+
+		@Override
+		public String getTooltip() {
+			return I18N.localise("genetics.machine.adv_machine.splicer.tooltips.slots.serum");
+		}
 	}
 }

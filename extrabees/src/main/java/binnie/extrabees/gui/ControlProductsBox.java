@@ -63,7 +63,7 @@ public class ControlProductsBox extends ControlListBox<ControlProductsBox.Produc
 		SPECIALTIES
 	}
 
-	class Product {
+	static class Product {
 		ItemStack item;
 		float chance;
 

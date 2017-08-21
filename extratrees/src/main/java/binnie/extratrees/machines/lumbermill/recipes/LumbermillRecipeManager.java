@@ -20,7 +20,7 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 public class LumbermillRecipeManager implements ILumbermillManager {
 	private static final Multimap<Item, ILumbermillRecipe> recipes = ArrayListMultimap.create();
-	private static final InventoryCrafting FAKE_CRAFT_INV = new InventoryCrafting(new FakeCraftingHandler(), 3, 3) {};
+	private static final InventoryCrafting FAKE_CRAFT_INV = new FakeInventoryCrafting();
 
 	public static ItemStack getPlankProduct(ItemStack logStack, World world) {
 		Item logItem = logStack.getItem();
@@ -89,6 +89,12 @@ public class LumbermillRecipeManager implements ILumbermillManager {
 		@Override
 		public boolean canInteractWith(EntityPlayer playerIn) {
 			return false;
+		}
+	}
+
+	private static class FakeInventoryCrafting extends InventoryCrafting {
+		public FakeInventoryCrafting() {
+			super(new FakeCraftingHandler(), 3, 3);
 		}
 	}
 }

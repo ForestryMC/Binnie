@@ -28,17 +28,7 @@ public class AlvearyLogicHatchery extends AbstractAlvearyLogic {
 	private final IItemHandlerModifiable inv;
 
 	public AlvearyLogicHatchery() {
-		inv = new ItemStackHandler(5) {
-
-			@Nonnull
-			@Override
-			public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
-				if (!stack.isEmpty() && Utils.getBeeRoot().getType(stack) != EnumBeeType.LARVAE) {
-					return stack;
-				}
-				return super.insertItem(slot, stack, simulate);
-			}
-		};
+		inv = new LarvaeItemStackHandler();
 	}
 
 	public IItemHandlerModifiable getInventory() {
@@ -81,5 +71,21 @@ public class AlvearyLogicHatchery extends AbstractAlvearyLogic {
 	@Override
 	public boolean hasGui() {
 		return true;
+	}
+
+	private static class LarvaeItemStackHandler extends ItemStackHandler {
+
+		public LarvaeItemStackHandler() {
+			super(5);
+		}
+
+		@Nonnull
+		@Override
+		public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
+			if (!stack.isEmpty() && Utils.getBeeRoot().getType(stack) != EnumBeeType.LARVAE) {
+				return stack;
+			}
+			return super.insertItem(slot, stack, simulate);
+		}
 	}
 }

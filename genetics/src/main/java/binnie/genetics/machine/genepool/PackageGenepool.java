@@ -1,11 +1,7 @@
 package binnie.genetics.machine.genepool;
 
+import binnie.genetics.machine.EthanolTankValidator;
 import net.minecraft.tileentity.TileEntity;
-
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
-
-import forestry.core.fluids.Fluids;
 
 import binnie.core.gui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
@@ -17,7 +13,6 @@ import binnie.core.machines.inventory.ComponentTankContainer;
 import binnie.core.machines.inventory.InventorySlot;
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.machines.inventory.TankSlot;
-import binnie.core.machines.inventory.TankValidator;
 import binnie.core.machines.power.ComponentPowerReceptor;
 import binnie.genetics.core.GeneticsGUI;
 import binnie.genetics.item.GeneticsItems;
@@ -50,17 +45,7 @@ public class PackageGenepool extends GeneticMachine.PackageGeneticBase implement
 		tankDNA.setReadOnly();
 		TankSlot tankEthanol = tanks.addTank(Genepool.TANK_ETHANOL, "input", 1000);
 		tankEthanol.forbidExtraction();
-		tankEthanol.setValidator(new TankValidator() {
-			@Override
-			public String getTooltip() {
-				return FluidRegistry.getFluidStack(Fluids.BIO_ETHANOL.getTag(), 1).getLocalizedName();
-			}
-
-			@Override
-			public boolean isValid(final FluidStack stack) {
-				return Fluids.BIO_ETHANOL.getTag().equals(stack.getFluid().getName());
-			}
-		});
+		tankEthanol.setValidator(new EthanolTankValidator());
 		ComponentInventoryTransfer transfer = new ComponentInventoryTransfer(machine);
 		transfer.addRestock(Genepool.SLOT_RESERVE, Genepool.SLOT_BEE, 1);
 		new ComponentPowerReceptor(machine, 1600);
@@ -78,4 +63,5 @@ public class PackageGenepool extends GeneticMachine.PackageGeneticBase implement
 	@Override
 	public void register() {
 	}
+
 }

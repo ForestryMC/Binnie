@@ -42,24 +42,7 @@ public class ExtraBeesClientProxy extends ExtraBeesCommonProxy {
 	private static final ModelManager modelManager = ModelManager.getInstance();
 	
 	private static IBakedModel bakeModelFor(Block block) {
-		return new BlankModel() {
-
-			@Override
-			protected ItemOverrideList createOverrides() {
-				return new ItemOverrideList(ImmutableList.of()) {
-
-					@Override
-					@SuppressWarnings("deprecation")
-					public IBakedModel handleItemState(IBakedModel originalModel, ItemStack stack, @Nullable World world, @Nullable EntityLivingBase entity) {
-						Minecraft minecraft = Minecraft.getMinecraft();
-						BlockRendererDispatcher blockRendererDispatcher = minecraft.getBlockRendererDispatcher();
-						BlockModelShapes blockModelShapes = blockRendererDispatcher.getBlockModelShapes();
-						IBlockState stateFromMeta = block.getStateFromMeta(stack.getMetadata());
-						return blockModelShapes.getModelForState(stateFromMeta);
-					}
-				};
-			}
-		};
+		return new BakedModelForBlock(block);
 	}
 	
 	@Override
@@ -105,5 +88,38 @@ public class ExtraBeesClientProxy extends ExtraBeesCommonProxy {
 
 	private void registerItemBlockLink(ResourceLocation item, Block block, IRegistry<ModelResourceLocation, IBakedModel> registry) {
 		registry.putObject(new ModelResourceLocation(item, "inventory"), bakeModelFor(block));
+	}
+
+	private static class BakedModelForBlock extends BlankModel {
+
+		private final Block block;
+
+		public BakedModelForBlock(Block block) {
+			this.block = block;
+		}
+
+		@Override
+		protected ItemOverrideList createOverrides() {
+			return new BlockItemOverrideList(block);
+		}
+
+		private static class BlockItemOverrideList extends ItemOverrideList {
+			private Block block;
+
+			public BlockItemOverrideList(Block block) {
+				super(ImmutableList.of());
+				this.block = block;
+			}
+
+			@Override
+			@SuppressWarnings("deprecation")
+			public IBakedModel handleItemState(IBakedModel originalModel, ItemStack stack, @Nullable World world, @Nullable EntityLivingBase entity) {
+				Minecraft minecraft = Minecraft.getMinecraft();
+				BlockRendererDispatcher blockRendererDispatcher = minecraft.getBlockRendererDispatcher();
+				BlockModelShapes blockModelShapes = blockRendererDispatcher.getBlockModelShapes();
+				IBlockState stateFromMeta = block.getStateFromMeta(stack.getMetadata());
+				return blockModelShapes.getModelForState(stateFromMeta);
+			}
+		}
 	}
 }

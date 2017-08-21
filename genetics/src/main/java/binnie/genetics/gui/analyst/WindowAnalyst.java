@@ -87,12 +87,7 @@ public class WindowAnalyst extends Window {
 
 	private void setupValidators() {
 		if (!isDatabase) {
-			getWindowInventory().setValidator(0, new SlotValidator.Individual() {
-				@Override
-				public boolean isValid(ItemStack itemStack) {
-					return ManagerGenetics.isAnalysed(itemStack) || (ManagerGenetics.isAnalysable(itemStack) && !getWindowInventory().getStackInSlot(1).isEmpty());
-				}
-			});
+			getWindowInventory().setValidator(0, new AnalystSlotValidator(this));
 			getWindowInventory().setValidator(1, new SlotValidator.Item(GeneticsItems.DNADye.get(1), ModuleMachine.spriteDye));
 		}
 	}
@@ -151,13 +146,7 @@ public class WindowAnalyst extends Window {
 			}
 		});
 		if (!isDatabase) {
-			analystNone = new Control(analystPanel, 0, 0, analystPanel.getWidth(), analystPanel.getHeight()) {
-				@Override
-				public void initialise() {
-					new ControlTextCentered(this, 20, I18N.localise("genetics.gui.analyst.desc")).setColor(4473924);
-					new ControlPlayerInventory(this);
-				}
-			};
+			analystNone = new AnalystNoneControl(this);
 		}
 		setIndividual(null);
 
@@ -339,5 +328,39 @@ public class WindowAnalyst extends Window {
 		currentSystem = system;
 		current = null;
 		updatePages(true);
+	}
+
+	private static class AnalystSlotValidator extends SlotValidator.Individual {
+		private WindowAnalyst windowAnalyst;
+
+		public AnalystSlotValidator(WindowAnalyst windowAnalyst) {
+			this.windowAnalyst = windowAnalyst;
+		}
+
+		@Override
+		public boolean isValid(ItemStack itemStack) {
+			if (ManagerGenetics.isAnalysed(itemStack)) {
+				return true;
+			}
+			if (ManagerGenetics.isAnalysable(itemStack)) {
+				WindowInventory windowInventory = windowAnalyst.getWindowInventory();
+				if (!windowInventory.getStackInSlot(1).isEmpty()) {
+					return true;
+				}
+			}
+			return false;
+		}
+	}
+
+	private static class AnalystNoneControl extends Control {
+		public AnalystNoneControl(WindowAnalyst windowAnalyst) {
+			super(windowAnalyst.analystPanel, 0, 0, windowAnalyst.analystPanel.getWidth(), windowAnalyst.analystPanel.getHeight());
+		}
+
+		@Override
+		public void initialise() {
+			new ControlTextCentered(this, 20, I18N.localise("genetics.gui.analyst.desc")).setColor(4473924);
+			new ControlPlayerInventory(this);
+		}
 	}
 }

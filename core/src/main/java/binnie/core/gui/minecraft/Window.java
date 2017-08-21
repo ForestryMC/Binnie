@@ -154,13 +154,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 	protected abstract String getBackgroundTextureName();
 
 	public IBinnieTexture getBackgroundTextureFile(final int i) {
-		return new IBinnieTexture() {
-			@Override
-			@SideOnly(Side.CLIENT)
-			public BinnieResource getTexture() {
-				return Binnie.RESOURCE.getPNG(getModId(), ResourceType.GUI, getBackgroundTextureName() + ((i == 1) ? "" : i));
-			}
-		};
+		return new BackgroundTexture(this, i);
 	}
 
 	public boolean showHelpButton() {
@@ -320,5 +314,21 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 	@Nullable
 	public Texture getBackground2() {
 		return this.bgText2;
+	}
+
+	private static class BackgroundTexture implements IBinnieTexture {
+		private final int i;
+		private Window window;
+
+		public BackgroundTexture(Window window, int i) {
+			this.i = i;
+			this.window = window;
+		}
+
+		@Override
+		@SideOnly(Side.CLIENT)
+		public BinnieResource getTexture() {
+			return Binnie.RESOURCE.getPNG(window.getModId(), ResourceType.GUI, window.getBackgroundTextureName() + ((i == 1) ? "" : i));
+		}
 	}
 }
