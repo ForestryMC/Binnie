@@ -1,5 +1,7 @@
 package binnie.genetics;
 
+import binnie.core.machines.errors.ErrorStateRegistry;
+import binnie.genetics.machine.GeneticsErrorCode;
 import com.google.common.base.Preconditions;
 
 import javax.annotation.Nullable;
@@ -67,6 +69,10 @@ public class Genetics extends AbstractMod {
 		dictionaryBees = proxy.registerItem(new ItemBeeDictionary());
 		proxy.registerItem(new ItemPunnettSquare());
 		super.preInit(evt);
+
+		for (GeneticsErrorCode errorCode : GeneticsErrorCode.values()) {
+			ErrorStateRegistry.registerErrorState(errorCode);
+		}
 	}
 
 	@Mod.EventHandler

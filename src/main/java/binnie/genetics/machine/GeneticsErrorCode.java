@@ -70,7 +70,6 @@ public enum GeneticsErrorCode implements IErrorStateDefinition {
 		this.name = name;
 		this.parent = parent;
 		this.type = type;
-		ErrorStateRegistry.registerErrorState(this);
 	}
 
 	@Override

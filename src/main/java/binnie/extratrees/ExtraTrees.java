@@ -1,5 +1,7 @@
 package binnie.extratrees;
 
+import binnie.core.machines.errors.ErrorStateRegistry;
+import binnie.extratrees.machines.ExtraTreesErrorCode;
 import net.minecraftforge.common.MinecraftForge;
 
 import net.minecraftforge.fml.common.Mod;
@@ -42,6 +44,10 @@ public class ExtraTrees extends BlankModuleContainer {
 	@Mod.EventHandler
 	public void preInit(final FMLPreInitializationEvent evt) {
 		super.preInit(evt);
+
+		for (ExtraTreesErrorCode errorCode : ExtraTreesErrorCode.values()) {
+			ErrorStateRegistry.registerErrorState(errorCode);
+		}
 	}
 
 	@Mod.EventHandler

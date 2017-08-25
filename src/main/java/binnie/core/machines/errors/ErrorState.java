@@ -1,5 +1,6 @@
 package binnie.core.machines.errors;
 
+import com.google.common.base.Preconditions;
 import net.minecraft.nbt.NBTTagCompound;
 
 import forestry.api.core.INbtReadable;
@@ -17,7 +18,7 @@ public class ErrorState implements INbtReadable, INbtWritable {
 	private boolean powerError;
 
 	public ErrorState(IErrorStateDefinition definition) {
-		this(definition, definition);
+		this(definition, definition, new int[0]);
 	}
 
 	public ErrorState(IErrorStateDefinition definition, int[] data) {
@@ -26,14 +27,6 @@ public class ErrorState implements INbtReadable, INbtWritable {
 
 	public ErrorState(IErrorStateDefinition definition, int data) {
 		this(definition, definition, new int[]{data});
-	}
-
-	public ErrorState(IErrorStateDefinition nameDefinition, IErrorStateDefinition definition) {
-		this(nameDefinition, definition, new int[0]);
-	}
-
-	public ErrorState(IErrorStateDefinition nameDefinition, IErrorStateDefinition definition, int data) {
-		this(nameDefinition, definition, new int[]{data});
 	}
 
 	public ErrorState(IErrorStateDefinition nameDefinition, IErrorStateDefinition definition, int[] data) {
