@@ -98,7 +98,7 @@ allprojects {
     }
 }
 
-def mainProjects = [':core', ':core-api', ':botany', ':botany-api', ':extrabees', ':extratrees', 'extratrees-api', ':genetics', 'genetics-api']
+def mainProjects = [':core', ':core-api', ':botany', ':botany-api', ':design', ':design-api', ':extrabees', ':extratrees', 'extratrees-api', ':genetics', 'genetics-api']
         .collect{ subproject -> project(subproject) }
 mainProjects.each { subproject -> evaluationDependsOn( subproject.path ) }
 jar.dependsOn mainProjects.tasks['classes']
