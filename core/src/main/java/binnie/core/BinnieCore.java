@@ -1,5 +1,7 @@
 package binnie.core;
 
+import binnie.core.machines.errors.CoreErrorCode;
+import binnie.core.machines.errors.ErrorStateRegistry;
 import com.google.common.base.Preconditions;
 
 import javax.annotation.Nullable;
@@ -166,6 +168,9 @@ public final class BinnieCore extends AbstractMod {
 		for (FluidContainerType container : FluidContainerType.getBinnieContainers()) {
 			Item item = new ItemFluidContainer(container);
 			getProxy().registerItem(item);
+		}
+		for (CoreErrorCode errorCode : CoreErrorCode.values()) {
+			ErrorStateRegistry.registerErrorState(errorCode);
 		}
 		super.preInit(evt);
 	}

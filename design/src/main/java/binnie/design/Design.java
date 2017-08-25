@@ -4,9 +4,11 @@ import javax.annotation.Nullable;
 import java.util.Objects;
 
 import binnie.core.Constants;
+import binnie.core.machines.errors.ErrorStateRegistry;
 import binnie.core.machines.inventory.ValidatorSprite;
 import binnie.design.api.DesignAPI;
 import binnie.design.api.IDesignManager;
+import binnie.design.gui.DesignErrorCode;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -41,6 +43,9 @@ public class Design {
 	public void preInit(FMLPreInitializationEvent event) {
 		DesignAPI.manager = designManager = new DesignerManager();
 		spritePolish = new ValidatorSprite(Constants.DESIGN_MOD_ID, "validator/polish.0", "validator/polish.1");
+		for (DesignErrorCode errorCode : DesignErrorCode.values()) {
+			ErrorStateRegistry.registerErrorState(errorCode);
+		}
 	}
 
 	@Mod.EventHandler

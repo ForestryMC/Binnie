@@ -1,8 +1,10 @@
 package binnie.extratrees;
 
+import binnie.core.machines.errors.ErrorStateRegistry;
 import binnie.extratrees.genetics.gui.analyst.ButterflyAnalystPagePlugin;
 import binnie.extratrees.genetics.gui.analyst.TreeAnalystPagePlugin;
 import binnie.extratrees.genetics.gui.analyst.TreeProducePlugin;
+import binnie.extratrees.machines.ExtraTreesErrorCode;
 import binnie.genetics.api.GeneticsApi;
 import binnie.genetics.api.analyst.IAnalystManager;
 import net.minecraftforge.common.MinecraftForge;
@@ -62,6 +64,10 @@ public class ExtraTrees extends BlankModuleContainer {
 			analystManager.registerAnalystPagePlugin(new TreeAnalystPagePlugin());
 			analystManager.registerAnalystPagePlugin(new ButterflyAnalystPagePlugin());
 			analystManager.registerProducePlugin(new TreeProducePlugin());
+		}
+
+		for (ExtraTreesErrorCode errorCode : ExtraTreesErrorCode.values()) {
+			ErrorStateRegistry.registerErrorState(errorCode);
 		}
 	}
 

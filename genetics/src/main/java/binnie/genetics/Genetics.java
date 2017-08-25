@@ -1,6 +1,7 @@
 package binnie.genetics;
 
 import binnie.core.api.genetics.IBreedingSystem;
+import binnie.core.machines.errors.ErrorStateRegistry;
 import binnie.genetics.api.GeneticsApi;
 import binnie.genetics.api.acclimatiser.IAcclimatiserManager;
 import binnie.genetics.api.analyst.IAnalystManager;
@@ -9,6 +10,7 @@ import binnie.genetics.genetics.TreeBreedingSystem;
 import binnie.genetics.gui.Icons;
 import binnie.genetics.gui.analyst.AnalystManager;
 import binnie.genetics.gui.analyst.GeneticsProducePlugin;
+import binnie.genetics.machine.GeneticsErrorCode;
 import binnie.genetics.machine.acclimatiser.AcclimatiserManager;
 import binnie.genetics.machine.sequencer.Sequencer;
 import com.google.common.base.Preconditions;
@@ -109,6 +111,10 @@ public class Genetics extends AbstractMod {
 		analystManager.registerProducePlugin(new GeneticsProducePlugin());
 
 		Genetics.icons = new Icons();
+
+		for (GeneticsErrorCode errorCode : GeneticsErrorCode.values()) {
+			ErrorStateRegistry.registerErrorState(errorCode);
+		}
 	}
 
 	@Mod.EventHandler
