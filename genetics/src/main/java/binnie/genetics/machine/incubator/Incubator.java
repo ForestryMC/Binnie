@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import forestry.api.apiculture.BeeManager;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
@@ -13,12 +12,8 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
 
-import forestry.api.apiculture.EnumBeeType;
-import forestry.api.apiculture.IBee;
-
 import binnie.core.BinnieCore;
 import binnie.core.Mods;
-import binnie.core.machines.MachineUtil;
 import binnie.genetics.item.GeneticLiquid;
 import binnie.genetics.item.GeneticsItems;
 

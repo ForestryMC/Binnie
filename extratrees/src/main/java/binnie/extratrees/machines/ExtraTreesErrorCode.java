@@ -5,7 +5,6 @@ import javax.annotation.Nullable;
 import binnie.core.Constants;
 import binnie.core.machines.errors.CoreErrorCode;
 import binnie.core.machines.errors.EnumErrorType;
-import binnie.core.machines.errors.ErrorStateRegistry;
 import binnie.core.machines.errors.IErrorStateDefinition;
 import binnie.core.util.I18N;
 

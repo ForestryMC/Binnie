@@ -1,14 +1,7 @@
 package binnie.genetics.machine.isolator;
 
-import java.util.Objects;
-
 import binnie.genetics.machine.EthanolTankValidator;
 import net.minecraft.tileentity.TileEntity;
-
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
-
-import forestry.core.fluids.Fluids;
 
 import binnie.core.gui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
@@ -19,7 +12,6 @@ import binnie.core.machines.inventory.ComponentInventoryTransfer;
 import binnie.core.machines.inventory.ComponentTankContainer;
 import binnie.core.machines.inventory.InventorySlot;
 import binnie.core.machines.inventory.SlotValidator;
-import binnie.core.machines.inventory.TankValidator;
 import binnie.core.machines.power.ComponentPowerReceptor;
 import binnie.genetics.core.GeneticsGUI;
 import binnie.genetics.item.GeneticsItems;
