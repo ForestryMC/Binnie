@@ -1,6 +1,5 @@
 package binnie.genetics.integration.jei;
 
-import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.List;
 
@@ -103,9 +102,8 @@ public class GeneticsJeiPlugin implements IModPlugin {
 	}
 
 	private static class ChargeableSubtypeInterpreter implements ISubtypeRegistry.ISubtypeInterpreter {
-		@Nullable
 		@Override
-		public String getSubtypeInfo(ItemStack itemStack) {
+		public String apply(ItemStack itemStack) {
 			Item item = itemStack.getItem();
 			if (item instanceof IItemChargeable) {
 				IItemChargeable itemChargeable = (IItemChargeable) item;
@@ -117,7 +115,7 @@ public class GeneticsJeiPlugin implements IModPlugin {
 				}
 			}
 
-			return null;
+			return ISubtypeRegistry.ISubtypeInterpreter.NONE;
 		}
 	}
 }
