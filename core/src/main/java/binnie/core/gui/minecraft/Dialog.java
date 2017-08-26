@@ -20,7 +20,6 @@ public abstract class Dialog extends Control {
 		this.addAttribute(Attribute.MOUSE_OVER);
 		this.addAttribute(Attribute.ALWAYS_ON_TOP);
 		this.addAttribute(Attribute.BLOCK_TOOLTIP);
-		this.initialise();
 		this.addEventHandler(EventMouse.Down.class, EventHandlerOrigin.ANY, this, event -> {
 			if (!Dialog.this.getArea().contains(Dialog.this.getRelativeMousePosition())) {
 				Dialog.this.onClose();
@@ -28,9 +27,6 @@ public abstract class Dialog extends Control {
 			}
 		});
 	}
-
-	@Override
-	public abstract void initialise();
 
 	public abstract void onClose();
 

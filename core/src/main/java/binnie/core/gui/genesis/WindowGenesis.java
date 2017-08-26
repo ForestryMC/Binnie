@@ -29,7 +29,6 @@ import binnie.core.genetics.Gene;
 import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.listbox.ControlListBox;
 import binnie.core.gui.controls.listbox.ControlTextOption;
-import binnie.core.gui.controls.tab.ControlTab;
 import binnie.core.gui.controls.tab.ControlTabBar;
 import binnie.core.gui.events.EventMouse;
 import binnie.core.gui.events.EventValueChanged;
@@ -193,17 +192,12 @@ public class WindowGenesis extends Window {
 
 	private static class GenesisTabSystems extends ControlTabBar<IBreedingSystem> {
 		public GenesisTabSystems(WindowGenesis windowGenesis) {
-			super(windowGenesis, 8, 28, 23, 100, Alignment.LEFT, Binnie.GENETICS.getActiveSystems());
-		}
-
-		@Override
-		public ControlTab<IBreedingSystem> createTab(final int x, final int y, final int w, final int h, final IBreedingSystem value) {
-			return new GenesisTabIcon(this, x, y, w, h, value);
+			super(windowGenesis, 8, 28, 23, 100, Alignment.LEFT, Binnie.GENETICS.getActiveSystems(), GenesisTabIcon::new);
 		}
 
 		private static class GenesisTabIcon extends ControlTabIcon<IBreedingSystem> {
-			public GenesisTabIcon(GenesisTabSystems genesisTabSystems, int x, int y, int w, int h, IBreedingSystem value) {
-				super(genesisTabSystems, x, y, w, h, value);
+			public GenesisTabIcon(int x, int y, int w, int h, IBreedingSystem value) {
+				super(x, y, w, h, value);
 			}
 
 			@Override

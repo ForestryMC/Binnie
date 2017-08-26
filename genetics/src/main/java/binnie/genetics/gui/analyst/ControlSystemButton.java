@@ -14,6 +14,7 @@ import binnie.core.gui.geometry.Point;
 import binnie.core.gui.renderer.RenderUtil;
 import binnie.core.gui.resource.textures.CraftGUITexture;
 
+@SideOnly(Side.CLIENT)
 public class ControlSystemButton extends Control {
 	IBreedingSystem system;
 	WindowAnalyst window;
@@ -22,10 +23,7 @@ public class ControlSystemButton extends Control {
 		super(window, xPos, yPos, 20, 20);
 		this.system = system;
 		this.window = window;
-	}
 
-	@Override
-	public void initialise() {
 		addAttribute(Attribute.MOUSE_OVER);
 		addSelfEventHandler(EventMouse.Down.class, event -> {
 			window.setSystem(system);

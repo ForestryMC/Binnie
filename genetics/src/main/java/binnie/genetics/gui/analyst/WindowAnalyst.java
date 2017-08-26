@@ -355,10 +355,7 @@ public class WindowAnalyst extends Window {
 	private static class AnalystNoneControl extends Control {
 		public AnalystNoneControl(WindowAnalyst windowAnalyst) {
 			super(windowAnalyst.analystPanel, 0, 0, windowAnalyst.analystPanel.getWidth(), windowAnalyst.analystPanel.getHeight());
-		}
 
-		@Override
-		public void initialise() {
 			new ControlTextCentered(this, 20, I18N.localise("genetics.gui.analyst.desc")).setColor(4473924);
 			new ControlPlayerInventory(this);
 		}

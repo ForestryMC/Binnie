@@ -28,7 +28,6 @@ import binnie.core.gui.Tooltip;
 import binnie.core.gui.controls.ControlText;
 import binnie.core.gui.controls.ControlTextEdit;
 import binnie.core.gui.controls.scroll.ControlScrollableContent;
-import binnie.core.gui.controls.tab.ControlTab;
 import binnie.core.gui.controls.tab.ControlTabBar;
 import binnie.core.gui.events.EventTextEdit;
 import binnie.core.gui.events.EventValueChanged;
@@ -165,24 +164,17 @@ public class WindowGeneBank extends WindowMachine {
 	}
 
 	private static class GeneBankTabBar extends ControlTabBar<IBreedingSystem> {
-		private WindowGeneBank windowGeneBank;
 
 		public GeneBankTabBar(final WindowGeneBank windowGeneBank, int boxX) {
-			super(windowGeneBank, boxX, 32, 24, 120, Alignment.LEFT, Binnie.GENETICS.getActiveSystems());
-			this.windowGeneBank = windowGeneBank;
-		}
-
-		@Override
-		public ControlTab<IBreedingSystem> createTab(final int x, final int y, final int w, final int h, final IBreedingSystem value) {
-			return new GeneBankTab(this, x, y, w, h, value);
+			super(windowGeneBank, boxX, 32, 24, 120, Alignment.LEFT, Binnie.GENETICS.getActiveSystems(), (x, y, w, h, value) -> new GeneBankTab(windowGeneBank, x, y, w, h, value));
 		}
 
 		private static class GeneBankTab extends ControlTabIcon<IBreedingSystem> {
-			private GeneBankTabBar geneBankTabBar;
+			private WindowGeneBank windowGeneBank;
 
-			public GeneBankTab(GeneBankTabBar geneBankTabBar, int x, int y, int w, int h, IBreedingSystem value) {
-				super(geneBankTabBar, x, y, w, h, value);
-				this.geneBankTabBar = geneBankTabBar;
+			public GeneBankTab(WindowGeneBank windowGeneBank, int x, int y, int w, int h, IBreedingSystem value) {
+				super(x, y, w, h, value);
+				this.windowGeneBank = windowGeneBank;
 			}
 
 			@Override
@@ -190,7 +182,7 @@ public class WindowGeneBank extends WindowMachine {
 				tooltip.add(this.getValue().toString());
 				int totalGenes = 0;
 				int seqGenes = 0;
-				final GeneTracker tracker = GeneTracker.getTracker(geneBankTabBar.windowGeneBank.getWorld(), geneBankTabBar.windowGeneBank.getUsername());
+				final GeneTracker tracker = GeneTracker.getTracker(windowGeneBank.getWorld(), windowGeneBank.getUsername());
 				final Map<IChromosomeType, List<IAllele>> genes = Binnie.GENETICS.getChromosomeMap(this.getValue().getSpeciesRoot());
 				for (final Map.Entry<IChromosomeType, List<IAllele>> entry : genes.entrySet()) {
 					totalGenes += entry.getValue().size();

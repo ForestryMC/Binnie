@@ -38,7 +38,6 @@ import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.controls.page.ControlPage;
 import binnie.core.gui.controls.page.ControlPages;
 import binnie.core.gui.controls.scroll.ControlScrollableContent;
-import binnie.core.gui.controls.tab.ControlTab;
 import binnie.core.gui.controls.tab.ControlTabBar;
 import binnie.core.gui.events.EventMouse;
 import binnie.core.gui.events.EventTextEdit;
@@ -232,9 +231,10 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 
 	@SideOnly(Side.CLIENT)
 	public void updateTabs() {
-		this.tabName.setValue(this.getCurrentTab().getName());
-		this.tabIcon.setItemStack(this.getCurrentTab().getIcon());
-		this.tabColour.setValue(this.getCurrentTab().getColor());
+		CompartmentTab currentTab = this.getCurrentTab();
+		this.tabName.setValue(currentTab.getName());
+		this.tabIcon.setItemStack(currentTab.getIcon());
+		this.tabColour.setValue(currentTab.getColor());
 	}
 
 	@Override
@@ -287,14 +287,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		public SearchDialog(WindowCompartment windowCompartment) {
 			super(windowCompartment, 252, 192);
 			this.windowCompartment = windowCompartment;
-		}
 
-		@Override
-		public void onClose() {
-		}
-
-		@Override
-		public void initialise() {
 			final ControlScrollableContent<IWidget> scroll = new SearchScrollContent(this);
 			scroll.setScrollableContent(this.slotGrid = new Control(scroll, 1, 1, 108, 18));
 			new ControlPlayerInventory(this, true);
@@ -308,6 +301,10 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 			new IncludeItemsCheckbox(this);
 			new IncludeBlocksCheckbox(this);
 			this.updateSearch();
+		}
+
+		@Override
+		public void onClose() {
 		}
 
 		private void updateSearch() {
@@ -423,44 +420,29 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 	}
 
 	private static class CompartmentTabBar1 extends ControlTabBar<Integer> {
-		private WindowCompartment windowCompartment;
-
 		public CompartmentTabBar1(final WindowCompartment windowCompartment, Control controlCompartment, int compartmentPageHeight, Integer[] tabs1) {
-			super(controlCompartment, 0, 0, 24, compartmentPageHeight, Alignment.LEFT, Arrays.asList(tabs1));
-			this.windowCompartment = windowCompartment;
-		}
-
-		@Override
-		public ControlTab<Integer> createTab(final int x, final int y, final int w, final int h, final Integer value) {
-			return new CompartmentTabIcon(this, this.windowCompartment, x, y, w, h, value);
+			super(controlCompartment, 0, 0, 24, compartmentPageHeight, Alignment.LEFT, Arrays.asList(tabs1), (x, y, w, h, value) -> new CompartmentTabIcon(windowCompartment, x, y, w, h, value));
 		}
 	}
 
 	private static class CompartmentTabBar2 extends ControlTabBar<Integer> {
-		private WindowCompartment windowCompartment;
-
 		public CompartmentTabBar2(WindowCompartment windowCompartment, Control controlCompartment, int compartmentPageWidth, int compartmentPageHeight, Integer[] tabs2) {
-			super(controlCompartment, 24 + compartmentPageWidth, 0, 24, compartmentPageHeight, Alignment.RIGHT, Arrays.asList(tabs2));
-			this.windowCompartment = windowCompartment;
-		}
-
-		@Override
-		public ControlTab<Integer> createTab(final int x, final int y, final int w, final int h, final Integer value) {
-			return new CompartmentTabIcon(this, this.windowCompartment, x, y, w, h, value);
+			super(controlCompartment, 24 + compartmentPageWidth, 0, 24, compartmentPageHeight, Alignment.RIGHT, Arrays.asList(tabs2), (x, y, w, h, value) -> new CompartmentTabIcon(windowCompartment, x, y, w, h, value));
 		}
 	}
 
 	private static class CompartmentTabIcon extends ControlTabIcon<Integer> {
 		private WindowCompartment windowCompartment;
 
-		public CompartmentTabIcon(ControlTabBar<Integer> compartmentTabBar, WindowCompartment windowCompartment, int x, int y, int w, int h, Integer value) {
-			super(compartmentTabBar, x, y, w, h, value);
+		public CompartmentTabIcon(WindowCompartment windowCompartment, int x, int y, int w, int h, Integer value) {
+			super(x, y, w, h, value);
 			this.windowCompartment = windowCompartment;
 		}
 
 		@Override
 		public ItemStack getItemStack() {
-			return windowCompartment.getTab(this.value).getIcon();
+			CompartmentTab tab = windowCompartment.getTab(this.value);
+			return tab.getIcon();
 		}
 
 		@Override

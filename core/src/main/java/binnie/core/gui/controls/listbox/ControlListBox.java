@@ -11,10 +11,7 @@ import binnie.core.util.IValidator;
 public class ControlListBox<T> extends ControlScrollableContent<ControlList<T>> implements IControlValue<T> {
 	public ControlListBox(final IWidget parent, final int x, final int y, final int w, final int h, final int scrollBarSize) {
 		super(parent, x, y, w, h, scrollBarSize);
-	}
 
-	@Override
-	public void initialise() {
 		ControlList<T> content = this.getContent();
 		T defaultValue = content == null ? null : content.getDefaultValue();
 		ControlList<T> child = new ControlList<>(this, 1, 1, this.getWidth() - 2 - this.scrollBarSize, this.getHeight() - 2, defaultValue);

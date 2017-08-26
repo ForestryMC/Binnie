@@ -26,14 +26,18 @@ public class ControlTab<T> extends Control implements ITooltip, IControlValue<T>
 	protected T value;
 	private ControlTabBar<T> tabBar;
 
-	public ControlTab(final ControlTabBar<T> parent, final int x, final int y, final int w, final int h, final T value) {
-		super(parent, x, y, w, h);
+	public ControlTab(final int x, final int y, final int w, final int h, final T value) {
+		super(null, x, y, w, h);
 		this.value = value;
-		this.tabBar = parent;
 		this.addAttribute(Attribute.MOUSE_OVER);
 		this.addSelfEventHandler(EventMouse.Down.class, event -> {
 			ControlTab.this.callEvent(new EventValueChanged<Object>(ControlTab.this.getWidget(), ControlTab.this.getValue()));
 		});
+	}
+
+	public void setTabBar(ControlTabBar<T> tabBar) {
+		super.setParent(tabBar);
+		this.tabBar = tabBar;
 	}
 
 	@Override

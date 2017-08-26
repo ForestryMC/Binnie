@@ -25,7 +25,7 @@ import binnie.core.gui.geometry.Area;
 
 public class Widget implements IWidget {
 	@Nullable
-	private final IWidget parent;
+	private IWidget parent;
 	@Nullable
 	private IArea cropArea;
 	@Nullable
@@ -34,8 +34,8 @@ public class Widget implements IWidget {
 	private int color;
 	private List<IWidget> children;
 	private List<IWidgetAttribute> attributes;
-	private IPoint position;
-	private IPoint size;
+	protected IPoint position;
+	protected IPoint size;
 	private IPoint offset;
 	private Collection<EventHandler<? extends Event>> eventHandlers;
 	private boolean visible;
@@ -50,10 +50,7 @@ public class Widget implements IWidget {
 		this.color = 0xffffff;
 		this.eventHandlers = new ArrayList<>();
 		this.visible = true;
-		this.parent = parent;
-		if (parent != null) {
-			parent.addChild(this);
-		}
+		setParent(parent);
 	}
 
 	/* ATTRIBUTES */
@@ -64,6 +61,13 @@ public class Widget implements IWidget {
 
 	public boolean addAttribute(final IWidgetAttribute attribute) {
 		return this.attributes.add(attribute);
+	}
+
+	protected final void setParent(@Nullable IWidget parent) {
+		this.parent = parent;
+		if (parent != null) {
+			parent.addChild(this);
+		}
 	}
 
 	/* CHILDREN */

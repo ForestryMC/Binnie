@@ -12,12 +12,21 @@ import binnie.core.gui.events.EventValueChanged;
 import binnie.core.api.gui.Alignment;
 
 public class ControlTabBar<T> extends Control implements IControlValue<T> {
+	public interface ITabCreator<T> {
+		ControlTab<T> createTab(final int x, final int y, final int w, final int h, final T value);
+	}
+
 	private T value;
 	private Alignment alignment;
 
-	public ControlTabBar(final IWidget parent, final int x, final int y, final int width, final int height, final Alignment alignment, final Collection<T> values) {
+	public ControlTabBar(IWidget parent, int x, int y, int width, int height, Alignment alignment, Collection<T> values) {
 		this(parent, x, y, width, height, alignment, Iterables.get(values, 0));
-		setValues(values);
+		setValues(values, ControlTab::new);
+	}
+
+	public ControlTabBar(IWidget parent, int x, int y, int width, int height, Alignment alignment, Collection<T> values, ITabCreator<T> tabCreator) {
+		this(parent, x, y, width, height, alignment, Iterables.get(values, 0));
+		setValues(values, tabCreator);
 	}
 
 	public ControlTabBar(final IWidget parent, final int x, final int y, final int width, final int height, final Alignment alignment, final T value) {
@@ -29,7 +38,7 @@ public class ControlTabBar<T> extends Control implements IControlValue<T> {
 		});
 	}
 
-	private void setValues(final Collection<T> values) {
+	private void setValues(Collection<T> values, ITabCreator<T> tabCreator) {
 		deleteAllChildren();
 		final float length = values.size();
 		int tabDimension = (int) (this.getSize().yPos() / length);
@@ -39,16 +48,14 @@ public class ControlTabBar<T> extends Control implements IControlValue<T> {
 		int j = 0;
 		for (final T value : values) {
 			if (this.alignment == Alignment.TOP || this.alignment == Alignment.BOTTOM) {
-				this.createTab(j * tabDimension, 0, tabDimension, this.getSize().yPos(), value);
+				ControlTab<T> tab = tabCreator.createTab(j * tabDimension, 0, tabDimension, this.getSize().yPos(), value);
+				tab.setTabBar(this);
 			} else {
-				this.createTab(0, j * tabDimension, this.getSize().xPos(), tabDimension, value);
+				ControlTab<T> tab = tabCreator.createTab(0, j * tabDimension, this.getSize().xPos(), tabDimension, value);
+				tab.setTabBar(this);
 			}
 			++j;
 		}
-	}
-
-	public ControlTab<T> createTab(final int x, final int y, final int w, final int h, final T value) {
-		return new ControlTab<>(this, x, y, w, h, value);
 	}
 
 	@Override

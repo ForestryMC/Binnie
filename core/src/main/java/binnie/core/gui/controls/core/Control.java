@@ -27,19 +27,12 @@ public class Control extends Widget implements ITooltipHelp, ITooltip {
 		this.helpStrings = new ArrayList<>();
 		this.tooltipStrings = new ArrayList<>();
 		this.extraLevel = 0;
-		this.setPosition(new Point(xPos, yPos));
-		this.setSize(new Point(width, height));
-		this.initialise();
+		this.position = new Point(xPos, yPos);
+		this.size = new Point(width, height);
 	}
 
 	public Control(IWidget parent, IArea area) {
 		this(parent, area.xPos(), area.yPos(), area.width(), area.height());
-	}
-
-	/**
-	 * Called at the end of the constructor of control class.
-	 */
-	protected void initialise() {
 	}
 
 	public void addHelp(final String string) {

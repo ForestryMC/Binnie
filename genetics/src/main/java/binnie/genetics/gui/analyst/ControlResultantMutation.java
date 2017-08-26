@@ -34,10 +34,6 @@ public class ControlResultantMutation extends ControlMutation {
 	}
 
 	@Override
-	public void initialise() {
-	}
-
-	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		GlStateManager.enableBlend();

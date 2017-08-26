@@ -255,17 +255,12 @@ public abstract class WindowAbstractDatabase extends Window {
 
 	private static class DatabaseTabBar extends ControlTabBar<IDatabaseMode> {
 		public DatabaseTabBar(WindowAbstractDatabase windowAbstractDatabase) {
-			super(windowAbstractDatabase, 176 + windowAbstractDatabase.selectionBoxWidth, 24, 22, 176, Alignment.RIGHT, windowAbstractDatabase.modePages.getValues());
-		}
-
-		@Override
-		public ControlTab<IDatabaseMode> createTab(final int x, final int y, final int w, final int h, final IDatabaseMode value) {
-			return new DatabaseTab(this, x, y, w, h, value);
+			super(windowAbstractDatabase, 176 + windowAbstractDatabase.selectionBoxWidth, 24, 22, 176, Alignment.RIGHT, windowAbstractDatabase.modePages.getValues(), DatabaseTab::new);
 		}
 
 		private static class DatabaseTab extends ControlTab<IDatabaseMode> {
-			public DatabaseTab(DatabaseTabBar databaseTabBar, int x, int y, int w, int h, IDatabaseMode value) {
-				super(databaseTabBar, x, y, w, h, value);
+			public DatabaseTab(int x, int y, int w, int h, IDatabaseMode value) {
+				super(x, y, w, h, value);
 			}
 
 			@Override

@@ -96,16 +96,8 @@ public class AnalystPageDatabase extends Control implements ITitledWidget {
 	}
 
 	private static class Scroll extends ControlListBox<IAlleleSpecies> {
-		private final Collection<IAlleleSpecies> options;
-
 		public Scroll(AnalystPageDatabase analystPageDatabase, int y, Collection<IAlleleSpecies> options) {
 			super(analystPageDatabase, 4, y, analystPageDatabase.getWidth() - 8, analystPageDatabase.getHeight() - y - 8 - 20, 0);
-			this.options = options;
-		}
-
-		@Override
-		public void initialise() {
-			super.initialise();
 			setOptions(options);
 		}
 
@@ -195,10 +187,7 @@ public class AnalystPageDatabase extends Control implements ITitledWidget {
 			this.options = options;
 			this.system = system;
 			this.analystPageDatabase = analystPageDatabase;
-		}
 
-		@Override
-		public void initialise() {
 			int maxBiomePerLine = (getWidth() - 4 + 2) / 18;
 			int biomeListX = -6 + (getWidth() - (maxBiomePerLine * 18 - 2)) / 2;
 			int dx = 0;
@@ -225,10 +214,7 @@ public class AnalystPageDatabase extends Control implements ITitledWidget {
 				this.ind = ind;
 				this.species = species;
 				this.itemScrollList = itemScrollList;
-			}
 
-			@Override
-			public void initialise() {
 				addSelfEventHandler(EventMouse.Down.class, event -> {
 					WindowAnalyst window = (WindowAnalyst) itemScrollList.analystPageDatabase.getTopParent();
 					window.setIndividual(ind);
