@@ -1,6 +1,5 @@
 package binnie.extratrees.items;
 
-import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 
 import net.minecraftforge.fml.relauncher.Side;
@@ -18,7 +17,7 @@ import binnie.extratrees.blocks.BlockETDecorativeLeaves;
 import binnie.extratrees.genetics.ETTreeDefinition;
 
 public class ItemBlockETDecorativeLeaves extends ItemBlockForestry<BlockETDecorativeLeaves> implements IColoredItem {
-	public ItemBlockETDecorativeLeaves(Block block) {
+	public ItemBlockETDecorativeLeaves(BlockETDecorativeLeaves block) {
 		super(block);
 	}
 
