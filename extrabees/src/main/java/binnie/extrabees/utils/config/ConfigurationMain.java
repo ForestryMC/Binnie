@@ -6,7 +6,7 @@ public class ConfigurationMain implements IConfigurable {
 
 	private static final String WORLDGEN = "World-Gen";
 	public static boolean canQuarryMineHives = true;
-	public static int waterHiveRate = 1;
+	public static int waterHiveRate = 2;
 	public static int rockHiveRate = 2;
 	public static int netherHiveRate = 2;
 	public static int marbleHiveRate = 2;
