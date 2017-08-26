@@ -21,12 +21,13 @@ public class WorldGenHiveRock extends WorldGenHive {
 	@Override
 	public boolean generate(final World world, final Random random, final BlockPos pos) {
 		final IBlockState block = world.getBlockState(pos);
-		if (!block.getBlock().isAir(block, world, pos)) {
-			return true;
+		if (block.getBlock().isAir(block, world, pos)) {
+			return false;
 		}
 		if (block.getBlock().isReplaceableOreGen(block, world, pos, BlockStateMatcher.forBlock(Blocks.STONE))) {
 			world.setBlockState(pos, ExtraBees.hive.getDefaultState().withProperty(BlockExtraBeeHive.hiveType, EnumHiveType.Rock));
+			return true;
 		}
-		return true;
+		return false;
 	}
 }
