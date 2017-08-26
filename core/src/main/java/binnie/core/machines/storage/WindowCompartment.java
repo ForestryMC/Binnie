@@ -88,15 +88,15 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		final ComponentCompartmentInventory inv = machine.getInterface(ComponentCompartmentInventory.class);
 		Integer[] tabs1 = new Integer[0];
 		Integer[] tabs2 = new Integer[0];
-		if (inv.getTabNumber() == 4) {
+		if (inv.getTabCount() == 4) {
 			tabs1 = new Integer[]{0, 1};
 			tabs2 = new Integer[]{2, 3};
 		}
-		if (inv.getTabNumber() == 6) {
+		if (inv.getTabCount() == 6) {
 			tabs1 = new Integer[]{0, 1, 2};
 			tabs2 = new Integer[]{3, 4, 5};
 		}
-		if (inv.getTabNumber() == 8) {
+		if (inv.getTabCount() == 8) {
 			tabs1 = new Integer[]{0, 1, 2, 3};
 			tabs2 = new Integer[]{4, 5, 6, 7};
 		}
@@ -121,15 +121,15 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		});
 		x += 24;
 		final ControlPages<Integer> compartmentPages = new ControlPages<>(controlCompartment, 24, 0, compartmentPageWidth, compartmentPageHeight);
-		final ControlPage[] page = new ControlPage[inv.getTabNumber()];
-		for (int p = 0; p < inv.getTabNumber(); ++p) {
-			page[p] = new ControlPage(compartmentPages, p);
+		final ControlPage[] page = new ControlPage[inv.getTabCount()];
+		for (int p = 0; p < inv.getTabCount(); ++p) {
+			page[p] = new ControlPage<>(compartmentPages, p);
 		}
 		CraftGUIUtil.linkWidgets(tab, compartmentPages);
 		int i = 0;
-		for (int p2 = 0; p2 < inv.getTabNumber(); ++p2) {
+		for (int p2 = 0; p2 < inv.getTabCount(); ++p2) {
 			final ControlPage thisPage = page[p2];
-			final Panel panel = new CompartmentPanel(this, thisPage);
+			final Panel panel = new CompartmentCenterPanel(this, thisPage);
 			this.panels.put(panel, p2);
 			final int[] slotsIDs = new int[inv.getPageSize()];
 			for (int k = 0; k < inv.getPageSize(); ++k) {
@@ -140,6 +140,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		x += compartmentPageWidth;
 		if (tabs2.length > 0) {
 			final ControlTabBar<Integer> tab2 = new CompartmentTabBar2(this, controlCompartment, compartmentPageWidth, compartmentPageHeight, tabs2);
+			tab2.setValue(tabs1[0]);
 			tab2.addHelp(tabHelp);
 			tab2.addEventHandler(EventValueChanged.class, EventHandlerOrigin.DIRECT_CHILD, tab2, event -> {
 				if (event.getValue() == null) {
@@ -170,7 +171,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		final int x2 = 4;
 		y2 += 12;
 		(this.tabName = new ControlTextEdit(parent, x2, y2, 104, 12)).addEventHandler(EventTextEdit.class, EventHandlerOrigin.SELF, this.tabName, event -> {
-			final CompartmentTab currentTab = WindowCompartment.this.getCurrentTab();
+			final binnie.core.machines.storage.CompartmentTab currentTab = WindowCompartment.this.getCurrentTab();
 			currentTab.setName(event.getValue());
 			final NBTTagCompound nbt = new NBTTagCompound();
 			currentTab.writeToNBT(nbt);
@@ -184,7 +185,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 			if (WindowCompartment.this.getHeldItemStack().isEmpty()) {
 				return;
 			}
-			final CompartmentTab currentTab = WindowCompartment.this.getCurrentTab();
+			final binnie.core.machines.storage.CompartmentTab currentTab = WindowCompartment.this.getCurrentTab();
 			final ItemStack stack = WindowCompartment.this.getHeldItemStack().copy();
 			stack.setCount(1);
 			currentTab.setIcon(stack);
@@ -202,7 +203,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		for (int cc = 0; cc < 16; ++cc) {
 			final ControlColourSelector color = new ControlColourSelector(panelColour, 1 + cw * (cc % 8), 1 + cw * (cc / 8), cw, cw, EnumColor.values()[cc]);
 			color.addSelfEventHandler(EventMouse.Down.class, event -> {
-				final CompartmentTab currentTab = WindowCompartment.this.getCurrentTab();
+				final binnie.core.machines.storage.CompartmentTab currentTab = WindowCompartment.this.getCurrentTab();
 				currentTab.setColor(color.getValue());
 				final NBTTagCompound nbt = new NBTTagCompound();
 				currentTab.writeToNBT(nbt);
@@ -231,7 +232,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 
 	@SideOnly(Side.CLIENT)
 	public void updateTabs() {
-		CompartmentTab currentTab = this.getCurrentTab();
+		binnie.core.machines.storage.CompartmentTab currentTab = this.getCurrentTab();
 		this.tabName.setValue(currentTab.getName());
 		this.tabIcon.setItemStack(currentTab.getIcon());
 		this.tabColour.setValue(currentTab.getColor());
@@ -268,11 +269,11 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		}
 	}
 
-	public CompartmentTab getTab(final int i) {
+	public binnie.core.machines.storage.CompartmentTab getTab(final int i) {
 		return Machine.getInterface(ComponentCompartmentInventory.class, this.getInventory()).getTab(i);
 	}
 
-	public CompartmentTab getCurrentTab() {
+	public binnie.core.machines.storage.CompartmentTab getCurrentTab() {
 		return this.getTab(this.currentTab);
 	}
 
@@ -421,27 +422,27 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 
 	private static class CompartmentTabBar1 extends ControlTabBar<Integer> {
 		public CompartmentTabBar1(final WindowCompartment windowCompartment, Control controlCompartment, int compartmentPageHeight, Integer[] tabs1) {
-			super(controlCompartment, 0, 0, 24, compartmentPageHeight, Alignment.LEFT, Arrays.asList(tabs1), (x, y, w, h, value) -> new CompartmentTabIcon(windowCompartment, x, y, w, h, value));
+			super(controlCompartment, 0, 0, 24, compartmentPageHeight, Alignment.LEFT, Arrays.asList(tabs1), (x, y, w, h, value) -> new CompartmentTab(windowCompartment, x, y, w, h, value));
 		}
 	}
 
 	private static class CompartmentTabBar2 extends ControlTabBar<Integer> {
 		public CompartmentTabBar2(WindowCompartment windowCompartment, Control controlCompartment, int compartmentPageWidth, int compartmentPageHeight, Integer[] tabs2) {
-			super(controlCompartment, 24 + compartmentPageWidth, 0, 24, compartmentPageHeight, Alignment.RIGHT, Arrays.asList(tabs2), (x, y, w, h, value) -> new CompartmentTabIcon(windowCompartment, x, y, w, h, value));
+			super(controlCompartment, 24 + compartmentPageWidth, 0, 24, compartmentPageHeight, Alignment.RIGHT, Arrays.asList(tabs2), (x, y, w, h, value) -> new CompartmentTab(windowCompartment, x, y, w, h, value));
 		}
 	}
 
-	private static class CompartmentTabIcon extends ControlTabIcon<Integer> {
+	private static class CompartmentTab extends ControlTabIcon<Integer> {
 		private WindowCompartment windowCompartment;
 
-		public CompartmentTabIcon(WindowCompartment windowCompartment, int x, int y, int w, int h, Integer value) {
+		public CompartmentTab(WindowCompartment windowCompartment, int x, int y, int w, int h, Integer value) {
 			super(x, y, w, h, value);
 			this.windowCompartment = windowCompartment;
 		}
 
 		@Override
 		public ItemStack getItemStack() {
-			CompartmentTab tab = windowCompartment.getTab(this.value);
+			binnie.core.machines.storage.CompartmentTab tab = windowCompartment.getTab(this.value);
 			return tab.getIcon();
 		}
 
@@ -461,10 +462,10 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		}
 	}
 
-	private static class CompartmentPanel extends Panel {
+	private static class CompartmentCenterPanel extends Panel {
 		private WindowCompartment windowCompartment;
 
-		public CompartmentPanel(WindowCompartment windowCompartment, ControlPage thisPage) {
+		public CompartmentCenterPanel(WindowCompartment windowCompartment, ControlPage thisPage) {
 			super(thisPage, 0, 0, thisPage.getWidth(), thisPage.getHeight(), MinecraftGUI.PanelType.BLACK);
 			this.windowCompartment = windowCompartment;
 		}
@@ -473,7 +474,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		@SideOnly(Side.CLIENT)
 		public void onRenderForeground(int guiWidth, int guiHeight) {
 			final ITexture iTexture = CraftGUI.RENDER.getTexture(CraftGUITexture.TAB_OUTLINE);
-			CompartmentTab tab = windowCompartment.getTab(windowCompartment.panels.get(this));
+			binnie.core.machines.storage.CompartmentTab tab = windowCompartment.getTab(windowCompartment.panels.get(this));
 			RenderUtil.setColour(tab.getColor().getColor());
 			CraftGUI.RENDER.texture(iTexture, this.getArea().inset(3));
 		}

@@ -17,15 +17,6 @@ class StandardCompartment {
 			new ComponentBinnieCoreGUI(machine, BinnieCoreGUI.COMPARTMENT);
 			new ComponentCompartmentInventory(machine, 4, 25);
 		}
-
-		@Override
-		public TileEntity createTileEntity() {
-			return new TileEntityMachine(this);
-		}
-
-		@Override
-		public void register() {
-		}
 	}
 
 	public static class PackageCompartmentCopper extends Compartment.PackageCompartment {
@@ -37,15 +28,6 @@ class StandardCompartment {
 		public void createMachine(final Machine machine) {
 			new ComponentBinnieCoreGUI(machine, BinnieCoreGUI.COMPARTMENT);
 			new ComponentCompartmentInventory(machine, 6, 25);
-		}
-
-		@Override
-		public TileEntity createTileEntity() {
-			return new TileEntityMachine(this);
-		}
-
-		@Override
-		public void register() {
 		}
 	}
 
@@ -59,15 +41,6 @@ class StandardCompartment {
 			new ComponentBinnieCoreGUI(machine, BinnieCoreGUI.COMPARTMENT);
 			new ComponentCompartmentInventory(machine, 8, 25);
 		}
-
-		@Override
-		public TileEntity createTileEntity() {
-			return new TileEntityMachine(this);
-		}
-
-		@Override
-		public void register() {
-		}
 	}
 
 	public static class PackageCompartmentIron extends Compartment.PackageCompartment {
@@ -79,15 +52,6 @@ class StandardCompartment {
 		public void createMachine(final Machine machine) {
 			new ComponentBinnieCoreGUI(machine, BinnieCoreGUI.COMPARTMENT);
 			new ComponentCompartmentInventory(machine, 4, 50);
-		}
-
-		@Override
-		public TileEntity createTileEntity() {
-			return new TileEntityMachine(this);
-		}
-
-		@Override
-		public void register() {
 		}
 	}
 
@@ -101,15 +65,6 @@ class StandardCompartment {
 			new ComponentBinnieCoreGUI(machine, BinnieCoreGUI.COMPARTMENT);
 			new ComponentCompartmentInventory(machine, 6, 50);
 		}
-
-		@Override
-		public TileEntity createTileEntity() {
-			return new TileEntityMachine(this);
-		}
-
-		@Override
-		public void register() {
-		}
 	}
 
 	public static class PackageCompartmentDiamond extends Compartment.PackageCompartment {
@@ -121,15 +76,6 @@ class StandardCompartment {
 		public void createMachine(final Machine machine) {
 			new ComponentBinnieCoreGUI(machine, BinnieCoreGUI.COMPARTMENT);
 			new ComponentCompartmentInventory(machine, 8, 50);
-		}
-
-		@Override
-		public TileEntity createTileEntity() {
-			return new TileEntityMachine(this);
-		}
-
-		@Override
-		public void register() {
 		}
 	}
 }

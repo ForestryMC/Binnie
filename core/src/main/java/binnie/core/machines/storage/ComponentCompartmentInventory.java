@@ -12,16 +12,16 @@ import binnie.core.machines.inventory.ComponentInventorySlots;
 import binnie.core.machines.network.INetwork;
 
 class ComponentCompartmentInventory extends ComponentInventorySlots implements INetwork.GuiNBT {
-	private int numberOfTabs;
+	private int tabCount;
 	private int slotsPerPage;
 	private Map<Integer, CompartmentTab> tabs;
 
-	public ComponentCompartmentInventory(final IMachine machine, final int tabs, final int pageSize) {
+	public ComponentCompartmentInventory(final IMachine machine, final int tabCount, final int pageSize) {
 		super(machine);
 		this.tabs = new HashMap<>();
-		this.numberOfTabs = tabs;
+		this.tabCount = tabCount;
 		this.slotsPerPage = pageSize;
-		for (int i = 0; i < this.numberOfTabs * this.slotsPerPage; ++i) {
+		for (int i = 0; i < this.tabCount * this.slotsPerPage; ++i) {
 			this.addSlot(i, "compartment");
 		}
 	}
@@ -30,8 +30,8 @@ class ComponentCompartmentInventory extends ComponentInventorySlots implements I
 		return this.slotsPerPage;
 	}
 
-	public int getTabNumber() {
-		return this.numberOfTabs;
+	public int getTabCount() {
+		return this.tabCount;
 	}
 
 	public int[] getSlotsForTab(final int currentTab) {
@@ -43,16 +43,13 @@ class ComponentCompartmentInventory extends ComponentInventorySlots implements I
 	}
 
 	public CompartmentTab getTab(final int i) {
-		if (!this.tabs.containsKey(i)) {
-			this.tabs.put(i, new CompartmentTab(i));
-		}
-		return this.tabs.get(i);
+		return this.tabs.computeIfAbsent(i, CompartmentTab::new);
 	}
 
 	@Override
 	public void sendGuiNBTToClient(final Map<String, NBTTagCompound> nbt) {
 		final NBTTagList list = new NBTTagList();
-		for (int i = 0; i < this.numberOfTabs; ++i) {
+		for (int i = 0; i < this.tabCount; ++i) {
 			final NBTTagCompound nbt2 = new NBTTagCompound();
 			this.getTab(i).writeToNBT(nbt2);
 			list.appendTag(nbt2);
@@ -68,8 +65,7 @@ class ComponentCompartmentInventory extends ComponentInventorySlots implements I
 			final NBTTagList tags = nbt.getTagList("tabs", 10);
 			for (int i = 0; i < tags.tagCount(); ++i) {
 				final NBTTagCompound tag = tags.getCompoundTagAt(i);
-				final CompartmentTab tab = new CompartmentTab(0);
-				tab.readFromNBT(tag);
+				final CompartmentTab tab = new CompartmentTab(tag);
 				this.tabs.put(tab.getId(), tab);
 			}
 		}
@@ -78,8 +74,7 @@ class ComponentCompartmentInventory extends ComponentInventorySlots implements I
 	@Override
 	public void receiveGuiNBTOnServer(final EntityPlayer player, final String name, final NBTTagCompound nbt) {
 		if (name.equals("comp-change-tab")) {
-			final CompartmentTab tab2 = new CompartmentTab(0);
-			tab2.readFromNBT(nbt);
+			final CompartmentTab tab2 = new CompartmentTab(nbt);
 			this.tabs.put(tab2.getId(), tab2);
 			this.getMachine().getTileEntity().markDirty();
 		}
@@ -91,8 +86,7 @@ class ComponentCompartmentInventory extends ComponentInventorySlots implements I
 		final NBTTagList tags = nbt.getTagList("tabs", 10);
 		for (int i = 0; i < tags.tagCount(); ++i) {
 			final NBTTagCompound tag = tags.getCompoundTagAt(i);
-			final CompartmentTab tab = new CompartmentTab(0);
-			tab.readFromNBT(tag);
+			final CompartmentTab tab = new CompartmentTab(tag);
 			this.tabs.put(tab.getId(), tab);
 		}
 	}
@@ -101,7 +95,7 @@ class ComponentCompartmentInventory extends ComponentInventorySlots implements I
 	public NBTTagCompound writeToNBT(final NBTTagCompound nbt4) {
 		NBTTagCompound nbt = super.writeToNBT(nbt4);
 		final NBTTagList list = new NBTTagList();
-		for (int i = 0; i < this.numberOfTabs; ++i) {
+		for (int i = 0; i < this.tabCount; ++i) {
 			final NBTTagCompound nbt2 = new NBTTagCompound();
 			this.getTab(i).writeToNBT(nbt2);
 			list.appendTag(nbt2);

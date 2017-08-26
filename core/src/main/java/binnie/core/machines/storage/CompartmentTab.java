@@ -4,26 +4,24 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-import forestry.api.core.INbtReadable;
 import forestry.api.core.INbtWritable;
 
 import binnie.core.gui.minecraft.EnumColor;
 
-class CompartmentTab implements INbtWritable, INbtReadable {
+class CompartmentTab implements INbtWritable {
 	private String name;
 	private ItemStack icon;
 	private EnumColor color;
-	private int id;
+	private final int id;
 
-	public CompartmentTab(final int id) {
+	public CompartmentTab(int id) {
 		this.name = "";
 		this.icon = new ItemStack(Items.PAPER);
 		this.color = EnumColor.WHITE;
 		this.id = id;
 	}
 
-	@Override
-	public void readFromNBT(final NBTTagCompound nbt) {
+	public CompartmentTab(NBTTagCompound nbt) {
 		this.name = nbt.getString("name");
 		this.icon = new ItemStack(nbt.getCompoundTag("icon"));
 		this.color = EnumColor.values()[nbt.getByte("color")];
@@ -31,7 +29,7 @@ class CompartmentTab implements INbtWritable, INbtReadable {
 	}
 
 	@Override
-	public NBTTagCompound writeToNBT(final NBTTagCompound nbt) {
+	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		nbt.setString("name", this.name);
 		final NBTTagCompound n = new NBTTagCompound();
 		this.icon.writeToNBT(n);

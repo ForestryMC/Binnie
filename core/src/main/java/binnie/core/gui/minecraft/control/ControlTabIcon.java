@@ -33,7 +33,10 @@ public class ControlTabIcon<T> extends ControlTab<T> {
 		this.item.setItemStack(this.getItemStack());
 		ControlTabBar parent = (ControlTabBar) this.getParent();
 		final int x = parent.getDirection().x();
-		this.item.setOffset(new Point((this.isCurrentSelection() || this.isMouseOver()) ? 0 : (-4 * x), 0));
+		boolean selected = this.isCurrentSelection() || this.isMouseOver();
+		int xOffset = selected ? 0 : (-4 * x);
+		Point offset = new Point(xOffset, 0);
+		this.item.setOffset(offset);
 	}
 
 	public boolean hasOutline() {
