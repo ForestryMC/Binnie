@@ -37,7 +37,11 @@ public class MachineComponent implements INbtReadable, INbtWritable {
 	}
 
 	public Class<?>[] getComponentInterfaces() {
-		return Binnie.MACHINE.getComponentInterfaces(this.getClass());
+		Class<?>[] componentInterfaces = Binnie.MACHINE.getComponentInterfaces(this.getClass());
+		if (componentInterfaces == null) {
+			return new Class[0];
+		}
+		return componentInterfaces;
 	}
 
 	public void onInventoryUpdate() {

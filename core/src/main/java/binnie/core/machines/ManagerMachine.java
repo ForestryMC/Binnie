@@ -1,5 +1,6 @@
 package binnie.core.machines;
 
+import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -68,6 +69,7 @@ public class ManagerMachine extends ManagerBase {
 		BinnieCore.getBinnieProxy().registerTileEntity(TileEntityMachine.class, "binnie.tile.machine", rendererMachine);
 	}
 
+	@Nullable
 	public Class<?>[] getComponentInterfaces(final Class<? extends MachineComponent> clss) {
 		if (!this.componentInterfaceMap.containsKey(clss)) {
 			this.registerComponentClass(clss);
