@@ -10,7 +10,7 @@ import net.minecraft.world.World;
 import forestry.api.farming.IFarmLogic;
 
 public abstract class FarmLogic implements IFarmLogic {
-	boolean isManual;
+	private boolean isManual;
 
 	@Override
 	public IFarmLogic setManual(boolean flag) {
@@ -45,5 +45,9 @@ public abstract class FarmLogic implements IFarmLogic {
 
 	protected final void setBlock(World world, BlockPos pos, Block block, int meta) {
 		world.setBlockState(pos, block.getStateFromMeta(meta), 2);
+	}
+
+	public boolean isManual() {
+		return isManual;
 	}
 }

@@ -20,7 +20,7 @@ public enum BotanyMachine implements IMachineType {
 		return null;
 	});
 
-	Supplier<MachinePackage> supplier;
+	private final Supplier<MachinePackage> supplier;
 
 	BotanyMachine(final Supplier<MachinePackage> supplier) {
 		this.supplier = supplier;

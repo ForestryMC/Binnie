@@ -58,7 +58,7 @@ public final class BlockRegister {
 			new HiveDrop(valiantSpecies, 0.03)
 		);
 
-		if (!ConfigurationMain.canQuarryMineHives) {
+		if (!ConfigurationMain.isCanQuarryMineHives()) {
 			//BuildCraftAPI.softBlocks.add(ExtraBees.hive);
 		}
 	}

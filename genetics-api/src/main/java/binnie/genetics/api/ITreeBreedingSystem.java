@@ -10,11 +10,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public interface ITreeBreedingSystem extends IBreedingSystem {
-	Collection<IAlleleSpecies> getTreesThatBearFruit(ItemStack fruit, boolean nei, World world, GameProfile player);
+	Collection<IAlleleSpecies> getTreesThatBearFruit(ItemStack fruit, boolean master, World world, GameProfile player);
 
-	Collection<IAlleleSpecies> getTreesThatCanBearFruit(ItemStack fruit, boolean nei, World world, GameProfile player);
+	Collection<IAlleleSpecies> getTreesThatCanBearFruit(ItemStack fruit, boolean master, World world, GameProfile player);
 
-	Collection<IAlleleSpecies> getTreesThatHaveWood(ItemStack wood, boolean nei, World world, GameProfile player);
+	Collection<IAlleleSpecies> getTreesThatHaveWood(ItemStack wood, boolean master, World world, GameProfile player);
 
 	Set<ItemStack> getAllFruits();
 

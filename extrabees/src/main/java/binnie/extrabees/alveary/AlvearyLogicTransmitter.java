@@ -19,7 +19,7 @@ import forestry.api.multiblock.IMultiblockComponent;
 
 public class AlvearyLogicTransmitter extends AbstractAlvearyLogic implements IEnergyStorage {
 	
-	private IEnergyStorage internalStorage;
+	private final IEnergyStorage internalStorage;
 	
 	public AlvearyLogicTransmitter() {
 		internalStorage = new EnergyStorage(2000);

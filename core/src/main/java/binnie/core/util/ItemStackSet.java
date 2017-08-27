@@ -9,7 +9,7 @@ import java.util.Set;
 import net.minecraft.item.ItemStack;
 
 public class ItemStackSet implements Set<ItemStack> {
-	List<ItemStack> itemStacks;
+	protected final List<ItemStack> itemStacks;
 
 	public ItemStackSet() {
 		this.itemStacks = new ArrayList<>();

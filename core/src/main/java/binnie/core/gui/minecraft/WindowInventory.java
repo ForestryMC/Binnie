@@ -15,10 +15,10 @@ import net.minecraft.util.text.TextComponentString;
 import binnie.core.machines.inventory.SlotValidator;
 
 public class WindowInventory implements IInventory {
-	private Window window;
-	private Map<Integer, ItemStack> inventory;
-	private Map<Integer, SlotValidator> validators;
-	private List<Integer> disabledAutoDispenses;
+	private final Window window;
+	private final Map<Integer, ItemStack> inventory;
+	private final Map<Integer, SlotValidator> validators;
+	private final List<Integer> disabledAutoDispenses;
 
 	public WindowInventory(final Window window) {
 		this.inventory = new HashMap<>();

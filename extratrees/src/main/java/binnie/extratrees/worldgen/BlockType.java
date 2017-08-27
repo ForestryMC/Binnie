@@ -7,7 +7,7 @@ import net.minecraft.world.World;
 import forestry.api.world.ITreeGenData;
 
 public class BlockType implements WorldGenBlockType {
-	IBlockState blockState;
+	private final IBlockState blockState;
 
 	public BlockType(IBlockState blockState) {
 		this.blockState = blockState;

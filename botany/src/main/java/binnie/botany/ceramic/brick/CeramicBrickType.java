@@ -69,8 +69,8 @@ public enum CeramicBrickType implements IStringSerializable {
 			if (stacks.size() == 1) {
 				ItemStack stack3 = stacks.get(0);
 				CeramicBrickPair type3 = new CeramicBrickPair(stack3);
-				if (type3.type == CeramicBrickType.VERTICAL_LARGE_BRICK) {
-					type3.type = this;
+				if (type3.getType() == CeramicBrickType.VERTICAL_LARGE_BRICK) {
+					type3.setType(this);
 					return type3.getStack(1);
 				}
 				return ItemStack.EMPTY;
@@ -86,10 +86,10 @@ public enum CeramicBrickType implements IStringSerializable {
 						return ItemStack.EMPTY;
 					}
 					CeramicBrickPair type4 = new CeramicBrickPair(stack4);
-					if (type4.type != CeramicBrickType.TILE) {
+					if (type4.getType() != CeramicBrickType.TILE) {
 						return ItemStack.EMPTY;
 					}
-					int color5 = type4.colorFirst.ordinal();
+					int color5 = type4.getColorFirst().ordinal();
 					if (colors[0] == -1) {
 						colors[0] = color5;
 						a++;
@@ -126,10 +126,10 @@ public enum CeramicBrickType implements IStringSerializable {
 					return ItemStack.EMPTY;
 				}
 				CeramicBrickPair type = new CeramicBrickPair(stack2);
-				if (type.type != CeramicBrickType.TILE) {
+				if (type.getType() != CeramicBrickType.TILE) {
 					return ItemStack.EMPTY;
 				}
-				int color2 = type.colorFirst.ordinal();
+				int color2 = type.getColorFirst().ordinal();
 				if (colors[alt] == -1) {
 					colors[alt] = color2;
 				} else if (colors[alt] != color2) {
@@ -152,11 +152,11 @@ public enum CeramicBrickType implements IStringSerializable {
 					return ItemStack.EMPTY;
 				}
 				CeramicBrickPair type2 = new CeramicBrickPair(stack2);
-				if (type2.type != CeramicBrickType.SPLIT) {
+				if (type2.getType() != CeramicBrickType.SPLIT) {
 					return ItemStack.EMPTY;
 				}
-				int color3 = type2.colorFirst.ordinal();
-				int color4 = type2.colorSecond.ordinal();
+				int color3 = type2.getColorFirst().ordinal();
+				int color4 = type2.getColorSecond().ordinal();
 				if (colors[0] == -1) {
 					colors[0] = color3;
 					colors[1] = color4;
@@ -184,14 +184,14 @@ public enum CeramicBrickType implements IStringSerializable {
 				if (type2.isTwoColors()) {
 					return ItemStack.EMPTY;
 				}
-				int color3 = type2.colorFirst.ordinal();
-				if (type2.type == CeramicBrickType.SPLIT) {
+				int color3 = type2.getColorFirst().ordinal();
+				if (type2.getType() == CeramicBrickType.SPLIT) {
 					if (colors[1] != -1) {
 						return ItemStack.EMPTY;
 					}
 					colors[1] = color3;
 				} else {
-					if (type2.type != CeramicBrickType.CHEQUERED) {
+					if (type2.getType() != CeramicBrickType.CHEQUERED) {
 						return ItemStack.EMPTY;
 					}
 					if (colors[0] == -1) {
@@ -200,7 +200,7 @@ public enum CeramicBrickType implements IStringSerializable {
 						return ItemStack.EMPTY;
 					}
 				}
-				int color4 = type2.colorSecond.ordinal();
+				int color4 = type2.getColorSecond().ordinal();
 			}
 			if (colors[0] == -1 || colors[1] == -1) {
 				return ItemStack.EMPTY;
@@ -229,11 +229,11 @@ public enum CeramicBrickType implements IStringSerializable {
 
 	public static final CeramicBrickType[] VALUES = values();
 
-	public String id;
+	private final String id;
 
 	@SideOnly(Side.CLIENT)
 	@Nullable
-	public TextureAtlasSprite[] sprites;
+	private TextureAtlasSprite[] sprites;
 
 	CeramicBrickType(String id) {
 		this.id = id;
@@ -255,18 +255,18 @@ public enum CeramicBrickType implements IStringSerializable {
 		}
 		ItemStack stack5 = stacks.get(0);
 		CeramicBrickPair type = new CeramicBrickPair(stack5);
-		if (type.type == CeramicBrickType.LARGE_BRICK) {
-			type.type = CeramicBrickType.VERTICAL_LARGE_BRICK;
+		if (type.getType() == CeramicBrickType.LARGE_BRICK) {
+			type.setType(CeramicBrickType.VERTICAL_LARGE_BRICK);
 			return type.getStack(1);
 		}
 
-		if (type.type == CeramicBrickType.BRICK) {
-			type.type = CeramicBrickType.VERTICAL_BRICK;
+		if (type.getType() == CeramicBrickType.BRICK) {
+			type.setType(CeramicBrickType.VERTICAL_BRICK);
 			return type.getStack(1);
 		}
 
-		if (type.type == CeramicBrickType.STRIPE_BRICK) {
-			type.type = CeramicBrickType.VERTICAL_STRIPE_BRICK;
+		if (type.getType() == CeramicBrickType.STRIPE_BRICK) {
+			type.setType(CeramicBrickType.VERTICAL_STRIPE_BRICK);
 			return type.getStack(1);
 		}
 		return ItemStack.EMPTY;
@@ -276,13 +276,13 @@ public enum CeramicBrickType implements IStringSerializable {
 		if (stacks.size() == 1) {
 			ItemStack stack5 = stacks.get(0);
 			CeramicBrickPair type = new CeramicBrickPair(stack5);
-			if (type.type == CeramicBrickType.VERTICAL_BRICK) {
-				type.type = ceramicType;
+			if (type.getType() == CeramicBrickType.VERTICAL_BRICK) {
+				type.setType(ceramicType);
 				return type.getStack(1);
 			}
 
-			if (type.type == CeramicBrickType.STRIPE_BRICK) {
-				type.type = ceramicType;
+			if (type.getType() == CeramicBrickType.STRIPE_BRICK) {
+				type.setType(ceramicType);
 				return type.getStack(1);
 			}
 			return ItemStack.EMPTY;
@@ -295,12 +295,12 @@ public enum CeramicBrickType implements IStringSerializable {
 				}
 
 				CeramicBrickPair type4 = new CeramicBrickPair(stack4);
-				if (type4.type != CeramicBrickType.LARGE_BRICK) {
+				if (type4.getType() != CeramicBrickType.LARGE_BRICK) {
 					return ItemStack.EMPTY;
 				}
 
-				int color5 = type4.colorFirst.ordinal();
-				int color6 = type4.colorSecond.ordinal();
+				int color5 = type4.getColorFirst().ordinal();
+				int color6 = type4.getColorSecond().ordinal();
 				int alt2 = (index2 != 0 && index2 != 3) ? 1 : 0;
 				if (ceramicType == CeramicBrickType.STRIPE_BRICK) {
 					alt2 = 0;
@@ -325,5 +325,20 @@ public enum CeramicBrickType implements IStringSerializable {
 	@Override
 	public String getName() {
 		return id;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	@Nullable
+	@SideOnly(Side.CLIENT)
+	public TextureAtlasSprite[] getSprites() {
+		return sprites;
+	}
+
+	@SideOnly(Side.CLIENT)
+	public void setSprites(TextureAtlasSprite[] sprites) {
+		this.sprites = sprites;
 	}
 }

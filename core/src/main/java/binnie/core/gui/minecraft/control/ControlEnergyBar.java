@@ -29,7 +29,7 @@ import binnie.core.machines.power.IProcess;
 
 public class ControlEnergyBar extends Control implements ITooltip {
 	public static boolean isError;
-	private Alignment direction;
+	private final Alignment direction;
 
 	public ControlEnergyBar(final IWidget parent, final int x, final int y, final int width, final int height, final Alignment direction) {
 		super(parent, x, y, width, height);

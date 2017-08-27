@@ -19,18 +19,18 @@ class ControlMutationItem extends ControlOption<IMutation> {
 		ControlIndividualDisplay resultIndividual = new ControlIndividualDisplay(this, 104, 4);
 		ControlMutationSymbol addSymbol = new ControlMutationSymbol(this, 24, 4, 0);
 		ControlMutationSymbol arrowSymbol = new ControlMutationSymbol(this, 64, 4, 1);
-		final boolean isNEI = ((WindowAbstractDatabase) this.getTopParent()).isMaster();
+		final boolean isMaster = ((WindowAbstractDatabase) this.getTopParent()).isMaster();
 		final IBreedingSystem system = ((WindowAbstractDatabase) this.getTopParent()).getBreedingSystem();
 		if (this.getValue() != null) {
 			final boolean isMutationDiscovered = system.isMutationDiscovered(this.getValue(), Window.get(this).getWorld(), Window.get(this).getUsername());
 			IAlleleSpecies  allele = this.getValue().getAllele0();
-			EnumDiscoveryState state = ((isNEI || isMutationDiscovered) ? EnumDiscoveryState.SHOW : ((species.equals(allele)) ? EnumDiscoveryState.SHOW : EnumDiscoveryState.UNDETERMINED));
+			EnumDiscoveryState state = ((isMaster || isMutationDiscovered) ? EnumDiscoveryState.SHOW : ((species.equals(allele)) ? EnumDiscoveryState.SHOW : EnumDiscoveryState.UNDETERMINED));
 			firstIndividual.setSpecies(allele, state);
 			allele = this.getValue().getAllele1();
-			state = ((isNEI || isMutationDiscovered) ? EnumDiscoveryState.SHOW : ((species.equals(allele)) ? EnumDiscoveryState.SHOW : EnumDiscoveryState.UNDETERMINED));
+			state = ((isMaster || isMutationDiscovered) ? EnumDiscoveryState.SHOW : ((species.equals(allele)) ? EnumDiscoveryState.SHOW : EnumDiscoveryState.UNDETERMINED));
 			secondIndividual.setSpecies(allele, state);
 			allele = (IAlleleSpecies) this.getValue().getTemplate()[0];
-			state = ((isNEI || isMutationDiscovered) ? EnumDiscoveryState.SHOW : ((species.equals(allele)) ? EnumDiscoveryState.SHOW : EnumDiscoveryState.UNDETERMINED));
+			state = ((isMaster || isMutationDiscovered) ? EnumDiscoveryState.SHOW : ((species.equals(allele)) ? EnumDiscoveryState.SHOW : EnumDiscoveryState.UNDETERMINED));
 			resultIndividual.setSpecies(allele, state);
 			addSymbol.setValue(this.getValue());
 			arrowSymbol.setValue(this.getValue());

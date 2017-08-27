@@ -13,6 +13,8 @@ import net.minecraft.item.ItemStack;
 
 import net.minecraftforge.energy.EnergyStorage;
 import net.minecraftforge.energy.IEnergyStorage;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemStackHandler;
 
@@ -227,11 +229,12 @@ public class AlvearyLogicStimulator extends AbstractAlvearyLogic {
 
 	@Nullable
 	@Override
+	@SideOnly(Side.CLIENT)
 	public GuiContainer getGui(@Nonnull EntityPlayer player, int data) {
 		return new GuiContainerStimulator(getContainer(player, data));
 	}
 
-	@Nullable
+	@Nonnull
 	@Override
 	public ContainerStimulator getContainer(@Nonnull EntityPlayer player, int data) {
 		return new ContainerStimulator(player, this);

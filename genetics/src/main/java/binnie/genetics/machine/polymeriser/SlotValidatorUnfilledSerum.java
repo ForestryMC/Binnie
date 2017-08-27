@@ -9,7 +9,7 @@ import binnie.genetics.machine.ModuleMachine;
 
 public class SlotValidatorUnfilledSerum extends SlotValidator {
 	public SlotValidatorUnfilledSerum() {
-		super(ModuleMachine.spriteSerum);
+		super(ModuleMachine.getSpriteSerum());
 	}
 
 	@Override

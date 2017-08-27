@@ -11,13 +11,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import forestry.api.genetics.AlleleManager;
 
 public abstract class SlotValidator extends Validator<ItemStack> {
-	public static ValidatorSprite spriteBee;
-	public static ValidatorSprite spriteFrame;
-	public static ValidatorSprite spriteCircuit;
-	public static ValidatorSprite spriteBlock;
 
 	@Nullable
-	private ValidatorSprite sprite;
+	private final ValidatorSprite sprite;
 
 	public SlotValidator(@Nullable final ValidatorSprite icon) {
 		this.sprite = icon;
@@ -30,7 +26,7 @@ public abstract class SlotValidator extends Validator<ItemStack> {
 	}
 
 	public static class Item extends SlotValidator {
-		private ItemStack target;
+		private final ItemStack target;
 
 		public Item(final ItemStack target, final ValidatorSprite icon) {
 			super(icon);

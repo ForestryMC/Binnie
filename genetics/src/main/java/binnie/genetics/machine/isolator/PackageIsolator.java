@@ -21,7 +21,7 @@ import binnie.genetics.machine.ModuleMachine;
 
 public class PackageIsolator extends GeneticMachine.PackageGeneticBase implements IMachineInformation {
 	public PackageIsolator() {
-		super("isolator", 16740111, true);
+		super("isolator", 16740111);
 	}
 
 	@Override
@@ -29,10 +29,10 @@ public class PackageIsolator extends GeneticMachine.PackageGeneticBase implement
 		new ComponentGeneticGUI(machine, GeneticsGUI.ISOLATOR);
 		final ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
 		InventorySlot slotEnzyme = inventory.addSlot(Isolator.SLOT_ENZYME, "enzyme");
-		slotEnzyme.setValidator(new SlotValidator.Item(GeneticsItems.Enzyme.get(1), ModuleMachine.spriteEnzyme));
+		slotEnzyme.setValidator(new SlotValidator.Item(GeneticsItems.Enzyme.get(1), ModuleMachine.getSpriteEnzyme()));
 		slotEnzyme.forbidExtraction();
 		InventorySlot slotSequencer = inventory.addSlot(Isolator.SLOT_SEQUENCER_VIAL, "sequencervial");
-		slotSequencer.setValidator(new SlotValidator.Item(GeneticsItems.EmptySequencer.get(1), ModuleMachine.spriteSequencer));
+		slotSequencer.setValidator(new SlotValidator.Item(GeneticsItems.EmptySequencer.get(1), ModuleMachine.getSpriteSequencer()));
 		slotSequencer.forbidExtraction();
 		for (InventorySlot slot : inventory.addSlotArray(Isolator.SLOT_RESERVE, "input")) {
 			slot.setValidator(new SlotValidator.Individual());
@@ -66,7 +66,4 @@ public class PackageIsolator extends GeneticMachine.PackageGeneticBase implement
 		return new TileEntityMachine(this);
 	}
 
-	@Override
-	public void register() {
-	}
 }

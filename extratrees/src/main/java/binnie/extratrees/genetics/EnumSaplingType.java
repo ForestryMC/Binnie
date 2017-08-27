@@ -30,10 +30,10 @@ public enum EnumSaplingType {
 	private static class DefaultGermlingModelProvider implements IGermlingModelProvider {
 		private ModelResourceLocation germlingModel;
 		private ModelResourceLocation pollenModel;
-		private EnumSaplingType saplingType;
-		private Color leaf;
-		private Color wood;
-		private EnumSaplingType enumSaplingType;
+		private final EnumSaplingType saplingType;
+		private final Color leaf;
+		private final Color wood;
+		private final EnumSaplingType enumSaplingType;
 
 		public DefaultGermlingModelProvider(EnumSaplingType enumSaplingType, EnumSaplingType saplingType, Color leaf, Color wood) {
 			this.saplingType = saplingType;

@@ -35,7 +35,7 @@ public class ItemInsulatedTube extends ItemCore implements IColoredItem {
 	public ItemInsulatedTube() {
 		super("insulated_tube");
 		setUnlocalizedName("botany.insulated_tube");
-		setCreativeTab(CreativeTabBotany.instance);
+		setCreativeTab(CreativeTabBotany.INSTANCE);
 		setHasSubtypes(true);
 	}
 

@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PacketPayload {
-	private List<Integer> intPayload;
-	private List<Float> floatPayload;
-	private List<String> stringPayload;
+	private final List<Integer> intPayload;
+	private final List<Float> floatPayload;
+	private final List<String> stringPayload;
 
 	public PacketPayload() {
 		this.intPayload = new ArrayList<>();

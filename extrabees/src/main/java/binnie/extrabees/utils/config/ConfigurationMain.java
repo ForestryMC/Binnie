@@ -5,11 +5,31 @@ import net.minecraftforge.common.config.Configuration;
 public class ConfigurationMain implements IConfigurable {
 
 	private static final String WORLDGEN = "World-Gen";
-	public static boolean canQuarryMineHives = true;
-	public static int waterHiveRate = 2;
-	public static int rockHiveRate = 2;
-	public static int netherHiveRate = 2;
-	public static int marbleHiveRate = 2;
+	private static boolean canQuarryMineHives = true;
+	private static int waterHiveRate = 2;
+	private static int rockHiveRate = 2;
+	private static int netherHiveRate = 2;
+	private static int marbleHiveRate = 2;
+
+	public static boolean isCanQuarryMineHives() {
+		return canQuarryMineHives;
+	}
+
+	public static int getWaterHiveRate() {
+		return waterHiveRate;
+	}
+
+	public static int getRockHiveRate() {
+		return rockHiveRate;
+	}
+
+	public static int getNetherHiveRate() {
+		return netherHiveRate;
+	}
+
+	public static int getMarbleHiveRate() {
+		return marbleHiveRate;
+	}
 
 	@Override
 	public void configure(Configuration config) {

@@ -49,12 +49,12 @@ public class ControlGeneScroll extends Control implements IControlValue<IBreedin
 		final Map<IChromosomeType, List<IAllele>> genes = Binnie.GENETICS.getChromosomeMap(this.system.getSpeciesRoot());
 		int x = 0;
 		int y = 0;
-		final boolean isNEI = ((WindowGeneBank) Window.get(this)).isNei;
+		final boolean master = ((WindowGeneBank) Window.get(this)).isMaster();
 		for (final Map.Entry<IChromosomeType, List<IAllele>> entry : genes.entrySet()) {
 			final List<IAllele> discovered = new ArrayList<>();
 			for (final IAllele allele : entry.getValue()) {
 				final Gene gene = new Gene(allele, entry.getKey(), this.system.getSpeciesRoot());
-				if ((isNEI || tracker.isSequenced(new Gene(allele, entry.getKey(), this.system.getSpeciesRoot()))) && gene.getName().toLowerCase().contains(this.filter)) {
+				if ((master || tracker.isSequenced(new Gene(allele, entry.getKey(), this.system.getSpeciesRoot()))) && gene.getName().toLowerCase().contains(this.filter)) {
 					discovered.add(allele);
 				}
 			}

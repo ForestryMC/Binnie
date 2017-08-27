@@ -18,12 +18,13 @@ import binnie.extrabees.utils.ExtraBeesResourceLocation;
 public abstract class AbstractAlvearyContainer extends Container {
 
 	protected static final Dimension DEFAULT_DIMENSION = new Dimension(176, 144);
-	public final Dimension dimension;
+	private final Dimension dimension;
 	protected final EntityPlayer player;
 	protected final IItemHandlerModifiable inv;
-	protected ResourceLocation background;
-	protected int offset = 0;
-	protected String tooltip, title;
+	protected final ResourceLocation background;
+	protected final String tooltip;
+	protected int offset;
+	protected String title;
 
 	public AbstractAlvearyContainer(EntityPlayer player, IItemHandlerModifiable inv, EnumAlvearyLogicType type, Dimension dimension) {
 		this.player = player;
@@ -58,5 +59,9 @@ public abstract class AbstractAlvearyContainer extends Container {
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer playerIn, int index) {
 		return SlotUtil.transferStackInSlot(this.inventorySlots, playerIn, index);
+	}
+
+	public Dimension getDimension() {
+		return dimension;
 	}
 }

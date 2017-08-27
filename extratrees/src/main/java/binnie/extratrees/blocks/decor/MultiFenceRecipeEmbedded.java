@@ -37,7 +37,7 @@ public class MultiFenceRecipeEmbedded extends IForgeRegistryEntry.Impl<IRecipe> 
 						IPlankType descPlankType = fenceDescription.getPlankType();
 						IPlankType plankType = WoodManager.getPlankType(b);
 						if (descPlankType == plankType) {
-							this.cached = WoodManager.getFence(descPlankType, fenceDescription.getSecondaryPlankType(), new FenceType(type.size, type.solid, true), 2);
+							this.cached = WoodManager.getFence(descPlankType, fenceDescription.getSecondaryPlankType(), new FenceType(type.getSize(), type.isSolid(), true), 2);
 							return true;
 						}
 					}

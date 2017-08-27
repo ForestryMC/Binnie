@@ -1,5 +1,6 @@
 package binnie.extratrees.machines.lumbermill.window;
 
+import binnie.core.machines.ManagerMachine;
 import net.minecraft.item.ItemStack;
 
 import binnie.core.machines.inventory.SlotValidator;
@@ -11,7 +12,7 @@ public class SlotValidatorLog extends SlotValidator {
 	private final World world;
 
 	public SlotValidatorLog(World world) {
-		super(SlotValidator.spriteBlock);
+		super(ManagerMachine.getSpriteBlock());
 		this.world = world;
 	}
 

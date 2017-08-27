@@ -150,7 +150,7 @@ public class BlockMultiFence extends BlockFence implements IBlockMetadata, IStat
 
 	@Override
 	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> itemList) {
-		for (FenceType type : FenceType.values()) {
+		for (FenceType type : FenceType.getValues()) {
 			itemList.add(WoodManager.getFence(VanillaPlanks.SPRUCE, VanillaPlanks.BIRCH, type, 1));
 		}
 	}

@@ -16,17 +16,17 @@ public @interface PropInteger {
 
 		@Override
 		protected Property getProperty() {
-			return this.file.get(this.getCategory(), this.getKey(), this.defaultValue);
+			return this.getFile().get(this.getCategory(), this.getKey(), this.getDefaultValue());
 		}
 
 		@Override
 		protected Integer getConfigValue() {
-			return this.property.getInt(this.defaultValue);
+			return super.getProperty().getInt(this.getDefaultValue());
 		}
 
 		@Override
 		protected void addComments() {
-			this.addComment("Default value is " + this.defaultValue + ".");
+			this.addComment("Default value is " + this.getDefaultValue() + ".");
 		}
 	}
 }

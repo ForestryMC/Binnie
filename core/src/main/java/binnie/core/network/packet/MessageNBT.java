@@ -9,7 +9,7 @@ import io.netty.buffer.ByteBuf;
 
 public class MessageNBT extends MessageBase {
 	@Nullable
-	NBTTagCompound nbt;
+	private NBTTagCompound nbt;
 
 	public MessageNBT(final int id) {
 		super(id);

@@ -10,9 +10,9 @@ import net.minecraft.world.World;
 import io.netty.buffer.ByteBuf;
 
 public class MessageCoordinates extends MessageBase {
-	public int posX;
-	public int posY;
-	public int posZ;
+	private int posX;
+	private int posY;
+	private int posZ;
 
 	public MessageCoordinates(final MessageBinnie message) {
 		super(message);

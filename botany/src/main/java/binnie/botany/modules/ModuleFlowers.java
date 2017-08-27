@@ -60,7 +60,7 @@ import binnie.core.util.TileUtil;
 
 @BinnieModule(moduleID = BotanyModuleUIDs.FLOWERS, moduleContainerID = Constants.BOTANY_MOD_ID, name = "Flowers", unlocalizedDescription = "botany.module.flowers")
 public class ModuleFlowers implements Module {
-	public static AlleleEffectNone alleleEffectNone = new AlleleEffectNone();
+	public static final AlleleEffectNone alleleEffectNone = new AlleleEffectNone();
 	@Nullable
 	public static Item botanistBackpack;
 	/* MODULE GENETIC */
@@ -89,7 +89,7 @@ public class ModuleFlowers implements Module {
 			BackpackManager.backpackInterface.registerBackpackDefinition("botanist", definition);
 			botanistBackpack = backpackInterface.createNaturalistBackpack("botanist", BotanyAPI.flowerRoot).setRegistryName("botanist_bag").setUnlocalizedName("botany.botanist_bag");
 			Botany.proxy.registerItem(botanistBackpack);
-			botanistBackpack.setCreativeTab(CreativeTabBotany.instance);
+			botanistBackpack.setCreativeTab(CreativeTabBotany.INSTANCE);
 		} else {
 			botanistBackpack = null;
 		}

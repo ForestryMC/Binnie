@@ -22,7 +22,7 @@ public enum BotanyItems implements IItemMiscProvider {
 	MORTAR,
 	WEEDKILLER;
 
-	String name;
+	private final String name;
 
 	BotanyItems() {
 		name = name().toLowerCase(Locale.ENGLISH);

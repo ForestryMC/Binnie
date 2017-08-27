@@ -38,8 +38,8 @@ import binnie.design.api.IDesignCategory;
 import binnie.design.EnumDesign;
 
 public class ControlTileSelect extends Control implements IControlValue<IDesign>, IControlScrollable {
-	IDesign value;
-	float shownHeight;
+	private IDesign value;
+	private final float shownHeight;
 
 	protected ControlTileSelect(final IWidget parent, final int x, final int y) {
 		super(parent, x, y, 102, 20 * (DesignAPI.manager.getSortedDesigns().size() / 4) + 22);

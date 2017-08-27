@@ -21,7 +21,7 @@ import binnie.core.network.packet.MessageBinnie;
 import binnie.core.proxy.IProxyCore;
 
 public abstract class AbstractMod implements IPacketProvider, IInitializable {
-	protected List<IInitializable> modules;
+	protected final List<IInitializable> modules;
 
 	@Nullable
 	private SimpleNetworkWrapper wrapper;

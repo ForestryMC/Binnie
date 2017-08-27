@@ -57,8 +57,8 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 	protected int titleButtonRight;
 	@Nullable // client side only
 	private GuiCraftGUI gui;
-	private ContainerCraftGUI container;
-	private WindowInventory windowInventory;
+	private final ContainerCraftGUI container;
+	private final WindowInventory windowInventory;
 	@Nullable
 	private ControlText title;
 	@Nullable
@@ -66,9 +66,9 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 	@Nullable
 	private StandardTexture bgText2;
 	private boolean hasBeenInitialised;
-	private EntityPlayer player;
+	private final EntityPlayer player;
 	@Nullable
-	private IInventory entityInventory;
+	private final IInventory entityInventory;
 
 	public Window(final int width, final int height, final EntityPlayer player, @Nullable final IInventory inventory, final Side side) {
 		this.titleButtonLeft = 8;
@@ -318,7 +318,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 
 	private static class BackgroundTexture implements IBinnieTexture {
 		private final int i;
-		private Window window;
+		private final Window window;
 
 		public BackgroundTexture(Window window, int i) {
 			this.i = i;

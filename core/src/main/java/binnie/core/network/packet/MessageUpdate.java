@@ -10,7 +10,7 @@ import io.netty.buffer.ByteBuf;
 
 public class MessageUpdate extends MessageCoordinates {
 	@Nullable
-	public PacketPayload payload;
+	private PacketPayload payload;
 
 	public MessageUpdate(final MessageBinnie message) {
 		super(message);
@@ -67,5 +67,10 @@ public class MessageUpdate extends MessageCoordinates {
 			final byte[] string = data.readBytes(length).array();
 			this.payload.addString(new String(string, "UTF-8"));
 		}
+	}
+
+	@Nullable
+	public PacketPayload getPayload() {
+		return payload;
 	}
 }

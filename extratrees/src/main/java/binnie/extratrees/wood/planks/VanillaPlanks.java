@@ -24,7 +24,7 @@ public enum VanillaPlanks implements IPlankType {
 	BIG_OAK(4599061, EnumVanillaWoodType.DARK_OAK);
 
 	private final IWoodType woodType;
-	private int color;
+	private final int color;
 	@SideOnly(Side.CLIENT)
 	private TextureAtlasSprite sprite;
 

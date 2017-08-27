@@ -5,10 +5,11 @@ import binnie.core.api.gui.IBorder;
 
 public class Border implements IBorder {
 	public static final Border ZERO = new Border(0);
-	int t;
-	int b;
-	int l;
-	int r;
+
+	private int t;
+	private int b;
+	private int l;
+	private int r;
 
 	public Border(final int pad) {
 		this(pad, pad, pad, pad);

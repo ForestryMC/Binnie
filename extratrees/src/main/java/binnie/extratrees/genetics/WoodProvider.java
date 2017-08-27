@@ -21,7 +21,7 @@ import forestry.api.arboriculture.WoodBlockKind;
 import forestry.api.core.ITextureManager;
 
 public class WoodProvider implements IWoodProvider {
-	private IWoodType type;
+	private final IWoodType type;
 
 	@SideOnly(Side.CLIENT)
 	@Nullable

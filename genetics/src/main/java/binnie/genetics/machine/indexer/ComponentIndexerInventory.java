@@ -14,13 +14,13 @@ import binnie.core.machines.inventory.ComponentInventory;
 import binnie.core.machines.inventory.SetList;
 
 public abstract class ComponentIndexerInventory<T> extends ComponentInventory implements IInventory {
-	public int guiRefreshCounter;
-	public List<Integer> sortedInventory;
-	int indexerSize;
-	List<ItemStack> indexerInventory;
+	protected int guiRefreshCounter;
+	protected List<Integer> sortedInventory;
+	private final int indexerSize;
+	private final List<ItemStack> indexerInventory;
 	@Nullable
-	T sortingMode;
-	boolean needsSorting;
+	private T sortingMode;
+	private boolean needsSorting;
 
 	public ComponentIndexerInventory(final Machine machine) {
 		super(machine);
@@ -122,4 +122,29 @@ public abstract class ComponentIndexerInventory<T> extends ComponentInventory im
 	}
 
 	public abstract void Sort();
+
+	public List<ItemStack> getIndexerInventory() {
+		return indexerInventory;
+	}
+
+	@Nullable
+	public T getSortingMode() {
+		return sortingMode;
+	}
+
+	public boolean isNeedsSorting() {
+		return needsSorting;
+	}
+
+	public void setNeedsSorting(boolean needsSorting) {
+		this.needsSorting = needsSorting;
+	}
+
+	public int getGuiRefreshCounter() {
+		return guiRefreshCounter;
+	}
+
+	public List<Integer> getSortedInventory() {
+		return sortedInventory;
+	}
 }

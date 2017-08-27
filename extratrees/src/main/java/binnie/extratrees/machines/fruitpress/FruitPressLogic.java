@@ -48,10 +48,6 @@ public class FruitPressLogic extends ComponentProcessSetCost implements IProcess
 	}
 
 	@Override
-	protected void onTickTask() {
-	}
-
-	@Override
 	public void onUpdate() {
 		super.onUpdate();
 		final FluidStack output = FruitPressRecipeManager.getOutput(this.getUtil().getStack(FruitPressMachine.SLOT_CURRENT));

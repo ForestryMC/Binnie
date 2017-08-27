@@ -10,7 +10,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import binnie.core.util.I18N;
 
 public class CreativeTabBotany extends CreativeTabs {
-	public static CreativeTabs instance = new CreativeTabBotany();
+	public static final CreativeTabs INSTANCE = new CreativeTabBotany();
 
 	public CreativeTabBotany() {
 		super("Botany");

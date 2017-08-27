@@ -18,8 +18,11 @@ import binnie.core.IInitializable;
 public class ExtraBeesIntegration implements IInitializable {
 
 	private static final boolean loaded;
-	public static IAlleleBeeSpecies water, rock, basalt, marble;
-	public static Block hive;
+	private static IAlleleBeeSpecies water;
+	private static IAlleleBeeSpecies rock;
+	private static IAlleleBeeSpecies basalt;
+	private static IAlleleBeeSpecies marble;
+	private static Block hive;
 
 	static {
 		loaded = Loader.isModLoaded("extrabees");

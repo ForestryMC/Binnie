@@ -7,7 +7,6 @@ import java.util.Map;
 import java.util.Objects;
 
 import binnie.core.api.genetics.IBreedingSystem;
-import binnie.core.api.gui.IArea;
 import binnie.core.api.gui.events.EventHandlerOrigin;
 import binnie.core.gui.geometry.Point;
 import net.minecraft.entity.player.EntityPlayer;
@@ -42,8 +41,8 @@ import binnie.core.util.I18N;
 public abstract class WindowAbstractDatabase extends Window {
 	private final boolean master;
 	private int selectionBoxWidth;
-	private Map<IDatabaseMode, ModeWidgets> modes;
-	private IBreedingSystem system;
+	private final Map<IDatabaseMode, ModeWidgets> modes;
+	private final IBreedingSystem system;
 	@Nullable
 	private Panel panelInformation;
 	@Nullable
@@ -71,7 +70,23 @@ public abstract class WindowAbstractDatabase extends Window {
 	}
 
 	public ControlPages<DatabaseTab> getInfoPages(final IDatabaseMode mode) {
-		return this.modes.get(mode).infoPages;
+		ModeWidgets modeWidgets = this.modes.get(mode);
+		return modeWidgets.getInfoPages();
+	}
+
+	@Nullable
+	public ControlPages<IDatabaseMode> getModePages() {
+		return modePages;
+	}
+
+	@Nullable
+	public Panel getPanelSearch() {
+		return panelSearch;
+	}
+
+	@Nullable
+	public Panel getPanelInformation() {
+		return panelInformation;
 	}
 
 	public boolean isMaster() {
@@ -117,14 +132,12 @@ public abstract class WindowAbstractDatabase extends Window {
 		});
 		this.addEventHandler(EventTextEdit.class, EventHandlerOrigin.DIRECT_CHILD, this, event -> {
 			for (final ModeWidgets widgets : WindowAbstractDatabase.this.modes.values()) {
-				widgets.listBox.setValidator(object -> {
+				widgets.getListBox().setValidator(object -> {
 					if (Objects.equals(event.getValue(), "")) {
 						return true;
 					}
-					if (((ControlTextOption) object).getText().toLowerCase().contains(event.getValue().toLowerCase())) {
-						return true;
-					}
-					return false;
+					ControlTextOption controlTextOption = (ControlTextOption) object;
+					return controlTextOption.getText().toLowerCase().contains(event.getValue().toLowerCase());
 				});
 			}
 		});
@@ -156,8 +169,9 @@ public abstract class WindowAbstractDatabase extends Window {
 		CraftGUIUtil.linkWidgets(tab, this.modePages);
 		this.changeMode(Mode.SPECIES);
 		for (final IDatabaseMode mode : this.modes.keySet()) {
-			this.modes.get(mode).infoTabs = new ControlTabBar<>(this.modes.get(mode).modePage, 8, 24, 16, 176, Alignment.LEFT, this.modes.get(mode).infoPages.getValues());
-			CraftGUIUtil.linkWidgets(this.modes.get(mode).infoTabs, this.modes.get(mode).infoPages);
+			ModeWidgets modeWidgets = this.modes.get(mode);
+			modeWidgets.setInfoTabs(new ControlTabBar<>(modeWidgets.getModePage(), 8, 24, 16, 176, Alignment.LEFT, modeWidgets.getInfoPages().getValues()));
+			CraftGUIUtil.linkWidgets(modeWidgets.getInfoTabs(), modeWidgets.getInfoPages());
 		}
 	}
 
@@ -177,7 +191,7 @@ public abstract class WindowAbstractDatabase extends Window {
 		if (value != null) {
 			this.modePages.setValue(Mode.SPECIES);
 			this.changeMode(Mode.SPECIES);
-			this.modes.get(this.modePages.getValue()).listBox.setValue(value);
+			this.modes.get(this.modePages.getValue()).getListBox().setValue(value);
 		}
 	}
 
@@ -203,29 +217,6 @@ public abstract class WindowAbstractDatabase extends Window {
 		@Override
 		public String getName() {
 			return I18N.localise(DatabaseConstants.MODE_KEY + "." + this.name().toLowerCase());
-		}
-	}
-
-	public static final class ModeWidgets {
-		@FunctionalInterface
-		public interface IListBoxCreator {
-			ControlListBox createListBox(IArea area, ControlPage<IDatabaseMode> modePage);
-		}
-
-		public WindowAbstractDatabase database;
-		public ControlPage<IDatabaseMode> modePage;
-		public ControlListBox listBox;
-		private ControlPages<DatabaseTab> infoPages;
-		private ControlTabBar<DatabaseTab> infoTabs;
-
-		public ModeWidgets(IDatabaseMode mode, WindowAbstractDatabase database, IListBoxCreator listBoxCreator) {
-			this.database = database;
-			this.modePage = new ControlPage<>(database.modePages, 0, 0, database.getSize().xPos(), database.getSize().yPos(), mode);
-			final IArea listBoxArea = database.panelSearch.getArea().inset(2);
-			this.listBox = listBoxCreator.createListBox(listBoxArea, this.modePage);
-			CraftGUIUtil.alignToWidget(this.listBox, database.panelSearch);
-			CraftGUIUtil.moveWidget(this.listBox, new Point(2, 2));
-			CraftGUIUtil.alignToWidget(this.infoPages = new ControlPages<>(this.modePage, 0, 0, 144, 176), database.panelInformation);
 		}
 	}
 

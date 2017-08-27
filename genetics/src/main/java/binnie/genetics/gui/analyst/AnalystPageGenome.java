@@ -29,7 +29,7 @@ import binnie.core.util.I18N;
 
 @SideOnly(Side.CLIENT)
 public class AnalystPageGenome extends Control implements ITitledWidget {
-	boolean active;
+	private final boolean active;
 
 	public AnalystPageGenome(IWidget parent, IArea area, boolean active, IIndividual ind) {
 		super(parent, area);

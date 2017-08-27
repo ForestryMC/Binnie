@@ -67,7 +67,7 @@ public class SequencerLogic extends ComponentProcess implements IProcess {
 		if (!item.isEmpty()) {
 			final SequencerItem seqItem = SequencerItem.create(item);
 			if (seqItem != null) {
-				final int seq = seqItem.sequenced;
+				final int seq = seqItem.getSequenced();
 				if (seq != 0) {
 					this.setProgress(seq);
 				}
@@ -104,9 +104,9 @@ public class SequencerLogic extends ComponentProcess implements IProcess {
 		Preconditions.checkState(!item.isEmpty());
 		final SequencerItem seqItem = SequencerItem.create(item);
 		Preconditions.checkState(seqItem != null);
-		final int seq = seqItem.sequenced;
+		final int seq = seqItem.getSequenced();
 		if (prog != seq) {
-			seqItem.sequenced = prog;
+			seqItem.setSequenced(prog);
 			seqItem.writeToItem(item);
 		}
 	}

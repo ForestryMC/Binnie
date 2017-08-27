@@ -3,11 +3,7 @@ package binnie.core.machines.storage;
 import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import binnie.core.api.gui.ITexture;
 import binnie.core.api.gui.events.EventHandlerOrigin;
@@ -15,9 +11,7 @@ import binnie.core.gui.geometry.Point;
 import binnie.core.gui.window.WindowMachine;
 import binnie.core.machines.IMachine;
 import binnie.core.machines.MachinePackage;
-import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -29,23 +23,18 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import binnie.core.BinnieCore;
 import binnie.core.gui.Attribute;
 import binnie.core.gui.CraftGUI;
-import binnie.core.api.gui.IWidget;
-import binnie.core.gui.controls.ControlCheckbox;
 import binnie.core.gui.controls.ControlText;
 import binnie.core.gui.controls.ControlTextEdit;
 import binnie.core.gui.controls.button.ControlButton;
 import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.controls.page.ControlPage;
 import binnie.core.gui.controls.page.ControlPages;
-import binnie.core.gui.controls.scroll.ControlScrollableContent;
 import binnie.core.gui.controls.tab.ControlTabBar;
 import binnie.core.gui.events.EventMouse;
 import binnie.core.gui.events.EventTextEdit;
 import binnie.core.gui.events.EventValueChanged;
-import binnie.core.gui.geometry.Border;
 import binnie.core.gui.geometry.CraftGUIUtil;
 import binnie.core.api.gui.Alignment;
-import binnie.core.gui.minecraft.Dialog;
 import binnie.core.gui.minecraft.EnumColor;
 import binnie.core.gui.minecraft.IWindowAffectsShiftClick;
 import binnie.core.gui.minecraft.MinecraftGUI;
@@ -53,7 +42,6 @@ import binnie.core.gui.minecraft.Window;
 import binnie.core.gui.minecraft.control.ControlItemDisplay;
 import binnie.core.gui.minecraft.control.ControlPlayerInventory;
 import binnie.core.gui.minecraft.control.ControlSlide;
-import binnie.core.gui.minecraft.control.ControlSlot;
 import binnie.core.gui.minecraft.control.ControlSlotArray;
 import binnie.core.gui.minecraft.control.ControlTabIcon;
 import binnie.core.gui.renderer.RenderUtil;
@@ -106,7 +94,9 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		final int compartmentWidth = compartmentPageWidth + (doubleTabbed ? 48 : 24);
 		final int compartmentHeight = compartmentPageHeight;
 		final Control controlCompartment = new Control(this, x, y, compartmentWidth, compartmentHeight);
-		final ControlTabBar<Integer> tab = new CompartmentTabBar1(this, controlCompartment, compartmentPageHeight, tabs1);
+		final ControlTabBar<Integer> tab = new ControlTabBar<>(controlCompartment, 0, 0, 24, compartmentPageHeight, Alignment.LEFT, Arrays.asList(tabs1), (x1, y1, w, h, value) -> {
+			return new CompartmentTabIcon(this, x1, y1, w, h, value);
+		});
 		final String[] tabHelp = {"Compartment Tab", "Tabs that divide the inventory into sections. Each one can be labelled seperately."};
 		tab.addHelp(tabHelp);
 		tab.addEventHandler(EventValueChanged.class, EventHandlerOrigin.DIRECT_CHILD, tab, event -> {
@@ -139,7 +129,9 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		}
 		x += compartmentPageWidth;
 		if (tabs2.length > 0) {
-			final ControlTabBar<Integer> tab2 = new CompartmentTabBar2(this, controlCompartment, compartmentPageWidth, compartmentPageHeight, tabs2);
+			final ControlTabBar<Integer> tab2 = new ControlTabBar<>(controlCompartment, 24 + compartmentPageWidth, 0, 24, compartmentPageHeight, Alignment.RIGHT, Arrays.asList(tabs2), (x1, y1, w, h, value) -> {
+				return new CompartmentTabIcon(this, x1, y1, w, h, value);
+			});
 			tab2.setValue(tabs1[0]);
 			tab2.addHelp(tabHelp);
 			tab2.addEventHandler(EventValueChanged.class, EventHandlerOrigin.DIRECT_CHILD, tab2, event -> {
@@ -269,173 +261,18 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		}
 	}
 
-	public binnie.core.machines.storage.CompartmentTab getTab(final int i) {
+	public CompartmentTab getTab(final int i) {
 		return Machine.getInterface(ComponentCompartmentInventory.class, this.getInventory()).getTab(i);
 	}
 
-	public binnie.core.machines.storage.CompartmentTab getCurrentTab() {
+	public CompartmentTab getCurrentTab() {
 		return this.getTab(this.currentTab);
 	}
 
-	private static class SearchDialog extends Dialog {
-		Control slotGrid;
-		String textSearch = "";
-		boolean sortByName = false;
-		boolean includeItems = true;
-		boolean includeBlocks = true;
-		private WindowCompartment windowCompartment;
+	private static class CompartmentTabIcon extends ControlTabIcon<Integer> {
+		private final WindowCompartment windowCompartment;
 
-		public SearchDialog(WindowCompartment windowCompartment) {
-			super(windowCompartment, 252, 192);
-			this.windowCompartment = windowCompartment;
-
-			final ControlScrollableContent<IWidget> scroll = new SearchScrollContent(this);
-			scroll.setScrollableContent(this.slotGrid = new Control(scroll, 1, 1, 108, 18));
-			new ControlPlayerInventory(this, true);
-			new ControlTextEdit(this, 16, 16, 100, 14).addEventHandler(EventTextEdit.class, event -> {
-				textSearch = event.getValue();
-				updateSearch();
-			});
-			this.includeItems = true;
-			this.includeBlocks = true;
-			new SortAlphabeticalCheckbox(this);
-			new IncludeItemsCheckbox(this);
-			new IncludeBlocksCheckbox(this);
-			this.updateSearch();
-		}
-
-		@Override
-		public void onClose() {
-		}
-
-		private void updateSearch() {
-			Map<Integer, String> slotIds = new HashMap<>();
-			final IInventory inv = windowCompartment.getInventory();
-			for (int i = 0; i < inv.getSizeInventory(); ++i) {
-				final ItemStack stack = inv.getStackInSlot(i);
-				if (!stack.isEmpty()) {
-					final String name = stack.getDisplayName().toLowerCase();
-					if (this.textSearch == null || name.contains(this.textSearch)) {
-						if (this.includeBlocks || Block.getBlockFromItem(stack.getItem()) == Blocks.AIR) {
-							if (this.includeItems || Block.getBlockFromItem(stack.getItem()) != Blocks.AIR) {
-								slotIds.put(i, name);
-							}
-						}
-					}
-				}
-			}
-			if (this.sortByName) {
-				final List<Entry<Integer, String>> list = new LinkedList<>(slotIds.entrySet());
-				list.sort((o1, o2) -> -o2.getValue().compareTo(o1.getValue()));
-				final Map<Integer, String> result = new LinkedHashMap<>();
-				for (final Entry<Integer, String> entry : list) {
-					result.put(entry.getKey(), entry.getValue());
-				}
-				slotIds = result;
-			}
-			int y = 0;
-			int x = 0;
-			final int width = 108;
-			final int height = 2 + 18 * (1 + (slotIds.size() - 1) / 6);
-			this.slotGrid.deleteAllChildren();
-			this.slotGrid.setSize(new Point(width, height));
-			for (final int k : slotIds.keySet()) {
-				new ControlSlot.Builder(this.slotGrid, x, y).assign(k);
-				x += 18;
-				if (x >= 108) {
-					x = 0;
-					y += 18;
-				}
-			}
-			while (y < 108 || x != 0) {
-				// TODO: what was this supposed to do?
-				new ControlSlot.Builder(this.slotGrid, x, y);
-				x += 18;
-				if (x >= 108) {
-					x = 0;
-					y += 18;
-				}
-			}
-		}
-
-		private static class SearchScrollContent extends ControlScrollableContent<IWidget> {
-			private SearchDialog searchDialog;
-
-			public SearchScrollContent(SearchDialog searchDialog) {
-				super(searchDialog, 124, 16, 116, 92, 6);
-				this.searchDialog = searchDialog;
-			}
-
-			@Override
-			@SideOnly(Side.CLIENT)
-			public void onRenderBackground(int guiWidth, int guiHeight) {
-				RenderUtil.setColour(11184810);
-				CraftGUI.RENDER.texture(CraftGUITexture.OUTLINE, searchDialog.windowCompartment.getArea().inset(new Border(0, 6, 0, 0)));
-			}
-		}
-
-		private static class SortAlphabeticalCheckbox extends ControlCheckbox {
-			private SearchDialog searchDialog;
-
-			public SortAlphabeticalCheckbox(SearchDialog searchDialog) {
-				super(searchDialog, 16, 40, 100, "Sort A-Z", searchDialog.sortByName);
-				this.searchDialog = searchDialog;
-			}
-
-			@Override
-			protected void onValueChanged(final boolean value) {
-				searchDialog.sortByName = value;
-				searchDialog.updateSearch();
-			}
-		}
-
-		private static class IncludeItemsCheckbox extends ControlCheckbox {
-			private SearchDialog searchDialog;
-
-			public IncludeItemsCheckbox(SearchDialog searchDialog) {
-				super(searchDialog, 16, 64, 100, "Include Items", searchDialog.includeItems);
-				this.searchDialog = searchDialog;
-			}
-
-			@Override
-			protected void onValueChanged(final boolean value) {
-				searchDialog.includeItems = value;
-				searchDialog.updateSearch();
-			}
-		}
-
-		private static class IncludeBlocksCheckbox extends ControlCheckbox {
-			private SearchDialog searchDialog;
-
-			public IncludeBlocksCheckbox(SearchDialog searchDialog) {
-				super(searchDialog, 16, 88, 100, "Include Blocks", searchDialog.includeBlocks);
-				this.searchDialog = searchDialog;
-			}
-
-			@Override
-			protected void onValueChanged(final boolean value) {
-				searchDialog.includeBlocks = value;
-				searchDialog.updateSearch();
-			}
-		}
-	}
-
-	private static class CompartmentTabBar1 extends ControlTabBar<Integer> {
-		public CompartmentTabBar1(final WindowCompartment windowCompartment, Control controlCompartment, int compartmentPageHeight, Integer[] tabs1) {
-			super(controlCompartment, 0, 0, 24, compartmentPageHeight, Alignment.LEFT, Arrays.asList(tabs1), (x, y, w, h, value) -> new CompartmentTab(windowCompartment, x, y, w, h, value));
-		}
-	}
-
-	private static class CompartmentTabBar2 extends ControlTabBar<Integer> {
-		public CompartmentTabBar2(WindowCompartment windowCompartment, Control controlCompartment, int compartmentPageWidth, int compartmentPageHeight, Integer[] tabs2) {
-			super(controlCompartment, 24 + compartmentPageWidth, 0, 24, compartmentPageHeight, Alignment.RIGHT, Arrays.asList(tabs2), (x, y, w, h, value) -> new CompartmentTab(windowCompartment, x, y, w, h, value));
-		}
-	}
-
-	private static class CompartmentTab extends ControlTabIcon<Integer> {
-		private WindowCompartment windowCompartment;
-
-		public CompartmentTab(WindowCompartment windowCompartment, int x, int y, int w, int h, Integer value) {
+		public CompartmentTabIcon(WindowCompartment windowCompartment, int x, int y, int w, int h, Integer value) {
 			super(x, y, w, h, value);
 			this.windowCompartment = windowCompartment;
 		}
@@ -463,7 +300,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 	}
 
 	private static class CompartmentCenterPanel extends Panel {
-		private WindowCompartment windowCompartment;
+		private final WindowCompartment windowCompartment;
 
 		public CompartmentCenterPanel(WindowCompartment windowCompartment, ControlPage thisPage) {
 			super(thisPage, 0, 0, thisPage.getWidth(), thisPage.getHeight(), MinecraftGUI.PanelType.BLACK);
@@ -481,7 +318,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 	}
 
 	private static class SearchButton extends ControlButton {
-		private WindowCompartment windowCompartment;
+		private final WindowCompartment windowCompartment;
 
 		public SearchButton(WindowCompartment windowCompartment, Control controlCompartment, int compartmentWidth, int compartmentPageHeight) {
 			super(controlCompartment, compartmentWidth - 24 - 64 - 8, compartmentPageHeight, 64, 16, "Search");

@@ -5,9 +5,9 @@ import net.minecraft.util.ResourceLocation;
 import binnie.core.AbstractMod;
 
 public class BinnieResource {
-	String mod;
-	String path;
-	private ResourceType type;
+	private final String mod;
+	private final String path;
+	private final ResourceType type;
 
 	public BinnieResource(final AbstractMod mod, final ResourceType type, final String path) {
 		this(mod.getModId(), type, path);

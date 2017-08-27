@@ -13,7 +13,8 @@ public class ContainerStimulator extends AbstractAlvearyContainer {
 
 	private final AlvearyLogicStimulator logic;
 	private final IEnergyStorage storage;
-	protected int power, maxPower;
+	protected final int maxPower;
+	protected int power;
 
 	public ContainerStimulator(EntityPlayer player, AlvearyLogicStimulator logic) {
 		super(player, logic.getInventory(), EnumAlvearyLogicType.STIMULATOR, DEFAULT_DIMENSION);

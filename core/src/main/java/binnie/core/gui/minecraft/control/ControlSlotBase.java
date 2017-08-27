@@ -23,7 +23,7 @@ import binnie.core.gui.renderer.RenderUtil;
 import binnie.core.gui.resource.textures.CraftGUITexture;
 
 public abstract class ControlSlotBase extends Control implements ITooltip {
-	private ControlItemDisplay itemDisplay;
+	private final ControlItemDisplay itemDisplay;
 
 	public ControlSlotBase(final IWidget parent, final int x, final int y) {
 		this(parent, x, y, 18);

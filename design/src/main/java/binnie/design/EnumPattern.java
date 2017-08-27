@@ -288,8 +288,8 @@ public enum EnumPattern implements IPattern {
 		EnumPattern.OverlappedSplitBarred2.setLeftRotation(EnumPattern.OverlappedSplitBarred, false);
 	}
 
-	ILayout leftRotation;
-	ILayout horizontalFlip;
+	private ILayout leftRotation;
+	private ILayout horizontalFlip;
 
 	EnumPattern() {
 		this.leftRotation = Layout.get(this, false);

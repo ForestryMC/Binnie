@@ -21,14 +21,11 @@ public abstract class Dialog extends Control {
 		this.addAttribute(Attribute.ALWAYS_ON_TOP);
 		this.addAttribute(Attribute.BLOCK_TOOLTIP);
 		this.addEventHandler(EventMouse.Down.class, EventHandlerOrigin.ANY, this, event -> {
-			if (!Dialog.this.getArea().contains(Dialog.this.getRelativeMousePosition())) {
-				Dialog.this.onClose();
-				Dialog.this.getParent().deleteChild(Dialog.this);
+			if (!this.getArea().contains(this.getRelativeMousePosition())) {
+				this.getParent().deleteChild(this);
 			}
 		});
 	}
-
-	public abstract void onClose();
 
 	@Override
 	@SideOnly(Side.CLIENT)

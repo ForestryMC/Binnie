@@ -25,10 +25,10 @@ import binnie.botany.core.BotanyCore;
 import binnie.core.util.I18N;
 
 public class Flower extends Individual implements IFlower {
-	public IFlowerGenome genome;
+	private final IFlowerGenome genome;
 
 	@Nullable
-	public IFlowerGenome mate;
+	private IFlowerGenome mate;
 
 	private int age;
 	private boolean wilting;

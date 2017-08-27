@@ -24,7 +24,7 @@ public enum EnumPropolis implements IEBEnumItem {
 
 	private final int primaryColor;
 	private final int secondaryColor;
-	private String liquidName;
+	private final String liquidName;
 	private boolean active;
 
 	EnumPropolis() {

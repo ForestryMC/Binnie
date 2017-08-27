@@ -20,7 +20,7 @@ public class DistilleryMachine extends ExtraTreeMachine.PackageExtraTreeMachine 
 	public static final int TANK_OUTPUT = 1;
 
 	public DistilleryMachine() {
-		super("distillery", true);
+		super("distillery");
 	}
 
 	@Override
@@ -31,12 +31,12 @@ public class DistilleryMachine extends ExtraTreeMachine.PackageExtraTreeMachine 
 
 		final TankSlot input = tanks.addTank(TANK_INPUT, "input", 5000);
 		input.setValidator(new TankValidatorDistilleryInput());
-		input.setOutputSides(MachineSide.TopAndBottom);
+		input.setOutputSides(MachineSide.TOP_AND_BOTTOM);
 
 		final TankSlot output = tanks.addTank(TANK_OUTPUT, "output", 5000);
 		output.setValidator(new TankValidatorDistilleryOutput());
 		output.setReadOnly();
-		output.setOutputSides(MachineSide.Sides);
+		output.setOutputSides(MachineSide.SIDES);
 
 		new ComponentPowerReceptor(machine);
 		new DistilleryLogic(machine);
@@ -47,7 +47,4 @@ public class DistilleryMachine extends ExtraTreeMachine.PackageExtraTreeMachine 
 		return new TileEntityMachine(this);
 	}
 
-	@Override
-	public void register() {
-	}
 }

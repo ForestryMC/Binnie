@@ -13,13 +13,13 @@ import binnie.extratrees.api.recipes.IBreweryCrafting;
 
 public class BreweryCrafting implements INbtWritable, IBreweryCrafting {
 	@Nullable
-	public FluidStack inputFluid;
+	private FluidStack inputFluid;
 	@Nullable
-	public ItemStack[] inputGrains;
-	public ItemStack ingredient;
-	public ItemStack yeast;
+	private final ItemStack[] inputGrains;
+	private final ItemStack ingredient;
+	private final ItemStack yeast;
 
-	public BreweryCrafting( @Nullable final FluidStack inputFluid, final ItemStack ingredient, @Nullable final ItemStack[] inputGrains, final ItemStack yeast) {
+	public BreweryCrafting(@Nullable FluidStack inputFluid, ItemStack ingredient, @Nullable ItemStack[] inputGrains, ItemStack yeast) {
 		this.inputFluid = inputFluid;
 		this.inputGrains = ((inputGrains == null) ? new ItemStack[3] : inputGrains);
 		this.ingredient = ingredient;
@@ -86,5 +86,9 @@ public class BreweryCrafting implements INbtWritable, IBreweryCrafting {
 
 	public ItemStack getYeast() {
 		return yeast;
+	}
+
+	public void setInputFluid(@Nullable FluidStack inputFluid) {
+		this.inputFluid = inputFluid;
 	}
 }

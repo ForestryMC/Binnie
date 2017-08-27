@@ -6,7 +6,7 @@ import forestry.api.core.INbtReadable;
 import forestry.api.core.INbtWritable;
 
 public class PowerInterface implements INbtReadable, INbtWritable {
-	private int capacity;
+	private final int capacity;
 	private int energy;
 
 	public PowerInterface(final int capacity) {

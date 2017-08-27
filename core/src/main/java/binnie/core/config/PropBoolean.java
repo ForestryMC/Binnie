@@ -16,17 +16,17 @@ public @interface PropBoolean {
 
 		@Override
 		protected Property getProperty() {
-			return this.file.get(this.getCategory(), this.getKey(), this.defaultValue);
+			return this.getFile().get(this.getCategory(), this.getKey(), this.getDefaultValue());
 		}
 
 		@Override
 		protected Boolean getConfigValue() {
-			return this.property.getBoolean(this.defaultValue);
+			return super.getProperty().getBoolean(this.getDefaultValue());
 		}
 
 		@Override
 		protected void addComments() {
-			this.addComment("Default value is " + this.defaultValue + ".");
+			this.addComment("Default value is " + this.getDefaultValue() + ".");
 		}
 	}
 }

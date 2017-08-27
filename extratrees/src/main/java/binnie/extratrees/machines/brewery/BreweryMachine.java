@@ -29,7 +29,7 @@ public class BreweryMachine extends ExtraTreeMachine.PackageExtraTreeMachine imp
 	public static final int[] SLOTS_INVENTORY = new int[]{5, 6, 7, 8, 9, 10, 11, 12, 13};
 
 	public BreweryMachine() {
-		super("brewery", true);
+		super("brewery");
 	}
 
 	@Override
@@ -59,12 +59,12 @@ public class BreweryMachine extends ExtraTreeMachine.PackageExtraTreeMachine imp
 		final ComponentTankContainer tanks = new ComponentTankContainer(machine);
 		TankSlot input = tanks.addTank(TANK_INPUT, "input", 5000);
 		input.setValidator(new TankValidatorFermentInput());
-		input.setOutputSides(MachineSide.TopAndBottom);
+		input.setOutputSides(MachineSide.TOP_AND_BOTTOM);
 
 		final TankSlot output = tanks.addTank(TANK_OUTPUT, "output", 5000);
 		output.setValidator(new TankValidatorFermentOutput());
 		output.forbidInsertion();
-		output.setOutputSides(MachineSide.Sides);
+		output.setOutputSides(MachineSide.SIDES);
 
 		new ComponentPowerReceptor(machine);
 		new BreweryLogic(machine);
@@ -75,7 +75,4 @@ public class BreweryMachine extends ExtraTreeMachine.PackageExtraTreeMachine imp
 		return new TileEntityMachine(this);
 	}
 
-	@Override
-	public void register() {
-	}
 }

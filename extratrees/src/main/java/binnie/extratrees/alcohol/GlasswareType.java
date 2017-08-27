@@ -32,13 +32,13 @@ public enum GlasswareType {
 	//TODO: Add to config
 	public static final int MB_PER_GLASS = 100;
 
-	String name;
-	float contentBottom;
-	float contentHeight;
-	private int capacity;
-	private ModelResourceLocation modelLocation;
-	private String[] recipe;
-	private int recipeGlassCost;
+	private final String name;
+	private final float contentBottom;
+	private final float contentHeight;
+	private final int capacity;
+	private final ModelResourceLocation modelLocation;
+	private final String[] recipe;
+	private final int recipeGlassCost;
 
 	GlasswareType(final int capacity, final int contentBottom, final int contentHeight, String... recipe) {
 		this.capacity = capacity;

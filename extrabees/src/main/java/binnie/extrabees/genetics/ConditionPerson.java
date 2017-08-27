@@ -12,7 +12,7 @@ import forestry.api.genetics.IMutationCondition;
 
 public class ConditionPerson implements IMutationCondition {
 
-	String name;
+	private final String name;
 
 	public ConditionPerson(final String name) {
 		this.name = name;

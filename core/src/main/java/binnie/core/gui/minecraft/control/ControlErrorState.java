@@ -51,6 +51,7 @@ public class ControlErrorState extends Control implements ITooltip {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public final void onUpdateClient() {
 		this.errorState = this.getError();
 		this.type = Window.get(this).getContainer().getErrorType();

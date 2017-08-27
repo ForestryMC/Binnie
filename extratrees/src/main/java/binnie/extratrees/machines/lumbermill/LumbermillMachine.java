@@ -25,7 +25,7 @@ public class LumbermillMachine extends ExtraTreeMachine.PackageExtraTreeMachine 
 	public static final int TANK_WATER_CAPACITY = 10000;
 
 	public LumbermillMachine() {
-		super("lumbermill", true);
+		super("lumbermill");
 	}
 
 	@Override
@@ -54,7 +54,4 @@ public class LumbermillMachine extends ExtraTreeMachine.PackageExtraTreeMachine 
 		return new TileEntityMachine(this);
 	}
 
-	@Override
-	public void register() {
-	}
 }

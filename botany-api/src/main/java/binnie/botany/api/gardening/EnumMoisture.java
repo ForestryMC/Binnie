@@ -13,7 +13,7 @@ public enum EnumMoisture implements IStringSerializable {
 	DAMP(TextFormatting.DARK_BLUE);
 
 	@Nullable
-	final TextFormatting color;
+	private final TextFormatting color;
 
 	EnumMoisture(@Nullable TextFormatting color) {
 		this.color = color;

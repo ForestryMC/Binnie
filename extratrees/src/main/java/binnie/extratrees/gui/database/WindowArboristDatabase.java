@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import binnie.core.Binnie;
 import binnie.core.api.gui.IArea;
 import binnie.core.gui.controls.page.ControlPage;
+import binnie.core.gui.database.ModeWidgets;
 import binnie.genetics.api.ITreeBreedingSystem;
 import forestry.api.arboriculture.TreeManager;
 import net.minecraft.entity.player.EntityPlayer;
@@ -34,12 +35,12 @@ import binnie.design.api.IDesignMaterial;
 import binnie.extratrees.wood.WoodManager;
 
 public class WindowArboristDatabase extends WindowAbstractDatabase {
-	public WindowArboristDatabase(final EntityPlayer player, final Side side, final boolean nei) {
-		super(player, side, nei, Binnie.GENETICS.getSystem(TreeManager.treeRoot), 120);
+	public static Window create(EntityPlayer player, Side side, boolean master) {
+		return new WindowArboristDatabase(player, side, master);
 	}
 
-	public static Window create(final EntityPlayer player, final Side side, final boolean nei) {
-		return new WindowArboristDatabase(player, side, nei);
+	private WindowArboristDatabase(EntityPlayer player, Side side, boolean master) {
+		super(player, side, master, Binnie.GENETICS.getSystem(TreeManager.treeRoot), 120);
 	}
 
 	@Override
@@ -111,7 +112,7 @@ public class WindowArboristDatabase extends WindowAbstractDatabase {
 
 		@Override
 		@SideOnly(Side.CLIENT)
-		public IWidget createOption(final ItemStack value, final int y) {
+		public IWidget createOption(ItemStack value, int y) {
 			return new ControlItemStackOption(this.getContent(), value, y);
 		}
 	}

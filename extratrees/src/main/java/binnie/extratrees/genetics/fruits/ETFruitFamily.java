@@ -6,9 +6,9 @@ public enum ETFruitFamily implements IFruitFamily {
 	BERRY("Berries", "berry", "berri"),
 	CITRUS("Citrus", "citrus", "citrus");
 
-	String name;
-	String uid;
-	String scientific;
+	private final String name;
+	private final String uid;
+	private final String scientific;
 
 	ETFruitFamily(final String name, final String uid, final String scientific) {
 		this.name = name;

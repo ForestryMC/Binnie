@@ -1,8 +1,6 @@
 package binnie.genetics.machine.indexer;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import forestry.api.apiculture.BeeManager;
@@ -23,24 +21,24 @@ public class ComponentApiaristIndexerInventory extends ComponentIndexerInventory
 	@Override
 	public void Sort() {
 		int i = 0;
-		while (i < this.indexerInventory.size()) {
-			if (this.indexerInventory.get(i) == null) {
-				this.indexerInventory.remove(i);
+		while (i < this.getIndexerInventory().size()) {
+			if (this.getIndexerInventory().get(i) == null) {
+				this.getIndexerInventory().remove(i);
 			} else {
 				++i;
 			}
 		}
-		if (!this.needsSorting || this.sortingMode == null) {
+		if (!this.isNeedsSorting() || this.getSortingMode() == null) {
 			return;
 		}
-		this.needsSorting = false;
-		++this.guiRefreshCounter;
-		switch (this.sortingMode) {
+		this.setNeedsSorting(false);
+		this.guiRefreshCounter = this.getGuiRefreshCounter() + 1;
+		switch (this.getSortingMode()) {
 			case Species:
 			case Type: {
 
 				final Map<Integer, SpeciesList> speciesList = new HashMap<>();
-				for (final ItemStack itemStack : this.indexerInventory) {
+				for (final ItemStack itemStack : this.getIndexerInventory()) {
 					final int species = itemStack.getItemDamage();
 					if (!speciesList.containsKey(species)) {
 						speciesList.put(species, new SpeciesList());
@@ -48,24 +46,24 @@ public class ComponentApiaristIndexerInventory extends ComponentIndexerInventory
 					speciesList.get(species).add(itemStack);
 				}
 				for (final SpeciesList sortableList : speciesList.values()) {
-					for (final ItemStack beeStack : sortableList.bees) {
+					for (final ItemStack beeStack : sortableList.getBees()) {
 						if (BeeManager.beeRoot.isDrone(beeStack)) {
-							sortableList.drones.add(this.indexerInventory.indexOf(beeStack));
+							sortableList.getDrones().add(this.getIndexerInventory().indexOf(beeStack));
 						} else if (BeeManager.beeRoot.isMated(beeStack)) {
-							sortableList.queens.add(this.indexerInventory.indexOf(beeStack));
+							sortableList.getQueens().add(this.getIndexerInventory().indexOf(beeStack));
 						} else {
-							sortableList.princesses.add(this.indexerInventory.indexOf(beeStack));
+							sortableList.getPrincesses().add(this.getIndexerInventory().indexOf(beeStack));
 						}
 					}
 				}
 				this.sortedInventory = new SetList<>();
-				switch (this.sortingMode) {
+				switch (this.getSortingMode()) {
 					case Species: {
 						for (int j = 0; j < 1024; ++j) {
 							if (speciesList.containsKey(j)) {
-								this.sortedInventory.addAll(speciesList.get(j).queens);
-								this.sortedInventory.addAll(speciesList.get(j).princesses);
-								this.sortedInventory.addAll(speciesList.get(j).drones);
+								this.getSortedInventory().addAll(speciesList.get(j).getQueens());
+								this.getSortedInventory().addAll(speciesList.get(j).getPrincesses());
+								this.getSortedInventory().addAll(speciesList.get(j).getDrones());
 							}
 						}
 						break;
@@ -73,17 +71,17 @@ public class ComponentApiaristIndexerInventory extends ComponentIndexerInventory
 					case Type: {
 						for (int j = 0; j < 1024; ++j) {
 							if (speciesList.containsKey(j)) {
-								this.sortedInventory.addAll(speciesList.get(j).queens);
+								this.getSortedInventory().addAll(speciesList.get(j).getQueens());
 							}
 						}
 						for (int j = 0; j < 1024; ++j) {
 							if (speciesList.containsKey(j)) {
-								this.sortedInventory.addAll(speciesList.get(j).princesses);
+								this.getSortedInventory().addAll(speciesList.get(j).getPrincesses());
 							}
 						}
 						for (int j = 0; j < 1024; ++j) {
 							if (speciesList.containsKey(j)) {
-								this.sortedInventory.addAll(speciesList.get(j).drones);
+								this.getSortedInventory().addAll(speciesList.get(j).getDrones());
 							}
 						}
 						break;
@@ -92,9 +90,9 @@ public class ComponentApiaristIndexerInventory extends ComponentIndexerInventory
 				break;
 			}
 			default: {
-				this.sortedInventory.clear();
-				for (i = 0; i < this.indexerInventory.size(); ++i) {
-					this.sortedInventory.add(i);
+				this.getSortedInventory().clear();
+				for (i = 0; i < this.getIndexerInventory().size(); ++i) {
+					this.getSortedInventory().add(i);
 				}
 				break;
 			}
@@ -123,7 +121,7 @@ public class ComponentApiaristIndexerInventory extends ComponentIndexerInventory
 
 	@Override
 	public boolean isEmpty() {
-		return this.sortedInventory.isEmpty();
+		return this.getSortedInventory().isEmpty();
 	}
 
 	@Override
@@ -167,21 +165,4 @@ public class ComponentApiaristIndexerInventory extends ComponentIndexerInventory
 		Type
 	}
 
-	private static class SpeciesList {
-		public List<Integer> drones;
-		public List<Integer> queens;
-		public List<Integer> princesses;
-		public List<ItemStack> bees;
-
-		SpeciesList() {
-			this.drones = new ArrayList<>();
-			this.queens = new ArrayList<>();
-			this.princesses = new ArrayList<>();
-			this.bees = new ArrayList<>();
-		}
-
-		public void add(final ItemStack stack) {
-			this.bees.add(stack);
-		}
-	}
 }

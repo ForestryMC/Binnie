@@ -20,7 +20,7 @@ public class BeeModelProvider implements IBeeModelProvider {
 	public static final BeeModelProvider instance = new BeeModelProvider();
 
 	@SideOnly(Side.CLIENT)
-	private static ModelResourceLocation[] models = new ModelResourceLocation[EnumBeeType.values().length];
+	private static final ModelResourceLocation[] models = new ModelResourceLocation[EnumBeeType.values().length];
 
 	@Override
 	@SideOnly(Side.CLIENT)

@@ -14,10 +14,10 @@ import net.minecraft.util.ResourceLocation;
 
 public abstract class BaseSlot<T> implements INbtWritable, INbtReadable, IValidator<T> {
 	@Nullable
-	protected ResourceLocation unlocLocation;
+	protected final ResourceLocation unlocLocation;
 	@Nullable
-	Validator<T> validator;
-	private SidedAccess access;
+	private Validator<T> validator;
+	private final SidedAccess access;
 	private boolean readOnly;
 	private int index;
 

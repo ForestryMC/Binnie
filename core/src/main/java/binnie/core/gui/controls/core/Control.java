@@ -18,15 +18,13 @@ import binnie.core.gui.geometry.Point;
 import binnie.core.gui.minecraft.Window;
 
 public class Control extends Widget implements ITooltipHelp, ITooltip {
-	public int extraLevel;
-	private List<String> helpStrings;
-	private List<String> tooltipStrings;
+	private final List<String> helpStrings;
+	private final List<String> tooltipStrings;
 
 	public Control(IWidget parent, int xPos, int yPos, int width, int height) {
 		super(parent);
 		this.helpStrings = new ArrayList<>();
 		this.tooltipStrings = new ArrayList<>();
-		this.extraLevel = 0;
 		this.position = new Point(xPos, yPos);
 		this.size = new Point(width, height);
 	}

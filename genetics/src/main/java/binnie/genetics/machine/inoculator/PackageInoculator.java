@@ -27,7 +27,7 @@ import binnie.genetics.machine.ModuleMachine;
 
 public class PackageInoculator extends GeneticMachine.PackageGeneticBase implements IMachineInformation {
 	public PackageInoculator() {
-		super("inoculator", 14819893, true);
+		super("inoculator", 14819893);
 	}
 
 	@Override
@@ -85,13 +85,9 @@ public class PackageInoculator extends GeneticMachine.PackageGeneticBase impleme
 		return new TileEntityMachine(this);
 	}
 
-	@Override
-	public void register() {
-	}
-
 	private static class SerumSlotValidator extends SlotValidator {
 		public SerumSlotValidator() {
-			super(ModuleMachine.spriteSerum);
+			super(ModuleMachine.getSpriteSerum());
 		}
 
 		@Override

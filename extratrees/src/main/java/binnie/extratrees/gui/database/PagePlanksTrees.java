@@ -45,13 +45,13 @@ public class PagePlanksTrees extends PageAbstract<ItemStack> {
 		new ControlSpeciesBox(this, 4, 24, this.getSize().xPos() - 8, this.getSize().yPos() - 4 - 24).setOptions(trees);
 	}
 
-	private static Collection<IAlleleSpecies> getTreesThatMakePlanks(final ItemStack fruit, final boolean nei, final World world, final GameProfile player) {
+	private static Collection<IAlleleSpecies> getTreesThatMakePlanks(ItemStack fruit, boolean master, World world, GameProfile player) {
 		if (fruit == null) {
 			return new ArrayList<>();
 		}
 		ITreeRoot treeRoot = TreeManager.treeRoot;
 		IBreedingSystem system = Binnie.GENETICS.getSystem(treeRoot);
-		final Collection<IAlleleSpecies> set = nei ? system.getAllSpecies() : system.getDiscoveredSpecies(world, player);
+		final Collection<IAlleleSpecies> set = master ? system.getAllSpecies() : system.getDiscoveredSpecies(world, player);
 		final List<IAlleleSpecies> found = new ArrayList<>();
 		for (final IAlleleSpecies species : set) {
 			final IAlleleTreeSpecies tSpecies = (IAlleleTreeSpecies) species;

@@ -3,16 +3,15 @@ package binnie.core.genetics;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Biomes;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 import com.mojang.authlib.GameProfile;
 
-import forestry.api.apiculture.IBee;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
 import forestry.api.apiculture.IBeeHousingInventory;
@@ -20,14 +19,13 @@ import forestry.api.apiculture.IBeeListener;
 import forestry.api.apiculture.IBeeModifier;
 import forestry.api.apiculture.IBeekeepingLogic;
 import forestry.api.core.IErrorLogic;
-import forestry.api.genetics.IIndividual;
 import forestry.apiculture.FakeBeekeepingLogic;
 import forestry.apiculture.InventoryBeeHousing;
 import forestry.core.errors.FakeErrorLogic;
 
 public class VirtualBeeHousing extends VirtualHousing implements IBeeHousing, IBeeModifier {
-	ArrayList<IBeeModifier> beeModifier = new ArrayList<>();
-	private InventoryBeeHousing beeInventory;
+	private final List<IBeeModifier> beeModifier = new ArrayList<>();
+	private final InventoryBeeHousing beeInventory;
 
 	public VirtualBeeHousing(final EntityPlayer player) {
 		super(player);
@@ -55,35 +53,6 @@ public class VirtualBeeHousing extends VirtualHousing implements IBeeHousing, IB
 		return 1.0f;
 	}
 
-	public ItemStack getQueen() {
-		return ItemStack.EMPTY;
-	}
-
-	public void setQueen(final ItemStack itemstack) {
-	}
-
-	public ItemStack getDrone() {
-		return ItemStack.EMPTY;
-	}
-
-	public void setDrone(final ItemStack itemstack) {
-	}
-
-	public boolean canBreed() {
-		return true;
-	}
-
-	@Override
-	public boolean addProduct(final ItemStack product, final boolean all) {
-		return false;
-	}
-
-	public void wearOutEquipment(final int amount) {
-	}
-
-	public void onQueenChange(final ItemStack queen) {
-	}
-
 	@Override
 	public boolean isSealed() {
 		return false;
@@ -107,20 +76,6 @@ public class VirtualBeeHousing extends VirtualHousing implements IBeeHousing, IB
 	@Override
 	public float getFloweringModifier(final IBeeGenome genome, final float currentModifier) {
 		return 1.0f;
-	}
-
-	public void onQueenDeath(final IBee queen) {
-	}
-
-	public void onPostQueenDeath(final IBee queen) {
-	}
-
-	public boolean onPollenRetrieved(final IBee queen, final IIndividual pollen, final boolean isHandled) {
-		return false;
-	}
-
-	public boolean onEggLaid(final IBee queen) {
-		return false;
 	}
 
 	@Override

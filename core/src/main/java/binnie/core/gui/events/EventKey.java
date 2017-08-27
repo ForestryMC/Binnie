@@ -4,8 +4,8 @@ import binnie.core.api.gui.IWidget;
 import binnie.core.api.gui.events.Event;
 
 public abstract class EventKey extends Event {
-	char character;
-	int key;
+	private final char character;
+	private final int key;
 
 	public EventKey(final IWidget origin, final char character, final int key) {
 		super(origin);

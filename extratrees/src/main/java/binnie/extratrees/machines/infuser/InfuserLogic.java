@@ -13,7 +13,7 @@ import binnie.core.machines.power.ComponentProcessSetCost;
 import binnie.core.machines.power.IProcess;
 
 public class InfuserLogic extends ComponentProcessSetCost implements IProcess {
-	ItemStack infusing;
+	private ItemStack infusing;
 
 	public InfuserLogic(final Machine machine) {
 		super(machine, 16000, 800);
@@ -64,10 +64,6 @@ public class InfuserLogic extends ComponentProcessSetCost implements IProcess {
 		if (output != null) {
 			this.getUtil().fillTank(Infuser.TANK_OUTPUT, output.copy());
 		}
-	}
-
-	@Override
-	protected void onTickTask() {
 	}
 
 	@Override

@@ -26,7 +26,7 @@ import binnie.core.util.I18N;
 public class GeneArrayItem implements INbtReadable, INbtWritable, IGeneItem {
 	private static final String GENES_NBT = "genes";
 
-	private List<IGene> genes;
+	private final List<IGene> genes;
 
 	public GeneArrayItem(ItemStack stack) {
 		genes = new ArrayList<>();

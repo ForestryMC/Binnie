@@ -19,7 +19,7 @@ import binnie.genetics.machine.GeneticsErrorCode;
 public class IncubatorLogic extends ComponentProcessIndefinate implements IProcess {
 	@Nullable
 	private IIncubatorRecipe recipe;
-	private Random rand;
+	private final Random rand;
 	private boolean roomForOutput;
 
 	public IncubatorLogic(final Machine machine) {

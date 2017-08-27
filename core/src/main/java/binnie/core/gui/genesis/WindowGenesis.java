@@ -42,6 +42,7 @@ import binnie.core.gui.minecraft.control.ControlTabIcon;
 import binnie.core.gui.window.Panel;
 import binnie.core.util.I18N;
 import binnie.core.gui.ControlGenesisOption;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WindowGenesis extends Window {
 	private static final String ACTION_GENESIS = "genesis";
@@ -67,6 +68,7 @@ public class WindowGenesis extends Window {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void initialiseClient() {
 		new ControlPlayerInventory(this);
 		this.setTitle(I18N.localise("binniecore.gui.genesis.title"));
@@ -178,9 +180,8 @@ public class WindowGenesis extends Window {
 			} else if (playerStack.isItemEqual(stack) && ItemStack.areItemStackTagsEqual(playerStack, stack)) {
 				final int fit = stack.getMaxStackSize() - (stack.getCount() + playerStack.getCount());
 				if (fit >= 0) {
-					ItemStack itemStack = stack;
-					itemStack.grow(playerStack.getCount());
-					inventoryPlayer.setItemStack(itemStack);
+					stack.grow(playerStack.getCount());
+					inventoryPlayer.setItemStack(stack);
 				}
 			}
 			player.openContainer.detectAndSendChanges();

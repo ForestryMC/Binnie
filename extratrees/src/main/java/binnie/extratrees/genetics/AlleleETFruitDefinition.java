@@ -390,8 +390,8 @@ public enum AlleleETFruitDefinition {
 //	, Papayimar("papayimar", FruitPod.PAPAYIMAR)
 	;
 
-	IAlleleFruit alleleFruit;
-	ETFruitProviderNone fruitProvider;
+	private final IAlleleFruit alleleFruit;
+	private final ETFruitProviderNone fruitProvider;
 	
 	AlleleETFruitDefinition(String name, int time, int unripe, int color, FruitSprite sprite, IFruitFamily family) {
 		alleleFruit = new AlleleETFruit(name, fruitProvider = new ETFruitProviderRipening(name, family, sprite).setColours(new Color(color), new Color(unripe)).setRipeningPeriod(time));

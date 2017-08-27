@@ -12,18 +12,37 @@ import forestry.api.core.INbtWritable;
 
 import binnie.core.BinnieCore;
 import binnie.core.ManagerBase;
-import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.machines.inventory.ValidatorSprite;
 
 public class ManagerMachine extends ManagerBase {
-	private Map<Class<?>, Class<?>[]> componentInterfaceMap;
-	private Map<String, MachineGroup> machineGroups;
+	private static ValidatorSprite spriteBee;
+	private static ValidatorSprite spriteFrame;
+	private static ValidatorSprite spriteCircuit;
+	private static ValidatorSprite spriteBlock;
+	private final Map<Class<?>, Class<?>[]> componentInterfaceMap;
+	private final Map<String, MachineGroup> machineGroups;
 	private int nextNetworkID;
 
 	public ManagerMachine() {
 		this.componentInterfaceMap = new HashMap<>();
 		this.machineGroups = new HashMap<>();
 		this.nextNetworkID = 0;
+	}
+
+	public static ValidatorSprite getSpriteBee() {
+		return spriteBee;
+	}
+
+	public static ValidatorSprite getSpriteFrame() {
+		return spriteFrame;
+	}
+
+	public static ValidatorSprite getSpriteCircuit() {
+		return spriteCircuit;
+	}
+
+	public static ValidatorSprite getSpriteBlock() {
+		return spriteBlock;
 	}
 
 	public void registerMachineGroup(final MachineGroup group) {
@@ -56,10 +75,10 @@ public class ManagerMachine extends ManagerBase {
 
 	@Override
 	public void preInit() {
-		SlotValidator.spriteBee = new ValidatorSprite(BinnieCore.getInstance(), "validator/bee.0", "validator/bee.1");
-		SlotValidator.spriteFrame = new ValidatorSprite(BinnieCore.getInstance(), "validator/frame.0", "validator/frame.1");
-		SlotValidator.spriteCircuit = new ValidatorSprite(BinnieCore.getInstance(), "validator/circuit.0", "validator/circuit.1");
-		SlotValidator.spriteBlock = new ValidatorSprite(BinnieCore.getInstance(), "validator/block.0", "validator/block.1");
+		spriteBee = new ValidatorSprite(BinnieCore.getInstance(), "validator/bee.0", "validator/bee.1");
+		spriteFrame = new ValidatorSprite(BinnieCore.getInstance(), "validator/frame.0", "validator/frame.1");
+		spriteCircuit = new ValidatorSprite(BinnieCore.getInstance(), "validator/circuit.0", "validator/circuit.1");
+		spriteBlock = new ValidatorSprite(BinnieCore.getInstance(), "validator/block.0", "validator/block.1");
 	}
 
 	@Override

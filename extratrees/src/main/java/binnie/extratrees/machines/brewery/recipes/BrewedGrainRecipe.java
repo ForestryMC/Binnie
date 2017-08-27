@@ -99,10 +99,7 @@ public class BrewedGrainRecipe implements IBreweryRecipe {
 
 	@Override
 	public boolean isGrain(ItemStack itemStack) {
-		if(itemStack.isEmpty()){
-			return false;
-		}
-		return OreDictionaryUtil.hasOreName(itemStack, grainOreName);
+		return !itemStack.isEmpty() && OreDictionaryUtil.hasOreName(itemStack, grainOreName);
 	}
 
 	@Override

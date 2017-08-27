@@ -1,5 +1,6 @@
 package binnie.extratrees.machines.brewery.window;
 
+import binnie.core.machines.ManagerMachine;
 import net.minecraft.item.ItemStack;
 
 import binnie.core.machines.inventory.SlotValidator;
@@ -8,7 +9,7 @@ import binnie.extratrees.machines.brewery.recipes.BreweryRecipeManager;
 
 public class SlotValidatorBreweryGrain extends SlotValidator {
 	public SlotValidatorBreweryGrain() {
-		super(SlotValidator.spriteBlock);
+		super(ManagerMachine.getSpriteBlock());
 	}
 
 	@Override

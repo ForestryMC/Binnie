@@ -11,8 +11,8 @@ import binnie.core.gui.controls.ControlText;
 import binnie.core.gui.controls.ControlTextCentered;
 
 public class PageSpeciesClassification extends PageSpecies {
-	private Map<IClassification.EnumClassLevel, ControlText> levels;
-	private ControlText genus;
+	private final Map<IClassification.EnumClassLevel, ControlText> levels;
+	private final ControlText genus;
 
 	public PageSpeciesClassification(final IWidget parent, final DatabaseTab tab) {
 		super(parent, tab);

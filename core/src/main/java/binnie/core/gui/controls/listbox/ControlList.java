@@ -13,14 +13,14 @@ import binnie.core.gui.geometry.Point;
 import binnie.core.util.IValidator;
 
 public class ControlList<T> extends Control implements IControlValue<T> {
-	ControlListBox<T> parent;
-	Map<T, IWidget> allOptions;
-	Map<T, IWidget> optionWidgets;
-	boolean creating;
+	private final ControlListBox<T> parent;
+	private final Map<T, IWidget> allOptions;
+	private final Map<T, IWidget> optionWidgets;
 	@Nullable
+	private
 	IValidator<IWidget> validator;
 	@Nullable
-	private T defaultValue;
+	private final T defaultValue;
 	@Nullable
 	private T value;
 
@@ -30,7 +30,6 @@ public class ControlList<T> extends Control implements IControlValue<T> {
 		this.defaultValue = defaultValue;
 		this.allOptions = new LinkedHashMap<>();
 		this.optionWidgets = new LinkedHashMap<>();
-		this.creating = false;
 		this.parent = parent;
 	}
 
@@ -71,7 +70,6 @@ public class ControlList<T> extends Control implements IControlValue<T> {
 				entry.getValue().hide();
 			}
 		}
-		this.creating = true;
 		this.setValue(this.getValue());
 		this.setSize(new Point(this.getSize().xPos(), height));
 	}
@@ -126,5 +124,11 @@ public class ControlList<T> extends Control implements IControlValue<T> {
 			this.validator = validator;
 			this.filterOptions();
 		}
+	}
+
+	@Nullable
+	@Override
+	public ControlListBox<T> getParent() {
+		return parent;
 	}
 }

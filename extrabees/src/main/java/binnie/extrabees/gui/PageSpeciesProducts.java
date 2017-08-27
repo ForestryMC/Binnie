@@ -12,10 +12,10 @@ import binnie.core.gui.database.PageSpecies;
 import binnie.core.util.I18N;
 
 public class PageSpeciesProducts extends PageSpecies {
-	ControlText title;
-	ControlProductsBox productsBox;
-	ControlText title2;
-	ControlProductsBox specialitiesBox;
+	private final ControlText title;
+	private final ControlProductsBox productsBox;
+	private final ControlText title2;
+	private final ControlProductsBox specialitiesBox;
 
 	public PageSpeciesProducts(IWidget parent, DatabaseTab tab) {
 		super(parent, tab);

@@ -56,7 +56,7 @@ public enum ExtraTreeMachine implements IMachineType {
 		return null;
 	});
 
-	Supplier<MachinePackage> supplier;
+	private final Supplier<MachinePackage> supplier;
 
 	ExtraTreeMachine(final Supplier<MachinePackage> supplier) {
 		this.supplier = supplier;
@@ -72,7 +72,7 @@ public enum ExtraTreeMachine implements IMachineType {
 	}
 
 	public static class ComponentExtraTreeGUI extends MachineComponent implements IInteraction.RightClick {
-		ExtraTreesGUID id;
+		private final ExtraTreesGUID id;
 
 		public ComponentExtraTreeGUI(final Machine machine, final ExtraTreesGUID id) {
 			super(machine);
@@ -87,8 +87,8 @@ public enum ExtraTreeMachine implements IMachineType {
 
 	public abstract static class PackageExtraTreeMachine extends MachinePackage {
 
-		protected PackageExtraTreeMachine(final String uid, final boolean powered) {
-			super(uid, powered);
+		protected PackageExtraTreeMachine(final String uid) {
+			super(uid);
 		}
 
 		@Override
@@ -96,8 +96,5 @@ public enum ExtraTreeMachine implements IMachineType {
 			return new TileEntityMachine(this);
 		}
 
-		@Override
-		public void register() {
-		}
 	}
 }

@@ -16,8 +16,8 @@ import binnie.core.gui.resource.textures.CraftGUITexture;
 
 @SideOnly(Side.CLIENT)
 public class ControlSystemButton extends Control {
-	IBreedingSystem system;
-	WindowAnalyst window;
+	private final IBreedingSystem system;
+	private final WindowAnalyst window;
 
 	public ControlSystemButton(int xPos, int yPos, WindowAnalyst window, IBreedingSystem system) {
 		super(window, xPos, yPos, 20, 20);

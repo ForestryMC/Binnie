@@ -11,6 +11,7 @@ import binnie.core.gui.minecraft.Window;
 import binnie.core.gui.minecraft.control.ControlPlayerInventory;
 import binnie.core.machines.Machine;
 import binnie.extratrees.ExtraTrees;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WindowBottleRack extends Window {
 	public WindowBottleRack(final EntityPlayer player, final IInventory inventory, final Side side) {
@@ -36,6 +37,7 @@ public class WindowBottleRack extends Window {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void initialiseClient() {
 		this.setTitle(Machine.getMachine(this.getInventory()).getPackage().getDisplayName());
 		for (int i = 0; i < 36; ++i) {

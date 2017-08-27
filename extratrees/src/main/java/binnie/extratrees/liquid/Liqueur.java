@@ -52,16 +52,16 @@ public enum Liqueur implements IFluidDefinition, ICocktailIngredientProvider {
 		Liqueur.Raspberry.addFlavour("cropRaspberry");
 	}
 
-	float abv;
-	final FluidType type;
-	final CocktailLiquid cocktailLiquid;
+	private final float abv;
+	private final FluidType type;
+	private final CocktailLiquid cocktailLiquid;
 
 	Liqueur(final String name, final int colour, final double transparency,float abv) {
 		this(name + " Liqueur", "liqueur." + name.toLowerCase(), colour, transparency, abv);
 	}
 
 	Liqueur(final String name, final String ident, final int color, final double transparency, float abv) {
-		this.abv = (float) abv;
+		this.abv = abv;
 		type = new FluidType(ident, name, color)
 			.setTransparency(transparency)
 			.setTextures(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "blocks/liquids/liquid"))

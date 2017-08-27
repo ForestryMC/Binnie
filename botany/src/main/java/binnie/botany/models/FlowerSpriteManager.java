@@ -55,11 +55,11 @@ public class FlowerSpriteManager {
 	}
 
 	private static class FlowerSprites {
-		private BinnieSprite[] stem;
-		private BinnieSprite[] variant;
-		private BinnieSprite[] petal;
-		private BinnieSprite[] unflowered;
-		private int sections;
+		private final BinnieSprite[] stem;
+		private final BinnieSprite[] variant;
+		private final BinnieSprite[] petal;
+		private final BinnieSprite[] unflowered;
+		private final int sections;
 
 		public FlowerSprites(IFlowerType type) {
 			sections = type.getSections();

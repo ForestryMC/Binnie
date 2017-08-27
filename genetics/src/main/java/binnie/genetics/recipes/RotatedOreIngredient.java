@@ -26,9 +26,9 @@ class RotatedOreIngredient extends Ingredient {
 	private final NonNullList<ItemStack> ores;
 	private final int offset;
 	@Nullable
-	private IntList itemIds = null;
+	private IntList itemIds;
 	@Nullable
-	private ItemStack[] array = null;
+	private ItemStack[] array;
 
 	public RotatedOreIngredient(String ore, int offset) {
 		super(0);

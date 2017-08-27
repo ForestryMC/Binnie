@@ -13,8 +13,8 @@ import binnie.core.gui.geometry.Point;
 
 @SideOnly(Side.CLIENT)
 public class ControlColorOption extends ControlTextOption<IFlowerColor> {
-	private ControlColorDisplay controlBee;
-	private Point boxPosition;
+	private final ControlColorDisplay controlBee;
+	private final Point boxPosition;
 
 	public ControlColorOption(ControlList<IFlowerColor> controlList, IFlowerColor option, int y) {
 		super(controlList, option, option.getColorName(), y);

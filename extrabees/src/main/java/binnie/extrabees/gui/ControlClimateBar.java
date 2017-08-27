@@ -41,8 +41,8 @@ public class ControlClimateBar extends Control implements ITooltip {
 		0x307cff
 	};
 
-	boolean isHumidity;
-	List<Integer> tolerated;
+	private final boolean isHumidity;
+	private final List<Integer> tolerated;
 
 	public ControlClimateBar(IWidget parent, int x, int y, int width, int height) {
 		this(parent, x, y, width, height, false);
@@ -50,7 +50,6 @@ public class ControlClimateBar extends Control implements ITooltip {
 
 	public ControlClimateBar(IWidget parent, int x, int y, int width, int height, boolean humidity) {
 		super(parent, x, y, width, height);
-		isHumidity = false;
 		tolerated = new ArrayList<>();
 		addAttribute(Attribute.MOUSE_OVER);
 		isHumidity = humidity;

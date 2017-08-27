@@ -17,6 +17,7 @@ import binnie.core.gui.minecraft.control.ControlSlot;
 import binnie.core.machines.Machine;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.machines.lumbermill.LumbermillMachine;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WindowLumbermill extends Window {
 	public WindowLumbermill(final EntityPlayer player, final IInventory inventory, final Side side) {
@@ -42,6 +43,7 @@ public class WindowLumbermill extends Window {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void initialiseClient() {
 		this.setTitle(Machine.getMachine(this.getInventory()).getPackage().getDisplayName());
 		new ControlSlot.Builder(this, 42, 43).assign(LumbermillMachine.SLOT_LOG);

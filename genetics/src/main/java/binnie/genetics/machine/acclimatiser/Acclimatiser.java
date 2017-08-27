@@ -30,10 +30,10 @@ public class Acclimatiser {
 	public static final int SLOT_TARGET = 4;
 	public static final int[] SLOT_ACCLIMATISER = new int[]{5, 6, 7};
 	public static final int[] SLOT_DRONE = new int[]{8, 9, 10, 11};
-	private static List<ToleranceSystem> toleranceSystems = new ArrayList<>();
-	private static List<IToleranceType> toleranceTypes = new ArrayList<>();
-	private static Map<ItemStack, Float> temperatureItems = new HashMap<>();
-	private static Map<ItemStack, Float> humidityItems = new HashMap<>();
+	private static final List<ToleranceSystem> toleranceSystems = new ArrayList<>();
+	private static final List<IToleranceType> toleranceTypes = new ArrayList<>();
+	private static final Map<ItemStack, Float> temperatureItems = new HashMap<>();
+	private static final Map<ItemStack, Float> humidityItems = new HashMap<>();
 
 	@Nullable
 	private static ToleranceSystem getToleranceSystem(final ItemStack stack, final ItemStack acclim) {

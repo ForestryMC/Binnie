@@ -70,7 +70,7 @@ public class InventorySlot extends BaseSlot<ItemStack> {
 
 	@Override
 	public SlotValidator getValidator() {
-		return (SlotValidator) this.validator;
+		return (SlotValidator) super.getValidator();
 	}
 
 	public void setType(final Type type) {

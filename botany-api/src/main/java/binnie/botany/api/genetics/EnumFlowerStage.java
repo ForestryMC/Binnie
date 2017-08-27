@@ -8,7 +8,7 @@ public enum EnumFlowerStage implements ISpeciesType {
 	POLLEN("Pollen");
 
 	public static final EnumFlowerStage[] VALUES = values();
-	String name;
+	private final String name;
 
 	EnumFlowerStage(String name) {
 		this.name = name;

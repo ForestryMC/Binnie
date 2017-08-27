@@ -14,7 +14,7 @@ public enum EnumHiveType implements IStringSerializable {
 	NETHER,
 	MARBLE;
 
-	List<IHiveDrop> drops;
+	private final List<IHiveDrop> drops;
 
 	EnumHiveType() {
 		this.drops = new ArrayList<>();

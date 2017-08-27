@@ -12,7 +12,7 @@ import binnie.core.gui.controls.listbox.ControlListBox;
 import binnie.core.gui.minecraft.Window;
 
 class ControlMutationBox extends ControlListBox<IMutation> {
-	private Type type;
+	private final Type type;
 	@Nullable
 	private IAlleleSpecies species;
 

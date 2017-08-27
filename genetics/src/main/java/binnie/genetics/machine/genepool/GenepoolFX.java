@@ -30,9 +30,9 @@ public class GenepoolFX extends MachineComponent implements IRender.DisplayTick 
 
 	@SideOnly(Side.CLIENT)
 	private static class GenepoolParticle extends Particle {
-		double axisX;
-		double axisZ;
-		double angle;
+		private double axisX;
+		private double axisZ;
+		private double angle;
 
 		public GenepoolParticle(World world, BlockPos pos, Random rand) {
 			super(world, pos.getX() + 0.3 + rand.nextDouble() * 0.4, pos.getY() + 1, pos.getZ() + 0.3 + rand.nextDouble() * 0.4, 0.0, 0.0, 0.0);

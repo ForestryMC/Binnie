@@ -94,9 +94,9 @@ public class InoculatorFX extends MachineComponent implements IRender.DisplayTic
 
 	@SideOnly(Side.CLIENT)
 	private static class InoculatorParticle extends Particle {
-		double axisX;
-		double axisZ;
-		double angle;
+		private double axisX;
+		private double axisZ;
+		private double angle;
 
 		public InoculatorParticle(World world, BlockPos pos) {
 			super(world, pos.getX() + 0.5, pos.getY() + 0.92, pos.getZ() + 0.5, 0.0, 0.0, 0.0);

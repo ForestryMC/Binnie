@@ -15,7 +15,7 @@ import binnie.core.util.I18N;
 import binnie.design.api.IToolHammer;
 
 public class ItemHammer extends Item implements IToolHammer, IItemModelRegister {
-	private boolean isDurableHammer;
+	private final boolean isDurableHammer;
 
 	public ItemHammer(boolean durable) {
 		this.isDurableHammer = durable;

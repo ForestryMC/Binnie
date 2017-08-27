@@ -944,14 +944,15 @@ public enum FlowerDefinition implements IFlowerDefinition {
 
 	public static FlowerDefinition[] VALUES = values();
 	private final IAlleleFlowerSpecies species;
-	IFlowerType<EnumFlowerType> type;
-	String name;
-	String binomial;
-	String branchName;
-	List<IAllele[]> variantTemplates;
+	private final IFlowerType<EnumFlowerType> type;
+	private final String name;
+	private final String binomial;
+	private final String branchName;
+	private final List<IAllele[]> variantTemplates;
 	@Nullable
-	IClassification branch;
-	EnumFlowerColor primaryColor, secondaryColor;
+	private IClassification branch;
+	private final EnumFlowerColor primaryColor;
+	private final EnumFlowerColor secondaryColor;
 	private IAllele[] template;
 	private IFlowerGenome genome;
 

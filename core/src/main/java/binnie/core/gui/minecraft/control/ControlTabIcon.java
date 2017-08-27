@@ -11,12 +11,12 @@ import binnie.core.gui.controls.tab.ControlTabBar;
 import binnie.core.gui.geometry.Point;
 
 public class ControlTabIcon<T> extends ControlTab<T> {
-	private ControlItemDisplay item;
+	private final ControlItemDisplay item;
 
 	public ControlTabIcon(final int x, final int y, final int w, final int h, final T value) {
 		super(x, y, w, h, value);
 		this.item = new ControlItemDisplay(this, -8 + w / 2, -8 + h / 2);
-		this.item.hastooltip = false;
+		this.item.setHasTooltip(false);
 	}
 
 	public ItemStack getItemStack() {

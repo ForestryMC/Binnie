@@ -11,7 +11,7 @@ import binnie.extrabees.utils.AlvearyMutationHandler;
 
 public class GuiContainerMutator extends GuiContainerAlvearyPart {
 
-	private String mutagens;
+	private final String mutagens;
 	private int titleS = -1;
 
 	public GuiContainerMutator(AbstractAlvearyContainer container) {

@@ -45,7 +45,7 @@ public enum EnumHoneyDrop implements IEBEnumItem {
 
 	private final int primaryColor;
 	private final int secondaryColor;
-	private String liquidName;
+	private final String liquidName;
 	private ItemStack remnant;
 
 	EnumHoneyDrop() {

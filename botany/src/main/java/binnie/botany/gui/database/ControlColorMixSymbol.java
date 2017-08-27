@@ -19,10 +19,10 @@ import binnie.core.gui.resource.textures.StandardTexture;
 import binnie.core.util.I18N;
 
 public class ControlColorMixSymbol extends Control implements ITooltip {
-	static Texture MutationPlus = new StandardTexture(2, 94, 16, 16, CraftGUITextureSheet.CONTROLS);
-	static Texture MutationArrow = new StandardTexture(20, 94, 32, 16, CraftGUITextureSheet.CONTROLS);
-	IColorMix value;
-	int type;
+	private static final Texture MUTATION_PLUS = new StandardTexture(2, 94, 16, 16, CraftGUITextureSheet.CONTROLS);
+	private static final Texture MUTATION_ARROW = new StandardTexture(20, 94, 32, 16, CraftGUITextureSheet.CONTROLS);
+	private final IColorMix value;
+	private final int type;
 
 	protected ControlColorMixSymbol(IWidget parent, int x, int y, int type, IColorMix value) {
 		super(parent, x, y, 16 + type * 16, 16);
@@ -36,9 +36,9 @@ public class ControlColorMixSymbol extends Control implements ITooltip {
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		super.onRenderBackground(guiWidth, guiHeight);
 		if (type == 0) {
-			CraftGUI.RENDER.texture(ControlColorMixSymbol.MutationPlus, Point.ZERO);
+			CraftGUI.RENDER.texture(ControlColorMixSymbol.MUTATION_PLUS, Point.ZERO);
 		} else {
-			CraftGUI.RENDER.texture(ControlColorMixSymbol.MutationArrow, Point.ZERO);
+			CraftGUI.RENDER.texture(ControlColorMixSymbol.MUTATION_ARROW, Point.ZERO);
 		}
 	}
 

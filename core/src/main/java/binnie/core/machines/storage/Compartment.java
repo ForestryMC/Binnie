@@ -35,7 +35,7 @@ enum Compartment implements IMachineType {
 
 	public abstract static class PackageCompartment extends MachinePackage {
 		protected PackageCompartment(final String uid) {
-			super(uid, false);
+			super(uid);
 		}
 
 		@Override
@@ -43,8 +43,5 @@ enum Compartment implements IMachineType {
 			return new TileEntityMachine(this);
 		}
 
-		@Override
-		public void register() {
-		}
 	}
 }

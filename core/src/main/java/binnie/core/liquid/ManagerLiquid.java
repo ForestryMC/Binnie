@@ -30,7 +30,7 @@ public class ManagerLiquid extends ManagerBase {
 	//TODO: test if the name is "Creosote Oil" and not "fluid.creosote"
 	public static final String CREOSOTE = "fluid.creosote";
 
-	private Map<String, FluidType> fluids;
+	private final Map<String, FluidType> fluids;
 
 	public ManagerLiquid() {
 		this.fluids = new LinkedHashMap<>();

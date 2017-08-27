@@ -42,12 +42,12 @@ public enum Spirit implements IFluidDefinition, ICocktailIngredientProvider {
 	ApricotLiquor("Apricot Liquor", "liquor.apricot", 13421772, 0.05, 0.4F),
 	FruitLiquor("Fruit Liquor", "liquor.fruit", 13421772, 0.05, 0.4F);
 
-	float abv;
-	FluidType type;
-	CocktailLiquid cocktailLiquid;
+	private final float abv;
+	private final FluidType type;
+	private final CocktailLiquid cocktailLiquid;
 
 	Spirit(final String name, final String ident, final int color, final double transparency, final float abv) {
-		this.abv = (float) abv;
+		this.abv = abv;
 		type = new FluidType(ident, name, color)
 			.setTextures(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "blocks/liquids/liquid"))
 			.setShowHandler(type -> type == FluidContainerType.GLASS)

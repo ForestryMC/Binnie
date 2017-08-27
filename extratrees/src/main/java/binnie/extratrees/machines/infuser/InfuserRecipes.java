@@ -11,19 +11,19 @@ import net.minecraftforge.fluids.FluidStack;
 
 public class InfuserRecipes {
 
-	static Map<Fluid, FluidStack> recipes = new HashMap<>();
+	private static final Map<Fluid, FluidStack> RECIPES = new HashMap<>();
 
 	@Nullable
 	public static FluidStack getOutput(final FluidStack fluid, final ItemStack stack) {
-		return recipes.get(fluid.getFluid());
+		return RECIPES.get(fluid.getFluid());
 	}
 
 	public static boolean isValidInputLiquid(final FluidStack fluid) {
-		return recipes.containsKey(fluid.getFluid());
+		return RECIPES.containsKey(fluid.getFluid());
 	}
 
 	public static boolean isValidOutputLiquid(final FluidStack fluid) {
-		for (final Map.Entry<Fluid, FluidStack> entry : recipes.entrySet()) {
+		for (final Map.Entry<Fluid, FluidStack> entry : RECIPES.entrySet()) {
 			if (entry.getValue().isFluidEqual(fluid)) {
 				return true;
 			}
@@ -32,6 +32,6 @@ public class InfuserRecipes {
 	}
 
 	public static void addRecipe(final FluidStack input, final FluidStack output) {
-		recipes.put(input.getFluid(), output);
+		RECIPES.put(input.getFluid(), output);
 	}
 }

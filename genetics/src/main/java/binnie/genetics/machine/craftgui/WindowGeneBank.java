@@ -42,38 +42,36 @@ import binnie.genetics.genetics.GeneTracker;
 
 public class WindowGeneBank extends WindowMachine {
 	//public static IIcon[] iconsDNA;
-	public boolean isNei;
-	ControlGeneScroll genes;
+	private final boolean master;
+	private ControlGeneScroll genes;
 
-	public WindowGeneBank(final EntityPlayer player, final IInventory inventory, final Side side) {
+	public WindowGeneBank(EntityPlayer player, IInventory inventory, Side side) {
 		this(player, inventory, side, false);
 	}
 
-	public WindowGeneBank(final EntityPlayer player, final IInventory inventory, final Side side, final boolean isNEI) {
+	public WindowGeneBank(EntityPlayer player, IInventory inventory, Side side, boolean master) {
 		super(320, 224, player, inventory, side);
-		this.isNei = isNEI;
+		this.master = master;
 	}
 
 	@Override
-	public void receiveGuiNBTOnServer(final EntityPlayer player, final String name, final NBTTagCompound nbt) {
+	public void receiveGuiNBTOnServer(EntityPlayer player, String name, NBTTagCompound nbt) {
 		super.receiveGuiNBTOnServer(player, name, nbt);
 		if (name.equals("gene-select")) {
-			final Gene gene = new Gene(nbt.getCompoundTag("gene"));
-			if (gene != null && !false) {
-				final ItemStack held = this.getHeldItemStack();
-				final ItemStack converted = Engineering.addGene(held, gene);
-				this.getPlayer().inventory.setItemStack(converted);
-				this.getPlayer().inventory.markDirty();
-				if (this.getPlayer() instanceof EntityPlayerMP) {
-					((EntityPlayerMP) this.getPlayer()).sendContainerToPlayer(player.inventoryContainer);
-				}
+			Gene gene = new Gene(nbt.getCompoundTag("gene"));
+			ItemStack held = this.getHeldItemStack();
+			ItemStack converted = Engineering.addGene(held, gene);
+			this.getPlayer().inventory.setItemStack(converted);
+			this.getPlayer().inventory.markDirty();
+			if (this.getPlayer() instanceof EntityPlayerMP) {
+				((EntityPlayerMP) this.getPlayer()).sendContainerToPlayer(player.inventoryContainer);
 			}
 		}
 	}
 
 	@Override
 	public void initialiseServer() {
-		final GeneTracker tracker = GeneTracker.getTracker(this.getWorld(), this.getUsername());
+		GeneTracker tracker = GeneTracker.getTracker(this.getWorld(), this.getUsername());
 		if (tracker != null) {
 			tracker.synchToPlayer(this.getPlayer());
 		}
@@ -148,6 +146,11 @@ public class WindowGeneBank extends WindowMachine {
 		return "GeneBank";
 	}
 
+	public boolean isMaster() {
+		return master;
+	}
+
+	// TODO: why is this unused?
 	public static class ChromosomeType {
 		IChromosomeType chromosome;
 		IBreedingSystem system;
@@ -170,7 +173,7 @@ public class WindowGeneBank extends WindowMachine {
 		}
 
 		private static class GeneBankTab extends ControlTabIcon<IBreedingSystem> {
-			private WindowGeneBank windowGeneBank;
+			private final WindowGeneBank windowGeneBank;
 
 			public GeneBankTab(WindowGeneBank windowGeneBank, int x, int y, int w, int h, IBreedingSystem value) {
 				super(x, y, w, h, value);

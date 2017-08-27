@@ -24,7 +24,7 @@ import binnie.core.gui.geometry.Area;
 import binnie.core.gui.resource.textures.CraftGUITexture;
 
 public class ControlBiomes extends Control implements ITooltip {
-	List<Integer> tolerated;
+	private final List<Integer> tolerated;
 
 	public ControlBiomes(IWidget parent, int x, int y, int width, int height) {
 		super(parent, x, y, width * 16, height * 16);

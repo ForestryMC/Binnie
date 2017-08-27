@@ -12,8 +12,8 @@ import binnie.core.machines.network.INetwork;
 import binnie.core.util.I18N;
 
 public abstract class ComponentProcessIndefinate extends MachineComponent implements IProcess, INetwork.TilePacketSync {
-	int clientEnergyPerSecond;
-	int clientInProgress;
+	private final int clientEnergyPerSecond;
+	private int clientInProgress;
 	private float energyPerTick;
 	private boolean inProgress;
 	private float actionPauseProcess;

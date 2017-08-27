@@ -38,7 +38,6 @@ import binnie.botany.api.gardening.IGardeningManager;
 import binnie.botany.api.genetics.EnumFlowerStage;
 import binnie.botany.api.genetics.IAlleleFlowerSpecies;
 import binnie.botany.api.genetics.IFlower;
-import binnie.botany.api.genetics.IFlowerColor;
 import binnie.botany.api.genetics.IFlowerGenome;
 import binnie.botany.api.genetics.IFlowerRoot;
 import binnie.botany.api.genetics.IFlowerType;
@@ -52,15 +51,15 @@ import binnie.core.BinnieCore;
 
 public class TileEntityFlower extends TileEntity implements IPollinatable, IButterflyNursery {
 	@Nullable
-	IFlower flower;
+	private IFlower flower;
 	@Nullable
-	GameProfile owner;
-	int section;
+	private GameProfile owner;
+	private int section;
 	@Nullable
-	RenderInfo renderInfo;
+	private FlowerRenderInfo renderInfo;
 	@Nullable
-	IButterfly caterpillar;
-	int matureTime;
+	private IButterfly caterpillar;
+	private int matureTime;
 
 	public TileEntityFlower() {
 		flower = null;
@@ -327,14 +326,7 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 	private NBTTagCompound writeRenderInfo(NBTTagCompound tag) {
 		if (renderInfo != null) {
 			NBTTagCompound nbtRenderInfo = new NBTTagCompound();
-			nbtRenderInfo.setByte("primary", (byte) renderInfo.primary.getID());
-			nbtRenderInfo.setByte("secondary", (byte) renderInfo.secondary.getID());
-			nbtRenderInfo.setByte("stem", (byte) renderInfo.stem.getID());
-			nbtRenderInfo.setByte("type", (byte) renderInfo.type.ordinal());
-			nbtRenderInfo.setByte("age", renderInfo.age);
-			nbtRenderInfo.setByte("section", renderInfo.section);
-			nbtRenderInfo.setBoolean("wilted", renderInfo.wilted);
-			nbtRenderInfo.setBoolean("flowered", renderInfo.flowered);
+			renderInfo.writeToNBT(nbtRenderInfo);
 			tag.setTag("renderinfo", nbtRenderInfo);
 		}
 		return tag;
@@ -343,15 +335,7 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 	private void readRenderInfo(NBTTagCompound tag) {
 		if (tag.hasKey("renderinfo")) {
 			NBTTagCompound infotag = tag.getCompoundTag("renderinfo");
-			RenderInfo info = new RenderInfo();
-			info.primary = EnumFlowerColor.values()[infotag.getByte("primary")].getFlowerColorAllele();
-			info.secondary = EnumFlowerColor.values()[infotag.getByte("secondary")].getFlowerColorAllele();
-			info.stem = EnumFlowerColor.values()[infotag.getByte("stem")].getFlowerColorAllele();
-			info.type = EnumFlowerType.values()[infotag.getByte("type")];
-			info.age = infotag.getByte("age");
-			info.section = infotag.getByte("section");
-			info.wilted = infotag.getBoolean("wilted");
-			info.flowered = infotag.getBoolean("flowered");
+			FlowerRenderInfo info = new FlowerRenderInfo(infotag);
 			setRender(info);
 		}
 	}
@@ -359,7 +343,6 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 	@Override
 	public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
 		super.onDataPacket(net, pkt);
-		// TODO client only call?
 		readRenderInfo(pkt.getNbtCompound());
 	}
 
@@ -372,14 +355,14 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 	@Override
 	public SPacketUpdateTileEntity getUpdatePacket() {
 		if (renderInfo == null && getFlower() != null) {
-			renderInfo = new RenderInfo(getFlower(), this);
+			renderInfo = new FlowerRenderInfo(getFlower(), this);
 		}
 		return (renderInfo != null) ? new SPacketUpdateTileEntity(pos, 0, getUpdateTag()) : null;
 	}
 
 	public void updateRender(boolean update) {
 		if (update && getFlower() != null && getFlower().getGenome() != null) {
-			RenderInfo newInfo = new RenderInfo(getFlower(), this);
+			FlowerRenderInfo newInfo = new FlowerRenderInfo(getFlower(), this);
 			if (renderInfo == null || !newInfo.equals(renderInfo)) {
 				setRender(newInfo);
 			}
@@ -578,17 +561,6 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 		return EnumHumidity.getFromValue(world.getBiome(getPos()).getRainfall());
 	}
 
-	public void setErrorState(int state) {
-	}
-
-	public int getErrorOrdinal() {
-		return 0;
-	}
-
-	public boolean addProduct(ItemStack product, boolean all) {
-		return false;
-	}
-
 	@Override
 	@Nullable
 	public IButterfly getCaterpillar() {
@@ -637,9 +609,9 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 		}*/
 	}
 
-	public void setRender(RenderInfo render) {
+	public void setRender(FlowerRenderInfo render) {
 		renderInfo = render;
-		section = renderInfo.section;
+		section = renderInfo.getSection();
 		if (!world.isRemote) {
 			IBlockState blockState = world.getBlockState(pos);
 			world.notifyBlockUpdate(pos, blockState, blockState, 0);
@@ -649,64 +621,48 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 	}
 
 	public int getAge() {
-		return (renderInfo == null) ? 1 : renderInfo.age;
+		return (renderInfo == null) ? 1 : renderInfo.getAge();
 	}
 
 	public int getRenderSection() {
-		return (renderInfo == null) ? 1 : renderInfo.section;
+		return (renderInfo == null) ? 1 : renderInfo.getSection();
 	}
 
 	public boolean isWilted() {
-		return renderInfo != null && renderInfo.wilted;
+		return renderInfo != null && renderInfo.isWilted();
 	}
 
 	public boolean isFlowered() {
-		return renderInfo == null || renderInfo.flowered;
+		return renderInfo == null || renderInfo.isFlowered();
 	}
 
 	public int getPrimaryColour() {
 		return (renderInfo == null)
 				? EnumFlowerColor.Red.getFlowerColorAllele().getColor(false)
-				: renderInfo.primary.getColor(isWilted());
+				: renderInfo.getPrimary().getColor(isWilted());
 	}
 
 	public int getSecondaryColour() {
 		return (renderInfo == null)
 				? EnumFlowerColor.Red.getFlowerColorAllele().getColor(false)
-				: renderInfo.secondary.getColor(isWilted());
+				: renderInfo.getSecondary().getColor(isWilted());
 	}
 
 	public int getStemColour() {
 		return (renderInfo == null)
 				? EnumFlowerColor.Green.getFlowerColorAllele().getColor(false)
-				: renderInfo.stem.getColor(isWilted());
+				: renderInfo.getStem().getColor(isWilted());
 	}
 
 	public IFlowerType getType() {
 		return (renderInfo == null)
 				? EnumFlowerType.POPPY
-				: renderInfo.type;
+				: renderInfo.getType();
 	}
 
 	@Override
 	public Biome getBiome() {
 		return getWorld().getBiome(getPos());
-	}
-
-	@Nullable
-	public IErrorState getErrorState() {
-		return null;
-	}
-
-	public void setErrorState(IErrorState state) {
-	}
-
-	public boolean setErrorCondition(boolean condition, IErrorState errorState) {
-		return false;
-	}
-
-	public Set<IErrorState> getErrorStates() {
-		return new HashSet<>();
 	}
 
 	@Override
@@ -724,37 +680,4 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 		return world;
 	}
 
-	public static class RenderInfo {
-		public IFlowerColor primary;
-		public IFlowerColor secondary;
-		public IFlowerColor stem;
-		public IFlowerType type;
-		public byte age;
-		public boolean wilted;
-		public boolean flowered;
-		public byte section;
-
-		public RenderInfo() {
-		}
-
-		public RenderInfo(IFlower flower, TileEntityFlower tile) {
-			section = (byte) tile.getSection();
-			primary = flower.getGenome().getPrimaryColor();
-			secondary = flower.getGenome().getSecondaryColor();
-			stem = flower.getGenome().getStemColor();
-			age = (byte) flower.getAge();
-			wilted = flower.isWilted();
-			flowered = flower.hasFlowered();
-			type = flower.getGenome().getType();
-		}
-
-		@Override
-		public boolean equals(Object obj) {
-			if (obj instanceof RenderInfo) {
-				RenderInfo o = (RenderInfo) obj;
-				return o.age == age && o.wilted == wilted && o.flowered == flowered && o.primary == primary && o.secondary == secondary && o.stem == stem && o.type == type;
-			}
-			return super.equals(obj);
-		}
-	}
 }

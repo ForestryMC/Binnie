@@ -25,8 +25,9 @@ import binnie.core.gui.window.WindowMachine;
 import binnie.genetics.machine.inoculator.Inoculator;
 
 public class WindowSplicer extends WindowMachine {
-	static Texture ProgressBase = new StandardTexture(0, 72, 142, 72, GeneticsTexture.GUI_PROCESS_2);
-	static Texture Progress = new StandardTexture(0, 0, 142, 72, GeneticsTexture.GUI_PROCESS_2);
+	// TODO: why are these unused?
+	private static final Texture PROGRESS_BASE = new StandardTexture(0, 72, 142, 72, GeneticsTexture.GUI_PROCESS_2);
+	private static final Texture PROGRESS = new StandardTexture(0, 0, 142, 72, GeneticsTexture.GUI_PROCESS_2);
 
 	public WindowSplicer(final EntityPlayer player, final IInventory inventory, final Side side) {
 		super(280, 240, player, inventory, side);

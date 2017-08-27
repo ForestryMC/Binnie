@@ -9,12 +9,8 @@ import binnie.core.gui.minecraft.control.ControlProgressBase;
 import binnie.core.gui.renderer.RenderUtil;
 
 public class ControlSplicerProgress extends ControlProgressBase {
-	float strength;
-
 	public ControlSplicerProgress(final IWidget parent, final int x, final int y, final int w, final int h) {
 		super(parent, x, y, w, h);
-		this.strength = 0.0f;
-		this.strength = 0.0f;
 	}
 
 	@Override

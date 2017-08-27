@@ -21,7 +21,7 @@ public class FruitPressMachine extends ExtraTreeMachine.PackageExtraTreeMachine 
 	public static final int TANK_OUTPUT_CAPACITY = 5000;
 
 	public FruitPressMachine() {
-		super("press", true);
+		super("press");
 	}
 
 	@Override
@@ -48,7 +48,4 @@ public class FruitPressMachine extends ExtraTreeMachine.PackageExtraTreeMachine 
 		return new TileEntityMachine(this);
 	}
 
-	@Override
-	public void register() {
-	}
 }

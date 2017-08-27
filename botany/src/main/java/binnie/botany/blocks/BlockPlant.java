@@ -32,7 +32,7 @@ public class BlockPlant extends BlockBush implements IItemModelRegister {
 
 	public BlockPlant() {
 		setRegistryName("plant");
-		setCreativeTab(CreativeTabBotany.instance);
+		setCreativeTab(CreativeTabBotany.INSTANCE);
 		setTickRandomly(true);
 		setSoundType(SoundType.PLANT);
 	}

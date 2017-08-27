@@ -14,7 +14,7 @@ import binnie.genetics.core.GeneticsGUI;
 public class ItemAnalyst extends ItemCore {
 	public ItemAnalyst() {
 		super("analyst");
-		this.setCreativeTab(CreativeTabGenetics.instance);
+		this.setCreativeTab(CreativeTabGenetics.INSTANCE);
 		this.setUnlocalizedName("analyst");
 		this.setMaxStackSize(1);
 	}

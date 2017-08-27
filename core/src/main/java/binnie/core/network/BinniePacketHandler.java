@@ -43,7 +43,7 @@ public abstract class BinniePacketHandler implements IMessageHandler<MessageBinn
 	@Override
 	@Nullable
 	public IMessage onMessage(final MessageBinnie message, final MessageContext ctx) {
-		final int packetId = message.id;
+		final int packetId = message.getId();
 		for (final IPacketID id : this.getProvider().getPacketIDs()) {
 			if (id.ordinal() == packetId) {
 				messageProxy.onMessage(id, message, ctx);

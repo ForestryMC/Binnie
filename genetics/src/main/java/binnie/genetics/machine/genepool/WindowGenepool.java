@@ -25,8 +25,8 @@ import binnie.genetics.core.GeneticsTexture;
 import binnie.core.gui.window.WindowMachine;
 
 public class WindowGenepool extends WindowMachine {
-	static Texture ProgressBase = new StandardTexture(64, 0, 130, 21, GeneticsTexture.GUI_PROCESS_3);
-	static Texture Progress = new StandardTexture(64, 21, 130, 21, GeneticsTexture.GUI_PROCESS_3);
+	private static final Texture PROGRESS_BASE = new StandardTexture(64, 0, 130, 21, GeneticsTexture.GUI_PROCESS_3);
+	private static final Texture PROGRESS = new StandardTexture(64, 21, 130, 21, GeneticsTexture.GUI_PROCESS_3);
 
 	public WindowGenepool(final EntityPlayer player, final IInventory inventory, final Side side) {
 		super(280, 198, player, inventory, side);
@@ -46,7 +46,7 @@ public class WindowGenepool extends WindowMachine {
 		x += 18;
 		new ControlSlot.Builder(this, x, y + 3 + 18).assign(0);
 		x += 18;
-		new ControlMachineProgress(this, x, y + 19, WindowGenepool.ProgressBase, WindowGenepool.Progress, Alignment.LEFT);
+		new ControlMachineProgress(this, x, y + 19, PROGRESS_BASE, PROGRESS, Alignment.LEFT);
 		x += 130;
 		new ControlLiquidTank(this, x, y).setTankID(0);
 		new ControlEnergyBar(this, 21, 115, 16, 60, Alignment.BOTTOM);

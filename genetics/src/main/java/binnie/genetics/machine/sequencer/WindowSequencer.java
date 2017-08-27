@@ -29,9 +29,11 @@ import binnie.genetics.core.GeneticsTexture;
 import binnie.core.gui.window.WindowMachine;
 
 public class WindowSequencer extends WindowMachine {
-	static Texture ProgressBase = new StandardTexture(64, 114, 98, 9, GeneticsTexture.GUI_PROCESS_3);
-	static Texture Progress = new StandardTexture(64, 123, 98, 9, GeneticsTexture.GUI_PROCESS_3);
-	ControlText slotText;
+	// TODO: why are these unused?
+	private static final Texture PROGRESS_BASE = new StandardTexture(64, 114, 98, 9, GeneticsTexture.GUI_PROCESS_3);
+	private static final Texture PROGRESS = new StandardTexture(64, 123, 98, 9, GeneticsTexture.GUI_PROCESS_3);
+
+	private ControlText slotText;
 
 	public WindowSequencer(final EntityPlayer player, final IInventory inventory, final Side side) {
 		super(226, 224, player, inventory, side);

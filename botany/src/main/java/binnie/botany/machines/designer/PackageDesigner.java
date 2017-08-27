@@ -21,7 +21,7 @@ public final class PackageDesigner extends MachinePackage implements IMachineInf
 	private final IDesignerType type;
 
 	public PackageDesigner(final IDesignerType type) {
-		super(type.getName(), false);
+		super(type.getName());
 		this.type = type;
 	}
 
@@ -43,7 +43,4 @@ public final class PackageDesigner extends MachinePackage implements IMachineInf
 		new ComponentDesignerRecipe(machine, this.type);
 	}
 
-	@Override
-	public void register() {
-	}
 }

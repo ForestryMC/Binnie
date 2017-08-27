@@ -23,7 +23,7 @@ public class Incubator {
 	public static final int[] SLOT_OUTPUT = new int[]{4, 5, 6};
 	public static final int TANK_INPUT = 0;
 	public static final int TANK_OUTPUT = 1;
-	private static List<IIncubatorRecipe> RECIPES = new ArrayList<>();
+	private static final List<IIncubatorRecipe> RECIPES = new ArrayList<>();
 	@Nullable
 	private static IncubatorRecipeLarvae LARVAE_RECIPE;
 

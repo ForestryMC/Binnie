@@ -7,6 +7,7 @@ import java.util.List;
 
 import binnie.core.api.gui.IPoint;
 import binnie.core.gui.geometry.Point;
+import binnie.core.util.Log;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -35,8 +36,8 @@ import binnie.core.gui.renderer.RenderUtil;
 
 @SideOnly(Side.CLIENT)
 public class GuiCraftGUI extends GuiContainer {
-	private Point mousePos;
-	private Window window;
+	private final Point mousePos;
+	private final Window window;
 	private ItemStack draggedItem;
 
 	public GuiCraftGUI(final Window window) {
@@ -133,7 +134,7 @@ public class GuiCraftGUI extends GuiContainer {
 		for (final String string : tooltip.getList()) {
 			if (string != null) {
 				if (!string.contains(Tooltip.NBT_SEPARATOR)) {
-					textLines.addAll(font.listFormattedStringToWidth(string, tooltip.maxWidth));
+					textLines.addAll(font.listFormattedStringToWidth(string, tooltip.getMaxWidth()));
 				} else {
 					textLines.add(string);
 					containsItemRender = true;
@@ -152,7 +153,7 @@ public class GuiCraftGUI extends GuiContainer {
 		}
 
 		if (!containsItemRender) {
-			GuiUtils.drawHoveringText(itemStack, textLines, mouseX, mouseY, width, height, tooltip.maxWidth, font);
+			GuiUtils.drawHoveringText(itemStack, textLines, mouseX, mouseY, width, height, tooltip.getMaxWidth(), font);
 		} else {
 			drawHoveringText(itemStack, textLines, mouseX, mouseY, font, tooltipTextWidth, tooltip);
 		}
@@ -166,7 +167,7 @@ public class GuiCraftGUI extends GuiContainer {
 
 		boolean needsWrap = false;
 
-		int maxTextWidth = tooltip.maxWidth;
+		int maxTextWidth = tooltip.getMaxWidth();
 		int titleLinesCount = 1;
 		int tooltipX = mouseX + 12;
 		if (tooltipX + tooltipTextWidth + 4 > width) {
@@ -188,7 +189,7 @@ public class GuiCraftGUI extends GuiContainer {
 
 		if (needsWrap) {
 			int wrappedTooltipWidth = 0;
-			List<String> wrappedTextLines = new ArrayList<String>();
+			List<String> wrappedTextLines = new ArrayList<>();
 			for (int i = 0; i < textLines.size(); i++) {
 				String textLine = textLines.get(i);
 				List<String> wrappedLine = font.listFormattedStringToWidth(textLine, tooltipTextWidth);
@@ -280,7 +281,7 @@ public class GuiCraftGUI extends GuiContainer {
 			RenderUtil.drawItem(Point.ZERO, stack, false);
 			GlStateManager.popMatrix();
 		} catch (NBTException e) {
-			e.printStackTrace();
+			Log.error("Failed to draw item for line: '{}'", line, e);
 		}
 	}
 

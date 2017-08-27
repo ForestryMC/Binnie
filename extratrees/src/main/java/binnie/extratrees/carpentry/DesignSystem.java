@@ -27,8 +27,8 @@ public enum DesignSystem implements IDesignSystem {
 	Wood,
 	Glass;
 
-	Map<Integer, TextureAtlasSprite> primary;
-	Map<Integer, TextureAtlasSprite> secondary;
+	private final Map<Integer, TextureAtlasSprite> primary;
+	private final Map<Integer, TextureAtlasSprite> secondary;
 
 	DesignSystem() {
 		this.primary = new HashMap<>();

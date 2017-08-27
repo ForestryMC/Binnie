@@ -6,8 +6,8 @@ import binnie.core.liquid.FluidType;
 import binnie.core.util.I18N;
 
 public class CocktailLiquid implements ICocktailLiquid {
-	private FluidType definition;
-	private float abv;
+	private final FluidType definition;
+	private final float abv;
 
 	public CocktailLiquid(FluidType definition, float abv) {
 		this.definition = definition;

@@ -45,10 +45,10 @@ import binnie.core.network.packet.MessageContainerUpdate;
 
 public class ContainerCraftGUI extends Container {
 	private final Set<EntityPlayer> crafters = Sets.newConcurrentHashSet();
-	private Window window;
-	private Map<String, NBTTagCompound> syncedNBT;
-	private Map<String, NBTTagCompound> sentNBT;
-	private Map<Integer, TankInfo> syncedTanks;
+	private final Window window;
+	private final Map<String, NBTTagCompound> syncedNBT;
+	private final Map<String, NBTTagCompound> sentNBT;
+	private final Map<Integer, TankInfo> syncedTanks;
 	private PowerInfo syncedPower;
 	private ProcessInfo syncedProcess;
 	private int errorType;
@@ -392,7 +392,7 @@ public class ContainerCraftGUI extends Container {
 		final NBTTagCompound nbt = new NBTTagCompound();
 		final List<Integer> slots = new ArrayList<>();
 		for (final TransferRequest.TransferSlot tslot : request.getInsertedSlots()) {
-			final Slot slot = this.getSlot(tslot.inventory, tslot.id);
+			final Slot slot = this.getSlot(tslot.getInventory(), tslot.getId());
 			if (slot != null) {
 				slots.add(slot.slotNumber);
 			}

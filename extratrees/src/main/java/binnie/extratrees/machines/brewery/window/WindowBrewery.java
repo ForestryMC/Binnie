@@ -18,6 +18,7 @@ import binnie.core.gui.minecraft.control.ControlSlotArray;
 import binnie.core.machines.Machine;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.machines.brewery.BreweryMachine;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WindowBrewery extends Window {
 	public static final String LANG_KEY = "extratrees.machine.machine.brewery";
@@ -45,6 +46,7 @@ public class WindowBrewery extends Window {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void initialiseClient() {
 		this.setTitle(Machine.getMachine(this.getInventory()).getPackage().getDisplayName());
 		new ControlSlotArray.Builder(this, 42, 32, 1, 3).create(BreweryMachine.SLOT_RECIPE_GRAINS);

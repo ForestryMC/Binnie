@@ -44,7 +44,7 @@ import binnie.core.util.I18N;
 public class BlockStainedGlass extends Block implements IBlockMetadata, IColoredBlock, IItemModelRegister {
 	public BlockStainedGlass() {
 		super(Material.GLASS);
-		setCreativeTab(CreativeTabBotany.instance);
+		setCreativeTab(CreativeTabBotany.INSTANCE);
 		setRegistryName("stained");
 		setSoundType(SoundType.GLASS);
 		setHardness(0.3F);

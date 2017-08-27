@@ -23,11 +23,11 @@ import binnie.core.gui.resource.textures.StandardTexture;
 import binnie.core.util.I18N;
 
 class ControlMutationSymbol extends Control implements ITooltip {
-	private static Texture MutationPlus = new StandardTexture(2, 94, 16, 16, CraftGUITextureSheet.CONTROLS);
-	private static Texture MutationArrow = new StandardTexture(20, 94, 32, 16, CraftGUITextureSheet.CONTROLS);
+	private static final Texture MutationPlus = new StandardTexture(2, 94, 16, 16, CraftGUITextureSheet.CONTROLS);
+	private static final Texture MutationArrow = new StandardTexture(20, 94, 32, 16, CraftGUITextureSheet.CONTROLS);
 	private IMutation value;
 	private boolean discovered;
-	private int type;
+	private final int type;
 
 	protected ControlMutationSymbol(final IWidget parent, final int x, final int y, final int type) {
 		super(parent, x, y, 16 + type * 16, 16);
@@ -49,9 +49,9 @@ class ControlMutationSymbol extends Control implements ITooltip {
 
 	public void setValue(final IMutation value) {
 		this.value = value;
-		final boolean isNEI = ((WindowAbstractDatabase) this.getTopParent()).isMaster();
+		final boolean isMaster = ((WindowAbstractDatabase) this.getTopParent()).isMaster();
 		final IBreedingSystem system = ((WindowAbstractDatabase) this.getTopParent()).getBreedingSystem();
-		this.discovered = (isNEI || system.isMutationDiscovered(value, Window.get(this).getWorld(), Window.get(this).getUsername()));
+		this.discovered = (isMaster || system.isMutationDiscovered(value, Window.get(this).getWorld(), Window.get(this).getUsername()));
 		if (this.discovered) {
 			this.setColor(16777215);
 		} else {

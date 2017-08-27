@@ -28,7 +28,7 @@ import binnie.extrabees.utils.Utils;
 public class AlvearyLogicFrameHousing extends AbstractAlvearyLogic {
 
 	private final IItemHandlerModifiable inv;
-	private TileEntityExtraBeesAlvearyPart tile;
+	private final TileEntityExtraBeesAlvearyPart tile;
 
 	public AlvearyLogicFrameHousing(TileEntityExtraBeesAlvearyPart tile) {
 		this.tile = tile;

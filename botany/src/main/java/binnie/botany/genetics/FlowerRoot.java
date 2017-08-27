@@ -42,12 +42,12 @@ import binnie.botany.modules.ModuleFlowers;
 import binnie.botany.tile.TileEntityFlower;
 
 public class FlowerRoot extends SpeciesRoot implements IFlowerRoot {
-	static final String UID = "rootFlowers";
-	public static int flowerSpeciesCount = -1;
-	public static ArrayList<IFlower> flowerTemplates = new ArrayList<>();
-	private static ArrayList<IFlowerMutation> flowerMutations = new ArrayList<>();
-	private static ArrayList<IColorMix> colourMixes = new ArrayList<>();
-	Map<ItemStack, IFlower> conversions;
+	private static final String UID = "rootFlowers";
+	private static int flowerSpeciesCount = -1;
+	private static final ArrayList<IFlower> flowerTemplates = new ArrayList<>();
+	private static final ArrayList<IFlowerMutation> flowerMutations = new ArrayList<>();
+	private static final ArrayList<IColorMix> colourMixes = new ArrayList<>();
+	private final Map<ItemStack, IFlower> conversions;
 
 	public FlowerRoot() {
 		conversions = new HashMap<>();

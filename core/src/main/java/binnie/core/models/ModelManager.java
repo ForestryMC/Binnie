@@ -50,9 +50,9 @@ import forestry.core.utils.ModelUtil;
 @SideOnly(Side.CLIENT)
 public class ModelManager implements IModelManager {
 
-	private final static List<BlockModelEntry> customBlockModels = new ArrayList<>();
-	private final static List<ISpriteRegister> spriteRegister = new ArrayList<>();
-	public static IModelState defaultFenceState;
+	private static final List<BlockModelEntry> customBlockModels = new ArrayList<>();
+	private static final List<ISpriteRegister> spriteRegister = new ArrayList<>();
+	private static IModelState defaultFenceState;
 	private final String modID;
 	private final List<IItemModelRegister> itemModelRegisters = new ArrayList<>();
 	private final List<IStateMapperRegister> stateMapperRegisters = new ArrayList<>();

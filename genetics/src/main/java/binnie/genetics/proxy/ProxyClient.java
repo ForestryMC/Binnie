@@ -11,7 +11,7 @@ import binnie.core.models.ModelManager;
 
 @SideOnly(Side.CLIENT)
 public class ProxyClient extends Proxy implements IGeneticsProxy {
-	public static ModelManager modelManager = new ModelManager(Constants.GENETICS_MOD_ID);
+	public static final ModelManager modelManager = new ModelManager(Constants.GENETICS_MOD_ID);
 
 	public static ModelManager getModelManager() {
 		return modelManager;

@@ -15,7 +15,7 @@ public enum ExtraTreeLiquid implements ILiquidDefinition {
 	Latex("Latex", "latex", 14212041),
 	Turpentine("Turpentine", "turpentine", 7951162);
 
-	FluidType type;
+	private final FluidType type;
 
 	ExtraTreeLiquid(final String name, final String ident, final int color) {
 		type = new FluidType(ident, name, color)

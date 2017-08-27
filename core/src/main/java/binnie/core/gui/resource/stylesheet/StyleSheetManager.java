@@ -24,14 +24,15 @@ public class StyleSheetManager implements IResourceManagerReloadListener {
 	private static Map<String, ResourceLocation> sheetLocations;
 
 	public StyleSheetManager() {
-		this.sheets = new HashMap<>();
-		this.sheetLocations = new HashMap<>();
+		sheets = new HashMap<>();
+		sheetLocations = new HashMap<>();
 		CraftGUI.styleSheetManager = this;
 		registerLocation(DEFAULT_SHEET, new ResourceLocation(Constants.CORE_MOD_ID, "gui/stylesheet.json"));
 		registerLocation(PUNNETT_SHEET, new ResourceLocation(Constants.CORE_MOD_ID, "gui/punnett_stylesheet.json"));
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onResourceManagerReload(final IResourceManager manager) {
 		sheets.clear();
 		try {

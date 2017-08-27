@@ -14,9 +14,9 @@ public class Tooltip {
 	public static final byte TYPE_ITEM = 105;
 	public static final byte TYPE_FLUID = 102;
 
-	public int maxWidth;
-	List<String> tooltip;
-	ITooltipType type;
+	private int maxWidth;
+	private final List<String> tooltip;
+	private ITooltipType type;
 	private ItemStack itemStack = ItemStack.EMPTY;
 
 	public Tooltip() {
@@ -85,6 +85,10 @@ public class Tooltip {
 		fluidStack.writeToNBT(nbt);
 		nbt.setByte(NBT_TYPE_KEY, TYPE_FLUID);
 		this.add(NBT_SEPARATOR + nbt.toString() + NBT_SEPARATOR + string);
+	}
+
+	public int getMaxWidth() {
+		return maxWidth;
 	}
 
 	public enum Type implements ITooltipType {

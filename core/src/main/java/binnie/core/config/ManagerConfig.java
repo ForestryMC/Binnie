@@ -1,18 +1,20 @@
 package binnie.core.config;
 
 import java.lang.annotation.Annotation;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import binnie.core.util.Log;
 import net.minecraftforge.common.config.Configuration;
 
 import binnie.core.AbstractMod;
 import binnie.core.ManagerBase;
 
 public class ManagerConfig extends ManagerBase {
-	private Map<Class<?>, Configuration> configurations;
+	private final Map<Class<?>, Configuration> configurations;
 
 	public ManagerConfig() {
 		this.configurations = new LinkedHashMap<>();
@@ -35,9 +37,11 @@ public class ManagerConfig extends ManagerBase {
 					if (annotation.annotationType().isAnnotationPresent(ConfigProperty.Type.class)) {
 						final Class<?> propertyClass = annotation.annotationType().getAnnotation(ConfigProperty.Type.class).propertyClass();
 						try {
-							final PropertyBase<?, ?> property = (PropertyBase<?, ?>) propertyClass.getConstructor(Field.class, BinnieConfiguration.class, ConfigProperty.class, annotation.annotationType()).newInstance(field, config, propertyAnnot, annotation.annotationType().cast(annotation));
+							Constructor<?> constructor = propertyClass.getConstructor(Field.class, BinnieConfiguration.class, ConfigProperty.class, annotation.annotationType());
+							Annotation cast = annotation.annotationType().cast(annotation);
+							final PropertyBase<?, ?> property = (PropertyBase<?, ?>) constructor.newInstance(field, config, propertyAnnot, cast);
 						} catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
-							e.printStackTrace();
+							Log.error("Failed to load configuration for property {}", propertyClass, e);
 						}
 					}
 				}

@@ -12,7 +12,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import binnie.core.gui.minecraft.Window;
 
 public final class BinnieGUIHandler implements IGuiHandler {
-	private IBinnieGUID[] guiIds;
+	private final IBinnieGUID[] guiIds;
 
 	public BinnieGUIHandler(final IBinnieGUID[] guiIds) {
 		this.guiIds = guiIds;

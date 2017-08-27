@@ -54,7 +54,7 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 		this.type = type;
 		this.weedKilled = weedKilled;
 		setUnlocalizedName("botany.soil." + type.getName());
-		setCreativeTab(CreativeTabBotany.instance);
+		setCreativeTab(CreativeTabBotany.INSTANCE);
 		setRegistryName(blockName);
 		setTickRandomly(true);
 		setLightOpacity(255);

@@ -15,8 +15,8 @@ public enum EnumTubeInsulate {
 
 	public static final EnumTubeInsulate[] VALUES = values();
 
-	int color;
-	String uid;
+	private final int color;
+	private final String uid;
 
 	EnumTubeInsulate(int color, String uid) {
 		this.color = color;

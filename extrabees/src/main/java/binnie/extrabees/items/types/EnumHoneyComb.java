@@ -564,7 +564,7 @@ public enum EnumHoneyComb implements IEBEnumItem {
 
 	private final int primaryColor;
 	private final int secondaryColor;
-	private Map<ItemStack, Float> products;
+	private final Map<ItemStack, Float> products;
 	private boolean active;
 
 	EnumHoneyComb() {

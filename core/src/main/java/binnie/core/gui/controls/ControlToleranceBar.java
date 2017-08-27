@@ -21,9 +21,9 @@ import binnie.core.gui.geometry.Border;
 import binnie.core.gui.renderer.RenderUtil;
 
 public abstract class ControlToleranceBar<T extends Enum<T>> extends Control implements ITooltip {
-	EnumSet<T> tolerated;
-	EnumSet<T> fullSet;
-	private Class<T> enumClass;
+	private final EnumSet<T> tolerated;
+	private final EnumSet<T> fullSet;
+	private final Class<T> enumClass;
 
 	public ControlToleranceBar(IWidget parent, int x, int y, int width, int height, Class<T> clss) {
 		super(parent, x, y, width, height);

@@ -320,7 +320,7 @@ public class ModuleWood implements Module {
 		}
 
 		shrubLog = new BlockShrubLog();
-		ExtraTrees.proxy.registerBlock(shrubLog, new ItemBlockETWood<BlockShrubLog>(shrubLog));
+		ExtraTrees.proxy.registerBlock(shrubLog, new ItemBlockETWood<>(shrubLog));
 		woodAccess.register(EnumShrubLog.INSTANCE, WoodBlockKind.LOG, false, shrubLog.getStateFromMeta(0), new ItemStack(shrubLog, 1, 0));
 		woodAccess.register(EnumShrubLog.INSTANCE, WoodBlockKind.LOG, true, shrubLog.getStateFromMeta(1), new ItemStack(shrubLog, 1, 1));
 	}

@@ -31,14 +31,14 @@ public enum BinnieCorePacketID implements IPacketID {
 			final MessageUpdate packet = new MessageUpdate(message);
 			final TileEntity tile = packet.getTileEntity(BinnieCore.getBinnieProxy().getWorld());
 			if (tile instanceof INetworkedEntity) {
-				((INetworkedEntity) tile).readFromPacket(packet.payload);
+				((INetworkedEntity) tile).readFromPacket(packet.getPayload());
 			}
 		} else if (this == BinnieCorePacketID.TILE_METADATA) {
 			// TODO: why doesn't this store any metadata to the packet ?
 			final MessageMetadata packet2 = new MessageMetadata(message);
 			final TileEntity tile = packet2.getTileEntity(BinnieCore.getBinnieProxy().getWorld());
 			if (tile instanceof TileEntityMetadata) {
-				((TileEntityMetadata) tile).setTileMetadata(packet2.meta, true);
+				((TileEntityMetadata) tile).setTileMetadata(packet2.getMeta(), true);
 			}
 		} else if (this == BinnieCorePacketID.CRAFT_GUI_ACTION && context.side == Side.CLIENT) {
 			final MessageCraftGUI packet3 = new MessageCraftGUI(message);

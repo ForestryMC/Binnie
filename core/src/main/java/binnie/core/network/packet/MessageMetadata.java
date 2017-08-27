@@ -8,7 +8,7 @@ import binnie.core.network.BinnieCorePacketID;
 import io.netty.buffer.ByteBuf;
 
 public class MessageMetadata extends MessageCoordinates {
-	public int meta;
+	private int meta;
 
 	public MessageMetadata(BlockPos coordinates, int meta) {
 		super(BinnieCorePacketID.TILE_METADATA.ordinal(), coordinates);
@@ -29,5 +29,9 @@ public class MessageMetadata extends MessageCoordinates {
 	public void readData(final ByteBuf data) throws IOException {
 		super.readData(data);
 		this.meta = data.readInt();
+	}
+
+	public int getMeta() {
+		return meta;
 	}
 }

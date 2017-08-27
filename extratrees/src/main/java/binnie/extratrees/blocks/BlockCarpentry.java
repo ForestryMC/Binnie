@@ -17,7 +17,7 @@ import binnie.extratrees.wood.planks.VanillaPlanks;
 public class BlockCarpentry extends BlockDesign {
 	public BlockCarpentry(String name) {
 		super(DesignSystem.Wood, Material.WOOD);
-		this.setCreativeTab(CreativeTabCarpentry.instance);
+		this.setCreativeTab(CreativeTabCarpentry.INSTANCE);
 		this.setRegistryName(name);
 		this.setResistance(5.0f);
 		this.setHardness(2.0f);

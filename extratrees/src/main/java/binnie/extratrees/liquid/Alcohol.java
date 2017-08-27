@@ -130,10 +130,10 @@ public enum Alcohol implements IFluidDefinition, ICocktailIngredientProvider {
 	Rye("mash.rye", 10836007, 0.9, 0.05F),
 	Corn("mash.corn", 13411364, 0.9, 0.05F);
 
-	final List<String> fermentationLiquid;
-	final FluidType type;
-	String fermentationSolid;
-	CocktailLiquid cocktailLiquid;
+	private final List<String> fermentationLiquid;
+	private final FluidType type;
+	private String fermentationSolid;
+	private final CocktailLiquid cocktailLiquid;
 
 	Alcohol(final String ident, final int color, final double transparency, float abv) {
 		this.fermentationLiquid = new ArrayList<>();
@@ -165,7 +165,7 @@ public enum Alcohol implements IFluidDefinition, ICocktailIngredientProvider {
 	}
 
 	protected void addFementation(final Juice juice) {
-		this.fermentationLiquid.add(juice.type.getDisplayName());
+		this.fermentationLiquid.add(juice.getType().getDisplayName());
 	}
 
 	protected void addFementation(final String oreDict) {

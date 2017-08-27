@@ -27,7 +27,7 @@ public class ETFruitProviderNone implements IFruitProvider {
 	protected final Map<ItemStack, Float> drops;
 	protected final IFruitFamily family;
 	protected final String name;
-	protected int ripeningPeriod = 2;
+	protected final int ripeningPeriod = 2;
 
 	public ETFruitProviderNone(String name, IFruitFamily family) {
 		this.name = name;

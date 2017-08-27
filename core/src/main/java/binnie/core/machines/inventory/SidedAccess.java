@@ -9,7 +9,7 @@ import java.util.Map;
 import net.minecraft.util.EnumFacing;
 
 class SidedAccess {
-	private Map<EnumFacing, AccessDirection> accesses;
+	private final Map<EnumFacing, AccessDirection> accesses;
 	private AccessDirection base;
 	private boolean insertLocked;
 	private boolean extractLocked;

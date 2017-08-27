@@ -34,10 +34,10 @@ import binnie.core.network.packet.MessageSyncTile;
 import binnie.core.network.packet.PacketPayload;
 
 public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, INetwork.TilePacketSync, IMachine, INetwork.GuiNBT {
-	private MachinePackage machinePackage;
-	private Map<Class<?>, List<MachineComponent>> componentInterfaceMap;
-	private Map<Class<?>, MachineComponent> componentMap;
-	private TileEntity tile;
+	private final MachinePackage machinePackage;
+	private final Map<Class<?>, List<MachineComponent>> componentInterfaceMap;
+	private final Map<Class<?>, MachineComponent> componentMap;
+	private final TileEntity tile;
 	private boolean queuedInventoryUpdate;
 	@Nullable
 	private GameProfile owner;

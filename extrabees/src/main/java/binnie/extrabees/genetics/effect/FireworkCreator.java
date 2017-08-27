@@ -1,6 +1,7 @@
 package binnie.extrabees.genetics.effect;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -19,10 +20,10 @@ public class FireworkCreator {
 
 	public static class Firework {
 
-		boolean flicker;
-		boolean trail;
-		ArrayList<Integer> colors;
-		byte shape;
+		private boolean flicker;
+		private boolean trail;
+		private final List<Integer> colors;
+		private byte shape;
 
 		public Firework() {
 			this.flicker = false;

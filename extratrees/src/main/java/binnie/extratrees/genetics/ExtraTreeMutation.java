@@ -20,11 +20,11 @@ import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IAlleleSpecies;
 
 public class ExtraTreeMutation implements ITreeMutation {
-	int chance;
-	boolean isSecret;
-	IAlleleTreeSpecies allele0;
-	IAlleleTreeSpecies allele1;
-	IAllele[] template;
+	private final int chance;
+	private boolean isSecret;
+	private final IAlleleTreeSpecies allele0;
+	private final IAlleleTreeSpecies allele1;
+	private final IAllele[] template;
 	private float minTemperature;
 	private float maxTemperature;
 	private float minRainfall;

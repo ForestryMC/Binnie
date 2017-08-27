@@ -12,7 +12,7 @@ import forestry.api.core.INbtWritable;
 
 public class TankInfo implements INbtReadable, INbtWritable {
 	@Nullable
-	public FluidStack liquid;
+	private FluidStack liquid;
 	private float capacity;
 
 	public TankInfo(final IFluidTank tank) {
@@ -67,5 +67,10 @@ public class TankInfo implements INbtReadable, INbtWritable {
 		this.liquid.writeToNBT(tag);
 		nbt.setTag("liquid", tag);
 		return nbt;
+	}
+
+	@Nullable
+	public FluidStack getLiquid() {
+		return liquid;
 	}
 }

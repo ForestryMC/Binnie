@@ -20,7 +20,7 @@ import mezz.jei.api.recipe.VanillaRecipeCategoryUid;
 
 public class MultiFenceRecipeRegistryPlugin implements IRecipeRegistryPlugin {
 
-	public List<IRecipeWrapper> recipes = new ArrayList<>();
+	private final List<IRecipeWrapper> recipes = new ArrayList<>();
 
 	@Override
 	public <V> List<String> getRecipeCategoryUids(IFocus<V> focus) {
@@ -35,7 +35,7 @@ public class MultiFenceRecipeRegistryPlugin implements IRecipeRegistryPlugin {
 			case INPUT:
 				desc = WoodManager.getFenceDescription(itemStack);
 				IPlankType plankType = WoodManager.getPlankType(itemStack);
-				if (plankType != null || desc != null && (!desc.getFenceType().embossed || !desc.getFenceType().embossed)) {
+				if (plankType != null || desc != null && (!desc.getFenceType().isEmbossed() || !desc.getFenceType().isEmbossed())) {
 					return Collections.singletonList(VanillaRecipeCategoryUid.CRAFTING);
 				}
 				return Collections.emptyList();
@@ -68,7 +68,7 @@ public class MultiFenceRecipeRegistryPlugin implements IRecipeRegistryPlugin {
 			for (MultiFenceRecipePattern pattern : MultiFenceRecipePattern.VALUES) {
 				recipes.add(new MultiFenceRecipeSizeWrapper(pattern));
 			}
-			for (FenceType fenceType : FenceType.VALUES) {
+			for (FenceType fenceType : FenceType.getValues()) {
 				recipes.add(new MultiFenceRecipeEmbeddedWrapper(fenceType));
 				recipes.add(new MultiFenceRecipeSolidWrapper(fenceType));
 			}
@@ -93,10 +93,10 @@ public class MultiFenceRecipeRegistryPlugin implements IRecipeRegistryPlugin {
 			} else {
 				FenceDescription desc = WoodManager.getFenceDescription(ingredient);
 				if (desc != null) {
-					if (!desc.getFenceType().embossed) {
+					if (!desc.getFenceType().isEmbossed()) {
 						recipes.add(new MultiFenceRecipeEmbeddedWrapper(desc));
 					}
-					if (!desc.getFenceType().solid) {
+					if (!desc.getFenceType().isSolid()) {
 						recipes.add(new MultiFenceRecipeSolidWrapper(desc));
 					}
 				}
@@ -104,13 +104,13 @@ public class MultiFenceRecipeRegistryPlugin implements IRecipeRegistryPlugin {
 		} else {
 			FenceDescription desc = WoodManager.getFenceDescription(ingredient);
 			if (desc != null) {
-				int size = desc.getFenceType().size;
+				int size = desc.getFenceType().getSize();
 				recipes.add(new MultiFenceRecipeSizeWrapper(MultiFenceRecipePattern.VALUES[size * 2], desc.getPlankType(), desc.getSecondaryPlankType()));
 				recipes.add(new MultiFenceRecipeSizeWrapper(MultiFenceRecipePattern.VALUES[size * 2 + 1], desc.getPlankType(), desc.getSecondaryPlankType()));
-				if (desc.getFenceType().embossed) {
+				if (desc.getFenceType().isEmbossed()) {
 					recipes.add(new MultiFenceRecipeEmbeddedWrapper(desc));
 				}
-				if (desc.getFenceType().solid) {
+				if (desc.getFenceType().isSolid()) {
 					recipes.add(new MultiFenceRecipeSolidWrapper(desc));
 				}
 			}

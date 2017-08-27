@@ -18,9 +18,9 @@ import binnie.core.machines.Machine;
 import binnie.core.machines.MachineUtil;
 
 public class ControlSequencerProgress extends ControlProgressBase {
-	static final String[] CODES = {"A", "T", "G", "C"};
-	static final TextFormatting[] COLORS = {TextFormatting.GREEN, TextFormatting.LIGHT_PURPLE, TextFormatting.AQUA, TextFormatting.RED};
-	ControlText textControl;
+	private static final String[] CODES = {"A", "T", "G", "C"};
+	private static final TextFormatting[] COLORS = {TextFormatting.GREEN, TextFormatting.LIGHT_PURPLE, TextFormatting.AQUA, TextFormatting.RED};
+	private final ControlText textControl;
 
 	public ControlSequencerProgress(final IWidget parent, final int x, final int y) {
 		super(parent, x, y, 100, 52);

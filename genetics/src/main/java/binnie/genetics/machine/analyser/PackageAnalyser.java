@@ -21,7 +21,7 @@ import binnie.genetics.machine.ModuleMachine;
 
 public class PackageAnalyser extends GeneticMachine.PackageGeneticBase implements IMachineInformation {
 	public PackageAnalyser() {
-		super("analyser", 9961727, true);
+		super("analyser", 9961727);
 	}
 
 	@Override
@@ -44,7 +44,7 @@ public class PackageAnalyser extends GeneticMachine.PackageGeneticBase implement
 		}
 		ComponentInventoryTransfer transfer = new ComponentInventoryTransfer(machine);
 		transfer.addRestock(Analyser.SLOT_RESERVE, 6, 1);
-		transfer.addStorage(6, Analyser.SLOT_FINISHED, (stack) -> ManagerGenetics.isAnalysed(stack));
+		transfer.addStorage(6, Analyser.SLOT_FINISHED, ManagerGenetics::isAnalysed);
 		new ComponentChargedSlots(machine).addCharge(13);
 		new ComponentPowerReceptor(machine, 500);
 		new AnalyserLogic(machine);
@@ -56,13 +56,9 @@ public class PackageAnalyser extends GeneticMachine.PackageGeneticBase implement
 		return new TileEntityMachine(this);
 	}
 
-	@Override
-	public void register() {
-	}
-
 	private static class DyeSlotValidator extends SlotValidator {
 		public DyeSlotValidator() {
-			super(ModuleMachine.spriteDye);
+			super(ModuleMachine.getSpriteDye());
 		}
 
 		@Override

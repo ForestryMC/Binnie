@@ -15,7 +15,7 @@ import binnie.genetics.machine.GeneticMachine;
 
 public class PackageIncubator extends GeneticMachine.PackageGeneticBase implements IMachineInformation {
 	public PackageIncubator() {
-		super("incubator", 16767313, true);
+		super("incubator", 16767313);
 	}
 
 	@Override
@@ -44,7 +44,4 @@ public class PackageIncubator extends GeneticMachine.PackageGeneticBase implemen
 		return new TileEntityMachine(this);
 	}
 
-	@Override
-	public void register() {
-	}
 }

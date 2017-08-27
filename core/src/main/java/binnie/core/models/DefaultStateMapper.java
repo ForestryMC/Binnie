@@ -7,7 +7,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class DefaultStateMapper extends StateMapperBase {
 
-	private ResourceLocation resourceLocation;
+	private final ResourceLocation resourceLocation;
 
 	public DefaultStateMapper(ResourceLocation resourceLocation) {
 		this.resourceLocation = resourceLocation;

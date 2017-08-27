@@ -20,14 +20,14 @@ import binnie.core.util.I18N;
 
 @SideOnly(Side.CLIENT)
 public class PageSpeciesOverview extends PageSpecies {
-	private ControlText controlName;
-	private ControlText controlScientific;
-	private ControlText controlAuthority;
-	private ControlText controlComplexity;
-	private ControlText controlDescription;
-	private ControlText controlSignature;
-	private ControlIndividualDisplay controlInd1;
-	private ControlIndividualDisplay controlInd2;
+	private final ControlText controlName;
+	private final ControlText controlScientific;
+	private final ControlText controlAuthority;
+	private final ControlText controlComplexity;
+	private final ControlText controlDescription;
+	private final ControlText controlSignature;
+	private final ControlIndividualDisplay controlInd1;
+	private final ControlIndividualDisplay controlInd2;
 
 	public PageSpeciesOverview(final IWidget parent, final DatabaseTab tab) {
 		super(parent, tab);

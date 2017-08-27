@@ -44,12 +44,12 @@ public enum LaboratoryMachine implements IMachineType {
 
 	public ItemStack get(final int amount) {
 		Genetics.machine();
-		return new ItemStack(ModuleMachine.packageLabMachine.getBlock(), amount, this.ordinal());
+		return new ItemStack(ModuleMachine.getPackageLabMachine().getBlock(), amount, this.ordinal());
 	}
 
 	public static class PackageLabMachine extends GeneticMachine.PackageGeneticBase {
 		public PackageLabMachine() {
-			super("lab_machine", 16777215, false);
+			super("lab_machine", 16777215);
 		}
 
 		@Override

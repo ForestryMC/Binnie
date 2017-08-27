@@ -25,7 +25,7 @@ import binnie.extratrees.machines.brewery.recipes.BreweryRecipeManager;
 
 public class BreweryLogic extends ComponentProcessSetCost implements IProcess, INetwork.GuiNBT {
 	@Nullable
-	public BreweryCrafting currentCrafting;
+	private BreweryCrafting currentCrafting;
 
 	public BreweryLogic(final Machine machine) {
 		super(machine, 16000, 800);
@@ -88,7 +88,7 @@ public class BreweryLogic extends ComponentProcessSetCost implements IProcess, I
 		if (this.canWork() == null && this.currentCrafting == null && this.getUtil().getTank(BreweryMachine.TANK_INPUT).getFluidAmount() >= Fluid.BUCKET_VOLUME) {
 			final FluidStack stack = this.getUtil().drainTank(BreweryMachine.TANK_INPUT, Fluid.BUCKET_VOLUME);
 			this.currentCrafting = this.getInputCrafting();
-			this.currentCrafting.inputFluid = stack;
+			this.currentCrafting.setInputFluid(stack);
 			this.getUtil().drainTank(BreweryMachine.TANK_INPUT,  stack.amount);
 			this.getUtil().removeIngredients(new int[]{0, 1, 2, 3, 4}, BreweryMachine.SLOTS_INVENTORY);
 		}
@@ -131,5 +131,10 @@ public class BreweryLogic extends ComponentProcessSetCost implements IProcess, I
 			return I18N.localise("extratrees.machine.machine.brewery.tooltips.empty");
 		}
 		return I18N.localise("extratrees.machine.machine.brewery.tooltips.creating", output.getFluid().getLocalizedName(output));
+	}
+
+	@Nullable
+	public BreweryCrafting getCurrentCrafting() {
+		return currentCrafting;
 	}
 }

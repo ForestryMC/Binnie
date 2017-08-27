@@ -12,6 +12,7 @@ public enum EnumAcidity implements IStringSerializable {
 	ALKALINE(TextFormatting.AQUA);
 
 	@Nullable
+	private final
 	TextFormatting color;
 
 	EnumAcidity(@Nullable TextFormatting color) {

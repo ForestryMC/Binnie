@@ -10,8 +10,8 @@ import binnie.core.resource.IBinnieTexture;
 import binnie.core.resource.ResourceType;
 
 class ParsedTextureSheet implements IBinnieTexture {
-	private String modid;
-	private String path;
+	private final String modid;
+	private final String path;
 
 	@SideOnly(Side.CLIENT)
 	@Nullable

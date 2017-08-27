@@ -8,19 +8,19 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ModelNursery extends ModelBase {
-	ModelRenderer Shape1;
-	ModelRenderer Shape2;
-	ModelRenderer Shape3;
-	ModelRenderer Shape4;
-	ModelRenderer Shape5;
-	ModelRenderer Shape6;
-	ModelRenderer Shape7;
-	ModelRenderer Shape8;
-	ModelRenderer Shape9;
-	ModelRenderer Shape10;
-	ModelRenderer Shape11;
-	ModelRenderer Shape12;
-	ModelRenderer Shape13;
+	private final ModelRenderer Shape1;
+	private final ModelRenderer Shape2;
+	private final ModelRenderer Shape3;
+	private final ModelRenderer Shape4;
+	private final ModelRenderer Shape5;
+	private final ModelRenderer Shape6;
+	private final ModelRenderer Shape7;
+	private final ModelRenderer Shape8;
+	private final ModelRenderer Shape9;
+	private final ModelRenderer Shape10;
+	private final ModelRenderer Shape11;
+	private final ModelRenderer Shape12;
+	private final ModelRenderer Shape13;
 
 	public ModelNursery() {
 		this.textureWidth = 64;

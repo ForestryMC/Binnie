@@ -24,14 +24,14 @@ public class StimulatorCircuit implements ICircuit, IBeeModifier {
 	public StimulatorCircuit(final AlvearySimulatorCircuitType type, final ICircuitLayout layout) {
 		uid = "binnie.circuit.stimulator." + type.toString().toLowerCase();
 		this.type = type;
-		ItemStack stack = new ItemStack(PluginCore.getItems().tubes, 1, type.recipe);
+		ItemStack stack = new ItemStack(PluginCore.getItems().tubes, 1, type.getRecipe());
 		ChipsetManager.circuitRegistry.registerCircuit(this);
 		ChipsetManager.solderManager.addRecipe(layout, stack, this);
 		tooltip = Lists.newArrayList();
 	}
 
 	public int getPowerUsage() {
-		return this.type.power;
+		return this.type.getPower();
 	}
 
 	public void addTooltip(String tt) {

@@ -487,8 +487,8 @@ public enum EnumDesign implements IDesign {
 		LETTERS("Letters"),
 		DIAGONAL("Diagonals");
 
-		String name;
-		List<IDesign> designs;
+		private final String name;
+		private final List<IDesign> designs;
 
 		Category(final String name) {
 			this.designs = new ArrayList<>();

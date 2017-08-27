@@ -19,7 +19,7 @@ public class CeramicColor implements IDesignMaterial {
 		}
 	}
 
-	EnumFlowerColor color;
+	private final EnumFlowerColor color;
 
 	CeramicColor(EnumFlowerColor color) {
 		this.color = color;
@@ -47,5 +47,9 @@ public class CeramicColor implements IDesignMaterial {
 	@Override
 	public int getColour() {
 		return color.getFlowerColorAllele().getColor(false);
+	}
+
+	public int getMaterialIndex() {
+		return color.ordinal();
 	}
 }

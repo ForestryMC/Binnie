@@ -25,12 +25,12 @@ public enum AdvGeneticMachine implements IMachineType {
 
 	public ItemStack get(final int i) {
 		Genetics.machine();
-		return new ItemStack(ModuleMachine.packageAdvGenetic.getBlock(), i, this.ordinal());
+		return new ItemStack(ModuleMachine.getPackageAdvGenetic().getBlock(), i, this.ordinal());
 	}
 
 	public abstract static class PackageAdvGeneticBase extends GeneticMachine.PackageGeneticBase {
 		protected PackageAdvGeneticBase(final String uid, final int flashColour, final boolean powered) {
-			super(uid, flashColour, powered);
+			super(uid, flashColour);
 		}
 	}
 }

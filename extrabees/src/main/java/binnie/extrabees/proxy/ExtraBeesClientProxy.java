@@ -104,7 +104,7 @@ public class ExtraBeesClientProxy extends ExtraBeesCommonProxy {
 		}
 
 		private static class BlockItemOverrideList extends ItemOverrideList {
-			private Block block;
+			private final Block block;
 
 			public BlockItemOverrideList(Block block) {
 				super(ImmutableList.of());

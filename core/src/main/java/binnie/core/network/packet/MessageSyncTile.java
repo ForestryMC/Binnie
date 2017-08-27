@@ -20,11 +20,10 @@ public class MessageSyncTile extends MessageNBT {
 	}
 
 	public MessageSyncTile(final int id, final TileEntity tile, final NBTTagCompound nbt) {
-		super(id);
+		super(id, nbt);
 		this.posX = tile.getPos().getX();
 		this.posY = tile.getPos().getY();
 		this.posZ = tile.getPos().getZ();
-		this.nbt = nbt;
 	}
 
 	@Override
@@ -58,15 +57,5 @@ public class MessageSyncTile extends MessageNBT {
 
 	public int getZ() {
 		return this.posZ;
-	}
-
-	@Override
-	public NBTTagCompound getTagCompound() {
-		return this.nbt;
-	}
-
-	@Override
-	void setTagCompound(final NBTTagCompound nbt) {
-		this.nbt = nbt;
 	}
 }

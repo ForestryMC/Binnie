@@ -12,7 +12,7 @@ import binnie.core.machines.MachineComponent;
 import binnie.core.machines.network.INetwork;
 
 public class ComponentChargedSlots extends MachineComponent implements INetwork.GuiNBT, IChargedSlots {
-	private Map<Integer, Float> charges;
+	private final Map<Integer, Float> charges;
 
 	public ComponentChargedSlots(final Machine machine) {
 		super(machine);

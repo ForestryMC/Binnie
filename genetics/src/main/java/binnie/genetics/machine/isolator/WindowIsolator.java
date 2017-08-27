@@ -25,8 +25,8 @@ import binnie.genetics.core.GeneticsTexture;
 import binnie.core.gui.window.WindowMachine;
 
 public class WindowIsolator extends WindowMachine {
-	static Texture ProgressBase = new StandardTexture(0, 218, 142, 17, GeneticsTexture.GUI_PROCESS_3);
-	static Texture Progress = new StandardTexture(0, 201, 142, 17, GeneticsTexture.GUI_PROCESS_3);
+	private static final Texture PROGRESS_BASE = new StandardTexture(0, 218, 142, 17, GeneticsTexture.GUI_PROCESS_3);
+	private static final Texture PROGRESS = new StandardTexture(0, 201, 142, 17, GeneticsTexture.GUI_PROCESS_3);
 
 	public WindowIsolator(final EntityPlayer player, final IInventory inventory, final Side side) {
 		super(330, 208, player, inventory, side);
@@ -48,7 +48,7 @@ public class WindowIsolator extends WindowMachine {
 		new ControlSlot.Builder(this, x, y + 36 + 3).assign(0);
 		new ControlSlotCharge(this, x + 18 + 2, y + 36 + 3, 0).setColor(15722671);
 		x += 18;
-		new ControlProgress(this, x, y + 3, WindowIsolator.ProgressBase, WindowIsolator.Progress, Alignment.LEFT);
+		new ControlProgress(this, x, y + 3, PROGRESS_BASE, PROGRESS, Alignment.LEFT);
 		x += 142;
 		new ControlSlot.Builder(this, x, y + 3).assign(6);
 		new ControlSlot.Builder(this, x, y + 3 + 36).assign(1);

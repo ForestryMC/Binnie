@@ -15,8 +15,8 @@ import forestry.core.utils.Translator;
 
 public class BeeModifierLogic {
 
-	private Map<EnumBeeModifier, Float[]> modifiers;
-	private List<EnumBeeBooleanModifier> booleanModifiers;
+	private final Map<EnumBeeModifier, Float[]> modifiers;
+	private final List<EnumBeeBooleanModifier> booleanModifiers;
 
 	public BeeModifierLogic() {
 		this.modifiers = new HashMap<>();

@@ -57,7 +57,7 @@ public class EventWidget extends Event {
 	}
 
 	public static class StartDrag extends EventWidget {
-		int button;
+		private final int button;
 
 		public StartDrag(final IWidget origin, final int button) {
 			super(origin);

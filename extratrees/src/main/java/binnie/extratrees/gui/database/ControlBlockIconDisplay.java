@@ -11,7 +11,7 @@ import binnie.core.gui.geometry.Point;
 import binnie.core.gui.renderer.RenderUtil;
 
 public class ControlBlockIconDisplay extends Control {
-	TextureAtlasSprite icon;
+	private final TextureAtlasSprite icon;
 
 	public ControlBlockIconDisplay(final IWidget parent, final int x, final int y, final TextureAtlasSprite icon) {
 		super(parent, x, y, 18, 18);

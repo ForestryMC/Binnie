@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
 
+import binnie.botany.tile.FlowerRenderInfo;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.SoundType;
@@ -153,7 +154,7 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 			if (flower != null && flower instanceof TileEntityFlower) {
 				IFlower f = flowerRoot.getMember(stack);
 				if (f != null) {
-					((TileEntityFlower) flower).setRender(new TileEntityFlower.RenderInfo(f, (TileEntityFlower) flower));
+					((TileEntityFlower) flower).setRender(new FlowerRenderInfo(f, (TileEntityFlower) flower));
 				}
 			}
 			return;

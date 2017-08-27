@@ -14,6 +14,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.io.IOUtils;
 
 import net.minecraft.client.resources.IResource;
@@ -38,6 +40,7 @@ public class StyleSheetParser {
 	public static final String PADDING_KEY = "padding";
 	public static final String TEXTURES_KEY = "textures";
 
+	@SideOnly(Side.CLIENT)
 	public static StyleSheet parseSheet(IResourceManager manager, ResourceLocation location) {
 		try {
 			IResource res = manager.getResource(location);

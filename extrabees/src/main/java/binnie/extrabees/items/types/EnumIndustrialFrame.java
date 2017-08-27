@@ -104,17 +104,17 @@ public enum EnumIndustrialFrame implements IBeeModifier {
 		}
 	};
 
-	String name;
-	float territoryMod;
-	float mutationMod;
-	float lifespanMod;
-	float productionMod;
-	float floweringMod;
-	boolean lighted;
-	boolean sunlight;
-	boolean rain;
-	int wearMod;
-	int power;
+	private final String name;
+	protected float territoryMod;
+	protected float mutationMod;
+	protected float lifespanMod;
+	protected float productionMod;
+	protected float floweringMod;
+	protected boolean lighted;
+	protected boolean sunlight;
+	protected boolean rain;
+	private final int wearMod;
+	private final int power;
 
 	EnumIndustrialFrame(final String name, final int wear, final int power) {
 		this.territoryMod = 1.0f;

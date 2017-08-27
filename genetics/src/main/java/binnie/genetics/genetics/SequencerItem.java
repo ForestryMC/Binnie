@@ -11,8 +11,8 @@ import binnie.core.genetics.Gene;
 import binnie.core.api.genetics.IGene;
 
 public class SequencerItem extends GeneItem {
-	public int sequenced;
-	public boolean analysed;
+	private int sequenced;
+	private boolean analysed;
 
 	public SequencerItem(IGene gene) {
 		super(gene);
@@ -44,5 +44,21 @@ public class SequencerItem extends GeneItem {
 		nbt.setByte("seq", (byte) sequenced);
 		nbt.setBoolean("ana", analysed);
 		return nbt;
+	}
+
+	public int getSequenced() {
+		return sequenced;
+	}
+
+	public void setSequenced(int sequenced) {
+		this.sequenced = sequenced;
+	}
+
+	public boolean isAnalysed() {
+		return analysed;
+	}
+
+	public void setAnalysed(boolean analysed) {
+		this.analysed = analysed;
 	}
 }

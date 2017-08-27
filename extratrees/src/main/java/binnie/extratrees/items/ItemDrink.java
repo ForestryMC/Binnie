@@ -145,11 +145,6 @@ public class ItemDrink extends ItemFood implements IItemModelRegister {
 	}
 
 	@Override
-	public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving) {
-		return super.onItemUseFinish(stack, worldIn, entityLiving);
-	}
-
-	@Override
 	public EnumAction getItemUseAction(final ItemStack itemStack) {
 		if (FluidUtil.getFluidContained(itemStack) != null) {
 			return EnumAction.DRINK;

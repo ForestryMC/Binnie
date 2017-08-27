@@ -32,8 +32,8 @@ public class TransferRequest {
 	private int[] targetTanks;
 	private boolean transferLiquids;
 	private boolean ignoreReadOnly;
-	private List<TransferSlot> insertedSlots;
-	private List<Integer> insertedTanks;
+	private final List<TransferSlot> insertedSlots;
+	private final List<Integer> insertedTanks;
 
 	public TransferRequest(final ItemStack toTransfer, final IInventory destination) {
 		this.itemToTransfer = ItemStack.EMPTY;
@@ -342,12 +342,20 @@ public class TransferRequest {
 	}
 
 	public static class TransferSlot {
-		public int id;
-		public IInventory inventory;
+		private final int id;
+		private final IInventory inventory;
 
 		public TransferSlot(final int id, final IInventory inventory) {
 			this.id = id;
 			this.inventory = inventory;
+		}
+
+		public int getId() {
+			return id;
+		}
+
+		public IInventory getInventory() {
+			return inventory;
 		}
 	}
 }

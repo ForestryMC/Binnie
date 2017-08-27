@@ -20,7 +20,7 @@ import binnie.core.gui.minecraft.Window;
 import binnie.core.gui.renderer.RenderUtil;
 
 public class ControlItemDisplay extends Control implements ITooltip {
-	public boolean hastooltip;
+	private boolean hasTooltip;
 	private ItemStack itemStack;
 	private boolean rotating;
 
@@ -39,12 +39,12 @@ public class ControlItemDisplay extends Control implements ITooltip {
 	public ControlItemDisplay(final IWidget parent, final int x, final int y, final int size) {
 		super(parent, x, y, size, size);
 		this.itemStack = ItemStack.EMPTY;
-		this.hastooltip = false;
+		this.hasTooltip = false;
 		this.rotating = false;
 	}
 
 	public void setTooltip() {
-		this.hastooltip = true;
+		this.hasTooltip = true;
 		this.addAttribute(Attribute.MOUSE_OVER);
 	}
 
@@ -84,7 +84,7 @@ public class ControlItemDisplay extends Control implements ITooltip {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
-		if (this.hastooltip && !this.itemStack.isEmpty()) {
+		if (this.hasTooltip && !this.itemStack.isEmpty()) {
 			List<String> itemStackTooltip = this.itemStack.getTooltip(((Window) this.getTopParent()).getPlayer(), tooltipFlag);
 			tooltip.add(itemStackTooltip);
 			tooltip.setItemStack(this.itemStack);
@@ -94,5 +94,9 @@ public class ControlItemDisplay extends Control implements ITooltip {
 
 	public void setRotating() {
 		this.rotating = true;
+	}
+
+	public void setHasTooltip(boolean hasTooltip) {
+		this.hasTooltip = hasTooltip;
 	}
 }

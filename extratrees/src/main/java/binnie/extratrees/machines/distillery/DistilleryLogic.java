@@ -23,8 +23,8 @@ public class DistilleryLogic extends ComponentProcessSetCost implements IProcess
 	public static final int INPUT_FLUID_AMOUNT = Fluid.BUCKET_VOLUME;
 
 	@Nullable
-	public FluidStack currentFluid;
-	public int level;
+	private FluidStack currentFluid;
+	private int level;
 
 	public DistilleryLogic(final Machine machine) {
 		super(machine, 16000, 800);
@@ -102,10 +102,6 @@ public class DistilleryLogic extends ComponentProcessSetCost implements IProcess
 	}
 
 	@Override
-	protected void onTickTask() {
-	}
-
-	@Override
 	public void receiveGuiNBTOnServer(final EntityPlayer player, final String name, final NBTTagCompound nbt) {
 
 	}
@@ -156,5 +152,18 @@ public class DistilleryLogic extends ComponentProcessSetCost implements IProcess
 			return I18N.localise("extratrees.machine.machine.distillery.tooltips.empty");
 		}
 		return I18N.localise("extratrees.machine.machine.distillery.tooltips.creating", output.getLocalizedName());
+	}
+
+	@Nullable
+	public FluidStack getCurrentFluid() {
+		return currentFluid;
+	}
+
+	public int getLevel() {
+		return level;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
 	}
 }

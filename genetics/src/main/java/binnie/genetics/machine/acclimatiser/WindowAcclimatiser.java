@@ -21,8 +21,8 @@ import binnie.genetics.core.GeneticsTexture;
 import binnie.core.gui.window.WindowMachine;
 
 public class WindowAcclimatiser extends WindowMachine {
-	static Texture ProgressBase = new StandardTexture(0, 64, 64, 64, GeneticsTexture.GUI_PROCESS_3);
-	static Texture Progress = new StandardTexture(0, 64, 64, 64, GeneticsTexture.GUI_PROCESS_3);
+	private static final Texture PROGRESS_BASE = new StandardTexture(0, 64, 64, 64, GeneticsTexture.GUI_PROCESS_3);
+	private static final Texture PROGRESS = new StandardTexture(0, 64, 64, 64, GeneticsTexture.GUI_PROCESS_3);
 
 	public WindowAcclimatiser(final EntityPlayer player, final IInventory inventory, final Side side) {
 		super(280, 198, player, inventory, side);
@@ -32,7 +32,7 @@ public class WindowAcclimatiser extends WindowMachine {
 	@SideOnly(Side.CLIENT)
 	public void initialiseClient() {
 		super.initialiseClient();
-		new ControlProgress(this, 65, 28 , WindowAcclimatiser.ProgressBase, WindowAcclimatiser.Progress, Alignment.RIGHT);
+		new ControlProgress(this, 65, 28 , PROGRESS_BASE, PROGRESS, Alignment.RIGHT);
 		int x = 16;
 		final int y = 32;
 		new ControlSlotArray.Builder(this, x, y, 2, 2).create(Acclimatiser.SLOT_RESERVE);

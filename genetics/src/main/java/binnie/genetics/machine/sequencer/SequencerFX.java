@@ -42,9 +42,9 @@ public class SequencerFX extends MachineComponent implements IRender.RandomDispl
 
 	@SideOnly(Side.CLIENT)
 	private static class SequencerParticleRandomTick extends Particle {
-		double axisX;
-		double axisZ;
-		double angle;
+		private double axisX;
+		private double axisZ;
+		private double angle;
 
 		public SequencerParticleRandomTick(World world, BlockPos pos, Random rand) {
 			super(world, pos.getX() + 0.5, pos.getY() + 1.2 + rand.nextDouble() * 0.2, pos.getZ() + 0.5, 0.0, 0.0, 0.0);
@@ -86,9 +86,9 @@ public class SequencerFX extends MachineComponent implements IRender.RandomDispl
 			SPRITES = new BinnieSprite[]{Sequencer.fxSeqA, Sequencer.fxSeqG, Sequencer.fxSeqC, Sequencer.fxSeqT};
 		}
 
-		double axisX;
-		double axisZ;
-		double angle;
+		private final double axisX;
+		private final double axisZ;
+		private final double angle;
 
 		public SequencerParticle(World world, BlockPos pos) {
 			super(world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, 0.0, 0.0, 0.0);

@@ -8,8 +8,8 @@ import binnie.core.gui.controls.ControlTextCentered;
 import binnie.core.util.I18N;
 
 public class PageSpeciesMutations extends PageSpecies {
-	private ControlText title;
-	private ControlMutationBox list;
+	private final ControlText title;
+	private final ControlMutationBox list;
 
 	public PageSpeciesMutations(final IWidget parent, final DatabaseTab tab) {
 		super(parent, tab);

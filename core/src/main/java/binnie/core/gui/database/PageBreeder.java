@@ -12,7 +12,7 @@ import binnie.core.gui.minecraft.Window;
 import binnie.core.util.I18N;
 
 public class PageBreeder extends ControlPage<DatabaseTab> {
-	private GameProfile player;
+	private final GameProfile player;
 
 	public PageBreeder(final IWidget parent, final GameProfile player, final DatabaseTab tab) {
 		super(parent, 0, 0, parent.getSize().xPos(), parent.getSize().yPos(), tab);

@@ -16,9 +16,9 @@ import binnie.core.gui.resource.textures.CraftGUITextureSheet;
 import binnie.core.gui.resource.textures.StandardTexture;
 
 class ControlBreedingProgress extends Control {
-	private static Texture Progress = new StandardTexture(80, 22, 4, 4, CraftGUITextureSheet.CONTROLS);
-	private float percentage;
-	private int colour;
+	private static final Texture Progress = new StandardTexture(80, 22, 4, 4, CraftGUITextureSheet.CONTROLS);
+	private final float percentage;
+	private final int colour;
 
 	public ControlBreedingProgress(final IWidget parent, final int x, final int y, final int width, final int height, final IBreedingSystem system, final float percentage) {
 		super(parent, x, y, width, height);

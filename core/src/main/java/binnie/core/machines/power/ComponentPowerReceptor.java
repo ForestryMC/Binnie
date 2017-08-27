@@ -20,11 +20,11 @@ import ic2.api.energy.tile.IEnergyTile;
 
 @Optional.Interface(iface = "binnie.core.machines.component.IBuildcraft.TriggerProvider", modid = "BuildCraft|Silicon")
 public class ComponentPowerReceptor extends MachineComponent implements IPoweredMachine/*, IBuildcraft.TriggerProvider*/, IInteraction.ChunkUnload, IInteraction.Invalidation {
-	static final int inputAverageTicks = 20;
-	float previousPower;
-	LinkedList<Float> inputs;
+	private static final int inputAverageTicks = 20;
+	private final float previousPower;
+	private final LinkedList<Float> inputs;
 	private boolean registeredToIC2EnergyNet;
-	private PowerInterface container;
+	private final PowerInterface container;
 
 	public ComponentPowerReceptor(final IMachine machine) {
 		this(machine, 1000);
@@ -39,6 +39,10 @@ public class ComponentPowerReceptor extends MachineComponent implements IPowered
 		if (!this.registeredToIC2EnergyNet) {
 			this.addToEnergyNet();
 		}
+	}
+
+	public static int getInputAverageTicks() {
+		return inputAverageTicks;
 	}
 
 	@Override
@@ -181,5 +185,13 @@ public class ComponentPowerReceptor extends MachineComponent implements IPowered
 	private void do_removeFromEnergyNet() {
 		MinecraftForge.EVENT_BUS.post(new EnergyTileUnloadEvent((IEnergyTile) this.getMachine().getTileEntity()));
 		this.registeredToIC2EnergyNet = false;
+	}
+
+	public float getPreviousPower() {
+		return previousPower;
+	}
+
+	public LinkedList<Float> getInputs() {
+		return inputs;
 	}
 }

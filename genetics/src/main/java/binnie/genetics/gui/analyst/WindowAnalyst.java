@@ -44,22 +44,22 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WindowAnalyst extends Window {
 	@Nullable
-	IWidget baseWidget;
-	ControlScrollableContent leftPage;
-	ControlScrollableContent rightPage;
+	private IWidget baseWidget;
+	private ControlScrollableContent leftPage;
+	private ControlScrollableContent rightPage;
 	@Nullable
-	Control tabBar;
-	Panel analystPanel;
-	List<ITitledWidget> analystPages;
+	private Control tabBar;
+	private Panel analystPanel;
+	private final List<ITitledWidget> analystPages;
 	@Nullable
-	IArea analystPageSize;
-	boolean isDatabase;
-	boolean isMaster;
-	boolean lockedSearch;
+	private IArea analystPageSize;
+	private final boolean isDatabase;
+	private final boolean isMaster;
+	private final boolean lockedSearch;
 	@Nullable
-	IIndividual current;
+	private IIndividual current;
 	@Nullable
-	IBreedingSystem currentSystem;
+	private IBreedingSystem currentSystem;
 	private Control analystNone;
 	private ControlSlide slideUpInv;
 
@@ -88,7 +88,7 @@ public class WindowAnalyst extends Window {
 	private void setupValidators() {
 		if (!isDatabase) {
 			getWindowInventory().setValidator(0, new AnalystSlotValidator(this));
-			getWindowInventory().setValidator(1, new SlotValidator.Item(GeneticsItems.DNADye.get(1), ModuleMachine.spriteDye));
+			getWindowInventory().setValidator(1, new SlotValidator.Item(GeneticsItems.DNADye.get(1), ModuleMachine.getSpriteDye()));
 		}
 	}
 
@@ -330,8 +330,36 @@ public class WindowAnalyst extends Window {
 		updatePages(true);
 	}
 
+	public ControlScrollableContent getLeftPage() {
+		return leftPage;
+	}
+
+	public void setLeftPage(ControlScrollableContent leftPage) {
+		this.leftPage = leftPage;
+	}
+
+	public ControlScrollableContent getRightPage() {
+		return rightPage;
+	}
+
+	public void setRightPage(ControlScrollableContent rightPage) {
+		this.rightPage = rightPage;
+	}
+
+	public void setAnalystPageSize(IArea analystPageSize) {
+		this.analystPageSize = analystPageSize;
+	}
+
+	public List<ITitledWidget> getAnalystPages() {
+		return analystPages;
+	}
+
+	public boolean isDatabase() {
+		return isDatabase;
+	}
+
 	private static class AnalystSlotValidator extends SlotValidator.Individual {
-		private WindowAnalyst windowAnalyst;
+		private final WindowAnalyst windowAnalyst;
 
 		public AnalystSlotValidator(WindowAnalyst windowAnalyst) {
 			this.windowAnalyst = windowAnalyst;
@@ -352,6 +380,7 @@ public class WindowAnalyst extends Window {
 		}
 	}
 
+	@SideOnly(Side.CLIENT)
 	private static class AnalystNoneControl extends Control {
 		public AnalystNoneControl(WindowAnalyst windowAnalyst) {
 			super(windowAnalyst.analystPanel, 0, 0, windowAnalyst.analystPanel.getWidth(), windowAnalyst.analystPanel.getHeight());

@@ -19,11 +19,11 @@ public enum ExtraTreesErrorCode implements IErrorStateDefinition {
 	LUMBERMILL_NO_SPACE_PLANKS("lumbermill.space.planks", CoreErrorCode.NO_SPACE),
 	LUMBERMILL_NO_SPACE_SAW_DUST("lumbermill.space.saw_dust", CoreErrorCode.NO_SPACE);
 
-	String name;
+	private final String name;
 	@Nullable
-	IErrorStateDefinition parent;
+	private final IErrorStateDefinition parent;
 	@Nullable
-	EnumErrorType type;
+	private final EnumErrorType type;
 
 	ExtraTreesErrorCode(String name) {
 		this(name, null, EnumErrorType.NONE);

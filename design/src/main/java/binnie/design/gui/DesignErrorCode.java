@@ -12,11 +12,11 @@ import net.minecraft.util.ResourceLocation;
 public enum DesignErrorCode implements IErrorStateDefinition {
 	DESIGNER_NO_ADHESIVE("designer.no.adhesive", CoreErrorCode.NO_ITEM);
 
-	String name;
+	private final String name;
 	@Nullable
-	IErrorStateDefinition parent;
+	private final IErrorStateDefinition parent;
 	@Nullable
-	EnumErrorType type;
+	private final EnumErrorType type;
 
 	DesignErrorCode(String name, IErrorStateDefinition parent) {
 		this(name, parent, EnumErrorType.NONE);

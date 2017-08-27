@@ -15,7 +15,7 @@ import binnie.core.gui.renderer.RenderUtil;
 
 public class ControlText extends Control implements IControlValue<String> {
 	private String text;
-	private TextJustification align;
+	private final TextJustification align;
 
 	public ControlText(final IWidget parent, final IPoint pos, final String text) {
 		this(parent, new Area(pos, new Point(500, 0)), text, TextJustification.TOP_LEFT);

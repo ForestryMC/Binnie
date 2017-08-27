@@ -43,17 +43,17 @@ import binnie.botany.tile.TileEntityFlower;
 import binnie.core.liquid.ManagerLiquid;
 
 public class GardenLogic extends FarmLogic {
-	List<IFarmable> farmables;
-	private EnumMoisture moisture;
+	private final List<IFarmable> farmables;
+	private final EnumMoisture moisture;
 	@Nullable
-	private EnumAcidity acidity;
-	private boolean fertilised;
-	private String name;
+	private final EnumAcidity acidity;
+	private final boolean fertilised;
+	private final String name;
 	private NonNullList<ItemStack> produce;
 	private ItemStack icon;
 
 	public GardenLogic(EnumMoisture moisture, @Nullable EnumAcidity acidity, boolean isManual, boolean isFertilised, ItemStack icon, String name) {
-		this.isManual = isManual;
+		this.setManual(isManual);
 		this.moisture = moisture;
 		this.acidity = acidity;
 		this.fertilised = isFertilised;
@@ -96,7 +96,7 @@ public class GardenLogic extends FarmLogic {
 	@Override
 	public boolean cultivate(World world, IFarmHousing farmHousing, BlockPos pos, FarmDirection direction, int extent) {
 		return maintainSoil(world, pos, direction, extent, farmHousing) ||
-				(!isManual && maintainWater(world, pos, direction, extent, farmHousing)) ||
+				(!isManual() && maintainWater(world, pos, direction, extent, farmHousing)) ||
 				maintainCrops(world, pos.up(), direction, extent, farmHousing);
 	}
 
@@ -150,7 +150,7 @@ public class GardenLogic extends FarmLogic {
 						setBlock(world, position, Blocks.AIR, 0);
 						return trySetSoil(world, position, loam, housing);
 					}
-				} else if (!isManual) {
+				} else if (!isManual()) {
 					if (!isWaterBlock(world, position)) {
 						if (i % 2 == 0) {
 							return trySetSoil(world, position, housing);
@@ -317,7 +317,7 @@ public class GardenLogic extends FarmLogic {
 
 	@Override
 	public Collection<ICrop> harvest(World world, BlockPos pos, FarmDirection direction, int extent) {
-		if (isManual) {
+		if (isManual()) {
 			return Collections.emptyList();
 		}
 		return farmables.stream().map(farmable -> farmable.getCropAt(world, pos.up(), world.getBlockState(pos.up())))

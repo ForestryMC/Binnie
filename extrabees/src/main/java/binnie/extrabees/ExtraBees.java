@@ -149,7 +149,7 @@ public class ExtraBees {
 		try {
 			Method m = GuiIdRegistry.class.getDeclaredMethod("registerGuiHandlers", GuiType.class, List.class);
 			m.setAccessible(true);
-			m.invoke(null, new Object[]{GuiType.Tile, Lists.newArrayList(TileEntityExtraBeesAlvearyPart.class)});
+			m.invoke(null, GuiType.Tile, Lists.newArrayList(TileEntityExtraBeesAlvearyPart.class));
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}

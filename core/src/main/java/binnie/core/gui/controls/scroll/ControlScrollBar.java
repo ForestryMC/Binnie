@@ -42,10 +42,6 @@ public class ControlScrollBar extends Control {
 	}
 
 	@Override
-	public void onUpdateClient() {
-	}
-
-	@Override
 	public boolean isEnabled() {
 		return this.scrollable.getPercentageShown() < 0.99f;
 	}

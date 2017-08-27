@@ -51,11 +51,11 @@ public class FlowerAlyzerPlugin implements IAlyzerPlugin {
 			EnumFlowerChromosome.PH_TOLERANCE
 	};
 	private int lastTopOffset;
-	private int rowSize = 12;
-	private int margin = 10;
+	private final int rowSize = 12;
+	private final int margin = 10;
 	private int guiLeft;
 	private int guiTop;
-	private HashMap<String, ItemStack> iconStacks = new HashMap<>();
+	private final HashMap<String, ItemStack> iconStacks = new HashMap<>();
 
 
 	public FlowerAlyzerPlugin() {
@@ -65,10 +65,12 @@ public class FlowerAlyzerPlugin implements IAlyzerPlugin {
 
 	}
 
+	@SideOnly(Side.CLIENT)
 	public void drawLine(GuiScreen gui, int xOffset, String msg, int color) {
 		gui.mc.fontRenderer.drawString(msg, guiLeft + xOffset, guiTop + lastTopOffset + margin, color);
 	}
 
+	@SideOnly(Side.CLIENT)
 	public void drawChromosome(GuiScreen gui, EnumFlowerChromosome chromosome, IFlower flower) {
 		drawLine(gui, COLUMN_0, StringUtils.capitalize(chromosome.getName()), 0xEEEEEE);
 		drawLine(gui, COLUMN_1, I18N.localise(flower.getGenome().getActiveAllele(chromosome).getUnlocalizedName()), 0xEEEEEE);

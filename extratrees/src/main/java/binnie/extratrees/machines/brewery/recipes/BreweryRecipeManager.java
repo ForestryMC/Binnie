@@ -19,7 +19,7 @@ import binnie.extratrees.items.ExtraTreeItems;
 
 public class BreweryRecipeManager implements IBreweryManager {
 
-	private static Set<IBreweryRecipe> recipes = new HashSet<>();
+	private static final Set<IBreweryRecipe> recipes = new HashSet<>();
 
 	public static boolean isValidGrain(final ItemStack itemstack) {
 		for (final IBreweryRecipe recipe : recipes) {
@@ -52,7 +52,7 @@ public class BreweryRecipeManager implements IBreweryManager {
 
 	@Nullable
 	public static FluidStack getOutput(final BreweryCrafting crafting) {
-		if (crafting.inputFluid != null && !crafting.yeast.isEmpty()) {
+		if (crafting.getInputFluid() != null && !crafting.getYeast().isEmpty()) {
 			for (final IBreweryRecipe recipe : recipes) {
 				FluidStack output = recipe.getOutput(crafting);
 				if (output != null) {
@@ -65,7 +65,7 @@ public class BreweryRecipeManager implements IBreweryManager {
 	
 	@Nullable
 	public static IBreweryRecipe getRecipe(final BreweryCrafting crafting) {
-		if (crafting.inputFluid != null && !crafting.yeast.isEmpty()) {
+		if (crafting.getInputFluid() != null && !crafting.getYeast().isEmpty()) {
 			for (final IBreweryRecipe recipe : recipes) {
 				FluidStack output = recipe.getOutput(crafting);
 				if (output != null) {

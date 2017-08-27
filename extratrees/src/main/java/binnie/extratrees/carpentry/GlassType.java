@@ -35,9 +35,9 @@ public class GlassType implements IDesignMaterial {
 		}
 	}
 
-	String name;
-	int colour;
-	int id;
+	private final String name;
+	private final int colour;
+	private final int id;
 
 	private GlassType(final int id, final String name, final int colour) {
 		this.id = id;
@@ -113,8 +113,8 @@ public class GlassType implements IDesignMaterial {
 		Red("Red", 10040115),
 		Black("Black", 1644825);
 
-		String name;
-		int colour;
+		private final String name;
+		private final int colour;
 
 		StandardColor(final String name, final int colour) {
 			this.name = name;

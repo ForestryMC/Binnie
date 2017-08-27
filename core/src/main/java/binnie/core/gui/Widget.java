@@ -32,12 +32,12 @@ public class Widget implements IWidget {
 	private IWidget cropWidget;
 	private boolean cropped;
 	private int color;
-	private List<IWidget> children;
-	private List<IWidgetAttribute> attributes;
+	private final List<IWidget> children;
+	private final List<IWidgetAttribute> attributes;
 	protected IPoint position;
 	protected IPoint size;
 	private IPoint offset;
-	private Collection<EventHandler<? extends Event>> eventHandlers;
+	private final Collection<EventHandler<? extends Event>> eventHandlers;
 	private boolean visible;
 
 	public Widget(@Nullable final IWidget parent) {
@@ -391,10 +391,7 @@ public class Widget implements IWidget {
 	@Override
 	public boolean isEnabled() {
 		IWidget parent = this.getParent();
-		if (parent != null && !parent.isEnabled()) {
-			return false;
-		}
-		return true;
+		return parent == null || parent.isEnabled();
 	}
 
 	@Override

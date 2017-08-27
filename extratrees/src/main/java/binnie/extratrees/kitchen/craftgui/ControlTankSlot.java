@@ -11,11 +11,10 @@ import binnie.core.gui.geometry.Area;
 import binnie.core.gui.minecraft.Window;
 
 public class ControlTankSlot extends ControlSlotFluid {
-	int tankID;
+	private final int tankID;
 
 	public ControlTankSlot(final IWidget parent, final int x, final int y, final int i) {
 		super(parent, x, y, null);
-		this.tankID = 0;
 		this.tankID = i;
 		this.addSelfEventHandler(EventMouse.Down.class, event -> {
 			if (event.getButton() == 0) {
@@ -29,7 +28,7 @@ public class ControlTankSlot extends ControlSlotFluid {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onUpdateClient() {
-		this.fluidStack = Window.get(this).getContainer().getTankInfo(this.tankID).liquid;
+		this.fluidStack = Window.get(this).getContainer().getTankInfo(this.tankID).getLiquid();
 		final int height = 16 * (((this.fluidStack == null) ? 0 : this.fluidStack.amount) / 1000);
 		this.itemDisplay.setCroppedZone(this.itemDisplay, new Area(0, 16 - height, 16, 16));
 		super.onUpdateClient();

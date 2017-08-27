@@ -5,7 +5,7 @@ import net.minecraft.client.renderer.GlStateManager;
 
 public class GuiContainerStimulator extends GuiContainerAlvearyPart {
 
-	private ContainerStimulator container;
+	private final ContainerStimulator container;
 
 	public GuiContainerStimulator(ContainerStimulator container) {
 		super(container);

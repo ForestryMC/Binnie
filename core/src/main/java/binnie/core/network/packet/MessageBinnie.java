@@ -2,13 +2,14 @@ package binnie.core.network.packet;
 
 import java.io.IOException;
 
+import binnie.core.util.Log;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 
 import io.netty.buffer.ByteBuf;
 
 public final class MessageBinnie implements IMessage {
-	public int id;
-	ByteBuf data;
+	private int id;
+	private ByteBuf data;
 	private MessageBase message;
 
 	public MessageBinnie() {
@@ -25,7 +26,7 @@ public final class MessageBinnie implements IMessage {
 		try {
 			this.message.writeData(buf);
 		} catch (IOException e) {
-			e.printStackTrace();
+			Log.error("Failed to write message data.", e);
 		}
 	}
 
@@ -33,5 +34,13 @@ public final class MessageBinnie implements IMessage {
 	public void fromBytes(final ByteBuf buf) {
 		this.id = buf.readByte();
 		this.data = buf;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public ByteBuf getData() {
+		return data;
 	}
 }

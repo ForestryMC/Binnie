@@ -26,7 +26,7 @@ import binnie.extratrees.models.ModelETDecorativeLeaves;
 
 @SideOnly(Side.CLIENT)
 public class ProxyClient extends Proxy implements IExtraTreeProxy {
-	public static ModelManager modelManager = new ModelManager(Constants.EXTRA_TREES_MOD_ID);
+	public static final ModelManager modelManager = new ModelManager(Constants.EXTRA_TREES_MOD_ID);
 
 	public static ModelManager getModelManager() {
 		return modelManager;
@@ -95,7 +95,7 @@ public class ProxyClient extends Proxy implements IExtraTreeProxy {
 	}
 
 	static class CustomMapper extends StateMapperBase {
-		ResourceLocation rl;
+		private final ResourceLocation rl;
 
 		public CustomMapper(String name) {
 			rl = new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, name);

@@ -63,10 +63,14 @@ public class WindowApiaristDatabase extends WindowAbstractDatabase {
 		ResultantMutations(0xff00ff),
 		FurtherMutations(0xff00);
 
-		public int color;
+		private final int color;
 
 		SpeciesTab(int color) {
 			this.color = color;
+		}
+
+		public int getColor() {
+			return color;
 		}
 	}
 
@@ -74,10 +78,14 @@ public class WindowApiaristDatabase extends WindowAbstractDatabase {
 		Overview(0x0000ff),
 		Species(0xff0000);
 
-		public int color;
+		private final int color;
 
 		BranchesTab(int color) {
 			this.color = color;
+		}
+
+		public int getColor() {
+			return color;
 		}
 	}
 }

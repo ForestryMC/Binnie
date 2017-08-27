@@ -17,7 +17,7 @@ public class ControlTabBar<T> extends Control implements IControlValue<T> {
 	}
 
 	private T value;
-	private Alignment alignment;
+	private final Alignment alignment;
 
 	public ControlTabBar(IWidget parent, int x, int y, int width, int height, Alignment alignment, Collection<T> values) {
 		this(parent, x, y, width, height, alignment, Iterables.get(values, 0));

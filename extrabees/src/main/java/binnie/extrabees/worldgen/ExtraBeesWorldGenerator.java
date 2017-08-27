@@ -11,17 +11,17 @@ import java.util.LinkedList;
 import java.util.Random;
 
 public class ExtraBeesWorldGenerator implements IWorldGenerator {
-	private LinkedList<WorldGenHive> worldGenHives = new LinkedList<>();
+	private final LinkedList<WorldGenHive> worldGenHives = new LinkedList<>();
 
 	public void registerHiveWorldGen(WorldGenHive hive) {
 		worldGenHives.add(hive);
 	}
 
 	public void doInit() {
-		registerHiveWorldGen(new WorldGenHiveWater(ConfigurationMain.waterHiveRate));
-		registerHiveWorldGen(new WorldGenHiveRock(ConfigurationMain.rockHiveRate));
-		registerHiveWorldGen(new WorldGenHiveNether(ConfigurationMain.netherHiveRate));
-		registerHiveWorldGen(new WorldGenHiveMarble(ConfigurationMain.marbleHiveRate));
+		registerHiveWorldGen(new WorldGenHiveWater(ConfigurationMain.getWaterHiveRate()));
+		registerHiveWorldGen(new WorldGenHiveRock(ConfigurationMain.getRockHiveRate()));
+		registerHiveWorldGen(new WorldGenHiveNether(ConfigurationMain.getNetherHiveRate()));
+		registerHiveWorldGen(new WorldGenHiveMarble(ConfigurationMain.getMarbleHiveRate()));
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package binnie.extratrees.blocks.decor;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -7,11 +8,12 @@ import java.util.List;
 import binnie.core.util.I18N;
 
 public class FenceType {
-	public static List<FenceType> VALUES;
+	@Nullable
+	private static List<FenceType> VALUES;
 
-	public int size;
-	public boolean solid;
-	public boolean embossed;
+	private final int size;
+	private final boolean solid;
+	private final boolean embossed;
 
 	public FenceType(final int size, final boolean solid, final boolean embedded) {
 		this.size = size;
@@ -25,7 +27,7 @@ public class FenceType {
 		this.embossed = ((meta >> 3 & 0x1) > 0);
 	}
 
-	public static Collection<FenceType> values() {
+	public static Collection<FenceType> getValues() {
 		if (VALUES == null) {
 			VALUES = new ArrayList<>();
 			for (int size = 0; size < 3; ++size) {
@@ -84,5 +86,17 @@ public class FenceType {
 			return o.size == this.size && o.embossed == this.embossed && o.solid == this.solid;
 		}
 		return super.equals(obj);
+	}
+
+	public int getSize() {
+		return size;
+	}
+
+	public boolean isSolid() {
+		return solid;
+	}
+
+	public boolean isEmbossed() {
+		return embossed;
 	}
 }

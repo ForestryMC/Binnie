@@ -50,11 +50,11 @@ import binnie.core.util.I18N;
 import binnie.core.util.UniqueItemStackSet;
 
 public class TreeBreedingSystem extends BreedingSystem implements binnie.genetics.api.ITreeBreedingSystem {
-	private UniqueItemStackSet allFruits;
-	private UniqueItemStackSet allWoods;
-	public UniqueItemStackSet discoveredPlanks;
-	private UniqueItemStackSet discoveredFruits;
-	private UniqueItemStackSet discoveredWoods;
+	private final UniqueItemStackSet allFruits;
+	private final UniqueItemStackSet allWoods;
+	private final UniqueItemStackSet discoveredPlanks;
+	private final UniqueItemStackSet discoveredFruits;
+	private final UniqueItemStackSet discoveredWoods;
 
 	public TreeBreedingSystem() {
 		this.allFruits = new UniqueItemStackSet();
@@ -145,8 +145,8 @@ public class TreeBreedingSystem extends BreedingSystem implements binnie.genetic
 	}
 
 	@Override
-	public Collection<IAlleleSpecies> getTreesThatBearFruit(final ItemStack fruit, final boolean nei, final World world, final GameProfile player) {
-		final Collection<IAlleleSpecies> set = nei ? this.getAllSpecies() : this.getDiscoveredSpecies(world, player);
+	public Collection<IAlleleSpecies> getTreesThatBearFruit(final ItemStack fruit, final boolean master, final World world, final GameProfile player) {
+		final Collection<IAlleleSpecies> set = master ? this.getAllSpecies() : this.getDiscoveredSpecies(world, player);
 		final List<IAlleleSpecies> found = new ArrayList<>();
 		for (final IAlleleSpecies species : set) {
 			final IAlleleTreeSpecies tSpecies = (IAlleleTreeSpecies) species;
@@ -161,8 +161,8 @@ public class TreeBreedingSystem extends BreedingSystem implements binnie.genetic
 	}
 
 	@Override
-	public Collection<IAlleleSpecies> getTreesThatCanBearFruit(final ItemStack fruit, final boolean nei, final World world, final GameProfile player) {
-		final Collection<IAlleleSpecies> set = nei ? this.getAllSpecies() : this.getDiscoveredSpecies(world, player);
+	public Collection<IAlleleSpecies> getTreesThatCanBearFruit(final ItemStack fruit, final boolean master, final World world, final GameProfile player) {
+		final Collection<IAlleleSpecies> set = master ? this.getAllSpecies() : this.getDiscoveredSpecies(world, player);
 		final List<IAlleleSpecies> found = new ArrayList<>();
 		final Set<IFruitFamily> providers = new HashSet<>();
 		for (final IAlleleSpecies species : set) {
@@ -187,8 +187,8 @@ public class TreeBreedingSystem extends BreedingSystem implements binnie.genetic
 	}
 
 	@Override
-	public Collection<IAlleleSpecies> getTreesThatHaveWood(final ItemStack wood, final boolean nei, final World world, final GameProfile player) {
-		final Collection<IAlleleSpecies> set = nei ? this.getAllSpecies() : this.getDiscoveredSpecies(world, player);
+	public Collection<IAlleleSpecies> getTreesThatHaveWood(final ItemStack wood, final boolean master, final World world, final GameProfile player) {
+		final Collection<IAlleleSpecies> set = master ? this.getAllSpecies() : this.getDiscoveredSpecies(world, player);
 		final List<IAlleleSpecies> found = new ArrayList<>();
 		for (final IAlleleSpecies species : set) {
 			IAlleleTreeSpecies tSpecies = (IAlleleTreeSpecies) species;

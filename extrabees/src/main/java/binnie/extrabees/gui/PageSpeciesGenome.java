@@ -22,17 +22,17 @@ import binnie.core.util.I18N;
 import binnie.core.genetics.AlleleHelper;
 
 public class PageSpeciesGenome extends PageSpecies {
-	ControlText title;
-	ControlText speedText;
-	ControlText lifespanText;
-	ControlText fertilityText;
-	ControlText floweringText;
-	ControlText territoryText;
-	ControlText nocturnalText;
-	ControlText caveDwellingText;
-	ControlText tolerantFlyerText;
-	ControlText flowerText;
-	ControlText effectText;
+	private final ControlText title;
+	private final ControlText speedText;
+	private final ControlText lifespanText;
+	private final ControlText fertilityText;
+	private final ControlText floweringText;
+	private final ControlText territoryText;
+	private final ControlText nocturnalText;
+	private final ControlText caveDwellingText;
+	private final ControlText tolerantFlyerText;
+	private final ControlText flowerText;
+	private final ControlText effectText;
 
 	public PageSpeciesGenome(IWidget parent, DatabaseTab tab) {
 		super(parent, tab);

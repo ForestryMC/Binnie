@@ -17,11 +17,11 @@ import mezz.jei.api.recipe.IRecipeWrapper;
 public class MultiFenceRecipeSizeWrapper implements IRecipeWrapper {
 
 	@Nullable
-	private IPlankType plankType;
+	private final IPlankType plankType;
 	@Nullable
-	private IPlankType plankTypeSecond;
-	private MultiFenceRecipePattern pattern;
-	private String[] recipePattern;
+	private final IPlankType plankTypeSecond;
+	private final MultiFenceRecipePattern pattern;
+	private final String[] recipePattern;
 
 	public MultiFenceRecipeSizeWrapper(MultiFenceRecipePattern pattern) {
 		this(pattern, null, null);

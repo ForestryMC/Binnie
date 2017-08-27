@@ -20,7 +20,7 @@ public class ItemPigment extends Item implements IItemModelRegister, IColoredIte
 	public ItemPigment() {
 		setUnlocalizedName("botany.pigment");
 		setHasSubtypes(true);
-		setCreativeTab(CreativeTabBotany.instance);
+		setCreativeTab(CreativeTabBotany.INSTANCE);
 		setRegistryName("pigment");
 	}
 

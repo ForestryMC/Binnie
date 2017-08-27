@@ -72,10 +72,6 @@ public class ControlGene extends Control implements IControlValue<IGene>, IToolt
 	}
 
 	@Override
-	public void onRenderForeground(int guiWidth, int guiHeight) {
-	}
-
-	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		if (this.isMouseOver() && this.canFill(Window.get(this).getHeldItemStack())) {

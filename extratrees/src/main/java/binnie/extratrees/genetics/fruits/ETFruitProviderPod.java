@@ -17,7 +17,7 @@ import forestry.api.genetics.IFruitFamily;
 
 public class ETFruitProviderPod extends ETFruitProviderNone {
 	@Nullable
-	private FruitPod pod;
+	private final FruitPod pod;
 
 	public ETFruitProviderPod(String name, IFruitFamily family, FruitPod pod) {
 		super(name, family);

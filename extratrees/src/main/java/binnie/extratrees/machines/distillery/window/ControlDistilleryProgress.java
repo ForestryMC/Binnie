@@ -56,7 +56,7 @@ public class ControlDistilleryProgress extends ControlProgressBase {
 		final DistilleryLogic component = Machine.getInterface(DistilleryLogic.class, Window.get(this).getInventory());
 		FluidStack stack = null;
 		if (component != null) {
-			stack = component.currentFluid;
+			stack = component.getCurrentFluid();
 		}
 		if (stack != null) {
 			for (int y = 0; y < 4; ++y) {
@@ -70,7 +70,7 @@ public class ControlDistilleryProgress extends ControlProgressBase {
 	public void onRenderForeground(int guiWidth, int guiHeight) {
 		DistilleryLogic distilleryLogic = Machine.getInterface(DistilleryLogic.class, Window.get(this).getInventory());
 		if (distilleryLogic != null) {
-			final int level = distilleryLogic.level;
+			final int level = distilleryLogic.getLevel();
 			GlStateManager.enableAlpha();
 			CraftGUI.RENDER.texture(OUTPUT, new Point(47, 14 + level * 15));
 			CraftGUI.RENDER.texture(DISTILLERY_OVERLAY, Point.ZERO);

@@ -24,8 +24,8 @@ public enum GeneticsItems implements IItemMiscProvider {
 	IntegratedCPU("Integrated CPU", "integrated_cpu"),
 	IntegratedCasing("Integrated Casing", "casing_circuit");
 
-	String name;
-	String modelPath;
+	private final String name;
+	private final String modelPath;
 
 	GeneticsItems(final String name, final String modelPath) {
 		this.name = name;

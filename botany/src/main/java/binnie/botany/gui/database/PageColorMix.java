@@ -15,8 +15,8 @@ import binnie.core.gui.database.PageAbstract;
 import binnie.core.util.I18N;
 
 public class PageColorMix extends PageAbstract<IFlowerColor> {
-	ControlText title;
-	ControlColorMixBox list;
+	private final ControlText title;
+	private final ControlColorMixBox list;
 
 	public PageColorMix(IWidget parent, DatabaseTab tab) {
 		super(parent, tab);

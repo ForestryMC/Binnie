@@ -18,9 +18,9 @@ public enum EnumColor {
 	YELLOW("Yellow", 0xffff55,'e'),
 	WHITE("White", 0xffffff,'f');
 
-	int color;
-	String name;
-	char code;
+	private final int color;
+	private final String name;
+	private final char code;
 
 	EnumColor(final String name, int color, final char code) {
 		this.name = name;

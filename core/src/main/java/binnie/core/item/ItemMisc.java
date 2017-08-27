@@ -16,7 +16,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import forestry.api.core.IModelManager;
 
 public class ItemMisc extends ItemCore {
-	private IItemMiscProvider[] items;
+	private final IItemMiscProvider[] items;
 
 	public ItemMisc(final CreativeTabs tab, final IItemMiscProvider[] items, String name) {
 		super(name);

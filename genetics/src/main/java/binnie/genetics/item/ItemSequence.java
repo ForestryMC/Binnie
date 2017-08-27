@@ -37,7 +37,7 @@ public class ItemSequence extends ItemCore implements IItemAnalysable, IItemChar
 		super("sequence");
 		this.setMaxStackSize(1);
 		this.setMaxDamage(5);
-		this.setCreativeTab(CreativeTabGenetics.instance);
+		this.setCreativeTab(CreativeTabGenetics.INSTANCE);
 	}
 
 	public static ItemStack create(final IGene gene) {
@@ -68,12 +68,12 @@ public class ItemSequence extends ItemCore implements IItemAnalysable, IItemChar
 		tooltip.add(I18N.localise("genetics.item.sequence." + (5 - itemStack.getItemDamage() % 6)));
 		SequencerItem gene = SequencerItem.create(itemStack);
 		if (gene != null) {
-			if (gene.analysed) {
+			if (gene.isAnalysed()) {
 				gene.getInfo(tooltip);
 			} else {
 				tooltip.add("<" + I18N.localise("genetics.item.sequence.unknown") + ">");
 			}
-			int seq = gene.sequenced;
+			int seq = gene.getSequenced();
 			if (seq == 0) {
 				tooltip.add(I18N.localise("genetics.item.sequence.unsequenced"));
 			} else if (seq < 100) {
@@ -96,14 +96,14 @@ public class ItemSequence extends ItemCore implements IItemAnalysable, IItemChar
 	@Override
 	public boolean isAnalysed(final ItemStack stack) {
 		final SequencerItem seq = SequencerItem.create(stack);
-		return seq != null && seq.analysed;
+		return seq != null && seq.isAnalysed();
 	}
 
 	@Override
 	public ItemStack analyse(final ItemStack stack) {
 		final SequencerItem seq = SequencerItem.create(stack);
 		Preconditions.checkNotNull(seq, "Cannot analyze itemstack that is not a valid item sequence");
-		seq.analysed = true;
+		seq.setAnalysed(true);
 		seq.writeToItem(stack);
 		return stack;
 	}

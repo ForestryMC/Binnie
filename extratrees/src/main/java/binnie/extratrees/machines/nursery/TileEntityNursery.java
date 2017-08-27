@@ -28,10 +28,6 @@ public class TileEntityNursery extends TileEntityMachine implements IButterflyNu
 		return this.getMachine().getInterface(IButterflyNursery.class);
 	}
 
-	boolean hasNursery() {
-		return this.getNursery() != null;
-	}
-
 	@Override
 	public World getWorld() {
 		return this.world;
@@ -45,10 +41,6 @@ public class TileEntityNursery extends TileEntityMachine implements IButterflyNu
 	@Override
 	public EnumHumidity getHumidity() {
 		return EnumHumidity.NORMAL;
-	}
-
-	public boolean addProduct(final ItemStack product, final boolean all) {
-		return false;
 	}
 
 	@Override
@@ -80,33 +72,6 @@ public class TileEntityNursery extends TileEntityMachine implements IButterflyNu
 	@Override
 	public Biome getBiome() {
 		return this.getWorld().getBiome(getPos());
-	}
-
-	public void setErrorState(final IErrorState state) {
-	}
-
-	@Nullable
-	public IErrorState getErrorState() {
-		return null;
-	}
-
-	public void setErrorState(final int state) {
-	}
-
-	public boolean setErrorCondition(final boolean condition, final IErrorState errorState) {
-		return false;
-	}
-
-	public Set<IErrorState> getErrorStates() {
-		return new HashSet<>();
-	}
-
-	public int getBiomeId() {
-		return 0;
-	}
-
-	public int getErrorOrdinal() {
-		return 0;
 	}
 
 	@Override

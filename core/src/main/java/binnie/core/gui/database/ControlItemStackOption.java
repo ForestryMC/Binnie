@@ -15,7 +15,7 @@ import binnie.core.gui.minecraft.control.ControlItemDisplay;
 
 @SideOnly(Side.CLIENT)
 public class ControlItemStackOption extends ControlTextOption<ItemStack> {
-	private ControlItemDisplay controlBee;
+	private final ControlItemDisplay controlBee;
 
 	public ControlItemStackOption(final ControlList<ItemStack> controlList, final ItemStack option, final int y) {
 		super(controlList, option, option.getDisplayName(), y);

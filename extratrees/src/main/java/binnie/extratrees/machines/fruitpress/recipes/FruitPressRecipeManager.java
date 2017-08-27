@@ -16,7 +16,7 @@ import binnie.extratrees.api.recipes.IFruitPressRecipe;
 
 public class FruitPressRecipeManager implements IFruitPressManager {
 	//Map<input fruit item, Pair<input fruit, output fluid>>
-	private static Multimap<Item, IFruitPressRecipe> recipes = ArrayListMultimap.create();
+	private static final Multimap<Item, IFruitPressRecipe> recipes = ArrayListMultimap.create();
 
 	public static boolean isInput(final ItemStack itemstack) {
 		return getOutput(itemstack) != null;

@@ -18,7 +18,7 @@ import net.minecraft.util.NonNullList;
 
 public class PackageAcclimatiser extends GeneticMachine.PackageGeneticBase implements IMachineInformation {
 	public PackageAcclimatiser() {
-		super("acclimatiser", 9857609, true);
+		super("acclimatiser", 9857609);
 	}
 
 	@Override
@@ -55,7 +55,4 @@ public class PackageAcclimatiser extends GeneticMachine.PackageGeneticBase imple
 		return new TileEntityMachine(this);
 	}
 
-	@Override
-	public void register() {
-	}
 }

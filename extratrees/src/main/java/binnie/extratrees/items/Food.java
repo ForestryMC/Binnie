@@ -283,10 +283,10 @@ public enum Food implements IItemMiscProvider {
 	STARFRUIT(2),
 	CANDLENUT(0);
 
-	public static Food[] VALUES = values();
+	public static final Food[] VALUES = values();
 
-	int hunger;
-	private List<String> ores;
+	private final int hunger;
+	private final List<String> ores;
 
 	Food(final int hunger) {
 		this.ores = new ArrayList<>();

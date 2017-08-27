@@ -15,7 +15,7 @@ public class ItemBotany extends Item implements IItemModelRegister {
 	public ItemBotany(String registryName) {
 		setRegistryName(registryName);
 		setUnlocalizedName(registryName);
-		setCreativeTab(CreativeTabBotany.instance);
+		setCreativeTab(CreativeTabBotany.INSTANCE);
 	}
 
 	@SideOnly(Side.CLIENT)

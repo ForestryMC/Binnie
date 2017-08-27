@@ -53,13 +53,13 @@ import binnie.botany.modules.ModuleFlowers;
 import binnie.core.util.I18N;
 
 public class ItemFlowerGE extends Item implements IColoredItem, IItemModelRegister {
-	private EnumFlowerStage type;
-	private String tag;
+	private final EnumFlowerStage type;
+	private final String tag;
 
 	public ItemFlowerGE(String name, EnumFlowerStage type, String tag) {
 		this.type = type;
 		this.tag = tag;
-		setCreativeTab(CreativeTabBotany.instance);
+		setCreativeTab(CreativeTabBotany.INSTANCE);
 		setUnlocalizedName(name);
 		setRegistryName(name);
 		hasSubtypes = true;

@@ -15,13 +15,13 @@ import binnie.core.gui.database.PageAbstract;
 import binnie.core.util.I18N;
 
 public class PageColorMixResultant extends PageAbstract<IFlowerColor> {
-	ControlText pageSpeciesFurther_Title;
-	ControlColorMixBox pageSpeciesFurther_List;
+	private final ControlText pageSpeciesFurtherTitle;
+	private final ControlColorMixBox pageSpeciesFurtherList;
 
 	public PageColorMixResultant(IWidget parent, DatabaseTab tab) {
 		super(parent, tab);
-		pageSpeciesFurther_Title = new ControlTextCentered(this, 8, I18N.localise(DatabaseConstants.BOTANY_PAGES_KEY + ".species_further.title"));
-		pageSpeciesFurther_List = new ControlColorMixBox(this, 4, 20, 136, 152, ControlColorMixBox.Type.RESULTANT);
+		pageSpeciesFurtherTitle = new ControlTextCentered(this, 8, I18N.localise(DatabaseConstants.BOTANY_PAGES_KEY + ".species_further.title"));
+		pageSpeciesFurtherList = new ControlColorMixBox(this, 4, 20, 136, 152, ControlColorMixBox.Type.RESULTANT);
 	}
 
 	@Override
@@ -32,6 +32,6 @@ public class PageColorMixResultant extends PageAbstract<IFlowerColor> {
 				mixes.add(mix);
 			}
 		}
-		pageSpeciesFurther_List.setOptions(mixes);
+		pageSpeciesFurtherList.setOptions(mixes);
 	}
 }

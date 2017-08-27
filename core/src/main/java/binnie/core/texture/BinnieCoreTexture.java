@@ -16,8 +16,8 @@ public enum BinnieCoreTexture implements IBinnieTexture {
 	GUI_ANALYST(ResourceType.GUI, "guianalyst"),
 	GUI_PUNNETT(ResourceType.GUI, "punnett");
 
-	String texture;
-	ResourceType type;
+	private final String texture;
+	private final ResourceType type;
 
 	@SideOnly(Side.CLIENT)
 	@Nullable

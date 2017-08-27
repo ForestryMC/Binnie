@@ -102,7 +102,7 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister {
 		if (entityLiving instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer) entityLiving;
 			player.getFoodStats().addStats(this, stack);
-			world.playSound((EntityPlayer) null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
+			world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
 			onFoodEaten(stack, world, player);
 			return this.container.getEmpty();
 		}
@@ -185,8 +185,8 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister {
 	@SideOnly(Side.CLIENT)
 	private class FluidContainerMeshDefinition implements ItemMeshDefinition {
 
-		final ModelResourceLocation location;
-		final ModelResourceLocation empty;
+		private final ModelResourceLocation location;
+		private final ModelResourceLocation empty;
 
 		public FluidContainerMeshDefinition() {
 			ResourceLocation location = getRegistryName();

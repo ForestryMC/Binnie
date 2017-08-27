@@ -22,11 +22,9 @@ public enum CoreErrorCode implements IErrorStateDefinition {
 	TASK_CANCELLED("task.cancelled"),
 	TASK_PAUSED("task.paused");
 	
-	String name;
-	@Nullable
-	IErrorStateDefinition parent;
-	@Nullable
-	EnumErrorType type;
+	private final String name;
+	private final IErrorStateDefinition parent;
+	private final EnumErrorType type;
 	
 	CoreErrorCode(String name) {
 		this(name, null, EnumErrorType.NONE);
@@ -40,7 +38,7 @@ public enum CoreErrorCode implements IErrorStateDefinition {
 		this(name, parent, EnumErrorType.NONE);
 	}
 	
-	CoreErrorCode(String name, IErrorStateDefinition parent, EnumErrorType type) {
+	CoreErrorCode(String name, @Nullable IErrorStateDefinition parent, EnumErrorType type) {
 		this.name = name;
 		this.parent = parent;
 		this.type = type;

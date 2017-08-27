@@ -39,8 +39,8 @@ import binnie.core.ManagerBase;
 
 public class ManagerGenetics extends ManagerBase {
 	private final Map<ISpeciesRoot, IBreedingSystem> BREEDING_SYSTEMS;
-	private List<IChromosomeType> invalidChromosomeTypes;
-	private Map<ISpeciesRoot, Map<IChromosomeType, List<IAllele>>> chromosomeArray;
+	private final List<IChromosomeType> invalidChromosomeTypes;
+	private final Map<ISpeciesRoot, Map<IChromosomeType, List<IAllele>>> chromosomeArray;
 
 	public ManagerGenetics() {
 		this.BREEDING_SYSTEMS = new LinkedHashMap<>();

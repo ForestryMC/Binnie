@@ -10,7 +10,7 @@ import binnie.core.gui.geometry.Point;
 import binnie.core.gui.resource.textures.Texture;
 
 public class ControlImage extends Control {
-	private Object key;
+	private final Object key;
 
 	public ControlImage(final IWidget parent, final int x, final int y, final Texture text) {
 		super(parent, x, y, text.width(), text.height());

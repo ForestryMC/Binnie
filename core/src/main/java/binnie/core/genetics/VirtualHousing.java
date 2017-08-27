@@ -1,10 +1,6 @@
 package binnie.core.genetics;
 
-import java.util.Collections;
-import java.util.Set;
-
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -13,11 +9,10 @@ import com.mojang.authlib.GameProfile;
 
 import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
-import forestry.api.core.IErrorState;
 import forestry.api.genetics.IHousing;
 
 class VirtualHousing implements IHousing {
-	private EntityPlayer player;
+	private final EntityPlayer player;
 
 	public VirtualHousing(final EntityPlayer player) {
 		this.player = player;
@@ -47,38 +42,12 @@ class VirtualHousing implements IHousing {
 		return this.player.world;
 	}
 
-	public void setErrorState(final int state) {
-	}
-
-	public int getErrorOrdinal() {
-		return 0;
-	}
-
-	public boolean addProduct(final ItemStack product, final boolean all) {
-		return false;
-	}
-
 	public GameProfile getOwnerName() {
 		return this.player.getGameProfile();
 	}
 
 	public Biome getBiome() {
 		return this.player.world.getBiome(getCoordinates());
-	}
-
-	/*public EnumErrorCode getErrorState() {
-		return null;
-	}*/
-
-	public void setErrorState(final IErrorState state) {
-	}
-
-	public boolean setErrorCondition(final boolean condition, final IErrorState errorState) {
-		return false;
-	}
-
-	public Set<IErrorState> getErrorStates() {
-		return Collections.emptySet();
 	}
 
 	@Override

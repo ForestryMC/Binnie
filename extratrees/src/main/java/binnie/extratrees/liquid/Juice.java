@@ -34,9 +34,9 @@ public enum Juice implements IFluidDefinition, ICocktailIngredientProvider {
 	WhiteGrape("White Grape Juice", "juice.white.grape", 16507769, 0.6, "WhiteGrape"),
 	RedGrape("Red Grape Juice", "juice.red.grape", 9775412, 0.6, "RedGrape");
 
-	public String squeezing;
-	FluidType type;
-	CocktailLiquid cocktailLiquid;
+	private String squeezing;
+	private final FluidType type;
+	private final CocktailLiquid cocktailLiquid;
 
 	Juice(final String name, final String ident, final int colour, final double transparency, final String squeezing) {
 		this.addSqueezing("crop" + squeezing);
@@ -70,5 +70,9 @@ public enum Juice implements IFluidDefinition, ICocktailIngredientProvider {
 	@Override
 	public FluidType getType() {
 		return type;
+	}
+
+	public String getSqueezing() {
+		return squeezing;
 	}
 }

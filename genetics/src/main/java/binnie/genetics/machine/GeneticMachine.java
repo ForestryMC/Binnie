@@ -33,14 +33,14 @@ public enum GeneticMachine implements IMachineType {
 
 	public ItemStack get(final int i) {
 		Genetics.machine();
-		return new ItemStack(ModuleMachine.packageGenetic.getBlock(), i, this.ordinal());
+		return new ItemStack(ModuleMachine.getPackageGenetic().getBlock(), i, this.ordinal());
 	}
 
 	public abstract static class PackageGeneticBase extends MachinePackage {
 		private final int colour;
 
-		protected PackageGeneticBase(final String uid, final int flashColour, final boolean powered) {
-			super(uid, powered);
+		protected PackageGeneticBase(final String uid, final int flashColour) {
+			super(uid);
 			this.colour = flashColour;
 		}
 
@@ -49,8 +49,5 @@ public enum GeneticMachine implements IMachineType {
 			return new TileEntityMachine(this);
 		}
 
-		@Override
-		public void register() {
-		}
 	}
 }

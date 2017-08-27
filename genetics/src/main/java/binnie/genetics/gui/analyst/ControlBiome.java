@@ -69,6 +69,7 @@ public class ControlBiome extends Control implements ITooltip {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void getTooltip(Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		tooltip.add(biome.getBiomeName().replaceAll("(\\p{Ll})(\\p{Lu})", "$1 $2"));
 	}

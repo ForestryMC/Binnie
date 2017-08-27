@@ -140,11 +140,6 @@ public class InoculatorLogic extends ComponentProcess implements IProcess {
 	}
 
 	@Override
-	public ErrorState canProgress() {
-		return super.canProgress();
-	}
-
-	@Override
 	protected void onFinishTask() {
 		super.onFinishTask();
 		MachineUtil util = this.getUtil();

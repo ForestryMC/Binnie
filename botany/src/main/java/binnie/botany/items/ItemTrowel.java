@@ -47,7 +47,7 @@ public class ItemTrowel extends Item implements IItemModelRegister {
 		theToolMaterial = toolMaterial;
 		setMaxStackSize(1);
 		setMaxDamage(toolMaterial.getMaxUses());
-		setCreativeTab(CreativeTabBotany.instance);
+		setCreativeTab(CreativeTabBotany.INSTANCE);
 		modelName = "trowel_" + materialName;
 		setUnlocalizedName("botany." + modelName);
 		setRegistryName(modelName);

@@ -26,7 +26,7 @@ import binnie.genetics.machine.ModuleMachine;
 public class PackagePolymeriser extends GeneticMachine.PackageGeneticBase implements IMachineInformation {
 
 	public PackagePolymeriser() {
-		super("polymeriser", 58819, true);
+		super("polymeriser", 58819);
 	}
 
 	@Override
@@ -35,7 +35,7 @@ public class PackagePolymeriser extends GeneticMachine.PackageGeneticBase implem
 		ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
 		//Slot Gold
 		InventorySlot slotGold = inventory.addSlot(Polymeriser.SLOT_GOLD, "catalyst");
-		slotGold.setValidator(new SlotValidator.Item(new ItemStack(Items.GOLD_NUGGET, 1), ModuleMachine.spriteNugget));
+		slotGold.setValidator(new SlotValidator.Item(new ItemStack(Items.GOLD_NUGGET, 1), ModuleMachine.getSpriteNugget()));
 		slotGold.forbidExtraction();
 		//Slot Serum
 		InventorySlot slotSerum = inventory.addSlot(Polymeriser.SLOT_SERUM, "process");
@@ -64,10 +64,6 @@ public class PackagePolymeriser extends GeneticMachine.PackageGeneticBase implem
 	@Override
 	public TileEntity createTileEntity() {
 		return new TileEntityMachine(this);
-	}
-
-	@Override
-	public void register() {
 	}
 
 	private static class BacteriaTankValidator extends TankValidator {

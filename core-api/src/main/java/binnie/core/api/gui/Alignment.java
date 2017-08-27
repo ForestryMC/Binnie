@@ -6,8 +6,8 @@ public enum Alignment {
 	LEFT(-1, 0),
 	RIGHT(1, 0);
 
-	int x;
-	int y;
+	private final int x;
+	private final int y;
 
 	Alignment(int x, final int y) {
 		this.x = x;

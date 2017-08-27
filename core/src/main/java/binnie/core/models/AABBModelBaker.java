@@ -41,7 +41,7 @@ public class AABBModelBaker implements IModelBaker {
 	private final List<BoundModelBakerFace> faces = new ArrayList<>();
 	private final List<Pair<IBlockState, IBakedModel>> bakedModels = new ArrayList<>();
 	protected AxisAlignedBB modelBounds;
-	protected ModelBakerModel currentModel = new ModelBakerModel(ModelManager.getInstance().getDefaultBlockState());
+	protected final ModelBakerModel currentModel = new ModelBakerModel(ModelManager.getInstance().getDefaultBlockState());
 	protected int colorIndex = -1;
 
 	public AABBModelBaker() {

@@ -24,7 +24,7 @@ import binnie.core.api.genetics.IGene;
 import binnie.genetics.core.GeneticsPacket;
 
 public class GeneTracker extends WorldSavedData {
-	private ArrayList<IGene> discoveredGenes;
+	private final ArrayList<IGene> discoveredGenes;
 
 	@Nullable
 	private GameProfile username;

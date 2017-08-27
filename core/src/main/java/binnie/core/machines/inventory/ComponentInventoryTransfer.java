@@ -12,7 +12,7 @@ import binnie.core.machines.MachineComponent;
 import binnie.core.machines.transfer.TransferRequest;
 
 public class ComponentInventoryTransfer extends MachineComponent {
-	private List<Transfer> transfers;
+	private final List<Transfer> transfers;
 
 	public ComponentInventoryTransfer(final IMachine machine) {
 		super(machine);
@@ -90,9 +90,9 @@ public class ComponentInventoryTransfer extends MachineComponent {
 	}
 
 	private class Restock extends Transfer {
-		int[] buffer;
-		int destination;
-		int limit;
+		private final int[] buffer;
+		private final int destination;
+		private final int limit;
 
 		private Restock(final IMachine machine, final int[] buffer, final int destination, final int limit) {
 			super(machine);
@@ -122,8 +122,8 @@ public class ComponentInventoryTransfer extends MachineComponent {
 	}
 
 	private class Storage extends Transfer {
-		int source;
-		int[] destination;
+		private final int source;
+		private final int[] destination;
 
 		private Storage(final IMachine machine, final int source, final int[] destination) {
 			super(machine);

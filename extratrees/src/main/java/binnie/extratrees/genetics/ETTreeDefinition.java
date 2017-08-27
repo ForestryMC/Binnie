@@ -2024,17 +2024,17 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 	private static final String unlocalizedName = "extratrees.species.%s.name";
 	private static final String unlocalizedDesc = "extratrees.species.%s.desc";
-	public static ETTreeDefinition[] VALUES = values();
-	private String branchName;
-	private String binomial;
-	private Color leafColor;
-	private Color leafPollinatedColor;
-	private Color woodColor;
-	private EnumLeafType leafType;
-	private ILeafSpriteProvider leafSpriteProvider;
-	private EnumSaplingType saplingType;
-	private IWoodType woodType;
-	private IWoodProvider woodProvider;
+	public static final ETTreeDefinition[] VALUES = values();
+	private final String branchName;
+	private final String binomial;
+	private final Color leafColor;
+	private final Color leafPollinatedColor;
+	private final Color woodColor;
+	private final EnumLeafType leafType;
+	private final ILeafSpriteProvider leafSpriteProvider;
+	private final EnumSaplingType saplingType;
+	private final IWoodType woodType;
+	private final IWoodProvider woodProvider;
 	private IClassification branch;
 	private IAlleleTreeSpecies species;
 	private ITreeGenome genome;
@@ -2213,7 +2213,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 	}
 
 	private static class AlleleTemplate {
-		IAllele[] alleles;
+		private final IAllele[] alleles;
 
 		protected AlleleTemplate() {
 			alleles = TreeManager.treeRoot.getDefaultTemplate();

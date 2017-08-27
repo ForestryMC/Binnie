@@ -9,8 +9,8 @@ import binnie.core.resource.BinnieSprite;
 
 public class ValidatorSprite {
 
-	private List<BinnieSprite> spritesInput;
-	private List<BinnieSprite> spritesOutput;
+	private final List<BinnieSprite> spritesInput;
+	private final List<BinnieSprite> spritesOutput;
 
 	public ValidatorSprite(final AbstractMod mod, final String pathInput, final String pathOutput) {
 		this(mod.getModId(), pathInput, pathOutput);

@@ -49,7 +49,7 @@ public enum EnumAlvearyLogicType implements IStringSerializable {
 		}
 	};
 
-	public static EnumAlvearyLogicType[] VALUES = values();
+	public static final EnumAlvearyLogicType[] VALUES = values();
 
 	public abstract AbstractAlvearyLogic createLogic(TileEntityExtraBeesAlvearyPart tile);
 

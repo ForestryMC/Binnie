@@ -19,7 +19,7 @@ import binnie.genetics.machine.ModuleMachine;
 
 public class PackageSequencer extends GeneticMachine.PackageGeneticBase implements IMachineInformation {
 	public PackageSequencer() {
-		super("sequencer", 12058418, true);
+		super("sequencer", 12058418);
 	}
 
 	@Override
@@ -27,7 +27,7 @@ public class PackageSequencer extends GeneticMachine.PackageGeneticBase implemen
 		new ComponentGeneticGUI(machine, GeneticsGUI.SEQUENCER);
 		ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
 		InventorySlot slotDye = inventory.addSlot(Sequencer.SLOT_DYE, "dye");
-		slotDye.setValidator(new SlotValidator.Item(GeneticsItems.FluorescentDye.get(1), ModuleMachine.spriteDye));
+		slotDye.setValidator(new SlotValidator.Item(GeneticsItems.FluorescentDye.get(1), ModuleMachine.getSpriteDye()));
 		slotDye.forbidExtraction();
 		for (InventorySlot slot : inventory.addSlotArray(Sequencer.SLOT_RESERVE, "input")) {
 			slot.setValidator(new SlotValidatorUnsequenced());
@@ -52,7 +52,4 @@ public class PackageSequencer extends GeneticMachine.PackageGeneticBase implemen
 		return new TileEntityMachine(this);
 	}
 
-	@Override
-	public void register() {
-	}
 }

@@ -23,16 +23,13 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import binnie.core.util.Log;
 
 public class ModuleManager {
-	private static Map<String, IModuleContainer> containers = new LinkedHashMap<>();
+	private static final Map<String, IModuleContainer> containers = new LinkedHashMap<>();
 	private static final String CONFIG_CATEGORY = "modules";
-	private static boolean initialized = false;
+	private static boolean initialized;
 
-	public static boolean isModuleEnabled(String containerID, String moduleID){
+	public static boolean isModuleEnabled(String containerID, String moduleID) {
 		IModuleContainer container = containers.get(containerID);
-		if(container == null){
-			return false;
-		}
-		return container.isModuleEnabled(moduleID);
+		return container != null && container.isModuleEnabled(moduleID);
 	}
 
 	public static void register(IModuleContainer container){

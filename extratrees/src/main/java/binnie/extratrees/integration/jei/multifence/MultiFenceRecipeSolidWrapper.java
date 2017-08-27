@@ -15,11 +15,11 @@ import mezz.jei.api.recipe.wrapper.IShapedCraftingRecipeWrapper;
 
 public class MultiFenceRecipeSolidWrapper implements IShapedCraftingRecipeWrapper {
 
-	private FenceType fenceType;
+	private final FenceType fenceType;
 	@Nullable
-	private IPlankType plankType;
+	private final IPlankType plankType;
 	@Nullable
-	private IPlankType plankTypeSecondary;
+	private final IPlankType plankTypeSecondary;
 
 	public MultiFenceRecipeSolidWrapper(FenceType fenceType) {
 		this.fenceType = fenceType;
@@ -41,20 +41,20 @@ public class MultiFenceRecipeSolidWrapper implements IShapedCraftingRecipeWrappe
 			if (plankTypeSecondary == null) {
 				for (IPlankType plankTypeSecondary : WoodManager.getAllPlankTypes()) {
 					if (plankType != plankTypeSecondary) {
-						fences.add(WoodManager.getFence(plankType, plankTypeSecondary, new FenceType(fenceType.size, false, fenceType.embossed), 1));
-						outputFences.add(WoodManager.getFence(plankType, plankTypeSecondary, new FenceType(fenceType.size, true, fenceType.embossed), 2));
+						fences.add(WoodManager.getFence(plankType, plankTypeSecondary, new FenceType(fenceType.getSize(), false, fenceType.isEmbossed()), 1));
+						outputFences.add(WoodManager.getFence(plankType, plankTypeSecondary, new FenceType(fenceType.getSize(), true, fenceType.isEmbossed()), 2));
 					}
 				}
 			} else {
-				fences.add(WoodManager.getFence(plankType, plankTypeSecondary, new FenceType(fenceType.size, false, fenceType.embossed), 1));
-				outputFences.add(WoodManager.getFence(plankType, plankTypeSecondary, new FenceType(fenceType.size, true, fenceType.embossed), 2));
+				fences.add(WoodManager.getFence(plankType, plankTypeSecondary, new FenceType(fenceType.getSize(), false, fenceType.isEmbossed()), 1));
+				outputFences.add(WoodManager.getFence(plankType, plankTypeSecondary, new FenceType(fenceType.getSize(), true, fenceType.isEmbossed()), 2));
 			}
 		} else {
 			for (IPlankType plankTypeSecondary : WoodManager.getAllPlankTypes()) {
 				for (IPlankType plankType : WoodManager.getAllPlankTypes()) {
 					if (plankType != plankTypeSecondary) {
-						fences.add(WoodManager.getFence(plankType, plankTypeSecondary, new FenceType(fenceType.size, false, fenceType.embossed), 1));
-						outputFences.add(WoodManager.getFence(plankType, plankTypeSecondary, new FenceType(fenceType.size, true, fenceType.embossed), 2));
+						fences.add(WoodManager.getFence(plankType, plankTypeSecondary, new FenceType(fenceType.getSize(), false, fenceType.isEmbossed()), 1));
+						outputFences.add(WoodManager.getFence(plankType, plankTypeSecondary, new FenceType(fenceType.getSize(), true, fenceType.isEmbossed()), 2));
 					}
 				}
 			}

@@ -21,10 +21,10 @@ import binnie.core.gui.renderer.RenderUtil;
 import binnie.core.gui.resource.textures.CraftGUITexture;
 
 public class ControlSlide extends Control {
-	private IArea expanded;
-	private IArea shrunk;
+	private final IArea expanded;
+	private final IArea shrunk;
 	private boolean slideActive;
-	private Alignment anchor;
+	private final Alignment anchor;
 	private String label;
 
 	public ControlSlide(final IWidget parent, final int x, final int y, final int w, final int h, final Alignment anchor2) {

@@ -10,7 +10,10 @@ import net.minecraft.item.ItemStack;
 import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.minecraft.InventoryType;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public class ControlSlotArray extends Control implements Iterable<ControlSlot> {
 	private List<ControlSlot> slots = new ArrayList<>();
 

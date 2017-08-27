@@ -9,9 +9,9 @@ import binnie.core.gui.database.DatabaseTab;
 import binnie.core.gui.database.PageSpecies;
 
 public class PageSpeciesClimate extends PageSpecies {
-	ControlClimateBar tempBar;
-	ControlClimateBar humidBar;
-	ControlBiomes biomes;
+	private final ControlClimateBar tempBar;
+	private final ControlClimateBar humidBar;
+	private final ControlBiomes biomes;
 
 	public PageSpeciesClimate(IWidget parent, DatabaseTab tab) {
 		super(parent, tab);

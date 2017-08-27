@@ -28,8 +28,9 @@ import binnie.extratrees.machines.brewery.BreweryLogic;
 import binnie.extratrees.machines.brewery.recipes.BreweryRecipeManager;
 
 public class ControlBreweryProgress extends ControlProgressBase {
-	static Texture Brewery = new StandardTexture(0, 69, 34, 39, ExtraTreeTexture.GUI);
-	static Texture BreweryOverlay = new StandardTexture(34, 69, 34, 39, ExtraTreeTexture.GUI);
+	private static final Texture BREWERY = new StandardTexture(0, 69, 34, 39, ExtraTreeTexture.GUI);
+	// TODO: why is this unused?
+	private static final Texture BREWERY_OVERLAY = new StandardTexture(34, 69, 34, 39, ExtraTreeTexture.GUI);
 
 	protected ControlBreweryProgress(final IWidget parent, final int x, final int y) {
 		super(parent, x, y, 34, 39);
@@ -39,13 +40,13 @@ public class ControlBreweryProgress extends ControlProgressBase {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		CraftGUI.RENDER.texture(ControlBreweryProgress.Brewery, Point.ZERO);
+		CraftGUI.RENDER.texture(BREWERY, Point.ZERO);
 		final BreweryLogic logic = Machine.getInterface(BreweryLogic.class, Window.get(this).getInventory());
-		if (logic == null || logic.currentCrafting == null || logic.currentCrafting.inputFluid == null) {
+		if (logic == null || logic.getCurrentCrafting() == null || logic.getCurrentCrafting().getInputFluid() == null) {
 			return;
 		}
-		FluidStack output = BreweryRecipeManager.getOutput(logic.currentCrafting);
-		FluidStack input = logic.currentCrafting.inputFluid;
+		FluidStack output = BreweryRecipeManager.getOutput(logic.getCurrentCrafting());
+		FluidStack input = logic.getCurrentCrafting().getInputFluid();
 		final int fermentedHeight = (int) (32.0f * logic.getProgress() / 100.0f);
 		CraftGUI.RENDER.limitArea(new Area(new Point(1, 6).add(this.getAbsolutePosition()), new Point(32, 32 - fermentedHeight)), guiWidth, guiHeight);
 		GL11.glEnable(GL11.GL_SCISSOR_TEST);
@@ -62,8 +63,8 @@ public class ControlBreweryProgress extends ControlProgressBase {
 		RenderUtil.drawFluid(new Point(17, 22), output);
 		GL11.glDisable(GL11.GL_SCISSOR_TEST);
 		final ItemStackSet stacks = new ItemStackSet();
-		Collections.addAll(stacks, logic.currentCrafting.inputGrains);
-		stacks.add(logic.currentCrafting.ingredient);
+		Collections.addAll(stacks, logic.getCurrentCrafting().getInputGrains());
+		stacks.add(logic.getCurrentCrafting().getIngredient());
 		int x = 1;
 		int y = 6;
 		for (final ItemStack stack : stacks) {
@@ -74,9 +75,5 @@ public class ControlBreweryProgress extends ControlProgressBase {
 				y += 16;
 			}
 		}
-	}
-
-	@Override
-	public void onRenderForeground(int guiWidth, int guiHeight) {
 	}
 }

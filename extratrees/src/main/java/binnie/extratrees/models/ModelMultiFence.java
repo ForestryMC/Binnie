@@ -99,22 +99,22 @@ public class ModelMultiFence extends ModelBlockCached<BlockMultiFence, ModelMult
 		for (int i = 0; i < 5; ++i) {
 			final float thickness = 0.125f;
 			boolean secondary = false;
-			final boolean bottomBar = !type.solid;
+			final boolean bottomBar = !type.isSolid();
 			float topBarMaxY = 1.0f - SCALE;
 			float topBarMinY = 1.0f - SCALE * 3.0f;
 			float bottomBarMaxY = 0.5f - SCALE;
 			float bottomBarMinY = 0.5f - SCALE * 3.0f;
-			if (type.size == 2) {
+			if (type.getSize() == 2) {
 				bottomBarMinY -= 4.0f * SCALE;
 				bottomBarMaxY -= 4.0f * SCALE;
 				topBarMinY -= 4.0f * SCALE;
 				topBarMaxY -= 4.0f * SCALE;
 			}
-			if (type.size == 1) {
+			if (type.getSize() == 1) {
 				bottomBarMinY -= 4.0f * SCALE;
 				bottomBarMaxY -= 4.0f * SCALE;
 			}
-			if (type.solid) {
+			if (type.isSolid()) {
 				topBarMinY = bottomBarMinY;
 			}
 			float minX = 0.5f - SCALE;
@@ -135,34 +135,34 @@ public class ModelMultiFence extends ModelBlockCached<BlockMultiFence, ModelMult
 				modelBaker.setModelBounds(new AxisAlignedBB(minX, bottomBarMinY, minZ, maxX, bottomBarMaxY, maxZ));
 				secondary = true;
 			} else if (i == 4) {
-				if (type.embossed) {
+				if (type.isEmbossed()) {
 					minX -= SCALE * 0.9f;
 					maxX += SCALE * 0.9f;
 					minZ -= SCALE;
 					maxZ += SCALE;
 					float minY = 0.0f;
 					float maxY = 1.0f;
-					if (type.size != 1 && !type.solid) {
+					if (type.getSize() != 1 && !type.isSolid()) {
 						minY = bottomBarMinY + 2.0f * SCALE;
 						maxY = topBarMaxY - 2.0f * SCALE;
-					} else if (type.size == 1 && type.solid) {
+					} else if (type.getSize() == 1 && type.isSolid()) {
 						minY = bottomBarMinY + 2.0f * SCALE;
 						maxY = topBarMaxY - 2.0f * SCALE;
 					} else {
 						minY = 0.5f - 2.0f * SCALE;
 						maxY = 0.5f + 2.0f * SCALE;
 					}
-					if (type.solid && type.size == 0) {
+					if (type.isSolid() && type.getSize() == 0) {
 						minY -= SCALE;
 						maxY -= SCALE;
 					}
-					if (type.solid && type.size == 2) {
+					if (type.isSolid() && type.getSize() == 2) {
 						minY += SCALE;
 						maxY += SCALE;
 					}
 					modelBaker.setModelBounds(new AxisAlignedBB(minX, minY, minZ, maxX, maxY, maxZ));
 				} else {
-					if (type.size != 1 || type.solid) {
+					if (type.getSize() != 1 || type.isSolid()) {
 						continue;
 					}
 					modelBaker.setModelBounds(new AxisAlignedBB(minX, 0.5f - SCALE, minZ, maxX, 0.5f + SCALE, maxZ));
@@ -202,13 +202,13 @@ public class ModelMultiFence extends ModelBlockCached<BlockMultiFence, ModelMult
 		float minZ = connectNegZ ? 0.0f : minPostPos;
 		float maxZ = connectPosZ ? 1.0f : maxPostPos;
 		boolean renderBottom = true;
-		if (fenceType.size == 2) {
+		if (fenceType.getSize() == 2) {
 			barMaxY -= 5.0f * SCALE;
 			barMinY -= 5.0f * SCALE;
 		}
-		if (fenceType.solid) {
+		if (fenceType.isSolid()) {
 			renderBottom = false;
-			if (fenceType.size == 0) {
+			if (fenceType.getSize() == 0) {
 				barMinY = 6.0f * SCALE;
 			} else {
 				barMinY = SCALE;
@@ -226,7 +226,7 @@ public class ModelMultiFence extends ModelBlockCached<BlockMultiFence, ModelMult
 		if (renderBottom) {
 			barMinY -= 6.0f * SCALE;
 			barMaxY -= 6.0f * SCALE;
-			if (fenceType.size == 1) {
+			if (fenceType.getSize() == 1) {
 				barMinY += SCALE;
 			}
 			if (connectAnyX) {
@@ -238,7 +238,7 @@ public class ModelMultiFence extends ModelBlockCached<BlockMultiFence, ModelMult
 				modelBaker.addBlockModel(null, secondarySprite, 0);
 			}
 
-			if (fenceType.size == 1) {
+			if (fenceType.getSize() == 1) {
 				barMinY -= 6.0f * SCALE;
 				barMaxY -= 6.0f * SCALE;
 				barMaxY += SCALE;
@@ -253,18 +253,18 @@ public class ModelMultiFence extends ModelBlockCached<BlockMultiFence, ModelMult
 			}
 		}
 		float totalMinY = barMinY;
-		if (fenceType.embossed) {
+		if (fenceType.isEmbossed()) {
 			minPostPos -= (float) (SCALE - 0.25 * SCALE);
 			maxPostPos += (float) (SCALE - 0.25 * SCALE);
 			float minY = totalMinY + 2.0f * SCALE;
 			float maxY = totalMaxY - 2.0f * SCALE;
-			if (fenceType.size == 1 && !fenceType.solid) {
+			if (fenceType.getSize() == 1 && !fenceType.isSolid()) {
 				minY = 6.0f * SCALE;
 				maxY = 10.0f * SCALE;
-			} else if (fenceType.size == 0 && fenceType.solid) {
+			} else if (fenceType.getSize() == 0 && fenceType.isSolid()) {
 				minY -= 4.0f * SCALE;
 				maxY -= 4.0f * SCALE;
-			} else if (fenceType.size == 2 && fenceType.solid) {
+			} else if (fenceType.getSize() == 2 && fenceType.isSolid()) {
 				minY += 4.0f * SCALE;
 				maxY += 4.0f * SCALE;
 			}
@@ -281,12 +281,12 @@ public class ModelMultiFence extends ModelBlockCached<BlockMultiFence, ModelMult
 	}
 
 	public static class Key {
-		boolean west;
-		boolean east;
-		boolean north;
-		boolean south;
-		private int meta;
-		private FenceType type;
+		private final boolean west;
+		private final boolean east;
+		private final boolean north;
+		private final boolean south;
+		private final int meta;
+		private final FenceType type;
 
 		public Key(int meta, boolean west, boolean east, boolean north, boolean south) {
 			this.meta = meta;

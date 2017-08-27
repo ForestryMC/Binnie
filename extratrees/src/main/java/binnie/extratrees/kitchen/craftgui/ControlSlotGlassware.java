@@ -8,7 +8,7 @@ import binnie.core.gui.minecraft.control.ControlSlotBase;
 import binnie.extratrees.alcohol.GlasswareType;
 
 public class ControlSlotGlassware extends ControlSlotBase implements IControlValue<GlasswareType> {
-	GlasswareType glasswareType;
+	private GlasswareType glasswareType;
 
 	public ControlSlotGlassware(final IWidget parent, final int x, final int y, final GlasswareType glasswareType) {
 		super(parent, x, y);

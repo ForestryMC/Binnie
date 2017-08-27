@@ -31,9 +31,9 @@ public class PolymeriserFX extends MachineComponent implements IRender.DisplayTi
 
 	@SideOnly(Side.CLIENT)
 	private static class PolymeriserParticle extends Particle {
-		double axisX;
-		double axisZ;
-		double angle;
+		private double axisX;
+		private double axisZ;
+		private double angle;
 
 		public PolymeriserParticle(World world, BlockPos pos) {
 			super(world, pos.getX() + 0.5, pos.getY() + 1.8, pos.getZ() + 0.5, 0.0, 0.0, 0.0);

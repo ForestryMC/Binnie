@@ -9,8 +9,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class Layout implements ILayout {
-	IPattern pattern;
-	boolean inverted;
+	private final IPattern pattern;
+	private final boolean inverted;
 
 	private Layout(final IPattern pattern, final boolean inverted) {
 		this.pattern = pattern;

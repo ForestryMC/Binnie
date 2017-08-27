@@ -7,13 +7,13 @@ import binnie.core.util.I18N;
 import forestry.api.genetics.IAlleleInteger;
 
 public class AlleleFlowerColor implements IAlleleFlowerColor {
-	private int color;
-	private String uid;
-	private boolean isDominant;
-	private String name;
-	private String unlocalizedName;
-	private int colorWilted;
-	private int id;
+	private final int color;
+	private final String uid;
+	private final boolean isDominant;
+	private final String name;
+	private final String unlocalizedName;
+	private final int colorWilted;
+	private final int id;
 
 	public AlleleFlowerColor(String uid, int id, Color color, Color colorWilted, String name, String unlocalizedName, boolean isDominant) {
 		this.color = color.getRGB();

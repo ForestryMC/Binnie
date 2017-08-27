@@ -71,7 +71,7 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 		setHardness(1.0f);
 		setResistance(5.0f);
 		setRegistryName("ceramicBrick");
-		setCreativeTab(CreativeTabBotany.instance);
+		setCreativeTab(CreativeTabBotany.INSTANCE);
 	}
 
 	@Override
@@ -170,7 +170,7 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand) {
 		ItemStack stack = placer.getHeldItem(hand);
 		CeramicBrickPair pair = new CeramicBrickPair(stack);
-		return getDefaultState().withProperty(TYPE, pair.type);
+		return getDefaultState().withProperty(TYPE, pair.getType());
 	}
 
 	@Override
@@ -178,7 +178,7 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 		TileCeramicBrick ceramic = TileUtil.getTile(worldIn, pos, TileCeramicBrick.class);
 		if (ceramic != null) {
 			CeramicBrickPair pair = new CeramicBrickPair(stack);
-			ceramic.setColors(pair.colorFirst, pair.colorSecond);
+			ceramic.setColors(pair.getColorFirst(), pair.getColorSecond());
 		}
 	}
 
@@ -249,10 +249,12 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 	public void registerSprites(ITextureManager manager) {
 		TextureMap textureMap = Minecraft.getMinecraft().getTextureMapBlocks();
 		for (CeramicBrickType type : CeramicBrickType.VALUES) {
-			type.sprites = new TextureAtlasSprite[3];
+			TextureAtlasSprite[] sprites = new TextureAtlasSprite[3];
 			for (int i = 0; i < 3; ++i) {
-				type.sprites[i] = textureMap.registerSprite(new ResourceLocation(Constants.BOTANY_MOD_ID + ":blocks/ceramic." + type.id + "." + i));
+				ResourceLocation location = new ResourceLocation(Constants.BOTANY_MOD_ID + ":blocks/ceramic." + type.getId() + "." + i);
+				sprites[i] = textureMap.registerSprite(location);
 			}
+			type.setSprites(sprites);
 		}
 	}
 

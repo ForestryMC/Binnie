@@ -26,8 +26,8 @@ import binnie.genetics.core.GeneticsTexture;
 import binnie.core.gui.window.WindowMachine;
 
 public class WindowAnalyser extends WindowMachine {
-	static Texture ProgressBase = new StandardTexture(0, 218, 142, 17, GeneticsTexture.GUI_PROCESS_3);
-	static Texture Progress = new StandardTexture(0, 201, 142, 17, GeneticsTexture.GUI_PROCESS_3);
+	private static final Texture PROGRESS_BASE = new StandardTexture(0, 51, 66, 40, GeneticsTexture.GUI_PROCESS);
+	private static final Texture PROGRESS = new StandardTexture(66, 51, 66, 40, GeneticsTexture.GUI_PROCESS);
 
 	public WindowAnalyser(final EntityPlayer player, final IInventory inventory, final Side side) {
 		super(220, 210, player, inventory, side);
@@ -37,8 +37,6 @@ public class WindowAnalyser extends WindowMachine {
 	@SideOnly(Side.CLIENT)
 	public void initialiseClient() {
 		super.initialiseClient();
-		WindowAnalyser.ProgressBase = new StandardTexture(0, 51, 66, 40, GeneticsTexture.GUI_PROCESS);
-		WindowAnalyser.Progress = new StandardTexture(66, 51, 66, 40, GeneticsTexture.GUI_PROCESS);
 		int x = 16;
 		final int y = 32;
 		new ControlSlotArray.Builder(this, x, y, 2, 3).create(Analyser.SLOT_RESERVE);
@@ -51,7 +49,7 @@ public class WindowAnalyser extends WindowMachine {
 		new ControlIconDisplay(this, x + 36 + 2, y + 18, GUIIcon.ARROW_RIGHT.getIcon().getResourceLocation());
 		x += 56;
 		new Panel(this, x, y, 76, 50, MinecraftGUI.PanelType.TINTED);
-		new ControlProgress(this, x + 5, y + 5, WindowAnalyser.ProgressBase, WindowAnalyser.Progress, Alignment.LEFT);
+		new ControlProgress(this, x + 5, y + 5, PROGRESS_BASE, PROGRESS, Alignment.LEFT);
 		new ControlSlot.Builder(this, x + 38 - 9, y + 25 - 9).assign(6);
 		new ControlIconDisplay(this, x + 76 + 2, y + 18, GUIIcon.ARROW_RIGHT.getIcon().getResourceLocation());
 		x += 96;

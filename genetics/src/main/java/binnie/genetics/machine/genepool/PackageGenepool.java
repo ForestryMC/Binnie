@@ -22,7 +22,7 @@ import binnie.genetics.machine.ModuleMachine;
 
 public class PackageGenepool extends GeneticMachine.PackageGeneticBase implements IMachineInformation {
 	public PackageGenepool() {
-		super("genepool", 12661942, true);
+		super("genepool", 12661942);
 	}
 
 	@Override
@@ -30,7 +30,7 @@ public class PackageGenepool extends GeneticMachine.PackageGeneticBase implement
 		new ComponentGeneticGUI(machine, GeneticsGUI.GENEPOOL);
 		ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
 		InventorySlot slotEnzyme = inventory.addSlot(Genepool.SLOT_ENZYME, "enzyme");
-		slotEnzyme.setValidator(new SlotValidator.Item(GeneticsItems.Enzyme.get(1), ModuleMachine.spriteEnzyme));
+		slotEnzyme.setValidator(new SlotValidator.Item(GeneticsItems.Enzyme.get(1), ModuleMachine.getSpriteEnzyme()));
 		slotEnzyme.forbidExtraction();
 		InventorySlot slotProcess = inventory.addSlot(Genepool.SLOT_BEE, "process");
 		slotProcess.setValidator(new SlotValidator.Individual());
@@ -58,10 +58,6 @@ public class PackageGenepool extends GeneticMachine.PackageGeneticBase implement
 	@Override
 	public TileEntity createTileEntity() {
 		return new TileEntityMachine(this);
-	}
-
-	@Override
-	public void register() {
 	}
 
 }

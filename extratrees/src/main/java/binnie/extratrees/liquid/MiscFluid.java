@@ -21,7 +21,7 @@ public enum MiscFluid implements IFluidDefinition, ICocktailLiquid {
 	AgaveNectar("Agave Nectar", "syrup.agave", 13598245, 0.699999988079071),
 	GrenadineSyrup("Grenadine Syrup", "syrup.grenadine", 16009573, 0.800000011920929);
 
-	FluidType type;
+	private final FluidType type;
 
 	MiscFluid(final String name, final String ident, final int color, final double transparency) {
 		type = new FluidType(ident, name, color)

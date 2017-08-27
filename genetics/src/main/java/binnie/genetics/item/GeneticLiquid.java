@@ -16,7 +16,7 @@ public enum GeneticLiquid implements IFluidDefinition {
 	RawDNA("Raw DNA", "dna.raw", 15089129),
 	BacteriaVector("Bacteria Vector", "bacteria.vector", 15960958);
 
-	FluidType type;
+	private final FluidType type;
 
 	GeneticLiquid(final String name, final String ident, final int color) {
 		type = new FluidType(ident, name, color)

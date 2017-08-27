@@ -4,9 +4,9 @@ import binnie.extratrees.wood.planks.IPlankType;
 import binnie.extratrees.wood.WoodManager;
 
 public class FenceDescription {
-	FenceType fenceType;
-	IPlankType plankType;
-	IPlankType secondaryPlankType;
+	private final FenceType fenceType;
+	private final IPlankType plankType;
+	private final IPlankType secondaryPlankType;
 
 	public FenceDescription(final FenceType fenceType, final IPlankType plankType, final IPlankType secondaryPlankType) {
 		this.fenceType = fenceType;

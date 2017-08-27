@@ -1,5 +1,6 @@
 package binnie.extrabees.gui;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -16,13 +17,12 @@ import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.listbox.ControlListBox;
 
 public class ControlProductsBox extends ControlListBox<ControlProductsBox.Product> {
-	IAlleleBeeSpecies species;
-	private int index;
-	private Type type;
+	@Nullable
+	private IAlleleBeeSpecies species;
+	private final Type type;
 
 	public ControlProductsBox(IWidget parent, int x, int y, int width, int height, Type type) {
 		super(parent, x, y, width, height, 12);
-		species = null;
 		this.type = type;
 	}
 
@@ -64,12 +64,20 @@ public class ControlProductsBox extends ControlListBox<ControlProductsBox.Produc
 	}
 
 	static class Product {
-		ItemStack item;
-		float chance;
+		private final ItemStack item;
+		private final float chance;
 
 		public Product(ItemStack item, float chance) {
 			this.item = item;
 			this.chance = chance;
+		}
+
+		public ItemStack getItem() {
+			return item;
+		}
+
+		public float getChance() {
+			return chance;
 		}
 	}
 }

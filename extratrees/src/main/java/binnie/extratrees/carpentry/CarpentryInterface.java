@@ -10,7 +10,7 @@ import binnie.extratrees.api.ICarpentryInterface;
 import binnie.design.api.IDesignMaterial;
 
 public class CarpentryInterface implements ICarpentryInterface {
-	private static Map<Integer, IDesignMaterial> woodMap = new LinkedHashMap<>();
+	private static final Map<Integer, IDesignMaterial> woodMap = new LinkedHashMap<>();
 
 	@Override
 	public boolean registerCarpentryWood(final int index, final IDesignMaterial wood) {

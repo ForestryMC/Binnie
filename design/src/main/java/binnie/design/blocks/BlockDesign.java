@@ -61,7 +61,7 @@ import binnie.core.util.TileUtil;
 public abstract class BlockDesign extends BlockMetadata implements IMultipassBlock<BlockDesign.Key>, IColoredBlock, ISpriteRegister, IItemModelRegister, IStateMapperRegister {
 	public static final EnumFacing[] RENDER_DIRECTIONS = new EnumFacing[]{EnumFacing.DOWN, EnumFacing.UP, EnumFacing.EAST, EnumFacing.WEST, EnumFacing.NORTH, EnumFacing.SOUTH};
 	public static final EnumFacing[] RENDER_DIRECTIONS_ITEM = new EnumFacing[]{EnumFacing.DOWN, EnumFacing.UP, EnumFacing.WEST, EnumFacing.EAST, EnumFacing.SOUTH, EnumFacing.NORTH};
-	IDesignSystem designSystem;
+	private final IDesignSystem designSystem;
 
 	public BlockDesign(final IDesignSystem system, final Material material) {
 		super(material);
@@ -250,8 +250,8 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
 	}
 
 	public static class Key {
-		int metadata;
-		boolean item;
+		private final int metadata;
+		private final boolean item;
 
 		public Key(int metadata, boolean item) {
 			this.metadata = metadata;

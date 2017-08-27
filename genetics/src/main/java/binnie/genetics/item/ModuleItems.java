@@ -32,7 +32,7 @@ public class ModuleItems implements IInitializable {
 	public ItemAnalyst analyst;
 	public Item registry;
 	public Item masterRegistry;
-	public ItemSerumArray itemSerumArray = null;
+	public ItemSerumArray itemSerumArray;
 	@Nullable
 	private Item itemGenetics;
 
@@ -51,7 +51,7 @@ public class ModuleItems implements IInitializable {
 		Genetics.proxy.registerItem(registry);
 		masterRegistry = new ItemMasterRegistry();
 		Genetics.proxy.registerItem(masterRegistry);
-		itemGenetics = new ItemMisc(CreativeTabGenetics.instance, GeneticsItems.values());
+		itemGenetics = new ItemMisc(CreativeTabGenetics.INSTANCE, GeneticsItems.values());
 		Genetics.proxy.registerItem(itemGenetics);
 		itemSequencer = new ItemSequence();
 		Genetics.proxy.registerItem(itemSequencer);

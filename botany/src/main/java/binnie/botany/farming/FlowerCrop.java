@@ -10,8 +10,8 @@ import net.minecraft.util.math.BlockPos;
 import forestry.api.farming.ICrop;
 
 public class FlowerCrop implements ICrop {
-	NonNullList<ItemStack> drops = NonNullList.create();
-	BlockPos position;
+	private final NonNullList<ItemStack> drops = NonNullList.create();
+	private final BlockPos position;
 
 	public FlowerCrop(BlockPos pos, ItemStack... drops) {
 		Collections.addAll(this.drops, drops);

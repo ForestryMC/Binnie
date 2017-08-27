@@ -14,7 +14,7 @@ import binnie.core.machines.Machine;
 import binnie.core.machines.inventory.IChargedSlots;
 
 public class ControlSlotCharge extends Control {
-	private int slot;
+	private final int slot;
 
 	public ControlSlotCharge(final IWidget parent, final int x, final int y, final int slot) {
 		super(parent, x, y, 4, 18);

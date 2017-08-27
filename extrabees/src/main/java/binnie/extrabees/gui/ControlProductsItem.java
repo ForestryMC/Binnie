@@ -13,15 +13,15 @@ import binnie.core.gui.minecraft.control.ControlItemDisplay;
 import binnie.core.util.I18N;
 
 public class ControlProductsItem extends ControlOption<ControlProductsBox.Product> {
-	private ControlItemDisplay item;
+	private final ControlItemDisplay item;
 
 	public ControlProductsItem(ControlList<ControlProductsBox.Product> controlList, ControlProductsBox.Product value, int y) {
 		super(controlList, value, y);
 		(item = new ControlItemDisplay(this, 4, 4)).setTooltip();
 		ControlText textWidget = new ControlTextCentered(this, 2, "");
 		CraftGUIUtil.moveWidget(textWidget, new Point(12, 0));
-		item.setItemStack(value.item);
-		int time = (int) (55000.0 / value.chance);
+		item.setItemStack(value.getItem());
+		int time = (int) (55000.0 / value.getChance());
 		int seconds = time / 20;
 		int minutes = seconds / 60;
 		int hours = minutes / 60;

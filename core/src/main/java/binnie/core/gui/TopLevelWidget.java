@@ -21,12 +21,12 @@ import binnie.core.gui.events.EventWidget;
 public abstract class TopLevelWidget extends Widget implements ITopLevelWidget {
 	protected IPoint mousePosition;
 	@Nullable
-	IWidget mousedOverWidget;
+	private IWidget mousedOverWidget;
 	@Nullable
-	IWidget draggedWidget;
+	private IWidget draggedWidget;
 	@Nullable
-	IWidget focusedWidget;
-	IPoint dragStart;
+	private IWidget focusedWidget;
+	private IPoint dragStart;
 
 	public TopLevelWidget() {
 		super(null);
@@ -36,12 +36,12 @@ public abstract class TopLevelWidget extends Widget implements ITopLevelWidget {
 		this.mousePosition = Point.ZERO;
 		this.dragStart = Point.ZERO;
 		this.addEventHandler(EventMouse.Down.class, event -> {
-			TopLevelWidget.this.setDraggedWidget(TopLevelWidget.this.mousedOverWidget, event.getButton());
-			TopLevelWidget.this.setFocusedWidget(TopLevelWidget.this.mousedOverWidget);
+			this.setDraggedWidget(this.mousedOverWidget, event.getButton());
+			this.setFocusedWidget(this.mousedOverWidget);
 		});
-		this.addEventHandler(EventMouse.Up.class, event -> TopLevelWidget.this.setDraggedWidget(null));
+		this.addEventHandler(EventMouse.Up.class, event -> this.setDraggedWidget(null));
 		this.addEventHandler(EventWidget.StartDrag.class, event -> {
-			TopLevelWidget.this.dragStart = TopLevelWidget.this.getRelativeMousePosition();
+			this.dragStart = this.getRelativeMousePosition();
 		});
 	}
 

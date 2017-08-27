@@ -13,7 +13,7 @@ import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.resource.textures.CraftGUITexture;
 
 public class ControlInfo extends Control implements ITooltip {
-	private String info;
+	private final String info;
 
 	public ControlInfo(final IWidget parent, final int x, final int y, final String info) {
 		super(parent, x, y, 16, 16);

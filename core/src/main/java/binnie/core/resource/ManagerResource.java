@@ -10,7 +10,7 @@ import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
 
 public class ManagerResource {
-	private List<BinnieSprite> sprites;
+	private final List<BinnieSprite> sprites;
 
 	public ManagerResource() {
 		this.sprites = new ArrayList<>();

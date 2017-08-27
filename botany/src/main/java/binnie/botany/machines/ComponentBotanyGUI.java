@@ -10,7 +10,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class ComponentBotanyGUI extends MachineComponent implements IInteraction.RightClick {
-	BotanyGUI id;
+	private final BotanyGUI id;
 
 	public ComponentBotanyGUI(final Machine machine, final BotanyGUI id) {
 		super(machine);

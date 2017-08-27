@@ -25,7 +25,7 @@ public enum EnumFlowerChromosome implements IChromosomeType {
 	SAPPINESS(IAlleleFloat.class),
 	STEM(IAlleleInteger.class);
 
-	private Class<? extends IAllele> cls;
+	private final Class<? extends IAllele> cls;
 
 	EnumFlowerChromosome(Class<? extends IAllele> cls) {
 		this.cls = cls;

@@ -19,8 +19,8 @@ import binnie.core.gui.renderer.RenderUtil;
 import binnie.core.gui.resource.textures.CraftGUITexture;
 
 public class ControlAnalystButton extends Control {
-	ITitledWidget value;
-	WindowAnalyst window;
+	private final ITitledWidget value;
+	private final WindowAnalyst window;
 
 	public ControlAnalystButton(IWidget parent, int x, int y, int width, int height, WindowAnalyst window, ITitledWidget page) {
 		super(parent, x, y, width, height);
@@ -28,12 +28,12 @@ public class ControlAnalystButton extends Control {
 		addAttribute(Attribute.MOUSE_OVER);
 		this.value = page;
 		addSelfEventHandler(EventMouse.Down.class, event -> {
-			List<ITitledWidget> pages = window.analystPages;
-			int currentIndex = pages.indexOf(window.rightPage.getContent());
+			List<ITitledWidget> pages = window.getAnalystPages();
+			int currentIndex = pages.indexOf(window.getRightPage().getContent());
 			int clickedIndex = pages.indexOf(value);
-			if (window.isDatabase) {
+			if (window.isDatabase()) {
 				if (clickedIndex != 0 && clickedIndex != currentIndex) {
-					window.setPage(window.rightPage, value);
+					window.setPage(window.getRightPage(), value);
 				}
 			} else {
 				if (clickedIndex < 0) {
@@ -42,10 +42,10 @@ public class ControlAnalystButton extends Control {
 				if (clickedIndex < currentIndex) {
 					++clickedIndex;
 				}
-				window.setPage(window.rightPage, null);
-				window.setPage(window.leftPage, null);
-				window.setPage(window.rightPage, pages.get(clickedIndex));
-				window.setPage(window.leftPage, pages.get(clickedIndex - 1));
+				window.setPage(window.getRightPage(), null);
+				window.setPage(window.getLeftPage(), null);
+				window.setPage(window.getRightPage(), pages.get(clickedIndex));
+				window.setPage(window.getLeftPage(), pages.get(clickedIndex - 1));
 			}
 		});
 	}
@@ -58,7 +58,7 @@ public class ControlAnalystButton extends Control {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		boolean active = value == window.leftPage.getContent() || value == window.rightPage.getContent();
+		boolean active = value == window.getLeftPage().getContent() || value == window.getRightPage().getContent();
 		RenderUtil.setColour((active ? -16777216 : 1140850688) + value.getColor());
 		GlStateManager.pushMatrix();
 		GlStateManager.enableBlend();

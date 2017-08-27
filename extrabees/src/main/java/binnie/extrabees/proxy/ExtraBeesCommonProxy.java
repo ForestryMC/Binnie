@@ -8,10 +8,6 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import binnie.extrabees.genetics.ExtraBeeDefinition;
 
 public class ExtraBeesCommonProxy {
-
-	public void registerBeeModel(ExtraBeeDefinition type) {
-	}
-
 	public Block registerBlock(Block block) {
 		ForgeRegistries.BLOCKS.register(block);
 		return block;

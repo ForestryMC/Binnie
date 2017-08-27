@@ -7,7 +7,7 @@ import net.minecraft.world.World;
 import forestry.api.world.ITreeGenData;
 
 public class BlockTypeLog implements WorldGenBlockType {
-	ITreeGenData treeGenData;
+	private final ITreeGenData treeGenData;
 
 	public BlockTypeLog(ITreeGenData treeGenData) {
 		this.treeGenData = treeGenData;

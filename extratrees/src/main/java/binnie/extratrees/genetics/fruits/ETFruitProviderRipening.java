@@ -20,7 +20,7 @@ public class ETFruitProviderRipening extends ETFruitProviderNone {
 	private int ripeningPeriod;
 	private int colourCallow = 0xffffff;
 	@Nullable
-	private FruitSprite sprite;
+	private final FruitSprite sprite;
 
 	public ETFruitProviderRipening(String name, IFruitFamily family, FruitSprite sprite) {
 		super(name, family);

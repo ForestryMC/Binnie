@@ -18,12 +18,12 @@ import binnie.core.gui.minecraft.Window;
 import binnie.extratrees.ExtraTrees;
 
 public class WindowLepidopteristDatabase extends WindowAbstractDatabase {
-	public WindowLepidopteristDatabase(final EntityPlayer player, final Side side, final boolean nei) {
-		super(player, side, nei, ExtraTrees.mothBreedingSystem, 160);
+	public WindowLepidopteristDatabase(EntityPlayer player, Side side, boolean master) {
+		super(player, side, master, ExtraTrees.mothBreedingSystem, 160);
 	}
 
-	public static Window create(final EntityPlayer player, final Side side, final boolean nei) {
-		return new WindowLepidopteristDatabase(player, side, nei);
+	public static Window create(EntityPlayer player, Side side, boolean master) {
+		return new WindowLepidopteristDatabase(player, side, master);
 	}
 
 	@Override

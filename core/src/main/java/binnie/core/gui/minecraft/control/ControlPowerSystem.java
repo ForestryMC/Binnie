@@ -14,7 +14,7 @@ import binnie.core.gui.resource.textures.CraftGUITexture;
 import binnie.core.machines.power.PowerSystem;
 
 public class ControlPowerSystem extends Control implements ITooltip {
-	private PowerSystem system;
+	private final PowerSystem system;
 
 	public ControlPowerSystem(final IWidget parent, final int x, final int y, final PowerSystem system) {
 		super(parent, x, y, 16, 16);

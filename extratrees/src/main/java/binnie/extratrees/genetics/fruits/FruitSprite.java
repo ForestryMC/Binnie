@@ -20,7 +20,7 @@ public enum FruitSprite {
 	PEAR;
 
 	public static final FruitSprite[] VALUES = values();
-	protected boolean isRegistered = false;
+	protected boolean isRegistered;
 	private final ResourceLocation location;
 
 	FruitSprite() {

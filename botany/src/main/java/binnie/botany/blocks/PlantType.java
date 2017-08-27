@@ -12,8 +12,8 @@ public enum PlantType implements IStringSerializable {
 	DEAD_FLOWER("dead_flower"),
 	DECAYING_FLOWER("decaying_flower");
 
-	String name;
-	boolean isWeed;
+	private final String name;
+	private final boolean isWeed;
 
 	PlantType(String name) {
 		this(name, false);

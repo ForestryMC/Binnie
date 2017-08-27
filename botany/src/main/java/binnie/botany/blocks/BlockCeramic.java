@@ -38,7 +38,7 @@ public class BlockCeramic extends Block implements IColoredBlock, IItemModelRegi
 		setHardness(1.0f);
 		setResistance(5.0f);
 		setRegistryName("ceramic");
-		setCreativeTab(CreativeTabBotany.instance);
+		setCreativeTab(CreativeTabBotany.INSTANCE);
 	}
 
 	@Override

@@ -18,7 +18,7 @@ import binnie.core.gui.resource.textures.CraftGUITexture;
 
 @SideOnly(Side.CLIENT)
 public class ControlTextEdit extends Control implements IControlValue<String> {
-	private GuiTextField field;
+	private final GuiTextField field;
 	private String cachedValue;
 
 	public ControlTextEdit(final IWidget parent, final int x, final int y, final int width, final int height) {
@@ -29,22 +29,22 @@ public class ControlTextEdit extends Control implements IControlValue<String> {
 		this.addAttribute(Attribute.MOUSE_OVER);
 		this.field.setEnableBackgroundDrawing(false);
 		this.addSelfEventHandler(EventKey.Down.class, event -> {
-			ControlTextEdit.this.field.textboxKeyTyped(event.getCharacter(), event.getKey());
-			final String text = ControlTextEdit.this.getValue();
-			if (!text.equals(ControlTextEdit.this.cachedValue)) {
-				ControlTextEdit.this.cachedValue = text;
-				ControlTextEdit.this.callEvent(new EventTextEdit(ControlTextEdit.this, ControlTextEdit.this.cachedValue));
-				ControlTextEdit.this.onTextEdit(ControlTextEdit.this.cachedValue);
+			this.field.textboxKeyTyped(event.getCharacter(), event.getKey());
+			final String text = this.getValue();
+			if (!text.equals(this.cachedValue)) {
+				this.cachedValue = text;
+				this.callEvent(new EventTextEdit(ControlTextEdit.this, this.cachedValue));
+				this.onTextEdit(this.cachedValue);
 			}
 		});
 		this.addSelfEventHandler(EventMouse.Down.class, event -> {
-			ControlTextEdit.this.field.mouseClicked(ControlTextEdit.this.getRelativeMousePosition().xPos(), ControlTextEdit.this.getRelativeMousePosition().yPos(), event.getButton());
+			this.field.mouseClicked(this.getRelativeMousePosition().xPos(), this.getRelativeMousePosition().yPos(), event.getButton());
 		});
 		this.addSelfEventHandler(EventWidget.GainFocus.class, event -> {
-			ControlTextEdit.this.field.setFocused(true);
+			this.field.setFocused(true);
 		});
 		this.addSelfEventHandler(EventWidget.LoseFocus.class, event -> {
-			ControlTextEdit.this.field.setFocused(false);
+			this.field.setFocused(false);
 		});
 	}
 
@@ -59,10 +59,6 @@ public class ControlTextEdit extends Control implements IControlValue<String> {
 			this.field.setText(value);
 			this.field.setCursorPosition(0);
 		}
-	}
-
-	@Override
-	public void onUpdateClient() {
 	}
 
 	protected void onTextEdit(final String value) {

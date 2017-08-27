@@ -10,7 +10,7 @@ import binnie.core.Mods;
 import binnie.core.util.I18N;
 
 public class CreativeTabCarpentry extends CreativeTabs {
-	public static CreativeTabs instance = new CreativeTabCarpentry();
+	public static final CreativeTabs INSTANCE = new CreativeTabCarpentry();
 
 	public CreativeTabCarpentry() {
 		super("Carpentry");

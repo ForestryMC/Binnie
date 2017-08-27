@@ -47,11 +47,11 @@ public enum GeneticsErrorCode implements IErrorStateDefinition {
 	SEQUENCER_NO_DNA("sequencer.no.dna", CoreErrorCode.NO_ITEM)
 	;
 	
-	String name;
+	private final String name;
 	@Nullable
-	IErrorStateDefinition parent;
+	private final IErrorStateDefinition parent;
 	@Nullable
-	EnumErrorType type;
+	private final EnumErrorType type;
 	
 	GeneticsErrorCode(String name) {
 		this(name, null, EnumErrorType.NONE);

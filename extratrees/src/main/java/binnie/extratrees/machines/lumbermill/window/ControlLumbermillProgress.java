@@ -33,10 +33,10 @@ import binnie.extratrees.machines.lumbermill.LumbermillMachine;
 import binnie.extratrees.machines.lumbermill.recipes.LumbermillRecipeManager;
 
 public class ControlLumbermillProgress extends ControlProgressBase {
-	static final Texture SAW = new StandardTexture(0, 0, 6, 32, ExtraTreeTexture.GUI);
-	static final Texture SAW_2 = new StandardTexture(2, 0, 4, 32, ExtraTreeTexture.GUI);
-	float oldProgress;
-	float animation;
+	private static final Texture SAW = new StandardTexture(0, 0, 6, 32, ExtraTreeTexture.GUI);
+	private static final Texture SAW_2 = new StandardTexture(2, 0, 4, 32, ExtraTreeTexture.GUI);
+	private float oldProgress;
+	private float animation;
 
 	protected ControlLumbermillProgress(final IWidget parent, final int x, final int y) {
 		super(parent, x, y, 66, 18);

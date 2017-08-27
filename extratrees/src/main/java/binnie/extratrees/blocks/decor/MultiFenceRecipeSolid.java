@@ -34,7 +34,7 @@ public class MultiFenceRecipeSolid extends IForgeRegistryEntry.Impl<IRecipe> imp
 				if (type != null && type2 != null && type3 != null && type.equals(type2) && type.equals(type3)) {
 					FenceDescription fenceDescription = WoodManager.getFenceDescription(a);
 					if (fenceDescription != null) {
-						FenceType fenceType = new FenceType(type.size, true, type.solid);
+						FenceType fenceType = new FenceType(type.getSize(), true, type.isSolid());
 						this.cached = WoodManager.getFence(fenceDescription.getPlankType(), fenceDescription.getSecondaryPlankType(), fenceType, 2);
 						return true;
 					}

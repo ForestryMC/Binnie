@@ -23,7 +23,7 @@ import binnie.core.util.I18N;
 
 @SideOnly(Side.CLIENT)
 public class PageFruit extends PageAbstract<ItemStack> {
-	boolean treesThatBearFruit;
+	private final boolean treesThatBearFruit;
 
 	public PageFruit(final IWidget parent, final DatabaseTab tab, final boolean treesThatBearFruit) {
 		super(parent, tab);

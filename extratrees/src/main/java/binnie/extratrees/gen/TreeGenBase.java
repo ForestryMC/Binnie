@@ -19,10 +19,10 @@ public class TreeGenBase extends WorldGenerator {
 	protected int startZ;
 	protected int girth;
 	protected int height;
-	protected int minHeight;
-	protected int maxHeight;
-	protected boolean spawnPods;
-	protected int minPodHeight;
+	protected final int minHeight;
+	protected final int maxHeight;
+	protected final boolean spawnPods;
+	protected final int minPodHeight;
 
 	public TreeGenBase() {
 		this.minHeight = 4;
@@ -59,17 +59,5 @@ public class TreeGenBase extends WorldGenerator {
 
 	protected int[] getHeight() {
 		return new int[]{5, 2};
-	}
-
-	private static class Vector {
-		int x;
-		int y;
-		int z;
-
-		public Vector(final int x, final int y, final int z) {
-			this.x = x;
-			this.y = y;
-			this.z = z;
-		}
 	}
 }

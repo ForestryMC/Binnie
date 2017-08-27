@@ -14,18 +14,15 @@ import binnie.core.gui.resource.textures.CraftGUITexture;
 import binnie.core.gui.window.Panel;
 
 public class AnalystPanel extends Panel {
-	WindowAnalyst window;
-
 	public AnalystPanel(WindowAnalyst window) {
 		super(window, 16, 54, 280, 164, MinecraftGUI.PanelType.OUTLINE);
-		this.window = window;
 		setColor(4473924);
 		int sectionWidth = (getWidth() - 8 - 4) / 2;
-		window.leftPage = new LeftPage(this, sectionWidth);
+		window.setLeftPage(new LeftPage(this, sectionWidth));
 		new LeftPageScrollBar(this, sectionWidth, window);
-		window.rightPage = new RightPage(this, sectionWidth);
+		window.setRightPage(new RightPage(this, sectionWidth));
 		new RightPageScrollBar(this, sectionWidth, window);
-		window.analystPageSize = new Area(1, 1, sectionWidth, getHeight() - 8);
+		window.setAnalystPageSize(new Area(1, 1, sectionWidth, getHeight() - 8));
 	}
 
 	@Override
@@ -55,7 +52,7 @@ public class AnalystPanel extends Panel {
 		private final WindowAnalyst window;
 
 		public LeftPageScrollBar(AnalystPanel analystPanel, int sectionWidth, WindowAnalyst window) {
-			super(analystPanel, sectionWidth + 2 - 3, 6, 3, analystPanel.getHeight() - 8 + 2 - 6, window.leftPage);
+			super(analystPanel, sectionWidth + 2 - 3, 6, 3, analystPanel.getHeight() - 8 + 2 - 6, window.getLeftPage());
 			this.window = window;
 		}
 
@@ -65,11 +62,11 @@ public class AnalystPanel extends Panel {
 			if (!isEnabled()) {
 				return;
 			}
-			if (window.leftPage.getContent() == null) {
+			if (window.getLeftPage().getContent() == null) {
 				return;
 			}
-			RenderUtil.drawGradientRect(getArea(), 1140850688 + window.leftPage.getContent().getColor(), 1140850688 + window.leftPage.getContent().getColor());
-			RenderUtil.drawSolidRect(getRenderArea(), window.leftPage.getContent().getColor());
+			RenderUtil.drawGradientRect(getArea(), 1140850688 + window.getLeftPage().getContent().getColor(), 1140850688 + window.getLeftPage().getContent().getColor());
+			RenderUtil.drawSolidRect(getRenderArea(), window.getLeftPage().getContent().getColor());
 		}
 	}
 
@@ -93,7 +90,7 @@ public class AnalystPanel extends Panel {
 		private final WindowAnalyst window;
 
 		public RightPageScrollBar(AnalystPanel analystPanel, int sectionWidth, WindowAnalyst window) {
-			super(analystPanel, sectionWidth + 2 - 3 + sectionWidth + 4, 6, 3, analystPanel.getHeight() - 8 + 2 - 6, window.rightPage);
+			super(analystPanel, sectionWidth + 2 - 3 + sectionWidth + 4, 6, 3, analystPanel.getHeight() - 8 + 2 - 6, window.getRightPage());
 			this.window = window;
 		}
 
@@ -103,11 +100,11 @@ public class AnalystPanel extends Panel {
 			if (!isEnabled()) {
 				return;
 			}
-			if (window.rightPage.getContent() == null) {
+			if (window.getRightPage().getContent() == null) {
 				return;
 			}
-			RenderUtil.drawGradientRect(getArea(), 1140850688 + window.rightPage.getContent().getColor(), 1140850688 + window.rightPage.getContent().getColor());
-			RenderUtil.drawSolidRect(getRenderArea(), window.rightPage.getContent().getColor());
+			RenderUtil.drawGradientRect(getArea(), 1140850688 + window.getRightPage().getContent().getColor(), 1140850688 + window.getRightPage().getContent().getColor());
+			RenderUtil.drawSolidRect(getRenderArea(), window.getRightPage().getContent().getColor());
 		}
 	}
 }

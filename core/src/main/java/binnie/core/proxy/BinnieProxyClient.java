@@ -32,7 +32,7 @@ import binnie.core.models.ModelManager;
 
 @SideOnly(Side.CLIENT)
 public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy {
-	public static ModelManager modelManager = new ModelManager(Constants.CORE_MOD_ID);
+	public static final ModelManager modelManager = new ModelManager(Constants.CORE_MOD_ID);
 
 	public static ModelManager getModelManager() {
 		return modelManager;

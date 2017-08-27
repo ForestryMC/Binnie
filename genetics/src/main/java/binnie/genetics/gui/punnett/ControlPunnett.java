@@ -19,20 +19,20 @@ import binnie.core.gui.geometry.TextJustification;
 import binnie.core.gui.renderer.RenderUtil;
 
 public class ControlPunnett extends Control {
-	static int boxWidth = 80;
-	static int boxHeight = 28;
+	private static final int BOX_WIDTH = 80;
+	private static final int BOX_HEIGHT = 28;
 
 	protected ControlPunnett(IWidget parent, int x, int y) {
-		super(parent, x, y, ControlPunnett.boxWidth * 3, ControlPunnett.boxWidth * 3);
+		super(parent, x, y, ControlPunnett.BOX_WIDTH * 3, ControlPunnett.BOX_WIDTH * 3);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		RenderUtil.drawSolidRect(new Area(0, ControlPunnett.boxHeight, ControlPunnett.boxWidth * 3, 1), 11184810);
-		RenderUtil.drawSolidRect(new Area(ControlPunnett.boxWidth / 2, ControlPunnett.boxHeight * 2, Math.round(ControlPunnett.boxWidth * 2.5f), 1), 11184810);
-		RenderUtil.drawSolidRect(new Area(ControlPunnett.boxWidth, 0, 1, ControlPunnett.boxHeight * 3), 11184810);
-		RenderUtil.drawSolidRect(new Area(ControlPunnett.boxWidth * 2, ControlPunnett.boxHeight / 2, 1, Math.round(ControlPunnett.boxHeight * 2.5f)), 11184810);
+		RenderUtil.drawSolidRect(new Area(0, ControlPunnett.BOX_HEIGHT, ControlPunnett.BOX_WIDTH * 3, 1), 11184810);
+		RenderUtil.drawSolidRect(new Area(ControlPunnett.BOX_WIDTH / 2, ControlPunnett.BOX_HEIGHT * 2, Math.round(ControlPunnett.BOX_WIDTH * 2.5f), 1), 11184810);
+		RenderUtil.drawSolidRect(new Area(ControlPunnett.BOX_WIDTH, 0, 1, ControlPunnett.BOX_HEIGHT * 3), 11184810);
+		RenderUtil.drawSolidRect(new Area(ControlPunnett.BOX_WIDTH * 2, ControlPunnett.BOX_HEIGHT / 2, 1, Math.round(ControlPunnett.BOX_HEIGHT * 2.5f)), 11184810);
 	}
 
 	public void setup(IChromosomeType chromosome, IIndividual ind1, IIndividual ind2, ISpeciesRoot root) {
@@ -64,14 +64,14 @@ public class ControlPunnett extends Control {
 				for (IAllele allele3 : alleles) {
 					text.append(allele3.getAlleleName()).append(": ").append(25.0f / alleles.size()).append("%\n");
 				}
-				new ControlText(this, new Area(x * ControlPunnett.boxWidth, ControlPunnett.boxHeight * y, ControlPunnett.boxWidth, ControlPunnett.boxHeight), text.toString(), TextJustification.TOP_CENTER).setColor(11184810);
+				new ControlText(this, new Area(x * ControlPunnett.BOX_WIDTH, ControlPunnett.BOX_HEIGHT * y, ControlPunnett.BOX_WIDTH, ControlPunnett.BOX_HEIGHT), text.toString(), TextJustification.TOP_CENTER).setColor(11184810);
 				++y;
 			}
 			++x;
 		}
-		new ControlText(this, new Area(ControlPunnett.boxWidth, 0, ControlPunnett.boxWidth, ControlPunnett.boxHeight), "\n" + primary1.getAlleleName(), TextJustification.TOP_CENTER).setColor(11184810);
-		new ControlText(this, new Area(ControlPunnett.boxWidth * 2, 0, ControlPunnett.boxWidth, ControlPunnett.boxHeight), "\n" + secondary1.getAlleleName(), TextJustification.TOP_CENTER).setColor(11184810);
-		new ControlText(this, new Area(0, ControlPunnett.boxHeight, ControlPunnett.boxWidth, ControlPunnett.boxHeight), primary2.getAlleleName(), TextJustification.TOP_CENTER).setColor(11184810);
-		new ControlText(this, new Area(0, ControlPunnett.boxHeight * 2, ControlPunnett.boxWidth, ControlPunnett.boxHeight), primary2.getAlleleName(), TextJustification.TOP_CENTER).setColor(11184810);
+		new ControlText(this, new Area(ControlPunnett.BOX_WIDTH, 0, ControlPunnett.BOX_WIDTH, ControlPunnett.BOX_HEIGHT), "\n" + primary1.getAlleleName(), TextJustification.TOP_CENTER).setColor(11184810);
+		new ControlText(this, new Area(ControlPunnett.BOX_WIDTH * 2, 0, ControlPunnett.BOX_WIDTH, ControlPunnett.BOX_HEIGHT), "\n" + secondary1.getAlleleName(), TextJustification.TOP_CENTER).setColor(11184810);
+		new ControlText(this, new Area(0, ControlPunnett.BOX_HEIGHT, ControlPunnett.BOX_WIDTH, ControlPunnett.BOX_HEIGHT), primary2.getAlleleName(), TextJustification.TOP_CENTER).setColor(11184810);
+		new ControlText(this, new Area(0, ControlPunnett.BOX_HEIGHT * 2, ControlPunnett.BOX_WIDTH, ControlPunnett.BOX_HEIGHT), primary2.getAlleleName(), TextJustification.TOP_CENTER).setColor(11184810);
 	}
 }

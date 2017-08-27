@@ -13,9 +13,9 @@ import forestry.apiculture.genetics.IBeeDefinition;
 
 public class HiveDrop implements IHiveDrop {
 
-	private IAllele[] template;
-	private NonNullList<ItemStack> extra;
-	private double chance;
+	private final IAllele[] template;
+	private final NonNullList<ItemStack> extra;
+	private final double chance;
 
 	public HiveDrop(IBeeDefinition species, double chance) {
 		this(species.getTemplate(), NonNullList.create(), chance);

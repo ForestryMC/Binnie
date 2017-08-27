@@ -67,10 +67,10 @@ public enum EnumFlowerType implements IFlowerType<EnumFlowerType> {
 	public static EnumFlowerType[] VALUES = values();
 	public static int highestSection = 2;
 
-	int sections;
-	ModelResourceLocation flower;
-	ModelResourceLocation seed;
-	ModelResourceLocation pollen;
+	private final int sections;
+	private ModelResourceLocation flower;
+	private ModelResourceLocation seed;
+	private ModelResourceLocation pollen;
 
 	EnumFlowerType() {
 		this(1);

@@ -37,9 +37,10 @@ import binnie.core.machines.inventory.InventorySlot;
 import binnie.core.machines.inventory.MachineSide;
 import binnie.core.machines.inventory.SlotValidator;
 
+@SideOnly(Side.CLIENT)
 public class ControlSlot extends ControlSlotBase {
 	public static final Map<EnumHighlighting, List<Integer>> highlighting = new EnumMap<>(EnumHighlighting.class);
-	public static boolean shiftClickActive = false;
+	public static boolean shiftClickActive;
 
 	static {
 		for (final EnumHighlighting h : EnumHighlighting.values()) {
@@ -58,9 +59,9 @@ public class ControlSlot extends ControlSlotBase {
 			Minecraft mc = superParentGui.getMinecraft();
 			final PlayerControllerMP playerController = mc.playerController;
 			final int windowId = superParent.getContainer().windowId;
-			final int slotNumber = ControlSlot.this.slot.slotNumber;
+			final int slotNumber = this.slot.slotNumber;
 			final int button = event.getButton();
-			Window.get(ControlSlot.this.getWidget()).getGui();
+			Window.get(this.getWidget()).getGui();
 			if (playerController != null) {
 				boolean clone = mc.gameSettings.keyBindPickBlock.isActiveAndMatches(button  - 100);
 				playerController.windowClick(windowId, slotNumber, button, clone ? ClickType.CLONE : GuiScreen.isShiftKeyDown() ? ClickType.QUICK_MOVE : ClickType.PICKUP, mc.player);

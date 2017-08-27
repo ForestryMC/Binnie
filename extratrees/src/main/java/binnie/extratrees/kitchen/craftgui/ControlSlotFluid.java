@@ -22,9 +22,9 @@ import binnie.core.gui.renderer.RenderUtil;
 import binnie.core.gui.resource.textures.CraftGUITexture;
 
 public class ControlSlotFluid extends Control implements ITooltip {
-	ControlFluidDisplay itemDisplay;
+	protected final ControlFluidDisplay itemDisplay;
 	@Nullable
-	FluidStack fluidStack;
+	protected FluidStack fluidStack;
 
 	public ControlSlotFluid(final IWidget parent, final int x, final int y, @Nullable final FluidStack fluid) {
 		this(parent, x, y, 18, fluid);
@@ -36,7 +36,7 @@ public class ControlSlotFluid extends Control implements ITooltip {
 		this.itemDisplay = new ControlFluidDisplay(this, 1, 1, size - 2);
 		this.fluidStack = fluid;
 		this.addSelfEventHandler(EventWidget.ChangeSize.class, event -> {
-			ControlSlotFluid.this.itemDisplay.setSize(ControlSlotFluid.this.getSize().sub(new Point(2, 2)));
+			this.itemDisplay.setSize(this.getSize().sub(new Point(2, 2)));
 		});
 	}
 

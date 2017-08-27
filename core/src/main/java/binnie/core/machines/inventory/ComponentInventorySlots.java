@@ -20,7 +20,7 @@ import net.minecraft.util.text.TextComponentString;
 import binnie.core.machines.IMachine;
 
 public class ComponentInventorySlots extends ComponentInventory implements IInventoryMachine, IInventorySlots {
-	private Map<Integer, InventorySlot> inventory;
+	private final Map<Integer, InventorySlot> inventory;
 
 	public ComponentInventorySlots(final IMachine machine) {
 		super(machine);

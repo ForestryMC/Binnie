@@ -16,17 +16,17 @@ public @interface PropDouble {
 
 		@Override
 		protected Property getProperty() {
-			return this.file.get(this.getCategory(), this.getKey(), this.defaultValue);
+			return this.getFile().get(this.getCategory(), this.getKey(), this.getDefaultValue());
 		}
 
 		@Override
 		protected Double getConfigValue() {
-			return this.property.getDouble(this.defaultValue);
+			return super.getProperty().getDouble(this.getDefaultValue());
 		}
 
 		@Override
 		protected void addComments() {
-			this.addComment("Default value is " + this.defaultValue + ".");
+			this.addComment("Default value is " + this.getDefaultValue() + ".");
 		}
 	}
 }

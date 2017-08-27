@@ -37,11 +37,11 @@ import binnie.core.util.I18N;
 @SideOnly(Side.CLIENT)
 public class AnalystPageDatabase extends Control implements ITitledWidget {
 	private final ControlScrollableContent scroll;
-	boolean isMaster;
+	private final boolean master;
 
-	public AnalystPageDatabase(IWidget parent, IArea area, IBreedingSystem system, boolean isMaster) {
+	public AnalystPageDatabase(IWidget parent, IArea area, IBreedingSystem system, boolean master) {
 		super(parent, area);
-		this.isMaster = isMaster;
+		this.master = master;
 		setColor(getColor(system));
 		int y = 4;
 		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColor(getColor());
@@ -91,7 +91,7 @@ public class AnalystPageDatabase extends Control implements ITitledWidget {
 
 	private Collection<IAlleleSpecies> getSpecies(IBreedingSystem system) {
 		Collection<IAlleleSpecies> species = new ArrayList<>();
-		species.addAll(isMaster ? system.getAllSpecies() : system.getDiscoveredSpecies(getWindow().getWorld(), getWindow().getPlayer().getGameProfile()));
+		species.addAll(master ? system.getAllSpecies() : system.getDiscoveredSpecies(getWindow().getWorld(), getWindow().getPlayer().getGameProfile()));
 		return species;
 	}
 
@@ -108,7 +108,7 @@ public class AnalystPageDatabase extends Control implements ITitledWidget {
 
 		private static class ScrollOption extends Control {
 			private final IAlleleSpecies v;
-			IAlleleSpecies value;
+			private final IAlleleSpecies value;
 
 			public ScrollOption(Scroll scroll, int y, IAlleleSpecies v) {
 				super(scroll.getContent(), 0, y, scroll.getWidth(), 12);
@@ -126,7 +126,7 @@ public class AnalystPageDatabase extends Control implements ITitledWidget {
 
 	private static class SpeciesSearch extends ControlTextEdit {
 		private final IBreedingSystem system;
-		private AnalystPageDatabase analystPageDatabase;
+		private final AnalystPageDatabase analystPageDatabase;
 
 		public SpeciesSearch(AnalystPageDatabase analystPageDatabase, int y, IBreedingSystem system) {
 			super(analystPageDatabase, 20, y, analystPageDatabase.getWidth() - 40, 16);
@@ -159,7 +159,7 @@ public class AnalystPageDatabase extends Control implements ITitledWidget {
 	}
 
 	private static class DatabaseScrollBar extends ControlScrollBar {
-		private AnalystPageDatabase analystPageDatabase;
+		private final AnalystPageDatabase analystPageDatabase;
 
 		public DatabaseScrollBar(AnalystPageDatabase analystPageDatabase) {
 			super(analystPageDatabase, analystPageDatabase.scroll.getXPos() + analystPageDatabase.scroll.getWidth() - 6, analystPageDatabase.scroll.getYPos() + 3, 3, analystPageDatabase.scroll.getHeight() - 6, analystPageDatabase.scroll);
@@ -180,7 +180,7 @@ public class AnalystPageDatabase extends Control implements ITitledWidget {
 	private static class ItemScrollList extends Control {
 		private final Collection<IAlleleSpecies> options;
 		private final IBreedingSystem system;
-		private AnalystPageDatabase analystPageDatabase;
+		private final AnalystPageDatabase analystPageDatabase;
 
 		public ItemScrollList(final AnalystPageDatabase analystPageDatabase, Collection<IAlleleSpecies> options, IBreedingSystem system) {
 			super(analystPageDatabase.scroll, 0, 0, analystPageDatabase.scroll.getWidth(), analystPageDatabase.scroll.getHeight());
@@ -207,7 +207,7 @@ public class AnalystPageDatabase extends Control implements ITitledWidget {
 		private static class SpeciesIndividualDisplay extends ControlIndividualDisplay {
 			private final IIndividual ind;
 			private final IAlleleSpecies species;
-			private ItemScrollList itemScrollList;
+			private final ItemScrollList itemScrollList;
 
 			public SpeciesIndividualDisplay(ItemScrollList itemScrollList, int biomeListX, int dx, int dy, IIndividual ind, IAlleleSpecies species) {
 				super(itemScrollList, biomeListX + dx, 2 + dy, ind);

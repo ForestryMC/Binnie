@@ -10,7 +10,7 @@ import binnie.core.util.I18N;
 import binnie.genetics.item.GeneticsItems;
 
 public class CreativeTabGenetics extends CreativeTabs {
-	public static CreativeTabs instance = new CreativeTabGenetics();
+	public static final CreativeTabs INSTANCE = new CreativeTabGenetics();
 
 	public CreativeTabGenetics() {
 		super("Genetics");

@@ -1,6 +1,5 @@
 package binnie.genetics;
 
-import binnie.core.api.genetics.IBreedingSystem;
 import binnie.core.machines.errors.ErrorStateRegistry;
 import binnie.genetics.api.GeneticsApi;
 import binnie.genetics.api.acclimatiser.IAcclimatiserManager;
@@ -51,8 +50,6 @@ public class Genetics extends AbstractMod {
 	@SidedProxy(clientSide = "binnie.genetics.proxy.ProxyClient", serverSide = "binnie.genetics.proxy.ProxyServer")
 	public static Proxy proxy;
 	@Nullable
-	public static IBreedingSystem treeBreedingSystem;
-	@Nullable
 	private static ModuleItems items;
 	@Nullable
 	private static ModuleMachine machine;
@@ -91,7 +88,6 @@ public class Genetics extends AbstractMod {
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent evt) {
 		TreeBreedingSystem treeBreedingSystem = new TreeBreedingSystem();
-		Genetics.treeBreedingSystem = treeBreedingSystem;
 		Binnie.GENETICS.registerBreedingSystem(treeBreedingSystem);
 
 		proxy.registerItem(new ItemPunnettSquare());

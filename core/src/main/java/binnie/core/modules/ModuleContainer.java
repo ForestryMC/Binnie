@@ -113,7 +113,7 @@ public class ModuleContainer implements IModuleContainer {
 		return state.isAvailable();
 	}
 
-	public static interface ContainerState{
+	public interface ContainerState{
 		boolean isAvailable();
 	}
 }

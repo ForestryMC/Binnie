@@ -82,7 +82,7 @@ public class ModuleAlcohol implements Module {
 
 		if(fruitPressManager != null) {
 			for (Juice juice : Juice.values()) {
-				String oreDict = juice.squeezing;
+				String oreDict = juice.getSqueezing();
 				List<ItemStack> ores = new ArrayList<>();
 				ores.addAll(OreDictionary.getOres(oreDict));
 				for (final Food food : Food.values()) {

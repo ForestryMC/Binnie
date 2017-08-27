@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import binnie.core.api.gui.IArea;
 import binnie.core.gui.controls.page.ControlPage;
+import binnie.core.gui.database.ModeWidgets;
 import net.minecraft.entity.player.EntityPlayer;
 
 import net.minecraftforge.fml.relauncher.Side;

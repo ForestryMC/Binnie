@@ -1,5 +1,6 @@
 package binnie.extratrees.machines.fruitpress.window;
 
+import binnie.core.machines.ManagerMachine;
 import net.minecraft.item.ItemStack;
 
 import binnie.core.machines.inventory.SlotValidator;
@@ -8,7 +9,7 @@ import binnie.extratrees.machines.fruitpress.recipes.FruitPressRecipeManager;
 
 public class SlotValidatorSqueezable extends SlotValidator {
 	public SlotValidatorSqueezable() {
-		super(SlotValidator.spriteBlock);
+		super(ManagerMachine.getSpriteBlock());
 	}
 
 	@Override

@@ -25,7 +25,7 @@ public class ItemDatabase extends ItemCore {
 
 	public ItemDatabase() {
 		super("geneticdatabase");
-		this.setCreativeTab(CreativeTabGenetics.instance);
+		this.setCreativeTab(CreativeTabGenetics.INSTANCE);
 		this.setMaxStackSize(1);
 		setHasSubtypes(true);
 	}

@@ -6,7 +6,7 @@ import binnie.core.gui.controls.listbox.ControlListBox;
 
 public class ControlColorMixBox extends ControlListBox<IColorMix> {
 	private int index;
-	private Type type;
+	private final Type type;
 
 	public ControlColorMixBox(IWidget parent, int x, int y, int width, int height, Type type) {
 		super(parent, x, y, width, height, 12);

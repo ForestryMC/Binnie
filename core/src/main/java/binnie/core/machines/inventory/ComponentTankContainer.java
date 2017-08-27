@@ -25,8 +25,8 @@ import binnie.core.machines.power.ITankMachine;
 import binnie.core.machines.power.TankInfo;
 
 public class ComponentTankContainer extends MachineComponent implements ITankMachine {
-	private Map<Integer, TankSlot> tanks;
-	private EnumMap<EnumFacing, IFluidHandler> handlers;
+	private final Map<Integer, TankSlot> tanks;
+	private final EnumMap<EnumFacing, IFluidHandler> handlers;
 
 	public ComponentTankContainer(final IMachine machine) {
 		super(machine);
@@ -178,7 +178,7 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 	}
 
 	private class TankContainer implements IFluidHandler {
-		EnumFacing from;
+		private final EnumFacing from;
 
 		public TankContainer(EnumFacing from) {
 			this.from = from;

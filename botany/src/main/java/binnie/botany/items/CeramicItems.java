@@ -15,7 +15,7 @@ import binnie.core.util.I18N;
 public enum CeramicItems implements IItemMiscProvider {
 	MORTAR;
 
-	String name;
+	private final String name;
 
 	CeramicItems() {
 		name = name().toLowerCase(Locale.ENGLISH);

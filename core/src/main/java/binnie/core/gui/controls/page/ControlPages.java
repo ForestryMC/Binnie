@@ -11,7 +11,7 @@ import binnie.core.gui.controls.core.IControlValues;
 import binnie.core.gui.events.EventValueChanged;
 
 public class ControlPages<T> extends Control implements IControlValues<T>, IControlValue<T> {
-	T value;
+	private T value;
 
 	public ControlPages(final IWidget parent, final int x, final int y, final int w, final int h) {
 		super(parent, x, y, w, h);

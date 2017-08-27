@@ -53,7 +53,7 @@ public class ModuleCeramic implements Module {
 		ceramicTile = new BlockCeramicPatterned();
 		ceramicBrick = new BlockCeramicBrick();
 
-		misc = new ItemMisc(CreativeTabBotany.instance, CeramicItems.values(), "misc_ceramic");
+		misc = new ItemMisc(CreativeTabBotany.INSTANCE, CeramicItems.values(), "misc_ceramic");
 		pigment = new ItemPigment();
 		clay = new ItemClay();
 

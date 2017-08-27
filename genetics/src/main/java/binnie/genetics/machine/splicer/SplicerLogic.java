@@ -21,8 +21,8 @@ import binnie.genetics.genetics.Engineering;
 import binnie.genetics.machine.GeneticsErrorCode;
 
 public class SplicerLogic extends ComponentProcess implements IProcess {
-	public static int PROCESS_ENERGY = 12000000;
-	public static int PROCESS_LENGTH = 1200;
+	public static final int PROCESS_ENERGY = 12000000;
+	public static final int PROCESS_LENGTH = 1200;
 	private int nOfGenes;
 
 	public SplicerLogic(final Machine machine) {
@@ -157,11 +157,6 @@ public class SplicerLogic extends ComponentProcess implements IProcess {
 	}
 
 	@Override
-	public ErrorState canProgress() {
-		return super.canProgress();
-	}
-
-	@Override
 	protected void onFinishTask() {
 		super.onFinishTask();
 		final ItemStack serum = this.getUtil().getStack(Splicer.SLOT_SERUM_VIAL);
@@ -181,9 +176,5 @@ public class SplicerLogic extends ComponentProcess implements IProcess {
 			Splicer.setGene(gene, target, 1);
 		}
 		this.getUtil().damageItem(serum, Splicer.SLOT_SERUM_VIAL, 1);
-	}
-
-	@Override
-	protected void onTickTask() {
 	}
 }

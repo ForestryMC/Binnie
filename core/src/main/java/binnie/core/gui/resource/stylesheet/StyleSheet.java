@@ -9,14 +9,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import binnie.core.gui.resource.textures.Texture;
 
 public class StyleSheet implements IStyleSheet {
-	protected Map<Object, Texture> textures;
-
-	public StyleSheet() {
-		this.textures = new HashMap<>();
-	}
+	protected final Map<Object, Texture> textures = new HashMap<>();
 
 	public StyleSheet(Map<String, Texture> textures) {
-		this.textures = new HashMap<>();
 		this.textures.putAll(textures);
 	}
 

@@ -12,9 +12,9 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class Mods {
-	public static ModNonnull Forestry = new ModNonnull("forestry");
-	public static Mod IC2 = new Mod("ic2");
-	public static Mod Botania = new Mod("botania");
+	public static final ModNonnull Forestry = new ModNonnull("forestry");
+	public static final Mod IC2 = new Mod("ic2");
+	public static final Mod Botania = new Mod("botania");
 
 	public static class Mod {
 		protected final String id;

@@ -14,7 +14,7 @@ import binnie.core.gui.geometry.Point;
 
 @SideOnly(Side.CLIENT)
 class ControlSpeciesBoxOption extends ControlTextOption<IAlleleSpecies> {
-	private ControlIndividualDisplay controlBee;
+	private final ControlIndividualDisplay controlBee;
 
 	public ControlSpeciesBoxOption(final ControlList<IAlleleSpecies> controlList, final IAlleleSpecies option, final int y) {
 		super(controlList, option, option.getAlleleName(), y);

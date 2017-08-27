@@ -11,9 +11,9 @@ import binnie.core.gui.geometry.Point;
 
 public class ControlScrollableContent<T extends IWidget> extends Control implements IControlScrollable {
 	@Nullable
-	protected T controlChild;
-	protected int scrollBarSize;
-	float percentageIndex;
+	private T controlChild;
+	private final int scrollBarSize;
+	private float percentageIndex;
 
 	public ControlScrollableContent(final IWidget parent, final int x, final int y, final int w, final int h, final int scrollBarSize) {
 		super(parent, x, y, w, h);
@@ -117,5 +117,9 @@ public class ControlScrollableContent<T extends IWidget> extends Control impleme
 		if (minY < minPercent) {
 			this.setPercentageIndex(minY / (1 - shownPercentage));
 		}
+	}
+
+	public int getScrollBarSize() {
+		return scrollBarSize;
 	}
 }

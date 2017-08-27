@@ -31,9 +31,9 @@ public class DesignBlock {
 		{3, 2, 0, 1, 4, 5, 6},
 		{0, 1, 2, 3, 4, 5, 6},
 	};
-	private IDesign design;
-	private IDesignMaterial primaryMaterial;
-	private IDesignMaterial secondaryMaterial;
+	private final IDesign design;
+	private final IDesignMaterial primaryMaterial;
+	private final IDesignMaterial secondaryMaterial;
 	private int rotation;
 	private EnumFacing facing;
 	private boolean panel;

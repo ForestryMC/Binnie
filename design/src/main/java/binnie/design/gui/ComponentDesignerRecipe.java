@@ -22,7 +22,7 @@ import binnie.design.api.IDesignMaterial;
 import binnie.design.EnumDesign;
 
 public class ComponentDesignerRecipe extends ComponentRecipe implements IComponentRecipe, INetwork.GuiNBT, IErrorStateSource {
-	public IDesignerType type;
+	private final IDesignerType type;
 	private IDesign design;
 
 	public ComponentDesignerRecipe(final Machine machine, final IDesignerType type) {

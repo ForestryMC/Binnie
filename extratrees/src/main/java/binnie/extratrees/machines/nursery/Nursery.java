@@ -7,17 +7,17 @@ import binnie.core.machines.inventory.ComponentInventorySlots;
 import binnie.extratrees.machines.ExtraTreeMachine;
 
 public class Nursery {
-	public static int slotCaterpillar = 0;
+	public static final int SLOT_CATERPILLAR = 0;
 
 	public static class PackageNursery extends ExtraTreeMachine.PackageExtraTreeMachine {
 		public PackageNursery() {
-			super("nursery", false);
+			super("nursery");
 		}
 
 		@Override
 		public void createMachine(final Machine machine) {
 			final ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
-			inventory.addSlot(Nursery.slotCaterpillar, "caterpillar");
+			inventory.addSlot(Nursery.SLOT_CATERPILLAR, "caterpillar");
 		}
 
 		@Override

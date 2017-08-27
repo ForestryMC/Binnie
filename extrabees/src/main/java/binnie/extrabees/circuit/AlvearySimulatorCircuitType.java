@@ -39,9 +39,9 @@ public enum AlvearySimulatorCircuitType implements IBeeModifier {
 		}
 	}
 
-	public int recipe;
-	public int power;
-	BeeModifierLogic logic;
+	private final int recipe;
+	private final int power;
+	private final BeeModifierLogic logic;
 
 	AlvearySimulatorCircuitType(final int recipe, final int power) {
 		this.logic = new BeeModifierLogic();
@@ -113,5 +113,13 @@ public enum AlvearySimulatorCircuitType implements IBeeModifier {
 	@Override
 	public boolean isHellish() {
 		return this.logic.getModifier(EnumBeeBooleanModifier.Hellish);
+	}
+
+	public int getRecipe() {
+		return recipe;
+	}
+
+	public int getPower() {
+		return power;
 	}
 }

@@ -15,7 +15,7 @@ import binnie.extratrees.machines.ExtraTreeMachine;
 
 public class InfuserMachine extends ExtraTreeMachine.PackageExtraTreeMachine implements IMachineInformation {
 	public InfuserMachine() {
-		super("infuser", true);
+		super("infuser");
 	}
 
 	@Override
@@ -26,12 +26,12 @@ public class InfuserMachine extends ExtraTreeMachine.PackageExtraTreeMachine imp
 
 		final TankSlot input = tanks.addTank(Infuser.TANK_INPUT, "input", 5000);
 		input.setValidator(new TankValidatorInfuserInput());
-		input.setOutputSides(MachineSide.TopAndBottom);
+		input.setOutputSides(MachineSide.TOP_AND_BOTTOM);
 
 		final TankSlot output = tanks.addTank(Infuser.TANK_OUTPUT, "output", 5000);
 		output.setValidator(new TankValidatorInfuserOutput());
 		output.setReadOnly();
-		output.setOutputSides(MachineSide.Sides);
+		output.setOutputSides(MachineSide.SIDES);
 
 		new ComponentPowerReceptor(machine);
 		new InfuserLogic(machine);
@@ -42,7 +42,4 @@ public class InfuserMachine extends ExtraTreeMachine.PackageExtraTreeMachine imp
 		return new TileEntityMachine(this);
 	}
 
-	@Override
-	public void register() {
-	}
 }

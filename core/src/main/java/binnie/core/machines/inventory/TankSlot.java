@@ -11,7 +11,7 @@ import net.minecraftforge.fluids.IFluidTank;
 import binnie.core.util.I18N;
 
 public class TankSlot extends BaseSlot<FluidStack> {
-	private FluidTank tank;
+	private final FluidTank tank;
 
 	@Deprecated
 	public TankSlot(final int index, final String name, final int capacity) {

@@ -14,7 +14,7 @@ import forestry.api.core.IModelManager;
 import binnie.design.api.IToolHammer;
 
 public class ItemSetSquare extends Item implements IToolHammer, IItemModelRegister {
-	private EnumSetSquareMode mode;
+	private final EnumSetSquareMode mode;
 
 	public ItemSetSquare(final EnumSetSquareMode mode) {
 		this.mode = mode;

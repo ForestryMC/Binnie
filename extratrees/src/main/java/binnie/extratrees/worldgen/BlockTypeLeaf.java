@@ -10,7 +10,8 @@ import com.mojang.authlib.GameProfile;
 import forestry.api.world.ITreeGenData;
 
 public class BlockTypeLeaf implements WorldGenBlockType {
-	GameProfile owner;
+	@Nullable
+	private final GameProfile owner;
 
 	public BlockTypeLeaf(@Nullable GameProfile owner) {
 		this.owner = owner;

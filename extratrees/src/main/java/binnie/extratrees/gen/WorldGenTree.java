@@ -21,7 +21,7 @@ import binnie.extratrees.worldgen.BlockTypeVoid;
 import binnie.extratrees.worldgen.WorldGenBlockType;
 
 public class WorldGenTree extends WorldGenerator {
-	protected ITreeGenData treeGen;
+	protected final ITreeGenData treeGen;
 	protected World world;
 	protected Random rand;
 	protected int startX;
@@ -29,15 +29,15 @@ public class WorldGenTree extends WorldGenerator {
 	protected int startZ;
 	protected int girth;
 	protected int height;
-	protected int minHeight;
-	protected int maxHeight;
+	protected final int minHeight;
+	protected final int maxHeight;
 	protected boolean spawnPods;
-	protected int minPodHeight;
-	WorldGenBlockType leaf;
-	WorldGenBlockType wood;
-	WorldGenBlockType vine;
-	WorldGenBlockType air;
-	float bushiness;
+	protected final int minPodHeight;
+	protected WorldGenBlockType leaf;
+	protected WorldGenBlockType wood;
+	protected final WorldGenBlockType vine;
+	protected final WorldGenBlockType air;
+	protected float bushiness;
 
 	public WorldGenTree(ITreeGenData tree) {
 		this.minHeight = 3;
@@ -293,9 +293,9 @@ public class WorldGenTree extends WorldGenerator {
 	}
 
 	static class Vector {
-		float x;
-		float y;
-		float z;
+		final float x;
+		final float y;
+		final float z;
 
 		public Vector(final float f, final float h, final float g) {
 			this.x = f;

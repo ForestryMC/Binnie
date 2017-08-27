@@ -25,9 +25,9 @@ import binnie.design.api.IPattern;
 import binnie.design.EnumPattern;
 
 public class CeramicDesignSystem implements IDesignSystem {
-	public static CeramicDesignSystem instance = new CeramicDesignSystem();
-	Map<Integer, TextureAtlasSprite> primary;
-	Map<Integer, TextureAtlasSprite> secondary;
+	public static final CeramicDesignSystem instance = new CeramicDesignSystem();
+	private final Map<Integer, TextureAtlasSprite> primary;
+	private final Map<Integer, TextureAtlasSprite> secondary;
 
 	CeramicDesignSystem() {
 		primary = new HashMap<>();
@@ -52,7 +52,7 @@ public class CeramicDesignSystem implements IDesignSystem {
 
 	@Override
 	public int getMaterialIndex(IDesignMaterial id) {
-		return ((CeramicColor) id).color.ordinal();
+		return ((CeramicColor) id).getMaterialIndex();
 	}
 
 	public String getTexturePath() {

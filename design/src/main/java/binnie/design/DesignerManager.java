@@ -13,8 +13,8 @@ import binnie.design.api.IDesignManager;
 import binnie.design.api.IDesignSystem;
 
 public final class DesignerManager implements IDesignManager {
-	private static Map<Integer, IDesign> designMap = new LinkedHashMap<>();
-	private static Map<String, IDesignCategory> designCategories = new HashMap<>();
+	private static final Map<Integer, IDesign> designMap = new LinkedHashMap<>();
+	private static final Map<String, IDesignCategory> designCategories = new HashMap<>();
 
 	private final List<IDesignSystem> systems = new ArrayList<>();
 

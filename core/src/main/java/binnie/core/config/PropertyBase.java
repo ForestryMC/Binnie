@@ -9,13 +9,13 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 
 abstract class PropertyBase<ValueType, AnnotationType extends Annotation> {
-	Configuration file;
-	Property property;
-	ValueType defaultValue;
-	AnnotationType annotatedProperty;
-	private ConfigProperty configProperty;
-	private List<String> comments;
-	private Field field;
+	private final Configuration file;
+	private final Property property;
+	private final ValueType defaultValue;
+	private final AnnotationType annotatedProperty;
+	private final ConfigProperty configProperty;
+	private final List<String> comments;
+	private final Field field;
 
 	protected PropertyBase(final Field field, final BinnieConfiguration file, final ConfigProperty configProperty, final AnnotationType annotedProperty) throws IllegalArgumentException, IllegalAccessException {
 		this.comments = new ArrayList<>();
@@ -33,7 +33,9 @@ abstract class PropertyBase<ValueType, AnnotationType extends Annotation> {
 		field.set(null, this.getConfigValue());
 	}
 
-	protected abstract Property getProperty();
+	protected Property getProperty() {
+		return property;
+	}
 
 	protected abstract ValueType getConfigValue();
 
@@ -61,5 +63,17 @@ abstract class PropertyBase<ValueType, AnnotationType extends Annotation> {
 			comment.append(com).append(" ");
 		}
 		return comment.toString();
+	}
+
+	public Configuration getFile() {
+		return file;
+	}
+
+	public ValueType getDefaultValue() {
+		return defaultValue;
+	}
+
+	public AnnotationType getAnnotatedProperty() {
+		return annotatedProperty;
 	}
 }

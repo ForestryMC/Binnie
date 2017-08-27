@@ -19,7 +19,7 @@ import binnie.core.util.I18N;
 
 public class CircuitGarden extends BinnieCircuit {
 	private boolean isManual;
-	private GardenLogic logic;
+	private final GardenLogic logic;
 
 	public CircuitGarden(EnumMoisture moisture, @Nullable EnumAcidity ph, boolean manual, boolean fertilised, ItemStack recipe, ItemStack icon) {
 		super(getName(moisture, ph, manual, fertilised), 4, getLayout(manual), recipe);

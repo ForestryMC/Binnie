@@ -8,7 +8,7 @@ public enum PowerSystem {
 	RF(10.0),
 	EU(40.0);
 
-	double conversion;
+	private final double conversion;
 
 	PowerSystem(final double conversion) {
 		this.conversion = conversion;

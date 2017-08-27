@@ -11,7 +11,7 @@ import binnie.core.gui.minecraft.MinecraftGUI;
 import binnie.core.gui.resource.textures.CraftGUITexture;
 
 public class Panel extends Control {
-	IPanelType type;
+	private final IPanelType type;
 
 	public Panel(final IWidget parent, final int x, final int y, final int width, final int height, final IPanelType type) {
 		super(parent, x, y, width, height);

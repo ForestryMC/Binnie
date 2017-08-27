@@ -42,7 +42,7 @@ import binnie.core.util.TileUtil;
 
 class BlockMachine extends Block implements IBlockMachine, ITileEntityProvider {
 	public static final PropertyInteger MACHINE_TYPE = PropertyInteger.create("machine_type", 0, 15);
-	private MachineGroup group;
+	private final MachineGroup group;
 
 	public BlockMachine(MachineGroup group, String blockName) {
 		super(Material.IRON);

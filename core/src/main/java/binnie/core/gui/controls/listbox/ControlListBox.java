@@ -14,19 +14,19 @@ public class ControlListBox<T> extends ControlScrollableContent<ControlList<T>> 
 
 		ControlList<T> content = this.getContent();
 		T defaultValue = content == null ? null : content.getDefaultValue();
-		ControlList<T> child = new ControlList<>(this, 1, 1, this.getWidth() - 2 - this.scrollBarSize, this.getHeight() - 2, defaultValue);
+		ControlList<T> child = new ControlList<>(this, 1, 1, this.getWidth() - 2 - this.getScrollBarSize(), this.getHeight() - 2, defaultValue);
 		this.setScrollableContent(child);
 		this.addEventHandler(EventKey.Down.class, event -> {
-			if (ControlListBox.this.calculateIsMouseOver()) {
-				int currentIndex = ControlListBox.this.getContent().getCurrentIndex();
+			if (this.calculateIsMouseOver()) {
+				int currentIndex = this.getContent().getCurrentIndex();
 				if (event.getKey() == 208) {
-					if (++currentIndex >= ControlListBox.this.getContent().getOptions().size()) {
+					if (++currentIndex >= this.getContent().getOptions().size()) {
 						currentIndex = 0;
 					}
 				} else if (event.getKey() == 200 && --currentIndex < 0) {
-					currentIndex = ControlListBox.this.getContent().getOptions().size() - 1;
+					currentIndex = this.getContent().getOptions().size() - 1;
 				}
-				ControlListBox.this.getContent().setIndex(currentIndex);
+				this.getContent().setIndex(currentIndex);
 			}
 		});
 	}

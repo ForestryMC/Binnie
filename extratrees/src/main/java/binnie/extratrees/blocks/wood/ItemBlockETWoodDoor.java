@@ -25,8 +25,6 @@ public class ItemBlockETWoodDoor extends ItemBlockETWood<BlockETDoor> implements
 	
 	/**
 	 * Copy of {@link ItemDoor#onItemUse}
-	 */
-	/**
 	 * Called when a Block is right-clicked with this Item
 	 */
 	@Override

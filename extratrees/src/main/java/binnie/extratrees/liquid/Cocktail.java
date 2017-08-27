@@ -130,10 +130,10 @@ public enum Cocktail {
 		Cocktail.SexOnTheBeach.add(Juice.Cranberry, 2);
 	}
 
-	public String name;
-	public GlasswareType glasswareType;
-	public int colour;
-	public Map<ICocktailIngredient, Integer> ingredients;
+	private final String name;
+	private final GlasswareType glasswareType;
+	private final int colour;
+	private final Map<ICocktailIngredient, Integer> ingredients;
 
 	Cocktail(final String name, final GlasswareType glasswareType, final int colour) {
 		this.ingredients = new HashMap<>();

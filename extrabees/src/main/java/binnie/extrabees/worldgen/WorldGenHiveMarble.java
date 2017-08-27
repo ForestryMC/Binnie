@@ -2,6 +2,7 @@ package binnie.extrabees.worldgen;
 
 import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
@@ -16,7 +17,7 @@ import binnie.extrabees.blocks.BlockExtraBeeHives;
 import binnie.extrabees.blocks.type.EnumHiveType;
 
 public class WorldGenHiveMarble extends WorldGenHive {
-	HashSet<Block> validBlocks = new HashSet<>();
+	private final Set<Block> validBlocks = new HashSet<>();
 
 	public WorldGenHiveMarble(int rate) {
 		super(rate);

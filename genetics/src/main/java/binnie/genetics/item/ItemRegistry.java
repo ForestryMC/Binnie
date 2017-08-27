@@ -14,7 +14,7 @@ import binnie.genetics.core.GeneticsGUI;
 public class ItemRegistry extends ItemCore {
 	public ItemRegistry() {
 		super("registry");
-		this.setCreativeTab(CreativeTabGenetics.instance);
+		this.setCreativeTab(CreativeTabGenetics.INSTANCE);
 		this.setUnlocalizedName("registry");
 		this.setMaxStackSize(1);
 	}

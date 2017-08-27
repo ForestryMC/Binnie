@@ -5,6 +5,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
+import binnie.core.util.Log;
 import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -19,9 +20,9 @@ public class MessageBase {
 
 	public MessageBase(final MessageBinnie message) {
 		try {
-			this.readData(message.data);
+			this.readData(message.getData());
 		} catch (IOException e) {
-			e.printStackTrace();
+			Log.error("Failed to read message data.", e);
 		}
 	}
 

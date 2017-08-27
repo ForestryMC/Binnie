@@ -18,7 +18,7 @@ import binnie.extrabees.items.types.IEBEnumItem;
 
 public class ItemProduct<E extends IEBEnumItem> extends Item implements IItemModelRegister {
 
-	protected E[] types;
+	protected final E[] types;
 
 	public ItemProduct(E[] types) {
 		this.setMaxStackSize(64);

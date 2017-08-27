@@ -41,7 +41,7 @@ import binnie.core.machines.power.ITankMachine;
 import binnie.core.machines.power.TankInfo;
 
 public class ControlLiquidTank extends Control implements ITooltip {
-	public static List<Integer> tankError = new ArrayList<>();
+	public static final List<Integer> tankError = new ArrayList<>();
 	private int tankID;
 	private boolean horizontal;
 
@@ -103,8 +103,8 @@ public class ControlLiquidTank extends Control implements ITooltip {
 			final int height = this.horizontal ? 16 : 58;
 			final int squaled = Math.round(height * (this.getTank().getAmount() / this.getTank().getCapacity()));
 			final int yPos = height + 1;
-			final Fluid fluid = this.getTank().liquid.getFluid();
-			final int hex = fluid.getColor(this.getTank().liquid);
+			final Fluid fluid = this.getTank().getLiquid().getFluid();
+			final int hex = fluid.getColor(this.getTank().getLiquid());
 			final int r = (hex & 0xFF0000) >> 16;
 			final int g = (hex & 0xFF00) >> 8;
 			final int b = hex & 0xFF;

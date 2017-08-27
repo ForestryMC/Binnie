@@ -34,7 +34,7 @@ public enum KitchenMachine implements IMachineType {
 	public abstract static class PackageKitchenMachine extends MachinePackage {
 
 		protected PackageKitchenMachine(final String uid) {
-			super(uid, false);
+			super(uid);
 		}
 
 		@Override
@@ -42,8 +42,5 @@ public enum KitchenMachine implements IMachineType {
 			return new TileEntityMachine(this);
 		}
 
-		@Override
-		public void register() {
-		}
 	}
 }

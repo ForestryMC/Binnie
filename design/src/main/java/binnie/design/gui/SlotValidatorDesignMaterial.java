@@ -1,5 +1,6 @@
 package binnie.design.gui;
 
+import binnie.core.machines.ManagerMachine;
 import binnie.design.api.IDesignerType;
 import net.minecraft.item.ItemStack;
 
@@ -10,7 +11,7 @@ public class SlotValidatorDesignMaterial extends SlotValidator {
 	private final IDesignerType type;
 
 	public SlotValidatorDesignMaterial(final IDesignerType type) {
-		super(SlotValidator.spriteBlock);
+		super(ManagerMachine.getSpriteBlock());
 		this.type = type;
 	}
 

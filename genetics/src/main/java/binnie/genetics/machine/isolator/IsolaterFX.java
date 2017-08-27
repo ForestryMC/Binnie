@@ -41,9 +41,9 @@ public class IsolaterFX extends MachineComponent implements IRender.RandomDispla
 
 	@SideOnly(Side.CLIENT)
 	private static class IsolaterParticleRandomTick extends Particle {
-		double axisX;
-		double axisZ;
-		double angle;
+		private final double axisX;
+		private final double axisZ;
+		private double angle;
 
 		public IsolaterParticleRandomTick(World world, BlockPos pos, Random rand) {
 			super(world, pos.getX() + 0.4 + 0.2 * rand.nextDouble(), pos.getY() + 1.6, pos.getZ() + 0.4 + rand.nextDouble() * 0.2, 0.0, 0.0, 0.0);
@@ -74,9 +74,9 @@ public class IsolaterFX extends MachineComponent implements IRender.RandomDispla
 
 	@SideOnly(Side.CLIENT)
 	private static class IsolaterParticle extends Particle {
-		double axisX;
-		double axisZ;
-		double angle;
+		private double axisX;
+		private double axisZ;
+		private double angle;
 
 		public IsolaterParticle(World world, BlockPos pos) {
 			super(world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, 0.0, 0.0, 0.0);

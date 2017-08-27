@@ -12,9 +12,9 @@ import binnie.core.machines.inventory.ComponentInventorySlots;
 import binnie.core.machines.network.INetwork;
 
 class ComponentCompartmentInventory extends ComponentInventorySlots implements INetwork.GuiNBT {
-	private int tabCount;
-	private int slotsPerPage;
-	private Map<Integer, CompartmentTab> tabs;
+	private final int tabCount;
+	private final int slotsPerPage;
+	private final Map<Integer, CompartmentTab> tabs;
 
 	public ComponentCompartmentInventory(final IMachine machine, final int tabCount, final int pageSize) {
 		super(machine);

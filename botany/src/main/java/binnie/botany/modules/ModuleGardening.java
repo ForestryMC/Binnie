@@ -80,7 +80,7 @@ public class ModuleGardening implements Module {
 		trowelIron = new ItemTrowel(Item.ToolMaterial.IRON, "iron");
 		trowelDiamond = new ItemTrowel(Item.ToolMaterial.DIAMOND, "diamond");
 		trowelGold = new ItemTrowel(Item.ToolMaterial.GOLD, "gold");
-		misc = new ItemMisc(CreativeTabBotany.instance, BotanyItems.values());
+		misc = new ItemMisc(CreativeTabBotany.INSTANCE, BotanyItems.values());
 
 		Botany.proxy.registerBlock(plant, new ItemWeed(plant));
 		Botany.proxy.registerBlock(soil, new ItemSoil(soil));

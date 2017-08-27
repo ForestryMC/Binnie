@@ -6,7 +6,10 @@ import java.util.List;
 import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.minecraft.InventoryType;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public class ControlPlayerInventory extends Control {
 	private final List<ControlSlot> slots;
 
@@ -45,9 +48,5 @@ public class ControlPlayerInventory extends Control {
 				this.slots.add(slot);
 			}
 		}
-	}
-
-	@Override
-	public void onUpdateClient() {
 	}
 }

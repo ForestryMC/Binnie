@@ -7,19 +7,19 @@ import binnie.core.resource.BinnieSprite;
 public enum GUIIcon {
 	ARROW_UP("arrow-up"),
 	ARROW_DOWN("arrow-down"),
-	ArrowLeft("arrow-left"),
+	ARROW_LEFT("arrow-left"),
 	ARROW_RIGHT("arrow-right"),
 	ARROW_UP_LEFT("arrow-upleft"),
-	ArrowUpRight("arrow-upright"),
-	ArrowRightUp("arrow-rightup"),
-	ArrowRightDown("arrow-rightdown"),
-	ArrowDownRight("arrow-downright"),
-	ArrowDownLeft("arrow-downleft"),
+	ARROW_UP_RIGHT("arrow-upright"),
+	ARROW_RIGHT_UP("arrow-rightup"),
+	ARROW_RIGHT_DOWN("arrow-rightdown"),
+	ARROW_DOWN_RIGHT("arrow-downright"),
+	ARROW_DOWN_LEFT("arrow-downleft"),
 	ARROW_LEFT_DOWN("arrow-leftdown"),
-	ArrowLeftUp("arrow-leftup");
+	ARROW_LEFT_UP("arrow-leftup");
 
-	String path;
-	BinnieSprite icon;
+	private final String path;
+	private BinnieSprite icon;
 
 	GUIIcon(final String path) {
 		this.path = path;

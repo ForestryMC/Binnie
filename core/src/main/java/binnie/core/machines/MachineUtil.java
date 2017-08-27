@@ -24,7 +24,7 @@ import binnie.core.util.ItemStackSet;
 
 public class MachineUtil {
 	private static final Random DAMAGE_RANDOM = new Random();
-	private IMachine machine;
+	private final IMachine machine;
 
 	public MachineUtil(final IMachine machine) {
 		this.machine = machine;

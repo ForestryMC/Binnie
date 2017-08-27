@@ -402,9 +402,9 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 	}
 
 	private String fx;
-	private boolean combinable;
-	private boolean dominant;
-	private String uid;
+	private final boolean combinable;
+	private final boolean dominant;
+	private final String uid;
 
 	ExtraBeesEffect() {
 		this.fx = "";

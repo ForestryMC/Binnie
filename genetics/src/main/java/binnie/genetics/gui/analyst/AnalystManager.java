@@ -31,8 +31,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class AnalystManager implements IAnalystManager {
-	private Collection<IAnalystPagePlugin> analystPagePlugins = new ArrayList<>();
-	private Collection<IProducePlugin> producePlugins = new ArrayList<>();
+	private final Collection<IAnalystPagePlugin> analystPagePlugins = new ArrayList<>();
+	private final Collection<IProducePlugin> producePlugins = new ArrayList<>();
 
 	@Override
 	public void registerAnalystPagePlugin(IAnalystPagePlugin<?> analystPageFactory) {

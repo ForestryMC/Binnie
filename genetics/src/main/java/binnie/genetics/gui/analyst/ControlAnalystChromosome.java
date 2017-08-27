@@ -22,20 +22,19 @@ import binnie.core.gui.resource.textures.StandardTexture;
 import binnie.core.texture.BinnieCoreTexture;
 
 public class ControlAnalystChromosome extends Control implements ITooltip {
-	IAllele allele0;
-	IAllele allele1;
-	IChromosomeType chromosomeType;
-	ISpeciesRoot root;
-	Texture Homozygous;
-	Texture Heterozygous;
+	private static final Texture HOMOZYGOUS = new StandardTexture(0, 0, 16, 22, BinnieCoreTexture.GUI_ANALYST);
+	private static final Texture HETEROZYGOUS = new StandardTexture(16, 0, 16, 22, BinnieCoreTexture.GUI_ANALYST);
+	
+	private final IAllele allele0;
+	private final IAllele allele1;
+	private final IChromosomeType chromosomeType;
+	private final ISpeciesRoot root;
 
 	public ControlAnalystChromosome(IWidget parent, int x, int y, ISpeciesRoot root, IChromosomeType type, IAllele allele0, IAllele allele1) {
 		super(parent, x, y, 16, 22);
-		Homozygous = new StandardTexture(0, 0, 16, 22, BinnieCoreTexture.GUI_ANALYST);
-		Heterozygous = new StandardTexture(16, 0, 16, 22, BinnieCoreTexture.GUI_ANALYST);
 		addAttribute(Attribute.MOUSE_OVER);
 		this.root = root;
-		chromosomeType = type;
+		this.chromosomeType = type;
 		this.allele0 = allele0;
 		this.allele1 = allele1;
 	}
@@ -48,7 +47,7 @@ public class ControlAnalystChromosome extends Control implements ITooltip {
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		super.onRenderBackground(guiWidth, guiHeight);
-		CraftGUI.RENDER.texture(isHomozygous() ? Homozygous : Heterozygous, Point.ZERO);
+		CraftGUI.RENDER.texture(isHomozygous() ? HOMOZYGOUS : HETEROZYGOUS, Point.ZERO);
 	}
 
 	@Override

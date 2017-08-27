@@ -14,11 +14,11 @@ import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
 
 public class MachineGroup {
-	private AbstractMod mod;
-	private String uid;
-	private Map<String, MachinePackage> packages;
-	private Map<Integer, MachinePackage> packagesID;
-	private BlockMachine block;
+	private final AbstractMod mod;
+	private final String uid;
+	private final Map<String, MachinePackage> packages;
+	private final Map<Integer, MachinePackage> packagesID;
+	private final BlockMachine block;
 
 	public MachineGroup(final AbstractMod mod, final String uid, final String blockName, final IMachineType[] types) {
 		this.packages = new LinkedHashMap<>();
@@ -32,10 +32,6 @@ public class MachineGroup {
 		Item i = mod.getProxy().registerItem(new ItemMachine(this.block));
 		for (int j = 0; j < types.length; j++) {
 			BinnieCore.getBinnieProxy().registerModel(i, j, new ModelResourceLocation(i.getRegistryName(), "machine_type=" + j));
-		}
-
-		for (final MachinePackage pack : this.getPackages()) {
-			pack.register();
 		}
 	}
 

@@ -21,7 +21,7 @@ public class ItemMasterRegistry extends ItemCore {
 
 	public ItemMasterRegistry() {
 		super("master_registry");
-		this.setCreativeTab(CreativeTabGenetics.instance);
+		this.setCreativeTab(CreativeTabGenetics.INSTANCE);
 		this.setUnlocalizedName("master_registry");
 		this.setMaxStackSize(1);
 	}

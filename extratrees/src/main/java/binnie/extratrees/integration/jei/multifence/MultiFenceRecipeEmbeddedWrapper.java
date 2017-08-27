@@ -16,7 +16,7 @@ import mezz.jei.api.recipe.wrapper.IShapedCraftingRecipeWrapper;
 
 public class MultiFenceRecipeEmbeddedWrapper implements IShapedCraftingRecipeWrapper {
 
-	private FenceType fenceType;
+	private final FenceType fenceType;
 	@Nullable
 	private IPlankType plankType;
 	@Nullable
@@ -48,22 +48,22 @@ public class MultiFenceRecipeEmbeddedWrapper implements IShapedCraftingRecipeWra
 					IPlankType plankTypeSecondary = secondary.getKey();
 					if (plankType != plankTypeSecondary) {
 						planks.add(plankType.getStack(false));
-						fences.add(WoodManager.getFence(plankType, plankTypeSecondary, new FenceType(fenceType.size, fenceType.solid, false), 1));
-						outputFences.add(WoodManager.getFence(plankType, plankTypeSecondary, new FenceType(fenceType.size, fenceType.solid, true), 2));
+						fences.add(WoodManager.getFence(plankType, plankTypeSecondary, new FenceType(fenceType.getSize(), fenceType.isSolid(), false), 1));
+						outputFences.add(WoodManager.getFence(plankType, plankTypeSecondary, new FenceType(fenceType.getSize(), fenceType.isSolid(), true), 2));
 					}
 				}
 			} else {
 				planks.add(plankType.getStack(false));
-				fences.add(WoodManager.getFence(plankType, plankTypeSecondary, new FenceType(fenceType.size, fenceType.solid, false), 1));
-				outputFences.add(WoodManager.getFence(plankType, plankTypeSecondary, new FenceType(fenceType.size, fenceType.solid, true), 2));
+				fences.add(WoodManager.getFence(plankType, plankTypeSecondary, new FenceType(fenceType.getSize(), fenceType.isSolid(), false), 1));
+				outputFences.add(WoodManager.getFence(plankType, plankTypeSecondary, new FenceType(fenceType.getSize(), fenceType.isSolid(), true), 2));
 			}
 		} else {
 			for (IPlankType plankTypeSecondary : WoodManager.getAllPlankTypes()) {
 				for (IPlankType plankType : WoodManager.getAllPlankTypes()) {
 					if (plankType != plankTypeSecondary) {
 						planks.add(plankType.getStack(false));
-						fences.add(WoodManager.getFence(plankType, plankTypeSecondary, new FenceType(fenceType.size, fenceType.solid, false), 1));
-						outputFences.add(WoodManager.getFence(plankType, plankTypeSecondary, new FenceType(fenceType.size, fenceType.solid, true), 2));
+						fences.add(WoodManager.getFence(plankType, plankTypeSecondary, new FenceType(fenceType.getSize(), fenceType.isSolid(), false), 1));
+						outputFences.add(WoodManager.getFence(plankType, plankTypeSecondary, new FenceType(fenceType.getSize(), fenceType.isSolid(), true), 2));
 					}
 				}
 			}
