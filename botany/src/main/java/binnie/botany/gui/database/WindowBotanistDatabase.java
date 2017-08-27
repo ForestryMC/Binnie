@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import binnie.core.api.gui.IArea;
+import binnie.core.gui.controls.page.ControlPage;
 import net.minecraft.entity.player.EntityPlayer;
 
 import net.minecraftforge.fml.relauncher.Side;
@@ -49,7 +50,12 @@ public class WindowBotanistDatabase extends WindowAbstractDatabase {
 		new PageSpeciesMutations(getInfoPages(Mode.SPECIES), new DatabaseTab(Botany.instance, "species.further"));
 		new PageBranchOverview(getInfoPages(Mode.BRANCHES), new DatabaseTab(Botany.instance, "branches.overview"));
 		new PageBranchSpecies(getInfoPages(Mode.BRANCHES), new DatabaseTab(Botany.instance, "branches.species"));
-		createMode(FlowerMode.Color, new FlowerColorModeWidgets(this));
+		createMode(FlowerMode.Color, new ModeWidgets(FlowerMode.Color, this, (area, modePage) -> {
+			FlowerColorControlListBox listBox = new FlowerColorControlListBox(modePage, area);
+			List<IFlowerColor> colors = Arrays.stream(EnumFlowerColor.values()).map(EnumFlowerColor::getFlowerColorAllele).collect(Collectors.toList());
+			listBox.setOptions(colors);
+			return listBox;
+		}));
 		new PageColorMixResultant(getInfoPages(FlowerMode.Color), new DatabaseTab(Botany.instance, "color.resultant"));
 		new PageColorMix(getInfoPages(FlowerMode.Color), new DatabaseTab(Botany.instance, "color.further"));
 		new PageBreeder(getInfoPages(Mode.BREEDER), getUsername(), new DatabaseTab(Botany.instance, "breeder"));
@@ -75,29 +81,14 @@ public class WindowBotanistDatabase extends WindowAbstractDatabase {
 	}
 
 	@SideOnly(Side.CLIENT)
-	private static class FlowerColorModeWidgets extends ModeWidgets {
-		public FlowerColorModeWidgets(WindowBotanistDatabase windowBotanistDatabase) {
-			super(FlowerMode.Color, windowBotanistDatabase);
+	private static class FlowerColorControlListBox extends ControlListBox<IFlowerColor> {
+		public FlowerColorControlListBox(ControlPage<IDatabaseMode> modePage, IArea area) {
+			super(modePage, area.xPos(), area.yPos(), area.width(), area.height(), 12);
 		}
 
 		@Override
-		public void createListBox(IArea area) {
-			listBox = new FlowerColorControlListBox(this, area);
-
-			List<IFlowerColor> colors = Arrays.stream(EnumFlowerColor.values()).map(EnumFlowerColor::getFlowerColorAllele).collect(Collectors.toList());
-			listBox.setOptions(colors);
-		}
-
-		private static class FlowerColorControlListBox extends ControlListBox<IFlowerColor> {
-
-			public FlowerColorControlListBox(FlowerColorModeWidgets flowerColorModeWidgets, IArea area) {
-				super(flowerColorModeWidgets.modePage, area.xPos(), area.yPos(), area.width(), area.height(), 12);
-			}
-
-			@Override
-			public IWidget createOption(IFlowerColor value, int y) {
-				return new ControlColorOption(getContent(), value, y);
-			}
+		public IWidget createOption(IFlowerColor value, int y) {
+			return new ControlColorOption(getContent(), value, y);
 		}
 	}
 }

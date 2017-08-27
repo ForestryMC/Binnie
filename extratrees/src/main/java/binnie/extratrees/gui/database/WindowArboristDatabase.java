@@ -1,9 +1,11 @@
 package binnie.extratrees.gui.database;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 import binnie.core.Binnie;
 import binnie.core.api.gui.IArea;
+import binnie.core.gui.controls.page.ControlPage;
 import binnie.genetics.api.ITreeBreedingSystem;
 import forestry.api.arboriculture.TreeManager;
 import net.minecraft.entity.player.EntityPlayer;
@@ -51,9 +53,24 @@ public class WindowArboristDatabase extends WindowAbstractDatabase {
 		new PageBranchOverview(this.getInfoPages(Mode.BRANCHES), new DatabaseTab(ExtraTrees.instance, "branches.overview"));
 		new PageBranchSpecies(this.getInfoPages(Mode.BRANCHES), new DatabaseTab(ExtraTrees.instance, "branches.species"));
 		new PageBreeder(this.getInfoPages(Mode.BREEDER), this.getUsername(), new DatabaseTab(ExtraTrees.instance, "breeder"));
-		this.createMode(TreeMode.FRUIT, new FruitModeWidgets(this));
-		this.createMode(TreeMode.WOOD, new WoodModeWidgets(this));
-		this.createMode(TreeMode.PLANKS, new PlanksModeWidgets(this));
+		this.createMode(TreeMode.FRUIT, new ModeWidgets(TreeMode.FRUIT, this, (area, modePage) -> {
+			ControlListBox<ItemStack> controlListBox = new ModeControlListBox(modePage, area);
+			ITreeBreedingSystem breedingSystem = this.getBreedingSystem();
+			controlListBox.setOptions(breedingSystem.getAllFruits());
+			return controlListBox;
+		}));
+		this.createMode(TreeMode.WOOD, new ModeWidgets(TreeMode.WOOD, this, (area, modePage) -> {
+			ControlListBox<ItemStack> controlListBox = new ModeControlListBox(modePage, area);
+			ITreeBreedingSystem breedingSystem = this.getBreedingSystem();
+			controlListBox.setOptions(breedingSystem.getAllWoods());
+			return controlListBox;
+		}));
+		this.createMode(TreeMode.PLANKS, new ModeWidgets(TreeMode.PLANKS, this, (area, modePage) -> {
+			ControlListBox<ItemStack> controlListBox = new ModeControlListBox(modePage, area);
+			List<ItemStack> planks = WoodManager.getAllPlankTypes().stream().map(IDesignMaterial::getStack).collect(Collectors.toList());
+			controlListBox.setOptions(planks);
+			return controlListBox;
+		}));
 		new PageFruit(this.getInfoPages(TreeMode.FRUIT), new DatabaseTab(ExtraTrees.instance, "fruit.natural"), true);
 		new PageFruit(this.getInfoPages(TreeMode.FRUIT), new DatabaseTab(ExtraTrees.instance, "fruit.potential"), false);
 		new PageWood(this.getInfoPages(TreeMode.WOOD), new DatabaseTab(ExtraTrees.instance, "wood.natural"));
@@ -71,6 +88,11 @@ public class WindowArboristDatabase extends WindowAbstractDatabase {
 		return "TreeDatabase";
 	}
 
+	@Override
+	public ITreeBreedingSystem getBreedingSystem() {
+		return (ITreeBreedingSystem) super.getBreedingSystem();
+	}
+
 	enum TreeMode implements IDatabaseMode {
 		FRUIT,
 		WOOD,
@@ -82,89 +104,15 @@ public class WindowArboristDatabase extends WindowAbstractDatabase {
 		}
 	}
 
-	private static class FruitModeWidgets extends ModeWidgets {
-		private WindowArboristDatabase windowArboristDatabase;
-
-		public FruitModeWidgets(WindowArboristDatabase windowArboristDatabase) {
-			super(TreeMode.FRUIT, windowArboristDatabase);
-			this.windowArboristDatabase = windowArboristDatabase;
+	private static class ModeControlListBox extends ControlListBox<ItemStack> {
+		public ModeControlListBox(ControlPage<IDatabaseMode> modePage, IArea area) {
+			super(modePage, area.xPos(), area.yPos(), area.width(), area.height(), 12);
 		}
 
 		@Override
-		public void createListBox(final IArea area) {
-			ControlListBox<ItemStack> controlListBox = new FruitModeControlListBox(this, area);
-			ITreeBreedingSystem breedingSystem = (ITreeBreedingSystem) windowArboristDatabase.getBreedingSystem();
-			controlListBox.setOptions(breedingSystem.getAllFruits());
-			this.listBox = controlListBox;
-		}
-
-		private static class FruitModeControlListBox extends ControlListBox<ItemStack> {
-
-			public FruitModeControlListBox(FruitModeWidgets fruitModeWidgets, IArea area) {
-				super(fruitModeWidgets.modePage, area.xPos(), area.yPos(), area.width(), area.height(), 12);
-			}
-
-			@Override
-			@SideOnly(Side.CLIENT)
-			public IWidget createOption(final ItemStack value, final int y) {
-				return new ControlItemStackOption(this.getContent(), value, y);
-			}
-		}
-	}
-
-	private static class WoodModeWidgets extends ModeWidgets {
-		private WindowArboristDatabase windowArboristDatabase;
-
-		public WoodModeWidgets(WindowArboristDatabase windowArboristDatabase) {
-			super(TreeMode.WOOD, windowArboristDatabase);
-			this.windowArboristDatabase = windowArboristDatabase;
-		}
-
-		@Override
-		public void createListBox(final IArea area) {
-			ControlListBox<ItemStack> controlListBox = new WoodModeControlListBox(this, area);
-			ITreeBreedingSystem breedingSystem = (ITreeBreedingSystem) windowArboristDatabase.getBreedingSystem();
-			controlListBox.setOptions(breedingSystem.getAllWoods());
-			this.listBox = controlListBox;
-		}
-
-		private static class WoodModeControlListBox extends ControlListBox<ItemStack> {
-			public WoodModeControlListBox(WoodModeWidgets woodModeWidgets, IArea area) {
-				super(woodModeWidgets.modePage, area.xPos(), area.yPos(), area.width(), area.height(), 12);
-			}
-
-			@Override
-			@SideOnly(Side.CLIENT)
-			public IWidget createOption(final ItemStack value, final int y) {
-				return new ControlItemStackOption(this.getContent(), value, y);
-			}
-		}
-	}
-
-	private static class PlanksModeWidgets extends ModeWidgets {
-
-		public PlanksModeWidgets(WindowArboristDatabase windowArboristDatabase) {
-			super(TreeMode.PLANKS, windowArboristDatabase);
-		}
-
-		@Override
-		public void createListBox(final IArea area) {
-			ControlListBox<ItemStack> controlListBox = new PlanksModeControlListBox(this, area);
-			controlListBox.setOptions(WoodManager.getAllPlankTypes().stream().map(IDesignMaterial::getStack).collect(Collectors.toList()));
-			this.listBox = controlListBox;
-		}
-
-		private static class PlanksModeControlListBox extends ControlListBox<ItemStack> {
-
-			public PlanksModeControlListBox(PlanksModeWidgets planksModeWidgets, IArea area) {
-				super(planksModeWidgets.modePage, area.xPos(), area.yPos(), area.width(), area.height(), 12);
-			}
-
-			@Override
-			@SideOnly(Side.CLIENT)
-			public IWidget createOption(final ItemStack value, final int y) {
-				return new ControlItemStackOption(this.getContent(), value, y);
-			}
+		@SideOnly(Side.CLIENT)
+		public IWidget createOption(final ItemStack value, final int y) {
+			return new ControlItemStackOption(this.getContent(), value, y);
 		}
 	}
 }
