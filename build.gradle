@@ -104,8 +104,8 @@ mainProjects.each { subproject -> evaluationDependsOn( subproject.path ) }
 jar.dependsOn mainProjects.tasks['classes']
 jar {
     mainProjects.each { subproject ->
-        from subproject.sourceSets.main.output.classesDirs
-        from subproject.sourceSets.api.output.classesDirs
+        from subproject.sourceSets.main.output.classesDir
+        from subproject.sourceSets.api.output.classesDir
         from subproject.sourceSets.main.output.resourcesDir
         from subproject.sourceSets.api.output.resourcesDir
     }
