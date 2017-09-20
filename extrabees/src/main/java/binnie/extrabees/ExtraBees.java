@@ -61,7 +61,7 @@ import binnie.genetics.api.GeneticsApi;
 @Mod(
 	modid = ExtraBees.MODID,
 	name = "Binnie's Extra Bees",
-	acceptedMinecraftVersions = "[1.12, 1.12.1]",
+	acceptedMinecraftVersions = Constants.ACCEPTED_MINECRAFT_VERSIONS,
 	dependencies = "required-after:" + Constants.CORE_MOD_ID
 )
 public class ExtraBees {

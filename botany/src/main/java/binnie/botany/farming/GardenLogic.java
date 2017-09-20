@@ -325,6 +325,11 @@ public class GardenLogic extends FarmLogic {
 	}
 
 	@Override
+	public void addSoil(ItemStack resource, IBlockState soilState, boolean hasMetaData) {
+		// all {@link IBlockSoil} are soil, and nothing else
+	}
+
+	@Override
 	public ResourceLocation getTextureMap() {
 		return TextureMap.LOCATION_BLOCKS_TEXTURE;
 	}
