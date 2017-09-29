@@ -67,7 +67,9 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 	}
 
 	public static String getPH(ItemStack stack, boolean withColor, boolean byNeutralNone) {
-		EnumAcidity ph = EnumAcidity.values()[stack.getItemDamage() / 3];
+		int index = stack.getItemDamage() / 3;
+		index = (index < EnumAcidity.values().length) ? index : EnumAcidity.values().length - 1;
+		EnumAcidity ph = EnumAcidity.values()[index];
 		if (byNeutralNone) {
 			if (ph == EnumAcidity.NEUTRAL) {
 				return "";
