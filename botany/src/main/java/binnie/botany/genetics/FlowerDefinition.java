@@ -965,7 +965,8 @@ public enum FlowerDefinition implements IFlowerDefinition {
 	}
 
 	FlowerDefinition(String name, String branch, String binomial, IFlowerType<EnumFlowerType> flowerType, boolean isDominant, EnumFlowerColor primaryColor, EnumFlowerColor secondaryColor) {
-		String uid = Constants.BOTANY_MOD_ID + ".flower" + this;
+		String modId = Constants.BOTANY_MOD_ID;
+		String uid = modId + ".flower" + this;
 		String unlocalizedDescription = "botany.description.flower" + this;
 		String unlocalizedName = "botany.flowers.species." + name;
 
@@ -977,7 +978,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 		this.primaryColor = primaryColor;
 		this.secondaryColor = secondaryColor;
 
-		IAlleleFlowerSpeciesBuilder speciesBuilder = BotanyAPI.flowerFactory.createSpecies(uid, unlocalizedName, "Binnie's Mod Team", unlocalizedDescription, isDominant, getBranch(), binomial, flowerType);
+		IAlleleFlowerSpeciesBuilder speciesBuilder = BotanyAPI.flowerFactory.createSpecies(modId, uid, unlocalizedName, "Binnie's Mod Team", unlocalizedDescription, isDominant, getBranch(), binomial, flowerType);
 		setSpeciesProperties(speciesBuilder);
 		species = speciesBuilder.build();
 		if (this.branch != null) {

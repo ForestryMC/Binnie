@@ -6,6 +6,7 @@ import com.google.common.base.Preconditions;
 import javax.annotation.Nullable;
 import java.util.List;
 
+import forestry.api.genetics.IAlleleSpecies;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
@@ -120,6 +121,17 @@ public class ItemFlowerGE extends Item implements IColoredItem, IItemModelRegist
 		} else {
 			list.add("<" + I18N.localise("for.gui.unknown") + ">");
 		}
+	}
+
+	@Nullable
+	@Override
+	public String getCreatorModId(ItemStack itemStack) {
+		IIndividual individual = getIndividual(itemStack);
+		if (individual != null) {
+			IAlleleSpecies species = individual.getGenome().getPrimary();
+			return species.getModID();
+		}
+		return super.getCreatorModId(itemStack);
 	}
 
 	@Nullable

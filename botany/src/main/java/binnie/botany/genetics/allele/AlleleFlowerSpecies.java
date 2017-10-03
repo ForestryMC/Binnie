@@ -27,6 +27,7 @@ public class AlleleFlowerSpecies extends AlleleSpecies implements IAlleleFlowerS
 	private EnumMoisture moisture = EnumMoisture.NORMAL;
 
 	public AlleleFlowerSpecies(
+			String modId,
 			String uid,
 			String unlocalizedName,
 			String authority,
@@ -35,7 +36,7 @@ public class AlleleFlowerSpecies extends AlleleSpecies implements IAlleleFlowerS
 			IClassification branch,
 			String binomial,
 			IFlowerType flowerType) {
-		super(uid, unlocalizedName, authority, unlocalizedDescription, isDominant, branch, binomial);
+		super(modId, uid, unlocalizedName, authority, unlocalizedDescription, isDominant, branch, binomial);
 		this.flowerType = flowerType;
 	}
 

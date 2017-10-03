@@ -161,7 +161,6 @@ curseforge {
         relations {
             requiredLibrary 'forestry'
         }
-        addGameVersion '1.12'
     }
 }
 

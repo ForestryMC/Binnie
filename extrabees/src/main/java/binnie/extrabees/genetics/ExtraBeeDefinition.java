@@ -1,5 +1,6 @@
 package binnie.extrabees.genetics;
 
+import binnie.core.Constants;
 import com.google.common.base.Preconditions;
 
 import java.awt.Color;
@@ -1881,13 +1882,14 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 
 	ExtraBeeDefinition(IBranchDefinition branch, String binomial, boolean dominant, Color primary, Color secondary) {
 		String species = toString().toLowerCase(Locale.ENGLISH);
-		String uid = "extrabees.species." + species;
-		String description = "extrabees.species." + species + ".desc";
-		String name = "extrabees.species." + species + ".name";
+		String modId = Constants.EXTRA_BEES_MOD_ID;
+		String uid = modId + ".species." + species;
+		String description = modId + ".species." + species + ".desc";
+		String name = modId + ".species." + species + ".name";
 
 		this.branch = branch;
 		if (branch != null) {
-			this.speciesBuilder = new ExtraBeeSpecies(uid, name, "Binnie", description, dominant, branch.getBranch(), binomial, primary.getRGB(), secondary.getRGB());
+			this.speciesBuilder = new ExtraBeeSpecies(modId, uid, name, "Binnie", description, dominant, branch.getBranch(), binomial, primary.getRGB(), secondary.getRGB());
 		} else {
 			this.speciesBuilder = null;
 		}
