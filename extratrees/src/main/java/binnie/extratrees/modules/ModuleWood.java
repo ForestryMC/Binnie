@@ -64,6 +64,7 @@ import binnie.core.models.DoublePassBakedModel;
 import binnie.core.modules.BinnieModule;
 import binnie.core.modules.ExtraTreesModuleUIDs;
 import binnie.core.modules.Module;
+import binnie.core.modules.ModuleManager;
 import binnie.core.util.RecipeUtil;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.api.CarpentryManager;
@@ -491,6 +492,9 @@ public class ModuleWood implements Module {
 
 	@SubscribeEvent
 	public static void onRegisterAllele(AlleleRegisterEvent<IAlleleFruit> event) {
+		if(!ModuleManager.isModuleEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.WOOD)){
+			return;
+		}
 		if (event.getAlleleClass() == IAlleleFruit.class) {
 			AlleleETFruitDefinition.preInit();
 		}
@@ -498,6 +502,9 @@ public class ModuleWood implements Module {
 
 	@SubscribeEvent
 	public static void speciesRegister(AlleleSpeciesRegisterEvent event) {
+		if(!ModuleManager.isModuleEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.WOOD)){
+			return;
+		}
 		if (event.getRoot() instanceof ITreeRoot) {
 			ETTreeDefinition.preInitTrees();
 			ExtraTreePlanks.initWoodTypes();

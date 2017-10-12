@@ -1,7 +1,5 @@
 package binnie.core;
 
-import binnie.core.machines.errors.CoreErrorCode;
-import binnie.core.machines.errors.ErrorStateRegistry;
 import com.google.common.base.Preconditions;
 
 import javax.annotation.Nullable;
@@ -27,9 +25,12 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import forestry.api.core.ForestryEvent;
 import forestry.plugins.PluginManager;
 
 import binnie.core.block.TileEntityMetadata;
+import binnie.core.config.ConfigurationMain;
+import binnie.core.config.ConfigurationMods;
 import binnie.core.gui.BinnieCoreGUI;
 import binnie.core.gui.BinnieGUIHandler;
 import binnie.core.gui.IBinnieGUID;
@@ -41,17 +42,17 @@ import binnie.core.item.ModuleItems;
 import binnie.core.liquid.FluidContainerType;
 import binnie.core.liquid.ItemFluidContainer;
 import binnie.core.machines.MachineGroup;
+import binnie.core.machines.errors.CoreErrorCode;
+import binnie.core.machines.errors.ErrorStateRegistry;
 import binnie.core.machines.storage.ModuleStorage;
-import binnie.core.config.ConfigurationMain;
-import binnie.core.config.ConfigurationMods;
 import binnie.core.models.ModelManager;
+import binnie.core.modules.ModuleManager;
 import binnie.core.network.BinnieCorePacketID;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.network.IPacketID;
 import binnie.core.proxy.BinnieProxy;
 import binnie.core.proxy.IBinnieProxy;
 import binnie.core.triggers.ModuleTrigger;
-import binnie.core.modules.ModuleManager;
 
 @Mod(
 	modid = Constants.CORE_MOD_ID,
@@ -80,6 +81,7 @@ public final class BinnieCore extends AbstractMod {
 
 	public BinnieCore() {
 		FluidRegistry.enableUniversalBucket();
+		MinecraftForge.EVENT_BUS.register(this);
 	}
 
 	public static MachineGroup getPackageCompartment() {
@@ -164,7 +166,7 @@ public final class BinnieCore extends AbstractMod {
 		MinecraftForge.EVENT_BUS.register(Binnie.LIQUID);
 		MinecraftForge.EVENT_BUS.register(ModuleManager.class);
 		Binnie.CONFIGURATION.registerConfiguration(ConfigurationMods.class, this);
-		ModuleManager.loadModules(evt);
+		ModuleManager.setupAPI();
 		for (FluidContainerType container : FluidContainerType.getBinnieContainers()) {
 			Item item = new ItemFluidContainer(container);
 			getProxy().registerItem(item);
@@ -261,6 +263,11 @@ public final class BinnieCore extends AbstractMod {
 	@SideOnly(Side.CLIENT)
 	public void handleModelBake(ModelBakeEvent event) {
 		ModelManager.registerCustomModels(event);
+	}
+
+	@SubscribeEvent
+	public void forestryPreInit(ForestryEvent.PreInit event){
+		ModuleManager.loadModules(event.event);
 	}
 
 	public static class PacketHandler extends BinniePacketHandler {

@@ -147,7 +147,9 @@ public class ModuleManager {
 		Map<String, List<Module>> modules = ModuleHelper.getModules(asmDataTable);
 
 		configureModules(modules);
+	}
 
+	public static void setupAPI(){
 		for(IModuleContainer container : containers.values()) {
 			for (Module module : container.getLoadedModules()) {
 				Log.debug("Setup API Start: {}", module);
