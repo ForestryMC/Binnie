@@ -1,6 +1,5 @@
 package binnie.botany;
 
-import binnie.genetics.api.analyst.IAnalystManager;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -17,11 +16,14 @@ import binnie.core.BinnieCore;
 import binnie.core.Constants;
 import binnie.core.gui.IBinnieGUID;
 import binnie.core.modules.BlankModuleContainer;
+import binnie.core.modules.BotanyModuleUIDs;
+import binnie.core.modules.ModuleManager;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.network.IPacketID;
 import binnie.core.proxy.IProxyCore;
 import binnie.genetics.api.GeneticsApi;
 import binnie.genetics.api.acclimatiser.IAcclimatiserManager;
+import binnie.genetics.api.analyst.IAnalystManager;
 
 @Mod(
 	modid = Constants.BOTANY_MOD_ID,
@@ -50,11 +52,13 @@ public class Botany extends BlankModuleContainer {
 			analystManager.registerAnalystPagePlugin(new FlowerAnalystPagePlugin());
 		}
 
-		IAcclimatiserManager acclimatiserManager = GeneticsApi.acclimatiserManager;
-		if(acclimatiserManager != null) {
-			acclimatiserManager.addTolerance(EnumFlowerChromosome.HUMIDITY_TOLERANCE, acclimatiserManager.getHumidityToleranceType());
-			acclimatiserManager.addTolerance(EnumFlowerChromosome.TEMPERATURE_TOLERANCE, acclimatiserManager.getTemperatureToleranceType());
-			acclimatiserManager.addTolerance(EnumFlowerChromosome.PH_TOLERANCE, new TolerancePh());
+		if(ModuleManager.isModuleEnabled(Constants.BOTANY_MOD_ID, BotanyModuleUIDs.FLOWERS)) {
+			IAcclimatiserManager acclimatiserManager = GeneticsApi.acclimatiserManager;
+			if (acclimatiserManager != null) {
+				acclimatiserManager.addTolerance(EnumFlowerChromosome.HUMIDITY_TOLERANCE, acclimatiserManager.getHumidityToleranceType());
+				acclimatiserManager.addTolerance(EnumFlowerChromosome.TEMPERATURE_TOLERANCE, acclimatiserManager.getTemperatureToleranceType());
+				acclimatiserManager.addTolerance(EnumFlowerChromosome.PH_TOLERANCE, new TolerancePh());
+			}
 		}
 	}
 

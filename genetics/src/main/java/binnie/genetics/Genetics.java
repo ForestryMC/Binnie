@@ -1,17 +1,5 @@
 package binnie.genetics;
 
-import binnie.core.machines.errors.ErrorStateRegistry;
-import binnie.genetics.api.GeneticsApi;
-import binnie.genetics.api.acclimatiser.IAcclimatiserManager;
-import binnie.genetics.api.analyst.IAnalystManager;
-import binnie.genetics.core.GeneticsTexture;
-import binnie.genetics.genetics.TreeBreedingSystem;
-import binnie.genetics.gui.Icons;
-import binnie.genetics.gui.analyst.AnalystManager;
-import binnie.genetics.gui.analyst.GeneticsProducePlugin;
-import binnie.genetics.machine.GeneticsErrorCode;
-import binnie.genetics.machine.acclimatiser.AcclimatiserManager;
-import binnie.genetics.machine.sequencer.Sequencer;
 import com.google.common.base.Preconditions;
 
 import javax.annotation.Nullable;
@@ -22,19 +10,31 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-import binnie.core.Binnie;
-import binnie.core.Constants;
 import binnie.core.AbstractMod;
+import binnie.core.Binnie;
 import binnie.core.BinnieCore;
+import binnie.core.Constants;
 import binnie.core.gui.IBinnieGUID;
+import binnie.core.machines.errors.ErrorStateRegistry;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.network.IPacketID;
 import binnie.core.proxy.IProxyCore;
+import binnie.genetics.api.GeneticsApi;
+import binnie.genetics.api.acclimatiser.IAcclimatiserManager;
+import binnie.genetics.api.analyst.IAnalystManager;
 import binnie.genetics.core.GeneticsGUI;
 import binnie.genetics.core.GeneticsPacket;
+import binnie.genetics.core.GeneticsTexture;
+import binnie.genetics.genetics.TreeBreedingSystem;
+import binnie.genetics.gui.Icons;
+import binnie.genetics.gui.analyst.AnalystManager;
+import binnie.genetics.gui.analyst.GeneticsProducePlugin;
 import binnie.genetics.item.ItemPunnettSquare;
 import binnie.genetics.item.ModuleItems;
+import binnie.genetics.machine.GeneticsErrorCode;
 import binnie.genetics.machine.ModuleMachine;
+import binnie.genetics.machine.acclimatiser.AcclimatiserManager;
+import binnie.genetics.machine.sequencer.Sequencer;
 import binnie.genetics.proxy.Proxy;
 
 @Mod(

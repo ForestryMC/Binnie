@@ -1,5 +1,7 @@
 package binnie.genetics.machine.acclimatiser;
 
+import com.google.common.base.Preconditions;
+
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,7 +9,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import binnie.genetics.api.acclimatiser.IToleranceType;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -24,6 +25,7 @@ import forestry.api.lepidopterology.EnumButterflyChromosome;
 import binnie.core.BinnieCore;
 import binnie.core.genetics.Tolerance;
 import binnie.core.liquid.FluidContainerType;
+import binnie.genetics.api.acclimatiser.IToleranceType;
 
 public class Acclimatiser {
 	public static final int[] SLOT_RESERVE = new int[]{0, 1, 2, 3};
@@ -49,6 +51,8 @@ public class Acclimatiser {
 	}
 
 	public static void addTolerance(IChromosomeType chromosome, IToleranceType type) {
+		Preconditions.checkNotNull(chromosome, "chromosome must not be null");
+		Preconditions.checkNotNull(type, "type must not be null");
 		Acclimatiser.toleranceSystems.add(new ToleranceSystem(chromosome, type));
 		Acclimatiser.toleranceTypes.add(type);
 	}
