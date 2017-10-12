@@ -166,7 +166,7 @@ public abstract class BlockETDefaultLeaves extends BlockAbstractLeaves {
 	public void registerModel(Item item, IModelManager manager) {
 		for (IBlockState state : blockState.getValidStates()) {
 			int meta = getMetaFromState(state);
-			ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation("forestry:leaves.default." + blockNumber, "inventory"));
+			ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation("extratrees:leaves.default." + blockNumber, "inventory"));
 		}
 	}
 	
