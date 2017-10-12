@@ -16,7 +16,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 @Mod(
 		modid = Constants.DESIGN_MOD_ID,
 		name = "Binnie's Design",
-		acceptedMinecraftVersions = "[1.12, 1.12.1]",
+		acceptedMinecraftVersions = Constants.ACCEPTED_MINECRAFT_VERSIONS,
 		dependencies = "required-after:" + Constants.CORE_MOD_ID + ";"
 )
 public class Design {

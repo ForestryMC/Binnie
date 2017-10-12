@@ -13,8 +13,8 @@ import binnie.extrabees.items.ItemHoneyComb;
 public class ExtraBeeSpecies extends AlleleBeeSpecies {
 	private State state;
 
-	public ExtraBeeSpecies(String uid, String unlocalizedName, String authority, String unlocalizedDescription, boolean dominant, IClassification branch, String binomial, int primaryColor, int secondaryColor) {
-		super(uid, unlocalizedName, authority, unlocalizedDescription, dominant, branch, binomial, primaryColor, secondaryColor);
+	public ExtraBeeSpecies(String modId, String uid, String unlocalizedName, String authority, String unlocalizedDescription, boolean dominant, IClassification branch, String binomial, int primaryColor, int secondaryColor) {
+		super(modId, uid, unlocalizedName, authority, unlocalizedDescription, dominant, branch, binomial, primaryColor, secondaryColor);
 		this.state = State.ACTIVE;
 	}
 

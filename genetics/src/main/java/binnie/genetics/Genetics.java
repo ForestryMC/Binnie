@@ -40,7 +40,7 @@ import binnie.genetics.proxy.Proxy;
 @Mod(
 	modid = Constants.GENETICS_MOD_ID,
 	name = "Binnie's Genetics",
-	acceptedMinecraftVersions = "[1.12, 1.12.1]",
+	acceptedMinecraftVersions = Constants.ACCEPTED_MINECRAFT_VERSIONS,
 	dependencies = "required-after:" + Constants.CORE_MOD_ID
 )
 public class Genetics extends AbstractMod {

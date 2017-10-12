@@ -32,7 +32,7 @@ import binnie.extratrees.proxy.Proxy;
 @Mod(
 	modid = Constants.EXTRA_TREES_MOD_ID,
 	name = "Binnie's Extra Trees",
-	acceptedMinecraftVersions = "[1.12, 1.12.1]",
+	acceptedMinecraftVersions = Constants.ACCEPTED_MINECRAFT_VERSIONS,
 	dependencies = "required-after:" + Constants.CORE_MOD_ID + ";"
 			+      "after:" + Constants.DESIGN_MOD_ID + ";"
 )

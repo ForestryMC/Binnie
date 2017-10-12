@@ -40,6 +40,7 @@ public class AABBModelBaker implements IModelBaker {
 	protected final FaceBakery faceBakery = new FaceBakery();
 	private final List<BoundModelBakerFace> faces = new ArrayList<>();
 	private final List<Pair<IBlockState, IBakedModel>> bakedModels = new ArrayList<>();
+	private final List<Pair<IBlockState, IBakedModel>> bakedModelsPost = new ArrayList<>();
 	protected AxisAlignedBB modelBounds;
 	protected final ModelBakerModel currentModel = new ModelBakerModel(ModelManager.getInstance().getDefaultBlockState());
 	protected int colorIndex = -1;
@@ -104,6 +105,11 @@ public class AABBModelBaker implements IModelBaker {
 		if (model != null) {
 			this.bakedModels.add(Pair.of(state, model));
 		}
+	}
+
+	@Override
+	public void addBakedModelPost(@Nullable IBlockState state, IBakedModel model) {
+		this.bakedModelsPost.add(Pair.of(state, model));
 	}
 
 	protected float[] getFaceUvs(EnumFacing face, Vector3f to, Vector3f from) {
@@ -203,6 +209,10 @@ public class AABBModelBaker implements IModelBaker {
 		//Add baked models to the current model.
 		for (Pair<IBlockState, IBakedModel> bakedModel : bakedModels) {
 			currentModel.addModelQuads(bakedModel);
+		}
+
+		for (Pair<IBlockState, IBakedModel> bakedModel : bakedModelsPost) {
+			currentModel.addModelQuadsPost(bakedModel);
 		}
 
 		for (BoundModelBakerFace face : faces) {
