@@ -2,9 +2,11 @@ package binnie.extrabees.worldgen;
 
 import java.util.Random;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockStateMatcher;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -19,14 +21,29 @@ public class WorldGenHiveRock extends WorldGenHive {
 	}
 
 	@Override
-	public boolean generate(final World world, final Random random, final BlockPos pos) {
-		final IBlockState block = world.getBlockState(pos);
-		if (block.getBlock().isAir(block, world, pos)) {
-			return false;
+	public boolean generate(final World world, final Random random, BlockPos pos) {
+		IBlockState blockState = world.getBlockState(pos);
+		Block block = blockState.getBlock();
+		while (block.isReplaceableOreGen(blockState, world, pos, BlockStateMatcher.forBlock(Blocks.STONE)))
+		{
+			if (hasAirOnOneSide(world, pos)) {
+				IBlockState hiveState = ExtraBees.hive.getDefaultState().withProperty(BlockExtraBeeHives.HIVE_TYPE, EnumHiveType.ROCK);
+				world.setBlockState(pos, hiveState);
+				return true;
+			}
+			pos = pos.down();
+			blockState = world.getBlockState(pos);
+			block = blockState.getBlock();
 		}
-		if (block.getBlock().isReplaceableOreGen(block, world, pos, BlockStateMatcher.forBlock(Blocks.STONE))) {
-			world.setBlockState(pos, ExtraBees.hive.getDefaultState().withProperty(BlockExtraBeeHives.HIVE_TYPE, EnumHiveType.ROCK));
-			return true;
+		return false;
+	}
+
+	public boolean hasAirOnOneSide(final World world, final BlockPos pos) {
+		for (EnumFacing facing : EnumFacing.HORIZONTALS) {
+			BlockPos sidePos = pos.offset(facing);
+			if (world.isBlockLoaded(sidePos) && world.isAirBlock(sidePos)) {
+				return true;
+			}
 		}
 		return false;
 	}

@@ -3,8 +3,12 @@ package binnie.extrabees.genetics;
 import java.util.Collections;
 import java.util.List;
 
+import com.google.common.collect.ImmutableList;
+import forestry.api.genetics.IFlowerAcceptableRule;
+import forestry.api.genetics.IFlowerRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -74,8 +78,13 @@ public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers {
 	public void register() {
 		//AlleleManager.alleleRegistry.registerAllele(this);
 
+		IFlowerRegistry flowerRegistry = FlowerManager.flowerRegistry;
 		for (Block block : getAcceptableBlocks()) {
-			FlowerManager.flowerRegistry.registerAcceptableFlower(block, getUID());
+			flowerRegistry.registerAcceptableFlower(block, getUID());
+		}
+
+		if (this == ROCK) {
+			flowerRegistry.registerAcceptableFlowerRule((blockState, world, pos, flowerType) -> blockState.getMaterial() == Material.ROCK, getUID());
 		}
 
 		AlleleManager.alleleRegistry.registerAllele(this, EnumBeeChromosome.FLOWER_PROVIDER);
@@ -90,7 +99,7 @@ public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers {
 				return Collections.singletonList(Blocks.REEDS);
 			}
 			case ROCK: {
-				return Collections.singletonList(Blocks.COBBLESTONE);
+				return ImmutableList.of(Blocks.COBBLESTONE, Blocks.STONE);
 			}
 			case BOOK: {
 				return Collections.singletonList(Blocks.BOOKSHELF);
