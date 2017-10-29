@@ -13,12 +13,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.opengl.GL11;
 
 import binnie.core.BinnieCore;
-import binnie.core.api.gui.IWidget;
 import binnie.core.api.gui.Alignment;
 import binnie.core.api.gui.IArea;
 import binnie.core.api.gui.IBorder;
 import binnie.core.api.gui.IPoint;
 import binnie.core.api.gui.ITexture;
+import binnie.core.api.gui.IWidget;
 import binnie.core.gui.geometry.Area;
 import binnie.core.gui.resource.stylesheet.IStyleSheet;
 import binnie.core.gui.resource.stylesheet.StyleSheetManager;

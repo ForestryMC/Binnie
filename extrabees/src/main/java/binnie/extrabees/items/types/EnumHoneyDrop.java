@@ -47,9 +47,11 @@ public enum EnumHoneyDrop implements IEBEnumItem {
 	private final int secondaryColor;
 	private final String liquidName;
 	private ItemStack remnant;
+	private boolean isActive = true;
 
 	EnumHoneyDrop() {
 		this(16777215, 16777215, "");
+		isActive = false;
 	}
 
 	EnumHoneyDrop(int primaryColor, int secondaryColor, String liquidName) {
@@ -80,7 +82,7 @@ public enum EnumHoneyDrop implements IEBEnumItem {
 
 	@Override
 	public boolean isActive() {
-		return !this.remnant.isEmpty() && FluidRegistry.isFluidRegistered(this.getLiquidName());
+		return FluidRegistry.isFluidRegistered(this.getLiquidName()) || isActive;
 	}
 
 	@Override

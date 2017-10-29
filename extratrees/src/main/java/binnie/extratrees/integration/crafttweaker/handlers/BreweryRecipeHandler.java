@@ -1,9 +1,5 @@
 package binnie.extratrees.integration.crafttweaker.handlers;
 
-import crafttweaker.api.item.IIngredient;
-import crafttweaker.api.item.IItemStack;
-import crafttweaker.api.liquid.ILiquidStack;
-import crafttweaker.api.oredict.IOreDictEntry;
 import net.minecraft.item.ItemStack;
 
 import net.minecraftforge.fluids.FluidStack;
@@ -13,10 +9,16 @@ import binnie.extratrees.integration.crafttweaker.CraftTweakerUtil;
 import binnie.extratrees.items.ExtraTreeItems;
 import binnie.extratrees.machines.brewery.recipes.BrewedGrainRecipe;
 import binnie.extratrees.machines.brewery.recipes.BreweryRecipe;
+import crafttweaker.annotations.ZenRegister;
+import crafttweaker.api.item.IIngredient;
+import crafttweaker.api.item.IItemStack;
+import crafttweaker.api.liquid.ILiquidStack;
+import crafttweaker.api.oredict.IOreDictEntry;
 import stanhebben.zenscript.annotations.Optional;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
+@ZenRegister
 @ZenClass("mods.extratrees.Brewery")
 public class BreweryRecipeHandler extends GenericRecipeHandler {
 

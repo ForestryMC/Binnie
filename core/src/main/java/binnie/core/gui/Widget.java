@@ -6,22 +6,22 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import binnie.core.api.gui.IArea;
 import binnie.core.api.gui.IPoint;
 import binnie.core.api.gui.ITopLevelWidget;
 import binnie.core.api.gui.IWidget;
 import binnie.core.api.gui.IWidgetAttribute;
 import binnie.core.api.gui.RenderStage;
+import binnie.core.api.gui.events.Event;
 import binnie.core.api.gui.events.EventHandlerOrigin;
 import binnie.core.api.gui.events.OnEventHandler;
-import binnie.core.gui.geometry.Point;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import binnie.core.api.gui.events.Event;
 import binnie.core.gui.events.EventHandler;
 import binnie.core.gui.events.EventWidget;
 import binnie.core.gui.geometry.Area;
+import binnie.core.gui.geometry.Point;
 
 public class Widget implements IWidget {
 	@Nullable
@@ -458,7 +458,7 @@ public class Widget implements IWidget {
 		this.getTopParent().widgetDeleted(this);
 	}
 
-	//TODO: Why not use this ?
+	//TODO: Why not use "this" ?
 	public IWidget getWidget() {
 		return this;
 	}

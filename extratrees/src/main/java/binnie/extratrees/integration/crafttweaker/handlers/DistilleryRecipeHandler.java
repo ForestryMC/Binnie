@@ -1,15 +1,17 @@
 package binnie.extratrees.integration.crafttweaker.handlers;
 
-import crafttweaker.api.item.IIngredient;
-import crafttweaker.api.liquid.ILiquidStack;
 import net.minecraftforge.fluids.FluidStack;
 
 import binnie.extratrees.api.recipes.ExtraTreesRecipeManager;
 import binnie.extratrees.integration.crafttweaker.CraftTweakerUtil;
 import binnie.extratrees.machines.distillery.recipes.DistilleryRecipe;
+import crafttweaker.annotations.ZenRegister;
+import crafttweaker.api.item.IIngredient;
+import crafttweaker.api.liquid.ILiquidStack;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
+@ZenRegister
 @ZenClass("mods.extratrees.Distillery")
 public class DistilleryRecipeHandler extends GenericRecipeHandler {
 

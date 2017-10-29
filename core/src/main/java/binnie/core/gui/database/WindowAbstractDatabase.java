@@ -6,9 +6,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-import binnie.core.api.genetics.IBreedingSystem;
-import binnie.core.api.gui.events.EventHandlerOrigin;
-import binnie.core.gui.geometry.Point;
 import net.minecraft.entity.player.EntityPlayer;
 
 import com.mojang.authlib.GameProfile;
@@ -20,7 +17,10 @@ import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IBreedingTracker;
 import forestry.api.genetics.IClassification;
 
+import binnie.core.api.genetics.IBreedingSystem;
+import binnie.core.api.gui.Alignment;
 import binnie.core.api.gui.IWidget;
+import binnie.core.api.gui.events.EventHandlerOrigin;
 import binnie.core.gui.controls.ControlTextEdit;
 import binnie.core.gui.controls.listbox.ControlListBox;
 import binnie.core.gui.controls.listbox.ControlTextOption;
@@ -31,7 +31,7 @@ import binnie.core.gui.controls.tab.ControlTabBar;
 import binnie.core.gui.events.EventTextEdit;
 import binnie.core.gui.events.EventValueChanged;
 import binnie.core.gui.geometry.CraftGUIUtil;
-import binnie.core.api.gui.Alignment;
+import binnie.core.gui.geometry.Point;
 import binnie.core.gui.minecraft.MinecraftGUI;
 import binnie.core.gui.minecraft.Window;
 import binnie.core.gui.minecraft.control.ControlHelp;
