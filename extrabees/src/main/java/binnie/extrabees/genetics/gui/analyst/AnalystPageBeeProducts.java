@@ -4,17 +4,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import binnie.core.api.gui.IArea;
-import binnie.core.api.gui.ITitledWidget;
-import binnie.core.gui.controls.ControlFluidDisplay;
-import binnie.core.gui.controls.core.Control;
-import binnie.core.util.FluidStackUtil;
-import binnie.core.util.ForestryRecipeUtil;
-import binnie.core.util.TimeUtil;
-import binnie.extrabees.ExtraBees;
-import binnie.genetics.api.analyst.AnalystConstants;
-import binnie.genetics.api.analyst.IAnalystManager;
-import forestry.api.apiculture.BeeManager;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -26,21 +15,32 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import forestry.api.apiculture.BeeManager;
 import forestry.api.apiculture.EnumBeeChromosome;
 import forestry.api.apiculture.IBee;
 import forestry.api.apiculture.IBeeGenome;
-import forestry.apiculture.PluginApiculture;
+import forestry.apiculture.ModuleApiculture;
 
 import binnie.core.BinnieCore;
+import binnie.core.api.gui.IArea;
+import binnie.core.api.gui.ITitledWidget;
 import binnie.core.api.gui.IWidget;
 import binnie.core.gui.Tooltip;
+import binnie.core.gui.controls.ControlFluidDisplay;
 import binnie.core.gui.controls.ControlText;
 import binnie.core.gui.controls.ControlTextCentered;
+import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.geometry.CraftGUIUtil;
 import binnie.core.gui.geometry.Point;
 import binnie.core.gui.minecraft.control.ControlItemDisplay;
+import binnie.core.util.FluidStackUtil;
+import binnie.core.util.ForestryRecipeUtil;
 import binnie.core.util.I18N;
+import binnie.core.util.TimeUtil;
 import binnie.core.util.UniqueItemStackSet;
+import binnie.extrabees.ExtraBees;
+import binnie.genetics.api.analyst.AnalystConstants;
+import binnie.genetics.api.analyst.IAnalystManager;
 
 public class AnalystPageBeeProducts extends Control implements ITitledWidget {
 	public AnalystPageBeeProducts(IWidget parent, IArea area, IBee ind, IAnalystManager analystManager) {
@@ -150,7 +150,7 @@ public class AnalystPageBeeProducts extends Control implements ITitledWidget {
 		textWidget.setColor(getColor());
 		CraftGUIUtil.moveWidget(textWidget, new Point(12, 0));
 		item.setItemStack(key);
-		int time = (int) (PluginApiculture.ticksPerBeeWorkCycle * 100.0 / (speed * value));
+		int time = (int) (ModuleApiculture.ticksPerBeeWorkCycle * 100.0 / (speed * value));
 		textWidget.setValue(I18N.localise(AnalystConstants.PRODUCTS_KEY + ".every") + " " + TimeUtil.getTimeString(time));
 	}
 

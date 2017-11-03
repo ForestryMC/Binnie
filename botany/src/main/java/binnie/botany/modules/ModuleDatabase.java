@@ -1,15 +1,12 @@
 package binnie.botany.modules;
 
-import com.google.common.collect.ImmutableSet;
-
-import java.util.Set;
-
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 import net.minecraftforge.oredict.OreDictionary;
 
+import forestry.api.modules.ForestryModule;
 import forestry.api.recipes.RecipeManagers;
 
 import binnie.botany.Botany;
@@ -17,13 +14,16 @@ import binnie.botany.items.ItemDatabaseBotany;
 import binnie.core.Binnie;
 import binnie.core.Constants;
 import binnie.core.liquid.ManagerLiquid;
-import binnie.core.modules.BinnieModule;
+import binnie.core.modules.BlankModule;
 import binnie.core.modules.BotanyModuleUIDs;
-import binnie.core.modules.Module;
 
-@BinnieModule(moduleID = BotanyModuleUIDs.DATABASE, moduleContainerID = Constants.BOTANY_MOD_ID, name = "Database", unlocalizedDescription = "botany.module.database")
-public class ModuleDatabase implements Module {
+@ForestryModule(moduleID = BotanyModuleUIDs.DATABASE, containerID = Constants.BOTANY_MOD_ID, name = "Database", unlocalizedDescription = "botany.module.database")
+public class ModuleDatabase extends BlankModule {
 	public static ItemDatabaseBotany database;
+
+	public ModuleDatabase() {
+		super(Constants.BOTANY_MOD_ID, BotanyModuleUIDs.FLOWERS);
+	}
 
 	@Override
 	public void registerItemsAndBlocks() {
@@ -33,7 +33,7 @@ public class ModuleDatabase implements Module {
 	}
 
 	@Override
-	public void init() {
+	public void registerRecipes() {
 		RecipeManagers.carpenterManager.addRecipe(
 			100,
 			Binnie.LIQUID.getFluidStack(ManagerLiquid.WATER, 2000),
@@ -49,10 +49,5 @@ public class ModuleDatabase implements Module {
 			'D', Items.DIAMOND,
 			'E', Items.EMERALD
 		);
-	}
-
-	@Override
-	public Set<String> getDependencyUids() {
-		return ImmutableSet.of(BotanyModuleUIDs.FLOWERS);
 	}
 }

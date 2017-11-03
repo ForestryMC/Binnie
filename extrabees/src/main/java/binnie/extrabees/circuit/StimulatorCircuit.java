@@ -13,7 +13,8 @@ import forestry.api.apiculture.IBeeModifier;
 import forestry.api.circuits.ChipsetManager;
 import forestry.api.circuits.ICircuit;
 import forestry.api.circuits.ICircuitLayout;
-import forestry.core.PluginCore;
+
+import binnie.core.Mods;
 
 public class StimulatorCircuit implements ICircuit, IBeeModifier {
 
@@ -24,7 +25,7 @@ public class StimulatorCircuit implements ICircuit, IBeeModifier {
 	public StimulatorCircuit(final AlvearySimulatorCircuitType type, final ICircuitLayout layout) {
 		uid = "binnie.circuit.stimulator." + type.toString().toLowerCase();
 		this.type = type;
-		ItemStack stack = new ItemStack(PluginCore.getItems().tubes, 1, type.getRecipe());
+		ItemStack stack = new ItemStack(Mods.Forestry.item("thermionic_tubes"), 1, type.getRecipe());
 		ChipsetManager.circuitRegistry.registerCircuit(this);
 		ChipsetManager.solderManager.addRecipe(layout, stack, this);
 		tooltip = Lists.newArrayList();

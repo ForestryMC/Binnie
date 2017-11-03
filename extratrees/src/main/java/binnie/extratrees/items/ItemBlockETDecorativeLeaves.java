@@ -7,7 +7,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import forestry.api.arboriculture.IFruitProvider;
 import forestry.api.arboriculture.ITreeGenome;
-import forestry.arboriculture.PluginArboriculture;
+import forestry.arboriculture.ModuleArboriculture;
 import forestry.arboriculture.items.ItemBlockLeaves;
 import forestry.core.items.IColoredItem;
 import forestry.core.items.ItemBlockForestry;
@@ -41,7 +41,7 @@ public class ItemBlockETDecorativeLeaves extends ItemBlockForestry<BlockETDecora
 		BlockETDecorativeLeaves block = getBlock();
 		ETTreeDefinition treeDefinition = block.getTreeType(meta);
 		if (treeDefinition == null) {
-			return PluginArboriculture.proxy.getFoliageColorBasic();
+			return ModuleArboriculture.proxy.getFoliageColorBasic();
 		}
 
 		ITreeGenome genome = treeDefinition.getGenome();

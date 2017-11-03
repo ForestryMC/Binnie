@@ -3,15 +3,20 @@ package binnie.extratrees.modules;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 
-import binnie.core.Constants;
-import binnie.core.modules.ExtraTreesModuleUIDs;
-import binnie.core.modules.BinnieModule;
-import binnie.core.modules.Module;
+import forestry.api.modules.ForestryModule;
 
-@BinnieModule(moduleID = ExtraTreesModuleUIDs.KITCHEN, moduleContainerID = Constants.EXTRA_TREES_MOD_ID, name = "Kitchen", unlocalizedDescription = "extratrees.module.kitchen")
-public class ModuleKitchen implements Module {
+import binnie.core.Constants;
+import binnie.core.modules.BlankModule;
+import binnie.core.modules.ExtraTreesModuleUIDs;
+
+@ForestryModule(moduleID = ExtraTreesModuleUIDs.KITCHEN, containerID = Constants.EXTRA_TREES_MOD_ID, name = "Kitchen", unlocalizedDescription = "extratrees.module.kitchen")
+public class ModuleKitchen extends BlankModule {
 
 	public static Block blockKitchen = Blocks.AIR;
+
+	public ModuleKitchen() {
+		super(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.CORE);
+	}
 
 	@Override
 	public void registerItemsAndBlocks() {

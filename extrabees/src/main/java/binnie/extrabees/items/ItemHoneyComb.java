@@ -6,9 +6,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import forestry.api.core.Tabs;
-import forestry.apiculture.PluginApiculture;
 import forestry.core.items.IColoredItem;
 
+import binnie.core.Mods;
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.items.types.EnumHoneyComb;
 
@@ -59,7 +59,7 @@ public class ItemHoneyComb extends ItemProduct<EnumHoneyComb> implements IColore
 		QUARTZ;
 
 		public ItemStack get() {
-			return new ItemStack(PluginApiculture.getItems().beeComb, 1, this.ordinal());
+			return new ItemStack(Mods.Forestry.item("bee_combs"), 1, this.ordinal());
 		}
 
 	}

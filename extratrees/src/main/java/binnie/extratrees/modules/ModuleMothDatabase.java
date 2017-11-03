@@ -1,29 +1,37 @@
 package binnie.extratrees.modules;
 
+import com.google.common.collect.ImmutableSet;
+
+import java.util.Set;
+
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 
 import net.minecraftforge.oredict.OreDictionary;
 
+import forestry.api.modules.ForestryModule;
 import forestry.api.recipes.ICarpenterManager;
 import forestry.api.recipes.RecipeManagers;
 
 import binnie.core.Binnie;
-import binnie.core.BinnieCore;
 import binnie.core.Constants;
 import binnie.core.liquid.ManagerLiquid;
-import binnie.core.modules.BinnieModule;
+import binnie.core.modules.BlankModule;
 import binnie.core.modules.ExtraTreesModuleUIDs;
-import binnie.core.modules.Module;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.items.ItemMothDatabase;
 
-@BinnieModule(moduleID = ExtraTreesModuleUIDs.MOTH_DATABASE, moduleContainerID = Constants.EXTRA_TREES_MOD_ID, name = "Database", unlocalizedDescription = "extratrees.module.database.moth")
-public class ModuleMothDatabase implements Module {
+@ForestryModule(moduleID = ExtraTreesModuleUIDs.MOTH_DATABASE, containerID = Constants.EXTRA_TREES_MOD_ID, name = "Database", unlocalizedDescription = "extratrees.module.database.moth")
+public class ModuleMothDatabase extends BlankModule {
 
 	public static Item itemDictionaryLepi;
+
+	public ModuleMothDatabase() {
+		super(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.CORE);
+	}
 
 	@Override
 	public void registerItemsAndBlocks() {
@@ -33,14 +41,14 @@ public class ModuleMothDatabase implements Module {
 	}
 
 	@Override
-	public void init() {
+	public void doInit() {
 		ICarpenterManager carpenterManager = RecipeManagers.carpenterManager;
 
 		carpenterManager.addRecipe(100, Binnie.LIQUID.getFluidStack(ManagerLiquid.WATER, 2000), ItemStack.EMPTY, new ItemStack(itemDictionaryLepi), "X#X", "YEY", "RDR", '#', Blocks.GLASS_PANE, 'X', Items.GOLD_INGOT, 'Y', "ingotBronze", 'R', Items.REDSTONE, 'D', Items.DIAMOND, 'E', Items.EMERALD);
 	}
 
 	@Override
-	public boolean isAvailable() {
-		return BinnieCore.isLepidopteryActive();
+	public Set<ResourceLocation> getDependencyUids() {
+		return ImmutableSet.of(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.CORE), new ResourceLocation("forestry", "lepidopterology"));
 	}
 }

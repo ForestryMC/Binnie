@@ -25,8 +25,8 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import forestry.api.core.ForestryEvent;
-import forestry.plugins.PluginManager;
+import forestry.api.core.ForestryAPI;
+import forestry.api.modules.IModuleContainer;
 
 import binnie.core.block.TileEntityMetadata;
 import binnie.core.config.ConfigurationMain;
@@ -46,6 +46,7 @@ import binnie.core.machines.errors.CoreErrorCode;
 import binnie.core.machines.errors.ErrorStateRegistry;
 import binnie.core.machines.storage.ModuleStorage;
 import binnie.core.models.ModelManager;
+import binnie.core.modules.ModuleContainer;
 import binnie.core.modules.ModuleManager;
 import binnie.core.network.BinnieCorePacketID;
 import binnie.core.network.BinniePacketHandler;
@@ -60,7 +61,7 @@ import binnie.core.triggers.ModuleTrigger;
 	version = "@VERSION@",
 	acceptedMinecraftVersions = Constants.ACCEPTED_MINECRAFT_VERSIONS,
 	dependencies = "required-after:forge@[14.23.0.2500,);" +
-		"required-after:forestry@[5.6.0.199,);" +
+		"required-after:forestry@[5.7.0.209,);" +
 		"after:jei@[4.7.8,);"
 )
 public final class BinnieCore extends AbstractMod {
@@ -120,15 +121,11 @@ public final class BinnieCore extends AbstractMod {
 	}
 
 	public static boolean isLepidopteryActive() {
-		return PluginManager.configDisabledPlugins.stream().noneMatch(e -> e instanceof forestry.lepidopterology.PluginLepidopterology);
+		return ForestryAPI.moduleManager.isModuleEnabled("forestry", "lepidopterology");
 	}
 
 	public static boolean isApicultureActive() {
-		return PluginManager.configDisabledPlugins.stream().noneMatch(e -> e instanceof forestry.arboriculture.PluginArboriculture);
-	}
-
-	public static boolean isArboricultureActive() {
-		return PluginManager.configDisabledPlugins.stream().noneMatch(e -> e instanceof forestry.arboriculture.PluginArboriculture);
+		return ForestryAPI.moduleManager.isModuleEnabled("forestry", "apiculture");
 	}
 
 	public static boolean isBotanyActive() {
@@ -144,7 +141,7 @@ public final class BinnieCore extends AbstractMod {
 	}
 
 	public static boolean isExtraTreesActive() {
-		return ConfigurationMods.extraTrees && isArboricultureActive();
+		return ConfigurationMods.extraTrees;
 	}
 
 	static void registerMod(final AbstractMod mod) {
@@ -166,7 +163,12 @@ public final class BinnieCore extends AbstractMod {
 		MinecraftForge.EVENT_BUS.register(Binnie.LIQUID);
 		MinecraftForge.EVENT_BUS.register(ModuleManager.class);
 		Binnie.CONFIGURATION.registerConfiguration(ConfigurationMods.class, this);
-		ModuleManager.setupAPI();
+		for(IModuleContainer container : ForestryAPI.moduleManager.getContainers()){
+			if(!(container instanceof ModuleContainer)){
+				continue;
+			}
+			((ModuleContainer) container).setupAPI();
+		}
 		for (FluidContainerType container : FluidContainerType.getBinnieContainers()) {
 			Item item = new ItemFluidContainer(container);
 			getProxy().registerItem(item);
@@ -263,11 +265,6 @@ public final class BinnieCore extends AbstractMod {
 	@SideOnly(Side.CLIENT)
 	public void handleModelBake(ModelBakeEvent event) {
 		ModelManager.registerCustomModels(event);
-	}
-
-	@SubscribeEvent
-	public void forestryPreInit(ForestryEvent.PreInit event){
-		ModuleManager.loadModules(event.event);
 	}
 
 	public static class PacketHandler extends BinniePacketHandler {

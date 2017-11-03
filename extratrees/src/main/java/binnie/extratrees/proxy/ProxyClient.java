@@ -12,17 +12,17 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import forestry.arboriculture.PluginArboriculture;
+import forestry.arboriculture.ModuleArboriculture;
 import forestry.core.models.BlockModelEntry;
 
 import binnie.core.Constants;
 import binnie.core.models.ModelManager;
 import binnie.extratrees.blocks.BlockETDecorativeLeaves;
 import binnie.extratrees.blocks.BlockETDefaultLeaves;
-import binnie.extratrees.modules.ModuleWood;
 import binnie.extratrees.blocks.wood.BlockETSlab;
 import binnie.extratrees.models.ModelDefaultETLeaves;
 import binnie.extratrees.models.ModelETDecorativeLeaves;
+import binnie.extratrees.modules.ModuleWood;
 
 @SideOnly(Side.CLIENT)
 public class ProxyClient extends Proxy implements IExtraTreeProxy {
@@ -81,10 +81,10 @@ public class ProxyClient extends Proxy implements IExtraTreeProxy {
 		}
 
 		for (BlockETSlab slab : ModuleWood.slabsDouble) {
-			PluginArboriculture.proxy.registerWoodModel(slab, true);
+			ModuleArboriculture.proxy.registerWoodModel(slab, true);
 		}
 		for (BlockETSlab slab : ModuleWood.slabsDoubleFireproof) {
-			PluginArboriculture.proxy.registerWoodModel(slab, true);
+			ModuleArboriculture.proxy.registerWoodModel(slab, true);
 		}
 		modelManager.registerModels();
 	}

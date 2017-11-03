@@ -1,9 +1,14 @@
 package binnie.extratrees.modules;
 
+import com.google.common.collect.ImmutableSet;
+
+import java.util.Set;
+
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.FluidStack;
@@ -15,6 +20,7 @@ import net.minecraftforge.fml.common.registry.VillagerRegistry;
 import forestry.api.core.Tabs;
 import forestry.api.fuels.EngineBronzeFuel;
 import forestry.api.fuels.FuelManager;
+import forestry.api.modules.ForestryModule;
 import forestry.api.recipes.ICarpenterManager;
 import forestry.api.recipes.IStillManager;
 import forestry.api.recipes.RecipeManagers;
@@ -24,9 +30,8 @@ import binnie.core.Constants;
 import binnie.core.Mods;
 import binnie.core.item.ItemMisc;
 import binnie.core.liquid.ManagerLiquid;
-import binnie.core.modules.BinnieModule;
+import binnie.core.modules.BlankModule;
 import binnie.core.modules.ExtraTreesModuleUIDs;
-import binnie.core.modules.Module;
 import binnie.core.util.RecipeUtil;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.blocks.BlockHops;
@@ -39,8 +44,8 @@ import binnie.extratrees.items.ItemHammer;
 import binnie.extratrees.items.ItemHops;
 import binnie.extratrees.village.VillageCreationExtraTrees;
 
-@BinnieModule(moduleID = ExtraTreesModuleUIDs.CORE, moduleContainerID = Constants.EXTRA_TREES_MOD_ID, coreModule = true, name = "Core", unlocalizedDescription = "extratrees.module.core")
-public class ModuleCore implements Module {
+@ForestryModule(moduleID = ExtraTreesModuleUIDs.CORE, containerID = Constants.EXTRA_TREES_MOD_ID, coreModule = true, name = "Core", unlocalizedDescription = "extratrees.module.core")
+public class ModuleCore extends BlankModule {
 	public static ItemMisc itemMisc;
 	public static Item itemFood;
 	public static Item itemHammer;
@@ -48,6 +53,15 @@ public class ModuleCore implements Module {
 	public static Item itemHops;
 
 	public static BlockHops hops;
+
+	public ModuleCore() {
+		super("forestry", "core");
+	}
+
+	@Override
+	public Set<ResourceLocation> getDependencyUids() {
+		return ImmutableSet.of(new ResourceLocation("forestry", "arboriculture"));
+	}
 
 	@Override
 	public void registerItemsAndBlocks() {
@@ -91,7 +105,7 @@ public class ModuleCore implements Module {
 	}
 
 	@Override
-	public void init() {
+	public void doInit() {
 		if(ConfigurationMain.hopeField) {
 			VillageCreationExtraTrees villageHandler = new VillageCreationExtraTrees();
 			VillagerRegistry villagerRegistry = VillagerRegistry.instance();

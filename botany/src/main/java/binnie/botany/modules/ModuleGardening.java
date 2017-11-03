@@ -20,6 +20,8 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+import forestry.api.modules.ForestryModule;
+
 import binnie.botany.Botany;
 import binnie.botany.CreativeTabBotany;
 import binnie.botany.api.gardening.EnumAcidity;
@@ -42,14 +44,13 @@ import binnie.core.BinnieCore;
 import binnie.core.Constants;
 import binnie.core.Mods;
 import binnie.core.item.ItemMisc;
-import binnie.core.modules.BinnieModule;
+import binnie.core.modules.BlankModule;
 import binnie.core.modules.BotanyModuleUIDs;
-import binnie.core.modules.Module;
 import binnie.core.util.OreDictionaryUtil;
 import binnie.core.util.RecipeUtil;
 
-@BinnieModule(moduleID = BotanyModuleUIDs.GARDENING, moduleContainerID = Constants.BOTANY_MOD_ID, name = "Gardening", unlocalizedDescription = "botany.module.gardening")
-public class ModuleGardening implements Module {
+@ForestryModule(moduleID = BotanyModuleUIDs.GARDENING, containerID = Constants.BOTANY_MOD_ID, name = "Gardening", unlocalizedDescription = "botany.module.gardening")
+public class ModuleGardening extends BlankModule {
 	public static BlockPlant plant;
 	public static ItemTrowel trowelWood;
 	public static ItemTrowel trowelStone;
@@ -64,6 +65,10 @@ public class ModuleGardening implements Module {
 	public static BlockSoil flowerbedNoWeed;
 	public static ItemSoilMeter soilMeter;
 	public static ItemMisc misc;
+
+	public ModuleGardening() {
+		super(Constants.BOTANY_MOD_ID, BotanyModuleUIDs.CORE);
+	}
 
 	@Override
 	public void registerItemsAndBlocks() {
@@ -118,7 +123,7 @@ public class ModuleGardening implements Module {
 	}
 
 	@Override
-	public void init() {
+	public void doInit() {
 		RecipeUtil recipeUtil = new RecipeUtil(Constants.BOTANY_MOD_ID);
 		IGardeningManager gardening = BotanyCore.getGardening();
 

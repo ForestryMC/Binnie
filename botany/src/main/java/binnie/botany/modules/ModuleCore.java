@@ -1,12 +1,18 @@
 package binnie.botany.modules;
 
-import binnie.core.Constants;
-import binnie.core.modules.BinnieModule;
-import binnie.core.modules.BotanyModuleUIDs;
-import binnie.core.modules.Module;
+import forestry.api.modules.ForestryModule;
 
-@BinnieModule(moduleID = BotanyModuleUIDs.CORE, moduleContainerID = Constants.BOTANY_MOD_ID, name = "Core", coreModule = true)
-public class ModuleCore implements Module {
+import binnie.core.Constants;
+import binnie.core.modules.BlankModule;
+import binnie.core.modules.BotanyModuleUIDs;
+
+@ForestryModule(moduleID = BotanyModuleUIDs.CORE, containerID = Constants.BOTANY_MOD_ID, name = "Core", coreModule = true)
+public class ModuleCore extends BlankModule {
+
+	public ModuleCore() {
+		super("forestry", "core");
+	}
+
 	@Override
 	public boolean canBeDisabled() {
 		return false;

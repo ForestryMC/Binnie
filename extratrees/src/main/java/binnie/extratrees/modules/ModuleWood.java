@@ -40,20 +40,20 @@ import forestry.api.arboriculture.IWoodAccess;
 import forestry.api.arboriculture.IWoodType;
 import forestry.api.arboriculture.TreeManager;
 import forestry.api.arboriculture.WoodBlockKind;
-import forestry.api.core.ForestryAPI;
 import forestry.api.genetics.AlleleRegisterEvent;
 import forestry.api.genetics.AlleleSpeciesRegisterEvent;
 import forestry.api.lepidopterology.IButterflyRoot;
+import forestry.api.modules.ForestryModule;
 import forestry.api.recipes.RecipeManagers;
 import forestry.arboriculture.IWoodTyped;
-import forestry.arboriculture.PluginArboriculture;
+import forestry.arboriculture.ModuleArboriculture;
 import forestry.arboriculture.WoodAccess;
 import forestry.arboriculture.blocks.BlockForestryFenceGate;
 import forestry.arboriculture.blocks.BlockForestryStairs;
 import forestry.arboriculture.items.ItemBlockLeaves;
 import forestry.core.fluids.Fluids;
 import forestry.core.utils.OreDictUtil;
-import forestry.plugins.ForestryPluginUids;
+import forestry.modules.ForestryModuleUids;
 
 import binnie.core.BinnieCore;
 import binnie.core.Constants;
@@ -61,10 +61,10 @@ import binnie.core.Mods;
 import binnie.core.block.ItemMetadata;
 import binnie.core.liquid.ILiquidDefinition;
 import binnie.core.models.DoublePassBakedModel;
-import binnie.core.modules.BinnieModule;
+import binnie.core.modules.BlankModule;
 import binnie.core.modules.ExtraTreesModuleUIDs;
-import binnie.core.modules.Module;
 import binnie.core.modules.ModuleManager;
+import binnie.core.util.ModuleUtils;
 import binnie.core.util.RecipeUtil;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.api.CarpentryManager;
@@ -99,13 +99,13 @@ import binnie.extratrees.wood.planks.ForestryPlanks;
 import binnie.extratrees.wood.planks.IPlankType;
 import binnie.extratrees.wood.planks.VanillaPlanks;
 
-@BinnieModule(
+@ForestryModule(
 		moduleID = ExtraTreesModuleUIDs.WOOD,
-		moduleContainerID = Constants.EXTRA_TREES_MOD_ID,
+		containerID = Constants.EXTRA_TREES_MOD_ID,
 		name = "Wood",
 		unlocalizedDescription = "extratrees.module.wood"
 )
-public class ModuleWood implements Module {
+public class ModuleWood extends BlankModule {
 	public static List<BlockETLog> logs = new ArrayList<>();
 	public static List<BlockETLog> logsFireproof = new ArrayList<>();
 	public static List<BlockETPlank> planks = new ArrayList<>();
@@ -128,6 +128,10 @@ public class ModuleWood implements Module {
 	public static BlockMultiFence blockMultiFence;
 	@Nullable
 	public static BlockShrubLog shrubLog;
+
+	public ModuleWood() {
+		super(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.CORE);
+	}
 
 	private static void registerOreDictWildcard(String oreDictName, Block block) {
 		OreDictionary.registerOre(oreDictName, new ItemStack(block, 1, OreDictionary.WILDCARD_VALUE));
@@ -292,7 +296,7 @@ public class ModuleWood implements Module {
 		ExtraTrees.proxy.registerBlock(blockMultiFence, new ItemMetadata(blockMultiFence));
 		
 		leavesDefault = BlockETDefaultLeaves.create();
-		Map speciesToLeavesDefault = PluginArboriculture.getBlocks().speciesToLeavesDefault;
+		Map speciesToLeavesDefault = ModuleArboriculture.getBlocks().speciesToLeavesDefault;
 		for (BlockETDefaultLeaves leaves : leavesDefault) {
 			ExtraTrees.proxy.registerBlock(leaves, new ItemBlockLeaves(leaves));
 			registerOreDictWildcard(OreDictUtil.TREE_LEAVES, leaves);
@@ -353,13 +357,13 @@ public class ModuleWood implements Module {
 		IWoodType woodType = woodTyped.getWoodType(0);
 		ItemStack itemStack = new ItemStack(woodTyped);
 		if (!(woodType instanceof EnumVanillaWoodType)) {
-			PluginArboriculture.proxy.registerWoodModel(woodTyped, false);
+			ModuleArboriculture.proxy.registerWoodModel(woodTyped, false);
 		}
 		woodAccess.register(woodType, woodBlockKind, fireproof, blockState, itemStack);
 	}
 	
 	@Override
-	public void init() {
+	public void doInit() {
 		AlleleETFruitDefinition.init();
 		ETTreeDefinition.initTrees();
 		ExtraTreeMutation.init();
@@ -386,8 +390,7 @@ public class ModuleWood implements Module {
 			
 			fireproofPlanks.setCount(4);
 			recipeUtil.addShapelessRecipe(log.getUid() + "_fireproof_planks", fireproofPlanks.copy(), fireproofLogs);
-			
-			if (ForestryAPI.enabledPlugins.containsAll(Arrays.asList(ForestryPluginUids.FACTORY, ForestryPluginUids.APICULTURE))) {
+			if (ModuleUtils.isModuleActive(ForestryModuleUids.FACTORY, ForestryModuleUids.APICULTURE)) {
 				
 				logs.setCount(1);
 				fireproofLogs.setCount(1);
@@ -449,7 +452,7 @@ public class ModuleWood implements Module {
 				}
 			}
 			// Fabricator recipes
-			if (ForestryAPI.enabledPlugins.containsAll(Arrays.asList(ForestryPluginUids.FACTORY, ForestryPluginUids.APICULTURE))) {
+			if (ModuleUtils.isModuleActive(ForestryModuleUids.FACTORY, ForestryModuleUids.APICULTURE)) {
 				ItemStack planks = woodAccess.getStack(plankType.getWoodType(), WoodBlockKind.PLANKS, false);
 				ItemStack fireproofPlanks = woodAccess.getStack(plankType.getWoodType(), WoodBlockKind.PLANKS, true);
 				planks.setCount(1);

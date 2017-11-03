@@ -7,21 +7,25 @@ import net.minecraft.item.ItemStack;
 
 import net.minecraftforge.oredict.OreDictionary;
 
+import forestry.api.modules.ForestryModule;
 import forestry.api.recipes.ICarpenterManager;
 import forestry.api.recipes.RecipeManagers;
 
 import binnie.core.Binnie;
 import binnie.core.Constants;
 import binnie.core.liquid.ManagerLiquid;
-import binnie.core.modules.BinnieModule;
+import binnie.core.modules.BlankModule;
 import binnie.core.modules.ExtraTreesModuleUIDs;
-import binnie.core.modules.Module;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.items.ItemArboristDatabase;
 
-@BinnieModule(moduleID = ExtraTreesModuleUIDs.TREE_DATABASE, moduleContainerID = Constants.EXTRA_TREES_MOD_ID, name = "Database", unlocalizedDescription = "extratrees.module.database.tree")
-public class ModuleTreeDatabase implements Module {
+@ForestryModule(moduleID = ExtraTreesModuleUIDs.TREE_DATABASE, containerID = Constants.EXTRA_TREES_MOD_ID, name = "Database", unlocalizedDescription = "extratrees.module.database.tree")
+public class ModuleTreeDatabase extends BlankModule {
 	public static Item itemDictionary;
+
+	public ModuleTreeDatabase() {
+		super(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.CORE);
+	}
 
 	@Override
 	public void registerItemsAndBlocks() {
@@ -31,7 +35,7 @@ public class ModuleTreeDatabase implements Module {
 	}
 
 	@Override
-	public void init() {
+	public void doInit() {
 		ICarpenterManager carpenterManager = RecipeManagers.carpenterManager;
 		carpenterManager.addRecipe(100, Binnie.LIQUID.getFluidStack(ManagerLiquid.WATER, 2000), ItemStack.EMPTY, new ItemStack(ModuleTreeDatabase.itemDictionary), "X#X", "YEY", "RDR", '#', Blocks.GLASS_PANE, 'X', Items.GOLD_INGOT, 'Y', "ingotCopper", 'R', Items.REDSTONE, 'D', Items.DIAMOND, 'E', Items.EMERALD);
 	}

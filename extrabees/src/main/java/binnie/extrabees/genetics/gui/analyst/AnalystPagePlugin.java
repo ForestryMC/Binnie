@@ -2,6 +2,21 @@ package binnie.extrabees.genetics.gui.analyst;
 
 import java.util.List;
 
+import net.minecraft.util.math.Vec3i;
+import net.minecraft.util.text.TextFormatting;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import forestry.api.apiculture.EnumBeeChromosome;
+import forestry.api.apiculture.IAlleleBeeEffect;
+import forestry.api.apiculture.IBee;
+import forestry.api.apiculture.IBeeGenome;
+import forestry.api.genetics.EnumTolerance;
+import forestry.api.genetics.IAlleleTolerance;
+import forestry.api.genetics.IIndividual;
+import forestry.apiculture.ModuleApiculture;
+
 import binnie.core.api.gui.IArea;
 import binnie.core.api.gui.ITitledWidget;
 import binnie.core.api.gui.IWidget;
@@ -20,18 +35,6 @@ import binnie.genetics.api.analyst.IAnalystPagePlugin;
 import binnie.genetics.api.analyst.IBehaviourPlugin;
 import binnie.genetics.api.analyst.IBiologyPlugin;
 import binnie.genetics.api.analyst.IClimatePlugin;
-import forestry.api.apiculture.EnumBeeChromosome;
-import forestry.api.apiculture.IAlleleBeeEffect;
-import forestry.api.apiculture.IBee;
-import forestry.api.apiculture.IBeeGenome;
-import forestry.api.genetics.EnumTolerance;
-import forestry.api.genetics.IAlleleTolerance;
-import forestry.api.genetics.IIndividual;
-import forestry.apiculture.PluginApiculture;
-import net.minecraft.util.math.Vec3i;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class AnalystPagePlugin implements IAnalystPagePlugin<IBee> {
 	@Override
@@ -95,7 +98,7 @@ public class AnalystPagePlugin implements IAnalystPagePlugin<IBee> {
 					.setColor(parent.getColor());
 
 			y += 12;
-			int lifespan = bee.getGenome().getLifespan() * PluginApiculture.ticksPerBeeWorkCycle;
+			int lifespan = bee.getGenome().getLifespan() * ModuleApiculture.ticksPerBeeWorkCycle;
 			new ControlTextCentered(parent, y, TextFormatting.BOLD + TimeUtil.getMCDayString(lifespan * (bee.getGenome().getNeverSleeps() ? 1.0f : 2.0f)))
 					.setColor(parent.getColor());
 			y += 22;
@@ -113,7 +116,7 @@ public class AnalystPagePlugin implements IAnalystPagePlugin<IBee> {
 					.setColor(parent.getColor());
 			y += 20;
 
-			new ControlTextCentered(parent, y, I18N.localise(AnalystConstants.BEHAVIOUR_KEY + ".everyTime", TimeUtil.getTimeString(PluginApiculture.ticksPerBeeWorkCycle * 100 / fertility)))
+			new ControlTextCentered(parent, y, I18N.localise(AnalystConstants.BEHAVIOUR_KEY + ".everyTime", TimeUtil.getTimeString(ModuleApiculture.ticksPerBeeWorkCycle * 100 / fertility)))
 					.setColor(parent.getColor());
 			y += 22;
 

@@ -11,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
 
+import forestry.api.modules.ForestryModule;
 import forestry.api.recipes.ISqueezerRecipe;
 import forestry.api.recipes.RecipeManagers;
 import forestry.core.fluids.Fluids;
@@ -21,9 +22,8 @@ import binnie.core.Mods;
 import binnie.core.liquid.DrinkManager;
 import binnie.core.liquid.FluidType;
 import binnie.core.liquid.IFluidDefinition;
-import binnie.core.modules.BinnieModule;
+import binnie.core.modules.BlankModule;
 import binnie.core.modules.ExtraTreesModuleUIDs;
-import binnie.core.modules.Module;
 import binnie.core.util.OreDictionaryUtil;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.alcohol.GlasswareType;
@@ -43,12 +43,16 @@ import binnie.extratrees.liquid.Liqueur;
 import binnie.extratrees.liquid.Spirit;
 import binnie.extratrees.machines.distillery.DistilleryLogic;
 
-@BinnieModule(moduleID = ExtraTreesModuleUIDs.ALCOHOL, moduleContainerID = Constants.EXTRA_TREES_MOD_ID, name = "Alcohol", unlocalizedDescription = "extratrees.module.alcohol")
-public class ModuleAlcohol implements Module {
+@ForestryModule(moduleID = ExtraTreesModuleUIDs.ALCOHOL, containerID = Constants.EXTRA_TREES_MOD_ID, name = "Alcohol", unlocalizedDescription = "extratrees.module.alcohol")
+public class ModuleAlcohol extends BlankModule {
 	@Nullable
 	public static ItemDrink drink;
 	@Nullable
 	public static Block blockDrink;
+
+	public ModuleAlcohol() {
+		super(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.CORE);
+	}
 
 	@Override
 	public void registerItemsAndBlocks() {
@@ -68,7 +72,7 @@ public class ModuleAlcohol implements Module {
 	}
 
 	@Override
-	public void init() {
+	public void doInit() {
 		IBreweryManager breweryManager = ExtraTreesRecipeManager.breweryManager;
 		IFruitPressManager fruitPressManager = ExtraTreesRecipeManager.fruitPressManager;
 

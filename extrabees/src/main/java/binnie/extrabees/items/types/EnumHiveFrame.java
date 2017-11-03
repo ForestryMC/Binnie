@@ -17,8 +17,8 @@ import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
 import forestry.api.apiculture.IBeeModifier;
 import forestry.api.apiculture.IHiveFrame;
-import forestry.apiculture.PluginApiculture;
 
+import binnie.core.Mods;
 import binnie.core.util.I18N;
 import binnie.core.util.RecipeUtil;
 import binnie.extrabees.items.ItemHiveFrame;
@@ -99,7 +99,7 @@ public enum EnumHiveFrame implements IHiveFrame, IBeeModifier {
 	}
 
 	public static void init(RecipeUtil recipeUtil) {
-		ItemStack impregnatedFrame = PluginApiculture.getItems().frameImpregnated.getItemStack();
+		ItemStack impregnatedFrame = Mods.Forestry.stack("frame_impregnated");
 		for(EnumHiveFrame frame : values()){
 			frame.init(recipeUtil, impregnatedFrame);
 		}

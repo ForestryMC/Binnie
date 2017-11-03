@@ -13,12 +13,10 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 import forestry.api.circuits.ICircuitLayout;
 import forestry.api.recipes.RecipeManagers;
-import forestry.apiculture.PluginApiculture;
-import forestry.apiculture.blocks.BlockAlvearyType;
-import forestry.core.PluginCore;
 import forestry.core.fluids.Fluids;
 
 import binnie.core.Binnie;
+import binnie.core.Mods;
 import binnie.core.liquid.ManagerLiquid;
 import binnie.core.util.RecipeUtil;
 import binnie.extrabees.ExtraBees;
@@ -37,7 +35,7 @@ public final class RecipeRegister {
 	
 	public static void doInitRecipes() {
 		if (Loader.isModLoaded("ic2")) {
-			RECIPE_UTIL.addRecipe("honey_crystal", ExtraBees.honeyCrystal.getCharged(0), "#@#", "@#@", "#@#", '@', PluginApiculture.getItems().honeyDrop, '#', EnumHoneyDrop.ENERGY.get(1));
+			RECIPE_UTIL.addRecipe("honey_crystal", ExtraBees.honeyCrystal.getCharged(0), "#@#", "@#@", "#@#", '@', Mods.Forestry.item("honey_drop"), '#', EnumHoneyDrop.ENERGY.get(1));
 		}
 		for (final EnumHoneyComb info : EnumHoneyComb.values()) {
 			info.addRecipe();
@@ -55,9 +53,9 @@ public final class RecipeRegister {
 	}
 	
 	private static void addAlvearyRecipes() {
-		ItemStack alveary = PluginApiculture.getBlocks().getAlvearyBlock(BlockAlvearyType.PLAIN);
-		Item thermionicTubes = PluginCore.getItems().tubes;
-		Item chipsets = PluginCore.getItems().circuitboards;
+		ItemStack alveary = Mods.Forestry.stack("alveary.plain");
+		Item thermionicTubes = Mods.Forestry.item("thermionic_tubes");
+		Item chipsets = Mods.Forestry.item("chipsets");
 		
 		RECIPE_UTIL.addRecipe("alveary_mutator", getAlvearyPart(EnumAlvearyLogicType.MUTATOR), "g g", " a ", "t t", 'g', Items.GOLD_INGOT, 'a', alveary, 't', new ItemStack(thermionicTubes, 1, 5));
 		RECIPE_UTIL.addRecipe("alveary_frame", getAlvearyPart(EnumAlvearyLogicType.FRAME), "iii", "tat", " t ", 'i', Items.IRON_INGOT, 'a', alveary, 't', new ItemStack(thermionicTubes, 1, 4));
@@ -131,6 +129,6 @@ public final class RecipeRegister {
 		} else {
 			gear = new ItemStack(Blocks.PLANKS, 1);
 		}
-		RecipeManagers.carpenterManager.addRecipe(100, Fluids.FOR_HONEY.getFluid(500), ItemStack.EMPTY, ExtraBeeItems.SCENTED_GEAR.get(1), " j ", "bgb", " p ", 'j', PluginApiculture.getItems().royalJelly, 'b', PluginCore.getItems().beeswax, 'p', PluginApiculture.getItems().pollenCluster, 'g', gear);
+		RecipeManagers.carpenterManager.addRecipe(100, Fluids.FOR_HONEY.getFluid(500), ItemStack.EMPTY, ExtraBeeItems.SCENTED_GEAR.get(1), " j ", "bgb", " p ", 'j', Mods.Forestry.item("royal_jelly"), 'b', Mods.Forestry.item("beeswax"), 'p', Mods.Forestry.item("pollen"), 'g', gear);
 	}
 }

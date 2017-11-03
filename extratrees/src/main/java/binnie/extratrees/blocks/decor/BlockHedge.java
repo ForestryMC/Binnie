@@ -25,7 +25,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import forestry.api.arboriculture.EnumLeafType;
 import forestry.api.core.Tabs;
-import forestry.arboriculture.PluginArboriculture;
+import forestry.arboriculture.ModuleArboriculture;
 import forestry.core.blocks.IColoredBlock;
 
 public class BlockHedge extends Block implements IBlockFence, IColoredBlock {
@@ -139,7 +139,7 @@ public class BlockHedge extends Block implements IBlockFence, IColoredBlock {
 	private boolean canConnectTo(IBlockAccess worldIn, BlockPos pos) {
 		IBlockState state = worldIn.getBlockState(pos);
 		Block block = state.getBlock();
-		if (PluginArboriculture.validFences.contains(block)) {
+		if (ModuleArboriculture.validFences.contains(block)) {
 			return true;
 		}
 

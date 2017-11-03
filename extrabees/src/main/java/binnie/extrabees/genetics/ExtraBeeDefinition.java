@@ -1,6 +1,5 @@
 package binnie.extrabees.genetics;
 
-import binnie.core.Constants;
 import com.google.common.base.Preconditions;
 
 import java.awt.Color;
@@ -24,7 +23,6 @@ import forestry.api.apiculture.IBeeMutationBuilder;
 import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
 import forestry.api.genetics.IAllele;
-import forestry.apiculture.PluginApiculture;
 import forestry.apiculture.genetics.Bee;
 import forestry.apiculture.genetics.BeeBranchDefinition;
 import forestry.apiculture.genetics.BeeDefinition;
@@ -33,10 +31,12 @@ import forestry.apiculture.genetics.alleles.AlleleEffects;
 import forestry.core.genetics.IBranchDefinition;
 import forestry.core.genetics.alleles.EnumAllele;
 
+import binnie.core.Constants;
+import binnie.core.Mods;
+import binnie.core.genetics.AlleleHelper;
 import binnie.extrabees.genetics.effect.ExtraBeesEffect;
 import binnie.extrabees.items.ItemHoneyComb;
 import binnie.extrabees.items.types.EnumHoneyComb;
-import binnie.core.genetics.AlleleHelper;
 
 public enum ExtraBeeDefinition implements IBeeDefinition {
 	/* BARREN BRANCH */
@@ -1147,7 +1147,7 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 		@Override
 		protected void setSpeciesProperties(IAlleleBeeSpeciesBuilder beeSpecies) {
 			beeSpecies.addProduct(ItemHoneyComb.VanillaComb.HONEY.get(), 0.30f)
-				.addSpecialty(PluginApiculture.getItems().royalJelly.getItemStack(), 0.25f)
+				.addSpecialty(Mods.Forestry.stack("royal_jelly"), 0.25f)
 				.setHasEffect();
 		}
 
@@ -1759,7 +1759,7 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 		protected void setSpeciesProperties(IAlleleBeeSpeciesBuilder beeSpecies) {
 			beeSpecies
 				.addProduct(ItemHoneyComb.VanillaComb.HONEY.get(), 0.30f)
-				.addSpecialty(new ItemStack(PluginApiculture.getItems().pollenCluster), 0.20f)
+				.addSpecialty(Mods.Forestry.stack("pollen"), 0.20f)
 				.addSpecialty(EnumHoneyComb.PURPLE.get(1), 0.15f)
 				.setIsNotCounted()
 				.setHasEffect();

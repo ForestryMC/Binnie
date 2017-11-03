@@ -1,11 +1,9 @@
 package binnie.botany.modules;
 
-import com.google.common.collect.ImmutableSet;
-
-import java.util.Set;
-
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+
+import forestry.api.modules.ForestryModule;
 
 import binnie.botany.Botany;
 import binnie.botany.api.gardening.EnumAcidity;
@@ -16,20 +14,17 @@ import binnie.botany.items.EnumTubeMaterial;
 import binnie.botany.items.ItemInsulatedTube;
 import binnie.core.Constants;
 import binnie.core.Mods;
-import binnie.core.modules.BinnieModule;
+import binnie.core.modules.BlankModule;
 import binnie.core.modules.BotanyModuleUIDs;
-import binnie.core.modules.Module;
 import binnie.core.util.RecipeUtil;
 
-@BinnieModule(moduleID = BotanyModuleUIDs.FARMING, moduleContainerID = Constants.BOTANY_MOD_ID, name = "Farming", unlocalizedDescription = "botany.module.farming")
-public class ModuleFarming implements Module {
+@ForestryModule(moduleID = BotanyModuleUIDs.FARMING, containerID = Constants.BOTANY_MOD_ID, name = "Farming", unlocalizedDescription = "botany.module.farming")
+public class ModuleFarming extends BlankModule {
 	public ItemInsulatedTube insulatedTube;
 
-	@Override
-	public Set<String> getDependencyUids() {
-		return ImmutableSet.of(BotanyModuleUIDs.FLOWERS);
+	public ModuleFarming() {
+		super(Constants.BOTANY_MOD_ID, BotanyModuleUIDs.FLOWERS);
 	}
-
 	@Override
 	public void registerItemsAndBlocks() {
 		insulatedTube = new ItemInsulatedTube();
@@ -37,7 +32,7 @@ public class ModuleFarming implements Module {
 	}
 
 	@Override
-	public void init() {
+	public void doInit() {
 		ItemStack yellow = new ItemStack(Blocks.YELLOW_FLOWER, 1);
 		ItemStack red = new ItemStack(Blocks.RED_FLOWER, 1);
 		ItemStack blue = new ItemStack(Blocks.RED_FLOWER, 1, 7);

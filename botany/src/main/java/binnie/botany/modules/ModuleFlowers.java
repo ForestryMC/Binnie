@@ -1,10 +1,7 @@
 package binnie.botany.modules;
 
-import com.google.common.collect.ImmutableSet;
-
 import javax.annotation.Nullable;
 import java.awt.Color;
-import java.util.Set;
 import java.util.function.Predicate;
 
 import net.minecraft.block.Block;
@@ -26,8 +23,8 @@ import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import forestry.api.apiculture.FlowerManager;
-import forestry.api.core.ForestryAPI;
 import forestry.api.genetics.AlleleManager;
+import forestry.api.modules.ForestryModule;
 import forestry.api.storage.BackpackManager;
 import forestry.api.storage.IBackpackInterface;
 import forestry.storage.BackpackDefinition;
@@ -52,14 +49,14 @@ import binnie.core.Binnie;
 import binnie.core.BinnieCore;
 import binnie.core.Constants;
 import binnie.core.api.genetics.IBreedingSystem;
-import binnie.core.modules.BinnieModule;
+import binnie.core.modules.BlankModule;
 import binnie.core.modules.BotanyModuleUIDs;
-import binnie.core.modules.Module;
+import binnie.core.modules.ModuleManager;
 import binnie.core.util.RecipeUtil;
 import binnie.core.util.TileUtil;
 
-@BinnieModule(moduleID = BotanyModuleUIDs.FLOWERS, moduleContainerID = Constants.BOTANY_MOD_ID, name = "Flowers", unlocalizedDescription = "botany.module.flowers")
-public class ModuleFlowers implements Module {
+@ForestryModule(moduleID = BotanyModuleUIDs.FLOWERS, containerID = Constants.BOTANY_MOD_ID, name = "Flowers", unlocalizedDescription = "botany.module.flowers")
+public class ModuleFlowers extends BlankModule {
 	public static final AlleleEffectNone alleleEffectNone = new AlleleEffectNone();
 	@Nullable
 	public static Item botanistBackpack;
@@ -69,6 +66,10 @@ public class ModuleFlowers implements Module {
 	public static ItemFlowerGE seed;
 	public static ItemFlowerGE pollen;
 	public static IBreedingSystem flowerBreedingSystem;
+
+	public ModuleFlowers() {
+		super(Constants.BOTANY_MOD_ID, BotanyModuleUIDs.GARDENING);
+	}
 
 	@Override
 	public void setupAPI() {
@@ -83,7 +84,7 @@ public class ModuleFlowers implements Module {
 		FlowerDefinition.preInitFlowers();
 
 		IBackpackInterface backpackInterface = BackpackManager.backpackInterface;
-		if (ForestryAPI.enabledPlugins.contains("forestry.storage")) {
+		if (ModuleManager.isModuleEnabled("forestry", "backpacks")) {
 			Predicate<ItemStack> filter = BackpackManager.backpackInterface.createNaturalistBackpackFilter("rootFlowers");
 			BackpackDefinition definition = new BackpackDefinition(new Color(0xf6e83e), Color.WHITE, filter);
 			BackpackManager.backpackInterface.registerBackpackDefinition("botanist", definition);
@@ -116,7 +117,7 @@ public class ModuleFlowers implements Module {
 	}
 
 	@Override
-	public void init() {
+	public void doInit() {
 		FlowerColorMutations.registerFlowerColorAlleles();
 		FlowerDefinition.initFlowers();
 
@@ -222,10 +223,5 @@ public class ModuleFlowers implements Module {
 		if (tile != null && tile.onBonemeal()) {
 			event.setResult(Event.Result.ALLOW);
 		}
-	}
-
-	@Override
-	public Set<String> getDependencyUids() {
-		return ImmutableSet.of(BotanyModuleUIDs.GARDENING);
 	}
 }

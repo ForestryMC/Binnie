@@ -5,11 +5,15 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 
 import forestry.api.core.Tabs;
+import forestry.api.modules.ForestryModule;
 
-import binnie.core.Constants;
 import binnie.core.BinnieCore;
+import binnie.core.Constants;
 import binnie.core.Mods;
 import binnie.core.machines.MachineGroup;
+import binnie.core.modules.BlankModule;
+import binnie.core.modules.ExtraTreesModuleUIDs;
+import binnie.core.modules.ModuleManager;
 import binnie.core.util.RecipeUtil;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.api.recipes.ExtraTreesRecipeManager;
@@ -20,15 +24,15 @@ import binnie.extratrees.machines.distillery.recipes.DistilleryRecipeManager;
 import binnie.extratrees.machines.fruitpress.recipes.FruitPressRecipeManager;
 import binnie.extratrees.machines.lumbermill.recipes.LumbermillRecipeManager;
 import binnie.extratrees.machines.nursery.TileEntityNursery;
-import binnie.core.modules.ExtraTreesModuleUIDs;
-import binnie.core.modules.BinnieModule;
-import binnie.core.modules.Module;
-import binnie.core.modules.ModuleManager;
 
-@BinnieModule(moduleID = ExtraTreesModuleUIDs.MACHINES, moduleContainerID = Constants.EXTRA_TREES_MOD_ID, name = "Machines", unlocalizedDescription = "extratrees.module.machines")
-public class ModuleMachine implements Module {
+@ForestryModule(moduleID = ExtraTreesModuleUIDs.MACHINES, containerID = Constants.EXTRA_TREES_MOD_ID, name = "Machines", unlocalizedDescription = "extratrees.module.machines")
+public class ModuleMachine extends BlankModule {
 
 	public static Block blockMachine;
+
+	public ModuleMachine() {
+		super(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.CORE);
+	}
 
 	@Override
 	public void setupAPI() {
@@ -49,7 +53,7 @@ public class ModuleMachine implements Module {
 	}
 
 	@Override
-	public void init() {
+	public void doInit() {
 		RecipeUtil recipeUtil = new RecipeUtil(Constants.EXTRA_TREES_MOD_ID);
 		recipeUtil.addRecipe("lumbermill", ExtraTreeMachine.Lumbermill.get(1), "gAg", "GsG", "gPg", 'G', Blocks.GLASS, 'g', ExtraTreeItems.PROVEN_GEAR.get(1), 'A', Items.IRON_AXE, 's', Mods.Forestry.stack("sturdy_machine"), 'P', "gearBronze");
 		recipeUtil.addRecipe("press", ExtraTreeMachine.Press.get(1), "iGi", "tSt", "tPt", 'i', "ingotIron", 'G', Blocks.GLASS, 't', "ingotTin", 'S', Mods.Forestry.stack("sturdy_machine"), 'P', "gearBronze");

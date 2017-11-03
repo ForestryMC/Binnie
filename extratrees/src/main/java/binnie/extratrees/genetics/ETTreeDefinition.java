@@ -44,7 +44,7 @@ import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.IClassification;
 import forestry.api.world.ITreeGenData;
-import forestry.arboriculture.PluginArboriculture;
+import forestry.arboriculture.ModuleArboriculture;
 import forestry.arboriculture.genetics.ClimateGrowthProvider;
 import forestry.arboriculture.genetics.ITreeDefinition;
 import forestry.arboriculture.genetics.Tree;
@@ -2188,13 +2188,13 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 	@Override
 	public boolean setLeaves(ITreeGenome genome, World world, @Nullable GameProfile owner, BlockPos pos) {
-		boolean placed = world.setBlockState(pos, PluginArboriculture.getBlocks().leaves.getDefaultState());
+		boolean placed = world.setBlockState(pos, ModuleArboriculture.getBlocks().leaves.getDefaultState());
 		if (!placed) {
 			return false;
 		}
 
 		Block block = world.getBlockState(pos).getBlock();
-		if (PluginArboriculture.getBlocks().leaves != block) {
+		if (ModuleArboriculture.getBlocks().leaves != block) {
 			world.setBlockToAir(pos);
 			return false;
 		}

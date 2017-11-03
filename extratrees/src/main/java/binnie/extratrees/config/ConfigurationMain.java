@@ -5,7 +5,7 @@ import java.io.File;
 import net.minecraftforge.common.config.Configuration;
 
 import binnie.core.modules.IConfigHandler;
-import binnie.core.modules.IModuleContainer;
+import binnie.core.modules.ModuleContainer;
 
 public class ConfigurationMain implements IConfigHandler {
 	public static boolean alterLemon = true;
@@ -13,7 +13,7 @@ public class ConfigurationMain implements IConfigHandler {
 
 	private final Configuration config;
 
-	public ConfigurationMain(IModuleContainer container) {
+	public ConfigurationMain(ModuleContainer container) {
 		this.config = new Configuration(new File(container.getConfigFolder(), "main.cfg"));
 	}
 
