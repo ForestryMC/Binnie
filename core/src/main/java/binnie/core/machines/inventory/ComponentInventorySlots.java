@@ -83,7 +83,9 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 	public ItemStack decrStackSize(final int index, final int amount) {
 		if (this.inventory.containsKey(index)) {
 			final ItemStack stack = this.inventory.get(index).decrStackSize(amount);
-			this.markDirty();
+			if (!stack.isEmpty()) {
+				this.markDirty();
+			}
 			return stack;
 		}
 		return ItemStack.EMPTY;
