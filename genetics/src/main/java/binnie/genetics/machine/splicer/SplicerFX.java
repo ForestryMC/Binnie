@@ -100,12 +100,9 @@ public class SplicerFX extends MachineComponent implements IRender.DisplayTick, 
 
 		public SplicerParticle(World world, BlockPos pos) {
 			super(world, pos.getX() + 0.5, pos.getY() + 1.5, pos.getZ() + 0.5, 0.0, 0.0, 0.0);
-			axisX = this.posX;
-			axisZ = this.posZ;
-			angle = (int) (this.world.getTotalWorldTime() % 4L) * 0.5 * 3.1415;
-			this.axisX = 0.0;
-			this.axisZ = 0.0;
-			this.angle = 0.0;
+			this.axisX = this.posX;
+			this.axisZ = this.posZ;
+			this.angle = (int) (this.world.getTotalWorldTime() % 4L) * 0.5 * 3.1415;
 			this.motionX = 0.0;
 			this.motionZ = 0.0;
 			this.motionY = (this.rand.nextDouble() - 0.5) * 0.02;
@@ -113,6 +110,7 @@ public class SplicerFX extends MachineComponent implements IRender.DisplayTick, 
 			this.particleGravity = 0.0f;
 			this.canCollide = true;
 			this.setRBGColorF(0.3f + this.rand.nextFloat() * 0.5f, 0.3f + this.rand.nextFloat() * 0.5f, 0.0f);
+			this.onUpdate();
 		}
 
 		@Override
@@ -123,7 +121,7 @@ public class SplicerFX extends MachineComponent implements IRender.DisplayTick, 
 			this.angle -= speed;
 			final double dist = 0.25 + 0.2 * Math.sin(this.particleAge / 50.0f);
 			this.setPosition(this.axisX + dist * Math.sin(this.angle), this.posY, this.axisZ + dist * Math.cos(this.angle));
-			this.setAlphaF((float) Math.cos(1.57 * this.particleAge / this.particleMaxAge));
+			this.setAlphaF((float) Math.sin(Math.PI * this.particleAge / this.particleMaxAge));
 		}
 
 		@Override

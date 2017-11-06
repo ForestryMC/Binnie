@@ -100,12 +100,9 @@ public class InoculatorFX extends MachineComponent implements IRender.DisplayTic
 
 		public InoculatorParticle(World world, BlockPos pos) {
 			super(world, pos.getX() + 0.5, pos.getY() + 0.92, pos.getZ() + 0.5, 0.0, 0.0, 0.0);
-			axisX = this.posX;
-			axisZ = this.posZ;
-			angle = (int) (this.world.getTotalWorldTime() % 4L) * 0.5 * 3.1415;
-			this.axisX = 0.0;
-			this.axisZ = 0.0;
-			this.angle = 0.0;
+			this.axisX = this.posX;
+			this.axisZ = this.posZ;
+			this.angle = (int) (this.world.getTotalWorldTime() % 4L) * 0.5 * Math.PI;
 			this.motionX = 0.0;
 			this.motionZ = 0.0;
 			this.motionY = 0.007 + this.rand.nextDouble() * 0.002;
@@ -125,7 +122,7 @@ public class InoculatorFX extends MachineComponent implements IRender.DisplayTic
 			this.angle += speed;
 			final double dist = 0.27;
 			this.setPosition(this.axisX + dist * Math.sin(this.angle), this.posY, this.axisZ + dist * Math.cos(this.angle));
-			this.setAlphaF((float) Math.cos(1.57 * this.particleAge / this.particleMaxAge));
+			this.setAlphaF((float) Math.cos(Math.PI / 2f * this.particleAge / this.particleMaxAge));
 			if (this.particleAge > 40) {
 				this.setRBGColorF(this.particleRed + (1.0f - this.particleRed) / 10.0f, this.particleGreen + (0.0f - this.particleGreen) / 10.0f, this.particleBlue + (0.0f - this.particleBlue) / 10.0f);
 			}

@@ -58,7 +58,7 @@ public class PackageIsolator extends GeneticMachine.PackageGeneticBase implement
 		transfer.addStorage(Isolator.SLOT_RESULUT, Isolator.SLOT_FINISHED);
 		new ComponentPowerReceptor(machine, 20000);
 		new IsolatorLogic(machine);
-		new IsolaterFX(machine);
+		new IsolatorFX(machine);
 	}
 
 	@Override
