@@ -1,6 +1,7 @@
 package binnie.core.gui.minecraft;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -292,6 +293,11 @@ public class GuiCraftGUI extends GuiContainer {
 			origin = this.window.getMousedOverWidget();
 		}
 		this.window.callEvent(new EventMouse.Down(origin, x, y, button));
+	}
+
+	@Nullable
+	public IWidget getWidgetUnderMouse() {
+		return this.window.getMousedOverWidget();
 	}
 
 	@Override

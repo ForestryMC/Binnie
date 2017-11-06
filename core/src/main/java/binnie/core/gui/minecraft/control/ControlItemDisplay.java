@@ -1,5 +1,6 @@
 package binnie.core.gui.minecraft.control;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 import binnie.core.api.gui.IPoint;
@@ -75,6 +76,12 @@ public class ControlItemDisplay extends Control implements ITooltip {
 
 	public ItemStack getItemStack() {
 		return this.itemStack;
+	}
+
+	@Nullable
+	@Override
+	public Object getIngredient() {
+		return getItemStack();
 	}
 
 	public void setItemStack(ItemStack itemStack) {

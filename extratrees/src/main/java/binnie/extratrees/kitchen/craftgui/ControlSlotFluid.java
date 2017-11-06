@@ -70,4 +70,10 @@ public class ControlSlotFluid extends Control implements ITooltip {
 	public FluidStack getFluidStack() {
 		return this.fluidStack;
 	}
+
+	@Nullable
+	@Override
+	public Object getIngredient() {
+		return getFluidStack();
+	}
 }

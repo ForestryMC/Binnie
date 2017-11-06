@@ -110,6 +110,11 @@ public interface IWidget {
 
 	IWidget getCropWidget();
 
+	@Nullable
+	default Object getIngredient() {
+		return null;
+	}
+
 	/* ATTRIBUTES */
 
 	/**

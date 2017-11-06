@@ -1,5 +1,6 @@
 package binnie.core.gui.minecraft.control;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 import net.minecraft.client.util.ITooltipFlag;
@@ -79,4 +80,10 @@ public abstract class ControlSlotBase extends Control implements ITooltip {
 	}
 
 	public abstract ItemStack getItemStack();
+
+	@Nullable
+	@Override
+	public Object getIngredient() {
+		return getItemStack();
+	}
 }
