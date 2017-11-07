@@ -271,13 +271,13 @@ binniecore.gui.fieldkit.individual=个体
 
 < Descriptions used for effects in the registry >
 binniecore.allele.extrabees.effect.acid.desc=溶解石头和泥土
-binniecore.allele.forestry.effectAggressive.desc=进攻玩家
+binniecore.allele.forestry.effectAggressive.desc=攻击玩家
 binniecore.allele.forestry.effectBeatific.desc=缓慢回复玩家生命
 binniecore.allele.forestry.effectCreeper.desc=在附近引发爆炸
 binniecore.allele.extrabees.effect.spawn_creeper.desc=随机生成爬行者
 binniecore.allele.extrabees.effect.blindness.desc=令玩家失明
 binniecore.allele.forestry.effectDrunkard.desc=灌醉玩家
-binniecore.allele.extrabees.effect.ectoplasm.desc=产生外质蛛网状结构
+binniecore.allele.extrabees.effect.ectoplasm.desc=产生胶质网
 binniecore.allele.forestry.effectMisanthrope.desc=以攻为守防御蜂巢
 binniecore.allele.forestry.effectExploration.desc=缓慢给予附近玩家以经验
 binniecore.allele.forestry.effectFertile.desc=滋养附近的土地

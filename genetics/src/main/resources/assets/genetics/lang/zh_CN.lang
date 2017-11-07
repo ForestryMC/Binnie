@@ -223,8 +223,8 @@ genetics.item.sequence.unsequenced=未测序
 genetics.item.sequence.partially=部分测序 (%s%)
 genetics.item.sequence.sequenced=已测序
 
-bee.modifier.format.max=%.2fx (最大值： %.2fx)
-bee.modifier.format.min=%.2fx (最小值： %.2fx)
+bee.modifier.format.max=%.2fx （最大值：%.2fx）
+bee.modifier.format.min=%.2fx （最小值：%.2fx）
 
 ##From ExtraBees lang
 
