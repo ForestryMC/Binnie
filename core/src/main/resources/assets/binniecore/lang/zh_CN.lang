@@ -202,7 +202,7 @@ binniecore.errors.task.paused.desc=暂停
 binniecore.errors.task.paused.info=由 Buildcraft 的门暂停
 
 binniecore.errors.unknown.name=未知
-binniecore.errors.unknown.desc=这个错误已损坏，请将此反馈给mod作者
+binniecore.errors.unknown.desc=未知错误，请将此反馈给 mod 作者
 binniecore.errors.no.item.name=没有物品
 binniecore.errors.invalid.item.name=无效物品
 binniecore.errors.no.space.name=没有空间
