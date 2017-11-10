@@ -4,11 +4,9 @@ import java.util.Collections;
 import java.util.List;
 
 import com.google.common.collect.ImmutableList;
-import forestry.api.genetics.IFlowerAcceptableRule;
 import forestry.api.genetics.IFlowerRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -86,6 +84,12 @@ public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers {
 		if (this == ROCK) {
 			flowerRegistry.registerAcceptableFlowerRule((blockState, world, pos, flowerType) -> blockState.getMaterial() == Material.ROCK, getUID());
 		}
+		else if (this == LEAVES) {
+			flowerRegistry.registerAcceptableFlowerRule((blockState, world, pos, flowerType) -> blockState.getBlock().isLeaves(blockState, world, pos), getUID());
+		}
+		else if (this == WOOD) {
+			flowerRegistry.registerAcceptableFlowerRule((blockState, world, pos, flowerType) -> blockState.getBlock().isWood(world, pos), getUID());
+		}
 
 		AlleleManager.alleleRegistry.registerAllele(this, EnumBeeChromosome.FLOWER_PROVIDER);
 	}
@@ -105,7 +109,7 @@ public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers {
 				return Collections.singletonList(Blocks.BOOKSHELF);
 			}
 			case REDSTONE: {
-				return Collections.singletonList(Blocks.REDSTONE_TORCH);
+				return ImmutableList.of(Blocks.REDSTONE_TORCH, Blocks.REDSTONE_BLOCK, Blocks.REDSTONE_ORE);
 			}
 			case DEAD: {
 				return Collections.singletonList(Blocks.DEADBUSH);
@@ -113,14 +117,8 @@ public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers {
 			case FRUIT: {
 				return Collections.emptyList(); // TODO: what is this supposed to be? It was Items.APPLE before.
 			}
-			case LEAVES: {
-				return Collections.singletonList(Blocks.LEAVES);
-			}
 			case SAPLING: {
 				return Collections.singletonList(Blocks.SAPLING);
-			}
-			case WOOD: {
-				return Collections.singletonList(Blocks.LOG);
 			}
 			default: {
 				return Collections.emptyList();
