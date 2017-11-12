@@ -12,6 +12,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import binnie.core.api.genetics.IBreedingSystem;
+import binnie.core.util.collect.ListMultiMap;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -58,10 +59,10 @@ public abstract class BreedingSystem implements IBreedingSystem, IItemStackRepre
 	private List<IClassification> allBranches;
 	private List<IAlleleSpecies> allSpecies;
 	private List<IMutation> allMutations;
-	private Map<IAlleleSpecies, List<IMutation>> resultantMutations;
-	private Map<IAlleleSpecies, List<IMutation>> furtherMutations;
-	private Map<IAlleleSpecies, List<IMutation>> allResultantMutations;
-	private Map<IAlleleSpecies, List<IMutation>> allFurtherMutations;
+	private final ListMultiMap<IAlleleSpecies, IMutation> resultantMutations;
+	private final ListMultiMap<IAlleleSpecies, IMutation> furtherMutations;
+	private final ListMultiMap<IAlleleSpecies, IMutation> allResultantMutations;
+	private final ListMultiMap<IAlleleSpecies, IMutation> allFurtherMutations;
 	private int totalSecretBranchCount;
 	private int discoveredSecretBranchCount;
 
@@ -70,10 +71,10 @@ public abstract class BreedingSystem implements IBreedingSystem, IItemStackRepre
 		this.allActiveSpecies = new ArrayList<>();
 		this.allSpecies = new ArrayList<>();
 		this.allMutations = new ArrayList<>();
-		this.resultantMutations = new HashMap<>();
-		this.furtherMutations = new HashMap<>();
-		this.allResultantMutations = new HashMap<>();
-		this.allFurtherMutations = new HashMap<>();
+		this.resultantMutations = new ListMultiMap<>();
+		this.furtherMutations = new ListMultiMap<>();
+		this.allResultantMutations = new ListMultiMap<>();
+		this.allFurtherMutations = new ListMultiMap<>();
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 
@@ -138,20 +139,16 @@ public abstract class BreedingSystem implements IBreedingSystem, IItemStackRepre
 	public void calculateAlleles(ISpeciesRoot speciesRoot) {
 		this.allSpecies = new ArrayList<>();
 		this.allActiveSpecies = new ArrayList<>();
-		this.resultantMutations = new HashMap<>();
-		this.furtherMutations = new HashMap<>();
-		this.allResultantMutations = new HashMap<>();
-		this.allFurtherMutations = new HashMap<>();
+		this.resultantMutations.clear();
+		this.furtherMutations.clear();
+		this.allResultantMutations.clear();
+		this.allFurtherMutations.clear();
 		Collection<IAllele> allAlleles = AlleleManager.alleleRegistry.getRegisteredAlleles().values();
 		for (IAllele allele : allAlleles) {
 			String uid = allele.getUID();
 			IAllele[] template = speciesRoot.getTemplate(uid);
 			if (template != null) {
 				IAlleleSpecies species = (IAlleleSpecies) allele;
-				this.resultantMutations.put(species, new ArrayList<>());
-				this.furtherMutations.put(species, new ArrayList<>());
-				this.allResultantMutations.put(species, new ArrayList<>());
-				this.allFurtherMutations.put(species, new ArrayList<>());
 				this.allSpecies.add(species);
 				if (isBlacklisted(allele) || uid.contains("speciesBotAlfheim")) {
 					continue;
@@ -200,17 +197,15 @@ public abstract class BreedingSystem implements IBreedingSystem, IItemStackRepre
 				participatingSpecies.add(mutation.getAllele0());
 				participatingSpecies.add(mutation.getAllele1());
 				for (final IAlleleSpecies species : participatingSpecies) {
-					this.allFurtherMutations.get(species).add(mutation);
+					this.allFurtherMutations.put(species, mutation);
 					if (this.allActiveSpecies.contains(species)) {
-						this.furtherMutations.get(species).add(mutation);
+						this.furtherMutations.put(species, mutation);
 					}
 				}
 				IAllele[] template = mutation.getTemplate();
 				IAlleleSpecies speciesAllele = (IAlleleSpecies) template[0];
-				if (this.resultantMutations.containsKey(speciesAllele)) {
-					this.allResultantMutations.get(speciesAllele).add(mutation);
-					this.resultantMutations.get(speciesAllele).add(mutation);
-				}
+				this.allResultantMutations.put(speciesAllele, mutation);
+				this.resultantMutations.put(speciesAllele, mutation);
 			}
 		}
 	}
