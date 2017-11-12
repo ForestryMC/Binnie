@@ -220,7 +220,7 @@ genetics.item.sequence.4=强
 genetics.item.sequence.5=极强
 genetics.item.sequence.unknown=未知
 genetics.item.sequence.unsequenced=未测序
-genetics.item.sequence.partially=部分测序 (%s%)
+genetics.item.sequence.partially=部分测序 (%s%%)
 genetics.item.sequence.sequenced=已测序
 
 bee.modifier.format.max=%.2fx （最大值：%.2fx）
