@@ -106,7 +106,7 @@ public class ModuleFlowers extends BlankModule {
 		Botany.proxy.registerItem(pollen);
 		Botany.proxy.registerItem(seed);
 
-		BinnieCore.getBinnieProxy().registerTileEntity(TileEntityFlower.class, "botany.tile.flower", null);
+		BinnieCore.getBinnieProxy().registerTileEntity(TileEntityFlower.class, "botany.tile.flower");
 	}
 
 	@Override

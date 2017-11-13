@@ -3,6 +3,7 @@ package binnie.core.proxy;
 import javax.annotation.Nullable;
 import java.io.File;
 import java.io.IOException;
+import java.util.function.Supplier;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -117,12 +118,8 @@ public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy
 	}
 
 	@Override
-	public void registerTileEntity(final Class<? extends TileEntity> tile, final String id, @Nullable final Object renderer) {
-		if (renderer != null && renderer instanceof TileEntitySpecialRenderer) {
-			ClientRegistry.registerTileEntity(tile, id, (TileEntitySpecialRenderer) renderer);
-		} else {
-			GameRegistry.registerTileEntity(tile, id);
-		}
+	public <T extends TileEntity> void registerTileEntity(Class<? extends T> tile, final String id, ClientSupplier<TileEntitySpecialRenderer<T>> rendererSupplier) {
+		ClientRegistry.registerTileEntity(tile, id, rendererSupplier.get());
 	}
 
 	@Override

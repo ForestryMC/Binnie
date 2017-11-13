@@ -1,6 +1,9 @@
 package binnie.core.machines.storage;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -19,7 +22,9 @@ class ComponentBinnieCoreGUI extends MachineComponent implements IInteraction.Ri
 	}
 
 	@Override
-	public void onRightClick(final World world, final EntityPlayer player, final BlockPos pos) {
-		BinnieCore.getBinnieProxy().openGui(this.id, player, pos);
+	public void onRightClick(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		if (!player.isSneaking()) {
+			BinnieCore.getBinnieProxy().openGui(this.id, player, pos);
+		}
 	}
 }

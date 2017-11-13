@@ -32,6 +32,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 		for (InventorySlot slot : this.inventory.values()) {
 			slot.setContent(ItemStack.EMPTY);
 		}
+		this.markDirty();
 	}
 
 	@Override
@@ -54,6 +55,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 		InventorySlot inventorySlot = this.inventory.get(index);
 		ItemStack content = inventorySlot.getItemStack();
 		inventorySlot.setContent(ItemStack.EMPTY);
+		this.markDirty();
 		return content;
 	}
 
@@ -95,8 +97,8 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 	public void setInventorySlotContents(final int index, final ItemStack itemStack) {
 		if (this.inventory.containsKey(index) && (itemStack.isEmpty() || this.inventory.get(index).isValid(itemStack))) {
 			this.inventory.get(index).setContent(itemStack);
+			this.markDirty();
 		}
-		this.markDirty();
 	}
 
 	@Override

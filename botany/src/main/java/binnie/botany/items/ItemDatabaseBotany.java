@@ -1,5 +1,6 @@
 package binnie.botany.items;
 
+import binnie.core.api.gui.IGuiItem;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -19,7 +20,7 @@ import binnie.botany.Botany;
 import binnie.botany.gui.BotanyGUI;
 import binnie.core.util.I18N;
 
-public class ItemDatabaseBotany extends ItemBotany implements IItemModelRegister {
+public class ItemDatabaseBotany extends ItemBotany implements IItemModelRegister, IGuiItem {
 	public ItemDatabaseBotany() {
 		super("database");
 		setMaxStackSize(1);
@@ -45,12 +46,17 @@ public class ItemDatabaseBotany extends ItemBotany implements IItemModelRegister
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 		ItemStack itemStack = playerIn.getHeldItem(handIn);
-		if (itemStack.getMetadata() == 0) {
-			Botany.proxy.openGui(BotanyGUI.DATABASE, playerIn, playerIn.getPosition());
-		} else {
-			Botany.proxy.openGui(BotanyGUI.DATABASE_MASTER, playerIn, playerIn.getPosition());
-		}
+		openGuiOnRightClick(itemStack,  worldIn, playerIn);
 		return super.onItemRightClick(worldIn, playerIn, handIn);
+	}
+
+	@Override
+	public void openGuiOnRightClick(ItemStack itemStack, World world, EntityPlayer player) {
+		if (itemStack.getMetadata() == 0) {
+			Botany.proxy.openGui(BotanyGUI.DATABASE, player, player.getPosition());
+		} else {
+			Botany.proxy.openGui(BotanyGUI.DATABASE_MASTER, player, player.getPosition());
+		}
 	}
 
 	@Override

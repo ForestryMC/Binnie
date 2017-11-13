@@ -16,6 +16,7 @@ import binnie.core.network.INetworkedEntity;
 import binnie.core.network.packet.PacketPayload;
 
 public class TileEntityMachine extends TileEntityMachineBase implements INetworkedEntity {
+	@Nullable
 	private Machine machine;
 
 	public TileEntityMachine(final MachinePackage pack) {
@@ -100,6 +101,7 @@ public class TileEntityMachine extends TileEntityMachineBase implements INetwork
 		machine.syncFromNBT(syncCompound);
 	}
 
+	@Nullable
 	public Machine getMachine() {
 		return this.machine;
 	}
