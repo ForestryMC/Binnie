@@ -485,7 +485,11 @@ public abstract class BreedingSystem implements IBreedingSystem, IItemStackRepre
 		if (conversion == null) {
 			return ItemStack.EMPTY;
 		}
-		return this.getSpeciesRoot().getMemberStack(conversion, this.getDefaultType());
+		ISpeciesType type = this.getSpeciesRoot().getType(stack);
+		if (type == null) {
+			type = this.getDefaultType();
+		}
+		return this.getSpeciesRoot().getMemberStack(conversion, type);
 	}
 
 	@Override
