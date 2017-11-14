@@ -3,6 +3,7 @@ package binnie.genetics.machine.acclimatiser;
 import java.util.Random;
 
 import binnie.genetics.api.acclimatiser.IToleranceType;
+import binnie.genetics.machine.splicer.Splicer;
 import net.minecraft.item.ItemStack;
 
 import forestry.api.genetics.AlleleManager;
@@ -14,7 +15,6 @@ import forestry.api.genetics.ISpeciesRoot;
 
 import binnie.core.genetics.Gene;
 import binnie.core.genetics.Tolerance;
-import binnie.genetics.machine.inoculator.Inoculator;
 
 class ToleranceSystem {
 	private final String speciesRootUid;
@@ -51,7 +51,10 @@ class ToleranceSystem {
 			return stack;
 		}
 		final ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(stack);
-		Inoculator.setGene(new Gene(newTol.getAllele(), this.chromosomeType, root), stack, rand.nextInt(2));
+		boolean setPrimary = rand.nextBoolean();
+		boolean setSecondary = !setPrimary;
+		Gene gene = new Gene(newTol.getAllele(), this.chromosomeType, root);
+		Splicer.setGene(gene, stack, setPrimary, setSecondary);
 		return stack;
 	}
 
