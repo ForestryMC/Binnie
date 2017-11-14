@@ -82,6 +82,6 @@ public class ItemETFood extends ItemFood implements IItemModelRegister {
 
 	@Override
 	public float getSaturationModifier(ItemStack itemStack) {
-		return 3.0f;
+		return 0.5f;
 	}
 }
