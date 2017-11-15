@@ -1,5 +1,6 @@
 package binnie.core.machines.inventory;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -21,15 +22,15 @@ class SidedAccess {
 		this.extractLocked = false;
 	}
 
-	public AccessDirection getAccess(final EnumFacing side) {
+	public AccessDirection getAccess(@Nullable EnumFacing side) {
 		return this.accesses.getOrDefault(side, this.base);
 	}
 
-	public boolean canInsert(final EnumFacing side) {
+	public boolean canInsert(@Nullable EnumFacing side) {
 		return this.getAccess(side).canInsert();
 	}
 
-	public boolean canExtract(final EnumFacing side) {
+	public boolean canExtract(@Nullable EnumFacing side) {
 		return this.getAccess(side).canExtract();
 	}
 
