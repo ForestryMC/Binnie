@@ -137,20 +137,18 @@ class BlockMachine extends Block implements IBlockMachine, ITileEntityProvider {
 
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		if (!!worldIn.isRemote) {
-			return true;
-		}
-		if (playerIn.isSneaking()) {
-			return true;
-		}
 		TileEntity tileEntity = worldIn.getTileEntity(pos);
 		if (tileEntity != null) {
-			IFluidHandler tileFluidHandler = tileEntity.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, facing);
-			if (tileFluidHandler != null && FluidUtil.interactWithFluidHandler(playerIn, hand, tileFluidHandler)) {
-				return true;
+			if (!playerIn.isSneaking()) {
+				IFluidHandler tileFluidHandler = tileEntity.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, facing);
+				if (tileFluidHandler != null && FluidUtil.interactWithFluidHandler(playerIn, hand, tileFluidHandler)) {
+					return true;
+				}
 			}
 			if (tileEntity instanceof TileEntityMachine) {
-				((TileEntityMachine) tileEntity).getMachine().onRightClick(worldIn, playerIn, pos);
+				TileEntityMachine tileEntityMachine = (TileEntityMachine) tileEntity;
+				Machine machine = tileEntityMachine.getMachine();
+				machine.onRightClick(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
 			}
 		}
 		return true;

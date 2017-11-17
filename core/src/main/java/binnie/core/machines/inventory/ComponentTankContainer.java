@@ -3,6 +3,7 @@ package binnie.core.machines.inventory;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.EnumMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +28,7 @@ import binnie.core.machines.power.TankInfo;
 public class ComponentTankContainer extends MachineComponent implements ITankMachine {
 	private final Map<Integer, TankSlot> tanks;
 	private final EnumMap<EnumFacing, IFluidHandler> handlers;
+	private final IFluidHandler noFacingHandler;
 
 	public ComponentTankContainer(final IMachine machine) {
 		super(machine);
@@ -35,6 +37,7 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 		for (EnumFacing facing : EnumFacing.VALUES) {
 			handlers.put(facing, new TankContainer(facing));
 		}
+		this.noFacingHandler = new TankContainer(null);
 	}
 
 	@Override
@@ -79,7 +82,7 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 		return drained;
 	}
 
-	private int getTankIndexToFill(final EnumFacing from, final FluidStack resource) {
+	private int getTankIndexToFill(@Nullable EnumFacing from, final FluidStack resource) {
 		for (final TankSlot tank : this.tanks.values()) {
 			if (tank.isValid(resource) && tank.canInsert(from) && (tank.getContent() == null || tank.getContent().isFluidEqual(resource))) {
 				return tank.getIndex();
@@ -88,7 +91,7 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 		return -1;
 	}
 
-	private int getTankIndexToDrain(final EnumFacing from, @Nullable final FluidStack resource) {
+	private int getTankIndexToDrain(@Nullable EnumFacing from, @Nullable final FluidStack resource) {
 		for (final TankSlot tank : this.tanks.values()) {
 			if (tank.getContent() != null && tank.canExtract(from) && (resource == null || resource.isFluidEqual(tank.getContent()))) {
 				return tank.getIndex();
@@ -172,15 +175,16 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 	@Nullable
 	public IFluidHandler getHandler(@Nullable EnumFacing from) {
 		if (from == null) {
-			return new FluidHandlerConcatenate(handlers.values());
+			return noFacingHandler;
 		}
 		return handlers.get(from);
 	}
 
 	private class TankContainer implements IFluidHandler {
+		@Nullable
 		private final EnumFacing from;
 
-		public TankContainer(EnumFacing from) {
+		public TankContainer(@Nullable EnumFacing from) {
 			this.from = from;
 		}
 

@@ -1,5 +1,6 @@
 package binnie.genetics.item;
 
+import binnie.core.api.gui.IGuiItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
@@ -12,7 +13,7 @@ import binnie.genetics.CreativeTabGenetics;
 import binnie.genetics.Genetics;
 import binnie.genetics.core.GeneticsGUI;
 
-public class ItemMasterRegistry extends ItemCore {
+public class ItemMasterRegistry extends ItemCore implements IGuiItem {
 	/*@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(final IIconRegister register) {
@@ -32,6 +33,13 @@ public class ItemMasterRegistry extends ItemCore {
 			Genetics.proxy.openGui(GeneticsGUI.MASTER_REGISTRY, playerIn, playerIn.getPosition());
 		}
 		return super.onItemRightClick(worldIn, playerIn, handIn);
+	}
+
+	@Override
+	public void openGuiOnRightClick(ItemStack itemStack, World world, EntityPlayer player) {
+		if(!Binnie.GENETICS.getActiveSystems().isEmpty()) {
+			Genetics.proxy.openGui(GeneticsGUI.MASTER_REGISTRY, player, player.getPosition());
+		}
 	}
 
 	@Override

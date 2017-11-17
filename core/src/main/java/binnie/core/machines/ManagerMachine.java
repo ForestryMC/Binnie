@@ -7,12 +7,17 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import binnie.core.machines.render.RenderTESRMachine;
+import binnie.core.proxy.IBinnieProxy;
 import forestry.api.core.INbtReadable;
 import forestry.api.core.INbtWritable;
 
 import binnie.core.BinnieCore;
 import binnie.core.ManagerBase;
 import binnie.core.machines.inventory.ValidatorSprite;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ManagerMachine extends ManagerBase {
 	private static ValidatorSprite spriteBee;
@@ -85,7 +90,14 @@ public class ManagerMachine extends ManagerBase {
 	public void postInit() {
 		// TODO fix rendering
 		Object rendererMachine = null; // BinnieCore.proxy.createObject("binnie.core.machines.RendererMachine");
-		BinnieCore.getBinnieProxy().registerTileEntity(TileEntityMachine.class, "binnie.tile.machine", rendererMachine);
+		BinnieCore.getBinnieProxy().registerTileEntity(TileEntityMachine.class, "binnie.tile.machine");
+		BinnieCore.getBinnieProxy().registerTileEntity(TileEntityTESRMachine.class, "binnie.tile.machine.tesr", new IBinnieProxy.ClientSupplier<TileEntitySpecialRenderer<TileEntityTESRMachine>>() {
+			@SideOnly(Side.CLIENT)
+			@Override
+			public TileEntitySpecialRenderer<TileEntityTESRMachine> get() {
+				return new RenderTESRMachine();
+			}
+		});
 	}
 
 	@Nullable

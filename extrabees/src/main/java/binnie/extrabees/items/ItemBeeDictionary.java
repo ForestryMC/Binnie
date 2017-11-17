@@ -6,6 +6,7 @@ import java.util.List;
 
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.gui.ExtraBeesGUID;
+import binnie.core.api.gui.IGuiItem;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
@@ -27,7 +28,7 @@ import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
 import forestry.api.core.Tabs;
 
-public class ItemBeeDictionary extends Item implements IItemModelRegister {
+public class ItemBeeDictionary extends Item implements IItemModelRegister, IGuiItem {
 
 	public ItemBeeDictionary() {
 		this.setCreativeTab(Tabs.tabApiculture);
@@ -57,16 +58,15 @@ public class ItemBeeDictionary extends Item implements IItemModelRegister {
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 		final ItemStack itemStack = playerIn.getHeldItem(handIn);
-		final ExtraBeesGUID id;
-		if (itemStack.getItemDamage() == 0) {
-			id = ExtraBeesGUID.DATABASE;
-		} else {
-			id = ExtraBeesGUID.DATABASE_MASTER;
-		}
-		BlockPos pos = playerIn.getPosition();
-		playerIn.openGui(ExtraBees.instance, id.ordinal(), worldIn, pos.getX(), pos.getY(), pos.getZ());
-
+		openGuiOnRightClick(itemStack, worldIn, playerIn);
 		return super.onItemRightClick(worldIn, playerIn, handIn);
+	}
+
+	@Override
+	public void openGuiOnRightClick(ItemStack itemStack, World world, EntityPlayer player) {
+		final ExtraBeesGUID id = itemStack.getItemDamage() == 0 ? ExtraBeesGUID.DATABASE : ExtraBeesGUID.DATABASE_MASTER;
+		BlockPos pos = player.getPosition();
+		player.openGui(ExtraBees.instance, id.ordinal(), world, pos.getX(), pos.getY(), pos.getZ());
 	}
 
 	@Override

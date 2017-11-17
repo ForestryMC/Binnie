@@ -1,6 +1,9 @@
 package binnie.genetics.machine;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -19,7 +22,9 @@ public class ComponentGeneticGUI extends MachineComponent implements IInteractio
 	}
 
 	@Override
-	public void onRightClick(World p0, EntityPlayer player, BlockPos pos) {
-		Genetics.proxy.openGui(this.id, player, pos);
+	public void onRightClick(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		if (!player.isSneaking()) {
+			Genetics.proxy.openGui(this.id, player, pos);
+		}
 	}
 }

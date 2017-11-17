@@ -12,8 +12,9 @@ public abstract class ComponentInventory extends MachineComponent implements IIn
 
 	@Override
 	public void markDirty() {
-		if (this.getMachine() != null) {
-			this.getMachine().markDirty();
+		IMachine machine = this.getMachine();
+		if (machine != null) {
+			machine.markDirty();
 		}
 	}
 }

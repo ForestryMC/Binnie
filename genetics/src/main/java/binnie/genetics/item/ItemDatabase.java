@@ -1,5 +1,6 @@
 package binnie.genetics.item;
 
+import binnie.core.api.gui.IGuiItem;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -21,7 +22,7 @@ import binnie.genetics.CreativeTabGenetics;
 import binnie.genetics.Genetics;
 import binnie.genetics.core.GeneticsGUI;
 
-public class ItemDatabase extends ItemCore {
+public class ItemDatabase extends ItemCore implements IGuiItem {
 
 	public ItemDatabase() {
 		super("geneticdatabase");
@@ -48,16 +49,8 @@ public class ItemDatabase extends ItemCore {
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
 		ItemStack itemStack = player.getHeldItem(hand);
-		final GeneticsGUI id;
-		if (isMaster(itemStack)) {
-			id = GeneticsGUI.DATABASE_MASTER;
-		} else {
-			id = GeneticsGUI.DATABASE;
-		}
-
-		Genetics.proxy.openGui(id, player, player.getPosition());
-
-		return new ActionResult(EnumActionResult.PASS, itemStack);
+		openGuiOnRightClick(itemStack, world, player);
+		return new ActionResult<>(EnumActionResult.PASS, itemStack);
 	}
 
 	@Override
@@ -67,5 +60,16 @@ public class ItemDatabase extends ItemCore {
 
 	protected boolean isMaster(ItemStack itemStack) {
 		return itemStack.getItemDamage() > 0;
+	}
+
+	@Override
+	public void openGuiOnRightClick(ItemStack itemStack, World world, EntityPlayer player) {
+		final GeneticsGUI id;
+		if (isMaster(itemStack)) {
+			id = GeneticsGUI.DATABASE_MASTER;
+		} else {
+			id = GeneticsGUI.DATABASE;
+		}
+		Genetics.proxy.openGui(id, player, player.getPosition());
 	}
 }

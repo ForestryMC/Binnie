@@ -9,10 +9,13 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -162,10 +165,10 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 		}
 	}
 
-	public void onRightClick(final World world, final EntityPlayer player, final BlockPos pos) {
+	public void onRightClick(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		List<IInteraction.RightClick> interfaces = this.getInterfaces(IInteraction.RightClick.class);
 		for (final IInteraction.RightClick component : interfaces) {
-			component.onRightClick(world, player, pos);
+			component.onRightClick(world, pos, state, player, hand, facing, hitX, hitY, hitZ);
 		}
 	}
 
@@ -187,6 +190,8 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 			for (final MachineComponent component : this.getComponents()) {
 				component.onInventoryUpdate();
 			}
+			TileEntity tileEntity = getTileEntity();
+			getWorld().markChunkDirty(tileEntity.getPos(), tileEntity);
 			this.queuedInventoryUpdate = false;
 		}
 	}

@@ -2,6 +2,7 @@ package binnie.genetics.machine.splicer;
 
 import java.util.Random;
 
+import binnie.core.util.EntityItemRenderer;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleManager;
 import net.minecraft.client.renderer.GlStateManager;
@@ -23,11 +24,11 @@ import binnie.core.machines.component.IRender;
 import binnie.core.machines.network.INetwork;
 
 public class SplicerFX extends MachineComponent implements IRender.DisplayTick, IRender.Render, INetwork.TilePacketSync {
-	private final EntityItem dummyEntityItem;
+	private final EntityItemRenderer entityItemRenderer;
 
 	public SplicerFX(final IMachine machine) {
 		super(machine);
-		this.dummyEntityItem = new EntityItem(machine.getWorld());
+		this.entityItemRenderer = new EntityItemRenderer();
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -47,23 +48,8 @@ public class SplicerFX extends MachineComponent implements IRender.DisplayTick, 
 			return;
 		}
 		final ItemStack stack = this.getUtil().getStack(9);
-		this.dummyEntityItem.world = this.getMachine().getWorld();
-		this.dummyEntityItem.setItem(stack);
-		final EntityItem dummyEntityItem = this.dummyEntityItem;
-		dummyEntityItem.setAgeToCreativeDespawnTime(); //++dummyEntityItem.age;
-		this.dummyEntityItem.hoverStart = 0.0f;
-		if (stack.isEmpty()) {
-			return;
-		}
-		final EntityPlayer player = BinnieCore.getBinnieProxy().getPlayer();
-		final double dx = x + 0.5 - player.lastTickPosX;
-		final double dz = z + 0.5 - player.lastTickPosZ;
-		final double t = Math.atan2(dz, dx) * 180.0 / 3.1415;
-		GlStateManager.pushMatrix();
-		GlStateManager.rotate(180.0f, 0.0f, 0.0f, 1.0f);
-		GlStateManager.translate(0.0f, -0.25f, 0.0f);
-		BinnieCore.getBinnieProxy().getMinecraftInstance().getRenderItem().renderItem(dummyEntityItem.getItem(), ItemCameraTransforms.TransformType.FIXED);//doRender(this.dummyEntityItem, 0.0, 0.0, 0.0, 0.0f, 0.0f);
-		GlStateManager.popMatrix();
+		World world = this.getMachine().getWorld();
+		this.entityItemRenderer.renderInWorld(stack, world, x + 0.5, y + 1, z + 0.5);
 	}
 
 	@Override

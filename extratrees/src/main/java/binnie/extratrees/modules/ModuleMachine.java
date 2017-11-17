@@ -49,7 +49,7 @@ public class ModuleMachine extends BlankModule {
 		blockMachine = machineGroup.getBlock();
 		// TODO fix rendering
 		Object rendererMachine = null;// BinnieCore.proxy.createObject("binnie.core.machines.RendererMachine");
-		BinnieCore.getBinnieProxy().registerTileEntity(TileEntityNursery.class, "binnie.tile.nursery", rendererMachine);
+		BinnieCore.getBinnieProxy().registerTileEntity(TileEntityNursery.class, "binnie.tile.nursery");
 	}
 
 	@Override

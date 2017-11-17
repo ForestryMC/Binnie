@@ -1,5 +1,6 @@
 package binnie.genetics.machine.splicer;
 
+import binnie.core.machines.TileEntityTESRMachine;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 
@@ -7,7 +8,6 @@ import binnie.core.gui.minecraft.IMachineInformation;
 import binnie.core.machines.IMachine;
 import binnie.core.machines.Machine;
 import binnie.core.machines.MachineUtil;
-import binnie.core.machines.TileEntityMachine;
 import binnie.core.machines.inventory.ComponentInventorySlots;
 import binnie.core.machines.inventory.ComponentInventoryTransfer;
 import binnie.core.machines.inventory.InventorySlot;
@@ -77,7 +77,7 @@ public class PackageSplicer extends AdvGeneticMachine.PackageAdvGeneticBase impl
 
 	@Override
 	public TileEntity createTileEntity() {
-		return new TileEntityMachine(this);
+		return new TileEntityTESRMachine(this);
 	}
 
 	private static class SerumSlotValidator extends SlotValidator {

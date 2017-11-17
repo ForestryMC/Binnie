@@ -75,11 +75,11 @@ public abstract class BaseSlot<T> implements INbtWritable, INbtReadable, IValida
 		this.access.forbidInsertChange();
 	}
 
-	public boolean canInsert(final EnumFacing dir) {
+	public boolean canInsert(@Nullable EnumFacing dir) {
 		return this.access.canInsert(dir);
 	}
 
-	public boolean canExtract(final EnumFacing dir) {
+	public boolean canExtract(@Nullable EnumFacing dir) {
 		return this.access.canExtract(dir);
 	}
 
