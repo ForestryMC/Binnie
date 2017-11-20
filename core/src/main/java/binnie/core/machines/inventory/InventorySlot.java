@@ -2,6 +2,8 @@ package binnie.core.machines.inventory;
 
 import javax.annotation.Nullable;
 
+import binnie.core.Constants;
+import binnie.core.ModId;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -87,6 +89,10 @@ public class InventorySlot extends BaseSlot<ItemStack> {
 
 	@Override
 	public String getName() {
+		SlotValidator validator = getValidator();
+		if (validator != null) {
+			return I18N.localise(ModId.CORE, "gui.slot.validated", validator.getTooltip());
+		}
 		if (this.unlocLocation == null) {
 			return "";
 		}

@@ -86,4 +86,9 @@ public abstract class ControlSlotBase extends Control implements ITooltip {
 	public Object getIngredient() {
 		return getItemStack();
 	}
+
+	@Override
+	public boolean showBasicHelpTooltipsByDefault() {
+		return getItemStack().isEmpty();
+	}
 }

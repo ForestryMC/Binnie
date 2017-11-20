@@ -77,9 +77,9 @@ public class PolymeriserLogic extends ComponentProcessSetCost implements IProces
 		final ItemStack serum = this.getUtil().getStack(Polymeriser.SLOT_SERUM);
 		int n = getNumberOfGenes(serum);
 		if (n > 1) {
-			return String.format(I18N.localise("genetics.genetics.machine.machine.polymeriser.tooltips.logic.genes"), Integer.valueOf(n).toString());
+			return String.format(I18N.localise("genetics.machine.polymeriser.tooltips.logic.genes"), Integer.valueOf(n).toString());
 		} else {
-			return I18N.localise("genetics.genetics.machine.machine.polymeriser.tooltips.logic.gene");
+			return I18N.localise("genetics.machine.polymeriser.tooltips.logic.gene");
 		}
 	}
 

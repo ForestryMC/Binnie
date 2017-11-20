@@ -76,4 +76,9 @@ public class ControlSlotFluid extends Control implements ITooltip {
 	public Object getIngredient() {
 		return getFluidStack();
 	}
+
+	@Override
+	public boolean showBasicHelpTooltipsByDefault() {
+		return getFluidStack() == null;
+	}
 }

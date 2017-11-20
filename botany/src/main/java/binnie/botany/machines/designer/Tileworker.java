@@ -44,7 +44,7 @@ public class Tileworker implements IDesignerType {
 
 	@Override
 	public String getMaterialTooltip() {
-		return I18N.localise("botany.machine.machine.designer.material.tile");
+		return I18N.localise("botany.machine.designer.material.tile");
 	}
 
 	@Override

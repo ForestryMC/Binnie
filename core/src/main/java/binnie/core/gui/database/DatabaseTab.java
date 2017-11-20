@@ -4,6 +4,7 @@ import binnie.core.AbstractMod;
 import binnie.core.gui.ITooltipHelp;
 import binnie.core.gui.Tooltip;
 import binnie.core.util.I18N;
+import net.minecraft.client.util.ITooltipFlag;
 
 public class DatabaseTab implements ITooltipHelp {
 	private final String modId;
@@ -25,7 +26,7 @@ public class DatabaseTab implements ITooltipHelp {
 	}
 
 	@Override
-	public void getHelpTooltip(final Tooltip tooltip) {
+	public void getHelpTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		tooltip.add(I18N.localiseOrBlank(this.modId + ".gui.database.tab." + this.unloc + ".help"));
 	}
 }

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import binnie.core.api.gui.IPoint;
+import binnie.core.gui.KeyBindings;
 import binnie.core.gui.geometry.Point;
 import binnie.core.util.Log;
 import net.minecraft.client.Minecraft;
@@ -105,13 +106,18 @@ public class GuiCraftGUI extends GuiContainer {
 		GlStateManager.disableLighting();
 		GlStateManager.disableDepth();
 		if(draggedItem.isEmpty()) {
+			ITooltipFlag tooltipFlag = this.mc.gameSettings.advancedItemTooltips ? ITooltipFlag.TooltipFlags.ADVANCED : ITooltipFlag.TooltipFlags.NORMAL;
 			final MinecraftTooltip tooltip = new MinecraftTooltip();
-			if (this.isHelpMode()) {
+			boolean helpMode = this.isHelpMode();
+			if (helpMode || this.showBasicHelpTooltips()) {
 				tooltip.setType(Tooltip.Type.HELP);
-				this.window.getHelpTooltip(tooltip);
+				ITooltipFlag helpTooltipFlag = helpMode ? ITooltipFlag.TooltipFlags.ADVANCED : tooltipFlag;
+				if (!this.window.getHelpTooltip(tooltip, helpTooltipFlag)) {
+					// fallback if there is no help tooltip
+					this.window.getTooltip(tooltip, tooltipFlag);
+				}
 			} else {
 				tooltip.setType(Tooltip.Type.STANDARD);
-				ITooltipFlag tooltipFlag = this.mc.gameSettings.advancedItemTooltips ? ITooltipFlag.TooltipFlags.ADVANCED : ITooltipFlag.TooltipFlags.NORMAL;
 				this.window.getTooltip(tooltip, tooltipFlag);
 			}
 			if (tooltip.exists()) {
@@ -347,7 +353,22 @@ public class GuiCraftGUI extends GuiContainer {
 	}
 
 	public boolean isHelpMode() {
-		return Keyboard.isKeyDown(15);
+		if (Keyboard.getEventKeyState()) {
+			if (KeyBindings.holdForHelpTooltips.isActiveAndMatches(Keyboard.getEventKey())) {
+				return true;
+			}
+		}
+		if (Mouse.getEventButtonState()) {
+			if (KeyBindings.holdForHelpTooltips.isActiveAndMatches(Mouse.getEventButton() - 100)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public boolean showBasicHelpTooltips() {
+		IWidget widgetUnderMouse = getWidgetUnderMouse();
+		return (widgetUnderMouse != null && widgetUnderMouse.showBasicHelpTooltipsByDefault());
 	}
 
 	public FontRenderer getFontRenderer() {

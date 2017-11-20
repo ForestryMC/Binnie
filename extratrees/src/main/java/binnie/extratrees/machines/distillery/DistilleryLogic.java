@@ -145,13 +145,13 @@ public class DistilleryLogic extends ComponentProcessSetCost implements IProcess
 	@Override
 	public String getTooltip() {
 		if (this.currentFluid == null) {
-			return I18N.localise("extratrees.machine.machine.distillery.tooltips.empty");
+			return I18N.localise("extratrees.machine.distillery.tooltips.empty");
 		}
 		FluidStack output = DistilleryRecipeManager.getOutput(this.currentFluid, this.level);
 		if (output == null) {
-			return I18N.localise("extratrees.machine.machine.distillery.tooltips.empty");
+			return I18N.localise("extratrees.machine.distillery.tooltips.empty");
 		}
-		return I18N.localise("extratrees.machine.machine.distillery.tooltips.creating", output.getLocalizedName());
+		return I18N.localise("extratrees.machine.distillery.tooltips.creating", output.getLocalizedName());
 	}
 
 	@Nullable

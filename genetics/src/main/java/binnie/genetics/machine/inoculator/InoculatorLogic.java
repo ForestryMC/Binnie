@@ -76,9 +76,9 @@ public class InoculatorLogic extends ComponentProcess implements IProcess {
 		ItemStack stack = this.getUtil().getStack(0);
 		int n = getNumberOfGenes(stack);
 		if (n > 1) {
-			return String.format(I18N.localise("genetics.machine.machine.inoculator.tooltips.logic.genes"), Integer.valueOf(n).toString());
+			return String.format(I18N.localise("genetics.machine.inoculator.tooltips.logic.genes"), Integer.valueOf(n).toString());
 		} else {
-			return I18N.localise("genetics.machine.machine.inoculator.tooltips.logic.gene");
+			return I18N.localise("genetics.machine.inoculator.tooltips.logic.gene");
 		}
 	}
 

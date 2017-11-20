@@ -21,7 +21,7 @@ import binnie.extratrees.machines.brewery.BreweryMachine;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WindowBrewery extends Window {
-	public static final String LANG_KEY = "extratrees.machine.machine.brewery";
+	public static final String LANG_KEY = "extratrees.machine.brewery";
 
 	public WindowBrewery(final EntityPlayer player, final IInventory inventory, final Side side) {
 		super(228, 218, player, inventory, side);

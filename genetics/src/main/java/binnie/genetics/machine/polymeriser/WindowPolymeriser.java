@@ -57,7 +57,7 @@ public class WindowPolymeriser extends WindowMachine {
 
 	@Override
 	public String getTitle() {
-		return I18N.localise("genetics.machine.machine.polymeriser");
+		return I18N.localise("genetics.machine.polymeriser");
 	}
 
 	@Override

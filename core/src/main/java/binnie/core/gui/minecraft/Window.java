@@ -131,22 +131,23 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 		}
 	}
 
-	public void getHelpTooltip(final MinecraftTooltip tooltip) {
+	public boolean getHelpTooltip(MinecraftTooltip tooltip, ITooltipFlag tooltipFlag) {
 		final Deque<IWidget> queue = this.calculateMousedOverWidgets();
 		while (!queue.isEmpty()) {
 			final IWidget widget = queue.removeFirst();
 			if (widget.isEnabled() && widget.isVisible() && widget.calculateIsMouseOver()) {
 				if (widget instanceof ITooltipHelp) {
-					((ITooltipHelp) widget).getHelpTooltip(tooltip);
+					((ITooltipHelp) widget).getHelpTooltip(tooltip, tooltipFlag);
 					if (tooltip.exists()) {
-						return;
+						return true;
 					}
 				}
 				if (widget.hasAttribute(Attribute.BLOCK_TOOLTIP)) {
-					return;
+					return true;
 				}
 			}
 		}
+		return false;
 	}
 
 	protected abstract String getModId();

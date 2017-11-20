@@ -1,8 +1,15 @@
 package binnie.core.machines.inventory;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.EnumSet;
+import java.util.List;
 
+import binnie.core.Constants;
+import binnie.core.ModId;
+import binnie.core.util.I18N;
+import com.google.common.collect.ImmutableList;
 import net.minecraft.util.EnumFacing;
 
 public class MachineSide {
@@ -11,59 +18,32 @@ public class MachineSide {
 	public static final EnumSet<EnumFacing> TOP = EnumSet.of(EnumFacing.UP);
 	public static final EnumSet<EnumFacing> BOTTOM = EnumSet.of(EnumFacing.DOWN);
 	public static final EnumSet<EnumFacing> SIDES = EnumSet.of(EnumFacing.NORTH, EnumFacing.SOUTH, EnumFacing.EAST, EnumFacing.WEST);
-	private static final EnumSet<EnumFacing> ALL = EnumSet.of(EnumFacing.UP, EnumFacing.DOWN, EnumFacing.NORTH, EnumFacing.SOUTH, EnumFacing.EAST, EnumFacing.WEST);
+	private static final List<EnumFacing> ALL = ImmutableList.of(EnumFacing.UP, EnumFacing.DOWN, EnumFacing.NORTH, EnumFacing.SOUTH, EnumFacing.EAST, EnumFacing.WEST);
 
 	public static String asString(final Collection<EnumFacing> sides) {
 		if (sides.containsAll(MachineSide.ALL)) {
-			return "Any";
+			return I18N.localise(ModId.CORE, "side.any");
 		}
 		if (sides.isEmpty()) {
-			return "None";
+			return I18N.localise(ModId.CORE, "side.none");
 		}
-		String text = "";
-		if (sides.contains(EnumFacing.UP)) {
-			if (sides.size() > 0) {
-				text += ", ";
-			}
-			text += "Up";
+		if (sides.containsAll(SIDES) && SIDES.containsAll(sides)) {
+			return I18N.localise(ModId.CORE, "side.sides");
 		}
-		if (sides.contains(EnumFacing.DOWN)) {
-			if (sides.size() > 0) {
-				text += ", ";
+
+		StringBuilder text = new StringBuilder();
+		boolean firstSide = true;
+		List<EnumFacing> sortedSides = new ArrayList<>(sides);
+		sortedSides.sort(Comparator.comparing(ALL::indexOf));
+		for (EnumFacing side : sortedSides) {
+			String localized = I18N.localise(ModId.CORE, "side." + side.getName());
+			if (firstSide) {
+				firstSide = false;
+			} else {
+				text.append(", ");
 			}
-			text += "Down";
+			text.append(localized);
 		}
-		if (sides.containsAll(MachineSide.SIDES)) {
-			if (sides.size() > 0) {
-				text += ", ";
-			}
-			text += "Sides";
-		} else {
-			if (sides.contains(EnumFacing.NORTH)) {
-				if (sides.size() > 0) {
-					text += ", ";
-				}
-				text += "North";
-			}
-			if (sides.contains(EnumFacing.EAST)) {
-				if (sides.size() > 0) {
-					text += ", ";
-				}
-				text += "East";
-			}
-			if (sides.contains(EnumFacing.SOUTH)) {
-				if (sides.size() > 0) {
-					text += ", ";
-				}
-				text += "South";
-			}
-			if (sides.contains(EnumFacing.WEST)) {
-				if (sides.size() > 0) {
-					text += ", ";
-				}
-				text += "West";
-			}
-		}
-		return text;
+		return text.toString();
 	}
 }

@@ -1,5 +1,9 @@
 package binnie.core.gui.minecraft.control;
 
+import binnie.core.Constants;
+import binnie.core.ModId;
+import binnie.core.gui.KeyBindings;
+import binnie.core.util.I18N;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -30,15 +34,14 @@ public class ControlHelp extends Control implements ITooltip {
 	}
 
 	@Override
-	public void getHelpTooltip(final Tooltip tooltip) {
+	public void getHelpTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		this.getTooltip(tooltip);
 	}
 
 	private void getTooltip(final Tooltip tooltip) {
+		tooltip.setMaxWidth(140);
 		tooltip.setType(Tooltip.Type.HELP);
-		tooltip.add("Help");
-		tooltip.add("To activate help tooltips,");
-		tooltip.add("hold down the tab key and");
-		tooltip.add("mouse over controls.");
+		tooltip.add(I18N.localise(ModId.CORE, "gui.help.title"));
+		tooltip.add(I18N.localise(ModId.CORE, "gui.help.desc", KeyBindings.holdForHelpTooltips.getDisplayName()));
 	}
 }

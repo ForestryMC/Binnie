@@ -217,6 +217,7 @@ binniecore.errors.insufficient.liquid.name=Insufficient Liquid
 binniecore.errors.invalid.recipe.name=Invalid Recipe
 binniecore.errors.no.recipe.name=No Recipe
 binniecore.errors.no.recipe.desc=There is no valid recipe
+binniecore.errors.missing.validated.slot.desc=Requires %s to Function
 
 binniecore.gui.database.nodescription=No Description Provided.
 
@@ -243,7 +244,7 @@ binniecore.gui.database.mode.breeder=Breeder
 binniecore.gui.database.discovered.discovered=Discovered Species
 binniecore.gui.database.discovered.undiscovered=Undiscovered Species
 binniecore.gui.database.control.undiscovered=Undiscovered
-binniecore.gui.database.control.chance=Current Chance - %s%%
+binniecore.gui.database.control.chance=Current Chance - %sv
 
 binniecore.gui.database.time.minute=1 minute
 binniecore.gui.database.time.minutes=%d minutes
@@ -310,8 +311,12 @@ binniecore.allele.extrabees.effect.wither.desc=Withers anyone who approaches
 binniecore.allele.extrabees.effect.spawn_zombie.desc=Randomly spawns zombies
 binniecore.allele.forestry.effectFestiveEaster.desc=Does nothing
 
+binniecore.gui.help.title=Help
+binniecore.gui.help.desc=To activate help tooltips, hold down %s and hover your mouse over controls.
+
 < Names for slots when using help tooltip >
 binniecore.gui.slot.slot=Slot
+binniecore.gui.slot.validated=%s Slot
 binniecore.gui.slot.input=Input Slot
 binniecore.gui.slot.process=Process Slot
 binniecore.gui.slot.output=Output Slot
@@ -337,7 +342,43 @@ binniecore.gui.slot.serum.input=Serum Input Slot
 binniecore.gui.slot.serum.output=Serum Output Slot
 binniecore.gui.slot.serum.active=Active Serum Slot
 binniecore.gui.slot.yeast=Yeast Slot
+binniecore.gui.slot.inventory=Machine Inventory
+binniecore.gui.slot.player.inventory=Player Inventory
+binniecore.gui.slot.pickup.only=Pickup Only Slot
 
+binniecore.gui.tank.validated=%s Tank
 binniecore.gui.tank.input=Input Tank
 binniecore.gui.tank.process=Process Tank
 binniecore.gui.tank.output=Output Tank
+binniecore.gui.tank.capacity=Capacity: %s mB
+binniecore.gui.tank.amount=%s mB
+binniecore.gui.tank.percent.full=%s full
+
+binniecore.gui.side.insert=Insert Side: %s
+binniecore.gui.side.extract=Extract Side: %s
+
+binniecore.gui.energy.bar=Energy Bar
+binniecore.gui.energy.amount.current=Current: $MAX$ RF ($PERCENT$)
+binniecore.gui.energy.capacity=Capacity: %s RF
+binniecore.gui.energy.cost.per.tick=Energy Cost: %s RF / tick
+
+binniecore.gui.charge.remaining.percent=Charge Remaining: %s
+
+binniecore.gui.progress.title=Progress
+binniecore.gui.progress.no.progress=Not in Progress
+binniecore.gui.progress.in.progress=In Progress
+binniecore.gui.progress.time.left=Time Left: %s
+binniecore.gui.progress.time.total=Total Time: %s
+binniecore.gui.progress.energy.cost.total=Energy Cost: %s RF
+
+binniecore.side.north=North
+binniecore.side.south=South
+binniecore.side.east=East
+binniecore.side.west=West
+binniecore.side.up=Top
+binniecore.side.down=Bottom
+binniecore.side.sides=Sides
+binniecore.side.any=Any
+binniecore.side.none=None
+
+binniecore.key.hold.for.help.tooltips=Hold For Help Tooltips

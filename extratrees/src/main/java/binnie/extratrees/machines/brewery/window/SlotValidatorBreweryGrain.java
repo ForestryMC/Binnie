@@ -19,6 +19,6 @@ public class SlotValidatorBreweryGrain extends SlotValidator {
 
 	@Override
 	public String getTooltip() {
-		return I18N.localise(WindowBrewery.LANG_KEY + ".brewery.tooltips.slot.grain");
+		return I18N.localise(WindowBrewery.LANG_KEY + ".tooltips.slot.grain");
 	}
 }

@@ -1,5 +1,18 @@
 package binnie.core.machines.errors;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+
+import binnie.core.gui.minecraft.ContainerCraftGUI;
+import binnie.core.gui.minecraft.CustomSlot;
+import binnie.core.machines.inventory.InventorySlot;
+import binnie.core.machines.inventory.SlotValidator;
+import binnie.core.machines.inventory.Validator;
+import it.unimi.dsi.fastutil.ints.IntArraySet;
+import it.unimi.dsi.fastutil.ints.IntSet;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 
 import forestry.api.core.INbtReadable;
@@ -60,6 +73,21 @@ public class ErrorState implements INbtReadable, INbtWritable {
 		return definition.getDescription();
 	}
 
+	public String getTooltip(ContainerCraftGUI container) {
+		Collection<CustomSlot> slots = getCustomSlots(container);
+		Set<Validator<?>> validators = new HashSet<>();
+		for (CustomSlot slot : slots) {
+			InventorySlot inventorySlot = slot.getInventorySlot();
+			if (inventorySlot != null) {
+				SlotValidator validator = inventorySlot.getValidator();
+				if (validator != null) {
+					validators.add(validator);
+				}
+			}
+		}
+		return definition.getDescription(validators);
+	}
+
 	public int[] getData() {
 		return this.data;
 	}
@@ -101,5 +129,18 @@ public class ErrorState implements INbtReadable, INbtWritable {
 
 	public boolean isPowerError() {
 		return this.powerError;
+	}
+
+	public Collection<CustomSlot> getCustomSlots(ContainerCraftGUI container) {
+		Collection<CustomSlot> slots = new ArrayList<>();
+		if (isItemError()) {
+			IntSet slotNumbers = new IntArraySet(getData());
+			for (final CustomSlot cslot : container.getCustomSlots()) {
+				if (!(cslot.inventory instanceof InventoryPlayer) && slotNumbers.contains(cslot.getSlotIndex())) {
+					slots.add(cslot);
+				}
+			}
+		}
+		return slots;
 	}
 }

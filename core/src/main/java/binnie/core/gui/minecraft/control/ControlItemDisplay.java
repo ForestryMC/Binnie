@@ -84,6 +84,11 @@ public class ControlItemDisplay extends Control implements ITooltip {
 		return getItemStack();
 	}
 
+	@Override
+	public boolean showBasicHelpTooltipsByDefault() {
+		return getItemStack().isEmpty();
+	}
+
 	public void setItemStack(ItemStack itemStack) {
 		this.itemStack = itemStack;
 	}

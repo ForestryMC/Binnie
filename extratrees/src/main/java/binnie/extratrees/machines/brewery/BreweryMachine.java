@@ -1,5 +1,6 @@
 package binnie.extratrees.machines.brewery;
 
+import binnie.core.Constants;
 import net.minecraft.tileentity.TileEntity;
 
 import binnie.core.gui.minecraft.IMachineInformation;
@@ -18,6 +19,7 @@ import binnie.extratrees.machines.brewery.window.SlotValidatorBreweryIngredient;
 import binnie.extratrees.machines.brewery.window.SlotValidatorBreweryYeast;
 import binnie.extratrees.machines.brewery.window.TankValidatorFermentInput;
 import binnie.extratrees.machines.brewery.window.TankValidatorFermentOutput;
+import net.minecraft.util.ResourceLocation;
 
 public class BreweryMachine extends ExtraTreeMachine.PackageExtraTreeMachine implements IMachineInformation {
 	public static final int TANK_INPUT = 0;
@@ -37,7 +39,7 @@ public class BreweryMachine extends ExtraTreeMachine.PackageExtraTreeMachine imp
 		new ExtraTreeMachine.ComponentExtraTreeGUI(machine, ExtraTreesGUID.BREWERY);
 		final ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
 
-		inventory.addSlotArray(SLOT_RECIPE_GRAINS, "grain");
+		inventory.addSlotArray(SLOT_RECIPE_GRAINS, new ResourceLocation(Constants.CORE_MOD_ID, "gui.slot.grain"));
 		for (final InventorySlot slot : inventory.getSlots(SLOT_RECIPE_GRAINS)) {
 			slot.setValidator(new SlotValidatorBreweryGrain());
 			slot.setType(InventorySlot.Type.Recipe);

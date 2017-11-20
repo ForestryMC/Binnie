@@ -115,6 +115,10 @@ public interface IWidget {
 		return null;
 	}
 
+	default boolean showBasicHelpTooltipsByDefault() {
+		return false;
+	}
+
 	/* ATTRIBUTES */
 
 	/**

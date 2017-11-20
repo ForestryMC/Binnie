@@ -1,18 +1,26 @@
 package binnie.core.gui.minecraft.control;
 
 import javax.annotation.Nullable;
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
+import binnie.core.Constants;
+import binnie.core.ModId;
 import binnie.core.api.gui.IArea;
 import binnie.core.api.gui.IPoint;
 import binnie.core.gui.geometry.Point;
+import binnie.core.util.I18N;
+import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.nbt.NBTTagCompound;
 
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fluids.Fluid;
 
 import net.minecraftforge.fml.relauncher.Side;
@@ -154,27 +162,39 @@ public class ControlLiquidTank extends Control implements ITooltip {
 	}
 
 	@Override
-	public void getHelpTooltip(final Tooltip tooltip) {
+	public void getHelpTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		if (this.getTankSlot() != null) {
 			final TankSlot slot = this.getTankSlot();
 			tooltip.add(slot.getName());
-			tooltip.add("Capacity: " + this.getTankCapacity() + " mB");
-			tooltip.add("Insert Side: " + MachineSide.asString(slot.getInputSides()));
-			tooltip.add("Extract Side: " + MachineSide.asString(slot.getOutputSides()));
-			if (slot.isReadOnly()) {
-				tooltip.add("Output Only Tank");
+			NumberFormat numberFormat = getNumberFormat();
+			tooltip.add(I18N.localise(ModId.CORE, "gui.tank.capacity", numberFormat.format(this.getTankCapacity())));
+			if (tooltipFlag.isAdvanced()) {
+				Collection<EnumFacing> inputSides = slot.getInputSides();
+				if (inputSides.size() > 0) {
+					tooltip.add(TextFormatting.GRAY + I18N.localise(ModId.CORE, "gui.side.insert", MachineSide.asString(inputSides)));
+				}
+				Collection<EnumFacing> outputSides = slot.getOutputSides();
+				if (outputSides.size() > 0) {
+					tooltip.add(TextFormatting.GRAY + I18N.localise(ModId.CORE, "gui.side.extract", MachineSide.asString(outputSides)));
+				}
+				if (slot.isReadOnly()) {
+					tooltip.add(TextFormatting.GRAY + I18N.localise(ModId.CORE, "gui.tank.output"));
+				}
 			}
-			tooltip.add("Accepts: " + ((slot.getValidator() == null) ? "Any Item" : slot.getValidator().getTooltip()));
 		}
 	}
 
 	@Override
 	public void getTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		if (this.isTankValid()) {
-			final int percentage = (int) (100.0 * this.getTank().getAmount() / this.getTankCapacity());
+			NumberFormat numberFormat = getNumberFormat();
+			NumberFormat percentFormat = getPercentFormat();
+			final float percentage = this.getTank().getAmount() / this.getTankCapacity();
 			tooltip.add(this.getTank().getName());
-			tooltip.add(percentage + "% full");
-			tooltip.add((int) this.getTank().getAmount() + " mB");
+			String percentFull = percentFormat.format(percentage);
+			tooltip.add(I18N.localise(ModId.CORE, "gui.tank.percent.full", percentFull));
+			String tankAmount = numberFormat.format((int) this.getTank().getAmount());
+			tooltip.add(I18N.localise(ModId.CORE, "gui.tank.amount", tankAmount));
 			return;
 		}
 		tooltip.add("Empty");
@@ -190,5 +210,10 @@ public class ControlLiquidTank extends Control implements ITooltip {
 	@Override
 	public Object getIngredient() {
 		return getTank().getLiquid();
+	}
+
+	@Override
+	public boolean showBasicHelpTooltipsByDefault() {
+		return getIngredient() == null;
 	}
 }

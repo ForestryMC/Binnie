@@ -1,6 +1,6 @@
-genetics.machine.machine.sequencer.info=The Sequencer takes unsequenced serums and determines which allele is present in them. This requires the use of fluorescent dye and has a long computational time.
-genetics.machine.machine.polymeriser.info=The Polymeriser takes serums and refills them using Raw DNA and replicating bacteria. This can be accelerated using gold nuggets. 
-genetics.machine.machine.inoculator.info=The Inoculator uses serums to add genes to breedable individuals. This process takes a very long time and requires a Bacteria Vector, but is 100% successful. 
+genetics.machine.sequencer.info=The Sequencer takes unsequenced serums and determines which allele is present in them. This requires the use of fluorescent dye and has a long computational time.
+genetics.machine.polymeriser.info=The Polymeriser takes serums and refills them using Raw DNA and replicating bacteria. This can be accelerated using gold nuggets.
+genetics.machine.inoculator.info=The Inoculator uses serums to add genes to breedable individuals. This process takes a very long time and requires a Bacteria Vector, but is 100% successful.
 genetics.machine.lab_machine.genepool.info=The Genepool uses enzymes and ethanol to break down living things into DNA. All genetic information is lost and the source of the DNA is destroyed.
 
 genetics.machine.lab_machine.analyser=Analyser
@@ -17,4 +17,4 @@ genetics.machine.lab_machine.incubator.info=The Incubator combines liquids and i
 genetics.machine.lab_machine.acclimatiser=Acclimatiser
 genetics.machine.lab_machine.acclimatiser.info=The Acclimatiser uses acclimatising items to adjust the temperature and humidity tolerance of individuals.
 
-genetics.machine.adv_machine.splicer.info=The Splicer is an incredibly powerful machine to insert genes into individuals. It is fast, but needs insane amounts of power.
+genetics.adv_machine.splicer.info=The Splicer is an incredibly powerful machine to insert genes into individuals. It is fast, but needs insane amounts of power.

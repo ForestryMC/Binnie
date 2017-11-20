@@ -2,12 +2,18 @@ package binnie.core.gui.minecraft.control;
 
 import javax.annotation.Nullable;
 
+import java.text.NumberFormat;
+
+import binnie.core.Constants;
+import binnie.core.ModId;
 import binnie.core.api.gui.IArea;
 import binnie.core.gui.geometry.Point;
+import binnie.core.util.I18N;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.inventory.IInventory;
 
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -65,18 +71,28 @@ public class ControlEnergyBar extends Control implements ITooltip {
 
 	@Override
 	public void getTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
+		tooltip.add(I18N.localise(ModId.CORE, "gui.energy.bar"));
 		tooltip.add((int) this.getPercentage() + "% charged");
-		tooltip.add(this.getStoredEnergy() + "/" + this.getMaxEnergy() + " RF");
+		NumberFormat numberFormat = getNumberFormat();
+		tooltip.add(numberFormat.format(this.getStoredEnergy()) + "/" + numberFormat.format(this.getMaxEnergy()) + " RF");
 	}
 
 	@Override
-	public void getHelpTooltip(final Tooltip tooltip) {
-		tooltip.add("Energy Bar");
-		tooltip.add("Current: " + this.getStoredEnergy() + " RF (" + (int) this.getPercentage() + "%)");
-		tooltip.add("Capacity: " + this.getMaxEnergy() + " RF");
-		final IProcess process = Machine.getInterface(IProcess.class, Window.get(this).getInventory());
-		if (process != null) {
-			tooltip.add("Usage: " + (int) process.getEnergyPerTick() + " RF");
+	public void getHelpTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
+		tooltip.add(I18N.localise(ModId.CORE, "gui.energy.bar"));
+		if (tooltipFlag.isAdvanced()) {
+			String currentFormat = I18N.localise(ModId.CORE, "gui.energy.amount.current");
+			NumberFormat numberFormat = getNumberFormat();
+			String currentString = currentFormat.replace("$MAX$", numberFormat.format(this.getStoredEnergy()))
+					.replace("$PERCENT$", getPercentFormat().format(this.getPercentage() / 100.0));
+			tooltip.add(TextFormatting.GRAY + currentString);
+			String maxEnergy = numberFormat.format(this.getMaxEnergy());
+			tooltip.add(TextFormatting.GRAY + I18N.localise(ModId.CORE, "gui.energy.capacity", maxEnergy));
+			final IProcess process = Machine.getInterface(IProcess.class, Window.get(this).getInventory());
+			if (process != null) {
+				String energyPerTick = numberFormat.format((int) process.getEnergyPerTick());
+				tooltip.add(TextFormatting.GRAY + I18N.localise(ModId.CORE, "gui.energy.cost.per.tick", energyPerTick));
+			}
 		}
 	}
 

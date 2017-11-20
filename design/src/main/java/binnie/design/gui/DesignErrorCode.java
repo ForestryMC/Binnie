@@ -2,10 +2,19 @@ package binnie.design.gui;
 
 import javax.annotation.Nullable;
 
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import binnie.core.Constants;
+import binnie.core.gui.minecraft.ContainerCraftGUI;
+import binnie.core.gui.minecraft.CustomSlot;
 import binnie.core.machines.errors.CoreErrorCode;
 import binnie.core.machines.errors.EnumErrorType;
 import binnie.core.machines.errors.IErrorStateDefinition;
+import binnie.core.machines.inventory.InventorySlot;
+import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.util.I18N;
 import net.minecraft.util.ResourceLocation;
 

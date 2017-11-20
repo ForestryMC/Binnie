@@ -16,35 +16,35 @@ genetics.errors.defunct.serum.name=Defunct Serum
 genetics.errors.defunct.serum.desc=Individual already possesses this allele
 genetics.errors.no.enzyme.desc=No enzyme
 
-genetics.machine.machine.isolator=Isolator
-genetics.machine.machine.isolator.info=The Isolator takes a random allele from a bee, tree or other individual and copies it into an empty sequence vial. This requires the use of ethanol as a solvent and an enzyme to cut up the DNA. The unsequenced serums can then be amplified in a Polymeriser and sequenced in a Sequencer.
+genetics.machine.isolator=Isolator
+genetics.machine.isolator.info=The Isolator takes a random allele from a bee, tree or other individual and copies it into an empty sequence vial. This requires the use of ethanol as a solvent and an enzyme to cut up the DNA. The unsequenced serums can then be amplified in a Polymeriser and sequenced in a Sequencer.
 genetics.errors.isolator.no.room.desc=No room for DNA sequences
 genetics.errors.isolator.no.empty.sequencer.desc=No empty sequencer vials
 genetics.errors.isolator.insufficient.ethanol.desc=Insufficient Ethanol
 
-genetics.machine.machine.sequencer=Sequencer
-genetics.machine.machine.sequencer.info=The Sequencer takes unsequenced serums and determines which allele is present in them. This process is slow and requires the use of fluorescent dye.
+genetics.machine.sequencer=Sequencer
+genetics.machine.sequencer.info=The Sequencer takes unsequenced serums and determines which allele is present in them. This process is slow and requires the use of fluorescent dye.
 genetics.errors.sequencer.insufficient.dye.desc=Insufficient Dye
 genetics.errors.sequencer.no.space.desc=No space for empty sequences
 genetics.errors.sequencer.no.dna.desc=No DNA sequence
-genetics.machine.machine.sequencer.texts.userless=Userless. Will not save sequences
-genetics.machine.machine.sequencer.texts.sequenced.by=Genes will be sequenced by %s
-genetics.machine.machine.sequencer.tooltips.slots.unsequenced.dna=Unsequenced DNA
+genetics.machine.sequencer.texts.userless=Userless. Will not save sequences
+genetics.machine.sequencer.texts.sequenced.by=Genes will be sequenced by %s
+genetics.machine.sequencer.tooltips.slots.unsequenced.dna=Unsequenced DNA
 
-genetics.machine.machine.polymeriser=Polymeriser
-genetics.machine.machine.polymeriser.info=The Polymeriser fills empty serums with Raw DNA and replicating bacteria. This process can be accelerated using gold nuggets.
-genetics.machine.machine.polymeriser.tooltips.logic.gene=Replicating 1 genes
-genetics.machine.machine.polymeriser.tooltips.logic.genes=Replicating %s geness
-genetics.machine.machine.polymeriser.tooltips.slots.unfilled=Unfilled Serum
+genetics.machine.polymeriser=Polymeriser
+genetics.machine.polymeriser.info=The Polymeriser fills empty serums with Raw DNA and replicating bacteria. This process can be accelerated using gold nuggets.
+genetics.machine.polymeriser.tooltips.logic.gene=Replicating 1 genes
+genetics.machine.polymeriser.tooltips.logic.genes=Replicating %s geness
+genetics.machine.polymeriser.tooltips.slots.unfilled=Unfilled Serum
 genetics.errors.polymeriser.item.no.desc=No item to replicate
 genetics.errors.polymeriser.item.filled.desc=Item filled
 genetics.errors.polymeriser.insufficient.bacteria.desc=Insufficient Bacteria
 genetics.errors.polymeriser.insufficient.dna.desc=Insufficient DNA
 
-genetics.machine.machine.inoculator=Inoculator
-genetics.machine.machine.inoculator.info=The Inoculator uses serums to add genes to breedable individuals. This process is very slow and requires a Bacteria Vector, but is always successful.  
-genetics.machine.machine.inoculator.tooltips.logic.gene=Inoculating with 1 gene
-genetics.machine.machine.inoculator.tooltips.logic.genes=Inoculating with %s genes
+genetics.machine.inoculator=Inoculator
+genetics.machine.inoculator.info=The Inoculator uses serums to add genes to breedable individuals. This process is very slow and requires a Bacteria Vector, but is always successful.
+genetics.machine.inoculator.tooltips.logic.gene=Inoculating with 1 gene
+genetics.machine.inoculator.tooltips.logic.genes=Inoculating with %s genes
 genetics.errors.inoculator.insufficient.vector=Not enough Vector
 
 genetics.machine.lab_machine.genepool=Genepool
@@ -72,12 +72,12 @@ genetics.machine.lab_machine.acclimatiser=Acclimatiser
 genetics.machine.lab_machine.acclimatiser.info=The Acclimatizer uses acclimatizing items to adjust the temperature and humidity tolerance of individuals.
 genetics.errors.acclimatiser.no.item.desc=No Acclimatising Items
 genetics.errors.acclimatiser.can.not.acclimatise.desc=Cannot Acclimatise this individual with these items
-genetics.errors.acclimatiser.tooltips.slots.acclimatising=Acclimatising Items
+genetics.machine.lab_machine.acclimatiser.tooltips.slots.acclimatising=Acclimatising Items
 
 genetics.machine.adv_machine.splicer=Splicer
-genetics.machine.adv_machine.splicer.info=The Splicer is an incredibly powerful machine that is used to insert genes into individuals. This process is fast, but requires monumental amounts of power.
+genetics.adv_machine.splicer.info=The Splicer is an incredibly powerful machine that is used to insert genes into individuals. This process is fast, but requires monumental amounts of power.
 genetics.machine.adv_machine.splicer.tooltips.slots.serum=Serum Vials & Arrays
-genetics.machine.adv_machine.splicer.tooltips.slots.individual=Splicable Individual
+genetics.machine.adv_machine.splicer.tooltips.slots.individual=spliceable Individual
 
 genetics.gui.registry.title=Registry
 genetics.gui.registry.master.title=Master Registry
@@ -220,7 +220,7 @@ genetics.item.sequence.4=Strong
 genetics.item.sequence.5=Very Strong
 genetics.item.sequence.unknown=Unknown
 genetics.item.sequence.unsequenced=Unsequenced
-genetics.item.sequence.partially=Partially Sequenced (%s%)
+genetics.item.sequence.partially=Partially Sequenced (%s)
 genetics.item.sequence.sequenced=Fully Sequenced
 
 bee.modifier.format.max=%.2fx (Max: %.2fx)

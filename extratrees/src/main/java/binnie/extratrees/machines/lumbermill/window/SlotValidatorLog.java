@@ -24,6 +24,6 @@ public class SlotValidatorLog extends SlotValidator {
 
 	@Override
 	public String getTooltip() {
-		return I18N.localise("extratrees.machine.machine.lumbermill.tooltips.logs");
+		return I18N.localise("extratrees.machine.lumbermill.tooltips.logs");
 	}
 }

@@ -1,5 +1,6 @@
 package binnie.core;
 
+import binnie.core.gui.KeyBindings;
 import com.google.common.base.Preconditions;
 
 import javax.annotation.Nullable;
@@ -182,6 +183,7 @@ public final class BinnieCore extends AbstractMod {
 	@Mod.EventHandler
 	public void init(final FMLInitializationEvent evt) {
 		super.init(evt);
+		KeyBindings.init();
 		for (final AbstractMod mod : getActiveMods()) {
 			NetworkRegistry.INSTANCE.registerGuiHandler(mod.getMod(), new BinnieGUIHandler(mod.getGUIDs()));
 		}

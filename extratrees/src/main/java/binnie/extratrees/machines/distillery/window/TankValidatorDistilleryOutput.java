@@ -14,6 +14,6 @@ public class TankValidatorDistilleryOutput extends TankValidator {
 
 	@Override
 	public String getTooltip() {
-		return I18N.localise("extratrees.machine.machine.distillery.tooltips.tank.distilled");
+		return I18N.localise("extratrees.machine.distillery.tooltips.tank.distilled");
 	}
 }
