@@ -1,8 +1,5 @@
 package binnie.core.gui.minecraft;
 
-import com.google.common.base.Preconditions;
-import com.google.common.collect.Sets;
-
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,21 +7,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
-
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.inventory.ClickType;
-import net.minecraft.inventory.Container;
-import net.minecraft.inventory.IContainerListener;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Slot;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-
-import com.mojang.authlib.GameProfile;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.core.BinnieCore;
 import binnie.core.gui.minecraft.control.ControlSlot;
@@ -42,6 +24,20 @@ import binnie.core.machines.power.ProcessInfo;
 import binnie.core.machines.power.TankInfo;
 import binnie.core.machines.transfer.TransferRequest;
 import binnie.core.network.packet.MessageContainerUpdate;
+import com.google.common.base.Preconditions;
+import com.google.common.collect.Sets;
+import com.mojang.authlib.GameProfile;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.inventory.ClickType;
+import net.minecraft.inventory.Container;
+import net.minecraft.inventory.IContainerListener;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ContainerCraftGUI extends Container {
 	private final Set<EntityPlayer> crafters = Sets.newConcurrentHashSet();
@@ -152,14 +148,14 @@ public class ContainerCraftGUI extends Container {
 		final IInventory containerInventory = this.window.getInventory();
 		final IInventory windowInventory = this.window.getWindowInventory();
 		final IInventory fromPlayer = (containerInventory == null) ? windowInventory : containerInventory;
-		final int[] target = new int[36];
-		for (int i = 0; i < 36; ++i) {
-			target[i] = i;
-		}
 		TransferRequest request;
 		if (shiftClickedSlot.inventory == playerInventory) {
 			request = new TransferRequest(itemstack, fromPlayer).setOrigin(shiftClickedSlot.inventory);
 		} else {
+			final int[] target = new int[36];
+			for (int i = 0; i < 36; ++i) {
+				target[i] = i;
+			}
 			request = new TransferRequest(itemstack, playerInventory).setOrigin(shiftClickedSlot.inventory).setTargetSlots(target);
 		}
 		if (this.window instanceof IWindowAffectsShiftClick) {

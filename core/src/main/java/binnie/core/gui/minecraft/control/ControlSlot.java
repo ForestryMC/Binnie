@@ -7,28 +7,10 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
-import binnie.core.Constants;
 import binnie.core.ModId;
-import binnie.core.util.I18N;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.multiplayer.PlayerControllerMP;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.ClickType;
-import net.minecraft.inventory.Slot;
-import net.minecraft.item.ItemStack;
-
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import binnie.core.api.gui.IArea;
-import binnie.core.gui.CraftGUI;
 import binnie.core.api.gui.IWidget;
+import binnie.core.gui.CraftGUI;
 import binnie.core.gui.Tooltip;
 import binnie.core.gui.events.EventMouse;
 import binnie.core.gui.geometry.Area;
@@ -43,6 +25,21 @@ import binnie.core.gui.resource.textures.CraftGUITexture;
 import binnie.core.machines.inventory.InventorySlot;
 import binnie.core.machines.inventory.MachineSide;
 import binnie.core.machines.inventory.SlotValidator;
+import binnie.core.util.I18N;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.multiplayer.PlayerControllerMP;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.ClickType;
+import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class ControlSlot extends ControlSlotBase {
@@ -70,8 +67,16 @@ public class ControlSlot extends ControlSlotBase {
 			final int button = event.getButton();
 			Window.get(this.getWidget()).getGui();
 			if (playerController != null) {
-				boolean clone = mc.gameSettings.keyBindPickBlock.isActiveAndMatches(button  - 100);
-				playerController.windowClick(windowId, slotNumber, button, clone ? ClickType.CLONE : GuiScreen.isShiftKeyDown() ? ClickType.QUICK_MOVE : ClickType.PICKUP, mc.player);
+				boolean clone = mc.gameSettings.keyBindPickBlock.isActiveAndMatches(button - 100);
+				ClickType clickType;
+				if (clone) {
+					clickType = ClickType.CLONE;
+				} else if (GuiScreen.isShiftKeyDown()) {
+					clickType = ClickType.QUICK_MOVE;
+				} else {
+					clickType = ClickType.PICKUP;
+				}
+				playerController.windowClick(windowId, slotNumber, button, clickType, mc.player);
 			}
 		});
 	}
