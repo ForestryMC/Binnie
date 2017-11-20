@@ -2,7 +2,6 @@ package binnie.core.gui.minecraft.control;
 
 import java.text.NumberFormat;
 
-import binnie.core.Constants;
 import binnie.core.ModId;
 import binnie.core.gui.Attribute;
 import binnie.core.api.gui.IWidget;

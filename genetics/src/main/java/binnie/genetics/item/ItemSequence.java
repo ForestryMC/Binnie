@@ -2,7 +2,6 @@ package binnie.genetics.item;
 
 import javax.annotation.Nullable;
 
-import binnie.core.Constants;
 import binnie.core.ModId;
 import com.google.common.base.Preconditions;
 

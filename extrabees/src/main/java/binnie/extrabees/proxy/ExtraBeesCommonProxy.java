@@ -5,8 +5,6 @@ import net.minecraft.item.Item;
 
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
-import binnie.extrabees.genetics.ExtraBeeDefinition;
-
 public class ExtraBeesCommonProxy {
 	public Block registerBlock(Block block) {
 		ForgeRegistries.BLOCKS.register(block);

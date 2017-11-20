@@ -6,7 +6,6 @@ import java.util.Comparator;
 import java.util.EnumSet;
 import java.util.List;
 
-import binnie.core.Constants;
 import binnie.core.ModId;
 import binnie.core.util.I18N;
 import com.google.common.collect.ImmutableList;

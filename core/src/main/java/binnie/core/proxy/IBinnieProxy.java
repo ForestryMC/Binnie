@@ -1,6 +1,5 @@
 package binnie.core.proxy;
 
-import javax.annotation.Nullable;
 import java.io.File;
 import java.util.function.Supplier;
 

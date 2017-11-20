@@ -1,6 +1,5 @@
 package binnie.core.gui.minecraft.control;
 
-import binnie.core.Constants;
 import binnie.core.ModId;
 import binnie.core.gui.KeyBindings;
 import binnie.core.util.I18N;

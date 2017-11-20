@@ -14,8 +14,8 @@ extratrees.machine.brewery.tooltips.slot.ingredient=Brewing Ingredient
 extratrees.machine.brewery.tooltips.tank.fermentable=Fermentable Liquid
 extratrees.machine.brewery.tooltips.tank.fermented=Fermented Liquid
 extratrees.errors.brewery.no.recipe.desc=Brewing cannot occur with these ingredients
-extratrees.errors.brewery.brewery.insufficient.ingredients.name=Insufficient Ingredients
-extratrees.errors.brewery.brewery.insufficient.ingredients.desc=Not enough ingredients for Brewing
+extratrees.errors.brewery.insufficient.ingredients.name=Insufficient Ingredients
+extratrees.errors.brewery.insufficient.ingredients.desc=Not enough ingredients for Brewing
 
 extratrees.machine.distillery=Distillery
 extratrees.machine.distillery.info=The Distillery can single, double or triple distill certain alcohols to give brandies, liquors and other spirits.

@@ -6,13 +6,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import binnie.core.Constants;
 import binnie.core.ModId;
 import binnie.core.api.gui.IArea;
 import binnie.core.api.gui.IPoint;
 import binnie.core.gui.geometry.Point;
 import binnie.core.util.I18N;
-import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;

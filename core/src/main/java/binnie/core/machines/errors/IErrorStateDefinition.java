@@ -2,11 +2,8 @@ package binnie.core.machines.errors;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
-import binnie.core.Constants;
 import binnie.core.ModId;
 import binnie.core.machines.inventory.Validator;
 import binnie.core.util.I18N;

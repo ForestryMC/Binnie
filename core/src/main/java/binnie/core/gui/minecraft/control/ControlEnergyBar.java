@@ -4,7 +4,6 @@ import javax.annotation.Nullable;
 
 import java.text.NumberFormat;
 
-import binnie.core.Constants;
 import binnie.core.ModId;
 import binnie.core.api.gui.IArea;
 import binnie.core.gui.geometry.Point;

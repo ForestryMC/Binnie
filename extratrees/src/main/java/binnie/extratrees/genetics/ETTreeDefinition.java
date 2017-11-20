@@ -7,7 +7,6 @@ import java.awt.Color;
 import java.util.Arrays;
 import java.util.Locale;
 
-import forestry.arboriculture.genetics.alleles.AlleleFruits;
 import org.apache.commons.lang3.StringUtils;
 
 import net.minecraft.block.Block;

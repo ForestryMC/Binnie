@@ -1,15 +1,5 @@
 package binnie.genetics.machine.inoculator;
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-
-import forestry.api.apiculture.EnumBeeChromosome;
-import forestry.api.apiculture.IBeeRoot;
-import forestry.api.genetics.IAllele;
-
-import binnie.core.api.genetics.IGene;
-
 public class Inoculator {
 	public static final int SLOT_SERUM_VIAL = 0;
 	public static final int[] SLOT_SERUM_RESERVE = new int[]{1, 2};

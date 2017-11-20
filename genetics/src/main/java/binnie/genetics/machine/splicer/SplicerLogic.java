@@ -5,7 +5,6 @@ import com.google.common.base.Preconditions;
 import javax.annotation.Nullable;
 
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;

@@ -4,11 +4,7 @@ import javax.annotation.Nullable;
 
 import binnie.genetics.machine.splicer.Splicer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 
-import net.minecraftforge.oredict.OreDictionary;
-
-import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IGenome;
 import forestry.api.genetics.IIndividual;

@@ -45,7 +45,7 @@ public class BreweryMachine extends ExtraTreeMachine.PackageExtraTreeMachine imp
 			slot.setType(InventorySlot.Type.Recipe);
 		}
 
-		inventory.addSlotArray(SLOTS_INVENTORY, "inventory");
+		inventory.addSlotArray(SLOTS_INVENTORY, new ResourceLocation(Constants.CORE_MOD_ID, "gui.slot.inventory"));
 		for (final InventorySlot slot : inventory.getSlots(SLOTS_INVENTORY)) {
 			slot.forbidExtraction();
 		}

@@ -2,7 +2,6 @@ package binnie.core.machines.inventory;
 
 import javax.annotation.Nullable;
 
-import binnie.core.Constants;
 import binnie.core.ModId;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
