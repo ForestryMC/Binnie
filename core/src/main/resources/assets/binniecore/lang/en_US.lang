@@ -244,7 +244,7 @@ binniecore.gui.database.mode.breeder=Breeder
 binniecore.gui.database.discovered.discovered=Discovered Species
 binniecore.gui.database.discovered.undiscovered=Undiscovered Species
 binniecore.gui.database.control.undiscovered=Undiscovered
-binniecore.gui.database.control.chance=Current Chance - %sv
+binniecore.gui.database.control.chance=Current Chance - %s
 
 binniecore.gui.database.time.minute=1 minute
 binniecore.gui.database.time.minutes=%d minutes
