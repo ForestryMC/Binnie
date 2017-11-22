@@ -14,6 +14,8 @@ import binnie.core.machines.power.ProcessInfo;
 import binnie.core.util.I18N;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ControlProgressBase extends Control {
 	protected float progress;
@@ -66,6 +68,7 @@ public class ControlProgressBase extends Control {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void getHelpTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		final ProcessInfo process = this.getProcess();
 		if (process != null) {
@@ -74,13 +77,13 @@ public class ControlProgressBase extends Control {
 				tooltip.add(I18N.localise(ModId.CORE, "gui.progress.no.progress"));
 			} else if (process.getProcessTime() > 0) {
 				final IProcess machineProcess = Machine.getMachine(Window.get(this).getInventory()).getInterface(IProcess.class);
-				String percentProgress = getPercentFormat().format((int) process.getCurrentProgress() / 100.0);
+				String percentProgress = I18N.getPercentFormat().format((int) process.getCurrentProgress() / 100.0);
 				tooltip.add(machineProcess.getTooltip() + " (" + percentProgress + ")");
 			} else {
 				tooltip.add(I18N.localise(ModId.CORE, "gui.progress.in.progress"));
 			}
 			if (tooltipFlag.isAdvanced()) {
-				NumberFormat numberFormat = getNumberFormat();
+				NumberFormat numberFormat = I18N.getNumberFormat();
 				if (process.getProcessTime() > 0) {
 					String timeLeft = convertTime((int) ((1.0f - this.progress) * process.getProcessTime()));
 					tooltip.add(TextFormatting.GRAY + I18N.localise(ModId.CORE, "gui.progress.time.left", timeLeft));

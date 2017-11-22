@@ -3,6 +3,8 @@ package binnie.core.proxy;
 import java.io.File;
 import java.io.IOException;
 
+import binnie.core.gui.KeyBindings;
+import binnie.core.util.I18N;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -11,6 +13,7 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.client.resources.IReloadableResourceManager;
 import net.minecraft.client.resources.IResourceManager;
+import net.minecraft.client.resources.IResourceManagerReloadListener;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
@@ -133,7 +136,15 @@ public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy
 	public void preInit() {
 		final IResourceManager manager = Minecraft.getMinecraft().getResourceManager();
 		if (manager instanceof IReloadableResourceManager) {
-			((IReloadableResourceManager) manager).registerReloadListener(new StyleSheetManager());
+			IReloadableResourceManager resourceManager = (IReloadableResourceManager) manager;
+			resourceManager.registerReloadListener(new StyleSheetManager());
+			resourceManager.registerReloadListener(resourceManager1 -> I18N.onResourceReload());
 		}
+	}
+
+	@Override
+	public void init() {
+		super.init();
+		KeyBindings.init();
 	}
 }

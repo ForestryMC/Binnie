@@ -15,6 +15,7 @@ import binnie.core.gui.Tooltip;
 import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.resource.textures.CraftGUITexture;
 
+@SideOnly(Side.CLIENT)
 public class ControlHelp extends Control implements ITooltip {
 	public ControlHelp(final IWidget parent, final int x, final int y) {
 		super(parent, x, y, 16, 16);

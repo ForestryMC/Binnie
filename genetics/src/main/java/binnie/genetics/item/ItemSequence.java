@@ -36,8 +36,6 @@ import binnie.genetics.genetics.GeneItem;
 import binnie.genetics.genetics.SequencerItem;
 
 public class ItemSequence extends ItemCore implements IItemAnalysable, IItemChargeable {
-	private final NumberFormat percentFormat = DecimalFormat.getPercentInstance(I18N.getLocale());
-
 	public ItemSequence() {
 		super("sequence");
 		this.setMaxStackSize(1);
@@ -82,7 +80,7 @@ public class ItemSequence extends ItemCore implements IItemAnalysable, IItemChar
 			if (seq == 0) {
 				tooltip.add(I18N.localise(ModId.GENETICS, "item.sequence.unsequenced"));
 			} else if (seq < 100) {
-				tooltip.add(I18N.localise(ModId.GENETICS, "item.sequence.partially", percentFormat.format(seq / 100.0)));
+				tooltip.add(I18N.localise(ModId.GENETICS, "item.sequence.partially", I18N.getPercentFormat().format(seq / 100.0)));
 			} else {
 				tooltip.add(I18N.localise(ModId.GENETICS, "item.sequence.sequenced"));
 			}

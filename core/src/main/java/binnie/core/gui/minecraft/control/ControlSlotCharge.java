@@ -39,8 +39,9 @@ public class ControlSlotCharge extends Control {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void getHelpTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
-		NumberFormat percentFormat = getPercentFormat();
+		NumberFormat percentFormat = I18N.getPercentFormat();
 		String chargePercent = percentFormat.format(this.getCharge());
 		tooltip.add(I18N.localise(ModId.CORE, "gui.charge.remaining.percent", chargePercent));
 	}

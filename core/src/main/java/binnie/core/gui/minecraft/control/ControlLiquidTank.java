@@ -160,11 +160,12 @@ public class ControlLiquidTank extends Control implements ITooltip {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void getHelpTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		if (this.getTankSlot() != null) {
 			final TankSlot slot = this.getTankSlot();
 			tooltip.add(slot.getName());
-			NumberFormat numberFormat = getNumberFormat();
+			NumberFormat numberFormat = I18N.getNumberFormat();
 			tooltip.add(I18N.localise(ModId.CORE, "gui.tank.capacity", numberFormat.format(this.getTankCapacity())));
 			if (tooltipFlag.isAdvanced()) {
 				Collection<EnumFacing> inputSides = slot.getInputSides();
@@ -183,10 +184,11 @@ public class ControlLiquidTank extends Control implements ITooltip {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void getTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		if (this.isTankValid()) {
-			NumberFormat numberFormat = getNumberFormat();
-			NumberFormat percentFormat = getPercentFormat();
+			NumberFormat numberFormat = I18N.getNumberFormat();
+			NumberFormat percentFormat = I18N.getPercentFormat();
 			final float percentage = this.getTank().getAmount() / this.getTankCapacity();
 			tooltip.add(this.getTank().getName());
 			String percentFull = percentFormat.format(percentage);

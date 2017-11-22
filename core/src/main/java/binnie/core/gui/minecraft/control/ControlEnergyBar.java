@@ -69,21 +69,23 @@ public class ControlEnergyBar extends Control implements ITooltip {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void getTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		tooltip.add(I18N.localise(ModId.CORE, "gui.energy.bar"));
 		tooltip.add((int) this.getPercentage() + "% charged");
-		NumberFormat numberFormat = getNumberFormat();
+		NumberFormat numberFormat = I18N.getNumberFormat();
 		tooltip.add(numberFormat.format(this.getStoredEnergy()) + "/" + numberFormat.format(this.getMaxEnergy()) + " RF");
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void getHelpTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		tooltip.add(I18N.localise(ModId.CORE, "gui.energy.bar"));
 		if (tooltipFlag.isAdvanced()) {
 			String currentFormat = I18N.localise(ModId.CORE, "gui.energy.amount.current");
-			NumberFormat numberFormat = getNumberFormat();
+			NumberFormat numberFormat = I18N.getNumberFormat();
 			String currentString = currentFormat.replace("$MAX$", numberFormat.format(this.getStoredEnergy()))
-					.replace("$PERCENT$", getPercentFormat().format(this.getPercentage() / 100.0));
+					.replace("$PERCENT$", I18N.getPercentFormat().format(this.getPercentage() / 100.0));
 			tooltip.add(TextFormatting.GRAY + currentString);
 			String maxEnergy = numberFormat.format(this.getMaxEnergy());
 			tooltip.add(TextFormatting.GRAY + I18N.localise(ModId.CORE, "gui.energy.capacity", maxEnergy));

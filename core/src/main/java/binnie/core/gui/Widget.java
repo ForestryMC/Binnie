@@ -1,14 +1,11 @@
 package binnie.core.gui;
 
 import javax.annotation.Nullable;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
-import binnie.core.util.I18N;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -42,10 +39,6 @@ public class Widget implements IWidget {
 	private IPoint offset;
 	private final Collection<EventHandler<? extends Event>> eventHandlers;
 	private boolean visible;
-	@Nullable
-	private NumberFormat numberFormat;
-	@Nullable
-	private NumberFormat percentFormat;
 
 	public Widget(@Nullable final IWidget parent) {
 		this.children = new ArrayList<>();
@@ -468,19 +461,5 @@ public class Widget implements IWidget {
 	//TODO: Why not use "this" ?
 	public IWidget getWidget() {
 		return this;
-	}
-
-	protected NumberFormat getNumberFormat() {
-		if (numberFormat == null) {
-			numberFormat = DecimalFormat.getNumberInstance(I18N.getLocale());
-		}
-		return numberFormat;
-	}
-
-	protected NumberFormat getPercentFormat() {
-		if (percentFormat == null) {
-			percentFormat = DecimalFormat.getPercentInstance(I18N.getLocale());
-		}
-		return percentFormat;
 	}
 }
