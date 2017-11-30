@@ -19,11 +19,13 @@ public class MessageBase {
 	}
 
 	public MessageBase(final MessageBinnie message) {
+		ByteBuf data = message.getData();
 		try {
-			this.readData(message.getData());
+			this.readData(data);
 		} catch (IOException e) {
 			Log.error("Failed to read message data.", e);
 		}
+		data.release();
 	}
 
 	public MessageBinnie GetMessage() {
