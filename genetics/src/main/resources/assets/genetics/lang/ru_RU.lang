@@ -1,11 +1,10 @@
-#Перевел Mr_Krab для проекта mc.beandex.ru
 ##################################################
 ## Машины
 
 genetics.tab.genetics=Генетика
 
 genetics.errors.no.owner.name=Нет владельца
-genetics.errors.no.owner.desc=Замените этот блок, чтобы получить эту машину
+genetics.errors.no.owner.desc=Нет владельца, переустановите блок
 genetics.errors.no.individual.desc=Не индивидуально
 genetics.errors.no.serum.desc=Нет сыворотки
 genetics.errors.empty.serum.name=Пустая сыворотка
@@ -14,21 +13,21 @@ genetics.errors.invalid.serum.name=Недопустимая сыворотка
 genetics.errors.invalid.serum.mismatch.desc=Несоответствие типа и цели сыворотки
 genetics.errors.invalid.serum.no.genes.desc=Сыворотка не содержит генов
 genetics.errors.defunct.serum.name=Недействующая сыворотка
-genetics.errors.defunct.serum.desc=Человек уже обладает этой аллелью
+genetics.errors.defunct.serum.desc=Сущность уже обладает этим геном
 genetics.errors.no.enzyme.desc=Нет фермента
 
 genetics.machine.machine.isolator=Изолятор
-genetics.machine.machine.isolator.info=Изолятор занимает случайную аллель от пчелы, дерева или другого индивида и копирует его в пустой флакон последовательности. Это требует использования этанола в качестве растворителя и фермента для вырезки ДНК. Последующие сыворотки затем могут быть амплифицированы в полимеризаторе и секвенированы в секвенсере.
+genetics.machine.machine.isolator.info=Изолятор изолирует случайный ген индивида, дерева или другого индивида и копирует его в пустой флакон последовательности. Это требует использования этанола в качестве растворителя и фермента для вырезки ДНК. Последующие сыворотки затем могут быть амплифицированы в полимеризаторе и секвенированы в секвенсере.
 genetics.errors.isolator.no.room.desc=Нет места для последовательностей ДНК
-genetics.errors.isolator.no.empty.sequencer.desc=Нет свободных флаконов секвенсора
+genetics.errors.isolator.no.empty.sequencer.desc=Нет пустых флаконов для секвенции
 genetics.errors.isolator.insufficient.ethanol.desc=Недостаточно этанола
 
 genetics.machine.machine.sequencer=Секвенсор
-genetics.machine.machine.sequencer.info=Секвенсор берет необнаруживаемые сыворотки и определяет, какая аллель присутствует в них. Этот процесс медленный и требует использования флуоресцентного красителя.
+genetics.machine.machine.sequencer.info=Секвенсор заряжает сыворотки и изучает, какой ген присутствует в них. Этот процесс медленный и требует использования флуоресцентного красителя.
 genetics.errors.sequencer.insufficient.dye.desc=Недостаточно краски
 genetics.errors.sequencer.no.space.desc=Нет места для пустых последовательностей
 genetics.errors.sequencer.no.dna.desc=Нет последовательности ДНК
-genetics.machine.machine.sequencer.texts.userless=Пользователь. Не будет сохранять последовательности
+genetics.machine.machine.sequencer.texts.userless=Нет владельца. Последовательности не будут сохранены
 genetics.machine.machine.sequencer.texts.sequenced.by=Гены будут секвенированы %s
 genetics.machine.machine.sequencer.tooltips.slots.unsequenced.dna=Бесконечная ДНК
 
@@ -49,7 +48,7 @@ genetics.machine.machine.inoculator.tooltips.logic.genes=Инокулирова�
 genetics.errors.inoculator.insufficient.vector=Не хватает бактерий
 
 genetics.machine.lab_machine.genepool=Генофонд
-genetics.machine.lab_machine.genepool.info=Генофонд использует ферменты и этанол, чтобы сломать ДНК живых существ. В ходе этого процесса вся генетическая информация теряется и источник ДНК уничтожается.
+genetics.machine.lab_machine.genepool.info=Генофонд использует ферменты и этанол, чтобы запомнить ДНК живых существ. В ходе этого процесса вся генетическая информация теряется и источник ДНК уничтожается.
 genetics.errors.genepool.insufficient.ethanol.desc=Недостаточно этанола
 genetics.errors.genepool.insufficient.enzyme.desc=Недостаточно Фермента
 
@@ -57,7 +56,7 @@ genetics.machine.lab_machine.lab_machine=Лабораторный стенд
 genetics.machine.lab_machine.lab_machine.info=
 
 genetics.machine.lab_machine.analyser=Анализатор
-genetics.machine.lab_machine.analyser.info=Анализатор принимает селекционные индивидуумы и секвенсоры ДНК и анализирует их для того чтобы определить присутствующие гены. Для этого требуется ДНК-краска, созданная из фиолетовой краски и светящегося камня
+genetics.machine.lab_machine.analyser.info=Анализатор принимает индивидуумы и секвенсоры ДНК и анализирует их для того, чтобы определить присутствующие гены. Для этого требуется ДНК-краска, созданная из фиолетовой краски и светящегося камня
 genetics.machine.lab_machine.analyser.tooltips.slots.unanalysed=Непроанализированных предмет
 genetics.errors.analyser.insufficient.dye.name=Недостаточно краски
 genetics.errors.analyser.insufficient.dye.desc=Не хватает ДНК красителя для анализа
@@ -66,7 +65,7 @@ genetics.errors.analyser.already.analysed.name=Предмет уже проан�
 genetics.errors.analyser.no.item.desc=Нет предмета для анализа
 
 genetics.machine.lab_machine.incubator=Инкубатор
-genetics.machine.lab_machine.incubator.info=Инкубатор сочетает в себе жидкости и предметы и позволяет им сидеть при идеальной температуре, чтобы стимулировать рост бактерий.
+genetics.machine.lab_machine.incubator.info=Инкубатор сочетает в себе жидкости и предметы и позволяет им находиться при идеальной температуре, чтобы стимулировать рост бактерий.
 genetics.errors.incubator.insufficient.liquid.desc=Не хватает инкубационной жидкости
 
 genetics.machine.lab_machine.acclimatiser=Акклиматизатор
@@ -77,14 +76,14 @@ genetics.errors.acclimatiser.tooltips.slots.acclimatising=Акклиматиза
 
 genetics.machine.adv_machine.splicer=Сплайсер
 genetics.machine.adv_machine.splicer.info=Сплайсер это невероятно мощная машина, которая используется для вставки генов в особи. Этот процесс быстрый, но требует монументальных объемов энергии.
-genetics.machine.adv_machine.splicer.tooltips.slots.serum=Сыворотка пробирки и массивы
-genetics.machine.adv_machine.splicer.tooltips.slots.individual=Соединенный индивид
+genetics.machine.adv_machine.splicer.tooltips.slots.serum=Сыворотка и массивы сывороток
+genetics.machine.adv_machine.splicer.tooltips.slots.individual=Индивид
 
 genetics.gui.registry.title=Реестр
 genetics.gui.registry.master.title=Главный реестр
 
 genetics.gui.analyst.title=Аналитик
-genetics.gui.analyst.desc=Добавьте пчелу, дерево, цветок или бабочку в верхний левый слот. Краска ДНК необходима, если она еще не была проанализирована. Этот краситель также может конвертировать ванильные элементы в селекционные особи.
+genetics.gui.analyst.desc=Добавьте пчелу, саженец дерева, цветок или бабочку в верхний левый слот. Краска ДНК необходима, если индивид еще не был проанализирован. Этот краситель также может конвертировать ванильные саженцы в селекционные виды.
 
 genetics.gui.analyst.biology=Биология
 genetics.gui.analyst.biology.allDay=Активно весь день и ночь
@@ -165,11 +164,11 @@ genetics.gui.analyst.specimen.title=Образец
 //Пчелы
 genetics.gui.analyst.products.title=Производит
 genetics.gui.analyst.products.rate=Ценность
-genetics.gui.analyst.products.natural=Природные соединения
-genetics.gui.analyst.products.specialty=Специализированная продукция
+genetics.gui.analyst.products.natural=Основная продукция
+genetics.gui.analyst.products.specialty=Специальная продукция
 genetics.gui.analyst.products.refined=Продукты нефтепереработки
-genetics.gui.analyst.products.centrifuges=Центрифуги, которые должны давать
-genetics.gui.analyst.products.squeezes=Сжимает, чтобы дать
+genetics.gui.analyst.products.centrifuges=Продукция в центрифуге
+genetics.gui.analyst.products.squeezes=Продукция в соковыжималке
 genetics.gui.analyst.products.every=Каждый
 
 //Деревья
@@ -178,10 +177,10 @@ genetics.gui.analyst.wood.fireproof=Огнеупорный
 genetics.gui.analyst.wood.flammable=Легковоспламеняющийся
 genetics.gui.analyst.wood.logs=Бревно
 genetics.gui.analyst.wood.refined=Продукты нефтепереработки
-genetics.gui.analyst.wood.noFruits=Это дерево не имеет \n фруктов или орехов
+genetics.gui.analyst.wood.noFruits=Это дерево не имеет\nфруктов или орехов
 
 genetics.gui.analyst.growth.title=Рост
-genetics.gui.analyst.growth.mature=Саженцы созревают в
+genetics.gui.analyst.growth.mature=Время созревания
 genetics.gui.analyst.growth.height=Высота
 genetics.gui.analyst.growth.girth=Обхват
 
@@ -196,16 +195,16 @@ genetics.gui.analyst.fruit.specialty=Специальные фрукты
 genetics.gui.analyst.fruit.natural=Природные фрукты
 genetics.gui.analyst.fruit.yield=Выход
 genetics.gui.analyst.fruit.refined=Продукты нефтепереработки
-genetics.gui.analyst.fruit.noFruits=Это дерево не имеет \n фруктов или орехов
+genetics.gui.analyst.fruit.noFruits=Это дерево не имеет\nфруктов или орехов
 
 genetics.item.gene.empty=Пусто
-genetics.item.gene.charge=Сбор
-genetics.item.gene.charges=Сборы
+genetics.item.gene.charge=Заряд
+genetics.item.gene.charges=Заряды
 genetics.item.gene.serum=Сыворотка
 genetics.item.gene.serum.corrupted=Поврежденная сыворотка
 genetics.item.gene.serum.array=Массив сыворотки
 genetics.item.gene.serum.array.corrupted=Поврежденный массив сыворотки
-genetics.item.gene.more.genes=больше генов. Удерживайте Shift для отображения.
+genetics.item.gene.more.genes= генов. Удерживайте Shift для отображения.
 
 genetics.item.database.name=База генов
 genetics.item.database.master.name=База данных генов
@@ -224,8 +223,8 @@ genetics.item.sequence.unsequenced=Неудовлетворенные
 genetics.item.sequence.partially=Частично последовательно (%s%)
 genetics.item.sequence.sequenced=Полностью секвенированный
 
-bee.modifier.format.max=%.2fx (Max: %.2fx)
-bee.modifier.format.min=%.2fx (Min: %.2fx)
+bee.modifier.format.max=%.2fx (Макс: %.2fx)
+bee.modifier.format.min=%.2fx (Мин: %.2fx)
 
 ##Из ExtraBees lang
 
@@ -242,7 +241,7 @@ extrabees.item.template.empty=Пустой шаблон
 
 extrabees.block.apiaristMachine.name=Машина пчеловода
 extrabees.block.geneticMachine.name=Генетическая машина
-extrabees.block.advGeneticMachine.name=Продвинутаягенетическая Машина
+extrabees.block.advGeneticMachine.name=Продвинутая генетическая машина
 
 extrabees.liquid.dna=Жидкость ДНК
 
@@ -250,7 +249,7 @@ extrabees.liquid.dna=Жидкость ДНК
 extrabees.genetics.quality.awful=Ужасный
 extrabees.genetics.quality.poor=Бедный
 extrabees.genetics.quality.average=Обычный
-extrabees.genetics.quality.good=ороший
+extrabees.genetics.quality.good=Хороший
 extrabees.genetics.quality.excellent=Отличный
 
 extrabees.genetics.quality.tooltip=%s Качество
@@ -328,7 +327,7 @@ genetics.gui.database.tab.species.genome.extrabees.fertility=Фертильно�
 genetics.gui.database.tab.species.genome.extrabees.flowering=Цветение:
 genetics.gui.database.tab.species.genome.extrabees.territory=Территория:
 genetics.gui.database.tab.species.genome.extrabees.behavior=Поведение:
-genetics.gui.database.tab.species.genome.extrabees.sunlight=Солнечный лучик:
+genetics.gui.database.tab.species.genome.extrabees.sunlight=Дневной свет:
 genetics.gui.database.tab.species.genome.extrabees.rain=Дождь:
 genetics.gui.database.tab.species.genome.extrabees.flower=Цветок:
 genetics.gui.database.tab.species.genome.extrabees.effect=Эффект:
@@ -346,7 +345,7 @@ genetics.gui.database.control.extrabees.time.sec=Каждые %s сек.
 genetics.gui.database.products.extrabees.products=Продукция
 genetics.gui.database.products.extrabees.specialties=Специальность
 
-genetics.gui.database.tab.species.overview=Озор
+genetics.gui.database.tab.species.overview=Обзор
 genetics.gui.database.tab.species.classification=Классификация
 genetics.gui.database.tab.species.genome=Геном
 genetics.gui.database.tab.species.products=Продукция
