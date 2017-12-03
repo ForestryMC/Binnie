@@ -1,4 +1,3 @@
-#Перевел Mr_Krab для проекта mc.beandex.ru
 binniedesign.errors.designer.no.adhesive.desc=Требуется клей для функции
 
 < %1$s is the name of the pattern >
@@ -110,4 +109,4 @@ binniedesign.pattern.thick.cornered.diagonal=Толстая угловая ди�
 binniedesign.pattern.thin.barred.end=Тонкий разделенный конец
 binniedesign.pattern.thick.barred.end=Толстый разделенный конец
 binniedesign.pattern.overlapped.barred=Перекрытое разделение
-binniedesign.pattern.overlapped.split.barred=Перекрытое разделение скрещивания
+binniedesign.pattern.overlapped.split.barred=Перекрытое разделение со скрещиванием
