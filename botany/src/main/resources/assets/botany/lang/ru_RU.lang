@@ -1,4 +1,4 @@
-botany.tab.botany=Botany
+botany.tab.botany=Ботаника
 
 botany.module.farming=Добавляет интеграцию фермы для цветов ботаники.
 botany.module.database=Добавляет базу данных ботаники.
@@ -34,9 +34,9 @@ botany.plant.weeds_very_long=Очень длинный сорняк
 botany.plant.dead_flower=Мертвый цветок
 botany.plant.decaying_flower=Разлагающийся цветок
 
-botany.ceramic.name=%s керамический блок
-botany.ceramic.block.name=%s керамический блок
-botany.pigmented.glass.name=%s пигментированное стекло
+botany.ceramic.name=Керамический блок (%s)
+botany.ceramic.block.name=Керамический блок (%s)
+botany.pigmented.glass.name=Пигментированное стекло (%s)
 
 botany.ceramic.type.tile.name=%s керамическая плитка
 botany.ceramic.type.brick.name=%s керамические кирпичи
