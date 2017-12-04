@@ -26,7 +26,7 @@ botany.soil.soil=Почва
 botany.soil.loam=Суглинок
 botany.soil.flowerbed=Клумба
 botany.soil.type=Тип
-botany.soil.weedkiller=Убийца сорняков
+botany.soil.weedkiller=Антисорняк
 
 botany.plant.weeds=Сорняк
 botany.plant.weeds_long=Длинный сорняк
@@ -49,7 +49,7 @@ botany.ceramic.type.verticalbrick.name=%s вертикальные керами�
 botany.ceramic.type.verticalbrickstripe.name=%s вертикальные полосатые керамические кирпичи
 botany.ceramic.type.verticalbricklarge.name=%s большие вертикальные керамические кирпичи
 
-item.botany.soil_meter.name=Метр почвы
+item.botany.soil_meter.name=Измеритель почвы
 item.botany.germling.name=Жермлинг
 item.botany.pollen.name=Пыльца
 item.botany.flower.corrupted.name=Поврежденный цветок
@@ -61,7 +61,7 @@ item.botany.powder_fertiliser.name=Порошок удобрения
 item.botany.powder_compost.name=Порошок компоста
 item.botany.mortar.name=Ступка
 item.botany.mortar.tooltip=Этот предмет устарел, пожалуйста, преобразуйте его в новый предмет.
-item.botany.weedkiller.name=Убийца сорняков
+item.botany.weedkiller.name=Антисорняк
 item.botany.clay.name=%s глина
 item.botany.trowel_wood.name=Деревянный шпатель
 item.botany.trowel_stone.name=Каменный шпатель
@@ -122,7 +122,7 @@ botany.color.gold=Золотой
 botany.color.goldenrod=Бронзовый
 botany.color.gray=Тусклый серый
 botany.color.green=Зеленый
-botany.color.hotpink=озовый
+botany.color.hotpink=Розовый
 botany.color.indianred=Красный кирпич
 botany.color.indigo=Индиго
 botany.color.khaki=Бежевый
@@ -175,8 +175,8 @@ botany.color.yellow=Желтый
 botany.color.yellowgreen=Желто-зеленый
 
 for.binnie.circuit.garden.info=Цветы (%s)
-for.binnie.circuit.garden.fertilized=Оплодотворено
-for.binnie.circuit.garden.unfertilized=Не оплодотворено
+for.binnie.circuit.garden.fertilized=Удобрено
+for.binnie.circuit.garden.unfertilized=Не удобрено
 
 for.binnie.circuit.garden.dry.manual.fert=Садовый порошок (Сухой)
 for.binnie.circuit.garden.dry.acid.manual.fert=Садовый порошок (Сухой, Кислый)
