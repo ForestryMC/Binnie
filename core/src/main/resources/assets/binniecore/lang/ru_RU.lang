@@ -77,7 +77,7 @@ binniecore.rootTrees.chromosome.growth=Рост
 binniecore.rootTrees.chromosome.height=Высота
 binniecore.rootTrees.chromosome.fertility=Плодовитость
 binniecore.rootTrees.chromosome.fruits=Фрукты
-binniecore.rootTrees.chromosome.yield=Уступание
+binniecore.rootTrees.chromosome.yield=Урожай
 binniecore.rootTrees.chromosome.plant=Тип растения
 binniecore.rootTrees.chromosome.sappiness=Сочность
 binniecore.rootTrees.chromosome.territory=Территория
@@ -91,7 +91,7 @@ binniecore.rootTrees.chromosome.growth.short=Рост
 binniecore.rootTrees.chromosome.height.short=Высота
 binniecore.rootTrees.chromosome.fertility.short=Плодовитость
 binniecore.rootTrees.chromosome.fruits.short=Фрукты
-binniecore.rootTrees.chromosome.yield.short=Уступание
+binniecore.rootTrees.chromosome.yield.short=Урожай
 binniecore.rootTrees.chromosome.plant.short=Тип растения
 binniecore.rootTrees.chromosome.sappiness.short=Сочность
 binniecore.rootTrees.chromosome.territory.short=Территория
@@ -161,7 +161,7 @@ binniecore.allele.fertility.normal=Нормальный
 binniecore.allele.fertility.high=Высокий
 binniecore.allele.fertility.maximum=Максимум
 
-binniecore.allele.none=None
+binniecore.allele.none=Нет
 binniecore.allele.true=Да
 binniecore.allele.false=Нет
 
