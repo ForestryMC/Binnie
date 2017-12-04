@@ -252,7 +252,7 @@ extrabees.genetics.quality.average=Обычный
 extrabees.genetics.quality.good=Хороший
 extrabees.genetics.quality.excellent=Отличный
 
-extrabees.genetics.quality.tooltip=%s Качество
+extrabees.genetics.quality.tooltip=Качество %s
 
 extrabees.genetics.allele.shortest=Кратчайший
 extrabees.genetics.allele.shorter=Короткий
