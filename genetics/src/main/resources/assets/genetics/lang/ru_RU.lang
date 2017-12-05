@@ -1,0 +1,357 @@
+##################################################
+## Машины
+
+genetics.tab.genetics=Генетика
+
+genetics.errors.no.owner.name=Нет владельца
+genetics.errors.no.owner.desc=Нет владельца, переустановите блок
+genetics.errors.no.individual.desc=Не индивидуально
+genetics.errors.no.serum.desc=Нет сыворотки
+genetics.errors.empty.serum.name=Пустая сыворотка
+genetics.errors.empty.serum.desc=Сыворотка пуста
+genetics.errors.invalid.serum.name=Недопустимая сыворотка
+genetics.errors.invalid.serum.mismatch.desc=Несоответствие типа и цели сыворотки
+genetics.errors.invalid.serum.no.genes.desc=Сыворотка не содержит генов
+genetics.errors.defunct.serum.name=Недействующая сыворотка
+genetics.errors.defunct.serum.desc=Сущность уже обладает этим геном
+genetics.errors.no.enzyme.desc=Нет фермента
+
+genetics.machine.machine.isolator=Изолятор
+genetics.machine.machine.isolator.info=Изолятор изолирует случайный ген индивида, дерева или другого индивида и копирует его в пустой флакон последовательности. Это требует использования этанола в качестве растворителя и фермента для вырезки ДНК. Последующие сыворотки затем могут быть амплифицированы в полимеризаторе и секвенированы в секвенсере.
+genetics.errors.isolator.no.room.desc=Нет места для последовательностей ДНК
+genetics.errors.isolator.no.empty.sequencer.desc=Нет пустых флаконов для секвенции
+genetics.errors.isolator.insufficient.ethanol.desc=Недостаточно этанола
+
+genetics.machine.machine.sequencer=Секвенсор
+genetics.machine.machine.sequencer.info=Секвенсор заряжает сыворотки и изучает, какой ген присутствует в них. Этот процесс медленный и требует использования флуоресцентного красителя.
+genetics.errors.sequencer.insufficient.dye.desc=Недостаточно краски
+genetics.errors.sequencer.no.space.desc=Нет места для пустых последовательностей
+genetics.errors.sequencer.no.dna.desc=Нет последовательности ДНК
+genetics.machine.machine.sequencer.texts.userless=Нет владельца. Последовательности не будут сохранены
+genetics.machine.machine.sequencer.texts.sequenced.by=Гены будут секвенированы %s
+genetics.machine.machine.sequencer.tooltips.slots.unsequenced.dna=Бесконечная ДНК
+
+genetics.machine.machine.polymeriser=Полимеризатор
+genetics.machine.machine.polymeriser.info=Полимеризатор заполняет пустые сыворотки сырой ДНК и реплицирующими бактериями. Этот процесс можно ускорить, используя золотые самородки.
+genetics.machine.machine.polymeriser.tooltips.logic.gene=Репликация 1 гена
+genetics.machine.machine.polymeriser.tooltips.logic.genes=Репликация %s генов
+genetics.machine.machine.polymeriser.tooltips.slots.unfilled=Неочищенная сыворотка
+genetics.errors.polymeriser.item.no.desc=Нет предмета для копирования
+genetics.errors.polymeriser.item.filled.desc=Предмет заполнен
+genetics.errors.polymeriser.insufficient.bacteria.desc=Недостаточно бактерий
+genetics.errors.polymeriser.insufficient.dna.desc=Недостаточно ДНК
+
+genetics.machine.machine.inoculator=Инокулятор
+genetics.machine.machine.inoculator.info=Инокулатор использует сыворотки для добавления генов к породам индивидов. Этот процесс очень медленный и требует наличия бактерий, но он всегда успешен.  
+genetics.machine.machine.inoculator.tooltips.logic.gene=Инокулирован 1 геном
+genetics.machine.machine.inoculator.tooltips.logic.genes=Инокулировано %s генов
+genetics.errors.inoculator.insufficient.vector=Не хватает бактерий
+
+genetics.machine.lab_machine.genepool=Генофонд
+genetics.machine.lab_machine.genepool.info=Генофонд использует ферменты и этанол, чтобы запомнить ДНК живых существ. В ходе этого процесса вся генетическая информация теряется и источник ДНК уничтожается.
+genetics.errors.genepool.insufficient.ethanol.desc=Недостаточно этанола
+genetics.errors.genepool.insufficient.enzyme.desc=Недостаточно Фермента
+
+genetics.machine.lab_machine.lab_machine=Лабораторный стенд
+genetics.machine.lab_machine.lab_machine.info=
+
+genetics.machine.lab_machine.analyser=Анализатор
+genetics.machine.lab_machine.analyser.info=Анализатор принимает индивидуумы и секвенсоры ДНК и анализирует их для того, чтобы определить присутствующие гены. Для этого требуется ДНК-краска, созданная из фиолетовой краски и светящегося камня
+genetics.machine.lab_machine.analyser.tooltips.slots.unanalysed=Непроанализированных предмет
+genetics.errors.analyser.insufficient.dye.name=Недостаточно краски
+genetics.errors.analyser.insufficient.dye.desc=Не хватает ДНК красителя для анализа
+genetics.errors.analyser.already.analysed.desc=Уже проанализировано
+genetics.errors.analyser.already.analysed.name=Предмет уже проанализирован
+genetics.errors.analyser.no.item.desc=Нет предмета для анализа
+
+genetics.machine.lab_machine.incubator=Инкубатор
+genetics.machine.lab_machine.incubator.info=Инкубатор сочетает в себе жидкости и предметы и позволяет им находиться при идеальной температуре, чтобы стимулировать рост бактерий.
+genetics.errors.incubator.insufficient.liquid.desc=Не хватает инкубационной жидкости
+
+genetics.machine.lab_machine.acclimatiser=Акклиматизатор
+genetics.machine.lab_machine.acclimatiser.info=Акклиматизатор использует акклиматизирующие элементы для регулировки температуры и влажности индивидов.
+genetics.errors.acclimatiser.no.item.desc=Нет предметов акклиматизации
+genetics.errors.acclimatiser.can.not.acclimatise.desc=Невозможно акклиматизировать этого индивида с этими элементами
+genetics.errors.acclimatiser.tooltips.slots.acclimatising=Акклиматизация предметов
+
+genetics.machine.adv_machine.splicer=Сплайсер
+genetics.machine.adv_machine.splicer.info=Сплайсер это невероятно мощная машина, которая используется для вставки генов в особи. Этот процесс быстрый, но требует монументальных объемов энергии.
+genetics.machine.adv_machine.splicer.tooltips.slots.serum=Сыворотка и массивы сывороток
+genetics.machine.adv_machine.splicer.tooltips.slots.individual=Индивид
+
+genetics.gui.registry.title=Реестр
+genetics.gui.registry.master.title=Главный реестр
+
+genetics.gui.analyst.title=Аналитик
+genetics.gui.analyst.desc=Добавьте пчелу, саженец дерева, цветок или бабочку в верхний левый слот. Краска ДНК необходима, если индивид еще не был проанализирован. Этот краситель также может конвертировать ванильные саженцы в селекционные виды.
+
+genetics.gui.analyst.biology=Биология
+genetics.gui.analyst.biology.allDay=Активно весь день и ночь
+genetics.gui.analyst.biology.night=Активно ночью
+genetics.gui.analyst.biology.day=Активно в течение дня
+genetics.gui.analyst.biology.notRain=Не работает во время дождя
+genetics.gui.analyst.biology.rain=Может работать во время дождя
+genetics.gui.analyst.biology.underground=Может работать под землей
+genetics.gui.analyst.biology.notUnderground=Не работает под землей
+genetics.gui.analyst.biology.flammable=Легковоспламеняющийся
+genetics.gui.analyst.biology.nonflammable=Негорючий
+genetics.gui.analyst.biology.sappiness=Сочность: %s
+genetics.gui.analyst.biology.fertility.drones=%d трутней в улье
+genetics.gui.analyst.biology.fertility.drone=1 трутень в улье
+genetics.gui.analyst.biology.fertility.moths=Положить %d гусениц перед смертью
+genetics.gui.analyst.biology.fertility.moth=Положить 1 гусеницу перед смертью
+genetics.gui.analyst.biology.fertility.leaves=1 саженец в %d блоках листвы
+genetics.gui.analyst.biology.fertility.leaf=1 саженец на 1 блок листвы
+genetics.gui.analyst.biology.caterpillarGestation=Гусеничные гестации
+genetics.gui.analyst.biology.flightSpeed=Скорость полета
+genetics.gui.analyst.biology.blocksPerSec=%d блоков в секунду
+genetics.gui.analyst.biology.mothSpawn.perLeaf=Бабочки спавнятся каждые %s листьев
+genetics.gui.analyst.biology.mothSpawn=Бабочки спавнятся каждые %s
+genetics.gui.analyst.biology.plantTypes=Типы растений
+genetics.gui.analyst.biology.averageLifespan=Средняя продолжительность жизни
+genetics.gui.analyst.biology.pollination=Опыление
+genetics.gui.analyst.biology.seedDispersal=Распространение семян
+genetics.gui.analyst.biology.perLifetime=%d за всю жизнь
+genetics.gui.analyst.biology.mcDays=%s MC дней
+
+genetics.gui.analyst.behaviour=Поведение
+genetics.gui.analyst.behaviour.effect=Эффект: %s
+genetics.gui.analyst.behaviour.pollinatesNearby=Опыляет рядом
+genetics.gui.analyst.behaviour.withinBlocks=В радиусе %d блоков
+genetics.gui.analyst.behaviour.everyTime=Каждые %s
+genetics.gui.analyst.behaviour.territory=Територия: %dx%dx%d
+genetics.gui.analyst.behaviour.metabolism=Метаболизм: %s
+
+genetics.gui.analyst.genome.title=%s геном
+genetics.gui.analyst.genome.active=Активен
+genetics.gui.analyst.genome.inactive=Не активен
+
+genetics.gui.analyst.registry.title=Реестр
+
+genetics.gui.analyst.karyogram.title=Кариограмма
+
+genetics.gui.analyst.mutations.title=Мутации
+genetics.gui.analyst.mutations.unknown.tooltip=Неизвестная мутация
+genetics.gui.analyst.mutations.unknown=НЕИЗВЕСТНО
+genetics.gui.analyst.mutations.further=Дальнейшие мутации
+genetics.gui.analyst.mutations.resultant=Результат мутации
+genetics.gui.analyst.mutations.currently=В данный момент
+genetics.gui.analyst.mutations.chance=Шанс
+genetics.gui.analyst.mutations.bee.natural=Естественная среда обитания
+genetics.gui.analyst.mutations.bee.hive=Найти в любом улье
+genetics.gui.analyst.mutations.bee.villager=Купить в деревне
+genetics.gui.analyst.mutations.bee.dungeon=Сундук сокровищницы
+
+genetics.gui.analyst.description.title=Описание
+genetics.gui.analyst.description.discovered=Обнаружено
+genetics.gui.analyst.description.complexity=Генетическая сложность
+
+//Цветы
+genetics.gui.analyst.soil.title=Почва
+genetics.gui.analyst.soil.tolerance.moisture=Влагостойкость
+genetics.gui.analyst.soil.tolerance.ph=pH терпимость
+genetics.gui.analyst.soil.recommended=Рекомендуемая почва
+genetics.gui.analyst.soil.other=Другие почвы
+
+genetics.gui.analyst.appearance.title=Внешний вид
+genetics.gui.analyst.appearance.primary=Основной цвет лепестка
+genetics.gui.analyst.appearance.secondary=Вторичный цвет лепестка
+genetics.gui.analyst.appearance.stem=Цвет стебля
+
+//Бабочки
+genetics.gui.analyst.specimen.title=Образец
+
+//Пчелы
+genetics.gui.analyst.products.title=Производит
+genetics.gui.analyst.products.rate=Ценность
+genetics.gui.analyst.products.natural=Основная продукция
+genetics.gui.analyst.products.specialty=Специальная продукция
+genetics.gui.analyst.products.refined=Продукты нефтепереработки
+genetics.gui.analyst.products.centrifuges=Продукция в центрифуге
+genetics.gui.analyst.products.squeezes=Продукция в соковыжималке
+genetics.gui.analyst.products.every=Каждый
+
+//Деревья
+genetics.gui.analyst.wood.title=Древесина
+genetics.gui.analyst.wood.fireproof=Огнеупорный
+genetics.gui.analyst.wood.flammable=Легковоспламеняющийся
+genetics.gui.analyst.wood.logs=Бревно
+genetics.gui.analyst.wood.refined=Продукты нефтепереработки
+genetics.gui.analyst.wood.noFruits=Это дерево не имеет\nфруктов или орехов
+
+genetics.gui.analyst.growth.title=Рост
+genetics.gui.analyst.growth.mature=Время созревания
+genetics.gui.analyst.growth.height=Высота
+genetics.gui.analyst.growth.girth=Обхват
+
+genetics.gui.analyst.climate.title=Климат
+genetics.gui.analyst.climate.temp=Температурный режим
+genetics.gui.analyst.climate.hum=Допустимая влажность
+genetics.gui.analyst.climate.biomes=Биомы
+
+genetics.gui.analyst.fruit.title=Фрукты
+genetics.gui.analyst.fruit.possible=Возможные фрукты
+genetics.gui.analyst.fruit.specialty=Специальные фрукты
+genetics.gui.analyst.fruit.natural=Природные фрукты
+genetics.gui.analyst.fruit.yield=Выход
+genetics.gui.analyst.fruit.refined=Продукты нефтепереработки
+genetics.gui.analyst.fruit.noFruits=Это дерево не имеет\nфруктов или орехов
+
+genetics.item.gene.empty=Пусто
+genetics.item.gene.charge=Заряд
+genetics.item.gene.charges=Заряды
+genetics.item.gene.serum=Сыворотка
+genetics.item.gene.serum.corrupted=Поврежденная сыворотка
+genetics.item.gene.serum.array=Массив сыворотки
+genetics.item.gene.serum.array.corrupted=Поврежденный массив сыворотки
+genetics.item.gene.more.genes= генов. Удерживайте Shift для отображения.
+
+genetics.item.database.name=База генов
+genetics.item.database.master.name=База данных генов
+
+genetics.item.sequence.corrupted.name=Поврежденные последовательности
+genetics.item.sequence.name=последовательность ДНК
+
+genetics.item.sequence.0=Самый слабый
+genetics.item.sequence.1=Очень слабый
+genetics.item.sequence.2=Слабый
+genetics.item.sequence.3=Обычный
+genetics.item.sequence.4=Сильный
+genetics.item.sequence.5=Очень сильный
+genetics.item.sequence.unknown=Неизвестный
+genetics.item.sequence.unsequenced=Неудовлетворенные
+genetics.item.sequence.partially=Частично последовательно (%s%)
+genetics.item.sequence.sequenced=Полностью секвенированный
+
+bee.modifier.format.max=%.2fx (Макс: %.2fx)
+bee.modifier.format.min=%.2fx (Мин: %.2fx)
+
+##Из ExtraBees lang
+
+extrabees.item.serum.tooltip.nocharge=Пусто
+extrabees.item.serum.tooltip.charge1=1 заряд
+extrabees.item.serum.tooltip.manycharge=%d зарядов
+extrabees.item.serum.corrupted=Поврежденная сыворотка
+extrabees.item.serum.name=%s сыворотка
+extrabees.item.serum.empty=Пустая сыворотка
+
+extrabees.item.template.corrupted=Поврежденный шаблон
+extrabees.item.template.name=%s Шаблон
+extrabees.item.template.empty=Пустой шаблон
+
+extrabees.block.apiaristMachine.name=Машина пчеловода
+extrabees.block.geneticMachine.name=Генетическая машина
+extrabees.block.advGeneticMachine.name=Продвинутая генетическая машина
+
+extrabees.liquid.dna=Жидкость ДНК
+
+
+extrabees.genetics.quality.awful=Ужасный
+extrabees.genetics.quality.poor=Бедный
+extrabees.genetics.quality.average=Обычный
+extrabees.genetics.quality.good=Хороший
+extrabees.genetics.quality.excellent=Отличный
+
+extrabees.genetics.quality.tooltip=Качество: %s
+
+extrabees.genetics.allele.shortest=Кратчайший
+extrabees.genetics.allele.shorter=Короткий
+extrabees.genetics.allele.short=Маленький
+extrabees.genetics.allele.shortened=Укороченный
+extrabees.genetics.allele.normal=Нормальный
+extrabees.genetics.allele.elongated=Вытянутый
+extrabees.genetics.allele.long=Длинный
+extrabees.genetics.allele.longer=Более длинный
+extrabees.genetics.allele.longest=Самый длинный
+
+extrabees.genetics.allele.slowest=Самый медленный
+extrabees.genetics.allele.slower=Медленный
+extrabees.genetics.allele.slow=Медлительный
+extrabees.genetics.allele.norm=Нормальный
+extrabees.genetics.allele.fast=Быстрый
+extrabees.genetics.allele.faster=Более быстрый
+extrabees.genetics.allele.fastest=Самый быстрый
+
+extrabees.genetics.allele.low=Низкий
+extrabees.genetics.allele.high=Высокий
+extrabees.genetics.allele.maximum=Максимальный
+
+extrabees.genetics.allele.average=Обычный
+
+extrabees.genetics.allele.default=По умолчанию
+extrabees.genetics.allele.large=Большой
+extrabees.genetics.allele.larger=Очень большой
+extrabees.genetics.allele.largest=Наибольший
+
+extrabees.genetics.allele.none=Ни один
+extrabees.genetics.allele.both1=Оба 1
+extrabees.genetics.allele.both2=Оба 2
+extrabees.genetics.allele.both3=Оба 3
+extrabees.genetics.allele.both4=Оба 4
+extrabees.genetics.allele.both5=Оба 5
+extrabees.genetics.allele.up1=Вверх 1
+extrabees.genetics.allele.up2=Вверх 2
+extrabees.genetics.allele.up3=Вверх 3
+extrabees.genetics.allele.up4=Вверх 4
+extrabees.genetics.allele.up5=Вверх 5
+extrabees.genetics.allele.down1=Вниз 1
+extrabees.genetics.allele.down2=Вниз 2
+extrabees.genetics.allele.down3=Вниз 3
+extrabees.genetics.allele.down4=Вниз 4
+extrabees.genetics.allele.down5=Вниз 5
+
+extrabees.genetics.allele.noeffect=Эффект отменен
+extrabees.genetics.allele.noflower=Не опыляется
+
+extrabees.genetics.allele.lifespan=%s продолжительность жизни
+extrabees.genetics.allele.production=%s производство
+extrabees.genetics.allele.fertility=%s фертильность
+extrabees.genetics.allele.flowering=%s цветение
+extrabees.genetics.allele.territory=%s территория
+extrabees.genetics.allele.tolerance=%s %s терпимость
+extrabees.genetics.allele.species=%s вид
+extrabees.genetics.allele.effect=%s эффект
+extrabees.genetics.allele.flower=%s опыление
+extrabees.genetics.allele.humidity=Влоажность
+extrabees.genetics.allele.temperature=Температура
+extrabees.genetics.allele.nocturnal=Ночной
+extrabees.genetics.allele.caveDwelling=Жилье в пещере
+extrabees.genetics.allele.tolerantFlyer=Количество осадков
+
+extrabees.genetics.corrupted=Поврежденный
+
+genetics.gui.database.tab.species.genome.extrabees.title=Геном
+genetics.gui.database.tab.species.genome.extrabees.speed=Скорость:
+genetics.gui.database.tab.species.genome.extrabees.lifespan=Продолжительность жизни:
+genetics.gui.database.tab.species.genome.extrabees.fertility=Фертильность:
+genetics.gui.database.tab.species.genome.extrabees.flowering=Цветение:
+genetics.gui.database.tab.species.genome.extrabees.territory=Территория:
+genetics.gui.database.tab.species.genome.extrabees.behavior=Поведение:
+genetics.gui.database.tab.species.genome.extrabees.sunlight=Дневной свет:
+genetics.gui.database.tab.species.genome.extrabees.rain=Дождь:
+genetics.gui.database.tab.species.genome.extrabees.flower=Цветок:
+genetics.gui.database.tab.species.genome.extrabees.effect=Эффект:
+genetics.gui.database.tab.species.genome.extrabees.tolerated=Терпимость
+genetics.gui.database.tab.species.genome.extrabees.daytime=Дневное время
+genetics.gui.database.tab.species.genome.extrabees.nighttime=Ночное время
+genetics.gui.database.tab.species.genome.extrabees.allDay=Весь день
+genetics.gui.database.tab.species.genome.extrabees.children=%d потомок
+genetics.gui.database.tab.species.genome.extrabees.notNeeded=Не требуется
+genetics.gui.database.tab.species.genome.extrabees.required=Требуется
+
+genetics.gui.database.control.extrabees.time.hours=Каждые %s час.
+genetics.gui.database.control.extrabees.time.min=Каждые %s мин.
+genetics.gui.database.control.extrabees.time.sec=Каждые %s сек.
+genetics.gui.database.products.extrabees.products=Продукция
+genetics.gui.database.products.extrabees.specialties=Специальность
+
+genetics.gui.database.tab.species.overview=Обзор
+genetics.gui.database.tab.species.classification=Классификация
+genetics.gui.database.tab.species.genome=Геном
+genetics.gui.database.tab.species.products=Продукция
+genetics.gui.database.tab.species.climate=Климат
+genetics.gui.database.tab.species.resultant=Результирующие мутации
+genetics.gui.database.tab.species.further=Дальнейшие мутации
+genetics.gui.database.tab.branches.overview=Обзор
+genetics.gui.database.tab.branches.species=Вид
+genetics.gui.database.tab.breeder=Производитель
