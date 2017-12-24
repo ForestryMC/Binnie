@@ -93,8 +93,6 @@ public class ModuleCore extends BlankModule {
 		OreDictionary.registerOre("seedCorn", ExtraTreeItems.GRAIN_CORN.get(1));
 		OreDictionary.registerOre("seedRye", ExtraTreeItems.GRAIN_RYE.get(1));
 		OreDictionary.registerOre("seedRoasted", ExtraTreeItems.GRAIN_ROASTED.get(1));
-
-		OreDictionary.registerOre("gearWood", ExtraTreeItems.PROVEN_GEAR.get(1));
 	}
 
 	@Override
