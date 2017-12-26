@@ -149,26 +149,6 @@ public class BlockStainedGlass extends Block implements IBlockMetadata, IColored
 	}
 
 	@Override
-	public boolean isWood(IBlockAccess world, BlockPos pos) {
-		return true;
-	}
-
-	@Override
-	public int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face) {
-		return 20;
-	}
-
-	@Override
-	public boolean isFlammable(IBlockAccess world, BlockPos pos, EnumFacing face) {
-		return true;
-	}
-
-	@Override
-	public int getFireSpreadSpeed(IBlockAccess world, BlockPos pos, EnumFacing face) {
-		return 5;
-	}
-
-	@Override
 	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
 		return BlockMetadata.getPickBlock(world, pos);
 	}

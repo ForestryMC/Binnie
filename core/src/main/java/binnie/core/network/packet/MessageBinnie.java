@@ -33,7 +33,7 @@ public final class MessageBinnie implements IMessage {
 	@Override
 	public void fromBytes(final ByteBuf buf) {
 		this.id = buf.readByte();
-		this.data = buf;
+		this.data = buf.retain();
 	}
 
 	public int getId() {

@@ -77,8 +77,6 @@ public final class ItemRegister {
 		OreDictionary.registerOre("dyeWhite", ExtraBeeItems.WHITE_DYE.get(1));
 		OreDictionary.registerOre("dyeBrown", ExtraBeeItems.BROWN_DYE.get(1));
 
-		OreDictionary.registerOre("gearWood", ExtraBeeItems.SCENTED_GEAR.get(1));
-
 		OreDictionary.registerOre("binnie_database", ExtraBees.dictionaryBees);
 	}
 }
