@@ -199,6 +199,9 @@ public class WindowFieldKit extends Window {
 		WindowInventory inventory = getWindowInventory();
 		if (this.isServer()) {
 			final ItemStack kit = this.getPlayer().getHeldItemMainhand();
+			if (kit.isEmpty() || !kit.getItem().equals(BinnieCore.getFieldKit())) {
+				return;
+			}
 			ItemStack paper = inventory.getStackInSlot(PAPER_SLOT);
 			final int sheets = 64 - kit.getItemDamage();
 			final int size = (paper.isEmpty()) ? 0 : paper.getCount();
