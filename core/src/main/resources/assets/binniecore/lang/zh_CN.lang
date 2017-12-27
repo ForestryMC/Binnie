@@ -7,7 +7,7 @@ binniecore.rootFlowers.descriptor=园丁
 
 binniecore.rootBees.shortName=蜜蜂
 binniecore.rootTrees.shortName=树木
-binniecore.rootButterflies.shortName=蝴蝶／飞蛾
+binniecore.rootButterflies.shortName=蝴蝶&飞蛾
 binniecore.rootFlowers.shortName=花卉
 
 binniecore.rootBees.epitome.0=拍击蜜蜂者
@@ -217,6 +217,7 @@ binniecore.errors.insufficient.liquid.name=液体不足
 binniecore.errors.invalid.recipe.name=无效的配方
 binniecore.errors.no.recipe.name=没有配方
 binniecore.errors.no.recipe.desc=没有有效的配方
+binniecore.errors.missing.validated.slot.desc=需要 %s 来运行
 
 binniecore.gui.database.nodescription=未提供说明。
 
@@ -310,18 +311,22 @@ binniecore.allele.extrabees.effect.wither.desc=令靠近的人凋零
 binniecore.allele.extrabees.effect.spawn_zombie.desc=随机生成僵尸
 binniecore.allele.forestry.effectFestiveEaster.desc=什么都不做
 
+binniecore.gui.help.title=帮助
+binniecore.gui.help.desc=要激活提示文本，请按住 %s 并将鼠标悬停在控件上。
+
 < Names for slots when using help tooltip >
 binniecore.gui.slot.slot=格
+binniecore.gui.slot.validated=%s Slot
 binniecore.gui.slot.input=输入
 binniecore.gui.slot.process=加工
 binniecore.gui.slot.output=输出
 binniecore.gui.slot.frame=框架
 binniecore.gui.slot.mutator=突变器
 binniecore.gui.slot.circuit=电路板
-binniecore.gui.slot.grain=谷物粉
+binniecore.gui.slot.grain=谷物籽粒
 binniecore.gui.slot.tile=物品格
 binniecore.gui.slot.caterpillar=幼虫
-binniecore.gui.slot.polish=磨制格
+binniecore.gui.slot.polish=光泽剂
 binniecore.gui.slot.wood=木材
 binniecore.gui.slot.acclimatiser=适应性调整物品
 binniecore.gui.slot.analyse=分析
@@ -337,7 +342,43 @@ binniecore.gui.slot.serum.input=输入血清
 binniecore.gui.slot.serum.output=输出血清
 binniecore.gui.slot.serum.active=活化血清
 binniecore.gui.slot.yeast=酵母
+binniecore.gui.slot.inventory=机器物品栏
+binniecore.gui.slot.player.inventory=玩家物品栏
+binniecore.gui.slot.pickup.only=Pickup Only Slot
 
+binniecore.gui.tank.validated=%s 罐
 binniecore.gui.tank.input=输入罐
 binniecore.gui.tank.process=加工罐
 binniecore.gui.tank.output=输出罐
+binniecore.gui.tank.capacity=容量：%s mB
+binniecore.gui.tank.amount=%s mB
+binniecore.gui.tank.percent.full=%s 已满
+
+binniecore.gui.side.insert=输入侧：%s
+binniecore.gui.side.extract=输出侧：%s
+
+binniecore.gui.energy.bar=能量条
+binniecore.gui.energy.amount.current=当前能量：$MAX$ RF ($PERCENT$)
+binniecore.gui.energy.capacity=容量：%s RF
+binniecore.gui.energy.cost.per.tick=能量消耗：%s RF / tick
+
+binniecore.gui.charge.remaining.percent=剩余能量：%s
+
+binniecore.gui.progress.title=进度
+binniecore.gui.progress.no.progress=未进行中
+binniecore.gui.progress.in.progress=进行中
+binniecore.gui.progress.time.left=剩余时间：%s
+binniecore.gui.progress.time.total=总时间：%s
+binniecore.gui.progress.energy.cost.total=能量消耗：%s RF
+
+binniecore.side.north=北
+binniecore.side.south=南
+binniecore.side.east=东
+binniecore.side.west=西
+binniecore.side.up=顶
+binniecore.side.down=底
+binniecore.side.sides=面
+binniecore.side.any=任意
+binniecore.side.none=无
+
+binniecore.key.hold.for.help.tooltips=按住以查看帮助信息
