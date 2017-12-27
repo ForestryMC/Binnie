@@ -223,4 +223,10 @@ public class TileEntityMachineBase extends TileEntity implements IInventoryMachi
 	public IFluidHandler getHandler(@Nullable EnumFacing from) {
 		return getTankContainer().getHandler(from);
 	}
+
+	@Nullable
+	@Override
+	public IFluidHandler getHandler(int[] targetTanks) {
+		return getTankContainer().getHandler(targetTanks);
+	}
 }

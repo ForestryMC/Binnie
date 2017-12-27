@@ -206,8 +206,6 @@ public class RenderUtil {
 		}
 
 		GlStateManager.color(1, 1, 1, 1);
-		GlStateManager.disableAlpha();
-		GlStateManager.disableBlend();
 	}
 
 	private static TextureAtlasSprite getStillFluidSprite(Minecraft minecraft, Fluid fluid) {

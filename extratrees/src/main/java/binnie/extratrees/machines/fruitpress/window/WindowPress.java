@@ -51,7 +51,7 @@ public class WindowPress extends Window {
 	public void initialiseClient() {
 		this.setTitle(Machine.getMachine(this.getInventory()).getPackage().getDisplayName());
 		new ControlSlot.Builder(this, 24, 52).assign(FruitPressMachine.SLOT_FRUIT);
-		new ControlLiquidTank(this, 99, 32).setTankID(FruitPressMachine.TANK_OUTPUT);
+		new ControlLiquidTank(this, 99, 32, FruitPressMachine.TANK_OUTPUT);
 		new ControlEnergyBar(this, 154, 32, 16, 60, Alignment.BOTTOM);
 		new ControlPlayerInventory(this);
 		new ControlErrorState(this, 128, 54);

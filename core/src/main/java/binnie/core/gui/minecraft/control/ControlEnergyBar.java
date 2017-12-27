@@ -1,36 +1,30 @@
 package binnie.core.gui.minecraft.control;
 
-import javax.annotation.Nullable;
-
 import java.text.NumberFormat;
 
 import binnie.core.ModId;
+import binnie.core.api.gui.Alignment;
 import binnie.core.api.gui.IArea;
-import binnie.core.gui.geometry.Point;
-import binnie.core.util.I18N;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.inventory.IInventory;
-
-import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
+import binnie.core.api.gui.IPoint;
+import binnie.core.api.gui.IWidget;
 import binnie.core.gui.Attribute;
 import binnie.core.gui.CraftGUI;
 import binnie.core.gui.ITooltip;
-import binnie.core.api.gui.IWidget;
 import binnie.core.gui.Tooltip;
 import binnie.core.gui.controls.core.Control;
-import binnie.core.api.gui.Alignment;
+import binnie.core.gui.geometry.Point;
 import binnie.core.gui.minecraft.MinecraftTooltip;
 import binnie.core.gui.minecraft.Window;
 import binnie.core.gui.renderer.RenderUtil;
 import binnie.core.gui.resource.textures.CraftGUITexture;
 import binnie.core.machines.Machine;
-import binnie.core.machines.TileEntityMachine;
-import binnie.core.machines.power.IPoweredMachine;
 import binnie.core.machines.power.IProcess;
+import binnie.core.util.I18N;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ControlEnergyBar extends Control implements ITooltip {
 	public static boolean isError;
@@ -40,16 +34,6 @@ public class ControlEnergyBar extends Control implements ITooltip {
 		super(parent, x, y, width, height);
 		this.direction = direction;
 		this.addAttribute(Attribute.MOUSE_OVER);
-	}
-
-	@Nullable
-	public IPoweredMachine getClientPower() {
-		final IInventory inventory = Window.get(this).getInventory();
-		final TileEntityMachine machine = (inventory instanceof TileEntityMachine) ? (TileEntityMachine) inventory : null;
-		if (machine == null) {
-			return null;
-		}
-		return machine.getMachine().getInterface(IPoweredMachine.class);
 	}
 
 	public float getPercentage() {
@@ -72,9 +56,11 @@ public class ControlEnergyBar extends Control implements ITooltip {
 	@SideOnly(Side.CLIENT)
 	public void getTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		tooltip.add(I18N.localise(ModId.CORE, "gui.energy.bar"));
-		tooltip.add((int) this.getPercentage() + "% charged");
 		NumberFormat numberFormat = I18N.getNumberFormat();
-		tooltip.add(numberFormat.format(this.getStoredEnergy()) + "/" + numberFormat.format(this.getMaxEnergy()) + " RF");
+		String storedEnergy = numberFormat.format(this.getStoredEnergy());
+		String maxEnergy = numberFormat.format(this.getMaxEnergy());
+		String energyString = TextFormatting.GRAY + storedEnergy + "/" + maxEnergy + " RF";
+		tooltip.add(energyString);
 	}
 
 	@Override
@@ -108,8 +94,10 @@ public class ControlEnergyBar extends Control implements ITooltip {
 		switch (this.direction) {
 			case TOP:
 			case BOTTOM: {
-				final int height = Math.round(area.size().yPos() * percentage);
-				area.setSize(new Point(area.size().xPos(), height));
+				IPoint fullSize = area.size();
+				final int height = Math.round(fullSize.yPos() * percentage);
+				area.setSize(new Point(fullSize.xPos(), height));
+				area.setYPos(fullSize.yPos() - height);
 				break;
 			}
 			case LEFT:

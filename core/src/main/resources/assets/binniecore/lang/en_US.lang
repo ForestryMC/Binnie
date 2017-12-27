@@ -206,6 +206,7 @@ binniecore.errors.unknown.desc=This error is broken, please report this to the m
 binniecore.errors.no.item.name=No Item
 binniecore.errors.invalid.item.name=Invalid Item
 binniecore.errors.no.space.name=No Space
+binniecore.errors.no.space.tank.name=No Space in Tank
 binniecore.errors.no.space.tank.desc=Not enough room in Tank
 binniecore.errors.insufficient.power.name=Insufficient Power
 binniecore.errors.insufficient.power.desc=Not enough power to operate

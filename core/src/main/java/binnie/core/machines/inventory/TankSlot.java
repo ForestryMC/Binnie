@@ -47,7 +47,7 @@ public class TankSlot extends BaseSlot<FluidStack> {
 		this.tank.setFluid(itemStack);
 	}
 
-	public IFluidTank getTank() {
+	public FluidTank getTank() {
 		return this.tank;
 	}
 

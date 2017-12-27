@@ -51,7 +51,7 @@ public class WindowLumbermill extends Window {
 		new ControlSlot.Builder(this, 172, 28).assign(LumbermillMachine.SLOT_BARK);
 		new ControlSlot.Builder(this, 172, 58).assign(LumbermillMachine.SLOT_SAWDUST);
 		new ControlLumbermillProgress(this, 70, 43);
-		new ControlLiquidTank(this, 16, 32);
+		new ControlLiquidTank(this, 16, 32, LumbermillMachine.TANK_WATER);
 		new ControlEnergyBar(this, 8, 112, 16, 60, Alignment.BOTTOM);
 		new ControlPlayerInventory(this);
 		new ControlErrorState(this, 95, 73);

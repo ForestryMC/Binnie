@@ -48,11 +48,11 @@ public class WindowDistillery extends Window {
 	public void initialiseClient() {
 		this.setTitle(Machine.getMachine(this.getInventory()).getPackage().getDisplayName());
 		int x = 16;
-		new ControlLiquidTank(this, x, 35).setTankID(DistilleryMachine.TANK_INPUT);
+		new ControlLiquidTank(this, x, 35, DistilleryMachine.TANK_INPUT);
 		x += 34;
 		new ControlDistilleryProgress(this, x, 32);
 		x += 64;
-		new ControlLiquidTank(this, x, 35).setTankID(DistilleryMachine.TANK_OUTPUT);
+		new ControlLiquidTank(this, x, 35, DistilleryMachine.TANK_OUTPUT);
 		x += 34;
 		new ControlEnergyBar(this, x, 36, 60, 16, Alignment.LEFT);
 		new ControlPlayerInventory(this);

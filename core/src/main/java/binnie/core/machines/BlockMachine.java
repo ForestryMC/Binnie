@@ -29,8 +29,6 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
 import net.minecraftforge.fluids.FluidUtil;
-import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
-import net.minecraftforge.fluids.capability.IFluidHandler;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -137,11 +135,13 @@ class BlockMachine extends Block implements IBlockMachine, ITileEntityProvider {
 
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		if (worldIn.isRemote) {
+			return true;
+		}
 		TileEntity tileEntity = worldIn.getTileEntity(pos);
 		if (tileEntity != null) {
 			if (!playerIn.isSneaking()) {
-				IFluidHandler tileFluidHandler = tileEntity.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, facing);
-				if (tileFluidHandler != null && FluidUtil.interactWithFluidHandler(playerIn, hand, tileFluidHandler)) {
+				if (FluidUtil.interactWithFluidHandler(playerIn, hand, worldIn, pos, facing)) {
 					return true;
 				}
 			}

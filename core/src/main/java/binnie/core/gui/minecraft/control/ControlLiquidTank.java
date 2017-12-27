@@ -51,13 +51,13 @@ public class ControlLiquidTank extends Control implements ITooltip {
 	private int tankID;
 	private boolean horizontal;
 
-	public ControlLiquidTank(final IWidget parent, final int x, final int y) {
-		this(parent, x, y, false);
+	public ControlLiquidTank(IWidget parent, int x, int y, int tankID) {
+		this(parent, x, y, tankID, false);
 	}
 
-	public ControlLiquidTank(final IWidget parent, final int x, final int y, final boolean horizontal) {
+	public ControlLiquidTank(IWidget parent, int x, int y, int tankID, boolean horizontal) {
 		super(parent, x, y, horizontal ? 60 : 18, horizontal ? 18 : 60);
-		this.tankID = 0;
+		this.tankID = tankID;
 		this.horizontal = false;
 		this.horizontal = horizontal;
 		this.addAttribute(Attribute.MOUSE_OVER);
@@ -70,11 +70,7 @@ public class ControlLiquidTank extends Control implements ITooltip {
 		});
 	}
 
-	public void setTankID(final int tank) {
-		this.tankID = tank;
-	}
-
-	public TankInfo getTank() {
+	private TankInfo getTank() {
 		return Window.get(this).getContainer().getTankInfo(this.tankID);
 	}
 
