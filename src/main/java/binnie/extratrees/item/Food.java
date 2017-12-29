@@ -130,7 +130,7 @@ public enum Food implements IItemMisc {
 		Food.Coffee.ore("Coffee");
 		Food.OsangeOrange.ore("OsangeOrange");
 		Food.Clove.ore("Clove");
-		Food.Papayimar();
+		Food.Papayimar("Papayimar");
 		Food.Blackcurrant.ore("Blackcurrant");
 		Food.Redcurrant.ore("Redcurrant");
 		Food.Blackberry.ore("Blackberry");
