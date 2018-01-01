@@ -1,7 +1,0 @@
-{
-  "parent": "block/cocoa_age1_s",
-  "textures": {
-    "particle": "extratrees:blocks/pods/redbanana.1",
-    "cocoa": "extratrees:blocks/pods/redbanana.1"
-  }
-}
