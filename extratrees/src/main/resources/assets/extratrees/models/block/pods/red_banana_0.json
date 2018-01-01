@@ -1,0 +1,7 @@
+{
+  "parent": "block/cocoa_age0_s",
+  "textures": {
+    "particle": "extratrees:blocks/pods/red_banana.0",
+    "cocoa": "extratrees:blocks/pods/red_banana.0"
+  }
+}

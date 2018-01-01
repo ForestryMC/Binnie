@@ -29,7 +29,7 @@
     "tree=buddhahand": { "model": "extratrees:saplings/tree_fruit" },
 
     "tree=banana": { "model": "extratrees:saplings/tree_default" },
-    "tree=redbanana": { "model": "extratrees:saplings/tree_default" },
+    "tree=red_banana": { "model": "extratrees:saplings/tree_default" },
     "tree=plantain": { "model": "extratrees:saplings/tree_default" },
 
     "tree=hemlock": { "model": "extratrees:saplings/tree_default" },
