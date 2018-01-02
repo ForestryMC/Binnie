@@ -47,37 +47,37 @@ genetics.machine.inoculator.tooltips.logic.gene=正在注入 1 种基因
 genetics.machine.inoculator.tooltips.logic.genes=正在注入 %s 种基因
 genetics.errors.inoculator.insufficient.vector=细菌质粒不足
 
-genetics.machine.lab_machine.genepool=基因池
-genetics.machine.lab_machine.genepool.info=基因池使用酶和乙醇将个体分解成液态 DNA 。在此过程中，所有遗传信息都会丢失，而液态 DNA 的来源个体也将被破坏。
+genetics.lab_machine.genepool=基因池
+genetics.lab_machine.genepool.info=基因池使用酶和乙醇将个体分解成液态 DNA 。在此过程中，所有遗传信息都会丢失，而液态 DNA 的来源个体也将被破坏。
 genetics.errors.genepool.insufficient.ethanol.desc=乙醇不足
 genetics.errors.genepool.insufficient.enzyme.desc=酶不足
 
-genetics.machine.lab_machine.lab_machine=实验台
-genetics.machine.lab_machine.lab_machine.info=
+genetics.lab_machine.lab_machine=实验台
+genetics.lab_machine.lab_machine.info=
 
-genetics.machine.lab_machine.analyser=分析仪
-genetics.machine.lab_machine.analyser.info=分析仪用来分析可增殖个体和 DNA 序列，并确定当前的基因类型。此过程需要 DNA 染料，可由紫色染料和荧石粉合成得到。
-genetics.machine.lab_machine.analyser.tooltips.slots.unanalysed=未经分析的物品
+genetics.lab_machine.analyser=分析仪
+genetics.lab_machine.analyser.info=分析仪用来分析可增殖个体和 DNA 序列，并确定当前的基因类型。此过程需要 DNA 染料，可由紫色染料和荧石粉合成得到。
+genetics.lab_machine.analyser.tooltips.slots.unanalysed=未经分析的物品
 genetics.errors.analyser.insufficient.dye.name=染料不足
 genetics.errors.analyser.insufficient.dye.desc=DNA 染料不足以完成分析
 genetics.errors.analyser.already.analysed.desc=已经过分析
 genetics.errors.analyser.already.analysed.name=目标物品已经过分析
 genetics.errors.analyser.no.item.desc=没有物品可供分析
 
-genetics.machine.lab_machine.incubator=恒温箱
-genetics.machine.lab_machine.incubator.info=恒温箱使用特定液体和物品来进行恒温，确保细菌能够在理想的环境下快速增殖。
+genetics.lab_machine.incubator=恒温箱
+genetics.lab_machine.incubator.info=恒温箱使用特定液体和物品来进行恒温，确保细菌能够在理想的环境下快速增殖。
 genetics.errors.incubator.insufficient.liquid.desc=没有足够的液体
 
-genetics.machine.lab_machine.acclimatiser=适应性调整器
-genetics.machine.lab_machine.acclimatiser.info=适应性调整器使用适应性调整物品来调整个体的温度和湿度适应性。
+genetics.lab_machine.acclimatiser=适应性调整器
+genetics.lab_machine.acclimatiser.info=适应性调整器使用适应性调整物品来调整个体的温度和湿度适应性。
 genetics.errors.acclimatiser.no.item.desc=没有适应性调整物品
 genetics.errors.acclimatiser.can.not.acclimatise.desc=该个体不能使用给定物品进行适应性调整
-genetics.machine.lab_machine.acclimatiser.tooltips.slots.acclimatising=适应性调整物品
+genetics.lab_machine.acclimatiser.tooltips.slots.acclimatising=适应性调整物品
 
-genetics.machine.adv_machine.splicer=基因拼接器
+genetics.adv_machine.splicer=基因拼接器
 genetics.adv_machine.splicer.info=基因拼接器是一台可将基因直接植入个体之中的强大机器。虽然工作迅速，但耗能巨大。
-genetics.machine.adv_machine.splicer.tooltips.slots.serum=血清瓶／序列
-genetics.machine.adv_machine.splicer.tooltips.slots.individual=可供拼接基因的个体
+genetics.adv_machine.splicer.tooltips.slots.serum=血清瓶／序列
+genetics.adv_machine.splicer.tooltips.slots.individual=可供拼接基因的个体
 
 genetics.gui.registry.title=图鉴
 genetics.gui.registry.master.title=全图鉴

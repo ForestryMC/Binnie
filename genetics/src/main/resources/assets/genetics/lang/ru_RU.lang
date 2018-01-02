@@ -47,37 +47,37 @@ genetics.machine.machine.inoculator.tooltips.logic.gene=Инокулирован
 genetics.machine.machine.inoculator.tooltips.logic.genes=Инокулировано %s генов
 genetics.errors.inoculator.insufficient.vector=Не хватает бактерий
 
-genetics.machine.lab_machine.genepool=Генофонд
-genetics.machine.lab_machine.genepool.info=Генофонд использует ферменты и этанол, чтобы запомнить ДНК живых существ. В ходе этого процесса вся генетическая информация теряется и источник ДНК уничтожается.
+genetics.lab_machine.genepool=Генофонд
+genetics.lab_machine.genepool.info=Генофонд использует ферменты и этанол, чтобы запомнить ДНК живых существ. В ходе этого процесса вся генетическая информация теряется и источник ДНК уничтожается.
 genetics.errors.genepool.insufficient.ethanol.desc=Недостаточно этанола
 genetics.errors.genepool.insufficient.enzyme.desc=Недостаточно Фермента
 
-genetics.machine.lab_machine.lab_machine=Лабораторный стенд
-genetics.machine.lab_machine.lab_machine.info=
+genetics.lab_machine.lab_machine=Лабораторный стенд
+genetics.lab_machine.lab_machine.info=
 
-genetics.machine.lab_machine.analyser=Анализатор
-genetics.machine.lab_machine.analyser.info=Анализатор принимает индивидуумы и секвенсоры ДНК и анализирует их для того, чтобы определить присутствующие гены. Для этого требуется ДНК-краска, созданная из фиолетовой краски и светящегося камня
-genetics.machine.lab_machine.analyser.tooltips.slots.unanalysed=Непроанализированных предмет
+genetics.lab_machine.analyser=Анализатор
+genetics.lab_machine.analyser.info=Анализатор принимает индивидуумы и секвенсоры ДНК и анализирует их для того, чтобы определить присутствующие гены. Для этого требуется ДНК-краска, созданная из фиолетовой краски и светящегося камня
+genetics.lab_machine.analyser.tooltips.slots.unanalysed=Непроанализированных предмет
 genetics.errors.analyser.insufficient.dye.name=Недостаточно краски
 genetics.errors.analyser.insufficient.dye.desc=Не хватает ДНК красителя для анализа
 genetics.errors.analyser.already.analysed.desc=Уже проанализировано
 genetics.errors.analyser.already.analysed.name=Предмет уже проанализирован
 genetics.errors.analyser.no.item.desc=Нет предмета для анализа
 
-genetics.machine.lab_machine.incubator=Инкубатор
-genetics.machine.lab_machine.incubator.info=Инкубатор сочетает в себе жидкости и предметы и позволяет им находиться при идеальной температуре, чтобы стимулировать рост бактерий.
+genetics.lab_machine.incubator=Инкубатор
+genetics.lab_machine.incubator.info=Инкубатор сочетает в себе жидкости и предметы и позволяет им находиться при идеальной температуре, чтобы стимулировать рост бактерий.
 genetics.errors.incubator.insufficient.liquid.desc=Не хватает инкубационной жидкости
 
-genetics.machine.lab_machine.acclimatiser=Акклиматизатор
-genetics.machine.lab_machine.acclimatiser.info=Акклиматизатор использует акклиматизирующие элементы для регулировки температуры и влажности индивидов.
+genetics.lab_machine.acclimatiser=Акклиматизатор
+genetics.lab_machine.acclimatiser.info=Акклиматизатор использует акклиматизирующие элементы для регулировки температуры и влажности индивидов.
 genetics.errors.acclimatiser.no.item.desc=Нет предметов акклиматизации
 genetics.errors.acclimatiser.can.not.acclimatise.desc=Невозможно акклиматизировать этого индивида с этими элементами
 genetics.errors.acclimatiser.tooltips.slots.acclimatising=Акклиматизация предметов
 
-genetics.machine.adv_machine.splicer=Сплайсер
-genetics.machine.adv_machine.splicer.info=Сплайсер это невероятно мощная машина, которая используется для вставки генов в особи. Этот процесс быстрый, но требует монументальных объемов энергии.
-genetics.machine.adv_machine.splicer.tooltips.slots.serum=Сыворотка и массивы сывороток
-genetics.machine.adv_machine.splicer.tooltips.slots.individual=Индивид
+genetics.adv_machine.splicer=Сплайсер
+genetics.adv_machine.splicer.info=Сплайсер это невероятно мощная машина, которая используется для вставки генов в особи. Этот процесс быстрый, но требует монументальных объемов энергии.
+genetics.adv_machine.splicer.tooltips.slots.serum=Сыворотка и массивы сывороток
+genetics.adv_machine.splicer.tooltips.slots.individual=Индивид
 
 genetics.gui.registry.title=Реестр
 genetics.gui.registry.master.title=Главный реестр

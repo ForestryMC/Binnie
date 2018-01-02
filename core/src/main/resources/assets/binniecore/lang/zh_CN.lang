@@ -187,12 +187,12 @@ binniecore.item.container.bucket=桶
 binniecore.item.container.glass=瓶
 binniecore.item.container.cylinder=玻璃罐
 
-binniecore.machine.storage.compartment=组合箱
-binniecore.machine.storage.compartment_iron=铁质组合箱
-binniecore.machine.storage.compartment_diamond=钻石组合箱
-binniecore.machine.storage.compartment_copper=铜质组合箱
-binniecore.machine.storage.compartment_bronze=青铜组合箱
-binniecore.machine.storage.compartment_gold=金质组合箱
+binniecore.storage.compartment=组合箱
+binniecore.storage.compartment_iron=铁质组合箱
+binniecore.storage.compartment_diamond=钻石组合箱
+binniecore.storage.compartment_copper=铜质组合箱
+binniecore.storage.compartment_bronze=青铜组合箱
+binniecore.storage.compartment_gold=金质组合箱
 
 binniecore.machine.tooltips.processing=正在处理
 

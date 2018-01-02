@@ -187,13 +187,12 @@ binniecore.item.container.bucket=Ведро
 binniecore.item.container.glass=Бутылка
 binniecore.item.container.cylinder=Цилиндр
 
-binniecore.machine.storage.compartment=Отсек
-binniecore.machine.storage.compartment_iron=Железный отсек
-binniecore.machine.storage.compartment_diamond=Алмазный отсек
-binniecore.machine.storage.compartment_copper=Медный отсек
-binniecore.machine.storage.compartment_bronze=Бронзовый отсек
-binniecore.machine.storage.compartment_gold=Золотой отсек
-
+binniecore.storage.compartment=Отсек
+binniecore.storage.compartment_iron=Железный отсек
+binniecore.storage.compartment_diamond=Алмазный отсек
+binniecore.storage.compartment_copper=Медный отсек
+binniecore.storage.compartment_bronze=Бронзовый отсек
+binniecore.storage.compartment_gold=Золото
 binniecore.machine.tooltips.processing=Обработка
 
 binniecore.errors.task.cancelled.desc=Задача отменена
