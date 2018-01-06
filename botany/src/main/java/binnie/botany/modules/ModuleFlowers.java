@@ -112,6 +112,7 @@ public class ModuleFlowers extends BlankModule {
 	@Override
 	public void preInit() {
 		MinecraftForge.EVENT_BUS.register(this);
+
 		flowerBreedingSystem = new FlowerBreedingSystem();
 		Binnie.GENETICS.registerBreedingSystem(flowerBreedingSystem);
 	}

@@ -28,6 +28,7 @@ import binnie.extratrees.modules.ModuleWood;
 import binnie.extratrees.proxy.Proxy;
 import binnie.genetics.api.GeneticsApi;
 import binnie.genetics.api.analyst.IAnalystManager;
+import forestry.api.lepidopterology.ButterflyManager;
 
 @Mod(
 	modid = Constants.EXTRA_TREES_MOD_ID,
@@ -56,8 +57,11 @@ public class ExtraTrees extends BlankModuleContainer {
 	public void preInit(final FMLPreInitializationEvent evt) {
 		container.registerConfigHandler(new ConfigurationMain(container));
 		super.preInit(evt);
-		mothBreedingSystem = new MothBreedingSystem();
-		Binnie.GENETICS.registerBreedingSystem(mothBreedingSystem);
+
+		if(ButterflyManager.butterflyRoot != null) {
+			mothBreedingSystem = new MothBreedingSystem();
+			Binnie.GENETICS.registerBreedingSystem(mothBreedingSystem);
+		}
 
 		IAnalystManager analystManager = GeneticsApi.analystManager;
 		if (analystManager != null) {

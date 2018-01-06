@@ -1,6 +1,5 @@
 package binnie.extrabees;
 
-import binnie.genetics.api.analyst.IAnalystManager;
 import com.google.common.collect.Lists;
 
 import javax.annotation.Nullable;
@@ -26,13 +25,6 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-import forestry.api.apiculture.BeeManager;
-import forestry.api.apiculture.IAlleleBeeSpecies;
-import forestry.api.genetics.AlleleSpeciesRegisterEvent;
-import forestry.core.gui.GuiIdRegistry;
-import forestry.core.gui.GuiType;
-import forestry.core.proxy.Proxies;
-
 import binnie.core.Binnie;
 import binnie.core.Constants;
 import binnie.core.api.genetics.IBreedingSystem;
@@ -57,6 +49,13 @@ import binnie.extrabees.utils.config.ConfigHandler;
 import binnie.extrabees.utils.config.ConfigurationMain;
 import binnie.extrabees.worldgen.ExtraBeesWorldGenerator;
 import binnie.genetics.api.GeneticsApi;
+import binnie.genetics.api.analyst.IAnalystManager;
+import forestry.api.apiculture.BeeManager;
+import forestry.api.apiculture.IAlleleBeeSpecies;
+import forestry.api.genetics.AlleleSpeciesRegisterEvent;
+import forestry.core.gui.GuiIdRegistry;
+import forestry.core.gui.GuiType;
+import forestry.core.proxy.Proxies;
 
 @Mod(
 	modid = ExtraBees.MODID,
@@ -116,8 +115,10 @@ public class ExtraBees {
 
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new BinnieGUIHandler(ExtraBeesGUID.values()));
 
-		beeBreedingSystem = new BeeBreedingSystem();
-		Binnie.GENETICS.registerBreedingSystem(beeBreedingSystem);
+		if(BeeManager.beeRoot != null) {
+			beeBreedingSystem = new BeeBreedingSystem();
+			Binnie.GENETICS.registerBreedingSystem(beeBreedingSystem);
+		}
 
 		IAnalystManager analystManager = GeneticsApi.analystManager;
 		if (analystManager != null) {

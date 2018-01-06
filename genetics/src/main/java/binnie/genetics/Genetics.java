@@ -36,6 +36,7 @@ import binnie.genetics.machine.ModuleMachine;
 import binnie.genetics.machine.acclimatiser.AcclimatiserManager;
 import binnie.genetics.machine.sequencer.Sequencer;
 import binnie.genetics.proxy.Proxy;
+import forestry.api.arboriculture.TreeManager;
 
 @Mod(
 	modid = Constants.GENETICS_MOD_ID,
@@ -87,8 +88,10 @@ public class Genetics extends AbstractMod {
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent evt) {
-		TreeBreedingSystem treeBreedingSystem = new TreeBreedingSystem();
-		Binnie.GENETICS.registerBreedingSystem(treeBreedingSystem);
+		if(TreeManager.treeRoot != null) {
+			TreeBreedingSystem treeBreedingSystem = new TreeBreedingSystem();
+			Binnie.GENETICS.registerBreedingSystem(treeBreedingSystem);
+		}
 
 		proxy.registerItem(new ItemPunnettSquare());
 		super.preInit(evt);
