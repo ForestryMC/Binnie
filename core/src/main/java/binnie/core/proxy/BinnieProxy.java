@@ -1,10 +1,10 @@
 package binnie.core.proxy;
 
-import javax.annotation.Nullable;
 import java.io.File;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.server.MinecraftServer;
@@ -72,7 +72,7 @@ public abstract class BinnieProxy extends BinnieModProxy implements IBinnieProxy
 	}
 
 	@Override
-	public void registerTileEntity(final Class<? extends TileEntity> tile, final String id, @Nullable final Object renderer) {
+	public <T extends TileEntity> void registerTileEntity(Class<? extends T> tile, String id, ClientSupplier<TileEntitySpecialRenderer<T>> rendererSupplier) {
 		registerTileEntity(tile, id);
 	}
 

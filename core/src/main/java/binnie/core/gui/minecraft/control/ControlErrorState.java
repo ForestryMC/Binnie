@@ -2,8 +2,9 @@ package binnie.core.gui.minecraft.control;
 
 import javax.annotation.Nullable;
 
+import java.util.Collection;
+
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.player.InventoryPlayer;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -64,19 +65,12 @@ public class ControlErrorState extends Control implements ITooltip {
 		}
 		ControlEnergyBar.isError = this.errorState.isPowerError();
 		if (this.errorState.isItemError()) {
-			for (final int slot : this.errorState.getData()) {
-				int id = -1;
-				for (final CustomSlot cslot : Window.get(this).getContainer().getCustomSlots()) {
-					if (!(cslot.inventory instanceof InventoryPlayer) && cslot.getSlotIndex() == slot) {
-						id = cslot.slotNumber;
-					}
-				}
-				if (id >= 0) {
-					if (this.type == 0) {
-						ControlSlot.highlighting.get(EnumHighlighting.ERROR).add(id);
-					} else {
-						ControlSlot.highlighting.get(EnumHighlighting.WARNING).add(id);
-					}
+			Collection<CustomSlot> slots = this.errorState.getCustomSlots(Window.get(this).getContainer());
+			for (CustomSlot slot : slots) {
+				if (this.type == 0) {
+					ControlSlot.highlighting.get(EnumHighlighting.ERROR).add(slot.slotNumber);
+				} else {
+					ControlSlot.highlighting.get(EnumHighlighting.WARNING).add(slot.slotNumber);
 				}
 			}
 		}
@@ -97,8 +91,14 @@ public class ControlErrorState extends Control implements ITooltip {
 				tooltip.setType(MinecraftTooltip.Type.WARNING);
 			}
 			tooltip.add(this.errorState.toString());
-			if (this.errorState.getTooltip().length() > 0) {
-				tooltip.add(this.errorState.getTooltip());
+			String errorStateTooltip;
+			if (this.errorState.isItemError()) {
+				errorStateTooltip = this.errorState.getTooltip(Window.get(this).getContainer());
+			} else {
+				errorStateTooltip = this.errorState.getTooltip();
+			}
+			if (errorStateTooltip.length() > 0) {
+				tooltip.add(errorStateTooltip);
 			}
 		}
 	}

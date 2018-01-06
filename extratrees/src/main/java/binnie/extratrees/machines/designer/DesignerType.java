@@ -71,13 +71,13 @@ public enum DesignerType implements IDesignerType {
 	public String getMaterialTooltip() {
 		switch (this) {
 			case GlassWorker: {
-				return I18N.localise("extratrees.machine.machine.designer.material.glass");
+				return I18N.localise("extratrees.machine.designer.material.glass");
 			}
 			case Panelworker: {
-				return I18N.localise("extratrees.machine.machine.designer.material.panel");
+				return I18N.localise("extratrees.machine.designer.material.panel");
 			}
 			case Woodworker: {
-				return I18N.localise("extratrees.machine.machine.designer.material.wood");
+				return I18N.localise("extratrees.machine.designer.material.wood");
 			}
 			default: {
 				return "";

@@ -2,8 +2,11 @@ package binnie.genetics.item;
 
 import javax.annotation.Nullable;
 
+import binnie.core.ModId;
 import com.google.common.base.Preconditions;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
 
 import forestry.api.apiculture.BeeManager;
@@ -71,15 +74,15 @@ public class ItemSequence extends ItemCore implements IItemAnalysable, IItemChar
 			if (gene.isAnalysed()) {
 				gene.getInfo(tooltip);
 			} else {
-				tooltip.add("<" + I18N.localise("genetics.item.sequence.unknown") + ">");
+				tooltip.add("<" + I18N.localise(ModId.GENETICS, "item.sequence.unknown") + ">");
 			}
 			int seq = gene.getSequenced();
 			if (seq == 0) {
-				tooltip.add(I18N.localise("genetics.item.sequence.unsequenced"));
+				tooltip.add(I18N.localise(ModId.GENETICS, "item.sequence.unsequenced"));
 			} else if (seq < 100) {
-				tooltip.add(I18N.localise("genetics.genetics.item.sequence.partially", seq));
+				tooltip.add(I18N.localise(ModId.GENETICS, "item.sequence.partially", I18N.getPercentFormat().format(seq / 100.0)));
 			} else {
-				tooltip.add(I18N.localise("genetics.item.sequence.sequenced"));
+				tooltip.add(I18N.localise(ModId.GENETICS, "item.sequence.sequenced"));
 			}
 		}
 	}

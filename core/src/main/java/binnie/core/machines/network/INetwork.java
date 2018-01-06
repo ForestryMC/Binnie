@@ -14,9 +14,9 @@ public interface INetwork {
 	}
 
 	interface TilePacketSync {
-		void syncToNBT(final NBTTagCompound p0);
+		void syncToNBT(NBTTagCompound nbt);
 
-		void syncFromNBT(final NBTTagCompound p0);
+		void syncFromNBT(NBTTagCompound nbt);
 	}
 
 	interface ReceiveGuiNBT {

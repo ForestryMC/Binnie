@@ -39,7 +39,7 @@ public class WindowInoculator extends WindowMachine {
 		super.initialiseClient();
 		int x = 16;
 		final int y = 32;
-		new ControlLiquidTank(this, x, y + 18 + 16).setTankID(0);
+		new ControlLiquidTank(this, x, y + 18 + 16, Inoculator.TANK_VEKTOR);
 		CraftGUIUtil.horizontalGrid(x, y,
 			new ControlSlotArray.Builder(this, 0, 0, 2, 1).create(Inoculator.SLOT_SERUM_RESERVE),
 			new ControlIconDisplay(this, 0, 0, GUIIcon.ARROW_RIGHT.getIcon().getResourceLocation()),
@@ -64,7 +64,7 @@ public class WindowInoculator extends WindowMachine {
 
 	@Override
 	public String getTitle() {
-		return I18N.localise("genetics.machine.machine.inoculator");
+		return I18N.localise("genetics.machine.inoculator");
 	}
 
 	@Override

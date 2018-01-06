@@ -186,7 +186,7 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
 		TileCeramicBrick ceramic = TileUtil.getTile(world, pos, TileCeramicBrick.class);
 		if (ceramic != null) {
-			return ceramic.pair().getStack(0);
+			return ceramic.pair().getStack(1);
 		}
 		return super.getPickBlock(state, target, world, pos, player);
 	}

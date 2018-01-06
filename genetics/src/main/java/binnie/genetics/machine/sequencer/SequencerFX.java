@@ -48,12 +48,9 @@ public class SequencerFX extends MachineComponent implements IRender.RandomDispl
 
 		public SequencerParticleRandomTick(World world, BlockPos pos, Random rand) {
 			super(world, pos.getX() + 0.5, pos.getY() + 1.2 + rand.nextDouble() * 0.2, pos.getZ() + 0.5, 0.0, 0.0, 0.0);
-			axisX = this.posX;
-			axisZ = this.posZ;
-			angle = this.rand.nextDouble() * 2.0 * 3.1415;
-			this.axisX = 0.0;
-			this.axisZ = 0.0;
-			this.angle = 0.0;
+			this.axisX = this.posX;
+			this.axisZ = this.posZ;
+			this.angle = this.rand.nextDouble() * 2.0 * 3.1415;
 			this.motionX = 0.0;
 			this.motionZ = 0.0;
 			this.motionY = 0.0;
@@ -61,6 +58,7 @@ public class SequencerFX extends MachineComponent implements IRender.RandomDispl
 			this.particleGravity = 0.0f;
 			this.canCollide = true;
 			this.setRBGColorF(0.6f + this.rand.nextFloat() * 0.2f, 1.0f, 0.8f * this.rand.nextFloat() * 0.2f);
+			this.onUpdate();
 		}
 
 		@Override
@@ -86,15 +84,8 @@ public class SequencerFX extends MachineComponent implements IRender.RandomDispl
 			SPRITES = new BinnieSprite[]{Sequencer.fxSeqA, Sequencer.fxSeqG, Sequencer.fxSeqC, Sequencer.fxSeqT};
 		}
 
-		private final double axisX;
-		private final double axisZ;
-		private final double angle;
-
 		public SequencerParticle(World world, BlockPos pos) {
 			super(world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, 0.0, 0.0, 0.0);
-			axisX = 0.0;
-			axisZ = 0.0;
-			angle = 0.0;
 			this.motionX = 0.0;
 			this.motionZ = 0.0;
 			this.motionY = 0.012;

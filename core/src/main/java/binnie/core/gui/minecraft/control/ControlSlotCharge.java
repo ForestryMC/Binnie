@@ -1,5 +1,10 @@
 package binnie.core.gui.minecraft.control;
 
+import java.text.NumberFormat;
+
+import binnie.core.ModId;
+import binnie.core.util.I18N;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -34,7 +39,10 @@ public class ControlSlotCharge extends Control {
 	}
 
 	@Override
-	public void getHelpTooltip(final Tooltip tooltip) {
-		tooltip.add("Charge Remaining: " + (int) (this.getCharge() * 100.0f) + "%");
+	@SideOnly(Side.CLIENT)
+	public void getHelpTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
+		NumberFormat percentFormat = I18N.getPercentFormat();
+		String chargePercent = percentFormat.format(this.getCharge());
+		tooltip.add(I18N.localise(ModId.CORE, "gui.charge.remaining.percent", chargePercent));
 	}
 }

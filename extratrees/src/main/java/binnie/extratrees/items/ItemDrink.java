@@ -3,7 +3,6 @@ package binnie.extratrees.items;
 import javax.annotation.Nullable;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;

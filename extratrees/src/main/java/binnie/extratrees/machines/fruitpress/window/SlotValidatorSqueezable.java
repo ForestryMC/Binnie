@@ -19,6 +19,6 @@ public class SlotValidatorSqueezable extends SlotValidator {
 
 	@Override
 	public String getTooltip() {
-		return I18N.localise("extratrees.machine.machine.press.tooltips.fruit");
+		return I18N.localise("extratrees.machine.press.tooltips.fruit");
 	}
 }

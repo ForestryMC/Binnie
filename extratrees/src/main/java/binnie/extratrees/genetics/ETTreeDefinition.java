@@ -2217,6 +2217,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		protected AlleleTemplate() {
 			alleles = TreeManager.treeRoot.getDefaultTemplate();
+			alleles[EnumTreeChromosome.FRUITS.ordinal()] = AlleleManager.alleleRegistry.getAllele("forestry.fruitNone");
 		}
 
 		protected AlleleTemplate(IAllele[] alleles) {

@@ -1,5 +1,6 @@
 package binnie.genetics.integration.jei.genepool;
 
+import binnie.core.util.I18N;
 import mezz.jei.api.recipe.IRecipeCategory;
 import net.minecraft.client.Minecraft;
 
@@ -28,7 +29,7 @@ public class GenepoolRecipeCategory implements IRecipeCategory<GenepoolRecipeWra
 
 	@Override
 	public String getTitle() {
-		return "genepool";
+		return I18N.localise("genetics.machine.lab_machine.genepool");
 	}
 
 	@Override

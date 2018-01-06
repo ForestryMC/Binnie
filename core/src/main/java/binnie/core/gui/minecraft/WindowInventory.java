@@ -116,8 +116,8 @@ public class WindowInventory implements IInventory {
 	}
 
 	@Nullable
-	public SlotValidator getValidator(final int i) {
-		return this.validators.get(i);
+	public SlotValidator getValidator(final int slotIndex) {
+		return this.validators.get(slotIndex);
 	}
 
 	@Override

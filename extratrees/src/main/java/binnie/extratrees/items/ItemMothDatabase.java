@@ -3,6 +3,7 @@ package binnie.extratrees.items;
 import javax.annotation.Nullable;
 import java.util.List;
 
+import binnie.core.api.gui.IGuiItem;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -26,7 +27,7 @@ import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.gui.ExtraTreesGUID;
 
-public class ItemMothDatabase extends Item implements IItemModelRegister {
+public class ItemMothDatabase extends Item implements IItemModelRegister, IGuiItem {
 
 	public ItemMothDatabase() {
 		setCreativeTab(Tabs.tabLepidopterology);
@@ -61,6 +62,12 @@ public class ItemMothDatabase extends Item implements IItemModelRegister {
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
 		ItemStack itemStack = player.getHeldItem(hand);
+		openGuiOnRightClick(itemStack, world, player);
+		return new ActionResult<>(EnumActionResult.PASS, itemStack);
+	}
+
+	@Override
+	public void openGuiOnRightClick(ItemStack itemStack, World world, EntityPlayer player) {
 		final ExtraTreesGUID id;
 		if (isMaster(itemStack)) {
 			id = ExtraTreesGUID.MOTH_DATABASE_MASTER;
@@ -69,8 +76,6 @@ public class ItemMothDatabase extends Item implements IItemModelRegister {
 		}
 
 		ExtraTrees.proxy.openGui(id, player, player.getPosition());
-
-		return new ActionResult(EnumActionResult.PASS, itemStack);
 	}
 
 	@Override

@@ -38,7 +38,7 @@ public class WindowIsolator extends WindowMachine {
 		super.initialiseClient();
 		int x = 16;
 		final int y = 32;
-		new ControlLiquidTank(this, x, y).setTankID(0);
+		new ControlLiquidTank(this, x, y, Isolator.TANK_ETHANOL);
 		x += 26;
 		new ControlSlotArray.Builder(this, x, y + 3, 1, 3).create(Isolator.SLOT_RESERVE);
 		x += 20;
@@ -64,7 +64,7 @@ public class WindowIsolator extends WindowMachine {
 
 	@Override
 	public String getTitle() {
-		return I18N.localise("genetics.machine.machine.isolator");
+		return I18N.localise("genetics.machine.isolator");
 	}
 
 	@Override

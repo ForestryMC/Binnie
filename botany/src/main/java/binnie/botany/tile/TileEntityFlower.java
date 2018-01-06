@@ -1,9 +1,7 @@
 package binnie.botany.tile;
 
 import javax.annotation.Nullable;
-import java.util.HashSet;
 import java.util.Random;
-import java.util.Set;
 
 import binnie.botany.api.BotanyAPI;
 import binnie.botany.genetics.EnumFlowerType;
@@ -27,7 +25,6 @@ import net.minecraftforge.common.EnumPlantType;
 
 import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
-import forestry.api.core.IErrorState;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.IPollinatable;
 import forestry.api.lepidopterology.IButterfly;

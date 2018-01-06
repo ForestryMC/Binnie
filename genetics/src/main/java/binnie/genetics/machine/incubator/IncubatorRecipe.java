@@ -3,6 +3,7 @@ package binnie.genetics.machine.incubator;
 import javax.annotation.Nullable;
 import java.util.Random;
 
+import binnie.core.machines.transfer.TransferResult;
 import net.minecraft.item.ItemStack;
 
 import net.minecraftforge.fluids.FluidStack;
@@ -83,7 +84,7 @@ public class IncubatorRecipe implements IIncubatorRecipe {
 		if (!this.outputStack.isEmpty()) {
 			final ItemStack output = this.outputStack.copy();
 			final TransferRequest product = new TransferRequest(output, machine.getInventory()).setTargetSlots(Incubator.SLOT_OUTPUT).ignoreValidation();
-			product.transfer(true);
+			product.transfer(null, true);
 		}
 		final Random rand = machine.getRandom();
 		if (rand.nextFloat() < this.lossChance) {
@@ -114,8 +115,8 @@ public class IncubatorRecipe implements IIncubatorRecipe {
 		if (!outputStack.isEmpty()) {
 			final ItemStack output = outputStack.copy();
 			final TransferRequest product = new TransferRequest(output, machine.getInventory()).setTargetSlots(Incubator.SLOT_OUTPUT).ignoreValidation();
-			final ItemStack leftover = product.transfer(false);
-			return leftover.isEmpty();
+			TransferResult transferResult = product.transfer(null, false);
+			return transferResult.isSuccess() && transferResult.getRemaining().isEmpty();
 		}
 		return true;
 	}

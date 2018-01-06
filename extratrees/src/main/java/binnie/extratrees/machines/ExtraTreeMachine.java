@@ -2,9 +2,12 @@ package binnie.extratrees.machines;
 
 import java.util.function.Supplier;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -80,8 +83,10 @@ public enum ExtraTreeMachine implements IMachineType {
 		}
 
 		@Override
-		public void onRightClick(World p0, EntityPlayer p1, BlockPos pos) {
-			ExtraTrees.proxy.openGui(this.id, p1, pos);
+		public void onRightClick(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+			if (!playerIn.isSneaking()) {
+				ExtraTrees.proxy.openGui(this.id, playerIn, pos);
+			}
 		}
 	}
 

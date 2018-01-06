@@ -1,5 +1,10 @@
 package binnie.core.gui;
 
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 public interface ITooltipHelp {
-	void getHelpTooltip(Tooltip tooltip);
+	@SideOnly(Side.CLIENT)
+	void getHelpTooltip(Tooltip tooltip, ITooltipFlag tooltipFlag);
 }

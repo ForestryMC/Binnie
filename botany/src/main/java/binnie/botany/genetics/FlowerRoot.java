@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Random;
 
 import binnie.botany.api.genetics.EnumFlowerColor;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -334,10 +335,14 @@ public class FlowerRoot extends SpeciesRoot implements IFlowerRoot {
 			return;
 		}
 
-		world.setBlockState(pos.up(), ModuleFlowers.flower.getDefaultState());
-		TileEntity flowerAbove = world.getTileEntity(pos.up());
-		if (flowerAbove != null && flowerAbove instanceof TileEntityFlower) {
-			((TileEntityFlower) flowerAbove).setSection(section + 1);
+		BlockPos up = pos.up();
+		IBlockState blockAbove = world.getBlockState(up);
+		if (blockAbove.getBlock().isReplaceable(world, up)) {
+			world.setBlockState(up, ModuleFlowers.flower.getDefaultState());
+			TileEntity flowerAbove = world.getTileEntity(up);
+			if (flowerAbove != null && flowerAbove instanceof TileEntityFlower) {
+				((TileEntityFlower) flowerAbove).setSection(section + 1);
+			}
 		}
 	}
 

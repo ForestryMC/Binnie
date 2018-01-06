@@ -1,12 +1,12 @@
 package binnie.genetics.machine.analyser;
 
 import binnie.core.genetics.ManagerGenetics;
+import binnie.core.machines.TileEntityTESRMachine;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 
 import binnie.core.gui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
-import binnie.core.machines.TileEntityMachine;
 import binnie.core.machines.inventory.ComponentChargedSlots;
 import binnie.core.machines.inventory.ComponentInventorySlots;
 import binnie.core.machines.inventory.ComponentInventoryTransfer;
@@ -53,7 +53,7 @@ public class PackageAnalyser extends GeneticMachine.PackageGeneticBase implement
 
 	@Override
 	public TileEntity createTileEntity() {
-		return new TileEntityMachine(this);
+		return new TileEntityTESRMachine(this);
 	}
 
 	private static class DyeSlotValidator extends SlotValidator {

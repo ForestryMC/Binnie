@@ -37,19 +37,17 @@ public class PolymeriserFX extends MachineComponent implements IRender.DisplayTi
 
 		public PolymeriserParticle(World world, BlockPos pos) {
 			super(world, pos.getX() + 0.5, pos.getY() + 1.8, pos.getZ() + 0.5, 0.0, 0.0, 0.0);
-			axisX = this.posX;
-			axisZ = this.posZ;
-			angle = 0.7 + (int) (this.world.getTotalWorldTime() % 2L) * 3.1415;
-			this.axisX = 0.0;
-			this.axisZ = 0.0;
-			this.angle = 0.0;
+			this.axisX = this.posX;
+			this.axisZ = this.posZ;
+			this.angle = 0.7 + (int) (this.world.getTotalWorldTime() % 2L) * 3.1415;
 			this.motionX = 0.0;
 			this.motionZ = 0.0;
 			this.motionY = -0.006;
 			this.particleMaxAge = 140;
 			this.particleGravity = 0.0f;
-			this.canCollide = true;
+			this.canCollide = false;
 			this.setRBGColorF(0.8f, 0.0f, 1.0f);
+			onUpdate();
 		}
 
 		@Override

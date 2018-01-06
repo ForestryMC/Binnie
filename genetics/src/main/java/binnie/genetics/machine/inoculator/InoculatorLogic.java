@@ -2,12 +2,9 @@ package binnie.genetics.machine.inoculator;
 
 import javax.annotation.Nullable;
 
+import binnie.genetics.machine.splicer.Splicer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 
-import net.minecraftforge.oredict.OreDictionary;
-
-import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IGenome;
 import forestry.api.genetics.IIndividual;
@@ -51,20 +48,9 @@ public class InoculatorLogic extends ComponentProcess implements IProcess {
 
 	public static ItemStack applySerum(ItemStack target, ItemStack serum) {
 		ItemStack applied = target.copy();
-		final IIndividual ind = AlleleManager.alleleRegistry.getIndividual(applied);
-		if (!ind.isAnalyzed()) {
-			ind.analyze();
-			final NBTTagCompound nbttagcompound = new NBTTagCompound();
-			ind.writeToNBT(nbttagcompound);
-			applied.setTagCompound(nbttagcompound);
-		}
 		final IGene[] genes = ((IItemSerum) serum.getItem()).getGenes(serum);
 		for (final IGene gene : genes) {
-			Inoculator.setGene(gene, applied, 0);
-			Inoculator.setGene(gene, applied, 1);
-		}
-		if (applied.getItemDamage() == OreDictionary.WILDCARD_VALUE) {
-			applied.setItemDamage(0);
+			Splicer.setGene(gene, applied, true, true);
 		}
 		return applied;
 	}
@@ -86,9 +72,9 @@ public class InoculatorLogic extends ComponentProcess implements IProcess {
 		ItemStack stack = this.getUtil().getStack(0);
 		int n = getNumberOfGenes(stack);
 		if (n > 1) {
-			return String.format(I18N.localise("genetics.machine.machine.inoculator.tooltips.logic.genes"), Integer.valueOf(n).toString());
+			return String.format(I18N.localise("genetics.machine.inoculator.tooltips.logic.genes"), Integer.valueOf(n).toString());
 		} else {
-			return I18N.localise("genetics.machine.machine.inoculator.tooltips.logic.gene");
+			return I18N.localise("genetics.machine.inoculator.tooltips.logic.gene");
 		}
 	}
 

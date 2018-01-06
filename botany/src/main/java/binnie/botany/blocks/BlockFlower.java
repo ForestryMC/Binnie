@@ -150,7 +150,7 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 		super.onBlockPlacedBy(world, pos, state, placer, stack);
 		IFlowerRoot flowerRoot = BotanyCore.getFlowerRoot();
 		TileEntity flower = world.getTileEntity(pos);
-		if (!!world.isRemote) {
+		if (world.isRemote) {
 			if (flower != null && flower instanceof TileEntityFlower) {
 				IFlower f = flowerRoot.getMember(stack);
 				if (f != null) {

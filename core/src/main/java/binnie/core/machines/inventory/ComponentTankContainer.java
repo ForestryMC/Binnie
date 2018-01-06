@@ -3,6 +3,7 @@ package binnie.core.machines.inventory;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,7 +18,6 @@ import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.FluidTankProperties;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidTankProperties;
-import net.minecraftforge.fluids.capability.templates.FluidHandlerConcatenate;
 
 import binnie.core.machines.IMachine;
 import binnie.core.machines.MachineComponent;
@@ -27,14 +27,16 @@ import binnie.core.machines.power.TankInfo;
 public class ComponentTankContainer extends MachineComponent implements ITankMachine {
 	private final Map<Integer, TankSlot> tanks;
 	private final EnumMap<EnumFacing, IFluidHandler> handlers;
+	private final IFluidHandler noFacingHandler;
 
 	public ComponentTankContainer(final IMachine machine) {
 		super(machine);
 		this.tanks = new LinkedHashMap<>();
 		this.handlers = new EnumMap<>(EnumFacing.class);
 		for (EnumFacing facing : EnumFacing.VALUES) {
-			handlers.put(facing, new TankContainer(facing));
+			handlers.put(facing, new TankContainer(this, this.tanks, facing));
 		}
+		this.noFacingHandler = new TankContainer(this, this.tanks, null);
 	}
 
 	@Override
@@ -77,24 +79,6 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 			this.markDirty();
 		}
 		return drained;
-	}
-
-	private int getTankIndexToFill(final EnumFacing from, final FluidStack resource) {
-		for (final TankSlot tank : this.tanks.values()) {
-			if (tank.isValid(resource) && tank.canInsert(from) && (tank.getContent() == null || tank.getContent().isFluidEqual(resource))) {
-				return tank.getIndex();
-			}
-		}
-		return -1;
-	}
-
-	private int getTankIndexToDrain(final EnumFacing from, @Nullable final FluidStack resource) {
-		for (final TankSlot tank : this.tanks.values()) {
-			if (tank.getContent() != null && tank.canExtract(from) && (resource == null || resource.isFluidEqual(tank.getContent()))) {
-				return tank.getIndex();
-			}
-		}
-		return -1;
 	}
 
 	@Override
@@ -172,23 +156,44 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 	@Nullable
 	public IFluidHandler getHandler(@Nullable EnumFacing from) {
 		if (from == null) {
-			return new FluidHandlerConcatenate(handlers.values());
+			return noFacingHandler;
 		}
 		return handlers.get(from);
 	}
 
-	private class TankContainer implements IFluidHandler {
+	@Nullable
+	@Override
+	public IFluidHandler getHandler(int[] targetTanks) {
+		Map<Integer, TankSlot> tanks = new HashMap<>();
+		for (int index : targetTanks) {
+			TankSlot tankSlot = this.tanks.get(index);
+			if (tankSlot != null) {
+				tanks.put(index, tankSlot);
+			}
+		}
+		if (tanks.isEmpty()) {
+			return null;
+		}
+		return new TankContainer(this, tanks, null);
+	}
+
+	private static class TankContainer implements IFluidHandler {
+		private final ComponentTankContainer tankContainer;
+		private final Map<Integer, TankSlot> tanks;
+		@Nullable
 		private final EnumFacing from;
 
-		public TankContainer(EnumFacing from) {
+		public TankContainer(ComponentTankContainer tankContainer, Map<Integer, TankSlot> tanks, @Nullable EnumFacing from) {
+			this.tankContainer = tankContainer;
+			this.tanks = tanks;
 			this.from = from;
 		}
 
 		@Override
 		public final int fill(final FluidStack resource, final boolean doFill) {
-			final int index = getTankIndexToFill(from, resource);
+			final int index = getTankIndexToFill(tanks, from, resource);
 			if (tanks.containsKey(index)) {
-				return ComponentTankContainer.this.fill(index, resource, doFill);
+				return this.tankContainer.fill(index, resource, doFill);
 			}
 			return 0;
 		}
@@ -196,9 +201,9 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 		@Override
 		@Nullable
 		public FluidStack drain(final FluidStack resource, final boolean doDrain) {
-			final int index = getTankIndexToDrain(from, null);
+			final int index = getTankIndexToDrain(tanks, from, null);
 			if (tanks.containsKey(index)) {
-				return ComponentTankContainer.this.drain(index, resource.amount, doDrain);
+				return this.tankContainer.drain(index, resource.amount, doDrain);
 			}
 			return null;
 		}
@@ -206,9 +211,9 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 		@Override
 		@Nullable
 		public final FluidStack drain(final int maxDrain, final boolean doDrain) {
-			final int index = getTankIndexToDrain(from, null);
+			final int index = getTankIndexToDrain(tanks, from, null);
 			if (tanks.containsKey(index)) {
-				return ComponentTankContainer.this.drain(index, maxDrain, doDrain);
+				return this.tankContainer.drain(index, maxDrain, doDrain);
 			}
 			return null;
 		}
@@ -221,6 +226,32 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 				properties[i] = new FluidTankProperties(tank.getFluid(), tank.getCapacity());
 			}
 			return properties;
+		}
+
+		private IFluidTank[] getTanks() {
+			final List<IFluidTank> ltanks = new ArrayList<>();
+			for (final TankSlot tank : this.tanks.values()) {
+				ltanks.add(tank.getTank());
+			}
+			return ltanks.toArray(new IFluidTank[0]);
+		}
+
+		private static int getTankIndexToFill(Map<Integer, TankSlot> tanks, @Nullable EnumFacing from, final FluidStack resource) {
+			for (final TankSlot tank : tanks.values()) {
+				if (tank.isValid(resource) && tank.canInsert(from) && (tank.getContent() == null || tank.getContent().isFluidEqual(resource))) {
+					return tank.getIndex();
+				}
+			}
+			return -1;
+		}
+
+		private static int getTankIndexToDrain(Map<Integer, TankSlot> tanks, @Nullable EnumFacing from, @Nullable final FluidStack resource) {
+			for (final TankSlot tank : tanks.values()) {
+				if (tank.getContent() != null && tank.canExtract(from) && (resource == null || resource.isFluidEqual(tank.getContent()))) {
+					return tank.getIndex();
+				}
+			}
+			return -1;
 		}
 	}
 }

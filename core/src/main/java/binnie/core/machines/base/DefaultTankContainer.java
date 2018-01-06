@@ -55,6 +55,12 @@ class DefaultTankContainer implements ITankMachine {
 		return null;
 	}
 
+	@Nullable
+	@Override
+	public IFluidHandler getHandler(int[] targetTanks) {
+		return null;
+	}
+
 	@Override
 	public IFluidTank[] getTanks() {
 		return new IFluidTank[0];

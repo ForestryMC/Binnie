@@ -1,5 +1,8 @@
 package binnie.core.gui.minecraft.control;
 
+import java.text.NumberFormat;
+
+import binnie.core.ModId;
 import binnie.core.gui.Attribute;
 import binnie.core.api.gui.IWidget;
 import binnie.core.gui.Tooltip;
@@ -8,6 +11,11 @@ import binnie.core.gui.minecraft.Window;
 import binnie.core.machines.Machine;
 import binnie.core.machines.power.IProcess;
 import binnie.core.machines.power.ProcessInfo;
+import binnie.core.util.I18N;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ControlProgressBase extends Control {
 	protected float progress;
@@ -60,25 +68,39 @@ public class ControlProgressBase extends Control {
 	}
 
 	@Override
-	public void getHelpTooltip(final Tooltip tooltip) {
+	@SideOnly(Side.CLIENT)
+	public void getHelpTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		final ProcessInfo process = this.getProcess();
-		final IProcess machineProcess = Machine.getMachine(Window.get(this).getInventory()).getInterface(IProcess.class);
 		if (process != null) {
-			tooltip.add("Progress");
+			tooltip.add(I18N.localise(ModId.CORE, "gui.progress.title"));
 			if (this.progress == 0.0f) {
-				tooltip.add("Not in Progress");
+				tooltip.add(I18N.localise(ModId.CORE, "gui.progress.no.progress"));
 			} else if (process.getProcessTime() > 0) {
-				tooltip.add(machineProcess.getTooltip() + " (" + (int) process.getCurrentProgress() + "%)");
+				final IProcess machineProcess = Machine.getMachine(Window.get(this).getInventory()).getInterface(IProcess.class);
+				String percentProgress = I18N.getPercentFormat().format((int) process.getCurrentProgress() / 100.0);
+				tooltip.add(machineProcess.getTooltip() + " (" + percentProgress + ")");
 			} else {
-				tooltip.add("In Progress");
+				tooltip.add(I18N.localise(ModId.CORE, "gui.progress.in.progress"));
 			}
-			if (process.getProcessTime() > 0) {
-				tooltip.add("Time Left: " + convertTime((int) ((1.0f - this.progress) * process.getProcessTime())));
-				tooltip.add("Total Time: " + convertTime(process.getProcessTime()));
-				tooltip.add("Energy Cost: " + process.getProcessEnergy() * 10 + " RF");
-			} else {
-				tooltip.add("Energy Cost: " + process.getEnergyPerTick() * 10.0f + " RF / tick");
+			if (tooltipFlag.isAdvanced()) {
+				NumberFormat numberFormat = I18N.getNumberFormat();
+				if (process.getProcessTime() > 0) {
+					String timeLeft = convertTime((int) ((1.0f - this.progress) * process.getProcessTime()));
+					tooltip.add(TextFormatting.GRAY + I18N.localise(ModId.CORE, "gui.progress.time.left", timeLeft));
+					String timeTotal = convertTime(process.getProcessTime());
+					tooltip.add(TextFormatting.GRAY + I18N.localise(ModId.CORE, "gui.progress.time.total", timeTotal));
+					String energyCostTotal = numberFormat.format(process.getProcessEnergy() * 10);
+					tooltip.add(TextFormatting.GRAY + I18N.localise(ModId.CORE, "gui.progress.energy.cost.total", energyCostTotal));
+				} else {
+					String energyCostPerTick = numberFormat.format(process.getEnergyPerTick() * 10.0f);
+					tooltip.add(TextFormatting.GRAY + I18N.localise(ModId.CORE, "gui.energy.cost.per.tick", energyCostPerTick));
+				}
 			}
 		}
+	}
+
+	@Override
+	public boolean showBasicHelpTooltipsByDefault() {
+		return true;
 	}
 }

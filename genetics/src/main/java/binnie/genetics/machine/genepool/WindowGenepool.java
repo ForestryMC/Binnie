@@ -38,7 +38,7 @@ public class WindowGenepool extends WindowMachine {
 		super.initialiseClient();
 		int x = 16;
 		final int y = 32;
-		new ControlLiquidTank(this, x, y).setTankID(1);
+		new ControlLiquidTank(this, x, y, Genepool.TANK_ETHANOL);
 		x += 26;
 		new ControlSlotArray.Builder(this, x, y + 3, 2, 3).create(Genepool.SLOT_RESERVE);
 		x += 38;
@@ -48,7 +48,7 @@ public class WindowGenepool extends WindowMachine {
 		x += 18;
 		new ControlMachineProgress(this, x, y + 19, PROGRESS_BASE, PROGRESS, Alignment.LEFT);
 		x += 130;
-		new ControlLiquidTank(this, x, y).setTankID(0);
+		new ControlLiquidTank(this, x, y, Genepool.TANK_DNA);
 		new ControlEnergyBar(this, 21, 115, 16, 60, Alignment.BOTTOM);
 		new ControlSlot.Builder(this, 121, 82).assign(7);
 		new ControlSlotCharge(this, 143, 82, 7).setColor(15722671);

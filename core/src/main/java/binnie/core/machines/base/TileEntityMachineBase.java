@@ -30,6 +30,7 @@ import binnie.core.machines.power.PowerInterface;
 import binnie.core.machines.power.TankInfo;
 import ic2.api.energy.tile.IEnergyEmitter;
 import ic2.api.energy.tile.IEnergySink;
+import net.minecraftforge.items.wrapper.SidedInvWrapper;
 
 @Optional.Interface(iface = "ic2.api.energy.tile.IEnergySink", modid = "ic2")
 public class TileEntityMachineBase extends TileEntity implements IInventoryMachine, ITankMachine, IPoweredMachine, ITickable, IEnergySink {
@@ -194,7 +195,13 @@ public class TileEntityMachineBase extends TileEntity implements IInventoryMachi
 		if (capability == CapabilityEnergy.ENERGY) {
 			return CapabilityEnergy.ENERGY.cast(this);
 		} else if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
-			return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(new InvWrapper(getInventory()));
+			if (facing != null) {
+				SidedInvWrapper sidedInvWrapper = new SidedInvWrapper(getInventory(), facing);
+				return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(sidedInvWrapper);
+			} else {
+				InvWrapper invWrapper = new InvWrapper(getInventory());
+				return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(invWrapper);
+			}
 		} else if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
 			return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(getHandler(facing));
 		}
@@ -215,5 +222,11 @@ public class TileEntityMachineBase extends TileEntity implements IInventoryMachi
 	@Nullable
 	public IFluidHandler getHandler(@Nullable EnumFacing from) {
 		return getTankContainer().getHandler(from);
+	}
+
+	@Nullable
+	@Override
+	public IFluidHandler getHandler(int[] targetTanks) {
+		return getTankContainer().getHandler(targetTanks);
 	}
 }

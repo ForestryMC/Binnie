@@ -386,10 +386,12 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 	POWER{
 		@Override
 		protected IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing, World world, BlockPos position) {
-			final TileEntity tile2 = world.getTileEntity(position);
-			if (tile2.hasCapability(CapabilityEnergy.ENERGY, EnumFacing.UP)) {
-				IEnergyStorage storage = tile2.getCapability(CapabilityEnergy.ENERGY, EnumFacing.UP);
-				storage.receiveEnergy(5, false);
+			final TileEntity tile = world.getTileEntity(position);
+			if (tile != null) {
+				IEnergyStorage storage = tile.getCapability(CapabilityEnergy.ENERGY, EnumFacing.UP);
+				if (storage != null) {
+					storage.receiveEnergy(5, false);
+				}
 			}
 			return storedData;
 		}
@@ -518,7 +520,9 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 		int yPos = yHouse - offsetY + world.rand.nextInt(2 * offsetY + 1);
 		int zPos = zHouse - offsetZ + world.rand.nextInt(2 * offsetZ + 1);
 		BlockPos position = new BlockPos(xPos, yPos, zPos);
-		doEffect(genome, storedData, housing, world, position);
+		if (world.isBlockLoaded(position)) {
+			doEffect(genome, storedData, housing, world, position);
+		}
 		return storedData;
 	}
 

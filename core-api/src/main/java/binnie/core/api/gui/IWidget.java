@@ -110,6 +110,15 @@ public interface IWidget {
 
 	IWidget getCropWidget();
 
+	@Nullable
+	default Object getIngredient() {
+		return null;
+	}
+
+	default boolean showBasicHelpTooltipsByDefault() {
+		return false;
+	}
+
 	/* ATTRIBUTES */
 
 	/**

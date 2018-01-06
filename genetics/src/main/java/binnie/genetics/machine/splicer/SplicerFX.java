@@ -2,12 +2,9 @@ package binnie.genetics.machine.splicer;
 
 import java.util.Random;
 
+import binnie.core.util.EntityItemRenderer;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleManager;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
@@ -23,11 +20,11 @@ import binnie.core.machines.component.IRender;
 import binnie.core.machines.network.INetwork;
 
 public class SplicerFX extends MachineComponent implements IRender.DisplayTick, IRender.Render, INetwork.TilePacketSync {
-	private final EntityItem dummyEntityItem;
+	private final EntityItemRenderer entityItemRenderer;
 
 	public SplicerFX(final IMachine machine) {
 		super(machine);
-		this.dummyEntityItem = new EntityItem(machine.getWorld());
+		this.entityItemRenderer = new EntityItemRenderer();
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -47,23 +44,8 @@ public class SplicerFX extends MachineComponent implements IRender.DisplayTick, 
 			return;
 		}
 		final ItemStack stack = this.getUtil().getStack(9);
-		this.dummyEntityItem.world = this.getMachine().getWorld();
-		this.dummyEntityItem.setItem(stack);
-		final EntityItem dummyEntityItem = this.dummyEntityItem;
-		dummyEntityItem.setAgeToCreativeDespawnTime(); //++dummyEntityItem.age;
-		this.dummyEntityItem.hoverStart = 0.0f;
-		if (stack.isEmpty()) {
-			return;
-		}
-		final EntityPlayer player = BinnieCore.getBinnieProxy().getPlayer();
-		final double dx = x + 0.5 - player.lastTickPosX;
-		final double dz = z + 0.5 - player.lastTickPosZ;
-		final double t = Math.atan2(dz, dx) * 180.0 / 3.1415;
-		GlStateManager.pushMatrix();
-		GlStateManager.rotate(180.0f, 0.0f, 0.0f, 1.0f);
-		GlStateManager.translate(0.0f, -0.25f, 0.0f);
-		BinnieCore.getBinnieProxy().getMinecraftInstance().getRenderItem().renderItem(dummyEntityItem.getItem(), ItemCameraTransforms.TransformType.FIXED);//doRender(this.dummyEntityItem, 0.0, 0.0, 0.0, 0.0f, 0.0f);
-		GlStateManager.popMatrix();
+		World world = this.getMachine().getWorld();
+		this.entityItemRenderer.renderInWorld(stack, world, x + 0.5, y + 1, z + 0.5);
 	}
 
 	@Override
@@ -100,12 +82,9 @@ public class SplicerFX extends MachineComponent implements IRender.DisplayTick, 
 
 		public SplicerParticle(World world, BlockPos pos) {
 			super(world, pos.getX() + 0.5, pos.getY() + 1.5, pos.getZ() + 0.5, 0.0, 0.0, 0.0);
-			axisX = this.posX;
-			axisZ = this.posZ;
-			angle = (int) (this.world.getTotalWorldTime() % 4L) * 0.5 * 3.1415;
-			this.axisX = 0.0;
-			this.axisZ = 0.0;
-			this.angle = 0.0;
+			this.axisX = this.posX;
+			this.axisZ = this.posZ;
+			this.angle = (int) (this.world.getTotalWorldTime() % 4L) * 0.5 * 3.1415;
 			this.motionX = 0.0;
 			this.motionZ = 0.0;
 			this.motionY = (this.rand.nextDouble() - 0.5) * 0.02;
@@ -113,6 +92,7 @@ public class SplicerFX extends MachineComponent implements IRender.DisplayTick, 
 			this.particleGravity = 0.0f;
 			this.canCollide = true;
 			this.setRBGColorF(0.3f + this.rand.nextFloat() * 0.5f, 0.3f + this.rand.nextFloat() * 0.5f, 0.0f);
+			this.onUpdate();
 		}
 
 		@Override
@@ -123,7 +103,7 @@ public class SplicerFX extends MachineComponent implements IRender.DisplayTick, 
 			this.angle -= speed;
 			final double dist = 0.25 + 0.2 * Math.sin(this.particleAge / 50.0f);
 			this.setPosition(this.axisX + dist * Math.sin(this.angle), this.posY, this.axisZ + dist * Math.cos(this.angle));
-			this.setAlphaF((float) Math.cos(1.57 * this.particleAge / this.particleMaxAge));
+			this.setAlphaF((float) Math.sin(Math.PI * this.particleAge / this.particleMaxAge));
 		}
 
 		@Override

@@ -1,6 +1,7 @@
 package binnie.genetics.machine.inoculator;
 
 import binnie.core.machines.inventory.TankValidator;
+import binnie.core.machines.TileEntityTESRMachine;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 
@@ -10,7 +11,6 @@ import binnie.core.gui.minecraft.IMachineInformation;
 import binnie.core.machines.IMachine;
 import binnie.core.machines.Machine;
 import binnie.core.machines.MachineUtil;
-import binnie.core.machines.TileEntityMachine;
 import binnie.core.machines.inventory.ComponentInventorySlots;
 import binnie.core.machines.inventory.ComponentInventoryTransfer;
 import binnie.core.machines.inventory.ComponentTankContainer;
@@ -82,7 +82,7 @@ public class PackageInoculator extends GeneticMachine.PackageGeneticBase impleme
 
 	@Override
 	public TileEntity createTileEntity() {
-		return new TileEntityMachine(this);
+		return new TileEntityTESRMachine(this);
 	}
 
 	private static class SerumSlotValidator extends SlotValidator {

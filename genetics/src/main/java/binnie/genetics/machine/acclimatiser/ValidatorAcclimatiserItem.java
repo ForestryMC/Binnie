@@ -23,6 +23,6 @@ public class ValidatorAcclimatiserItem extends SlotValidator {
 
 	@Override
 	public String getTooltip() {
-		return I18N.localise("genetics.machine.labMachine.acclimatiser.tooltips.slots.acclimatising");
+		return I18N.localise("genetics.machine.lab_machine.acclimatiser.tooltips.slots.acclimatising");
 	}
 }

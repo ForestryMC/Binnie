@@ -19,6 +19,6 @@ public class SlotValidatorUnfilledSerum extends SlotValidator {
 
 	@Override
 	public String getTooltip() {
-		return I18N.localise("genetics.machine.machine.polymeriser.tooltips.slots.unfilled");
+		return I18N.localise("genetics.machine.polymeriser.tooltips.slots.unfilled");
 	}
 }

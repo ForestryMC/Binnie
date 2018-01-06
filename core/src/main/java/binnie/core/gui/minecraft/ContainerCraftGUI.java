@@ -1,8 +1,5 @@
 package binnie.core.gui.minecraft;
 
-import com.google.common.base.Preconditions;
-import com.google.common.collect.Sets;
-
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,21 +7,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
-
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.inventory.ClickType;
-import net.minecraft.inventory.Container;
-import net.minecraft.inventory.IContainerListener;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Slot;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-
-import com.mojang.authlib.GameProfile;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.core.BinnieCore;
 import binnie.core.gui.minecraft.control.ControlSlot;
@@ -41,7 +23,27 @@ import binnie.core.machines.power.PowerInfo;
 import binnie.core.machines.power.ProcessInfo;
 import binnie.core.machines.power.TankInfo;
 import binnie.core.machines.transfer.TransferRequest;
+import binnie.core.machines.transfer.TransferResult;
 import binnie.core.network.packet.MessageContainerUpdate;
+import com.google.common.base.Preconditions;
+import com.google.common.collect.Sets;
+import com.mojang.authlib.GameProfile;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.inventory.ClickType;
+import net.minecraft.inventory.Container;
+import net.minecraft.inventory.IContainerListener;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.SoundEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemHandlerHelper;
+import net.minecraftforge.items.wrapper.InvWrapper;
 
 public class ContainerCraftGUI extends Container {
 	private final Set<EntityPlayer> crafters = Sets.newConcurrentHashSet();
@@ -92,9 +94,11 @@ public class ContainerCraftGUI extends Container {
 				ItemStack stack = inventory.getStackInSlot(i);
 				if (!stack.isEmpty()) {
 					TransferRequest transferRequest = new TransferRequest(stack, playerIn.inventory);
-					stack = transferRequest.transfer(true);
-					if (!stack.isEmpty()) {
-						playerIn.dropItem(stack, false);
+					TransferResult transferResult = transferRequest.transfer(playerIn, true);
+					if (transferResult.isSuccess()) {
+						for (ItemStack result : transferResult.getRemaining()) {
+							playerIn.dropItem(result, false);
+						}
 					}
 				}
 			}
@@ -132,10 +136,16 @@ public class ContainerCraftGUI extends Container {
 
 	private ItemStack shiftClick(final EntityPlayer player, final int slotnumber) {
 		final TransferRequest request = this.getShiftClickRequest(player, slotnumber);
-		final ItemStack itemstack = request.transfer(true);
-		final Slot shiftClickedSlot = this.inventorySlots.get(slotnumber);
-		shiftClickedSlot.putStack(itemstack);
-		shiftClickedSlot.onSlotChanged();
+		TransferResult transferResult = request.transfer(player, true);
+		if (transferResult.isSuccess()) {
+			NonNullList<ItemStack> results = transferResult.getRemaining();
+			if (results.size() == 1) {
+				final ItemStack itemstack = results.get(0);
+				final Slot shiftClickedSlot = this.inventorySlots.get(slotnumber);
+				shiftClickedSlot.putStack(itemstack);
+				shiftClickedSlot.onSlotChanged();
+			}
+		}
 		return ItemStack.EMPTY;
 	}
 
@@ -152,14 +162,14 @@ public class ContainerCraftGUI extends Container {
 		final IInventory containerInventory = this.window.getInventory();
 		final IInventory windowInventory = this.window.getWindowInventory();
 		final IInventory fromPlayer = (containerInventory == null) ? windowInventory : containerInventory;
-		final int[] target = new int[36];
-		for (int i = 0; i < 36; ++i) {
-			target[i] = i;
-		}
 		TransferRequest request;
 		if (shiftClickedSlot.inventory == playerInventory) {
 			request = new TransferRequest(itemstack, fromPlayer).setOrigin(shiftClickedSlot.inventory);
 		} else {
+			final int[] target = new int[36];
+			for (int i = 0; i < 36; ++i) {
+				target[i] = i;
+			}
 			request = new TransferRequest(itemstack, playerInventory).setOrigin(shiftClickedSlot.inventory).setTargetSlots(target);
 		}
 		if (this.window instanceof IWindowAffectsShiftClick) {
@@ -168,24 +178,34 @@ public class ContainerCraftGUI extends Container {
 		return request;
 	}
 
-	@Nullable
-	public final ItemStack tankClick(final EntityPlayer player, final int slotID) {
+	public final void tankClick(final EntityPlayer player, final int slotID) {
 		IInventory inventory = this.window.getInventory();
 		if (inventory == null) {
-			return null;
+			return;
 		}
 		ItemStack heldItem = player.inventory.getItemStack();
 		if (heldItem.isEmpty()) {
-			return null;
+			return;
 		}
 		heldItem = heldItem.copy();
-		TransferRequest transferRequest = new TransferRequest(heldItem, inventory).setOrigin(player.inventory).setTargetSlots(new int[0]).setTargetTanks(new int[]{slotID});
-		heldItem = transferRequest.transfer(true);
-		player.inventory.setItemStack(heldItem);
-		if (player instanceof EntityPlayerMP) {
-			((EntityPlayerMP) player).updateHeldItem();
+		TransferRequest transferRequest = new TransferRequest(heldItem, inventory).setTargetTanks(slotID);
+		TransferResult transferResult = transferRequest.transfer(player, true);
+		if (transferResult.isSuccess()) {
+			NonNullList<ItemStack> results = transferResult.getRemaining();
+			if (results.size() > 0) {
+				ItemStack heldItemResult = results.remove(results.size() - 1);
+				player.inventory.setItemStack(heldItemResult);
+				if (player instanceof EntityPlayerMP) {
+					((EntityPlayerMP) player).updateHeldItem();
+				}
+				if (results.size() > 0) {
+					IItemHandler itemHandler = new InvWrapper(inventory);
+					for (ItemStack remaining : results) {
+						ItemHandlerHelper.insertItemStacked(itemHandler, remaining, false);
+					}
+				}
+			}
 		}
-		return heldItem;
 	}
 
 	public boolean handleNBTServer(final EntityPlayer player, final String name, final NBTTagCompound action) {
@@ -388,7 +408,7 @@ public class ContainerCraftGUI extends Container {
 	private void onMouseOverSlot(final EntityPlayer player, final NBTTagCompound data) {
 		final int slotnumber = data.getShort("slot");
 		final TransferRequest request = this.getShiftClickRequest(player, slotnumber);
-		request.transfer(false);
+		request.transfer(player, false);
 		final NBTTagCompound nbt = new NBTTagCompound();
 		final List<Integer> slots = new ArrayList<>();
 		for (final TransferRequest.TransferSlot tslot : request.getInsertedSlots()) {

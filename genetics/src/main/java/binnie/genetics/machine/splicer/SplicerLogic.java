@@ -5,7 +5,6 @@ import com.google.common.base.Preconditions;
 import javax.annotation.Nullable;
 
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
@@ -163,17 +162,9 @@ public class SplicerLogic extends ComponentProcess implements IProcess {
 		Preconditions.checkState(!serum.isEmpty());
 		final ItemStack target = this.getUtil().getStack(Splicer.SLOT_TARGET);
 		Preconditions.checkState(!target.isEmpty());
-		final IIndividual ind = AlleleManager.alleleRegistry.getIndividual(target);
-		if (!ind.isAnalyzed()) {
-			ind.analyze();
-			final NBTTagCompound nbttagcompound = new NBTTagCompound();
-			ind.writeToNBT(nbttagcompound);
-			target.setTagCompound(nbttagcompound);
-		}
 		final IGene[] genes = ((IItemSerum) serum.getItem()).getGenes(serum);
 		for (final IGene gene : genes) {
-			Splicer.setGene(gene, target, 0);
-			Splicer.setGene(gene, target, 1);
+			Splicer.setGene(gene, target, true, true);
 		}
 		this.getUtil().damageItem(serum, Splicer.SLOT_SERUM_VIAL, 1);
 	}

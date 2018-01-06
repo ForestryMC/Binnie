@@ -43,8 +43,8 @@ public class WindowPolymeriser extends WindowMachine {
 		x += 34;
 		new ControlMachineProgress(this, x + 18, y - 6, WindowPolymeriser.PROGRESS_BASE, WindowPolymeriser.PROGRESS, Alignment.LEFT);
 		new ControlSlot.Builder(this, x, y).assign(0);
-		new ControlLiquidTank(this, x, y + 18 + 16, true).setTankID(0);
-		new ControlLiquidTank(this, x, y + 18 + 16 + 18 + 8, true).setTankID(1);
+		new ControlLiquidTank(this, x, y + 18 + 16, Polymeriser.TANK_BACTERIA, true);
+		new ControlLiquidTank(this, x, y + 18 + 16 + 18 + 8, Polymeriser.TANK_DNA, true);
 		new ControlEnergyBar(this, x + 120, 96, 64, 16, Alignment.LEFT);
 		x += 40;
 		new ControlSlot.Builder(this, x + 30, y + 18 + 8).assign(1);
@@ -57,7 +57,7 @@ public class WindowPolymeriser extends WindowMachine {
 
 	@Override
 	public String getTitle() {
-		return I18N.localise("genetics.machine.machine.polymeriser");
+		return I18N.localise("genetics.machine.polymeriser");
 	}
 
 	@Override

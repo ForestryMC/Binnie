@@ -124,13 +124,13 @@ public class BreweryLogic extends ComponentProcessSetCost implements IProcess, I
 	@Override
 	public String getTooltip() {
 		if (this.currentCrafting == null) {
-			return I18N.localise("extratrees.machine.machine.brewery.tooltips.empty");
+			return I18N.localise("extratrees.machine.brewery.tooltips.empty");
 		}
 		FluidStack output = BreweryRecipeManager.getOutput(this.currentCrafting);
 		if (output == null) {
-			return I18N.localise("extratrees.machine.machine.brewery.tooltips.empty");
+			return I18N.localise("extratrees.machine.brewery.tooltips.empty");
 		}
-		return I18N.localise("extratrees.machine.machine.brewery.tooltips.creating", output.getFluid().getLocalizedName(output));
+		return I18N.localise("extratrees.machine.brewery.tooltips.creating", output.getFluid().getLocalizedName(output));
 	}
 
 	@Nullable

@@ -37,7 +37,7 @@ public class WindowIncubator extends WindowMachine {
 		super.initialiseClient();
 		int x = 16;
 		final int y = 32;
-		new ControlLiquidTank(this, x, y).setTankID(0);
+		new ControlLiquidTank(this, x, y, Incubator.TANK_INPUT);
 		x += 26;
 		new ControlSlotArray.Builder(this, x, y + 3, 1, 3).create(Incubator.SLOT_QUEUE);
 		x += 20;
@@ -50,7 +50,7 @@ public class WindowIncubator extends WindowMachine {
 		x += 18;
 		new ControlSlotArray.Builder(this, x, y + 3, 1, 3).create(Incubator.SLOT_OUTPUT);
 		x += 26;
-		new ControlLiquidTank(this, x, y).setTankID(1);
+		new ControlLiquidTank(this, x, y, Incubator.TANK_OUTPUT);
 		x += 34;
 		new ControlEnergyBar(this, x, y + 3, 16, 54, Alignment.BOTTOM);
 		new ControlErrorState(this, 91, 82);

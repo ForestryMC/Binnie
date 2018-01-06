@@ -4,12 +4,14 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
+import binnie.core.machines.transfer.TransferResult;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 
 import binnie.core.machines.IMachine;
 import binnie.core.machines.MachineComponent;
 import binnie.core.machines.transfer.TransferRequest;
+import net.minecraft.util.NonNullList;
 
 public class ComponentInventoryTransfer extends MachineComponent {
 	private final List<Transfer> transfers;
@@ -32,11 +34,6 @@ public class ComponentInventoryTransfer extends MachineComponent {
 	public void addStorage(final int source, final int[] destination) {
 		Storage storage = new Storage(this.getMachine(), source, destination);
 		this.transfers.add(storage);
-	}
-
-	public void performTransfer(final int source, final int[] destination) {
-		IInventoryMachine inventoryMachine = this.getMachine().getInterface(IInventoryMachine.class);
-		new Storage(this.getMachine(), source, destination).transfer(inventoryMachine);
 	}
 
 	@Override
@@ -136,8 +133,13 @@ public class ComponentInventoryTransfer extends MachineComponent {
 			ItemStack stackInSlot = inv.getStackInSlot(this.source);
 			if (!stackInSlot.isEmpty()) {
 				TransferRequest transferRequest = new TransferRequest(stackInSlot, inv).setTargetSlots(this.destination).ignoreValidation();
-				ItemStack transfer = transferRequest.transfer(true);
-				inv.setInventorySlotContents(this.source, transfer);
+				TransferResult transferResult = transferRequest.transfer(null, true);
+				if (transferResult.isSuccess()) {
+					NonNullList<ItemStack> results = transferResult.getRemaining();
+					if (results.size() == 1) {
+						inv.setInventorySlotContents(this.source, results.get(0));
+					}
+				}
 			}
 		}
 

@@ -9,12 +9,12 @@ public enum CoreErrorCode implements IErrorStateDefinition {
 	UNKNOWN("unknown"),
 	NO_ITEM("no.item", EnumErrorType.ITEM),
 	NO_SPACE("no.space", EnumErrorType.ITEM),
-	NO_SPACE_TANK("no.space.tank", CoreErrorCode.NO_SPACE),
+	NO_SPACE_TANK("no.space.tank", EnumErrorType.TANK),
 	INVALID_ITEM("invalid.item", EnumErrorType.ITEM),
 	INSUFFICIENT_POWER("insufficient.power", EnumErrorType.POWER),
 	TANK_FULL("tank.full", EnumErrorType.TANK),
 	TANK_EMPTY("tank.empty", EnumErrorType.TANK),
-	TANK_DIFFRENT_FLUID("tank.different", CoreErrorCode.NO_SPACE_TANK),
+	TANK_DIFFRENT_FLUID("tank.different", EnumErrorType.TANK),
 	INSUFFICIENT_LIQUID("insufficient.liquid", EnumErrorType.TANK),
 	NO_RECIPE("no.recipe"),
 	INVALID_RECIPE("invalid.recipe"),
@@ -23,24 +23,14 @@ public enum CoreErrorCode implements IErrorStateDefinition {
 	TASK_PAUSED("task.paused");
 	
 	private final String name;
-	private final IErrorStateDefinition parent;
 	private final EnumErrorType type;
 	
 	CoreErrorCode(String name) {
-		this(name, null, EnumErrorType.NONE);
+		this(name, EnumErrorType.NONE);
 	}
 	
 	CoreErrorCode(String name, EnumErrorType type) {
-		this(name, null, type);
-	}
-	
-	CoreErrorCode(String name, IErrorStateDefinition parent) {
-		this(name, parent, EnumErrorType.NONE);
-	}
-	
-	CoreErrorCode(String name, @Nullable IErrorStateDefinition parent, EnumErrorType type) {
 		this.name = name;
-		this.parent = parent;
 		this.type = type;
 	}
 	
@@ -60,9 +50,6 @@ public enum CoreErrorCode implements IErrorStateDefinition {
 	@Override
 	@Nullable
 	public EnumErrorType getType() {
-		if(parent != null){
-			return parent.getType();
-		}
 		return type;
 	}
 }
