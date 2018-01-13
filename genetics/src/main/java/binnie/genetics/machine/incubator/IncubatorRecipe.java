@@ -116,7 +116,7 @@ public class IncubatorRecipe implements IIncubatorRecipe {
 			final ItemStack output = outputStack.copy();
 			final TransferRequest product = new TransferRequest(output, machine.getInventory()).setTargetSlots(Incubator.SLOT_OUTPUT).ignoreValidation();
 			TransferResult transferResult = product.transfer(null, false);
-			return transferResult.isSuccess() && transferResult.getRemaining().isEmpty();
+			return transferResult.isSuccess() && (transferResult.getRemaining().isEmpty() || transferResult.getRemaining().get(0).getItem() == Items.AIR);
 		}
 		return true;
 	}
