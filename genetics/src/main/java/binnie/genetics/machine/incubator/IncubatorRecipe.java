@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 import java.util.Random;
 
 import binnie.core.machines.transfer.TransferResult;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 import net.minecraftforge.fluids.FluidStack;
