@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 import java.util.Random;
 
 import binnie.core.machines.transfer.TransferResult;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 import net.minecraftforge.fluids.FluidStack;
@@ -116,7 +117,7 @@ public class IncubatorRecipe implements IIncubatorRecipe {
 			final ItemStack output = outputStack.copy();
 			final TransferRequest product = new TransferRequest(output, machine.getInventory()).setTargetSlots(Incubator.SLOT_OUTPUT).ignoreValidation();
 			TransferResult transferResult = product.transfer(null, false);
-			return transferResult.isSuccess() && transferResult.getRemaining().isEmpty();
+			return transferResult.isSuccess() && (transferResult.getRemaining().isEmpty() || transferResult.getRemaining().get(0).getItem() == Items.AIR);
 		}
 		return true;
 	}
