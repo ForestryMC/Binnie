@@ -89,7 +89,6 @@ public enum Food implements IItemMisc {
 		ores = new ArrayList<>();
 		this.hunger = hunger;
 	}
-
 	public static void registerOreDictionary() {
 		Food.Crabapple.ore("Apple").ore("Crabapple");
 		Food.Orange.ore("Orange");
@@ -131,6 +130,25 @@ public enum Food implements IItemMisc {
 		Food.Coffee.ore("Coffee");
 		Food.OsangeOrange.ore("OsangeOrange");
 		Food.Clove.ore("Clove");
+		Food.Papayimar.ore("Papayimar");
+		Food.Blackcurrant.ore("Blackcurrant");
+		Food.Redcurrant.ore("Redcurrant");
+		Food.Blackberry.ore("Blackberry");
+		Food.Raspberry.ore("Raspberry");
+		Food.Blueberry.ore("Blueberry");
+		Food.Cranberry.ore("Cranberry");
+		Food.Juniper.ore("Juniper");
+		Food.Gooseberry.ore("Gooseberry");
+		Food.GoldenRaspberry.ore("GoldenRaspberry");
+		Food.Coconut.ore("Coconut");
+		Food.Cashew.ore("Cashew");
+		Food.Avacado.ore("Avacado");
+		Food.Nutmeg.ore("Nutmeg");
+		Food.Chilli.ore("Chilli");
+		Food.StarAnise.ore("StarAnise");
+		Food.Mango.ore("Mango");
+		Food.Starfruit.ore("Starfruit");
+		Food.Candlenut.ore("Candlenut");
 	}
 
 	public boolean isEdible() {
