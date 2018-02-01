@@ -102,7 +102,7 @@
     "tree=cinnamon": { "model": "extratrees:saplings/tree_default" },
     "tree=coconut": { "model": "extratrees:saplings/tree_default" },
     "tree=cashew": { "model": "extratrees:saplings/tree_default" },
-    "tree=avacado": { "model": "extratrees:saplings/tree_default" },
+    "tree=avocado": { "model": "extratrees:saplings/tree_default" },
     "tree=nutmeg": { "model": "extratrees:saplings/tree_default" },
     "tree=allspice": { "model": "extratrees:saplings/tree_default" },
     "tree=chilli": { "model": "extratrees:saplings/tree_default" },

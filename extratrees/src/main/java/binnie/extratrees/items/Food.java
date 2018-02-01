@@ -274,7 +274,7 @@ public enum Food implements IItemMiscProvider {
 	GOLDEN_RASPBERRY(2),
 	COCONUT(2),
 	CASHEW(0),
-	AVACADO(2),
+	AVOCADO(2),
 	NUTMEG(0),
 	ALLSPICE(0),
 	CHILLI(2),
