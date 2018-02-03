@@ -4,6 +4,7 @@ import java.util.LinkedList;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.world.World;
 
 import net.minecraftforge.common.MinecraftForge;
 
@@ -158,7 +159,8 @@ public class ComponentPowerReceptor extends MachineComponent implements IPowered
 	}
 
 	private void addToEnergyNet() {
-		if (this.getMachine().getWorld() == null) {
+		World world = this.getMachine().getWorld();
+		if (world == null || world.isRemote) {
 			return;
 		}
 		if (Mods.IC2.active()) {
@@ -167,7 +169,8 @@ public class ComponentPowerReceptor extends MachineComponent implements IPowered
 	}
 
 	private void removeFromEnergyNet() {
-		if (this.getMachine().getWorld() == null) {
+		World world = this.getMachine().getWorld();
+		if (world == null || world.isRemote) {
 			return;
 		}
 		if (Mods.IC2.active()) {
