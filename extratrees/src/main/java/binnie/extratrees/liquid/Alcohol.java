@@ -165,7 +165,7 @@ public enum Alcohol implements IFluidDefinition, ICocktailIngredientProvider {
 	}
 
 	protected void addFementation(final Juice juice) {
-		this.fermentationLiquid.add(juice.getType().getDisplayName());
+		this.fermentationLiquid.add(juice.getType().getIdentifier());
 	}
 
 	protected void addFementation(final String oreDict) {
