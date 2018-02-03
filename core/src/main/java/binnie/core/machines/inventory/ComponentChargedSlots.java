@@ -72,20 +72,20 @@ public class ComponentChargedSlots extends MachineComponent implements INetwork.
 	}
 
 	@Override
-	public float getCharge(final int slot) {
-		return this.charges.getOrDefault(slot, 0.0f);
+	public float getCharge(final int index) {
+		return this.charges.getOrDefault(index, 0.0f);
 	}
 
 	@Override
-	public void setCharge(final int slot, float charge) {
-		if (charge > 1.0f) {
-			charge = 1.0f;
+	public void setCharge(final int index, float value) {
+		if (value > 1.0f) {
+			value = 1.0f;
 		}
-		if (charge < 0.0f) {
-			charge = 0.0f;
+		if (value < 0.0f) {
+			value = 0.0f;
 		}
-		if (this.charges.containsKey(slot)) {
-			this.charges.put(slot, charge);
+		if (this.charges.containsKey(index)) {
+			this.charges.put(index, value);
 		}
 	}
 
@@ -99,7 +99,7 @@ public class ComponentChargedSlots extends MachineComponent implements INetwork.
 	}
 
 	@Override
-	public void alterCharge(final int slot, final float charge) {
-		this.setCharge(slot, this.getCharge(slot) + charge);
+	public void alterCharge(final int index, final float value) {
+		this.setCharge(index, this.getCharge(index) + value);
 	}
 }

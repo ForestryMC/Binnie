@@ -1,37 +1,37 @@
 package binnie.core.machines.inventory;
 
 enum AccessDirection {
-	Both,
-	In,
-	Out,
-	Neither;
+	BOTH,
+	IN,
+	OUT,
+	NEITHER;
 
 	boolean canInsert() {
-		return this == AccessDirection.Both || this == AccessDirection.In;
+		return this == AccessDirection.BOTH || this == AccessDirection.IN;
 	}
 
 	boolean canExtract() {
-		return this == AccessDirection.Both || this == AccessDirection.Out;
+		return this == AccessDirection.BOTH || this == AccessDirection.OUT;
 	}
 
 	boolean canAccess() {
-		return this != AccessDirection.Neither;
+		return this != AccessDirection.NEITHER;
 	}
 
 	AccessDirection changeInsert(final boolean b) {
 		if (b) {
-			if (this == AccessDirection.Out) {
-				return AccessDirection.Both;
+			if (this == AccessDirection.OUT) {
+				return AccessDirection.BOTH;
 			}
-			if (this == AccessDirection.Neither) {
-				return AccessDirection.In;
+			if (this == AccessDirection.NEITHER) {
+				return AccessDirection.IN;
 			}
 		} else {
-			if (this == AccessDirection.Both) {
-				return AccessDirection.Out;
+			if (this == AccessDirection.BOTH) {
+				return AccessDirection.OUT;
 			}
-			if (this == AccessDirection.In) {
-				return AccessDirection.Neither;
+			if (this == AccessDirection.IN) {
+				return AccessDirection.NEITHER;
 			}
 		}
 		return this;
@@ -39,18 +39,18 @@ enum AccessDirection {
 
 	AccessDirection changeExtract(final boolean b) {
 		if (b) {
-			if (this == AccessDirection.In) {
-				return AccessDirection.Both;
+			if (this == AccessDirection.IN) {
+				return AccessDirection.BOTH;
 			}
-			if (this == AccessDirection.Neither) {
-				return AccessDirection.Out;
+			if (this == AccessDirection.NEITHER) {
+				return AccessDirection.OUT;
 			}
 		} else {
-			if (this == AccessDirection.Both) {
-				return AccessDirection.In;
+			if (this == AccessDirection.BOTH) {
+				return AccessDirection.IN;
 			}
-			if (this == AccessDirection.Out) {
-				return AccessDirection.Neither;
+			if (this == AccessDirection.OUT) {
+				return AccessDirection.NEITHER;
 			}
 		}
 		return this;
@@ -58,13 +58,13 @@ enum AccessDirection {
 
 	public String getTextColour() {
 		switch (this) {
-			case Both: {
+			case BOTH: {
 				return "§a";
 			}
-			case In: {
+			case IN: {
 				return "§e";
 			}
-			case Neither: {
+			case NEITHER: {
 				return "§c";
 			}
 			default: {
@@ -75,13 +75,13 @@ enum AccessDirection {
 
 	public int getShadeColour() {
 		switch (this) {
-			case Both: {
+			case BOTH: {
 				return 1431699285;
 			}
-			case In: {
+			case IN: {
 				return 1442840405;
 			}
-			case Neither: {
+			case NEITHER: {
 				return 1442796885;
 			}
 			default: {

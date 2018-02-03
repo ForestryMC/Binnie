@@ -1,69 +1,72 @@
 package binnie.core.machines.inventory;
 
-import javax.annotation.Nullable;
+import javax.annotation.Nonnull;
 
-import binnie.core.ModId;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-
-import binnie.core.util.I18N;
 import net.minecraft.util.ResourceLocation;
 
+import binnie.core.ModId;
+import binnie.core.util.I18N;
+
 public class InventorySlot extends BaseSlot<ItemStack> {
-	private ItemStack itemStack;
+	private ItemStack content;
 	private Type type;
 
 	public InventorySlot(final int index, final ResourceLocation unlocLocation) {
 		super(index, unlocLocation);
-		this.itemStack = ItemStack.EMPTY;
+		this.content = ItemStack.EMPTY;
 		this.type = Type.Standard;
 	}
 
+	public boolean isFake(){
+		return false;
+	}
+
 	@Override
-	@Nullable
+	@Nonnull
 	public ItemStack getContent() {
-		return this.itemStack.isEmpty() ? null : this.itemStack;
+		return this.content.isEmpty() ? ItemStack.EMPTY : this.content;
 	}
 
 	public void setContent(final ItemStack itemStack) {
-		this.itemStack = itemStack;
+		this.content = itemStack;
 	}
 
 	public ItemStack getItemStack() {
-		return this.itemStack;
+		return this.content;
 	}
 
 	public ItemStack decrStackSize(final int amount) {
-		if (this.itemStack.isEmpty()) {
+		if (this.content.isEmpty()) {
 			return ItemStack.EMPTY;
 		}
-		if (this.itemStack.getCount() <= amount) {
-			final ItemStack returnStack = this.itemStack.copy();
-			this.itemStack = ItemStack.EMPTY;
-			return returnStack;
+		if (this.content.getCount() <= amount) {
+			ItemStack stack = this.content.copy();
+			this.content = ItemStack.EMPTY;
+			return stack;
 		}
-		final ItemStack returnStack = this.itemStack.copy();
-		final ItemStack itemStack = this.itemStack;
-		itemStack.shrink(amount);
-		returnStack.setCount(amount);
-		return returnStack;
+		 ItemStack stack = this.content.copy();
+		content.shrink(amount);
+		stack.setCount(amount);
+		return stack;
 	}
 
 	@Override
 	public void readFromNBT(final NBTTagCompound slotNBT) {
 		if (slotNBT.hasKey("item")) {
 			final NBTTagCompound itemNBT = slotNBT.getCompoundTag("item");
-			this.itemStack = new ItemStack(itemNBT);
+			this.content = new ItemStack(itemNBT);
 		} else {
-			this.itemStack = ItemStack.EMPTY;
+			this.content = ItemStack.EMPTY;
 		}
 	}
 
 	@Override
 	public NBTTagCompound writeToNBT(final NBTTagCompound slotNBT) {
 		final NBTTagCompound itemNBT = new NBTTagCompound();
-		if (!this.itemStack.isEmpty()) {
-			this.itemStack.writeToNBT(itemNBT);
+		if (!this.content.isEmpty()) {
+			this.content.writeToNBT(itemNBT);
 		}
 		slotNBT.setTag("item", itemNBT);
 		return slotNBT;

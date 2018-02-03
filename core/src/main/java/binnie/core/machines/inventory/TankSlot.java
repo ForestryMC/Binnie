@@ -1,14 +1,15 @@
 package binnie.core.machines.inventory;
 
-import binnie.core.Constants;
-import binnie.core.ModId;
-import net.minecraft.nbt.NBTTagCompound;
+import javax.annotation.Nullable;
 
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
+
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
-import net.minecraftforge.fluids.IFluidTank;
 
+import binnie.core.Constants;
+import binnie.core.ModId;
 import binnie.core.util.I18N;
 
 public class TankSlot extends BaseSlot<FluidStack> {
@@ -25,17 +26,17 @@ public class TankSlot extends BaseSlot<FluidStack> {
 	}
 
 	@Override
-	public void readFromNBT(final NBTTagCompound nbttagcompound) {
-		final FluidStack liquid = FluidStack.loadFluidStackFromNBT(nbttagcompound);
+	public void readFromNBT(final NBTTagCompound compound) {
+		final FluidStack liquid = FluidStack.loadFluidStackFromNBT(compound);
 		this.setContent(liquid);
 	}
 
 	@Override
-	public NBTTagCompound writeToNBT(final NBTTagCompound nbttagcompound) {
+	public NBTTagCompound writeToNBT(final NBTTagCompound compound) {
 		if (this.getContent() != null) {
-			this.getContent().writeToNBT(nbttagcompound);
+			this.getContent().writeToNBT(compound);
 		}
-		return nbttagcompound;
+		return compound;
 	}
 
 	@Override
@@ -43,8 +44,8 @@ public class TankSlot extends BaseSlot<FluidStack> {
 		return this.tank.getFluid();
 	}
 
-	public void setContent(final FluidStack itemStack) {
-		this.tank.setFluid(itemStack);
+	private void setContent(@Nullable FluidStack stack) {
+		this.tank.setFluid(stack);
 	}
 
 	public FluidTank getTank() {

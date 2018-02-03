@@ -96,13 +96,13 @@ public class TileEntityMachineBase extends TileEntity implements IInventoryMachi
 	}
 
 	@Override
-	public boolean isTankReadOnly(final int tank) {
-		return this.getTankContainer().isTankReadOnly(tank);
+	public boolean isTankReadOnly(final int index) {
+		return this.getTankContainer().isTankReadOnly(index);
 	}
 
 	@Override
-	public boolean isLiquidValidForTank(final FluidStack liquid, final int tank) {
-		return this.getTankContainer().isLiquidValidForTank(liquid, tank);
+	public boolean isLiquidValidForTank(final FluidStack liquid, final int index) {
+		return this.getTankContainer().isLiquidValidForTank(liquid, index);
 	}
 
 	@Override

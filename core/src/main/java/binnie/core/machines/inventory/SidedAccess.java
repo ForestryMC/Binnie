@@ -17,7 +17,7 @@ class SidedAccess {
 
 	public SidedAccess() {
 		this.accesses = new HashMap<>();
-		this.base = AccessDirection.Both;
+		this.base = AccessDirection.BOTH;
 		this.insertLocked = false;
 		this.extractLocked = false;
 	}
@@ -55,46 +55,50 @@ class SidedAccess {
 	}
 
 	public Collection<EnumFacing> getInsertionSides() {
-		final List<EnumFacing> dirs = new ArrayList<>();
-		for (final EnumFacing dir : EnumFacing.VALUES) {
-			if (this.getAccess(dir).canInsert()) {
-				dirs.add(dir);
+		List<EnumFacing> dirs = new ArrayList<>();
+		for (EnumFacing side : EnumFacing.VALUES) {
+			AccessDirection direction = getAccess(side);
+			if (direction.canInsert()) {
+				dirs.add(side);
 			}
 		}
 		return dirs;
 	}
 
 	public Collection<EnumFacing> getExtractionSides() {
-		final List<EnumFacing> dirs = new ArrayList<>();
-		for (final EnumFacing dir : EnumFacing.VALUES) {
-			if (this.getAccess(dir).canExtract()) {
-				dirs.add(dir);
+		List<EnumFacing> dirs = new ArrayList<>();
+		for (EnumFacing side : EnumFacing.VALUES) {
+			AccessDirection direction = getAccess(side);
+			if (direction.canExtract()) {
+				dirs.add(side);
 			}
 		}
 		return dirs;
 	}
 
-	public void setInsert(final EnumFacing side, final boolean b) {
-		if (this.getAccess(side).canInsert() != b) {
-			this.accesses.put(side, this.getAccess(side).changeInsert(b));
+	public void setInsert(EnumFacing side, boolean value) {
+		AccessDirection direction = getAccess(side);
+		if (direction.canInsert() != value) {
+			this.accesses.put(side, direction.changeInsert(value));
 		}
 	}
 
-	public void setExtract(final EnumFacing side, final boolean b) {
-		if (this.getAccess(side).canExtract() != b) {
-			this.accesses.put(side, this.getAccess(side).changeExtract(b));
+	public void setExtract(EnumFacing side, boolean value) {
+		AccessDirection direction = getAccess(side);
+		if (direction.canExtract() != value) {
+			this.accesses.put(side, direction.changeExtract(value));
 		}
 	}
 
-	public void setInsert(final boolean b) {
-		if (this.base.canInsert() != b) {
-			this.base = this.base.changeInsert(b);
+	public void setInsert(boolean value) {
+		if (this.base.canInsert() != value) {
+			this.base = this.base.changeInsert(value);
 		}
 	}
 
-	public void setExtract(final boolean b) {
-		if (this.base.canExtract() != b) {
-			this.base = this.base.changeExtract(b);
+	public void setExtract(boolean value) {
+		if (this.base.canExtract() != value) {
+			this.base = this.base.changeExtract(value);
 		}
 	}
 }

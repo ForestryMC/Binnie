@@ -1,8 +1,9 @@
 package binnie.extratrees.machines.brewery;
 
-import binnie.core.Constants;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
 
+import binnie.core.Constants;
 import binnie.core.gui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
 import binnie.core.machines.TileEntityMachine;
@@ -19,7 +20,6 @@ import binnie.extratrees.machines.brewery.window.SlotValidatorBreweryIngredient;
 import binnie.extratrees.machines.brewery.window.SlotValidatorBreweryYeast;
 import binnie.extratrees.machines.brewery.window.TankValidatorFermentInput;
 import binnie.extratrees.machines.brewery.window.TankValidatorFermentOutput;
-import net.minecraft.util.ResourceLocation;
 
 public class BreweryMachine extends ExtraTreeMachine.PackageExtraTreeMachine implements IMachineInformation {
 	public static final int TANK_INPUT = 0;
@@ -39,14 +39,12 @@ public class BreweryMachine extends ExtraTreeMachine.PackageExtraTreeMachine imp
 		new ExtraTreeMachine.ComponentExtraTreeGUI(machine, ExtraTreesGUID.BREWERY);
 		final ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
 
-		inventory.addSlotArray(SLOT_RECIPE_GRAINS, new ResourceLocation(Constants.CORE_MOD_ID, "gui.slot.grain"));
-		for (final InventorySlot slot : inventory.getSlots(SLOT_RECIPE_GRAINS)) {
+		for (final InventorySlot slot : inventory.addSlotArray(SLOT_RECIPE_GRAINS, new ResourceLocation(Constants.CORE_MOD_ID, "gui.slot.grain"))) {
 			slot.setValidator(new SlotValidatorBreweryGrain());
 			slot.setType(InventorySlot.Type.Recipe);
 		}
 
-		inventory.addSlotArray(SLOTS_INVENTORY, new ResourceLocation(Constants.CORE_MOD_ID, "gui.slot.inventory"));
-		for (final InventorySlot slot : inventory.getSlots(SLOTS_INVENTORY)) {
+		for (final InventorySlot slot : inventory.addSlotArray(SLOTS_INVENTORY, new ResourceLocation(Constants.CORE_MOD_ID, "gui.slot.inventory"))) {
 			slot.forbidExtraction();
 		}
 

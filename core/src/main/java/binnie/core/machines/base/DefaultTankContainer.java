@@ -20,12 +20,12 @@ class DefaultTankContainer implements ITankMachine {
 	}
 
 	@Override
-	public boolean isTankReadOnly(final int tank) {
+	public boolean isTankReadOnly(final int index) {
 		return false;
 	}
 
 	@Override
-	public boolean isLiquidValidForTank(final FluidStack liquid, final int tank) {
+	public boolean isLiquidValidForTank(final FluidStack liquid, final int index) {
 		return false;
 	}
 

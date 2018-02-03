@@ -9,10 +9,9 @@ import java.util.List;
 import java.util.Map;
 
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
-
 import net.minecraft.util.ResourceLocation;
+
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.FluidTankProperties;
@@ -23,8 +22,12 @@ import binnie.core.machines.IMachine;
 import binnie.core.machines.MachineComponent;
 import binnie.core.machines.power.ITankMachine;
 import binnie.core.machines.power.TankInfo;
+import binnie.core.util.NBTUtil;
 
 public class ComponentTankContainer extends MachineComponent implements ITankMachine {
+	private static final String TANKS_KEY = "liquidTanks";
+	private static final String TANK_INDEX_KEY = "index";
+
 	private final Map<Integer, TankSlot> tanks;
 	private final EnumMap<EnumFacing, IFluidHandler> handlers;
 	private final IFluidHandler noFacingHandler;
@@ -75,49 +78,44 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 		}
 		final TankSlot tank = this.tanks.get(tankIndex);
 		final FluidStack drained = tank.getTank().drain(maxDrain, doDrain);
-		if (drained != null) {
+		if (drained != null && doDrain) {
 			this.markDirty();
 		}
 		return drained;
 	}
 
 	@Override
-	public void readFromNBT(final NBTTagCompound nbttagcompound) {
-		super.readFromNBT(nbttagcompound);
-		if (nbttagcompound.hasKey("liquidTanks")) {
-			final NBTTagList tanksNBT = nbttagcompound.getTagList("liquidTanks", 10);
-			for (int i = 0; i < tanksNBT.tagCount(); ++i) {
-				final NBTTagCompound tankNBT = tanksNBT.getCompoundTagAt(i);
-				final int index = tankNBT.getInteger("index");
-				if (this.tanks.containsKey(index)) {
-					this.tanks.get(index).readFromNBT(tankNBT);
-				}
+	public void readFromNBT(NBTTagCompound compound) {
+		super.readFromNBT(compound);
+		NBTUtil.readFromList(compound, TANKS_KEY, (tankNBT)->{
+			int index = tankNBT.getInteger(TANK_INDEX_KEY);
+			if (this.tanks.containsKey(index)) {
+				TankSlot tank = tanks.get(index);
+				tank.readFromNBT(tankNBT);
 			}
-		}
+		});
 	}
 
 	@Override
-	public NBTTagCompound writeToNBT(final NBTTagCompound nbttagcompound2) {
-		NBTTagCompound nbttagcompound = super.writeToNBT(nbttagcompound2);
-		final NBTTagList tanksNBT = new NBTTagList();
-		for (final Map.Entry<Integer, TankSlot> entry : this.tanks.entrySet()) {
-			final NBTTagCompound tankNBT = new NBTTagCompound();
-			tankNBT.setInteger("index", entry.getKey());
-			entry.getValue().writeToNBT(tankNBT);
-			tanksNBT.appendTag(tankNBT);
-		}
-		nbttagcompound.setTag("liquidTanks", tanksNBT);
-		return nbttagcompound;
+	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+		compound = super.writeToNBT(compound);
+		NBTUtil.writeToList(compound, TANKS_KEY, tanks, (index, tank)->{
+			NBTTagCompound tankNBT = new NBTTagCompound();
+			tankNBT.setInteger(TANK_INDEX_KEY, index);
+			tank.writeToNBT(tankNBT);
+			return tankNBT;
+		});
+		return compound;
 	}
 
 	@Override
-	public boolean isTankReadOnly(final int tank) {
-		return this.tanks.get(tank).isReadOnly();
+	public boolean isTankReadOnly(final int index) {
+		return this.tanks.get(index).isReadOnly();
 	}
 
 	@Override
-	public boolean isLiquidValidForTank(final FluidStack liquid, final int tank) {
-		final TankSlot slot = this.getTankSlot(tank);
+	public boolean isLiquidValidForTank(final FluidStack liquid, final int index) {
+		final TankSlot slot = this.getTankSlot(index);
 		return slot != null && (slot.isValid(liquid) && !slot.isReadOnly());
 	}
 
@@ -133,11 +131,11 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 
 	@Override
 	public IFluidTank[] getTanks() {
-		final List<IFluidTank> ltanks = new ArrayList<>();
+		final List<IFluidTank> tankList = new ArrayList<>();
 		for (final TankSlot tank : this.tanks.values()) {
-			ltanks.add(tank.getTank());
+			tankList.add(tank.getTank());
 		}
-		return ltanks.toArray(new IFluidTank[0]);
+		return tankList.toArray(new IFluidTank[0]);
 	}
 
 	@Override
@@ -147,9 +145,7 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 	}
 
 	public void markDirty() {
-		if (this.getMachine() != null) {
-			this.getMachine().markDirty();
-		}
+		getMachine().markDirty();
 	}
 
 	@Override
@@ -183,7 +179,7 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 		@Nullable
 		private final EnumFacing from;
 
-		public TankContainer(ComponentTankContainer tankContainer, Map<Integer, TankSlot> tanks, @Nullable EnumFacing from) {
+		private TankContainer(ComponentTankContainer tankContainer, Map<Integer, TankSlot> tanks, @Nullable EnumFacing from) {
 			this.tankContainer = tankContainer;
 			this.tanks = tanks;
 			this.from = from;

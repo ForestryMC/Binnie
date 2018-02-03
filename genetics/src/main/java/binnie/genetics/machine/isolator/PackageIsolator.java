@@ -1,6 +1,5 @@
 package binnie.genetics.machine.isolator;
 
-import binnie.genetics.machine.EthanolTankValidator;
 import net.minecraft.tileentity.TileEntity;
 
 import binnie.core.gui.minecraft.IMachineInformation;
@@ -16,6 +15,7 @@ import binnie.core.machines.power.ComponentPowerReceptor;
 import binnie.genetics.core.GeneticsGUI;
 import binnie.genetics.item.GeneticsItems;
 import binnie.genetics.machine.ComponentGeneticGUI;
+import binnie.genetics.machine.EthanolTankValidator;
 import binnie.genetics.machine.GeneticMachine;
 import binnie.genetics.machine.ModuleMachine;
 
@@ -26,36 +26,47 @@ public class PackageIsolator extends GeneticMachine.PackageGeneticBase implement
 
 	@Override
 	public void createMachine(final Machine machine) {
+		// GUI
 		new ComponentGeneticGUI(machine, GeneticsGUI.ISOLATOR);
+		// Inventory
 		final ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
 		InventorySlot slotEnzyme = inventory.addSlot(Isolator.SLOT_ENZYME, "enzyme");
 		slotEnzyme.setValidator(new SlotValidator.Item(GeneticsItems.Enzyme.get(1), ModuleMachine.getSpriteEnzyme()));
 		slotEnzyme.forbidExtraction();
+
 		InventorySlot slotSequencer = inventory.addSlot(Isolator.SLOT_SEQUENCER_VIAL, "sequencervial");
 		slotSequencer.setValidator(new SlotValidator.Item(GeneticsItems.EmptySequencer.get(1), ModuleMachine.getSpriteSequencer()));
 		slotSequencer.forbidExtraction();
+
 		for (InventorySlot slot : inventory.addSlotArray(Isolator.SLOT_RESERVE, "input")) {
 			slot.setValidator(new SlotValidator.Individual());
 			slot.forbidExtraction();
 		}
+
 		InventorySlot slotTarget = inventory.addSlot(Isolator.SLOT_TARGET, "process");
 		slotTarget.setValidator(new SlotValidator.Individual());
 		slotTarget.setReadOnly();
 		slotTarget.forbidInteraction();
-		InventorySlot slotResulut = inventory.addSlot(Isolator.SLOT_RESULUT, "output");
-		slotResulut.setReadOnly();
-		slotResulut.forbidInteraction();
-		for (final InventorySlot slot : inventory.addSlotArray(Isolator.SLOT_FINISHED, "output")) {
+
+		InventorySlot slotResult = inventory.addSlot(Isolator.SLOT_RESULUT, "output");
+		slotResult.setReadOnly();
+		slotResult.forbidInteraction();
+
+		for (InventorySlot slot : inventory.addSlotArray(Isolator.SLOT_FINISHED, "output")) {
 			slot.setReadOnly();
 			slot.forbidInsertion();
 		}
+		// Tanks
 		final ComponentTankContainer tanks = new ComponentTankContainer(machine);
 		tanks.addTank(Isolator.TANK_ETHANOL, "input", 1000).setValidator(new EthanolTankValidator());
+		//Charged Slots
 		final ComponentChargedSlots chargedSlots = new ComponentChargedSlots(machine);
 		chargedSlots.addCharge(Isolator.SLOT_ENZYME);
+		// Transfer
 		final ComponentInventoryTransfer transfer = new ComponentInventoryTransfer(machine);
 		transfer.addRestock(Isolator.SLOT_RESERVE, Isolator.SLOT_TARGET, 1);
 		transfer.addStorage(Isolator.SLOT_RESULUT, Isolator.SLOT_FINISHED);
+		// Logic
 		new ComponentPowerReceptor(machine, 20000);
 		new IsolatorLogic(machine);
 		new IsolatorFX(machine);

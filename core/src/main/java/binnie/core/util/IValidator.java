@@ -1,5 +1,7 @@
 package binnie.core.util;
 
-public interface IValidator<T> {
-	boolean isValid(final T value);
+import javax.annotation.Nullable;
+
+public interface IValidator<V> {
+	boolean isValid(@Nullable final V value);
 }

@@ -81,9 +81,9 @@ class ComponentCompartmentInventory extends ComponentInventorySlots implements I
 	}
 
 	@Override
-	public void readFromNBT(final NBTTagCompound nbt) {
-		super.readFromNBT(nbt);
-		final NBTTagList tags = nbt.getTagList("tabs", 10);
+	public void readFromNBT(final NBTTagCompound compound) {
+		super.readFromNBT(compound);
+		final NBTTagList tags = compound.getTagList("tabs", 10);
 		for (int i = 0; i < tags.tagCount(); ++i) {
 			final NBTTagCompound tag = tags.getCompoundTagAt(i);
 			final CompartmentTab tab = new CompartmentTab(tag);
@@ -92,8 +92,8 @@ class ComponentCompartmentInventory extends ComponentInventorySlots implements I
 	}
 
 	@Override
-	public NBTTagCompound writeToNBT(final NBTTagCompound nbt4) {
-		NBTTagCompound nbt = super.writeToNBT(nbt4);
+	public NBTTagCompound writeToNBT(final NBTTagCompound compound) {
+		NBTTagCompound nbt = super.writeToNBT(compound);
 		final NBTTagList list = new NBTTagList();
 		for (int i = 0; i < this.tabCount; ++i) {
 			final NBTTagCompound nbt2 = new NBTTagCompound();

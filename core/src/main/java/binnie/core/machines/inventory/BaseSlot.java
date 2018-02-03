@@ -5,18 +5,17 @@ import java.util.Collection;
 import java.util.EnumSet;
 
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ResourceLocation;
 
+import binnie.core.util.IValidator;
 import forestry.api.core.INbtReadable;
 import forestry.api.core.INbtWritable;
 
-import binnie.core.util.IValidator;
-import net.minecraft.util.ResourceLocation;
-
-public abstract class BaseSlot<T> implements INbtWritable, INbtReadable, IValidator<T> {
+public abstract class BaseSlot<V> implements INbtWritable, INbtReadable, IValidator<V> {
 	@Nullable
 	protected final ResourceLocation unlocLocation;
 	@Nullable
-	private Validator<T> validator;
+	private Validator<V> validator;
 	private final SidedAccess access;
 	private boolean readOnly;
 	private int index;
@@ -33,12 +32,12 @@ public abstract class BaseSlot<T> implements INbtWritable, INbtReadable, IValida
 	}
 
 	@Override
-	public boolean isValid(final T item) {
+	public boolean isValid(@Nullable final V item) {
 		return item == null || this.validator == null || this.validator.isValid(item);
 	}
 
 	@Nullable
-	public abstract T getContent();
+	public abstract V getContent();
 
 	public boolean isReadOnly() {
 		return this.readOnly;
@@ -93,20 +92,18 @@ public abstract class BaseSlot<T> implements INbtWritable, INbtReadable, IValida
 
 	public void setOutputSides(final EnumSet<EnumFacing> sides) {
 		for (final EnumFacing side : EnumSet.complementOf(sides)) {
-			//if (side != ForgeDirection.UNKNOWN) {
 			this.access.setExtract(side, false);
-			//}
 		}
 	}
 
 	public abstract String getName();
 
 	@Nullable
-	public Validator<T> getValidator() {
+	public Validator<V> getValidator() {
 		return this.validator;
 	}
 
-	public BaseSlot<T> setValidator(final Validator<T> val) {
+	public BaseSlot<V> setValidator(final Validator<V> val) {
 		this.validator = val;
 		return this;
 	}

@@ -1,9 +1,9 @@
 package binnie.core.machines.inventory;
 
 public interface IChargedSlots {
-	float getCharge(final int p0);
+	float getCharge(int index);
 
-	void setCharge(final int p0, final float p1);
+	void setCharge(int index, float value);
 
-	void alterCharge(final int p0, final float p1);
+	void alterCharge(int index, float value);
 }
