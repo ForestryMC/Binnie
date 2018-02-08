@@ -187,12 +187,12 @@ binniecore.item.container.bucket=Bucket
 binniecore.item.container.glass=Bottle
 binniecore.item.container.cylinder=Cylinder
 
-binniecore.machine.storage.compartment=Compartment
-binniecore.machine.storage.compartment_iron=Iron Compartment
-binniecore.machine.storage.compartment_diamond=Diamond Compartment
-binniecore.machine.storage.compartment_copper=Copper Compartment
-binniecore.machine.storage.compartment_bronze=Bronze Compartment
-binniecore.machine.storage.compartment_gold=Gold Compartment
+binniecore.storage.compartment=Compartment
+binniecore.storage.compartment_iron=Iron Compartment
+binniecore.storage.compartment_diamond=Diamond Compartment
+binniecore.storage.compartment_copper=Copper Compartment
+binniecore.storage.compartment_bronze=Bronze Compartment
+binniecore.storage.compartment_gold=Gold Compartment
 
 binniecore.machine.tooltips.processing=Processing
 

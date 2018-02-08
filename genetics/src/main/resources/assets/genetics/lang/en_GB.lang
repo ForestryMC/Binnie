@@ -1,20 +1,20 @@
 genetics.machine.sequencer.info=The Sequencer takes unsequenced serums and determines which allele is present in them. This requires the use of fluorescent dye and has a long computational time.
 genetics.machine.polymeriser.info=The Polymeriser takes serums and refills them using Raw DNA and replicating bacteria. This can be accelerated using gold nuggets.
 genetics.machine.inoculator.info=The Inoculator uses serums to add genes to breedable individuals. This process takes a very long time and requires a Bacteria Vector, but is 100% successful.
-genetics.machine.lab_machine.genepool.info=The Genepool uses enzymes and ethanol to break down living things into DNA. All genetic information is lost and the source of the DNA is destroyed.
+genetics.lab_machine.genepool.info=The Genepool uses enzymes and ethanol to break down living things into DNA. All genetic information is lost and the source of the DNA is destroyed.
 
-genetics.machine.lab_machine.analyser=Analyser
-genetics.machine.lab_machine.analyser.info=The Analyser takes breedable individuals and DNA sequencers and analyses them to determine the genes present. This requires DNA Dye, created from purple dye and glowstone
-genetics.machine.lab_machine.analyser.tooltips.slots.unanalysed=Unanalysed Item
+genetics.lab_machine.analyser=Analyser
+genetics.lab_machine.analyser.info=The Analyser takes breedable individuals and DNA sequencers and analyses them to determine the genes present. This requires DNA Dye, created from purple dye and glowstone
+genetics.lab_machine.analyser.tooltips.slots.unanalysed=Unanalysed Item
 genetics.errors.analyser.insufficient.dye.desc=Not enough DNA dye to analyse
 genetics.errors.analyser.already.analysed.desc=Already Analysed
 genetics.errors.analyser.already.analysed.name=Item has already been analysed
 genetics.errors.analyser.no.item.desc=No item to analyse
 
-genetics.machine.lab_machine.incubator=Incubator
-genetics.machine.lab_machine.incubator.info=The Incubator combines liquids and items and allows them to sit at an ideal temperature to encourage bacterial growth.
+genetics.lab_machine.incubator=Incubator
+genetics.lab_machine.incubator.info=The Incubator combines liquids and items and allows them to sit at an ideal temperature to encourage bacterial growth.
 
-genetics.machine.lab_machine.acclimatiser=Acclimatiser
-genetics.machine.lab_machine.acclimatiser.info=The Acclimatiser uses acclimatising items to adjust the temperature and humidity tolerance of individuals.
+genetics.lab_machine.acclimatiser=Acclimatiser
+genetics.lab_machine.acclimatiser.info=The Acclimatiser uses acclimatising items to adjust the temperature and humidity tolerance of individuals.
 
 genetics.adv_machine.splicer.info=The Splicer is an incredibly powerful machine to insert genes into individuals. It is fast, but needs insane amounts of power.

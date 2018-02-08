@@ -219,7 +219,7 @@ public enum AlleleETFruitDefinition {
 			addProduct(Food.RED_BANANA.get(2), 1.0f);
 		}
 	},
-	Plantain("platain", FruitPod.PLANTAIN, JUNGLE){
+	Plantain("plantain", FruitPod.PLANTAIN, JUNGLE){
 		@Override
 		protected void addProducts() {
 			addProduct(Food.PLANTAIN.get(2), 1.0f);
