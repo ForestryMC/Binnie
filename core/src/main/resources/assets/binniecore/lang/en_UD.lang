@@ -1,0 +1,384 @@
+binniecore.rootBees.epitome.5=sʇsᴉɹɐᴉdⱯ ʇsᵷuoɯɐ po⅁
+binniecore.rootButterflies.epitome.3=pɹoꞀ ɹɐꞁꞁᴉdɹǝʇɐƆ
+binniecore.rootFlowers.epitome.5=ɹǝuǝpɹɐ⅁ ɹǝʇsɐW
+
+binniecore.allele.forestry.effectMisanthrope.desc=ǝʌᴉɥ sʇᴉ spuǝɟǝp ʎꞁǝʌᴉssǝɹᵷᵷⱯ
+binniecore.allele.forestry.effectExploration.desc=ǝɔuǝᴉɹǝdxǝ ɥʇᴉʍ sɹǝʎɐꞁd ʎqɹɐǝu spɹɐʍǝɹ ʎꞁʍoꞁS
+binniecore.allele.extrabees.effect.gravity.desc=ǝʌᴉɥ ǝɥʇ spɹɐʍoʇ sǝᴉʇᴉʇuǝ sꞁꞁnԀ
+binniecore.allele.extrabees.effect.hunger.desc=ʎɹᵷunɥ ǝq oʇ sɹǝʎɐꞁd sǝsnɐƆ
+binniecore.allele.extrabees.effect.lightning.desc=sǝʞᴉɹʇs ᵷuᴉuʇɥᵷᴉꞁ sǝʇɐꞁnɯᴉʇS
+binniecore.allele.forestry.effectMycophilic.desc=ɯnᴉꞁǝɔʎɯ puɐ sɯooɹɥsnɯ spɐǝɹdS
+binniecore.allele.forestry.effectNone.desc=sʇɔǝɟɟǝ ǝꞁqᴉuɹǝɔsᴉp oN
+
+binniecore.mod.name=ǝɹoƆ ǝᴉuuᴉᗺ
+
+binniecore.rootBees.descriptor=ʇsᴉɹɐᴉdⱯ
+binniecore.rootTrees.descriptor=ʇsᴉɹoqɹⱯ
+binniecore.rootButterflies.descriptor=ʇsᴉɹǝʇdopᴉdǝꞀ
+binniecore.rootFlowers.descriptor=ʇsᴉuɐʇoᗺ
+
+binniecore.rootBees.shortName=sǝǝᗺ
+binniecore.rootTrees.shortName=sǝǝɹ⟘
+binniecore.rootButterflies.shortName=sɥʇoW ⅋ sǝᴉꞁɟɹǝʇʇnᗺ
+binniecore.rootFlowers.shortName=sɹǝʍoꞁℲ
+
+binniecore.rootBees.epitome.0=ɹǝʇʇɐʍS ǝǝᗺ
+binniecore.rootBees.epitome.1=ɹǝdǝǝʞǝǝᗺ ɹnǝʇɐɯⱯ
+binniecore.rootBees.epitome.2=ᵷuᴉuᴉɐɹ⟘-uI-ʇsᴉɹɐᴉdⱯ
+binniecore.rootBees.epitome.3=ɹǝdǝǝʞǝǝᗺ ꞁɐuoᴉssǝɟoɹԀ
+binniecore.rootBees.epitome.4=ʇsᴉɹɐᴉdⱯ ɹǝʇsɐW
+binniecore.rootBees.epitome.6=uǝsoɥƆ s,ɹᴉᵷuǝS
+
+binniecore.rootTrees.epitome.0=ɹǝɯɹɐℲ ǝǝɹ⟘ ǝqɐuuɐM
+binniecore.rootTrees.epitome.1=ʞɔɐɾɹǝqɯnꞀ
+binniecore.rootTrees.epitome.2=pǝqɯnɥ⟘ uǝǝɹ⅁
+binniecore.rootTrees.epitome.3=ɹǝɯɹɐℲ pǝuʍouǝᴚ
+binniecore.rootTrees.epitome.4=ɹǝʇsɐW ꞁɐɹnʇꞁnɔᴉɹᵷⱯ
+binniecore.rootTrees.epitome.5=sǝǝɹ⟘ ǝɥʇ ɟo pɹoꞀ
+binniecore.rootTrees.epitome.6=ǝɹnʇɐN ɹǝɥʇoW
+
+binniecore.rootButterflies.epitome.0=ɹǝɥɔʇɐƆ ᵷnᗺ
+binniecore.rootButterflies.epitome.1=ɹǝsɐɥƆ ɥʇoW
+binniecore.rootButterflies.epitome.2=pɹɐzᴉM dooɔS
+binniecore.rootButterflies.epitome.4=uᴉssɐssⱯ pǝᵷuᴉM
+binniecore.rootButterflies.epitome.5=ᵷuᴉʞ ɥʇoW
+binniecore.rootButterflies.epitome.6=sǝᴉꞁɟɹǝʇʇnᗺ ǝɥʇ ɟo ɥɔɹɐuoW
+
+binniecore.rootFlowers.epitome.0=ʎsuɐԀ
+binniecore.rootFlowers.epitome.1=ɹǝɥsnԀ ʎsᴉɐᗡ
+binniecore.rootFlowers.epitome.2=ɹǝʍoԀ ɹǝʍoꞁℲ
+binniecore.rootFlowers.epitome.3=ɥɔno⟘ sɐpᴉW
+binniecore.rootFlowers.epitome.4=qɯnɥ⟘ uǝǝɹ⅁
+binniecore.rootFlowers.epitome.6=ʇsᴉuɐʇoᗺ ssǝꞁɹǝǝԀ
+
+binniecore.rootBees.chromosome.species=sǝᴉɔǝdS
+binniecore.rootBees.chromosome.speed=uoᴉʇɔnpoɹԀ
+binniecore.rootBees.chromosome.lifespan=uɐdsǝɟᴉꞀ
+binniecore.rootBees.chromosome.fertility=ʎʇᴉꞁᴉʇɹǝℲ
+binniecore.rootBees.chromosome.temperature_tolerance=ǝɔuɐɹǝꞁo⟘ ǝɹnʇɐɹǝdɯǝ⟘
+binniecore.rootBees.chromosome.never_sleeps=ꞁɐɹǝɯǝɥʇɐƆ
+binniecore.rootBees.chromosome.humidity=ʎʇᴉpᴉɯnH
+binniecore.rootBees.chromosome.humidity_tolerance=ǝɔuɐɹǝꞁo⟘ ʎʇᴉpᴉɯnH
+binniecore.rootBees.chromosome.tolerates_rain=ǝɔuɐɹǝꞁo⟘ uᴉɐᴚ
+binniecore.rootBees.chromosome.cave_dwelling=ᵷuᴉꞁꞁǝʍᗡ ǝʌɐƆ
+binniecore.rootBees.chromosome.flower_provider=sɹǝʍoꞁℲ
+binniecore.rootBees.chromosome.flowering=uoᴉʇɐuᴉꞁꞁoԀ
+binniecore.rootBees.chromosome.territory=ʎɹoʇᴉɹɹǝ⟘
+binniecore.rootBees.chromosome.effect=ʇɔǝɟɟƎ
+
+binniecore.rootBees.chromosome.species.short=sǝᴉɔǝdS
+binniecore.rootBees.chromosome.speed.short=uoᴉʇɔnpoɹԀ
+binniecore.rootBees.chromosome.lifespan.short=uɐdsǝɟᴉꞀ
+binniecore.rootBees.chromosome.fertility.short=ʎʇᴉꞁᴉʇɹǝℲ
+binniecore.rootBees.chromosome.temperature_tolerance.short=˙ꞁo⟘ ˙dɯǝ⟘
+binniecore.rootBees.chromosome.never_sleeps.short=ꞁɐɹǝɯǝɥʇɐƆ
+binniecore.rootBees.chromosome.humidity.short=ʎʇᴉpᴉɯnH
+binniecore.rootBees.chromosome.humidity_tolerance.short=˙ꞁo⟘ ˙pᴉɯnH
+binniecore.rootBees.chromosome.tolerates_rain.short=˙ꞁo⟘ uᴉɐᴚ
+binniecore.rootBees.chromosome.cave_dwelling.short=˙ꞁꞁǝʍᗡ ǝʌɐƆ
+binniecore.rootBees.chromosome.flower_provider.short=sɹǝʍoꞁℲ
+binniecore.rootBees.chromosome.flowering.short=uoᴉʇɐuᴉꞁꞁoԀ
+binniecore.rootBees.chromosome.territory.short=ʎɹoʇᴉɹɹǝ⟘
+binniecore.rootBees.chromosome.effect.short=ʇɔǝɟɟƎ
+
+binniecore.rootTrees.chromosome.species=sǝᴉɔǝdS
+binniecore.rootTrees.chromosome.growth=ɥʇʍoɹ⅁
+binniecore.rootTrees.chromosome.height=ʇɥᵷᴉǝH
+binniecore.rootTrees.chromosome.fertility=ʎʇᴉꞁᴉʇɹǝℲ
+binniecore.rootTrees.chromosome.fruits=ʇᴉnɹℲ
+binniecore.rootTrees.chromosome.yield=pꞁǝᴉ⅄
+binniecore.rootTrees.chromosome.plant=ǝdʎ⟘ ʇuɐꞁԀ
+binniecore.rootTrees.chromosome.sappiness=ssǝuᴉddɐS
+binniecore.rootTrees.chromosome.territory=ʎɹoʇᴉɹɹǝ⟘
+binniecore.rootTrees.chromosome.effect=ʇɔǝɟɟƎ
+binniecore.rootTrees.chromosome.maturation=uoᴉʇɐɹnʇɐW
+binniecore.rootTrees.chromosome.girth=ɥʇɹᴉ⅁
+binniecore.rootTrees.chromosome.fireproof=ɟooɹdǝɹᴉℲ
+
+binniecore.rootTrees.chromosome.species.short=sǝᴉɔǝdS
+binniecore.rootTrees.chromosome.growth.short=ɥʇʍoɹ⅁
+binniecore.rootTrees.chromosome.height.short=ʇɥᵷᴉǝH
+binniecore.rootTrees.chromosome.fertility.short=ʎʇᴉꞁᴉʇɹǝℲ
+binniecore.rootTrees.chromosome.fruits.short=ʇᴉnɹℲ
+binniecore.rootTrees.chromosome.yield.short=pꞁǝᴉ⅄
+binniecore.rootTrees.chromosome.plant.short=ǝdʎ⟘ ʇuɐꞁԀ
+binniecore.rootTrees.chromosome.sappiness.short=ssǝuᴉddɐS
+binniecore.rootTrees.chromosome.territory.short=ʎɹoʇᴉɹɹǝ⟘
+binniecore.rootTrees.chromosome.effect.short=ʇɔǝɟɟƎ
+binniecore.rootTrees.chromosome.maturation.short=uoᴉʇɐɹnʇɐW
+binniecore.rootTrees.chromosome.girth.short=ɥʇɹᴉ⅁
+binniecore.rootTrees.chromosome.fireproof.short=ɟooɹdǝɹᴉℲ
+
+binniecore.rootButterflies.chromosome.species=sǝᴉɔǝdS
+binniecore.rootButterflies.chromosome.size=ǝzᴉS
+binniecore.rootButterflies.chromosome.speed=pǝǝdS
+binniecore.rootButterflies.chromosome.lifespan=uɐdsǝɟᴉꞀ
+binniecore.rootButterflies.chromosome.metabolism=ɯsᴉꞁoqɐʇǝW
+binniecore.rootButterflies.chromosome.fertility=ʎʇᴉꞁᴉʇɹǝℲ
+binniecore.rootButterflies.chromosome.temperature_tolerance=ǝɔuɐɹǝꞁo⟘ ǝɹnʇɐɹǝdɯǝ⟘
+binniecore.rootButterflies.chromosome.humidity_tolerance=ǝɔuɐɹǝꞁo⟘ ʎʇᴉpᴉɯnH
+binniecore.rootButterflies.chromosome.nocturnal=ꞁɐɹǝɯǝɥʇɐƆ
+binniecore.rootButterflies.chromosome.tolerant_flyer=ǝɔuɐɹǝꞁo⟘ uᴉɐᴚ
+binniecore.rootButterflies.chromosome.fire_resist=ǝɔuɐʇsᴉsǝᴚ ǝɹᴉℲ
+binniecore.rootButterflies.chromosome.flower_provider=sɹǝʍoꞁℲ
+binniecore.rootButterflies.chromosome.effect=ʇɔǝɟɟƎ
+binniecore.rootButterflies.chromosome.territory=ʎɹoʇᴉɹɹǝ⟘
+
+binniecore.rootButterflies.chromosome.species.short=sǝᴉɔǝdS
+binniecore.rootButterflies.chromosome.size.short=ǝzᴉS
+binniecore.rootButterflies.chromosome.speed.short=pǝǝdS
+binniecore.rootButterflies.chromosome.lifespan.short=uɐdsǝɟᴉꞀ
+binniecore.rootButterflies.chromosome.metabolism.short=ɯsᴉꞁoqɐʇǝW
+binniecore.rootButterflies.chromosome.fertility.short=ʎʇᴉꞁᴉʇɹǝℲ
+binniecore.rootButterflies.chromosome.temperature_tolerance.short=˙ꞁo⟘ ˙dɯǝ⟘
+binniecore.rootButterflies.chromosome.humidity_tolerance.short=˙ꞁo⟘ ˙pᴉɯnH
+binniecore.rootButterflies.chromosome.nocturnal.short=ꞁɐɹǝɯǝɥʇɐƆ
+binniecore.rootButterflies.chromosome.tolerant_flyer.short=˙ꞁo⟘ uᴉɐᴚ
+binniecore.rootButterflies.chromosome.fire_resist.short=˙ʇsᴉsǝᴚ ǝɹᴉℲ
+binniecore.rootButterflies.chromosome.flower_provider.short=sɹǝʍoꞁℲ
+binniecore.rootButterflies.chromosome.effect.short=ʇɔǝɟɟƎ
+binniecore.rootButterflies.chromosome.territory.short=ʎɹoʇᴉɹɹǝ⟘
+
+binniecore.rootFlowers.chromosome.species=sǝᴉɔǝdS
+binniecore.rootFlowers.chromosome.primary=ɹnoꞁoƆ ʎɹɐɯᴉɹԀ
+binniecore.rootFlowers.chromosome.secondary=ɹnoꞁoƆ ʎɹɐpuoɔǝS
+binniecore.rootFlowers.chromosome.fertility=ʎʇᴉꞁᴉʇɹǝℲ
+binniecore.rootFlowers.chromosome.territory=ʎɹoʇᴉɹɹǝ⟘
+binniecore.rootFlowers.chromosome.effect=ʇɔǝɟɟƎ
+binniecore.rootFlowers.chromosome.lifespan=uɐdsǝɟᴉꞀ
+binniecore.rootFlowers.chromosome.temperature_tolerance=ǝɔuɐɹǝꞁo⟘ ǝɹnʇɐɹǝdɯǝ⟘
+binniecore.rootFlowers.chromosome.humidity_tolerance=ǝɔuɐɹǝꞁo⟘ ʎʇᴉpᴉɯnH
+binniecore.rootFlowers.chromosome.ph_tolerance=ǝɔuɐɹǝꞁo⟘ Hd
+binniecore.rootFlowers.chromosome.sappiness=ɹɐʇɔǝN
+binniecore.rootFlowers.chromosome.stem=ɹnoꞁoƆ ɯǝʇS
+
+binniecore.rootFlowers.chromosome.species.short=sǝᴉɔǝdS
+binniecore.rootFlowers.chromosome.primary.short=ɹnoꞁoƆ ˙ɯᴉɹԀ
+binniecore.rootFlowers.chromosome.secondary.short=ɹnoꞁoƆ ˙ɔǝS
+binniecore.rootFlowers.chromosome.fertility.short=ʎʇᴉꞁᴉʇɹǝℲ
+binniecore.rootFlowers.chromosome.territory.short=ʎɹoʇᴉɹɹǝ⟘
+binniecore.rootFlowers.chromosome.effect.short=ʇɔǝɟɟƎ
+binniecore.rootFlowers.chromosome.lifespan.short=uɐdsǝɟᴉꞀ
+binniecore.rootFlowers.chromosome.temperature_tolerance.short=˙ꞁo⟘ ˙dɯǝ⟘
+binniecore.rootFlowers.chromosome.humidity_tolerance.short=˙ꞁo⟘ ˙pᴉɯnH
+binniecore.rootFlowers.chromosome.ph_tolerance.short=˙ꞁo⟘ Hd
+binniecore.rootFlowers.chromosome.sappiness.short=ɹɐʇɔǝN
+binniecore.rootFlowers.chromosome.stem.short=ɹnoꞁoƆ ɯǝʇS
+
+binniecore.allele.fertility.low=ʍoꞀ
+binniecore.allele.fertility.normal=ꞁɐɯɹoN
+binniecore.allele.fertility.high=ɥᵷᴉH
+binniecore.allele.fertility.maximum=ɯnɯᴉxɐW
+
+binniecore.allele.none=ǝuoN
+binniecore.allele.true=sǝ⅄
+binniecore.allele.false=oN
+
+binniecore.allele.metabolism.highest=ʇsǝɥᵷᴉH
+binniecore.allele.metabolism.higher=ɹǝɥᵷᴉH
+binniecore.allele.metabolism.high=ɥᵷᴉH
+binniecore.allele.metabolism.average=ǝᵷɐɹǝʌⱯ
+binniecore.allele.metabolism.slow=ʍoꞁS
+binniecore.allele.metabolism.slower=ɹǝʍoꞁS
+binniecore.allele.metabolism.slowest=ʇsǝʍoꞁS
+
+binniecore.allele.growth.tropical=ꞁɐɔᴉdoɹ⟘
+binniecore.allele.growth.lightlevel=ꞁǝʌǝꞀ ʇɥᵷᴉꞀ
+
+binniecore.gui.breedingmessage.species=pǝɹǝʌoɔsᴉᗡ sǝᴉɔǝdS
+binniecore.gui.breedingmessage.branch=pǝɹǝʌoɔsᴉᗡ ɥɔuɐɹᗺ
+binniecore.gui.breedingmessage.epithet=pǝuᴉɐ⅁ ʇǝɥʇᴉdƎ
+
+binniecore.item.container.capsule=ǝꞁnsdɐƆ
+binniecore.item.container.refractory=ǝꞁnsdɐƆ
+binniecore.item.container.can=uɐƆ
+binniecore.item.container.bucket=ʇǝʞɔnᗺ
+binniecore.item.container.glass=ǝꞁʇʇoᗺ
+binniecore.item.container.cylinder=ɹǝpuᴉꞁʎƆ
+
+binniecore.machine.storage.compartment=ʇuǝɯʇɹɐdɯoƆ
+binniecore.machine.storage.compartment_iron=ʇuǝɯʇɹɐdɯoƆ uoɹI
+binniecore.machine.storage.compartment_diamond=ʇuǝɯʇɹɐdɯoƆ puoɯɐᴉᗡ
+binniecore.machine.storage.compartment_copper=ʇuǝɯʇɹɐdɯoƆ ɹǝddoƆ
+binniecore.machine.storage.compartment_bronze=ʇuǝɯʇɹɐdɯoƆ ǝzuoɹᗺ
+binniecore.machine.storage.compartment_gold=ʇuǝɯʇɹɐdɯoƆ pꞁo⅁
+
+binniecore.machine.tooltips.processing=ᵷuᴉssǝɔoɹԀ
+
+binniecore.errors.task.cancelled.desc=pǝꞁꞁǝɔuɐƆ ʞsɐ⟘
+binniecore.errors.task.cancelled.info=ǝʇɐ⅁ ʇɟɐɹɔpꞁᴉnᗺ ʎq pǝꞁꞁǝɔuɐƆ
+binniecore.errors.task.paused.desc=pǝsnɐԀ ssǝɔoɹԀ
+binniecore.errors.task.paused.info=ǝʇɐ⅁ ʇɟɐɹɔpꞁᴉnᗺ ʎq pǝsnɐԀ
+
+binniecore.errors.unknown.name=uʍouʞu∩
+binniecore.errors.unknown.desc=sɹoɥʇnɐ poɯ ǝɥʇ oʇ sᴉɥʇ ʇɹodǝɹ ǝsɐǝꞁd 'uǝʞoɹq sᴉ ɹoɹɹǝ sᴉɥ⟘
+binniecore.errors.no.item.name=ɯǝʇI oN
+binniecore.errors.invalid.item.name=ɯǝʇI pᴉꞁɐʌuI
+binniecore.errors.no.space.name=ǝɔɐdS oN
+binniecore.errors.no.space.tank.name=ʞuɐ⟘ uᴉ ǝɔɐdS oN
+binniecore.errors.no.space.tank.desc=ʞuɐ⟘ uᴉ ɯooɹ ɥᵷnouǝ ʇoN
+binniecore.errors.insufficient.power.name=ɹǝʍoԀ ʇuǝᴉɔᴉɟɟnsuI
+binniecore.errors.insufficient.power.desc=ǝʇɐɹǝdo oʇ ɹǝʍod ɥᵷnouǝ ʇoN
+binniecore.errors.tank.full.name=ꞁꞁnℲ ʞuɐ⟘
+binniecore.errors.tank.empty.name=ʎʇdɯƎ ʞuɐ⟘
+binniecore.errors.tank.empty.desc=ʞuɐʇ ǝɥʇ uᴉ pᴉnbᴉꞁ oN
+binniecore.errors.tank.different.desc=ʞuɐʇ uᴉ pᴉnꞁɟ ʇuǝɹǝɟɟᴉᗡ
+binniecore.errors.insufficient.liquid.name=pᴉnbᴉꞀ ʇuǝᴉɔᴉɟɟnsuI
+binniecore.errors.invalid.recipe.name=ǝdᴉɔǝᴚ pᴉꞁɐʌuI
+binniecore.errors.no.recipe.name=ǝdᴉɔǝᴚ oN
+binniecore.errors.no.recipe.desc=ǝdᴉɔǝɹ pᴉꞁɐʌ ou sᴉ ǝɹǝɥ⟘
+binniecore.errors.missing.validated.slot.desc=uoᴉʇɔunℲ oʇ %s sǝɹᴉnbǝᴚ
+
+binniecore.gui.database.nodescription=˙pǝpᴉʌoɹԀ uoᴉʇdᴉɹɔsǝᗡ oN
+
+binniecore.gui.database.mode.species=sǝᴉɔǝdS
+binniecore.gui.database.mode.branches=sǝɥɔuɐɹᗺ
+binniecore.gui.database.mode.breeder=ɹǝpǝǝɹᗺ
+binniecore.gui.database.species=sǝᴉɔǝdS
+binniecore.gui.database.no.description=˙pǝpᴉʌoɹԀ uoᴉʇdᴉɹɔsǝᗡ oN
+binniecore.gui.database.discovered=ʎq pǝɹǝʌoɔsᴉᗡ
+binniecore.gui.database.overview.complexity=ʎʇᴉxǝꞁdɯoƆ
+binniecore.gui.database.breeder.profile=ǝꞁᴉɟoɹԀ
+binniecore.gui.database.breeder.species=sǝᴉɔǝdS
+binniecore.gui.database.breeder.species.secret=sǝᴉɔǝdS ʇǝɹɔǝS
+binniecore.gui.database.breeder.branches=sǝɥɔuɐɹᗺ
+binniecore.gui.database.breeder.stats=sʇɐʇS
+binniecore.gui.database.mutations.further=suoᴉʇɐʇnW ɹǝɥʇɹnℲ
+binniecore.gui.database.mutations.resultant=suoᴉʇɐʇnW ʇuɐʇꞁnsǝᴚ
+binniecore.gui.database.branch.branch=ɥɔuɐɹᗺ
+binniecore.gui.database.branch.name=ɥɔuɐɹᗺ %s
+binniecore.gui.database.branch.apidae=%s
+binniecore.gui.database.branch.discoveredBy=%s
+binniecore.gui.database.branch.noDesc=˙pǝpᴉʌoɹԀ uoᴉʇdᴉɹɔsǝᗡ oN
+binniecore.gui.database.discovered.discovered=sǝᴉɔǝdS pǝɹǝʌoɔsᴉᗡ
+binniecore.gui.database.discovered.undiscovered=sǝᴉɔǝdS pǝɹǝʌoɔsᴉpu∩
+binniecore.gui.database.control.undiscovered=pǝɹǝʌoɔsᴉpu∩
+binniecore.gui.database.control.chance=%s
+
+binniecore.gui.database.time.minute=ǝʇnuᴉɯ ⥝
+binniecore.gui.database.time.minutes=sǝʇnuᴉɯ %d
+binniecore.gui.database.time.second=puoɔǝs ⥝
+binniecore.gui.database.time.seconds=spuoɔǝs %d
+binniecore.gui.database.time.progress=ssǝɹᵷoɹԀ
+binniecore.gui.database.time.notInProgress=ssǝɹᵷoɹԀ uᴉ ʇoN
+binniecore.gui.database.time.inProgress=ssǝɹᵷoɹԀ uI
+binniecore.gui.database.time.left=%s
+binniecore.gui.database.time.total=%s
+
+binniecore.gui.temperature.short=˙dɯǝ⟘
+binniecore.gui.humidity.short=˙pᴉɯnH
+
+binniecore.gui.tolerated=pǝʇɐɹǝꞁo⟘
+binniecore.gui.nottolerated=pǝʇɐɹǝꞁo⟘ ʇoN
+
+binniecore.gui.genesis.title=sᴉsǝuǝ⅁
+
+binniecore.gui.fieldkit.title=ʇᴉʞ pꞁǝᴉℲ
+binniecore.gui.fieldkit.info=sǝʇou ʇoɾ oʇ ɹǝdɐd ɟo ǝɔǝᴉd ɐ sᴉ pǝɹᴉnbǝɹ sᴉ ʇɐɥʇ ꞁꞁⱯ ˙sǝᴉꞁɟɹǝʇʇnq puɐ sɹǝʍoꞁɟ 'sǝǝɹʇ 'sǝǝq sǝsʎꞁɐuɐ ʇᴉʞ pꞁǝᴉℲ ǝɥ⟘
+binniecore.gui.fieldkit.paper=ɹǝdɐԀ
+binniecore.gui.fieldkit.paper.no=¡ɹǝdɐԀ oN
+binniecore.gui.fieldkit.individual=ꞁɐnpᴉʌᴉpuI
+
+binniecore.allele.extrabees.effect.acid.desc=ʇɹᴉp puɐ ǝuoʇs sǝʌꞁossᴉᗡ
+binniecore.allele.forestry.effectAggressive.desc=sɹǝʎɐꞁd sʞɔɐʇʇⱯ
+binniecore.allele.forestry.effectBeatific.desc=sɹǝʎɐꞁd oʇ ɥʇꞁɐǝɥ sǝɹoʇsǝɹ ʎꞁʍoꞁS
+binniecore.allele.forestry.effectCreeper.desc=ɥɔɐoɹddɐ uo ʎꞁʇuǝꞁoᴉʌ sǝpoꞁdxƎ
+binniecore.allele.extrabees.effect.spawn_creeper.desc=sɹǝdǝǝɹɔ suʍɐds ʎꞁɯopuɐᴚ
+binniecore.allele.extrabees.effect.blindness.desc=sɹǝʎɐꞁd spuᴉꞁᗺ
+binniecore.allele.forestry.effectDrunkard.desc=ʎsdᴉʇ ǝɯoɔǝq oʇ sɹǝʎɐꞁd sǝsnɐƆ
+binniecore.allele.extrabees.effect.ectoplasm.desc=ᵷuᴉqqǝʍ ɔᴉɯsɐꞁdoʇɔǝ sǝʇɐǝɹƆ
+binniecore.allele.forestry.effectFertile.desc=sʞɔoꞁq ʎqɹɐǝu sǝʇɐꞁnɯᴉʇS
+binniecore.allele.extrabees.effect.fireworks.desc=ʎʞs ǝɥʇ oʇuᴉ sʞɹoʍǝɹᴉɟ sǝɹᴉɟ ʎꞁsnoǝuɐʇuodS
+binniecore.allele.forestry.effectIgnition.desc=sǝɹᴉɟ sʇɹɐʇs ʎꞁɯopuɐᴚ
+binniecore.allele.forestry.effectGlacial.desc=ɹǝʇɐʍ ɹǝʌo sǝzǝǝɹɟ ʎꞁʍoꞁS
+binniecore.allele.extrabees.effect.bonemealsapling.desc=sᵷuᴉꞁdɐs sꞁɐǝɯǝuoᗺ
+binniecore.allele.forestry.effectHeroic.desc=sqoɯ ʇsuᴉɐᵷɐ ǝʌᴉɥ ɹᴉǝɥʇ spuǝɟǝᗡ
+binniecore.allele.extrabees.effect.meteor.desc=ʎʞs ǝɥʇ ɯoɹɟ ꞁꞁɐɟ oʇ sɹoǝʇǝɯ sǝsnɐƆ
+binniecore.allele.extrabees.effect.bonemealmushroom.desc=sɯooɹɥsnɯ sꞁɐǝɯǝuoᗺ
+binniecore.allele.forestry.effectMiasmic.desc=sɹǝʎɐꞁd suosᴉoԀ
+binniecore.allele.extrabees.effect.power.desc=sǝuᴉɥɔɐɯ oʇ ɹǝʍod ǝɯos sǝpᴉʌoɹԀ
+binniecore.allele.forestry.effectRadioactive.desc=sʞɔoꞁq ʎqɹɐǝu sʎoɹʇsǝᗡ
+binniecore.allele.forestry.effectReanimation.desc=sqoɯ pǝsɐǝɔǝp sǝʇɐɯᴉuɐǝᴚ
+binniecore.allele.forestry.effectRepulsion.desc=ʇᴉ pᴉoʌɐ oʇ sqoɯ sǝᵷɐɹnoɔuǝ ʎꞁꞁɐɹnʇɐN
+binniecore.allele.forestry.effectResurrection.desc=sqoɯ pǝsɐǝɔǝp sʇɔǝɹnssǝᴚ
+binniecore.allele.extrabees.effect.bonemealfruit.desc=sǝʌɐǝꞁ ʇᴉnɹɟ sꞁɐǝɯǝuoᗺ
+binniecore.allele.extrabees.effect.spawn_skeleton.desc=suoʇǝꞁǝʞs suʍɐds ʎꞁɯopuɐᴚ
+binniecore.allele.extrabees.effect.slow.desc=sɹǝʎɐꞁd uʍop sʍoꞁS
+binniecore.allele.forestry.effectSnowing.desc=ʍous oʇ ʇᴉ sǝsnɐƆ
+binniecore.allele.extrabees.effect.teleport.desc=sǝᴉʇᴉʇuǝ sʇɹodǝꞁǝʇ ʎꞁɯopuɐᴚ
+binniecore.allele.extrabees.effect.radioactive.desc=sɹǝʎɐꞁd ᵷuᴉɥɔɐoɹddɐ sǝʇɐᴉpɐɹɹI
+binniecore.allele.extrabees.effect.water.desc=ɹǝʇɐʍ ɥʇᴉʍ sǝuᴉɥɔɐɯ sꞁꞁᴉℲ
+binniecore.allele.extrabees.effect.wither.desc=sǝɥɔɐoɹddɐ oɥʍ ǝuoʎuɐ sɹǝɥʇᴉM
+binniecore.allele.extrabees.effect.spawn_zombie.desc=sǝᴉqɯoz suʍɐds ʎꞁɯopuɐᴚ
+binniecore.allele.forestry.effectFestiveEaster.desc=ᵷuᴉɥʇou sǝoᗡ
+
+binniecore.gui.help.title=dꞁǝH
+binniecore.gui.help.desc=˙sꞁoɹʇuoɔ ɹǝʌo ǝsnoɯ ɹnoʎ ɹǝʌoɥ puɐ %s uʍop pꞁoɥ 'sdᴉʇꞁooʇ dꞁǝɥ ǝʇɐʌᴉʇɔɐ o⟘
+
+binniecore.gui.slot.slot=ʇoꞁS
+binniecore.gui.slot.validated=ʇoꞁS %s
+binniecore.gui.slot.input=ʇoꞁS ʇnduI
+binniecore.gui.slot.process=ʇoꞁS ssǝɔoɹԀ
+binniecore.gui.slot.output=ʇoꞁS ʇndʇnO
+binniecore.gui.slot.frame=ʇoꞁS ǝɯɐɹℲ
+binniecore.gui.slot.mutator=ʇoꞁS ɹoʇɐʇnW
+binniecore.gui.slot.circuit=ʇoꞁS ʇᴉnɔɹᴉƆ
+binniecore.gui.slot.grain=ʇoꞁS uᴉɐɹ⅁
+binniecore.gui.slot.tile=ʇoꞁS ʎɹoʇuǝʌuI
+binniecore.gui.slot.caterpillar=ʇoꞁS ɹɐꞁꞁᴉdɹǝʇɐƆ
+binniecore.gui.slot.polish=ʇoꞁS ɥsᴉꞁoԀ
+binniecore.gui.slot.wood=ʇoꞁS pooM
+binniecore.gui.slot.acclimatiser=ʇoꞁS ɯǝʇI ɹǝsᴉʇɐɯᴉꞁɔɔⱯ
+binniecore.gui.slot.analyse=ʇoꞁS ǝsʎꞁɐuⱯ
+binniecore.gui.slot.dye=ʇoꞁS ǝʎᗡ
+binniecore.gui.slot.incubator=ʇoꞁS ɹoʇɐqnɔuI
+binniecore.gui.slot.compartment=ʇoꞁS ʇuǝɯʇɹɐdɯoƆ
+binniecore.gui.slot.ingredient=ʇoꞁS ʇuǝᴉpǝɹᵷuI
+binniecore.gui.slot.byproduct=ʇoꞁS ʇɔnpoɹdʎᗺ
+binniecore.gui.slot.enzyme=ʇoꞁS ǝɯʎzuƎ
+binniecore.gui.slot.sequencervial=ʇoꞁS ꞁɐᴉᴧ ɹǝɔuǝnbǝS
+binniecore.gui.slot.catalyst=ʇoꞁS ʇsʎꞁɐʇɐƆ
+binniecore.gui.slot.serum.input=ʇoꞁS ʇnduI ɯnɹǝS
+binniecore.gui.slot.serum.output=ʇoꞁS ʇndʇnO ɯnɹǝS
+binniecore.gui.slot.serum.active=ʇoꞁS ɯnɹǝS ǝʌᴉʇɔⱯ
+binniecore.gui.slot.yeast=ʇoꞁS ʇsɐǝ⅄
+binniecore.gui.slot.inventory=ʎɹoʇuǝʌuI ǝuᴉɥɔɐW
+binniecore.gui.slot.player.inventory=ʎɹoʇuǝʌuI ɹǝʎɐꞁԀ
+binniecore.gui.slot.pickup.only=ʇoꞁS ʎꞁuO dnʞɔᴉԀ
+
+binniecore.gui.tank.validated=ʞuɐ⟘ %s
+binniecore.gui.tank.input=ʞuɐ⟘ ʇnduI
+binniecore.gui.tank.process=ʞuɐ⟘ ssǝɔoɹԀ
+binniecore.gui.tank.output=ʞuɐ⟘ ʇndʇnO
+binniecore.gui.tank.capacity=ᗺɯ %s :ʎʇᴉɔɐdɐƆ
+binniecore.gui.tank.amount=ᗺɯ %s
+binniecore.gui.tank.percent.full=ꞁꞁnɟ %s
+
+binniecore.gui.side.insert=%s
+binniecore.gui.side.extract=%s
+
+binniecore.gui.energy.bar=ɹɐᗺ ʎᵷɹǝuƎ
+binniecore.gui.energy.amount.current=($⟘NƎƆᴚƎԀ$) Ⅎᴚ $XⱯW$ :ʇuǝɹɹnƆ
+binniecore.gui.energy.capacity=Ⅎᴚ %s :ʎʇᴉɔɐdɐƆ
+binniecore.gui.energy.cost.per.tick=ʞɔᴉʇ / Ⅎᴚ %s :ʇsoƆ ʎᵷɹǝuƎ
+
+binniecore.gui.charge.remaining.percent=%s
+
+binniecore.gui.progress.title=ssǝɹᵷoɹԀ
+binniecore.gui.progress.no.progress=ssǝɹᵷoɹԀ uᴉ ʇoN
+binniecore.gui.progress.in.progress=ssǝɹᵷoɹԀ uI
+binniecore.gui.progress.time.left=%s
+binniecore.gui.progress.time.total=%s
+binniecore.gui.progress.energy.cost.total=Ⅎᴚ %s :ʇsoƆ ʎᵷɹǝuƎ
+
+binniecore.side.north=ɥʇɹoN
+binniecore.side.south=ɥʇnoS
+binniecore.side.east=ʇsɐƎ
+binniecore.side.west=ʇsǝM
+binniecore.side.up=do⟘
+binniecore.side.down=ɯoʇʇoᗺ
+binniecore.side.sides=sǝpᴉS
+binniecore.side.any=ʎuⱯ
+binniecore.side.none=ǝuoN
+
+binniecore.key.hold.for.help.tooltips=sdᴉʇꞁoo⟘ dꞁǝH ɹoℲ pꞁoH
