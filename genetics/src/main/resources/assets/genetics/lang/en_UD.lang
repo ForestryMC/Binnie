@@ -122,7 +122,7 @@ genetics.gui.analyst.behaviour.effect=%s
 genetics.gui.analyst.behaviour.pollinatesNearby=ʎqɹɐǝu sǝʇɐuᴉꞁꞁoԀ
 genetics.gui.analyst.behaviour.withinBlocks=sʞɔoꞁq %d uᴉɥʇᴉM
 genetics.gui.analyst.behaviour.everyTime=%s
-genetics.gui.analyst.behaviour.territory=%d%d%d
+genetics.gui.analyst.behaviour.territory=%3$dx%2$dx%1$d :ʎɹoʇᴉɹɹǝ⟘
 genetics.gui.analyst.behaviour.metabolism=%s
 
 genetics.gui.analyst.genome.title=ǝɯouǝ⅁ %s
@@ -306,7 +306,7 @@ extrabees.genetics.allele.production=uoᴉʇɔnpoɹԀ %s
 extrabees.genetics.allele.fertility=ʎʇᴉꞁᴉʇɹǝℲ %s
 extrabees.genetics.allele.flowering=ᵷuᴉɹǝʍoꞁℲ %s
 extrabees.genetics.allele.territory=ʎɹoʇᴉɹɹǝ⟘ %s
-extrabees.genetics.allele.tolerance=˙ꞁo⟘ %s %s
+extrabees.genetics.allele.tolerance=˙ꞁo⟘ %2$s %1$s
 extrabees.genetics.allele.species=sǝᴉɔǝdS %s
 extrabees.genetics.allele.effect=ʇɔǝɟɟƎ %s
 extrabees.genetics.allele.flower=uoᴉʇɐuᴉꞁꞁoԀ %s

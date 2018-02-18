@@ -80,7 +80,7 @@ item.botany.trowel_diamond.name=ꞁǝʍoɹ⟘ puoɯɐᴉᗡ
 item.botany.pigment.name=ʇuǝɯᵷᴉԀ %s
 item.botany.encylopedia=ɐᴉpǝɐdoꞁɔʎɔuƎ s,ʇsᴉɹoꞁℲ
 item.botany.encylopedia_reinforced=ɐᴉpǝɐdoꞁɔʎɔuƎ s,ʇsᴉɹoꞁℲ pǝɔɹoɟuᴉǝᴚ
-item.botany.insulated_tube.name=ǝqn⟘ uoɹʇɔǝꞁƎ pǝʇɐꞁnsuI %s %s
+item.botany.insulated_tube.name=ǝqn⟘ uoɹʇɔǝꞁƎ pǝʇɐꞁnsuI %2$s %1$s
 item.botany.database.name=ǝsɐqɐʇɐᗡ ʇsᴉuɐʇoᗺ
 item.botany.database.master.name=ǝsɐqɐʇɐᗡ ʇsᴉuɐʇoᗺ ɹǝʇsɐW
 
@@ -97,7 +97,7 @@ botany.tube.material.bronze.name=ǝzuoɹᗺ
 item.botany.flower.destroy=¡ʇᴉ ʎoɹʇsǝᗡ ˙pǝᵷᵷnq sᴉ ɯǝʇᴉ sᴉɥ⟘
 item.botany.flower.age=%s
 item.botany.grammar.flower=ɯǝʇS WƎ⟘%S '⅄ᴚⱯWIᴚ%P
-item.botany.grammar.flower.secondary=ɯǝʇS WƎ⟘%S '⅄ᴚⱯᗡNOƆƎ%S puɐ ⅄ᴚⱯWIᴚ%S
+item.botany.grammar.flower.secondary=ɯǝʇS WƎ⟘%2$S '⅄ᴚⱯᗡNOƆƎ%1$S puɐ ⅄ᴚⱯWIᴚ%1$S
 
 item.botany.botanist_bag.name=ʞɔɐdʞɔɐᗺ s,ʇsᴉuɐʇoᗺ
 botany.jei.description.botanist_bag=˙sɹǝʍoꞁɟ dn sʞɔᴉd ʎꞁꞁɐɔᴉʇɐɯoʇnɐ ʇɐɥʇ ʎɹoʇuǝʌuᴉ ɐɹʇxƎ
