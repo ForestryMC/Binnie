@@ -16,35 +16,35 @@ genetics.errors.defunct.serum.name=Недействующая сыворотка
 genetics.errors.defunct.serum.desc=Сущность уже обладает этим геном
 genetics.errors.no.enzyme.desc=Нет фермента
 
-genetics.machine.machine.isolator=Изолятор
-genetics.machine.machine.isolator.info=Изолятор изолирует случайный ген индивида, дерева или другого индивида и копирует его в пустой флакон последовательности. Это требует использования этанола в качестве растворителя и фермента для вырезки ДНК. Последующие сыворотки затем могут быть амплифицированы в полимеризаторе и секвенированы в секвенсере.
+genetics.machine.isolator=Изолятор
+genetics.machine.isolator.info=Изолятор изолирует случайный ген индивида, дерева или другого индивида и копирует его в пустой флакон последовательности. Это требует использования этанола в качестве растворителя и фермента для вырезки ДНК. Последующие сыворотки затем могут быть амплифицированы в полимеризаторе и секвенированы в секвенсере.
 genetics.errors.isolator.no.room.desc=Нет места для последовательностей ДНК
 genetics.errors.isolator.no.empty.sequencer.desc=Нет пустых флаконов для секвенции
 genetics.errors.isolator.insufficient.ethanol.desc=Недостаточно этанола
 
-genetics.machine.machine.sequencer=Секвенсор
-genetics.machine.machine.sequencer.info=Секвенсор заряжает сыворотки и изучает, какой ген присутствует в них. Этот процесс медленный и требует использования флуоресцентного красителя.
+genetics.machine.sequencer=Секвенсор
+genetics.machine.sequencer.info=Секвенсор заряжает сыворотки и изучает, какой ген присутствует в них. Этот процесс медленный и требует использования флуоресцентного красителя.
 genetics.errors.sequencer.insufficient.dye.desc=Недостаточно краски
 genetics.errors.sequencer.no.space.desc=Нет места для пустых последовательностей
 genetics.errors.sequencer.no.dna.desc=Нет последовательности ДНК
-genetics.machine.machine.sequencer.texts.userless=Нет владельца. Последовательности не будут сохранены
-genetics.machine.machine.sequencer.texts.sequenced.by=Гены будут секвенированы %s
-genetics.machine.machine.sequencer.tooltips.slots.unsequenced.dna=Бесконечная ДНК
+genetics.machine.sequencer.texts.userless=Нет владельца. Последовательности не будут сохранены
+genetics.machine.sequencer.texts.sequenced.by=Гены будут секвенированы %s
+genetics.machine.sequencer.tooltips.slots.unsequenced.dna=Бесконечная ДНК
 
-genetics.machine.machine.polymeriser=Полимеризатор
-genetics.machine.machine.polymeriser.info=Полимеризатор заполняет пустые сыворотки сырой ДНК и реплицирующими бактериями. Этот процесс можно ускорить, используя золотые самородки.
-genetics.machine.machine.polymeriser.tooltips.logic.gene=Репликация 1 гена
-genetics.machine.machine.polymeriser.tooltips.logic.genes=Репликация %s генов
-genetics.machine.machine.polymeriser.tooltips.slots.unfilled=Неочищенная сыворотка
+genetics.machine.polymeriser=Полимеризатор
+genetics.machine.polymeriser.info=Полимеризатор заполняет пустые сыворотки сырой ДНК и реплицирующими бактериями. Этот процесс можно ускорить, используя золотые самородки.
+genetics.machine.polymeriser.tooltips.logic.gene=Репликация 1 гена
+genetics.machine.polymeriser.tooltips.logic.genes=Репликация %s генов
+genetics.machine.polymeriser.tooltips.slots.unfilled=Неочищенная сыворотка
 genetics.errors.polymeriser.item.no.desc=Нет предмета для копирования
 genetics.errors.polymeriser.item.filled.desc=Предмет заполнен
 genetics.errors.polymeriser.insufficient.bacteria.desc=Недостаточно бактерий
 genetics.errors.polymeriser.insufficient.dna.desc=Недостаточно ДНК
 
 genetics.machine.machine.inoculator=Инокулятор
-genetics.machine.machine.inoculator.info=Инокулатор использует сыворотки для добавления генов к породам индивидов. Этот процесс очень медленный и требует наличия бактерий, но он всегда успешен.  
-genetics.machine.machine.inoculator.tooltips.logic.gene=Инокулирован 1 геном
-genetics.machine.machine.inoculator.tooltips.logic.genes=Инокулировано %s генов
+genetics.machine.inoculator.info=Инокулатор использует сыворотки для добавления генов к породам индивидов. Этот процесс очень медленный и требует наличия бактерий, но он всегда успешен.  
+genetics.machine.inoculator.tooltips.logic.gene=Инокулирован 1 геном
+genetics.machine.inoculator.tooltips.logic.genes=Инокулировано %s генов
 genetics.errors.inoculator.insufficient.vector=Не хватает бактерий
 
 genetics.machine.lab_machine.genepool=Генофонд
@@ -72,10 +72,10 @@ genetics.machine.lab_machine.acclimatiser=Акклиматизатор
 genetics.machine.lab_machine.acclimatiser.info=Акклиматизатор использует акклиматизирующие элементы для регулировки температуры и влажности индивидов.
 genetics.errors.acclimatiser.no.item.desc=Нет предметов акклиматизации
 genetics.errors.acclimatiser.can.not.acclimatise.desc=Невозможно акклиматизировать этого индивида с этими элементами
-genetics.errors.acclimatiser.tooltips.slots.acclimatising=Акклиматизация предметов
+genetics.machine.lab_machine.acclimatiser.tooltips.slots.acclimatising=Акклиматизация предметов
 
 genetics.machine.adv_machine.splicer=Сплайсер
-genetics.machine.adv_machine.splicer.info=Сплайсер это невероятно мощная машина, которая используется для вставки генов в особи. Этот процесс быстрый, но требует монументальных объемов энергии.
+genetics.adv_machine.splicer.info=Сплайсер это невероятно мощная машина, которая используется для вставки генов в особи. Этот процесс быстрый, но требует монументальных объемов энергии.
 genetics.machine.adv_machine.splicer.tooltips.slots.serum=Сыворотка и массивы сывороток
 genetics.machine.adv_machine.splicer.tooltips.slots.individual=Индивид
 
