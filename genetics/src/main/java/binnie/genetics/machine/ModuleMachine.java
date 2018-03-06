@@ -69,8 +69,8 @@ public class ModuleMachine implements IInitializable {
 	@Override
 	public void preInit() {
 		(packageGenetic = new MachineGroup(Genetics.instance, "machine", "machine", GeneticMachine.values())).setCreativeTab(CreativeTabGenetics.INSTANCE);
-		(packageLabMachine = new MachineGroup(Genetics.instance, "lab_machine", "lab_machine", LaboratoryMachine.values())).setCreativeTab(CreativeTabGenetics.INSTANCE);
-		(packageAdvGenetic = new MachineGroup(Genetics.instance, "adv_machine", "adv_machine", AdvGeneticMachine.values())).setCreativeTab(CreativeTabGenetics.INSTANCE);
+		(packageLabMachine = new MachineGroup(Genetics.instance, "machine.lab_machine", "lab_machine", LaboratoryMachine.values())).setCreativeTab(CreativeTabGenetics.INSTANCE);
+		(packageAdvGenetic = new MachineGroup(Genetics.instance, "machine.adv_machine", "adv_machine", AdvGeneticMachine.values())).setCreativeTab(CreativeTabGenetics.INSTANCE);
 
 		spriteSequencer = new ValidatorSprite(Genetics.instance, "validator/sequencer.0", "validator/sequencer.1");
 		spriteSerum = new ValidatorSprite(Genetics.instance, "validator/serum.0", "validator/serum.1");
