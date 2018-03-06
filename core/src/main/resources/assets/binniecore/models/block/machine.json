@@ -1,8 +1,5 @@
 {
 	"parent": "block/block",
-	"textures":{
-		"particle": "#texture"
-	},
 	"elements": [
 		{
 			"__comment": "base_back",
