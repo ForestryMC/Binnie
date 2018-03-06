@@ -15,7 +15,7 @@ import binnie.core.machines.MachineGroup;
 public class ModuleStorage implements IInitializable {
 	@Override
 	public void preInit() {
-		MachineGroup machineGroup = new MachineGroup(BinnieCore.getInstance(), "storage", "storage", Compartment.values());
+		MachineGroup machineGroup = new MachineGroup(BinnieCore.getInstance(), "machine.storage", "storage", Compartment.values());
 		BinnieCore.setPackageCompartment(machineGroup);
 		machineGroup.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
 	}
