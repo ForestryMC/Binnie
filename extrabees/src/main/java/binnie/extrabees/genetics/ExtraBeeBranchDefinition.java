@@ -12,8 +12,8 @@ import forestry.apiculture.genetics.alleles.AlleleEffects;
 import forestry.core.genetics.IBranchDefinition;
 import forestry.core.genetics.alleles.EnumAllele;
 
-import binnie.extrabees.genetics.effect.ExtraBeesEffect;
 import binnie.core.genetics.AlleleHelper;
+import binnie.extrabees.genetics.effect.ExtraBeesEffect;
 
 public enum ExtraBeeBranchDefinition implements IBranchDefinition {
 	BARREN("Vacapis") {
@@ -175,7 +175,7 @@ public enum ExtraBeeBranchDefinition implements IBranchDefinition {
 			AlleleHelper.getInstance().set(template, EnumBeeChromosome.FLOWER_PROVIDER, AlleleHelper.getAllele(ExtraBeesFlowers.SUGAR.getUID()));
 		}
 	},
-	CLASSICAL("Grecapis"){
+	CLASSICAL("Grecapis") {
 		@Override
 		protected void setBranchProperties(IAllele[] template) {
 			AlleleHelper.getInstance().set(template, EnumBeeChromosome.SPEED, EnumAllele.Speed.SLOWER);
@@ -186,9 +186,14 @@ public enum ExtraBeeBranchDefinition implements IBranchDefinition {
 	VOLCANIC("Irrapis") {
 		@Override
 		protected void setBranchProperties(IAllele[] template) {
+			AlleleHelper.getInstance().set(template, EnumBeeChromosome.TEMPERATURE_TOLERANCE, EnumAllele.Tolerance.DOWN_2);
+			AlleleHelper.getInstance().set(template, EnumBeeChromosome.NEVER_SLEEPS, true);
+			AlleleHelper.getInstance().set(template, EnumBeeChromosome.FLOWER_PROVIDER, EnumAllele.Flowers.NETHER);
+			AlleleHelper.getInstance().set(template, EnumBeeChromosome.FLOWERING, EnumAllele.Flowering.AVERAGE);
 			AlleleHelper.getInstance().set(template, EnumBeeChromosome.SPEED, EnumAllele.Speed.SLOWER);
 			AlleleHelper.getInstance().set(template, EnumBeeChromosome.LIFESPAN, EnumAllele.Lifespan.NORMAL);
 			AlleleHelper.getInstance().set(template, EnumBeeChromosome.EFFECT, AlleleHelper.getAllele(ExtraBeesEffect.METEOR.getUID()));
+			;
 		}
 	},
 	VIRULENT("Virapis") {
@@ -235,7 +240,10 @@ public enum ExtraBeeBranchDefinition implements IBranchDefinition {
 	SHADOW("Pullapis") {
 		@Override
 		protected void setBranchProperties(IAllele[] template) {
-			AlleleHelper.getInstance().set(template, EnumBeeChromosome.NEVER_SLEEPS, true);
+			AlleleHelper.getInstance().set(template, EnumBeeChromosome.TEMPERATURE_TOLERANCE, EnumAllele.Tolerance.DOWN_2);
+			AlleleHelper.getInstance().set(template, EnumBeeChromosome.FLOWERING, EnumAllele.Flowering.AVERAGE);
+			AlleleHelper.getInstance().set(template, EnumBeeChromosome.FLOWER_PROVIDER, EnumAllele.Flowers.NETHER);
+			AlleleHelper.getInstance().set(template, EnumBeeChromosome.NEVER_SLEEPS, false);
 			AlleleHelper.getInstance().set(template, EnumBeeChromosome.SPEED, EnumAllele.Speed.SLOWER);
 			AlleleHelper.getInstance().set(template, EnumBeeChromosome.LIFESPAN, EnumAllele.Lifespan.NORMAL);
 			AlleleHelper.getInstance().set(template, EnumBeeChromosome.EFFECT, AlleleHelper.getAllele(ExtraBeesEffect.BLINDNESS.getUID()));

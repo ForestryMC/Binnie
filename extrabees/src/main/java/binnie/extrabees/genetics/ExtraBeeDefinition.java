@@ -1163,6 +1163,7 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 		protected void setSpeciesProperties(IAlleleBeeSpeciesBuilder beeSpecies) {
 			beeSpecies
 				.addProduct(ItemHoneyComb.VanillaComb.SIMMERING.get(), 0.25f)
+				.setNocturnal()
 				.setTemperature(EnumTemperature.HELLISH)
 				.setHumidity(EnumHumidity.ARID);
 		}
@@ -1182,6 +1183,7 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 		protected void setSpeciesProperties(IAlleleBeeSpeciesBuilder beeSpecies) {
 			beeSpecies
 				.addProduct(ItemHoneyComb.VanillaComb.SIMMERING.get(), 0.25f)
+				.setNocturnal()
 				.setTemperature(EnumTemperature.HELLISH)
 				.setHumidity(EnumHumidity.ARID);
 		}
@@ -1198,6 +1200,7 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 		protected void setSpeciesProperties(IAlleleBeeSpeciesBuilder beeSpecies) {
 			beeSpecies
 				.addProduct(ItemHoneyComb.VanillaComb.SIMMERING.get(), 0.25f)
+				.setNocturnal()
 				.addSpecialty(EnumHoneyComb.BLAZE.get(1), 0.10f)
 				.setTemperature(EnumTemperature.HELLISH)
 				.setHumidity(EnumHumidity.ARID)
@@ -1215,6 +1218,7 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 		protected void setSpeciesProperties(IAlleleBeeSpeciesBuilder beeSpecies) {
 			beeSpecies
 				.addProduct(EnumHoneyComb.GLOWSTONE.get(1), 0.15f)
+				.setNocturnal()
 				.setTemperature(EnumTemperature.HELLISH)
 				.setHumidity(EnumHumidity.ARID);
 		}
@@ -1476,6 +1480,7 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 		protected void setSpeciesProperties(IAlleleBeeSpeciesBuilder beeSpecies) {
 			beeSpecies
 				.addProduct(EnumHoneyComb.SHADOW.get(1), 0.05f)
+				.setNocturnal()
 				.setTemperature(EnumTemperature.HELLISH)
 				.setHumidity(EnumHumidity.ARID);
 		}
@@ -1490,6 +1495,7 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 		protected void setSpeciesProperties(IAlleleBeeSpeciesBuilder beeSpecies) {
 			beeSpecies
 				.addProduct(EnumHoneyComb.SHADOW.get(1), 0.10f)
+				.setNocturnal()
 				.setTemperature(EnumTemperature.HELLISH)
 				.setHumidity(EnumHumidity.ARID);
 		}
@@ -1504,6 +1510,7 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 		protected void setSpeciesProperties(IAlleleBeeSpeciesBuilder beeSpecies) {
 			beeSpecies
 				.addProduct(EnumHoneyComb.SHADOW.get(1), 0.25f)
+				.setNocturnal()
 				.setTemperature(EnumTemperature.HELLISH)
 				.setHumidity(EnumHumidity.ARID)
 				.setHasEffect();
