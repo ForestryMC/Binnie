@@ -7,17 +7,18 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import binnie.core.machines.render.RenderTESRMachine;
-import binnie.core.proxy.IBinnieProxy;
-import forestry.api.core.INbtReadable;
-import forestry.api.core.INbtWritable;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.core.BinnieCore;
 import binnie.core.ManagerBase;
 import binnie.core.machines.inventory.ValidatorSprite;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import binnie.core.machines.render.RenderTESRMachine;
+import binnie.core.proxy.IBinnieProxy;
+import forestry.api.core.INbtReadable;
+import forestry.api.core.INbtWritable;
 
 public class ManagerMachine extends ManagerBase {
 	private static ValidatorSprite spriteBee;
@@ -63,7 +64,6 @@ public class ManagerMachine extends ManagerBase {
 		return (machineGroup == null) ? null : machineGroup.getPackage(name);
 	}
 
-	@SuppressWarnings("unchecked")
 	private void registerComponentClass(final Class<? extends MachineComponent> component) {
 		if (this.componentInterfaceMap.containsKey(component)) {
 			return;

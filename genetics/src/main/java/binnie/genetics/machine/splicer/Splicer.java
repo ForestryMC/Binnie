@@ -22,10 +22,15 @@ public class Splicer {
 	public static final int[] SLOT_FINISHED = new int[]{10, 11, 12, 13};
 
 	public static void setGene(IGene gene, ItemStack target, boolean setPrimary, boolean setSecondary) {
-		final int chromosomeID = gene.getChromosome().ordinal();
-		final Class<? extends IAllele> cls = gene.getChromosome().getAlleleClass();
+		int chromosomeID = gene.getChromosome().ordinal();
+		Class<? extends IAllele> cls = gene.getChromosome().getAlleleClass();
 		if (!cls.isInstance(gene.getAllele())) {
 			return;
+		}
+		NBTTagCompound targetTag = target.getTagCompound();
+		NBTTagCompound mate = null;
+		if(targetTag != null && targetTag.hasKey("Mate")){
+			mate = targetTag.getCompoundTag("Mate").copy();
 		}
 		ISpeciesRoot speciesRoot = AlleleManager.alleleRegistry.getSpeciesRoot(target);
 		Preconditions.checkNotNull(speciesRoot);
@@ -58,6 +63,9 @@ public class Splicer {
 		}
 		NBTTagCompound nbt = new NBTTagCompound();
 		individual.writeToNBT(nbt);
+		if(mate != null) {
+			nbt.setTag("Mate", mate);
+		}
 		target.setTagCompound(nbt);
 	}
 }

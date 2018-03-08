@@ -49,7 +49,6 @@ public abstract class ComponentProcessIndefinate extends MachineComponent implem
 
 	@Override
 	public void onUpdate() {
-		final float energyAvailable = (float) this.getPower().getInterface().useEnergy(PowerSystem.RF, this.getEnergyPerTick(), false);
 		if (this.canWork() == null) {
 			if (!this.isInProgress() && this.canProgress() == null) {
 				this.onStartTask();
