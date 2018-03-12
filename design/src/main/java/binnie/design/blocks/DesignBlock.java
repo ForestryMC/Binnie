@@ -234,11 +234,6 @@ public class DesignBlock {
 				}
 				case DOWN: {
 					switch (facing) {
-						case UP:
-						case DOWN: {
-							layout = layout.flipVertical();
-							break;
-						}
 						case EAST:
 						case NORTH:
 						case SOUTH:

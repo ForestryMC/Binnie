@@ -258,21 +258,21 @@ public enum EnumDesign implements IDesign {
 		EnumDesign.Circle.setAllPatterns(EnumPattern.Circle.layout());
 		EnumDesign.Plus.setAllPatterns(EnumPattern.Plus.layout());
 		EnumDesign.Creeper.setAllPatterns(EnumPattern.Blank.layout(true));
-		EnumDesign.Creeper.setTopPattern(EnumPattern.Creeper.layout());
-		EnumDesign.DiagonalHalved.setTopPattern(EnumPattern.DiagonalHalved.layout());
+		EnumDesign.Creeper.setTopAndBottomPattern(EnumPattern.Creeper.layout());
+		EnumDesign.DiagonalHalved.setTopAndBottomPattern(EnumPattern.DiagonalHalved.layout());
 		EnumDesign.DiagonalHalved.setEdgePatterns(EnumPattern.Blank.layout(), EnumPattern.Blank.layout(true), EnumPattern.Blank.layout(true), EnumPattern.Blank.layout());
-		EnumDesign.Diagonal1Edged.setTopPattern(EnumPattern.Diagonal1Edged.layout());
+		EnumDesign.Diagonal1Edged.setTopAndBottomPattern(EnumPattern.Diagonal1Edged.layout());
 		EnumDesign.Diagonal1Edged.setEdgePatterns(EnumPattern.Edged.layout().flipHorizontal(), EnumPattern.Blank.layout(true), EnumPattern.Blank.layout(true), EnumPattern.Edged.layout());
-		EnumDesign.Diagonal2Edged.setTopPattern(EnumPattern.Diagonal2Edged.layout());
+		EnumDesign.Diagonal2Edged.setTopAndBottomPattern(EnumPattern.Diagonal2Edged.layout());
 		EnumDesign.Diagonal2Edged.setEdgePatterns(EnumPattern.Edged.layout(), EnumPattern.Edged.layout().flipHorizontal(), EnumPattern.Edged.layout(), EnumPattern.Edged.layout().flipHorizontal());
-		EnumDesign.ThickDiagonal1Edged.setTopPattern(EnumPattern.ThickDiagonal1Edged.layout());
+		EnumDesign.ThickDiagonal1Edged.setTopAndBottomPattern(EnumPattern.ThickDiagonal1Edged.layout());
 		EnumDesign.ThickDiagonal1Edged.setEdgePatterns(EnumPattern.Halved.layout().flipHorizontal(), EnumPattern.Blank.layout(true), EnumPattern.Blank.layout(true), EnumPattern.Halved.layout());
 		EnumDesign.ThickBarredEnd.setBarredEndPattern(EnumPattern.ThickBarredEnd.layout(), EnumPattern.ThickBarred.layout());
 		EnumDesign.ThinBarredEnd.setBarredEndPattern(EnumPattern.ThinBarredEnd.layout(), EnumPattern.ThinBarred.layout());
 		EnumDesign.OverlappedSplitBarred.setAllPatterns(EnumPattern.SplitBarred.layout());
-		EnumDesign.OverlappedSplitBarred.setTopPattern(EnumPattern.OverlappedSplitBarred.layout());
+		EnumDesign.OverlappedSplitBarred.setTopAndBottomPattern(EnumPattern.OverlappedSplitBarred.layout());
 		EnumDesign.OverlappedBarred.setAllPatterns(EnumPattern.Barred.layout());
-		EnumDesign.OverlappedBarred.setTopPattern(EnumPattern.OverlappedBarred.layout());
+		EnumDesign.OverlappedBarred.setTopAndBottomPattern(EnumPattern.OverlappedBarred.layout());
 	}
 
 	private String name;
@@ -306,7 +306,7 @@ public enum EnumDesign implements IDesign {
 	}
 
 	void setupStriped(final ILayout vert) {
-		this.setTopPattern(vert);
+		this.setTopAndBottomPattern(vert);
 		this.setEdgePatterns(vert.invert(), EnumPattern.Blank.layout(true), vert, EnumPattern.Blank.layout());
 	}
 
@@ -326,7 +326,7 @@ public enum EnumDesign implements IDesign {
 	}
 
 	void setCornered(final ILayout corner, final ILayout edge) {
-		this.setTopPattern(corner);
+		this.setTopAndBottomPattern(corner);
 		this.setNorthPattern(EnumPattern.Blank.layout());
 		this.setEastPattern(edge.flipHorizontal());
 		this.setSouthPattern(edge);
@@ -348,23 +348,23 @@ public enum EnumDesign implements IDesign {
 
 	void setDiagonal(final ILayout diagonal, final ILayout edged) {
 		this.setAllPatterns(edged);
-		this.setTopPattern(diagonal);
+		this.setTopAndBottomPattern(diagonal);
 		this.northPattern = this.northPattern.flipHorizontal();
 		this.southPattern = this.southPattern.flipHorizontal();
 	}
 
 	void setSaltire(final ILayout saltire, final ILayout bar) {
-		this.setTopPattern(saltire);
+		this.setTopAndBottomPattern(saltire);
 		this.setEdgePatterns(bar.invert());
 	}
 
 	void setCross(final ILayout saltire, final ILayout bar) {
-		this.setTopPattern(saltire);
+		this.setTopAndBottomPattern(saltire);
 		this.setEdgePatterns(bar);
 	}
 
 	void setTSection(final ILayout tsection, final ILayout bar) {
-		this.setTopPattern(tsection);
+		this.setTopAndBottomPattern(tsection);
 		this.setEdgePatterns(bar);
 		this.setWestPattern(EnumPattern.Blank.layout(true));
 	}
@@ -380,19 +380,19 @@ public enum EnumDesign implements IDesign {
 
 	void setLetterPattern(final ILayout letter) {
 		this.setAllPatterns(EnumPattern.Blank.layout(true));
-		this.setTopPattern(letter);
+		this.setTopAndBottomPattern(letter);
 		this.setBottomPattern(EnumPattern.Blank.layout(true));
 	}
 
 	void setBarredEndPattern(final ILayout end, final ILayout bar) {
 		this.setAllPatterns(EnumPattern.Blank.layout(true));
-		this.setTopPattern(end);
+		this.setTopAndBottomPattern(end);
 		this.setWestPattern(bar);
 	}
 
 	void setDiagonalCorner(final ILayout diagonal, final ILayout bar, final ILayout edged) {
 		this.setAllPatterns(EnumPattern.Blank.layout(true));
-		this.setTopPattern(diagonal);
+		this.setTopAndBottomPattern(diagonal);
 		this.setWestPattern(bar.invert());
 		this.setNorthPattern(edged.flipHorizontal());
 		this.setSouthPattern(edged);
@@ -400,7 +400,7 @@ public enum EnumDesign implements IDesign {
 
 	void setDiagonalTSection(final ILayout diagonal, final ILayout bar, final ILayout edged) {
 		this.setAllPatterns(EnumPattern.Blank.layout(true));
-		this.setTopPattern(diagonal);
+		this.setTopAndBottomPattern(diagonal);
 		this.setWestPattern(bar.invert());
 		this.setNorthPattern(bar.invert());
 		this.setEastPattern(edged.flipHorizontal());
@@ -408,7 +408,7 @@ public enum EnumDesign implements IDesign {
 	}
 
 	private void setAllPatterns(final ILayout layout) {
-		this.setTopPattern(layout);
+		this.setTopAndBottomPattern(layout);
 		this.setBottomPattern(layout);
 		this.setNorthPattern(layout);
 		this.setEastPattern(layout);
@@ -430,8 +430,9 @@ public enum EnumDesign implements IDesign {
 		return this.topPattern;
 	}
 
-	public void setTopPattern(final ILayout layout) {
-		this.setBottomPattern(this.topPattern = layout);
+	public void setTopAndBottomPattern(final ILayout layout) {
+		this.topPattern = layout;
+		this.setBottomPattern(layout.flipVertical());
 	}
 
 	@Override
