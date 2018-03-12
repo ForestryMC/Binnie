@@ -221,71 +221,71 @@ public class DesignBlock {
 		{
 			switch (this.getFacing()) {
 				case UP: {
-					if (facing == EnumFacing.DOWN) {
-						for (int j = 0; j < this.rotation; ++j) {
-							layout = layout.rotateLeft();
+					switch (facing) {
+						case UP: {
+							for (int j = 0; j < this.rotation; ++j) {
+								layout = layout.rotateRight();
+							}
+							break;
 						}
-					} else if (facing == EnumFacing.UP) {
-						for (int j = 0; j < this.rotation; ++j) {
-							layout = layout.rotateRight();
+						case DOWN: {
+							for (int j = 0; j < this.rotation; ++j) {
+								layout = layout.rotateLeft();
+							}
+							break;
 						}
 					}
 					break;
 				}
 				case DOWN: {
 					switch (facing) {
-						case EAST:
-						case NORTH:
-						case SOUTH:
-						case WEST: {
-							layout = layout.rotateRight().rotateRight();
+						case UP: {
+							for (int j = 0; j < this.rotation; ++j) {
+								layout = layout.rotateLeft();
+							}
 							break;
 						}
-					}
-					if (facing == EnumFacing.DOWN) {
-						for (int j = 0; j < this.rotation; ++j) {
-							layout = layout.rotateRight();
+						case DOWN: {
+							for (int j = 0; j < this.rotation; ++j) {
+								layout = layout.rotateRight();
+							}
+							break;
 						}
-					} else if (facing == EnumFacing.UP) {
-						for (int j = 0; j < this.rotation; ++j) {
-							layout = layout.rotateLeft();
+						case NORTH:
+						case WEST:
+						case SOUTH:
+						case EAST: {
+							layout = layout.rotateRight().rotateRight();
+							break;
 						}
 					}
 					break;
 				}
 				case EAST: {
 					switch (facing) {
-						case SOUTH:
-						case UP: {
+						case UP:
+						case DOWN:
+						case SOUTH: {
 							layout = layout.rotateRight();
 							break;
 						}
 						case NORTH: {
-							layout = layout.rotateLeft();
-							break;
-						}
-						case DOWN: {
 							layout = layout.rotateLeft().flipHorizontal();
 							break;
 						}
 						case WEST: {
-							layout = layout.flipHorizontal();
+							layout = layout.rotateLeft().rotateLeft();
+							for (int j = 0; j < this.rotation; ++j) {
+								layout = layout.rotateLeft();
+							}
 							break;
 						}
-						default: {
+						case EAST: {
+							for (int j = 0; j < this.rotation; ++j) {
+								layout = layout.rotateRight();
+							}
 							break;
 						}
-					}
-					if (facing == EnumFacing.EAST) {
-						for (int j = 0; j < this.rotation; ++j) {
-							layout = layout.rotateRight();
-						}
-					}
-					if (facing == EnumFacing.WEST) {
-						for (int j = 0; j < this.rotation; ++j) {
-							layout = layout.rotateLeft();
-						}
-						break;
 					}
 					break;
 				}
