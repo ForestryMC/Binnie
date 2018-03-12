@@ -62,6 +62,9 @@ public class TileEntityExtraBeesAlvearyPart extends MultiblockTileEntityForestry
 	public void readFromNBT(NBTTagCompound data) {
 		type = EnumAlvearyLogicType.VALUES[data.getByte("avType")];
 		initFromType();
+		if(alvearyLogic != null){
+			alvearyLogic.readFromNBT(data);
+		}
 		super.readFromNBT(data);
 	}
 
@@ -69,6 +72,7 @@ public class TileEntityExtraBeesAlvearyPart extends MultiblockTileEntityForestry
 	@Nonnull
 	public NBTTagCompound writeToNBT(NBTTagCompound data) {
 		data.setByte("avType", (byte) type.ordinal());
+		alvearyLogic.writeToNBT(data);
 		return super.writeToNBT(data);
 	}
 
