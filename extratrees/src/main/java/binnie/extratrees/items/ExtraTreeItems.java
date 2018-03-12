@@ -12,7 +12,6 @@ import binnie.core.util.I18N;
 import binnie.extratrees.modules.ModuleCore;
 
 public enum ExtraTreeItems implements IItemMiscProvider {
-	CARPENTRY_HAMMER("carpentry_hammer"),
 	SAWDUST("sawdust"),
 	Bark("bark"),
 	PROVEN_GEAR("proven_gear"),
@@ -49,7 +48,7 @@ public enum ExtraTreeItems implements IItemMiscProvider {
 
 	@Override
 	public boolean isActive() {
-		return this != ExtraTreeItems.CARPENTRY_HAMMER;
+		return true;
 	}
 
 	@Override
