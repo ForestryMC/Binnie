@@ -221,11 +221,14 @@ public class DesignBlock {
 		{
 			switch (this.getFacing()) {
 				case UP: {
-					if (facing == EnumFacing.DOWN || facing == EnumFacing.UP) {
+					if (facing == EnumFacing.DOWN) {
+						for (int j = 0; j < this.rotation; ++j) {
+							layout = layout.rotateLeft();
+						}
+					} else if (facing == EnumFacing.UP) {
 						for (int j = 0; j < this.rotation; ++j) {
 							layout = layout.rotateRight();
 						}
-						break;
 					}
 					break;
 				}
@@ -244,11 +247,14 @@ public class DesignBlock {
 							break;
 						}
 					}
-					if (facing == EnumFacing.DOWN || facing == EnumFacing.UP) {
+					if (facing == EnumFacing.DOWN) {
+						for (int j = 0; j < this.rotation; ++j) {
+							layout = layout.rotateRight();
+						}
+					} else if (facing == EnumFacing.UP) {
 						for (int j = 0; j < this.rotation; ++j) {
 							layout = layout.rotateLeft();
 						}
-						break;
 					}
 					break;
 				}
