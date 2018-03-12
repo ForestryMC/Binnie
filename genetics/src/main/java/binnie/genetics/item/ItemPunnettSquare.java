@@ -11,13 +11,14 @@ import net.minecraft.world.World;
 
 import binnie.genetics.Genetics;
 import binnie.genetics.core.GeneticsGUI;
+import binnie.core.item.ItemCore;
 
-public class ItemPunnettSquare extends Item {
+public class ItemPunnettSquare extends ItemCore {
 
 	public ItemPunnettSquare() {
+		super("punnett_square");
 		this.setCreativeTab(CreativeTabs.TOOLS);
 		this.setMaxStackSize(1);
-		setRegistryName("punnett_square");
 	}
 
 	@Override
