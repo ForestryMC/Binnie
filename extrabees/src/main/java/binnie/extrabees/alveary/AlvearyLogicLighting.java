@@ -3,6 +3,7 @@ package binnie.extrabees.alveary;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 
 import net.minecraftforge.common.capabilities.Capability;
@@ -18,7 +19,19 @@ public class AlvearyLogicLighting extends AbstractAlvearyLogic {
 	public AlvearyLogicLighting() {
 		this.energyStorage = new EnergyStorage(2000);
 	}
-	
+
+	@Override
+	public void readFromNBT(NBTTagCompound nbt) {
+		CapabilityEnergy.ENERGY.readNBT(energyStorage, null, nbt.getCompoundTag(ENERGY_NBT_KEY));
+	}
+
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+		super.writeToNBT(nbt);
+		nbt.setTag(ENERGY_NBT_KEY, CapabilityEnergy.ENERGY.writeNBT(energyStorage, null));
+		return nbt;
+	}
+
 	@Override
 	public void updateServer(TileEntityExtraBeesAlvearyPart tile) {
 		lighted = energyStorage.extractEnergy(10, false) >= 10;

@@ -13,27 +13,27 @@ import binnie.extrabees.utils.EnumBeeModifier;
 
 public enum AlvearySimulatorCircuitType implements IBeeModifier {
 
-	LowVoltage(3, 10),
-	HighVoltage(5, 20),
-	Plant(10, 10),
-	Death(6, 10),
-	Life(11, 10),
-	Nether(7, 15),
-	Mutation(4, 15),
-	Inhibitor(1, 10),
-	Territory(2, 10);
+	LOW_VOLTAGE(3, 10),
+	HIGH_VOLTAGE(5, 20),
+	PLANT(10, 10),
+	DEATH(6, 10),
+	LIFE(11, 10),
+	NETHER(7, 15),
+	MUTATION(4, 15),
+	INHIBITOR(1, 10),
+	TERRITORY(2, 10);
 
 	static {
-		LowVoltage.logic.setModifier(EnumBeeModifier.PRODUCTION, 1.5f, 5.0f);
-		HighVoltage.logic.setModifier(EnumBeeModifier.PRODUCTION, 2.5f, 10.0f);
-		Plant.logic.setModifier(EnumBeeModifier.FLOWERING, 1.5f, 5.0f);
-		Death.logic.setModifier(EnumBeeModifier.LIFESPAN, 0.8f, 0.2f);
-		Life.logic.setModifier(EnumBeeModifier.LIFESPAN, 1.5f, 5.0f);
-		Nether.logic.setModifier(EnumBeeBooleanModifier.Hellish);
-		Mutation.logic.setModifier(EnumBeeModifier.MUTATION, 1.5f, 5.0f);
-		Inhibitor.logic.setModifier(EnumBeeModifier.TERRITORY, 0.4f, 0.1f);
-		Inhibitor.logic.setModifier(EnumBeeModifier.PRODUCTION, 0.9f, 0.5f);
-		Territory.logic.setModifier(EnumBeeModifier.TERRITORY, 1.5f, 5.0f);
+		LOW_VOLTAGE.logic.setModifier(EnumBeeModifier.PRODUCTION, 1.5f, 5.0f);
+		HIGH_VOLTAGE.logic.setModifier(EnumBeeModifier.PRODUCTION, 2.5f, 10.0f);
+		PLANT.logic.setModifier(EnumBeeModifier.FLOWERING, 1.5f, 5.0f);
+		DEATH.logic.setModifier(EnumBeeModifier.LIFESPAN, 0.8f, 0.2f);
+		LIFE.logic.setModifier(EnumBeeModifier.LIFESPAN, 1.5f, 5.0f);
+		NETHER.logic.setModifier(EnumBeeBooleanModifier.Hellish);
+		MUTATION.logic.setModifier(EnumBeeModifier.MUTATION, 1.5f, 5.0f);
+		INHIBITOR.logic.setModifier(EnumBeeModifier.TERRITORY, 0.4f, 0.1f);
+		INHIBITOR.logic.setModifier(EnumBeeModifier.PRODUCTION, 0.9f, 0.5f);
+		TERRITORY.logic.setModifier(EnumBeeModifier.TERRITORY, 1.5f, 5.0f);
 		for (final AlvearySimulatorCircuitType type : values()) {
 			type.logic.setModifier(EnumBeeModifier.GENETIC_DECAY, 1.5f, 10.0f);
 		}

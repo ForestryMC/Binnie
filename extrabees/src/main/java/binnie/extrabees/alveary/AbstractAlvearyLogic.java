@@ -5,6 +5,7 @@ import javax.annotation.Nullable;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 
 import net.minecraftforge.common.capabilities.Capability;
@@ -17,11 +18,15 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeListener;
 import forestry.api.apiculture.IBeeModifier;
+import forestry.api.core.INbtReadable;
+import forestry.api.core.INbtWritable;
 import forestry.api.genetics.IIndividual;
 
 import binnie.extrabees.client.gui.AbstractAlvearyContainer;
 
-public abstract class AbstractAlvearyLogic implements IBeeModifier, IBeeListener, ICapabilityProvider {
+public abstract class AbstractAlvearyLogic implements IBeeModifier, IBeeListener, ICapabilityProvider, INbtWritable, INbtReadable {
+	static final String INVENTORY_NBT_KEY = "inventory";
+	static final String ENERGY_NBT_KEY = "Energy";
 
 	@Override
 	public float getTerritoryModifier(@Nonnull IBeeGenome genome, float currentModifier) {
@@ -94,6 +99,15 @@ public abstract class AbstractAlvearyLogic implements IBeeModifier, IBeeListener
 
 	public void updateServer(TileEntityExtraBeesAlvearyPart tile) {
 
+	}
+
+	@Override
+	public void readFromNBT(NBTTagCompound nbt) {
+	}
+
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+		return nbt;
 	}
 
 	@Nullable

@@ -6,6 +6,7 @@ import javax.annotation.Nullable;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemStackHandler;
@@ -25,7 +26,7 @@ import binnie.extrabees.utils.Utils;
 
 public class AlvearyLogicHatchery extends AbstractAlvearyLogic {
 
-	private final IItemHandlerModifiable inv;
+	private final ItemStackHandler inv;
 
 	public AlvearyLogicHatchery() {
 		inv = new LarvaeItemStackHandler();
@@ -33,6 +34,18 @@ public class AlvearyLogicHatchery extends AbstractAlvearyLogic {
 
 	public IItemHandlerModifiable getInventory() {
 		return inv;
+	}
+
+	@Override
+	public void readFromNBT(NBTTagCompound nbt) {
+		inv.deserializeNBT(nbt.getCompoundTag(INVENTORY_NBT_KEY));
+	}
+
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+		super.writeToNBT(nbt);
+		nbt.setTag(INVENTORY_NBT_KEY, inv.serializeNBT());
+		return nbt;
 	}
 
 	@Override

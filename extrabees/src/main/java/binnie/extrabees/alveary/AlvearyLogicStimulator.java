@@ -10,13 +10,16 @@ import java.util.List;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 
+import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.EnergyStorage;
 import net.minecraftforge.energy.IEnergyStorage;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemStackHandler;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeModifier;
@@ -29,9 +32,8 @@ import binnie.extrabees.client.gui.ContainerStimulator;
 import binnie.extrabees.client.gui.GuiContainerStimulator;
 
 public class AlvearyLogicStimulator extends AbstractAlvearyLogic {
-
 	private final IEnergyStorage energyStorage;
-	private final IItemHandlerModifiable inv;
+	private final ItemStackHandler inv;
 	private final List<ContainerStimulator> containers = Lists.newArrayList();
 	private int powerUsage;
 	private boolean powered;
@@ -47,6 +49,20 @@ public class AlvearyLogicStimulator extends AbstractAlvearyLogic {
 
 	public IItemHandlerModifiable getInventory() {
 		return inv;
+	}
+
+	@Override
+	public void readFromNBT(NBTTagCompound nbt) {
+		CapabilityEnergy.ENERGY.readNBT(energyStorage, null, nbt.getCompoundTag(ENERGY_NBT_KEY));
+		inv.deserializeNBT(nbt.getCompoundTag(INVENTORY_NBT_KEY));
+	}
+
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+		super.writeToNBT(nbt);
+		nbt.setTag(ENERGY_NBT_KEY, CapabilityEnergy.ENERGY.writeNBT(energyStorage, null));
+		nbt.setTag(INVENTORY_NBT_KEY, inv.serializeNBT());
+		return nbt;
 	}
 
 	@Override

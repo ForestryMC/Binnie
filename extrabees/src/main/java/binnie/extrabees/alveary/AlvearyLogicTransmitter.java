@@ -6,6 +6,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 
@@ -19,15 +20,27 @@ import forestry.api.multiblock.IMultiblockComponent;
 
 public class AlvearyLogicTransmitter extends AbstractAlvearyLogic implements IEnergyStorage {
 	
-	private final IEnergyStorage internalStorage;
+	private final IEnergyStorage energyStorage;
 	
 	public AlvearyLogicTransmitter() {
-		internalStorage = new EnergyStorage(2000);
+		energyStorage = new EnergyStorage(2000);
 	}
-	
+
+	@Override
+	public void readFromNBT(NBTTagCompound nbt) {
+		CapabilityEnergy.ENERGY.readNBT(energyStorage, null, nbt.getCompoundTag(ENERGY_NBT_KEY));
+	}
+
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+		super.writeToNBT(nbt);
+		nbt.setTag(ENERGY_NBT_KEY, CapabilityEnergy.ENERGY.writeNBT(energyStorage, null));
+		return nbt;
+	}
+
 	@Override
 	public void updateServer(TileEntityExtraBeesAlvearyPart tile) {
-		if (internalStorage.getEnergyStored() < 2) {
+		if (energyStorage.getEnergyStored() < 2) {
 			return;
 		}
 		
@@ -44,7 +57,7 @@ public class AlvearyLogicTransmitter extends AbstractAlvearyLogic implements IEn
 		}
 		int div = esL.size();
 		int maxOutput = 500;
-		int output = internalStorage.getEnergyStored() / div;
+		int output = energyStorage.getEnergyStored() / div;
 		if (output > maxOutput) {
 			output = maxOutput;
 		}
@@ -53,8 +66,8 @@ public class AlvearyLogicTransmitter extends AbstractAlvearyLogic implements IEn
 		}
 		for (IEnergyStorage handler : esL) {
 			int recieved = handler.receiveEnergy(output, false);
-			internalStorage.extractEnergy(recieved, false);
-			if (internalStorage.getEnergyStored() < output) {
+			energyStorage.extractEnergy(recieved, false);
+			if (energyStorage.getEnergyStored() < output) {
 				return;
 			}
 		}
@@ -62,7 +75,7 @@ public class AlvearyLogicTransmitter extends AbstractAlvearyLogic implements IEn
 	
 	@Override
 	public int receiveEnergy(int maxReceive, boolean simulate) {
-		return internalStorage.receiveEnergy(maxReceive, simulate);
+		return energyStorage.receiveEnergy(maxReceive, simulate);
 	}
 	
 	@Override
@@ -72,12 +85,12 @@ public class AlvearyLogicTransmitter extends AbstractAlvearyLogic implements IEn
 	
 	@Override
 	public int getEnergyStored() {
-		return internalStorage.getEnergyStored();
+		return energyStorage.getEnergyStored();
 	}
 	
 	@Override
 	public int getMaxEnergyStored() {
-		return internalStorage.getMaxEnergyStored();
+		return energyStorage.getMaxEnergyStored();
 	}
 	
 	@Override
