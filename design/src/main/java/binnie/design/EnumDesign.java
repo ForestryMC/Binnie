@@ -54,12 +54,12 @@ public enum EnumDesign implements IDesign {
 	Emblem3("emblem.3", EnumPattern.Emblem3.layout()),
 	Emblem4("emblem.4", EnumPattern.Emblem4.layout()),
 	Emblem5("emblem.5", EnumPattern.Emblem5.layout()),
-	LetterA("letter.a", EnumPattern.Blank.layout(true)),
-	LetterB("letter.b", EnumPattern.Blank.layout(true)),
+	LetterA("letter.a", true),
+	LetterB("letter.b", true),
 	LetterC("letter.c"),
 	LetterD("letter.d"),
 	LetterE("letter.e"),
-	LetterF("letter.f", EnumPattern.Blank.layout(true)),
+	LetterF("letter.f", true),
 	LetterG("letter.g"),
 	LetterH("letter.h"),
 	LetterI("letter.i"),
@@ -72,8 +72,8 @@ public enum EnumDesign implements IDesign {
 	LetterP("letter.p"),
 	LetterQ("letter.q"),
 	LetterR("letter.r"),
-	LetterS("letter.s", EnumPattern.Blank.layout(true)),
-	LetterT("letter.t", EnumPattern.Blank.layout(true)),
+	LetterS("letter.s", true),
+	LetterT("letter.t", true),
 	LetterU("letter.u"),
 	LetterV("letter.v"),
 	LetterW("letter.w"),
@@ -87,29 +87,29 @@ public enum EnumDesign implements IDesign {
 	CurvedCorner("curved.corner"),
 	ThinCurvedTSection("thin.curved.t.section"),
 	CurvedTSection("curved.t.section"),
-	BarredEnd("barred.end", EnumPattern.Blank.layout(true)),
-	DiagonalCorner("diagonal.corner", EnumPattern.Blank.layout(true)),
+	BarredEnd("barred.end", true),
+	DiagonalCorner("diagonal.corner", true),
 	DiagonalTSection("diagonal.t.section"),
-	DiagonalCurvedCorner("diagonal.curved.corner", EnumPattern.Blank.layout(true)),
+	DiagonalCurvedCorner("diagonal.curved.corner", true),
 	DiagonalCurvedTSection("diagonal.curved.t.section"),
 	OrnateBarred("ornate.barred", EnumPattern.OrnateBarred.layout()),
 	SplitBarred("split.barred", EnumPattern.SplitBarred.layout()),
 	SplitBarredCorner("split.barred.corner"),
 	SplitBarredTSection("split.barred.t.section"),
 	SplitCrossed("split.crossed"),
-	SplitBarredEnd("split.barred.end", EnumPattern.Blank.layout(true)),
+	SplitBarredEnd("split.barred.end", true),
 	OrnateThinBarred("ornate.thin.barred", EnumPattern.OrnateThinBarred.layout()),
 	Circle("circle", EnumPattern.Circle.layout()),
 	Plus("plus", EnumPattern.Plus.layout()),
-	Creeper("creeper", EnumPattern.Blank.layout(true)),
+	Creeper("creeper", true),
 	OrnateStripedCorner("ornate.striped.corner"),
 	Test("testing.block"),
 	DiagonalHalved("diagonal.halved"),
 	Diagonal1Edged("cornered.diagonal"),
 	Diagonal2Edged("opposite.cornered.diagonal"),
 	ThickDiagonal1Edged("thick.cornered.diagonal"),
-	ThinBarredEnd("thin.barred.end", EnumPattern.Blank.layout(true)),
-	ThickBarredEnd("thick.barred.end", EnumPattern.Blank.layout(true)),
+	ThinBarredEnd("thin.barred.end", true),
+	ThickBarredEnd("thick.barred.end", true),
 	OverlappedBarred("overlapped.barred", EnumPattern.Barred.layout()),
 	OverlappedSplitBarred("overlapped.split.barred", EnumPattern.SplitBarred.layout());
 
@@ -352,8 +352,7 @@ public enum EnumDesign implements IDesign {
 
 	void setTSection(final ILayout tsection, final ILayout bar) {
 		this.setTopAndBottomPattern(tsection);
-		this.setEdgePatterns(bar);
-		this.setWestPattern(EnumPattern.Blank.layout(true));
+		this.setEdgePatterns(bar, bar, bar, EnumPattern.Blank.layout(true));
 	}
 
 	void setBarredCorner(final ILayout corner, final ILayout bar) {
