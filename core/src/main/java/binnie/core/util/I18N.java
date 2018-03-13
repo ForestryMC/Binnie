@@ -11,7 +11,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.Language;
 import net.minecraft.client.resources.LanguageManager;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.translation.I18n;
+import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -42,44 +42,48 @@ public class I18N {
 		return numberFormat;
 	}
 
+	@SideOnly(Side.CLIENT)
 	public static String localiseOrBlank(String key) {
 		String trans = localise(key);
 		return trans.equals(key) ? "" : trans;
 	}
-	
-	@SuppressWarnings("deprecation")
+
+	@SideOnly(Side.CLIENT)
 	public static String localise(String key) {
-		if (I18n.canTranslate(key)) {
-			return I18n.translateToLocal(key);
+		if (I18n.hasKey(key)) {
+			return I18n.format(key);
 		} else {
-			return I18n.translateToFallback(key);
+			return key;
 		}
 	}
 
+	@SideOnly(Side.CLIENT)
 	public static String localise(ModId modId, String path, Object... format) {
 		return localise(modId.getDomain() + "." + path, format);
 	}
 
+	@SideOnly(Side.CLIENT)
 	public static String localise(ResourceLocation key) {
 		return localise(key.getResourceDomain() + "." + key.getResourcePath());
 	}
-	
-	@SuppressWarnings("deprecation")
+
+	@SideOnly(Side.CLIENT)
 	public static boolean canLocalise(String key) {
-		return I18n.canTranslate(key);
+		return I18n.hasKey(key);
 	}
-	
+
+	@SideOnly(Side.CLIENT)
 	public static String localise(String key, Object... format) {
-		String s = localise(key);
 		try {
-			return String.format(s, format);
+			return I18n.format(key, format);
 		} catch (IllegalFormatException e) {
-			String errorMessage = "Format error: " + s;
+			String errorMessage = "Format error: " + key;
 			Log.error(errorMessage, e);
 			return errorMessage;
 		}
 	}
 
+	@SideOnly(Side.CLIENT)
 	public static String localise(ResourceLocation key, Object... format) {
 		return localise(key.getResourceDomain() + "." + key.getResourcePath(), format);
 	}
