@@ -29,6 +29,7 @@ public class AlleleEffectNone implements IAlleleFlowerEffect {
 	}
 
 	@Override
+	@SuppressWarnings("deprecation")
 	public String getName() {
 		return "None";
 	}
