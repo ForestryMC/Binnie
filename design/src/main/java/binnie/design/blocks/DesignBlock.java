@@ -295,17 +295,17 @@ public class DesignBlock {
 							layout = layout.rotateRight();
 							break;
 						}
-						case SOUTH:
-						case UP: {
+						case UP:
+						case SOUTH: {
 							layout = layout.rotateLeft();
 							break;
 						}
 						case DOWN: {
-							layout = layout.rotateLeft().flipVertical();
+							layout = layout.rotateRight().flipVertical();
 							break;
 						}
 						case EAST: {
-							layout = layout.flipHorizontal();
+							layout = layout.rotateLeft().rotateLeft();
 							for (int j = 0; j < this.rotation; ++j) {
 								layout = layout.rotateLeft();
 							}
