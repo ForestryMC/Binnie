@@ -335,7 +335,7 @@ public class DesignBlock {
 							break LAYOUTS;
 						}
 						case SOUTH: {
-							layout = layout.flipHorizontal();
+							layout = layout.rotateLeft().rotateLeft();
 							for (int j = 0; j < this.rotation; ++j) {
 								layout = layout.rotateLeft();
 							}
@@ -371,7 +371,7 @@ public class DesignBlock {
 							break LAYOUTS;
 						}
 						case NORTH: {
-							layout = layout.flipHorizontal();
+							layout = layout.rotateLeft().rotateLeft();
 							for (int j = 0; j < this.rotation; ++j) {
 								layout = layout.rotateLeft();
 							}
