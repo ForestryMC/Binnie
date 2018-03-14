@@ -110,6 +110,7 @@ public class BlockShrubLog extends Block implements IWoodTyped, IStateMapperRegi
 	}
 
 	@Override
+	@SuppressWarnings("deprecation")
 	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean p_185477_7_) {
 		if (!p_185477_7_) {
 			state = state.getActualState(worldIn, pos);
@@ -135,17 +136,20 @@ public class BlockShrubLog extends Block implements IWoodTyped, IStateMapperRegi
 	}
 
 	@Override
+	@SuppressWarnings("deprecation")
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 		state = this.getActualState(state, source, pos);
 		return BOUNDING_BOXES[getBoundingBoxIdx(state)];
 	}
 
 	@Override
+	@SuppressWarnings("deprecation")
 	public boolean isOpaqueCube(IBlockState state) {
 		return false;
 	}
 
 	@Override
+	@SuppressWarnings("deprecation")
 	public boolean isFullCube(IBlockState state) {
 		return false;
 	}
@@ -157,7 +161,7 @@ public class BlockShrubLog extends Block implements IWoodTyped, IStateMapperRegi
 			return 0;
 		} else if (face == EnumFacing.DOWN) {
 			return 20;
-		} else if (face != EnumFacing.UP) {
+		} else if (face == EnumFacing.UP) {
 			return 10;
 		} else {
 			return 5;
@@ -175,6 +179,7 @@ public class BlockShrubLog extends Block implements IWoodTyped, IStateMapperRegi
 
 	@Override
 	@SideOnly(Side.CLIENT)
+	@SuppressWarnings("deprecation")
 	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos,
 	                                    EnumFacing side) {
 		return true;
@@ -186,11 +191,13 @@ public class BlockShrubLog extends Block implements IWoodTyped, IStateMapperRegi
 	}
 
 	@Override
+	@SuppressWarnings("deprecation")
 	public IBlockState getStateFromMeta(int meta) {
 		return getDefaultState().withProperty(FIREPROOF, meta == 1);
 	}
 
 	@Override
+	@SuppressWarnings("deprecation")
 	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
 		return state.withProperty(NORTH, canFenceConnectTo(worldIn, pos, EnumFacing.NORTH))
 			.withProperty(EAST, canFenceConnectTo(worldIn, pos, EnumFacing.EAST))
@@ -240,6 +247,7 @@ public class BlockShrubLog extends Block implements IWoodTyped, IStateMapperRegi
 	}
 
 	@Override
+	@SuppressWarnings("deprecation")
 	public IBlockState withRotation(IBlockState state, Rotation rot) {
 		switch (rot) {
 			case CLOCKWISE_180:
@@ -257,6 +265,7 @@ public class BlockShrubLog extends Block implements IWoodTyped, IStateMapperRegi
 	}
 
 	@Override
+	@SuppressWarnings("deprecation")
 	public IBlockState withMirror(IBlockState state, Mirror mirrorIn) {
 		switch (mirrorIn) {
 			case LEFT_RIGHT:
