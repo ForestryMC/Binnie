@@ -217,176 +217,170 @@ public class DesignBlock {
 				break;
 			}
 		}
-		LAYOUTS:
-		{
-			switch (this.getFacing()) {
-				case UP: {
-					if (facing == EnumFacing.DOWN || facing == EnumFacing.UP) {
+		switch (this.getFacing()) {
+			case UP: {
+				switch (facing) {
+					case UP: {
 						for (int j = 0; j < this.rotation; ++j) {
 							layout = layout.rotateRight();
 						}
 						break;
 					}
-					break;
-				}
-				case DOWN: {
-					switch (facing) {
-						case UP:
-						case DOWN: {
-							layout = layout.flipVertical();
-							break;
-						}
-						case EAST:
-						case NORTH:
-						case SOUTH:
-						case WEST: {
-							layout = layout.rotateRight().rotateRight();
-							break;
-						}
-					}
-					if (facing == EnumFacing.DOWN || facing == EnumFacing.UP) {
+					case DOWN: {
 						for (int j = 0; j < this.rotation; ++j) {
 							layout = layout.rotateLeft();
 						}
 						break;
 					}
-					break;
 				}
-				case EAST: {
-					switch (facing) {
-						case SOUTH:
-						case UP: {
-							layout = layout.rotateRight();
-							break;
-						}
-						case NORTH: {
-							layout = layout.rotateLeft();
-							break;
-						}
-						case DOWN: {
-							layout = layout.rotateLeft().flipHorizontal();
-							break;
-						}
-						case WEST: {
-							layout = layout.flipHorizontal();
-							break;
-						}
-						default: {
-							break;
-						}
-					}
-					if (facing == EnumFacing.EAST) {
-						for (int j = 0; j < this.rotation; ++j) {
-							layout = layout.rotateRight();
-						}
-					}
-					if (facing == EnumFacing.WEST) {
+				break;
+			}
+			case DOWN: {
+				switch (facing) {
+					case UP: {
 						for (int j = 0; j < this.rotation; ++j) {
 							layout = layout.rotateLeft();
 						}
 						break;
 					}
-					break;
-				}
-				case WEST: {
-					switch (facing) {
-						case NORTH: {
+					case DOWN: {
+						for (int j = 0; j < this.rotation; ++j) {
 							layout = layout.rotateRight();
-							break;
 						}
-						case SOUTH:
-						case UP: {
-							layout = layout.rotateLeft();
-							break;
-						}
-						case DOWN: {
-							layout = layout.rotateLeft().flipVertical();
-							break;
-						}
-						case EAST: {
-							layout = layout.flipHorizontal();
-							for (int j = 0; j < this.rotation; ++j) {
-								layout = layout.rotateLeft();
-							}
-							break;
-						}
-						case WEST: {
-							for (int j = 0; j < this.rotation; ++j) {
-								layout = layout.rotateRight();
-							}
-							break;
-						}
+						break;
 					}
-					break;
-				}
-				case NORTH: {
-					switch (facing) {
-						case WEST: {
-							layout = layout.rotateLeft();
-							break LAYOUTS;
-						}
-						case EAST: {
-							layout = layout.rotateRight();
-							break LAYOUTS;
-						}
-						case DOWN: {
-							layout = layout.flipHorizontal();
-							break LAYOUTS;
-						}
-						case SOUTH: {
-							layout = layout.flipHorizontal();
-							for (int j = 0; j < this.rotation; ++j) {
-								layout = layout.rotateLeft();
-							}
-							break LAYOUTS;
-						}
-						case NORTH: {
-							for (int j = 0; j < this.rotation; ++j) {
-								layout = layout.rotateRight();
-							}
-							break LAYOUTS;
-						}
-						default: {
-							break LAYOUTS;
-						}
+					case NORTH:
+					case WEST:
+					case SOUTH:
+					case EAST: {
+						layout = layout.rotateRight().rotateRight();
+						break;
 					}
 				}
-				case SOUTH: {
-					switch (facing) {
-						case EAST: {
+				break;
+			}
+			case EAST: {
+				switch (facing) {
+					case UP:
+					case DOWN:
+					case SOUTH: {
+						layout = layout.rotateRight();
+						break;
+					}
+					case NORTH: {
+						layout = layout.rotateLeft().flipHorizontal();
+						break;
+					}
+					case WEST: {
+						layout = layout.rotateLeft().rotateLeft();
+						for (int j = 0; j < this.rotation; ++j) {
 							layout = layout.rotateLeft();
-							break LAYOUTS;
 						}
-						case WEST: {
+						break;
+					}
+					case EAST: {
+						for (int j = 0; j < this.rotation; ++j) {
 							layout = layout.rotateRight();
-							break LAYOUTS;
 						}
-						case UP: {
-							layout = layout.rotateRight().rotateRight();
-							break LAYOUTS;
-						}
-						case DOWN: {
-							layout = layout.flipVertical();
-							break LAYOUTS;
-						}
-						case NORTH: {
-							layout = layout.flipHorizontal();
-							for (int j = 0; j < this.rotation; ++j) {
-								layout = layout.rotateLeft();
-							}
-							break LAYOUTS;
-						}
-						case SOUTH: {
-							for (int j = 0; j < this.rotation; ++j) {
-								layout = layout.rotateRight();
-							}
-							break LAYOUTS;
-						}
-						default: {
-							break LAYOUTS;
-						}
+						break;
 					}
 				}
+				break;
+			}
+			case WEST: {
+				switch (facing) {
+					case NORTH: {
+						layout = layout.rotateRight();
+						break;
+					}
+					case UP:
+					case SOUTH: {
+						layout = layout.rotateLeft();
+						break;
+					}
+					case DOWN: {
+						layout = layout.rotateRight().flipVertical();
+						break;
+					}
+					case EAST: {
+						layout = layout.rotateLeft().rotateLeft();
+						for (int j = 0; j < this.rotation; ++j) {
+							layout = layout.rotateLeft();
+						}
+						break;
+					}
+					case WEST: {
+						for (int j = 0; j < this.rotation; ++j) {
+							layout = layout.rotateRight();
+						}
+						break;
+					}
+				}
+				break;
+			}
+			case NORTH: {
+				switch (facing) {
+					case DOWN: {
+						layout = layout.flipHorizontal();
+						break;
+					}
+					case WEST: {
+						layout = layout.rotateLeft();
+						break;
+					}
+					case EAST: {
+						layout = layout.rotateRight();
+						break;
+					}
+					case NORTH: {
+						for (int j = 0; j < this.rotation; ++j) {
+							layout = layout.rotateRight();
+						}
+						break;
+					}
+					case SOUTH: {
+						layout = layout.rotateLeft().rotateLeft();
+						for (int j = 0; j < this.rotation; ++j) {
+							layout = layout.rotateLeft();
+						}
+						break;
+					}
+				}
+				break;
+			}
+			case SOUTH: {
+				switch (facing) {
+					case UP: {
+						layout = layout.rotateRight().rotateRight();
+						break;
+					}
+					case DOWN: {
+						layout = layout.flipVertical();
+						break;
+					}
+					case WEST: {
+						layout = layout.rotateRight();
+						break;
+					}
+					case EAST: {
+						layout = layout.rotateLeft();
+						break;
+					}
+					case NORTH: {
+						layout = layout.rotateLeft().rotateLeft();
+						for (int j = 0; j < this.rotation; ++j) {
+							layout = layout.rotateLeft();
+						}
+						break;
+					}
+					case SOUTH: {
+						for (int j = 0; j < this.rotation; ++j) {
+							layout = layout.rotateRight();
+						}
+						break;
+					}
+				}
+				break;
 			}
 		}
 		return layout;
