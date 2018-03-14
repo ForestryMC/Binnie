@@ -119,11 +119,13 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 
 	@Override
 	@Nullable
+	@SuppressWarnings("deprecation")
 	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
 		return null;
 	}
 
 	@Override
+	@SuppressWarnings("deprecation")
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 		TileEntity tile = source.getTileEntity(pos);
 		if (tile instanceof TileEntityFlower) {
@@ -136,11 +138,13 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 	}
 
 	@Override
+	@SuppressWarnings("deprecation")
 	public boolean isOpaqueCube(IBlockState state) {
 		return false;
 	}
 
 	@Override
+	@SuppressWarnings("deprecation")
 	public boolean isFullCube(IBlockState state) {
 		return false;
 	}
@@ -225,6 +229,7 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 
 	@Override
 	@SideOnly(Side.CLIENT)
+	@SuppressWarnings("deprecation")
 	public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
 		TileEntityFlower flower = TileUtil.getTile(world, pos, TileEntityFlower.class);
 		if (flower != null && flower.getType() != null) {
@@ -256,6 +261,7 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 	}
 
 	@Override
+	@SuppressWarnings("deprecation")
 	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
 		checkAndDropBlock(worldIn, pos);
 		TileEntity tile = worldIn.getTileEntity(pos);
@@ -298,6 +304,7 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 	}
 
 	@Override
+	@SuppressWarnings("deprecation")
 	public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest) {
 		List<ItemStack> drops = getDrops(world, pos, world.getBlockState(pos), 0);
 		boolean hasBeenBroken = world.setBlockToAir(pos);
