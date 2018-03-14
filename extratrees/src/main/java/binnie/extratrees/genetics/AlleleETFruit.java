@@ -20,6 +20,7 @@ public class AlleleETFruit extends AlleleCategorized implements IAlleleFruit {
 	}
 
 	@Override
+	@SuppressWarnings("deprecation")
 	public String getName() {
 		return getProvider().getDescription();
 	}
