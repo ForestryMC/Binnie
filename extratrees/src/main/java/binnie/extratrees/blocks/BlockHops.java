@@ -213,6 +213,7 @@ public class BlockHops extends BlockCrops{
 	}
 	
 	@Override
+	@SuppressWarnings("deprecation")
 	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
 		if (state.getValue(HALF) == HopsHalf.UP) {
 			IBlockState iblockstate = worldIn.getBlockState(pos.down());
