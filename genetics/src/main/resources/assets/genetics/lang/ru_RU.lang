@@ -53,7 +53,7 @@ genetics.errors.genepool.insufficient.ethanol.desc=Недостаточно эт
 genetics.errors.genepool.insufficient.enzyme.desc=Недостаточно Фермента
 
 genetics.machine.lab_machine.lab_machine=Лабораторный стенд
-genetics.machine.lab_machine.lab_machine.info=
+genetics.machine.lab_machine.lab_machine.info=Лабораторный стенд - это блок, на котором можно разместить базу данных пчеловодства, базу данных арбористов, базу данных ботаники или базу данных генов, щелкнув правой кнопкой мыши на размещенном стенде с базой в руках, подключая ее и позволяя получить доступ к базе данных, щелкнув правой кнопкой мыши на стенде.
 
 genetics.machine.lab_machine.analyser=Анализатор
 genetics.machine.lab_machine.analyser.info=Анализатор принимает индивидуумы и секвенсоры ДНК и анализирует их для того, чтобы определить присутствующие гены. Для этого требуется ДНК-краска, созданная из фиолетовой краски и светящегося камня
