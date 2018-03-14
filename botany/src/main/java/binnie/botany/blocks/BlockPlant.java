@@ -67,6 +67,7 @@ public class BlockPlant extends BlockBush implements IItemModelRegister {
 	}
 
 	@Override
+	@SuppressWarnings("deprecation")
 	public IBlockState getStateFromMeta(int meta) {
 		return getDefaultState().withProperty(PLANT_TYPE, PlantType.getType(meta));
 	}
