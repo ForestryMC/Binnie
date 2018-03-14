@@ -3,19 +3,18 @@ package binnie.core.util;
 import javax.annotation.Nullable;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.util.IllegalFormatException;
 import java.util.Locale;
 
 import binnie.core.ModId;
+import binnie.core.proxy.I18NProxy;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.Language;
 import net.minecraft.client.resources.LanguageManager;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.client.resources.I18n;
+import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-@SideOnly(Side.CLIENT)
 public class I18N {
 	@Nullable
 	private static NumberFormat percentFormat;
@@ -42,45 +41,39 @@ public class I18N {
 	}
 
 	public static String localiseOrBlank(String key) {
-		String trans = localise(key);
-		return trans.equals(key) ? "" : trans;
+		return proxy.localiseOrBlank(key);
 	}
 
 	public static String localise(String key) {
-		if (I18n.hasKey(key)) {
-			return I18n.format(key);
-		} else {
-			return key;
-		}
+		return proxy.localise(key);
 	}
 
 	public static String localise(ModId modId, String path, Object... format) {
-		return localise(modId.getDomain() + "." + path, format);
+		return proxy.localise(modId, path, format);
 	}
 
 	public static String localise(ResourceLocation key) {
-		return localise(key.getResourceDomain() + "." + key.getResourcePath());
+		return proxy.localise(key);
 	}
 
 	public static boolean canLocalise(String key) {
-		return I18n.hasKey(key);
+		return proxy.canLocalise(key);
 	}
 
 	public static String localise(String key, Object... format) {
-		try {
-			return I18n.format(key, format);
-		} catch (IllegalFormatException e) {
-			String errorMessage = "Format error: " + key;
-			Log.error(errorMessage, e);
-			return errorMessage;
-		}
+		return proxy.localise(key, format);
 	}
 
 	public static String localise(ResourceLocation key, Object... format) {
-		return localise(key.getResourceDomain() + "." + key.getResourcePath(), format);
+		return proxy.localise(key, format);
 	}
 
+	@SuppressWarnings("NullableProblems")
+	@SidedProxy(clientSide = "binnie.core.proxy.I18NClient", serverSide = "binnie.core.proxy.I18NServer")
+	private static I18NProxy proxy;
+
 	@SuppressWarnings("ConstantConditions")
+	@SideOnly(Side.CLIENT)
 	public static Locale getLocale() {
 		Minecraft minecraft = Minecraft.getMinecraft();
 		if (minecraft != null) {
