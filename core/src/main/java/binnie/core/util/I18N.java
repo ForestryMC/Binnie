@@ -11,10 +11,11 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.Language;
 import net.minecraft.client.resources.LanguageManager;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.translation.I18n;
+import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public class I18N {
 	@Nullable
 	private static NumberFormat percentFormat;
@@ -26,7 +27,6 @@ public class I18N {
 		numberFormat = null;
 	}
 
-	@SideOnly(Side.CLIENT)
 	public static NumberFormat getPercentFormat() {
 		if (percentFormat == null) {
 			percentFormat = DecimalFormat.getPercentInstance(getLocale());
@@ -34,7 +34,6 @@ public class I18N {
 		return percentFormat;
 	}
 
-	@SideOnly(Side.CLIENT)
 	public static NumberFormat getNumberFormat() {
 		if (numberFormat == null) {
 			numberFormat = DecimalFormat.getNumberInstance(I18N.getLocale());
@@ -46,13 +45,12 @@ public class I18N {
 		String trans = localise(key);
 		return trans.equals(key) ? "" : trans;
 	}
-	
-	@SuppressWarnings("deprecation")
+
 	public static String localise(String key) {
-		if (I18n.canTranslate(key)) {
-			return I18n.translateToLocal(key);
+		if (I18n.hasKey(key)) {
+			return I18n.format(key);
 		} else {
-			return I18n.translateToFallback(key);
+			return key;
 		}
 	}
 
@@ -63,18 +61,16 @@ public class I18N {
 	public static String localise(ResourceLocation key) {
 		return localise(key.getResourceDomain() + "." + key.getResourcePath());
 	}
-	
-	@SuppressWarnings("deprecation")
+
 	public static boolean canLocalise(String key) {
-		return I18n.canTranslate(key);
+		return I18n.hasKey(key);
 	}
-	
+
 	public static String localise(String key, Object... format) {
-		String s = localise(key);
 		try {
-			return String.format(s, format);
+			return I18n.format(key, format);
 		} catch (IllegalFormatException e) {
-			String errorMessage = "Format error: " + s;
+			String errorMessage = "Format error: " + key;
 			Log.error(errorMessage, e);
 			return errorMessage;
 		}
@@ -85,7 +81,6 @@ public class I18N {
 	}
 
 	@SuppressWarnings("ConstantConditions")
-	@SideOnly(Side.CLIENT)
 	public static Locale getLocale() {
 		Minecraft minecraft = Minecraft.getMinecraft();
 		if (minecraft != null) {
