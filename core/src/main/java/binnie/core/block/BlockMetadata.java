@@ -39,6 +39,7 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	public static boolean breakBlock(IBlockMetadata blockMetadata, @Nullable EntityPlayer player, World world, BlockPos pos) {
 		List<ItemStack> drops = new ArrayList<>();
 		Block block = (Block) blockMetadata;
