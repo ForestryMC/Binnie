@@ -5,15 +5,18 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Locale;
 
-import binnie.core.ModId;
-import binnie.core.proxy.I18NProxy;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.Language;
 import net.minecraft.client.resources.LanguageManager;
 import net.minecraft.util.ResourceLocation;
+
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import binnie.core.Constants;
+import binnie.core.ModId;
+import binnie.core.proxy.I18NProxy;
 
 public class I18N {
 	@Nullable
@@ -69,7 +72,7 @@ public class I18N {
 	}
 
 	@SuppressWarnings("NullableProblems")
-	@SidedProxy(clientSide = "binnie.core.proxy.I18NClient", serverSide = "binnie.core.proxy.I18NServer")
+	@SidedProxy(clientSide = "binnie.core.proxy.I18NClient", serverSide = "binnie.core.proxy.I18NServer", modId = Constants.CORE_MOD_ID)
 	private static I18NProxy proxy;
 
 	@SuppressWarnings("ConstantConditions")
