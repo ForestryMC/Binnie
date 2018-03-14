@@ -29,6 +29,7 @@ public class BlockCarpentryPanel extends BlockCarpentry {
 	}
 
 	@Override
+	@SuppressWarnings("deprecation")
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 		final DesignBlock block = this.getCarpentryBlock(source, pos);
 		switch (block.getFacing()) {
@@ -66,11 +67,13 @@ public class BlockCarpentryPanel extends BlockCarpentry {
 	}
 
 	@Override
+	@SuppressWarnings("deprecation")
 	public boolean isOpaqueCube(IBlockState state) {
 		return false;
 	}
 
 	@Override
+	@SuppressWarnings("deprecation")
 	public boolean isFullCube(IBlockState state) {
 		return false;
 	}
@@ -103,6 +106,7 @@ public class BlockCarpentryPanel extends BlockCarpentry {
 	}
 
 	@Override
+	@SuppressWarnings("deprecation")
 	public boolean isSideSolid(IBlockState base_state, IBlockAccess world, BlockPos pos, EnumFacing side) {
 		return false;
 	}
