@@ -145,6 +145,7 @@ public class GardenLogic extends FarmLogic {
 					ItemStack block = getAsItemStack(world, position);
 					ItemStack loam = getAvailableLoam(housing);
 					if (isWaste(block) && !loam.isEmpty()) {
+						@SuppressWarnings("deprecation")
 						IBlockState blockState = Block.getBlockFromItem(block.getItem()).getStateFromMeta(block.getItemDamage());
 						Blocks.DIRT.getDrops(produce, world, position, blockState, 0);
 						setBlock(world, position, Blocks.AIR, 0);
