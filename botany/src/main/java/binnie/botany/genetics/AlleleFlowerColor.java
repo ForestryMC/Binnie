@@ -41,6 +41,7 @@ public class AlleleFlowerColor implements IAlleleFlowerColor {
 	}
 
 	@Override
+	@SuppressWarnings("deprecation")
 	public String getName() {
 		return name;
 	}
