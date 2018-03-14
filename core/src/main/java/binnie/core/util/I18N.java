@@ -15,6 +15,7 @@ import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public class I18N {
 	@Nullable
 	private static NumberFormat percentFormat;
@@ -26,7 +27,6 @@ public class I18N {
 		numberFormat = null;
 	}
 
-	@SideOnly(Side.CLIENT)
 	public static NumberFormat getPercentFormat() {
 		if (percentFormat == null) {
 			percentFormat = DecimalFormat.getPercentInstance(getLocale());
@@ -34,7 +34,6 @@ public class I18N {
 		return percentFormat;
 	}
 
-	@SideOnly(Side.CLIENT)
 	public static NumberFormat getNumberFormat() {
 		if (numberFormat == null) {
 			numberFormat = DecimalFormat.getNumberInstance(I18N.getLocale());
@@ -42,13 +41,11 @@ public class I18N {
 		return numberFormat;
 	}
 
-	@SideOnly(Side.CLIENT)
 	public static String localiseOrBlank(String key) {
 		String trans = localise(key);
 		return trans.equals(key) ? "" : trans;
 	}
 
-	@SideOnly(Side.CLIENT)
 	public static String localise(String key) {
 		if (I18n.hasKey(key)) {
 			return I18n.format(key);
@@ -57,22 +54,18 @@ public class I18N {
 		}
 	}
 
-	@SideOnly(Side.CLIENT)
 	public static String localise(ModId modId, String path, Object... format) {
 		return localise(modId.getDomain() + "." + path, format);
 	}
 
-	@SideOnly(Side.CLIENT)
 	public static String localise(ResourceLocation key) {
 		return localise(key.getResourceDomain() + "." + key.getResourcePath());
 	}
 
-	@SideOnly(Side.CLIENT)
 	public static boolean canLocalise(String key) {
 		return I18n.hasKey(key);
 	}
 
-	@SideOnly(Side.CLIENT)
 	public static String localise(String key, Object... format) {
 		try {
 			return I18n.format(key, format);
@@ -83,13 +76,11 @@ public class I18N {
 		}
 	}
 
-	@SideOnly(Side.CLIENT)
 	public static String localise(ResourceLocation key, Object... format) {
 		return localise(key.getResourceDomain() + "." + key.getResourcePath(), format);
 	}
 
 	@SuppressWarnings("ConstantConditions")
-	@SideOnly(Side.CLIENT)
 	public static Locale getLocale() {
 		Minecraft minecraft = Minecraft.getMinecraft();
 		if (minecraft != null) {
