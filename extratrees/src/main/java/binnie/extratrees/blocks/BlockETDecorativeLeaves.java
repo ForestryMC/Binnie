@@ -111,17 +111,20 @@ public abstract class BlockETDecorativeLeaves extends Block implements IItemMode
 	 * Used to determine ambient occlusion and culling when rebuilding chunks for render
 	 */
 	@Override
+	@SuppressWarnings("deprecation")
 	public boolean isOpaqueCube(IBlockState state) {
 		return !Proxies.render.fancyGraphicsEnabled();
 	}
 
 	@Override
+	@SuppressWarnings("deprecation")
 	public boolean causesSuffocation(IBlockState state) {
 		return false;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
+	@SuppressWarnings("deprecation")
 	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
 		if (Proxies.render.fancyGraphicsEnabled() || blockAccess.getBlockState(pos.offset(side)).getBlock() != this) {
 			if (super.shouldSideBeRendered(blockState, blockAccess, pos, side)) {
@@ -151,6 +154,7 @@ public abstract class BlockETDecorativeLeaves extends Block implements IItemMode
 	 * Convert the given metadata into a BlockState for this Block
 	 */
 	@Override
+	@SuppressWarnings("deprecation")
 	public IBlockState getStateFromMeta(int meta) {
 		ETTreeDefinition type = getTreeType(meta);
 		return getDefaultState().withProperty(getVariant(), type);
