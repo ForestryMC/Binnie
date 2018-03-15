@@ -7,10 +7,14 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import forestry.api.core.Tabs;
 import forestry.core.items.IColoredItem;
+import forestry.api.apiculture.BeeManager;
+import forestry.api.arboriculture.TreeManager;
+import forestry.api.lepidopterology.ButterflyManager;
 
 import binnie.core.Mods;
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.items.types.EnumHoneyComb;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class ItemHoneyComb extends ItemProduct<EnumHoneyComb> implements IColoredItem {
 
@@ -19,6 +23,9 @@ public class ItemHoneyComb extends ItemProduct<EnumHoneyComb> implements IColore
 		this.setCreativeTab(Tabs.tabApiculture);
 		this.setUnlocalizedName("honey_comb");
 		setRegistryName("honey_comb");
+		BeeManager.beeRoot.setResearchSuitability(new ItemStack(this, 1, OreDictionary.WILDCARD_VALUE), 0.4f);
+		TreeManager.treeRoot.setResearchSuitability(new ItemStack(this, 1, OreDictionary.WILDCARD_VALUE), 0.4f);
+		ButterflyManager.butterflyRoot.setResearchSuitability(new ItemStack(this, 1, OreDictionary.WILDCARD_VALUE), 0.4f);
 	}
 
 	@SideOnly(Side.CLIENT)
