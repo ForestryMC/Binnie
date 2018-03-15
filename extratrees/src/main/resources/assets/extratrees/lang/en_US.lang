@@ -278,9 +278,9 @@ extratrees.block.door.type.double=Split
 extratrees.block.door.type.full=Full
 
 < %PREFIX is the adjective for the fence type, %WOOD is the name of the wood >
-extratrees.block.multifence.grammar=%PREFIX%WOOD Fence
+extratrees.block.multifence.grammar=%s%s Fence
 < %TYPE is the name of the second wood >
-extratrees.block.multifence2.grammar=%PREFIX%WOOD & %TYPE Fence
+extratrees.block.multifence2.grammar=%s%s & %s Fence
 extratrees.multifence.low.type=Low
 extratrees.multifence.full.type=Full
 extratrees.multifence.solid.type=Solid
