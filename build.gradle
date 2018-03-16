@@ -22,6 +22,11 @@ apply plugin: 'maven'
 allprojects {
     apply plugin: 'net.minecraftforge.gradle.forge'
 
+    version = version_major + '.' + version_minor + '.' + version_patch
+    if (System.getenv("BUILD_NUMBER") != null) {
+        version = version + "." + System.getenv("BUILD_NUMBER")
+    }
+
     minecraft {
         version = mcversion + "-" + forgeversion
         mappings = mcp_mappings
@@ -31,11 +36,6 @@ allprojects {
     }
 
     group = "binnie" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-
-    version = version_major + '.' + version_minor + '.' + version_patch
-    if (System.getenv("BUILD_NUMBER") != null) {
-        version = version + "." + System.getenv("BUILD_NUMBER")
-    }
 
     sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
     compileJava {
