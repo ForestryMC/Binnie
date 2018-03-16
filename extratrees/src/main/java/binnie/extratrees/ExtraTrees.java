@@ -33,6 +33,7 @@ import forestry.api.lepidopterology.ButterflyManager;
 @Mod(
 	modid = Constants.EXTRA_TREES_MOD_ID,
 	name = "Binnie's Extra Trees",
+	version = "@VERSION@",
 	acceptedMinecraftVersions = Constants.ACCEPTED_MINECRAFT_VERSIONS,
 	dependencies = "required-after:" + Constants.CORE_MOD_ID + ";"
 			+      "after:" + Constants.DESIGN_MOD_ID + ";"

@@ -60,6 +60,7 @@ import forestry.core.proxy.Proxies;
 @Mod(
 	modid = ExtraBees.MODID,
 	name = "Binnie's Extra Bees",
+	version = "@VERSION@",
 	acceptedMinecraftVersions = Constants.ACCEPTED_MINECRAFT_VERSIONS,
 	dependencies = "required-after:" + Constants.CORE_MOD_ID
 )
