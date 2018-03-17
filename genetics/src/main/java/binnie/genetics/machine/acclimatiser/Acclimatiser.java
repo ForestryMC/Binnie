@@ -25,6 +25,7 @@ import forestry.api.lepidopterology.EnumButterflyChromosome;
 import binnie.core.BinnieCore;
 import binnie.core.genetics.Tolerance;
 import binnie.core.liquid.FluidContainerType;
+import binnie.core.util.ItemStackUtil;
 import binnie.genetics.api.acclimatiser.IToleranceType;
 
 public class Acclimatiser {
@@ -63,7 +64,7 @@ public class Acclimatiser {
 
 	public static float getTemperatureEffect(final ItemStack item) {
 		for (final ItemStack stack : Acclimatiser.temperatureItems.keySet()) {
-			if (stack.isItemEqual(item)) {
+			if (ItemStackUtil.isItemEqual(stack, item, false, true)) {
 				return Acclimatiser.temperatureItems.get(stack);
 			}
 		}
@@ -72,7 +73,7 @@ public class Acclimatiser {
 
 	public static float getHumidityEffect(final ItemStack item) {
 		for (final ItemStack stack : Acclimatiser.humidityItems.keySet()) {
-			if (stack.isItemEqual(item)) {
+			if (ItemStackUtil.isItemEqual(stack, item, false, true)) {
 				return Acclimatiser.humidityItems.get(stack);
 			}
 		}
