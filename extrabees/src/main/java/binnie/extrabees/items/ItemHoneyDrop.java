@@ -1,5 +1,6 @@
 package binnie.extrabees.items;
 
+import jline.internal.Nullable;
 import net.minecraft.item.ItemStack;
 
 import forestry.api.core.Tabs;
@@ -15,8 +16,14 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public class ItemHoneyDrop extends ItemProduct<EnumHoneyDrop> implements IColoredItem {
 
-	static final float RESEARCH_SUITABILITY = 0.5f;
-	static final String BOTANY_UID = "rootFlowers";
+	private static final float RESEARCH_SUITABILITY = 0.5f;
+	private static final String BOTANY_UID = "rootFlowers";
+
+	private void setResearchSuitability(@Nullable ISpeciesRoot speciesRoot) {
+		if (speciesRoot != null) {
+			speciesRoot.setResearchSuitability(new ItemStack(this, 1, OreDictionary.WILDCARD_VALUE), RESEARCH_SUITABILITY);
+		}
+	}
 
 	public ItemHoneyDrop() {
 		super(EnumHoneyDrop.values());
@@ -24,13 +31,10 @@ public class ItemHoneyDrop extends ItemProduct<EnumHoneyDrop> implements IColore
 		this.setUnlocalizedName("honey_drop");
 		setRegistryName("honey_drop");
 		BeeManager.beeRoot.setResearchSuitability(new ItemStack(this, 1, OreDictionary.WILDCARD_VALUE), RESEARCH_SUITABILITY);
-		TreeManager.treeRoot.setResearchSuitability(new ItemStack(this, 1, OreDictionary.WILDCARD_VALUE), RESEARCH_SUITABILITY);
-		ButterflyManager.butterflyRoot.setResearchSuitability(new ItemStack(this, 1, OreDictionary.WILDCARD_VALUE), RESEARCH_SUITABILITY);
+		setResearchSuitability(TreeManager.treeRoot);
+		setResearchSuitability(ButterflyManager.butterflyRoot);
 
-		ISpeciesRoot botanyRoot = AlleleManager.alleleRegistry.getSpeciesRoot(BOTANY_UID);
-		if (botanyRoot != null) {
-			botanyRoot.setResearchSuitability(new ItemStack(this, 1, OreDictionary.WILDCARD_VALUE), RESEARCH_SUITABILITY);
-		}
+		setResearchSuitability(AlleleManager.alleleRegistry.getSpeciesRoot(BOTANY_UID));
 	}
 
 	@Override
