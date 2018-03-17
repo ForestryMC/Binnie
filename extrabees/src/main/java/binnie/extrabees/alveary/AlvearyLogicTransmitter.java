@@ -28,7 +28,7 @@ public class AlvearyLogicTransmitter extends AbstractAlvearyLogic implements IEn
 
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
-		CapabilityEnergy.ENERGY.readNBT(energyStorage, null, nbt.getCompoundTag(ENERGY_NBT_KEY));
+		CapabilityEnergy.ENERGY.readNBT(energyStorage, null, nbt.getTag(ENERGY_NBT_KEY));
 	}
 
 	@Override
