@@ -188,11 +188,17 @@ binniecore.item.container.glass=Бутылка
 binniecore.item.container.cylinder=Цилиндр
 
 binniecore.machine.storage.compartment=Отсек
+binniecore.machine.storage.compartment.info=Сундуки, у которых несколько вкладок, чтобы помочь организовать их содержимое. Каждая вкладка может быть: переименована, назначен цвет, назначена пиктограмма из любого элемента. Количество вкладок: 4, слоты на вкладку: 25
 binniecore.machine.storage.compartment_iron=Железный отсек
+binniecore.machine.storage.compartment_iron.info=Сундуки, у которых несколько вкладок, чтобы помочь организовать их содержимое. Каждая вкладка может быть: переименована, назначен цвет, назначена пиктограмма из любого элемента. Количество вкладок: 4, слоты на вкладку: 50
 binniecore.machine.storage.compartment_diamond=Алмазный отсек
+binniecore.machine.storage.compartment_diamond.info=Сундуки, у которых несколько вкладок, чтобы помочь организовать их содержимое. Каждая вкладка может быть: переименована, назначен цвет, назначена пиктограмма из любого элемента. Количество вкладок: 8, слоты на вкладку: 50
 binniecore.machine.storage.compartment_copper=Медный отсек
+binniecore.machine.storage.compartment_copper.info=Сундуки, у которых несколько вкладок, чтобы помочь организовать их содержимое. Каждая вкладка может быть: переименована, назначен цвет, назначена пиктограмма из любого элемента. Количество вкладок: 6, слоты на вкладку: 25
 binniecore.machine.storage.compartment_bronze=Бронзовый отсек
+binniecore.machine.storage.compartment_bronze.info=Сундуки, у которых несколько вкладок, чтобы помочь организовать их содержимое. Каждая вкладка может быть: переименована, назначен цвет, назначена пиктограмма из любого элемента. Количество вкладок: 8, слоты на вкладку: 25
 binniecore.machine.storage.compartment_gold=Золотой отсек
+binniecore.machine.storage.compartment_gold.info=Сундуки, у которых несколько вкладок, чтобы помочь организовать их содержимое. Каждая вкладка может быть: переименована, назначен цвет, назначена пиктограмма из любого элемента. Количество вкладок: 6, слоты на вкладку: 50
 
 binniecore.machine.tooltips.processing=Обработка
 

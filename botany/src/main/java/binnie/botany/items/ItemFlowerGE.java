@@ -106,11 +106,11 @@ public class ItemFlowerGE extends Item implements IColoredItem, IItemModelRegist
 		String stemColor = genome.getStemColor().getColorName();
 		String colorInfo;
 		if (!primaryColor.equals(secondaryColor)) {
-			colorInfo = I18N.localise("item.botany.grammar.flower.secondary");
+			colorInfo = I18N.localise("item.botany.grammar.flower.secondary", primaryColor, secondaryColor, stemColor);
 		} else {
-			colorInfo = I18N.localise("item.botany.grammar.flower");
+			colorInfo = I18N.localise("item.botany.grammar.flower", primaryColor, stemColor);
 		}
-		list.add(TextFormatting.YELLOW + colorInfo.replaceAll("%PRIMARY", primaryColor).replaceAll("%SECONDARY", secondaryColor).replaceAll("%STEM", stemColor));
+		list.add(TextFormatting.YELLOW + colorInfo);
 
 		if (individual.isAnalyzed()) {
 			if (GuiScreen.isShiftKeyDown()) {

@@ -28,6 +28,7 @@ import binnie.genetics.api.analyst.IAnalystManager;
 @Mod(
 	modid = Constants.BOTANY_MOD_ID,
 	name = "Binnie's Botany",
+	version = "@VERSION@",
 	acceptedMinecraftVersions = Constants.ACCEPTED_MINECRAFT_VERSIONS,
 	dependencies = "required-after:" + Constants.CORE_MOD_ID + ";"
 			+	   "after:" + Constants.GENETICS_MOD_ID + ";"

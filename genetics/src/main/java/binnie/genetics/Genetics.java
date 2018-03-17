@@ -41,6 +41,7 @@ import forestry.api.arboriculture.TreeManager;
 @Mod(
 	modid = Constants.GENETICS_MOD_ID,
 	name = "Binnie's Genetics",
+	version = "@VERSION@",
 	acceptedMinecraftVersions = Constants.ACCEPTED_MINECRAFT_VERSIONS,
 	dependencies = "required-after:" + Constants.CORE_MOD_ID
 )

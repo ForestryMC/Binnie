@@ -87,8 +87,8 @@ botany.tube.material.bronze.name=Бронза
 
 item.botany.flower.destroy=Этот предмет прослушивается. Уничтожьте это!
 item.botany.flower.age=Возраст: %s
-item.botany.grammar.flower=%PRIMARY, %STEM основа
-item.botany.grammar.flower.secondary=%PRIMARY и %SECONDARY, %STEM основа
+item.botany.grammar.flower=%s, %s основа
+item.botany.grammar.flower.secondary=%s и %s, %s основа
 
 item.botany.botanist_bag.name=Рюкзак ботаника
 botany.jei.description.botanist_bag=Дополнительный инвентарь, который автоматически подбирает цветы.

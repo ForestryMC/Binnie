@@ -173,12 +173,11 @@ public class BlockMultiFence extends BlockFence implements IBlockMetadata, IStat
 		IPlankType typeSecond = this.getDescription(meta).getSecondaryPlankType();
 		boolean twoTypes = typeFirst != typeSecond;
 		FenceType fenceType = this.getDescription(meta).getFenceType();
-		String woodGrammar = I18N.localise("extratrees.block.multifence" + (twoTypes ? "2" : "") + ".grammar");
 
-		woodGrammar = woodGrammar.replaceAll("%PREFIX", fenceType.getPrefix());
-		woodGrammar = woodGrammar.replaceAll("%TYPE", typeSecond.getDesignMaterialName());
-		woodGrammar = woodGrammar.replaceAll("%WOOD", typeFirst.getDesignMaterialName());
-		return woodGrammar;
+		return I18N.localise("extratrees.block.multifence" + (twoTypes ? "2" : "") + ".grammar",
+				fenceType.getPrefix(),
+				typeFirst.getDesignMaterialName(),
+				typeSecond.getDesignMaterialName());
 	}
 
 	@SideOnly(Side.CLIENT)
