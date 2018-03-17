@@ -1,6 +1,6 @@
 package binnie.extrabees.items;
 
-import jline.internal.Nullable;
+import javax.annotation.Nullable;
 import net.minecraft.item.ItemStack;
 
 import forestry.api.core.Tabs;
