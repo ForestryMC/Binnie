@@ -25,12 +25,12 @@ import forestry.api.apiculture.IHiveFrame;
 import forestry.api.multiblock.IAlvearyController;
 import forestry.api.multiblock.IMultiblockLogicAlveary;
 
-import binnie.extrabees.client.gui.AbstractAlvearyContainer;
+import binnie.extrabees.client.gui.AlvearyContainer;
 import binnie.extrabees.client.gui.ContainerFrameHousing;
 import binnie.extrabees.client.gui.GuiContainerAlvearyPart;
 import binnie.extrabees.utils.Utils;
 
-public class AlvearyLogicFrameHousing extends AbstractAlvearyLogic {
+public class AlvearyLogicFrameHousing extends AlvearyLogic {
 	private final ItemStackHandler inv;
 	private final TileEntityExtraBeesAlvearyPart tile;
 
@@ -116,7 +116,7 @@ public class AlvearyLogicFrameHousing extends AbstractAlvearyLogic {
 
 	@Nullable
 	@Override
-	public AbstractAlvearyContainer getContainer(@Nonnull EntityPlayer player, int data) {
+	public AlvearyContainer getContainer(@Nonnull EntityPlayer player, int data) {
 		return new ContainerFrameHousing(player, this);
 	}
 

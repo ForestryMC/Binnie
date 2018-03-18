@@ -7,7 +7,7 @@ import net.minecraftforge.items.SlotItemHandler;
 import binnie.extrabees.alveary.AlvearyLogicFrameHousing;
 import binnie.extrabees.alveary.EnumAlvearyLogicType;
 
-public class ContainerFrameHousing extends AbstractAlvearyContainer {
+public class ContainerFrameHousing extends AlvearyContainer {
 
 	public ContainerFrameHousing(EntityPlayer player, AlvearyLogicFrameHousing logic) {
 		super(player, logic.getInventory(), EnumAlvearyLogicType.FRAME, DEFAULT_DIMENSION);

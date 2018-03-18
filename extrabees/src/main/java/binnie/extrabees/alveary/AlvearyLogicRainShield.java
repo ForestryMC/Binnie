@@ -1,6 +1,6 @@
 package binnie.extrabees.alveary;
 
-public class AlvearyLogicRainShield extends AbstractAlvearyLogic {
+public class AlvearyLogicRainShield extends AlvearyLogic {
 
 	@Override
 	public boolean isSealed() {

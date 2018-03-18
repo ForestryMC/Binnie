@@ -1,27 +1,22 @@
 package binnie.extrabees.client.gui;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.texture.TextureManager;
 
-public class GuiContainerStimulator extends GuiContainerAlvearyPart {
-
-	private final ContainerStimulator container;
+public class GuiContainerStimulator extends GuiContainerAlvearyPart<ContainerStimulator> {
 
 	public GuiContainerStimulator(ContainerStimulator container) {
 		super(container);
-		this.container = container;
 	}
 
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
 		super.drawGuiContainerBackgroundLayer(partialTicks, mouseX, mouseY);
-		Minecraft.getMinecraft().getTextureManager().bindTexture(container.background);
-		int i = (this.width - this.xSize) / 2;
-		int j = (this.height - this.ySize) / 2;
-		float fill = container.power / (float) container.maxPower;
-		float bar = fill * 70;
-		GlStateManager.color(1, 1, 1, 1);
-		drawTexturedModalRect(i + 71, j + 38, 0, 185, (int) bar, 14);
-		drawTexturedModalRect(i + 71, j + 38, 0, 165, 70, 14);
+		TextureManager textureManager = mc.getTextureManager();
+		textureManager.bindTexture(container.background);
+		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+		float energyScaled = container.getEnergyScaled(70);
+		drawTexturedModalRect(guiLeft + 71, guiTop + 38, 0, 185, (int) energyScaled, 14);
+		drawTexturedModalRect(guiLeft + 71, guiTop + 38, 0, 165, 70, 14);
 	}
 }

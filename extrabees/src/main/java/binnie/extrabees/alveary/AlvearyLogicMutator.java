@@ -16,12 +16,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import forestry.api.apiculture.IBeeGenome;
 
-import binnie.extrabees.client.gui.AbstractAlvearyContainer;
+import binnie.extrabees.client.gui.AlvearyContainer;
 import binnie.extrabees.client.gui.ContainerMutator;
 import binnie.extrabees.client.gui.GuiContainerMutator;
 import binnie.extrabees.utils.AlvearyMutationHandler;
 
-public class AlvearyLogicMutator extends AbstractAlvearyLogic {
+public class AlvearyLogicMutator extends AlvearyLogic {
 
 	private final ItemStackHandler inv;
 
@@ -66,7 +66,7 @@ public class AlvearyLogicMutator extends AbstractAlvearyLogic {
 
 	@Nullable
 	@Override
-	public AbstractAlvearyContainer getContainer(@Nonnull EntityPlayer player, int data) {
+	public AlvearyContainer getContainer(@Nonnull EntityPlayer player, int data) {
 		return new ContainerMutator(player, this);
 	}
 

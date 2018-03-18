@@ -1,7 +1,5 @@
 package binnie.extrabees.alveary;
 
-import com.google.common.collect.Lists;
-
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -12,9 +10,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-import net.minecraftforge.energy.CapabilityEnergy;
-import net.minecraftforge.energy.EnergyStorage;
-import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemStackHandler;
 
@@ -31,19 +26,17 @@ import binnie.extrabees.circuit.StimulatorCircuit;
 import binnie.extrabees.client.gui.ContainerStimulator;
 import binnie.extrabees.client.gui.GuiContainerStimulator;
 
-public class AlvearyLogicStimulator extends AbstractAlvearyLogic {
-	private final IEnergyStorage energyStorage;
+public class AlvearyLogicStimulator extends AlvearyLogicElectrical {
 	private final ItemStackHandler inv;
-	private final List<ContainerStimulator> containers = Lists.newArrayList();
 	private int powerUsage;
 	private boolean powered;
 	private StimulatorCircuit[] modifiers;
 
 	public AlvearyLogicStimulator() {
+		super(10000);
 		this.powerUsage = 0;
 		this.powered = false;
 		this.modifiers = new StimulatorCircuit[0];
-		this.energyStorage = new EnergyStorage(10000);
 		this.inv = new ChipsetItemStackHandler();
 	}
 
@@ -53,14 +46,13 @@ public class AlvearyLogicStimulator extends AbstractAlvearyLogic {
 
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
-		CapabilityEnergy.ENERGY.readNBT(energyStorage, null, nbt.getTag(ENERGY_NBT_KEY));
+		super.readFromNBT(nbt);
 		inv.deserializeNBT(nbt.getCompoundTag(INVENTORY_NBT_KEY));
 	}
 
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
-		nbt.setTag(ENERGY_NBT_KEY, CapabilityEnergy.ENERGY.writeNBT(energyStorage, null));
 		nbt.setTag(INVENTORY_NBT_KEY, inv.serializeNBT());
 		return nbt;
 	}
@@ -73,17 +65,6 @@ public class AlvearyLogicStimulator extends AbstractAlvearyLogic {
 			this.powerUsage += beeMod.getPowerUsage();
 		}
 		this.powered = energyStorage.extractEnergy(powerUsage, true) >= powerUsage;
-		for (ContainerStimulator c : containers) {
-			c.checkPower();
-		}
-	}
-
-	public void onContainerOpened(ContainerStimulator container) {
-		containers.add(container);
-	}
-
-	public void onGuiClosed(ContainerStimulator container) {
-		containers.remove(container);
 	}
 
 	@Nullable
@@ -236,11 +217,6 @@ public class AlvearyLogicStimulator extends AbstractAlvearyLogic {
 	@Override
 	public void wearOutEquipment(final int amount) {
 		energyStorage.extractEnergy(powerUsage, false);
-	}
-
-	@Override
-	public IEnergyStorage getEnergyStorage() {
-		return energyStorage;
 	}
 
 	@Nullable

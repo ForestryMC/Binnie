@@ -9,7 +9,7 @@ import net.minecraftforge.items.SlotItemHandler;
 import binnie.extrabees.alveary.AlvearyLogicMutator;
 import binnie.extrabees.alveary.EnumAlvearyLogicType;
 
-public class ContainerMutator extends AbstractAlvearyContainer {
+public class ContainerMutator extends AlvearyContainer {
 
 	public ContainerMutator(EntityPlayer player, AlvearyLogicMutator logic) {
 		super(player, logic.getInventory(), EnumAlvearyLogicType.MUTATOR, new Dimension(176, 176));

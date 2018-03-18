@@ -19,12 +19,12 @@ import forestry.api.apiculture.IBee;
 import forestry.api.apiculture.IBeeHousing;
 import forestry.api.apiculture.IBeeRoot;
 
-import binnie.extrabees.client.gui.AbstractAlvearyContainer;
+import binnie.extrabees.client.gui.AlvearyContainer;
 import binnie.extrabees.client.gui.ContainerHatchery;
 import binnie.extrabees.client.gui.GuiContainerAlvearyPart;
 import binnie.extrabees.utils.Utils;
 
-public class AlvearyLogicHatchery extends AbstractAlvearyLogic {
+public class AlvearyLogicHatchery extends AlvearyLogic {
 
 	private final ItemStackHandler inv;
 
@@ -77,7 +77,7 @@ public class AlvearyLogicHatchery extends AbstractAlvearyLogic {
 
 	@Nullable
 	@Override
-	public AbstractAlvearyContainer getContainer(@Nonnull EntityPlayer player, int data) {
+	public AlvearyContainer getContainer(@Nonnull EntityPlayer player, int data) {
 		return new ContainerHatchery(player, this);
 	}
 

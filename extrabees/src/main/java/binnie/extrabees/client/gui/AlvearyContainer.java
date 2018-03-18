@@ -2,7 +2,6 @@ package binnie.extrabees.client.gui;
 
 import java.awt.Dimension;
 
-import forestry.core.utils.SlotUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
@@ -11,11 +10,13 @@ import net.minecraft.util.ResourceLocation;
 
 import net.minecraftforge.items.IItemHandlerModifiable;
 
+import forestry.core.utils.SlotUtil;
+
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.alveary.EnumAlvearyLogicType;
 import binnie.extrabees.utils.ExtraBeesResourceLocation;
 
-public abstract class AbstractAlvearyContainer extends Container {
+public abstract class AlvearyContainer extends Container {
 
 	protected static final Dimension DEFAULT_DIMENSION = new Dimension(176, 144);
 	private final Dimension dimension;
@@ -26,7 +27,7 @@ public abstract class AbstractAlvearyContainer extends Container {
 	protected int offset;
 	protected String title;
 
-	public AbstractAlvearyContainer(EntityPlayer player, IItemHandlerModifiable inv, EnumAlvearyLogicType type, Dimension dimension) {
+	public AlvearyContainer(EntityPlayer player, IItemHandlerModifiable inv, EnumAlvearyLogicType type, Dimension dimension) {
 		this.player = player;
 		this.inv = inv;
 		this.dimension = dimension;

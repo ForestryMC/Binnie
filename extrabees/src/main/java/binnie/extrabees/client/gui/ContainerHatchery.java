@@ -7,7 +7,7 @@ import net.minecraftforge.items.SlotItemHandler;
 import binnie.extrabees.alveary.AlvearyLogicHatchery;
 import binnie.extrabees.alveary.EnumAlvearyLogicType;
 
-public class ContainerHatchery extends AbstractAlvearyContainer {
+public class ContainerHatchery extends AlvearyContainer {
 
 	public ContainerHatchery(EntityPlayer player, AlvearyLogicHatchery logic) {
 		super(player, logic.getInventory(), EnumAlvearyLogicType.HATCHERY, DEFAULT_DIMENSION);

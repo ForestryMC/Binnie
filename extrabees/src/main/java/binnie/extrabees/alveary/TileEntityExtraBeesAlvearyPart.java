@@ -33,7 +33,7 @@ public class TileEntityExtraBeesAlvearyPart extends MultiblockTileEntityForestry
 
 	private String unlocalizedTitle;
 	private EnumAlvearyLogicType type;
-	private AbstractAlvearyLogic alvearyLogic;
+	private AlvearyLogic alvearyLogic;
 
 	public TileEntityExtraBeesAlvearyPart() {
 		this(null);
@@ -83,6 +83,7 @@ public class TileEntityExtraBeesAlvearyPart extends MultiblockTileEntityForestry
 			this.world.markBlockRangeForRenderUpdate(getPos(), getPos());
 		}
 		world.notifyNeighborsOfStateChange(getPos(), getBlockType(), false);
+		alvearyLogic.onMachineAssembled(this);
 	}
 
 	@Override
@@ -98,6 +99,7 @@ public class TileEntityExtraBeesAlvearyPart extends MultiblockTileEntityForestry
 		}
 		world.notifyNeighborsOfStateChange(getPos(), getBlockType(), false);
 		markDirty();
+		alvearyLogic.onMachineBroken(this);
 	}
 
 	@Nullable

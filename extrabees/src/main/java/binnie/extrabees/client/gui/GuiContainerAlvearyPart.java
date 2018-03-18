@@ -4,40 +4,43 @@ import com.google.common.collect.Lists;
 
 import java.awt.Color;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.renderer.texture.TextureManager;
 
 import net.minecraftforge.fml.client.config.GuiUtils;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class GuiContainerAlvearyPart extends GuiContainer {
+public class GuiContainerAlvearyPart<C extends AlvearyContainer> extends GuiContainer {
 
-	protected FontRenderer font;
-	protected final AbstractAlvearyContainer container;
+	protected final C container;
 	private int titleS = -1;
 
-	public GuiContainerAlvearyPart(AbstractAlvearyContainer container) {
+	public GuiContainerAlvearyPart(C container) {
 		super(container);
 		this.container = container;
-		font = Minecraft.getMinecraft().fontRenderer;
 	}
 
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
-		int i = (this.width - this.xSize) / 2;
-		int j = (this.height - this.ySize) / 2;
-		Minecraft.getMinecraft().getTextureManager().bindTexture(container.background);
-		if (titleS == -1) {
-			titleS = (i + (xSize / 2)) - (font.getStringWidth(container.title) / 2);
-		}
+		TextureManager textureManager = mc.getTextureManager();
+		textureManager.bindTexture(container.background);
 
-		drawTexturedModalRect(i, j, 0, 0, container.getDimension().width, container.getDimension().height);
-		font.drawString(container.title, titleS, j + 8, Color.DARK_GRAY.getRGB());
-		if (mouseX > i + 6 && mouseX < i + 23 && mouseY > j + 5 && mouseY < j + 22) {
-			GuiUtils.drawHoveringText(Lists.newArrayList(container.tooltip), mouseX, mouseY, width, height, 150, font);
+		drawTexturedModalRect(guiLeft, guiTop, 0, 0, container.getDimension().width, container.getDimension().height);
+		int titleX = guiLeft + (xSize - fontRenderer.getStringWidth(container.title)) / 2;
+		fontRenderer.drawString(container.title, titleX, guiTop + 8, Color.DARK_GRAY.getRGB());
+		if (mouseX > guiLeft + 6 && mouseX < guiLeft + 23 && mouseY > guiTop + 5 && mouseY < guiTop + 22) {
+			GuiUtils.drawHoveringText(Lists.newArrayList(container.tooltip), mouseX, mouseY, width, height, 150, fontRenderer);
+		}
+	}
+
+	@Override
+	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+		super.drawScreen(mouseX, mouseY, partialTicks);
+
+		if (mouseX > guiLeft + 6 && mouseX < guiLeft + 23 && mouseY > guiTop + 5 && mouseY < guiTop + 22) {
+			GuiUtils.drawHoveringText(Lists.newArrayList(container.tooltip), mouseX, mouseY, width, height, 150, fontRenderer);
 		}
 	}
 }

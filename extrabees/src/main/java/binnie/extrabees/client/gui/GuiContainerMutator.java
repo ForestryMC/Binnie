@@ -14,7 +14,7 @@ public class GuiContainerMutator extends GuiContainerAlvearyPart {
 	private final String mutagens;
 	private int titleS = -1;
 
-	public GuiContainerMutator(AbstractAlvearyContainer container) {
+	public GuiContainerMutator(AlvearyContainer container) {
 		super(container);
 		mutagens = "Possible Mutagens:";
 	}
@@ -26,9 +26,9 @@ public class GuiContainerMutator extends GuiContainerAlvearyPart {
 		int j = (this.height - this.ySize) / 2;
 		int mid = i + (xSize / 2);
 		if (titleS == -1) {
-			titleS = mid - (font.getStringWidth(mutagens) / 2);
+			titleS = mid - (fontRenderer.getStringWidth(mutagens) / 2);
 		}
-		font.drawString(mutagens, titleS, j + 50, Color.DARK_GRAY.getRGB());
+		fontRenderer.drawString(mutagens, titleS, j + 50, Color.DARK_GRAY.getRGB());
 		int gens = AlvearyMutationHandler.getMutagens().size();
 		int width = gens * 18;
 		int w2 = width / 2;

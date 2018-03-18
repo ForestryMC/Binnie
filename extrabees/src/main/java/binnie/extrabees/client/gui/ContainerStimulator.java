@@ -9,7 +9,8 @@ import net.minecraftforge.items.SlotItemHandler;
 import binnie.extrabees.alveary.AlvearyLogicStimulator;
 import binnie.extrabees.alveary.EnumAlvearyLogicType;
 
-public class ContainerStimulator extends AbstractAlvearyContainer {
+public class ContainerStimulator extends AlvearyContainer {
+	private static final int ENERGY_PROPERTY = 9;
 
 	private final AlvearyLogicStimulator logic;
 	private final IEnergyStorage storage;
@@ -21,9 +22,6 @@ public class ContainerStimulator extends AbstractAlvearyContainer {
 		this.storage = logic.getEnergyStorage();
 		this.logic = logic;
 		this.maxPower = storage.getMaxEnergyStored();
-		if (!player.world.isRemote) {
-			logic.onContainerOpened(this);
-		}
 	}
 
 	@Override
@@ -34,24 +32,25 @@ public class ContainerStimulator extends AbstractAlvearyContainer {
 		addSlotToContainer(new SlotItemHandler(inv, 0, 44, 37));
 	}
 
-	public void checkPower() {
+	@Override
+	public void detectAndSendChanges() {
+		super.detectAndSendChanges();
 		if (power != storage.getEnergyStored()) {
+			power = storage.getEnergyStored();
 			for (IContainerListener listener : listeners) {
-				listener.sendWindowProperty(this, 9, power = storage.getEnergyStored());
+				listener.sendWindowProperty(this, ENERGY_PROPERTY, power);
 			}
 		}
 	}
 
 	@Override
-	public void onContainerClosed(EntityPlayer playerIn) {
-		super.onContainerClosed(playerIn);
-		logic.onGuiClosed(this);
-	}
-
-	@Override
 	public void updateProgressBar(int id, int data) {
-		if (id == 9) {
+		if (id == ENERGY_PROPERTY) {
 			power = data;
 		}
+	}
+
+	public int getEnergyScaled(int i) {
+		return power * i / maxPower;
 	}
 }
