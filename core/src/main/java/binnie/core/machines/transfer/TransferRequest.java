@@ -14,6 +14,7 @@ import net.minecraft.util.NonNullList;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidActionResult;
 import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
@@ -96,7 +97,9 @@ public class TransferRequest {
 		if (item.isEmpty() || this.destination == null) {
 			return TransferResult.FAILURE;
 		}
-		if (this.transferLiquids && this.destination instanceof ITankMachine) {
+		if (this.transferLiquids &&
+				this.destination instanceof ITankMachine &&
+				item.hasCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null)) {
 			ITankMachine tankMachine = (ITankMachine) this.destination;
 			IFluidHandler fluidHandler = tankMachine.getHandler(targetTanks);
 			if (fluidHandler != null) {
