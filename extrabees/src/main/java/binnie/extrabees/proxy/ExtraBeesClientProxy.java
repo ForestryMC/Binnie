@@ -30,6 +30,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import forestry.core.models.BlankModel;
 import forestry.core.models.ModelManager;
 
+import binnie.core.Constants;
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.items.IItemModelProvider;
 import binnie.extrabees.utils.ExtraBeesResourceLocation;
@@ -69,12 +70,12 @@ public class ExtraBeesClientProxy extends ExtraBeesCommonProxy {
 	}
 
 	@Override
-	public String localise(String s) {
-		return I18n.format("extrabees." + s);
+	public String localise(final String s) {
+		return I18n.format(String.format("%s.%s", Constants.EXTRA_BEES_MOD_ID, s));
 	}
 
 	@Override
-	public String localiseWithOutPrefix(String s) {
+	public String localiseWithOutPrefix(final String s) {
 		return I18n.format(s);
 	}
 	
