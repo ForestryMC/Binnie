@@ -4,7 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import binnie.core.Constants;
+import binnie.extrabees.ExtraBees;
 
 public class ExtraBeesCommonProxy {
 	public Block registerBlock(Block block) {
@@ -18,7 +18,7 @@ public class ExtraBeesCommonProxy {
 	}
 
 	public String localise(final String s) {
-		return String.format("%s.%s", Constants.EXTRA_BEES_MOD_ID, s);
+		return String.format("%s.%s", ExtraBees.MODID, s);
 	}
 
 	public String localiseWithOutPrefix(final String s) {
