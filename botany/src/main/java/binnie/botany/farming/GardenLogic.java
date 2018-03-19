@@ -325,11 +325,6 @@ public class GardenLogic extends FarmLogic {
 	}
 
 	@Override
-	public void addSoil(ItemStack resource, IBlockState soilState, boolean hasMetaData) {
-		// all {@link IBlockSoil} are soil, and nothing else
-	}
-
-	@Override
 	public String getName() {
 		return name;
 	}
