@@ -57,7 +57,6 @@ public class TransferRequest {
 		this.setDestination(destination);
 		this.setTargetSlots(target);
 		this.setTargetTanks(targetTanks);
-		this.transferLiquids = true;
 	}
 
 	private static boolean areItemsEqual(final ItemStack merged, final ItemStack itemstack) {
