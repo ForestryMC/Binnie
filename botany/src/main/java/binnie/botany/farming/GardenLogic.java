@@ -330,11 +330,6 @@ public class GardenLogic extends FarmLogic {
 	}
 
 	@Override
-	public ResourceLocation getTextureMap() {
-		return TextureMap.LOCATION_BLOCKS_TEXTURE;
-	}
-
-	@Override
 	public String getName() {
 		return name;
 	}
