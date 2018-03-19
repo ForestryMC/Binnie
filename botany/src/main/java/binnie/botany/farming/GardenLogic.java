@@ -341,16 +341,16 @@ public class GardenLogic extends FarmLogic {
 			if (isAirBlock(world, position) || BlockUtil.isReplaceableBlock(getBlockState(world, position), world, position)) {
 				ItemStack below = getAsItemStack(world, position.down());
 				if (gardening.isSoil(below.getItem())) {
-					return trySetCrop(world, position, housing);
+					return trySetCrop(world, position, direction, housing);
 				}
 			}
 		}
 		return false;
 	}
 
-	private boolean trySetCrop(World world, BlockPos position, IFarmHousing housing) {
+	private boolean trySetCrop(World world, BlockPos position, FarmDirection direction, IFarmHousing housing) {
 		for (IFarmable farmable : farmables) {
-			if (!housing.plantGermling(farmable, world, position)) {
+			if (!housing.plantGermling(farmable, world, position, direction)) {
 				continue;
 			}
 
