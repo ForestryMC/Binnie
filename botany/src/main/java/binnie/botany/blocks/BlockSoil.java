@@ -90,6 +90,7 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 
 	@Override
 	@SideOnly(Side.CLIENT)
+	@SuppressWarnings("deprecation")
 	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
 		switch (side) {
 			case UP:
@@ -110,11 +111,13 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 	 * Used to determine ambient occlusion and culling when rebuilding chunks for render
 	 */
 	@Override
+	@SuppressWarnings("deprecation")
 	public boolean isOpaqueCube(IBlockState state) {
 		return false;
 	}
 
 	@Override
+	@SuppressWarnings("deprecation")
 	public boolean isFullCube(IBlockState state) {
 		return false;
 	}
@@ -125,17 +128,20 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 	}
 
 	@Override
+	@SuppressWarnings("deprecation")
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 		return SOIL_BLOCK_AABB;
 	}
 
 	@Nullable
 	@Override
+	@SuppressWarnings("deprecation")
 	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
 		return SOIL_BLOCK_AABB;
 	}
 
 	@Override
+	@SuppressWarnings("deprecation")
 	public AxisAlignedBB getSelectedBoundingBox(IBlockState state, World worldIn, BlockPos pos) {
 		return SOIL_BLOCK_AABB;
 	}
@@ -190,6 +196,7 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 	}
 
 	@Override
+	@SuppressWarnings("deprecation")
 	public IBlockState getStateFromMeta(int meta) {
 		EnumMoisture moisture = EnumMoisture.values()[meta % 3];
 		EnumAcidity acidity = EnumAcidity.values()[meta / 3];
@@ -233,6 +240,7 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 	}
 
 	@Override
+	@SuppressWarnings("deprecation")
 	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
 		super.neighborChanged(state, worldIn, pos, blockIn, fromPos);
 
