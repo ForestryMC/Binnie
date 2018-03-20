@@ -67,6 +67,7 @@ public class BlockMultiFence extends BlockFence implements IBlockMetadata, IStat
 	}
 
 	@Override
+	@SuppressWarnings("deprecation")
 	public boolean eventReceived(IBlockState state, World world, BlockPos pos, int id, int param) {
 		TileEntity tileentity = world.getTileEntity(pos);
 		return tileentity != null && tileentity.receiveClientEvent(id, param);
