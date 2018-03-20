@@ -47,6 +47,7 @@ public class BlockHedge extends Block implements IBlockFence, IColoredBlock {
 	}
 
 	@Override
+	@SuppressWarnings("deprecation")
 	public void addCollisionBoxToList(IBlockState state, World world, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean p_185477_7_) {
 		final boolean connectNegZ = this.canConnectFenceTo(world, pos.north());
 		final boolean connectPosZ = this.canConnectFenceTo(world, pos.south());
@@ -86,6 +87,7 @@ public class BlockHedge extends Block implements IBlockFence, IColoredBlock {
 	}
 
 	@Override
+	@SuppressWarnings("deprecation")
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
 		final boolean connectNegZ = this.canConnectFenceTo(world, pos.north());
 		final boolean connectPosZ = this.canConnectFenceTo(world, pos.south());
@@ -111,11 +113,13 @@ public class BlockHedge extends Block implements IBlockFence, IColoredBlock {
 	}
 
 	@Override
+	@SuppressWarnings("deprecation")
 	public boolean isOpaqueCube(IBlockState state) {
 		return false;
 	}
 
 	@Override
+	@SuppressWarnings("deprecation")
 	public boolean isFullCube(IBlockState state) {
 		return false;
 	}
@@ -157,6 +161,7 @@ public class BlockHedge extends Block implements IBlockFence, IColoredBlock {
 
 	@SideOnly(Side.CLIENT)
 	@Override
+	@SuppressWarnings("deprecation")
 	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
 		return true;
 	}
