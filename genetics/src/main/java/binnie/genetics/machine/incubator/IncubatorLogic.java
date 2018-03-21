@@ -4,7 +4,6 @@ import javax.annotation.Nullable;
 import java.util.Random;
 
 import binnie.core.machines.transfer.TransferResult;
-import binnie.core.util.ItemStackUtil;
 import net.minecraft.item.ItemStack;
 
 import net.minecraft.util.NonNullList;
