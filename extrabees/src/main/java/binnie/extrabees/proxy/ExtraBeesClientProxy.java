@@ -69,12 +69,12 @@ public class ExtraBeesClientProxy extends ExtraBeesCommonProxy {
 	}
 
 	@Override
-	public String localise(String s) {
-		return I18n.format("extrabees." + s);
+	public String localise(final String s) {
+		return I18n.format(String.format("%s.%s", ExtraBees.MODID, s));
 	}
 
 	@Override
-	public String localiseWithOutPrefix(String s) {
+	public String localiseWithOutPrefix(final String s) {
 		return I18n.format(s);
 	}
 	

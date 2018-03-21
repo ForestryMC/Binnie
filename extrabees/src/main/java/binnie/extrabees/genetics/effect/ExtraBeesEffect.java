@@ -461,7 +461,7 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 
 	@Override
 	public String getName() {
-		return ExtraBees.proxy.localiseWithOutPrefix("effect." + this.name().toLowerCase() + ".name");
+		return ExtraBees.proxy.localise("effect." + this.name().toLowerCase() + ".name");
 	}
 
 	@Override
