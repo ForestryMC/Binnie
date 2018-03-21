@@ -1105,7 +1105,7 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 		@Override
 		protected void registerMutations() {
 			registerMutation(BeeDefinition.BOGGY, BeeDefinition.MIRY, 8);
-			registerMutation(BeeDefinition.BOGGY, FUNGAL, 8);
+			registerMutation(BeeDefinition.BOGGY, ExtraBeeDefinition.SWAMP, 8);
 		}
 	},
 
