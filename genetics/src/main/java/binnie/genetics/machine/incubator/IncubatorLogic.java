@@ -4,9 +4,11 @@ import javax.annotation.Nullable;
 import java.util.Random;
 
 import binnie.core.machines.transfer.TransferResult;
+import binnie.core.util.ItemStackUtil;
 import net.minecraft.item.ItemStack;
 
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.Util;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -129,6 +131,20 @@ public class IncubatorLogic extends ComponentProcessIndefinate implements IProce
 		}
 		if (this.recipe != null) {
 			this.roomForOutput = this.recipe.roomForOutput(this.getUtil());
+		}
+		addSameFromInputToIncubator(incubator);
+	}
+
+	private void addSameFromInputToIncubator(ItemStack incubator) {
+		if (incubator.isEmpty()) {
+			return;
+		}
+		for (final int slot : Incubator.SLOT_QUEUE) {
+			final ItemStack stack = this.getUtil().getStack(slot);
+			if (stack.isEmpty()) continue;
+			if (ItemStackUtil.isItemEqual(stack, incubator, false, false)) {
+
+			}
 		}
 	}
 
