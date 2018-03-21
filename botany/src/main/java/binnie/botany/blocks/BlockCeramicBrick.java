@@ -152,6 +152,7 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 	}
 
 	@Override
+	@SuppressWarnings("deprecation")
 	public IBlockState getStateFromMeta(int meta) {
 		return getDefaultState().withProperty(TYPE, CeramicBrickType.VALUES[meta]);
 	}

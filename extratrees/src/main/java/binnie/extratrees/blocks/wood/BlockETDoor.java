@@ -100,6 +100,7 @@ public class BlockETDoor extends BlockDoor implements IWoodTyped, IItemModelRegi
 	}
 	
 	@Override
+	@SuppressWarnings("deprecation")
 	public float getBlockHardness(IBlockState blockState, World worldIn, BlockPos pos) {
 		int meta = getMetaFromState(blockState);
 		EnumETLog woodType = getWoodType(meta);
