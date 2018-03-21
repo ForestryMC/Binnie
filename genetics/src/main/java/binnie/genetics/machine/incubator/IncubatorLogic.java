@@ -91,10 +91,8 @@ public class IncubatorLogic extends ComponentProcessIndefinate implements IProce
 		final FluidStack liquid = this.getUtil().getFluid(Incubator.TANK_INPUT);
 		final ItemStack incubator = this.getUtil().getStack(Incubator.SLOT_INCUBATOR);
 		checkAvailability(liquid, incubator);
-		if (this.recipe == null) {
-			if (liquid == null) {
-				return;
-			}
+		addSameFromInputToIncubator(incubator);
+		if (this.recipe == null && liquid != null) {
 			if (!incubator.isEmpty()) {
 				final IIncubatorRecipe recipe = this.getRecipe(incubator, liquid);
 				if (recipe != null) {
@@ -132,18 +130,23 @@ public class IncubatorLogic extends ComponentProcessIndefinate implements IProce
 		if (this.recipe != null) {
 			this.roomForOutput = this.recipe.roomForOutput(this.getUtil());
 		}
-		addSameFromInputToIncubator(incubator);
 	}
 
 	private void addSameFromInputToIncubator(ItemStack incubator) {
-		if (incubator.isEmpty()) {
+		if (incubator.isEmpty() || incubator.getCount() == incubator.getMaxStackSize()) {
 			return;
 		}
 		for (final int slot : Incubator.SLOT_QUEUE) {
 			final ItemStack stack = this.getUtil().getStack(slot);
 			if (stack.isEmpty()) continue;
-			if (ItemStackUtil.isItemEqual(stack, incubator, false, false)) {
 
+			// Has inner item equal check
+			NonNullList<ItemStack> result = TransferRequest.mergeStacks(stack, incubator);
+
+			getUtil().setStack(slot, result.get(0));
+			getUtil().setStack(Incubator.SLOT_INCUBATOR, result.get(1));
+			if (incubator.getCount() == incubator.getMaxStackSize()) {
+				break;
 			}
 		}
 	}
