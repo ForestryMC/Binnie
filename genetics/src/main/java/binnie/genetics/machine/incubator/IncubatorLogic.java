@@ -88,18 +88,7 @@ public class IncubatorLogic extends ComponentProcessIndefinate implements IProce
 		}
 		final FluidStack liquid = this.getUtil().getFluid(Incubator.TANK_INPUT);
 		final ItemStack incubator = this.getUtil().getStack(Incubator.SLOT_INCUBATOR);
-		if (this.recipe != null && (incubator.isEmpty() || liquid == null || !this.recipe.isInputLiquid(liquid) || !isStackValid(incubator, recipe))) {
-			this.recipe = null;
-			TransferRequest transferRequest = new TransferRequest(incubator, this.getInventory()).setTargetSlots(Incubator.SLOT_OUTPUT).ignoreValidation();
-			TransferResult transferResult = transferRequest.transfer(null, true);
-			if (transferResult.isSuccess()) {
-				NonNullList<ItemStack> results = transferResult.getRemaining();
-				if (results.size() == 1) {
-					final ItemStack leftover = results.get(0);
-					this.getUtil().setStack(Incubator.SLOT_INCUBATOR, leftover);
-				}
-			}
-		}
+		checkAvailability(liquid, incubator);
 		if (this.recipe == null) {
 			if (liquid == null) {
 				return;
@@ -143,6 +132,21 @@ public class IncubatorLogic extends ComponentProcessIndefinate implements IProce
 		}
 		if (this.recipe != null) {
 			this.roomForOutput = this.recipe.roomForOutput(this.getUtil());
+		}
+	}
+
+	private void checkAvailability(@Nullable FluidStack liquid, ItemStack incubator) {
+		if (this.recipe != null && (incubator.isEmpty() || liquid == null || !this.recipe.isInputLiquid(liquid) || !isStackValid(incubator, recipe))) {
+			this.recipe = null;
+			TransferRequest transferRequest = new TransferRequest(incubator, this.getInventory()).setTargetSlots(Incubator.SLOT_OUTPUT).ignoreValidation();
+			TransferResult transferResult = transferRequest.transfer(null, true);
+			if (transferResult.isSuccess()) {
+				NonNullList<ItemStack> results = transferResult.getRemaining();
+				if (results.size() == 1) {
+					final ItemStack leftover = results.get(0);
+					this.getUtil().setStack(Incubator.SLOT_INCUBATOR, leftover);
+				}
+			}
 		}
 	}
 }
