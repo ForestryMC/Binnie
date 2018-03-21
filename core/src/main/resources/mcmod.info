@@ -69,5 +69,18 @@
     "logoFile": "/assets/genetics/logo.png",
     "parent": "",
     "dependencies": [ "BinnieCore" ]
+  },
+  {
+    "modid": "binniedesign",
+    "name": "Binnie's Design",
+    "description": "Adds a lot of blocks with different textures.",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "https://minecraft.curseforge.com/projects/binnies-mods",
+    "updateUrl": "",
+    "authorList": [ "Binnie" ],
+    "credits": "Thanks to Sengir, MysteriousAges, Xizzzy and many others",
+    "parent": "",
+    "dependencies": [ "BinnieCore" ]
   }
 ]
