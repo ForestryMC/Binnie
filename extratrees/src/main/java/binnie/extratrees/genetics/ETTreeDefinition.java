@@ -1836,7 +1836,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
 		}
 	},
-	Avacado("persea", "americana", EnumLeafType.JUNGLE, new Color(0x96A375), new Color(0x96A375), EnumSaplingType.Default, EnumVanillaWoodType.JUNGLE, new Color(0x53411A)) {
+	Avocado("persea", "americana", EnumLeafType.JUNGLE, new Color(0x96A375), new Color(0x96A375), EnumSaplingType.Default, EnumVanillaWoodType.JUNGLE, new Color(0x53411A)) {
 		@Override
 		public WorldGenerator getWorldGenerator(ITreeGenData tree) {
 			return new WorldGenLazy.Tree(tree);
@@ -1844,7 +1844,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Avacado.getAllele());
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Avocado.getAllele());
 			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Smallest.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.Average.getAllele());
 		}

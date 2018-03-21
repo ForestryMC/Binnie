@@ -152,7 +152,7 @@ public class ModuleCore extends BlankModule {
 		Food.CLOVE.addOil(10, 25, 2);
 		Food.COCONUT.addOil(20, 300, 25);
 		Food.CASHEW.addJuice(10, 150, 15);
-		Food.AVACADO.addJuice(10, 300, 15);
+		Food.AVOCADO.addJuice(10, 300, 15);
 		Food.NUTMEG.addOil(20, 50, 10);
 		Food.ALLSPICE.addOil(20, 50, 10);
 		Food.CHILLI.addJuice(10, 100, 10);
