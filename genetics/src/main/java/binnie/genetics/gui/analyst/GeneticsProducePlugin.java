@@ -36,7 +36,7 @@ public class GeneticsProducePlugin implements IProducePlugin {
 	 * Get all recipes that has inputStack as its only ingredient, and return their outputs.
 	 */
 	private static void getCrafting(ItemStack inputStack, NonNullList<ItemStack> outputItems) {
-		for (IRecipe recipe : ForgeRegistries.RECIPES.getValues()) {
+		for (IRecipe recipe : ForgeRegistries.RECIPES.getValuesCollection()) {
 			ItemStack recipeOutput = recipe.getRecipeOutput();
 			if (!recipeOutput.isEmpty() && matches(recipe, inputStack)) {
 				outputItems.add(recipeOutput);

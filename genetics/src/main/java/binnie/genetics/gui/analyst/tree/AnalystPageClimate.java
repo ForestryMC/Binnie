@@ -55,7 +55,7 @@ public class AnalystPageClimate<T extends IIndividual> extends Control implement
 		new ControlText(this, new Area(4, y, getWidth() - 8, 14), I18N.localise(AnalystConstants.CLIMATE_KEY + ".biomes"), TextJustification.MIDDLE_CENTER).setColor(getColor());
 		y += 12;
 		List<Biome> biomes = new ArrayList<>();
-		for (Biome biome : ForgeRegistries.BIOMES.getValues()) { //TODO check
+		for (Biome biome : ForgeRegistries.BIOMES.getValuesCollection()) { //TODO check
 			if (biome != null &&
 				biome != Biomes.FROZEN_OCEAN &&
 				Tolerance.canTolerate(temp, EnumTemperature.getFromBiome(biome), tempTol) &&

@@ -40,7 +40,7 @@ public class LumbermillRecipeManager implements ILumbermillManager {
 	public static ItemStack getRecipeWithPlanksOutput(ItemStack logStack, @Nullable World world) {
 		FAKE_CRAFT_INV.clear();
 		FAKE_CRAFT_INV.setInventorySlotContents(0, logStack);
-		for (IRecipe recipe : ForgeRegistries.RECIPES.getValues()) {
+		for (IRecipe recipe : ForgeRegistries.RECIPES.getValuesCollection()) {
 			try {
 				//noinspection ConstantConditions
 				if (recipe.matches(FAKE_CRAFT_INV, world)) {
