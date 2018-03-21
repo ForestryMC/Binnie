@@ -7,7 +7,6 @@ import binnie.core.machines.transfer.TransferResult;
 import net.minecraft.item.ItemStack;
 
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.Util;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
 
