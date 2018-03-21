@@ -119,15 +119,12 @@ public class IncubatorLogic extends ComponentProcessIndefinate implements IProce
 				}
 			}
 			if (potential != null) {
-				final TransferRequest removal = new TransferRequest(incubator, this.getInventory()).setTargetSlots(Incubator.SLOT_OUTPUT).ignoreValidation();
-				TransferResult transferResult = removal.transfer(null, false);
-				if (transferResult.isSuccess() && transferResult.getRemaining().isEmpty()) {
+				if (tryEmptyIncubator(incubator)) {
 					this.recipe = potential;
+					final ItemStack stack2 = this.getUtil().getStack(potentialSlot);
+					this.getUtil().setStack(potentialSlot, ItemStack.EMPTY);
+					this.getUtil().setStack(Incubator.SLOT_INCUBATOR, stack2);
 				}
-				removal.transfer(null, true);
-				final ItemStack stack2 = this.getUtil().getStack(potentialSlot);
-				this.getUtil().setStack(potentialSlot, ItemStack.EMPTY);
-				this.getUtil().setStack(Incubator.SLOT_INCUBATOR, stack2);
 			}
 		}
 		if (this.recipe != null) {
@@ -138,15 +135,24 @@ public class IncubatorLogic extends ComponentProcessIndefinate implements IProce
 	private void checkAvailability(@Nullable FluidStack liquid, ItemStack incubator) {
 		if (this.recipe != null && (incubator.isEmpty() || liquid == null || !this.recipe.isInputLiquid(liquid) || !isStackValid(incubator, recipe))) {
 			this.recipe = null;
-			TransferRequest transferRequest = new TransferRequest(incubator, this.getInventory()).setTargetSlots(Incubator.SLOT_OUTPUT).ignoreValidation();
-			TransferResult transferResult = transferRequest.transfer(null, true);
-			if (transferResult.isSuccess()) {
-				NonNullList<ItemStack> results = transferResult.getRemaining();
-				if (results.size() == 1) {
-					final ItemStack leftover = results.get(0);
-					this.getUtil().setStack(Incubator.SLOT_INCUBATOR, leftover);
-				}
-			}
+			tryEmptyIncubator(incubator);
 		}
+	}
+
+	private boolean tryEmptyIncubator(ItemStack incubator) {
+		if (incubator.isEmpty()) {
+			return true;
+		}
+		TransferRequest transferRequest = new TransferRequest(incubator, this.getInventory()).setTargetSlots(Incubator.SLOT_OUTPUT).ignoreValidation();
+		TransferResult transferResult = transferRequest.transfer(null, true);
+		if (transferResult.isSuccess()) {
+            NonNullList<ItemStack> results = transferResult.getRemaining();
+            if (results.size() == 1) {
+                final ItemStack leftover = results.get(0);
+                this.getUtil().setStack(Incubator.SLOT_INCUBATOR, leftover);
+				return leftover.isEmpty();
+            }
+        }
+        return false;
 	}
 }
