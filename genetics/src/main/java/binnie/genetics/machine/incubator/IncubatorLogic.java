@@ -115,18 +115,18 @@ public class IncubatorLogic extends ComponentProcessIndefinate implements IProce
 			int potentialSlot = 0;
 			for (final int slot : Incubator.SLOT_QUEUE) {
 				final ItemStack stack = this.getUtil().getStack(slot);
-				if (!stack.isEmpty()) {
-					if (potential == null) {
-						for (final IIncubatorRecipe recipe2 : Incubator.getRecipes()) {
-							final boolean rightLiquid = recipe2.isInputLiquid(liquid);
-							final boolean rightItem = isStackValid(stack, recipe2);
-							if (rightLiquid && rightItem) {
-								potential = recipe2;
-								potentialSlot = slot;
-								break;
-							}
-						}
+				if (stack.isEmpty()) continue;
+				for (final IIncubatorRecipe recipe2 : Incubator.getRecipes()) {
+					final boolean rightLiquid = recipe2.isInputLiquid(liquid);
+					final boolean rightItem = isStackValid(stack, recipe2);
+					if (rightLiquid && rightItem) {
+						potential = recipe2;
+						potentialSlot = slot;
+						break;
 					}
+				}
+				if (potential != null) {
+					break;
 				}
 			}
 			if (potential != null) {
