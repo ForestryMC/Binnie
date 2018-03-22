@@ -60,6 +60,7 @@ public abstract class BaseSlot<V> implements INbtWritable, INbtReadable, IValida
 	}
 
 	public void forbidInteraction() {
+		this.readOnly = true;
 		this.forbidInsertion();
 		this.forbidExtraction();
 	}
