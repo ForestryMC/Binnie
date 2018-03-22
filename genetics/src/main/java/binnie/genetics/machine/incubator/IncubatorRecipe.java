@@ -51,7 +51,7 @@ public class IncubatorRecipe implements IIncubatorRecipe {
 
 	@Override
 	public boolean isInputLiquidSufficient(@Nullable final FluidStack fluid) {
-		return fluid != null && fluid.amount >= 500;
+		return fluid != null && fluid.amount >= this.input.amount;
 	}
 
 	@Override
