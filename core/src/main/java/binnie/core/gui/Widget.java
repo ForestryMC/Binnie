@@ -410,12 +410,7 @@ public class Widget implements IWidget {
 	public final boolean isVisible() {
 		if (this.visible) {
 			IWidget parent = this.getParent();
-			if (parent != null) {
-				if (!parent.isVisible() || !parent.isChildVisible(this)) {
-					return false;
-				}
-			}
-			return true;
+			return parent == null || parent.isVisible() && parent.isChildVisible(this);
 		}
 		return false;
 	}
