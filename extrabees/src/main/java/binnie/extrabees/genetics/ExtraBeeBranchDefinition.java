@@ -193,7 +193,6 @@ public enum ExtraBeeBranchDefinition implements IBranchDefinition {
 			AlleleHelper.getInstance().set(template, EnumBeeChromosome.SPEED, EnumAllele.Speed.SLOWER);
 			AlleleHelper.getInstance().set(template, EnumBeeChromosome.LIFESPAN, EnumAllele.Lifespan.NORMAL);
 			AlleleHelper.getInstance().set(template, EnumBeeChromosome.EFFECT, AlleleHelper.getAllele(ExtraBeesEffect.METEOR.getUID()));
-			;
 		}
 	},
 	VIRULENT("Virapis") {
