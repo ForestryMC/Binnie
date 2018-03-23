@@ -33,8 +33,8 @@ public class SearchDialog extends Dialog {
 	private final WindowCompartment windowCompartment;
 	private String textSearch = "";
 	private boolean sortByName;
-	private boolean includeItems = true;
-	private boolean includeBlocks = true;
+	private boolean includeItems;
+	private boolean includeBlocks;
 
 	public SearchDialog(WindowCompartment windowCompartment) {
 		super(windowCompartment, 252, 192);

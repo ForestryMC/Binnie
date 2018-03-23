@@ -15,7 +15,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class ControlSlotArray extends Control implements Iterable<ControlSlot> {
-	private List<ControlSlot> slots = new ArrayList<>();
+	private List<ControlSlot> slots;
 
 	private ControlSlotArray(final IWidget parent, final int x, final int y, final int columns, final int rows) {
 		super(parent, x, y, columns * 18, rows * 18);

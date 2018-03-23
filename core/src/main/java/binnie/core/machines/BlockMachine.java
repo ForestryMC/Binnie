@@ -161,7 +161,7 @@ class BlockMachine extends Block implements IBlockMachine, ITileEntityProvider {
 	@Override
 	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase entityliving, ItemStack stack) {
 		super.onBlockPlacedBy(world, pos, state, entityliving, stack);
-		if (!!world.isRemote) {
+		if (world.isRemote) {
 			return;
 		}
 		final IMachine machine = Machine.getMachine(world.getTileEntity(pos));
