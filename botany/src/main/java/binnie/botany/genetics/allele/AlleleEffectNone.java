@@ -1,5 +1,6 @@
 package binnie.botany.genetics.allele;
 
+import binnie.core.Constants;
 import net.minecraft.world.World;
 
 import forestry.api.genetics.IEffectData;
@@ -20,7 +21,7 @@ public class AlleleEffectNone implements IAlleleFlowerEffect {
 
 	@Override
 	public String getUID() {
-		return "binnie.flowerEffectNone";
+		return String.format("%s.flowers.effect.%s.name", Constants.BOTANY_MOD_ID, getName());
 	}
 
 	@Override
