@@ -21,7 +21,7 @@ public class AlleleEffectNone implements IAlleleFlowerEffect {
 
 	@Override
 	public String getUID() {
-		return String.format("%s.flowers.effect.%s.name", Constants.BOTANY_MOD_ID, getName());
+		return String.format("%s.flowers.effect.%s.name", Constants.BOTANY_MOD_ID, getName().toLowerCase());
 	}
 
 	@Override
