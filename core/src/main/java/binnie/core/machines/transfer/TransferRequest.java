@@ -106,9 +106,9 @@ public class TransferRequest {
 				FluidActionResult fluidActionResult;
 				if (this.origin != null && doAdd) {
 					IItemHandler itemHandler = new InvWrapper(this.origin);
-					fluidActionResult = FluidUtil.tryEmptyContainerAndStow(singleCopy, fluidHandler, itemHandler, Fluid.BUCKET_VOLUME, player);
+					fluidActionResult = FluidUtil.tryEmptyContainerAndStow(singleCopy, fluidHandler, itemHandler, Fluid.BUCKET_VOLUME, player, doAdd);
 					if (!fluidActionResult.isSuccess()) {
-						fluidActionResult = FluidUtil.tryFillContainerAndStow(singleCopy, fluidHandler, itemHandler, Fluid.BUCKET_VOLUME, player);
+						fluidActionResult = FluidUtil.tryFillContainerAndStow(singleCopy, fluidHandler, itemHandler, Fluid.BUCKET_VOLUME, player, doAdd);
 					}
 				} else {
 					fluidActionResult = FluidUtil.tryEmptyContainer(singleCopy, fluidHandler, Fluid.BUCKET_VOLUME, player, doAdd);
