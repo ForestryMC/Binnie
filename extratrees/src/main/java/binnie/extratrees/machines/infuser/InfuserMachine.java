@@ -26,12 +26,11 @@ public class InfuserMachine extends ExtraTreeMachine.PackageExtraTreeMachine imp
 
 		final TankSlot input = tanks.addTank(Infuser.TANK_INPUT, "input", 5000);
 		input.setValidator(new TankValidatorInfuserInput());
-		input.setOutputSides(MachineSide.TOP_AND_BOTTOM);
+		input.forbidExtraction();
 
 		final TankSlot output = tanks.addTank(Infuser.TANK_OUTPUT, "output", 5000);
 		output.setValidator(new TankValidatorInfuserOutput());
 		output.setReadOnly();
-		output.setOutputSides(MachineSide.SIDES);
 
 		new ComponentPowerReceptor(machine);
 		new InfuserLogic(machine);
