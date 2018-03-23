@@ -1,6 +1,5 @@
 package binnie.core;
 
-import binnie.core.gui.KeyBindings;
 import com.google.common.base.Preconditions;
 
 import javax.annotation.Nullable;
