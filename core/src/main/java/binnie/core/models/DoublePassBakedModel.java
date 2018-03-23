@@ -33,7 +33,7 @@ public class DoublePassBakedModel implements IBakedModel {
 	 */
 	public DoublePassBakedModel(IBakedModel mainModel, int primaryColor, int secondaryColor) {
 		this.mainModel = mainModel;
-		this.primaryColor = this.primaryColor | (Integer.reverseBytes(primaryColor) >> 8);
+		this.primaryColor |= (Integer.reverseBytes(primaryColor) >> 8);
 		this.secondaryColor |= (Integer.reverseBytes(secondaryColor) >> 8);
 	}
 
