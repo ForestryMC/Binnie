@@ -221,17 +221,11 @@ public class WindowFieldKit extends Window {
 				} else {
 					this.startAnalysing();
 					this.chromo.setSystem(null);
-					if (this.damageKit()) {
-						return;
-					}
 				}
 			} else if (!item.isEmpty()) {
 				this.isAnalysing = false;
 				this.analyseProgress = 1;
 				this.refreshSpecies();
-				if (this.damageKit()) {
-					return;
-				}
 			} else {
 				this.isAnalysing = false;
 				this.analyseProgress = 1;
