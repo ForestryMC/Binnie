@@ -188,6 +188,11 @@ public final class BinnieCore extends AbstractMod {
 		GameRegistry.registerTileEntity(TileEntityMetadata.class, "binnie.tile.metadata");
 	}
 
+	@Mod.EventHandler
+	public void postInit(final FMLPostInitializationEvent evt) {
+		super.postInit(evt);
+	}
+
 	@Override
 	protected void registerModules() {
 		for (final ManagerBase baseManager : Binnie.MANAGERS) {
