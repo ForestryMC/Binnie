@@ -18,6 +18,8 @@ public class AlcoholEffect {
 		if (slowIntense < 0.0f) {
 			slowIntense = 0.0f;
 		}
+
+		// TODO blindIntense
 		float blindIntense = (intensity - 25.0f) / 2.0f;
 		if (blindIntense < 0.0f) {
 			blindIntense = 0.0f;
