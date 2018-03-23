@@ -358,12 +358,7 @@ public class GuiCraftGUI extends GuiContainer {
 				return true;
 			}
 		}
-		if (Mouse.getEventButtonState()) {
-			if (KeyBindings.holdForHelpTooltips.isActiveAndMatches(Mouse.getEventButton() - 100)) {
-				return true;
-			}
-		}
-		return false;
+		return Mouse.getEventButtonState() && KeyBindings.holdForHelpTooltips.isActiveAndMatches(Mouse.getEventButton() - 100);
 	}
 
 	public boolean showBasicHelpTooltips() {
