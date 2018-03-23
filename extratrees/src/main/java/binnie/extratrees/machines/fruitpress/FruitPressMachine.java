@@ -37,8 +37,7 @@ public class FruitPressMachine extends ExtraTreeMachine.PackageExtraTreeMachine 
 		process.forbidInteraction();
 
 		final ComponentTankContainer tanks = new ComponentTankContainer(machine);
-		tanks.addTank(TANK_OUTPUT, "output", TANK_OUTPUT_CAPACITY)
-		.forbidInsertion();
+		tanks.addTank(TANK_OUTPUT, "output", TANK_OUTPUT_CAPACITY).setReadOnly();
 		new ComponentPowerReceptor(machine);
 		new ComponentInventoryTransfer(machine).addRestock(new int[]{SLOT_FRUIT}, SLOT_CURRENT, 1);
 		new FruitPressLogic(machine);
