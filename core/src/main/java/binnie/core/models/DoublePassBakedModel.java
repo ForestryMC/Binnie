@@ -21,8 +21,8 @@ public class DoublePassBakedModel implements IBakedModel {
 	private static final int c = DefaultVertexFormats.ITEM.getColorOffset() / 4;
 	private static final int v = DefaultVertexFormats.ITEM.getNextOffset() / 4;
 	private final IBakedModel mainModel;
-	private int primaryColor;
-	private int secondaryColor;
+	private int primaryColor = 0xFF000000;
+	private int secondaryColor = 0xFF000000;
 
 	/**
 	 * It colorizes the quads according to tintindex, which is defined in the json file.
@@ -33,7 +33,7 @@ public class DoublePassBakedModel implements IBakedModel {
 	 */
 	public DoublePassBakedModel(IBakedModel mainModel, int primaryColor, int secondaryColor) {
 		this.mainModel = mainModel;
-		this.primaryColor |= (Integer.reverseBytes(primaryColor) >> 8);
+		this.primaryColor = this.primaryColor | (Integer.reverseBytes(primaryColor) >> 8);
 		this.secondaryColor |= (Integer.reverseBytes(secondaryColor) >> 8);
 	}
 
