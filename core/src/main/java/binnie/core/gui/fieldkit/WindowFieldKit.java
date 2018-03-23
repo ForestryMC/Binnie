@@ -234,10 +234,6 @@ public class WindowFieldKit extends Window {
 		}
 	}
 
-	private boolean damageKit() {
-		return false;
-	}
-
 	private void startAnalysing() {
 		this.glassVX = 0;
 		this.glassVY = 0;
