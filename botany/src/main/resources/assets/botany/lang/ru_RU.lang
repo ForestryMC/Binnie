@@ -37,6 +37,7 @@ botany.plant.decaying_flower=Разлагающийся цветок
 botany.ceramic.name=Керамический блок (%s)
 botany.ceramic.block.name=Керамический блок (%s)
 botany.pigmented.glass.name=Пигментированное стекло (%s)
+botany.block.flower.name=Цветок Botany
 
 botany.ceramic.type.tile.name=%s керамическая плитка
 botany.ceramic.type.brick.name=%s керамические кирпичи
