@@ -31,12 +31,11 @@ public class DistilleryMachine extends ExtraTreeMachine.PackageExtraTreeMachine 
 
 		final TankSlot input = tanks.addTank(TANK_INPUT, "input", 5000);
 		input.setValidator(new TankValidatorDistilleryInput());
-		input.setOutputSides(MachineSide.TOP_AND_BOTTOM);
+		input.forbidExtraction();
 
 		final TankSlot output = tanks.addTank(TANK_OUTPUT, "output", 5000);
 		output.setValidator(new TankValidatorDistilleryOutput());
 		output.setReadOnly();
-		output.setOutputSides(MachineSide.SIDES);
 
 		new ComponentPowerReceptor(machine);
 		new DistilleryLogic(machine);

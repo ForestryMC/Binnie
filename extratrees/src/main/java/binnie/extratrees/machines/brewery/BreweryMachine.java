@@ -59,12 +59,11 @@ public class BreweryMachine extends ExtraTreeMachine.PackageExtraTreeMachine imp
 		final ComponentTankContainer tanks = new ComponentTankContainer(machine);
 		TankSlot input = tanks.addTank(TANK_INPUT, "input", 5000);
 		input.setValidator(new TankValidatorFermentInput());
-		input.setOutputSides(MachineSide.TOP_AND_BOTTOM);
+		input.forbidExtraction();
 
 		final TankSlot output = tanks.addTank(TANK_OUTPUT, "output", 5000);
 		output.setValidator(new TankValidatorFermentOutput());
-		output.forbidInsertion();
-		output.setOutputSides(MachineSide.SIDES);
+		output.setReadOnly();
 
 		new ComponentPowerReceptor(machine);
 		new BreweryLogic(machine);
