@@ -28,11 +28,11 @@ public class FruitPressMachine extends ExtraTreeMachine.PackageExtraTreeMachine 
 	public void createMachine(final Machine machine) {
 		new ExtraTreeMachine.ComponentExtraTreeGUI(machine, ExtraTreesGUID.PRESS);
 		final ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
-		final InventorySlot input = inventory.addSlot(SLOT_FRUIT, "input");
+		final InventorySlot input = inventory.addSlot(SLOT_FRUIT, getSlotRL("input"));
 		input.setValidator(new SlotValidatorSqueezable());
 		input.forbidExtraction();
 
-		final InventorySlot process = inventory.addSlot(SLOT_CURRENT, "process");
+		final InventorySlot process = inventory.addSlot(SLOT_CURRENT, getSlotRL("process"));
 		process.setValidator(new SlotValidatorSqueezable());
 		process.forbidInteraction();
 

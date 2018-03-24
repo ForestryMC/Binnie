@@ -47,11 +47,11 @@ public class BreweryMachine extends ExtraTreeMachine.PackageExtraTreeMachine imp
 			slot.forbidExtraction();
 		}
 
-		final InventorySlot yeast = inventory.addSlot(SLOT_YEAST, "yeast");
+		final InventorySlot yeast = inventory.addSlot(SLOT_YEAST, getSlotRL("yeast"));
 		yeast.setValidator(new SlotValidatorBreweryYeast());
 		yeast.setType(InventorySlot.Type.Recipe);
 
-		final InventorySlot ingredient = inventory.addSlot(SLOT_RECIPE_INPUT, "ingredient");
+		final InventorySlot ingredient = inventory.addSlot(SLOT_RECIPE_INPUT, getSlotRL("ingredient"));
 		ingredient.setValidator(new SlotValidatorBreweryIngredient());
 		ingredient.setType(InventorySlot.Type.Recipe);
 

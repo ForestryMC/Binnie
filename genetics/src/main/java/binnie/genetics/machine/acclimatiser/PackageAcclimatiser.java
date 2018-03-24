@@ -2,6 +2,7 @@ package binnie.genetics.machine.acclimatiser;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.NonNullList;
 
 import binnie.core.gui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
@@ -14,7 +15,6 @@ import binnie.core.machines.power.ComponentPowerReceptor;
 import binnie.genetics.core.GeneticsGUI;
 import binnie.genetics.machine.ComponentGeneticGUI;
 import binnie.genetics.machine.GeneticMachine;
-import net.minecraft.util.NonNullList;
 
 public class PackageAcclimatiser extends GeneticMachine.PackageGeneticBase implements IMachineInformation {
 	public PackageAcclimatiser() {
@@ -25,19 +25,19 @@ public class PackageAcclimatiser extends GeneticMachine.PackageGeneticBase imple
 	public void createMachine(final Machine machine) {
 		new ComponentGeneticGUI(machine, GeneticsGUI.ACCLIMATISER);
 		final ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
-		InventorySlot slotTarget = inventory.addSlot(Acclimatiser.SLOT_TARGET, "process");
+		InventorySlot slotTarget = inventory.addSlot(Acclimatiser.SLOT_TARGET, getSlotRL("process"));
 		slotTarget.setValidator(new SlotValidator.Individual());
 		slotTarget.setReadOnly();
 		slotTarget.forbidExtraction();
-		for (final InventorySlot slot : inventory.addSlotArray(Acclimatiser.SLOT_RESERVE, "input")) {
+		for (final InventorySlot slot : inventory.addSlotArray(Acclimatiser.SLOT_RESERVE, getSlotRL("input"))) {
 			slot.forbidExtraction();
 			slot.setValidator(new SlotValidator.Individual());
 		}
-		for (final InventorySlot slot : inventory.addSlotArray(Acclimatiser.SLOT_DRONE, "output")) {
+		for (final InventorySlot slot : inventory.addSlotArray(Acclimatiser.SLOT_DRONE, getSlotRL("output"))) {
 			slot.setReadOnly();
 			slot.setValidator(new SlotValidator.Individual());
 		}
-		for (final InventorySlot slot : inventory.addSlotArray(Acclimatiser.SLOT_ACCLIMATISER, "acclimatiser")) {
+		for (final InventorySlot slot : inventory.addSlotArray(Acclimatiser.SLOT_ACCLIMATISER, getSlotRL("acclimatiser"))) {
 			slot.setValidator(new ValidatorAcclimatiserItem());
 		}
 		final ComponentInventoryTransfer transfer = new ComponentInventoryTransfer(machine);

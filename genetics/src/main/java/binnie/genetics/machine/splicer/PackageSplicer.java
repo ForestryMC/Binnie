@@ -1,6 +1,5 @@
 package binnie.genetics.machine.splicer;
 
-import binnie.core.machines.TileEntityTESRMachine;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 
@@ -8,6 +7,7 @@ import binnie.core.gui.minecraft.IMachineInformation;
 import binnie.core.machines.IMachine;
 import binnie.core.machines.Machine;
 import binnie.core.machines.MachineUtil;
+import binnie.core.machines.TileEntityTESRMachine;
 import binnie.core.machines.inventory.ComponentInventorySlots;
 import binnie.core.machines.inventory.ComponentInventoryTransfer;
 import binnie.core.machines.inventory.InventorySlot;
@@ -30,28 +30,28 @@ public class PackageSplicer extends AdvGeneticMachine.PackageAdvGeneticBase impl
 	public void createMachine(final Machine machine) {
 		new ComponentGeneticGUI(machine, GeneticsGUI.SPLICER);
 		final ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
-		InventorySlot slotSerumVial = inventory.addSlot(Splicer.SLOT_SERUM_VIAL, "serum.active");
+		InventorySlot slotSerumVial = inventory.addSlot(Splicer.SLOT_SERUM_VIAL, getSlotRL("serum.active"));
 		slotSerumVial.forbidInteraction();
 		slotSerumVial.setReadOnly();
 		final SlotValidator serumValid = new SerumSlotValidator();
 		slotSerumVial.setValidator(serumValid);
-		for (InventorySlot slot : inventory.addSlotArray(Splicer.SLOT_SERUM_RESERVE, "serum.input")) {
+		for (InventorySlot slot : inventory.addSlotArray(Splicer.SLOT_SERUM_RESERVE, getSlotRL("serum.input"))) {
 			slot.setValidator(serumValid);
 			slot.forbidExtraction();
 		}
-		for (InventorySlot slot : inventory.addSlotArray(Splicer.SLOT_SERUM_EXPENDED, "serum.output")) {
+		for (InventorySlot slot : inventory.addSlotArray(Splicer.SLOT_SERUM_EXPENDED, getSlotRL("serum.output"))) {
 			slot.setValidator(serumValid);
 			slot.setReadOnly();
 		}
-		for (InventorySlot slot : inventory.addSlotArray(Splicer.SLOT_RESERVE, "input")) {
+		for (InventorySlot slot : inventory.addSlotArray(Splicer.SLOT_RESERVE, getSlotRL("input"))) {
 			slot.forbidExtraction();
 			slot.setValidator(new ValidatorIndividualInoculate());
 		}
-		InventorySlot slotTarget = inventory.addSlot(Splicer.SLOT_TARGET, "process");
+		InventorySlot slotTarget = inventory.addSlot(Splicer.SLOT_TARGET, getSlotRL("process"));
 		slotTarget.setValidator(new ValidatorIndividualInoculate());
 		slotTarget.setReadOnly();
 		slotTarget.forbidInteraction();
-		for (InventorySlot slot : inventory.addSlotArray(Splicer.SLOT_FINISHED, "output")) {
+		for (InventorySlot slot : inventory.addSlotArray(Splicer.SLOT_FINISHED, getSlotRL("output"))) {
 			slot.setReadOnly();
 			slot.forbidInsertion();
 			slot.setValidator(new ValidatorIndividualInoculate());

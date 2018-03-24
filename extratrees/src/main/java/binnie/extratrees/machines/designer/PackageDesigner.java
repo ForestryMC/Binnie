@@ -31,9 +31,9 @@ public final class PackageDesigner extends MachinePackage implements IMachineInf
 	public void createMachine(final Machine machine) {
 		new ExtraTreeMachine.ComponentExtraTreeGUI(machine, ExtraTreesGUID.WOODWORKER);
 		final ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
-		inventory.addSlot(DesignerSlots.ADHESIVE_SLOT, "polish").setValidator(new SlotValidatorDesignAdhesive(this.type));
-		inventory.addSlot(DesignerSlots.DESIGN_SLOT_1, "wood").setValidator(new SlotValidatorDesignMaterial(this.type));
-		inventory.addSlot(DesignerSlots.DESIGN_SLOT_2, "wood").setValidator(new SlotValidatorDesignMaterial(this.type));
+		inventory.addSlot(DesignerSlots.ADHESIVE_SLOT, getSlotRL("polish")).setValidator(new SlotValidatorDesignAdhesive(this.type));
+		inventory.addSlot(DesignerSlots.DESIGN_SLOT_1, getSlotRL("wood")).setValidator(new SlotValidatorDesignMaterial(this.type));
+		inventory.addSlot(DesignerSlots.DESIGN_SLOT_2, getSlotRL("wood")).setValidator(new SlotValidatorDesignMaterial(this.type));
 		new ComponentDesignerRecipe(machine, this.type);
 	}
 

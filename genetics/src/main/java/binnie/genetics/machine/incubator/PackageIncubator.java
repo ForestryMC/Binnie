@@ -22,13 +22,13 @@ public class PackageIncubator extends GeneticMachine.PackageGeneticBase implemen
 	public void createMachine(final Machine machine) {
 		new ComponentGeneticGUI(machine, GeneticsGUI.INCUBATOR);
 		ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
-		for (InventorySlot slot : inventory.addSlotArray(Incubator.SLOT_QUEUE, "input")) {
+		for (InventorySlot slot : inventory.addSlotArray(Incubator.SLOT_QUEUE, getSlotRL("input"))) {
 			slot.forbidExtraction();
 		}
-		InventorySlot slotIncubator = inventory.addSlot(Incubator.SLOT_INCUBATOR, "incubator");
+		InventorySlot slotIncubator = inventory.addSlot(Incubator.SLOT_INCUBATOR, getSlotRL("incubator"));
 		slotIncubator.forbidInteraction();
 		slotIncubator.setReadOnly();
-		for (InventorySlot slot : inventory.addSlotArray(Incubator.SLOT_OUTPUT, "output")) {
+		for (InventorySlot slot : inventory.addSlotArray(Incubator.SLOT_OUTPUT, getSlotRL("output"))) {
 			slot.forbidInsertion();
 			slot.setReadOnly();
 		}

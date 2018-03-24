@@ -1,10 +1,13 @@
 package binnie.genetics.machine;
 
+import javax.annotation.Resource;
 import java.util.function.Supplier;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
 
+import binnie.core.Constants;
 import binnie.core.machines.IMachineType;
 import binnie.core.machines.MachinePackage;
 import binnie.core.machines.TileEntityMachine;

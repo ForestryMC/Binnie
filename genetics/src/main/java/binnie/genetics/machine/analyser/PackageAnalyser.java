@@ -1,12 +1,12 @@
 package binnie.genetics.machine.analyser;
 
-import binnie.core.genetics.ManagerGenetics;
-import binnie.core.machines.TileEntityTESRMachine;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 
+import binnie.core.genetics.ManagerGenetics;
 import binnie.core.gui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
+import binnie.core.machines.TileEntityTESRMachine;
 import binnie.core.machines.inventory.ComponentChargedSlots;
 import binnie.core.machines.inventory.ComponentInventorySlots;
 import binnie.core.machines.inventory.ComponentInventoryTransfer;
@@ -28,17 +28,17 @@ public class PackageAnalyser extends GeneticMachine.PackageGeneticBase implement
 	public void createMachine(final Machine machine) {
 		new ComponentGeneticGUI(machine, GeneticsGUI.ANALYSER);
 		ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
-		for (InventorySlot slot : inventory.addSlotArray(Analyser.SLOT_RESERVE, "input")) {
+		for (InventorySlot slot : inventory.addSlotArray(Analyser.SLOT_RESERVE, getSlotRL("input"))) {
 			slot.setValidator(new SlotValidatorUnanalysed());
 			slot.forbidExtraction();
 		}
-		InventorySlot slotTarget = inventory.addSlot(Analyser.SLOT_TARGET, "analyse");
+		InventorySlot slotTarget = inventory.addSlot(Analyser.SLOT_TARGET, getSlotRL("analyse"));
 		slotTarget.setReadOnly();
 		slotTarget.forbidInteraction();
-		InventorySlot slotDye = inventory.addSlot(Analyser.SLOT_DYE, "dye");
+		InventorySlot slotDye = inventory.addSlot(Analyser.SLOT_DYE, getSlotRL("dye"));
 		slotDye.forbidExtraction();
 		slotDye.setValidator(new DyeSlotValidator());
-		for (InventorySlot slot : inventory.addSlotArray(Analyser.SLOT_FINISHED, "output")) {
+		for (InventorySlot slot : inventory.addSlotArray(Analyser.SLOT_FINISHED, getSlotRL("output"))) {
 			slot.forbidInsertion();
 			slot.setReadOnly();
 		}
