@@ -192,7 +192,7 @@ public class ModuleFlowers extends BlankModule {
 		World world = event.getWorld();
 		EntityPlayer player = event.getEntityPlayer();
 		ItemStack heldItem = player.getHeldItemMainhand();
-		if (!!event.getWorld().isRemote) {
+		if (event.getWorld().isRemote) {
 			return;
 		}
 
