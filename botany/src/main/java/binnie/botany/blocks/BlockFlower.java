@@ -177,6 +177,11 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 	}
 
 	@Override
+	public String getUnlocalizedName() {
+		return String.format("%s.block.flower", Botany.instance.getModId());
+	}
+
+	@Override
 	@SideOnly(Side.CLIENT)
 	public int colorMultiplier(IBlockState state, @Nullable IBlockAccess world, @Nullable BlockPos pos, int tintIndex) {
 		if (world != null && pos != null) {

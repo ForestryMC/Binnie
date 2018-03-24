@@ -37,6 +37,7 @@ botany.plant.decaying_flower=Decaying Flower
 botany.ceramic.name=%s Ceramic Block
 botany.ceramic.block.name=%s Ceramic Block
 botany.pigmented.glass.name=%s Pigmented Glass
+botany.block.flower.name=Botany Flower
 
 botany.ceramic.type.tile.name=%s Ceramic Tile
 botany.ceramic.type.brick.name=%s Ceramic Bricks
