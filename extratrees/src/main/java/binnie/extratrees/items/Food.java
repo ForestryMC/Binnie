@@ -25,211 +25,211 @@ public enum Food implements IItemMiscProvider {
 	CRABAPPLE(2){
 		@Override
 		protected void registerOreDictEntries() {
-			registerOre("Apple").registerOre("Crabapple");
+			registerOre("Apple").registerOre("Crabapple").registerOre("listAllfruit");
 		}
 	},
 	ORANGE(4){
 		@Override
 		protected void registerOreDictEntries() {
-			registerOre("Orange");
+			registerOre("Orange").registerOre("listAllfruit").registerOre("listAllcitrus");
 		}
 	},
 	KUMQUAT(2){
 		@Override
 		protected void registerOreDictEntries() {
-			registerOre("Kumquat");
+			registerOre("Kumquat").registerOre("listAllfruit");
 		}
 	},
 	LIME(2){
 		@Override
 		protected void registerOreDictEntries() {
-			registerOre("Lime");
+			registerOre("Lime").registerOre("listAllfruit").registerOre("listAllcitrus");
 		}
 	},
 	WILD_CHERRY(2){
 		@Override
 		protected void registerOreDictEntries() {
-			registerOre("Cherry").registerOre("WildCherry");
+			registerOre("Cherry").registerOre("WildCherry").registerOre("listAllfruit");
 		}
 	},
 	SOUR_CHERRY(2){
 		@Override
 		protected void registerOreDictEntries() {
-			registerOre("Cherry").registerOre("SourCherry");
+			registerOre("Cherry").registerOre("SourCherry").registerOre("listAllfruit");
 		}
 	},
 	BLACK_CHERRY(2){
 		@Override
 		protected void registerOreDictEntries() {
-			registerOre("Cherry").registerOre("BlackCherry");
+			registerOre("Cherry").registerOre("BlackCherry").registerOre("listAllfruit");
 		}
 	},
 	Blackthorn(3){
 		@Override
 		protected void registerOreDictEntries() {
-			registerOre("Blackthorn");
+			registerOre("Blackthorn").registerOre("listAllfruit").registerOre("listAllberry");
 		}
 	},
 	CHERRY_PLUM(3){
 		@Override
 		protected void registerOreDictEntries() {
-			registerOre("Plum").registerOre("CherryPlum");
+			registerOre("Plum").registerOre("CherryPlum").registerOre("listAllfruit");
 		}
 	},
 	ALMOND(1){
 		@Override
 		protected void registerOreDictEntries() {
-			registerOre("Almond");
+			registerOre("Almond").registerOre("listAllnut");
 		}
 	},
 	APRICOT(4){
 		@Override
 		protected void registerOreDictEntries() {
-			registerOre("Apricot");
+			registerOre("Apricot").registerOre("listAllfruit");
 		}
 	},
 	GRAPEFRUIT(4){
 		@Override
 		protected void registerOreDictEntries() {
-			registerOre("Grapefruit");
+			registerOre("Grapefruit").registerOre("listAllfruit").registerOre("listAllcitrus");
 		}
 	},
 	PEACH(4){
 		@Override
 		protected void registerOreDictEntries() {
-			registerOre("Peach");
+			registerOre("Peach").registerOre("listAllfruit");
 		}
 	},
 	SATSUMA(3){
 		@Override
 		protected void registerOreDictEntries() {
-			registerOre("Satsuma").registerOre("Orange");
+			registerOre("Satsuma").registerOre("Orange").registerOre("listAllfruit").registerOre("listAllcitrus");
 		}
 	},
 	BUDDHA_HAND(3){
 		@Override
 		protected void registerOreDictEntries() {
-			registerOre("BuddhaHand").registerOre("Citron");
+			registerOre("BuddhaHand").registerOre("Citron").registerOre("listAllfruit").registerOre("listAllcitrus");
 		}
 	},
 	CITRON(3){
 		@Override
 		protected void registerOreDictEntries() {
-			registerOre("Citron");
+			registerOre("Citron").registerOre("listAllfruit").registerOre("listAllcitrus");
 		}
 	},
 	FINGER_LIME(3){
 		@Override
 		protected void registerOreDictEntries() {
-			registerOre("Lime").registerOre("FingerLime");
+			registerOre("Lime").registerOre("FingerLime").registerOre("listAllfruit").registerOre("listAllcitrus");
 		}
 	},
 	KEY_LIME(2){
 		@Override
 		protected void registerOreDictEntries() {
-			registerOre("KeyLime").registerOre("Lime");
+			registerOre("KeyLime").registerOre("Lime").registerOre("listAllfruit").registerOre("listAllcitrus");
 		}
 	},
 	MANDERIN(3){
 		@Override
 		protected void registerOreDictEntries() {
-			registerOre("Orange").registerOre("Manderin");
+			registerOre("Orange").registerOre("Manderin").registerOre("listAllfruit").registerOre("listAllcitrus");
 		}
 	},
 	NECTARINE(3){
 		@Override
 		protected void registerOreDictEntries() {
-			registerOre("Peach").registerOre("Nectarine");
+			registerOre("Peach").registerOre("Nectarine").registerOre("listAllfruit");
 		}
 	},
 	POMELO(3){
 		@Override
 		protected void registerOreDictEntries() {
-			registerOre("Pomelo");
+			registerOre("Pomelo").registerOre("listAllfruit");
 		}
 	},
 	TANGERINE(3){
 		@Override
 		protected void registerOreDictEntries() {
-			registerOre("Tangerine").registerOre("Orange");
+			registerOre("Tangerine").registerOre("Orange").registerOre("listAllfruit").registerOre("listAllcitrus");
 		}
 	},
 	PEAR(4){
 		@Override
 		protected void registerOreDictEntries() {
-			registerOre("Pear");
+			registerOre("Pear").registerOre("listAllfruit");
 		}
 	},
 	SAND_PEAR(2){
 		@Override
 		protected void registerOreDictEntries() {
-			registerOre("SandPear");
+			registerOre("SandPear").registerOre("listAllfruit");
 		}
 	},
 	HAZELNUT(2){
 		@Override
 		protected void registerOreDictEntries() {
-			registerOre("Hazelnut");
+			registerOre("Hazelnut").registerOre("listAllnut");
 		}
 	},
 	BUTTERNUT(1){
 		@Override
 		protected void registerOreDictEntries() {
-			registerOre("Butternut").registerOre("Walnut");
+			registerOre("Butternut").registerOre("Walnut").registerOre("listAllnut");
 		}
 	},
 	BEECHNUT(0){
 		@Override
 		protected void registerOreDictEntries() {
-			registerOre("Beechnut");
+			registerOre("Beechnut").registerOre("listAllnut");
 		}
 	},
 	PECAN(0){
 		@Override
 		protected void registerOreDictEntries() {
-			registerOre("Pecan");
+			registerOre("Pecan").registerOre("listAllnut");
 		}
 	},
 	BANANA(4){
 		@Override
 		protected void registerOreDictEntries() {
-			registerOre("Banana");
+			registerOre("Banana").registerOre("listAllfruit");
 		}
 	},
 	RED_BANANA(4){
 		@Override
 		protected void registerOreDictEntries() {
-			registerOre("RedBanana").registerOre("Banana");
+			registerOre("RedBanana").registerOre("Banana").registerOre("listAllfruit");
 		}
 	},
 	PLANTAIN(2){
 		@Override
 		protected void registerOreDictEntries() {
-			registerOre("Plantain");
+			registerOre("Plantain").registerOre("listAllfruit");
 		}
 	},
 	BRAZIL_NUT(0){
 		@Override
 		protected void registerOreDictEntries() {
-			registerOre("BrazilNut");
+			registerOre("BrazilNut").registerOre("listAllnut");
 		}
 	},
 	FIG(2){
 		@Override
 		protected void registerOreDictEntries() {
-			registerOre("Fig");
+			registerOre("Fig").registerOre("listAllfruit");
 		}
 	},
 	ACORN(0){
 		@Override
 		protected void registerOreDictEntries() {
-			registerOre("Acorn");
+			registerOre("Acorn").registerOre("listAllnut");
 		}
 	},
 	ELDERBERRY(1){
 		@Override
 		protected void registerOreDictEntries() {
-			registerOre("Elderberry");
+			registerOre("Elderberry").registerOre("listAllfruit").registerOre("listAllberry");
 		}
 	},
 	OLIVE(1){
@@ -241,7 +241,7 @@ public enum Food implements IItemMiscProvider {
 	GINGKO_NUT(1){
 		@Override
 		protected void registerOreDictEntries() {
-			registerOre("GingkoNut");
+			registerOre("GingkoNut").registerOre("listAllspice");
 		}
 	},
 	COFFEE(0){
@@ -253,35 +253,135 @@ public enum Food implements IItemMiscProvider {
 	OSANGE_ORANGE(1){
 		@Override
 		protected void registerOreDictEntries() {
-			registerOre("OsangeOrange");
+			registerOre("OsangeOrange").registerOre("listAllfruit").registerOre("listAllcitrus");
 		}
 	},
 	CLOVE(0){
 		@Override
 		protected void registerOreDictEntries() {
-			Food.CLOVE.registerOre("Clove");
+			registerOre("Clove").registerOre("listAllspice");
 		}
 	},
-	PAPAYIMAR(8),
-	BLACKCURRANT(2),
-	REDCURRANT(2),
-	BLACKBERRY(2),
-	RASPBERRY(2),
-	BLUEBERRY(2),
-	CRANBERRY(2),
-	JUNIPER(0),
-	GOOSEBERRY(2),
-	GOLDEN_RASPBERRY(2),
-	COCONUT(2),
-	CASHEW(0),
-	AVACADO(2),
-	NUTMEG(0),
-	ALLSPICE(0),
-	CHILLI(2),
-	STAR_ANISE(0),
-	MANGO(4),
-	STARFRUIT(2),
-	CANDLENUT(0);
+	PAPAYIMAR(8){
+		@Override
+		protected void registerOreDictEntries() {
+			registerOre("Papayimar").registerOre("listAllfruit");
+		}
+	},
+	BLACKCURRANT(2){
+		@Override
+		protected void registerOreDictEntries() {
+			registerOre("Blackcurrant").registerOre("listAllfruit").registerOre("listAllberry");
+		}
+	},
+	REDCURRANT(2){
+		@Override
+		protected void registerOreDictEntries() {
+			registerOre("Redcurrant").registerOre("listAllfruit").registerOre("listAllberry");
+		}
+	},
+	BLACKBERRY(2){
+		@Override
+		protected void registerOreDictEntries() {
+			registerOre("Blackberry").registerOre("listAllfruit").registerOre("listAllberry");
+		}
+	},
+	RASPBERRY(2){
+		@Override
+		protected void registerOreDictEntries() {
+			registerOre("Raspberry").registerOre("listAllfruit").registerOre("listAllberry");
+		}
+	},
+	BLUEBERRY(2){
+		@Override
+		protected void registerOreDictEntries() {
+			registerOre("Blueberry").registerOre("listAllfruit").registerOre("listAllberry");
+		}
+	},
+	CRANBERRY(2){
+		@Override
+		protected void registerOreDictEntries() {
+			registerOre("Cranberry").registerOre("listAllfruit").registerOre("listAllberry");
+		}
+	},
+	JUNIPER(0){
+		@Override
+		protected void registerOreDictEntries() {
+			registerOre("Juniper").registerOre("listAllfruit");
+		}
+	},
+	GOOSEBERRY(2){
+		@Override
+		protected void registerOreDictEntries() {
+			registerOre("Gooseberry").registerOre("listAllfruit").registerOre("listAllberry");
+		}
+	},
+	GOLDEN_RASPBERRY(2){
+		@Override
+		protected void registerOreDictEntries() {
+			registerOre("GoldenRaspberry").registerOre("Goldenraspberry").registerOre("listAllfruit").registerOre("listAllberry");
+		}
+	},
+	COCONUT(2){
+		@Override
+		protected void registerOreDictEntries() {
+			registerOre("Coconut").registerOre("listAllnut");
+		}
+	},
+	CASHEW(0){
+		@Override
+		protected void registerOreDictEntries() {
+			registerOre("Cashew").registerOre("listAllnut");
+		}
+	},
+	AVACADO(2){
+		@Override
+		protected void registerOreDictEntries() {
+			registerOre("Avocado").registerOre("listAllfruit");
+		}
+	},
+	NUTMEG(0){
+		@Override
+		protected void registerOreDictEntries() {
+			registerOre("Nutmeg").registerOre("listAllnut");
+		}
+	},
+	ALLSPICE(0){
+		@Override
+		protected void registerOreDictEntries() {
+			registerOre("Allspice").registerOre("listAllspice");
+		}
+	},
+	CHILLI(2){
+		@Override
+		protected void registerOreDictEntries() {
+			registerOre("Chilli").registerOre("Chilipepper").registerOre("listAllpepper");
+		}
+	},
+	STAR_ANISE(0){
+		@Override
+		protected void registerOreDictEntries() {
+			registerOre("Staranise").registerOre("StarAnise").registerOre("listAllspice");
+		}
+	},
+	MANGO(4){
+		@Override
+		protected void registerOreDictEntries() {
+			registerOre("Mango").registerOre("listAllfruit");
+		}
+	},
+	STARFRUIT(2){
+		@Override
+		protected void registerOreDictEntries() {
+			registerOre("Starfruit").registerOre("listAllfruit");
+		}
+	},
+	CANDLENUT(0){
+		@Override
+		protected void registerOreDictEntries() {
+			registerOre("Candlenut").registerOre("Candleberry").registerOre("Candle").registerOre("listAllnut");
+		}
+	};
 
 	public static final Food[] VALUES = values();
 
