@@ -65,7 +65,7 @@ public class WorldGenTree extends WorldGenerator {
 		this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), 1.0f, 1, this.leaf, false);
 		this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), 1.5f, 1, this.leaf, false);
 		this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), 2.9f, 1, this.leaf, false);
-		this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), 2.9f, 1, this.leaf, false);
+		this.generateCylinder(new Vector(0.0f, leafSpawn, 0.0f), 2.9f, 1, this.leaf, false);
 	}
 
 	public boolean canGrow() {
@@ -126,7 +126,6 @@ public class WorldGenTree extends WorldGenerator {
 		if (!force && !this.canGrow()) {
 			return false;
 		}
-		final int offset = (this.girth - 1) / 2;
 		for (int x2 = 0; x2 < this.girth; ++x2) {
 			for (int y2 = 0; y2 < this.girth; ++y2) {
 				this.addBlock(x2, 0, y2, new BlockTypeVoid(), true);

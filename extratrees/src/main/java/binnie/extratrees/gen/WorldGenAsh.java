@@ -24,7 +24,7 @@ public class WorldGenAsh {
 			while (leafSpawn > bottom) {
 				WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, girth + 1.25F, 1, WorldGenHelper.EnumReplaceMode.AIR);
 			}
-			WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, girth + 0.25F, 1, WorldGenHelper.EnumReplaceMode.AIR);
+			WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn, 0), girth, girth + 0.25F, 1, WorldGenHelper.EnumReplaceMode.AIR);
 		}
 	}
 }

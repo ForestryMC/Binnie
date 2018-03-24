@@ -21,7 +21,7 @@ public class WorldGenPalm {
 			float leafSpawn = this.height + 1;
 			WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, girth - 1, 1, WorldGenHelper.EnumReplaceMode.AIR);
 			WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, girth + 0.5F, 1, WorldGenHelper.EnumReplaceMode.AIR);
-			WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, girth - 0.6F, 1, WorldGenHelper.EnumReplaceMode.AIR);
+			WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn, 0), girth, girth - 0.6F, 1, WorldGenHelper.EnumReplaceMode.AIR);
 		}
 	}
 }

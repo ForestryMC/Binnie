@@ -4,10 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import binnie.core.api.genetics.IBreedingSystem;
-import binnie.core.api.gui.events.EventHandlerOrigin;
-import binnie.core.gui.geometry.Point;
-import binnie.core.gui.window.WindowMachine;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -22,6 +18,9 @@ import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IChromosomeType;
 
 import binnie.core.Binnie;
+import binnie.core.api.genetics.IBreedingSystem;
+import binnie.core.api.gui.Alignment;
+import binnie.core.api.gui.events.EventHandlerOrigin;
 import binnie.core.genetics.BreedingSystem;
 import binnie.core.genetics.Gene;
 import binnie.core.gui.Tooltip;
@@ -31,11 +30,12 @@ import binnie.core.gui.controls.scroll.ControlScrollableContent;
 import binnie.core.gui.controls.tab.ControlTabBar;
 import binnie.core.gui.events.EventTextEdit;
 import binnie.core.gui.events.EventValueChanged;
-import binnie.core.api.gui.Alignment;
+import binnie.core.gui.geometry.Point;
 import binnie.core.gui.minecraft.MinecraftGUI;
 import binnie.core.gui.minecraft.control.ControlPlayerInventory;
 import binnie.core.gui.minecraft.control.ControlTabIcon;
 import binnie.core.gui.window.Panel;
+import binnie.core.gui.window.WindowMachine;
 import binnie.genetics.Genetics;
 import binnie.genetics.genetics.Engineering;
 import binnie.genetics.genetics.GeneTracker;
@@ -86,12 +86,11 @@ public class WindowGeneBank extends WindowMachine {
 				WindowGeneBank.this.genes.setValue((IBreedingSystem) event.getValue());
 			}
 		});
-		int boxX = 100;
 		int x = 16;
 		final int y = 32;
 		new ControlPlayerInventory(this, x, y);
 		x += 124;
-		boxX = x;
+		int boxX = x;
 		final int geneBoxWidth = 120;
 		new Panel(this, boxX + 24, 32, geneBoxWidth, 120, MinecraftGUI.PanelType.BLACK);
 		new Panel(this, boxX + 24 + geneBoxWidth, 32, 14, 120, MinecraftGUI.PanelType.GRAY);

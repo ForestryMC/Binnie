@@ -26,7 +26,7 @@ public class WorldGenBeech {
 				WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, girth + 2.5F, 1, WorldGenHelper.EnumReplaceMode.AIR);
 				WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, girth + 1.85F, 1, WorldGenHelper.EnumReplaceMode.AIR);
 			}
-			WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, girth + 1.5F, 1, WorldGenHelper.EnumReplaceMode.AIR);
+			WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn, 0), girth, girth + 1.5F, 1, WorldGenHelper.EnumReplaceMode.AIR);
 		}
 	}
 

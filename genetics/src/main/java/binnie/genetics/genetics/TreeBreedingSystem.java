@@ -10,15 +10,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
-import binnie.core.api.genetics.IFieldKitPlugin;
-import binnie.core.api.gui.IPoint;
-import binnie.core.api.gui.ITexture;
-import binnie.core.genetics.BreedingSystem;
-import binnie.core.genetics.ForestryAllele;
-import binnie.core.gui.geometry.Point;
-import binnie.core.gui.resource.textures.StandardTexture;
-import binnie.core.texture.BinnieCoreTexture;
-import binnie.genetics.Genetics;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -46,8 +37,17 @@ import forestry.api.genetics.ISpeciesRoot;
 import forestry.api.genetics.ISpeciesType;
 
 import binnie.core.Binnie;
+import binnie.core.api.genetics.IFieldKitPlugin;
+import binnie.core.api.gui.IPoint;
+import binnie.core.api.gui.ITexture;
+import binnie.core.genetics.BreedingSystem;
+import binnie.core.genetics.ForestryAllele;
+import binnie.core.gui.geometry.Point;
+import binnie.core.gui.resource.textures.StandardTexture;
+import binnie.core.texture.BinnieCoreTexture;
 import binnie.core.util.I18N;
 import binnie.core.util.UniqueItemStackSet;
+import binnie.genetics.Genetics;
 
 public class TreeBreedingSystem extends BreedingSystem implements binnie.genetics.api.ITreeBreedingSystem {
 	private final UniqueItemStackSet allFruits;
@@ -119,8 +119,6 @@ public class TreeBreedingSystem extends BreedingSystem implements binnie.genetic
 				this.discoveredWoods.add(wood);
 			}*/
 			this.discoveredFruits.addAll(genome.getFruitProvider().getProducts().keySet());
-			for (ItemStack wood2 : this.discoveredWoods) {
-			}
 		}
 	}
 

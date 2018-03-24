@@ -10,14 +10,12 @@ import java.util.stream.Collectors;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -30,7 +28,6 @@ import forestry.api.farming.IFarmable;
 import forestry.core.owner.IOwnedTile;
 import forestry.core.utils.BlockUtil;
 
-import binnie.core.Binnie;
 import binnie.botany.api.gardening.EnumAcidity;
 import binnie.botany.api.gardening.EnumFertiliserType;
 import binnie.botany.api.gardening.EnumMoisture;
@@ -40,6 +37,7 @@ import binnie.botany.api.gardening.IGardeningManager;
 import binnie.botany.core.BotanyCore;
 import binnie.botany.modules.ModuleGardening;
 import binnie.botany.tile.TileEntityFlower;
+import binnie.core.Binnie;
 import binnie.core.liquid.ManagerLiquid;
 
 public class GardenLogic extends FarmLogic {

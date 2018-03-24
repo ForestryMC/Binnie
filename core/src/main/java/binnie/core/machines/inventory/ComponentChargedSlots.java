@@ -36,7 +36,7 @@ public class ComponentChargedSlots extends MachineComponent implements INetwork.
 		final NBTTagList chargeList = new NBTTagList();
 		for (final Map.Entry<Integer, Float> entry : this.charges.entrySet()) {
 			final NBTTagCompound chargesNBT = new NBTTagCompound();
-			chargesNBT.setByte("i", (byte) (0 + entry.getKey()));
+			chargesNBT.setByte("i", entry.getKey().byteValue());
 			chargesNBT.setByte("v", (byte) (entry.getValue() * 100.0f));
 			chargeList.appendTag(chargesNBT);
 		}

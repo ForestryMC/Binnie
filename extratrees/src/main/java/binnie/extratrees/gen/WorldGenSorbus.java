@@ -20,7 +20,7 @@ public class WorldGenSorbus {
 			while (leafSpawn > bottom) {
 				this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), this.randBetween(0.95f, 1.05f) * width, 1, this.leaf, false);
 			}
-			this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), 0.7f * width, 1, this.leaf, false);
+			this.generateCylinder(new Vector(0.0f, leafSpawn, 0.0f), 0.7f * width, 1, this.leaf, false);
 		}
 	}
 
@@ -39,7 +39,7 @@ public class WorldGenSorbus {
 			while (leafSpawn > bottom) {
 				this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), this.randBetween(0.95f, 1.05f) * width, 1, this.leaf, false);
 			}
-			this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), 0.7f * width, 1, this.leaf, false);
+			this.generateCylinder(new Vector(0.0f, leafSpawn, 0.0f), 0.7f * width, 1, this.leaf, false);
 		}
 	}
 
@@ -57,7 +57,7 @@ public class WorldGenSorbus {
 			while (leafSpawn > 2) {
 				this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), 2.4f + this.rand.nextFloat() * 0.7f, 1, this.leaf, false);
 			}
-			this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), 2.9f, 1, this.leaf, false);
+			this.generateCylinder(new Vector(0.0f, leafSpawn, 0.0f), 2.9f, 1, this.leaf, false);
 		}
 
 		@Override
