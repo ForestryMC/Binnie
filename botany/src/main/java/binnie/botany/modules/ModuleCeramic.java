@@ -71,6 +71,7 @@ public class ModuleCeramic extends BlankModule {
 		Botany.proxy.registerItem(clay);
 		Botany.proxy.registerItem(misc);
 
+		OreDictionary.registerOre("blockGlass", stained);
 		OreDictionary.registerOre("pigment", pigment);
 	}
 
