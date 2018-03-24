@@ -81,14 +81,16 @@ public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers {
 			flowerRegistry.registerAcceptableFlower(block, getUID());
 		}
 
-		if (this == ROCK) {
-			flowerRegistry.registerAcceptableFlowerRule((blockState, world, pos, flowerType) -> blockState.getMaterial() == Material.ROCK, getUID());
-		}
-		else if (this == LEAVES) {
-			flowerRegistry.registerAcceptableFlowerRule((blockState, world, pos, flowerType) -> blockState.getBlock().isLeaves(blockState, world, pos), getUID());
-		}
-		else if (this == WOOD) {
-			flowerRegistry.registerAcceptableFlowerRule((blockState, world, pos, flowerType) -> blockState.getBlock().isWood(world, pos), getUID());
+		switch (this) {
+			case ROCK:
+				flowerRegistry.registerAcceptableFlowerRule((blockState, world, pos, flowerType) -> blockState.getMaterial() == Material.ROCK, getUID());
+				break;
+			case LEAVES:
+				flowerRegistry.registerAcceptableFlowerRule((blockState, world, pos, flowerType) -> blockState.getBlock().isLeaves(blockState, world, pos), getUID());
+				break;
+			case WOOD:
+				flowerRegistry.registerAcceptableFlowerRule((blockState, world, pos, flowerType) -> blockState.getBlock().isWood(world, pos), getUID());
+				break;
 		}
 
 		AlleleManager.alleleRegistry.registerAllele(this, EnumBeeChromosome.FLOWER_PROVIDER);

@@ -75,7 +75,7 @@ public class ItemSoilMeter extends Item implements IItemModelRegister {
 			block = worldIn.getBlockState(pos).getBlock();
 		}
 
-		if (gardening.isSoil(block) && !!worldIn.isRemote) {
+		if (gardening.isSoil(block) && worldIn.isRemote) {
 			IBlockSoil soil = (IBlockSoil) block;
 			String info = I18N.localise("botany.soil.type") + ": "
 					+ soil.getType(worldIn, pos).getTranslated() + ", "
