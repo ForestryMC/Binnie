@@ -88,22 +88,9 @@ public class IncubatorLogic extends ComponentProcessIndefinate implements IProce
 		}
 		final FluidStack liquid = this.getUtil().getFluid(Incubator.TANK_INPUT);
 		final ItemStack incubator = this.getUtil().getStack(Incubator.SLOT_INCUBATOR);
-		if (this.recipe != null && (incubator.isEmpty() || liquid == null || !this.recipe.isInputLiquid(liquid) || !isStackValid(incubator, recipe))) {
-			this.recipe = null;
-			TransferRequest transferRequest = new TransferRequest(incubator, this.getInventory()).setTargetSlots(Incubator.SLOT_OUTPUT).ignoreValidation();
-			TransferResult transferResult = transferRequest.transfer(null, true);
-			if (transferResult.isSuccess()) {
-				NonNullList<ItemStack> results = transferResult.getRemaining();
-				if (results.size() == 1) {
-					final ItemStack leftover = results.get(0);
-					this.getUtil().setStack(Incubator.SLOT_INCUBATOR, leftover);
-				}
-			}
-		}
-		if (this.recipe == null) {
-			if (liquid == null) {
-				return;
-			}
+		checkAvailability(liquid, incubator);
+		addSameFromInputToIncubator(incubator);
+		if (this.recipe == null && liquid != null) {
 			if (!incubator.isEmpty()) {
 				final IIncubatorRecipe recipe = this.getRecipe(incubator, liquid);
 				if (recipe != null) {
@@ -115,34 +102,74 @@ public class IncubatorLogic extends ComponentProcessIndefinate implements IProce
 			int potentialSlot = 0;
 			for (final int slot : Incubator.SLOT_QUEUE) {
 				final ItemStack stack = this.getUtil().getStack(slot);
-				if (!stack.isEmpty()) {
-					if (potential == null) {
-						for (final IIncubatorRecipe recipe2 : Incubator.getRecipes()) {
-							final boolean rightLiquid = recipe2.isInputLiquid(liquid);
-							final boolean rightItem = isStackValid(stack, recipe2);
-							if (rightLiquid && rightItem) {
-								potential = recipe2;
-								potentialSlot = slot;
-								break;
-							}
-						}
+				if (stack.isEmpty()) continue;
+				for (final IIncubatorRecipe recipe2 : Incubator.getRecipes()) {
+					final boolean rightLiquid = recipe2.isInputLiquid(liquid);
+					final boolean rightItem = isStackValid(stack, recipe2);
+					if (rightLiquid && rightItem) {
+						potential = recipe2;
+						potentialSlot = slot;
+						break;
 					}
+				}
+				if (potential != null) {
+					break;
 				}
 			}
 			if (potential != null) {
-				final TransferRequest removal = new TransferRequest(incubator, this.getInventory()).setTargetSlots(Incubator.SLOT_OUTPUT).ignoreValidation();
-				TransferResult transferResult = removal.transfer(null, false);
-				if (transferResult.isSuccess() && transferResult.getRemaining().isEmpty()) {
+				if (tryEmptyIncubator(incubator)) {
 					this.recipe = potential;
+					final ItemStack stack2 = this.getUtil().getStack(potentialSlot);
+					this.getUtil().setStack(potentialSlot, ItemStack.EMPTY);
+					this.getUtil().setStack(Incubator.SLOT_INCUBATOR, stack2);
 				}
-				removal.transfer(null, true);
-				final ItemStack stack2 = this.getUtil().getStack(potentialSlot);
-				this.getUtil().setStack(potentialSlot, ItemStack.EMPTY);
-				this.getUtil().setStack(Incubator.SLOT_INCUBATOR, stack2);
 			}
 		}
 		if (this.recipe != null) {
 			this.roomForOutput = this.recipe.roomForOutput(this.getUtil());
 		}
+	}
+
+	private void addSameFromInputToIncubator(ItemStack incubator) {
+		if (incubator.isEmpty() || incubator.getCount() == incubator.getMaxStackSize()) {
+			return;
+		}
+		for (final int slot : Incubator.SLOT_QUEUE) {
+			final ItemStack stack = this.getUtil().getStack(slot);
+			if (stack.isEmpty()) continue;
+
+			// Has inner item equal check
+			NonNullList<ItemStack> result = TransferRequest.mergeStacks(stack, incubator);
+
+			getUtil().setStack(slot, result.get(0));
+			getUtil().setStack(Incubator.SLOT_INCUBATOR, result.get(1));
+			if (incubator.getCount() == incubator.getMaxStackSize()) {
+				break;
+			}
+		}
+	}
+
+	private void checkAvailability(@Nullable FluidStack liquid, ItemStack incubator) {
+		if (this.recipe != null && (incubator.isEmpty() || liquid == null || !this.recipe.isInputLiquid(liquid) || !isStackValid(incubator, recipe))) {
+			this.recipe = null;
+			tryEmptyIncubator(incubator);
+		}
+	}
+
+	private boolean tryEmptyIncubator(ItemStack incubator) {
+		if (incubator.isEmpty()) {
+			return true;
+		}
+		TransferRequest transferRequest = new TransferRequest(incubator, this.getInventory()).setTargetSlots(Incubator.SLOT_OUTPUT).ignoreValidation();
+		TransferResult transferResult = transferRequest.transfer(null, true);
+		if (transferResult.isSuccess()) {
+            NonNullList<ItemStack> results = transferResult.getRemaining();
+            if (results.size() == 1) {
+                final ItemStack leftover = results.get(0);
+                this.getUtil().setStack(Incubator.SLOT_INCUBATOR, leftover);
+				return leftover.isEmpty();
+            }
+        }
+        return false;
 	}
 }
