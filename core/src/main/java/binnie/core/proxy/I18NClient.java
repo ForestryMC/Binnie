@@ -3,6 +3,7 @@ package binnie.core.proxy;
 import binnie.core.ModId;
 import binnie.core.util.Log;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.launchwrapper.Launch;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -11,6 +12,8 @@ import java.util.IllegalFormatException;
 
 @SideOnly(Side.CLIENT)
 public class I18NClient implements I18NProxy {
+
+    private final boolean devEnvironment = Launch.blackboard.get("fml.deobfuscatedEnvironment") == Boolean.TRUE;
 
     public String localiseOrBlank(String key) {
         String trans = localise(key);
@@ -21,7 +24,9 @@ public class I18NClient implements I18NProxy {
         if (I18n.hasKey(key)) {
             return I18n.format(key);
         } else {
-            Log.warning("Key not localized: " + key);
+            if (devEnvironment) {
+                Log.warning("Key not localized: " + key);
+            }
             return key;
         }
     }
