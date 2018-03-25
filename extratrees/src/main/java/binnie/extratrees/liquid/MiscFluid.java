@@ -1,5 +1,6 @@
 package binnie.extratrees.liquid;
 
+import binnie.extratrees.ExtraTrees;
 import net.minecraft.util.ResourceLocation;
 
 import net.minecraftforge.fluids.FluidStack;
@@ -10,21 +11,20 @@ import binnie.core.liquid.FluidType;
 import binnie.core.liquid.IFluidDefinition;
 import binnie.extratrees.alcohol.ICocktailLiquid;
 
-//TODO:Localise
 public enum MiscFluid implements IFluidDefinition, ICocktailLiquid {
-	CarbonatedWater("Carbonated Water", "water.carbonated", 13421823, 0.10000000149011612),
-	TonicWater("Tonic Water", "water.tonic", 13421823, 0.10000000149011612),
-	Cream("Carbonated Water", "cream", 15395550, 2.0),
-	GingerAle("Ginger Ale", "gingerAle", 16777215, 0.6000000238418579),
-	Coffee("Coffee", "coffee", 5910789, 0.30000001192092896),
-	SugarSyrup("Simple Syrup", "syrup.simple", 16120049, 0.10000000149011612),
-	AgaveNectar("Agave Nectar", "syrup.agave", 13598245, 0.699999988079071),
-	GrenadineSyrup("Grenadine Syrup", "syrup.grenadine", 16009573, 0.800000011920929);
+	CarbonatedWater("water.carbonated", 13421823, 0.10000000149011612),
+	TonicWater("water.tonic", 13421823, 0.10000000149011612),
+	Cream("cream", 15395550, 2.0),
+	GingerAle("gingerAle", 16777215, 0.6000000238418579),
+	Coffee("coffee", 5910789, 0.30000001192092896),
+	SugarSyrup("syrup.simple", 16120049, 0.10000000149011612),
+	AgaveNectar("syrup.agave", 13598245, 0.699999988079071),
+	GrenadineSyrup("syrup.grenadine", 16009573, 0.800000011920929);
 
 	private final FluidType type;
 
-	MiscFluid(final String name, final String ident, final int color, final double transparency) {
-		type = new FluidType(ident, name, color)
+	MiscFluid(final String ident, final int color, final double transparency) {
+		type = new FluidType(ident, String.format("%s.fluid.%s.%s", ExtraTrees.instance.getModId(), this.getClass().getSimpleName(), this.name()), color)
 			.setTransparency(transparency)
 			.setTextures(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "blocks/liquids/liquid"))
 			.setShowHandler((type)-> type == FluidContainerType.GLASS);

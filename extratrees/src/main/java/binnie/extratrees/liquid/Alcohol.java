@@ -139,7 +139,7 @@ public enum Alcohol implements IFluidDefinition, ICocktailIngredientProvider {
 		this.fermentationLiquid = new ArrayList<>();
 		this.fermentationSolid = "";
 		init();
-		type = new FluidType(ident, String.format("%s.fluid.alcohol.%s", ExtraTrees.instance.getModId(), this.name()), color)
+		type = new FluidType(ident, String.format("%s.fluid.%s.%s", ExtraTrees.instance.getModId(), this.getClass().getSimpleName(), this.name()), color)
 			.setTransparency(transparency)
 			.setTextures(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "blocks/liquids/liquid"))
 			.setPlaceHandler((type) -> type == FluidContainerType.GLASS);

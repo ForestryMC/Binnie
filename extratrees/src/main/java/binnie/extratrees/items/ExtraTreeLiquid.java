@@ -19,7 +19,7 @@ public enum ExtraTreeLiquid implements ILiquidDefinition {
 	private final FluidType type;
 
 	ExtraTreeLiquid(final String ident, final int color) {
-		type = new FluidType(ident, String.format("%s.fluid.extratreeliquid.%s", ExtraTrees.instance.getModId(), this.name()), color)
+		type = new FluidType(ident, String.format("%s.fluid.%s.%s", ExtraTrees.instance.getModId(), this.getClass().getSimpleName(), this.name()), color)
 			.setShowHandler((type)->type == FluidContainerType.CAN || type == FluidContainerType.CAPSULE)
 			.setTransparency(255)
 			.setTextures(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "blocks/liquids/" + ident));
