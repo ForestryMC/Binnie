@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import binnie.botany.Botany;
 import org.apache.commons.lang3.StringUtils;
 
 import net.minecraft.client.Minecraft;
@@ -72,7 +73,7 @@ public class FlowerAlyzerPlugin implements IAlyzerPlugin {
 
 	@SideOnly(Side.CLIENT)
 	public void drawChromosome(GuiScreen gui, EnumFlowerChromosome chromosome, IFlower flower) {
-		drawLine(gui, COLUMN_0, StringUtils.capitalize(chromosome.getName()), 0xEEEEEE);
+		drawLine(gui, COLUMN_0, I18N.localise(String.format("%s.flowers.chromosome.%s.short", Botany.instance.getModId(), chromosome.getName())), 0xEEEEEE);
 		drawLine(gui, COLUMN_1, I18N.localise(flower.getGenome().getActiveAllele(chromosome).getUnlocalizedName()), 0xEEEEEE);
 		drawLine(gui, COLUMN_2, I18N.localise(flower.getGenome().getInactiveAllele(chromosome).getUnlocalizedName()), 0xEEEEEE);
 		lastTopOffset += rowSize;
@@ -124,17 +125,20 @@ public class FlowerAlyzerPlugin implements IAlyzerPlugin {
 		guiLeft = (gui.width - 246) / 2;
 		guiTop = (gui.height - 238) / 2;
 
-		IFlower f = BotanyAPI.flowerRoot.getMember(itemStack);
+		IFlower flower = BotanyAPI.flowerRoot.getMember(itemStack);
+		if (flower == null) {
+			return;
+		}
 
 		for (EnumFlowerChromosome chromosome : secondPageColorChromosome) {
-			drawChromosome(gui, chromosome, f);
-			RenderUtil.drawSolidRect(new Area(guiLeft + COLUMN_1, guiTop + lastTopOffset + margin, 50, 10), ((IAlleleInteger) f.getGenome().getActiveAllele(chromosome)).getValue());
-			RenderUtil.drawSolidRect(new Area(guiLeft + COLUMN_2, guiTop + lastTopOffset + margin, 50, 10), ((IAlleleInteger) f.getGenome().getInactiveAllele(chromosome)).getValue());
+			drawChromosome(gui, chromosome, flower);
+			RenderUtil.drawSolidRect(new Area(guiLeft + COLUMN_1, guiTop + lastTopOffset + margin, 50, 10), ((IAlleleInteger) flower.getGenome().getActiveAllele(chromosome)).getValue());
+			RenderUtil.drawSolidRect(new Area(guiLeft + COLUMN_2, guiTop + lastTopOffset + margin, 50, 10), ((IAlleleInteger) flower.getGenome().getInactiveAllele(chromosome)).getValue());
 			newLine();
 		}
 
 		for (EnumFlowerChromosome chromosome : secondPageToleranceChromosome) {
-			drawChromosome(gui, chromosome, f);
+			drawChromosome(gui, chromosome, flower);
 			newLine();
 		}
 

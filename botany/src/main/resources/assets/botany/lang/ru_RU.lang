@@ -256,6 +256,32 @@ botany.gui.database.tab.breeder=Производитель
 botany.gui.database.tab.color.resultant=Результат смеси
 botany.gui.database.tab.color.further=Дальнейшие смеси
 
+botany.flowers.chromosome.species=Вид
+botany.flowers.chromosome.primary=Первичный цвет
+botany.flowers.chromosome.secondary=Вторичный цвет
+botany.flowers.chromosome.fertility=Плодовитость
+botany.flowers.chromosome.territory=Территория
+botany.flowers.chromosome.effect=Эффект
+botany.flowers.chromosome.lifespan=Продолжительность жизни
+botany.flowers.chromosome.temperature_tolerance=Температурный режим
+botany.flowers.chromosome.humidity_tolerance=Подходящая влажность
+botany.flowers.chromosome.ph_tolerance=Допустимый pH
+botany.flowers.chromosome.sappiness=Нектар
+botany.flowers.chromosome.stem=Цвет стебля
+
+botany.flowers.chromosome.species.short=Вид
+botany.flowers.chromosome.primary.short=Первичный цвет
+botany.flowers.chromosome.secondary.short=Вторичный цвет
+botany.flowers.chromosome.fertility.short=Плодовитость
+botany.flowers.chromosome.territory.short=Территория
+botany.flowers.chromosome.effect.short=Эффект
+botany.flowers.chromosome.lifespan.short=Продолж. жизни
+botany.flowers.chromosome.temperature_tolerance.short=Темп. режим
+botany.flowers.chromosome.humidity_tolerance.short=Подходящая влажн.
+botany.flowers.chromosome.ph_tolerance.short=Допустимый pH
+botany.flowers.chromosome.sappiness.short=Нектар
+botany.flowers.chromosome.stem.short=Цвет стебля
+
 botany.flowers.fielkit.a=A
 botany.flowers.fielkit.young=Молодой
 botany.flowers.fielkit.mature=Зрелый
