@@ -103,7 +103,7 @@ public enum EnumFlowerColor implements IStringSerializable {
 		g = (int) (0.45 * (g + 174));
 		b = (int) (0.45 * (b + 131));
 		Color colorWilted = new Color(r, g, b);
-		String uid = "botany.color" + name();
+		String uid = "botany.color." + name().toLowerCase();
 		allele = BotanyAPI.flowerFactory.createFlowerColorAllele(uid, ordinal(), color, colorWilted, name().toLowerCase(), uid, true);
 	}
 
