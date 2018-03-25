@@ -16,7 +16,6 @@ import binnie.extratrees.alcohol.CocktailLiquid;
 import binnie.extratrees.alcohol.ICocktailIngredient;
 import binnie.extratrees.alcohol.ICocktailIngredientProvider;
 
-//TODO:Localise
 public enum Alcohol implements IFluidDefinition, ICocktailIngredientProvider {
 	Apple("cider.apple", 16432700, 0.3, 0.05F){
 		@Override
