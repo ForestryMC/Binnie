@@ -634,6 +634,26 @@ extratrees.fluid.juice.redgrape=Сок красного винограда
 extratrees.fluid.juice.tomato=Томатный сок
 extratrees.fluid.juice.whitegrape=Сок белого винограда
 
+## Liqueur
+extratrees.fluid.liqueur.almond=Миндальный ликер
+extratrees.fluid.liqueur.anise=Анисовый ликер
+extratrees.fluid.liqueur.banana=Банановый ликер
+extratrees.fluid.liqueur.blackberry=Ликер из ежевики
+extratrees.fluid.liqueur.blackcurrant=Ликер из черной смородины
+extratrees.fluid.liqueur.cherry=Вишневый ликер
+extratrees.fluid.liqueur.chocolate=Шоколадный ликер
+extratrees.fluid.liqueur.cinnamon=Ликер из корицы
+extratrees.fluid.liqueur.coffee=Ликер из кофе
+extratrees.fluid.liqueur.hazelnut=Ликер из фундука
+extratrees.fluid.liqueur.herbal=Травяной ликер
+extratrees.fluid.liqueur.lemon=Лимонный ликер
+extratrees.fluid.liqueur.melon=Ликер из дыни
+extratrees.fluid.liqueur.mint=Мятный ликер
+extratrees.fluid.liqueur.orange=Апельсиновый ликер
+extratrees.fluid.liqueur.peach=Персиковый ликер
+extratrees.fluid.liqueur.raspberry=Малиновый ликер
+
+## Alcohol
 extratrees.fluid.alcohol.apple=Сидр
 extratrees.fluid.alcohol.apricot=Абрикосовое вино
 extratrees.fluid.alcohol.banana=Банановое вино

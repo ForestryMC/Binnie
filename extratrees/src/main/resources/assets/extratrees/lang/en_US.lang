@@ -634,6 +634,26 @@ extratrees.fluid.juice.redgrape=Red Grape Juice
 extratrees.fluid.juice.tomato=Tomato Juice
 extratrees.fluid.juice.whitegrape=White Grape Juice
 
+## Liqueur
+extratrees.fluid.liqueur.almond=Almond Liqueur
+extratrees.fluid.liqueur.anise=Anise Liqueur
+extratrees.fluid.liqueur.banana=Banana Liqueur
+extratrees.fluid.liqueur.blackberry=Blackberry Liqueur
+extratrees.fluid.liqueur.blackcurrant=Blackcurrant Liqueur
+extratrees.fluid.liqueur.cherry=Cherry Liqueur
+extratrees.fluid.liqueur.chocolate=Chocolate Liqueur
+extratrees.fluid.liqueur.cinnamon=Cinnamon Liqueur
+extratrees.fluid.liqueur.coffee=Coffee Liqueur
+extratrees.fluid.liqueur.hazelnut=Hazelnut Liqueur
+extratrees.fluid.liqueur.herbal=Herbal Liqueur
+extratrees.fluid.liqueur.lemon=Lemon Liqueur
+extratrees.fluid.liqueur.melon=Melon Liqueur
+extratrees.fluid.liqueur.mint=Mint Liqueur
+extratrees.fluid.liqueur.orange=Orange Liqueur
+extratrees.fluid.liqueur.peach=Peach Liqueur
+extratrees.fluid.liqueur.raspberry=Raspberry Liqueur
+
+## Alcohol
 extratrees.fluid.alcohol.apple=Cider
 extratrees.fluid.alcohol.apricot=Apricot Wine
 extratrees.fluid.alcohol.banana=Banana Wine
