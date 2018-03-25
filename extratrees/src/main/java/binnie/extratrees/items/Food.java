@@ -453,16 +453,16 @@ public enum Food implements IItemMiscProvider {
 		RecipeManagers.squeezerManager.addRecipe(time, this.get(1), Fluids.SEED_OIL.getFluid(amount), Mods.Forestry.stack("mulch"), mulch);
 	}
 
-	protected Food registerCrop(final String string) {
-	    final String name = "crop" + string;
+    protected Food registerCrop(final String string) {
+        final String name = "crop" + string;
         this.ores.add(name);
-		return registerOre(name);
-	}
+        return registerOre(name);
+    }
 
 	protected Food registerOre(final String string) {
-		OreDictionary.registerOre(string, this.get(1));
-		return this;
-	}
+        OreDictionary.registerOre(string, this.get(1));
+        return this;
+    }
 
 	public Collection<String> getOres() {
 		return this.ores;
