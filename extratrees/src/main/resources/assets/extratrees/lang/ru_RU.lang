@@ -607,6 +607,12 @@ extratrees.item.glassware.coupe.usage=Стакан %1$s
 ##################################################
 ## Жидкости
 
+## ExtraTreeLiquid
+extratrees.fluid.extratreeliquid.sap=Живица
+extratrees.fluid.extratreeliquid.resin=Смола
+extratrees.fluid.extratreeliquid.latex=Латекс
+extratrees.fluid.extratreeliquid.turpentine=Скипидар
+
 extratrees.fluid.alcohol.apple=Сидр
 extratrees.fluid.alcohol.apricot=Абрикосовое вино
 extratrees.fluid.alcohol.banana=Банановое вино

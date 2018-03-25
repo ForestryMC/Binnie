@@ -607,6 +607,12 @@ extratrees.item.glassware.coupe.usage=Glass of %1$s
 ##################################################
 ## Fluids
 
+## ExtraTreeLiquid
+extratrees.fluid.extratreeliquid.sap=Sap
+extratrees.fluid.extratreeliquid.resin=Resin
+extratrees.fluid.extratreeliquid.latex=Latex
+extratrees.fluid.extratreeliquid.turpentine=Turpentine
+
 extratrees.fluid.alcohol.apple=Cider
 extratrees.fluid.alcohol.apricot=Apricot Wine
 extratrees.fluid.alcohol.banana=Banana Wine
