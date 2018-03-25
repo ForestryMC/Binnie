@@ -25,361 +25,361 @@ public enum Food implements IItemMiscProvider {
 	CRABAPPLE(2){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("Apple").registerCropOre("Crabapple").registerOre(HARVESTCRAFT_LIST_ALLFRUIT);
+			registerCrop("Apple").registerCrop("Crabapple").registerOre(HARVESTCRAFT_LIST_ALLFRUIT);
 		}
 	},
 	ORANGE(4){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("Orange").registerOre(HARVESTCRAFT_LIST_ALLFRUIT).registerOre(HARVESTCRAFT_LIST_ALLCITRUS);
+			registerCrop("Orange").registerOre(HARVESTCRAFT_LIST_ALLFRUIT).registerOre(HARVESTCRAFT_LIST_ALLCITRUS);
 		}
 	},
 	KUMQUAT(2){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("Kumquat").registerOre(HARVESTCRAFT_LIST_ALLFRUIT);
+			registerCrop("Kumquat").registerOre(HARVESTCRAFT_LIST_ALLFRUIT);
 		}
 	},
 	LIME(2){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("Lime").registerOre(HARVESTCRAFT_LIST_ALLFRUIT).registerOre(HARVESTCRAFT_LIST_ALLCITRUS);
+			registerCrop("Lime").registerOre(HARVESTCRAFT_LIST_ALLFRUIT).registerOre(HARVESTCRAFT_LIST_ALLCITRUS);
 		}
 	},
 	WILD_CHERRY(2){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("Cherry").registerCropOre("WildCherry").registerOre(HARVESTCRAFT_LIST_ALLFRUIT);
+			registerCrop("Cherry").registerCrop("WildCherry").registerOre(HARVESTCRAFT_LIST_ALLFRUIT);
 		}
 	},
 	SOUR_CHERRY(2){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("Cherry").registerCropOre("SourCherry").registerOre(HARVESTCRAFT_LIST_ALLFRUIT);
+			registerCrop("Cherry").registerCrop("SourCherry").registerOre(HARVESTCRAFT_LIST_ALLFRUIT);
 		}
 	},
 	BLACK_CHERRY(2){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("Cherry").registerCropOre("BlackCherry").registerOre(HARVESTCRAFT_LIST_ALLFRUIT);
+			registerCrop("Cherry").registerCrop("BlackCherry").registerOre(HARVESTCRAFT_LIST_ALLFRUIT);
 		}
 	},
 	Blackthorn(3){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("Blackthorn").registerOre(HARVESTCRAFT_LIST_ALLFRUIT).registerOre(HARVESTCRAFT_LIST_ALLBERRY);
+			registerCrop("Blackthorn").registerOre(HARVESTCRAFT_LIST_ALLFRUIT).registerOre(HARVESTCRAFT_LIST_ALLBERRY);
 		}
 	},
 	CHERRY_PLUM(3){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("Plum").registerCropOre("CherryPlum").registerOre(HARVESTCRAFT_LIST_ALLFRUIT);
+			registerCrop("Plum").registerCrop("CherryPlum").registerOre(HARVESTCRAFT_LIST_ALLFRUIT);
 		}
 	},
 	ALMOND(1){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("Almond").registerOre(HARVESTCRAFT_LIST_ALLNUT);
+			registerCrop("Almond").registerOre(HARVESTCRAFT_LIST_ALLNUT);
 		}
 	},
 	APRICOT(4){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("Apricot").registerOre(HARVESTCRAFT_LIST_ALLFRUIT);
+			registerCrop("Apricot").registerOre(HARVESTCRAFT_LIST_ALLFRUIT);
 		}
 	},
 	GRAPEFRUIT(4){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("Grapefruit").registerOre(HARVESTCRAFT_LIST_ALLFRUIT).registerOre(HARVESTCRAFT_LIST_ALLCITRUS);
+			registerCrop("Grapefruit").registerOre(HARVESTCRAFT_LIST_ALLFRUIT).registerOre(HARVESTCRAFT_LIST_ALLCITRUS);
 		}
 	},
 	PEACH(4){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("Peach").registerOre(HARVESTCRAFT_LIST_ALLFRUIT);
+			registerCrop("Peach").registerOre(HARVESTCRAFT_LIST_ALLFRUIT);
 		}
 	},
 	SATSUMA(3){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("Satsuma").registerCropOre("Orange").registerOre(HARVESTCRAFT_LIST_ALLFRUIT).registerOre(HARVESTCRAFT_LIST_ALLCITRUS);
+			registerCrop("Satsuma").registerCrop("Orange").registerOre(HARVESTCRAFT_LIST_ALLFRUIT).registerOre(HARVESTCRAFT_LIST_ALLCITRUS);
 		}
 	},
 	BUDDHA_HAND(3){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("BuddhaHand").registerCropOre("Citron").registerOre(HARVESTCRAFT_LIST_ALLFRUIT).registerOre(HARVESTCRAFT_LIST_ALLCITRUS);
+			registerCrop("BuddhaHand").registerCrop("Citron").registerOre(HARVESTCRAFT_LIST_ALLFRUIT).registerOre(HARVESTCRAFT_LIST_ALLCITRUS);
 		}
 	},
 	CITRON(3){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("Citron").registerOre(HARVESTCRAFT_LIST_ALLFRUIT).registerOre(HARVESTCRAFT_LIST_ALLCITRUS);
+			registerCrop("Citron").registerOre(HARVESTCRAFT_LIST_ALLFRUIT).registerOre(HARVESTCRAFT_LIST_ALLCITRUS);
 		}
 	},
 	FINGER_LIME(3){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("Lime").registerCropOre("FingerLime").registerOre(HARVESTCRAFT_LIST_ALLFRUIT).registerOre(HARVESTCRAFT_LIST_ALLCITRUS);
+			registerCrop("Lime").registerCrop("FingerLime").registerOre(HARVESTCRAFT_LIST_ALLFRUIT).registerOre(HARVESTCRAFT_LIST_ALLCITRUS);
 		}
 	},
 	KEY_LIME(2){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("KeyLime").registerCropOre("Lime").registerOre(HARVESTCRAFT_LIST_ALLFRUIT).registerOre(HARVESTCRAFT_LIST_ALLCITRUS);
+			registerCrop("KeyLime").registerCrop("Lime").registerOre(HARVESTCRAFT_LIST_ALLFRUIT).registerOre(HARVESTCRAFT_LIST_ALLCITRUS);
 		}
 	},
 	MANDERIN(3){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("Orange").registerCropOre("Manderin").registerOre(HARVESTCRAFT_LIST_ALLFRUIT).registerOre(HARVESTCRAFT_LIST_ALLCITRUS);
+			registerCrop("Orange").registerCrop("Manderin").registerOre(HARVESTCRAFT_LIST_ALLFRUIT).registerOre(HARVESTCRAFT_LIST_ALLCITRUS);
 		}
 	},
 	NECTARINE(3){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("Peach").registerCropOre("Nectarine").registerOre(HARVESTCRAFT_LIST_ALLFRUIT);
+			registerCrop("Peach").registerCrop("Nectarine").registerOre(HARVESTCRAFT_LIST_ALLFRUIT);
 		}
 	},
 	POMELO(3){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("Pomelo").registerOre(HARVESTCRAFT_LIST_ALLFRUIT);
+			registerCrop("Pomelo").registerOre(HARVESTCRAFT_LIST_ALLFRUIT);
 		}
 	},
 	TANGERINE(3){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("Tangerine").registerCropOre("Orange").registerOre(HARVESTCRAFT_LIST_ALLFRUIT).registerOre(HARVESTCRAFT_LIST_ALLCITRUS);
+			registerCrop("Tangerine").registerCrop("Orange").registerOre(HARVESTCRAFT_LIST_ALLFRUIT).registerOre(HARVESTCRAFT_LIST_ALLCITRUS);
 		}
 	},
 	PEAR(4){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("Pear").registerOre(HARVESTCRAFT_LIST_ALLFRUIT);
+			registerCrop("Pear").registerOre(HARVESTCRAFT_LIST_ALLFRUIT);
 		}
 	},
 	SAND_PEAR(2){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("SandPear").registerOre(HARVESTCRAFT_LIST_ALLFRUIT);
+			registerCrop("SandPear").registerOre(HARVESTCRAFT_LIST_ALLFRUIT);
 		}
 	},
 	HAZELNUT(2){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("Hazelnut").registerOre(HARVESTCRAFT_LIST_ALLNUT);
+			registerCrop("Hazelnut").registerOre(HARVESTCRAFT_LIST_ALLNUT);
 		}
 	},
 	BUTTERNUT(1){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("Butternut").registerCropOre("Walnut").registerOre(HARVESTCRAFT_LIST_ALLNUT);
+			registerCrop("Butternut").registerCrop("Walnut").registerOre(HARVESTCRAFT_LIST_ALLNUT);
 		}
 	},
 	BEECHNUT(0){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("Beechnut").registerOre(HARVESTCRAFT_LIST_ALLNUT);
+			registerCrop("Beechnut").registerOre(HARVESTCRAFT_LIST_ALLNUT);
 		}
 	},
 	PECAN(0){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("Pecan").registerOre(HARVESTCRAFT_LIST_ALLNUT);
+			registerCrop("Pecan").registerOre(HARVESTCRAFT_LIST_ALLNUT);
 		}
 	},
 	BANANA(4){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("Banana").registerOre(HARVESTCRAFT_LIST_ALLFRUIT);
+			registerCrop("Banana").registerOre(HARVESTCRAFT_LIST_ALLFRUIT);
 		}
 	},
 	RED_BANANA(4){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("RedBanana").registerCropOre("Banana").registerOre(HARVESTCRAFT_LIST_ALLFRUIT);
+			registerCrop("RedBanana").registerCrop("Banana").registerOre(HARVESTCRAFT_LIST_ALLFRUIT);
 		}
 	},
 	PLANTAIN(2){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("Plantain").registerOre(HARVESTCRAFT_LIST_ALLFRUIT);
+			registerCrop("Plantain").registerOre(HARVESTCRAFT_LIST_ALLFRUIT);
 		}
 	},
 	BRAZIL_NUT(0){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("BrazilNut").registerOre(HARVESTCRAFT_LIST_ALLNUT);
+			registerCrop("BrazilNut").registerOre(HARVESTCRAFT_LIST_ALLNUT);
 		}
 	},
 	FIG(2){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("Fig").registerOre(HARVESTCRAFT_LIST_ALLFRUIT);
+			registerCrop("Fig").registerOre(HARVESTCRAFT_LIST_ALLFRUIT);
 		}
 	},
 	ACORN(0){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("Acorn").registerOre(HARVESTCRAFT_LIST_ALLNUT);
+			registerCrop("Acorn").registerOre(HARVESTCRAFT_LIST_ALLNUT);
 		}
 	},
 	ELDERBERRY(1){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("Elderberry").registerOre(HARVESTCRAFT_LIST_ALLFRUIT).registerOre(HARVESTCRAFT_LIST_ALLBERRY);
+			registerCrop("Elderberry").registerOre(HARVESTCRAFT_LIST_ALLFRUIT).registerOre(HARVESTCRAFT_LIST_ALLBERRY);
 		}
 	},
 	OLIVE(1){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("Olive");
+			registerCrop("Olive");
 		}
 	},
 	GINGKO_NUT(1){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("GingkoNut").registerOre(HARVESTCRAFT_LIST_ALLSPICE);
+			registerCrop("GingkoNut").registerOre(HARVESTCRAFT_LIST_ALLSPICE);
 		}
 	},
 	COFFEE(0){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("Coffee");
+			registerCrop("Coffee");
 		}
 	},
 	OSANGE_ORANGE(1){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("OsangeOrange").registerOre(HARVESTCRAFT_LIST_ALLFRUIT).registerOre(HARVESTCRAFT_LIST_ALLCITRUS);
+			registerCrop("OsangeOrange").registerOre(HARVESTCRAFT_LIST_ALLFRUIT).registerOre(HARVESTCRAFT_LIST_ALLCITRUS);
 		}
 	},
 	CLOVE(0){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("Clove").registerOre(HARVESTCRAFT_LIST_ALLSPICE);
+			registerCrop("Clove").registerOre(HARVESTCRAFT_LIST_ALLSPICE);
 		}
 	},
 	PAPAYIMAR(8){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("Papayimar").registerOre(HARVESTCRAFT_LIST_ALLFRUIT);
+			registerCrop("Papayimar").registerOre(HARVESTCRAFT_LIST_ALLFRUIT);
 		}
 	},
 	BLACKCURRANT(2){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("Blackcurrant").registerOre(HARVESTCRAFT_LIST_ALLFRUIT).registerOre(HARVESTCRAFT_LIST_ALLBERRY);
+			registerCrop("Blackcurrant").registerOre(HARVESTCRAFT_LIST_ALLFRUIT).registerOre(HARVESTCRAFT_LIST_ALLBERRY);
 		}
 	},
 	REDCURRANT(2){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("Redcurrant").registerOre(HARVESTCRAFT_LIST_ALLFRUIT).registerOre(HARVESTCRAFT_LIST_ALLBERRY);
+			registerCrop("Redcurrant").registerOre(HARVESTCRAFT_LIST_ALLFRUIT).registerOre(HARVESTCRAFT_LIST_ALLBERRY);
 		}
 	},
 	BLACKBERRY(2){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("Blackberry").registerOre(HARVESTCRAFT_LIST_ALLFRUIT).registerOre(HARVESTCRAFT_LIST_ALLBERRY);
+			registerCrop("Blackberry").registerOre(HARVESTCRAFT_LIST_ALLFRUIT).registerOre(HARVESTCRAFT_LIST_ALLBERRY);
 		}
 	},
 	RASPBERRY(2){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("Raspberry").registerOre(HARVESTCRAFT_LIST_ALLFRUIT).registerOre(HARVESTCRAFT_LIST_ALLBERRY);
+			registerCrop("Raspberry").registerOre(HARVESTCRAFT_LIST_ALLFRUIT).registerOre(HARVESTCRAFT_LIST_ALLBERRY);
 		}
 	},
 	BLUEBERRY(2){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("Blueberry").registerOre(HARVESTCRAFT_LIST_ALLFRUIT).registerOre(HARVESTCRAFT_LIST_ALLBERRY);
+			registerCrop("Blueberry").registerOre(HARVESTCRAFT_LIST_ALLFRUIT).registerOre(HARVESTCRAFT_LIST_ALLBERRY);
 		}
 	},
 	CRANBERRY(2){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("Cranberry").registerOre(HARVESTCRAFT_LIST_ALLFRUIT).registerOre(HARVESTCRAFT_LIST_ALLBERRY);
+			registerCrop("Cranberry").registerOre(HARVESTCRAFT_LIST_ALLFRUIT).registerOre(HARVESTCRAFT_LIST_ALLBERRY);
 		}
 	},
 	JUNIPER(0){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("Juniper").registerOre(HARVESTCRAFT_LIST_ALLFRUIT);
+			registerCrop("Juniper").registerOre(HARVESTCRAFT_LIST_ALLFRUIT);
 		}
 	},
 	GOOSEBERRY(2){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("Gooseberry").registerOre(HARVESTCRAFT_LIST_ALLFRUIT).registerOre(HARVESTCRAFT_LIST_ALLBERRY);
+			registerCrop("Gooseberry").registerOre(HARVESTCRAFT_LIST_ALLFRUIT).registerOre(HARVESTCRAFT_LIST_ALLBERRY);
 		}
 	},
 	GOLDEN_RASPBERRY(2){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("GoldenRaspberry").registerCropOre("Goldenraspberry").registerOre(HARVESTCRAFT_LIST_ALLFRUIT).registerOre(HARVESTCRAFT_LIST_ALLBERRY);
+			registerCrop("GoldenRaspberry").registerCrop("Goldenraspberry").registerOre(HARVESTCRAFT_LIST_ALLFRUIT).registerOre(HARVESTCRAFT_LIST_ALLBERRY);
 		}
 	},
 	COCONUT(2){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("Coconut").registerOre(HARVESTCRAFT_LIST_ALLNUT);
+			registerCrop("Coconut").registerOre(HARVESTCRAFT_LIST_ALLNUT);
 		}
 	},
 	CASHEW(0){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("Cashew").registerOre(HARVESTCRAFT_LIST_ALLNUT);
+			registerCrop("Cashew").registerOre(HARVESTCRAFT_LIST_ALLNUT);
 		}
 	},
 	AVACADO(2){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("Avocado").registerOre(HARVESTCRAFT_LIST_ALLFRUIT);
+			registerCrop("Avocado").registerOre(HARVESTCRAFT_LIST_ALLFRUIT);
 		}
 	},
 	NUTMEG(0){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("Nutmeg").registerOre(HARVESTCRAFT_LIST_ALLSPICE);
+			registerCrop("Nutmeg").registerOre(HARVESTCRAFT_LIST_ALLSPICE);
 		}
 	},
 	ALLSPICE(0){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("Allspice").registerOre(HARVESTCRAFT_LIST_ALLSPICE);
+			registerCrop("Allspice").registerOre(HARVESTCRAFT_LIST_ALLSPICE);
 		}
 	},
 	CHILLI(2){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("Chilli").registerCropOre("Chilipepper").registerOre(HARVESTCRAFT_LIST_ALLPEPPER);
+			registerCrop("Chilli").registerCrop("Chilipepper").registerOre(HARVESTCRAFT_LIST_ALLPEPPER);
 		}
 	},
 	STAR_ANISE(0){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("Staranise").registerCropOre("StarAnise").registerOre(HARVESTCRAFT_LIST_ALLSPICE);
+			registerCrop("Staranise").registerCrop("StarAnise").registerOre(HARVESTCRAFT_LIST_ALLSPICE);
 		}
 	},
 	MANGO(4){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("Mango").registerOre(HARVESTCRAFT_LIST_ALLFRUIT);
+			registerCrop("Mango").registerOre(HARVESTCRAFT_LIST_ALLFRUIT);
 		}
 	},
 	STARFRUIT(2){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("Starfruit").registerOre(HARVESTCRAFT_LIST_ALLFRUIT);
+			registerCrop("Starfruit").registerOre(HARVESTCRAFT_LIST_ALLFRUIT);
 		}
 	},
 	CANDLENUT(0){
 		@Override
 		protected void registerOreDictEntries() {
-			registerCropOre("Candlenut").registerCropOre("Candleberry").registerCropOre("Candle").registerOre(HARVESTCRAFT_LIST_ALLNUT);
+			registerCrop("Candlenut").registerCrop("Candleberry").registerCrop("Candle").registerOre(HARVESTCRAFT_LIST_ALLNUT);
 		}
 	};
 
@@ -456,13 +456,14 @@ public enum Food implements IItemMiscProvider {
 		RecipeManagers.squeezerManager.addRecipe(time, this.get(1), Fluids.SEED_OIL.getFluid(amount), Mods.Forestry.stack("mulch"), mulch);
 	}
 
-	protected Food registerCropOre(final String string) {
-		return registerOre("crop" + string);
+	protected Food registerCrop(final String string) {
+	    final String name = "crop" + string;
+        this.ores.add(name);
+		return registerOre(name);
 	}
 
 	protected Food registerOre(final String string) {
 		OreDictionary.registerOre(string, this.get(1));
-		this.ores.add(string);
 		return this;
 	}
 
