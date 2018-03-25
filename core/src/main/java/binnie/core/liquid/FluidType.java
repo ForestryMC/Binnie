@@ -22,7 +22,7 @@ public class FluidType {
 
 	public FluidType(String identifier, String unlocalizedName, int color) {
 		this.identifier = "binnie." + identifier;
-		this.unlocalizedName = unlocalizedName;
+		this.unlocalizedName = unlocalizedName.toLowerCase();
 		this.color = color;
 		this.containerColor = color;
 		ResourceLocation texture = new ResourceLocation(Constants.CORE_MOD_ID, "blocks/liquids/blank");
