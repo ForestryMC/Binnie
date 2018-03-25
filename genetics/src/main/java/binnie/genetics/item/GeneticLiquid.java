@@ -10,16 +10,16 @@ import binnie.core.liquid.IFluidDefinition;
 import binnie.genetics.Genetics;
 
 public enum GeneticLiquid implements IFluidDefinition {
-	GrowthMedium("Growth Medium", "growth.medium", 15460533),
-	Bacteria("Bacteria", "bacteria", 14203521),
-	BacteriaPoly("Polymerising Bacteria", "bacteria.poly", 11443396),
-	RawDNA("Raw DNA", "dna.raw", 15089129),
-	BacteriaVector("Bacteria Vector", "bacteria.vector", 15960958);
+	GrowthMedium("growth.medium", 15460533),
+	Bacteria("bacteria", 14203521),
+	BacteriaPoly("bacteria.poly", 11443396),
+	RawDNA("dna.raw", 15089129),
+	BacteriaVector("bacteria.vector", 15960958);
 
 	private final FluidType type;
 
-	GeneticLiquid(final String name, final String ident, final int color) {
-		type = new FluidType(ident, name, color)
+	GeneticLiquid(final String ident, final int color) {
+		type = new FluidType(ident, String.format("%s.fluid.%s.%s", Genetics.instance.getModId(), "GeneticLiquid", this.name()), color)
 			.setTextures(new ResourceLocation(Genetics.instance.getModId(), "blocks/liquids/" + ident.replace(".", "_")))
 			.setColor(16777215)
 			.setContainerColor(color)

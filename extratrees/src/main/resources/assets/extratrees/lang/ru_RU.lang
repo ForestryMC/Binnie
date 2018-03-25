@@ -607,6 +607,82 @@ extratrees.item.glassware.coupe.usage=Стакан %1$s
 ##################################################
 ## Жидкости
 
+## ExtraTreeLiquid
+extratrees.fluid.extratreeliquid.sap=Живица
+extratrees.fluid.extratreeliquid.resin=Смола
+extratrees.fluid.extratreeliquid.latex=Латекс
+extratrees.fluid.extratreeliquid.turpentine=Скипидар
+
+## Juice
+extratrees.fluid.juice.apple=Яблочный сок
+extratrees.fluid.juice.apricot=Абрикосовый сок
+extratrees.fluid.juice.banana=Банановый сок
+extratrees.fluid.juice.carrot=Морковный сок
+extratrees.fluid.juice.cherry=Вишневый сок
+extratrees.fluid.juice.cranberry=Клюквенный сок
+extratrees.fluid.juice.elderberry=Сок эльберри
+extratrees.fluid.juice.grapefruit=Грейпфрутовый сок
+extratrees.fluid.juice.lemon=Лимонный сок
+extratrees.fluid.juice.lime=Лаймовый сок
+extratrees.fluid.juice.olive=Оливковое масло
+extratrees.fluid.juice.orange=Апельсиновый сок
+extratrees.fluid.juice.peach=Персиковый сок
+extratrees.fluid.juice.pear=Грушевый сок
+extratrees.fluid.juice.pineapple=Ананасовый сок
+extratrees.fluid.juice.plum=Сливочный сок
+extratrees.fluid.juice.redgrape=Сок красного винограда
+extratrees.fluid.juice.tomato=Томатный сок
+extratrees.fluid.juice.whitegrape=Сок белого винограда
+
+## Liqueur
+extratrees.fluid.liqueur.almond=Миндальный ликер
+extratrees.fluid.liqueur.anise=Анисовый ликер
+extratrees.fluid.liqueur.banana=Банановый ликер
+extratrees.fluid.liqueur.blackberry=Ликер из ежевики
+extratrees.fluid.liqueur.blackcurrant=Ликер из черной смородины
+extratrees.fluid.liqueur.cherry=Вишневый ликер
+extratrees.fluid.liqueur.chocolate=Шоколадный ликер
+extratrees.fluid.liqueur.cinnamon=Ликер из корицы
+extratrees.fluid.liqueur.coffee=Ликер из кофе
+extratrees.fluid.liqueur.hazelnut=Ликер из фундука
+extratrees.fluid.liqueur.herbal=Травяной ликер
+extratrees.fluid.liqueur.lemon=Лимонный ликер
+extratrees.fluid.liqueur.melon=Ликер из дыни
+extratrees.fluid.liqueur.mint=Мятный ликер
+extratrees.fluid.liqueur.orange=Апельсиновый ликер
+extratrees.fluid.liqueur.peach=Персиковый ликер
+extratrees.fluid.liqueur.raspberry=Малиновый ликер
+
+## Spirit
+extratrees.fluid.spirit.neutralspirit=Чистый спирт
+extratrees.fluid.spirit.vodka=Водка
+extratrees.fluid.spirit.whiterum=Белый Ром
+extratrees.fluid.spirit.darkrum=Темный ром
+extratrees.fluid.spirit.whiskey=Виски
+extratrees.fluid.spirit.cornwhiskey=Бурбон
+extratrees.fluid.spirit.ryewhiskey=Хлебная водка
+extratrees.fluid.spirit.wheatwhiskey=Пшеничный виски
+extratrees.fluid.spirit.fortifiedwine=Крепленое вино
+extratrees.fluid.spirit.tequila=Текила
+extratrees.fluid.spirit.brandy=Бренди
+extratrees.fluid.spirit.applebrandy=Яблочный бренди
+extratrees.fluid.spirit.pearbrandy=Бренди из груши
+extratrees.fluid.spirit.apricotbrandy=Абрикосовый коньяк
+extratrees.fluid.spirit.plumbrandy=Сливовый коньяк
+extratrees.fluid.spirit.cherrybrandy=Вишневый бренди
+extratrees.fluid.spirit.elderberrybrandy=Бренди из бузины
+extratrees.fluid.spirit.citrusbrandy=Цитрусовый коньяк
+extratrees.fluid.spirit.fruitbrandy=Фруктовый бренди
+extratrees.fluid.spirit.cachaca=Ром Кашаса
+extratrees.fluid.spirit.gin=Джин
+extratrees.fluid.spirit.appleliquor=Яблочный ликер
+extratrees.fluid.spirit.pearliquor=Грушевый ликер
+extratrees.fluid.spirit.cherryliquor=Вишневый ликер
+extratrees.fluid.spirit.elderberryliquor=Ликер солодки
+extratrees.fluid.spirit.apricotliquor=Абрикосовый ликер
+extratrees.fluid.spirit.fruitliquor=Фруктовый ликер
+
+## Alcohol
 extratrees.fluid.alcohol.apple=Сидр
 extratrees.fluid.alcohol.apricot=Абрикосовое вино
 extratrees.fluid.alcohol.banana=Банановое вино

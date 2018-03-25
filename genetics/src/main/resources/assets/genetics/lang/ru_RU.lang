@@ -355,3 +355,9 @@ genetics.gui.database.tab.species.further=Дальнейшие мутации
 genetics.gui.database.tab.branches.overview=Обзор
 genetics.gui.database.tab.branches.species=Вид
 genetics.gui.database.tab.breeder=Производитель
+
+genetics.fluid.geneticliquid.growthmedium=Средство роста
+genetics.fluid.geneticliquid.bacteria=Бактерии
+genetics.fluid.geneticliquid.bacteriapoly=Полимеризационные бактерии
+genetics.fluid.geneticliquid.rawdna=Сырая ДНК
+genetics.fluid.geneticliquid.bacteriavector=Вектор бактерий
