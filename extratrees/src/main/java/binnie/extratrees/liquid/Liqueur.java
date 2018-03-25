@@ -1,5 +1,6 @@
 package binnie.extratrees.liquid;
 
+import binnie.extratrees.ExtraTrees;
 import net.minecraft.util.ResourceLocation;
 
 import net.minecraftforge.fluids.FluidStack;
@@ -12,25 +13,24 @@ import binnie.extratrees.alcohol.CocktailLiquid;
 import binnie.extratrees.alcohol.ICocktailIngredient;
 import binnie.extratrees.alcohol.ICocktailIngredientProvider;
 
-//TODO:Localise
 public enum Liqueur implements IFluidDefinition, ICocktailIngredientProvider {
-	Almond("Almond", 14966063, 0.3, 0.2F),
-	Orange("Orange", 16353536, 0.4, 0.2F),
-	Banana("Banana", 16302592, 0.5, 0.2F),
-	Chocolate("Chocolate", 12667680, 0.3, 0.2F),
-	Mint("Mint", 2737788, 0.4, 0.2F),
-	Hazelnut("Hazelnut", 15570987, 0.3, 0.2F),
-	Cinnamon("Cinnamon", 15028224, 0.3, 0.2F),
-	Coffee("Coffee", 9847577, 0.4, 0.2F),
-	Melon("Melon", 11584049, 0.4, 0.2F),
-	Anise("Anise", 14344681, 0.3, 0.2F),
-	Peach("Peach", 16684384, 0.4, 0.2F),
-	Lemon("Lemon", 16311405, 0.4, 0.2F),
-	Herbal("Herbal", 16700673, 0.3, 0.2F),
-	Cherry("Cherry", 14096641, 0.5, 0.2F),
-	Blackcurrant("Blackcurrant", 6962541, 0.5, 0.2F),
-	Blackberry("Blackberry", 6837581, 0.5, 0.2F),
-	Raspberry("Raspberry", 10158848, 0.5, 0.2F);
+	Almond("liqueur.almond", 14966063, 0.3, 0.2F),
+	Orange("liqueur.orange", 16353536, 0.4, 0.2F),
+	Banana("liqueur.banana", 16302592, 0.5, 0.2F),
+	Chocolate("liqueur.chocolate", 12667680, 0.3, 0.2F),
+	Mint("liqueur.mint", 2737788, 0.4, 0.2F),
+	Hazelnut("liqueur.hazelnut", 15570987, 0.3, 0.2F),
+	Cinnamon("liqueur.cinnamon", 15028224, 0.3, 0.2F),
+	Coffee("liqueur.coffee", 9847577, 0.4, 0.2F),
+	Melon("liqueur.melon", 11584049, 0.4, 0.2F),
+	Anise("liqueur.anise", 14344681, 0.3, 0.2F),
+	Peach("liqueur.peach", 16684384, 0.4, 0.2F),
+	Lemon("liqueur.lemon", 16311405, 0.4, 0.2F),
+	Herbal("liqueur.herbal", 16700673, 0.3, 0.2F),
+	Cherry("liqueur.cherry", 14096641, 0.5, 0.2F),
+	Blackcurrant("liqueur.blackcurrant", 6962541, 0.5, 0.2F),
+	Blackberry("liqueur.blackberry", 6837581, 0.5, 0.2F),
+	Raspberry("liqueur.raspberry", 10158848, 0.5, 0.2F);
 
 	static {
 		Liqueur.Almond.addFlavour("cropAlmond");
@@ -56,13 +56,9 @@ public enum Liqueur implements IFluidDefinition, ICocktailIngredientProvider {
 	private final FluidType type;
 	private final CocktailLiquid cocktailLiquid;
 
-	Liqueur(final String name, final int colour, final double transparency,float abv) {
-		this(name + " Liqueur", "liqueur." + name.toLowerCase(), colour, transparency, abv);
-	}
-
-	Liqueur(final String name, final String ident, final int color, final double transparency, float abv) {
+	Liqueur(final String ident, final int color, final double transparency, float abv) {
 		this.abv = abv;
-		type = new FluidType(ident, name, color)
+		type = new FluidType(ident, String.format("%s.fluid.liqueur.%s", ExtraTrees.instance.getModId(), this.name()), color)
 			.setTransparency(transparency)
 			.setTextures(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "blocks/liquids/liquid"))
 			.setShowHandler((type)->type == FluidContainerType.GLASS);
