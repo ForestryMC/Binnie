@@ -613,6 +613,27 @@ extratrees.fluid.extratreeliquid.resin=Смола
 extratrees.fluid.extratreeliquid.latex=Латекс
 extratrees.fluid.extratreeliquid.turpentine=Скипидар
 
+## Juice
+extratrees.fluid.juice.apple=Яблочный сок
+extratrees.fluid.juice.apricot=Абрикосовый сок
+extratrees.fluid.juice.banana=Банановый сок
+extratrees.fluid.juice.carrot=Морковный сок
+extratrees.fluid.juice.cherry=Вишневый сок
+extratrees.fluid.juice.cranberry=Клюквенный сок
+extratrees.fluid.juice.elderberry=Сок эльберри
+extratrees.fluid.juice.grapefruit=Грейпфрутовый сок
+extratrees.fluid.juice.lemon=Лимонный сок
+extratrees.fluid.juice.lime=Лаймовый сок
+extratrees.fluid.juice.olive=Оливковое масло
+extratrees.fluid.juice.orange=Апельсиновый сок
+extratrees.fluid.juice.peach=Персиковый сок
+extratrees.fluid.juice.pear=Грушевый сок
+extratrees.fluid.juice.pineapple=Ананасовый сок
+extratrees.fluid.juice.plum=Сливочный сок
+extratrees.fluid.juice.redgrape=Сок красного винограда
+extratrees.fluid.juice.tomato=Томатный сок
+extratrees.fluid.juice.whitegrape=Сок белого винограда
+
 extratrees.fluid.alcohol.apple=Сидр
 extratrees.fluid.alcohol.apricot=Абрикосовое вино
 extratrees.fluid.alcohol.banana=Банановое вино

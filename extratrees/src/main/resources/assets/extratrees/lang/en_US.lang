@@ -613,6 +613,27 @@ extratrees.fluid.extratreeliquid.resin=Resin
 extratrees.fluid.extratreeliquid.latex=Latex
 extratrees.fluid.extratreeliquid.turpentine=Turpentine
 
+## Juice
+extratrees.fluid.juice.apple=Apple Juice
+extratrees.fluid.juice.apricot=Apricot Juice
+extratrees.fluid.juice.banana=Banana Juice
+extratrees.fluid.juice.carrot=Carrot Juice
+extratrees.fluid.juice.cherry=Cherry Juice
+extratrees.fluid.juice.cranberry=Cranberry Juice
+extratrees.fluid.juice.elderberry=Elderberry Juice
+extratrees.fluid.juice.grapefruit=Grapefruit Juice
+extratrees.fluid.juice.lemon=Lemon Juice
+extratrees.fluid.juice.lime=Lime Juice
+extratrees.fluid.juice.olive=Olive Oil
+extratrees.fluid.juice.orange=Orange Juice
+extratrees.fluid.juice.peach=Peach Juice
+extratrees.fluid.juice.pear=Pear Juice
+extratrees.fluid.juice.pineapple=Pineapple Juice
+extratrees.fluid.juice.plum=Plum Juice
+extratrees.fluid.juice.redgrape=Red Grape Juice
+extratrees.fluid.juice.tomato=Tomato Juice
+extratrees.fluid.juice.whitegrape=White Grape Juice
+
 extratrees.fluid.alcohol.apple=Cider
 extratrees.fluid.alcohol.apricot=Apricot Wine
 extratrees.fluid.alcohol.banana=Banana Wine
