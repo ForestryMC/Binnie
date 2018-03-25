@@ -41,7 +41,7 @@ public enum Juice implements IFluidDefinition, ICocktailIngredientProvider {
 	Juice(final String ident, final int colour, final double transparency, final String squeezing) {
 		this.addSqueezing("crop" + squeezing);
 
-		type = new FluidType(ident, String.format("%s.fluid.%s.%s", ExtraTrees.instance.getModId(), this.getClass().getSimpleName(), this.name()), colour)
+		type = new FluidType(ident, String.format("%s.fluid.%s.%s", ExtraTrees.instance.getModId(), "Juice", this.name()), colour)
 			.setTransparency(transparency)
 			.setTextures(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "blocks/liquids/liquid"))
 			.setShowHandler(type -> type == FluidContainerType.GLASS);

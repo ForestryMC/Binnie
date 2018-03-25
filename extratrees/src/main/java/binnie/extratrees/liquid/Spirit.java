@@ -48,7 +48,7 @@ public enum Spirit implements IFluidDefinition, ICocktailIngredientProvider {
 
 	Spirit(final String ident, final int color, final double transparency, final float abv) {
 		this.abv = abv;
-		type = new FluidType(ident, String.format("%s.fluid.%s.%s", ExtraTrees.instance.getModId(), this.getClass().getSimpleName(), this.name()), color)
+		type = new FluidType(ident, String.format("%s.fluid.%s.%s", ExtraTrees.instance.getModId(), "Spirit", this.name()), color)
 			.setTextures(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "blocks/liquids/liquid"))
 			.setShowHandler(type -> type == FluidContainerType.GLASS)
 			.setTransparency(transparency);

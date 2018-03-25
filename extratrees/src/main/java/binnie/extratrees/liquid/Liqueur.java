@@ -58,7 +58,7 @@ public enum Liqueur implements IFluidDefinition, ICocktailIngredientProvider {
 
 	Liqueur(final String ident, final int color, final double transparency, float abv) {
 		this.abv = abv;
-		type = new FluidType(ident, String.format("%s.fluid.%s.%s", ExtraTrees.instance.getModId(), this.getClass().getSimpleName(), this.name()), color)
+		type = new FluidType(ident, String.format("%s.fluid.%s.%s", ExtraTrees.instance.getModId(), "Liqueur", this.name()), color)
 			.setTransparency(transparency)
 			.setTextures(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "blocks/liquids/liquid"))
 			.setShowHandler((type)->type == FluidContainerType.GLASS);
