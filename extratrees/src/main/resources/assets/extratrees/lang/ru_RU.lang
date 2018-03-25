@@ -762,3 +762,11 @@ extratrees.gui.database.tab.butterfly.species.further=Дальнейшие му�
 extratrees.gui.database.tab.butterfly.branches.overview=Обзор
 extratrees.gui.database.tab.butterfly.branches.species=Вид
 extratrees.gui.database.tab.butterfly.breeder=Производитель
+
+extratrees.allele.metabolism.highest=Самый быстрый
+extratrees.allele.metabolism.higher=Очень быстрый
+extratrees.allele.metabolism.high=Быстрый
+extratrees.allele.metabolism.average=Средний
+extratrees.allele.metabolism.slow=Медленный
+extratrees.allele.metabolism.slower=Очень медленный
+extratrees.allele.metabolism.slowest=Самый медленный
