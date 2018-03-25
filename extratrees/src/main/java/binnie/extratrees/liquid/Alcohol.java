@@ -3,6 +3,7 @@ package binnie.extratrees.liquid;
 import java.util.ArrayList;
 import java.util.List;
 
+import binnie.extratrees.ExtraTrees;
 import net.minecraft.util.ResourceLocation;
 
 import net.minecraftforge.fluids.FluidStack;
@@ -139,7 +140,7 @@ public enum Alcohol implements IFluidDefinition, ICocktailIngredientProvider {
 		this.fermentationLiquid = new ArrayList<>();
 		this.fermentationSolid = "";
 		init();
-		type = new FluidType(ident, "extratrees.fluid.alcohol." + this.name().toLowerCase(), color)
+		type = new FluidType(ident, String.format("%s.fluid.alcohol.%s", ExtraTrees.instance.getModId(), this.name()), color)
 			.setTransparency(transparency)
 			.setTextures(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "blocks/liquids/liquid"))
 			.setPlaceHandler((type) -> type == FluidContainerType.GLASS);
