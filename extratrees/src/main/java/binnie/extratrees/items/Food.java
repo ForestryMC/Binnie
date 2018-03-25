@@ -383,7 +383,6 @@ public enum Food implements IItemMiscProvider {
 		}
 	};
 
-
 	private final static String HARVESTCRAFT_LIST_ALLFRUIT = "listAllfruit";
 	private final static String HARVESTCRAFT_LIST_ALLNUT = "listAllnut";
 	private final static String HARVESTCRAFT_LIST_ALLSPICE = "listAllspice";
@@ -407,9 +406,7 @@ public enum Food implements IItemMiscProvider {
 		}
 	}
 
-	protected void registerOreDictEntries(){
-
-	}
+	abstract void registerOreDictEntries();
 
 	public boolean isEdible() {
 		return this.hunger > 0;
