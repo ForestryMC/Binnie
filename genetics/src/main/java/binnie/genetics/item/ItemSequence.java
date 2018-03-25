@@ -59,7 +59,7 @@ public class ItemSequence extends ItemCore implements IItemAnalysable, IItemChar
 	public String getItemStackDisplayName(ItemStack itemstack) {
 		GeneItem gene = GeneItem.create(itemstack);
 		if (gene == null) {
-			return I18N.localise("genetics.item.sequence.corrupted");
+			return I18N.localise("genetics.item.sequence.corrupted.name");
 		} else {
 			return gene.getBreedingSystem().getDescriptor() + " " + I18N.localise("genetics.item.sequence.name");
 		}

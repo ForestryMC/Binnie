@@ -114,6 +114,7 @@ binniecore.rootButterflies.chromosome.fire_resist=Огнестойкость
 binniecore.rootButterflies.chromosome.flower_provider=Цветы
 binniecore.rootButterflies.chromosome.effect=Эффект
 binniecore.rootButterflies.chromosome.territory=Территория
+binniecore.rootButterflies.chromosome.cocoon=Кокон
 
 binniecore.rootButterflies.chromosome.species.short=Вид
 binniecore.rootButterflies.chromosome.size.short=Размер
@@ -129,6 +130,7 @@ binniecore.rootButterflies.chromosome.fire_resist.short=Огнестойкост
 binniecore.rootButterflies.chromosome.flower_provider.short=Цветы
 binniecore.rootButterflies.chromosome.effect.short=Эффект
 binniecore.rootButterflies.chromosome.territory.short=Территория
+binniecore.rootButterflies.chromosome.cocoon.short=Кокон
 
 binniecore.rootFlowers.chromosome.species=Вид
 binniecore.rootFlowers.chromosome.primary=Первичный цвет

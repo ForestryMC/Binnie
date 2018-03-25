@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeSet;
 
+import binnie.core.ModId;
 import binnie.core.api.genetics.IFieldKitPlugin;
 import binnie.core.api.gui.IPoint;
 import binnie.core.api.gui.ITexture;
@@ -64,24 +65,24 @@ public class MothBreedingSystem extends BreedingSystem {
 		if (chromosome == EnumButterflyChromosome.METABOLISM) {
 			final int metabolism = ((IAlleleInteger) allele).getValue();
 			if (metabolism >= 19) {
-				return I18N.localise("binniecore.allele.metabolism.highest");
+				return I18N.localise(ModId.EXTRA_TREES,"allele.metabolism.highest");
 			}
 			if (metabolism >= 16) {
-				return I18N.localise("binniecore.allele.metabolism.higher");
+				return I18N.localise(ModId.EXTRA_TREES,"allele.metabolism.higher");
 			}
 			if (metabolism >= 13) {
-				return I18N.localise("binniecore.allele.metabolism.high");
+				return I18N.localise(ModId.EXTRA_TREES,"allele.metabolism.high");
 			}
 			if (metabolism >= 10) {
-				return I18N.localise("binniecore.allele.metabolism.normal");
+				return I18N.localise(ModId.EXTRA_TREES,"allele.metabolism.normal");
 			}
 			if (metabolism >= 7) {
-				return I18N.localise("binniecore.allele.metabolism.slow");
+				return I18N.localise(ModId.EXTRA_TREES,"allele.metabolism.slow");
 			}
 			if (metabolism >= 4) {
-				return I18N.localise("binniecore.allele.metabolism.slower");
+				return I18N.localise(ModId.EXTRA_TREES,"allele.metabolism.slower");
 			}
-			return I18N.localise("binniecore.allele.metabolism.slowest");
+			return I18N.localise(ModId.EXTRA_TREES,"allele.metabolism.slowest");
 		} else {
 			if (chromosome == EnumButterflyChromosome.FERTILITY) {
 				final int metabolism = ((IAlleleInteger) allele).getValue();

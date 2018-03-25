@@ -16,7 +16,7 @@ public class BinnieCircuit implements ICircuit {
 
 	public BinnieCircuit(final String uid, final int limit, final ICircuitLayout layout, final ItemStack itemStack) {
 		this.tooltips = new ArrayList<>();
-		this.uid = "binnie.circuit." + uid;
+		this.uid = "for.binnie.circuit." + uid;
 		this.limit = limit;
 		ChipsetManager.circuitRegistry.registerCircuit(this);
 		if (!itemStack.isEmpty()) {
