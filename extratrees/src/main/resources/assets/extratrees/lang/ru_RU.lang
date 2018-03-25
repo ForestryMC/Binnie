@@ -653,6 +653,35 @@ extratrees.fluid.liqueur.orange=Апельсиновый ликер
 extratrees.fluid.liqueur.peach=Персиковый ликер
 extratrees.fluid.liqueur.raspberry=Малиновый ликер
 
+## Spirit
+extratrees.fluid.spirit.neutralspirit=Чистый спирт
+extratrees.fluid.spirit.vodka=Водка
+extratrees.fluid.spirit.whiterum=Белый Ром
+extratrees.fluid.spirit.darkrum=Темный ром
+extratrees.fluid.spirit.whiskey=Виски
+extratrees.fluid.spirit.cornwhiskey=Бурбон
+extratrees.fluid.spirit.ryewhiskey=Хлебная водка
+extratrees.fluid.spirit.wheatwhiskey=Пшеничный виски
+extratrees.fluid.spirit.fortifiedwine=Крепленое вино
+extratrees.fluid.spirit.tequila=Текила
+extratrees.fluid.spirit.brandy=Бренди
+extratrees.fluid.spirit.applebrandy=Яблочный бренди
+extratrees.fluid.spirit.pearbrandy=Бренди из груши
+extratrees.fluid.spirit.apricotbrandy=Абрикосовый коньяк
+extratrees.fluid.spirit.plumbrandy=Сливовый коньяк
+extratrees.fluid.spirit.cherrybrandy=Вишневый бренди
+extratrees.fluid.spirit.elderberrybrandy=Бренди из бузины
+extratrees.fluid.spirit.citrusbrandy=Цитрусовый коньяк
+extratrees.fluid.spirit.fruitbrandy=Фруктовый бренди
+extratrees.fluid.spirit.cachaca=Ром Кашаса
+extratrees.fluid.spirit.gin=Джин
+extratrees.fluid.spirit.appleliquor=Яблочный ликер
+extratrees.fluid.spirit.pearliquor=Грушевый ликер
+extratrees.fluid.spirit.cherryliquor=Вишневый ликер
+extratrees.fluid.spirit.elderberryliquor=Ликер солодки
+extratrees.fluid.spirit.apricotliquor=Абрикосовый ликер
+extratrees.fluid.spirit.fruitliquor=Фруктовый ликер
+
 ## Alcohol
 extratrees.fluid.alcohol.apple=Сидр
 extratrees.fluid.alcohol.apricot=Абрикосовое вино

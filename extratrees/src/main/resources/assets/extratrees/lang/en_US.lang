@@ -653,6 +653,35 @@ extratrees.fluid.liqueur.orange=Orange Liqueur
 extratrees.fluid.liqueur.peach=Peach Liqueur
 extratrees.fluid.liqueur.raspberry=Raspberry Liqueur
 
+## Spirit
+extratrees.fluid.spirit.neutralspirit=Neutral Spirit
+extratrees.fluid.spirit.vodka=Vodka
+extratrees.fluid.spirit.whiterum=White Rum
+extratrees.fluid.spirit.darkrum=Dark Rum
+extratrees.fluid.spirit.whiskey=Whiskey
+extratrees.fluid.spirit.cornwhiskey=Bourbon
+extratrees.fluid.spirit.ryewhiskey=Rye Whiskey
+extratrees.fluid.spirit.wheatwhiskey=Wheat Whiskey
+extratrees.fluid.spirit.fortifiedwine=Fortified Wine
+extratrees.fluid.spirit.tequila=Tequila
+extratrees.fluid.spirit.brandy=Brandy
+extratrees.fluid.spirit.applebrandy=Apple Brandy
+extratrees.fluid.spirit.pearbrandy=Pear Brandy
+extratrees.fluid.spirit.apricotbrandy=Apricot Brandy
+extratrees.fluid.spirit.plumbrandy=Plum Brandy
+extratrees.fluid.spirit.cherrybrandy=Cherry Brandy
+extratrees.fluid.spirit.elderberrybrandy=Elderberry Brandy
+extratrees.fluid.spirit.citrusbrandy=Citrus Brandy
+extratrees.fluid.spirit.fruitbrandy=Fruit Brandy
+extratrees.fluid.spirit.cachaca=Cachaca
+extratrees.fluid.spirit.gin=Gin
+extratrees.fluid.spirit.appleliquor=Apple Liquor
+extratrees.fluid.spirit.pearliquor=Pear Liquor
+extratrees.fluid.spirit.cherryliquor=Cherry Liquor
+extratrees.fluid.spirit.elderberryliquor=Elderberry Liquor
+extratrees.fluid.spirit.apricotliquor=Apricot Liquor
+extratrees.fluid.spirit.fruitliquor=Fruit Liquor
+
 ## Alcohol
 extratrees.fluid.alcohol.apple=Cider
 extratrees.fluid.alcohol.apricot=Apricot Wine
