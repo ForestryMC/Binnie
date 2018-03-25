@@ -21,6 +21,7 @@ public class I18NClient implements I18NProxy {
         if (I18n.hasKey(key)) {
             return I18n.format(key);
         } else {
+            Log.warning("Key not localized: " + key);
             return key;
         }
     }
