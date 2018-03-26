@@ -5,6 +5,7 @@ import javax.annotation.Nullable;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -74,19 +75,15 @@ public class AlvearyLogicFrameHousing extends AlvearyLogic {
 
 	@Nullable
 	private IHiveFrame getHiveFrame() {
-		if (getFrameStack() != null) {
-			return (IHiveFrame) getFrameStack().getItem();
+		ItemStack frameStack = getFrameStack();
+		if (!frameStack.isEmpty()) {
+			return (IHiveFrame) frameStack.getItem();
 		}
 		return null;
 	}
 
-	@Nullable
 	private ItemStack getFrameStack() {
-		ItemStack stackInSlot = inv.getStackInSlot(0);
-		if (!stackInSlot.isEmpty()) {
-			return stackInSlot;
-		}
-		return null;
+		return inv.getStackInSlot(0);
 	}
 
 	@Override
