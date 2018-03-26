@@ -140,7 +140,18 @@ public class ItemDrink extends ItemFood implements IItemModelRegister {
 	@Override
 	protected void onFoodEaten(ItemStack stack, World world, EntityPlayer player) {
 		super.onFoodEaten(stack, world, player);
-		AlcoholEffect.makeDrunk(player, 2.1f);
+		final FluidStack fluid = FluidUtil.getFluidContained(stack);
+		final IDrinkLiquid liquid;
+		if (fluid == null) {
+			liquid = null;
+		} else {
+			liquid = DrinkManager.getLiquid(fluid.getFluid());
+		}
+		float strength = 0.0f;
+		if (liquid != null) {
+			strength = liquid.getABV();
+		}
+		AlcoholEffect.makeDrunk(player, strength);
 	}
 
 	@Override
@@ -153,7 +164,7 @@ public class ItemDrink extends ItemFood implements IItemModelRegister {
 	}
 
 	@Override
-	public int getMaxItemUseDuration(final ItemStack p_77626_1_) {
+	public int getMaxItemUseDuration(final ItemStack stack) {
 		return 16;
 	}
 
