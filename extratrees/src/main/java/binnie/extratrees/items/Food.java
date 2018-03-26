@@ -408,10 +408,6 @@ public enum Food implements IItemMiscProvider {
 
     abstract void registerOreDictEntries();
 
-    public boolean isEdible() {
-        return this.hunger > 0;
-    }
-
     public int getHealth() {
         return this.hunger;
     }

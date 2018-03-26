@@ -42,7 +42,7 @@ public class ItemETFood extends ItemFood implements IItemModelRegister {
 		}
 	}
 
-	private IItemMiscProvider getItem(int damage) {
+	private IItemMiscProvider getItem(final int damage) {
 		return (damage >= ItemETFood.items.length) ? ItemETFood.items[0] : ItemETFood.items[damage];
 	}
 
@@ -82,6 +82,6 @@ public class ItemETFood extends ItemFood implements IItemModelRegister {
 
 	@Override
 	public float getSaturationModifier(ItemStack itemStack) {
-		return 0.5f;
+		return getFood(itemStack).getHealth() / 10.0f;
 	}
 }
