@@ -79,7 +79,7 @@ public class ItemSoilMeter extends Item implements IItemModelRegister {
 		if (gardening.isSoil(block) && worldIn.isRemote) {
 			IBlockSoil soil = (IBlockSoil) block;
 			String info = I18N.localise("botany.soil.type") + ": "
-					+ soil.getType(worldIn, pos).getTranslated() + ", "
+					+ EnumHelper.getLocalisedName(soil.getType(worldIn, pos), true) + ", "
 					+ TextFormatting.WHITE + I18N.localise("botany.moisture") + ": "
 					+ EnumHelper.getLocalisedName(soil.getMoisture(worldIn, pos), true) + ", "
 					+ TextFormatting.WHITE + I18N.localise("botany.ph") + ": "

@@ -1,13 +1,9 @@
 package binnie.botany.api.gardening;
 
-import java.util.Locale;
-
-import net.minecraft.util.IStringSerializable;
+import binnie.botany.api.IBotanyColored;
 import net.minecraft.util.text.TextFormatting;
 
-import net.minecraft.util.text.translation.I18n;
-
-public enum EnumSoilType implements IStringSerializable {
+public enum EnumSoilType implements IBotanyColored {
 	SOIL(TextFormatting.DARK_GRAY),
 	LOAM(TextFormatting.GOLD),
 	FLOWERBED(TextFormatting.LIGHT_PURPLE);
@@ -20,10 +16,16 @@ public enum EnumSoilType implements IStringSerializable {
 
 	@Override
 	public String getName() {
-		return name().toLowerCase(Locale.ENGLISH);
+		return name().toLowerCase();
 	}
 
-	public String getTranslated() {
-		return color + I18n.translateToLocal("botany.soil." + getName());
+	@Override
+	public TextFormatting getColor() {
+		return color;
+	}
+
+	@Override
+	public String keyGroup() {
+		return "soil";
 	}
 }
