@@ -2,18 +2,17 @@ package binnie.botany.api.gardening;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.util.IStringSerializable;
+import binnie.botany.api.IBotanyColored;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 
-public enum EnumAcidity implements IStringSerializable {
+public enum EnumAcidity implements IBotanyColored {
 	ACID(TextFormatting.RED),
 	NEUTRAL(null),
 	ALKALINE(TextFormatting.AQUA);
 
 	@Nullable
-	private final
-	TextFormatting color;
+	private final TextFormatting color;
 
 	EnumAcidity(@Nullable TextFormatting color) {
 		this.color = color;
@@ -24,12 +23,14 @@ public enum EnumAcidity implements IStringSerializable {
 		return name().toLowerCase();
 	}
 
-	public String getLocalisedName(boolean withColor) {
-		String localisedName = I18n.translateToLocal("botany.ph." + getName());
-		if (withColor && color != null) {
-			localisedName = color + localisedName;
-		}
-		return localisedName;
+	@Override
+	public TextFormatting getColor() {
+		return color;
+	}
+
+	@Override
+	public String keyGroup() {
+		return "ph";
 	}
 
 	public static EnumAcidity getFromValue(float rawAcidity) {

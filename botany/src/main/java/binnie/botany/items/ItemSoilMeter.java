@@ -1,5 +1,6 @@
 package binnie.botany.items;
 
+import binnie.botany.EnumHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -42,7 +43,7 @@ public class ItemSoilMeter extends Item implements IItemModelRegister {
 				return "";
 			}
 		}
-		return TextFormatting.GRAY + I18N.localise("botany.ph") + ": " + ph.getLocalisedName(withColor);
+		return TextFormatting.GRAY + I18N.localise("botany.ph") + ": " + EnumHelper.getLocalisedName(ph, withColor);
 	}
 
 	public static String getMoisture(ItemStack stack, boolean withColor, boolean byNormalNone) {
@@ -82,7 +83,7 @@ public class ItemSoilMeter extends Item implements IItemModelRegister {
 					+ TextFormatting.WHITE + I18N.localise("botany.moisture") + ": "
 					+ soil.getMoisture(worldIn, pos).getLocalisedName(true) + ", "
 					+ TextFormatting.WHITE + I18N.localise("botany.ph") + ": "
-					+ soil.getPH(worldIn, pos).getLocalisedName(true);
+					+ EnumHelper.getLocalisedName(soil.getPH(worldIn, pos), true);
 
 			ITextComponent chat = new TextComponentString(info);
 			player.sendStatusMessage(chat, false);
