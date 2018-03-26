@@ -121,19 +121,8 @@ public class ItemDrink extends ItemFood implements IItemModelRegister {
 	@Override
 	public String getItemStackDisplayName(final ItemStack stack) {
 		final FluidStack fluid = FluidUtil.getFluidContained(stack);
-		final IDrinkLiquid liquid;
-		if (fluid == null) {
-			liquid = null;
-		} else {
-			liquid = DrinkManager.getLiquid(fluid.getFluid());
-		}
-
-		final String liquidName;
-		if (liquid == null) {
-			liquidName = null;
-		} else {
-			liquidName = liquid.getName();
-		}
+		final IDrinkLiquid liquid = (fluid == null) ? null : DrinkManager.getLiquid(fluid.getFluid());
+		final String liquidName = (liquid == null) ? null : liquid.getName();
 		return this.getGlassware(stack).getName(liquidName);
 	}
 
@@ -141,16 +130,8 @@ public class ItemDrink extends ItemFood implements IItemModelRegister {
 	protected void onFoodEaten(ItemStack stack, World world, EntityPlayer player) {
 		super.onFoodEaten(stack, world, player);
 		final FluidStack fluid = FluidUtil.getFluidContained(stack);
-		final IDrinkLiquid liquid;
-		if (fluid == null) {
-			liquid = null;
-		} else {
-			liquid = DrinkManager.getLiquid(fluid.getFluid());
-		}
-		float strength = 0.0f;
-		if (liquid != null) {
-			strength = liquid.getABV();
-		}
+		final IDrinkLiquid liquid = (fluid == null) ? null : DrinkManager.getLiquid(fluid.getFluid());
+		float strength = (liquid == null) ? 0.0f : liquid.getABV();
 		AlcoholEffect.makeDrunk(player, strength);
 	}
 
