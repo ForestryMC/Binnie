@@ -1,13 +1,10 @@
 package binnie.botany.api.gardening;
 
 import javax.annotation.Nullable;
-
-import net.minecraft.util.IStringSerializable;
+import binnie.botany.api.IBotanyColored;
 import net.minecraft.util.text.TextFormatting;
 
-import net.minecraft.util.text.translation.I18n;
-
-public enum EnumMoisture implements IStringSerializable {
+public enum EnumMoisture implements IBotanyColored {
 	DRY(TextFormatting.YELLOW),
 	NORMAL(null),
 	DAMP(TextFormatting.DARK_BLUE);
@@ -24,12 +21,14 @@ public enum EnumMoisture implements IStringSerializable {
 		return name().toLowerCase();
 	}
 
-	public String getLocalisedName(boolean withColor) {
-		String localisedName = I18n.translateToLocal("botany.moisture." + getName());
-		if (withColor && color != null) {
-			localisedName = color + localisedName + TextFormatting.GRAY;
-		}
-		return localisedName;
+	@Override
+	public TextFormatting getColor() {
+		return color;
+	}
+
+	@Override
+	public String keyGroup() {
+		return "moisture";
 	}
 
 	public static EnumMoisture getFromValue(float rawMoisture) {

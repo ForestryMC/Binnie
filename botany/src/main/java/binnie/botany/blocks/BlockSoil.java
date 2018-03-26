@@ -86,7 +86,7 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 				return "";
 			}
 		}
-		return TextFormatting.GRAY + I18N.localise("botany.moisture") + ": " + moisure.getLocalisedName(withColor);
+		return TextFormatting.GRAY + I18N.localise("botany.moisture") + ": " + EnumHelper.getLocalisedName(moisure, withColor);
 	}
 
 	@Override

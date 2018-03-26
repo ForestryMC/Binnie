@@ -53,7 +53,7 @@ public class ItemSoilMeter extends Item implements IItemModelRegister {
 				return "";
 			}
 		}
-		return TextFormatting.GRAY + I18N.localise("botany.moisture") + ": " + moisure.getLocalisedName(withColor);
+		return TextFormatting.GRAY + I18N.localise("botany.moisture") + ": " + EnumHelper.getLocalisedName(moisure, withColor);
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -81,7 +81,7 @@ public class ItemSoilMeter extends Item implements IItemModelRegister {
 			String info = I18N.localise("botany.soil.type") + ": "
 					+ soil.getType(worldIn, pos).getTranslated() + ", "
 					+ TextFormatting.WHITE + I18N.localise("botany.moisture") + ": "
-					+ soil.getMoisture(worldIn, pos).getLocalisedName(true) + ", "
+					+ EnumHelper.getLocalisedName(soil.getMoisture(worldIn, pos), true) + ", "
 					+ TextFormatting.WHITE + I18N.localise("botany.ph") + ": "
 					+ EnumHelper.getLocalisedName(soil.getPH(worldIn, pos), true);
 

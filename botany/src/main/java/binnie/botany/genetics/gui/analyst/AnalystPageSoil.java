@@ -128,7 +128,7 @@ public class AnalystPageSoil extends Control implements ITitledWidget {
 
 		@Override
 		protected String getName(EnumMoisture value) {
-			return value.getLocalisedName(false);
+			return EnumHelper.getLocalisedName(value, false);
 		}
 
 		@Override

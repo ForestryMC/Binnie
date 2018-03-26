@@ -26,7 +26,7 @@ public class CircuitGarden extends BinnieCircuit {
 		super(getName(moisture, ph, manual, fertilised), 4, getLayout(manual), recipe);
 		isManual = manual;
 		logic = new GardenLogic(moisture, ph, isManual, fertilised, icon, I18N.localise(getUnlocalizedName()));
-		String info = I18N.localise("botany.moisture") + ": " + moisture.getLocalisedName(true) + TextFormatting.GRAY + ", ";
+		String info = I18N.localise("botany.moisture") + ": " + EnumHelper.getLocalisedName(moisture, true) + TextFormatting.GRAY + ", ";
 		if (ph != null) {
 			info += I18N.localise("botany.ph") + ": " + EnumHelper.getLocalisedName(ph, true) + TextFormatting.GRAY + ", ";
 		}
