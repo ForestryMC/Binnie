@@ -132,7 +132,9 @@ public class ItemDrink extends ItemFood implements IItemModelRegister {
 		final FluidStack fluid = FluidUtil.getFluidContained(stack);
 		final IDrinkLiquid liquid = (fluid == null) ? null : DrinkManager.getLiquid(fluid.getFluid());
 		float strength = (liquid == null) ? 0.0f : liquid.getABV();
-		AlcoholEffect.makeDrunk(player, strength);
+		if (strength > 0.0f) {
+			AlcoholEffect.makeDrunk(player, strength);
+		}
 	}
 
 	@Override
