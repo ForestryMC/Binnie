@@ -1,5 +1,6 @@
 package binnie.botany.gui.database;
 
+import binnie.botany.EnumHelper;
 import net.minecraft.item.ItemStack;
 
 import binnie.botany.api.BotanyAPI;
@@ -57,11 +58,11 @@ public class PageSpeciesFlowerGenome extends PageSpecies {
 
 		y += th;
 		new ControlText(contents, new Area(0, y, w2, th), I18N.localise(DatabaseConstants.BOTANY_GENOME_KEY + ".moist"), TextJustification.MIDDLE_RIGHT);
-		new ControlText(contents, new Area(w2, y, w3, th), flowerSpecies.getMoisture().getLocalisedName(false), TextJustification.MIDDLE_LEFT);
+		new ControlText(contents, new Area(w2, y, w3, th), EnumHelper.getLocalisedName(flowerSpecies.getMoisture(), false), TextJustification.MIDDLE_LEFT);
 
 		y += th;
 		new ControlText(contents, new Area(0, y, w2, th), I18N.localise(DatabaseConstants.BOTANY_GENOME_KEY + ".ph"), TextJustification.MIDDLE_RIGHT);
-		new ControlText(contents, new Area(w2, y, w3, th), flowerSpecies.getPH().getLocalisedName(false), TextJustification.MIDDLE_LEFT);
+		new ControlText(contents, new Area(w2, y, w3, th), EnumHelper.getLocalisedName(flowerSpecies.getPH(), false), TextJustification.MIDDLE_LEFT);
 
 		y += th;
 		new ControlText(contents, new Area(0, y, w2, th), I18N.localise(DatabaseConstants.BOTANY_GENOME_KEY + ".fertility"), TextJustification.MIDDLE_RIGHT);

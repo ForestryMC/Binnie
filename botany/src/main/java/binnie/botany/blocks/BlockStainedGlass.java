@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import binnie.botany.EnumHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -141,7 +142,7 @@ public class BlockStainedGlass extends Block implements IBlockMetadata, IColored
 	@Override
 	public String getDisplayName(ItemStack itemStack) {
 		EnumFlowerColor color = EnumFlowerColor.get(TileEntityMetadata.getItemDamage(itemStack));
-		return I18N.localise("botany.pigmented.glass.name", color.getDisplayName());
+		return I18N.localise("botany.pigmented.glass.name", EnumHelper.getLocalisedName(color, false));
 	}
 
 	@Override

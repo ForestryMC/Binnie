@@ -3,6 +3,7 @@ package binnie.botany.blocks;
 import javax.annotation.Nullable;
 import java.util.Random;
 
+import binnie.botany.EnumHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -75,7 +76,7 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 				return "";
 			}
 		}
-		return TextFormatting.GRAY + I18N.localise("botany.ph") + ": " + ph.getLocalisedName(withColor);
+		return TextFormatting.GRAY + I18N.localise("botany.ph") + ": " + EnumHelper.getLocalisedName(ph, withColor);
 	}
 
 	public static String getMoisture(ItemStack stack, boolean withColor, boolean byNormalNone) {
@@ -85,7 +86,7 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 				return "";
 			}
 		}
-		return TextFormatting.GRAY + I18N.localise("botany.moisture") + ": " + moisure.getLocalisedName(withColor);
+		return TextFormatting.GRAY + I18N.localise("botany.moisture") + ": " + EnumHelper.getLocalisedName(moisure, withColor);
 	}
 
 	@Override

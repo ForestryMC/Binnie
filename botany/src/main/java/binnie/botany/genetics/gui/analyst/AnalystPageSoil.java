@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
 
+import binnie.botany.EnumHelper;
 import binnie.botany.api.gardening.EnumAcidity;
 import binnie.botany.api.gardening.EnumMoisture;
 import binnie.botany.api.genetics.IFlower;
@@ -127,7 +128,7 @@ public class AnalystPageSoil extends Control implements ITitledWidget {
 
 		@Override
 		protected String getName(EnumMoisture value) {
-			return value.getLocalisedName(false);
+			return EnumHelper.getLocalisedName(value, false);
 		}
 
 		@Override
@@ -143,7 +144,7 @@ public class AnalystPageSoil extends Control implements ITitledWidget {
 
 		@Override
 		protected String getName(EnumAcidity value) {
-			return value.getLocalisedName(false);
+			return EnumHelper.getLocalisedName(value, false);
 		}
 
 		@Override

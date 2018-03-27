@@ -1,5 +1,6 @@
 package binnie.botany.items;
 
+import binnie.botany.EnumHelper;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
@@ -34,6 +35,6 @@ public class ItemCeramic extends ItemBlock implements IColoredItem {
 	@SideOnly(Side.CLIENT)
 	public String getItemStackDisplayName(ItemStack itemStack) {
 		EnumFlowerColor color = EnumFlowerColor.get(itemStack.getItemDamage());
-		return I18N.localise("botany.ceramic.name", color.getDisplayName());
+		return I18N.localise("botany.ceramic.name", EnumHelper.getLocalisedName(color, false));
 	}
 }

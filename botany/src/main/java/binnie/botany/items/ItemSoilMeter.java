@@ -1,5 +1,6 @@
 package binnie.botany.items;
 
+import binnie.botany.EnumHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -42,7 +43,7 @@ public class ItemSoilMeter extends Item implements IItemModelRegister {
 				return "";
 			}
 		}
-		return TextFormatting.GRAY + I18N.localise("botany.ph") + ": " + ph.getLocalisedName(withColor);
+		return TextFormatting.GRAY + I18N.localise("botany.ph") + ": " + EnumHelper.getLocalisedName(ph, withColor);
 	}
 
 	public static String getMoisture(ItemStack stack, boolean withColor, boolean byNormalNone) {
@@ -52,7 +53,7 @@ public class ItemSoilMeter extends Item implements IItemModelRegister {
 				return "";
 			}
 		}
-		return TextFormatting.GRAY + I18N.localise("botany.moisture") + ": " + moisure.getLocalisedName(withColor);
+		return TextFormatting.GRAY + I18N.localise("botany.moisture") + ": " + EnumHelper.getLocalisedName(moisure, withColor);
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -78,11 +79,11 @@ public class ItemSoilMeter extends Item implements IItemModelRegister {
 		if (gardening.isSoil(block) && worldIn.isRemote) {
 			IBlockSoil soil = (IBlockSoil) block;
 			String info = I18N.localise("botany.soil.type") + ": "
-					+ soil.getType(worldIn, pos).getTranslated() + ", "
+					+ EnumHelper.getLocalisedName(soil.getType(worldIn, pos), true) + ", "
 					+ TextFormatting.WHITE + I18N.localise("botany.moisture") + ": "
-					+ soil.getMoisture(worldIn, pos).getLocalisedName(true) + ", "
+					+ EnumHelper.getLocalisedName(soil.getMoisture(worldIn, pos), true) + ", "
 					+ TextFormatting.WHITE + I18N.localise("botany.ph") + ": "
-					+ soil.getPH(worldIn, pos).getLocalisedName(true);
+					+ EnumHelper.getLocalisedName(soil.getPH(worldIn, pos), true);
 
 			ITextComponent chat = new TextComponentString(info);
 			player.sendStatusMessage(chat, false);

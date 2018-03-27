@@ -1,5 +1,6 @@
 package binnie.botany.farming;
 
+import binnie.botany.EnumHelper;
 import com.google.common.base.Preconditions;
 
 import javax.annotation.Nullable;
@@ -25,9 +26,9 @@ public class CircuitGarden extends BinnieCircuit {
 		super(getName(moisture, ph, manual, fertilised), 4, getLayout(manual), recipe);
 		isManual = manual;
 		logic = new GardenLogic(moisture, ph, isManual, fertilised, icon, I18N.localise(getUnlocalizedName()));
-		String info = I18N.localise("botany.moisture") + ": " + moisture.getLocalisedName(true) + TextFormatting.GRAY + ", ";
+		String info = I18N.localise("botany.moisture") + ": " + EnumHelper.getLocalisedName(moisture, true) + TextFormatting.GRAY + ", ";
 		if (ph != null) {
-			info += I18N.localise("botany.ph") + ": " + ph.getLocalisedName(true) + TextFormatting.GRAY + ", ";
+			info += I18N.localise("botany.ph") + ": " + EnumHelper.getLocalisedName(ph, true) + TextFormatting.GRAY + ", ";
 		}
 		String fertilizedKey = fertilised ? "for.binnie.circuit.garden.fertilized" : "for.binnie.circuit.garden.unfertilized";
 		info += (fertilised ? TextFormatting.GREEN : TextFormatting.RED) + I18N.localise(fertilizedKey) + TextFormatting.GRAY;

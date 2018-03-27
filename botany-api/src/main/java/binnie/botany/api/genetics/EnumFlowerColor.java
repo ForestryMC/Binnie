@@ -3,11 +3,13 @@ package binnie.botany.api.genetics;
 import java.awt.Color;
 
 import binnie.botany.api.BotanyAPI;
+import binnie.botany.api.IBotanyColored;
 import net.minecraft.util.IStringSerializable;
 
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 
-public enum EnumFlowerColor implements IStringSerializable {
+public enum EnumFlowerColor implements IBotanyColored {
 	Aquamarine("aquamarine", new Color(8388564)),
 	Black("black", new Color(2631720)),
 	Blue("blue", new Color(255)),
@@ -115,13 +117,14 @@ public enum EnumFlowerColor implements IStringSerializable {
 		return values()[Math.max(0, i) % values().length];
 	}
 
-	public String getDisplayName() {
-		return I18n.translateToLocal("botany.color." + getName());
-	}
-
 	@Override
 	public String getName() {
 		return name().toLowerCase();
+	}
+
+	@Override
+	public TextFormatting getColor() {
+		return null;
 	}
 
 	public IAlleleFlowerColor getFlowerColorAllele() {
