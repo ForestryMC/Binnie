@@ -77,27 +77,21 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 	SPAWN_ZOMBIE{
 		@Override
 		protected IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing, World world, BlockPos position) {
-			if (world.rand.nextInt(200) < 2) {
-				this.spawnMob(world, position, new ResourceLocation("zombie"));
-			}
+			placeMob(world, position, "zombie");
 			return storedData;
 		}
 	},
 	SPAWN_SKELETON{
 		@Override
 		protected IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing, World world, BlockPos position) {
-			if (world.rand.nextInt(200) < 2) {
-				this.spawnMob(world, position, new ResourceLocation("skeleton"));
-			}
+			placeMob(world, position, "skeleton");
 			return storedData;
 		}
 	},
 	SPAWN_CREEPER{
 		@Override
 		protected IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing, World world, BlockPos position) {
-			if (world.rand.nextInt(200) < 2) {
-				this.spawnMob(world, position, new ResourceLocation("creeper"));
-			}
+			placeMob(world, position, "creeper");
 			return storedData;
 		}
 	},
@@ -401,6 +395,12 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 			return storedData;
 		}
 	};
+
+	protected void placeMob(World world, BlockPos position, final String mobName) {
+		if (world.rand.nextInt(200) < 2) {
+			this.spawnMob(world, position, new ResourceLocation(mobName));
+		}
+	}
 
 	private static final List<Birthday> birthdays = new ArrayList<>();
 
