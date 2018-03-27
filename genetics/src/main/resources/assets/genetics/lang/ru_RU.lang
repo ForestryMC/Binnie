@@ -41,7 +41,7 @@ genetics.errors.polymeriser.item.filled.desc=Предмет заполнен
 genetics.errors.polymeriser.insufficient.bacteria.desc=Недостаточно бактерий
 genetics.errors.polymeriser.insufficient.dna.desc=Недостаточно ДНК
 
-genetics.machine.machine.inoculator=Инокулятор
+genetics.machine.inoculator=Инокулятор
 genetics.machine.inoculator.info=Инокулатор использует сыворотки для добавления генов к породам индивидов. Этот процесс очень медленный и требует наличия бактерий, но он всегда успешен.  
 genetics.machine.inoculator.tooltips.logic.gene=Инокулирован 1 геном
 genetics.machine.inoculator.tooltips.logic.genes=Инокулировано %s генов

@@ -4,57 +4,57 @@
 extratrees.machine.kitchen.bar=Бар
 extratrees.machine.kitchen.bottleRack=Полка для бутылок
 
-extratrees.machine.machine.brewery=Пивоварня
-extratrees.machine.machine.brewery.info=Пивоварня использует дрожжи, соки и зерна для производства множества видов вин и пива.
-extratrees.machine.machine.brewery.tooltips.empty=Пусто
-extratrees.machine.machine.brewery.tooltips.creating=Создание %s
-extratrees.machine.machine.brewery.tooltips.slot.yeast=Дрожжи
-extratrees.machine.machine.brewery.tooltips.slot.grain=Пивоваренные зерна
-extratrees.machine.machine.brewery.tooltips.slot.ingredient=Пивоваренный ингредиент
-extratrees.machine.machine.brewery.tooltips.tank.fermentable=Ферментируемая жидкость
-extratrees.machine.machine.brewery.tooltips.tank.fermented=Ферментированные жидкости
+extratrees.machine.brewery=Пивоварня
+extratrees.machine.brewery.info=Пивоварня использует дрожжи, соки и зерна для производства множества видов вин и пива.
+extratrees.machine.brewery.tooltips.empty=Пусто
+extratrees.machine.brewery.tooltips.creating=Создание %s
+extratrees.machine.brewery.tooltips.slot.yeast=Дрожжи
+extratrees.machine.brewery.tooltips.slot.grain=Пивоваренные зерна
+extratrees.machine.brewery.tooltips.slot.ingredient=Пивоваренный ингредиент
+extratrees.machine.brewery.tooltips.tank.fermentable=Ферментируемая жидкость
+extratrees.machine.brewery.tooltips.tank.fermented=Ферментированные жидкости
 extratrees.errors.brewery.no.recipe.desc=Нельзя сварить, используя эти ингредиенты
 extratrees.errors.brewery.brewery.insufficient.ingredients.name=Недостато ингредиентов
 extratrees.errors.brewery.brewery.insufficient.ingredients.desc=Недостаточно ингредиентов для пивоварения
 
-extratrees.machine.machine.distillery=Винокурня
-extratrees.machine.machine.distillery.info=Винокурня может делать одинарную, двойную или тройную дистилляцию определенных спиртов, чтобы создать коньяки, ликеры и другие спиртные напитки.
-extratrees.machine.machine.distillery.tooltips.empty=Пусто
-extratrees.machine.machine.distillery.tooltips.creating=Создание %s
-extratrees.machine.machine.distillery.tooltips.tank.distillable=Дистилляционные жидкости
-extratrees.machine.machine.distillery.tooltips.tank.distilled=Дистиллированные жидкости
+extratrees.machine.distillery=Винокурня
+extratrees.machine.distillery.info=Винокурня может делать одинарную, двойную или тройную дистилляцию определенных спиртов, чтобы создать коньяки, ликеры и другие спиртные напитки.
+extratrees.machine.distillery.tooltips.empty=Пусто
+extratrees.machine.distillery.tooltips.creating=Создание %s
+extratrees.machine.distillery.tooltips.tank.distillable=Дистилляционные жидкости
+extratrees.machine.distillery.tooltips.tank.distilled=Дистиллированные жидкости
 genetics.errors.distillery.insufficient.liquid.desc=Нет входной жидкости
 
-extratrees.machine.machine.press=Фруктовый пресс
-extratrees.machine.machine.press.info=Фруктовый пресс сжимает фрукты для производства различных фруктовых соков. Его можно запустить с помощью питания или вручную, щелкнув правой кнопкой мыши.
+extratrees.machine.press=Фруктовый пресс
+extratrees.machine.press.info=Фруктовый пресс сжимает фрукты для производства различных фруктовых соков. Его можно запустить с помощью питания или вручную, щелкнув правой кнопкой мыши.
 extratrees.machine.press.tooltips.fruit=Фрукт
 extratrees.errors.press.no.fruit.desc=Нет фруктов
 
-extratrees.machine.machine.lumbermill=Лесопилка
-extratrees.machine.machine.lumbermill.info=Лесопилка распиливает бревна на доски с увеличенной скоростью и производит побочные продукты, такие как опилки и кора.
-extratrees.machine.machine.lumbermill.tooltips.logs=Бревна
+extratrees.machine.lumbermill=Лесопилка
+extratrees.machine.lumbermill.info=Лесопилка распиливает бревна на доски с увеличенной скоростью и производит побочные продукты, такие как опилки и кора.
+extratrees.machine.lumbermill.tooltips.logs=Бревна
 extratrees.errors.lumbermill.insufficient.water.desc=Недостаточно воды
 extratrees.errors.lumbermill.no.wood.desc=Нет дерева
 extratrees.errors.lumbermill.space.bark.desc=Нет места для новой коры
 extratrees.errors.lumbermill.space.saw_dust.desc=Нет места для новых опилок
 extratrees.errors.lumbermill.space.planks.desc=Нет места для новых досок
 
-extratrees.machine.machine.nursery=Питомник
+extratrees.machine.nursery=Питомник
 
 ## Конструкторы
 
-extratrees.machine.machine.designer.material.glass=Стекло
-extratrees.machine.machine.designer.material.panel=Доска
-extratrees.machine.machine.designer.material.wood=Доска
+extratrees.machine.designer.material.glass=Стекло
+extratrees.machine.designer.material.panel=Доска
+extratrees.machine.designer.material.wood=Доска
 
-extratrees.machine.machine.woodworker=Деревообрабатывающий станок
-extratrees.machine.machine.woodworker.info=Деревообделочный станок создает узорную деревянную черепицу из двух разных пород дерева.
+extratrees.machine.woodworker=Деревообрабатывающий станок
+extratrees.machine.woodworker.info=Деревообделочный станок создает узорную деревянную черепицу из двух разных пород дерева.
 
-extratrees.machine.machine.panelworker=Станок для панелей
-extratrees.machine.machine.panelworker.info=Станок для панелей создает узорные деревянные панели из двух разных пород дерева.
+extratrees.machine.panelworker=Станок для панелей
+extratrees.machine.panelworker.info=Станок для панелей создает узорные деревянные панели из двух разных пород дерева.
 
-extratrees.machine.machine.glassworker=Станок для стекла
-extratrees.machine.machine.glassworker.info=Станок для стекла создает узорчатое витражное стекло.
+extratrees.machine.glassworker=Станок для стекла
+extratrees.machine.glassworker.info=Станок для стекла создает узорчатое витражное стекло.
 
 ##################################################
 ## Модули
