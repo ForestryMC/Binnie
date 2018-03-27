@@ -131,12 +131,11 @@ public class ExtraBees {
 	public void init(final FMLInitializationEvent evt) {
 		configHandler.reload(true);
 		EnumHoneyComb.addSubtypes();
-		ExtraBeesWorldGenerator extraBeesWorldGenerator = new ExtraBeesWorldGenerator();
-		extraBeesWorldGenerator.doInit();
-		GameRegistry.registerWorldGenerator(extraBeesWorldGenerator, 0);
 		ExtraBeesEffect.doInit();
 		ExtraBeesFlowers.doInit();
 		ExtraBeeDefinition.doInit();
+		ExtraBeesWorldGenerator extraBeesWorldGenerator = new ExtraBeesWorldGenerator();
+		extraBeesWorldGenerator.doInit();
 		BlockRegister.doInitBlocks();
 		RecipeRegister.doInitRecipes();
 	}

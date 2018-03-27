@@ -1,16 +1,12 @@
 package binnie.extrabees.worldgen;
 
 import binnie.extrabees.utils.config.ConfigurationMain;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraft.world.gen.IChunkGenerator;
-import net.minecraftforge.fml.common.IWorldGenerator;
 
 import java.util.LinkedList;
-import java.util.Random;
 
-public class ExtraBeesWorldGenerator implements IWorldGenerator {
+import forestry.apiculture.ModuleApiculture;
+
+public class ExtraBeesWorldGenerator {
 	private final LinkedList<WorldGenHive> worldGenHives = new LinkedList<>();
 
 	public void registerHiveWorldGen(WorldGenHive hive) {
@@ -18,25 +14,10 @@ public class ExtraBeesWorldGenerator implements IWorldGenerator {
 	}
 
 	public void doInit() {
-		registerHiveWorldGen(new WorldGenHiveWater(ConfigurationMain.getWaterHiveRate()));
-		registerHiveWorldGen(new WorldGenHiveRock(ConfigurationMain.getRockHiveRate()));
-		registerHiveWorldGen(new WorldGenHiveNether(ConfigurationMain.getNetherHiveRate()));
-		registerHiveWorldGen(new WorldGenHiveMarble(ConfigurationMain.getMarbleHiveRate()));
-	}
+		ModuleApiculture.getHiveRegistry().registerHive("aqua", BinnieHiveDescription.WATER);
+		ModuleApiculture.getHiveRegistry().registerHive("marbla", BinnieHiveDescription.MARBLE);
+		ModuleApiculture.getHiveRegistry().registerHive("saxum", BinnieHiveDescription.ROCK);
+		ModuleApiculture.getHiveRegistry().registerHive("basalt", BinnieHiveDescription.NETHER);
 
-	@Override
-	public void generate(Random rand, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
-		worldGenHives.forEach(hive -> generateHive(hive, rand, chunkX, chunkZ, world));
-	}
-
-	private void generateHive(WorldGenHive hive, Random rand, int chunkX, int chunkZ, World world) {
-		chunkX <<= 4;
-		chunkZ <<= 4;
-		for (int i = 0; i < hive.getRate(); ++i) {
-			final int randPosX = chunkX + rand.nextInt(16);
-			final int randPosY = rand.nextInt(50) + 20;
-			final int randPosZ = chunkZ + rand.nextInt(16);
-			hive.generate(world, rand, new BlockPos(randPosX, randPosY, randPosZ));
-		}
 	}
 }
