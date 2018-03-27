@@ -17,6 +17,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
@@ -161,24 +162,14 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 	BLINDNESS {
 		@Override
 		protected IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing, World world, BlockPos position) {
-			for (EntityPlayer player : this.getEntities(EntityPlayer.class, genome, housing)) {
-				if (world.rand.nextInt(4) < wearsItems(player)) {
-					continue;
-				}
-				player.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 200));
-			}
+            addPotionEffect(genome, housing, world, MobEffects.BLINDNESS);
 			return storedData;
 		}
 	},
 	CONFUSION{
 		@Override
 		protected IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing, World world, BlockPos position) {
-			for (EntityPlayer player : this.getEntities(EntityPlayer.class, genome, housing)) {
-				if (world.rand.nextInt(4) < wearsItems(player)) {
-					continue;
-				}
-				player.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, 200));
-			}
+            addPotionEffect(genome, housing, world, MobEffects.NAUSEA);
 			return storedData;
 		}
 	},
@@ -307,12 +298,7 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 	WITHER{
 		@Override
 		protected IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing, World world, BlockPos position) {
-			for (EntityPlayer player : this.getEntities(EntityPlayer.class, genome, housing)) {
-				if (world.rand.nextInt(4) < wearsItems(player)) {
-					continue;
-				}
-				player.addPotionEffect(new PotionEffect(MobEffects.WITHER, 200));
-			}
+            addPotionEffect(genome, housing, world, MobEffects.WITHER);
 			return storedData;
 		}
 	},
@@ -333,15 +319,10 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 	SLOW{
 		@Override
 		protected IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing, World world, BlockPos position) {
-			for (EntityPlayer player : this.getEntities(EntityPlayer.class, genome, housing)) {
-				if (world.rand.nextInt(4) < wearsItems(player)) {
-					continue;
-				}
-				player.addPotionEffect(new PotionEffect(MobEffects.WEAKNESS, 200));
-			}
-			return storedData;
+            addPotionEffect(genome, housing, world, MobEffects.WEAKNESS);
+            return storedData;
 		}
-	},
+    },
 	BONEMEAL_SAPLING{
 		@Override
 		protected IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing, World world, BlockPos position) {
@@ -395,6 +376,21 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 			return storedData;
 		}
 	};
+
+	private final static int DEFAULT_POTION_DURATION = 200;
+
+    protected void addPotionEffect(final IBeeGenome genome, final IBeeHousing housing, final World world, final Potion effect) {
+        addPotionEffect(genome, housing, world, effect, DEFAULT_POTION_DURATION);
+    }
+
+    protected void addPotionEffect(final IBeeGenome genome, final IBeeHousing housing, final World world, final Potion effect, final int duration) {
+        for (EntityPlayer player : this.getEntities(EntityPlayer.class, genome, housing)) {
+            if (world.rand.nextInt(4) < wearsItems(player)) {
+                continue;
+            }
+            player.addPotionEffect(new PotionEffect(effect, duration));
+        }
+    }
 
 	protected void placeMob(World world, BlockPos position, final String mobName) {
 		if (world.rand.nextInt(200) < 2) {
