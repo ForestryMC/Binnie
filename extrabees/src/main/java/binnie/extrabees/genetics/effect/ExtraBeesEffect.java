@@ -313,7 +313,12 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 	WITHER{
 		@Override
 		protected IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing, World world, BlockPos position) {
-			//TODO: add function ?
+			for (EntityPlayer player : this.getEntities(EntityPlayer.class, genome, housing)) {
+				if (world.rand.nextInt(4) < wearsItems(player)) {
+					continue;
+				}
+				player.addPotionEffect(new PotionEffect(MobEffects.WITHER, 200));
+			}
 			return storedData;
 		}
 	},
