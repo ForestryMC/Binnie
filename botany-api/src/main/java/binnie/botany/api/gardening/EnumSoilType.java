@@ -23,9 +23,4 @@ public enum EnumSoilType implements IBotanyColored {
 	public TextFormatting getColor() {
 		return color;
 	}
-
-	@Override
-	public String keyGroup() {
-		return "soil";
-	}
 }

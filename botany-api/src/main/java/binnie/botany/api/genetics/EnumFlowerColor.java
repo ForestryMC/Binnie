@@ -127,11 +127,6 @@ public enum EnumFlowerColor implements IBotanyColored {
 		return null;
 	}
 
-	@Override
-	public String keyGroup() {
-		return "color";
-	}
-
 	public IAlleleFlowerColor getFlowerColorAllele() {
 		return allele;
 	}

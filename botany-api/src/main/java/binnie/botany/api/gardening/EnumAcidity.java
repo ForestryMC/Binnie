@@ -26,11 +26,6 @@ public enum EnumAcidity implements IBotanyColored {
 		return color;
 	}
 
-	@Override
-	public String keyGroup() {
-		return "ph";
-	}
-
 	public static EnumAcidity getFromValue(float rawAcidity) {
 		if(rawAcidity <= -1.0f){
 			return EnumAcidity.ACID;

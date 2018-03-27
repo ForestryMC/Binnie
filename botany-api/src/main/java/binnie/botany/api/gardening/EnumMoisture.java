@@ -26,11 +26,6 @@ public enum EnumMoisture implements IBotanyColored {
 		return color;
 	}
 
-	@Override
-	public String keyGroup() {
-		return "moisture";
-	}
-
 	public static EnumMoisture getFromValue(float rawMoisture) {
 		if(rawMoisture <= -1.0f){
 			return EnumMoisture.DRY;

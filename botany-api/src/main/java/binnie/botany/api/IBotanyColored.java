@@ -8,6 +8,4 @@ import javax.annotation.Nullable;
 public interface IBotanyColored extends IStringSerializable {
     @Nullable
     TextFormatting getColor();
-
-    String keyGroup();
 }
