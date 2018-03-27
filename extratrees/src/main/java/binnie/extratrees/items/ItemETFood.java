@@ -42,7 +42,7 @@ public class ItemETFood extends ItemFood implements IItemModelRegister {
 		}
 	}
 
-	private IItemMiscProvider getItem(int damage) {
+	private IItemMiscProvider getItem(final int damage) {
 		return (damage >= ItemETFood.items.length) ? ItemETFood.items[0] : ItemETFood.items[damage];
 	}
 
@@ -75,6 +75,13 @@ public class ItemETFood extends ItemFood implements IItemModelRegister {
 		return Food.VALUES[itemStack.getItemDamage()];
 	}
 
+	private final int MINIMUM_USE_DURATION = 8;
+
+	@Override
+	public int getMaxItemUseDuration(ItemStack stack) {
+		return MINIMUM_USE_DURATION + getFood(stack).getHealth() * 2;
+	}
+
 	@Override
 	public int getHealAmount(ItemStack itemStack) {
 		return getFood(itemStack).getHealth();
@@ -82,6 +89,6 @@ public class ItemETFood extends ItemFood implements IItemModelRegister {
 
 	@Override
 	public float getSaturationModifier(ItemStack itemStack) {
-		return 0.5f;
+		return getFood(itemStack).getHealth() / 10.0f;
 	}
 }

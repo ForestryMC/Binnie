@@ -19,7 +19,6 @@ public class AlcoholEffect {
 			slowIntense = 0.0f;
 		}
 
-		// TODO blindIntense
 		float blindIntense = (intensity - 25.0f) / 2.0f;
 		if (blindIntense < 0.0f) {
 			blindIntense = 0.0f;
@@ -27,6 +26,9 @@ public class AlcoholEffect {
 		player.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, time, (int) intensity, false, true));
 		if (slowIntense > 0.0f) {
 			player.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, time, (int) slowIntense, false, true));
+		}
+		if (blindIntense > 0.0f) {
+			player.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, time, (int) blindIntense, false, true));
 		}
 	}
 }
