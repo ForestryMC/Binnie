@@ -2,16 +2,15 @@ package binnie.genetics.item;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
+import binnie.core.item.ItemCore;
 import binnie.genetics.Genetics;
 import binnie.genetics.core.GeneticsGUI;
-import binnie.core.item.ItemCore;
 
 public class ItemPunnettSquare extends ItemCore {
 

@@ -43,7 +43,7 @@ public class WorldGenShrub {
 			WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, girth + 1F, 1, EnumReplaceMode.SOFT);
 			int i = 0;
 			while (leafSpawn >= 0.0f) {
-				WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, girth + 2F + i * 1, 1, EnumReplaceMode.SOFT);
+				WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, girth + 2F + i, 1, EnumReplaceMode.SOFT);
 				i++;
 			}
 		}

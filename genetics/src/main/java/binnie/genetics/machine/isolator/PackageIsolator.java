@@ -30,29 +30,29 @@ public class PackageIsolator extends GeneticMachine.PackageGeneticBase implement
 		new ComponentGeneticGUI(machine, GeneticsGUI.ISOLATOR);
 		// Inventory
 		final ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
-		InventorySlot slotEnzyme = inventory.addSlot(Isolator.SLOT_ENZYME, "enzyme");
+		InventorySlot slotEnzyme = inventory.addSlot(Isolator.SLOT_ENZYME, getSlotRL("enzyme"));
 		slotEnzyme.setValidator(new SlotValidator.Item(GeneticsItems.Enzyme.get(1), ModuleMachine.getSpriteEnzyme()));
 		slotEnzyme.forbidExtraction();
 
-		InventorySlot slotSequencer = inventory.addSlot(Isolator.SLOT_SEQUENCER_VIAL, "sequencervial");
+		InventorySlot slotSequencer = inventory.addSlot(Isolator.SLOT_SEQUENCER_VIAL, getSlotRL("sequencervial"));
 		slotSequencer.setValidator(new SlotValidator.Item(GeneticsItems.EmptySequencer.get(1), ModuleMachine.getSpriteSequencer()));
 		slotSequencer.forbidExtraction();
 
-		for (InventorySlot slot : inventory.addSlotArray(Isolator.SLOT_RESERVE, "input")) {
+		for (InventorySlot slot : inventory.addSlotArray(Isolator.SLOT_RESERVE, getSlotRL("input"))) {
 			slot.setValidator(new SlotValidator.Individual());
 			slot.forbidExtraction();
 		}
 
-		InventorySlot slotTarget = inventory.addSlot(Isolator.SLOT_TARGET, "process");
+		InventorySlot slotTarget = inventory.addSlot(Isolator.SLOT_TARGET, getSlotRL("process"));
 		slotTarget.setValidator(new SlotValidator.Individual());
 		slotTarget.setReadOnly();
 		slotTarget.forbidInteraction();
 
-		InventorySlot slotResult = inventory.addSlot(Isolator.SLOT_RESULUT, "output");
+		InventorySlot slotResult = inventory.addSlot(Isolator.SLOT_RESULUT, getSlotRL("output"));
 		slotResult.setReadOnly();
 		slotResult.forbidInteraction();
 
-		for (InventorySlot slot : inventory.addSlotArray(Isolator.SLOT_FINISHED, "output")) {
+		for (InventorySlot slot : inventory.addSlotArray(Isolator.SLOT_FINISHED, getSlotRL("output"))) {
 			slot.setReadOnly();
 			slot.forbidInsertion();
 		}

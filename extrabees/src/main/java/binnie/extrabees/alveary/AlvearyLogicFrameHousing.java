@@ -5,12 +5,12 @@ import javax.annotation.Nullable;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 
 import net.minecraftforge.common.capabilities.Capability;
-
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemStackHandler;
@@ -75,36 +75,40 @@ public class AlvearyLogicFrameHousing extends AlvearyLogic {
 
 	@Nullable
 	private IHiveFrame getHiveFrame() {
-		ItemStack stackInSlot = inv.getStackInSlot(0);
-		if (!stackInSlot.isEmpty()) {
-			return (IHiveFrame) stackInSlot.getItem();
+		ItemStack frameStack = getFrameStack();
+		if (!frameStack.isEmpty()) {
+			return (IHiveFrame) frameStack.getItem();
 		}
 		return null;
 	}
 
+	private ItemStack getFrameStack() {
+		return inv.getStackInSlot(0);
+	}
+
 	@Override
 	public float getTerritoryModifier(@Nonnull final IBeeGenome genome, final float currentModifier) {
-		return (this.getHiveFrame() == null) ? 1.0f : this.getHiveFrame().getBeeModifier().getTerritoryModifier(genome, currentModifier);
+		return (this.getHiveFrame() == null) ? 1.0f : this.getHiveFrame().getBeeModifier(this.getFrameStack()).getTerritoryModifier(genome, currentModifier);
 	}
 
 	@Override
 	public float getMutationModifier(@Nonnull final IBeeGenome genome, @Nonnull final IBeeGenome mate, final float currentModifier) {
-		return (this.getHiveFrame() == null) ? 1.0f : this.getHiveFrame().getBeeModifier().getMutationModifier(genome, mate, currentModifier);
+		return (this.getHiveFrame() == null) ? 1.0f : this.getHiveFrame().getBeeModifier(this.getFrameStack()).getMutationModifier(genome, mate, currentModifier);
 	}
 
 	@Override
 	public float getLifespanModifier(@Nonnull final IBeeGenome genome, @Nullable final IBeeGenome mate, final float currentModifier) {
-		return (this.getHiveFrame() == null) ? 1.0f : this.getHiveFrame().getBeeModifier().getLifespanModifier(genome, mate, currentModifier);
+		return (this.getHiveFrame() == null) ? 1.0f : this.getHiveFrame().getBeeModifier(this.getFrameStack()).getLifespanModifier(genome, mate, currentModifier);
 	}
 
 	@Override
 	public float getProductionModifier(@Nonnull final IBeeGenome genome, final float currentModifier) {
-		return (this.getHiveFrame() == null) ? 1.0f : this.getHiveFrame().getBeeModifier().getProductionModifier(genome, currentModifier);
+		return (this.getHiveFrame() == null) ? 1.0f : this.getHiveFrame().getBeeModifier(this.getFrameStack()).getProductionModifier(genome, currentModifier);
 	}
 
 	@Override
 	public float getFloweringModifier(@Nonnull final IBeeGenome genome, final float currentModifier) {
-		return (this.getHiveFrame() == null) ? 1.0f : this.getHiveFrame().getBeeModifier().getFloweringModifier(genome, currentModifier);
+		return (this.getHiveFrame() == null) ? 1.0f : this.getHiveFrame().getBeeModifier(this.getFrameStack()).getFloweringModifier(genome, currentModifier);
 	}
 
 	@Nullable
@@ -140,7 +144,7 @@ public class AlvearyLogicFrameHousing extends AlvearyLogic {
 			return super.insertItem(slot, stack, simulate);
 		}
 	}
-	
+
 	@Override
 	public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
 		return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY;
@@ -149,9 +153,9 @@ public class AlvearyLogicFrameHousing extends AlvearyLogic {
 	@Nullable
 	@Override
 	public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
-		if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+		if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
 			return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(inv);
 		}
 		return null;
-        }
+	}
 }

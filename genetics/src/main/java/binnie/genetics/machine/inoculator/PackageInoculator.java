@@ -34,28 +34,28 @@ public class PackageInoculator extends GeneticMachine.PackageGeneticBase impleme
 	public void createMachine(final Machine machine) {
 		new ComponentGeneticGUI(machine, GeneticsGUI.INOCULATOR);
 		final ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
-		InventorySlot slotSerumVial = inventory.addSlot(Inoculator.SLOT_SERUM_VIAL, "serum.active");
+		InventorySlot slotSerumVial = inventory.addSlot(Inoculator.SLOT_SERUM_VIAL, getSlotRL("serum.active"));
 		slotSerumVial.forbidInteraction();
 		slotSerumVial.setReadOnly();
 		final SlotValidator serumValid = new SerumSlotValidator();
 		slotSerumVial.setValidator(serumValid);
-		for (InventorySlot slot : inventory.addSlotArray(Inoculator.SLOT_SERUM_RESERVE, "serum.input")) {
+		for (InventorySlot slot : inventory.addSlotArray(Inoculator.SLOT_SERUM_RESERVE, getSlotRL("serum.input"))) {
 			slot.setValidator(serumValid);
 			slot.forbidExtraction();
 		}
-		for (InventorySlot slot : inventory.addSlotArray(Inoculator.SLOT_SERUM_EXPENDED, "serum.output")) {
+		for (InventorySlot slot : inventory.addSlotArray(Inoculator.SLOT_SERUM_EXPENDED, getSlotRL("serum.output"))) {
 			slot.setValidator(serumValid);
 			slot.setReadOnly();
 		}
-		for (InventorySlot slot : inventory.addSlotArray(Inoculator.SLOT_RESERVE, "input")) {
+		for (InventorySlot slot : inventory.addSlotArray(Inoculator.SLOT_RESERVE, getSlotRL("input"))) {
 			slot.forbidExtraction();
 			slot.setValidator(new ValidatorIndividualInoculate());
 		}
-		InventorySlot slotTarget = inventory.addSlot(Inoculator.SLOT_TARGET, "process");
+		InventorySlot slotTarget = inventory.addSlot(Inoculator.SLOT_TARGET, getSlotRL("process"));
 		slotTarget.setValidator(new ValidatorIndividualInoculate());
 		slotTarget.setReadOnly();
 		slotTarget.forbidInteraction();
-		for (final InventorySlot slot : inventory.addSlotArray(Inoculator.SLOT_FINISHED, "output")) {
+		for (final InventorySlot slot : inventory.addSlotArray(Inoculator.SLOT_FINISHED, getSlotRL("output"))) {
 			slot.setReadOnly();
 			slot.forbidInsertion();
 			slot.setValidator(new ValidatorIndividualInoculate());

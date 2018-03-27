@@ -19,19 +19,10 @@ public class WorldGenSpruce {
 				float radius = 1.0f - (leafSpawn - bottom) / coneHeight;
 				radius = 0.15f + 0.85f * radius;
 				radius *= width;
-				final float f = 0.0f;
-				final float h = leafSpawn;
-				leafSpawn = h - 1.0f;
-				this.generateCylinder(new Vector(f, h, 0.0f), radius, 1, this.leaf, false);
+				this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), radius, 1, this.leaf, false);
 			}
-			final float f2 = 0.0f;
-			final float h2 = leafSpawn;
-			leafSpawn = h2 - 1.0f;
-			this.generateCylinder(new Vector(f2, h2, 0.0f), 0.7f * width, 1, this.leaf, false);
-			final float f3 = 0.0f;
-			final float h3 = leafSpawn;
-			leafSpawn = h3 - 1.0f;
-			this.generateCylinder(new Vector(f3, h3, 0.0f), 0.4f * width, 1, this.leaf, false);
+			this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), 0.7f * width, 1, this.leaf, false);
+			this.generateCylinder(new Vector(0.0f, leafSpawn, 0.0f), 0.4f * width, 1, this.leaf, false);
 		}
 
 		@Override
@@ -58,19 +49,10 @@ public class WorldGenSpruce {
 				float radius = 1.0f - (leafSpawn - bottom) / coneHeight;
 				radius *= radius;
 				radius *= width;
-				final float f = 0.0f;
-				final float h = leafSpawn;
-				leafSpawn = h - 1.0f;
-				this.generateCylinder(new Vector(f, h, 0.0f), radius, 1, this.leaf, false);
+				this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), radius, 1, this.leaf, false);
 			}
-			final float f2 = 0.0f;
-			final float h2 = leafSpawn;
-			leafSpawn = h2 - 1.0f;
-			this.generateCylinder(new Vector(f2, h2, 0.0f), 0.7f * width, 1, this.leaf, false);
-			final float f3 = 0.0f;
-			final float h3 = leafSpawn;
-			leafSpawn = h3 - 1.0f;
-			this.generateCylinder(new Vector(f3, h3, 0.0f), 0.4f * width, 1, this.leaf, false);
+			this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), 0.7f * width, 1, this.leaf, false);
+			this.generateCylinder(new Vector(0.0f, leafSpawn, 0.0f), 0.4f * width, 1, this.leaf, false);
 		}
 
 		@Override
@@ -96,15 +78,9 @@ public class WorldGenSpruce {
 				float radius = 1.0f - (leafSpawn - bottom) / coneHeight;
 				radius = (float) Math.sqrt(radius);
 				radius *= width;
-				final float f = 0.0f;
-				final float h = leafSpawn;
-				leafSpawn = h - 1.0f;
-				this.generateCylinder(new Vector(f, h, 0.0f), radius, 1, this.leaf, false);
+				this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), radius, 1, this.leaf, false);
 			}
-			final float f2 = 0.0f;
-			final float h2 = leafSpawn;
-			leafSpawn = h2 - 1.0f;
-			this.generateCylinder(new Vector(f2, h2, 0.0f), 0.7f * width, 1, this.leaf, false);
+			this.generateCylinder(new Vector(0.0f, leafSpawn, 0.0f), 0.7f * width, 1, this.leaf, false);
 		}
 
 		@Override
@@ -130,15 +106,9 @@ public class WorldGenSpruce {
 				float radius = 1.0f - (leafSpawn - bottom) / coneHeight;
 				radius = (float) Math.sqrt(radius);
 				radius *= width;
-				final float f = 0.0f;
-				final float h = leafSpawn;
-				leafSpawn = h - 1.0f;
-				this.generateCylinder(new Vector(f, h, 0.0f), radius, 1, this.leaf, false);
+				this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), radius, 1, this.leaf, false);
 			}
-			final float f2 = 0.0f;
-			final float h2 = leafSpawn;
-			leafSpawn = h2 - 1.0f;
-			this.generateCylinder(new Vector(f2, h2, 0.0f), 0.7f * width, 1, this.leaf, false);
+			this.generateCylinder(new Vector(0.0f, leafSpawn, 0.0f), 0.7f * width, 1, this.leaf, false);
 		}
 
 		@Override

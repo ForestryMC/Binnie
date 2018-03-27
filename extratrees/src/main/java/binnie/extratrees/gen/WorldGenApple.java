@@ -23,7 +23,7 @@ public class WorldGenApple {
 			while (leafSpawn > 2) {
 				WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, 1.5F + girth, 1, WorldGenHelper.EnumReplaceMode.AIR);
 			}
-			WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, 1F + girth, 1, WorldGenHelper.EnumReplaceMode.AIR);
+			WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn, 0), girth, 1F + girth, 1, WorldGenHelper.EnumReplaceMode.AIR);
 		}
 	}
 
@@ -41,7 +41,7 @@ public class WorldGenApple {
 				WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, 2F + girth, 1, WorldGenHelper.EnumReplaceMode.AIR);
 			}
 			WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, 2.5F + girth, 1, WorldGenHelper.EnumReplaceMode.AIR);
-			WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, 0.5F + girth, 1, WorldGenHelper.EnumReplaceMode.AIR);
+			WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn, 0), girth, 0.5F + girth, 1, WorldGenHelper.EnumReplaceMode.AIR);
 		}
 	}
 
@@ -58,7 +58,7 @@ public class WorldGenApple {
 			while (leafSpawn > 3) {
 				WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, 3F + girth, 1, WorldGenHelper.EnumReplaceMode.AIR);
 			}
-			WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, 1F + girth, 1, WorldGenHelper.EnumReplaceMode.AIR);
+			WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn, 0), girth, 1F + girth, 1, WorldGenHelper.EnumReplaceMode.AIR);
 		}
 	}
 
@@ -76,7 +76,7 @@ public class WorldGenApple {
 				WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, 1.85F + girth, 1, WorldGenHelper.EnumReplaceMode.AIR);
 			}
 			WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, 1.85F + girth, 1, WorldGenHelper.EnumReplaceMode.AIR);
-			WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, 1.5F + girth, 1, WorldGenHelper.EnumReplaceMode.AIR);
+			WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn, 0), girth, 1.5F + girth, 1, WorldGenHelper.EnumReplaceMode.AIR);
 		}
 	}
 }

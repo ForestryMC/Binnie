@@ -1,6 +1,5 @@
 package binnie.genetics.machine.genepool;
 
-import binnie.genetics.machine.EthanolTankValidator;
 import net.minecraft.tileentity.TileEntity;
 
 import binnie.core.gui.minecraft.IMachineInformation;
@@ -17,6 +16,7 @@ import binnie.core.machines.power.ComponentPowerReceptor;
 import binnie.genetics.core.GeneticsGUI;
 import binnie.genetics.item.GeneticsItems;
 import binnie.genetics.machine.ComponentGeneticGUI;
+import binnie.genetics.machine.EthanolTankValidator;
 import binnie.genetics.machine.GeneticMachine;
 import binnie.genetics.machine.ModuleMachine;
 
@@ -29,14 +29,14 @@ public class PackageGenepool extends GeneticMachine.PackageGeneticBase implement
 	public void createMachine(final Machine machine) {
 		new ComponentGeneticGUI(machine, GeneticsGUI.GENEPOOL);
 		ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
-		InventorySlot slotEnzyme = inventory.addSlot(Genepool.SLOT_ENZYME, "enzyme");
+		InventorySlot slotEnzyme = inventory.addSlot(Genepool.SLOT_ENZYME, getSlotRL("enzyme"));
 		slotEnzyme.setValidator(new SlotValidator.Item(GeneticsItems.Enzyme.get(1), ModuleMachine.getSpriteEnzyme()));
 		slotEnzyme.forbidExtraction();
-		InventorySlot slotProcess = inventory.addSlot(Genepool.SLOT_BEE, "process");
+		InventorySlot slotProcess = inventory.addSlot(Genepool.SLOT_BEE, getSlotRL("process"));
 		slotProcess.setValidator(new SlotValidator.Individual());
 		slotProcess.setReadOnly();
 		slotProcess.forbidExtraction();
-		for (InventorySlot slot : inventory.addSlotArray(Genepool.SLOT_RESERVE, "input")) {
+		for (InventorySlot slot : inventory.addSlotArray(Genepool.SLOT_RESERVE, getSlotRL("input"))) {
 			slot.setValidator(new SlotValidator.Individual());
 			slot.forbidExtraction();
 		}

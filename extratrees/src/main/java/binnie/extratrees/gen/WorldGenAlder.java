@@ -27,7 +27,7 @@ public class WorldGenAlder {
 				WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, girth + 2.25F, 1, EnumReplaceMode.SOFT);
 				WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, girth + 2F, 1, EnumReplaceMode.SOFT);
 			}
-			WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, girth + 1.75F, 1, EnumReplaceMode.SOFT);
+			WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn, 0), girth, girth + 1.75F, 1, EnumReplaceMode.SOFT);
 		}
 	}
 }

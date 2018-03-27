@@ -33,13 +33,13 @@ public class LumbermillMachine extends ExtraTreeMachine.PackageExtraTreeMachine 
 		new ExtraTreeMachine.ComponentExtraTreeGUI(machine, ExtraTreesGUID.LUMBERMILL);
 		final ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
 
-		InventorySlot slotLog = inventory.addSlot(SLOT_LOG, "input");
+		InventorySlot slotLog = inventory.addSlot(SLOT_LOG, getSlotRL("input"));
 		slotLog.setValidator(new SlotValidatorLog(machine.getWorld()));
 		slotLog.forbidExtraction();
 
-		inventory.addSlot(SLOT_PLANKS, "output").setReadOnly();
-		inventory.addSlot(SLOT_BARK, "byproduct").setReadOnly();
-		inventory.addSlot(SLOT_SAWDUST, "byproduct").setReadOnly();
+		inventory.addSlot(SLOT_PLANKS, getSlotRL("output")).setReadOnly();
+		inventory.addSlot(SLOT_BARK, getSlotRL("byproduct")).setReadOnly();
+		inventory.addSlot(SLOT_SAWDUST, getSlotRL("byproduct")).setReadOnly();
 
 		final ComponentTankContainer tanks = new ComponentTankContainer(machine);
 		TankSlot tankWater = tanks.addTank(TANK_WATER, "input", TANK_WATER_CAPACITY);

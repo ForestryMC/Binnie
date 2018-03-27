@@ -12,23 +12,15 @@ public class WorldGenTree2 {
 		public void generate() {
 			this.generateTreeTrunk(this.height, this.girth);
 			float leafSpawn = this.height;
-			final float bottom = this.randBetween(2, 3);
 			float width = this.height * this.randBetween(0.35f, 0.4f);
 			if (width < 1.2) {
 				width = 1.55f;
 			}
-			final float f = 0.0f;
-			final float h = leafSpawn;
-			leafSpawn = h - 1.0f;
-			this.generateCylinder(new Vector(f, h, 0.0f), width - 1.0f, 1, this.leaf, false);
-			final float f2 = 0.0f;
-			final float h2 = leafSpawn;
-			leafSpawn = h2 - 1.0f;
-			this.generateCylinder(new Vector(f2, h2, 0.0f), width, 1, this.leaf, false);
-			final float f3 = 0.0f;
-			final float h3 = leafSpawn;
-			leafSpawn = h3 - 1.0f;
-			this.generateCylinder(new Vector(f3, h3, 0.0f), width - 0.5f, 1, this.leaf, false);
+			this.generateCylinder(new Vector(0.0F, leafSpawn, 0.0f), width - 1.0f, 1, this.leaf, false);
+			leafSpawn--;
+			this.generateCylinder(new Vector(0.0f, leafSpawn, 0.0f), width, 1, this.leaf, false);
+			leafSpawn--;
+			this.generateCylinder(new Vector(0.0f, leafSpawn, 0.0f), width - 0.5f, 1, this.leaf, false);
 		}
 
 		@Override
@@ -57,15 +49,10 @@ public class WorldGenTree2 {
 				float radius = 1.0f - (leafSpawn - bottom) / coneHeight;
 				radius *= 2.0f - radius;
 				radius *= width;
-				final float f = 0.0f;
-				final float h = leafSpawn;
-				leafSpawn = h - 1.0f;
-				this.generateCylinder(new Vector(f, h, 0.0f), radius, 1, this.leaf, false);
+				this.generateCylinder(new Vector(0.0f, leafSpawn, 0.0f), radius, 1, this.leaf, false);
+				leafSpawn--;
 			}
-			final float f2 = 0.0f;
-			final float h2 = leafSpawn;
-			leafSpawn = h2 - 1.0f;
-			this.generateCylinder(new Vector(f2, h2, 0.0f), 0.7f * width, 1, this.leaf, false);
+			this.generateCylinder(new Vector(0.0f, leafSpawn, 0.0f), 0.7f * width, 1, this.leaf, false);
 		}
 
 		@Override
@@ -89,28 +76,13 @@ public class WorldGenTree2 {
 			if (width < 2.0f) {
 				width = 2.0f;
 			}
-			final float f = 0.0f;
-			final float h = leafSpawn;
-			leafSpawn = h - 1.0f;
-			this.generateCylinder(new Vector(f, h, 0.0f), width - 1.0f, 1, this.leaf, false);
+			this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), width - 1.0f, 1, this.leaf, false);
 			while (leafSpawn > bottom + 1.0f) {
-				final float f2 = 0.0f;
-				final float h2 = leafSpawn;
-				leafSpawn = h2 - 1.0f;
-				this.generateCylinder(new Vector(f2, h2, 0.0f), width - 0.3f, 1, this.leaf, false);
-				final float f3 = 0.0f;
-				final float h3 = leafSpawn;
-				leafSpawn = h3 - 1.0f;
-				this.generateCylinder(new Vector(f3, h3, 0.0f), width - 0.7f, 1, this.leaf, false);
+				this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), width - 0.3f, 1, this.leaf, false);
+				this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), width - 0.7f, 1, this.leaf, false);
 			}
-			final float f4 = 0.0f;
-			final float h4 = leafSpawn;
-			leafSpawn = h4 - 1.0f;
-			this.generateCylinder(new Vector(f4, h4, 0.0f), width, 1, this.leaf, false);
-			final float f5 = 0.0f;
-			final float h5 = leafSpawn;
-			leafSpawn = h5 - 1.0f;
-			this.generateCylinder(new Vector(f5, h5, 0.0f), width - 0.4f, 1, this.leaf, false);
+			this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), width, 1, this.leaf, false);
+			this.generateCylinder(new Vector(0.0f, leafSpawn, 0.0f), width - 0.4f, 1, this.leaf, false);
 		}
 
 		@Override
@@ -134,15 +106,9 @@ public class WorldGenTree2 {
 			if (width < 2.0f) {
 				width = 2.0f;
 			}
-			final float f = 0.0f;
-			final float h = leafSpawn;
-			leafSpawn = h - 1.0f;
-			this.generateCylinder(new Vector(f, h, 0.0f), width - 1.0f, 1, this.leaf, false);
+			this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), width - 1.0f, 1, this.leaf, false);
 			while (leafSpawn > bottom) {
-				final float f2 = 0.0f;
-				final float h2 = leafSpawn;
-				leafSpawn = h2 - 1.0f;
-				this.generateCylinder(new Vector(f2, h2, 0.0f), width, 1, this.leaf, false);
+				this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), width, 1, this.leaf, false);
 			}
 		}
 
@@ -162,31 +128,15 @@ public class WorldGenTree2 {
 		public void generate() {
 			this.generateTreeTrunk(this.height, this.girth);
 			float leafSpawn = this.height;
-			final float bottom = this.randBetween(2, 3);
 			float width = this.height * this.randBetween(0.45f, 0.5f);
 			if (width < 2.5f) {
 				width = 2.5f;
 			}
-			final float f = 0.0f;
-			final float h = leafSpawn;
-			leafSpawn = h - 1.0f;
-			this.generateCylinder(new Vector(f, h, 0.0f), width * 0.25f, 1, this.leaf, false);
-			final float f2 = 0.0f;
-			final float h2 = leafSpawn;
-			leafSpawn = h2 - 1.0f;
-			this.generateCylinder(new Vector(f2, h2, 0.0f), width * 0.5f, 1, this.leaf, false);
-			final float f3 = 0.0f;
-			final float h3 = leafSpawn;
-			leafSpawn = h3 - 1.0f;
-			this.generateCylinder(new Vector(f3, h3, 0.0f), width * 0.7f, 1, this.leaf, false);
-			final float f4 = 0.0f;
-			final float h4 = leafSpawn;
-			leafSpawn = h4 - 1.0f;
-			this.generateCylinder(new Vector(f4, h4, 0.0f), width, 1, this.leaf, false);
-			final float f5 = 0.0f;
-			final float h5 = leafSpawn;
-			leafSpawn = h5 - 1.0f;
-			this.generateCylinder(new Vector(f5, h5, 0.0f), width - 2.0f, 1, this.leaf, false);
+			this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), width * 0.25f, 1, this.leaf, false);
+			this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), width * 0.5f, 1, this.leaf, false);
+			this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), width * 0.7f, 1, this.leaf, false);
+			this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), width, 1, this.leaf, false);
+			this.generateCylinder(new Vector(0.0f, leafSpawn, 0.0f), width - 2.0f, 1, this.leaf, false);
 		}
 
 		@Override
@@ -210,38 +160,17 @@ public class WorldGenTree2 {
 			if (width > 7.0f) {
 				width = 7.0f;
 			}
-			final float f = 0.0f;
-			final float h = leafSpawn;
-			leafSpawn = h - 1.0f;
-			this.generateCylinder(new Vector(f, h, 0.0f), width - 2.0f, 1, this.leaf, false);
+			this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), width - 2.0f, 1, this.leaf, false);
 			while (leafSpawn > bottom * 2.0f + 1.0f) {
-				final float f2 = 0.0f;
-				final float h2 = leafSpawn;
-				leafSpawn = h2 - 1.0f;
-				this.generateCylinder(new Vector(f2, h2, 0.0f), width - 1.5f, 1, this.leaf, false);
-				final float f3 = 0.0f;
-				final float h3 = leafSpawn;
-				leafSpawn = h3 - 1.0f;
-				this.generateCylinder(new Vector(f3, h3, 0.0f), width - 0.9f, 1, this.leaf, false);
+				this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), width - 1.5f, 1, this.leaf, false);
+				this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), width - 0.9f, 1, this.leaf, false);
 			}
-			final float f4 = 0.0f;
-			final float h4 = leafSpawn;
-			leafSpawn = h4 - 1.0f;
-			this.generateCylinder(new Vector(f4, h4, 0.0f), width, 1, this.leaf, false);
+			this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), width, 1, this.leaf, false);
 			while (leafSpawn > bottom) {
-				final float f5 = 0.0f;
-				final float h5 = leafSpawn;
-				leafSpawn = h5 - 1.0f;
-				this.generateCylinder(new Vector(f5, h5, 0.0f), width - 0.9f, 1, this.leaf, false);
-				final float f6 = 0.0f;
-				final float h6 = leafSpawn;
-				leafSpawn = h6 - 1.0f;
-				this.generateCylinder(new Vector(f6, h6, 0.0f), width, 1, this.leaf, false);
+				this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), width - 0.9f, 1, this.leaf, false);
+				this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), width, 1, this.leaf, false);
 			}
-			final float f7 = 0.0f;
-			final float h7 = leafSpawn;
-			leafSpawn = h7 - 1.0f;
-			this.generateCylinder(new Vector(f7, h7, 0.0f), 0.7f * width, 1, this.leaf, false);
+			this.generateCylinder(new Vector(0.0f, leafSpawn, 0.0f), 0.7f * width, 1, this.leaf, false);
 		}
 
 		@Override
@@ -263,10 +192,7 @@ public class WorldGenTree2 {
 			final float bottom = 0.0f;
 			final float width = 1.5f;
 			while (leafSpawn > bottom) {
-				final float f = 0.0f;
-				final float h = leafSpawn;
-				leafSpawn = h - 1.0f;
-				this.generateCylinder(new Vector(f, h, 0.0f), width, 1, this.leaf, false);
+				this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), width, 1, this.leaf, false);
 			}
 		}
 
@@ -291,24 +217,12 @@ public class WorldGenTree2 {
 			if (width < 2.0f) {
 				width = 2.0f;
 			}
-			final float f = 0.0f;
-			final float h = leafSpawn;
-			leafSpawn = h - 1.0f;
-			this.generateCylinder(new Vector(f, h, 0.0f), width - 1.0f, 1, this.leaf, false);
+			this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), width - 1.0f, 1, this.leaf, false);
 			while (leafSpawn > bottom) {
-				final float f2 = 0.0f;
-				final float h2 = leafSpawn;
-				leafSpawn = h2 - 1.0f;
-				this.generateCylinder(new Vector(f2, h2, 0.0f), width - 0.6f, 1, this.leaf, false);
+				this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), width - 0.6f, 1, this.leaf, false);
 			}
-			final float f3 = 0.0f;
-			final float h3 = leafSpawn;
-			leafSpawn = h3 - 1.0f;
-			this.generateCylinder(new Vector(f3, h3, 0.0f), width, 1, this.leaf, false);
-			final float f4 = 0.0f;
-			final float h4 = leafSpawn;
-			leafSpawn = h4 - 1.0f;
-			this.generateCylinder(new Vector(f4, h4, 0.0f), width - 0.4f, 1, this.leaf, false);
+			this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), width, 1, this.leaf, false);
+			this.generateCylinder(new Vector(0.0f, leafSpawn, 0.0f), width - 0.4f, 1, this.leaf, false);
 		}
 
 		@Override

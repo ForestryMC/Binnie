@@ -7,7 +7,6 @@ import binnie.core.machines.Machine;
 import binnie.core.machines.TileEntityMachine;
 import binnie.core.machines.inventory.ComponentInventorySlots;
 import binnie.core.machines.inventory.ComponentTankContainer;
-import binnie.core.machines.inventory.MachineSide;
 import binnie.core.machines.inventory.TankSlot;
 import binnie.core.machines.power.ComponentPowerReceptor;
 import binnie.extratrees.gui.ExtraTreesGUID;

@@ -26,18 +26,18 @@ public class PackageSequencer extends GeneticMachine.PackageGeneticBase implemen
 	public void createMachine(final Machine machine) {
 		new ComponentGeneticGUI(machine, GeneticsGUI.SEQUENCER);
 		ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
-		InventorySlot slotDye = inventory.addSlot(Sequencer.SLOT_DYE, "dye");
+		InventorySlot slotDye = inventory.addSlot(Sequencer.SLOT_DYE, getSlotRL("dye"));
 		slotDye.setValidator(new SlotValidator.Item(GeneticsItems.FluorescentDye.get(1), ModuleMachine.getSpriteDye()));
 		slotDye.forbidExtraction();
-		for (InventorySlot slot : inventory.addSlotArray(Sequencer.SLOT_RESERVE, "input")) {
+		for (InventorySlot slot : inventory.addSlotArray(Sequencer.SLOT_RESERVE, getSlotRL("input"))) {
 			slot.setValidator(new SlotValidatorUnsequenced());
 			slot.forbidExtraction();
 		}
-		InventorySlot slotTarget = inventory.addSlot(Sequencer.SLOT_TARGET, "process");
+		InventorySlot slotTarget = inventory.addSlot(Sequencer.SLOT_TARGET, getSlotRL("process"));
 		slotTarget.setValidator(new SlotValidatorUnsequenced());
 		slotTarget.setReadOnly();
 		slotTarget.forbidInteraction();
-		InventorySlot slotDone = inventory.addSlot(Sequencer.SLOT_DONE, "output");
+		InventorySlot slotDone = inventory.addSlot(Sequencer.SLOT_DONE, getSlotRL("output"));
 		slotDone.setReadOnly();
 		ComponentInventoryTransfer transfer = new ComponentInventoryTransfer(machine);
 		transfer.addRestock(Sequencer.SLOT_RESERVE, Sequencer.SLOT_TARGET, 1);

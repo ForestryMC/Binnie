@@ -50,9 +50,7 @@ public class RegistryRecipe extends ShapedOreRecipe {
 			databases.add(inv.getStackInRowAndColumn(2, 1));
 
 			databases = ItemStackUtil.condenseStacks(databases);
-			if (databases.size() >= distinctDatabaseCount) {
-				return true;
-			}
+			return databases.size() >= distinctDatabaseCount;
 		}
 		return false;
 	}

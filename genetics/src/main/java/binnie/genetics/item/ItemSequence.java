@@ -1,36 +1,33 @@
 package binnie.genetics.item;
 
-import javax.annotation.Nullable;
-
-import binnie.core.ModId;
 import com.google.common.base.Preconditions;
 
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
+import javax.annotation.Nullable;
 import java.util.List;
 
-import forestry.api.apiculture.BeeManager;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
-
 import net.minecraft.world.World;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import forestry.api.apiculture.BeeManager;
 import forestry.api.apiculture.EnumBeeChromosome;
 import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.ISpeciesRoot;
 
+import binnie.core.ModId;
+import binnie.core.api.genetics.IGene;
+import binnie.core.api.genetics.IItemAnalysable;
 import binnie.core.genetics.Gene;
 import binnie.core.item.ItemCore;
 import binnie.core.util.I18N;
 import binnie.genetics.CreativeTabGenetics;
 import binnie.genetics.Genetics;
-import binnie.core.api.genetics.IGene;
-import binnie.core.api.genetics.IItemAnalysable;
 import binnie.genetics.api.IItemChargeable;
 import binnie.genetics.genetics.GeneItem;
 import binnie.genetics.genetics.SequencerItem;

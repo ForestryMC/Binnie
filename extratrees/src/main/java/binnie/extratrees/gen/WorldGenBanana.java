@@ -20,6 +20,6 @@ public class WorldGenBanana extends forestry.arboriculture.worldgen.WorldGenTree
 		int leafSpawn = this.height + 1;
 		WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, girth, 1, WorldGenHelper.EnumReplaceMode.AIR);
 		WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, girth + 1.5F, 1, WorldGenHelper.EnumReplaceMode.AIR);
-		WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, girth + 1, 1, WorldGenHelper.EnumReplaceMode.AIR);
+		WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn, 0), girth, girth + 1, 1, WorldGenHelper.EnumReplaceMode.AIR);
 	}
 }

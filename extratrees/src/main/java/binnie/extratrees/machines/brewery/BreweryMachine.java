@@ -10,7 +10,6 @@ import binnie.core.machines.TileEntityMachine;
 import binnie.core.machines.inventory.ComponentInventorySlots;
 import binnie.core.machines.inventory.ComponentTankContainer;
 import binnie.core.machines.inventory.InventorySlot;
-import binnie.core.machines.inventory.MachineSide;
 import binnie.core.machines.inventory.TankSlot;
 import binnie.core.machines.power.ComponentPowerReceptor;
 import binnie.extratrees.gui.ExtraTreesGUID;
@@ -48,11 +47,11 @@ public class BreweryMachine extends ExtraTreeMachine.PackageExtraTreeMachine imp
 			slot.forbidExtraction();
 		}
 
-		final InventorySlot yeast = inventory.addSlot(SLOT_YEAST, "yeast");
+		final InventorySlot yeast = inventory.addSlot(SLOT_YEAST, getSlotRL("yeast"));
 		yeast.setValidator(new SlotValidatorBreweryYeast());
 		yeast.setType(InventorySlot.Type.Recipe);
 
-		final InventorySlot ingredient = inventory.addSlot(SLOT_RECIPE_INPUT, "ingredient");
+		final InventorySlot ingredient = inventory.addSlot(SLOT_RECIPE_INPUT, getSlotRL("ingredient"));
 		ingredient.setValidator(new SlotValidatorBreweryIngredient());
 		ingredient.setType(InventorySlot.Type.Recipe);
 

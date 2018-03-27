@@ -27,7 +27,7 @@ public class WorldGenWalnut {
 				WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, 1.8f + girth, 1, WorldGenHelper.EnumReplaceMode.AIR);
 			}
 			WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, 0.7f + girth, 1, WorldGenHelper.EnumReplaceMode.AIR);
-			WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, 0.2f - girth, 1, WorldGenHelper.EnumReplaceMode.AIR);
+			WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn, 0), girth, 0.2f - girth, 1, WorldGenHelper.EnumReplaceMode.AIR);
 		}
 	}
 
@@ -47,7 +47,7 @@ public class WorldGenWalnut {
 				WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, 2.9f + girth, 1, WorldGenHelper.EnumReplaceMode.AIR);
 			}
 			if (rand.nextBoolean()) {
-				WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, 1.9f + girth, 1, WorldGenHelper.EnumReplaceMode.AIR);
+				WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn, 0), girth, 1.9f + girth, 1, WorldGenHelper.EnumReplaceMode.AIR);
 			}
 		}
 	}

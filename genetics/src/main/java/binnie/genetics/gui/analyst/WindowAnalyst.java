@@ -372,9 +372,7 @@ public class WindowAnalyst extends Window {
 			}
 			if (ManagerGenetics.isAnalysable(itemStack)) {
 				WindowInventory windowInventory = windowAnalyst.getWindowInventory();
-				if (!windowInventory.getStackInSlot(1).isEmpty()) {
-					return true;
-				}
+				return !windowInventory.getStackInSlot(1).isEmpty();
 			}
 			return false;
 		}

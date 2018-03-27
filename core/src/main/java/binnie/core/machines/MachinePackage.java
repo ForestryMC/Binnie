@@ -1,7 +1,9 @@
 package binnie.core.machines;
 
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
 
+import binnie.core.Constants;
 import binnie.core.util.I18N;
 
 public abstract class MachinePackage {
@@ -54,5 +56,9 @@ public abstract class MachinePackage {
 
 	public final String getInformation() {
 		return I18N.localise(this.group.getMod().getModId() + '.' + this.group.getShortUID() + "." + this.getUID() + ".info");
+	}
+
+	protected ResourceLocation getSlotRL(String slotName) {
+		return new ResourceLocation(Constants.CORE_MOD_ID, "gui.slots." + slotName);
 	}
 }

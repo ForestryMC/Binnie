@@ -3,9 +3,6 @@ package binnie.botany.tile;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-import binnie.botany.api.BotanyAPI;
-import binnie.botany.genetics.EnumFlowerType;
-import forestry.api.lepidopterology.ButterflyManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
@@ -27,11 +24,14 @@ import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.IPollinatable;
+import forestry.api.lepidopterology.ButterflyManager;
 import forestry.api.lepidopterology.IButterfly;
 import forestry.api.lepidopterology.IButterflyNursery;
 
+import binnie.botany.api.BotanyAPI;
 import binnie.botany.api.gardening.EnumSoilType;
 import binnie.botany.api.gardening.IGardeningManager;
+import binnie.botany.api.genetics.EnumFlowerColor;
 import binnie.botany.api.genetics.EnumFlowerStage;
 import binnie.botany.api.genetics.IAlleleFlowerSpecies;
 import binnie.botany.api.genetics.IFlower;
@@ -40,7 +40,7 @@ import binnie.botany.api.genetics.IFlowerRoot;
 import binnie.botany.api.genetics.IFlowerType;
 import binnie.botany.blocks.PlantType;
 import binnie.botany.core.BotanyCore;
-import binnie.botany.api.genetics.EnumFlowerColor;
+import binnie.botany.genetics.EnumFlowerType;
 import binnie.botany.genetics.Flower;
 import binnie.botany.modules.ModuleFlowers;
 import binnie.botany.modules.ModuleGardening;
@@ -198,7 +198,7 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 			return;
 		}
 
-		if(updateState(rand)){
+		if (updateState(rand)) {
 			return;
 		}
 
@@ -220,14 +220,12 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 		updateRender(true);
 	}
 
-	private void mateFlower(Random rand, float chancePollinate, float chanceSelfPollinate){
+	private void mateFlower(Random rand, float chancePollinate, float chanceSelfPollinate) {
 		if (world.rand.nextFloat() < chancePollinate && flower.hasFlowered() && !flower.isWilted()) {
-			for (int a2 = 0; a2 < 4; ++a2) {
-				int dx3;
-				int dz2;
-				for (dx3 = 0, dz2 = 0; dx3 == 0 && dz2 == 0; dx3 = rand.nextInt(5) - 2, dz2 = rand.nextInt(5) - 2) {
-				}
-				TileEntity tile = world.getTileEntity(pos.add(dx3, 0, dz2));
+			for (int tries = 0; tries < 4; ++tries) {
+				int x = rand.nextInt(5) - 2;
+				int z = rand.nextInt(5) - 2;
+				TileEntity tile = world.getTileEntity(pos.add(x, 0, z));
 				if (tile instanceof IPollinatable && ((IPollinatable) tile).canMateWith(getFlower())) {
 					((IPollinatable) tile).mateWith(getFlower());
 				}
@@ -239,22 +237,20 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 		}
 	}
 
-	private void plantOffspring(Random rand, float chanceDispersal){
+	private void plantOffspring(Random rand, float chanceDispersal) {
 		if (world.rand.nextFloat() < chanceDispersal && flower.hasFlowered() && !flower.isWilted()) {
 			IFlowerGenome mate = flower.getMate();
 			if (mate != null) {
 				boolean dispersed = false;
-				for (int a = 0; a < 5 && !dispersed; ++a) {
-					int dx2;
-					int dz;
-					for (dx2 = 0, dz = 0; dx2 == 0 && dz == 0; dx2 = rand.nextInt(3) - 1, dz = rand.nextInt(3) - 1) {
-					}
+				for (int tries = 0; tries < 5 && !dispersed; ++tries) {
+					int x = rand.nextInt(3) - 1;
+					int z = rand.nextInt(3) - 1;
 
-					Block b2 = world.getBlockState(pos.add(dx2, -1, dz)).getBlock();
-					if (world.isAirBlock(pos.add(dx2, 0, dz)) && BotanyCore.getGardening().isSoil(b2)) {
+					Block b2 = world.getBlockState(pos.add(x, -1, z)).getBlock();
+					if (world.isAirBlock(pos.add(x, 0, z)) && BotanyCore.getGardening().isSoil(b2)) {
 						IFlower offspring = flower.getOffspring(world, pos);
 						if (offspring != null) {
-							BotanyCore.getFlowerRoot().plant(world, pos.add(dx2, 0, dz), offspring, getOwner());
+							BotanyCore.getFlowerRoot().plant(world, pos.add(x, 0, z), offspring, getOwner());
 							flower.removeMate();
 							dispersed = true;
 						}
@@ -264,7 +260,7 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 		}
 	}
 
-	private boolean updateState(Random rand){
+	private boolean updateState(Random rand) {
 		float light = world.getLight(pos);
 		if (light < 6.0f) {
 			for (int offsetX = -2; offsetX <= 2; ++offsetX) {

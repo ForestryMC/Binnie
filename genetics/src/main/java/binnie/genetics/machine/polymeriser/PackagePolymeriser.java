@@ -1,6 +1,5 @@
 package binnie.genetics.machine.polymeriser;
 
-import binnie.core.machines.inventory.TankValidator;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -16,6 +15,7 @@ import binnie.core.machines.inventory.ComponentInventoryTransfer;
 import binnie.core.machines.inventory.ComponentTankContainer;
 import binnie.core.machines.inventory.InventorySlot;
 import binnie.core.machines.inventory.SlotValidator;
+import binnie.core.machines.inventory.TankValidator;
 import binnie.core.machines.power.ComponentPowerReceptor;
 import binnie.genetics.core.GeneticsGUI;
 import binnie.genetics.item.GeneticLiquid;
@@ -34,19 +34,19 @@ public class PackagePolymeriser extends GeneticMachine.PackageGeneticBase implem
 		new ComponentGeneticGUI(machine, GeneticsGUI.POLYMERISER);
 		ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
 		//Slot Gold
-		InventorySlot slotGold = inventory.addSlot(Polymeriser.SLOT_GOLD, "catalyst");
+		InventorySlot slotGold = inventory.addSlot(Polymeriser.SLOT_GOLD, getSlotRL("catalyst"));
 		slotGold.setValidator(new SlotValidator.Item(new ItemStack(Items.GOLD_NUGGET, 1), ModuleMachine.getSpriteNugget()));
 		slotGold.forbidExtraction();
 		//Slot Serum
-		InventorySlot slotSerum = inventory.addSlot(Polymeriser.SLOT_SERUM, "process");
+		InventorySlot slotSerum = inventory.addSlot(Polymeriser.SLOT_SERUM, getSlotRL("process"));
 		slotSerum.setValidator(new SlotValidatorUnfilledSerum());
 		slotSerum.forbidInteraction();
 		slotSerum.setReadOnly();
-		for (InventorySlot slot : inventory.addSlotArray(Polymeriser.SLOT_SERUM_RESERVE, "input")) {
+		for (InventorySlot slot : inventory.addSlotArray(Polymeriser.SLOT_SERUM_RESERVE, getSlotRL("input"))) {
 			slot.setValidator(new SlotValidatorUnfilledSerum());
 			slot.forbidExtraction();
 		}
-		for (InventorySlot slot : inventory.addSlotArray(Polymeriser.SLOT_SERUM_FINISHED, "output")) {
+		for (InventorySlot slot : inventory.addSlotArray(Polymeriser.SLOT_SERUM_FINISHED, getSlotRL("output"))) {
 			slot.setReadOnly();
 		}
 		ComponentInventoryTransfer transfer = new ComponentInventoryTransfer(machine);

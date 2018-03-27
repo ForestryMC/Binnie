@@ -19,7 +19,7 @@ public class WorldGenPrune extends WorldGenTree {
 			this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), width, 1, this.leaf, false);
 		}
 		this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), 0.6f * width, 1, this.leaf, false);
-		this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), 0.3f * width, 1, this.leaf, false);
+		this.generateCylinder(new Vector(0.0f, leafSpawn, 0.0f), 0.3f * width, 1, this.leaf, false);
 	}
 
 	@Override
