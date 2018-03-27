@@ -42,20 +42,20 @@ public final class BlockRegister {
 	private static void registerHiveDrops() {
 		IAlleleBeeSpecies valiantSpecies = Utils.getSpecies(BeeDefinition.VALIANT);
 		EnumHiveType.WATER.addDrops(
-			new HiveDrop(ExtraBeeDefinition.WATER, 0.80),
-			new HiveDrop(valiantSpecies, 0.03)
+			new HiveDrop(ExtraBeeDefinition.WATER, 0.80).setIgnobleShare(0.5),
+			new HiveDrop(valiantSpecies, 0.03).setIgnobleShare(0.5)
 		);
 		EnumHiveType.ROCK.addDrops(
-			new HiveDrop(ExtraBeeDefinition.ROCK, 0.80),
-			new HiveDrop(valiantSpecies, 0.03)
+			new HiveDrop(ExtraBeeDefinition.ROCK, 0.80).setIgnobleShare(0.5),
+			new HiveDrop(valiantSpecies, 0.03).setIgnobleShare(0.5)
 		);
 		EnumHiveType.NETHER.addDrops(
-			new HiveDrop(ExtraBeeDefinition.BASALT, 0.80),
-			new HiveDrop(valiantSpecies, 0.03)
+			new HiveDrop(ExtraBeeDefinition.BASALT, 0.80).setIgnobleShare(0.5),
+			new HiveDrop(valiantSpecies, 0.03).setIgnobleShare(0.5)
 		);
 		EnumHiveType.MARBLE.addDrops(
-			new HiveDrop(ExtraBeeDefinition.MARBLE, 0.80),
-			new HiveDrop(valiantSpecies, 0.03)
+			new HiveDrop(ExtraBeeDefinition.MARBLE, 0.80).setIgnobleShare(0.5),
+			new HiveDrop(valiantSpecies, 0.03).setIgnobleShare(0.5)
 		);
 
 		if (!ConfigurationMain.isCanQuarryMineHives()) {
