@@ -19,12 +19,13 @@ import binnie.extrabees.ExtraBees;
 import binnie.extrabees.blocks.BlockExtraBeeHives;
 import binnie.extrabees.blocks.type.EnumHiveType;
 import binnie.extrabees.genetics.ExtraBeeDefinition;
+import binnie.extrabees.utils.config.ConfigurationMain;
 
 public enum BinnieHiveDescription implements IHiveDescription {
-	WATER(EnumHiveType.WATER, 2.0f, ExtraBeeDefinition.WATER, new WorldGenHiveWater()),
-	MARBLE(EnumHiveType.MARBLE, 2.0f, ExtraBeeDefinition.MARBLE, new WorldGenHiveMarble()),
-	ROCK(EnumHiveType.ROCK, 2.0f, ExtraBeeDefinition.ROCK, new WorldGenHiveRock()),
-	NETHER(EnumHiveType.NETHER, 2.0f, ExtraBeeDefinition.BASALT, new WorldGenHiveNether());
+	WATER(EnumHiveType.WATER, ConfigurationMain.getWaterHiveRate(), ExtraBeeDefinition.WATER, new WorldGenHiveWater()),
+	MARBLE(EnumHiveType.MARBLE, ConfigurationMain.getMarbleHiveRate(), ExtraBeeDefinition.MARBLE, new WorldGenHiveMarble()),
+	ROCK(EnumHiveType.ROCK, ConfigurationMain.getRockHiveRate(), ExtraBeeDefinition.ROCK, new WorldGenHiveRock()),
+	NETHER(EnumHiveType.NETHER, ConfigurationMain.getNetherHiveRate(), ExtraBeeDefinition.BASALT, new WorldGenHiveNether());
 
 
 	private final IBlockState hiveState;
