@@ -61,7 +61,7 @@ public class ManagerLiquid extends ManagerBase {
 
 	private static void createBlock(BinnieFluid binnieFluid) {
 		FluidType fluidType = binnieFluid.getType();
-		String name = "fluid." + fluidType.getIdentifier();
+		String name = fluidType.getIdentifier();
 
 		Block fluidBlock = binnieFluid.makeBlock();
 		fluidBlock.setUnlocalizedName(fluidType.getUnlocalizedName());
@@ -72,6 +72,8 @@ public class ManagerLiquid extends ManagerBase {
 		ItemBlock itemBlock = new ItemBlock(fluidBlock);
 		itemBlock.setRegistryName(name);
 		proxy.registerItem(itemBlock);
+
+		BinnieCore.getBinnieProxy().registerFluidStateMapper(fluidBlock, fluidType);
 	}
 
 	@Nullable
