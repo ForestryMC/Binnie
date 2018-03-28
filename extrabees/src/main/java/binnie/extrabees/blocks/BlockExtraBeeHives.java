@@ -69,25 +69,25 @@ public class BlockExtraBeeHives extends Block implements ITileEntityProvider {
 	public IBlockState getStateFromMeta(int meta) {
 		return getDefaultState().withProperty(HIVE_TYPE, EnumHiveType.getHiveTypeForMeta(meta));
 	}
-	
+
 	@Override
 	public void onBlockClicked(World world, BlockPos pos, EntityPlayer player) {
 		super.onBlockClicked(world, pos, player);
 		TileUtil.actOnTile(world, pos, IHiveTile.class, tile -> tile.onAttack(world, pos, player));
 	}
-	
+
 	@Override
 	public void onBlockHarvested(World world, BlockPos pos, IBlockState state, EntityPlayer player) {
 		boolean canHarvest = canHarvestBlock(world, pos, player);
 		TileUtil.actOnTile(world, pos, IHiveTile.class, tile -> tile.onBroken(world, pos, player, canHarvest));
 	}
-	
+
 	@Nullable
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
 		return new TileHive();
 	}
-	
+
 	@Override
 	@Nonnull
 	protected BlockStateContainer createBlockState() {

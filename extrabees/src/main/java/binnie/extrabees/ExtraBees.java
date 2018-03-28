@@ -23,7 +23,13 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+
+import forestry.api.apiculture.BeeManager;
+import forestry.api.apiculture.IAlleleBeeSpecies;
+import forestry.api.genetics.AlleleSpeciesRegisterEvent;
+import forestry.core.gui.GuiIdRegistry;
+import forestry.core.gui.GuiType;
+import forestry.core.proxy.Proxies;
 
 import binnie.core.Binnie;
 import binnie.core.Constants;
@@ -50,19 +56,13 @@ import binnie.extrabees.utils.config.ConfigurationMain;
 import binnie.extrabees.worldgen.ExtraBeesWorldGenerator;
 import binnie.genetics.api.GeneticsApi;
 import binnie.genetics.api.analyst.IAnalystManager;
-import forestry.api.apiculture.BeeManager;
-import forestry.api.apiculture.IAlleleBeeSpecies;
-import forestry.api.genetics.AlleleSpeciesRegisterEvent;
-import forestry.core.gui.GuiIdRegistry;
-import forestry.core.gui.GuiType;
-import forestry.core.proxy.Proxies;
 
 @Mod(
-	modid = ExtraBees.MODID,
-	name = "Binnie's Extra Bees",
-	version = "@VERSION@",
-	acceptedMinecraftVersions = Constants.ACCEPTED_MINECRAFT_VERSIONS,
-	dependencies = "required-after:" + Constants.CORE_MOD_ID
+		modid = ExtraBees.MODID,
+		name = "Binnie's Extra Bees",
+		version = "@VERSION@",
+		acceptedMinecraftVersions = Constants.ACCEPTED_MINECRAFT_VERSIONS,
+		dependencies = "required-after:" + Constants.CORE_MOD_ID
 )
 public class ExtraBees {
 
@@ -76,10 +76,10 @@ public class ExtraBees {
 
 	public static IBreedingSystem beeBreedingSystem;
 
-	public ExtraBees(){
+	public ExtraBees() {
 		MinecraftForge.EVENT_BUS.register(this);
 	}
-	
+
 	public static ConfigHandler configHandler;
 
 	@Nullable
@@ -116,7 +116,7 @@ public class ExtraBees {
 
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new BinnieGUIHandler(ExtraBeesGUID.values()));
 
-		if(BeeManager.beeRoot != null) {
+		if (BeeManager.beeRoot != null) {
 			beeBreedingSystem = new BeeBreedingSystem();
 			Binnie.GENETICS.registerBreedingSystem(beeBreedingSystem);
 		}
@@ -134,9 +134,9 @@ public class ExtraBees {
 		ExtraBeesEffect.doInit();
 		ExtraBeesFlowers.doInit();
 		ExtraBeeDefinition.doInit();
+		BlockRegister.doInitBlocks();
 		ExtraBeesWorldGenerator extraBeesWorldGenerator = new ExtraBeesWorldGenerator();
 		extraBeesWorldGenerator.doInit();
-		BlockRegister.doInitBlocks();
 		RecipeRegister.doInitRecipes();
 	}
 
@@ -146,7 +146,7 @@ public class ExtraBees {
 		AlvearyMutationHandler.registerMutationItems();
 	}
 
-	private void registerGuis(){
+	private void registerGuis() {
 		try {
 			Method m = GuiIdRegistry.class.getDeclaredMethod("registerGuiHandlers", GuiType.class, List.class);
 			m.setAccessible(true);
@@ -155,10 +155,10 @@ public class ExtraBees {
 			throw new RuntimeException(e);
 		}
 	}
-	
+
 	@SubscribeEvent
-	public void onRegisterSpecies(AlleleSpeciesRegisterEvent<IAlleleBeeSpecies> event){
-		if(event.getRoot() != BeeManager.beeRoot){
+	public void onRegisterSpecies(AlleleSpeciesRegisterEvent<IAlleleBeeSpecies> event) {
+		if (event.getRoot() != BeeManager.beeRoot) {
 			return;
 		}
 		ExtraBeeDefinition.doPreInit();

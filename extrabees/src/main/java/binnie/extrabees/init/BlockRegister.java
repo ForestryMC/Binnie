@@ -34,7 +34,6 @@ public final class BlockRegister {
 		ForgeRegistries.BLOCKS.register(ExtraBees.ectoplasm = new BlockEctoplasm());
 	}
 
-	@SuppressWarnings("all")
 	private static void registerHives() {
 		ForgeRegistries.BLOCKS.register(ExtraBees.hive = new BlockExtraBeeHives());
 	}
@@ -42,20 +41,20 @@ public final class BlockRegister {
 	private static void registerHiveDrops() {
 		IAlleleBeeSpecies valiantSpecies = Utils.getSpecies(BeeDefinition.VALIANT);
 		EnumHiveType.WATER.addDrops(
-			new HiveDrop(ExtraBeeDefinition.WATER, 0.80),
-			new HiveDrop(valiantSpecies, 0.03)
+				new HiveDrop(ExtraBeeDefinition.WATER, 0.80),
+				new HiveDrop(valiantSpecies, 0.03)
 		);
 		EnumHiveType.ROCK.addDrops(
-			new HiveDrop(ExtraBeeDefinition.ROCK, 0.80),
-			new HiveDrop(valiantSpecies, 0.03)
+				new HiveDrop(ExtraBeeDefinition.ROCK, 0.80),
+				new HiveDrop(valiantSpecies, 0.03)
 		);
 		EnumHiveType.NETHER.addDrops(
-			new HiveDrop(ExtraBeeDefinition.BASALT, 0.80),
-			new HiveDrop(valiantSpecies, 0.03)
+				new HiveDrop(ExtraBeeDefinition.BASALT, 0.80),
+				new HiveDrop(valiantSpecies, 0.03)
 		);
 		EnumHiveType.MARBLE.addDrops(
-			new HiveDrop(ExtraBeeDefinition.MARBLE, 0.80),
-			new HiveDrop(valiantSpecies, 0.03)
+				new HiveDrop(ExtraBeeDefinition.MARBLE, 0.80),
+				new HiveDrop(valiantSpecies, 0.03)
 		);
 
 		if (!ConfigurationMain.isCanQuarryMineHives()) {

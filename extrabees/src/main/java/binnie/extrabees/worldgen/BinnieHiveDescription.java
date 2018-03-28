@@ -7,6 +7,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 
+import net.minecraftforge.common.BiomeDictionary;
+
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.hives.IHiveDescription;
 import forestry.api.apiculture.hives.IHiveGen;
@@ -22,13 +24,12 @@ import binnie.extrabees.genetics.ExtraBeeDefinition;
 import binnie.extrabees.utils.config.ConfigurationMain;
 
 public enum BinnieHiveDescription implements IHiveDescription {
+
 	WATER(EnumHiveType.WATER, ConfigurationMain.getWaterHiveRate(), ExtraBeeDefinition.WATER, new WorldGenHiveWater()),
 	MARBLE(EnumHiveType.MARBLE, ConfigurationMain.getMarbleHiveRate(), ExtraBeeDefinition.MARBLE, new WorldGenHiveMarble()),
 	ROCK(EnumHiveType.ROCK, ConfigurationMain.getRockHiveRate(), ExtraBeeDefinition.ROCK, new WorldGenHiveRock()),
 	NETHER(EnumHiveType.NETHER, ConfigurationMain.getNetherHiveRate(), ExtraBeeDefinition.BASALT, new WorldGenHiveNether());
 
-
-	private final IBlockState hiveState;
 	private final EnumHiveType hiveType;
 	private final float genChance;
 	private final IBeeGenome genome;
@@ -36,14 +37,9 @@ public enum BinnieHiveDescription implements IHiveDescription {
 
 	BinnieHiveDescription(EnumHiveType hiveType, float genChance, ExtraBeeDefinition beeDefinition, IHiveGen hiveGen) {
 		this.hiveType = hiveType;
-		this.hiveState = getState(hiveType);
 		this.genChance = genChance;
 		this.genome = beeDefinition.getGenome();
 		this.hiveGen = hiveGen;
-	}
-
-	private static IBlockState getState(EnumHiveType hiveType) {
-		return ExtraBees.hive.getDefaultState().withProperty(BlockExtraBeeHives.HIVE_TYPE, hiveType);
 	}
 
 	@Override
@@ -53,11 +49,16 @@ public enum BinnieHiveDescription implements IHiveDescription {
 
 	@Override
 	public IBlockState getBlockState() {
-		return hiveState;
+		return ExtraBees.hive.getDefaultState().withProperty(BlockExtraBeeHives.HIVE_TYPE, hiveType);
 	}
 
 	@Override
 	public boolean isGoodBiome(Biome biome) {
+		if (hiveType == EnumHiveType.NETHER) {
+			if (!BiomeDictionary.hasType(biome, BiomeDictionary.Type.NETHER)) {
+				return false;
+			}
+		}
 		return true;
 	}
 
@@ -89,4 +90,7 @@ public enum BinnieHiveDescription implements IHiveDescription {
 
 	}
 
+	public EnumHiveType getHiveType() {
+		return hiveType;
+	}
 }
