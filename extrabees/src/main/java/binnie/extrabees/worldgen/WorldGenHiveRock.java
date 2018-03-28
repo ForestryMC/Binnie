@@ -32,14 +32,15 @@ public class WorldGenHiveRock implements IHiveGen {
 	public BlockPos getPosForHive(World world, int x, int z) {
 		//get to the ground
 		final BlockPos topPos = world.getHeight(new BlockPos(x, 0, z));
+		int worldHeight = topPos.getY();
 		if (topPos.getY() == 0) {
 			return null;
 		}
 
 		final BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos(topPos);
 
-		while (pos.getY() > 0) {
-			pos.move(EnumFacing.DOWN);
+		for (int i = 0; i < 10; i++) {
+			pos.setY(world.rand.nextInt(worldHeight));
 			if (isValidLocation(world, pos)) {
 				return pos;
 			}

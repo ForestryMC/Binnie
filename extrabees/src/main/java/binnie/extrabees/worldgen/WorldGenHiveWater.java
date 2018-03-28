@@ -21,20 +21,21 @@ public class WorldGenHiveWater implements IHiveGen {
 	public BlockPos getPosForHive(World world, int x, int z) {
 		// get to the ground
 		final BlockPos topPos = world.getHeight(new BlockPos(x, 0, z));
+		int maxHeight = topPos.getY();
 		if (topPos.getY() == 0) {
 			return null;
 		}
 
 		final BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos(topPos);
 
-		while (!isValidLocation(world, pos)) {
-			pos.move(EnumFacing.DOWN);
-			if (pos.getY() <= 0) {
-				return null;
+		for (int i = 0; i < 10; i++) {
+			pos.setY(world.rand.nextInt(maxHeight));
+			if(isValidLocation(world, pos)) {
+				return pos;
 			}
 		}
 
-		return pos;
+		return null;
 	}
 
 	@Override

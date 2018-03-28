@@ -49,8 +49,8 @@ public class WorldGenHiveNether implements IHiveGen {
 
 		final BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos(new BlockPos(x, maxHeight, z));
 
-		while (pos.getY() > 0) {
-			pos.move(EnumFacing.DOWN);
+		for (int i = 0; i < 10; i++) {
+			pos.setY(world.rand.nextInt(maxHeight));
 			if (isValidLocation(world, pos)) {
 				return pos;
 			}
