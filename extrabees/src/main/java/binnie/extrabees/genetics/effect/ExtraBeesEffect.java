@@ -162,14 +162,14 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 	BLINDNESS {
 		@Override
 		protected IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing, World world, BlockPos position) {
-            addPotionEffect(genome, housing, world, MobEffects.BLINDNESS);
+			addPotionEffect(genome, housing, world, MobEffects.BLINDNESS);
 			return storedData;
 		}
 	},
 	CONFUSION{
 		@Override
 		protected IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing, World world, BlockPos position) {
-            addPotionEffect(genome, housing, world, MobEffects.NAUSEA);
+			addPotionEffect(genome, housing, world, MobEffects.NAUSEA);
 			return storedData;
 		}
 	},
@@ -185,7 +185,7 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 				firework.addColor(genome.getSecondary().getSpriteColour(0));
 				firework.addColor(genome.getSecondary().getSpriteColour(0));
 				firework.addColor(genome.getPrimary().getSpriteColour(1));
-						firework.setTrail();
+				firework.setTrail();
 				final EntityFireworkRocket var11 = new EntityFireworkRocket(world, position.getX(), position.getY(), position.getZ(), firework.getFirework());
 				if (world.canBlockSeeSky(position)) {
 					world.spawnEntity(var11);
@@ -298,7 +298,7 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 	WITHER{
 		@Override
 		protected IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing, World world, BlockPos position) {
-            addPotionEffect(genome, housing, world, MobEffects.WITHER);
+			addPotionEffect(genome, housing, world, MobEffects.WITHER);
 			return storedData;
 		}
 	},
@@ -319,10 +319,10 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 	SLOW{
 		@Override
 		protected IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing, World world, BlockPos position) {
-            addPotionEffect(genome, housing, world, MobEffects.WEAKNESS);
-            return storedData;
+			addPotionEffect(genome, housing, world, MobEffects.WEAKNESS);
+			return storedData;
 		}
-    },
+	},
 	BONEMEAL_SAPLING{
 		@Override
 		protected IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing, World world, BlockPos position) {
@@ -379,18 +379,18 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 
 	private final static int DEFAULT_POTION_DURATION = 200;
 
-    protected void addPotionEffect(final IBeeGenome genome, final IBeeHousing housing, final World world, final Potion effect) {
-        addPotionEffect(genome, housing, world, effect, DEFAULT_POTION_DURATION);
-    }
+	protected void addPotionEffect(final IBeeGenome genome, final IBeeHousing housing, final World world, final Potion effect) {
+		addPotionEffect(genome, housing, world, effect, DEFAULT_POTION_DURATION);
+	}
 
-    protected void addPotionEffect(final IBeeGenome genome, final IBeeHousing housing, final World world, final Potion effect, final int duration) {
-        for (EntityPlayer player : this.getEntities(EntityPlayer.class, genome, housing)) {
-            if (world.rand.nextInt(4) < wearsItems(player)) {
-                continue;
-            }
-            player.addPotionEffect(new PotionEffect(effect, duration));
-        }
-    }
+	protected void addPotionEffect(final IBeeGenome genome, final IBeeHousing housing, final World world, final Potion effect, final int duration) {
+		for (EntityPlayer player : this.getEntities(EntityPlayer.class, genome, housing)) {
+			if (world.rand.nextInt(4) < wearsItems(player)) {
+				continue;
+			}
+			player.addPotionEffect(new PotionEffect(effect, duration));
+		}
+	}
 
 	protected void placeMob(World world, BlockPos position, final String mobName) {
 		if (world.rand.nextInt(200) < 2) {
@@ -530,9 +530,9 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 	protected Vec3i getModifiedArea(final IBeeGenome genome, final IBeeHousing housing) {
 		Vec3i territory = genome.getTerritory();
 		territory = new Vec3i(
-			territory.getX() * (int) (BeeManager.beeRoot.createBeeHousingModifier(housing).getTerritoryModifier(genome, 1.0f) * 3.0f),
-			territory.getY() * (int) (BeeManager.beeRoot.createBeeHousingModifier(housing).getTerritoryModifier(genome, 1.0f) * 3.0f),
-			territory.getZ() * (int) (BeeManager.beeRoot.createBeeHousingModifier(housing).getTerritoryModifier(genome, 1.0f) * 3.0f)
+				territory.getX() * (int) (BeeManager.beeRoot.createBeeHousingModifier(housing).getTerritoryModifier(genome, 1.0f) * 3.0f),
+				territory.getY() * (int) (BeeManager.beeRoot.createBeeHousingModifier(housing).getTerritoryModifier(genome, 1.0f) * 3.0f),
+				territory.getZ() * (int) (BeeManager.beeRoot.createBeeHousingModifier(housing).getTerritoryModifier(genome, 1.0f) * 3.0f)
 		);
 		if (territory.getX() < 1) {
 			territory = new Vec3i(1, territory.getY(), territory.getZ());
