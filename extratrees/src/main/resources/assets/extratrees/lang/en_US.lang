@@ -715,6 +715,16 @@ extratrees.fluid.alcohol.wheat=Fermented Wheat Mash
 extratrees.fluid.alcohol.rye=Fermented Rye Mash
 extratrees.fluid.alcohol.corn=Fermented Corn Mash
 
+## MiscFluid
+extratrees.fluid.miscfluid.carbonatedwater=Carbonated Water
+extratrees.fluid.miscfluid.tonicwater=Tonic Water
+extratrees.fluid.miscfluid.cream=Cream
+extratrees.fluid.miscfluid.gingerale=Ginger Ale
+extratrees.fluid.miscfluid.coffee=Coffee
+extratrees.fluid.miscfluid.sugarsyrup=Simple Syrup
+extratrees.fluid.miscfluid.agavenectar=Agave Nectar
+extratrees.fluid.miscfluid.grenadinesyrup=Grenadine Syrup
+
 extratrees.cocktail.liquid.tooltip=%d Part %s
 extratrees.cocktail.liquids.tooltip=%d Parts %s
 

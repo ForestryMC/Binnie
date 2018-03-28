@@ -715,6 +715,16 @@ extratrees.fluid.alcohol.wheat=Ферментированная пшенична
 extratrees.fluid.alcohol.rye=Ферментированная ржаная мука
 extratrees.fluid.alcohol.corn=Ферментированная кукурузная мука
 
+## MiscFluid
+extratrees.fluid.miscfluid.carbonatedwater=Газированная вода
+extratrees.fluid.miscfluid.tonicwater=Тоник
+extratrees.fluid.miscfluid.cream=Крем
+extratrees.fluid.miscfluid.gingerale=Имбирный эль
+extratrees.fluid.miscfluid.coffee=Кофе
+extratrees.fluid.miscfluid.sugarsyrup=Обычный сироп
+extratrees.fluid.miscfluid.agavenectar=Нектар агавы
+extratrees.fluid.miscfluid.grenadinesyrup=Сироп гренадина
+
 extratrees.cocktail.liquid.tooltip=%d Часть %s
 extratrees.cocktail.liquids.tooltip=%d Части %s
 
