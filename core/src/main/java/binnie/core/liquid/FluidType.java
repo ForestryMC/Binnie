@@ -24,6 +24,8 @@ public class FluidType {
 	private final String identifier;
 	private ContainerShowHandler showHandler = (t)->true;
 	private ContainerPlaceHandler placeHandler = (t)->true;
+    private boolean flammable = false;
+    private int flammability = 0;
 
 	public FluidType(String identifier, String unlocalizedName, int color) {
 		this.identifier = "binnie." + identifier;
@@ -35,9 +37,19 @@ public class FluidType {
 		this.textureStill = texture;
 	}
 
+    public FluidType setFlammable(final boolean flammable) {
+	    this.flammable = flammable;
+	    return this;
+    }
+
+    public FluidType setFlammability(final int flammability) {
+	    this.flammability = flammability;
+	    return this;
+    }
+
 	public Block makeBlock() {
-		return new BlockBinnieFluid(this);
-	}
+        return new BlockBinnieFluid(this, flammability, flammable);
+    }
 
 	public final Color getParticleColor() {
 		return new Color(color);
