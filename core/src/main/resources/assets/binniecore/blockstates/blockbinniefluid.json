@@ -427,5 +427,36 @@
         "fluid": "binnie.liquor.fruit"
       }
     },
+    "binnie.growth.medium": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "binnie.growth.medium"
+      }
+    },
+    "binnie.bacteria": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "binnie.bacteria"
+      }
+    },
+    "binnie.bacteria.poly": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "binnie.bacteria.poly"
+      }
+    },
+    "binnie.dna.raw": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "binnie.dna.raw"
+      }
+    },
+    "binnie.bacteria.vector": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "binnie.bacteria.vector"
+      }
+    },
+
   }
 }
