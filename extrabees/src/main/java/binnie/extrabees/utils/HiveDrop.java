@@ -16,6 +16,7 @@ public class HiveDrop implements IHiveDrop {
 	private final IAllele[] template;
 	private final NonNullList<ItemStack> extra;
 	private final double chance;
+	private double ignobleShare = 0.0;
 
 	public HiveDrop(IBeeDefinition species, double chance) {
 		this(species.getTemplate(), NonNullList.create(), chance);
@@ -29,6 +30,11 @@ public class HiveDrop implements IHiveDrop {
 		this.extra = extra;
 		this.template = template;
 		this.chance = chance;
+	}
+
+	public HiveDrop setIgnobleShare(double share) {
+		this.ignobleShare = share;
+		return this;
 	}
 
 	@Override
@@ -47,7 +53,7 @@ public class HiveDrop implements IHiveDrop {
 
 	@Override
 	public double getIgnobleChance(IBlockAccess world, BlockPos pos, int fortune) {
-		return 0.5; //TODO implement
+		return ignobleShare;
 	}
 
 	@Override

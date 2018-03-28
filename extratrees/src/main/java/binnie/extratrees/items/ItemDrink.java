@@ -2,16 +2,22 @@ package binnie.extratrees.items;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.stats.StatList;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 
 import net.minecraftforge.client.model.ModelLoader;
@@ -124,6 +130,25 @@ public class ItemDrink extends ItemFood implements IItemModelRegister {
 		final IDrinkLiquid liquid = (fluid == null) ? null : DrinkManager.getLiquid(fluid.getFluid());
 		final String liquidName = (liquid == null) ? null : liquid.getName();
 		return this.getGlassware(stack).getName(liquidName);
+	}
+
+	@Override
+	public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving) {
+		final IFluidHandler handler = stack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null);
+		if (handler != null && entityLiving instanceof EntityPlayer) {
+			EntityPlayer entityplayer = (EntityPlayer) entityLiving;
+			entityplayer.getFoodStats().addStats(this, stack);
+			worldIn.playSound(null, entityplayer.posX, entityplayer.posY, entityplayer.posZ, SoundEvents.ENTITY_GENERIC_DRINK, SoundCategory.PLAYERS, 0.5F, worldIn.rand.nextFloat() * 0.1F + 0.9F);
+			this.onFoodEaten(stack, worldIn, entityplayer);
+			entityplayer.addStat(StatList.getObjectUseStats(this));
+			handler.drain(Integer.MAX_VALUE, true);
+			if (entityplayer instanceof EntityPlayerMP) {
+				CriteriaTriggers.CONSUME_ITEM.trigger((EntityPlayerMP) entityplayer, stack);
+			}
+			return stack;
+		} else {
+			return super.onItemUseFinish(stack, worldIn, entityLiving);
+		}
 	}
 
 	@Override
