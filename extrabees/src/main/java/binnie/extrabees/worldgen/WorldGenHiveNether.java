@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.block.state.pattern.BlockStateMatcher;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -65,12 +66,17 @@ public class WorldGenHiveNether implements IHiveGen {
 		if (!BiomeDictionary.hasType(biome, BiomeDictionary.Type.NETHER)) {
 			return false;
 		}
-		return this.embedInWall(world, Blocks.NETHERRACK, pos);
+		IBlockState blockState = world.getBlockState(pos);
+		Block block = blockState.getBlock();
+		if (block.isReplaceableOreGen(blockState, world, pos, BlockStateMatcher.forBlock(Blocks.NETHERRACK))) {
+			return this.embedInWall(world, Blocks.NETHERRACK, pos);
+		}
+		return false;
 	}
 
 	@Override
 	public boolean canReplace(IBlockState blockState, World world, BlockPos pos) {
 		Block block = blockState.getBlock();
-		return block.isReplaceable(world, pos) && !blockState.getMaterial().isLiquid();
+		return block.isReplaceableOreGen(blockState, world, pos, BlockStateMatcher.forBlock(Blocks.NETHERRACK));
 	}
 }

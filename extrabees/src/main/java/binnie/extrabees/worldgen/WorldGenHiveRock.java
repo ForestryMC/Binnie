@@ -63,6 +63,7 @@ public class WorldGenHiveRock implements IHiveGen {
 	@Override
 	public boolean canReplace(IBlockState blockState, World world, BlockPos pos) {
 		Block block = blockState.getBlock();
-		return block.isReplaceable(world, pos) && !blockState.getMaterial().isLiquid();
+		return block.isReplaceableOreGen(blockState, world, pos, BlockStateMatcher.forBlock(Blocks.STONE));
 	}
+
 }

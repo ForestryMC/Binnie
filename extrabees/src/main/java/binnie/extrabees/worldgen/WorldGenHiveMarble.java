@@ -66,6 +66,6 @@ public class WorldGenHiveMarble implements IHiveGen {
 	@Override
 	public boolean canReplace(IBlockState blockState, World world, BlockPos pos) {
 		Block block = blockState.getBlock();
-		return block.isReplaceable(world, pos) && !blockState.getMaterial().isLiquid();
+		return validBlocks.contains(block);
 	}
 }
