@@ -1,13 +1,18 @@
 package binnie.core.liquid;
 
+import net.minecraft.block.Block;
 import net.minecraft.util.ResourceLocation;
 
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
 import binnie.core.Binnie;
 import binnie.core.Constants;
 import binnie.core.util.I18N;
+
+import javax.annotation.Nullable;
+import java.awt.*;
 
 public class FluidType {
 	private ResourceLocation textureFlowing;
@@ -28,6 +33,19 @@ public class FluidType {
 		ResourceLocation texture = new ResourceLocation(Constants.CORE_MOD_ID, "blocks/liquids/blank");
 		this.textureFlowing = texture;
 		this.textureStill = texture;
+	}
+
+	public Block makeBlock() {
+		return new BlockBinnieFluid(this);
+	}
+
+	public final Color getParticleColor() {
+		return new Color(color);
+	}
+
+	@Nullable
+	public final Fluid getFluid() {
+		return FluidRegistry.getFluid(identifier);
 	}
 
 	/* TEXTURES */

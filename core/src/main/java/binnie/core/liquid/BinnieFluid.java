@@ -2,11 +2,8 @@ package binnie.core.liquid;
 
 import java.awt.Color;
 
-import net.minecraft.block.Block;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
-
-import javax.annotation.Nullable;
 
 class BinnieFluid extends Fluid {
 	private final FluidType fluidType;
@@ -30,9 +27,5 @@ class BinnieFluid extends Fluid {
 
 	public FluidType getType() {
 		return this.fluidType;
-	}
-
-	public Block makeBlock() {
-		return new BlockBinnieFluid(this);
 	}
 }

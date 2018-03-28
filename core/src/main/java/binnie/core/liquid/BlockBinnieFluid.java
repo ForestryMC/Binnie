@@ -12,17 +12,35 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.awt.*;
 import java.util.Random;
 
 public class BlockBinnieFluid extends BlockFluidClassic implements IItemModelRegister {
 
-    public BlockBinnieFluid(BinnieFluid fluid) {
+    private final boolean flammable;
+    private final int flammability;
+    private final Color color;
+
+    public BlockBinnieFluid(FluidType binnieFluid) {
+        this(binnieFluid, 0, false);
+    }
+
+    public BlockBinnieFluid(FluidType binnieFluid, int flammability, boolean flammable) {
+        this(binnieFluid.getFluid(), flammability, flammable, binnieFluid.getParticleColor());
+    }
+
+    private BlockBinnieFluid(Fluid fluid, int flammability, boolean flammable, Color color) {
         super(fluid, Material.WATER);
-        stack = new FluidStack(fluid, Fluid.BUCKET_VOLUME);
+
+        setDensity(fluid.getDensity());
+
+        this.flammability = flammability;
+        this.flammable = flammable;
+
+        this.color = color;
     }
 
     @SideOnly(Side.CLIENT)
