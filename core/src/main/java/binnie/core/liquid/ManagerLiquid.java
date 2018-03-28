@@ -4,9 +4,13 @@ import javax.annotation.Nullable;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import binnie.core.BinnieCore;
+import binnie.core.proxy.BinnieProxy;
+import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.init.Items;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
 import net.minecraftforge.client.event.TextureStitchEvent;
@@ -51,7 +55,23 @@ public class ManagerLiquid extends ManagerBase {
 		final BinnieFluid bFluid = new BinnieFluid(fluid);
 		FluidRegistry.registerFluid(bFluid);
 		FluidRegistry.addBucketForFluid(bFluid);
+		createBlock(bFluid);
 		return bFluid;
+	}
+
+	private static void createBlock(BinnieFluid binnieFluid) {
+		FluidType fluidType = binnieFluid.getType();
+		String name = "fluid." + fluidType.getIdentifier();
+
+		Block fluidBlock = binnieFluid.makeBlock();
+		fluidBlock.setUnlocalizedName(fluidType.getUnlocalizedName());
+		fluidBlock.setRegistryName(name);
+		BinnieProxy proxy = BinnieCore.getBinnieProxy();
+		proxy.registerBlock(fluidBlock);
+
+		ItemBlock itemBlock = new ItemBlock(fluidBlock);
+		itemBlock.setRegistryName(name);
+		proxy.registerItem(itemBlock);
 	}
 
 	@Nullable
