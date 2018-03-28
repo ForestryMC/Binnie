@@ -1,11 +1,126 @@
 {
   "forge_marker": 1,
   "variants": {
+    "binnie.juice.apple": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "binnie.juice.apple"
+      }
+    },
+    "binnie.juice.apricot": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "binnie.juice.apricot"
+      }
+    },
+    "binnie.juice.banana": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "binnie.juice.banana"
+      }
+    },
+    "binnie.juice.cherry": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "binnie.juice.cherry"
+      }
+    },
+    "binnie.juice.elderberry": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "binnie.juice.elderberry"
+      }
+    },"binnie.juice.lemon": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "binnie.juice.lemon"
+      }
+    },
+    "binnie.juice.lime": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "binnie.juice.lime"
+      }
+    },
+    "binnie.juice.orange": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "binnie.juice.orange"
+      }
+    },
+    "binnie.juice.peach": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "binnie.juice.peach"
+      }
+    },
+    "binnie.juice.plum": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "binnie.juice.plum"
+      }
+    },
+    "binnie.juice.carrot": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "binnie.juice.carrot"
+      }
+    },
+    "binnie.juice.tomato": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "binnie.juice.tomato"
+      }
+    },
+    "binnie.juice.cranberry": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "binnie.juice.cranberry"
+      }
+    },
+    "binnie.juice.grapefruit": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "binnie.juice.grapefruit"
+      }
+    },
+    "binnie.juice.olive": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "binnie.juice.olive"
+      }
+    },
+    "binnie.juice.pineapple": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "binnie.juice.pineapple"
+      }
+    },
+    "binnie.juice.pear": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "binnie.juice.pear"
+      }
+    },
+    "binnie.juice.white.grape": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "binnie.juice.white.grape"
+      }
+    },
+    "binnie.juice.red.grape": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "binnie.juice.red.grape"
+      }
+    },
     "binnie.juice.cherry": {
       "model": "forge:fluid",
       "custom": {
         "fluid": "binnie.juice.cherry"
       }
     }
+
+
   }
 }
