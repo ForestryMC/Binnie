@@ -30,7 +30,8 @@
       "custom": {
         "fluid": "binnie.juice.elderberry"
       }
-    },"binnie.juice.lemon": {
+    },
+    "binnie.juice.lemon": {
       "model": "forge:fluid",
       "custom": {
         "fluid": "binnie.juice.lemon"
@@ -114,13 +115,155 @@
         "fluid": "binnie.juice.red.grape"
       }
     },
-    "binnie.juice.cherry": {
+    "binnie.liqueur.almond": {
       "model": "forge:fluid",
       "custom": {
-        "fluid": "binnie.juice.cherry"
+        "fluid": "binnie.liqueur.almond"
       }
-    }
-
-
+    },
+    "binnie.liqueur.orange": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "binnie.liqueur.orange"
+      }
+    },
+    "binnie.liqueur.banana": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "binnie.liqueur.banana"
+      }
+    },
+    "binnie.liqueur.chocolate": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "binnie.liqueur.chocolate"
+      }
+    },
+    "binnie.liqueur.mint": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "binnie.liqueur.mint"
+      }
+    },
+    "binnie.liqueur.hazelnut": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "binnie.liqueur.hazelnut"
+      }
+    },
+    "binnie.liqueur.cinnamon": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "binnie.liqueur.cinnamon"
+      }
+    },
+    "binnie.liqueur.coffee": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "binnie.liqueur.coffee"
+      }
+    },
+    "binnie.liqueur.melon": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "binnie.liqueur.melon"
+      }
+    },
+    "binnie.liqueur.anise": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "binnie.liqueur.anise"
+      }
+    },
+    "binnie.liqueur.peach": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "binnie.liqueur.peach"
+      }
+    },
+    "binnie.liqueur.lemon": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "binnie.liqueur.lemon"
+      }
+    },
+    "binnie.liqueur.herbal": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "binnie.liqueur.herbal"
+      }
+    },
+    "binnie.liqueur.cherry": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "binnie.liqueur.cherry"
+      }
+    },
+    "binnie.liqueur.blackcurrant": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "binnie.liqueur.blackcurrant"
+      }
+    },
+    "binnie.liqueur.blackberry": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "binnie.liqueur.blackberry"
+      }
+    },
+    "binnie.liqueur.raspberry": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "binnie.liqueur.raspberry"
+      }
+    },
+    "binnie.water.carbonated": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "binnie.water.carbonated"
+      }
+    },
+    "binnie.water.tonic": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "binnie.water.tonic"
+      }
+    },
+    "binnie.cream": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "binnie.cream"
+      }
+    },
+    "binnie.gingerAle": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "binnie.gingerAle"
+      }
+    },
+    "binnie.coffee": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "binnie.coffee"
+      }
+    },
+    "binnie.syrup.simple": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "binnie.syrup.simple"
+      }
+    },
+    "binnie.syrup.agave": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "binnie.syrup.agave"
+      }
+    },
+    "binnie.syrup.grenadine": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "binnie.syrup.grenadine"
+      }
+    },
   }
 }
