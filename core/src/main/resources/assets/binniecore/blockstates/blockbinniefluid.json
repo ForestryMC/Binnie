@@ -457,6 +457,30 @@
         "fluid": "binnie.bacteria.vector"
       }
     },
+    "binnie.sap": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "binnie.sap"
+      }
+    },
+    "binnie.resin": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "binnie.resin"
+      }
+    },
+    "binnie.latex": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "binnie.latex"
+      }
+    },
+    "binnie.turpentine": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "binnie.turpentine"
+      }
+    },
 
   }
 }
