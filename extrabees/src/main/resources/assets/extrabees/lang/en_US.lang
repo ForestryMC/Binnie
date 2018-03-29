@@ -411,3 +411,8 @@ extrabees.beemodifier.lifespan=Lifespan
 extrabees.beemodifier.production=Production
 extrabees.beemodifier.flowering=Flowering
 extrabees.beemodifier.genetic_decay=Genetic Decay
+
+extrabees.beebooleanmodifier.sealed=Sealed
+extrabees.beebooleanmodifier.selflighted=SelfLighted
+extrabees.beebooleanmodifier.sunlightstimulated=SunlightStimulated
+extrabees.beebooleanmodifier.hellish=Hellish

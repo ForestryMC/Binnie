@@ -411,3 +411,8 @@ extrabees.beemodifier.lifespan=Продолжительность жизни
 extrabees.beemodifier.production=Производство
 extrabees.beemodifier.flowering=Цветение
 extrabees.beemodifier.genetic_decay=Генетический распад
+
+extrabees.beebooleanmodifier.sealed=Пещерная
+extrabees.beebooleanmodifier.selflighted=SelfLighted
+extrabees.beebooleanmodifier.sunlightstimulated=Дневная
+extrabees.beebooleanmodifier.hellish=Адская

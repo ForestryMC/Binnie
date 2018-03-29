@@ -14,5 +14,4 @@ public enum EnumBeeModifier {
 	public String getName() {
 		return I18N.localise(ModId.EXTRA_BEES, "beemodifier." + this.name().toLowerCase());
 	}
-
 }

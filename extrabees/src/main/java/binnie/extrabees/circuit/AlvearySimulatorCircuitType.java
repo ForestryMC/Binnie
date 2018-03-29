@@ -63,6 +63,11 @@ public enum AlvearySimulatorCircuitType implements IBeeModifier {
 				}
 			}
 		}
+		for (final EnumBeeBooleanModifier modifier : EnumBeeBooleanModifier.values()) {
+			if (this.logic.getModifier(modifier)) {
+				circuit.addTooltip(modifier.getName());
+			}
+		}
 	}
 
 	@Override
