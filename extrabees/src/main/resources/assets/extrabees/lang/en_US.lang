@@ -417,5 +417,5 @@ extrabees.beebooleanmodifier.selflighted=SelfLighted
 extrabees.beebooleanmodifier.sunlightstimulated=SunlightStimulated
 extrabees.beebooleanmodifier.hellish=Hellish
 
-extrabees.alvearycircuittype.inc=Increases %s by %d %
-extrabees.alvearycircuittype.dec=Decreases %s by %d %
+extrabees.alvearycircuittype.inc=Increases %s by %d %%
+extrabees.alvearycircuittype.dec=Decreases %s by %d %%

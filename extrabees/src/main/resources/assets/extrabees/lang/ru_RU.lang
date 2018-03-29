@@ -417,5 +417,5 @@ extrabees.beebooleanmodifier.selflighted=SelfLighted
 extrabees.beebooleanmodifier.sunlightstimulated=Дневная
 extrabees.beebooleanmodifier.hellish=Адская
 
-extrabees.alvearycircuittype.inc=Увеличивает %s на %d %
-extrabees.alvearycircuittype.dec=Уменьшает %s на %d %
+extrabees.alvearycircuittype.inc=Увеличивает %s на %d %%
+extrabees.alvearycircuittype.dec=Уменьшает %s на %d %%
