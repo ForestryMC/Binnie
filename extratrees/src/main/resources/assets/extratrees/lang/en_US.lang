@@ -781,3 +781,5 @@ extratrees.allele.metabolism.average=Average
 extratrees.allele.metabolism.slow=Slow
 extratrees.allele.metabolism.slower=Slower
 extratrees.allele.metabolism.slowest=Slowest
+
+extratrees.grammar.leaves.type=Stub for extratrees.grammar.leaves.type
