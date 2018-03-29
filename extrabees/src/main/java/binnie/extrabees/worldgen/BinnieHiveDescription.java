@@ -54,12 +54,8 @@ public enum BinnieHiveDescription implements IHiveDescription {
 
 	@Override
 	public boolean isGoodBiome(Biome biome) {
-		if (hiveType == EnumHiveType.NETHER) {
-			if (!BiomeDictionary.hasType(biome, BiomeDictionary.Type.NETHER)) {
-				return false;
-			}
-		}
-		return true;
+		return hiveType != EnumHiveType.NETHER ||
+				BiomeDictionary.hasType(biome, BiomeDictionary.Type.NETHER);
 	}
 
 	@Override
