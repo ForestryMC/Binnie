@@ -387,4 +387,6 @@ for.genus.flowers.penstemon=Пенстемон
 for.genus.flowers.delphinium=Дельфиниум
 for.genus.flowers.alcea=Алцеа
 
+for.flowers.hybrid=%s | %s
+
 botany.flowers.effect.none.name=Нет

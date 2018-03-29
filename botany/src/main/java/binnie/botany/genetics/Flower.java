@@ -12,7 +12,6 @@ import forestry.api.arboriculture.EnumTreeChromosome;
 import forestry.api.genetics.IChromosome;
 import forestry.core.genetics.Chromosome;
 import forestry.core.genetics.Individual;
-import forestry.core.utils.Translator;
 
 import binnie.botany.api.genetics.EnumFlowerChromosome;
 import binnie.botany.api.genetics.IAlleleFlowerSpecies;
@@ -84,7 +83,7 @@ public class Flower extends Individual implements IFlower {
 		IAlleleFlowerSpecies primary = genome.getPrimary();
 		IAlleleFlowerSpecies secondary = genome.getSecondary();
 		if (!isPureBred(EnumFlowerChromosome.SPECIES)) {
-			list.add(TextFormatting.BLUE + Translator.translateToLocal("for.bees.hybrid").replaceAll("%PRIMARY", primary.getAlleleName()).replaceAll("%SECONDARY", secondary.getAlleleName()));
+			list.add(TextFormatting.BLUE + I18N.localise("for.bees.hybrid", primary.getAlleleName(), secondary.getAlleleName()));
 		}
 
 		list.add(TextFormatting.GOLD + I18N.localise("item.botany.flower.age", getAge()));
