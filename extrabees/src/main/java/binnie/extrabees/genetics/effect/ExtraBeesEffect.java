@@ -49,6 +49,7 @@ import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IEffectData;
 import forestry.core.render.ParticleRender;
 
+import binnie.core.util.I18N;
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.genetics.ExtraBeesFlowers;
 import binnie.extrabees.utils.Utils;
@@ -462,7 +463,7 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 
 	@Override
 	public String getName() {
-		return ExtraBees.proxy.localise("effect." + this.name().toLowerCase() + ".name");
+		return I18N.localise("effect." + this.name().toLowerCase() + ".name");
 	}
 
 	@Override

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import binnie.core.util.I18N;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 
@@ -69,7 +70,7 @@ public class BeeModifierLogic {
 				limit = 0f;
 			}
 			final String formatKey = limit >= 1.0f ? "bee.modifier.format.max" : "bee.modifier.format.min";
-			final String valueString = Translator.translateToLocalFormatted(formatKey, multiplier, limit);
+			final String valueString = I18N.localise(formatKey, multiplier, limit);
 			tooltip.add(modifierName + ": " + valueString);
 		}
 	}

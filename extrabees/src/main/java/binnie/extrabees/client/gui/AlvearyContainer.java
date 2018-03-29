@@ -12,7 +12,7 @@ import net.minecraftforge.items.IItemHandlerModifiable;
 
 import forestry.core.utils.SlotUtil;
 
-import binnie.extrabees.ExtraBees;
+import binnie.core.util.I18N;
 import binnie.extrabees.alveary.EnumAlvearyLogicType;
 import binnie.extrabees.utils.ExtraBeesResourceLocation;
 
@@ -31,9 +31,9 @@ public abstract class AlvearyContainer extends Container {
 		this.player = player;
 		this.inv = inv;
 		this.dimension = dimension;
-		String base = "extrabees.machine.alveay." + type.getName();
-		title = ExtraBees.proxy.localiseWithOutPrefix(base + ".name");
-		tooltip = ExtraBees.proxy.localiseWithOutPrefix(base + ".info");
+		String base = "machine.alveay." + type.getName();
+		title = I18N.localise(base + ".name");
+		tooltip = I18N.localise(base + ".info");
 		background = new ExtraBeesResourceLocation("textures/gui/gui" + type.getName() + ".png");
 		setupContainer();
 	}

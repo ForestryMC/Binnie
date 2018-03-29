@@ -67,16 +67,6 @@ public class ExtraBeesClientProxy extends ExtraBeesCommonProxy {
 		ModelResourceLocation inventory = new ModelResourceLocation(registryName, "inventory");
 		ModelLoader.setCustomModelResourceLocation(item, meta, inventory);
 	}
-
-	@Override
-	public String localise(final String s) {
-		return I18n.format(String.format("%s.%s", ExtraBees.MODID, s));
-	}
-
-	@Override
-	public String localiseWithOutPrefix(final String s) {
-		return I18n.format(s);
-	}
 	
 	@SubscribeEvent
 	public void onModelsBaked(ModelBakeEvent event) {
