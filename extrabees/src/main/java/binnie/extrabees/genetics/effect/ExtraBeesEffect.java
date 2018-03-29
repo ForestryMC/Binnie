@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import binnie.core.ModId;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -463,7 +464,7 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 
 	@Override
 	public String getName() {
-		return I18N.localise("effect." + this.name().toLowerCase() + ".name");
+		return I18N.localise(ModId.EXTRA_BEES, "effect." + this.name().toLowerCase() + ".name");
 	}
 
 	@Override

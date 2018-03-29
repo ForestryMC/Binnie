@@ -59,7 +59,7 @@ public class BeeModifierLogic {
 		for (Map.Entry<EnumBeeModifier, Float[]> modifier : modifiers.entrySet()) {
 			final EnumBeeModifier key = modifier.getKey();
 			final Float[] value = modifier.getValue();
-			final String modifierName = I18N.localise(key.getName());
+			final String modifierName = key.getName();
 			Float multiplier = value[0];
 			Float limit = value[1];
 			if (multiplier < 0.01) {
