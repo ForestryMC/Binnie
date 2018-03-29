@@ -2,6 +2,7 @@ package binnie.extrabees.client.gui;
 
 import java.awt.Dimension;
 
+import binnie.core.ModId;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
@@ -32,8 +33,8 @@ public abstract class AlvearyContainer extends Container {
 		this.inv = inv;
 		this.dimension = dimension;
 		String base = "machine.alveay." + type.getName();
-		title = I18N.localise(base + ".name");
-		tooltip = I18N.localise(base + ".info");
+		title = I18N.localise(ModId.EXTRA_BEES, base + ".name");
+		tooltip = I18N.localise(ModId.EXTRA_BEES, base + ".info");
 		background = new ExtraBeesResourceLocation("textures/gui/gui" + type.getName() + ".png");
 		setupContainer();
 	}
