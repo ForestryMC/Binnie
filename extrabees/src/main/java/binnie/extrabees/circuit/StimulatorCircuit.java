@@ -102,11 +102,6 @@ public class StimulatorCircuit implements ICircuit, IBeeModifier {
 	}
 
 	@Override
-	public String getLocalizedName() {
-		return tooltip.toString();
-	}
-
-	@Override
 	public boolean isCircuitable(@Nonnull Object tile) {
 		System.out.println("isCircuitable: " + tile);
 		return false;
