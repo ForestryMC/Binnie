@@ -1,6 +1,5 @@
 package binnie.extratrees.items;
 
-import binnie.core.ModId;
 import net.minecraft.item.ItemStack;
 
 import net.minecraftforge.fml.relauncher.Side;
@@ -28,7 +27,7 @@ public class ItemBlockETDecorativeLeaves extends ItemBlockForestry<BlockETDecora
 		BlockETDecorativeLeaves block = getBlock();
 		ETTreeDefinition treeDefinition = block.getTreeType(meta);
 		if (treeDefinition == null || treeDefinition.getGenome() == null) {
-			return I18N.localise(ModId.EXTRA_TREES, "grammar.leaves.type");
+			return I18N.localise("trees.grammar.leaves.type");
 		}
 
 		String unlocalizedSpeciesName = treeDefinition.getGenome().getPrimary().getUnlocalizedName();
