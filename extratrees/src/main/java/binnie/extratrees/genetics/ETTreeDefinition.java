@@ -2084,7 +2084,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		}
 		IAlleleTreeSpeciesBuilder speciesBuilder = TreeManager.treeFactory.createSpecies(getUID(), String.format(unlocalizedName, getUID()), getAuthority(), String.format(unlocalizedDesc, getUID()), isDominant(),
 			branch, getBinomial(), Constants.EXTRA_TREES_MOD_ID, leafSpriteProvider, saplingType.getGermlingModelProvider(leafColor, woodColor), woodProvider, this, new ETLeafProvider()
-		);
+		).setRarity(0.005F);
 		setSpeciesProperties(speciesBuilder);
 		species = speciesBuilder.build();
 		branch.addMemberSpecies(species);
