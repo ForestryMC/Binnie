@@ -17,7 +17,7 @@ public class IncubatorRecipeLarvae extends IncubatorRecipe {
 
 	@Override
 	public ItemStack getOutputStack(final MachineUtil machine) {
-		final ItemStack larvae = machine.getStack(3);
+		final ItemStack larvae = machine.getStack(Incubator.SLOT_INCUBATOR);
 		final IBee bee = BeeManager.beeRoot.getMember(larvae);
 		if (bee == null) {
 			return ItemStack.EMPTY;
