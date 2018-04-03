@@ -30,7 +30,7 @@ public class AnalyserFX extends MachineComponent implements IRender.DisplayTick,
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void onDisplayTick(World world, BlockPos pos, Random rand) {
-		if (rand.nextFloat() < 1.0f && this.getUtil().getProcess().isInProgress()) {
+		if (this.getUtil().getProcess().isInProgress()) {
 			ParticleManager effectRenderer = BinnieCore.getBinnieProxy().getMinecraftInstance().effectRenderer;
 			effectRenderer.addEffect(new AnalyserParticle(world, pos, rand));
 		}
