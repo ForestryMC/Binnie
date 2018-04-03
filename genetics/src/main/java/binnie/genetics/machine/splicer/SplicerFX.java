@@ -33,7 +33,7 @@ public class SplicerFX extends MachineComponent implements IRender.DisplayTick, 
 		if (!this.getUtil().getProcess().isInProgress()) return;
 		final int tick = (int) (world.getTotalWorldTime() % 3L);
 		if (tick == 0) {
-            final ParticleManager effectRenderer = BinnieCore.getBinnieProxy().getMinecraftInstance().effectRenderer;
+			final ParticleManager effectRenderer = BinnieCore.getBinnieProxy().getMinecraftInstance().effectRenderer;
 			effectRenderer.addEffect(new SplicerParticle(world, pos));
 		}
 	}

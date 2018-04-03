@@ -36,7 +36,7 @@ public class SequencerFX extends MachineComponent implements IRender.RandomDispl
 		if (!this.getUtil().getProcess().isInProgress()) return;
 		final int ticks = (int) (world.getTotalWorldTime() % 16L);
 		if (ticks == 0) {
-            final Particle particle = new SequencerParticle(world, pos);
+			final Particle particle = new SequencerParticle(world, pos);
 			BinnieCore.getBinnieProxy().getMinecraftInstance().effectRenderer.addEffect(particle);
 		}
 	}
