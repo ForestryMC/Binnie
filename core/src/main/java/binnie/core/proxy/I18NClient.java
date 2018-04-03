@@ -44,12 +44,13 @@ public class I18NClient implements I18NProxy {
     }
 
     public String localise(String key, Object... format) {
-        try {
+        if (I18n.hasKey(key)) {
             return I18n.format(key, format);
-        } catch (IllegalFormatException e) {
-            String errorMessage = "Format error: " + key;
-            Log.error(errorMessage, e);
-            return errorMessage;
+        } else {
+            if (devEnvironment) {
+                Log.warning("Key not localized: " + key);
+            }
+            return key;
         }
     }
 
