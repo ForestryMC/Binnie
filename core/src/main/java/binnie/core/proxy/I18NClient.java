@@ -48,7 +48,7 @@ public class I18NClient implements I18NProxy {
             return I18n.format(key, format);
         } else {
             if (devEnvironment) {
-                Log.warning("Key not localized: " + key);
+                Log.warning("Key(format) not localized: " + key);
             }
             return key;
         }
