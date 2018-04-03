@@ -33,8 +33,9 @@ public class SequencerFX extends MachineComponent implements IRender.RandomDispl
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void onDisplayTick(World world, BlockPos pos, Random rand) {
+		if (!this.getUtil().getProcess().isInProgress()) return;
 		final int ticks = (int) (world.getTotalWorldTime() % 16L);
-		if (ticks == 0 && this.getUtil().getProcess().isInProgress()) {
+		if (ticks == 0) {
 			Particle particle = new SequencerParticle(world, pos);
 			BinnieCore.getBinnieProxy().getMinecraftInstance().effectRenderer.addEffect(particle);
 		}
