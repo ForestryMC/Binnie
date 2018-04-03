@@ -25,7 +25,7 @@ public class PolymeriserFX extends MachineComponent implements IRender.DisplayTi
 		if (!this.getUtil().getProcess().isInProgress()) return;
 		final int tick = (int) (world.getTotalWorldTime() % 8L);
 		if (tick == 0 || tick == 3) {
-			PolymeriserParticle polymeriserParticle = new PolymeriserParticle(world, pos);
+			final PolymeriserParticle polymeriserParticle = new PolymeriserParticle(world, pos);
 			BinnieCore.getBinnieProxy().getMinecraftInstance().effectRenderer.addEffect(polymeriserParticle);
 		}
 	}
