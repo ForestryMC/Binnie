@@ -3,6 +3,7 @@ package binnie.genetics.machine.acclimatiser;
 import java.util.ArrayList;
 import java.util.List;
 
+import binnie.core.machines.MachineUtil;
 import net.minecraft.item.ItemStack;
 
 import binnie.core.machines.IMachine;
@@ -49,23 +50,24 @@ public class AcclimatiserLogic extends ComponentProcessIndefinate {
 
 	protected void attemptAcclimatisation() {
 		final List<ItemStack> acclms = new ArrayList<>();
-		ItemStack target = this.getUtil().getStack(Acclimatiser.SLOT_TARGET);
+		final MachineUtil machineUtil = getUtil();
+		ItemStack target = machineUtil.getStack(Acclimatiser.SLOT_TARGET);
 		if (target.isEmpty()) {
 			return;
 		}
 
-		for (final ItemStack s : this.getUtil().getNonEmptyStacks(Acclimatiser.SLOT_ACCLIMATISER)) {
+		for (final ItemStack s : machineUtil.getNonEmptyStacks(Acclimatiser.SLOT_ACCLIMATISER)) {
 			if (Acclimatiser.canAcclimatise(target, s)) {
 				acclms.add(s);
 			}
 		}
-		final ItemStack acc = acclms.get(this.getUtil().getRandom().nextInt(acclms.size()));
+		final ItemStack acc = acclms.get(machineUtil.getRandom().nextInt(acclms.size()));
 		final ItemStack acclimed = Acclimatiser.acclimatise(target, acc);
-		this.getUtil().setStack(Acclimatiser.SLOT_TARGET, acclimed);
+		machineUtil.setStack(Acclimatiser.SLOT_TARGET, acclimed);
 		for (final int i : Acclimatiser.SLOT_ACCLIMATISER) {
-			ItemStack stack = this.getUtil().getStack(i);
+			ItemStack stack = machineUtil.getStack(i);
 			if (!stack.isEmpty() && stack.isItemEqual(acc)) {
-				this.getUtil().decreaseStack(i, 1);
+				machineUtil.decreaseStack(i, 1);
 				break;
 			}
 		}
