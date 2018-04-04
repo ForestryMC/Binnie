@@ -18,10 +18,11 @@ public class AcclimatiserLogic extends ComponentProcessIndefinate {
 
 	@Override
 	public ErrorState canWork() {
-		if (this.getUtil().getStack(Acclimatiser.SLOT_TARGET).isEmpty()) {
+		final MachineUtil machineUtil = getUtil();
+		if (machineUtil.getStack(Acclimatiser.SLOT_TARGET).isEmpty()) {
 			return new ErrorState(GeneticsErrorCode.NO_INDIVIDUAL, Acclimatiser.SLOT_TARGET);
 		}
-		if (this.getUtil().getNonEmptyStacks(Acclimatiser.SLOT_ACCLIMATISER).isEmpty()) {
+		if (machineUtil.getNonEmptyStacks(Acclimatiser.SLOT_ACCLIMATISER).isEmpty()) {
 			return new ErrorState(GeneticsErrorCode.ACCLIMATISER_NO_ITEM, Acclimatiser.SLOT_ACCLIMATISER);
 		}
 		return super.canWork();
@@ -29,7 +30,8 @@ public class AcclimatiserLogic extends ComponentProcessIndefinate {
 
 	@Override
 	public ErrorState canProgress() {
-		if (!Acclimatiser.canAcclimatise(this.getUtil().getStack(Acclimatiser.SLOT_TARGET), this.getUtil().getNonEmptyStacks(Acclimatiser.SLOT_ACCLIMATISER))) {
+		final MachineUtil machineUtil = getUtil();
+		if (!Acclimatiser.canAcclimatise(machineUtil.getStack(Acclimatiser.SLOT_TARGET), machineUtil.getNonEmptyStacks(Acclimatiser.SLOT_ACCLIMATISER))) {
 			return new ErrorState(GeneticsErrorCode.ACCLIMATISER_CAN_NOT_WORK, Acclimatiser.SLOT_TARGET);
 		}
 		return super.canProgress();
