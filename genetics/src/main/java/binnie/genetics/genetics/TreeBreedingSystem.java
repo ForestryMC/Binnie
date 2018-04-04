@@ -92,11 +92,12 @@ public class TreeBreedingSystem extends BreedingSystem implements binnie.genetic
 	@Override
 	public String getAlleleName(final IChromosomeType chromosome, final IAllele allele) {
 		if (chromosome == EnumTreeChromosome.GIRTH) {
-			return ((IAlleleInteger) allele).getValue() + "x" + ((IAlleleInteger) allele).getValue();
+			final IAlleleInteger alleleInteger = (IAlleleInteger) allele;
+			return alleleInteger.getValue() + "x" + alleleInteger.getValue();
 		}
 		if (chromosome == EnumTreeChromosome.FRUITS && allele.getUID().contains(".")) {
 			final IFruitProvider provider = ((IAlleleFruit) allele).getProvider();
-			return (provider.getProducts().size() == 0) ? I18N.localise("binniecore.allele.none") : provider.getProducts().keySet().iterator().next().getDisplayName();
+			return (provider.getProducts().isEmpty()) ? I18N.localise("binniecore.allele.none") : provider.getProducts().keySet().iterator().next().getDisplayName();
 		}
 		return super.getAlleleName(chromosome, allele);
 	}
