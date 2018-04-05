@@ -35,7 +35,6 @@ public enum GeneticMachine implements IMachineType {
 	}
 
 	public ItemStack get(final int i) {
-		Genetics.machine();
 		return new ItemStack(ModuleMachine.getPackageGenetic().getBlock(), i, this.ordinal());
 	}
 
