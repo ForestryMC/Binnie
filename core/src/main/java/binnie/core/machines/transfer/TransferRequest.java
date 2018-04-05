@@ -32,10 +32,12 @@ public class TransferRequest {
 	private boolean ignoreReadOnly;
 	private final List<TransferSlot> insertedSlots;
 
+	private static final int[] DEFAULT_SLOTS_TANKS_EMPTY = new int[0];
+
 	public TransferRequest(final ItemStack toTransfer, final IInventory destination) {
 		this.returnItem = ItemStack.EMPTY;
-		this.targetSlots = new int[0];
-		this.targetTanks = new int[0];
+		this.targetSlots = DEFAULT_SLOTS_TANKS_EMPTY;
+		this.targetTanks = DEFAULT_SLOTS_TANKS_EMPTY;
 		this.transferLiquids = true;
 		this.ignoreReadOnly = false;
 		this.insertedSlots = new ArrayList<>();
@@ -43,7 +45,7 @@ public class TransferRequest {
 		for (int i = 0; i < target.length; ++i) {
 			target[i] = i;
 		}
-		int[] targetTanks = new int[0];
+		int[] targetTanks = DEFAULT_SLOTS_TANKS_EMPTY;
 		if (destination instanceof ITankMachine) {
 			targetTanks = new int[((ITankMachine) destination).getTanks().length];
 			for (int j = 0; j < targetTanks.length; ++j) {
