@@ -75,7 +75,7 @@ public class ItemETFood extends ItemFood implements IItemModelRegister {
 		return Food.VALUES[itemStack.getItemDamage()];
 	}
 
-	private final int MINIMUM_USE_DURATION = 8;
+	private static final int MINIMUM_USE_DURATION = 8;
 
 	@Override
 	public int getMaxItemUseDuration(ItemStack stack) {
