@@ -83,11 +83,6 @@ public class Botany extends BlankModuleContainer {
 	}
 
 	@Override
-	public Class<?>[] getConfigs() {
-		return new Class[0];
-	}
-
-	@Override
 	public IPacketID[] getPacketIDs() {
 		return PacketID.values();
 	}
