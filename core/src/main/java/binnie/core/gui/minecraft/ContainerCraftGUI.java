@@ -383,6 +383,8 @@ public class ContainerCraftGUI extends Container {
 		return this.errorType;
 	}
 
+	private static final CustomSlot[] CUSTOM_SLOTS_EMPTY = new CustomSlot[0];
+
 	public CustomSlot[] getCustomSlots() {
 		final List<CustomSlot> slots = new ArrayList<>();
 		for (final Object object : this.inventorySlots) {
@@ -390,7 +392,7 @@ public class ContainerCraftGUI extends Container {
 				slots.add((CustomSlot) object);
 			}
 		}
-		return slots.toArray(new CustomSlot[0]);
+		return slots.toArray(CUSTOM_SLOTS_EMPTY);
 	}
 
 	@SideOnly(Side.CLIENT)
