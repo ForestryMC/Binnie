@@ -6,7 +6,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-import binnie.botany.api.genetics.EnumFlowerColor;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 
@@ -24,11 +23,11 @@ import forestry.api.genetics.IClassification;
 import forestry.core.genetics.alleles.AlleleHelper;
 import forestry.core.genetics.alleles.EnumAllele;
 
-import binnie.core.Constants;
 import binnie.botany.api.BotanyAPI;
 import binnie.botany.api.gardening.EnumAcidity;
 import binnie.botany.api.gardening.EnumMoisture;
 import binnie.botany.api.genetics.EnumFlowerChromosome;
+import binnie.botany.api.genetics.EnumFlowerColor;
 import binnie.botany.api.genetics.EnumFlowerStage;
 import binnie.botany.api.genetics.IAlleleFlowerSpecies;
 import binnie.botany.api.genetics.IAlleleFlowerSpeciesBuilder;
@@ -39,6 +38,7 @@ import binnie.botany.api.genetics.IFlowerMutationBuilder;
 import binnie.botany.api.genetics.IFlowerRoot;
 import binnie.botany.api.genetics.IFlowerType;
 import binnie.botany.core.BotanyCore;
+import binnie.core.Constants;
 
 public enum FlowerDefinition implements IFlowerDefinition {
 	Dandelion("Dandelion", "taraxacum", "officinale", EnumFlowerType.DANDELION, EnumFlowerColor.Yellow) {
@@ -420,7 +420,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			Zinnia.registerMutation(Dahlia, Marigold, 5);
 		}
 	},
-	Chrysanthemum("Chrysanthemum", "chrysanthemum", "\u00ef?? grandiflorum", EnumFlowerType.MUMS, EnumFlowerColor.Violet) {
+	Chrysanthemum("Chrysanthemum", "chrysanthemum", "\u00ef?? grandiflorum", EnumFlowerType.CHRYSANTHEMUM, EnumFlowerColor.Violet) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
 		}
