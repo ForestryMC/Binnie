@@ -2,19 +2,16 @@ package binnie.extrabees.circuit;
 
 import com.google.common.collect.Lists;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import javax.annotation.*;
 import java.util.List;
 
 import net.minecraft.item.ItemStack;
 
-import forestry.api.apiculture.IBeeGenome;
-import forestry.api.apiculture.IBeeModifier;
-import forestry.api.circuits.ChipsetManager;
-import forestry.api.circuits.ICircuit;
-import forestry.api.circuits.ICircuitLayout;
+import forestry.api.apiculture.*;
+import forestry.api.circuits.*;
 
 import binnie.core.Mods;
+import binnie.core.util.Log;
 
 public class StimulatorCircuit implements ICircuit, IBeeModifier {
 
@@ -103,7 +100,7 @@ public class StimulatorCircuit implements ICircuit, IBeeModifier {
 
 	@Override
 	public boolean isCircuitable(@Nonnull Object tile) {
-		System.out.println("isCircuitable: " + tile);
+		Log.info("isCircuitable: " + tile);
 		return false;
 	}
 
