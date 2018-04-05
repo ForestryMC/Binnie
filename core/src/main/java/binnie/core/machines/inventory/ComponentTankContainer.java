@@ -129,13 +129,15 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 		return this.getTanks()[index];
 	}
 
+	private static final IFluidTank[] FLUID_TANKS_EMPTY = new IFluidTank[0];
+
 	@Override
 	public IFluidTank[] getTanks() {
 		final List<IFluidTank> tankList = new ArrayList<>();
 		for (final TankSlot tank : this.tanks.values()) {
 			tankList.add(tank.getTank());
 		}
-		return tankList.toArray(new IFluidTank[0]);
+		return tankList.toArray(FLUID_TANKS_EMPTY);
 	}
 
 	@Override
@@ -229,7 +231,7 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 			for (final TankSlot tank : this.tanks.values()) {
 				ltanks.add(tank.getTank());
 			}
-			return ltanks.toArray(new IFluidTank[0]);
+			return ltanks.toArray(FLUID_TANKS_EMPTY);
 		}
 
 		private static int getTankIndexToFill(Map<Integer, TankSlot> tanks, @Nullable EnumFacing from, final FluidStack resource) {
