@@ -42,6 +42,6 @@ public class BeeModelProvider implements IBeeModelProvider {
 	}
 
 	public ModelResourceLocation getModelLocation(String modID, String identifier) {
-		return new ModelResourceLocation(modID + ":" + identifier, "inventory");
+		return new ModelResourceLocation(modID + ':' + identifier, "inventory");
 	}
 }

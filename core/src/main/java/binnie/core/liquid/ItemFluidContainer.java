@@ -55,7 +55,7 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister {
 		if (fluid == null) {
 			return "Empty " + container.getDisplayName();
 		}
-		return fluid.getFluid().getLocalizedName(fluid) + " " + this.container.getDisplayName();
+		return fluid.getFluid().getLocalizedName(fluid) + ' ' + this.container.getDisplayName();
 	}
 
 	@Override

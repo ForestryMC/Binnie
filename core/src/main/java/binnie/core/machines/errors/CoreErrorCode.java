@@ -44,7 +44,7 @@ public enum CoreErrorCode implements IErrorStateDefinition {
 
 	@Override
 	public String getUID() {
-		return Constants.CORE_MOD_ID + ":" + name;
+		return Constants.CORE_MOD_ID + ':' + name;
 	}
 
 	@Override

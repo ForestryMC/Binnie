@@ -90,7 +90,7 @@ public class Flower extends Individual implements IFlower {
 		list.add(TextFormatting.GREEN + "T: " + getGenome().getPrimary().getTemperature() + " / " + getGenome().getToleranceTemperature());
 		list.add(TextFormatting.AQUA + "M: " + getGenome().getPrimary().getMoisture() + " / " + getGenome().getToleranceMoisture());
 		list.add(TextFormatting.AQUA + "pH: " + getGenome().getPrimary().getHumidity() + " / " + getGenome().getTolerancePH());
-		list.add(TextFormatting.GOLD + "Fert: " + getGenome().getFertility() + "x");
+		list.add(TextFormatting.GOLD + "Fert: " + getGenome().getFertility() + 'x');
 	}
 
 	@Override

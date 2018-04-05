@@ -78,7 +78,7 @@ public class ControlProgressBase extends Control {
 			} else if (process.getProcessTime() > 0) {
 				final IProcess machineProcess = Machine.getMachine(Window.get(this).getInventory()).getInterface(IProcess.class);
 				String percentProgress = I18N.getPercentFormat().format((int) process.getCurrentProgress() / 100.0);
-				tooltip.add(machineProcess.getTooltip() + " (" + percentProgress + ")");
+				tooltip.add(machineProcess.getTooltip() + " (" + percentProgress + ')');
 			} else {
 				tooltip.add(I18N.localise(ModId.CORE, "gui.progress.in.progress"));
 			}

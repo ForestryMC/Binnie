@@ -117,7 +117,7 @@ class BlockMachine extends Block implements IBlockMachine, ITileEntityProvider {
 				tooltip.add(machinePackage.getInformation());
 			}
 		} else {
-			tooltip.add(TextFormatting.ITALIC + "<" + I18N.localise("for.gui.tooltip.tmi") + ">");
+			tooltip.add(TextFormatting.ITALIC + "<" + I18N.localise("for.gui.tooltip.tmi") + '>');
 		}
 	}
 

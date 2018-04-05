@@ -26,7 +26,7 @@ public @interface PropPercentage {
 		@Override
 		protected void addComments() {
 			this.addComment("Default value is " + this.getDefaultValue() + "%.");
-			this.addComment("Range is " + this.getAnnotatedProperty().lower() + "-" + this.getAnnotatedProperty().upper() + "%.");
+			this.addComment("Range is " + this.getAnnotatedProperty().lower() + '-' + this.getAnnotatedProperty().upper() + "%.");
 		}
 
 		@Override

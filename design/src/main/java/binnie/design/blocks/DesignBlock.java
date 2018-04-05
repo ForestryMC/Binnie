@@ -472,6 +472,6 @@ public class DesignBlock {
 		} else {
 			type = this.getPrimaryMaterial().getDesignMaterialName();
 		}
-		return super.toString() + " " + "{" + type + " " + this.getDesign().getName() + " " + (this.panel ? "Panel" : "Tile") + ", Facing:" + this.getFacing() + ", Rotation:" + this.getRotation() + "}";
+		return super.toString() + ' ' + '{' + type + ' ' + this.getDesign().getName() + ' ' + (this.panel ? "Panel" : "Tile") + ", Facing:" + this.getFacing() + ", Rotation:" + this.getRotation() + '}';
 	}
 }

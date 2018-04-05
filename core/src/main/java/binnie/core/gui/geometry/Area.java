@@ -130,7 +130,7 @@ public final class Area implements IArea {
 
 	@Override
 	public String toString() {
-		return this.width() + "x" + this.height() + "@" + this.xPos() + "," + this.yPos();
+		return this.width() + "x" + this.height() + '@' + this.xPos() + ',' + this.yPos();
 	}
 
 	@Override

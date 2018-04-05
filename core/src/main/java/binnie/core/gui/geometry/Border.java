@@ -90,6 +90,6 @@ public class Border implements IBorder {
 
 	@Override
 	public String toString() {
-		return this.getTop() + "-" + this.getRight() + "-" + this.getBottom() + "-" + this.getLeft();
+		return this.getTop() + "-" + this.getRight() + '-' + this.getBottom() + '-' + this.getLeft();
 	}
 }

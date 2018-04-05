@@ -44,7 +44,7 @@ public class ExtraTreesJeiPlugin implements IModPlugin {
 				FenceDescription desc = WoodManager.getFenceDescription(itemStack);
 				if (desc != null) {
 					FenceType type = WoodManager.getFenceType(itemStack);
-					return type + ":" + desc.getPlankType().getDesignMaterialName().toLowerCase() + ":" + desc.getSecondaryPlankType().getDesignMaterialName().toLowerCase();
+					return type + ":" + desc.getPlankType().getDesignMaterialName().toLowerCase() + ':' + desc.getSecondaryPlankType().getDesignMaterialName().toLowerCase();
 				}
 				return Integer.toString(itemStack.getItemDamage());
 			});
@@ -56,7 +56,7 @@ public class ExtraTreesJeiPlugin implements IModPlugin {
 				if (fluidStack == null) {
 					return glassware;
 				}
-				return glassware + ":" + fluidStack.getFluid().getName();
+				return glassware + ':' + fluidStack.getFluid().getName();
 			});
 		}
 	}

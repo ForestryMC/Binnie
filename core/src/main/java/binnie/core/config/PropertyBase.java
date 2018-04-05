@@ -60,7 +60,7 @@ abstract class PropertyBase<ValueType, AnnotationType extends Annotation> {
 	protected String getComment() {
 		StringBuilder comment = new StringBuilder();
 		for (final String com : this.comments) {
-			comment.append(com).append(" ");
+			comment.append(com).append(' ');
 		}
 		return comment.toString();
 	}
