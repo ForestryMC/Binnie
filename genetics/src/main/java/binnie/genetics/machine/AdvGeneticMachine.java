@@ -24,7 +24,6 @@ public enum AdvGeneticMachine implements IMachineType {
 	}
 
 	public ItemStack get(final int i) {
-		Genetics.machine();
 		return new ItemStack(ModuleMachine.getPackageAdvGenetic().getBlock(), i, this.ordinal());
 	}
 

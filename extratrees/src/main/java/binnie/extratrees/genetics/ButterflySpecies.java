@@ -129,7 +129,7 @@ public enum ButterflySpecies implements IButterflyDefinition {
 
 		if (parent2 instanceof ButterflySpecies) {
 			species2 = ((ButterflySpecies) parent2).species;
-		} else if (parent2 instanceof ButterflySpecies) {
+		} else if (parent2 instanceof ButterflyDefinition) {
 			species2 = ((ButterflyDefinition) parent2).getSpecies();
 		} else if (parent2 instanceof MothDefinition) {
 			species2 = ((MothDefinition) parent2).getSpecies();

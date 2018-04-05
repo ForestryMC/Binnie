@@ -2,6 +2,7 @@ package binnie.extrabees.worldgen;
 
 import java.util.Random;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -19,10 +20,15 @@ public class WorldGenHiveWater extends WorldGenHive {
 
 	@Override
 	public boolean generate(final World world, final Random random, final BlockPos blockPos) {
-		if (world.getBlockState(blockPos).getBlock() != Blocks.WATER && world.getBlockState(blockPos).getBlock() != Blocks.WATER) {
+		final Block block = world.getBlockState(blockPos).getBlock();
+		if (block != Blocks.WATER && block != Blocks.FLOWING_WATER) {
 			return false;
 		}
-		if (world.getBlockState(blockPos.down()).getMaterial() == Material.SAND || world.getBlockState(blockPos.down()).getMaterial() == Material.CLAY || world.getBlockState(blockPos.down()).getMaterial() == Material.GROUND || world.getBlockState(blockPos.down()).getMaterial() == Material.ROCK) {
+		final Material materialBlockBelow = world.getBlockState(blockPos.down()).getMaterial();
+		if (materialBlockBelow == Material.SAND ||
+				materialBlockBelow == Material.CLAY ||
+				materialBlockBelow == Material.GROUND ||
+				materialBlockBelow == Material.ROCK) {
 			world.setBlockState(blockPos, ExtraBees.hive.getDefaultState().withProperty(BlockExtraBeeHives.HIVE_TYPE, EnumHiveType.WATER));
 		}
 		return true;
