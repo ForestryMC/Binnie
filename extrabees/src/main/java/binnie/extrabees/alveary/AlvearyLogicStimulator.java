@@ -32,11 +32,13 @@ public class AlvearyLogicStimulator extends AlvearyLogicElectrical {
 	private boolean powered;
 	private StimulatorCircuit[] modifiers;
 
+	private static final StimulatorCircuit[] STIMULATOR_CIRCUITS_EMPTY = new StimulatorCircuit[0];
+
 	public AlvearyLogicStimulator() {
 		super(10000);
 		this.powerUsage = 0;
 		this.powered = false;
-		this.modifiers = new StimulatorCircuit[0];
+		this.modifiers = STIMULATOR_CIRCUITS_EMPTY;
 		this.inv = new ChipsetItemStackHandler();
 	}
 
@@ -78,7 +80,7 @@ public class AlvearyLogicStimulator extends AlvearyLogicElectrical {
 	public StimulatorCircuit[] getCircuits() {
 		final ICircuitBoard board = this.getHiveFrame();
 		if (board == null) {
-			return new StimulatorCircuit[0];
+			return STIMULATOR_CIRCUITS_EMPTY;
 		}
 		final ICircuit[] circuits = board.getCircuits();
 		final List<StimulatorCircuit> mod = new ArrayList<>();
@@ -87,7 +89,7 @@ public class AlvearyLogicStimulator extends AlvearyLogicElectrical {
 				mod.add((StimulatorCircuit) circuit);
 			}
 		}
-		return mod.toArray(new StimulatorCircuit[0]);
+		return mod.toArray(STIMULATOR_CIRCUITS_EMPTY);
 	}
 
 	@Override
