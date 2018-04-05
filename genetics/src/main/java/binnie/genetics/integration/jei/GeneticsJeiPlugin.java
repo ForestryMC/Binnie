@@ -111,7 +111,7 @@ public class GeneticsJeiPlugin implements IModPlugin {
 				String info = fullyCharged ? "charged" : "uncharged";
 				ISpeciesRoot root = itemChargeable.getSpeciesRoot(itemStack);
 				if (root != null) {
-					return info + ":" + root.getUID();
+					return info + ':' + root.getUID();
 				}
 			}
 

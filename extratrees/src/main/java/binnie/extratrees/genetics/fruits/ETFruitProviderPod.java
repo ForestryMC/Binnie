@@ -38,7 +38,7 @@ public class ETFruitProviderPod extends ETFruitProviderNone {
 	public NonNullList<ItemStack> getFruits(ITreeGenome genome, World world, BlockPos pos, int ripeningTime) {
 		NonNullList<ItemStack> products = NonNullList.create();
 		if (this.pod != null) {
-			if (ripeningTime >= ripeningPeriod) {
+			if (ripeningTime >= RIPENING_PERIOD) {
 				for (Map.Entry<ItemStack, Float> product : drops.entrySet()) {
 					ItemStack single = product.getKey().copy();
 					single.setCount(1);

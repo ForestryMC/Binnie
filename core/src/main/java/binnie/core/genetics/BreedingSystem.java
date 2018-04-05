@@ -187,8 +187,7 @@ public abstract class BreedingSystem implements IBreedingSystem, IItemStackRepre
 		this.allMutations = new ArrayList<>();
 		List<? extends IMutation> speciesMutations = speciesRoot.getMutations(false);
 		if (!speciesMutations.isEmpty()) {
-			final Set<IMutation> mutations = new LinkedHashSet<>();
-			mutations.addAll(speciesMutations);
+			final Set<IMutation> mutations = new LinkedHashSet<>(speciesMutations);
 			for (final IMutation mutation : mutations) {
 				this.allMutations.add(mutation);
 				final Set<IAlleleSpecies> participatingSpecies = new LinkedHashSet<>();

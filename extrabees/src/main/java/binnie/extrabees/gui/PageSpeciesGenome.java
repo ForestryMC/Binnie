@@ -156,7 +156,7 @@ public class PageSpeciesGenome extends PageSpecies {
 		fertilityText.setValue(I18N.localise(DatabaseConstants.BEE_GENOME_KEY + ".children", genome.getFertility()));
 		floweringText.setValue(rateFlowering(genome.getFlowering()));
 		Vec3i area = genome.getTerritory();
-		territoryText.setValue(area.getX() + "x" + area.getY() + "x" + area.getZ());
+		territoryText.setValue(area.getX() + "x" + area.getY() + 'x' + area.getZ());
 		String behavior = I18N.localise(DatabaseConstants.BEE_GENOME_KEY + ".daytime");
 		if (genome.getPrimary().isNocturnal()) {
 			behavior = I18N.localise(DatabaseConstants.BEE_GENOME_KEY + ".nighttime");

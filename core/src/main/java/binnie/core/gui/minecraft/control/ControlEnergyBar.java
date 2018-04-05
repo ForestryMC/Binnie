@@ -59,7 +59,7 @@ public class ControlEnergyBar extends Control implements ITooltip {
 		NumberFormat numberFormat = I18N.getNumberFormat();
 		String storedEnergy = numberFormat.format(this.getStoredEnergy());
 		String maxEnergy = numberFormat.format(this.getMaxEnergy());
-		String energyString = TextFormatting.GRAY + storedEnergy + "/" + maxEnergy + " RF";
+		String energyString = TextFormatting.GRAY + storedEnergy + '/' + maxEnergy + " RF";
 		tooltip.add(energyString);
 	}
 

@@ -69,7 +69,7 @@ public class PagePlanksOverview extends PageAbstract<ItemStack> {
 			final String[] descStrings = desc.split("\\|");
 			descBody.append(descStrings[0]);
 			for (int i = 1; i < descStrings.length - 1; ++i) {
-				descBody.append(" ").append(descStrings[i]);
+				descBody.append(' ').append(descStrings[i]);
 			}
 			if (descStrings.length > 1) {
 				descSig += descStrings[descStrings.length - 1];

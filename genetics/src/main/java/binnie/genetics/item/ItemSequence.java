@@ -58,7 +58,7 @@ public class ItemSequence extends ItemCore implements IItemAnalysable, IItemChar
 		if (gene == null) {
 			return I18N.localise("genetics.item.sequence.corrupted.name");
 		} else {
-			return gene.getBreedingSystem().getDescriptor() + " " + I18N.localise("genetics.item.sequence.name");
+			return gene.getBreedingSystem().getDescriptor() + ' ' + I18N.localise("genetics.item.sequence.name");
 		}
 	}
 
@@ -71,7 +71,7 @@ public class ItemSequence extends ItemCore implements IItemAnalysable, IItemChar
 			if (gene.isAnalysed()) {
 				gene.getInfo(tooltip);
 			} else {
-				tooltip.add("<" + I18N.localise(ModId.GENETICS, "item.sequence.unknown") + ">");
+				tooltip.add('<' + I18N.localise(ModId.GENETICS, "item.sequence.unknown") + '>');
 			}
 			int seq = gene.getSequenced();
 			if (seq == 0) {

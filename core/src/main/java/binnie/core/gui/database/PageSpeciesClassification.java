@@ -36,8 +36,7 @@ public class PageSpeciesClassification extends PageSpecies {
 			this.genus.setValue(species.getBinomial());
 			for (IClassification classification = species.getBranch(); classification != null; classification = classification.getParent()) {
 				IClassification.EnumClassLevel level = classification.getLevel();
-				String text = "";
-				text += classification.getScientific();
+				String text = classification.getScientific();
 				this.levels.get(level).setValue(text);
 			}
 		}

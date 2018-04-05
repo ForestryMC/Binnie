@@ -104,10 +104,10 @@ public class ItemInsulatedTube extends ItemCore implements IColoredItem {
 					}
 				}
 			} else {
-				list.add(TextFormatting.ITALIC + "<" + I18N.localise("for.gui.tooltip.tmi") + ">");
+				list.add(TextFormatting.ITALIC + "<" + I18N.localise("for.gui.tooltip.tmi") + '>');
 			}
 		} else {
-			list.add("<" + I18N.localise("for.gui.noeffect") + ">");
+			list.add('<' + I18N.localise("for.gui.noeffect") + '>');
 		}
 	}
 

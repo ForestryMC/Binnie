@@ -40,7 +40,7 @@ public class WoodManager {
 		String displayName;
 
 		if (woodType instanceof EnumETLog || woodType instanceof EnumShrubLog) {
-			String customUnlocalizedName = "tile.et." + blockKind + "." + woodType + ".name";
+			String customUnlocalizedName = "tile.et." + blockKind + '.' + woodType + ".name";
 			if (I18N.canLocalise(customUnlocalizedName)) {
 				displayName = I18N.localise(customUnlocalizedName);
 			} else {

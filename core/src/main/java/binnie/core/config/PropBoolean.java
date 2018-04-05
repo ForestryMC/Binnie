@@ -26,7 +26,7 @@ public @interface PropBoolean {
 
 		@Override
 		protected void addComments() {
-			this.addComment("Default value is " + this.getDefaultValue() + ".");
+			this.addComment("Default value is " + this.getDefaultValue() + '.');
 		}
 	}
 }

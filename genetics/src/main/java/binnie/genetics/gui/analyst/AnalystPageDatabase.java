@@ -90,8 +90,7 @@ public class AnalystPageDatabase extends Control implements ITitledWidget {
 	}
 
 	private Collection<IAlleleSpecies> getSpecies(IBreedingSystem system) {
-		Collection<IAlleleSpecies> species = new ArrayList<>();
-		species.addAll(master ? system.getAllSpecies() : system.getDiscoveredSpecies(getWindow().getWorld(), getWindow().getPlayer().getGameProfile()));
+		Collection<IAlleleSpecies> species = new ArrayList<>(master ? system.getAllSpecies() : system.getDiscoveredSpecies(getWindow().getWorld(), getWindow().getPlayer().getGameProfile()));
 		return species;
 	}
 

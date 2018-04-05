@@ -11,7 +11,7 @@ import net.minecraft.util.text.TextFormatting;
 
 public class EnumHelper {
     public static String getLocalisedName(final IBotanyColored enumClass, boolean withColor) {
-        String localisedName = I18N.localise(ModId.BOTANY, getKeyGroup(enumClass) + "." + enumClass.getName());
+        String localisedName = I18N.localise(ModId.BOTANY, getKeyGroup(enumClass) + '.' + enumClass.getName());
         TextFormatting color = enumClass.getColor();
         if (withColor && color != null) {
             localisedName = color + localisedName;

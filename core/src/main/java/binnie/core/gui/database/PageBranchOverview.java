@@ -52,7 +52,7 @@ public class PageBranchOverview extends PageBranch {
 				descLines.add(TextFormatting.ITALIC + line.toString() + TextFormatting.RESET);
 				line = new StringBuilder();
 			}
-			line.append(" ").append(str);
+			line.append(' ').append(str);
 		}
 		descLines.add(line.toString());
 		int i = 0;

@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import binnie.botany.Botany;
-import org.apache.commons.lang3.StringUtils;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
@@ -52,8 +51,8 @@ public class FlowerAlyzerPlugin implements IAlyzerPlugin {
 			EnumFlowerChromosome.PH_TOLERANCE
 	};
 	private int lastTopOffset;
-	private final int rowSize = 12;
-	private final int margin = 10;
+	private static final int ROW_SIZE = 12;
+	private static final int MARGIN = 10;
 	private int guiLeft;
 	private int guiTop;
 	private final HashMap<String, ItemStack> iconStacks = new HashMap<>();
@@ -68,7 +67,7 @@ public class FlowerAlyzerPlugin implements IAlyzerPlugin {
 
 	@SideOnly(Side.CLIENT)
 	public void drawLine(GuiScreen gui, int xOffset, String msg, int color) {
-		gui.mc.fontRenderer.drawString(msg, guiLeft + xOffset, guiTop + lastTopOffset + margin, color);
+		gui.mc.fontRenderer.drawString(msg, guiLeft + xOffset, guiTop + lastTopOffset + MARGIN, color);
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -76,11 +75,11 @@ public class FlowerAlyzerPlugin implements IAlyzerPlugin {
 		drawLine(gui, COLUMN_0, I18N.localise(String.format("%s.flowers.chromosome.%s.short", Botany.instance.getModId(), chromosome.getName())), 0xEEEEEE);
 		drawLine(gui, COLUMN_1, I18N.localise(flower.getGenome().getActiveAllele(chromosome).getUnlocalizedName()), 0xEEEEEE);
 		drawLine(gui, COLUMN_2, I18N.localise(flower.getGenome().getInactiveAllele(chromosome).getUnlocalizedName()), 0xEEEEEE);
-		lastTopOffset += rowSize;
+		lastTopOffset += ROW_SIZE;
 	}
 
 	public void newLine() {
-		lastTopOffset += rowSize;
+		lastTopOffset += ROW_SIZE;
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -110,7 +109,7 @@ public class FlowerAlyzerPlugin implements IAlyzerPlugin {
 			itemRender.renderItemOverlayIntoGUI(gui.mc.fontRenderer, renderS, guiLeft + 10 + COLUMN_1, guiTop + 10 + 12, null);
 		}
 
-		guiTop += rowSize * 3;
+		guiTop += ROW_SIZE * 3;
 		for (EnumFlowerChromosome chromosom : firstPageChromosome) {
 			drawChromosome(gui, chromosom, flower);
 
@@ -132,8 +131,8 @@ public class FlowerAlyzerPlugin implements IAlyzerPlugin {
 
 		for (EnumFlowerChromosome chromosome : secondPageColorChromosome) {
 			drawChromosome(gui, chromosome, flower);
-			RenderUtil.drawSolidRect(new Area(guiLeft + COLUMN_1, guiTop + lastTopOffset + margin, 50, 10), ((IAlleleInteger) flower.getGenome().getActiveAllele(chromosome)).getValue());
-			RenderUtil.drawSolidRect(new Area(guiLeft + COLUMN_2, guiTop + lastTopOffset + margin, 50, 10), ((IAlleleInteger) flower.getGenome().getInactiveAllele(chromosome)).getValue());
+			RenderUtil.drawSolidRect(new Area(guiLeft + COLUMN_1, guiTop + lastTopOffset + MARGIN, 50, 10), ((IAlleleInteger) flower.getGenome().getActiveAllele(chromosome)).getValue());
+			RenderUtil.drawSolidRect(new Area(guiLeft + COLUMN_2, guiTop + lastTopOffset + MARGIN, 50, 10), ((IAlleleInteger) flower.getGenome().getInactiveAllele(chromosome)).getValue());
 			newLine();
 		}
 

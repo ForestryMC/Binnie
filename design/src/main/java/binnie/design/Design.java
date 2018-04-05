@@ -18,7 +18,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 		name = "Binnie's Design",
 		version = "@VERSION@",
 		acceptedMinecraftVersions = Constants.ACCEPTED_MINECRAFT_VERSIONS,
-		dependencies = "required-after:" + Constants.CORE_MOD_ID + ";"
+		dependencies = "required-after:" + Constants.CORE_MOD_ID + ';'
 )
 public class Design {
 	@SuppressWarnings("NullableProblems")

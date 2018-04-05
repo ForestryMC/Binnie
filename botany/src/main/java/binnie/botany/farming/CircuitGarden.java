@@ -45,7 +45,7 @@ public class CircuitGarden extends BinnieCircuit {
 	private static String getName(EnumMoisture moisture, @Nullable EnumAcidity ph, boolean manual, boolean fertilised) {
 		String name = "garden." + moisture.getName();
 		if (ph != null) {
-			name += "." + ph.getName();
+			name += '.' + ph.getName();
 		}
 		if (manual) {
 			name += ".manual";
