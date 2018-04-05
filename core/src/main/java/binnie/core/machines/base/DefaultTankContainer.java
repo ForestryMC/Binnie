@@ -14,9 +14,12 @@ import binnie.core.machines.power.ITankMachine;
 import binnie.core.machines.power.TankInfo;
 
 class DefaultTankContainer implements ITankMachine {
+
+	private static final TankInfo[] TANK_INFOS_EMPTY = new TankInfo[0];
+
 	@Override
 	public TankInfo[] getTankInfos() {
-		return new TankInfo[0];
+		return TANK_INFOS_EMPTY;
 	}
 
 	@Override
@@ -61,8 +64,10 @@ class DefaultTankContainer implements ITankMachine {
 		return null;
 	}
 
+	private static final IFluidTank[] FLUID_TANKS_EMPTY = new IFluidTank[0];
+
 	@Override
 	public IFluidTank[] getTanks() {
-		return new IFluidTank[0];
+		return FLUID_TANKS_EMPTY;
 	}
 }
