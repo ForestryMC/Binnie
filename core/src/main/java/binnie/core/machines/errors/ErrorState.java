@@ -41,8 +41,10 @@ public class ErrorState implements INbtReadable, INbtWritable {
 	}
 
 	public ErrorState(IErrorStateDefinition nameDefinition, IErrorStateDefinition definition) {
-		this(nameDefinition, definition, new int[0]);
+		this(nameDefinition, definition, DATA_EMPTY);
 	}
+
+	private static final int[] DATA_EMPTY = new int[0];
 
 	public ErrorState(IErrorStateDefinition nameDefinition, IErrorStateDefinition definition, int[] data) {
 		EnumErrorType type = definition.getType();
@@ -55,7 +57,7 @@ public class ErrorState implements INbtReadable, INbtWritable {
 	}
 
 	public ErrorState(NBTTagCompound nbtTagCompound) {
-		this.data = new int[0];
+		this.data = DATA_EMPTY;
 		this.itemError = false;
 		this.tankError = false;
 		this.powerError = false;
