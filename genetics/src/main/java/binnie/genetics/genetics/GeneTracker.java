@@ -30,8 +30,7 @@ public class GeneTracker extends WorldSavedData {
 	private GameProfile username;
 
 	public GeneTracker(String s, @Nullable GameProfile username) {
-		super(s);
-		discoveredGenes = new ArrayList<>();
+		this(s);
 		this.username = username;
 	}
 
