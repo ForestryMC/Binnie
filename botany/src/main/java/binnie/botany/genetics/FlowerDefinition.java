@@ -323,7 +323,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			// vanilla
 		}
 	},
-	Rose("ROSE", "rosa", "rubiginosa", EnumFlowerType.ROSE, EnumFlowerColor.Red) {
+	Rose("Rose", "rosa", "rubiginosa", EnumFlowerType.ROSE, EnumFlowerColor.Red) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
 			flowerSpecies.setPH(EnumAcidity.ACID);

@@ -3,6 +3,8 @@ package binnie.extrabees.circuit;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import binnie.core.ModId;
+import binnie.core.util.I18N;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeModifier;
 import forestry.api.circuits.ICircuitLayout;
@@ -49,18 +51,28 @@ public enum AlvearySimulatorCircuitType implements IBeeModifier {
 		this.power = power;
 	}
 
+	private final static String CIRCUIT_TYPE_KEY = "alvearycircuittype";
+
 	public void createCircuit(final ICircuitLayout layout) {
 		final StimulatorCircuit circuit = new StimulatorCircuit(this, layout);
 		for (final EnumBeeModifier modifier : EnumBeeModifier.values()) {
 			final float mod = this.logic.getModifier(modifier, 1.0f);
+			int value;
+			String localizedString;
 			if (mod != 1.0f) {
 				if (mod > 1.0f) {
-					final int increase = (int) ((mod - 1.0f) * 100.0f);
-					circuit.addTooltip("Increases " + modifier.getName() + " by " + increase + "%");
+					value = (int) ((mod - 1.0f) * 100.0f);
+					localizedString = I18N.localise(ModId.EXTRA_BEES, CIRCUIT_TYPE_KEY + ".inc", modifier.getName(), value);
 				} else {
-					final int decrease = (int) ((1.0f - mod) * 100.0f);
-					circuit.addTooltip("Decreases " + modifier.getName() + " by " + decrease + "%");
+					value = (int) ((1.0f - mod) * 100.0f);
+					localizedString = I18N.localise(ModId.EXTRA_BEES, CIRCUIT_TYPE_KEY + ".dec", modifier.getName(), value);
 				}
+				circuit.addTooltip(localizedString);
+			}
+		}
+		for (final EnumBeeBooleanModifier modifier : EnumBeeBooleanModifier.values()) {
+			if (this.logic.getModifier(modifier)) {
+				circuit.addTooltip(modifier.getName());
 			}
 		}
 	}

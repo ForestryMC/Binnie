@@ -1,6 +1,6 @@
 package binnie.extrabees.circuit;
 
-import binnie.extrabees.ExtraBees;
+import binnie.core.ModId;
 import forestry.api.circuits.ChipsetManager;
 import forestry.api.circuits.ICircuitLayout;
 import forestry.api.circuits.ICircuitSocketType;
@@ -25,16 +25,12 @@ public class BinnieCircuitLayout implements ICircuitLayout {
 
 	@Override
 	public String getName() {
-		return I18N.localise(String.format("%s.circuit.layout.%s",
-				ExtraBees.MODID,
-				this.uid.toLowerCase()));
+		return I18N.localise(ModId.EXTRA_BEES, "circuit.layout." + uid.toLowerCase());
 	}
 
 	@Override
 	public String getUsage() {
-		return I18N.localise(String.format("%s.circuit.layout.%s.usage",
-				ExtraBees.MODID,
-				this.uid.toLowerCase()));
+		return I18N.localise(ModId.EXTRA_BEES, "circuit.layout." + uid.toLowerCase() + ".usage");
 	}
 
 	@Override

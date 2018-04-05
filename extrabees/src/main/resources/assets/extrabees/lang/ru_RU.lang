@@ -411,3 +411,21 @@ extrabees.beemodifier.lifespan=Продолжительность жизни
 extrabees.beemodifier.production=Производство
 extrabees.beemodifier.flowering=Цветение
 extrabees.beemodifier.genetic_decay=Генетический распад
+
+extrabees.beebooleanmodifier.sealed=Пещерная
+extrabees.beebooleanmodifier.selflighted=SelfLighted
+extrabees.beebooleanmodifier.sunlightstimulated=Дневная
+extrabees.beebooleanmodifier.hellish=Адская
+
+extrabees.alvearycircuittype.inc=Увеличивает %s на %d %%
+extrabees.alvearycircuittype.dec=Уменьшает %s на %d %%
+
+binnie.circuit.stimulator.low_voltage=Продукция улучш. I
+binnie.circuit.stimulator.high_voltage=Продукция улучш. II
+binnie.circuit.stimulator.plant=Опыление улучш. I
+binnie.circuit.stimulator.death=Время жизни ухудш. I
+binnie.circuit.stimulator.life=Время жизни улучш. I
+binnie.circuit.stimulator.nether=Ад
+binnie.circuit.stimulator.mutation=Мутация улучш. I
+binnie.circuit.stimulator.inhibitor=Продукция ухудш. I
+binnie.circuit.stimulator.territory=Терриртория улучш. I

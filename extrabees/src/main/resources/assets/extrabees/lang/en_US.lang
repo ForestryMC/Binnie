@@ -411,3 +411,21 @@ extrabees.beemodifier.lifespan=Lifespan
 extrabees.beemodifier.production=Production
 extrabees.beemodifier.flowering=Flowering
 extrabees.beemodifier.genetic_decay=Genetic Decay
+
+extrabees.beebooleanmodifier.sealed=Sealed
+extrabees.beebooleanmodifier.selflighted=SelfLighted
+extrabees.beebooleanmodifier.sunlightstimulated=SunlightStimulated
+extrabees.beebooleanmodifier.hellish=Hellish
+
+extrabees.alvearycircuittype.inc=Increases %s by %d %%
+extrabees.alvearycircuittype.dec=Decreases %s by %d %%
+
+binnie.circuit.stimulator.low_voltage=Production Up I
+binnie.circuit.stimulator.high_voltage=Production Up II
+binnie.circuit.stimulator.plant=Flowering Up I
+binnie.circuit.stimulator.death=Lifespan Down I
+binnie.circuit.stimulator.life=Lifespan Up I
+binnie.circuit.stimulator.nether=Hell
+binnie.circuit.stimulator.mutation=Mutation Up I
+binnie.circuit.stimulator.inhibitor=Production Down I
+binnie.circuit.stimulator.territory=Territory Up I

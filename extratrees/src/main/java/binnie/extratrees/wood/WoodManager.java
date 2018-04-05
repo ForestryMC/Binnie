@@ -17,9 +17,9 @@ import forestry.api.arboriculture.IWoodType;
 import forestry.api.arboriculture.TreeManager;
 import forestry.api.arboriculture.WoodBlockKind;
 import forestry.arboriculture.IWoodTyped;
-import forestry.core.utils.Translator;
 
 import binnie.core.block.TileEntityMetadata;
+import binnie.core.util.I18N;
 import binnie.extratrees.api.CarpentryManager;
 import binnie.design.api.IDesignMaterial;
 import binnie.extratrees.blocks.decor.FenceDescription;
@@ -41,11 +41,11 @@ public class WoodManager {
 
 		if (woodType instanceof EnumETLog || woodType instanceof EnumShrubLog) {
 			String customUnlocalizedName = "tile.et." + blockKind + "." + woodType + ".name";
-			if (Translator.canTranslateToLocal(customUnlocalizedName)) {
-				displayName = Translator.translateToLocal(customUnlocalizedName);
+			if (I18N.canLocalise(customUnlocalizedName)) {
+				displayName = I18N.localise(customUnlocalizedName);
 			} else {
-				String woodGrammar = Translator.translateToLocal("for." + blockKind + ".grammar");
-				String woodTypeName = Translator.translateToLocal("et.trees.woodType." + woodType);
+				String woodGrammar = I18N.localise("for." + blockKind + ".grammar");
+				String woodTypeName = I18N.localise("et.trees.woodType." + woodType);
 
 				displayName = woodGrammar.replaceAll("%TYPE", woodTypeName);
 			}
@@ -54,7 +54,7 @@ public class WoodManager {
 		}
 
 		if (wood.isFireproof()) {
-			displayName = Translator.translateToLocalFormatted("tile.for.fireproof", displayName);
+			displayName = I18N.localise("tile.for.fireproof", displayName);
 		}
 
 		return displayName;

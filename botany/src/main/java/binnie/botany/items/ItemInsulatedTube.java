@@ -25,7 +25,6 @@ import forestry.api.circuits.ICircuitLayout;
 import forestry.api.core.IModelManager;
 import forestry.core.circuits.SolderManager;
 import forestry.core.items.IColoredItem;
-import forestry.core.utils.Translator;
 
 import binnie.botany.CreativeTabBotany;
 import binnie.core.item.ItemCore;
@@ -105,10 +104,10 @@ public class ItemInsulatedTube extends ItemCore implements IColoredItem {
 					}
 				}
 			} else {
-				list.add(TextFormatting.ITALIC + "<" + Translator.translateToLocal("for.gui.tooltip.tmi") + ">");
+				list.add(TextFormatting.ITALIC + "<" + I18N.localise("for.gui.tooltip.tmi") + ">");
 			}
 		} else {
-			list.add("<" + Translator.translateToLocal("for.gui.noeffect") + ">");
+			list.add("<" + I18N.localise("for.gui.noeffect") + ">");
 		}
 	}
 
