@@ -23,12 +23,11 @@ public class I18NClient implements I18NProxy {
     public String localise(String key) {
         if (I18n.hasKey(key)) {
             return I18n.format(key);
-        } else {
-            if (devEnvironment) {
-                Log.warning("Key not localized: " + key);
-            }
-            return key;
         }
+        if (devEnvironment) {
+            Log.warning("Key not localized: " + key);
+        }
+        return key;
     }
 
     public String localise(ModId modId, String path, Object... format) {
@@ -44,13 +43,13 @@ public class I18NClient implements I18NProxy {
     }
 
     public String localise(String key, Object... format) {
-        try {
+        if (I18n.hasKey(key)) {
             return I18n.format(key, format);
-        } catch (IllegalFormatException e) {
-            String errorMessage = "Format error: " + key;
-            Log.error(errorMessage, e);
-            return errorMessage;
         }
+        if (devEnvironment) {
+            Log.warning("Key(format) not localized: " + key);
+        }
+        return key;
     }
 
     public String localise(ResourceLocation key, Object... format) {
