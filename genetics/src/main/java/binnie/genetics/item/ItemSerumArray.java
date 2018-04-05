@@ -49,13 +49,15 @@ public class ItemSerumArray extends ItemGene implements IItemSerum {
 		return stack.getMaxDamage();
 	}
 
+	private static final IGene[] GENES_EMPTY = new IGene[0];
+
 	@Override
 	public IGene[] getGenes(final ItemStack stack) {
 		GeneArrayItem geneItem = this.getGeneItem(stack);
 		if (geneItem != null) {
-			return geneItem.getGenes().toArray(new IGene[0]);
+			return geneItem.getGenes().toArray(GENES_EMPTY);
 		}
-		return new IGene[0];
+		return GENES_EMPTY;
 	}
 
 	@Override
