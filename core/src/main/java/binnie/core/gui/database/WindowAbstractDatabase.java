@@ -216,7 +216,7 @@ public abstract class WindowAbstractDatabase extends Window {
 
 		@Override
 		public String getName() {
-			return I18N.localise(DatabaseConstants.MODE_KEY + "." + this.name().toLowerCase());
+			return I18N.localise(DatabaseConstants.MODE_KEY + '.' + this.name().toLowerCase());
 		}
 	}
 

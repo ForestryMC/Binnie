@@ -64,7 +64,7 @@ public class ItemFieldKit extends ItemCore {
 		if (i == 0) {
 			tooltip.add("No paper");
 		} else {
-			tooltip.add("" + i + " sheet" + ((i > 1) ? "s" : "") + " of paper");
+			tooltip.add(i + " sheet" + ((i > 1) ? "s" : "") + " of paper");
 		}
 		super.addInformation(stack, worldIn, tooltip, flagIn);
 	}

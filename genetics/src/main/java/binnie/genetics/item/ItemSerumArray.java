@@ -115,7 +115,7 @@ public class ItemSerumArray extends ItemGene implements IItemSerum {
 			ISpeciesRoot speciesRoot = geneItem.getSpeciesRoot();
 			if (speciesRoot != null) {
 				IBreedingSystem system = Binnie.GENETICS.getSystem(speciesRoot);
-				return system.getDescriptor() + " " + I18N.localise("genetics.item.gene.serum.array");
+				return system.getDescriptor() + ' ' + I18N.localise("genetics.item.gene.serum.array");
 			}
 		}
 		return I18N.localise("genetics.item.gene.serum.array.corrupted");

@@ -41,7 +41,7 @@ public enum ExtraTreesErrorCode implements IErrorStateDefinition {
 
 	@Override
 	public String getUID() {
-		return Constants.EXTRA_TREES_MOD_ID + ":" + name;
+		return Constants.EXTRA_TREES_MOD_ID + ':' + name;
 	}
 
 	public String getDescription(){

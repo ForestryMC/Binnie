@@ -121,7 +121,7 @@ public class ButterflyAnalystPagePlugin implements IAnalystPagePlugin<IButterfly
 					.setColor(parent.getColor());
 			y += 20;
 
-			new ControlTextCentered(parent, y, I18N.localise(AnalystConstants.BEHAVIOUR_KEY + ".pollinatesNearby") + "\n" + genome.getFlowerProvider().getDescription())
+			new ControlTextCentered(parent, y, I18N.localise(AnalystConstants.BEHAVIOUR_KEY + ".pollinatesNearby") + '\n' + genome.getFlowerProvider().getDescription())
 					.setColor(parent.getColor());
 			y += 20;
 

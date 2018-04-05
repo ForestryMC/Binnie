@@ -67,7 +67,7 @@ public class AlleleHelper extends forestry.core.genetics.alleles.AlleleHelper {
 	}
 
 	public static IAllele getAllele(int number) {
-		return getAllele("forestry.i" + number + "d");
+		return getAllele("forestry.i" + number + 'd');
 	}
 
 	public static IAllele getAllele(boolean bool) {
@@ -208,6 +208,6 @@ public class AlleleHelper extends forestry.core.genetics.alleles.AlleleHelper {
 		if (key == null) {
 			return I18N.localise("forestry.allele." + name);
 		}
-		return I18N.localise("forestry.allele." + key + "." + name);
+		return I18N.localise("forestry.allele." + key + '.' + name);
 	}
 }

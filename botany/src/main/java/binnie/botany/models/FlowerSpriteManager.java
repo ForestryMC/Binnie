@@ -68,7 +68,7 @@ public class FlowerSpriteManager {
 			variant = new BinnieSprite[sections];
 			unflowered = new BinnieSprite[sections];
 			for (int section = 0; section < sections; ++section) {
-				String suf = (section == 0) ? "" : ("" + (section + 1));
+				String suf = (section == 0) ? "" : (String.valueOf(section + 1));
 				String pre = (sections == 1) ? "" : "double/";
 				stem[section] = Binnie.RESOURCE.getBlockSprite(Botany.instance, "flowers/" + pre + type.toString().toLowerCase() + suf + ".0");
 				petal[section] = Binnie.RESOURCE.getBlockSprite(Botany.instance, "flowers/" + pre + type.toString().toLowerCase() + suf + ".1");

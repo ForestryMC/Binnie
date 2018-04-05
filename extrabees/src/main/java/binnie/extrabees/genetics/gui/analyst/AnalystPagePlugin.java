@@ -112,7 +112,7 @@ public class AnalystPagePlugin implements IAnalystPagePlugin<IBee> {
 		public int addBehaviourPages(IBee bee, IWidget parent, int y) {
 			y += 8;
 			int fertility = bee.getGenome().getFlowering();
-			new ControlTextCentered(parent, y, I18N.localise(AnalystConstants.BEHAVIOUR_KEY + ".pollinatesNearby") + "\n" + bee.getGenome().getFlowerProvider().getDescription())
+			new ControlTextCentered(parent, y, I18N.localise(AnalystConstants.BEHAVIOUR_KEY + ".pollinatesNearby") + '\n' + bee.getGenome().getFlowerProvider().getDescription())
 					.setColor(parent.getColor());
 			y += 20;
 

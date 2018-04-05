@@ -102,7 +102,7 @@ public class ItemSerum extends ItemGene implements IItemSerum {
 		GeneItem gene = this.getGeneItem(itemstack);
 		if (gene != null && gene.getSpeciesRoot() != null) {
 			IBreedingSystem system = Binnie.GENETICS.getSystem(gene.getSpeciesRoot());
-			return system.getDescriptor() + " " + I18N.localise("genetics.item.gene.serum");
+			return system.getDescriptor() + ' ' + I18N.localise("genetics.item.gene.serum");
 		} else {
 			return I18N.localise("genetics.item.gene.serum.corrupted");
 		}

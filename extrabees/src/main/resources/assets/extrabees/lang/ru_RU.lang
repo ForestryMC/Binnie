@@ -400,9 +400,9 @@ extrabees.effect.thief.name=Антигравитация
 extrabees.effect.wither.name=Иссушение
 extrabees.effect.water.name=Вода
 extrabees.effect.slow.name=Медлительность
-extrabees.effect.bonemealsapling.name=Рост
-extrabees.effect.bonemealfruit.name=Созревание
-extrabees.effect.bonemealmushroom.name=Гриб
+extrabees.effect.bonemeal_sapling.name=Рост
+extrabees.effect.bonemeal_fruit.name=Созревание
+extrabees.effect.bonemeal_mushroom.name=Гриб
 extrabees.effect.power.name=Энергия
 
 extrabees.beemodifier.territory=Территория

@@ -28,7 +28,7 @@ public class ControlFurtherMutation extends ControlMutation {
 		addTooltip(comb);
 		String chance = getMutationColour(mutation.getBaseChance()).getCode() + (int) mutation.getBaseChance() + "% " + I18N.localise(AnalystConstants.MUTATIONS_KEY + ".chance");
 		if (specificChance != mutation.getBaseChance()) {
-			chance = chance + getMutationColour(specificChance).getCode() + " (" + (int) specificChance + "% " + I18N.localise(AnalystConstants.MUTATIONS_KEY + ".currently") + ")";
+			chance = chance + getMutationColour(specificChance).getCode() + " (" + (int) specificChance + "% " + I18N.localise(AnalystConstants.MUTATIONS_KEY + ".currently") + ')';
 		}
 		addTooltip(chance);
 		for (String condition : mutation.getSpecialConditions()) {

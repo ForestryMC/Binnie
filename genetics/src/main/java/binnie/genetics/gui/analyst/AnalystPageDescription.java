@@ -41,7 +41,7 @@ public class AnalystPageDescription extends Control implements ITitledWidget {
 			String[] descStrings = desc.split("\\|");
 			descBody.append(descStrings[0]);
 			for (int i = 1; i < descStrings.length - 1; ++i) {
-				descBody.append(" ").append(descStrings[i]);
+				descBody.append(' ').append(descStrings[i]);
 			}
 			if (descStrings.length > 1) {
 				descSig += descStrings[descStrings.length - 1];
@@ -61,9 +61,9 @@ public class AnalystPageDescription extends Control implements ITitledWidget {
 		y += 16;
 		new ControlTextCentered(this, y, species.getAlleleName() + TextFormatting.RESET).setColor(getColor());
 		y += 10;
-		new ControlTextCentered(this, y, TextFormatting.ITALIC + branchBinomial + " " + species.getBinomial() + TextFormatting.RESET).setColor(getColor());
+		new ControlTextCentered(this, y, TextFormatting.ITALIC + branchBinomial + ' ' + species.getBinomial() + TextFormatting.RESET).setColor(getColor());
 		y += 20;
-		String discovered = I18N.localise(AnalystConstants.DESCRIPTION_KEY + ".discovered") + " " + TextFormatting.BOLD + authority + TextFormatting.RESET;
+		String discovered = I18N.localise(AnalystConstants.DESCRIPTION_KEY + ".discovered") + ' ' + TextFormatting.BOLD + authority + TextFormatting.RESET;
 		new ControlTextCentered(this, y, discovered).setColor(getColor());
 		y += (int) (3.0f + CraftGUI.RENDER.textHeight(discovered, getWidth()));
 		new ControlTextCentered(this, y, I18N.localise(AnalystConstants.DESCRIPTION_KEY + ".complexity") + ": " + species.getComplexity()).setColor(getColor());

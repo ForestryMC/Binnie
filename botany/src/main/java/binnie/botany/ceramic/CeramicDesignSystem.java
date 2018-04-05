@@ -86,8 +86,8 @@ public class CeramicDesignSystem implements IDesignSystem {
 	public void registerSprites() {
 		TextureMap textureMap = Minecraft.getMinecraft().getTextureMapBlocks();
 		for (EnumPattern pattern : EnumPattern.values()) {
-			ResourceLocation primaryLocation = new ResourceLocation(getModId(), getTexturePath() + "/" + pattern.toString().toLowerCase() + ".0");
-			ResourceLocation secondaryLocation = new ResourceLocation(getModId(), getTexturePath() + "/" + pattern.toString().toLowerCase() + ".1");
+			ResourceLocation primaryLocation = new ResourceLocation(getModId(), getTexturePath() + '/' + pattern.toString().toLowerCase() + ".0");
+			ResourceLocation secondaryLocation = new ResourceLocation(getModId(), getTexturePath() + '/' + pattern.toString().toLowerCase() + ".1");
 			primary.put(pattern.getIndex(), textureMap.registerSprite(primaryLocation));
 			secondary.put(pattern.getIndex(), textureMap.registerSprite(secondaryLocation));
 		}

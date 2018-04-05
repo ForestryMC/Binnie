@@ -21,9 +21,9 @@ public class BinnieResource {
 
 	public ResourceLocation getResourceLocation() {
 		if (this.path.endsWith(".png")) {
-			return new ResourceLocation(this.mod, "textures/" + this.type.toString() + "/" + this.path);
+			return new ResourceLocation(this.mod, "textures/" + this.type.toString() + '/' + this.path);
 		} else {
-			return new ResourceLocation(this.mod, this.type.toString() + "/" + this.path);
+			return new ResourceLocation(this.mod, this.type.toString() + '/' + this.path);
 		}
 	}
 }
