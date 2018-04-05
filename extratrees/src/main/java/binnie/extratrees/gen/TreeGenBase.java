@@ -4,12 +4,11 @@ import java.util.Random;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenerator;
 
 import forestry.api.arboriculture.ITree;
 import forestry.api.world.ITreeGenData;
 
-public class TreeGenBase extends WorldGenerator {
+public class TreeGenBase {
 	protected ITree tree;
 	protected ITreeGenData treeGen;
 	protected World world;
@@ -39,10 +38,9 @@ public class TreeGenBase extends WorldGenerator {
 		return a + this.rand.nextFloat() * (b - a);
 	}
 
-	@Override
 	public boolean generate(World worldIn, Random rand, BlockPos position) {
 		this.world = worldIn;
-		this.startX = position.getX();
+		this.startX = position.getX();	
 		this.startY = position.getY();
 		this.startZ = position.getZ();
 		this.girth = this.tree.getGirth();
