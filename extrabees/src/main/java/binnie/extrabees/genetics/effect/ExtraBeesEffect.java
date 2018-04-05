@@ -439,7 +439,7 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 		final Block block = blockState.getBlock();
 		if (block == Blocks.COBBLESTONE || block == Blocks.STONE) {
 			world.setBlockState(pos, Blocks.GRAVEL.getDefaultState());
-		} else if (block == Blocks.DIRT | block == Blocks.GRASS) {
+		} else if (block == Blocks.DIRT || block == Blocks.GRASS) {
 			world.setBlockState(pos, Blocks.SAND.getDefaultState());
 		}
 	}
