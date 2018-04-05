@@ -2,13 +2,17 @@ package binnie.extrabees.circuit;
 
 import com.google.common.collect.Lists;
 
-import javax.annotation.*;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.List;
 
 import net.minecraft.item.ItemStack;
 
-import forestry.api.apiculture.*;
-import forestry.api.circuits.*;
+import forestry.api.apiculture.IBeeGenome;
+import forestry.api.apiculture.IBeeModifier;
+import forestry.api.circuits.ChipsetManager;
+import forestry.api.circuits.ICircuit;
+import forestry.api.circuits.ICircuitLayout;
 
 import binnie.core.Mods;
 import binnie.core.util.Log;
