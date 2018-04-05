@@ -125,10 +125,12 @@ public class WindowGenesis extends Window {
 		this.panelPickup = new Panel(this, 16, 140, 60, 42, MinecraftGUI.PanelType.BLACK);
 		this.refreshTemplate(null);
 	}
+	
+	private static final IChromosomeType[] CHROMOSOME_TYPES_EMPTY = new IChromosomeType[0];
 
 	private void refreshTemplate(@Nullable IChromosomeType selection) {
 		List<Gene> genes = new ArrayList<>();
-		IChromosomeType[] chromosomeTypes = Binnie.GENETICS.getChromosomeMap(this.root).keySet().toArray(new IChromosomeType[0]);
+		IChromosomeType[] chromosomeTypes = Binnie.GENETICS.getChromosomeMap(this.root).keySet().toArray(CHROMOSOME_TYPES_EMPTY);
 		for (IChromosomeType type : chromosomeTypes) {
 			IAllele allele = this.template[type.ordinal()];
 			if (allele == null) {
