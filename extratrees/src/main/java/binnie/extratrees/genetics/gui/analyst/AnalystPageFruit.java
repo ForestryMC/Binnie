@@ -57,7 +57,7 @@ public class AnalystPageFruit extends Control implements ITitledWidget {
 				FruitProviderPod pod = (FruitProviderPod) ind.getGenome().getFruitProvider();
 				Field f = FruitProviderPod.class.getDeclaredField("drops");
 				f.setAccessible(true);
-				Collections.addAll(products, ((Map<ItemStack, Float>) f.get(pod)).keySet().toArray(new ItemStack[0]));
+				Collections.addAll(products, ((Map<ItemStack, Float>) f.get(pod)).keySet().toArray(ITEM_STACKS_EMPTY));
 			}
 		} catch (IllegalAccessException | NoSuchFieldException e) {
 			throw new RuntimeException(e);
@@ -118,7 +118,7 @@ public class AnalystPageFruit extends Control implements ITitledWidget {
 							FruitProviderPod pod2 = (FruitProviderPod) ((IAlleleFruit) a).getProvider();
 							Field field = FruitProviderPod.class.getDeclaredField("drops");
 							field.setAccessible(true);
-							Collections.addAll(stacks, ((Map<ItemStack, Float>) field.get(pod2)).keySet().toArray(new ItemStack[0]));
+							Collections.addAll(stacks, ((Map<ItemStack, Float>) field.get(pod2)).keySet().toArray(ITEM_STACKS_EMPTY));
 						}
 					} catch (IllegalAccessException | NoSuchFieldException e) {
 						throw new RuntimeException(e);
@@ -130,6 +130,8 @@ public class AnalystPageFruit extends Control implements ITitledWidget {
 		}
 		setSize(new Point(getWidth(), y + 8));
 	}
+
+	private static final ItemStack[] ITEM_STACKS_EMPTY = new ItemStack[0];
 
 	@Override
 	public String getTitle() {
