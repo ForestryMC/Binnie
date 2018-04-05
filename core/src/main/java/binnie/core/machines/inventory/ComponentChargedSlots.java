@@ -66,7 +66,7 @@ public class ComponentChargedSlots extends MachineComponent implements INetwork.
 	public void sendGuiNBTToClient(final Map<String, NBTTagCompound> nbt) {
 		final NBTTagCompound tag = new NBTTagCompound();
 		for (final int i : this.charges.keySet()) {
-			tag.setShort("" + i, (short) (this.charges.get(i) * 100.0f));
+			tag.setShort(String.valueOf(i), (short) (this.charges.get(i) * 100.0f));
 		}
 		nbt.put("slot-charges", tag);
 	}
