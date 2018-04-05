@@ -16,8 +16,9 @@ import net.minecraft.item.ItemStack;
 import static org.apache.commons.lang3.ObjectUtils.firstNonNull;
 
 public class AlvearyMutationHandler {
+    private static final int MUTATIONS_CAPACITY = 10;
 
-	private static final List<Pair<ItemStack, Float>> MUTATIONS = new ArrayList<>(10);
+	private static final List<Pair<ItemStack, Float>> MUTATIONS = new ArrayList<>(MUTATIONS_CAPACITY);
 
 	public static boolean isMutationItem(final ItemStack item) {
 		return getMutationMult(item) > 1.0f;
