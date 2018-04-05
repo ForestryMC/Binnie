@@ -32,8 +32,9 @@ public class IsolatorFX extends MachineComponent implements IRender.RandomDispla
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void onDisplayTick(World world, BlockPos pos, Random rand) {
+		if (!this.getUtil().getProcess().isInProgress()) return;
 		final int tick = (int) (world.getTotalWorldTime() % 6L);
-		if ((tick == 0 || tick == 5) && this.getUtil().getProcess().isInProgress()) {
+		if (tick == 0 || tick == 5) {
 			final Particle particle = new IsolatorParticle(world, pos);
 			BinnieCore.getBinnieProxy().getMinecraftInstance().effectRenderer.addEffect(particle);
 		}
