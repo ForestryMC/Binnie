@@ -199,9 +199,11 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
 		manager.registerItemModel(item, new DesignMeshDefinition());
 	}
 
+	private static final IProperty[] PROPERTIES_EMPTY = new IProperty[0];
+
 	@Override
 	protected BlockStateContainer createBlockState() {
-		return new ExtendedBlockState(this, new IProperty[0], new IUnlistedProperty[]{UnlistedBlockPos.POS, UnlistedBlockAccess.BLOCKACCESS});
+		return new ExtendedBlockState(this, PROPERTIES_EMPTY, new IUnlistedProperty[]{UnlistedBlockPos.POS, UnlistedBlockAccess.BLOCKACCESS});
 	}
 
 	@Override
