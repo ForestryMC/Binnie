@@ -63,6 +63,8 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		this.currentTab = 0;
 	}
 
+	private static final Integer[] DEFAULT_TABS_EMPTY = new Integer[0];
+
 	//TODO: Clean Up, Localise
 	@Override
 	@SideOnly(Side.CLIENT)
@@ -74,8 +76,8 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		int x = 16;
 		final int y = 32;
 		final ComponentCompartmentInventory inv = machine.getInterface(ComponentCompartmentInventory.class);
-		Integer[] tabs1 = new Integer[0];
-		Integer[] tabs2 = new Integer[0];
+		Integer[] tabs1 = DEFAULT_TABS_EMPTY;
+		Integer[] tabs2 = DEFAULT_TABS_EMPTY;
 		if (inv.getTabCount() == 4) {
 			tabs1 = new Integer[]{0, 1};
 			tabs2 = new Integer[]{2, 3};
