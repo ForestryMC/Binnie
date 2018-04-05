@@ -66,6 +66,8 @@ public class Engineering {
 		return stack;
 	}
 
+	private static final IGene[] GENES_EMPTY = new IGene[0];
+
 	public static IGene[] getGenes(ItemStack serum) {
 		if (!serum.isEmpty()) {
 			Item item = serum.getItem();
@@ -80,7 +82,7 @@ public class Engineering {
 				}
 			}
 		}
-		return new IGene[0];
+		return GENES_EMPTY;
 	}
 
 	public static int getCharges(ItemStack serum) {
