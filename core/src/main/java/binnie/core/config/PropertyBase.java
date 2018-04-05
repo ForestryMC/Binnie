@@ -42,7 +42,7 @@ abstract class PropertyBase<ValueType, AnnotationType extends Annotation> {
 	protected abstract void addComments();
 
 	protected String getCategory() {
-		return this.configProperty.category().equals("") ? this.annotatedProperty.annotationType().getAnnotation(ConfigProperty.Type.class).category() : this.configProperty.category();
+		return this.configProperty.category().isEmpty() ? this.annotatedProperty.annotationType().getAnnotation(ConfigProperty.Type.class).category() : this.configProperty.category();
 	}
 
 	protected String getKey() {
