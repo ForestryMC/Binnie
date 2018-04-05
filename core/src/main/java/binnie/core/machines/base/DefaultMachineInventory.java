@@ -30,9 +30,11 @@ class DefaultMachineInventory implements IInventoryMachine {
 	public void markDirty() {
 	}
 
+	private static final int[] SLOTS_FOR_FACE_EMPTY = new int[0];
+
 	@Override
 	public int[] getSlotsForFace(EnumFacing side) {
-		return new int[0];
+		return SLOTS_FOR_FACE_EMPTY;
 	}
 
 	@Override
