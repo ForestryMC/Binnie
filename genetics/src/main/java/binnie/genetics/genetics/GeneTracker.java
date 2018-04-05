@@ -71,7 +71,7 @@ public class GeneTracker extends WorldSavedData {
 
 			NBTTagCompound nbtRoot = nbt.getCompoundTag(root.getUID());
 			for (IChromosomeType chromo : root.getKaryotype()) {
-				if (!nbtRoot.hasKey("" + chromo.ordinal())) {
+				if (!nbtRoot.hasKey(String.valueOf(chromo.ordinal()))) {
 					continue;
 				}
 

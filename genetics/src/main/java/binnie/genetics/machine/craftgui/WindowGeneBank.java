@@ -195,7 +195,7 @@ public class WindowGeneBank extends WindowMachine {
 						}
 					}
 				}
-				tooltip.add("" + seqGenes + "/" + totalGenes + " Genes");
+				tooltip.add(seqGenes + "/" + totalGenes + " Genes");
 			}
 		}
 	}

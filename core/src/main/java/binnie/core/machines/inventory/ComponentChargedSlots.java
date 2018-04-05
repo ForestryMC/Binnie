@@ -57,7 +57,7 @@ public class ComponentChargedSlots extends MachineComponent implements INetwork.
 	public void receiveGuiNBTOnClient(EntityPlayer player, String name, NBTTagCompound nbt) {
 		if (name.equals("slot-charges")) {
 			for (final int i : this.charges.keySet()) {
-				this.charges.put(i, nbt.getShort("" + i) / 100.0f);
+				this.charges.put(i, nbt.getShort(String.valueOf(i)) / 100.0f);
 			}
 		}
 	}
