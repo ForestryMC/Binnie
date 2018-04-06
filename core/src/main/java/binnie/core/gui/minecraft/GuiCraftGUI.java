@@ -131,7 +131,7 @@ public class GuiCraftGUI extends GuiContainer {
 		GlStateManager.enableDepth();
 	}
 
-	private static final Pattern PATTERN_NBT_CONTENT = Pattern.compile(Tooltip.NBT_SEPARATOR + "(.*?)" + Tooltip.NBT_SEPARATOR);
+	private static final Pattern PATTERN_NBT_CONTENT = Pattern.compile(Tooltip.NBT_SEPARATOR + "(.*?)" + Tooltip.NBT_SEPARATOR, Pattern.LITERAL);
 
 	public void renderTooltip(final Point mousePosition, final MinecraftTooltip tooltip) {
 		final int mouseX = mousePosition.xPos();

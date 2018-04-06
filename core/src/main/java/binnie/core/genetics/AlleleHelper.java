@@ -1,7 +1,9 @@
 package binnie.core.genetics;
 
 import java.util.Locale;
+import java.util.regex.Pattern;
 
+import binnie.core.util.EmptyHelper;
 import org.apache.commons.lang3.text.WordUtils;
 
 import forestry.api.core.EnumHumidity;
@@ -12,6 +14,8 @@ import forestry.api.genetics.IAllele;
 import forestry.core.genetics.alleles.EnumAllele;
 
 import binnie.core.util.I18N;
+
+import javax.annotation.Nullable;
 
 public class AlleleHelper extends forestry.core.genetics.alleles.AlleleHelper {
 	public static IAllele getAllele(EnumTemperature temperature) {
@@ -195,16 +199,18 @@ public class AlleleHelper extends forestry.core.genetics.alleles.AlleleHelper {
 		return getUid(key, valueName, true);
 	}
 
+	private static final Pattern PATTERN_REPLACEMENT = Pattern.compile("_", Pattern.LITERAL);
+
 	private static String getUid(String key, String valueName, boolean needCapitalize) {
 		if (needCapitalize) {
 			valueName = WordUtils.capitalize(valueName.toLowerCase(Locale.ENGLISH));
 		}
-		valueName = valueName.replace("_", "");
+		valueName = PATTERN_REPLACEMENT.matcher(valueName).replaceAll(EmptyHelper.EMPTY_STRING);
 		return "forestry." + key + valueName;
 	}
 
-	private static String toAlleleDisplay(String key, String valueName) {
-		String name = valueName.toLowerCase().replace("_", "");
+	private static String toAlleleDisplay(@Nullable String key, String valueName) {
+		String name = PATTERN_REPLACEMENT.matcher(valueName.toLowerCase()).replaceAll(EmptyHelper.EMPTY_STRING);
 		if (key == null) {
 			return I18N.localise("forestry.allele." + name);
 		}
