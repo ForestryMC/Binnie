@@ -59,7 +59,7 @@ public class AnalystPageAppearance extends Control implements ITitledWidget {
 		private final IFlowerType type;
 
 		public FlowerIconDisplay(AnalystPageAppearance analystPageAppearance, int width, int y, int sections, IFlower flower, IFlowerType type) {
-			super(analystPageAppearance, (analystPageAppearance.getWidth() - width) / 2, y - ((sections == 1) ? 0 : 0));
+			super(analystPageAppearance, (analystPageAppearance.getWidth() - width) / 2, y );
 			this.width = width;
 			this.sections = sections;
 			this.flower = flower;
