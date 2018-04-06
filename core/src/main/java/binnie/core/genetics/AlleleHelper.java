@@ -199,7 +199,7 @@ public class AlleleHelper extends forestry.core.genetics.alleles.AlleleHelper {
 		return getUid(key, valueName, true);
 	}
 
-	private static final Pattern PATTERN_REPLACEMENT = Pattern.compile("_", Pattern.LITERAL);
+	private static final Pattern PATTERN_REPLACEMENT = Pattern.compile("_");
 
 	private static String getUid(String key, String valueName, boolean needCapitalize) {
 		if (needCapitalize) {
