@@ -3,7 +3,6 @@ package binnie.core;
 import java.util.ArrayList;
 import java.util.List;
 
-import binnie.core.ManagerBase;
 import binnie.core.genetics.ManagerGenetics;
 import binnie.core.liquid.ManagerLiquid;
 import binnie.core.machines.ManagerMachine;
