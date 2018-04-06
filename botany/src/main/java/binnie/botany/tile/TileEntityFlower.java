@@ -356,7 +356,7 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 	public void updateRender(boolean update) {
 		if (update && getFlower() != null && getFlower().getGenome() != null) {
 			FlowerRenderInfo newInfo = new FlowerRenderInfo(getFlower(), this);
-			if (renderInfo == null || !newInfo.equals(renderInfo)) {
+			if (!newInfo.equals(renderInfo)) {
 				setRender(newInfo);
 			}
 		}
