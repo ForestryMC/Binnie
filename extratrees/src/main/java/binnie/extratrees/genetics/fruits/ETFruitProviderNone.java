@@ -75,7 +75,7 @@ public class ETFruitProviderNone implements IFruitProvider {
 
 	@Override
 	public int getRipeningPeriod() {
-		return this.RIPENING_PERIOD;
+		return RIPENING_PERIOD;
 	}
 
 	@Override

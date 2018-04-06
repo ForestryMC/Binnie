@@ -17,7 +17,7 @@ public class ControlRecipeSlot extends ControlSlotBase {
 		super(parent, x, y, 50);
 		this.addSelfEventHandler(EventMouse.Down.class, event -> {
 			final TileEntity tile = (TileEntity) Window.get(ControlRecipeSlot.this.getWidget()).getInventory();
-			if (tile == null || !(tile instanceof TileEntityMachine)) {
+			if (!(tile instanceof TileEntityMachine)) {
 				return;
 			}
 			final NBTTagCompound nbt = new NBTTagCompound();

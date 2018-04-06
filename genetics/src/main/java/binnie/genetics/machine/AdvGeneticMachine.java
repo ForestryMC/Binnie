@@ -6,7 +6,6 @@ import net.minecraft.item.ItemStack;
 
 import binnie.core.machines.IMachineType;
 import binnie.core.machines.MachinePackage;
-import binnie.genetics.Genetics;
 import binnie.genetics.machine.splicer.PackageSplicer;
 
 public enum AdvGeneticMachine implements IMachineType {
