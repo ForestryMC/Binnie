@@ -4,10 +4,8 @@ import java.awt.Color;
 
 import binnie.botany.api.BotanyAPI;
 import binnie.botany.api.IBotanyColored;
-import net.minecraft.util.IStringSerializable;
 
 import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.translation.I18n;
 
 public enum EnumFlowerColor implements IBotanyColored {
 	Aquamarine("aquamarine", new Color(8388564)),
