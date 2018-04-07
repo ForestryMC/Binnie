@@ -18,78 +18,78 @@ import binnie.core.util.I18N;
 import javax.annotation.Nullable;
 
 public class AlleleHelper extends forestry.core.genetics.alleles.AlleleHelper {
-	public static IAllele getAllele(EnumTemperature temperature) {
+	public static IAllele getAllele(final EnumTemperature temperature) {
 		return getAllele(getUid(temperature));
 	}
 
-	public static IAllele getAllele(EnumHumidity humidity) {
+	public static IAllele getAllele(final EnumHumidity humidity) {
 		return getAllele(getUid(humidity));
 	}
 
-	public static IAllele getAllele(EnumTolerance tolerance) {
+	public static IAllele getAllele(final EnumTolerance tolerance) {
 		return getAllele(getUid(tolerance));
 	}
 
-	public static IAllele getAllele(EnumAllele.Fertility fertility) {
+	public static IAllele getAllele(final EnumAllele.Fertility fertility) {
 		return getAllele(getUid(fertility));
 	}
 
-	public static IAllele getAllele(EnumAllele.Territory territory) {
+	public static IAllele getAllele(final EnumAllele.Territory territory) {
 		return getAllele(getUid(territory));
 	}
 
-	public static IAllele getAllele(EnumAllele.Lifespan lifespan) {
+	public static IAllele getAllele(final EnumAllele.Lifespan lifespan) {
 		return getAllele(getUid(lifespan));
 	}
 
-	public static IAllele getAllele(EnumAllele.Sappiness sappiness) {
+	public static IAllele getAllele(final EnumAllele.Sappiness sappiness) {
 		return getAllele(getUid(sappiness));
 	}
 
-	public static IAllele getAllele(EnumAllele.Speed speed) {
+	public static IAllele getAllele(final EnumAllele.Speed speed) {
 		return getAllele(getUid(speed));
 	}
 
-	public static IAllele getAllele(EnumAllele.Flowering flowering) {
+	public static IAllele getAllele(final EnumAllele.Flowering flowering) {
 		return getAllele(getUid(flowering));
 	}
 
-	public static IAllele getAllele(EnumAllele.Height height) {
+	public static IAllele getAllele(final EnumAllele.Height height) {
 		return getAllele(getUid(height));
 	}
 
-	public static IAllele getAllele(EnumAllele.Maturation maturation) {
+	public static IAllele getAllele(final EnumAllele.Maturation maturation) {
 		return getAllele(getUid(maturation));
 	}
 
-	public static IAllele getAllele(EnumAllele.Yield yield) {
+	public static IAllele getAllele(final EnumAllele.Yield yield) {
 		return getAllele(getUid(yield));
 	}
 
-	public static IAllele getAllele(EnumAllele.Saplings saplings) {
+	public static IAllele getAllele(final EnumAllele.Saplings saplings) {
 		return getAllele(getUid(saplings));
 	}
 
-	public static IAllele getAllele(int number) {
+	public static IAllele getAllele(final int number) {
 		return getAllele("forestry.i" + number + 'd');
 	}
 
-	public static IAllele getAllele(boolean bool) {
+	public static IAllele getAllele(final boolean bool) {
 		if (bool) {
 			return getAllele("forestry.boolTrue");
 		}
 		return getAllele("forestry.boolFalse");
 	}
 
-	public static IAllele getAllele(String uid) {
+	public static IAllele getAllele(final String uid) {
 		return AlleleManager.alleleRegistry.getAllele(uid);
 	}
 
-	public static String toDisplay(EnumTemperature temperature) {
+	public static String toDisplay(final EnumTemperature temperature) {
 		return AlleleManager.climateHelper.toDisplay(temperature);
 	}
 
-	public static String toDisplay(EnumHumidity humidity) {
+	public static String toDisplay(final EnumHumidity humidity) {
 		return AlleleManager.climateHelper.toDisplay(humidity);
 	}
 
@@ -105,46 +105,46 @@ public class AlleleHelper extends forestry.core.genetics.alleles.AlleleHelper {
 //		return I18N.localise("botany.soil." + soilType.getName());
 //	}
 
-	public static String toDisplay(EnumTolerance tolerance) {
+	public static String toDisplay(final EnumTolerance tolerance) {
 		return toAlleleDisplay("tolerance", tolerance.name());
 	}
 
-	public static String toDisplay(EnumAllele.Flowering flowering) {
+	public static String toDisplay(final EnumAllele.Flowering flowering) {
 		if (flowering == EnumAllele.Flowering.AVERAGE) {
 			return toAlleleDisplay("flowering", "normal");
 		}
 		return toAlleleDisplay(null, flowering.name());
 	}
 
-	public static String toDisplay(EnumAllele.Speed speed) {
+	public static String toDisplay(final EnumAllele.Speed speed) {
 		return toAlleleDisplay(null, speed.name());
 	}
 
-	public static String toDisplay(EnumAllele.Lifespan lifespan) {
+	public static String toDisplay(final EnumAllele.Lifespan lifespan) {
 		return toAlleleDisplay("lifespan", lifespan.name());
 	}
 
-	public static String getUid(EnumAllele.Fertility fertility) {
+	public static String getUid(final EnumAllele.Fertility fertility) {
 		return getUid("fertility", fertility.name());
 	}
 
-	public static String getUid(EnumAllele.Lifespan lifespan) {
+	public static String getUid(final EnumAllele.Lifespan lifespan) {
 		return getUid("lifespan", lifespan.name());
 	}
 
-	public static String getUid(EnumAllele.Sappiness sappiness) {
+	public static String getUid(final EnumAllele.Sappiness sappiness) {
 		return getUid("sappiness", sappiness.name());
 	}
 
-	private static String getUid(EnumTemperature temperature) {
+	private static String getUid(final EnumTemperature temperature) {
 		return getUid("temperature", temperature.name());
 	}
 
-	private static String getUid(EnumHumidity humidity) {
+	private static String getUid(final EnumHumidity humidity) {
 		return getUid("humidity", humidity.name());
 	}
 
-	public static String getUid(EnumAllele.Saplings saplings) {
+	public static String getUid(final EnumAllele.Saplings saplings) {
 		if (saplings == EnumAllele.Saplings.AVERAGE) {
 			return getUid("saplings", "Default");
 		}
@@ -157,51 +157,51 @@ public class AlleleHelper extends forestry.core.genetics.alleles.AlleleHelper {
 		return getUid("saplings", saplings.name());
 	}
 
-	public static String getUid(EnumAllele.Height height) {
+	public static String getUid(final EnumAllele.Height height) {
 		if (height == EnumAllele.Height.AVERAGE) {
 			return getUid("height", "Max10", false);
 		}
 		return getUid("height", height.name());
 	}
 
-	public static String getUid(EnumAllele.Maturation maturation) {
+	public static String getUid(final EnumAllele.Maturation maturation) {
 		return getUid("maturation", maturation.name());
 	}
 
-	public static String getUid(EnumAllele.Territory territory) {
+	public static String getUid(final EnumAllele.Territory territory) {
 		return getUid("territory", territory.name());
 	}
 
-	public static String getUid(EnumAllele.Yield yield) {
+	public static String getUid(final EnumAllele.Yield yield) {
 		if (yield == EnumAllele.Yield.AVERAGE) {
 			return getUid("yield", "Default", false);
 		}
 		return getUid("yield", yield.name());
 	}
 
-	public static String getUid(EnumAllele.Fireproof fireproof) {
+	public static String getUid(final EnumAllele.Fireproof fireproof) {
 		return getUid("bool", fireproof.name());
 	}
 
-	public static String getUid(EnumAllele.Flowering flowering) {
+	public static String getUid(final EnumAllele.Flowering flowering) {
 		return getUid("flowering", flowering.name());
 	}
 
-	public static String getUid(EnumTolerance tolerance) {
+	public static String getUid(final EnumTolerance tolerance) {
 		return getUid("tolerance", tolerance.name());
 	}
 
-	public static String getUid(EnumAllele.Speed speed) {
+	public static String getUid(final EnumAllele.Speed speed) {
 		return getUid("speed", speed.name());
 	}
 
-	protected static String getUid(String key, String valueName) {
+	protected static String getUid(final String key, final String valueName) {
 		return getUid(key, valueName, true);
 	}
 
 	private static final Pattern PATTERN_REPLACEMENT = Pattern.compile("_");
 
-	private static String getUid(String key, String valueName, boolean needCapitalize) {
+	private static String getUid(final String key, String valueName, final boolean needCapitalize) {
 		if (needCapitalize) {
 			valueName = WordUtils.capitalize(valueName.toLowerCase(Locale.ENGLISH));
 		}
@@ -209,7 +209,7 @@ public class AlleleHelper extends forestry.core.genetics.alleles.AlleleHelper {
 		return "forestry." + key + valueName;
 	}
 
-	private static String toAlleleDisplay(@Nullable String key, String valueName) {
+	private static String toAlleleDisplay(final @Nullable String key, final String valueName) {
 		String name = PATTERN_REPLACEMENT.matcher(valueName.toLowerCase()).replaceAll(EmptyHelper.EMPTY_STRING);
 		if (key == null) {
 			return I18N.localise("forestry.allele." + name);
