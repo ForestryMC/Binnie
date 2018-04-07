@@ -88,17 +88,18 @@ public class ContainerCraftGUI extends Container {
 	public void onContainerClosed(final EntityPlayer playerIn) {
 		this.crafters.remove(playerIn);
 		super.onContainerClosed(playerIn);
-		WindowInventory inventory = this.window.getWindowInventory();
+		final WindowInventory inventory = this.window.getWindowInventory();
 		for (int i = 0; i < inventory.getSizeInventory(); ++i) {
 			if (inventory.dispenseOnClose(i)) {
-				ItemStack stack = inventory.getStackInSlot(i);
-				if (!stack.isEmpty()) {
-					TransferRequest transferRequest = new TransferRequest(stack, playerIn.inventory);
-					TransferResult transferResult = transferRequest.transfer(playerIn, true);
-					if (transferResult.isSuccess()) {
-						for (ItemStack result : transferResult.getRemaining()) {
-							playerIn.dropItem(result, false);
-						}
+				final ItemStack stack = inventory.getStackInSlot(i);
+				if (stack.isEmpty()) {
+					continue;
+				}
+				final TransferRequest transferRequest = new TransferRequest(stack, playerIn.inventory);
+				final TransferResult transferResult = transferRequest.transfer(playerIn, true);
+				if (transferResult.isSuccess()) {
+					for (ItemStack result : transferResult.getRemaining()) {
+						playerIn.dropItem(result, false);
 					}
 				}
 			}
@@ -125,7 +126,7 @@ public class ContainerCraftGUI extends Container {
 			crafters.add(entityPlayer);
 			this.sentNBT.clear();
 		}
-		IInventory inventory = this.window.getInventory();
+		final IInventory inventory = this.window.getInventory();
 		return inventory == null || inventory.isUsableByPlayer(entityPlayer);
 	}
 
@@ -136,9 +137,9 @@ public class ContainerCraftGUI extends Container {
 
 	private ItemStack shiftClick(final EntityPlayer player, final int slotnumber) {
 		final TransferRequest request = this.getShiftClickRequest(player, slotnumber);
-		TransferResult transferResult = request.transfer(player, true);
+		final TransferResult transferResult = request.transfer(player, true);
 		if (transferResult.isSuccess()) {
-			NonNullList<ItemStack> results = transferResult.getRemaining();
+			final NonNullList<ItemStack> results = transferResult.getRemaining();
 			if (results.size() == 1) {
 				final ItemStack itemstack = results.get(0);
 				final Slot shiftClickedSlot = this.inventorySlots.get(slotnumber);
@@ -167,7 +168,7 @@ public class ContainerCraftGUI extends Container {
 			request = new TransferRequest(itemstack, fromPlayer).setOrigin(shiftClickedSlot.inventory);
 		} else {
 			final int[] target = new int[36];
-			for (int i = 0; i < 36; ++i) {
+			for (int i = 0; i < target.length; ++i) {
 				target[i] = i;
 			}
 			request = new TransferRequest(itemstack, playerInventory).setOrigin(shiftClickedSlot.inventory).setTargetSlots(target);
@@ -179,7 +180,7 @@ public class ContainerCraftGUI extends Container {
 	}
 
 	public final void tankClick(final EntityPlayer player, final int slotID) {
-		IInventory inventory = this.window.getInventory();
+		final IInventory inventory = this.window.getInventory();
 		if (inventory == null) {
 			return;
 		}
@@ -188,18 +189,18 @@ public class ContainerCraftGUI extends Container {
 			return;
 		}
 		heldItem = heldItem.copy();
-		TransferRequest transferRequest = new TransferRequest(heldItem, inventory).setTargetTanks(slotID);
-		TransferResult transferResult = transferRequest.transfer(player, true);
+		final TransferRequest transferRequest = new TransferRequest(heldItem, inventory).setTargetTanks(slotID);
+		final TransferResult transferResult = transferRequest.transfer(player, true);
 		if (transferResult.isSuccess()) {
-			NonNullList<ItemStack> results = transferResult.getRemaining();
+			final NonNullList<ItemStack> results = transferResult.getRemaining();
 			if (results.size() > 0) {
-				ItemStack heldItemResult = results.remove(results.size() - 1);
+				final ItemStack heldItemResult = results.remove(results.size() - 1);
 				player.inventory.setItemStack(heldItemResult);
 				if (player instanceof EntityPlayerMP) {
 					((EntityPlayerMP) player).updateHeldItem();
 				}
 				if (results.size() > 0) {
-					IItemHandler itemHandler = new InvWrapper(inventory);
+					final IItemHandler itemHandler = new InvWrapper(inventory);
 					for (ItemStack remaining : results) {
 						ItemHandlerHelper.insertItemStacked(itemHandler, remaining, false);
 					}
@@ -245,7 +246,7 @@ public class ContainerCraftGUI extends Container {
 	@Override
 	public void detectAndSendChanges() {
 		super.detectAndSendChanges();
-		if (crafters.size() <= 0) {
+		if (crafters.isEmpty()) {
 			return;
 		}
 		sendTankChanges();
@@ -269,7 +270,7 @@ public class ContainerCraftGUI extends Container {
 	}
 
 	private void sendTankChanges(){
-		ITankMachine tanks = Machine.getInterface(ITankMachine.class, this.window.getInventory());
+		final ITankMachine tanks = Machine.getInterface(ITankMachine.class, this.window.getInventory());
 		if (tanks != null && this.window.isServer()) {
 			for (int i = 0; i < tanks.getTankInfos().length; ++i) {
 				final TankInfo tank = tanks.getTankInfos()[i];
@@ -383,8 +384,6 @@ public class ContainerCraftGUI extends Container {
 	public int getErrorType() {
 		return this.errorType;
 	}
-
-
 
 	public CustomSlot[] getCustomSlots() {
 		final List<CustomSlot> slots = new ArrayList<>();
