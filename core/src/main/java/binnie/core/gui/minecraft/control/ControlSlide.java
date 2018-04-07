@@ -20,12 +20,14 @@ import binnie.core.gui.geometry.TextJustification;
 import binnie.core.gui.renderer.RenderUtil;
 import binnie.core.gui.resource.textures.CraftGUITexture;
 
+import javax.annotation.Nullable;
+
 public class ControlSlide extends Control {
 	private final IArea expanded;
 	private final IArea shrunk;
 	private boolean slideActive;
 	private final Alignment anchor;
-	private String label;
+	private @Nullable String label;
 
 	public ControlSlide(final IWidget parent, final int x, final int y, final int w, final int h, final Alignment anchor2) {
 		super(parent, x, y, w, h);
