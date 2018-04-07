@@ -173,7 +173,7 @@ public class TextureRenderer {
 		float w = area.size().xPos();
 		float h = area.size().yPos();
 		y = guiHeight - (y + h);
-		Minecraft minecraft = Minecraft.getMinecraft();
+		final Minecraft minecraft = Minecraft.getMinecraft();
 		final float scaleX = guiWidth / (float) minecraft.displayWidth;
 		final float scaleY = guiHeight / (float) minecraft.displayHeight;
 		x += 0.0f;
@@ -184,8 +184,8 @@ public class TextureRenderer {
 	}
 
 	public int textHeight(final String text, final int width) {
-		Minecraft minecraft = Minecraft.getMinecraft();
-		FontRenderer fontRenderer = minecraft.fontRenderer;
+		final Minecraft minecraft = Minecraft.getMinecraft();
+		final FontRenderer fontRenderer = minecraft.fontRenderer;
 		return fontRenderer.listFormattedStringToWidth(text, width).size() * RenderUtil.getTextHeight();
 	}
 
