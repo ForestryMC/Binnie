@@ -2,6 +2,7 @@ package binnie.core.gui.minecraft.control;
 
 import java.util.Objects;
 
+import binnie.core.util.EmptyHelper;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -35,7 +36,7 @@ public class ControlUser extends Control implements ITooltip {
 	public void getTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		tooltip.setType(Tooltip.Type.USER);
 		tooltip.add(I18N.localise(ModId.CORE, "gui.controluser.owner"));
-		if (!Objects.equals(this.username, "")) {
+		if (!Objects.equals(this.username, EmptyHelper.EMPTY_STRING)) {
 			tooltip.add(this.username);
 		}
 		tooltip.setMaxWidth(200);
