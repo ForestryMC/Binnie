@@ -52,11 +52,10 @@ public abstract class BreedingSystem implements IBreedingSystem, IItemStackRepre
 	private int discoveredBranchCount;
 	protected BinnieSprite iconUndiscovered;
 	protected BinnieSprite iconDiscovered;
-	protected List<IAlleleSpecies> allActiveSpecies;
-	protected String currentEpithet;
-	private List<IClassification> allBranches;
-	private List<IAlleleSpecies> allSpecies;
-	private List<IMutation> allMutations;
+	protected final List<IAlleleSpecies> allActiveSpecies;
+	private final List<IClassification> allBranches;
+	private final List<IAlleleSpecies> allSpecies;
+	private final List<IMutation> allMutations;
 	private final ListMultiMap<IAlleleSpecies, IMutation> resultantMutations;
 	private final ListMultiMap<IAlleleSpecies, IMutation> furtherMutations;
 	private final ListMultiMap<IAlleleSpecies, IMutation> allResultantMutations;
@@ -135,8 +134,8 @@ public abstract class BreedingSystem implements IBreedingSystem, IItemStackRepre
 
 	@Override
 	public void calculateAlleles(final ISpeciesRoot speciesRoot) {
-		this.allSpecies = new ArrayList<>();
-		this.allActiveSpecies = new ArrayList<>();
+		this.allSpecies.clear();
+		this.allActiveSpecies.clear();
 		this.resultantMutations.clear();
 		this.furtherMutations.clear();
 		this.allResultantMutations.clear();

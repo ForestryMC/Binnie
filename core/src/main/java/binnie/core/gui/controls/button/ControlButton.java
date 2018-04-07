@@ -42,7 +42,7 @@ public class ControlButton extends Control {
 	@Override
 	public void onUpdateClient() {
 		if (this.textWidget != null) {
-			String text = this.getText();
+			final String text = this.getText();
 			if (text != null) {
 				this.textWidget.setValue(text);
 			}
@@ -57,11 +57,13 @@ public class ControlButton extends Control {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		Object texture = CraftGUITexture.BUTTON_DISABLED;
+		Object texture;
 		if (this.isMouseOver()) {
 			texture = CraftGUITexture.BUTTON_HIGHLIGHTED;
 		} else if (this.isEnabled()) {
 			texture = CraftGUITexture.BUTTON;
+		} else {
+			texture = CraftGUITexture.BUTTON_DISABLED;
 		}
 		CraftGUI.RENDER.texture(texture, this.getArea());
 	}
