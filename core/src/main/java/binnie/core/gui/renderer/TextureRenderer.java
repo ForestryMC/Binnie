@@ -96,7 +96,7 @@ public class TextureRenderer {
 		this.styleSheet = styleSheet;
 	}
 
-	public final void preRender(final IWidget widget, int guiWidth, int guiHeight) {
+	public final void preRender(final IWidget widget, final int guiWidth, final int guiHeight) {
 		GlStateManager.pushMatrix();
 		GlStateManager.translate(widget.getPosition().xPos(), widget.getPosition().yPos(), 0.0f);
 		RenderUtil.setColour(widget.getColor());
@@ -167,7 +167,7 @@ public class TextureRenderer {
 		}
 	}
 
-	public void limitArea(final IArea area, int guiWidth, int guiHeight) {
+	public void limitArea(final IArea area, final int guiWidth, final int guiHeight) {
 		float x = area.pos().xPos();
 		float y = area.pos().yPos();
 		float w = area.size().xPos();
