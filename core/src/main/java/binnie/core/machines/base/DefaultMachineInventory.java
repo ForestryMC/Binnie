@@ -8,6 +8,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 
 import binnie.core.machines.inventory.IInventoryMachine;
+import binnie.core.util.EmptyHelper;
 
 class DefaultMachineInventory implements IInventoryMachine {
 	private final DefaultInventory inventory;
@@ -30,11 +31,9 @@ class DefaultMachineInventory implements IInventoryMachine {
 	public void markDirty() {
 	}
 
-	private static final int[] SLOTS_FOR_FACE_EMPTY = new int[0];
-
 	@Override
 	public int[] getSlotsForFace(EnumFacing side) {
-		return SLOTS_FOR_FACE_EMPTY;
+		return EmptyHelper.INT_ARRAY_EMPTY;
 	}
 
 	@Override

@@ -41,6 +41,7 @@ import binnie.core.gui.minecraft.control.ControlPlayerInventory;
 import binnie.core.gui.minecraft.control.ControlTabIcon;
 import binnie.core.gui.window.Panel;
 import binnie.core.util.I18N;
+import binnie.core.util.EmptyHelper;
 import binnie.core.gui.ControlGenesisOption;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -126,11 +127,11 @@ public class WindowGenesis extends Window {
 		this.refreshTemplate(null);
 	}
 	
-	private static final IChromosomeType[] CHROMOSOME_TYPES_EMPTY = new IChromosomeType[0];
+
 
 	private void refreshTemplate(@Nullable IChromosomeType selection) {
 		List<Gene> genes = new ArrayList<>();
-		IChromosomeType[] chromosomeTypes = Binnie.GENETICS.getChromosomeMap(this.root).keySet().toArray(CHROMOSOME_TYPES_EMPTY);
+		IChromosomeType[] chromosomeTypes = Binnie.GENETICS.getChromosomeMap(this.root).keySet().toArray(EmptyHelper.CHROMOSOME_TYPES_EMPTY);
 		for (IChromosomeType type : chromosomeTypes) {
 			IAllele allele = this.template[type.ordinal()];
 			if (allele == null) {

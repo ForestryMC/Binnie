@@ -10,6 +10,7 @@ import binnie.core.gui.minecraft.CustomSlot;
 import binnie.core.machines.inventory.InventorySlot;
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.machines.inventory.Validator;
+import binnie.core.util.EmptyHelper;
 import it.unimi.dsi.fastutil.ints.IntArraySet;
 import it.unimi.dsi.fastutil.ints.IntSet;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -41,10 +42,8 @@ public class ErrorState implements INbtReadable, INbtWritable {
 	}
 
 	public ErrorState(IErrorStateDefinition nameDefinition, IErrorStateDefinition definition) {
-		this(nameDefinition, definition, DATA_EMPTY);
+		this(nameDefinition, definition, EmptyHelper.INT_ARRAY_EMPTY);
 	}
-
-	private static final int[] DATA_EMPTY = new int[0];
 
 	public ErrorState(IErrorStateDefinition nameDefinition, IErrorStateDefinition definition, int[] data) {
 		EnumErrorType type = definition.getType();
@@ -57,7 +56,7 @@ public class ErrorState implements INbtReadable, INbtWritable {
 	}
 
 	public ErrorState(NBTTagCompound nbtTagCompound) {
-		this.data = DATA_EMPTY;
+		this.data = EmptyHelper.INT_ARRAY_EMPTY;
 		this.itemError = false;
 		this.tankError = false;
 		this.powerError = false;

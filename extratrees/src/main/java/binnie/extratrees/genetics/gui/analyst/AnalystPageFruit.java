@@ -29,6 +29,7 @@ import binnie.core.gui.controls.ControlTextCentered;
 import binnie.core.gui.geometry.Point;
 import binnie.core.gui.minecraft.control.ControlItemDisplay;
 import binnie.core.util.I18N;
+import binnie.core.util.EmptyHelper;
 import binnie.core.util.UniqueItemStackSet;
 import binnie.genetics.api.analyst.AnalystConstants;
 import net.minecraftforge.fml.relauncher.Side;
@@ -57,7 +58,7 @@ public class AnalystPageFruit extends Control implements ITitledWidget {
 				FruitProviderPod pod = (FruitProviderPod) ind.getGenome().getFruitProvider();
 				Field f = FruitProviderPod.class.getDeclaredField("drops");
 				f.setAccessible(true);
-				Collections.addAll(products, ((Map<ItemStack, Float>) f.get(pod)).keySet().toArray(ITEM_STACKS_EMPTY));
+				Collections.addAll(products, ((Map<ItemStack, Float>) f.get(pod)).keySet().toArray(EmptyHelper.ITEM_STACKS_EMPTY));
 			}
 		} catch (IllegalAccessException | NoSuchFieldException e) {
 			throw new RuntimeException(e);
@@ -118,7 +119,7 @@ public class AnalystPageFruit extends Control implements ITitledWidget {
 							FruitProviderPod pod2 = (FruitProviderPod) ((IAlleleFruit) a).getProvider();
 							Field field = FruitProviderPod.class.getDeclaredField("drops");
 							field.setAccessible(true);
-							Collections.addAll(stacks, ((Map<ItemStack, Float>) field.get(pod2)).keySet().toArray(ITEM_STACKS_EMPTY));
+							Collections.addAll(stacks, ((Map<ItemStack, Float>) field.get(pod2)).keySet().toArray(EmptyHelper.ITEM_STACKS_EMPTY));
 						}
 					} catch (IllegalAccessException | NoSuchFieldException e) {
 						throw new RuntimeException(e);
@@ -130,8 +131,6 @@ public class AnalystPageFruit extends Control implements ITitledWidget {
 		}
 		setSize(new Point(getWidth(), y + 8));
 	}
-
-	private static final ItemStack[] ITEM_STACKS_EMPTY = new ItemStack[0];
 
 	@Override
 	public String getTitle() {

@@ -5,6 +5,7 @@ import javax.annotation.Nullable;
 
 import java.util.Collections;
 
+import binnie.core.util.EmptyHelper;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntComparators;
 import it.unimi.dsi.fastutil.ints.IntList;
@@ -36,8 +37,6 @@ class RotatedOreIngredient extends Ingredient {
 		this.offset = offset;
 	}
 
-	private static final ItemStack[] ITEM_STACKS_EMPTY = new ItemStack[0];
-
 	@Override
 	@Nonnull
 	public ItemStack[] getMatchingStacks()
@@ -53,7 +52,7 @@ class RotatedOreIngredient extends Ingredient {
 					lst.add(itemstack);
 			}
 			Collections.rotate(lst, offset);
-			this.array = lst.toArray(ITEM_STACKS_EMPTY);
+			this.array = lst.toArray(EmptyHelper.ITEM_STACKS_EMPTY);
 		}
 		return this.array;
 	}

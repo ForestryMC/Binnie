@@ -25,6 +25,7 @@ import binnie.core.machines.power.TankInfo;
 import binnie.core.machines.transfer.TransferRequest;
 import binnie.core.machines.transfer.TransferResult;
 import binnie.core.network.packet.MessageContainerUpdate;
+import binnie.core.util.EmptyHelper;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Sets;
 import com.mojang.authlib.GameProfile;
@@ -383,7 +384,7 @@ public class ContainerCraftGUI extends Container {
 		return this.errorType;
 	}
 
-	private static final CustomSlot[] CUSTOM_SLOTS_EMPTY = new CustomSlot[0];
+
 
 	public CustomSlot[] getCustomSlots() {
 		final List<CustomSlot> slots = new ArrayList<>();
@@ -392,7 +393,7 @@ public class ContainerCraftGUI extends Container {
 				slots.add((CustomSlot) object);
 			}
 		}
-		return slots.toArray(CUSTOM_SLOTS_EMPTY);
+		return slots.toArray(EmptyHelper.CUSTOM_SLOTS_EMPTY);
 	}
 
 	@SideOnly(Side.CLIENT)

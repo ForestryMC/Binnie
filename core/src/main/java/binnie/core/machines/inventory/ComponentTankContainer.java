@@ -22,6 +22,7 @@ import binnie.core.machines.IMachine;
 import binnie.core.machines.MachineComponent;
 import binnie.core.machines.power.ITankMachine;
 import binnie.core.machines.power.TankInfo;
+import binnie.core.util.EmptyHelper;
 import binnie.core.util.NBTUtil;
 
 public class ComponentTankContainer extends MachineComponent implements ITankMachine {
@@ -129,15 +130,13 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 		return this.getTanks()[index];
 	}
 
-	private static final IFluidTank[] FLUID_TANKS_EMPTY = new IFluidTank[0];
-
 	@Override
 	public IFluidTank[] getTanks() {
 		final List<IFluidTank> tankList = new ArrayList<>();
 		for (final TankSlot tank : this.tanks.values()) {
 			tankList.add(tank.getTank());
 		}
-		return tankList.toArray(FLUID_TANKS_EMPTY);
+		return tankList.toArray(EmptyHelper.FLUID_TANKS_EMPTY);
 	}
 
 	@Override
@@ -231,7 +230,7 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 			for (final TankSlot tank : this.tanks.values()) {
 				ltanks.add(tank.getTank());
 			}
-			return ltanks.toArray(FLUID_TANKS_EMPTY);
+			return ltanks.toArray(EmptyHelper.FLUID_TANKS_EMPTY);
 		}
 
 		private static int getTankIndexToFill(Map<Integer, TankSlot> tanks, @Nullable EnumFacing from, final FluidStack resource) {

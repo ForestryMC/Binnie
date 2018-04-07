@@ -49,6 +49,7 @@ import binnie.core.gui.resource.textures.CraftGUITexture;
 import binnie.core.gui.window.Panel;
 import binnie.core.machines.Machine;
 import binnie.core.machines.transfer.TransferRequest;
+import binnie.core.util.EmptyHelper;
 
 public class WindowCompartment extends WindowMachine implements IWindowAffectsShiftClick {
 	private final Map<Panel, Integer> panels;
@@ -63,8 +64,6 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		this.currentTab = 0;
 	}
 
-	private static final Integer[] DEFAULT_TABS_EMPTY = new Integer[0];
-
 	//TODO: Clean Up, Localise
 	@Override
 	@SideOnly(Side.CLIENT)
@@ -76,8 +75,8 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		int x = 16;
 		final int y = 32;
 		final ComponentCompartmentInventory inv = machine.getInterface(ComponentCompartmentInventory.class);
-		Integer[] tabs1 = DEFAULT_TABS_EMPTY;
-		Integer[] tabs2 = DEFAULT_TABS_EMPTY;
+		Integer[] tabs1 = EmptyHelper.DEFAULT_TABS_EMPTY;
+		Integer[] tabs2 = EmptyHelper.DEFAULT_TABS_EMPTY;
 		if (inv.getTabCount() == 4) {
 			tabs1 = new Integer[]{0, 1};
 			tabs2 = new Integer[]{2, 3};

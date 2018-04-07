@@ -12,6 +12,7 @@ import binnie.genetics.api.IItemSerum;
 import binnie.genetics.item.GeneticsItems;
 import binnie.genetics.item.ItemSerum;
 import binnie.genetics.item.ItemSerumArray;
+import binnie.core.util.EmptyHelper;
 
 public class Engineering {
 	public static boolean isGeneAcceptor(ItemStack stack) {
@@ -66,8 +67,6 @@ public class Engineering {
 		return stack;
 	}
 
-	private static final IGene[] GENES_EMPTY = new IGene[0];
-
 	public static IGene[] getGenes(ItemStack serum) {
 		if (!serum.isEmpty()) {
 			Item item = serum.getItem();
@@ -82,7 +81,7 @@ public class Engineering {
 				}
 			}
 		}
-		return GENES_EMPTY;
+		return EmptyHelper.GENES_EMPTY;
 	}
 
 	public static int getCharges(ItemStack serum) {
