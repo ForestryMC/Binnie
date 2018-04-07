@@ -93,29 +93,29 @@ public class WindowGenesis extends Window {
 			refreshTemplate(null);
 		});
 		this.geneList.addEventHandler(EventValueChanged.class, EventHandlerOrigin.SELF, this.geneList, event -> {
-			Object value = event.getValue();
+			final Object value = event.getValue();
 			if (!(value instanceof Gene)) {
 				return;
 			}
-			Gene gene = (Gene) value;
-			Map<IChromosomeType, List<IAllele>> map = Binnie.GENETICS.getChromosomeMap(root);
-			List<Gene> options = new ArrayList<>();
-			IChromosomeType chromosomeType = gene.getChromosome();
-			List<IAllele> alleles = map.get(chromosomeType);
-			for (IAllele allele : alleles) {
+			final Gene gene = (Gene) value;
+			final Map<IChromosomeType, List<IAllele>> map = Binnie.GENETICS.getChromosomeMap(root);
+			final IChromosomeType chromosomeType = gene.getChromosome();
+			final List<IAllele> alleles = map.get(chromosomeType);
+			final List<Gene> options = new ArrayList<>(alleles.size());
+			for (final IAllele allele : alleles) {
 				options.add(new Gene(allele, chromosomeType, root));
 			}
 			geneOptions.setOptions(options);
 		});
 		this.geneOptions.addEventHandler(EventValueChanged.class, EventHandlerOrigin.SELF, this.geneOptions, event -> {
-			Object value = event.getValue();
+			final Object value = event.getValue();
 			if (!(value instanceof Gene)) {
 				return;
 			}
-			Gene gene = (Gene) value;
-			IChromosomeType chromosomeType = gene.getChromosome();
-			ISpeciesRoot speciesRoot = gene.getSpeciesRoot();
-			IAllele allele = gene.getAllele();
+			final Gene gene = (Gene) value;
+			final IChromosomeType chromosomeType = gene.getChromosome();
+			final ISpeciesRoot speciesRoot = gene.getSpeciesRoot();
+			final IAllele allele = gene.getAllele();
 			if (chromosomeType == speciesRoot.getSpeciesChromosomeType()) {
 				template = speciesRoot.getTemplate(allele.getUID());
 			}else {
@@ -126,14 +126,12 @@ public class WindowGenesis extends Window {
 		this.panelPickup = new Panel(this, 16, 140, 60, 42, MinecraftGUI.PanelType.BLACK);
 		this.refreshTemplate(null);
 	}
-	
-
 
 	private void refreshTemplate(@Nullable IChromosomeType selection) {
-		List<Gene> genes = new ArrayList<>();
-		IChromosomeType[] chromosomeTypes = Binnie.GENETICS.getChromosomeMap(this.root).keySet().toArray(EmptyHelper.CHROMOSOME_TYPES_EMPTY);
+		final IChromosomeType[] chromosomeTypes = Binnie.GENETICS.getChromosomeMap(this.root).keySet().toArray(EmptyHelper.CHROMOSOME_TYPES_EMPTY);
+		final List<Gene> genes = new ArrayList<>(chromosomeTypes.length);
 		for (IChromosomeType type : chromosomeTypes) {
-			IAllele allele = this.template[type.ordinal()];
+			final IAllele allele = this.template[type.ordinal()];
 			if (allele == null) {
 				throw new NullPointerException("Allele missing for Chromosome " + type.getName());
 			}
@@ -151,12 +149,12 @@ public class WindowGenesis extends Window {
 	private void refreshPickup() {
 		this.panelPickup.deleteAllChildren();
 		int i = 0;
-		IBreedingSystem system = Binnie.GENETICS.getSystem(this.root);
-		for (ISpeciesType type : system.getActiveTypes()) {
-			IIndividual ind = this.root.templateAsIndividual(this.template);
+		final IBreedingSystem system = Binnie.GENETICS.getSystem(this.root);
+		for (final ISpeciesType type : system.getActiveTypes()) {
+			final IIndividual ind = this.root.templateAsIndividual(this.template);
 			ind.analyze();
-			ItemStack stack = this.root.getMemberStack(ind, type);
-			ControlItemDisplay display = new ControlItemDisplay(this.panelPickup, 4 + i % 3 * 18, 4 + i / 3 * 18);
+			final ItemStack stack = this.root.getMemberStack(ind, type);
+			final ControlItemDisplay display = new ControlItemDisplay(this.panelPickup, 4 + i % 3 * 18, 4 + i / 3 * 18);
 			display.setItemStack(stack);
 			display.setTooltip();
 			display.addEventHandler(EventMouse.Down.class, EventHandlerOrigin.SELF, display, event -> {
@@ -172,12 +170,12 @@ public class WindowGenesis extends Window {
 	public void receiveGuiNBTOnServer(final EntityPlayer player, final String name, final NBTTagCompound nbt) {
 		super.receiveGuiNBTOnServer(player, name, nbt);
 		if (name.equals(ACTION_GENESIS)) {
-			ItemStack stack = new ItemStack(nbt);
-			InventoryPlayer inventoryPlayer = player.inventory;
-			ItemStack playerStack = inventoryPlayer.getItemStack();
+			final ItemStack stack = new ItemStack(nbt);
 			if (stack.isEmpty()) {
 				return;
 			}
+			final InventoryPlayer inventoryPlayer = player.inventory;
+			final ItemStack playerStack = inventoryPlayer.getItemStack();
 			if (playerStack.isEmpty()) {
 				inventoryPlayer.setItemStack(stack);
 			} else if (playerStack.isItemEqual(stack) && ItemStack.areItemStackTagsEqual(playerStack, stack)) {
