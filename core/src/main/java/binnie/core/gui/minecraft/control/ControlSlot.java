@@ -58,9 +58,9 @@ public class ControlSlot extends ControlSlotBase {
 		super(parent, x, y);
 		this.slot = slot;
 		this.addSelfEventHandler(EventMouse.Down.class, event -> {
-			Window superParent = (Window) ControlSlot.this.getTopParent();
-			GuiCraftGUI superParentGui = superParent.getGui();
-			Minecraft mc = superParentGui.getMinecraft();
+			final Window superParent = (Window) ControlSlot.this.getTopParent();
+			final GuiCraftGUI superParentGui = superParent.getGui();
+			final Minecraft mc = superParentGui.getMinecraft();
 			final PlayerControllerMP playerController = mc.playerController;
 			final int windowId = superParent.getContainer().windowId;
 			final int slotNumber = this.slot.slotNumber;
@@ -87,7 +87,7 @@ public class ControlSlot extends ControlSlotBase {
 		CraftGUI.RENDER.texture(CraftGUITexture.SLOT, Point.ZERO);
 		final InventorySlot islot = this.getInventorySlot();
 		if (islot != null) {
-			SlotValidator validator = islot.getValidator();
+			final SlotValidator validator = islot.getValidator();
 			if (validator != null) {
 				final TextureAtlasSprite icon = validator.getIcon(!islot.getInputSides().isEmpty());
 				if (icon != null && icon != Minecraft.getMinecraft().getTextureMapBlocks().getMissingSprite()) {
