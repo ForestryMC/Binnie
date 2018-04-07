@@ -24,42 +24,40 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 	}
 
 	public static ItemStack getBlockDropped(IBlockMetadata block, IBlockAccess world, BlockPos pos) {
-		TileEntityMetadata tile = TileEntityMetadata.getTile(world, pos);
+		final TileEntityMetadata tile = TileEntityMetadata.getTile(world, pos);
 		if (tile != null && !tile.hasDroppedBlock()) {
-			int meta = block.getDroppedMeta(world.getBlockState(pos), tile.getTileMetadata());
+			final int meta = block.getDroppedMeta(world.getBlockState(pos), tile.getTileMetadata());
 			return TileEntityMetadata.getItemStack((Block) block, meta);
 		}
 		return ItemStack.EMPTY;
 	}
 
 	public static void getDrops(NonNullList<ItemStack> drops, IBlockMetadata block, IBlockAccess world, BlockPos pos) {
-		ItemStack drop = getBlockDropped(block, world, pos);
+		final ItemStack drop = getBlockDropped(block, world, pos);
 		if (!drop.isEmpty()) {
 			drops.add(drop);
 		}
 	}
 
 	public static boolean breakBlock(IBlockMetadata blockMetadata, @Nullable EntityPlayer player, World world, BlockPos pos) {
-		List<ItemStack> drops = new ArrayList<>();
-		Block block = (Block) blockMetadata;
-		TileEntityMetadata tile = TileEntityMetadata.getTile(world, pos);
+		List<ItemStack> drops = null;
+		final Block block = (Block) blockMetadata;
+		final TileEntityMetadata tile = TileEntityMetadata.getTile(world, pos);
 		if (tile != null && !tile.hasDroppedBlock()) {
 			drops = block.getDrops(world, pos, world.getBlockState(pos), 0);
 		}
 		boolean hasBeenBroken = world.setBlockToAir(pos);
-		if (hasBeenBroken && !world.isRemote && drops.size() > 0 && (player == null || !player.capabilities.isCreativeMode)) {
+		if (hasBeenBroken && !world.isRemote && drops != null && (player == null || !player.capabilities.isCreativeMode)) {
 			for (ItemStack drop : drops) {
 				spawnAsEntity(world, pos, drop);
 			}
-			if (tile != null) {
-				tile.dropBlock();
-			}
+			tile.dropBlock();
 		}
 		return hasBeenBroken;
 	}
 
 	public static ItemStack getPickBlock(World world, BlockPos pos) {
-		Block block = world.getBlockState(pos).getBlock();
+		final Block block = world.getBlockState(pos).getBlock();
 		return getBlockDropped((IBlockMetadata) block, world, pos);
 	}
 
