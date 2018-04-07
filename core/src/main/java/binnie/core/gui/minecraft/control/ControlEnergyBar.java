@@ -1,6 +1,7 @@
 package binnie.core.gui.minecraft.control;
 
 import java.text.NumberFormat;
+import java.util.regex.Pattern;
 
 import binnie.core.ModId;
 import binnie.core.api.gui.Alignment;
@@ -56,28 +57,31 @@ public class ControlEnergyBar extends Control implements ITooltip {
 	@SideOnly(Side.CLIENT)
 	public void getTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		tooltip.add(I18N.localise(ModId.CORE, "gui.energy.bar"));
-		NumberFormat numberFormat = I18N.getNumberFormat();
-		String storedEnergy = numberFormat.format(this.getStoredEnergy());
-		String maxEnergy = numberFormat.format(this.getMaxEnergy());
-		String energyString = TextFormatting.GRAY + storedEnergy + '/' + maxEnergy + " RF";
+		final NumberFormat numberFormat = I18N.getNumberFormat();
+		final String storedEnergy = numberFormat.format(this.getStoredEnergy());
+		final String maxEnergy = numberFormat.format(this.getMaxEnergy());
+		final String energyString = TextFormatting.GRAY + storedEnergy + '/' + maxEnergy + " RF";
 		tooltip.add(energyString);
 	}
+
+	private static final Pattern PATTERN_MAX = Pattern.compile("$MAX$", Pattern.LITERAL);
+	private static final Pattern PATTERN_PERCENT = Pattern.compile("$PERCENT$", Pattern.LITERAL);
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getHelpTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		tooltip.add(I18N.localise(ModId.CORE, "gui.energy.bar"));
 		if (tooltipFlag.isAdvanced()) {
-			String currentFormat = I18N.localise(ModId.CORE, "gui.energy.amount.current");
-			NumberFormat numberFormat = I18N.getNumberFormat();
-			String currentString = currentFormat.replace("$MAX$", numberFormat.format(this.getStoredEnergy()))
-					.replace("$PERCENT$", I18N.getPercentFormat().format(this.getPercentage() / 100.0));
+			final String currentFormat = I18N.localise(ModId.CORE, "gui.energy.amount.current");
+			final NumberFormat numberFormat = I18N.getNumberFormat();
+			String currentString = PATTERN_MAX.matcher(currentFormat).replaceAll(numberFormat.format(this.getStoredEnergy()));
+			currentString = PATTERN_PERCENT.matcher(currentString).replaceAll(I18N.getPercentFormat().format(this.getPercentage() / 100.0));
 			tooltip.add(TextFormatting.GRAY + currentString);
-			String maxEnergy = numberFormat.format(this.getMaxEnergy());
+			final String maxEnergy = numberFormat.format(this.getMaxEnergy());
 			tooltip.add(TextFormatting.GRAY + I18N.localise(ModId.CORE, "gui.energy.capacity", maxEnergy));
 			final IProcess process = Machine.getInterface(IProcess.class, Window.get(this).getInventory());
 			if (process != null) {
-				String energyPerTick = numberFormat.format((int) process.getEnergyPerTick());
+				final String energyPerTick = numberFormat.format((int) process.getEnergyPerTick());
 				tooltip.add(TextFormatting.GRAY + I18N.localise(ModId.CORE, "gui.energy.cost.per.tick", energyPerTick));
 			}
 		}
@@ -94,7 +98,7 @@ public class ControlEnergyBar extends Control implements ITooltip {
 		switch (this.direction) {
 			case TOP:
 			case BOTTOM: {
-				IPoint fullSize = area.size();
+				final IPoint fullSize = area.size();
 				final int height = Math.round(fullSize.yPos() * percentage);
 				area.setSize(new Point(fullSize.xPos(), height));
 				area.setYPos(fullSize.yPos() - height);
