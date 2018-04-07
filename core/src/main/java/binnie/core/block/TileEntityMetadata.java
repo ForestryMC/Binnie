@@ -40,8 +40,10 @@ public class TileEntityMetadata extends TileEntity {
 		return itemStack;
 	}
 
+	private static final int MAX_ITEM_DAMAGE = 16387;
+
 	public static void setItemDamage(final ItemStack item, final int i) {
-		item.setItemDamage((i < 16387) ? i : 16387);
+		item.setItemDamage((i < MAX_ITEM_DAMAGE) ? i : MAX_ITEM_DAMAGE);
 		final NBTTagCompound tag = new NBTTagCompound();
 		tag.setInteger("meta", i);
 		item.setTagCompound(tag);
@@ -76,7 +78,7 @@ public class TileEntityMetadata extends TileEntity {
 	@Override
 	public void readFromNBT(final NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
-		if(world!=null)
+		if (world != null)
 			setTileMetadata(nbt.getInteger("meta"), world.isRemote);
 		else
 			this.meta = nbt.getInteger("meta");
@@ -97,7 +99,7 @@ public class TileEntityMetadata extends TileEntity {
 		if (this.meta != meta) {
 			this.meta = meta;
 			if (notify) {
-				IBlockState state = world.getBlockState(pos);
+				final IBlockState state = world.getBlockState(pos);
 				world.notifyBlockUpdate(pos, state, state, 3);
 			}
 		}
