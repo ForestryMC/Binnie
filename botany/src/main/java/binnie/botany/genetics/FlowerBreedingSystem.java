@@ -41,7 +41,7 @@ public class FlowerBreedingSystem extends BreedingSystem {
 	}
 
 	@Override
-	public float getChance(IMutation mutation, EntityPlayer player, IAlleleSpecies firstSpecies, IAlleleSpecies secondSpecies) {
+	public float getChance(final IMutation mutation, final EntityPlayer player, final IAlleleSpecies firstSpecies, final IAlleleSpecies secondSpecies) {
 		return mutation.getBaseChance();
 	}
 
