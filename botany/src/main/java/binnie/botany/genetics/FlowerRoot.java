@@ -300,7 +300,7 @@ public class FlowerRoot extends SpeciesRoot implements IFlowerRoot {
 
 		TileEntity tile = world.getTileEntity(pos);
 		TileEntity below = world.getTileEntity(pos.down());
-		if (tile != null && tile instanceof TileEntityFlower) {
+		if (tile instanceof TileEntityFlower) {
 			TileEntityFlower tileFlower = (TileEntityFlower) tile;
 			if (below instanceof TileEntityFlower) {
 				tileFlower.setSection(((TileEntityFlower) below).getSection());
@@ -320,7 +320,7 @@ public class FlowerRoot extends SpeciesRoot implements IFlowerRoot {
 		}
 
 		TileEntity tileFlower = world.getTileEntity(pos);
-		if (tileFlower == null || !(tileFlower instanceof TileEntityFlower)) {
+		if (!(tileFlower instanceof TileEntityFlower)) {
 			return;
 		}
 
@@ -335,7 +335,7 @@ public class FlowerRoot extends SpeciesRoot implements IFlowerRoot {
 		if (blockAbove.getBlock().isReplaceable(world, up)) {
 			world.setBlockState(up, ModuleFlowers.flower.getDefaultState());
 			TileEntity flowerAbove = world.getTileEntity(up);
-			if (flowerAbove != null && flowerAbove instanceof TileEntityFlower) {
+			if (flowerAbove instanceof TileEntityFlower) {
 				((TileEntityFlower) flowerAbove).setSection(section + 1);
 			}
 		}

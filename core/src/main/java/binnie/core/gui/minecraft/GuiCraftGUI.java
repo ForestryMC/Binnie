@@ -5,11 +5,13 @@ import javax.annotation.Nullable;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import binnie.core.api.gui.IPoint;
 import binnie.core.gui.KeyBindings;
 import binnie.core.gui.geometry.Point;
 import binnie.core.util.Log;
+import binnie.core.util.EmptyHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -129,6 +131,8 @@ public class GuiCraftGUI extends GuiContainer {
 		GlStateManager.enableDepth();
 	}
 
+	private static final Pattern PATTERN_NBT_CONTENT = Pattern.compile(Tooltip.NBT_SEPARATOR + "(.*?)" + Tooltip.NBT_SEPARATOR);
+
 	public void renderTooltip(final Point mousePosition, final MinecraftTooltip tooltip) {
 		final int mouseX = mousePosition.xPos();
 		final int mouseY = mousePosition.yPos();
@@ -152,7 +156,7 @@ public class GuiCraftGUI extends GuiContainer {
 		for (String textLine : textLines) {
 			int textLineWidth = font.getStringWidth(textLine);
 			if (textLine.contains(Tooltip.NBT_SEPARATOR)) {
-				textLineWidth = 12 + font.getStringWidth(textLine.replaceAll(Tooltip.NBT_SEPARATOR + "(.*?)" + Tooltip.NBT_SEPARATOR, ""));
+				textLineWidth = 12 + font.getStringWidth(PATTERN_NBT_CONTENT.matcher(textLine).replaceAll(EmptyHelper.EMPTY_STRING));
 			}
 			if (textLineWidth > tooltipTextWidth) {
 				tooltipTextWidth =  textLineWidth;
@@ -207,7 +211,7 @@ public class GuiCraftGUI extends GuiContainer {
 				for (String line : wrappedLine) {
 					int lineWidth = font.getStringWidth(line);
 					if (textLine.contains(Tooltip.NBT_SEPARATOR)) {
-						lineWidth = 12 + font.getStringWidth(textLine.replaceAll(Tooltip.NBT_SEPARATOR + "(.*?)" + Tooltip.NBT_SEPARATOR, ""));
+						lineWidth = 12 + font.getStringWidth(PATTERN_NBT_CONTENT.matcher(textLine).replaceAll(EmptyHelper.EMPTY_STRING));
 					}
 					if (lineWidth > wrappedTooltipWidth) {
 						wrappedTooltipWidth = lineWidth;
@@ -262,7 +266,7 @@ public class GuiCraftGUI extends GuiContainer {
 			}
 			if (line.contains(Tooltip.NBT_SEPARATOR)) {
 				drawItem(line, tooltipX, tooltipY);
-				line = "   " + line.replaceAll(Tooltip.NBT_SEPARATOR + "(.*?)" + Tooltip.NBT_SEPARATOR, "");
+				line = "   " + PATTERN_NBT_CONTENT.matcher(line).replaceAll(EmptyHelper.EMPTY_STRING);
 			}
 			font.drawStringWithShadow(line, tooltipX, tooltipY, -1);
 			if (lineNumber + 1 == titleLinesCount) {

@@ -155,7 +155,7 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 		IFlowerRoot flowerRoot = BotanyCore.getFlowerRoot();
 		TileEntity flower = world.getTileEntity(pos);
 		if (world.isRemote) {
-			if (flower != null && flower instanceof TileEntityFlower) {
+			if (flower instanceof TileEntityFlower) {
 				IFlower f = flowerRoot.getMember(stack);
 				if (f != null) {
 					((TileEntityFlower) flower).setRender(new FlowerRenderInfo(f, (TileEntityFlower) flower));
@@ -165,7 +165,7 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 		}
 
 		TileEntity below = world.getTileEntity(pos.down());
-		if (flower != null && flower instanceof TileEntityFlower) {
+		if (flower instanceof TileEntityFlower) {
 			if (below instanceof TileEntityFlower) {
 				((TileEntityFlower) flower).setSection(((TileEntityFlower) below).getSection());
 			} else {

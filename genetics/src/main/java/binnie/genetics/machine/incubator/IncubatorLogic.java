@@ -58,7 +58,7 @@ public class IncubatorLogic extends ComponentProcessIndefinate implements IProce
 
 	@Override
 	protected void onTickTask() {
-		if (this.rand.nextInt(20) == 0 && this.recipe != null && this.rand.nextFloat() < this.recipe.getChance()) {
+		if (this.recipe != null && this.rand.nextInt(20) == 0 && this.rand.nextFloat() < this.recipe.getChance()) {
 			this.recipe.doTask(this.getUtil());
 		}
 	}
