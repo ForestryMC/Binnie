@@ -164,7 +164,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 
 	@Nullable
 	public String showInfoButton() {
-		IMachineInformation machineInformation = Machine.getInterface(IMachineInformation.class, this.getInventory());
+		final IMachineInformation machineInformation = Machine.getInterface(IMachineInformation.class, this.getInventory());
 		if (machineInformation != null) {
 			return machineInformation.getInformation();
 		}
@@ -272,7 +272,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 	}
 
 	public World getWorld() {
-		return this.getPlayer().world;
+		return this.player.world;
 	}
 
 	public void sendClientAction(final String name, final NBTTagCompound action) {
