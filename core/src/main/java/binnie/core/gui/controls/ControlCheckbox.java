@@ -46,15 +46,17 @@ public class ControlCheckbox extends Control implements IControlValue<Boolean> {
 	}
 
 	public void toggleValue() {
-		this.setValue(!this.getValue());
+		this.setValue(!this.value);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		Object texture = this.getValue() ? CraftGUITexture.CHECKBOX_CHECKED : CraftGUITexture.CHECKBOX;
+		Object texture;
 		if (this.isMouseOver()) {
-			texture = (this.getValue() ? CraftGUITexture.CHECKBOX_CHECKED_HIGHLIGHTED : CraftGUITexture.CHECKBOX_HIGHLIGHTED);
+			texture = (this.value ? CraftGUITexture.CHECKBOX_CHECKED_HIGHLIGHTED : CraftGUITexture.CHECKBOX_HIGHLIGHTED);
+		} else {
+			texture = this.value ? CraftGUITexture.CHECKBOX_CHECKED : CraftGUITexture.CHECKBOX;
 		}
 		CraftGUI.RENDER.texture(texture, Point.ZERO);
 	}

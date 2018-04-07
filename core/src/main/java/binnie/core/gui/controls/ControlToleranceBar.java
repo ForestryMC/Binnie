@@ -19,6 +19,7 @@ import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.geometry.Area;
 import binnie.core.gui.geometry.Border;
 import binnie.core.gui.renderer.RenderUtil;
+import binnie.core.util.EmptyHelper;
 
 public abstract class ControlToleranceBar<T extends Enum<T>> extends Control implements ITooltip {
 	private final EnumSet<T> tolerated;
@@ -42,7 +43,7 @@ public abstract class ControlToleranceBar<T extends Enum<T>> extends Control imp
 		int type = getRelativeMousePosition().xPos() / (getSize().xPos() / types);
 		for (T tol : fullSet) {
 			if (tol.ordinal() - ((enumClass == EnumTemperature.class) ? 1 : 0) == type) {
-				tooltip.add((tolerated.contains(tol) ? "" : TextFormatting.DARK_GRAY) + getName(tol));
+				tooltip.add((tolerated.contains(tol) ? EmptyHelper.EMPTY_STRING : TextFormatting.DARK_GRAY) + getName(tol));
 			}
 		}
 	}

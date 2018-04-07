@@ -15,7 +15,7 @@ public class ControlPage<T> extends Control implements IControlValue<T> {
 		super(parent, x, y, w, h);
 		this.value = value;
 		if (parent instanceof IControlValue) {
-			IControlValue controlValue = (IControlValue) parent;
+			final IControlValue controlValue = (IControlValue) parent;
 			if (controlValue.getValue() == null) {
 				controlValue.setValue(value);
 			}

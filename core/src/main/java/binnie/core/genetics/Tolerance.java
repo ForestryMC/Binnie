@@ -1,11 +1,14 @@
 package binnie.core.genetics;
 
 import java.util.Locale;
+import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.text.WordUtils;
 
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
+
+import binnie.core.util.EmptyHelper;
 
 public enum Tolerance {
 	NONE(0, 0),
@@ -29,9 +32,11 @@ public enum Tolerance {
 		return get(tol).canTolerate(base, test);
 	}
 
+	private static final Pattern PATTERN = Pattern.compile("_", Pattern.LITERAL);
+
 	@Override
 	public String toString() {
-		return super.toString().toLowerCase(Locale.ENGLISH).replace("_", "");
+		return PATTERN.matcher(name().toLowerCase(Locale.ENGLISH)).replaceAll(EmptyHelper.EMPTY_STRING);
 	}
 
 	public String getUID() {

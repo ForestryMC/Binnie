@@ -15,6 +15,7 @@ import binnie.core.gui.events.EventMouse;
 import binnie.core.gui.events.EventTextEdit;
 import binnie.core.gui.events.EventWidget;
 import binnie.core.gui.resource.textures.CraftGUITexture;
+import binnie.core.util.EmptyHelper;
 
 @SideOnly(Side.CLIENT)
 public class ControlTextEdit extends Control implements IControlValue<String> {
@@ -23,7 +24,7 @@ public class ControlTextEdit extends Control implements IControlValue<String> {
 
 	public ControlTextEdit(final IWidget parent, final int x, final int y, final int width, final int height) {
 		super(parent, x, y, width, height);
-		this.cachedValue = "";
+		this.cachedValue = EmptyHelper.EMPTY_STRING;
 		this.field = new GuiTextField(0, this.getWindow().getGui().getFontRenderer(), 0, 0, 10, 10);
 		this.addAttribute(Attribute.CAN_FOCUS);
 		this.addAttribute(Attribute.MOUSE_OVER);
@@ -50,7 +51,7 @@ public class ControlTextEdit extends Control implements IControlValue<String> {
 
 	@Override
 	public String getValue() {
-		return (this.field.getText() == null) ? "" : this.field.getText();
+		return (this.field.getText() == null) ? EmptyHelper.EMPTY_STRING : this.field.getText();
 	}
 
 	@Override
