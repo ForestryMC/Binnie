@@ -26,8 +26,8 @@ public class Gene implements IGene {
 
 	public Gene(final NBTTagCompound nbt) {
 		this.allele = AlleleManager.alleleRegistry.getAllele(nbt.getString("allele"));
-		String rootKey = nbt.getString("root");
-		ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(rootKey);
+		final String rootKey = nbt.getString("root");
+		final ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(rootKey);
 		Preconditions.checkArgument(root != null, "Could not find root: %s", rootKey);
 		this.root = root;
 		final int chromoID = nbt.getByte("chromo");
@@ -56,8 +56,8 @@ public class Gene implements IGene {
 	@Override
 	public void readFromNBT(final NBTTagCompound nbt) {
 		this.allele = AlleleManager.alleleRegistry.getAllele(nbt.getString("allele"));
-		String rootKey = nbt.getString("root");
-		ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(rootKey);
+		final String rootKey = nbt.getString("root");
+		final ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(rootKey);
 		Preconditions.checkArgument(root != null, "Could not find root: %s", rootKey);
 		this.root = root;
 		final int chromoID = nbt.getByte("chromo");
