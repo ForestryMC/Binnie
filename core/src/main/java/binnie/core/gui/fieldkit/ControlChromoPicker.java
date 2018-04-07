@@ -44,8 +44,8 @@ public class ControlChromoPicker extends Control implements ITooltip {
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		super.onRenderBackground(guiWidth, guiHeight);
-		boolean selected = isMouseOver();
-		Texture text = selected ? this.selected : texture;
+		final boolean selected = isMouseOver();
+		final Texture text = selected ? this.selected : texture;
 		CraftGUI.RENDER.texture(text, Point.ZERO);
 	}
 

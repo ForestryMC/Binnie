@@ -45,6 +45,7 @@ import binnie.core.gui.resource.stylesheet.StyleSheetManager;
 import binnie.core.gui.resource.textures.StandardTexture;
 import binnie.core.texture.BinnieCoreTexture;
 import binnie.core.util.I18N;
+import binnie.core.util.EmptyHelper;
 
 public class WindowFieldKit extends Window {
 	public static final int INDIVIDUAL_SLOT = 0;
@@ -85,7 +86,7 @@ public class WindowFieldKit extends Window {
 	}
 
 	private void setupValidators() {
-		WindowInventory inventory = this.getWindowInventory();
+		final WindowInventory inventory = this.getWindowInventory();
 		inventory.setValidator(INDIVIDUAL_SLOT, new SlotValidatorIndividual(null));
 		inventory.setValidator(PAPER_SLOT, new SlotValidatorPaper(null));
 		inventory.disableAutoDispense(PAPER_SLOT);
@@ -96,7 +97,7 @@ public class WindowFieldKit extends Window {
 	public void initialiseClient() {
 		this.setTitle(I18N.localise("binniecore.gui.fieldkit.title"));
 		CraftGUI.RENDER.setStyleSheet(StyleSheetManager.getSheet(StyleSheetManager.PUNNETT_SHEET));
-		WindowInventory inventory = this.getWindowInventory();
+		final WindowInventory inventory = this.getWindowInventory();
 		inventory.createSlot(INDIVIDUAL_SLOT);
 		inventory.createSlot(PAPER_SLOT);
 		this.setupValidators();
@@ -106,7 +107,7 @@ public class WindowFieldKit extends Window {
 		new ControlSlot.Builder(this, handGlass.xPos() + 54, handGlass.yPos() + 26).assign(InventoryType.WINDOW, 0);
 		new ControlSlot.Builder(this, 208, 8).assign(InventoryType.WINDOW, 1);
 		(this.text = new ControlText(this, new Point(232, 13), I18N.localise("binniecore.gui.fieldkit.paper"))).setColor(2236962);
-		(this.text = new ControlText(this, new Area(0, 120, this.getWidth(), 24), "", TextJustification.MIDDLE_CENTER)).setColor(2236962);
+		(this.text = new ControlText(this, new Area(0, 120, this.getWidth(), 24), EmptyHelper.EMPTY_STRING, TextJustification.MIDDLE_CENTER)).setColor(2236962);
 		this.chromo = new ControlChromosome(this, 150, 24);
 		this.addEventHandler(EventValueChanged.class, EventHandlerOrigin.DIRECT_CHILD, this.chromo, event -> {
 			final IChromosomeType type = (IChromosomeType) event.getValue();
@@ -114,7 +115,7 @@ public class WindowFieldKit extends Window {
 				final String t = WindowFieldKit.this.info.get(type);
 				WindowFieldKit.this.text.setValue(t);
 			} else {
-				WindowFieldKit.this.text.setValue("");
+				WindowFieldKit.this.text.setValue(EmptyHelper.EMPTY_STRING);
 			}
 		});
 	}
@@ -122,7 +123,7 @@ public class WindowFieldKit extends Window {
 	@Override
 	public void initialiseServer() {
 		//create slots
-		WindowInventory inventory = this.getWindowInventory();
+		final WindowInventory inventory = this.getWindowInventory();
 		final ItemStack kit = this.getPlayer().getHeldItemMainhand();
 		final int sheets = 64 - kit.getItemDamage();
 		inventory.createSlot(INDIVIDUAL_SLOT);
@@ -171,7 +172,7 @@ public class WindowFieldKit extends Window {
 		if (root == null) {
 			return;
 		}
-		IBreedingSystem system = Binnie.GENETICS.getSystem(root);
+		final IBreedingSystem system = Binnie.GENETICS.getSystem(root);
 		this.chromo.setSystem(system);
 		final Random rand = new Random();
 		this.info.clear();
@@ -196,23 +197,22 @@ public class WindowFieldKit extends Window {
 	@Override
 	public void onWindowInventoryChanged() {
 		super.onWindowInventoryChanged();
-		WindowInventory inventory = getWindowInventory();
+		final WindowInventory inventory = getWindowInventory();
 		if (this.isServer()) {
 			final ItemStack kit = this.getPlayer().getHeldItemMainhand();
 			if (kit.isEmpty() || !kit.getItem().equals(BinnieCore.getFieldKit())) {
 				return;
 			}
-			ItemStack paper = inventory.getStackInSlot(PAPER_SLOT);
+			final ItemStack paper = inventory.getStackInSlot(PAPER_SLOT);
 			final int sheets = 64 - kit.getItemDamage();
 			final int size = (paper.isEmpty()) ? 0 : paper.getCount();
 			if (sheets != size) {
 				kit.setItemDamage(64 - size);
 			}
 			((EntityPlayerMP) this.getPlayer()).updateHeldItem();
-		}
-		if (this.isClient()) {
+		} else if (this.isClient()) {
 			final ItemStack item = inventory.getStackInSlot(INDIVIDUAL_SLOT);
-			this.text.setValue("");
+			this.text.setValue(EmptyHelper.EMPTY_STRING);
 			if (!item.isEmpty() && !ManagerGenetics.isAnalysed(item)) {
 				if (inventory.getStackInSlot(PAPER_SLOT).isEmpty()) {
 					this.text.setValue(I18N.localise("binniecore.gui.fieldkit.paper.no"));
@@ -257,8 +257,8 @@ public class WindowFieldKit extends Window {
 	public void receiveGuiNBTOnServer(final EntityPlayer player, final String name, final NBTTagCompound nbt) {
 		super.receiveGuiNBTOnServer(player, name, nbt);
 		if (name.equals("analyse")) {
-			WindowInventory inventory = getWindowInventory();
-			ItemStack individualStack = inventory.getStackInSlot(INDIVIDUAL_SLOT);
+			final WindowInventory inventory = getWindowInventory();
+			final ItemStack individualStack = inventory.getStackInSlot(INDIVIDUAL_SLOT);
 			inventory.setInventorySlotContents(INDIVIDUAL_SLOT, ManagerGenetics.analyse(individualStack, this.getWorld(), this.getUsername()));
 			inventory.decrStackSize(PAPER_SLOT, 1);
 		}
