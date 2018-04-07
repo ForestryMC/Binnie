@@ -86,7 +86,7 @@ public class ControlLiquidTank extends Control implements ITooltip {
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		CraftGUI.RENDER.texture(this.horizontal ? CraftGUITexture.HORIZONTAL_LIQUID_TANK : CraftGUITexture.LIQUID_TANK, Point.ZERO);
-		GuiCraftGUI gui = Window.get(this).getGui();
+		final GuiCraftGUI gui = Window.get(this).getGui();
 		if (this.isMouseOver() && gui.isHelpMode()) {
 			final int c = -1442840576 + MinecraftTooltip.getOutline(Tooltip.Type.HELP);
 			RenderUtil.drawGradientRect(this.getArea().inset(1), c, c);
@@ -142,7 +142,7 @@ public class ControlLiquidTank extends Control implements ITooltip {
 	@SideOnly(Side.CLIENT)
 	public void onRenderForeground(int guiWidth, int guiHeight) {
 		CraftGUI.RENDER.texture(this.horizontal ? CraftGUITexture.HORIZONTAL_LIQUID_TANK_OVERLAY : CraftGUITexture.LIQUID_TANK_OVERLAY, Point.ZERO);
-		GuiCraftGUI gui = Window.get(this).getGui();
+		final GuiCraftGUI gui = Window.get(this).getGui();
 		if (this.isMouseOver() && gui.isHelpMode()) {
 			final IArea area = this.getArea();
 			RenderUtil.setColour(MinecraftTooltip.getOutline(Tooltip.Type.HELP));
@@ -161,14 +161,14 @@ public class ControlLiquidTank extends Control implements ITooltip {
 		if (this.getTankSlot() != null) {
 			final TankSlot slot = this.getTankSlot();
 			tooltip.add(slot.getName());
-			NumberFormat numberFormat = I18N.getNumberFormat();
+			final NumberFormat numberFormat = I18N.getNumberFormat();
 			tooltip.add(I18N.localise(ModId.CORE, "gui.tank.capacity", numberFormat.format(this.getTankCapacity())));
 			if (tooltipFlag.isAdvanced()) {
-				Collection<EnumFacing> inputSides = slot.getInputSides();
+				final Collection<EnumFacing> inputSides = slot.getInputSides();
 				if (inputSides.size() > 0) {
 					tooltip.add(TextFormatting.GRAY + I18N.localise(ModId.CORE, "gui.side.insert", MachineSide.asString(inputSides)));
 				}
-				Collection<EnumFacing> outputSides = slot.getOutputSides();
+				final Collection<EnumFacing> outputSides = slot.getOutputSides();
 				if (outputSides.size() > 0) {
 					tooltip.add(TextFormatting.GRAY + I18N.localise(ModId.CORE, "gui.side.extract", MachineSide.asString(outputSides)));
 				}
@@ -183,13 +183,13 @@ public class ControlLiquidTank extends Control implements ITooltip {
 	@SideOnly(Side.CLIENT)
 	public void getTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		if (this.isTankValid()) {
-			NumberFormat numberFormat = I18N.getNumberFormat();
-			NumberFormat percentFormat = I18N.getPercentFormat();
+			final NumberFormat numberFormat = I18N.getNumberFormat();
+			final NumberFormat percentFormat = I18N.getPercentFormat();
 			final float percentage = this.getTank().getAmount() / this.getTankCapacity();
 			tooltip.add(this.getTank().getName());
-			String percentFull = percentFormat.format(percentage);
+			final String percentFull = percentFormat.format(percentage);
 			tooltip.add(I18N.localise(ModId.CORE, "gui.tank.percent.full", percentFull));
-			String tankAmount = numberFormat.format((int) this.getTank().getAmount());
+			final String tankAmount = numberFormat.format((int) this.getTank().getAmount());
 			tooltip.add(I18N.localise(ModId.CORE, "gui.tank.amount", tankAmount));
 			return;
 		}

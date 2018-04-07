@@ -97,7 +97,7 @@ public class ControlItemDisplay extends Control implements ITooltip {
 	@SideOnly(Side.CLIENT)
 	public void getTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		if (this.hasTooltip && !this.itemStack.isEmpty()) {
-			List<String> itemStackTooltip = this.itemStack.getTooltip(((Window) this.getTopParent()).getPlayer(), tooltipFlag);
+			final List<String> itemStackTooltip = this.itemStack.getTooltip(((Window) this.getTopParent()).getPlayer(), tooltipFlag);
 			tooltip.add(itemStackTooltip);
 			tooltip.setItemStack(this.itemStack);
 		}
