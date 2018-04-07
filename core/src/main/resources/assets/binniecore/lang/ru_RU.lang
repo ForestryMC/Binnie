@@ -383,6 +383,8 @@ binniecore.gui.progress.time.left=Осталось времени: %s
 binniecore.gui.progress.time.total=Общее время: %s
 binniecore.gui.progress.energy.cost.total=Энергетические затраты: %s RF
 
+binniecore.gui.controluser.owner=Владелец
+
 binniecore.side.north=Север
 binniecore.side.south=Юг
 binniecore.side.east=Восток

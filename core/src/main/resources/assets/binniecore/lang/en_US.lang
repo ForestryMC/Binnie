@@ -384,6 +384,8 @@ binniecore.gui.progress.time.left=Time Left: %s
 binniecore.gui.progress.time.total=Total Time: %s
 binniecore.gui.progress.energy.cost.total=Energy Cost: %s RF
 
+binniecore.gui.controluser.owner=Owner
+
 binniecore.side.north=North
 binniecore.side.south=South
 binniecore.side.east=East
