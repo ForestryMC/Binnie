@@ -31,11 +31,11 @@ public class ControlTabIcon<T> extends ControlTab<T> {
 	public void onUpdateClient() {
 		super.onUpdateClient();
 		this.item.setItemStack(this.getItemStack());
-		ControlTabBar parent = (ControlTabBar) this.getParent();
+		final ControlTabBar parent = (ControlTabBar) this.getParent();
 		final int x = parent.getDirection().x();
-		boolean selected = this.isCurrentSelection() || this.isMouseOver();
-		int xOffset = selected ? 0 : (-4 * x);
-		Point offset = new Point(xOffset, 0);
+		final boolean selected = this.isCurrentSelection() || this.isMouseOver();
+		final int xOffset = selected ? 0 : (-4 * x);
+		final Point offset = new Point(xOffset, 0);
 		this.item.setOffset(offset);
 	}
 

@@ -193,11 +193,11 @@ public class ControlSlot extends ControlSlotBase {
 		if (slot != null) {
 			tooltip.add(slot.getName());
 			if (tooltipFlag.isAdvanced()) {
-				Collection<EnumFacing> inputSides = slot.getInputSides();
+                final Collection<EnumFacing> inputSides = slot.getInputSides();
 				if (inputSides.size() > 0) {
 					tooltip.add(TextFormatting.GRAY + I18N.localise(ModId.CORE, "gui.side.insert", MachineSide.asString(inputSides)));
 				}
-				Collection<EnumFacing> outputSides = slot.getOutputSides();
+                final Collection<EnumFacing> outputSides = slot.getOutputSides();
 				if (outputSides.size() > 0) {
 					tooltip.add(TextFormatting.GRAY + I18N.localise(ModId.CORE, "gui.side.extract", MachineSide.asString(outputSides)));
 				}

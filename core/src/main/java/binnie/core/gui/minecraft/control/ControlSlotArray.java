@@ -28,8 +28,8 @@ public class ControlSlotArray extends Control implements Iterable<ControlSlot> {
 			if (i >= this.slots.size()) {
 				return;
 			}
-			ControlSlot controlSlot = this.slots.get(i);
-			Slot slot = controlSlot.slot;
+			final ControlSlot controlSlot = this.slots.get(i);
+			final Slot slot = controlSlot.slot;
 			slot.putStack(item);
 			++i;
 		}
@@ -68,8 +68,8 @@ public class ControlSlotArray extends Control implements Iterable<ControlSlot> {
 			int i = 0;
 			for (int row = 0; row < rows; ++row) {
 				for (int column = 0; column < columns; ++column) {
-					ControlSlot.Builder slotBuilder = new ControlSlot.Builder(controlSlots, column * 18, row * 18);
-					ControlSlot slot = slotBuilder.assign(type, index[i++]);
+					final ControlSlot.Builder slotBuilder = new ControlSlot.Builder(controlSlots, column * 18, row * 18);
+					final ControlSlot slot = slotBuilder.assign(type, index[i++]);
 					controlSlots.slots.add(slot);
 				}
 			}

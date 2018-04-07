@@ -48,7 +48,7 @@ public abstract class ControlSlotBase extends Control implements ITooltip {
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		CraftGUI.RENDER.texture(CraftGUITexture.SLOT, this.getArea());
 		if (this.getTopParent().getMousedOverWidget() == this) {
-			Area area = new Area(new Point(1, 1), this.getArea().size().sub(new Point(2, 2)));
+			final Area area = new Area(new Point(1, 1), this.getArea().size().sub(new Point(2, 2)));
 			RenderUtil.drawGradientRect(area, -2130706433, -2130706433);
 		}
 	}
@@ -67,7 +67,7 @@ public abstract class ControlSlotBase extends Control implements ITooltip {
 		if (stack.isEmpty()) {
 			return;
 		}
-		List<String> list = stack.getTooltip(((Window) this.getTopParent()).getPlayer(), tooltipFlag);
+		final List<String> list = stack.getTooltip(((Window) this.getTopParent()).getPlayer(), tooltipFlag);
 
 		for (int i = 0; i < list.size(); ++i) {
 			if (i == 0) {
