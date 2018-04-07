@@ -38,16 +38,15 @@ public class CustomSlot extends Slot {
 	}
 
 	public void onSlotClick(final ContainerCraftGUI container, final int dragType, final ClickType modifier, final EntityPlayer player) {
-		InventoryPlayer inventory = player.inventory;
-		ItemStack stack = inventory.getItemStack();
-		ItemStack slotStack = getStack().copy();
+		final InventoryPlayer inventory = player.inventory;
+		final ItemStack stack = inventory.getItemStack();
 		//TODO modifier==mouseButton2?
 		if (stack.isEmpty() || modifier == ClickType.PICKUP_ALL) {
 			this.putStack(ItemStack.EMPTY);
 		}else {
-			stack = stack.copy();
-			stack.setCount(1);
-			this.putStack(stack);
+			final ItemStack slotStack = stack.copy();
+			slotStack.setCount(1);
+			this.putStack(slotStack);
 		}
 	}
 }
