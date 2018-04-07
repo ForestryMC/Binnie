@@ -36,11 +36,13 @@ public class ControlErrorState extends Control implements ITooltip {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		Object texture = CraftGUITexture.STATE_WARNING;
+		Object texture;
 		if (this.errorState == null) {
 			texture = CraftGUITexture.STATE_NONE;
 		} else if (this.type == 0) {
 			texture = CraftGUITexture.STATE_ERROR;
+		} else {
+			texture = CraftGUITexture.STATE_WARNING;
 		}
 		CraftGUI.RENDER.texture(texture, Point.ZERO);
 		super.onRenderBackground(guiWidth, guiHeight);
@@ -65,8 +67,8 @@ public class ControlErrorState extends Control implements ITooltip {
 		}
 		ControlEnergyBar.isError = this.errorState.isPowerError();
 		if (this.errorState.isItemError()) {
-			Collection<CustomSlot> slots = this.errorState.getCustomSlots(Window.get(this).getContainer());
-			for (CustomSlot slot : slots) {
+			final Collection<CustomSlot> slots = this.errorState.getCustomSlots(Window.get(this).getContainer());
+			for (final CustomSlot slot : slots) {
 				if (this.type == 0) {
 					ControlSlot.highlighting.get(EnumHighlighting.ERROR).add(slot.slotNumber);
 				} else {
