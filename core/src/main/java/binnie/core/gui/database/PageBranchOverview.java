@@ -16,6 +16,7 @@ import binnie.core.gui.controls.ControlText;
 import binnie.core.gui.controls.ControlTextCentered;
 import binnie.core.gui.renderer.RenderUtil;
 import binnie.core.util.I18N;
+import binnie.core.util.EmptyHelper;
 
 @SideOnly(Side.CLIENT)
 public class PageBranchOverview extends PageBranch {
@@ -27,9 +28,9 @@ public class PageBranchOverview extends PageBranch {
 	public PageBranchOverview(final IWidget parent, final DatabaseTab tab) {
 		super(parent, tab);
 		this.branchDescription = new ArrayList<>();
-		this.branchName = new ControlTextCentered(this, 8, "");
-		this.branchScientific = new ControlTextCentered(this, 32, "");
-		this.branchAuthority = new ControlTextCentered(this, 44, "");
+		this.branchName = new ControlTextCentered(this, 8, EmptyHelper.EMPTY_STRING);
+		this.branchScientific = new ControlTextCentered(this, 32, EmptyHelper.EMPTY_STRING);
+		this.branchAuthority = new ControlTextCentered(this, 44, EmptyHelper.EMPTY_STRING);
 	}
 
 	@Override
@@ -42,7 +43,7 @@ public class PageBranchOverview extends PageBranch {
 		}
 		this.branchDescription.clear();
 		String desc = branch.getDescription();
-		if (desc == null || Objects.equals(desc, "") || desc.contains("for.")) {
+		if (desc == null || Objects.equals(desc, EmptyHelper.EMPTY_STRING) || desc.contains("for.")) {
 			desc = I18N.localise(DatabaseConstants.BRANCH_KEY + ".noDesc");
 		}
 		StringBuilder line = new StringBuilder();
@@ -50,7 +51,7 @@ public class PageBranchOverview extends PageBranch {
 		for (final String str : desc.split(" ")) {
 			if (RenderUtil.getTextWidth(line + " " + str) > 134) {
 				descLines.add(TextFormatting.ITALIC + line.toString() + TextFormatting.RESET);
-				line = new StringBuilder();
+				line.setLength(0);
 			}
 			line.append(' ').append(str);
 		}
