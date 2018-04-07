@@ -93,14 +93,14 @@ public class ControlProgressBase extends Control {
 			if (tooltipFlag.isAdvanced()) {
 				NumberFormat numberFormat = I18N.getNumberFormat();
 				if (process.getProcessTime() > 0) {
-					String timeLeft = convertTime((int) ((1.0f - this.progress) * process.getProcessTime()));
+					final String timeLeft = convertTime((int) ((1.0f - this.progress) * process.getProcessTime()));
 					tooltip.add(TextFormatting.GRAY + I18N.localise(ModId.CORE, "gui.progress.time.left", timeLeft));
-					String timeTotal = convertTime(process.getProcessTime());
+					final String timeTotal = convertTime(process.getProcessTime());
 					tooltip.add(TextFormatting.GRAY + I18N.localise(ModId.CORE, "gui.progress.time.total", timeTotal));
-					String energyCostTotal = numberFormat.format(process.getProcessEnergy() * 10);
+					final String energyCostTotal = numberFormat.format(process.getProcessEnergy() * 10);
 					tooltip.add(TextFormatting.GRAY + I18N.localise(ModId.CORE, "gui.progress.energy.cost.total", energyCostTotal));
 				} else {
-					String energyCostPerTick = numberFormat.format(process.getEnergyPerTick() * 10.0f);
+					final String energyCostPerTick = numberFormat.format(process.getEnergyPerTick() * 10.0f);
 					tooltip.add(TextFormatting.GRAY + I18N.localise(ModId.CORE, "gui.energy.cost.per.tick", energyCostPerTick));
 				}
 			}
