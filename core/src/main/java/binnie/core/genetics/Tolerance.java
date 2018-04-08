@@ -3,12 +3,11 @@ package binnie.core.genetics;
 import java.util.Locale;
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.text.WordUtils;
 
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
-
-import binnie.core.util.EmptyHelper;
 
 public enum Tolerance {
 	NONE(0, 0),
@@ -36,7 +35,7 @@ public enum Tolerance {
 
 	@Override
 	public String toString() {
-		return PATTERN.matcher(name().toLowerCase(Locale.ENGLISH)).replaceAll(EmptyHelper.EMPTY_STRING);
+		return PATTERN.matcher(name().toLowerCase(Locale.ENGLISH)).replaceAll(StringUtils.EMPTY);
 	}
 
 	public String getUID() {

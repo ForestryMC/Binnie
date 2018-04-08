@@ -9,7 +9,7 @@ import forestry.api.genetics.IClassification;
 import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.ControlText;
 import binnie.core.gui.controls.ControlTextCentered;
-import binnie.core.util.EmptyHelper;
+import org.apache.commons.lang3.StringUtils;
 
 public class PageSpeciesClassification extends PageSpecies {
 	private final Map<IClassification.EnumClassLevel, ControlText> levels;
@@ -20,12 +20,12 @@ public class PageSpeciesClassification extends PageSpecies {
 		this.levels = new LinkedHashMap<>();
 		int y = 16;
 		for (final IClassification.EnumClassLevel level : IClassification.EnumClassLevel.values()) {
-			final ControlText text = new ControlTextCentered(this, y, EmptyHelper.EMPTY_STRING);
+			final ControlText text = new ControlTextCentered(this, y, StringUtils.EMPTY);
 			text.setColor(level.getColour());
 			this.levels.put(level, text);
 			y += 12;
 		}
-		(this.genus = new ControlTextCentered(this, y, EmptyHelper.EMPTY_STRING)).setColor(16759415);
+		(this.genus = new ControlTextCentered(this, y, StringUtils.EMPTY)).setColor(16759415);
 	}
 
 	@Override

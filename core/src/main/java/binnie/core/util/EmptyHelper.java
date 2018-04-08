@@ -13,8 +13,6 @@ import net.minecraftforge.fluids.IFluidTank;
 public final class EmptyHelper {
     private EmptyHelper() {}
 
-    public static final String EMPTY_STRING = "";
-
     public static final IPacketID[] PACKET_IDS_EMPTY = new IPacketID[0];
 
     public static final IBinnieGUID[] BINNIE_GUIDS_EMPTY = new IBinnieGUID[0];

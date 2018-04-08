@@ -37,7 +37,7 @@ import binnie.core.gui.minecraft.Window;
 import binnie.core.gui.minecraft.control.ControlHelp;
 import binnie.core.gui.window.Panel;
 import binnie.core.util.I18N;
-import binnie.core.util.EmptyHelper;
+import org.apache.commons.lang3.StringUtils;
 
 public abstract class WindowAbstractDatabase extends Window {
 	private final boolean master;
@@ -134,7 +134,7 @@ public abstract class WindowAbstractDatabase extends Window {
 		this.addEventHandler(EventTextEdit.class, EventHandlerOrigin.DIRECT_CHILD, this, event -> {
 			for (final ModeWidgets widgets : WindowAbstractDatabase.this.modes.values()) {
 				widgets.getListBox().setValidator(object -> {
-					if (Objects.equals(event.getValue(), EmptyHelper.EMPTY_STRING)) {
+					if (Objects.equals(event.getValue(), StringUtils.EMPTY)) {
 						return true;
 					}
 					ControlTextOption controlTextOption = (ControlTextOption) object;

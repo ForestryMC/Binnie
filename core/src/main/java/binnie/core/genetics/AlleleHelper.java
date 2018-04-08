@@ -3,7 +3,7 @@ package binnie.core.genetics;
 import java.util.Locale;
 import java.util.regex.Pattern;
 
-import binnie.core.util.EmptyHelper;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.text.WordUtils;
 
 import forestry.api.core.EnumHumidity;
@@ -205,12 +205,12 @@ public class AlleleHelper extends forestry.core.genetics.alleles.AlleleHelper {
 		if (needCapitalize) {
 			valueName = WordUtils.capitalize(valueName.toLowerCase(Locale.ENGLISH));
 		}
-		valueName = PATTERN_REPLACEMENT.matcher(valueName).replaceAll(EmptyHelper.EMPTY_STRING);
+		valueName = PATTERN_REPLACEMENT.matcher(valueName).replaceAll(StringUtils.EMPTY);
 		return "forestry." + key + valueName;
 	}
 
 	private static String toAlleleDisplay(final @Nullable String key, final String valueName) {
-		String name = PATTERN_REPLACEMENT.matcher(valueName.toLowerCase()).replaceAll(EmptyHelper.EMPTY_STRING);
+		String name = PATTERN_REPLACEMENT.matcher(valueName.toLowerCase()).replaceAll(StringUtils.EMPTY);
 		if (key == null) {
 			return I18N.localise("forestry.allele." + name);
 		}

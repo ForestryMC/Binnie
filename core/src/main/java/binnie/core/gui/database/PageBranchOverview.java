@@ -2,7 +2,6 @@ package binnie.core.gui.database;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import net.minecraft.util.text.TextFormatting;
 
@@ -16,7 +15,7 @@ import binnie.core.gui.controls.ControlText;
 import binnie.core.gui.controls.ControlTextCentered;
 import binnie.core.gui.renderer.RenderUtil;
 import binnie.core.util.I18N;
-import binnie.core.util.EmptyHelper;
+import org.apache.commons.lang3.StringUtils;
 
 @SideOnly(Side.CLIENT)
 public class PageBranchOverview extends PageBranch {
@@ -28,9 +27,9 @@ public class PageBranchOverview extends PageBranch {
 	public PageBranchOverview(final IWidget parent, final DatabaseTab tab) {
 		super(parent, tab);
 		this.branchDescription = new ArrayList<>();
-		this.branchName = new ControlTextCentered(this, 8, EmptyHelper.EMPTY_STRING);
-		this.branchScientific = new ControlTextCentered(this, 32, EmptyHelper.EMPTY_STRING);
-		this.branchAuthority = new ControlTextCentered(this, 44, EmptyHelper.EMPTY_STRING);
+		this.branchName = new ControlTextCentered(this, 8, StringUtils.EMPTY);
+		this.branchScientific = new ControlTextCentered(this, 32, StringUtils.EMPTY);
+		this.branchAuthority = new ControlTextCentered(this, 44, StringUtils.EMPTY);
 	}
 
 	@Override
@@ -43,7 +42,7 @@ public class PageBranchOverview extends PageBranch {
 		}
 		this.branchDescription.clear();
 		String desc = branch.getDescription();
-		if (desc == null || Objects.equals(desc, EmptyHelper.EMPTY_STRING) || desc.contains("for.")) {
+		if (desc == null || desc.length() == 0 || desc.contains("for.")) {
 			desc = I18N.localise(DatabaseConstants.BRANCH_KEY + ".noDesc");
 		}
 		StringBuilder line = new StringBuilder();
