@@ -43,7 +43,7 @@ public class ControlDistilleryProgress extends ControlProgressBase {
 			if (distillationLevel >= 0) {
 				final NBTTagCompound nbt = new NBTTagCompound();
 				nbt.setByte("i", (byte) distillationLevel);
-				Window.get(ControlDistilleryProgress.this.getWidget()).sendClientAction("still-level", nbt);
+				Window.get(ControlDistilleryProgress.this).sendClientAction("still-level", nbt);
 			}
 		});
 	}

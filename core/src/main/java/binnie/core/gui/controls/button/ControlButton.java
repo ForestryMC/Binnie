@@ -25,7 +25,7 @@ public class ControlButton extends Control {
 		super(parent, x, y, width, height);
 		this.addAttribute(Attribute.MOUSE_OVER);
 		this.addSelfEventHandler(EventMouse.Down.class, event -> {
-			ControlButton.this.callEvent(new EventButtonClicked(ControlButton.this.getWidget()));
+			ControlButton.this.callEvent(new EventButtonClicked(ControlButton.this));
 			ControlButton.this.onMouseClick(event);
 		});
 	}

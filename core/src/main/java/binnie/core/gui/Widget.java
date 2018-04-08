@@ -450,9 +450,4 @@ public class Widget implements IWidget {
 	public final void delete() {
 		this.getTopParent().widgetDeleted(this);
 	}
-
-	//TODO: Why not use "this" ?
-	public IWidget getWidget() {
-		return this;
-	}
 }

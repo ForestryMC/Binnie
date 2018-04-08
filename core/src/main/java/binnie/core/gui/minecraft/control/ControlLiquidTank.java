@@ -65,7 +65,7 @@ public class ControlLiquidTank extends Control implements ITooltip {
 			if (event.getButton() == 0) {
 				final NBTTagCompound nbt = new NBTTagCompound();
 				nbt.setByte("id", (byte) ControlLiquidTank.this.tankID);
-				Window.get(ControlLiquidTank.this.getWidget()).sendClientAction("tank-click", nbt);
+				Window.get(ControlLiquidTank.this).sendClientAction("tank-click", nbt);
 			}
 		});
 	}

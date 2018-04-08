@@ -33,10 +33,10 @@ public class ControlChromoPicker extends Control implements ITooltip {
 		addAttribute(Attribute.MOUSE_OVER);
 		this.parent = parent;
 		addSelfEventHandler(EventWidget.StartMouseOver.class, event -> {
-			callEvent(new EventValueChanged<Object>(getWidget(), type));
+			callEvent(new EventValueChanged<Object>(this, type));
 		});
 		addSelfEventHandler(EventWidget.EndMouseOver.class, event -> {
-			callEvent(new EventValueChanged<>(getWidget(), null));
+			callEvent(new EventValueChanged<>(this, null));
 		});
 	}
 

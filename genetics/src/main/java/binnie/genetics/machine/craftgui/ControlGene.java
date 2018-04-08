@@ -31,12 +31,12 @@ public class ControlGene extends Control implements IControlValue<IGene>, IToolt
 		this.gene = gene;
 		this.addAttribute(Attribute.MOUSE_OVER);
 		this.addSelfEventHandler(EventMouse.Down.class, event -> {
-			if (ControlGene.this.canFill(Window.get(ControlGene.this.getWidget()).getHeldItemStack())) {
+			if (ControlGene.this.canFill(Window.get(ControlGene.this).getHeldItemStack())) {
 				final NBTTagCompound action = new NBTTagCompound();
 				final NBTTagCompound geneNBT = new NBTTagCompound();
 				ControlGene.this.getValue().writeToNBT(geneNBT);
 				action.setTag("gene", geneNBT);
-				Window.get(ControlGene.this.getWidget()).sendClientAction("gene-select", action);
+				Window.get(ControlGene.this).sendClientAction("gene-select", action);
 			}
 		});
 	}

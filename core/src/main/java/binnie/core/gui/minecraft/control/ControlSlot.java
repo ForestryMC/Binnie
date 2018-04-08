@@ -65,7 +65,7 @@ public class ControlSlot extends ControlSlotBase {
 			final int windowId = superParent.getContainer().windowId;
 			final int slotNumber = this.slot.slotNumber;
 			final int button = event.getButton();
-			Window.get(this.getWidget()).getGui();
+			Window.get(this).getGui();
 			if (playerController != null) {
 				boolean clone = mc.gameSettings.keyBindPickBlock.isActiveAndMatches(button - 100);
 				ClickType clickType;

@@ -16,12 +16,12 @@ public class ControlRecipeSlot extends ControlSlotBase {
 	public ControlRecipeSlot(final IWidget parent, final int x, final int y) {
 		super(parent, x, y, 50);
 		this.addSelfEventHandler(EventMouse.Down.class, event -> {
-			final TileEntity tile = (TileEntity) Window.get(ControlRecipeSlot.this.getWidget()).getInventory();
+			final TileEntity tile = (TileEntity) Window.get(ControlRecipeSlot.this).getInventory();
 			if (!(tile instanceof TileEntityMachine)) {
 				return;
 			}
 			final NBTTagCompound nbt = new NBTTagCompound();
-			Window.get(ControlRecipeSlot.this.getWidget()).sendClientAction("recipe", nbt);
+			Window.get(ControlRecipeSlot.this).sendClientAction("recipe", nbt);
 		});
 		this.setRotating();
 	}

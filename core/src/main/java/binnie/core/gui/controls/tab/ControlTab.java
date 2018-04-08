@@ -31,7 +31,7 @@ public class ControlTab<T> extends Control implements ITooltip, IControlValue<T>
 		this.value = value;
 		this.addAttribute(Attribute.MOUSE_OVER);
 		this.addSelfEventHandler(EventMouse.Down.class, event -> {
-			ControlTab.this.callEvent(new EventValueChanged<Object>(ControlTab.this.getWidget(), ControlTab.this.getValue()));
+			ControlTab.this.callEvent(new EventValueChanged<Object>(ControlTab.this, ControlTab.this.getValue()));
 		});
 	}
 

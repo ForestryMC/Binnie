@@ -135,7 +135,7 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 			this.value = value;
 			this.addAttribute(Attribute.MOUSE_OVER);
 			this.addSelfEventHandler(EventMouse.Down.class, event -> {
-				final TileEntityMachine tile = (TileEntityMachine) Window.get(ControlTile.this.getWidget()).getInventory();
+				final TileEntityMachine tile = (TileEntityMachine) Window.get(ControlTile.this).getInventory();
 				if (tile == null) {
 					return;
 				}
@@ -143,7 +143,7 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 				ComponentDesignerRecipe recipe = tile.getMachine().getComponent(ComponentDesignerRecipe.class);
 				final NBTTagCompound nbt = new NBTTagCompound();
 				nbt.setShort("d", (short) DesignAPI.manager.getDesignIndex(ControlTile.this.getValue()));
-				Window.get(ControlTile.this.getWidget()).sendClientAction("design", nbt);
+				Window.get(ControlTile.this).sendClientAction("design", nbt);
 			});
 		}
 
