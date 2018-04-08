@@ -35,7 +35,7 @@ public enum FluidContainerType {
 	}
 
 	public String getDisplayName() {
-		return I18N.localise("binniecore.item.container." + this.name().toLowerCase());
+		return I18N.localise("binniecore.item.container." + this.getName());
 	}
 
 	public void setItem(ItemFluidContainer item) {
@@ -75,11 +75,10 @@ public enum FluidContainerType {
 	}
 
 	public ItemStack getFilled(Fluid fluid) {
-		ItemStack stack = getEmpty();
-		stack = stack.copy();
-		IFluidHandler fluidHandler = FluidUtil.getFluidHandler(stack);
+		final ItemStack stack = getEmpty();
+		final IFluidHandler fluidHandler = FluidUtil.getFluidHandler(stack);
 		if (fluidHandler != null) {
-			int fill = fluidHandler.fill(new FluidStack(fluid, Integer.MAX_VALUE), true);
+			final int fill = fluidHandler.fill(new FluidStack(fluid, Integer.MAX_VALUE), true);
 			if (fill > 0) {
 				return stack;
 			}
