@@ -9,6 +9,8 @@ import org.apache.commons.lang3.text.WordUtils;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 
+import javax.annotation.Nullable;
+
 public enum Tolerance {
 	NONE(0, 0),
 	BOTH_1(-1, 1), BOTH_2(-2, 2), BOTH_3(-3, 3), BOTH_4(-4, 4), BOTH_5(-5, 5),
@@ -31,11 +33,19 @@ public enum Tolerance {
 		return get(tol).canTolerate(base, test);
 	}
 
-	private static final Pattern PATTERN = Pattern.compile("_", Pattern.LITERAL);
+	@Nullable
+	private static Pattern PATTERN;
+
+	private static Pattern GetPattern() {
+		if (PATTERN == null) {
+			PATTERN = Pattern.compile("_", Pattern.LITERAL);
+		}
+		return PATTERN;
+	}
 
 	@Override
 	public String toString() {
-		return PATTERN.matcher(name().toLowerCase(Locale.ENGLISH)).replaceAll(StringUtils.EMPTY);
+		return GetPattern().matcher(super.toString().toLowerCase(Locale.ENGLISH)).replaceAll(StringUtils.EMPTY);
 	}
 
 	public String getUID() {
