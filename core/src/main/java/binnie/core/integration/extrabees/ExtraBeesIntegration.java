@@ -13,6 +13,7 @@ import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAlleleSpecies;
 
+import binnie.core.Constants;
 import binnie.core.IInitializable;
 
 public class ExtraBeesIntegration implements IInitializable {
@@ -25,7 +26,7 @@ public class ExtraBeesIntegration implements IInitializable {
 	private static Block hive;
 
 	static {
-		loaded = Loader.isModLoaded("extrabees");
+		loaded = Loader.isModLoaded(Constants.EXTRA_BEES_MOD_ID);
 	}
 
 	public static boolean isLoaded() {
@@ -39,7 +40,7 @@ public class ExtraBeesIntegration implements IInitializable {
 
 	@Override
 	public void init() {
-		hive = Preconditions.checkNotNull(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("extrabees", "hive")));
+		hive = Preconditions.checkNotNull(ForgeRegistries.BLOCKS.getValue(new ResourceLocation(Constants.EXTRA_BEES_MOD_ID, "hive")));
 	}
 
 	@Override
