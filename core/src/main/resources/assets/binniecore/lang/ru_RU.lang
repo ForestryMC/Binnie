@@ -182,6 +182,7 @@ binniecore.gui.breedingmessage.species=Обнаруженные виды
 binniecore.gui.breedingmessage.branch=Обнаруженные ветви
 binniecore.gui.breedingmessage.epithet=Эпитет получен
 
+binniecore.item.container.empty=%s без жидкости
 binniecore.item.container.capsule=Капсула
 binniecore.item.container.refractory=Капсула
 binniecore.item.container.can=Капсула

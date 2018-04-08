@@ -182,6 +182,7 @@ binniecore.gui.breedingmessage.species=Species Discovered
 binniecore.gui.breedingmessage.branch=Branch Discovered
 binniecore.gui.breedingmessage.epithet=Epithet Gained
 
+binniecore.item.container.empty=Empty %s
 binniecore.item.container.capsule=Capsule
 binniecore.item.container.refractory=Capsule
 binniecore.item.container.can=Can
