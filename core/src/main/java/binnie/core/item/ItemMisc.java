@@ -32,7 +32,7 @@ public class ItemMisc extends ItemCore {
 	@Override
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
 		if (this.isInCreativeTab(tab)) {
-			for (IItemMiscProvider item : this.items) {
+			for (final IItemMiscProvider item : this.items) {
 				if (item.isActive()) {
 					items.add(this.getStack(item, 1));
 				}
@@ -52,21 +52,21 @@ public class ItemMisc extends ItemCore {
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		super.addInformation(stack, worldIn, tooltip, flagIn);
-		IItemMiscProvider item = this.getItem(stack.getItemDamage());
+        final IItemMiscProvider item = this.getItem(stack.getItemDamage());
 		item.addInformation(tooltip);
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerModel(Item item, IModelManager manager) {
-		for (IItemMiscProvider type : items) {
+		for (final IItemMiscProvider type : items) {
 			manager.registerItemModel(item, type.ordinal(), "misc/" + type.getModelPath());
 		}
 	}
 
 	@Override
 	public String getItemStackDisplayName(final ItemStack stack) {
-		IItemMiscProvider item = this.getItem(stack.getItemDamage());
+        final IItemMiscProvider item = this.getItem(stack.getItemDamage());
 		return item.getDisplayName(stack);
 	}
 }

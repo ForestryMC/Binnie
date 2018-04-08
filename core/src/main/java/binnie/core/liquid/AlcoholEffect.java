@@ -6,7 +6,7 @@ import net.minecraft.potion.PotionEffect;
 
 public class AlcoholEffect {
 	public static void makeDrunk(final EntityPlayer player, final float strength) {
-		PotionEffect potionEffect = player.getActivePotionEffect(MobEffects.NAUSEA);
+		final PotionEffect potionEffect = player.getActivePotionEffect(MobEffects.NAUSEA);
 		final int existingStrength = potionEffect != null ? potionEffect.getAmplifier() : 0;
 		final int existingTime = potionEffect != null ? potionEffect.getDuration() : 0;
 		int time = (int) (100.0 * Math.sqrt(strength)) + existingTime;
