@@ -18,13 +18,12 @@ public class ItemGenesis extends ItemCore implements IGuiItem {
 	public ItemGenesis() {
 		super("genesis");
 		this.setCreativeTab(Tabs.tabApiculture);
-		this.setUnlocalizedName("genesis");
 		this.setMaxStackSize(1);
 	}
 
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-		ItemStack itemStack = playerIn.getHeldItem(handIn);
+		final ItemStack itemStack = playerIn.getHeldItem(handIn);
 		openGuiOnRightClick(itemStack, worldIn, playerIn);
 		return new ActionResult<>(EnumActionResult.SUCCESS, itemStack);
 	}
