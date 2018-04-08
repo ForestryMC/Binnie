@@ -50,6 +50,7 @@ import binnie.core.network.packet.MessageCraftGUI;
 import binnie.core.resource.BinnieResource;
 import binnie.core.resource.IBinnieTexture;
 import binnie.core.resource.ResourceType;
+import org.apache.commons.lang3.StringUtils;
 
 public abstract class Window extends TopLevelWidget implements INetwork.ReceiveGuiNBT {
 	private final Side side;
@@ -329,7 +330,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 		@Override
 		@SideOnly(Side.CLIENT)
 		public BinnieResource getTexture() {
-			return Binnie.RESOURCE.getPNG(window.getModId(), ResourceType.GUI, window.getBackgroundTextureName() + ((i == 1) ? "" : i));
+			return Binnie.RESOURCE.getPNG(window.getModId(), ResourceType.GUI, window.getBackgroundTextureName() + ((i == 1) ? StringUtils.EMPTY : i));
 		}
 	}
 }

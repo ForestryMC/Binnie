@@ -21,7 +21,7 @@ public final class BinnieGUIHandler implements IGuiHandler {
 	@Override
 	@Nullable
 	public final Object getServerGuiElement(final int id, final EntityPlayer player, final World world, final int x, final int y, final int z) {
-		Window window = this.getWindow(id, player, world, x, y, z, Side.SERVER);
+		final Window window = this.getWindow(id, player, world, x, y, z, Side.SERVER);
 		if (window == null) {
 			return null;
 		}
@@ -36,7 +36,7 @@ public final class BinnieGUIHandler implements IGuiHandler {
 		if (!world.isRemote) {
 			return this.getServerGuiElement(id, player, world, x, y, z);
 		}
-		Window window = this.getWindow(id, player, world, x, y, z, Side.CLIENT);
+		final Window window = this.getWindow(id, player, world, x, y, z, Side.CLIENT);
 		if (window == null) {
 			return null;
 		}
@@ -45,7 +45,7 @@ public final class BinnieGUIHandler implements IGuiHandler {
 
 	@Nullable
 	public Window getWindow(final int id, final EntityPlayer player, final World world, final int x, final int y, final int z, final Side side) {
-		for (IBinnieGUID guid : guiIds) {
+		for (final IBinnieGUID guid : guiIds) {
 			if (guid.ordinal() == id) {
 				return guid.getWindow(player, world, x, y, z, side);
 			}

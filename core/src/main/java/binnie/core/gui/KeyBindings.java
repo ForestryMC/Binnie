@@ -28,7 +28,7 @@ public final class KeyBindings {
 	}
 
 	public static void init() {
-		for (KeyBinding binding : allBindings) {
+		for (final KeyBinding binding : allBindings) {
 			ClientRegistry.registerKeyBinding(binding);
 		}
 	}

@@ -37,8 +37,8 @@ public class StyleSheetManager implements IResourceManagerReloadListener {
 		sheets.clear();
 		try {
 			for(Map.Entry<String, ResourceLocation> entry : sheetLocations.entrySet()){
-				ResourceLocation location = entry.getValue();
-				StyleSheet styleSheet = StyleSheetParser.parseSheet(manager, location);
+				final ResourceLocation location = entry.getValue();
+				final StyleSheet styleSheet = StyleSheetParser.parseSheet(manager, location);
 				sheets.put(entry.getKey(), styleSheet);
 			}
 		} catch (Exception e) {
@@ -48,7 +48,7 @@ public class StyleSheetManager implements IResourceManagerReloadListener {
 
 	@SideOnly(Side.CLIENT)
 	public static Texture getDefaultTexture(Object key) {
-		StyleSheet styleSheet = getDefaultSheet();
+		final StyleSheet styleSheet = getDefaultSheet();
 		return styleSheet.getTexture(key);
 	}
 
