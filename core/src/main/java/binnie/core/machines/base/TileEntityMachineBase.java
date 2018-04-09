@@ -196,10 +196,10 @@ public class TileEntityMachineBase extends TileEntity implements IInventoryMachi
 			return CapabilityEnergy.ENERGY.cast(this);
 		} else if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
 			if (facing != null) {
-				SidedInvWrapper sidedInvWrapper = new SidedInvWrapper(getInventory(), facing);
+				final SidedInvWrapper sidedInvWrapper = new SidedInvWrapper(getInventory(), facing);
 				return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(sidedInvWrapper);
 			} else {
-				InvWrapper invWrapper = new InvWrapper(getInventory());
+				final InvWrapper invWrapper = new InvWrapper(getInventory());
 				return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(invWrapper);
 			}
 		} else if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
