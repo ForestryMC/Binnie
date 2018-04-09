@@ -28,7 +28,7 @@ public class CoreJeiPlugin implements IModPlugin {
 		@Nullable
 		@Override
 		public Object getIngredientUnderMouse(GuiCraftGUI guiContainer, int mouseX, int mouseY) {
-			IWidget widgetUnderMouse = guiContainer.getWidgetUnderMouse();
+			final IWidget widgetUnderMouse = guiContainer.getWidgetUnderMouse();
 			if (widgetUnderMouse != null) {
 				return widgetUnderMouse.getIngredient();
 			}

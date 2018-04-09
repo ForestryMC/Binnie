@@ -27,8 +27,8 @@ public class FluidHandlerItemBinnie extends FluidHandlerItemStackSimple {
 		}
 
 		if (fluid instanceof BinnieFluid) {
-			BinnieFluid binnieFluid = (BinnieFluid) fluid;
-			FluidType definition = binnieFluid.getType();
+			final BinnieFluid binnieFluid = (BinnieFluid) fluid;
+			final FluidType definition = binnieFluid.getType();
 			return definition.canPlaceIn(containerType);
 		}
 		return false;

@@ -37,20 +37,18 @@ public class ManagerLiquid extends ManagerBase {
 	}
 
 	public void createLiquids(IFluidDefinition[] liquids) {
-		for (IFluidDefinition liquid : liquids) {
-			FluidType type = liquid.getType();
+		for (final IFluidDefinition liquid : liquids) {
+			final FluidType type = liquid.getType();
 			final BinnieFluid fluid = this.createLiquid(type);
-			if (fluid == null) {
-				Log.error("Liquid registered incorrectly - {} ", type.getIdentifier());
-			}
 		}
 	}
 
-	private BinnieFluid createLiquid(FluidType fluid) {
+	private BinnieFluid createLiquid(final FluidType fluid) {
 		this.fluids.put(fluid.getIdentifier().toLowerCase(), fluid);
 		final BinnieFluid bFluid = new BinnieFluid(fluid);
-		FluidRegistry.registerFluid(bFluid);
-		FluidRegistry.addBucketForFluid(bFluid);
+		if ((!FluidRegistry.registerFluid(bFluid)) || (FluidRegistry.addBucketForFluid(bFluid))) {
+			Log.error("Liquid registered incorrectly - {} ", fluid.getIdentifier());
+		}
 		return bFluid;
 	}
 
@@ -70,7 +68,7 @@ public class ManagerLiquid extends ManagerBase {
 
 	@Override
 	public void postInit() {
-		RecipeUtil recipeUtil = new RecipeUtil(Constants.CORE_MOD_ID);
+		final RecipeUtil recipeUtil = new RecipeUtil(Constants.CORE_MOD_ID);
 		recipeUtil.addShapelessRecipe("glass_container_conversion", FluidContainerType.GLASS.get(1), Items.GLASS_BOTTLE);
 		recipeUtil.addShapelessRecipe("glass_bottle_conversion", new ItemStack(Items.GLASS_BOTTLE), FluidContainerType.GLASS.get(1));
 		recipeUtil.addRecipe("glass_container", FluidContainerType.GLASS.get(3),
@@ -82,8 +80,8 @@ public class ManagerLiquid extends ManagerBase {
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public void registerSprites(TextureStitchEvent event) {
-		TextureMap textureMap = Minecraft.getMinecraft().getTextureMapBlocks();
-		for (FluidType definition : fluids.values()) {
+		final TextureMap textureMap = Minecraft.getMinecraft().getTextureMapBlocks();
+		for (final FluidType definition : fluids.values()) {
 			textureMap.registerSprite(definition.getFlowing());
 			textureMap.registerSprite(definition.getStill());
 		}
