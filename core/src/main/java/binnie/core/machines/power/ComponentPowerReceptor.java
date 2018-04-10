@@ -163,7 +163,7 @@ public class ComponentPowerReceptor extends MachineComponent implements IPowered
 		if (world == null || world.isRemote) {
 			return;
 		}
-		if (world == null || Mods.IC2.active()) {
+		if (Mods.IC2.active()) {
 			this.do_addToEnergyNet();
 		}
 	}
