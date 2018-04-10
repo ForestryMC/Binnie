@@ -190,6 +190,9 @@ binniecore.item.container.bucket=Bucket
 binniecore.item.container.glass=Bottle
 binniecore.item.container.cylinder=Cylinder
 
+binniecore.machine.storage.search.sort_by_name=Sort A-Z
+binniecore.machine.storage.search.include_items=Include Items
+binniecore.machine.storage.search.include_blocks=Include Blocks
 binniecore.machine.storage.compartment=Compartment
 binniecore.machine.storage.compartment.info=Chests which contain several tabs to help organise their contents. Each tab can be named, assigned a colour and assigned an icon from any Item Stack. Number of Tabs: 4, slots per Tab: 25
 binniecore.machine.storage.compartment_iron=Iron Compartment

@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import binnie.core.ModId;
 import binnie.core.api.gui.IWidget;
 import binnie.core.gui.CraftGUI;
 import binnie.core.gui.controls.ControlCheckbox;
@@ -20,6 +21,7 @@ import binnie.core.gui.minecraft.control.ControlPlayerInventory;
 import binnie.core.gui.minecraft.control.ControlSlot;
 import binnie.core.gui.renderer.RenderUtil;
 import binnie.core.gui.resource.textures.CraftGUITexture;
+import binnie.core.util.I18N;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.IInventory;
@@ -137,7 +139,7 @@ public class SearchDialog extends Dialog {
 		private final SearchDialog searchDialog;
 
 		public SortAlphabeticalCheckbox(SearchDialog searchDialog) {
-			super(searchDialog, 16, 40, 100, "Sort A-Z", searchDialog.sortByName);
+			super(searchDialog, 16, 40, 100, I18N.localise(ModId.CORE, "machine.storage.search.sort_by_name"), searchDialog.sortByName);
 			this.searchDialog = searchDialog;
 		}
 
@@ -151,8 +153,8 @@ public class SearchDialog extends Dialog {
 	private static class IncludeItemsCheckbox extends ControlCheckbox {
 		private final SearchDialog searchDialog;
 
-		public IncludeItemsCheckbox(SearchDialog searchDialog) {
-			super(searchDialog, 16, 64, 100, "Include Items", searchDialog.includeItems);
+		public IncludeItemsCheckbox(final SearchDialog searchDialog) {
+			super(searchDialog, 16, 64, 100, I18N.localise(ModId.CORE, "machine.storage.search.include_items"), searchDialog.includeItems);
 			this.searchDialog = searchDialog;
 		}
 
@@ -166,8 +168,8 @@ public class SearchDialog extends Dialog {
 	private static class IncludeBlocksCheckbox extends ControlCheckbox {
 		private final SearchDialog searchDialog;
 
-		public IncludeBlocksCheckbox(SearchDialog searchDialog) {
-			super(searchDialog, 16, 88, 100, "Include Blocks", searchDialog.includeBlocks);
+		public IncludeBlocksCheckbox(final SearchDialog searchDialog) {
+			super(searchDialog, 16, 88, 100, I18N.localise(ModId.CORE, "machine.storage.search.include_blocks"), searchDialog.includeBlocks);
 			this.searchDialog = searchDialog;
 		}
 
