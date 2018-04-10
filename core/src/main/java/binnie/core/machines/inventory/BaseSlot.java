@@ -91,12 +91,6 @@ public abstract class BaseSlot<V> implements INbtWritable, INbtReadable, IValida
 		return this.access.getExtractionSides();
 	}
 
-	public void setOutputSides(final EnumSet<EnumFacing> sides) {
-		for (final EnumFacing side : EnumSet.complementOf(sides)) {
-			this.access.setExtract(side, false);
-		}
-	}
-
 	public abstract String getName();
 
 	@Nullable
