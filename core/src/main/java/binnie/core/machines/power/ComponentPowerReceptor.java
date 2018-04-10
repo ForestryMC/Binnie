@@ -160,10 +160,10 @@ public class ComponentPowerReceptor extends MachineComponent implements IPowered
 
 	private void addToEnergyNet() {
 		final World world = this.getMachine().getWorld();
-		if (world.isRemote) {
+		if (world == null || world.isRemote) {
 			return;
 		}
-		if (Mods.IC2.active()) {
+		if (world == null || Mods.IC2.active()) {
 			this.do_addToEnergyNet();
 		}
 	}
