@@ -94,7 +94,7 @@ public class InventorySlot extends BaseSlot<ItemStack> {
 
 	@Override
 	public String getName() {
-		SlotValidator validator = getValidator();
+		final SlotValidator validator = getValidator();
 		if (validator != null) {
 			return I18N.localise(ModId.CORE, "gui.slot.validated", validator.getTooltip());
 		}

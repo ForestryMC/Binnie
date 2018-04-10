@@ -355,6 +355,8 @@ binniecore.gui.slot.inventory=Инвентарь машины
 binniecore.gui.slot.player.inventory=Инвентарь игрока
 binniecore.gui.slot.pickup.only=Можно положить только в слот
 
+binniecore.gui.slotvalidator.individual=Разводимая особь
+
 binniecore.gui.tank.validated=%s резервуар
 binniecore.gui.tank.input=Входной резервуар
 binniecore.gui.tank.process=Технологический резервуар

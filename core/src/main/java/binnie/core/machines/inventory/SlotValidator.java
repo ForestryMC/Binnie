@@ -2,6 +2,8 @@ package binnie.core.machines.inventory;
 
 import javax.annotation.Nullable;
 
+import binnie.core.ModId;
+import binnie.core.util.I18N;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.ItemStack;
 
@@ -56,7 +58,7 @@ public abstract class SlotValidator extends Validator<ItemStack> {
 
 		@Override
 		public String getTooltip() {
-			return "Breedable Individual";
+			return I18N.localise(ModId.CORE, "gui.slotvalidator.individual");
 		}
 	}
 }

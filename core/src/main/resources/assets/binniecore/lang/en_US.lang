@@ -356,6 +356,8 @@ binniecore.gui.slot.inventory=Machine Inventory
 binniecore.gui.slot.player.inventory=Player Inventory
 binniecore.gui.slot.pickup.only=Pickup Only Slot
 
+binniecore.gui.slotvalidator.individual=Breedable Individual
+
 binniecore.gui.tank.validated=%s Tank
 binniecore.gui.tank.input=Input Tank
 binniecore.gui.tank.process=Process Tank
