@@ -10,10 +10,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RenderTESRMachine extends TileEntitySpecialRenderer<TileEntityTESRMachine> {
 	@Override
-	public void render(TileEntityTESRMachine te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
-		Machine machine = te.getMachine();
+	public void render(final TileEntityTESRMachine te, final double x, final double y, final double z, final float partialTicks, final int destroyStage, final float alpha) {
+		final Machine machine = te.getMachine();
 		if (machine != null) {
-			for (IRender.Render renders : machine.getInterfaces(IRender.Render.class)) {
+			for (final IRender.Render renders : machine.getInterfaces(IRender.Render.class)) {
 				renders.renderInWorld(x, y, z);
 			}
 		}
