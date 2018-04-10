@@ -46,7 +46,8 @@ public class SearchDialog extends Dialog {
 		scroll.setScrollableContent(this.slotGrid);
 		new ControlPlayerInventory(this, true);
 		new ControlTextEdit(this, 16, 16, 100, 14).addEventHandler(EventTextEdit.class, event -> {
-			textSearch = event.getValue();
+			final String value = event.getValue();
+			textSearch = (value == null) ? StringUtils.EMPTY : value;
 			updateSearch();
 		});
 		this.includeItems = true;
@@ -57,14 +58,13 @@ public class SearchDialog extends Dialog {
 		this.updateSearch();
 	}
 
-	private void updateSearch() {
-		Map<Integer, String> slotIds = new HashMap<>();
+	private Map<Integer, String> filter(final Map<Integer, String> slotIds) {
 		final IInventory inv = windowCompartment.getInventory();
 		for (int i = 0; i < inv.getSizeInventory(); ++i) {
 			final ItemStack stack = inv.getStackInSlot(i);
 			if (!stack.isEmpty()) {
 				final String name = stack.getDisplayName().toLowerCase();
-				if (this.textSearch == null || name.contains(this.textSearch)) {
+				if (this.textSearch.length() == 0 || name.contains(this.textSearch)) {
 					if (this.includeBlocks || Block.getBlockFromItem(stack.getItem()) == Blocks.AIR) {
 						if (this.includeItems || Block.getBlockFromItem(stack.getItem()) != Blocks.AIR) {
 							slotIds.put(i, name);
@@ -73,22 +73,32 @@ public class SearchDialog extends Dialog {
 				}
 			}
 		}
+		return slotIds;
+	}
+
+	private Map<Integer, String> sort(final Map<Integer, String> slotIds) {
 		if (this.sortByName) {
 			final List<Map.Entry<Integer, String>> list = new LinkedList<>(slotIds.entrySet());
 			list.sort((o1, o2) -> -o2.getValue().compareTo(o1.getValue()));
-			final Map<Integer, String> result = new LinkedHashMap<>();
+			slotIds.clear();
 			for (final Map.Entry<Integer, String> entry : list) {
-				result.put(entry.getKey(), entry.getValue());
+				slotIds.put(entry.getKey(), entry.getValue());
 			}
-			slotIds = result;
 		}
+		return slotIds;
+	}
+
+	private void updateSearch() {
+		final Map<Integer, String> slotIds = new HashMap<>();
+		final Map<Integer, String> filtered = filter(slotIds);
+		final Map<Integer, String> sorted = sort(filtered);
 		int y = 0;
 		int x = 0;
 		final int width = 108;
-		final int height = 2 + 18 * (1 + (slotIds.size() - 1) / 6);
+		final int height = 2 + 18 * (1 + (sorted.size() - 1) / 6);
 		this.slotGrid.deleteAllChildren();
 		this.slotGrid.setSize(new Point(width, height));
-		for (final int k : slotIds.keySet()) {
+		for (final int k : sorted.keySet()) {
 			new ControlSlot.Builder(this.slotGrid, x, y).assign(k);
 			x += 18;
 			if (x >= 108) {
