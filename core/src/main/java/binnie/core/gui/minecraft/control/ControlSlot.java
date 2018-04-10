@@ -208,7 +208,8 @@ public class ControlSlot extends ControlSlotBase {
 		} else if (this.slot.inventory instanceof WindowInventory) {
 			if (tooltipFlag.isAdvanced()) {
 				final SlotValidator s = ((WindowInventory) this.slot.inventory).getValidator(this.slot.getSlotIndex());
-				tooltip.add("Accepts: " + ((s == null) ? "Any Item" : s.getTooltip()));
+				final String itemDescription = (s == null) ? I18N.localise(ModId.CORE, "gui.slot.window.inventory.any") : s.getTooltip();
+				tooltip.add(I18N.localise(ModId.CORE, "gui.slot.window.inventory", itemDescription));
 			}
 		} else if (this.slot.inventory instanceof InventoryPlayer) {
 			if (tooltipFlag.isAdvanced()) {

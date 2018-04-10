@@ -353,6 +353,8 @@ binniecore.gui.slot.serum.output=Serum Output Slot
 binniecore.gui.slot.serum.active=Active Serum Slot
 binniecore.gui.slot.yeast=Yeast Slot
 binniecore.gui.slot.inventory=Machine Inventory
+binniecore.gui.slot.window.inventory.any=Any Item
+binniecore.gui.slot.window.inventory=Accepts: %s
 binniecore.gui.slot.player.inventory=Player Inventory
 binniecore.gui.slot.pickup.only=Pickup Only Slot
 
