@@ -62,9 +62,11 @@ public class PowerInterface implements INbtReadable, INbtWritable {
 		return unit.convertTo(this.getEnergySpace());
 	}
 
+	private static final String NBT_KEY_ENERGY = "Energy";
+
 	@Override
 	public void readFromNBT(final NBTTagCompound nbt) {
-		this.energy = nbt.getInteger("Energy");
+		this.energy = nbt.getInteger(NBT_KEY_ENERGY);
 		if (this.energy > this.capacity) {
 			this.energy = this.capacity;
 		} else if (this.energy < 0) {
@@ -74,7 +76,7 @@ public class PowerInterface implements INbtReadable, INbtWritable {
 
 	@Override
 	public NBTTagCompound writeToNBT(final NBTTagCompound nbt) {
-		nbt.setInteger("Energy", this.getEnergy());
+		nbt.setInteger(NBT_KEY_ENERGY, this.getEnergy());
 		return nbt;
 	}
 }

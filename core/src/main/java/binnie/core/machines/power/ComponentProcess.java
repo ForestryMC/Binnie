@@ -68,16 +68,18 @@ public abstract class ComponentProcess extends ComponentProcessIndefinate implem
 	protected void onFinishTask() {
 	}
 
+	private static final String NBT_KEY_PROGRESS = "progress";
+
 	@Override
 	public void readFromNBT(final NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
-		this.progressAmount = nbt.getFloat("progress");
+		this.progressAmount = nbt.getFloat(NBT_KEY_PROGRESS);
 	}
 
 	@Override
 	public NBTTagCompound writeToNBT(final NBTTagCompound nbt1) {
-		NBTTagCompound nbt = super.writeToNBT(nbt1);
-		nbt.setFloat("progress", this.progressAmount);
+		final NBTTagCompound nbt = super.writeToNBT(nbt1);
+		nbt.setFloat(NBT_KEY_PROGRESS, this.progressAmount);
 		return nbt;
 	}
 
