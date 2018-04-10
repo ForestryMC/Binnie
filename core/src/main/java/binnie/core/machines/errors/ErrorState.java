@@ -29,24 +29,24 @@ public class ErrorState implements INbtReadable, INbtWritable {
 	private boolean tankError;
 	private boolean powerError;
 
-	public ErrorState(IErrorStateDefinition definition) {
+	public ErrorState(final IErrorStateDefinition definition) {
 		this(definition, definition);
 	}
 
-	public ErrorState(IErrorStateDefinition definition, int[] data) {
+	public ErrorState(final IErrorStateDefinition definition, final int[] data) {
 		this(definition, definition, data);
 	}
 
-	public ErrorState(IErrorStateDefinition definition, int data) {
+	public ErrorState(final IErrorStateDefinition definition, final int data) {
 		this(definition, definition, new int[]{data});
 	}
 
-	public ErrorState(IErrorStateDefinition nameDefinition, IErrorStateDefinition definition) {
+	public ErrorState(final IErrorStateDefinition nameDefinition, final IErrorStateDefinition definition) {
 		this(nameDefinition, definition, EmptyHelper.INT_ARRAY_EMPTY);
 	}
 
-	public ErrorState(IErrorStateDefinition nameDefinition, IErrorStateDefinition definition, int[] data) {
-		EnumErrorType type = definition.getType();
+	public ErrorState(final IErrorStateDefinition nameDefinition, final IErrorStateDefinition definition, final int[] data) {
+		final EnumErrorType type = definition.getType();
 		this.data = data;
 		this.itemError = type.isItemError();
 		this.tankError = type.isTankError();
@@ -75,12 +75,12 @@ public class ErrorState implements INbtReadable, INbtWritable {
 	}
 
 	public String getTooltip(ContainerCraftGUI container) {
-		Collection<CustomSlot> slots = getCustomSlots(container);
-		Set<Validator<?>> validators = new HashSet<>();
-		for (CustomSlot slot : slots) {
-			InventorySlot inventorySlot = slot.getInventorySlot();
+		final Collection<CustomSlot> slots = getCustomSlots(container);
+		final Set<Validator<?>> validators = new HashSet<>();
+		for (final CustomSlot slot : slots) {
+			final InventorySlot inventorySlot = slot.getInventorySlot();
 			if (inventorySlot != null) {
-				SlotValidator validator = inventorySlot.getValidator();
+				final SlotValidator validator = inventorySlot.getValidator();
 				if (validator != null) {
 					validators.add(validator);
 				}
@@ -133,9 +133,9 @@ public class ErrorState implements INbtReadable, INbtWritable {
 	}
 
 	public Collection<CustomSlot> getCustomSlots(ContainerCraftGUI container) {
-		Collection<CustomSlot> slots = new ArrayList<>();
+		final Collection<CustomSlot> slots = new ArrayList<>();
 		if (isItemError()) {
-			IntSet slotNumbers = new IntArraySet(getData());
+			final IntSet slotNumbers = new IntArraySet(getData());
 			for (final CustomSlot cslot : container.getCustomSlots()) {
 				if (!(cslot.inventory instanceof InventoryPlayer) && slotNumbers.contains(cslot.getSlotIndex())) {
 					slots.add(cslot);
