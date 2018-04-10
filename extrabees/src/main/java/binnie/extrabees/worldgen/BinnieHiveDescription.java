@@ -26,9 +26,9 @@ import binnie.extrabees.utils.config.ConfigurationMain;
 public enum BinnieHiveDescription implements IHiveDescription {
 
 	WATER(EnumHiveType.WATER, ConfigurationMain.getWaterHiveRate(), ExtraBeeDefinition.WATER, new WorldGenHiveWater()),
-	MARBLE(EnumHiveType.MARBLE, ConfigurationMain.getMarbleHiveRate(), ExtraBeeDefinition.MARBLE, new WorldGenHiveMarble()),
-	ROCK(EnumHiveType.ROCK, ConfigurationMain.getRockHiveRate(), ExtraBeeDefinition.ROCK, new WorldGenHiveRock()),
-	NETHER(EnumHiveType.NETHER, ConfigurationMain.getNetherHiveRate(), ExtraBeeDefinition.BASALT, new WorldGenHiveNether());
+	MARBLE(EnumHiveType.MARBLE, ConfigurationMain.getMarbleHiveRate()*10, ExtraBeeDefinition.MARBLE, new WorldGenHiveMarble()),
+	ROCK(EnumHiveType.ROCK, ConfigurationMain.getRockHiveRate()*3, ExtraBeeDefinition.ROCK, new WorldGenHiveRock()),
+	NETHER(EnumHiveType.NETHER, ConfigurationMain.getNetherHiveRate()*3, ExtraBeeDefinition.BASALT, new WorldGenHiveNether());
 
 	private final EnumHiveType hiveType;
 	private final float genChance;
