@@ -21,7 +21,7 @@ import ic2.api.energy.tile.IEnergyTile;
 
 //@Optional.Interface(iface = "binnie.core.machines.component.IBuildcraft.TriggerProvider", modid = "BuildCraft|Silicon")
 public class ComponentPowerReceptor extends MachineComponent implements IPoweredMachine/*, IBuildcraft.TriggerProvider*/, IInteraction.ChunkUnload, IInteraction.Invalidation {
-	private static final int inputAverageTicks = 20;
+	private static final int INPUT_AVERAGE_TICKS = 20;
 	private final float previousPower;
 	private final LinkedList<Float> inputs;
 	private boolean registeredToIC2EnergyNet;
@@ -43,7 +43,7 @@ public class ComponentPowerReceptor extends MachineComponent implements IPowered
 	}
 
 	public static int getInputAverageTicks() {
-		return inputAverageTicks;
+		return INPUT_AVERAGE_TICKS;
 	}
 
 	@Override
@@ -57,7 +57,7 @@ public class ComponentPowerReceptor extends MachineComponent implements IPowered
 
 	@Override
 	public NBTTagCompound writeToNBT(final NBTTagCompound nbttagcompound2) {
-		NBTTagCompound nbttagcompound = super.writeToNBT(nbttagcompound2);
+		final NBTTagCompound nbttagcompound = super.writeToNBT(nbttagcompound2);
 		this.container.writeToNBT(nbttagcompound);
 		return nbttagcompound;
 	}
@@ -98,14 +98,14 @@ public class ComponentPowerReceptor extends MachineComponent implements IPowered
 
 	@Override
 	@Optional.Method(modid = "ic2")
-	public double injectEnergy(EnumFacing directionFrom, final double amount, final double voltage) {
+	public double injectEnergy(final EnumFacing directionFrom, final double amount, final double voltage) {
 		this.container.addEnergy(PowerSystem.EU, amount, true);
 		return 0.0;
 	}
 
 	@Override
 	@Optional.Method(modid = "ic2")
-	public boolean acceptsEnergyFrom(IEnergyEmitter emitter, EnumFacing direction) {
+	public boolean acceptsEnergyFrom(final IEnergyEmitter emitter, final EnumFacing direction) {
 		return this.acceptsPowerSystem(PowerSystem.EU);
 	}
 
@@ -159,8 +159,8 @@ public class ComponentPowerReceptor extends MachineComponent implements IPowered
 	}
 
 	private void addToEnergyNet() {
-		World world = this.getMachine().getWorld();
-		if (world == null || world.isRemote) {
+		final World world = this.getMachine().getWorld();
+		if (world.isRemote) {
 			return;
 		}
 		if (Mods.IC2.active()) {
@@ -169,8 +169,8 @@ public class ComponentPowerReceptor extends MachineComponent implements IPowered
 	}
 
 	private void removeFromEnergyNet() {
-		World world = this.getMachine().getWorld();
-		if (world == null || world.isRemote) {
+		final World world = this.getMachine().getWorld();
+		if (world.isRemote) {
 			return;
 		}
 		if (Mods.IC2.active()) {
