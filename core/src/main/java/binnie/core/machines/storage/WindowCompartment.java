@@ -168,7 +168,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 			currentTab.setName(event.getValue());
 			final NBTTagCompound nbt = new NBTTagCompound();
 			currentTab.writeToNBT(nbt);
-			WindowCompartment.this.sendClientAction("comp-change-tab", nbt);
+			WindowCompartment.this.sendClientAction(ComponentCompartmentInventory.ACTION_COMP_CHANGE_TAB, nbt);
 		});
 		y2 += 20;
 		new ControlText(tabPropertyPanel, new Point(4, y2), "Tab Icon: ");
@@ -184,7 +184,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 			currentTab.setIcon(stack);
 			final NBTTagCompound nbt = new NBTTagCompound();
 			currentTab.writeToNBT(nbt);
-			WindowCompartment.this.sendClientAction("comp-change-tab", nbt);
+			WindowCompartment.this.sendClientAction(ComponentCompartmentInventory.ACTION_COMP_CHANGE_TAB, nbt);
 		});
 		this.tabColour = new ControlColourSelector(tabPropertyPanel, 82, y2 - 4, 16, 16, EnumColor.WHITE);
 		this.tabIcon.addHelp("Icon for Current Tab");
@@ -200,7 +200,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 				currentTab.setColor(color.getValue());
 				final NBTTagCompound nbt = new NBTTagCompound();
 				currentTab.writeToNBT(nbt);
-				WindowCompartment.this.sendClientAction("comp-change-tab", nbt);
+				WindowCompartment.this.sendClientAction(ComponentCompartmentInventory.ACTION_COMP_CHANGE_TAB, nbt);
 			});
 			color.addHelp("Colour Selector");
 			color.addHelp("Select a colour to highlight the current tab");
