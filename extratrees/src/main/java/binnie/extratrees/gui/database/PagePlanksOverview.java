@@ -10,6 +10,7 @@ import binnie.core.gui.CraftGUI;
 import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.ControlText;
 import binnie.core.gui.database.DatabaseTab;
+import binnie.core.gui.database.DatabaseConstants;
 import binnie.core.gui.database.PageAbstract;
 import binnie.core.gui.database.WindowAbstractDatabase;
 import binnie.core.gui.geometry.Area;
@@ -22,7 +23,6 @@ import binnie.extratrees.wood.planks.IPlankType;
 import binnie.extratrees.wood.WoodManager;
 import binnie.extratrees.blocks.decor.FenceType;
 
-//TODO: Add to DatabaseConstants
 @SideOnly(Side.CLIENT)
 public class PagePlanksOverview extends PageAbstract<ItemStack> {
 	public PagePlanksOverview(final IWidget parent, final DatabaseTab tab) {
@@ -35,7 +35,7 @@ public class PagePlanksOverview extends PageAbstract<ItemStack> {
 		final WindowAbstractDatabase database = Window.get(this);
 		IPoint size = getSize();
 		new ControlText(this, new Area(0, 0, size.xPos(), 24), species.getDisplayName(), TextJustification.MIDDLE_CENTER);
-		new ControlText(this, new Area(12, 24, size.xPos() - 24, 24), I18N.localise("extratrees.gui.database.planks.use"), TextJustification.MIDDLE_LEFT);
+		new ControlText(this, new Area(12, 24, size.xPos() - 24, 24), I18N.localise(DatabaseConstants.EXTRATREES_KEY + ".planks.use"), TextJustification.MIDDLE_LEFT);
 		final IPlankType type = WoodManager.getPlankType(species);
 		int x = 12;
 		if (type != null) {
@@ -64,12 +64,12 @@ public class PagePlanksOverview extends PageAbstract<ItemStack> {
 		StringBuilder descBody = new StringBuilder("§o");
 		String descSig = "";
 		if (desc == null || desc.length() == 0) {
-			descBody.append(I18N.localise("binniecore.gui.database.nodescription"));
+			descBody.append(I18N.localise(DatabaseConstants.KEY + ".nodescription"));
 		} else {
 			final String[] descStrings = desc.split("\\|");
 			descBody.append(descStrings[0]);
 			for (int i = 1; i < descStrings.length - 1; ++i) {
-				descBody.append(" ").append(descStrings[i]);
+				descBody.append(' ').append(descStrings[i]);
 			}
 			if (descStrings.length > 1) {
 				descSig += descStrings[descStrings.length - 1];

@@ -30,8 +30,7 @@ public class GeneTracker extends WorldSavedData {
 	private GameProfile username;
 
 	public GeneTracker(String s, @Nullable GameProfile username) {
-		super(s);
-		discoveredGenes = new ArrayList<>();
+		this(s);
 		this.username = username;
 	}
 
@@ -71,11 +70,11 @@ public class GeneTracker extends WorldSavedData {
 
 			NBTTagCompound nbtRoot = nbt.getCompoundTag(root.getUID());
 			for (IChromosomeType chromo : root.getKaryotype()) {
-				if (!nbtRoot.hasKey("" + chromo.ordinal())) {
+				if (!nbtRoot.hasKey(String.valueOf(chromo.ordinal()))) {
 					continue;
 				}
 
-				NBTTagList nbtChromo = nbtRoot.getTagList("" + chromo.ordinal(), 8);
+				NBTTagList nbtChromo = nbtRoot.getTagList(String.valueOf(chromo.ordinal()), 8);
 				for (int i = 0; i < nbtChromo.tagCount(); ++i) {
 					String uid = nbtChromo.getStringTagAt(i);
 					IAllele allele = AlleleManager.alleleRegistry.getAllele(uid);
@@ -103,7 +102,7 @@ public class GeneTracker extends WorldSavedData {
 						nbtChromo.appendTag(new NBTTagString(gene.getAllele().getUID()));
 					}
 				}
-				nbtRoot.setTag("" + chromo.ordinal(), nbtChromo);
+				nbtRoot.setTag(String.valueOf(chromo.ordinal()), nbtChromo);
 			}
 			nbt.setTag(root.getUID(), nbtRoot);
 		}

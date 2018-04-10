@@ -110,7 +110,7 @@ public class WoodManager {
 		}
 		return TreeManager.woodAccess.getStack(plank.getWoodType(), WoodBlockKind.FENCE_GATE, false);
 	}
-	
+
 	public static ItemStack getDoor(final IPlankType plank) {
 		if (plank == VanillaPlanks.OAK) {
 			return new ItemStack(Items.OAK_DOOR);

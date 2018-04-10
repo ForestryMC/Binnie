@@ -87,8 +87,7 @@ public class ModuleAlcohol extends BlankModule {
 		if(fruitPressManager != null) {
 			for (Juice juice : Juice.values()) {
 				String oreDict = juice.getSqueezing();
-				List<ItemStack> ores = new ArrayList<>();
-				ores.addAll(OreDictionary.getOres(oreDict));
+				List<ItemStack> ores = new ArrayList<>(OreDictionary.getOres(oreDict));
 				for (final Food food : Food.values()) {
 					if (food.getOres().contains(oreDict)) {
 						ores.add(food.get(1));

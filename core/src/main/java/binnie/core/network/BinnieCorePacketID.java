@@ -58,7 +58,7 @@ public enum BinnieCorePacketID implements IPacketID {
 			final TileEntity tile = packet4.getTarget(BinnieCore.getBinnieProxy().getWorld());
 			if (tile != null && packet4.getTagCompound() != null) {
 				final IMachine machine = Machine.getMachine(tile);
-				if (machine != null && machine instanceof INetwork.TilePacketSync) {
+				if (machine instanceof INetwork.TilePacketSync) {
 					((INetwork.TilePacketSync) machine).syncFromNBT(packet4.getTagCompound());
 				}
 			}

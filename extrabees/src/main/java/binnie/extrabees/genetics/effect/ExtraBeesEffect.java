@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import binnie.core.ModId;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -49,6 +50,7 @@ import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IEffectData;
 import forestry.core.render.ParticleRender;
 
+import binnie.core.util.I18N;
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.genetics.ExtraBeesFlowers;
 import binnie.extrabees.utils.Utils;
@@ -437,7 +439,7 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 		final Block block = blockState.getBlock();
 		if (block == Blocks.COBBLESTONE || block == Blocks.STONE) {
 			world.setBlockState(pos, Blocks.GRAVEL.getDefaultState());
-		} else if (block == Blocks.DIRT | block == Blocks.GRASS) {
+		} else if (block == Blocks.DIRT || block == Blocks.GRASS) {
 			world.setBlockState(pos, Blocks.SAND.getDefaultState());
 		}
 	}
@@ -462,7 +464,7 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 
 	@Override
 	public String getName() {
-		return ExtraBees.proxy.localise("effect." + this.name().toLowerCase() + ".name");
+		return I18N.localise(ModId.EXTRA_BEES, "effect." + this.name().toLowerCase() + ".name");
 	}
 
 	@Override

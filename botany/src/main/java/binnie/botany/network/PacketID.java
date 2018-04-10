@@ -47,27 +47,27 @@ public enum PacketID implements IPacketID {
 			if (age == 0.0f) {
 				info += "";
 			} else if (age < 0.25f) {
-				info += " " + I18N.localise("botany.flowers.fielkit.young");
+				info += ' ' + I18N.localise("botany.flowers.fielkit.young");
 			} else if (age < 0.75f) {
-				info += " " + I18N.localise("botany.flowers.fielkit.mature");
+				info += ' ' + I18N.localise("botany.flowers.fielkit.mature");
 			} else {
-				info += " " + I18N.localise("botany.flowers.fielkit.old");
+				info += ' ' + I18N.localise("botany.flowers.fielkit.old");
 			}
 
 			if (color1 == color2) {
-				info = info + " " + color1.getName();
+				info = info + ' ' + color1.getName();
 			} else {
-				info = info + " " + color1.getName() + " & " + color2.getName();
+				info = info + ' ' + color1.getName() + " & " + color2.getName();
 			}
 
 			if (primary == secondary) {
-				info = info + " " + primary.getAlleleName();
+				info = info + ' ' + primary.getAlleleName();
 			} else {
-				info = info + " " + primary.getAlleleName() + "-" + secondary.getAlleleName() + " " + I18N.localise("botany.flowers.species.hybrid");
+				info = info + ' ' + primary.getAlleleName() + '-' + secondary.getAlleleName() + ' ' + I18N.localise("botany.flowers.species.hybrid");
 			}
 
 			if (age == 0.0f) {
-				info += " " + I18N.localise("botany.flowers.species.germling");
+				info += ' ' + I18N.localise("botany.flowers.species.germling");
 			}
 			if (data.getBoolean("Wilting")) {
 				info += ". " + I18N.localise("botany.flowers.species.wilting");

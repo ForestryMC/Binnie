@@ -16,7 +16,7 @@ import net.minecraftforge.common.BiomeDictionary;
 import forestry.api.apiculture.hives.IHiveGen;
 
 public class WorldGenHiveNether implements IHiveGen {
-
+	
 	public WorldGenHiveNether() {
 	}
 

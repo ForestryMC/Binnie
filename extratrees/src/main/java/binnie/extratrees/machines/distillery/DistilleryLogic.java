@@ -3,6 +3,7 @@ package binnie.extratrees.machines.distillery;
 import javax.annotation.Nullable;
 import java.util.Map;
 
+import binnie.core.machines.MachineUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -80,12 +81,17 @@ public class DistilleryLogic extends ComponentProcessSetCost implements IProcess
 			return new ErrorState(CoreErrorCode.TANK_EMPTY);
 		}
 
-		FluidStack fluidInOutputTank = this.getUtil().getFluid(DistilleryMachine.TANK_OUTPUT);
+		final MachineUtil util = this.getUtil();
+		FluidStack fluidInOutputTank = util.getFluid(DistilleryMachine.TANK_OUTPUT);
 		if (fluidInOutputTank != null) {
-			FluidStack inputFluid = this.getUtil().getFluid(DistilleryMachine.TANK_INPUT);
+			FluidStack inputFluid = util.getFluid(DistilleryMachine.TANK_INPUT);
 			FluidStack recipeOutput = DistilleryRecipeManager.getOutput(inputFluid, this.level);
-			if (recipeOutput != null && !recipeOutput.isFluidEqual(fluidInOutputTank)) {
-				return new ErrorState(CoreErrorCode.TANK_DIFFRENT_FLUID, DistilleryMachine.TANK_OUTPUT);
+			if (recipeOutput != null) {
+				if (!recipeOutput.isFluidEqual(fluidInOutputTank)) {
+					return new ErrorState(CoreErrorCode.TANK_DIFFRENT_FLUID, DistilleryMachine.TANK_OUTPUT);
+				} else if (!util.spaceInTank(DistilleryMachine.TANK_OUTPUT, recipeOutput.amount)) {
+					return new ErrorState(CoreErrorCode.NO_SPACE_TANK, DistilleryMachine.TANK_OUTPUT);
+				}
 			}
 		}
 

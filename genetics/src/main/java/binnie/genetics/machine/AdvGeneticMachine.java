@@ -6,7 +6,6 @@ import net.minecraft.item.ItemStack;
 
 import binnie.core.machines.IMachineType;
 import binnie.core.machines.MachinePackage;
-import binnie.genetics.Genetics;
 import binnie.genetics.machine.splicer.PackageSplicer;
 
 public enum AdvGeneticMachine implements IMachineType {
@@ -24,7 +23,6 @@ public enum AdvGeneticMachine implements IMachineType {
 	}
 
 	public ItemStack get(final int i) {
-		Genetics.machine();
 		return new ItemStack(ModuleMachine.getPackageAdvGenetic().getBlock(), i, this.ordinal());
 	}
 

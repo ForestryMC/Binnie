@@ -179,7 +179,7 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 				if (weedKilled) {
 					identifier = type.getName() + "_no_weed/" + modelName;
 				} else {
-					identifier = type.getName() + "/" + modelName;
+					identifier = type.getName() + '/' + modelName;
 				}
 				manager.registerItemModel(item, moisture.ordinal() + acidity.ordinal() * 3, identifier);
 			}

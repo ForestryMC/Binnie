@@ -35,8 +35,8 @@ import forestry.api.lepidopterology.ButterflyManager;
 	name = "Binnie's Extra Trees",
 	version = "@VERSION@",
 	acceptedMinecraftVersions = Constants.ACCEPTED_MINECRAFT_VERSIONS,
-	dependencies = "required-after:" + Constants.CORE_MOD_ID + ";"
-			+      "after:" + Constants.DESIGN_MOD_ID + ";"
+	dependencies = "required-after:" + Constants.CORE_MOD_ID + ';'
+			+      "after:" + Constants.DESIGN_MOD_ID + ';'
 )
 public class ExtraTrees extends BlankModuleContainer {
 

@@ -22,8 +22,8 @@ import forestry.api.apiculture.IHiveFrame;
 import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
 import forestry.api.core.Tabs;
-import forestry.core.utils.Translator;
 
+import binnie.core.util.I18N;
 import binnie.extrabees.items.types.EnumHiveFrame;
 import binnie.extrabees.utils.ExtraBeesResourceLocation;
 
@@ -112,7 +112,7 @@ public class ItemHiveFrame extends Item implements IHiveFrame, IBeeModifier, IIt
 		super.addInformation(stack, worldIn, tooltip, flagIn);
 		this.frame.addInformation(stack, tooltip, flagIn);
 		if (!stack.isItemDamaged()) {
-			tooltip.add(Translator.translateToLocalFormatted("item.for.durability", stack.getMaxDamage()));
+			tooltip.add(I18N.localise("item.for.durability", stack.getMaxDamage()));
 		}
 	}
 

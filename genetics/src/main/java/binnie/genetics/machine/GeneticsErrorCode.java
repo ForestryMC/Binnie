@@ -73,7 +73,7 @@ public enum GeneticsErrorCode implements IErrorStateDefinition {
 
 	@Override
 	public String getUID() {
-		return Constants.GENETICS_MOD_ID + ":" + name;
+		return Constants.GENETICS_MOD_ID + ':' + name;
 	}
 	
 	public String getDescription(){

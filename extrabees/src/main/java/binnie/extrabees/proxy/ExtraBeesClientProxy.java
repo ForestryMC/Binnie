@@ -14,7 +14,6 @@ import net.minecraft.client.renderer.BlockRendererDispatcher;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ItemOverrideList;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -66,16 +65,6 @@ public class ExtraBeesClientProxy extends ExtraBeesCommonProxy {
 		Preconditions.checkNotNull(registryName);
 		ModelResourceLocation inventory = new ModelResourceLocation(registryName, "inventory");
 		ModelLoader.setCustomModelResourceLocation(item, meta, inventory);
-	}
-
-	@Override
-	public String localise(final String s) {
-		return I18n.format(String.format("%s.%s", ExtraBees.MODID, s));
-	}
-
-	@Override
-	public String localiseWithOutPrefix(final String s) {
-		return I18n.format(s);
 	}
 	
 	@SubscribeEvent

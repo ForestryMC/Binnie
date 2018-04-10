@@ -180,7 +180,7 @@ public class WindowFieldKit extends Window {
 				final IAllele allele = ind.getGenome().getActiveAllele(type);
 				final List<String> infos = new ArrayList<>();
 				int i = 0;
-				for (String pref = root.getUID() + ".fieldkit." + type.getName().toLowerCase() + "."; I18N.canLocalise(pref + i); ++i) {
+				for (String pref = root.getUID() + ".fieldkit." + type.getName().toLowerCase() + '.'; I18N.canLocalise(pref + i); ++i) {
 					infos.add(I18N.localise(pref + i));
 				}
 				String text = system.getAlleleName(type, allele);

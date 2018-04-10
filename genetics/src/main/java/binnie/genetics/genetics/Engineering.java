@@ -42,8 +42,9 @@ public class Engineering {
 
 	@Nullable
 	public static IGene getGene(ItemStack stack, int chromosome) {
-		if (stack.getItem() instanceof IItemSerum) {
-			return ((IItemSerum) stack.getItem()).getGene(stack, chromosome);
+		Item item = stack.getItem();
+		if (item instanceof IItemSerum) {
+			return ((IItemSerum) item).getGene(stack, chromosome);
 		}
 		return null;
 	}

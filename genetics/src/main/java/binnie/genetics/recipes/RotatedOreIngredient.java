@@ -51,7 +51,7 @@ class RotatedOreIngredient extends Ingredient {
 					lst.add(itemstack);
 			}
 			Collections.rotate(lst, offset);
-			this.array = lst.toArray(new ItemStack[lst.size()]);
+			this.array = lst.toArray(new ItemStack[0]);
 		}
 		return this.array;
 	}

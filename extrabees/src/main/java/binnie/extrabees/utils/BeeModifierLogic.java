@@ -11,7 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import forestry.core.utils.Translator;
+import binnie.core.util.I18N;
 
 public class BeeModifierLogic {
 
@@ -59,7 +59,7 @@ public class BeeModifierLogic {
 		for (Map.Entry<EnumBeeModifier, Float[]> modifier : modifiers.entrySet()) {
 			final EnumBeeModifier key = modifier.getKey();
 			final Float[] value = modifier.getValue();
-			final String modifierName = Translator.translateToLocal(key.getName());
+			final String modifierName = key.getName();
 			Float multiplier = value[0];
 			Float limit = value[1];
 			if (multiplier < 0.01) {
@@ -69,7 +69,7 @@ public class BeeModifierLogic {
 				limit = 0f;
 			}
 			final String formatKey = limit >= 1.0f ? "bee.modifier.format.max" : "bee.modifier.format.min";
-			final String valueString = Translator.translateToLocalFormatted(formatKey, multiplier, limit);
+			final String valueString = I18N.localise(formatKey, multiplier, limit);
 			tooltip.add(modifierName + ": " + valueString);
 		}
 	}

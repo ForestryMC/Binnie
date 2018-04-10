@@ -67,11 +67,6 @@ public class Genetics extends AbstractMod {
 		return items;
 	}
 
-	public static ModuleMachine machine() {
-		Preconditions.checkState(machine != null);
-		return machine;
-	}
-
 	public static IAnalystManager getAnalystManager() {
 		Preconditions.checkNotNull(analystManager);
 		return analystManager;

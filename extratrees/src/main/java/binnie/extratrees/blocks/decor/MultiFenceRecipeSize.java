@@ -43,7 +43,7 @@ public class MultiFenceRecipeSize extends IForgeRegistryEntry.Impl<IRecipe> impl
 				return false;
 			}
 			if (isEmpty) {
-				recipePattern.append(" ");
+				recipePattern.append(' ');
 			} else {
 				if (!types.contains(type)) {
 					types.add(type);

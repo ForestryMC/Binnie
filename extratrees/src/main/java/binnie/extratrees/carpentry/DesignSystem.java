@@ -166,8 +166,8 @@ public enum DesignSystem implements IDesignSystem {
 	public void registerSprites() {
 		TextureMap textureMap = Minecraft.getMinecraft().getTextureMapBlocks();
 		for (final EnumPattern pattern : EnumPattern.values()) {
-			ResourceLocation primaryLocation = new ResourceLocation(getModId(), "blocks/" + getTexturePath() + "/" + pattern.toString().toLowerCase() + ".0");
-			ResourceLocation secondaryLocation = new ResourceLocation(getModId(), "blocks/" + getTexturePath() + "/" + pattern.toString().toLowerCase() + ".1");
+			ResourceLocation primaryLocation = new ResourceLocation(getModId(), "blocks/" + getTexturePath() + '/' + pattern.toString().toLowerCase() + ".0");
+			ResourceLocation secondaryLocation = new ResourceLocation(getModId(), "blocks/" + getTexturePath() + '/' + pattern.toString().toLowerCase() + ".1");
 			this.primary.put(pattern.ordinal(), textureMap.registerSprite(primaryLocation));
 			this.secondary.put(pattern.ordinal(), textureMap.registerSprite(secondaryLocation));
 		}

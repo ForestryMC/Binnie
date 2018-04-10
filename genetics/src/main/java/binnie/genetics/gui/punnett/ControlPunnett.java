@@ -69,8 +69,8 @@ public class ControlPunnett extends Control {
 			}
 			++x;
 		}
-		new ControlText(this, new Area(ControlPunnett.BOX_WIDTH, 0, ControlPunnett.BOX_WIDTH, ControlPunnett.BOX_HEIGHT), "\n" + primary1.getAlleleName(), TextJustification.TOP_CENTER).setColor(11184810);
-		new ControlText(this, new Area(ControlPunnett.BOX_WIDTH * 2, 0, ControlPunnett.BOX_WIDTH, ControlPunnett.BOX_HEIGHT), "\n" + secondary1.getAlleleName(), TextJustification.TOP_CENTER).setColor(11184810);
+		new ControlText(this, new Area(ControlPunnett.BOX_WIDTH, 0, ControlPunnett.BOX_WIDTH, ControlPunnett.BOX_HEIGHT), '\n' + primary1.getAlleleName(), TextJustification.TOP_CENTER).setColor(11184810);
+		new ControlText(this, new Area(ControlPunnett.BOX_WIDTH * 2, 0, ControlPunnett.BOX_WIDTH, ControlPunnett.BOX_HEIGHT), '\n' + secondary1.getAlleleName(), TextJustification.TOP_CENTER).setColor(11184810);
 		new ControlText(this, new Area(0, ControlPunnett.BOX_HEIGHT, ControlPunnett.BOX_WIDTH, ControlPunnett.BOX_HEIGHT), primary2.getAlleleName(), TextJustification.TOP_CENTER).setColor(11184810);
 		new ControlText(this, new Area(0, ControlPunnett.BOX_HEIGHT * 2, ControlPunnett.BOX_WIDTH, ControlPunnett.BOX_HEIGHT), primary2.getAlleleName(), TextJustification.TOP_CENTER).setColor(11184810);
 	}

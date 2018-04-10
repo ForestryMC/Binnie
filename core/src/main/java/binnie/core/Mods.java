@@ -90,7 +90,7 @@ public class Mods {
 		public Item item(final String name) {
 			Item item = super.item(name);
 			if (item == null) {
-				throw new RuntimeException("Item not found: " + this.id + ":" + name);
+				throw new RuntimeException("Item not found: " + this.id + ':' + name);
 			}
 			return item;
 		}
@@ -100,7 +100,7 @@ public class Mods {
 		public Block block(final String name) {
 			Block block = super.block(name);
 			if (block == null) {
-				throw new RuntimeException("Block not found: " + this.id + ":" + name);
+				throw new RuntimeException("Block not found: " + this.id + ':' + name);
 			}
 			return block;
 		}
