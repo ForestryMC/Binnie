@@ -34,8 +34,9 @@ public class TankSlot extends BaseSlot<FluidStack> {
 
 	@Override
 	public NBTTagCompound writeToNBT(final NBTTagCompound compound) {
-		if (this.getContent() != null) {
-			this.getContent().writeToNBT(compound);
+		final FluidStack fluidStack = this.getContent();
+		if (fluidStack != null) {
+			fluidStack.writeToNBT(compound);
 		}
 		return compound;
 	}
