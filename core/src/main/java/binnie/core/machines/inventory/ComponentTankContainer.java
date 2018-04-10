@@ -100,12 +100,7 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
 		compound = super.writeToNBT(compound);
-		NBTUtil.writeToList(compound, TANKS_KEY, tanks, (index, tank)->{
-			NBTTagCompound tankNBT = new NBTTagCompound();
-			tankNBT.setInteger(TANK_INDEX_KEY, index);
-			tank.writeToNBT(tankNBT);
-			return tankNBT;
-		});
+		NBTUtil.writeToList(compound, TANKS_KEY, tanks, NBTUtil.writeToListConsumer(TANK_INDEX_KEY));
 		return compound;
 	}
 

@@ -107,12 +107,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
 		compound = super.writeToNBT(compound);
-		NBTUtil.writeToList(compound, INVENTORY_KEY, inventory, (index, slot) -> {
-			NBTTagCompound slotTag = new NBTTagCompound();
-			slotTag.setInteger(INDEX_KEY, index);
-			slot.writeToNBT(slotTag);
-			return slotTag;
-		});
+		NBTUtil.writeToList(compound, INVENTORY_KEY, inventory, NBTUtil.writeToListConsumer(INDEX_KEY));
 		return compound;
 	}
 
