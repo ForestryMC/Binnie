@@ -32,7 +32,7 @@ public class ComponentChargedSlots extends MachineComponent implements INetwork.
 
 	@Override
 	public NBTTagCompound writeToNBT(final NBTTagCompound nbttagcompound2) {
-		NBTTagCompound nbttagcompound = super.writeToNBT(nbttagcompound2);
+		final NBTTagCompound nbttagcompound = super.writeToNBT(nbttagcompound2);
 		final NBTTagList chargeList = new NBTTagList();
 		for (final Map.Entry<Integer, Float> entry : this.charges.entrySet()) {
 			final NBTTagCompound chargesNBT = new NBTTagCompound();

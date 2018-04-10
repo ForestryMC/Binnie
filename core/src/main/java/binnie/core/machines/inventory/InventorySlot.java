@@ -1,5 +1,7 @@
 package binnie.core.machines.inventory;
 
+import org.apache.commons.lang3.StringUtils;
+
 import javax.annotation.Nonnull;
 
 import net.minecraft.item.ItemStack;
@@ -96,7 +98,7 @@ public class InventorySlot extends BaseSlot<ItemStack> {
 			return I18N.localise(ModId.CORE, "gui.slot.validated", validator.getTooltip());
 		}
 		if (this.unlocLocation == null) {
-			return "";
+			return StringUtils.EMPTY;
 		}
 		return I18N.localise(this.unlocLocation);
 	}

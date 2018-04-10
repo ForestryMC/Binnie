@@ -1,5 +1,7 @@
 package binnie.core.util;
 
+import org.apache.commons.lang3.StringUtils;
+
 import javax.annotation.Nullable;
 import java.util.Collection;
 
@@ -14,17 +16,18 @@ import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 
 public class FluidStackUtil {
 
-	public static String toString(FluidStack fluidStack){
-		if(fluidStack == null){
+	public static String toString(@Nullable final FluidStack fluidStack) {
+		if (fluidStack == null) {
 			return "null";
 		}
-		NBTTagCompound tag = fluidStack.tag;
-		return fluidStack.getFluid().getName() + ':' + fluidStack.amount + (tag != null ? ":" + fluidStack.tag : "");
+		final NBTTagCompound tag = fluidStack.tag;
+		return fluidStack.getFluid().getName() + ':' + fluidStack.amount +
+				(tag != null ? ":" + fluidStack.tag : StringUtils.EMPTY);
 	}
 
-	public static NonNullList<FluidStack> removeEqualFluids(Collection<FluidStack> fluidsStacks) {
-		NonNullList<FluidStack> dedupedFluidStacks = NonNullList.create();
-		for (FluidStack fluidStack : fluidsStacks) {
+	public static NonNullList<FluidStack> removeEqualFluids(final Collection<FluidStack> fluidsStacks) {
+		final NonNullList<FluidStack> dedupedFluidStacks = NonNullList.create();
+		for (final FluidStack fluidStack : fluidsStacks) {
 			if (!containsEqualFluid(dedupedFluidStacks, fluidStack)) {
 				dedupedFluidStacks.add(fluidStack);
 			}
@@ -32,8 +35,8 @@ public class FluidStackUtil {
 		return dedupedFluidStacks;
 	}
 
-	public static boolean containsEqualFluid(NonNullList<FluidStack> fluidStacks, FluidStack query) {
-		for (FluidStack fluidStack : fluidStacks) {
+	public static boolean containsEqualFluid(final NonNullList<FluidStack> fluidStacks, final FluidStack query) {
+		for (final FluidStack fluidStack : fluidStacks) {
 			if (fluidStack.isFluidEqual(query)) {
 				return true;
 			}
@@ -42,14 +45,14 @@ public class FluidStackUtil {
 	}
 
 	@Nullable
-	public static ItemStack getContainer(FluidStack fluidStack) {
-		ItemStack[] containers = {
+	public static ItemStack getContainer(final FluidStack fluidStack) {
+		final ItemStack[] containers = {
 			new ItemStack(Items.GLASS_BOTTLE),
 			new ItemStack(Items.BUCKET)
 		};
 
-		for (ItemStack container : containers) {
-			IFluidHandlerItem fluidHandler = FluidUtil.getFluidHandler(container);
+		for (final ItemStack container : containers) {
+			final IFluidHandlerItem fluidHandler = FluidUtil.getFluidHandler(container);
 			if (fluidHandler != null && fluidHandler.fill(fluidStack, true) > 0) {
 				return fluidHandler.getContainer();
 			}

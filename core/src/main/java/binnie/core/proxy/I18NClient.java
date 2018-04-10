@@ -7,6 +7,7 @@ import net.minecraft.launchwrapper.Launch;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.apache.commons.lang3.StringUtils;
 
 @SideOnly(Side.CLIENT)
 public class I18NClient implements I18NProxy {
@@ -15,7 +16,7 @@ public class I18NClient implements I18NProxy {
 
     public String localiseOrBlank(String key) {
         String trans = localise(key);
-        return trans.equals(key) ? "" : trans;
+        return trans.equals(key) ? StringUtils.EMPTY : trans;
     }
 
     public String localise(String key) {

@@ -26,12 +26,13 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.apache.commons.lang3.StringUtils;
 
 @SideOnly(Side.CLIENT)
 public class SearchDialog extends Dialog {
 	private final Control slotGrid;
 	private final WindowCompartment windowCompartment;
-	private String textSearch = "";
+	private String textSearch = StringUtils.EMPTY;
 	private boolean sortByName;
 	private boolean includeItems;
 	private boolean includeBlocks;

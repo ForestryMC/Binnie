@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.Pair;
 
 import net.minecraft.block.Block;
@@ -223,7 +224,7 @@ public class AABBModelBaker implements IModelBaker {
 			final float[] uvs = getFaceUvs(myFace, to, from);
 
 			final BlockFaceUV uv = new BlockFaceUV(uvs, 0);
-			final BlockPartFace bpf = new BlockPartFace(myFace, face.colorIndex, "", uv);
+			final BlockPartFace bpf = new BlockPartFace(myFace, face.colorIndex, StringUtils.EMPTY, uv);
 
 			BakedQuad bf = faceBakery.makeBakedQuad(from, to, bpf, face.spite, myFace, mr, null, true, true);
 

@@ -1,5 +1,7 @@
 package binnie.core.machines.inventory;
 
+import org.apache.commons.lang3.StringUtils;
+
 import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -34,12 +36,12 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 	}
 
 	@Override
-	public ItemStack removeStackFromSlot(int index) {
-		InventorySlot slot = getInternalSlot(index);
+	public ItemStack removeStackFromSlot(final int index) {
+		final InventorySlot slot = getInternalSlot(index);
 		if(slot.isFake()){
 			return ItemStack.EMPTY;
 		}
-		ItemStack content = slot.getItemStack();
+		final ItemStack content = slot.getItemStack();
 		slot.setContent(ItemStack.EMPTY);
 		this.markDirty();
 		return content;
@@ -69,8 +71,8 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 
 	@Override
 	public ItemStack decrStackSize(final int index, final int amount) {
-		InventorySlot slot = getInternalSlot(index);
-		ItemStack stack = slot.decrStackSize(amount);
+		final InventorySlot slot = getInternalSlot(index);
+		final ItemStack stack = slot.decrStackSize(amount);
 		if (!stack.isEmpty()) {
 			this.markDirty();
 		}
@@ -79,7 +81,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 
 	@Override
 	public void setInventorySlotContents(int index, ItemStack itemStack) {
-		InventorySlot slot = getInternalSlot(index);
+		final InventorySlot slot = getInternalSlot(index);
 		if (!slot.isFake() && (itemStack.isEmpty() || slot.isValid(itemStack))) {
 			slot.setContent(itemStack);
 			this.markDirty();
@@ -95,7 +97,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 	public void readFromNBT(final NBTTagCompound compound) {
 		super.readFromNBT(compound);
 		NBTUtil.readFromList(compound, INVENTORY_KEY, (slotNBT) -> {
-			int index = slotNBT.getInteger(INDEX_KEY);
+			final int index = slotNBT.getInteger(INDEX_KEY);
 			InventorySlot slot = getInternalSlot(index);
 			slot.readFromNBT(slotNBT);
 		});
@@ -115,7 +117,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 	}
 
 	public final InventorySlot addSlot(final int index, final ResourceLocation unlocLocation) {
-		InventorySlot slot = new InventorySlot(index, unlocLocation);
+		final InventorySlot slot = new InventorySlot(index, unlocLocation);
 		this.inventory.put(index, slot);
 		return slot;
 	}
@@ -125,7 +127,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 	 */
 	@Deprecated
 	public final InventorySlot addSlot(final int index, final String unlocName) {
-		ResourceLocation unlocLocation = new ResourceLocation(Constants.CORE_MOD_ID, "gui.slot." + unlocName);
+		final ResourceLocation unlocLocation = new ResourceLocation(Constants.CORE_MOD_ID, "gui.slot." + unlocName);
 		return addSlot(index, unlocLocation);
 	}
 
@@ -170,18 +172,18 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 
 	@Override
 	public boolean isItemValidForSlot(final int index, final ItemStack itemStack) {
-		InventorySlot slot = this.getSlot(index);
+		final InventorySlot slot = this.getSlot(index);
 		return slot != null && (slot.isValid(itemStack) && !this.isReadOnly(index));
 	}
 
 	@Override
 	public void onDestruction() {
-		IMachine machine = getMachine();
-		World world = machine.getWorld();
-		Random rand = world.rand;
-		BlockPos pos = machine.getTileEntity().getPos();
-		for (InventorySlot slot : this.inventory.values()) {
-			ItemStack stack = slot.getItemStack();
+		final IMachine machine = getMachine();
+		final World world = machine.getWorld();
+		final Random rand = world.rand;
+		final BlockPos pos = machine.getTileEntity().getPos();
+		for (final InventorySlot slot : this.inventory.values()) {
+			final ItemStack stack = slot.getItemStack();
 			if (slot.isRecipe() || stack.isEmpty()) {
 				continue;
 			}
@@ -211,19 +213,19 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 		if (!isItemValidForSlot(index, itemstack)) {
 			return false;
 		}
-		InventorySlot slot = this.getSlot(index);
+		final InventorySlot slot = this.getSlot(index);
 		return slot != null && slot.canInsert(direction);
 	}
 
 	@Override
 	public boolean canExtractItem(final int index, final ItemStack itemstack, final EnumFacing direction) {
-		InventorySlot slot = this.getSlot(index);
+		final InventorySlot slot = this.getSlot(index);
 		return slot != null && slot.canExtract(direction);
 	}
 
 	@Override
 	public String getName() {
-		return "";
+		return StringUtils.EMPTY;
 	}
 
 	@Override

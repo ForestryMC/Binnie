@@ -1,6 +1,7 @@
 package binnie.core.machines.power;
 
 import javax.annotation.Nullable;
+import org.apache.commons.lang3.StringUtils;
 
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -46,7 +47,7 @@ public class TankInfo implements INbtReadable, INbtWritable {
 	}
 
 	public String getName() {
-		return (this.liquid == null) ? "" : this.liquid.getFluid().getLocalizedName(this.liquid);
+		return (this.liquid == null) ? StringUtils.EMPTY : this.liquid.getFluid().getLocalizedName(this.liquid);
 	}
 
 	@Override
