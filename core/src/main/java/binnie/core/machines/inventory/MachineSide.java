@@ -30,12 +30,12 @@ public class MachineSide {
 			return I18N.localise(ModId.CORE, "side.sides");
 		}
 
-		StringBuilder text = new StringBuilder();
+		final StringBuilder text = new StringBuilder();
 		boolean firstSide = true;
-		List<EnumFacing> sortedSides = new ArrayList<>(sides);
+		final List<EnumFacing> sortedSides = new ArrayList<>(sides);
 		sortedSides.sort(Comparator.comparing(ALL::indexOf));
-		for (EnumFacing side : sortedSides) {
-			String localized = I18N.localise(ModId.CORE, "side." + side.getName());
+		for (final EnumFacing side : sortedSides) {
+			final String localized = I18N.localise(ModId.CORE, "side." + side.getName());
 			if (firstSide) {
 				firstSide = false;
 			} else {

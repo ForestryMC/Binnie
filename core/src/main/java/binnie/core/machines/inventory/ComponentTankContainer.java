@@ -45,14 +45,14 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 
 	@Override
 	public final TankSlot addTank(final int index, final String name, final int capacity) {
-		TankSlot tank = new TankSlot(index, name, capacity);
+		final TankSlot tank = new TankSlot(index, name, capacity);
 		this.tanks.put(index, tank);
 		return tank;
 	}
 
 	@Override
 	public final TankSlot addTank(final int index, final ResourceLocation name, final int capacity) {
-		TankSlot tank = new TankSlot(index, name, capacity);
+		final TankSlot tank = new TankSlot(index, name, capacity);
 		this.tanks.put(index, tank);
 		return tank;
 	}
@@ -86,10 +86,10 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 	}
 
 	@Override
-	public void readFromNBT(NBTTagCompound compound) {
+	public void readFromNBT(final NBTTagCompound compound) {
 		super.readFromNBT(compound);
 		NBTUtil.readFromList(compound, TANKS_KEY, (tankNBT)->{
-			int index = tankNBT.getInteger(TANK_INDEX_KEY);
+			final int index = tankNBT.getInteger(TANK_INDEX_KEY);
 			if (this.tanks.containsKey(index)) {
 				TankSlot tank = tanks.get(index);
 				tank.readFromNBT(tankNBT);
@@ -146,7 +146,7 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 
 	@Override
 	@Nullable
-	public IFluidHandler getHandler(@Nullable EnumFacing from) {
+	public IFluidHandler getHandler(@Nullable final EnumFacing from) {
 		if (from == null) {
 			return noFacingHandler;
 		}
@@ -155,10 +155,10 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 
 	@Nullable
 	@Override
-	public IFluidHandler getHandler(int[] targetTanks) {
-		Map<Integer, TankSlot> tanks = new HashMap<>();
-		for (int index : targetTanks) {
-			TankSlot tankSlot = this.tanks.get(index);
+	public IFluidHandler getHandler(final int[] targetTanks) {
+		final Map<Integer, TankSlot> tanks = new HashMap<>();
+		for (final int index : targetTanks) {
+			final TankSlot tankSlot = this.tanks.get(index);
 			if (tankSlot != null) {
 				tanks.put(index, tankSlot);
 			}
@@ -175,7 +175,7 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 		@Nullable
 		private final EnumFacing from;
 
-		private TankContainer(ComponentTankContainer tankContainer, Map<Integer, TankSlot> tanks, @Nullable EnumFacing from) {
+		private TankContainer(final ComponentTankContainer tankContainer, final Map<Integer, TankSlot> tanks, @Nullable final EnumFacing from) {
 			this.tankContainer = tankContainer;
 			this.tanks = tanks;
 			this.from = from;
@@ -214,7 +214,7 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 		public IFluidTankProperties[] getTankProperties() {
 			final IFluidTankProperties[] properties = new IFluidTankProperties[getTanks().length];
 			for (int i = 0; i < properties.length; ++i) {
-				IFluidTank tank = getTanks()[i];
+				final IFluidTank tank = getTanks()[i];
 				properties[i] = new FluidTankProperties(tank.getFluid(), tank.getCapacity());
 			}
 			return properties;
@@ -228,7 +228,7 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 			return ltanks.toArray(EmptyHelper.FLUID_TANKS_EMPTY);
 		}
 
-		private static int getTankIndexToFill(Map<Integer, TankSlot> tanks, @Nullable EnumFacing from, final FluidStack resource) {
+		private static int getTankIndexToFill(final Map<Integer, TankSlot> tanks, @Nullable final EnumFacing from, final FluidStack resource) {
 			for (final TankSlot tank : tanks.values()) {
 				if (tank.isValid(resource) && tank.canInsert(from) && (tank.getContent() == null || tank.getContent().isFluidEqual(resource))) {
 					return tank.getIndex();
@@ -237,7 +237,7 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 			return -1;
 		}
 
-		private static int getTankIndexToDrain(Map<Integer, TankSlot> tanks, @Nullable EnumFacing from, @Nullable final FluidStack resource) {
+		private static int getTankIndexToDrain(final Map<Integer, TankSlot> tanks, @Nullable final EnumFacing from, @Nullable final FluidStack resource) {
 			for (final TankSlot tank : tanks.values()) {
 				if (tank.getContent() != null && tank.canExtract(from) && (resource == null || resource.isFluidEqual(tank.getContent()))) {
 					return tank.getIndex();

@@ -20,7 +20,7 @@ public abstract class BaseSlot<V> implements INbtWritable, INbtReadable, IValida
 	private boolean readOnly;
 	private int index;
 
-	public BaseSlot(final int index, final ResourceLocation unlocLocation) {
+	public BaseSlot(final int index, @Nullable final ResourceLocation unlocLocation) {
 		this.access = new SidedAccess();
 		this.setIndex(index);
 		this.unlocLocation = unlocLocation;
