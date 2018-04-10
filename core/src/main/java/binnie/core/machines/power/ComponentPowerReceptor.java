@@ -170,7 +170,7 @@ public class ComponentPowerReceptor extends MachineComponent implements IPowered
 
 	private void removeFromEnergyNet() {
 		final World world = this.getMachine().getWorld();
-		if (world.isRemote) {
+		if (world == null || world.isRemote) {
 			return;
 		}
 		if (Mods.IC2.active()) {
