@@ -34,6 +34,7 @@ import org.apache.commons.lang3.StringUtils;
 public class SearchDialog extends Dialog {
 	private final Control slotGrid;
 	private final WindowCompartment windowCompartment;
+	final ControlScrollableContent<IWidget> scroll;
 	private String textSearch = StringUtils.EMPTY;
 	private boolean sortByName;
 	private boolean includeItems;
@@ -43,7 +44,7 @@ public class SearchDialog extends Dialog {
 		super(windowCompartment, 252, 192);
 		this.windowCompartment = windowCompartment;
 
-		final ControlScrollableContent<IWidget> scroll = new SearchScrollContent(this);
+		scroll = new SearchScrollContent(this);
 		this.slotGrid = new Control(scroll, 1, 1, 108, 18);
 		scroll.setScrollableContent(this.slotGrid);
 		new ControlPlayerInventory(this, true);
@@ -110,7 +111,7 @@ public class SearchDialog extends Dialog {
 		}
 		while (y < 108 || x != 0) {
 			// TODO: what was this supposed to do?
-			new ControlSlot.Builder(this.slotGrid, x, y);
+			//new ControlSlot.Builder(this.slotGrid, x, y);
 			x += 18;
 			if (x >= 108) {
 				x = 0;
@@ -131,7 +132,7 @@ public class SearchDialog extends Dialog {
 		@SideOnly(Side.CLIENT)
 		public void onRenderBackground(int guiWidth, int guiHeight) {
 			RenderUtil.setColour(11184810);
-			CraftGUI.RENDER.texture(CraftGUITexture.OUTLINE, searchDialog.windowCompartment.getArea().inset(new Border(0, 6, 0, 0)));
+			CraftGUI.RENDER.texture(CraftGUITexture.OUTLINE, searchDialog.scroll.getArea().inset(new Border(0, 6, 0, 0)));
 		}
 	}
 
