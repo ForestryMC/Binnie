@@ -25,6 +25,7 @@ import binnie.core.util.I18N;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -40,7 +41,7 @@ public class SearchDialog extends Dialog {
 	private boolean includeItems;
 	private boolean includeBlocks;
 
-	public SearchDialog(WindowCompartment windowCompartment) {
+	public SearchDialog(final WindowCompartment windowCompartment) {
 		super(windowCompartment, 252, 192);
 		this.windowCompartment = windowCompartment;
 
@@ -68,8 +69,10 @@ public class SearchDialog extends Dialog {
 			if (!stack.isEmpty()) {
 				final String name = stack.getDisplayName().toLowerCase();
 				if (this.textSearch.length() == 0 || name.contains(this.textSearch)) {
-					if (this.includeBlocks || Block.getBlockFromItem(stack.getItem()) == Blocks.AIR) {
-						if (this.includeItems || Block.getBlockFromItem(stack.getItem()) != Blocks.AIR) {
+					final Item item = stack.getItem();
+					final Block block = Block.getBlockFromItem(item);
+					if (this.includeBlocks || block == Blocks.AIR) {
+						if (this.includeItems || block != Blocks.AIR) {
 							slotIds.put(i, name);
 						}
 					}
