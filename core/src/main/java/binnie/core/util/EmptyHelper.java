@@ -29,8 +29,6 @@ public final class EmptyHelper {
 
     public static final IFluidTank[] FLUID_TANKS_EMPTY = new IFluidTank[0];
 
-    public static final Integer[] DEFAULT_TABS_EMPTY = new Integer[0];
-
     public static final IProperty[] PROPERTIES_EMPTY = new IProperty[0];
 
     public static final ItemStack[] ITEM_STACKS_EMPTY = new ItemStack[0];
