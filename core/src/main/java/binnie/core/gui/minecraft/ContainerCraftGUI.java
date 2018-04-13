@@ -144,9 +144,7 @@ public class ContainerCraftGUI extends Container {
 				shiftClickedSlot.putStack(itemstack);
 				shiftClickedSlot.onSlotChanged();
 				for (ItemStack remaining : results) {
-					if (!remaining.isEmpty()) {
-						player.inventory.addItemStackToInventory(remaining);
-					}
+					player.inventory.addItemStackToInventory(remaining);
 				}
 			}
 		}
@@ -206,9 +204,7 @@ public class ContainerCraftGUI extends Container {
 					IItemHandler itemHandler = new InvWrapper(inventory);
 					for (ItemStack remaining : results) {
 						ItemStack stack = ItemHandlerHelper.insertItemStacked(itemHandler, remaining, false);
-						if (!stack.isEmpty()) {
-							player.inventory.addItemStackToInventory(stack);
-						}
+						player.inventory.addItemStackToInventory(stack);
 					}
 				}
 
