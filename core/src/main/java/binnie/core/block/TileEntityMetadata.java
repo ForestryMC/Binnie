@@ -99,7 +99,7 @@ public class TileEntityMetadata extends TileEntity {
 		if (this.meta != meta) {
 			this.meta = meta;
 			if (notify) {
-				final IBlockState state = world.getBlockState(pos);
+				IBlockState state = world.getBlockState(pos);
 				world.notifyBlockUpdate(pos, state, state, 3);
 			}
 		}

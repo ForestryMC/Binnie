@@ -96,7 +96,7 @@ public class TextureRenderer {
 		this.styleSheet = styleSheet;
 	}
 
-	public final void preRender(final IWidget widget, final int guiWidth, final int guiHeight) {
+	public final void preRender(final IWidget widget, int guiWidth, int guiHeight) {
 		GlStateManager.pushMatrix();
 		GlStateManager.translate(widget.getPosition().xPos(), widget.getPosition().yPos(), 0.0f);
 		RenderUtil.setColour(widget.getColor());
@@ -167,13 +167,13 @@ public class TextureRenderer {
 		}
 	}
 
-	public void limitArea(final IArea area, final int guiWidth, final int guiHeight) {
+	public void limitArea(final IArea area, int guiWidth, int guiHeight) {
 		float x = area.pos().xPos();
 		float y = area.pos().yPos();
 		float w = area.size().xPos();
 		float h = area.size().yPos();
 		y = guiHeight - (y + h);
-		final Minecraft minecraft = Minecraft.getMinecraft();
+		Minecraft minecraft = Minecraft.getMinecraft();
 		final float scaleX = guiWidth / (float) minecraft.displayWidth;
 		final float scaleY = guiHeight / (float) minecraft.displayHeight;
 		x += 0.0f;
@@ -184,8 +184,8 @@ public class TextureRenderer {
 	}
 
 	public int textHeight(final String text, final int width) {
-		final Minecraft minecraft = Minecraft.getMinecraft();
-		final FontRenderer fontRenderer = minecraft.fontRenderer;
+		Minecraft minecraft = Minecraft.getMinecraft();
+		FontRenderer fontRenderer = minecraft.fontRenderer;
 		return fontRenderer.listFormattedStringToWidth(text, width).size() * RenderUtil.getTextHeight();
 	}
 

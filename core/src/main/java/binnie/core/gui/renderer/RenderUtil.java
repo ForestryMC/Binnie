@@ -95,8 +95,8 @@ public class RenderUtil {
 		uMax -= maskRight / 16.0 * (uMax - uMin);
 		vMax -= maskTop / 16.0 * (vMax - vMin);
 
-		final Tessellator tessellator = Tessellator.getInstance();
-		final BufferBuilder bufferBuilder = tessellator.getBuffer();
+		Tessellator tessellator = Tessellator.getInstance();
+		BufferBuilder bufferBuilder = tessellator.getBuffer();
 		bufferBuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
 		bufferBuilder.pos(xCoord, yCoord + 16, zLevel).tex(uMin, vMax).endVertex();
 		bufferBuilder.pos(xCoord + 16 - maskRight, yCoord + 16, zLevel).tex(uMax, vMax).endVertex();
@@ -121,12 +121,12 @@ public class RenderUtil {
 	}
 
 	public static int getTextWidth(final String text) {
-		final FontRenderer fontRenderer = Minecraft.getMinecraft().fontRenderer;
+		FontRenderer fontRenderer = Minecraft.getMinecraft().fontRenderer;
 		return fontRenderer.getStringWidth(text);
 	}
 
 	public static int getTextHeight() {
-		final FontRenderer fontRenderer = Minecraft.getMinecraft().fontRenderer;
+		FontRenderer fontRenderer = Minecraft.getMinecraft().fontRenderer;
 		return (fontRenderer == null) ? 0 : fontRenderer.FONT_HEIGHT;
 	}
 
@@ -139,7 +139,7 @@ public class RenderUtil {
 		if (area.size().xPos() <= 0.0f) {
 			return;
 		}
-		final FontRenderer fontRenderer = Minecraft.getMinecraft().fontRenderer;
+		FontRenderer fontRenderer = Minecraft.getMinecraft().fontRenderer;
 		final List<String> wrappedStrings = fontRenderer.listFormattedStringToWidth(text, area.size().xPos());
 		final float totalHeight = wrappedStrings.size() * getTextHeight();
 		float posY =  pos.yPos();
@@ -191,13 +191,13 @@ public class RenderUtil {
 		GlStateManager.enableBlend();
 		GlStateManager.enableAlpha();
 
-		final Minecraft minecraft = Minecraft.getMinecraft();
+		Minecraft minecraft = Minecraft.getMinecraft();
 		if (fluidStack != null) {
-			final Fluid fluid = fluidStack.getFluid();
+			Fluid fluid = fluidStack.getFluid();
 			if (fluid != null) {
-				final TextureAtlasSprite stillSprite = getStillFluidSprite(minecraft, fluid);
+				TextureAtlasSprite stillSprite = getStillFluidSprite(minecraft, fluid);
 
-				final int fluidColor = fluid.getColor(fluidStack);
+				int fluidColor = fluid.getColor(fluidStack);
 
 				minecraft.renderEngine.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 				setColour(fluidColor);
@@ -209,8 +209,8 @@ public class RenderUtil {
 	}
 
 	private static TextureAtlasSprite getStillFluidSprite(Minecraft minecraft, Fluid fluid) {
-		final TextureMap textureMapBlocks = minecraft.getTextureMapBlocks();
-		final ResourceLocation fluidStill = fluid.getStill();
+		TextureMap textureMapBlocks = minecraft.getTextureMapBlocks();
+		ResourceLocation fluidStill = fluid.getStill();
 		TextureAtlasSprite fluidStillSprite = null;
 		if (fluidStill != null) {
 			fluidStillSprite = textureMapBlocks.getTextureExtry(fluidStill.toString());

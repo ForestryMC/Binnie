@@ -55,9 +55,9 @@ class SidedAccess {
 	}
 
 	public Collection<EnumFacing> getInsertionSides() {
-		final List<EnumFacing> dirs = new ArrayList<>();
-		for (final EnumFacing side : EnumFacing.VALUES) {
-			final AccessDirection direction = getAccess(side);
+		List<EnumFacing> dirs = new ArrayList<>();
+		for (EnumFacing side : EnumFacing.VALUES) {
+			AccessDirection direction = getAccess(side);
 			if (direction.canInsert()) {
 				dirs.add(side);
 			}
@@ -66,9 +66,9 @@ class SidedAccess {
 	}
 
 	public Collection<EnumFacing> getExtractionSides() {
-		final List<EnumFacing> dirs = new ArrayList<>();
-		for (final EnumFacing side : EnumFacing.VALUES) {
-			final AccessDirection direction = getAccess(side);
+		List<EnumFacing> dirs = new ArrayList<>();
+		for (EnumFacing side : EnumFacing.VALUES) {
+			AccessDirection direction = getAccess(side);
 			if (direction.canExtract()) {
 				dirs.add(side);
 			}
@@ -77,14 +77,14 @@ class SidedAccess {
 	}
 
 	public void setInsert(EnumFacing side, boolean value) {
-		final AccessDirection direction = getAccess(side);
+		AccessDirection direction = getAccess(side);
 		if (direction.canInsert() != value) {
 			this.accesses.put(side, direction.changeInsert(value));
 		}
 	}
 
 	public void setExtract(EnumFacing side, boolean value) {
-		final AccessDirection direction = getAccess(side);
+		AccessDirection direction = getAccess(side);
 		if (direction.canExtract() != value) {
 			this.accesses.put(side, direction.changeExtract(value));
 		}

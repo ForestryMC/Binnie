@@ -53,7 +53,7 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister {
 
 	@Override
 	public String getItemStackDisplayName(final ItemStack itemstack) {
-		final FluidStack fluid = getContained(itemstack);
+		FluidStack fluid = getContained(itemstack);
 		if (fluid == null) {
 			return I18N.localise(ModId.CORE, "item.container.empty", container.getDisplayName());
 		}

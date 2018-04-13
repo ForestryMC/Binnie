@@ -137,11 +137,11 @@ public class GuiCraftGUI extends GuiContainer {
 		final int mouseX = mousePosition.xPos();
 		final int mouseY = mousePosition.yPos();
 		final FontRenderer font = this.getFontRenderer();
-		final ItemStack itemStack = tooltip.getItemStack();
+		ItemStack itemStack = tooltip.getItemStack();
 
 		boolean containsItemRender = false;
 
-		final List<String> textLines = new ArrayList<>(tooltip.getList().size());
+		List<String> textLines = new ArrayList<>(tooltip.getList().size());
 		for (final String string : tooltip.getList()) {
 			if (string != null) {
 				if (!string.contains(Tooltip.NBT_SEPARATOR)) {
@@ -200,15 +200,15 @@ public class GuiCraftGUI extends GuiContainer {
 
 		if (needsWrap) {
 			int wrappedTooltipWidth = 0;
-			final List<String> wrappedTextLines = new ArrayList<>(textLines.size());
+			List<String> wrappedTextLines = new ArrayList<>(textLines.size());
 			for (int i = 0; i < textLines.size(); i++) {
-				final String textLine = textLines.get(i);
-				final List<String> wrappedLine = font.listFormattedStringToWidth(textLine, tooltipTextWidth);
+				String textLine = textLines.get(i);
+				List<String> wrappedLine = font.listFormattedStringToWidth(textLine, tooltipTextWidth);
 				if (i == 0) {
 					titleLinesCount = wrappedLine.size();
 				}
 
-				for (final String line : wrappedLine) {
+				for (String line : wrappedLine) {
 					int lineWidth = font.getStringWidth(line);
 					if (textLine.contains(Tooltip.NBT_SEPARATOR)) {
 						lineWidth = 12 + font.getStringWidth(PATTERN_NBT_CONTENT.matcher(textLine).replaceAll(StringUtils.EMPTY));
@@ -284,8 +284,8 @@ public class GuiCraftGUI extends GuiContainer {
 	private void drawItem(String line, int tooltipX, int tooltipY){
 		String itemTag = line.split(Tooltip.NBT_SEPARATOR)[1];
 		try {
-			final NBTTagCompound nbt = JsonToNBT.getTagFromJson(itemTag);
-			final ItemStack stack = new ItemStack(nbt);
+			NBTTagCompound nbt = JsonToNBT.getTagFromJson(itemTag);
+			ItemStack stack = new ItemStack(nbt);
 			GlStateManager.pushMatrix();
 			GlStateManager.translate(tooltipX, tooltipY - 1.5f, 0.0f);
 			GlStateManager.scale(0.6f, 0.6f, 1.0f);

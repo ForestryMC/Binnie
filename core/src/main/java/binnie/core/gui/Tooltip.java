@@ -71,7 +71,7 @@ public class Tooltip {
 	 * Add a tooltip that also displays an itemStack on the tooltip directly.
 	 */
 	public void add(ItemStack itemStack, String string) {
-		final NBTTagCompound nbt = new NBTTagCompound();
+		NBTTagCompound nbt = new NBTTagCompound();
 		itemStack.writeToNBT(nbt);
 		nbt.setByte(NBT_TYPE_KEY, TYPE_ITEM);
 		this.add(NBT_SEPARATOR + nbt.toString() + NBT_SEPARATOR + string);
@@ -81,7 +81,7 @@ public class Tooltip {
 	 * Add a tooltip that also displays an fluidStack on the tooltip directly.
 	 */
 	public void add(FluidStack fluidStack, String string) {
-		final NBTTagCompound nbt = new NBTTagCompound();
+		NBTTagCompound nbt = new NBTTagCompound();
 		fluidStack.writeToNBT(nbt);
 		nbt.setByte(NBT_TYPE_KEY, TYPE_FLUID);
 		this.add(NBT_SEPARATOR + nbt.toString() + NBT_SEPARATOR + string);

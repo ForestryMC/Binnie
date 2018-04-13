@@ -20,18 +20,18 @@ public class ControlIndividualDisplay extends ControlItemDisplay implements IToo
 
 	public ControlIndividualDisplay(IWidget parent, int x, int y, int size, IIndividual ind) {
 		super(parent, x, y, size);
-		final IBreedingSystem system = Binnie.GENETICS.getSystem(ind.getGenome().getSpeciesRoot());
+		IBreedingSystem system = Binnie.GENETICS.getSystem(ind.getGenome().getSpeciesRoot());
 		setItemStack(system.getSpeciesRoot().getMemberStack(ind, system.getDefaultType()));
 		setTooltip();
 	}
 
 	@Override
 	public void getTooltip(Tooltip tooltip, ITooltipFlag tooltipFlag) {
-		final ItemStack stack = getItemStack();
+		ItemStack stack = getItemStack();
 		if (stack.isEmpty()) {
 			return;
 		}
-		final IIndividual ind = AlleleManager.alleleRegistry.getIndividual(stack);
+		IIndividual ind = AlleleManager.alleleRegistry.getIndividual(stack);
 		if (ind == null) {
 			return;
 		}

@@ -21,14 +21,14 @@ public class FluidHandlerItemBinnie extends FluidHandlerItemStackSimple {
 			return false;
 		}
 
-		final Fluid fluid = fluidStack.getFluid();
+		Fluid fluid = fluidStack.getFluid();
 		if (fluid == null) {
 			return false;
 		}
 
 		if (fluid instanceof BinnieFluid) {
-			final BinnieFluid binnieFluid = (BinnieFluid) fluid;
-			final FluidType definition = binnieFluid.getType();
+			BinnieFluid binnieFluid = (BinnieFluid) fluid;
+			FluidType definition = binnieFluid.getType();
 			return definition.canPlaceIn(containerType);
 		}
 		return false;

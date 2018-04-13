@@ -165,7 +165,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 
 	@Nullable
 	public String showInfoButton() {
-		final IMachineInformation machineInformation = Machine.getInterface(IMachineInformation.class, this.getInventory());
+		IMachineInformation machineInformation = Machine.getInterface(IMachineInformation.class, this.getInventory());
 		if (machineInformation != null) {
 			return machineInformation.getInformation();
 		}

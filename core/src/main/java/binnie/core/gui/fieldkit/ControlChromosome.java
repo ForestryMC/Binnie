@@ -39,11 +39,11 @@ public class ControlChromosome extends Control implements IControlValue<IChromos
 			deleteAllChildren();
 
 			if (breedingSystem != null) {
-				final IFieldKitPlugin fieldKitPlugin = breedingSystem.getFieldKitPlugin();
+				IFieldKitPlugin fieldKitPlugin = breedingSystem.getFieldKitPlugin();
 
 				for (Map.Entry<IChromosomeType, IPoint> entry : fieldKitPlugin.getChromosomePickerPositions().entrySet()) {
-					final IChromosomeType chromosomeType = entry.getKey();
-					final IPoint position = entry.getValue();
+					IChromosomeType chromosomeType = entry.getKey();
+					IPoint position = entry.getValue();
 					new ControlChromoPicker(this, position.xPos(), position.yPos(), chromosomeType);
 				}
 			}
@@ -67,7 +67,7 @@ public class ControlChromosome extends Control implements IControlValue<IChromos
 			return;
 		}
 		super.onRenderBackground(guiWidth, guiHeight);
-		final ITexture texture = getTypeTexture();
+		ITexture texture = getTypeTexture();
 		CraftGUI.RENDER.texture(texture, Point.ZERO);
 	}
 
@@ -76,7 +76,7 @@ public class ControlChromosome extends Control implements IControlValue<IChromos
 		if (breedingSystem == null) {
 			return null;
 		}
-		final IFieldKitPlugin fieldKitPlugin = breedingSystem.getFieldKitPlugin();
+		IFieldKitPlugin fieldKitPlugin = breedingSystem.getFieldKitPlugin();
 		return fieldKitPlugin.getTypeTexture();
 	}
 }

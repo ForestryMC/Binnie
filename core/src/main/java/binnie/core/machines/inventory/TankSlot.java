@@ -46,7 +46,7 @@ public class TankSlot extends BaseSlot<FluidStack> {
 		return this.tank.getFluid();
 	}
 
-	private void setContent(@Nullable final FluidStack stack) {
+	private void setContent(@Nullable FluidStack stack) {
 		this.tank.setFluid(stack);
 	}
 
@@ -56,7 +56,7 @@ public class TankSlot extends BaseSlot<FluidStack> {
 
 	@Override
 	public String getName() {
-		final Validator<FluidStack> validator = getValidator();
+		Validator<FluidStack> validator = getValidator();
 		if (validator != null) {
 			return I18N.localise(ModId.CORE, "gui.tank.validated", validator.getTooltip());
 		}

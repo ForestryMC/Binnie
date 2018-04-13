@@ -88,15 +88,15 @@ public class ContainerCraftGUI extends Container {
 	public void onContainerClosed(final EntityPlayer playerIn) {
 		this.crafters.remove(playerIn);
 		super.onContainerClosed(playerIn);
-		final WindowInventory inventory = this.window.getWindowInventory();
+		WindowInventory inventory = this.window.getWindowInventory();
 		for (int i = 0; i < inventory.getSizeInventory(); ++i) {
 			if (inventory.dispenseOnClose(i)) {
-				final ItemStack stack = inventory.getStackInSlot(i);
+				ItemStack stack = inventory.getStackInSlot(i);
 				if (stack.isEmpty()) {
 					continue;
 				}
-				final TransferRequest transferRequest = new TransferRequest(stack, playerIn.inventory);
-				final TransferResult transferResult = transferRequest.transfer(playerIn, true);
+				TransferRequest transferRequest = new TransferRequest(stack, playerIn.inventory);
+				TransferResult transferResult = transferRequest.transfer(playerIn, true);
 				if (transferResult.isSuccess()) {
 					for (ItemStack result : transferResult.getRemaining()) {
 						playerIn.dropItem(result, false);
@@ -126,7 +126,7 @@ public class ContainerCraftGUI extends Container {
 			crafters.add(entityPlayer);
 			this.sentNBT.clear();
 		}
-		final IInventory inventory = this.window.getInventory();
+		IInventory inventory = this.window.getInventory();
 		return inventory == null || inventory.isUsableByPlayer(entityPlayer);
 	}
 
@@ -137,9 +137,9 @@ public class ContainerCraftGUI extends Container {
 
 	private ItemStack shiftClick(final EntityPlayer player, final int slotnumber) {
 		final TransferRequest request = this.getShiftClickRequest(player, slotnumber);
-		final TransferResult transferResult = request.transfer(player, true);
+		TransferResult transferResult = request.transfer(player, true);
 		if (transferResult.isSuccess()) {
-			final NonNullList<ItemStack> results = transferResult.getRemaining();
+			NonNullList<ItemStack> results = transferResult.getRemaining();
 			if (results.size() == 1) {
 				final ItemStack itemstack = results.get(0);
 				final Slot shiftClickedSlot = this.inventorySlots.get(slotnumber);
@@ -180,7 +180,7 @@ public class ContainerCraftGUI extends Container {
 	}
 
 	public final void tankClick(final EntityPlayer player, final int slotID) {
-		final IInventory inventory = this.window.getInventory();
+		IInventory inventory = this.window.getInventory();
 		if (inventory == null) {
 			return;
 		}
@@ -189,18 +189,18 @@ public class ContainerCraftGUI extends Container {
 			return;
 		}
 		heldItem = heldItem.copy();
-		final TransferRequest transferRequest = new TransferRequest(heldItem, inventory).setTargetTanks(slotID);
-		final TransferResult transferResult = transferRequest.transfer(player, true);
+		TransferRequest transferRequest = new TransferRequest(heldItem, inventory).setTargetTanks(slotID);
+		TransferResult transferResult = transferRequest.transfer(player, true);
 		if (transferResult.isSuccess()) {
-			final NonNullList<ItemStack> results = transferResult.getRemaining();
+			NonNullList<ItemStack> results = transferResult.getRemaining();
 			if (results.size() > 0) {
-				final ItemStack heldItemResult = results.remove(results.size() - 1);
+				ItemStack heldItemResult = results.remove(results.size() - 1);
 				player.inventory.setItemStack(heldItemResult);
 				if (player instanceof EntityPlayerMP) {
 					((EntityPlayerMP) player).updateHeldItem();
 				}
 				if (results.size() > 0) {
-					final IItemHandler itemHandler = new InvWrapper(inventory);
+					IItemHandler itemHandler = new InvWrapper(inventory);
 					for (ItemStack remaining : results) {
 						ItemHandlerHelper.insertItemStacked(itemHandler, remaining, false);
 					}
@@ -270,7 +270,7 @@ public class ContainerCraftGUI extends Container {
 	}
 
 	private void sendTankChanges(){
-		final ITankMachine tanks = Machine.getInterface(ITankMachine.class, this.window.getInventory());
+		ITankMachine tanks = Machine.getInterface(ITankMachine.class, this.window.getInventory());
 		if (tanks != null && this.window.isServer()) {
 			for (int i = 0; i < tanks.getTankInfos().length; ++i) {
 				final TankInfo tank = tanks.getTankInfos()[i];

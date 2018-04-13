@@ -23,16 +23,16 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 	}
 
 	public static ItemStack getBlockDropped(IBlockMetadata block, IBlockAccess world, BlockPos pos) {
-		final TileEntityMetadata tile = TileEntityMetadata.getTile(world, pos);
+		TileEntityMetadata tile = TileEntityMetadata.getTile(world, pos);
 		if (tile != null && !tile.hasDroppedBlock()) {
-			final int meta = block.getDroppedMeta(world.getBlockState(pos), tile.getTileMetadata());
+			int meta = block.getDroppedMeta(world.getBlockState(pos), tile.getTileMetadata());
 			return TileEntityMetadata.getItemStack((Block) block, meta);
 		}
 		return ItemStack.EMPTY;
 	}
 
 	public static void getDrops(NonNullList<ItemStack> drops, IBlockMetadata block, IBlockAccess world, BlockPos pos) {
-		final ItemStack drop = getBlockDropped(block, world, pos);
+		ItemStack drop = getBlockDropped(block, world, pos);
 		if (!drop.isEmpty()) {
 			drops.add(drop);
 		}
@@ -40,8 +40,8 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 
 	public static boolean breakBlock(IBlockMetadata blockMetadata, @Nullable EntityPlayer player, World world, BlockPos pos) {
 		List<ItemStack> drops = null;
-		final Block block = (Block) blockMetadata;
-		final TileEntityMetadata tile = TileEntityMetadata.getTile(world, pos);
+		Block block = (Block) blockMetadata;
+		TileEntityMetadata tile = TileEntityMetadata.getTile(world, pos);
 		if (tile != null && !tile.hasDroppedBlock()) {
 			drops = block.getDrops(world, pos, world.getBlockState(pos), 0);
 		}
@@ -56,7 +56,7 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 	}
 
 	public static ItemStack getPickBlock(World world, BlockPos pos) {
-		final Block block = world.getBlockState(pos).getBlock();
+		Block block = world.getBlockState(pos).getBlock();
 		return getBlockDropped((IBlockMetadata) block, world, pos);
 	}
 

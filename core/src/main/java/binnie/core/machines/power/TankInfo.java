@@ -26,8 +26,8 @@ public class TankInfo implements INbtReadable, INbtWritable {
 	}
 
 	public static TankInfo[] get(final ITankMachine machine) {
-		final IFluidTank[] fluidTanks = machine.getTanks();
-		final TankInfo[] info = new TankInfo[fluidTanks.length];
+		IFluidTank[] fluidTanks = machine.getTanks();
+		TankInfo[] info = new TankInfo[fluidTanks.length];
 		for (int i = 0; i < info.length; ++i) {
 			info[i] = new TankInfo(fluidTanks[i]);
 		}

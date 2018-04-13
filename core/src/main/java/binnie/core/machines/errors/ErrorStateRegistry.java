@@ -7,7 +7,7 @@ public class ErrorStateRegistry {
 	private static final Map<String, IErrorStateDefinition> states = new HashMap<>();
 
 	public static void registerErrorState(IErrorStateDefinition state) {
-		final String uid = state.getUID();
+		String uid = state.getUID();
 		if (!uid.contains(":")) {
 			throw new RuntimeException("Binnie Error State name must be in the format <modid>:<name>.");
 		}

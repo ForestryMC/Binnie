@@ -22,17 +22,17 @@ public class ComponentInventoryTransfer extends MachineComponent {
 	}
 
 	public void addRestock(final int[] buffer, final int destination, final int limit) {
-		final Restock restock = new Restock(this.getMachine(), buffer, destination, limit);
+		Restock restock = new Restock(this.getMachine(), buffer, destination, limit);
 		this.transfers.add(restock);
 	}
 
 	public void addRestock(final int[] buffer, final int destination) {
-		final Restock restock = new Restock(this.getMachine(), buffer, destination);
+		Restock restock = new Restock(this.getMachine(), buffer, destination);
 		this.transfers.add(restock);
 	}
 
 	public void addStorage(final int source, final int[] destination) {
-		final Storage storage = new Storage(this.getMachine(), source, destination);
+		Storage storage = new Storage(this.getMachine(), source, destination);
 		this.transfers.add(storage);
 	}
 
@@ -44,8 +44,8 @@ public class ComponentInventoryTransfer extends MachineComponent {
 	}
 
 	public void addStorage(final int source, final int[] destination, final Condition condition) {
-		final Storage storage = new Storage(this.getMachine(), source, destination);
-		final Transfer transfer = storage.setCondition(condition);
+		Storage storage = new Storage(this.getMachine(), source, destination);
+		Transfer transfer = storage.setCondition(condition);
 		this.transfers.add(transfer);
 	}
 
@@ -130,12 +130,12 @@ public class ComponentInventoryTransfer extends MachineComponent {
 
 		@Override
 		protected void doTransfer(final IInventory inv) {
-			final ItemStack stackInSlot = inv.getStackInSlot(this.source);
+			ItemStack stackInSlot = inv.getStackInSlot(this.source);
 			if (!stackInSlot.isEmpty()) {
-				final TransferRequest transferRequest = new TransferRequest(stackInSlot, inv).setTargetSlots(this.destination).ignoreValidation();
-				final TransferResult transferResult = transferRequest.transfer(null, true);
+				TransferRequest transferRequest = new TransferRequest(stackInSlot, inv).setTargetSlots(this.destination).ignoreValidation();
+				TransferResult transferResult = transferRequest.transfer(null, true);
 				if (transferResult.isSuccess()) {
-					final NonNullList<ItemStack> results = transferResult.getRemaining();
+					NonNullList<ItemStack> results = transferResult.getRemaining();
 					if (results.size() == 1) {
 						inv.setInventorySlotContents(this.source, results.get(0));
 					}

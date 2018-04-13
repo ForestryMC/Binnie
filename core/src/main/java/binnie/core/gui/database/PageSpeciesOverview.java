@@ -54,7 +54,7 @@ public class PageSpeciesOverview extends PageSpecies {
 		this.controlAuthority.setValue(I18N.localise(DatabaseConstants.KEY + ".discovered") + ": " + TextFormatting.BOLD + species.getAuthority());
 		this.controlComplexity.setValue(I18N.localise(DatabaseConstants.KEY + ".overview.complexity") + ": " + species.getComplexity());
 		final String desc = species.getDescription();
-		final StringBuilder descBody = new StringBuilder(TextFormatting.ITALIC.toString());
+		StringBuilder descBody = new StringBuilder(TextFormatting.ITALIC.toString());
 		String descSig = StringUtils.EMPTY;
 		if (desc == null || desc.length() == 0 || desc.contains("for.description") || desc.contains(".desc")) {
 			descBody.append(I18N.localise(DatabaseConstants.KEY + ".no.description"));

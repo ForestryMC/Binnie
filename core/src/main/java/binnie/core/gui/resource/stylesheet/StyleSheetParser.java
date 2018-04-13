@@ -43,14 +43,14 @@ public class StyleSheetParser {
 	@SideOnly(Side.CLIENT)
 	public static StyleSheet parseSheet(IResourceManager manager, ResourceLocation location) {
 		try {
-			final IResource res = manager.getResource(location);
-			final BufferedReader bufferedreader = new BufferedReader(new InputStreamReader(res.getInputStream(), Charsets.UTF_8));
+			IResource res = manager.getResource(location);
+			BufferedReader bufferedreader = new BufferedReader(new InputStreamReader(res.getInputStream(), Charsets.UTF_8));
 
-			final JsonParser jsonParser = new JsonParser();
-			final JsonObject jsonObject = jsonParser.parse(bufferedreader).getAsJsonObject();
+			JsonParser jsonParser = new JsonParser();
+			JsonObject jsonObject = jsonParser.parse(bufferedreader).getAsJsonObject();
 
-			final Map<String, ParsedTextureSheet> textureSheets = parseTextureSheets(jsonObject);
-			final Map<String, Texture> textures = parseTextures(jsonObject, textureSheets);
+			Map<String, ParsedTextureSheet> textureSheets = parseTextureSheets(jsonObject);
+			Map<String, Texture> textures = parseTextures(jsonObject, textureSheets);
 
 			IOUtils.closeQuietly(bufferedreader);
 			return new StyleSheet(textures);
@@ -60,21 +60,21 @@ public class StyleSheetParser {
 	}
 
 	private static Map<String, ParsedTextureSheet> parseTextureSheets(JsonObject jsonObject){
-		final JsonArray textureSheetsArray = JsonUtils.getJsonArray(jsonObject, SHEETS_KEY);
+		JsonArray textureSheetsArray = JsonUtils.getJsonArray(jsonObject, SHEETS_KEY);
 		if(textureSheetsArray == null){
 			return Collections.emptyMap();
 		}
-		final Map<String, ParsedTextureSheet> textureSheets = new HashMap<>();
-		for (final JsonElement element : textureSheetsArray) {
+		Map<String, ParsedTextureSheet> textureSheets = new HashMap<>();
+		for (JsonElement element : textureSheetsArray) {
 			if(!element.isJsonObject()){
 				continue;
 			}
 			try {
-				final JsonObject sheetJson = (JsonObject) element;
-				final String name = JsonUtils.getString(sheetJson, NAME_KEY);
-				final String modid = JsonUtils.getString(sheetJson, MODID_KEY);
-				final String path = JsonUtils.getString(sheetJson, PATH_KEY);
-				final ParsedTextureSheet textureSheet = new ParsedTextureSheet(modid, path);
+				JsonObject sheetJson = (JsonObject) element;
+				String name = JsonUtils.getString(sheetJson, NAME_KEY);
+				String modid = JsonUtils.getString(sheetJson, MODID_KEY);
+				String path = JsonUtils.getString(sheetJson, PATH_KEY);
+				ParsedTextureSheet textureSheet = new ParsedTextureSheet(modid, path);
 				textureSheets.put(name, textureSheet);
 			}catch(Exception e){
 				Log.warning("Failed to load stylesheet for Binnie's Mods.", e);
@@ -84,22 +84,22 @@ public class StyleSheetParser {
 	}
 
 	private static Map<String, Texture> parseTextures(JsonObject jsonObject, Map<String, ParsedTextureSheet> textureSheets){
-		final JsonArray texturesJson = JsonUtils.getJsonArray(jsonObject, TEXTURES_KEY);
+		JsonArray texturesJson = JsonUtils.getJsonArray(jsonObject, TEXTURES_KEY);
 		if(texturesJson == null){
 			return Collections.emptyMap();
 		}
-		final Map<String, Texture> textures = new HashMap<>();
+		Map<String, Texture> textures = new HashMap<>();
 		for (JsonElement element : texturesJson) {
 			if(!element.isJsonObject()){
 				continue;
 			}
 			try {
-				final JsonObject sheetJson = element.getAsJsonObject();
-				final String name = JsonUtils.getString(sheetJson, NAME_KEY);
-				final String sheet = JsonUtils.getString(sheetJson, SHEET_KEY);
-				final JsonArray uvArray = JsonUtils.getJsonArray(sheetJson, UV_KEY);
-				final IBinnieTexture textureSheet = textureSheets.get(sheet);
-				final Area uv = parseArea(uvArray);
+				JsonObject sheetJson = element.getAsJsonObject();
+				String name = JsonUtils.getString(sheetJson, NAME_KEY);
+				String sheet = JsonUtils.getString(sheetJson, SHEET_KEY);
+				JsonArray uvArray = JsonUtils.getJsonArray(sheetJson, UV_KEY);
+				IBinnieTexture textureSheet = textureSheets.get(sheet);
+				Area uv = parseArea(uvArray);
 				Border border = Border.ZERO;
 				Border padding = Border.ZERO;
 				if (sheetJson.has(BORDER_KEY)) {
@@ -110,7 +110,7 @@ public class StyleSheetParser {
 					JsonArray array = JsonUtils.getJsonArray(sheetJson, PADDING_KEY);
 					padding = parseBorder(array);
 				}
-				final Texture texture = new Texture(uv, padding, border, textureSheet);
+				Texture texture = new Texture(uv, padding, border, textureSheet);
 				textures.put(name, texture);
 			}catch(Exception e){
 				Log.warning("Failed to load stylesheet for Binnie's Mods.", e);
@@ -120,12 +120,12 @@ public class StyleSheetParser {
 	}
 
 	private static Area parseArea(JsonArray uvArray) {
-		final int[] ints = new int[uvArray.size()];
+		int[] ints = new int[uvArray.size()];
 		if (ints.length < 1 || ints.length > 4) {
 			throw new JsonParseException("Parameter must have between one and four numbers");
 		}
 		for(int i = 0;i < uvArray.size();i++){
-			final JsonElement object = uvArray.get(i);
+			JsonElement object = uvArray.get(i);
 			ints[i] = JsonUtils.getInt(object, "uv" + i);
 		}
 		if (ints.length == 1) {
@@ -141,12 +141,12 @@ public class StyleSheetParser {
 	}
 
 	private static Border parseBorder(JsonArray array) {
-		final int[] ints = new int[array.size()];
+		int[] ints = new int[array.size()];
 		if (ints.length < 1 || ints.length > 4) {
 			throw new JsonParseException("Parameter must have between one and four numbers");
 		}
 		for(int i = 0;i < array.size();i++){
-			final JsonElement object = array.get(i);
+			JsonElement object = array.get(i);
 			ints[i] = JsonUtils.getInt(object, UV_KEY + i);
 		}
 		if (ints.length == 1) {

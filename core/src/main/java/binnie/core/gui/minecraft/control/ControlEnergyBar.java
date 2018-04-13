@@ -57,10 +57,10 @@ public class ControlEnergyBar extends Control implements ITooltip {
 	@SideOnly(Side.CLIENT)
 	public void getTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		tooltip.add(I18N.localise(ModId.CORE, "gui.energy.bar"));
-		final NumberFormat numberFormat = I18N.getNumberFormat();
-		final String storedEnergy = numberFormat.format(this.getStoredEnergy());
-		final String maxEnergy = numberFormat.format(this.getMaxEnergy());
-		final String energyString = TextFormatting.GRAY + storedEnergy + '/' + maxEnergy + " RF";
+		NumberFormat numberFormat = I18N.getNumberFormat();
+		String storedEnergy = numberFormat.format(this.getStoredEnergy());
+		String maxEnergy = numberFormat.format(this.getMaxEnergy());
+		String energyString = TextFormatting.GRAY + storedEnergy + '/' + maxEnergy + " RF";
 		tooltip.add(energyString);
 	}
 
@@ -72,16 +72,16 @@ public class ControlEnergyBar extends Control implements ITooltip {
 	public void getHelpTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		tooltip.add(I18N.localise(ModId.CORE, "gui.energy.bar"));
 		if (tooltipFlag.isAdvanced()) {
-			final String currentFormat = I18N.localise(ModId.CORE, "gui.energy.amount.current");
-			final NumberFormat numberFormat = I18N.getNumberFormat();
+			String currentFormat = I18N.localise(ModId.CORE, "gui.energy.amount.current");
+			NumberFormat numberFormat = I18N.getNumberFormat();
 			String currentString = PATTERN_MAX.matcher(currentFormat).replaceAll(numberFormat.format(this.getStoredEnergy()));
 			currentString = PATTERN_PERCENT.matcher(currentString).replaceAll(I18N.getPercentFormat().format(this.getPercentage() / 100.0));
 			tooltip.add(TextFormatting.GRAY + currentString);
-			final String maxEnergy = numberFormat.format(this.getMaxEnergy());
+			String maxEnergy = numberFormat.format(this.getMaxEnergy());
 			tooltip.add(TextFormatting.GRAY + I18N.localise(ModId.CORE, "gui.energy.capacity", maxEnergy));
 			final IProcess process = Machine.getInterface(IProcess.class, Window.get(this).getInventory());
 			if (process != null) {
-				final String energyPerTick = numberFormat.format((int) process.getEnergyPerTick());
+				String energyPerTick = numberFormat.format((int) process.getEnergyPerTick());
 				tooltip.add(TextFormatting.GRAY + I18N.localise(ModId.CORE, "gui.energy.cost.per.tick", energyPerTick));
 			}
 		}
@@ -98,7 +98,7 @@ public class ControlEnergyBar extends Control implements ITooltip {
 		switch (this.direction) {
 			case TOP:
 			case BOTTOM: {
-				final IPoint fullSize = area.size();
+				IPoint fullSize = area.size();
 				final int height = Math.round(fullSize.yPos() * percentage);
 				area.setSize(new Point(fullSize.xPos(), height));
 				area.setYPos(fullSize.yPos() - height);

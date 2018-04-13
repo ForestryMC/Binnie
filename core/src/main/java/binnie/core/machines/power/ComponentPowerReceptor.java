@@ -57,7 +57,7 @@ public class ComponentPowerReceptor extends MachineComponent implements IPowered
 
 	@Override
 	public NBTTagCompound writeToNBT(final NBTTagCompound nbttagcompound2) {
-		final NBTTagCompound nbttagcompound = super.writeToNBT(nbttagcompound2);
+		NBTTagCompound nbttagcompound = super.writeToNBT(nbttagcompound2);
 		this.container.writeToNBT(nbttagcompound);
 		return nbttagcompound;
 	}
@@ -98,14 +98,14 @@ public class ComponentPowerReceptor extends MachineComponent implements IPowered
 
 	@Override
 	@Optional.Method(modid = "ic2")
-	public double injectEnergy(final EnumFacing directionFrom, final double amount, final double voltage) {
+	public double injectEnergy(EnumFacing directionFrom, final double amount, final double voltage) {
 		this.container.addEnergy(PowerSystem.EU, amount, true);
 		return 0.0;
 	}
 
 	@Override
 	@Optional.Method(modid = "ic2")
-	public boolean acceptsEnergyFrom(final IEnergyEmitter emitter, final EnumFacing direction) {
+	public boolean acceptsEnergyFrom(IEnergyEmitter emitter, EnumFacing direction) {
 		return this.acceptsPowerSystem(PowerSystem.EU);
 	}
 
@@ -159,7 +159,7 @@ public class ComponentPowerReceptor extends MachineComponent implements IPowered
 	}
 
 	private void addToEnergyNet() {
-		final World world = this.getMachine().getWorld();
+		World world = this.getMachine().getWorld();
 		if (world == null || world.isRemote) {
 			return;
 		}
@@ -169,7 +169,7 @@ public class ComponentPowerReceptor extends MachineComponent implements IPowered
 	}
 
 	private void removeFromEnergyNet() {
-		final World world = this.getMachine().getWorld();
+		World world = this.getMachine().getWorld();
 		if (world == null || world.isRemote) {
 			return;
 		}

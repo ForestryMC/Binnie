@@ -34,4 +34,6 @@ public final class EmptyHelper {
     public static final ItemStack[] ITEM_STACKS_EMPTY = new ItemStack[0];
 
     public static final IGene[] GENES_EMPTY = new IGene[0];
+
+    public static final Integer[] DEFAULT_TABS_EMPTY = new Integer[0];
 }

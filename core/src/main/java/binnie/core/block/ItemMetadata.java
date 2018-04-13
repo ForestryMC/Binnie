@@ -27,7 +27,7 @@ public class ItemMetadata extends ItemBlock {
 		if (!(block instanceof IBlockMetadata)) {
 			return false;
 		}
-		final int placedMeta = ((IBlockMetadata) block).getPlacedMeta(stack, world, pos, side);
+		int placedMeta = ((IBlockMetadata) block).getPlacedMeta(stack, world, pos, side);
 		if (placedMeta < 0) {
 			return false;
 		}
@@ -35,7 +35,7 @@ public class ItemMetadata extends ItemBlock {
 			return false;
 		}
 		if (world.getBlockState(pos).getBlock() == block) {
-			final TileEntityMetadata tile = TileEntityMetadata.getTile(world, pos);
+			TileEntityMetadata tile = TileEntityMetadata.getTile(world, pos);
 			if (tile != null) {
 				tile.setTileMetadata(placedMeta, false);
 			}

@@ -86,7 +86,7 @@ public class WindowFieldKit extends Window {
 	}
 
 	private void setupValidators() {
-		final WindowInventory inventory = this.getWindowInventory();
+		WindowInventory inventory = this.getWindowInventory();
 		inventory.setValidator(INDIVIDUAL_SLOT, new SlotValidatorIndividual(null));
 		inventory.setValidator(PAPER_SLOT, new SlotValidatorPaper(null));
 		inventory.disableAutoDispense(PAPER_SLOT);
@@ -97,7 +97,7 @@ public class WindowFieldKit extends Window {
 	public void initialiseClient() {
 		this.setTitle(I18N.localise("binniecore.gui.fieldkit.title"));
 		CraftGUI.RENDER.setStyleSheet(StyleSheetManager.getSheet(StyleSheetManager.PUNNETT_SHEET));
-		final WindowInventory inventory = this.getWindowInventory();
+		WindowInventory inventory = this.getWindowInventory();
 		inventory.createSlot(INDIVIDUAL_SLOT);
 		inventory.createSlot(PAPER_SLOT);
 		this.setupValidators();
@@ -123,7 +123,7 @@ public class WindowFieldKit extends Window {
 	@Override
 	public void initialiseServer() {
 		//create slots
-		final WindowInventory inventory = this.getWindowInventory();
+		WindowInventory inventory = this.getWindowInventory();
 		final ItemStack kit = this.getPlayer().getHeldItemMainhand();
 		final int sheets = 64 - kit.getItemDamage();
 		inventory.createSlot(INDIVIDUAL_SLOT);
@@ -172,7 +172,7 @@ public class WindowFieldKit extends Window {
 		if (root == null) {
 			return;
 		}
-		final IBreedingSystem system = Binnie.GENETICS.getSystem(root);
+		IBreedingSystem system = Binnie.GENETICS.getSystem(root);
 		this.chromo.setSystem(system);
 		final Random rand = new Random();
 		this.info.clear();
@@ -197,13 +197,13 @@ public class WindowFieldKit extends Window {
 	@Override
 	public void onWindowInventoryChanged() {
 		super.onWindowInventoryChanged();
-		final WindowInventory inventory = getWindowInventory();
+		WindowInventory inventory = getWindowInventory();
 		if (this.isServer()) {
 			final ItemStack kit = this.getPlayer().getHeldItemMainhand();
 			if (kit.isEmpty() || !kit.getItem().equals(BinnieCore.getFieldKit())) {
 				return;
 			}
-			final ItemStack paper = inventory.getStackInSlot(PAPER_SLOT);
+			ItemStack paper = inventory.getStackInSlot(PAPER_SLOT);
 			final int sheets = 64 - kit.getItemDamage();
 			final int size = (paper.isEmpty()) ? 0 : paper.getCount();
 			if (sheets != size) {
@@ -257,8 +257,8 @@ public class WindowFieldKit extends Window {
 	public void receiveGuiNBTOnServer(final EntityPlayer player, final String name, final NBTTagCompound nbt) {
 		super.receiveGuiNBTOnServer(player, name, nbt);
 		if (name.equals("analyse")) {
-			final WindowInventory inventory = getWindowInventory();
-			final ItemStack individualStack = inventory.getStackInSlot(INDIVIDUAL_SLOT);
+			WindowInventory inventory = getWindowInventory();
+			ItemStack individualStack = inventory.getStackInSlot(INDIVIDUAL_SLOT);
 			inventory.setInventorySlotContents(INDIVIDUAL_SLOT, ManagerGenetics.analyse(individualStack, this.getWorld(), this.getUsername()));
 			inventory.decrStackSize(PAPER_SLOT, 1);
 		}

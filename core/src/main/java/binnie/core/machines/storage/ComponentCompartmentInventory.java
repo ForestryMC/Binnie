@@ -99,7 +99,7 @@ class ComponentCompartmentInventory extends ComponentInventorySlots implements I
 
 	@Override
 	public NBTTagCompound writeToNBT(final NBTTagCompound compound) {
-		final NBTTagCompound nbt = super.writeToNBT(compound);
+		NBTTagCompound nbt = super.writeToNBT(compound);
 		final NBTTagList list = new NBTTagList();
 		for (int i = 0; i < this.tabCount; ++i) {
 			final NBTTagCompound nbt2 = new NBTTagCompound();

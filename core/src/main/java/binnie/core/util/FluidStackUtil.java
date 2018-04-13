@@ -25,9 +25,9 @@ public class FluidStackUtil {
 				(tag != null ? ":" + fluidStack.tag : StringUtils.EMPTY);
 	}
 
-	public static NonNullList<FluidStack> removeEqualFluids(final Collection<FluidStack> fluidsStacks) {
-		final NonNullList<FluidStack> dedupedFluidStacks = NonNullList.create();
-		for (final FluidStack fluidStack : fluidsStacks) {
+	public static NonNullList<FluidStack> removeEqualFluids(Collection<FluidStack> fluidsStacks) {
+		NonNullList<FluidStack> dedupedFluidStacks = NonNullList.create();
+		for (FluidStack fluidStack : fluidsStacks) {
 			if (!containsEqualFluid(dedupedFluidStacks, fluidStack)) {
 				dedupedFluidStacks.add(fluidStack);
 			}
@@ -46,13 +46,13 @@ public class FluidStackUtil {
 
 	@Nullable
 	public static ItemStack getContainer(final FluidStack fluidStack) {
-		final ItemStack[] containers = {
+		ItemStack[] containers = {
 			new ItemStack(Items.GLASS_BOTTLE),
 			new ItemStack(Items.BUCKET)
 		};
 
-		for (final ItemStack container : containers) {
-			final IFluidHandlerItem fluidHandler = FluidUtil.getFluidHandler(container);
+		for (ItemStack container : containers) {
+			IFluidHandlerItem fluidHandler = FluidUtil.getFluidHandler(container);
 			if (fluidHandler != null && fluidHandler.fill(fluidStack, true) > 0) {
 				return fluidHandler.getContainer();
 			}

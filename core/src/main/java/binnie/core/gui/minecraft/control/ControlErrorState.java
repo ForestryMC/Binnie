@@ -67,8 +67,8 @@ public class ControlErrorState extends Control implements ITooltip {
 		}
 		ControlEnergyBar.isError = this.errorState.isPowerError();
 		if (this.errorState.isItemError()) {
-			final Collection<CustomSlot> slots = this.errorState.getCustomSlots(Window.get(this).getContainer());
-			for (final CustomSlot slot : slots) {
+			Collection<CustomSlot> slots = this.errorState.getCustomSlots(Window.get(this).getContainer());
+			for (CustomSlot slot : slots) {
 				if (this.type == 0) {
 					ControlSlot.highlighting.get(EnumHighlighting.ERROR).add(slot.slotNumber);
 				} else {

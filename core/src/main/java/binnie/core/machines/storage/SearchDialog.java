@@ -41,7 +41,7 @@ public class SearchDialog extends Dialog {
 	private boolean includeItems;
 	private boolean includeBlocks;
 
-	public SearchDialog(final WindowCompartment windowCompartment) {
+	public SearchDialog(WindowCompartment windowCompartment) {
 		super(windowCompartment, 252, 192);
 		this.windowCompartment = windowCompartment;
 

@@ -78,7 +78,7 @@ public abstract class ComponentProcess extends ComponentProcessIndefinate implem
 
 	@Override
 	public NBTTagCompound writeToNBT(final NBTTagCompound nbt1) {
-		final NBTTagCompound nbt = super.writeToNBT(nbt1);
+		NBTTagCompound nbt = super.writeToNBT(nbt1);
 		nbt.setFloat(NBT_KEY_PROGRESS, this.progressAmount);
 		return nbt;
 	}

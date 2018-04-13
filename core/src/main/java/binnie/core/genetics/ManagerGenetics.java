@@ -64,18 +64,18 @@ public class ManagerGenetics extends ManagerBase {
 		return stack.getItem() instanceof IItemAnalysable && ((IItemAnalysable) stack.getItem()).isAnalysed(stack);
 	}
 
-	public static ItemStack analyse(ItemStack stack, final World world, final GameProfile username) {
+	public static ItemStack analyse(ItemStack stack, World world, GameProfile username) {
 		if (!stack.isEmpty()) {
-			final ItemStack conv = Binnie.GENETICS.getConversionStack(stack).copy();
+			ItemStack conv = Binnie.GENETICS.getConversionStack(stack).copy();
 			if (!conv.isEmpty()) {
 				conv.setCount(stack.getCount());
 				stack = conv;
 			}
-			final ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(stack);
+			ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(stack);
 			if (root != null) {
 				final IIndividual ind = root.getMember(stack);
 				ind.analyze();
-				final IBreedingTracker breedingTracker = ind.getGenome().getSpeciesRoot().getBreedingTracker(world, username);
+				IBreedingTracker breedingTracker = ind.getGenome().getSpeciesRoot().getBreedingTracker(world, username);
 				breedingTracker.registerBirth(ind);
 				final NBTTagCompound nbttagcompound = new NBTTagCompound();
 				ind.writeToNBT(nbttagcompound);
@@ -105,8 +105,8 @@ public class ManagerGenetics extends ManagerBase {
 	}
 
 	public IBreedingSystem getSystem(final ISpeciesRoot root) {
-		final String rootUID = root.getUID();
-		final IBreedingSystem system = this.getSystem(rootUID);
+		String rootUID = root.getUID();
+		IBreedingSystem system = this.getSystem(rootUID);
 		Preconditions.checkState(system != null, "Could not find system for species root %s", rootUID);
 		return system;
 	}
@@ -124,8 +124,8 @@ public class ManagerGenetics extends ManagerBase {
 	}
 
 	public IBreedingSystem getFirstActiveSystem() {
-		final Collection<IBreedingSystem> activeSystems = getActiveSystems();
-		final IBreedingSystem first = Iterables.getFirst(activeSystems, null);
+		Collection<IBreedingSystem> activeSystems = getActiveSystems();
+		IBreedingSystem first = Iterables.getFirst(activeSystems, null);
 		if (first == null) {
 			throw new IllegalStateException("There are no breeding systems");
 		}
@@ -180,14 +180,14 @@ public class ManagerGenetics extends ManagerBase {
 		this.invalidChromosomeTypes.clear();
 		final ComparatorAllele comparator = new ComparatorAllele();
 		for (IBreedingSystem system : BREEDING_SYSTEMS.values()) {
-			final ISpeciesRoot root = system.getSpeciesRoot();
-			final Map<IChromosomeType, List<IAllele>> chromosomeMap = new LinkedHashMap<>();
-			for (final IChromosomeType chromosome : root.getKaryotype()) {
-				final TreeSet<IAllele> alleles = new TreeSet<>(comparator);
+			ISpeciesRoot root = system.getSpeciesRoot();
+			Map<IChromosomeType, List<IAllele>> chromosomeMap = new LinkedHashMap<>();
+			for (IChromosomeType chromosome : root.getKaryotype()) {
+				TreeSet<IAllele> alleles = new TreeSet<>(comparator);
 				for (IIndividual individual : root.getIndividualTemplates()) {
-					final IGenome genome = individual.getGenome();
-					final IAllele activeAllele = genome.getActiveAllele(chromosome);
-					final IAllele inactiveAllele = genome.getInactiveAllele(chromosome);
+					IGenome genome = individual.getGenome();
+					IAllele activeAllele = genome.getActiveAllele(chromosome);
+					IAllele inactiveAllele = genome.getInactiveAllele(chromosome);
 					if (chromosome.getAlleleClass().isInstance(activeAllele)) {
 						alleles.add(activeAllele);
 					}

@@ -23,7 +23,7 @@ public class ItemGenesis extends ItemCore implements IGuiItem {
 
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-		final ItemStack itemStack = playerIn.getHeldItem(handIn);
+		ItemStack itemStack = playerIn.getHeldItem(handIn);
 		openGuiOnRightClick(itemStack, worldIn, playerIn);
 		return new ActionResult<>(EnumActionResult.SUCCESS, itemStack);
 	}

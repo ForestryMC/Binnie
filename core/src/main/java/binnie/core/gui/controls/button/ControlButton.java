@@ -42,7 +42,7 @@ public class ControlButton extends Control {
 	@Override
 	public void onUpdateClient() {
 		if (this.textWidget != null) {
-			final String text = this.getText();
+			String text = this.getText();
 			if (text != null) {
 				this.textWidget.setValue(text);
 			}

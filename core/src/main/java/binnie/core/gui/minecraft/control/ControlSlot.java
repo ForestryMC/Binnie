@@ -58,9 +58,9 @@ public class ControlSlot extends ControlSlotBase {
 		super(parent, x, y);
 		this.slot = slot;
 		this.addSelfEventHandler(EventMouse.Down.class, event -> {
-			final Window superParent = (Window) ControlSlot.this.getTopParent();
-			final GuiCraftGUI superParentGui = superParent.getGui();
-			final Minecraft mc = superParentGui.getMinecraft();
+			Window superParent = (Window) ControlSlot.this.getTopParent();
+			GuiCraftGUI superParentGui = superParent.getGui();
+			Minecraft mc = superParentGui.getMinecraft();
 			final PlayerControllerMP playerController = mc.playerController;
 			final int windowId = superParent.getContainer().windowId;
 			final int slotNumber = this.slot.slotNumber;
@@ -87,7 +87,7 @@ public class ControlSlot extends ControlSlotBase {
 		CraftGUI.RENDER.texture(CraftGUITexture.SLOT, Point.ZERO);
 		final InventorySlot islot = this.getInventorySlot();
 		if (islot != null) {
-			final SlotValidator validator = islot.getValidator();
+			SlotValidator validator = islot.getValidator();
 			if (validator != null) {
 				final TextureAtlasSprite icon = validator.getIcon(!islot.getInputSides().isEmpty());
 				if (icon != null && icon != Minecraft.getMinecraft().getTextureMapBlocks().getMissingSprite()) {
@@ -193,11 +193,11 @@ public class ControlSlot extends ControlSlotBase {
 		if (slot != null) {
 			tooltip.add(slot.getName());
 			if (tooltipFlag.isAdvanced()) {
-                final Collection<EnumFacing> inputSides = slot.getInputSides();
+                Collection<EnumFacing> inputSides = slot.getInputSides();
 				if (inputSides.size() > 0) {
 					tooltip.add(TextFormatting.GRAY + I18N.localise(ModId.CORE, "gui.side.insert", MachineSide.asString(inputSides)));
 				}
-                final Collection<EnumFacing> outputSides = slot.getOutputSides();
+                Collection<EnumFacing> outputSides = slot.getOutputSides();
 				if (outputSides.size() > 0) {
 					tooltip.add(TextFormatting.GRAY + I18N.localise(ModId.CORE, "gui.side.extract", MachineSide.asString(outputSides)));
 				}

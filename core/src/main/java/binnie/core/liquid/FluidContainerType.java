@@ -76,10 +76,10 @@ public enum FluidContainerType {
 	}
 
 	public ItemStack getFilled(Fluid fluid) {
-		final ItemStack stack = getEmpty();
-		final IFluidHandler fluidHandler = FluidUtil.getFluidHandler(stack);
+		ItemStack stack = getEmpty();
+		IFluidHandler fluidHandler = FluidUtil.getFluidHandler(stack);
 		if (fluidHandler != null) {
-			final int fill = fluidHandler.fill(new FluidStack(fluid, Integer.MAX_VALUE), true);
+			int fill = fluidHandler.fill(new FluidStack(fluid, Integer.MAX_VALUE), true);
 			if (fill > 0) {
 				return stack;
 			}

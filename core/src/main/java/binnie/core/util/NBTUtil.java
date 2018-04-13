@@ -19,7 +19,7 @@ public class NBTUtil {
 
 	public static <V extends INbtWritable> BiFunction<Integer, V, NBTTagCompound> writeToListConsumer(final String Key) {
 		return (index, slot) -> {
-			final NBTTagCompound nbtTagCompound = new NBTTagCompound();
+			NBTTagCompound nbtTagCompound = new NBTTagCompound();
 			nbtTagCompound.setInteger(Key, index);
 			slot.writeToNBT(nbtTagCompound);
 			return nbtTagCompound;
@@ -30,15 +30,15 @@ public class NBTUtil {
 		if(!compound.hasKey(listKey, 9)){
 			return;
 		}
-		final NBTTagList tagList = compound.getTagList(listKey, 10);
+		NBTTagList tagList = compound.getTagList(listKey, 10);
 		for (int i = 0; i < tagList.tagCount(); ++i) {
 			consumer.accept(tagList.getCompoundTagAt(i));
 		}
 	}
 
 	public static <K, V> void writeToList(NBTTagCompound compound, String listKey, Map<K, V> content, BiFunction<K, V, NBTTagCompound> consumer){
-		final NBTTagList tagList = new NBTTagList();
-		for(final Map.Entry<K, V> entry : content.entrySet()){
+		NBTTagList tagList = new NBTTagList();
+		for(Map.Entry<K, V> entry : content.entrySet()){
 			tagList.appendTag(consumer.apply(entry.getKey(), entry.getValue()));
 		}
 		compound.setTag(listKey, tagList);
@@ -52,7 +52,7 @@ public class NBTUtil {
 
 
 	public static void writeToNBT(IEnergyStorage storage, String key, NBTTagCompound nbt) {
-		final NBTBase nbtBase = CapabilityEnergy.ENERGY.writeNBT(storage, null);
+		NBTBase nbtBase = CapabilityEnergy.ENERGY.writeNBT(storage, null);
 		if(nbtBase != null) {
 			nbt.setTag(key, nbtBase);
 		}

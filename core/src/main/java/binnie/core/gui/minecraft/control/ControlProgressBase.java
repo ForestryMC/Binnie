@@ -33,7 +33,7 @@ public class ControlProgressBase extends Control {
 			++minutes;
 			seconds -= 60;
 		}
-		final StringBuilder stringBuilder = new StringBuilder();
+		StringBuilder stringBuilder = new StringBuilder();
 		if (minutes > 0) {
 			if (minutes == 1) {
 				stringBuilder.append(I18N.localise(ModId.CORE, "gui.progress.time.minute", minutes));
@@ -93,14 +93,14 @@ public class ControlProgressBase extends Control {
 			if (tooltipFlag.isAdvanced()) {
 				NumberFormat numberFormat = I18N.getNumberFormat();
 				if (process.getProcessTime() > 0) {
-					final String timeLeft = convertTime((int) ((1.0f - this.progress) * process.getProcessTime()));
+					String timeLeft = convertTime((int) ((1.0f - this.progress) * process.getProcessTime()));
 					tooltip.add(TextFormatting.GRAY + I18N.localise(ModId.CORE, "gui.progress.time.left", timeLeft));
-					final String timeTotal = convertTime(process.getProcessTime());
+					String timeTotal = convertTime(process.getProcessTime());
 					tooltip.add(TextFormatting.GRAY + I18N.localise(ModId.CORE, "gui.progress.time.total", timeTotal));
-					final String energyCostTotal = numberFormat.format(process.getProcessEnergy() * 10);
+					String energyCostTotal = numberFormat.format(process.getProcessEnergy() * 10);
 					tooltip.add(TextFormatting.GRAY + I18N.localise(ModId.CORE, "gui.progress.energy.cost.total", energyCostTotal));
 				} else {
-					final String energyCostPerTick = numberFormat.format(process.getEnergyPerTick() * 10.0f);
+					String energyCostPerTick = numberFormat.format(process.getEnergyPerTick() * 10.0f);
 					tooltip.add(TextFormatting.GRAY + I18N.localise(ModId.CORE, "gui.energy.cost.per.tick", energyCostPerTick));
 				}
 			}

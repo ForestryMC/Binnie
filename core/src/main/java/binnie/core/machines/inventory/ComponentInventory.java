@@ -12,7 +12,7 @@ public abstract class ComponentInventory extends MachineComponent implements IIn
 
 	@Override
 	public void markDirty() {
-		final IMachine machine = this.getMachine();
+		IMachine machine = this.getMachine();
 		machine.markDirty();
 	}
 }

@@ -25,7 +25,7 @@ public class FluidType {
 		this.unlocalizedName = unlocalizedName.toLowerCase();
 		this.color = color;
 		this.containerColor = color;
-		final ResourceLocation texture = new ResourceLocation(Constants.CORE_MOD_ID, "blocks/liquids/blank");
+		ResourceLocation texture = new ResourceLocation(Constants.CORE_MOD_ID, "blocks/liquids/blank");
 		this.textureFlowing = texture;
 		this.textureStill = texture;
 	}

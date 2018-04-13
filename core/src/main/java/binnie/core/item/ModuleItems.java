@@ -26,7 +26,7 @@ public class ModuleItems implements IInitializable {
 
 	@Override
 	public void postInit() {
-		final RecipeUtil recipeUtil = new RecipeUtil(Constants.CORE_MOD_ID);
+		RecipeUtil recipeUtil = new RecipeUtil(Constants.CORE_MOD_ID);
 		recipeUtil.addRecipe("field_kit", new ItemStack(BinnieCore.getFieldKit(), 1, 63), "g  ", " is", " pi", 'g', Blocks.GLASS_PANE, 'i', Items.IRON_INGOT, 'p', Items.PAPER, 's', new ItemStack(Items.DYE, 1));
 	}
 }

@@ -91,7 +91,7 @@ public class Widget implements IWidget {
 		if(child == null){
 			return;
 		}
-		final IWidget topWidget = getTopChild();
+		IWidget topWidget = getTopChild();
 		if (topWidget != null && topWidget.hasAttribute(Attribute.ALWAYS_ON_TOP)) {
 			this.children.add(this.children.size() - 1, child);
 		} else {
@@ -115,11 +115,11 @@ public class Widget implements IWidget {
 	@Override
 	@Nullable
 	public <W extends IWidget> W getWidget(Class<W> widgetClass) {
-		for (final IWidget child : this.getChildren()) {
+		for (IWidget child : this.getChildren()) {
 			if (widgetClass.isInstance(child)) {
 				return widgetClass.cast(child);
 			}
-			final W found = child.getWidget(widgetClass);
+			W found = child.getWidget(widgetClass);
 			if (found != null) {
 				return found;
 			}
@@ -132,7 +132,7 @@ public class Widget implements IWidget {
 		if(children.isEmpty()){
 			return null;
 		}
-		final int childrenCount = getChildren().size();
+		int childrenCount = getChildren().size();
 		return children.get(childrenCount - 1);
 	}
 
@@ -191,7 +191,7 @@ public class Widget implements IWidget {
 
 	@Override
 	public final IPoint getAbsolutePosition() {
-		final IWidget parent = this.getParent();
+		IWidget parent = this.getParent();
 		return parent == null ? this.getPosition() : parent.getAbsolutePosition().add(this.getPosition());
 	}
 
@@ -271,14 +271,14 @@ public class Widget implements IWidget {
 	@Override
 	@SuppressWarnings("unchecked")
 	public void receiveEvent(Event event) {
-		for (final EventHandler<? extends Event> handler : this.eventHandlers) {
+		for (EventHandler<? extends Event> handler : this.eventHandlers) {
 			if (handler.handles(event)) {
 				((EventHandler<Event>) handler).onEvent(event);
 			}
 		}
 
-		final List<IWidget> children = new LinkedList<>(getChildren());
-		for (final IWidget child : children) {
+		List<IWidget> children = new LinkedList<>(getChildren());
+		for (IWidget child : children) {
 			child.receiveEvent(event);
 		}
 	}
@@ -295,7 +295,7 @@ public class Widget implements IWidget {
 
 	@Override
 	public final IPoint getRelativeMousePosition() {
-		final IWidget parent = this.getParent();
+		IWidget parent = this.getParent();
 		return parent == null ? this.getMousePosition() : parent.getRelativeMousePosition().sub(this.getPosition());
 	}
 
@@ -388,7 +388,7 @@ public class Widget implements IWidget {
 	/* STATES*/
 	@Override
 	public boolean isEnabled() {
-		final IWidget parent = this.getParent();
+		IWidget parent = this.getParent();
 		return parent == null || parent.isEnabled();
 	}
 
@@ -407,7 +407,7 @@ public class Widget implements IWidget {
 	@Override
 	public final boolean isVisible() {
 		if (this.visible) {
-			final IWidget parent = this.getParent();
+			IWidget parent = this.getParent();
 			return parent == null || parent.isVisible() && parent.isChildVisible(this);
 		}
 		return false;

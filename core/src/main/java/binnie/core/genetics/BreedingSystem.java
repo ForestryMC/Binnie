@@ -126,26 +126,26 @@ public abstract class BreedingSystem implements IBreedingSystem, IItemStackRepre
 
 	@Override
 	public void calculateArrays() {
-		final ISpeciesRoot speciesRoot = getSpeciesRoot();
+		ISpeciesRoot speciesRoot = getSpeciesRoot();
 		calculateAlleles(speciesRoot);
 		calculateBranches(speciesRoot);
 		calculateMutations(speciesRoot);
 	}
 
 	@Override
-	public void calculateAlleles(final ISpeciesRoot speciesRoot) {
+	public void calculateAlleles(ISpeciesRoot speciesRoot) {
 		this.allSpecies.clear();
 		this.allActiveSpecies.clear();
 		this.resultantMutations.clear();
 		this.furtherMutations.clear();
 		this.allResultantMutations.clear();
 		this.allFurtherMutations.clear();
-		final Collection<IAllele> allAlleles = AlleleManager.alleleRegistry.getRegisteredAlleles().values();
-		for (final IAllele allele : allAlleles) {
+		Collection<IAllele> allAlleles = AlleleManager.alleleRegistry.getRegisteredAlleles().values();
+		for (IAllele allele : allAlleles) {
 			String uid = allele.getUID();
-			final IAllele[] template = speciesRoot.getTemplate(uid);
+			IAllele[] template = speciesRoot.getTemplate(uid);
 			if (template != null) {
-				final IAlleleSpecies species = (IAlleleSpecies) allele;
+				IAlleleSpecies species = (IAlleleSpecies) allele;
 				this.allSpecies.add(species);
 				if (isBlacklisted(allele) || uid.contains("speciesBotAlfheim")) {
 					continue;
@@ -156,16 +156,16 @@ public abstract class BreedingSystem implements IBreedingSystem, IItemStackRepre
 	}
 
 	@Override
-	public void calculateBranches(final ISpeciesRoot speciesRoot) {
-		final Collection<IClassification> allRegBranches = AlleleManager.alleleRegistry.getRegisteredClassifications().values();
+	public void calculateBranches(ISpeciesRoot speciesRoot) {
+		Collection<IClassification> allRegBranches = AlleleManager.alleleRegistry.getRegisteredClassifications().values();
 		this.allBranches.clear();
-		for (final IClassification branch : allRegBranches) {
-			final IAlleleSpecies[] species = branch.getMemberSpecies();
+		for (IClassification branch : allRegBranches) {
+			IAlleleSpecies[] species = branch.getMemberSpecies();
 			if (species.length == 0) {
 				continue;
 			}
-			final IAlleleSpecies firstSpecies = species[0];
-			final IAllele[] template = speciesRoot.getTemplate(firstSpecies.getUID());
+			IAlleleSpecies firstSpecies = species[0];
+			IAllele[] template = speciesRoot.getTemplate(firstSpecies.getUID());
 			if (template != null) {
 				for (final IAlleleSpecies species2 : branch.getMemberSpecies()) {
 					if (allActiveSpecies.contains(species2)) {
@@ -180,24 +180,24 @@ public abstract class BreedingSystem implements IBreedingSystem, IItemStackRepre
 	@Override
 	public void calculateMutations(ISpeciesRoot speciesRoot) {
 		this.allMutations.clear();
-		final List<? extends IMutation> speciesMutations = speciesRoot.getMutations(false);
+		List<? extends IMutation> speciesMutations = speciesRoot.getMutations(false);
 		if (speciesMutations.isEmpty()) {
 			return;
 		}
-		final Set<IMutation> mutations = new LinkedHashSet<>(speciesMutations);
-		for (final IMutation mutation : mutations) {
+		Set<IMutation> mutations = new LinkedHashSet<>(speciesMutations);
+		for (IMutation mutation : mutations) {
 			this.allMutations.add(mutation);
-			final Set<IAlleleSpecies> participatingSpecies = new LinkedHashSet<>();
+			Set<IAlleleSpecies> participatingSpecies = new LinkedHashSet<>();
 			participatingSpecies.add(mutation.getAllele0());
 			participatingSpecies.add(mutation.getAllele1());
-			for (final IAlleleSpecies species : participatingSpecies) {
+			for (IAlleleSpecies species : participatingSpecies) {
 				this.allFurtherMutations.put(species, mutation);
 				if (this.allActiveSpecies.contains(species)) {
 					this.furtherMutations.put(species, mutation);
 				}
 			}
-			final IAllele[] template = mutation.getTemplate();
-			final IAlleleSpecies speciesAllele = (IAlleleSpecies) template[0];
+			IAllele[] template = mutation.getTemplate();
+			IAlleleSpecies speciesAllele = (IAlleleSpecies) template[0];
 			this.allResultantMutations.put(speciesAllele, mutation);
 			this.resultantMutations.put(speciesAllele, mutation);
 		}
@@ -262,7 +262,7 @@ public abstract class BreedingSystem implements IBreedingSystem, IItemStackRepre
 	@Override
 	public final Collection<IClassification> getDiscoveredBranches(final World world, final GameProfile player) {
 		final List<IClassification> branches = new ArrayList<>();
-		for (final IClassification branch : this.allBranches) {
+		for (IClassification branch : this.allBranches) {
 			for (final IAlleleSpecies species : branch.getMemberSpecies()) {
 				if (this.isSpeciesDiscovered(species, world, player)) {
 					branches.add(branch);
@@ -276,7 +276,7 @@ public abstract class BreedingSystem implements IBreedingSystem, IItemStackRepre
 	@Override
 	public final Collection<IClassification> getDiscoveredBranches(final IBreedingTracker tracker) {
 		final List<IClassification> branches = new ArrayList<>();
-		for (final IClassification branch : this.allBranches) {
+		for (IClassification branch : this.allBranches) {
 			for (final IAlleleSpecies species : branch.getMemberSpecies()) {
 				if (this.isSpeciesDiscovered(species, tracker)) {
 					branches.add(branch);
@@ -332,7 +332,7 @@ public abstract class BreedingSystem implements IBreedingSystem, IItemStackRepre
 	}
 
 	@Override
-	public abstract float getChance(final IMutation mutation, final EntityPlayer player, final IAlleleSpecies firstSpecies, final IAlleleSpecies secondSpecies);
+	public abstract float getChance(IMutation mutation, EntityPlayer player, IAlleleSpecies firstSpecies, IAlleleSpecies secondSpecies);
 
 	@Override
 	@SubscribeEvent
@@ -420,7 +420,7 @@ public abstract class BreedingSystem implements IBreedingSystem, IItemStackRepre
 	@Override
 	public String getAlleleName(final IChromosomeType chromosome, final IAllele allele) {
 		if (allele instanceof IAlleleBoolean) {
-			final IAlleleBoolean alleleBoolean = (IAlleleBoolean) allele;
+			IAlleleBoolean alleleBoolean = (IAlleleBoolean) allele;
 			return alleleBoolean.getValue() ? I18N.localise("binniecore.allele.true") : I18N.localise("binniecore.allele.false");
 		}
 		if (Objects.equals(allele.getAlleleName(), "for.gui.maximum")) {
@@ -436,8 +436,8 @@ public abstract class BreedingSystem implements IBreedingSystem, IItemStackRepre
 
 	@Override
 	public ItemStack getItemStackRepresentitive() {
-		final ISpeciesRoot root = this.getSpeciesRoot();
-		final IIndividual first = root.getIndividualTemplates().get(0);
+		ISpeciesRoot root = this.getSpeciesRoot();
+		IIndividual first = root.getIndividualTemplates().get(0);
 		return root.getMemberStack(first, this.getDefaultType());
 	}
 
@@ -454,7 +454,7 @@ public abstract class BreedingSystem implements IBreedingSystem, IItemStackRepre
 
 	@Override
 	public final IIndividual getDefaultIndividual() {
-		final ISpeciesRoot root = this.getSpeciesRoot();
+		ISpeciesRoot root = this.getSpeciesRoot();
 		return root.templateAsIndividual(root.getDefaultTemplate());
 	}
 
@@ -468,7 +468,7 @@ public abstract class BreedingSystem implements IBreedingSystem, IItemStackRepre
 
 	@Override
 	public ItemStack getConversionStack(final ItemStack stack) {
-		final IIndividual conversion = this.getConversion(stack);
+		IIndividual conversion = this.getConversion(stack);
 		if (conversion == null) {
 			return ItemStack.EMPTY;
 		}
@@ -486,7 +486,7 @@ public abstract class BreedingSystem implements IBreedingSystem, IItemStackRepre
 
 	@Override
 	public ItemStack getDefaultMember(final String uid) {
-		final IIndividual individual = this.getIndividual(uid);
+		IIndividual individual = this.getIndividual(uid);
 		if (individual == null) {
 			return ItemStack.EMPTY;
 		}
@@ -496,8 +496,8 @@ public abstract class BreedingSystem implements IBreedingSystem, IItemStackRepre
 	@Override
 	@Nullable
 	public IIndividual getIndividual(String uid) {
-		final ISpeciesRoot root = this.getSpeciesRoot();
-		final IAllele[] template = root.getTemplate(uid);
+		ISpeciesRoot root = this.getSpeciesRoot();
+		IAllele[] template = root.getTemplate(uid);
 		if (template == null) {
 			return null;
 		}
