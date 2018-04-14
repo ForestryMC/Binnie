@@ -49,7 +49,7 @@ public class ManagerLiquid extends ManagerBase {
 		if ((!FluidRegistry.registerFluid(bFluid)) || (FluidRegistry.addBucketForFluid(bFluid))) {
 			Log.error("Liquid registered incorrectly - {} ", fluid.getIdentifier());
 		}
-    }
+	}
 
 	@Nullable
 	public FluidStack getFluidStack(final String name, final int amount) {

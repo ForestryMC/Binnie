@@ -52,7 +52,7 @@ public class ItemMisc extends ItemCore {
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		super.addInformation(stack, worldIn, tooltip, flagIn);
-        IItemMiscProvider item = this.getItem(stack.getItemDamage());
+		IItemMiscProvider item = this.getItem(stack.getItemDamage());
 		item.addInformation(tooltip);
 	}
 
@@ -66,7 +66,7 @@ public class ItemMisc extends ItemCore {
 
 	@Override
 	public String getItemStackDisplayName(final ItemStack stack) {
-        IItemMiscProvider item = this.getItem(stack.getItemDamage());
+		IItemMiscProvider item = this.getItem(stack.getItemDamage());
 		return item.getDisplayName(stack);
 	}
 }
