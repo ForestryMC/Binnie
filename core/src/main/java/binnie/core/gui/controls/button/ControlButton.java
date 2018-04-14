@@ -57,7 +57,7 @@ public class ControlButton extends Control {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		Object texture;
+		final Object texture;
 		if (this.isMouseOver()) {
 			texture = CraftGUITexture.BUTTON_HIGHLIGHTED;
 		} else if (this.isEnabled()) {
