@@ -30,13 +30,13 @@ public class GeneTracker extends WorldSavedData {
 	private GameProfile username;
 
 	public GeneTracker(String s, @Nullable GameProfile username) {
-		this(s);
+		super(s);
+		discoveredGenes = new ArrayList<>();
 		this.username = username;
 	}
 
 	public GeneTracker(String s) {
-		super(s);
-		discoveredGenes = new ArrayList<>();
+		this(s, null);
 	}
 
 	protected static GeneTracker getCommonTracker(EntityPlayer player) {
