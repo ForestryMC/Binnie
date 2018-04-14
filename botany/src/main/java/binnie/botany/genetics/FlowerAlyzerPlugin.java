@@ -50,9 +50,10 @@ public class FlowerAlyzerPlugin implements IAlyzerPlugin {
 			EnumFlowerChromosome.HUMIDITY_TOLERANCE,
 			EnumFlowerChromosome.PH_TOLERANCE
 	};
-	private int lastTopOffset;
 	private static final int ROW_SIZE = 12;
 	private static final int MARGIN = 10;
+
+	private int lastTopOffset;
 	private int guiLeft;
 	private int guiTop;
 	private final HashMap<String, ItemStack> iconStacks = new HashMap<>();
