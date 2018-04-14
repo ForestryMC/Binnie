@@ -179,8 +179,8 @@ public class WindowFieldKit extends Window {
 			if (!Binnie.GENETICS.isInvalidChromosome(type)) {
 				final IAllele allele = ind.getGenome().getActiveAllele(type);
 				final List<String> infos = new ArrayList<>();
-				int i = 0;
-				for (String pref = root.getUID() + ".fieldkit." + type.getName().toLowerCase() + '.'; I18N.canLocalise(pref + i); ++i) {
+				String pref = root.getUID() + ".fieldkit." + type.getName().toLowerCase() + '.';
+				for (int i = 0; I18N.canLocalise(pref + i); ++i) {
 					infos.add(I18N.localise(pref + i));
 				}
 				String text = system.getAlleleName(type, allele);
