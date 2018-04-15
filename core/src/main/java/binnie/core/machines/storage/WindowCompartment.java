@@ -11,6 +11,7 @@ import binnie.core.gui.geometry.Point;
 import binnie.core.gui.window.WindowMachine;
 import binnie.core.machines.IMachine;
 import binnie.core.machines.MachinePackage;
+import javafx.util.Pair;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
@@ -64,6 +65,20 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		this.currentTab = 0;
 	}
 
+	private Pair<Integer[], Integer[]> calcTabsSlots(final int tabsCount) {
+		final int half = tabsCount / 2;
+		Integer[] tabs1 = new Integer[half + tabsCount % 2];
+		Integer[] tabs2 = new Integer[half];
+		int value = 0;
+		for (int index = 0; index < tabs1.length; ++index) {
+			tabs1[index] = value++;
+		}
+		for (int index = 0; index < tabs2.length; ++index) {
+			tabs2[index] = value++;
+		}
+		return new Pair<>(tabs1, tabs2);
+	}
+
 	//TODO: Clean Up, Localise
 	@Override
 	@SideOnly(Side.CLIENT)
@@ -75,20 +90,9 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		int x = 16;
 		final int y = 32;
 		final ComponentCompartmentInventory inv = machine.getInterface(ComponentCompartmentInventory.class);
-		Integer[] tabs1 = EmptyHelper.DEFAULT_TABS_EMPTY;
-		Integer[] tabs2 = EmptyHelper.DEFAULT_TABS_EMPTY;
-		if (inv.getTabCount() == 4) {
-			tabs1 = new Integer[]{0, 1};
-			tabs2 = new Integer[]{2, 3};
-		}
-		if (inv.getTabCount() == 6) {
-			tabs1 = new Integer[]{0, 1, 2};
-			tabs2 = new Integer[]{3, 4, 5};
-		}
-		if (inv.getTabCount() == 8) {
-			tabs1 = new Integer[]{0, 1, 2, 3};
-			tabs2 = new Integer[]{4, 5, 6, 7};
-		}
+		Pair<Integer[], Integer[]> slots = calcTabsSlots(inv.getTabCount());
+		Integer[] tabs1 = slots.getKey();
+		Integer[] tabs2 = slots.getValue();
 		final boolean doubleTabbed = tabs2.length > 0;
 		final int compartmentPageWidth = 16 + 18 * inv.getPageSize() / 5;
 		final int compartmentPageHeight = 106;
