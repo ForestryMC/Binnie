@@ -58,7 +58,6 @@ public class ControlTextEdit extends Control implements IControlValue<String> {
 	public void setValue(final String value) {
 		if (!this.getValue().equals(value)) {
 			this.field.setText(value);
-			this.field.setCursorPosition(0);
 		}
 	}
 
