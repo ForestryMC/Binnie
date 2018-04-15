@@ -65,7 +65,7 @@ public class ModuleFarming extends BlankModule {
 				ItemStack tubes = new ItemStack(insulatedTube, 2, mat.ordinal() + 128 * insulate.ordinal());
 				ItemStack insulateStack = ItemInsulatedTube.getInsulateStack(tubes);
 				ItemStack forestryTube = new ItemStack(Mods.Forestry.item("thermionic_tubes"), 1, mat.ordinal());
-				String recipeName = "thermionic_tubes_" + insulate.getUid() + "_" + mat.getUid();
+				String recipeName = "thermionic_tubes_" + insulate.getUid() + '_' + mat.getUid();
 				recipeUtil.addShapelessRecipe(recipeName, tubes, forestryTube, forestryTube, insulateStack);
 			}
 		}

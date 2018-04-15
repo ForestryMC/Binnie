@@ -23,7 +23,7 @@ public class WorldGenHiveNether extends WorldGenHive {
 	public boolean generate(final World world, final Random random, final BlockPos pos) {
 		final Biome biome = world.getBiome(pos);
 		if (!BiomeDictionary.hasType(biome, BiomeDictionary.Type.NETHER)) {
-			return true;
+			return false;
 		}
 		if (this.embedInWall(world, Blocks.NETHERRACK, pos)) {
 			world.setBlockState(pos, ExtraBees.hive.getDefaultState().withProperty(BlockExtraBeeHives.HIVE_TYPE, EnumHiveType.NETHER));

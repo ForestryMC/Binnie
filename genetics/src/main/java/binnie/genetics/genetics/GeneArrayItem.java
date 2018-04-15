@@ -76,7 +76,7 @@ public class GeneArrayItem implements INbtReadable, INbtWritable, IGeneItem {
 
 	@Nullable
 	public IBreedingSystem getBreedingSystem() {
-		if (genes.size() == 0) {
+		if (genes.isEmpty()) {
 			return null;
 		}
 		IBreedingSystem system = Binnie.GENETICS.getSystem(genes.get(0).getSpeciesRoot().getUID());
@@ -103,7 +103,7 @@ public class GeneArrayItem implements INbtReadable, INbtWritable, IGeneItem {
 
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
-		if (genes.size() == 0) {
+		if (genes.isEmpty()) {
 			return nbt;
 		}
 
@@ -118,7 +118,7 @@ public class GeneArrayItem implements INbtReadable, INbtWritable, IGeneItem {
 	@Override
 	@Nullable
 	public ISpeciesRoot getSpeciesRoot() {
-		if (genes.size() == 0) {
+		if (genes.isEmpty()) {
 			return null;
 		}
 		return genes.get(0).getSpeciesRoot();

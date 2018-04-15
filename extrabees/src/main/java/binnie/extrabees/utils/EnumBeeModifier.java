@@ -1,6 +1,7 @@
 package binnie.extrabees.utils;
 
-import binnie.extrabees.ExtraBees;
+import binnie.core.ModId;
+import binnie.core.util.I18N;
 
 public enum EnumBeeModifier {
 	TERRITORY,
@@ -11,7 +12,6 @@ public enum EnumBeeModifier {
 	GENETIC_DECAY;
 
 	public String getName() {
-		return ExtraBees.proxy.localiseWithOutPrefix("extrabees.beemodifier." + this.name().toLowerCase());
+		return I18N.localise(ModId.EXTRA_BEES, "beemodifier." + this.name().toLowerCase());
 	}
-
 }

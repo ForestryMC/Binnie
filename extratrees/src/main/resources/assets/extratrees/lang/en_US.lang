@@ -356,7 +356,7 @@ extratrees.species.loblollypine.name=Loblolly Pine
 extratrees.species.sweetgum.name=Sweetgum
 extratrees.species.locust.name=Black Locust
 extratrees.species.pear.name=Cultivated Pear
-extratrees.species.osangeorange.name=Osange-Orange
+extratrees.species.osange_orange.name=Osange-Orange
 extratrees.species.oldfustic.name=Old Fustic
 extratrees.species.brazilwood.name=Brazilwood
 extratrees.species.logwood.name=Logwood
@@ -715,6 +715,16 @@ extratrees.fluid.alcohol.wheat=Fermented Wheat Mash
 extratrees.fluid.alcohol.rye=Fermented Rye Mash
 extratrees.fluid.alcohol.corn=Fermented Corn Mash
 
+## MiscFluid
+extratrees.fluid.miscfluid.carbonatedwater=Carbonated Water
+extratrees.fluid.miscfluid.tonicwater=Tonic Water
+extratrees.fluid.miscfluid.cream=Cream
+extratrees.fluid.miscfluid.gingerale=Ginger Ale
+extratrees.fluid.miscfluid.coffee=Coffee
+extratrees.fluid.miscfluid.sugarsyrup=Simple Syrup
+extratrees.fluid.miscfluid.agavenectar=Agave Nectar
+extratrees.fluid.miscfluid.grenadinesyrup=Grenadine Syrup
+
 extratrees.cocktail.liquid.tooltip=%d Part %s
 extratrees.cocktail.liquids.tooltip=%d Parts %s
 
@@ -764,6 +774,7 @@ extratrees.gui.database.tab.butterfly.branches.overview=Overview
 extratrees.gui.database.tab.butterfly.branches.species=Species
 extratrees.gui.database.tab.butterfly.breeder=Breeder
 
+extratrees.allele.metabolism.normal=Normal
 extratrees.allele.metabolism.highest=Highest
 extratrees.allele.metabolism.higher=Higher
 extratrees.allele.metabolism.high=High
@@ -771,3 +782,5 @@ extratrees.allele.metabolism.average=Average
 extratrees.allele.metabolism.slow=Slow
 extratrees.allele.metabolism.slower=Slower
 extratrees.allele.metabolism.slowest=Slowest
+
+extratrees.grammar.leaves.type=Leaves

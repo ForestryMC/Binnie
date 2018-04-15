@@ -33,9 +33,8 @@ import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import forestry.core.utils.Translator;
-
 import binnie.core.machines.component.IRender;
+import binnie.core.util.I18N;
 import binnie.core.util.TileUtil;
 
 class BlockMachine extends Block implements IBlockMachine, ITileEntityProvider {
@@ -118,7 +117,7 @@ class BlockMachine extends Block implements IBlockMachine, ITileEntityProvider {
 				tooltip.add(machinePackage.getInformation());
 			}
 		} else {
-			tooltip.add(TextFormatting.ITALIC + "<" + Translator.translateToLocal("for.gui.tooltip.tmi") + ">");
+			tooltip.add(TextFormatting.ITALIC + "<" + I18N.localise("for.gui.tooltip.tmi") + '>');
 		}
 	}
 

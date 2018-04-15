@@ -116,10 +116,10 @@ public class ItemFlowerGE extends Item implements IColoredItem, IItemModelRegist
 			if (GuiScreen.isShiftKeyDown()) {
 				individual.addTooltip(list);
 			} else {
-				list.add(TextFormatting.ITALIC + "<" + I18N.localise("for.gui.tooltip.tmi") + ">");
+				list.add(TextFormatting.ITALIC + "<" + I18N.localise("for.gui.tooltip.tmi") + '>');
 			}
 		} else {
-			list.add("<" + I18N.localise("for.gui.unknown") + ">");
+			list.add('<' + I18N.localise("for.gui.unknown") + '>');
 		}
 	}
 
@@ -158,7 +158,7 @@ public class ItemFlowerGE extends Item implements IColoredItem, IItemModelRegist
 		}
 		IIndividual individual = getIndividual(itemstack);
 		if (individual != null) {
-			return individual.getDisplayName() + (!tag.isEmpty() ? " " + I18N.localise("item.botany." + tag + ".name") : "");
+			return individual.getDisplayName() + (!tag.isEmpty() ? ' ' + I18N.localise("item.botany." + tag + ".name") : "");
 		}
 		return I18N.localise("item.botany.flower.corrupted.name");
 	}

@@ -200,8 +200,7 @@ public class ManagerGenetics extends ManagerBase {
 				if (alleles.size() == 0) {
 					this.invalidChromosomeTypes.add(chromosome);
 				} else {
-					final List<IAllele> alleleList = new ArrayList<>();
-					alleleList.addAll(alleles);
+					final List<IAllele> alleleList = new ArrayList<>(alleles);
 					chromosomeMap.put(chromosome, alleleList);
 				}
 			}

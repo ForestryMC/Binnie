@@ -27,8 +27,7 @@ public class PackageAcclimatiser extends GeneticMachine.PackageGeneticBase imple
 		final ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
 		InventorySlot slotTarget = inventory.addSlot(Acclimatiser.SLOT_TARGET, getSlotRL("process"));
 		slotTarget.setValidator(new SlotValidator.Individual());
-		slotTarget.setReadOnly();
-		slotTarget.forbidExtraction();
+		slotTarget.forbidInteraction();
 		for (final InventorySlot slot : inventory.addSlotArray(Acclimatiser.SLOT_RESERVE, getSlotRL("input"))) {
 			slot.forbidExtraction();
 			slot.setValidator(new SlotValidator.Individual());

@@ -8,8 +8,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.IllegalFormatException;
-
 @SideOnly(Side.CLIENT)
 public class I18NClient implements I18NProxy {
 
@@ -23,20 +21,19 @@ public class I18NClient implements I18NProxy {
     public String localise(String key) {
         if (I18n.hasKey(key)) {
             return I18n.format(key);
-        } else {
-            if (devEnvironment) {
-                Log.warning("Key not localized: " + key);
-            }
-            return key;
         }
+        if (devEnvironment) {
+            Log.warning("Key not localized: " + key);
+        }
+        return key;
     }
 
     public String localise(ModId modId, String path, Object... format) {
-        return localise(modId.getDomain() + "." + path, format);
+        return localise(modId.getDomain() + '.' + path, format);
     }
 
     public String localise(ResourceLocation key) {
-        return this.localise(key.getResourceDomain() + "." + key.getResourcePath());
+        return this.localise(key.getResourceDomain() + '.' + key.getResourcePath());
     }
 
     public boolean canLocalise(String key) {
@@ -44,16 +41,16 @@ public class I18NClient implements I18NProxy {
     }
 
     public String localise(String key, Object... format) {
-        try {
+        if (I18n.hasKey(key)) {
             return I18n.format(key, format);
-        } catch (IllegalFormatException e) {
-            String errorMessage = "Format error: " + key;
-            Log.error(errorMessage, e);
-            return errorMessage;
         }
+        if (devEnvironment) {
+            Log.warning("Key(format) not localized: " + key);
+        }
+        return key;
     }
 
     public String localise(ResourceLocation key, Object... format) {
-        return this.localise(key.getResourceDomain() + "." + key.getResourcePath(), format);
+        return this.localise(key.getResourceDomain() + '.' + key.getResourcePath(), format);
     }
 }

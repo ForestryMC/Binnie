@@ -11,9 +11,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import forestry.api.core.IModelManager;
 
-import binnie.core.Constants;
 import binnie.botany.api.genetics.EnumFlowerStage;
 import binnie.botany.api.genetics.IFlowerType;
+import binnie.core.Constants;
 
 public enum EnumFlowerType implements IFlowerType<EnumFlowerType> {
 	DANDELION,
@@ -36,7 +36,7 @@ public enum EnumFlowerType implements IFlowerType<EnumFlowerType> {
 	HYDRANGEA(2),
 	FOXGLOVE(2),
 	ZINNIA,
-	MUMS,
+	CHRYSANTHEMUM,
 	MARIGOLD,
 	GERANIUM,
 	AZALEA,

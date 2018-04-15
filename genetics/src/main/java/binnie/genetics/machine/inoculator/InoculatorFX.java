@@ -29,8 +29,9 @@ public class InoculatorFX extends MachineComponent implements IRender.DisplayTic
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void onDisplayTick(World world, BlockPos pos, Random rand) {
+		if (!this.getUtil().getProcess().isInProgress()) return;
 		final int tick = (int) (world.getTotalWorldTime() % 3L);
-		if (tick == 0 && this.getUtil().getProcess().isInProgress()) {
+		if (tick == 0) {
 			final Particle particle = new InoculatorParticle(world, pos);
 			BinnieCore.getBinnieProxy().getMinecraftInstance().effectRenderer.addEffect(particle);
 		}

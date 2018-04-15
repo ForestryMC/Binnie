@@ -77,7 +77,7 @@ public class WindowBotanistDatabase extends WindowAbstractDatabase {
 
 		@Override
 		public String getName() {
-			return I18N.localise(DatabaseConstants.BOTANY_TAB_KEY + "." + name().toLowerCase());
+			return I18N.localise(DatabaseConstants.BOTANY_TAB_KEY + '.' + name().toLowerCase());
 		}
 	}
 

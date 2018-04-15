@@ -252,7 +252,7 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 		for (CeramicBrickType type : CeramicBrickType.VALUES) {
 			TextureAtlasSprite[] sprites = new TextureAtlasSprite[3];
 			for (int i = 0; i < 3; ++i) {
-				ResourceLocation location = new ResourceLocation(Constants.BOTANY_MOD_ID + ":blocks/ceramic." + type.getId() + "." + i);
+				ResourceLocation location = new ResourceLocation(Constants.BOTANY_MOD_ID + ":blocks/ceramic." + type.getId() + '.' + i);
 				sprites[i] = textureMap.registerSprite(location);
 			}
 			type.setSprites(sprites);

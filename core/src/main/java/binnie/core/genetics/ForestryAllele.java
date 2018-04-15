@@ -192,7 +192,7 @@ public class ForestryAllele {
 		Int10;
 
 		public IAllele getAllele() {
-			return AlleleManager.alleleRegistry.getAllele("forestry.i" + (this.ordinal() + 1) + "d");
+			return AlleleManager.alleleRegistry.getAllele("forestry.i" + (this.ordinal() + 1) + 'd');
 		}
 	}
 

@@ -400,9 +400,9 @@ extrabees.effect.thief.name=Антигравитация
 extrabees.effect.wither.name=Иссушение
 extrabees.effect.water.name=Вода
 extrabees.effect.slow.name=Медлительность
-extrabees.effect.bonemealsapling.name=Рост
-extrabees.effect.bonemealfruit.name=Созревание
-extrabees.effect.bonemealmushroom.name=Гриб
+extrabees.effect.bonemeal_sapling.name=Рост
+extrabees.effect.bonemeal_fruit.name=Созревание
+extrabees.effect.bonemeal_mushroom.name=Гриб
 extrabees.effect.power.name=Энергия
 
 extrabees.beemodifier.territory=Территория
@@ -411,3 +411,21 @@ extrabees.beemodifier.lifespan=Продолжительность жизни
 extrabees.beemodifier.production=Производство
 extrabees.beemodifier.flowering=Цветение
 extrabees.beemodifier.genetic_decay=Генетический распад
+
+extrabees.beebooleanmodifier.sealed=Пещерная
+extrabees.beebooleanmodifier.selflighted=SelfLighted
+extrabees.beebooleanmodifier.sunlightstimulated=Дневная
+extrabees.beebooleanmodifier.hellish=Адская
+
+extrabees.alvearycircuittype.inc=Увеличивает %s на %d %%
+extrabees.alvearycircuittype.dec=Уменьшает %s на %d %%
+
+binnie.circuit.stimulator.low_voltage=Продукция улучш. I
+binnie.circuit.stimulator.high_voltage=Продукция улучш. II
+binnie.circuit.stimulator.plant=Опыление улучш. I
+binnie.circuit.stimulator.death=Время жизни ухудш. I
+binnie.circuit.stimulator.life=Время жизни улучш. I
+binnie.circuit.stimulator.nether=Ад
+binnie.circuit.stimulator.mutation=Мутация улучш. I
+binnie.circuit.stimulator.inhibitor=Продукция ухудш. I
+binnie.circuit.stimulator.territory=Терриртория улучш. I

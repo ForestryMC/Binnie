@@ -47,7 +47,7 @@ public class PageSpeciesOverview extends PageSpecies {
 		this.controlInd2.setSpecies(species, EnumDiscoveryState.SHOW);
 		final String branchBinomial = species.getBranch().getScientific();
 		this.controlName.setValue(TextFormatting.UNDERLINE + species.getAlleleName());
-		this.controlScientific.setValue(TextFormatting.ITALIC + branchBinomial + " " + species.getBinomial());
+		this.controlScientific.setValue(TextFormatting.ITALIC + branchBinomial + ' ' + species.getBinomial());
 		this.controlAuthority.setValue(I18N.localise(DatabaseConstants.KEY + ".discovered") + ": " + TextFormatting.BOLD + species.getAuthority());
 		this.controlComplexity.setValue(I18N.localise(DatabaseConstants.KEY + ".overview.complexity") + ": " + species.getComplexity());
 		final String desc = species.getDescription();
@@ -59,7 +59,7 @@ public class PageSpeciesOverview extends PageSpecies {
 			final String[] descStrings = desc.split("\\|");
 			descBody.append(descStrings[0]);
 			for (int i = 1; i < descStrings.length - 1; ++i) {
-				descBody.append(" ").append(descStrings[i]);
+				descBody.append(' ').append(descStrings[i]);
 			}
 			if (descStrings.length > 1) {
 				descSig += descStrings[descStrings.length - 1];

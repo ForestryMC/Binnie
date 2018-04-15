@@ -27,9 +27,7 @@ public class PackageIncubator extends GeneticMachine.PackageGeneticBase implemen
 		}
 		InventorySlot slotIncubator = inventory.addSlot(Incubator.SLOT_INCUBATOR, getSlotRL("incubator"));
 		slotIncubator.forbidInteraction();
-		slotIncubator.setReadOnly();
 		for (InventorySlot slot : inventory.addSlotArray(Incubator.SLOT_OUTPUT, getSlotRL("output"))) {
-			slot.forbidInsertion();
 			slot.setReadOnly();
 		}
 		new ComponentPowerReceptor(machine, 2000);

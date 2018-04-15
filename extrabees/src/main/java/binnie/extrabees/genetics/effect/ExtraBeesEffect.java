@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import binnie.core.ModId;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -17,6 +18,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
@@ -48,6 +50,7 @@ import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IEffectData;
 import forestry.core.render.ParticleRender;
 
+import binnie.core.util.I18N;
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.genetics.ExtraBeesFlowers;
 import binnie.extrabees.utils.Utils;
@@ -77,27 +80,21 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 	SPAWN_ZOMBIE{
 		@Override
 		protected IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing, World world, BlockPos position) {
-			if (world.rand.nextInt(200) < 2) {
-				this.spawnMob(world, position, new ResourceLocation("zombie"));
-			}
+			placeMob(world, position, "zombie");
 			return storedData;
 		}
 	},
 	SPAWN_SKELETON{
 		@Override
 		protected IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing, World world, BlockPos position) {
-			if (world.rand.nextInt(200) < 2) {
-				this.spawnMob(world, position, new ResourceLocation("skeleton"));
-			}
+			placeMob(world, position, "skeleton");
 			return storedData;
 		}
 	},
 	SPAWN_CREEPER{
 		@Override
 		protected IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing, World world, BlockPos position) {
-			if (world.rand.nextInt(200) < 2) {
-				this.spawnMob(world, position, new ResourceLocation("creeper"));
-			}
+			placeMob(world, position, "creeper");
 			return storedData;
 		}
 	},
@@ -167,24 +164,14 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 	BLINDNESS {
 		@Override
 		protected IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing, World world, BlockPos position) {
-			for (EntityPlayer player : this.getEntities(EntityPlayer.class, genome, housing)) {
-				if (world.rand.nextInt(4) < wearsItems(player)) {
-					continue;
-				}
-				player.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 200));
-			}
+			addPotionEffect(genome, housing, world, MobEffects.BLINDNESS);
 			return storedData;
 		}
 	},
 	CONFUSION{
 		@Override
 		protected IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing, World world, BlockPos position) {
-			for (EntityPlayer player : this.getEntities(EntityPlayer.class, genome, housing)) {
-				if (world.rand.nextInt(4) < wearsItems(player)) {
-					continue;
-				}
-				player.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, 200));
-			}
+			addPotionEffect(genome, housing, world, MobEffects.NAUSEA);
 			return storedData;
 		}
 	},
@@ -200,7 +187,7 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 				firework.addColor(genome.getSecondary().getSpriteColour(0));
 				firework.addColor(genome.getSecondary().getSpriteColour(0));
 				firework.addColor(genome.getPrimary().getSpriteColour(1));
-						firework.setTrail();
+				firework.setTrail();
 				final EntityFireworkRocket var11 = new EntityFireworkRocket(world, position.getX(), position.getY(), position.getZ(), firework.getFirework());
 				if (world.canBlockSeeSky(position)) {
 					world.spawnEntity(var11);
@@ -313,7 +300,7 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 	WITHER{
 		@Override
 		protected IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing, World world, BlockPos position) {
-			//TODO: add function ?
+			addPotionEffect(genome, housing, world, MobEffects.WITHER);
 			return storedData;
 		}
 	},
@@ -334,12 +321,7 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 	SLOW{
 		@Override
 		protected IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing, World world, BlockPos position) {
-			for (EntityPlayer player : this.getEntities(EntityPlayer.class, genome, housing)) {
-				if (world.rand.nextInt(4) < wearsItems(player)) {
-					continue;
-				}
-				player.addPotionEffect(new PotionEffect(MobEffects.WEAKNESS, 200));
-			}
+			addPotionEffect(genome, housing, world, MobEffects.WEAKNESS);
 			return storedData;
 		}
 	},
@@ -397,6 +379,27 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 		}
 	};
 
+	private final static int DEFAULT_POTION_DURATION = 200;
+
+	protected void addPotionEffect(final IBeeGenome genome, final IBeeHousing housing, final World world, final Potion effect) {
+		addPotionEffect(genome, housing, world, effect, DEFAULT_POTION_DURATION);
+	}
+
+	protected void addPotionEffect(final IBeeGenome genome, final IBeeHousing housing, final World world, final Potion effect, final int duration) {
+		for (EntityPlayer player : this.getEntities(EntityPlayer.class, genome, housing)) {
+			if (world.rand.nextInt(4) < wearsItems(player)) {
+				continue;
+			}
+			player.addPotionEffect(new PotionEffect(effect, duration));
+		}
+	}
+
+	protected void placeMob(World world, BlockPos position, final String mobName) {
+		if (world.rand.nextInt(200) < 2) {
+			this.spawnMob(world, position, new ResourceLocation(mobName));
+		}
+	}
+
 	private static final List<Birthday> birthdays = new ArrayList<>();
 
 	static {
@@ -436,7 +439,7 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 		final Block block = blockState.getBlock();
 		if (block == Blocks.COBBLESTONE || block == Blocks.STONE) {
 			world.setBlockState(pos, Blocks.GRAVEL.getDefaultState());
-		} else if (block == Blocks.DIRT | block == Blocks.GRASS) {
+		} else if (block == Blocks.DIRT || block == Blocks.GRASS) {
 			world.setBlockState(pos, Blocks.SAND.getDefaultState());
 		}
 	}
@@ -461,7 +464,7 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 
 	@Override
 	public String getName() {
-		return ExtraBees.proxy.localise("effect." + this.name().toLowerCase() + ".name");
+		return I18N.localise(ModId.EXTRA_BEES, "effect." + this.name().toLowerCase() + ".name");
 	}
 
 	@Override
@@ -529,9 +532,9 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 	protected Vec3i getModifiedArea(final IBeeGenome genome, final IBeeHousing housing) {
 		Vec3i territory = genome.getTerritory();
 		territory = new Vec3i(
-			territory.getX() * (int) (BeeManager.beeRoot.createBeeHousingModifier(housing).getTerritoryModifier(genome, 1.0f) * 3.0f),
-			territory.getY() * (int) (BeeManager.beeRoot.createBeeHousingModifier(housing).getTerritoryModifier(genome, 1.0f) * 3.0f),
-			territory.getZ() * (int) (BeeManager.beeRoot.createBeeHousingModifier(housing).getTerritoryModifier(genome, 1.0f) * 3.0f)
+				territory.getX() * (int) (BeeManager.beeRoot.createBeeHousingModifier(housing).getTerritoryModifier(genome, 1.0f) * 3.0f),
+				territory.getY() * (int) (BeeManager.beeRoot.createBeeHousingModifier(housing).getTerritoryModifier(genome, 1.0f) * 3.0f),
+				territory.getZ() * (int) (BeeManager.beeRoot.createBeeHousingModifier(housing).getTerritoryModifier(genome, 1.0f) * 3.0f)
 		);
 		if (territory.getX() < 1) {
 			territory = new Vec3i(1, territory.getY(), territory.getZ());

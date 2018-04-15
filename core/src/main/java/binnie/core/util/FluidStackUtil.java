@@ -19,7 +19,7 @@ public class FluidStackUtil {
 			return "null";
 		}
 		NBTTagCompound tag = fluidStack.tag;
-		return fluidStack.getFluid().getName() + ":" + fluidStack.amount + (tag != null ? ":" + fluidStack.tag : "");
+		return fluidStack.getFluid().getName() + ':' + fluidStack.amount + (tag != null ? ":" + fluidStack.tag : "");
 	}
 
 	public static NonNullList<FluidStack> removeEqualFluids(Collection<FluidStack> fluidsStacks) {

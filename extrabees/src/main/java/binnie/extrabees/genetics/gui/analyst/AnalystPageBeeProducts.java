@@ -151,7 +151,7 @@ public class AnalystPageBeeProducts extends Control implements ITitledWidget {
 		CraftGUIUtil.moveWidget(textWidget, new Point(12, 0));
 		item.setItemStack(key);
 		int time = (int) (ModuleApiculture.ticksPerBeeWorkCycle * 100.0 / (speed * value));
-		textWidget.setValue(I18N.localise(AnalystConstants.PRODUCTS_KEY + ".every") + " " + TimeUtil.getTimeString(time));
+		textWidget.setValue(I18N.localise(AnalystConstants.PRODUCTS_KEY + ".every") + ' ' + TimeUtil.getTimeString(time));
 	}
 
 	@Override

@@ -27,7 +27,7 @@ public class ETFruitProviderNone implements IFruitProvider {
 	protected final Map<ItemStack, Float> drops;
 	protected final IFruitFamily family;
 	protected final String name;
-	protected final int ripeningPeriod = 2;
+	protected static final int RIPENING_PERIOD = 2;
 
 	public ETFruitProviderNone(String name, IFruitFamily family) {
 		this.name = name;
@@ -75,7 +75,7 @@ public class ETFruitProviderNone implements IFruitProvider {
 
 	@Override
 	public int getRipeningPeriod() {
-		return this.ripeningPeriod;
+		return RIPENING_PERIOD;
 	}
 
 	@Override

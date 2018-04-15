@@ -15,6 +15,7 @@ import forestry.api.circuits.ICircuit;
 import forestry.api.circuits.ICircuitLayout;
 
 import binnie.core.Mods;
+import binnie.core.util.Log;
 
 public class StimulatorCircuit implements ICircuit, IBeeModifier {
 
@@ -103,7 +104,7 @@ public class StimulatorCircuit implements ICircuit, IBeeModifier {
 
 	@Override
 	public boolean isCircuitable(@Nonnull Object tile) {
-		System.out.println("isCircuitable: " + tile);
+		Log.info("isCircuitable: " + tile);
 		return false;
 	}
 

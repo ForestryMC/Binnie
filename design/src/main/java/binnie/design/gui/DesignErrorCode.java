@@ -30,7 +30,7 @@ public enum DesignErrorCode implements IErrorStateDefinition {
 
 	@Override
 	public String getUID() {
-		return Constants.DESIGN_MOD_ID + ":" + name;
+		return Constants.DESIGN_MOD_ID + ':' + name;
 	}
 
 	public String getDescription(){

@@ -356,7 +356,7 @@ extratrees.species.loblollypine.name=Сосна ладанная
 extratrees.species.sweetgum.name=Ликвидамбр
 extratrees.species.locust.name=Черная робиния
 extratrees.species.pear.name=Культивированная груша
-extratrees.species.osangeorange.name=Osange-Orange
+extratrees.species.osange_orange.name=Osange-Orange
 extratrees.species.oldfustic.name=Старое дерево
 extratrees.species.brazilwood.name=Цезальпиния
 extratrees.species.logwood.name=Кампеш
@@ -715,6 +715,16 @@ extratrees.fluid.alcohol.wheat=Ферментированная пшенична
 extratrees.fluid.alcohol.rye=Ферментированная ржаная мука
 extratrees.fluid.alcohol.corn=Ферментированная кукурузная мука
 
+## MiscFluid
+extratrees.fluid.miscfluid.carbonatedwater=Газированная вода
+extratrees.fluid.miscfluid.tonicwater=Тоник
+extratrees.fluid.miscfluid.cream=Крем
+extratrees.fluid.miscfluid.gingerale=Имбирный эль
+extratrees.fluid.miscfluid.coffee=Кофе
+extratrees.fluid.miscfluid.sugarsyrup=Обычный сироп
+extratrees.fluid.miscfluid.agavenectar=Нектар агавы
+extratrees.fluid.miscfluid.grenadinesyrup=Сироп гренадина
+
 extratrees.cocktail.liquid.tooltip=%d Часть %s
 extratrees.cocktail.liquids.tooltip=%d Части %s
 
@@ -764,6 +774,7 @@ extratrees.gui.database.tab.butterfly.branches.overview=Обзор
 extratrees.gui.database.tab.butterfly.branches.species=Вид
 extratrees.gui.database.tab.butterfly.breeder=Производитель
 
+extratrees.allele.metabolism.normal=Нормальный
 extratrees.allele.metabolism.highest=Самый быстрый
 extratrees.allele.metabolism.higher=Очень быстрый
 extratrees.allele.metabolism.high=Быстрый
@@ -771,3 +782,5 @@ extratrees.allele.metabolism.average=Средний
 extratrees.allele.metabolism.slow=Медленный
 extratrees.allele.metabolism.slower=Очень медленный
 extratrees.allele.metabolism.slowest=Самый медленный
+
+extratrees.grammar.leaves.type=Листва

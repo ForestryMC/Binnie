@@ -99,6 +99,6 @@ public class Texture implements ITexture {
 		if (!this.border.isNonZero()) {
 			out = out + " border:" + this.border.toString();
 		}
-		return out + "]";
+		return out + ']';
 	}
 }
