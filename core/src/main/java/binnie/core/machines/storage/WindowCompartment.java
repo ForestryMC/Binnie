@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import binnie.core.ModId;
 import binnie.core.api.gui.ITexture;
 import binnie.core.api.gui.events.EventHandlerOrigin;
 import binnie.core.gui.controls.tab.ControlTab;
@@ -12,6 +13,7 @@ import binnie.core.gui.geometry.Point;
 import binnie.core.gui.window.WindowMachine;
 import binnie.core.machines.IMachine;
 import binnie.core.machines.MachinePackage;
+import binnie.core.util.I18N;
 import javafx.util.Pair;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -51,7 +53,6 @@ import binnie.core.gui.resource.textures.CraftGUITexture;
 import binnie.core.gui.window.Panel;
 import binnie.core.machines.Machine;
 import binnie.core.machines.transfer.TransferRequest;
-import binnie.core.util.EmptyHelper;
 
 public class WindowCompartment extends WindowMachine implements IWindowAffectsShiftClick {
 	private final Map<Panel, Integer> panels;
@@ -80,6 +81,24 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		return new Pair<>(tabs1, tabs2);
 	}
 
+	private void setControlTab(ControlTabBar<Integer> tab) {
+		final String[] tabHelp = {
+				I18N.localise(ModId.CORE, "machine.storage.help.compartment_tab"),
+				I18N.localise(ModId.CORE, "machine.storage.help.compartment_tab.desc")
+		};
+		tab.addHelp(tabHelp);
+		tab.addEventHandler(EventValueChanged.class, EventHandlerOrigin.DIRECT_CHILD, tab, event -> {
+			if (event.getValue() == null) {
+				return;
+			}
+			final NBTTagCompound nbt = new NBTTagCompound();
+			final int i = (Integer) event.getValue();
+			nbt.setByte("i", (byte) i);
+			Window.get(tab).sendClientAction("tab-change", nbt);
+			WindowCompartment.this.currentTab = i;
+		});
+	}
+
 	//TODO: Clean Up, Localise
 	@Override
 	@SideOnly(Side.CLIENT)
@@ -101,18 +120,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		final int compartmentHeight = compartmentPageHeight;
 		final Control controlCompartment = new Control(this, x, y, compartmentWidth, compartmentHeight);
 		final ControlTabBar<Integer> tab = new ControlTabBar<>(controlCompartment, 0, 0, 24, compartmentPageHeight, Alignment.LEFT, Arrays.asList(tabs1), this::createTab);
-		final String[] tabHelp = {"Compartment Tab", "Tabs that divide the inventory into sections. Each one can be labelled seperately."};
-		tab.addHelp(tabHelp);
-		tab.addEventHandler(EventValueChanged.class, EventHandlerOrigin.DIRECT_CHILD, tab, event -> {
-			if (event.getValue() == null) {
-				return;
-			}
-			final NBTTagCompound nbt = new NBTTagCompound();
-			final int i = (Integer) event.getValue();
-			nbt.setByte("i", (byte) i);
-			Window.get(tab).sendClientAction("tab-change", nbt);
-			WindowCompartment.this.currentTab = i;
-		});
+		setControlTab(tab);
 		x += 24;
 		final ControlPages<Integer> compartmentPages = new ControlPages<>(controlCompartment, 24, 0, compartmentPageWidth, compartmentPageHeight);
 		final ControlPage[] page = new ControlPage[inv.getTabCount()];
@@ -132,20 +140,10 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 			new ControlSlotArray.Builder(thisPage, 8, 8, inv.getPageSize() / 5, 5).create(slotsIDs);
 		}
 		x += compartmentPageWidth;
-		if (tabs2.length > 0) {
+		if (doubleTabbed) {
 			final ControlTabBar<Integer> tab2 = new ControlTabBar<>(controlCompartment, 24 + compartmentPageWidth, 0, 24, compartmentPageHeight, Alignment.RIGHT, Arrays.asList(tabs2), this::createTab);
 			tab2.setValue(tabs1[0]);
-			tab2.addHelp(tabHelp);
-			tab2.addEventHandler(EventValueChanged.class, EventHandlerOrigin.DIRECT_CHILD, tab2, event -> {
-				if (event.getValue() == null) {
-					return;
-				}
-				final NBTTagCompound nbt = new NBTTagCompound();
-				final int iVal = (Integer) event.getValue();
-				nbt.setByte("i", (byte) iVal);
-				Window.get(tab).sendClientAction("tab-change", nbt);
-				WindowCompartment.this.currentTab = iVal;
-			});
+			setControlTab(tab2);
 			CraftGUIUtil.linkWidgets(tab2, compartmentPages);
 			x += 24;
 		}

@@ -191,8 +191,10 @@ binniecore.item.container.glass=Бутылка
 binniecore.item.container.cylinder=Цилиндр
 
 binniecore.machine.storage.search.sort_by_name=Сорт. A-Z
-binniecore.machine.storage.search.include_items=Вкл. предметы
-binniecore.machine.storage.search.include_blocks=Вкл. блоки
+binniecore.machine.storage.search.include_items=Включая предметы
+binniecore.machine.storage.search.include_blocks=Включая блоки
+binniecore.machine.storage.help.compartment_tab=Вкладка Отсека
+binniecore.machine.storage.help.compartment_tab.desc=Вкладки делят инвентарь на секции. Каждая настраивается отдельно.
 binniecore.machine.storage.compartment=Отсек
 binniecore.machine.storage.compartment.info=Сундуки, у которых несколько вкладок, чтобы помочь организовать их содержимое. Каждая вкладка может быть: переименована, назначен цвет, назначена пиктограмма из любого элемента. Количество вкладок: 4, слоты на вкладку: 25
 binniecore.machine.storage.compartment_iron=Железный отсек
