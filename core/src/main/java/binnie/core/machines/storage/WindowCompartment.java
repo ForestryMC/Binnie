@@ -7,6 +7,7 @@ import java.util.Map;
 
 import binnie.core.api.gui.ITexture;
 import binnie.core.api.gui.events.EventHandlerOrigin;
+import binnie.core.gui.controls.tab.ControlTab;
 import binnie.core.gui.geometry.Point;
 import binnie.core.gui.window.WindowMachine;
 import binnie.core.machines.IMachine;
@@ -99,9 +100,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		final int compartmentWidth = compartmentPageWidth + (doubleTabbed ? 48 : 24);
 		final int compartmentHeight = compartmentPageHeight;
 		final Control controlCompartment = new Control(this, x, y, compartmentWidth, compartmentHeight);
-		final ControlTabBar<Integer> tab = new ControlTabBar<>(controlCompartment, 0, 0, 24, compartmentPageHeight, Alignment.LEFT, Arrays.asList(tabs1), (x1, y1, w, h, value) -> {
-			return new CompartmentTabIcon(this, x1, y1, w, h, value);
-		});
+		final ControlTabBar<Integer> tab = new ControlTabBar<>(controlCompartment, 0, 0, 24, compartmentPageHeight, Alignment.LEFT, Arrays.asList(tabs1), this::createTab);
 		final String[] tabHelp = {"Compartment Tab", "Tabs that divide the inventory into sections. Each one can be labelled seperately."};
 		tab.addHelp(tabHelp);
 		tab.addEventHandler(EventValueChanged.class, EventHandlerOrigin.DIRECT_CHILD, tab, event -> {
@@ -134,9 +133,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		}
 		x += compartmentPageWidth;
 		if (tabs2.length > 0) {
-			final ControlTabBar<Integer> tab2 = new ControlTabBar<>(controlCompartment, 24 + compartmentPageWidth, 0, 24, compartmentPageHeight, Alignment.RIGHT, Arrays.asList(tabs2), (x1, y1, w, h, value) -> {
-				return new CompartmentTabIcon(this, x1, y1, w, h, value);
-			});
+			final ControlTabBar<Integer> tab2 = new ControlTabBar<>(controlCompartment, 24 + compartmentPageWidth, 0, 24, compartmentPageHeight, Alignment.RIGHT, Arrays.asList(tabs2), this::createTab);
 			tab2.setValue(tabs1[0]);
 			tab2.addHelp(tabHelp);
 			tab2.addEventHandler(EventValueChanged.class, EventHandlerOrigin.DIRECT_CHILD, tab2, event -> {
@@ -274,7 +271,11 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		return this.getTab(this.currentTab);
 	}
 
-	private static class CompartmentTabIcon extends ControlTabIcon<Integer> {
+    private ControlTab<Integer> createTab(int x1, int y1, int w, int h, Integer value) {
+        return new CompartmentTabIcon(this, x1, y1, w, h, value);
+    }
+
+    private static class CompartmentTabIcon extends ControlTabIcon<Integer> {
 		private final WindowCompartment windowCompartment;
 
 		public CompartmentTabIcon(WindowCompartment windowCompartment, int x, int y, int w, int h, Integer value) {
