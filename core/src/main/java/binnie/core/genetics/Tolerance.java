@@ -36,7 +36,7 @@ public enum Tolerance {
 	@Nullable
 	private static Pattern PATTERN;
 
-	private static Pattern GetPattern() {
+	private static Pattern getPattern() {
 		if (PATTERN == null) {
 			PATTERN = Pattern.compile("_", Pattern.LITERAL);
 		}
@@ -45,7 +45,7 @@ public enum Tolerance {
 
 	@Override
 	public String toString() {
-		return GetPattern().matcher(super.toString().toLowerCase(Locale.ENGLISH)).replaceAll(StringUtils.EMPTY);
+		return getPattern().matcher(super.toString().toLowerCase(Locale.ENGLISH)).replaceAll(StringUtils.EMPTY);
 	}
 
 	public String getUID() {

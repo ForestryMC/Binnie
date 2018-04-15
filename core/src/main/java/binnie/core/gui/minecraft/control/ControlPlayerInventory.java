@@ -22,7 +22,7 @@ public class ControlPlayerInventory extends Control {
 		for (int row = 0; row < rowCount; ++row) {
 			for (int column = 0; column < columnCount; ++column) {
 				final ControlSlot slot = new ControlSlot.Builder(this, (wide ? 58 : 0) + column * 18, row * 18)
-                        .assign(InventoryType.PLAYER, firstRowColumn + column + row * columnCount);
+						.assign(InventoryType.PLAYER, firstRowColumn + column + row * columnCount);
 				this.slots.add(slot);
 			}
 		}
@@ -51,7 +51,7 @@ public class ControlPlayerInventory extends Control {
 		for (int row = 0; row < rowCount; ++row) {
 			for (int column = 0; column < columnCount; ++column) {
 				final ControlSlot slot = new ControlSlot.Builder(this, column * 18, row * 18)
-                        .assign(InventoryType.PLAYER,column + row * columnCount);
+						.assign(InventoryType.PLAYER,column + row * columnCount);
 				this.slots.add(slot);
 			}
 		}

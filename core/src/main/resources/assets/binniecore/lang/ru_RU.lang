@@ -362,6 +362,7 @@ binniecore.gui.slot.pickup.only=Можно положить только в сл
 
 binniecore.gui.slotvalidator.individual=Разводимая особь
 
+binniecore.gui.tank.empty=Резервуар пуст
 binniecore.gui.tank.validated=%s резервуар
 binniecore.gui.tank.input=Входной резервуар
 binniecore.gui.tank.process=Технологический резервуар

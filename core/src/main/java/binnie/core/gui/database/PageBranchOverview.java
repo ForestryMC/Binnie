@@ -1,5 +1,7 @@
 package binnie.core.gui.database;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +17,6 @@ import binnie.core.gui.controls.ControlText;
 import binnie.core.gui.controls.ControlTextCentered;
 import binnie.core.gui.renderer.RenderUtil;
 import binnie.core.util.I18N;
-import org.apache.commons.lang3.StringUtils;
 
 @SideOnly(Side.CLIENT)
 public class PageBranchOverview extends PageBranch {
@@ -42,7 +43,7 @@ public class PageBranchOverview extends PageBranch {
 		}
 		this.branchDescription.clear();
 		String desc = branch.getDescription();
-		if (desc == null || desc.length() == 0 || desc.contains("for.")) {
+		if (desc == null || StringUtils.isEmpty(desc) || desc.contains("for.")) {
 			desc = I18N.localise(DatabaseConstants.BRANCH_KEY + ".noDesc");
 		}
 		StringBuilder line = new StringBuilder();
