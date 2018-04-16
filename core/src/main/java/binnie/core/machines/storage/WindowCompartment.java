@@ -99,6 +99,15 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		});
 	}
 
+	private ControlSlide createSlide() {
+        final ControlSlide slide = new ControlSlide(this, 0, 134, 136, 92, Alignment.LEFT);
+        slide.setLabel(I18N.localise(ModId.CORE, "machine.storage.help.slide_label"));
+        slide.setSlide(false);
+        slide.addHelp(I18N.localise(ModId.CORE, "machine.storage.help.slide_label"));
+        slide.addHelp(I18N.localise(ModId.CORE, "machine.storage.help.slide_label.desc"));
+        return slide;
+    }
+
 	//TODO: Clean Up, Localise
 	@Override
 	@SideOnly(Side.CLIENT)
@@ -146,12 +155,9 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		x += 16;
 		this.setSize(new Point(Math.max(32 + compartmentWidth, 252), this.getHeight()));
 		controlCompartment.setPosition(new Point((this.getWidth() - controlCompartment.getWidth()) / 2, controlCompartment.getYPos()));
-		final ControlPlayerInventory invent = new ControlPlayerInventory(this, true);
-		final ControlSlide slide = new ControlSlide(this, 0, 134, 136, 92, Alignment.LEFT);
-		slide.setLabel("Tab Properties");
-		slide.setSlide(false);
-		slide.addHelp("Tab Properties");
-		slide.addHelp("The label, colour and icon of the Tab can be altered here. Clicking on the icon with a held item will change it.");
+		new ControlPlayerInventory(this, true);
+
+        ControlSlide slide = createSlide();
 		final Panel tabPropertyPanel = new Panel(slide, 16, 8, 112, 76, MinecraftGUI.PanelType.GRAY);
 		int y2 = 4;
 		new ControlText(tabPropertyPanel, new Point(4, y2), "Tab Name:");
