@@ -108,7 +108,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
         return slide;
     }
 
-	//TODO: Clean Up, Localise
+	//TODO: Clean Up
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void initialiseClient() {
@@ -164,29 +164,36 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		y2 += 20;
         createTabIconControl(tabPropertyPanel, y2);
 		y2 += 20;
-		new ControlText(tabPropertyPanel, new Point(4, y2), "Colour: ");
+		createTabColourControl(tabPropertyPanel, y2);
+		createSearchControl(compartmentPageHeight, compartmentWidth, controlCompartment);
+	}
+
+	private void createSearchControl(int compartmentPageHeight, int compartmentWidth, Control controlCompartment) {
+		final ControlButton searchButton = new SearchButton(this, controlCompartment, compartmentWidth, compartmentPageHeight);
+		searchButton.addHelp(I18N.localise(ModId.CORE, "machine.storage.help.search_label"));
+		searchButton.addHelp(I18N.localise(ModId.CORE, "machine.storage.help.search_label.desc"));
+	}
+
+	private void createTabColourControl(Panel tabPropertyPanel, int y2) {
+		new ControlText(tabPropertyPanel, new Point(4, y2), I18N.localise(ModId.CORE, "machine.storage.сolour"));
 		final int cw = 8;
 		final Panel panelColour = new Panel(tabPropertyPanel, 40, y2 - 4, cw * 8 + 2, cw * 2 + 1, MinecraftGUI.PanelType.GRAY);
 		for (int cc = 0; cc < 16; ++cc) {
 			final ControlColourSelector color = new ControlColourSelector(panelColour, 1 + cw * (cc % 8), 1 + cw * (cc / 8), cw, cw, EnumColor.values()[cc]);
 			color.addSelfEventHandler(EventMouse.Down.class, event -> {
-				final binnie.core.machines.storage.CompartmentTab currentTab = WindowCompartment.this.getCurrentTab();
+				final CompartmentTab currentTab = WindowCompartment.this.getCurrentTab();
 				currentTab.setColor(color.getValue());
 				final NBTTagCompound nbt = new NBTTagCompound();
 				currentTab.writeToNBT(nbt);
 				WindowCompartment.this.sendClientAction(ComponentCompartmentInventory.ACTION_COMP_CHANGE_TAB, nbt);
 			});
-			color.addHelp("Colour Selector");
-			color.addHelp("Select a colour to highlight the current tab");
+			color.addHelp(I18N.localise(ModId.CORE, "machine.storage.help.сolour_label"));
+			color.addHelp(I18N.localise(ModId.CORE, "machine.storage.help.сolour_label.desc"));
 		}
-		y2 += 20;
-		final ControlButton searchButton = new SearchButton(this, controlCompartment, compartmentWidth, compartmentPageHeight);
-		searchButton.addHelp("Search Button");
-		searchButton.addHelp("Clicking this will open the Search dialog. This allows you to search the inventory for specific items.");
 	}
 
-    private void createTabIconControl(Panel tabPropertyPanel, int y2) {
-        new ControlText(tabPropertyPanel, new Point(4, y2), I18N.localise(ModId.CORE, "machine.storage.help.icon_label.text"));
+	private void createTabIconControl(Panel tabPropertyPanel, int y2) {
+        new ControlText(tabPropertyPanel, new Point(4, y2), I18N.localise(ModId.CORE, "machine.storage.icon"));
         (this.tabIcon = new ControlItemDisplay(tabPropertyPanel, 58, y2 - 4)).setItemStack(new ItemStack(Items.PAPER));
         this.tabIcon.addAttribute(Attribute.MOUSE_OVER);
         this.tabIcon.addSelfEventHandler(EventMouse.Down.class, event -> {
@@ -207,7 +214,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
     }
 
     private int createTabNameControl(Panel tabPropertyPanel, int y2) {
-		new ControlText(tabPropertyPanel, new Point(4, y2), "Tab Name:");
+		new ControlText(tabPropertyPanel, new Point(4, y2), I18N.localise(ModId.CORE, "machine.storage.tab_name"));
 		y2 += 12;
 		(this.tabName = new ControlTextEdit(tabPropertyPanel, 4, y2, 104, 12)).addEventHandler(EventTextEdit.class, EventHandlerOrigin.SELF, this.tabName, event -> {
 			final CompartmentTab currentTab = WindowCompartment.this.getCurrentTab();
@@ -249,7 +256,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 
 	@Override
 	public String getTitle() {
-		return "Compartment";
+		return I18N.localise(ModId.CORE, "machine.storage.compartment");
 	}
 
 	@Override
@@ -334,7 +341,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		private final WindowCompartment windowCompartment;
 
 		public SearchButton(WindowCompartment windowCompartment, Control controlCompartment, int compartmentWidth, int compartmentPageHeight) {
-			super(controlCompartment, compartmentWidth - 24 - 64 - 8, compartmentPageHeight, 64, 16, "Search");
+			super(controlCompartment, compartmentWidth - 24 - 64 - 8, compartmentPageHeight, 64, 16, I18N.localise(ModId.CORE, "machine.storage.search.button"));
 			this.windowCompartment = windowCompartment;
 		}
 
