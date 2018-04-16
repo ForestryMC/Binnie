@@ -160,17 +160,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
         ControlSlide slide = createSlide();
 		final Panel tabPropertyPanel = new Panel(slide, 16, 8, 112, 76, MinecraftGUI.PanelType.GRAY);
 		int y2 = 4;
-		new ControlText(tabPropertyPanel, new Point(4, y2), "Tab Name:");
-		final Panel parent = tabPropertyPanel;
-		final int x2 = 4;
-		y2 += 12;
-		(this.tabName = new ControlTextEdit(parent, x2, y2, 104, 12)).addEventHandler(EventTextEdit.class, EventHandlerOrigin.SELF, this.tabName, event -> {
-			final binnie.core.machines.storage.CompartmentTab currentTab = WindowCompartment.this.getCurrentTab();
-			currentTab.setName(event.getValue());
-			final NBTTagCompound nbt = new NBTTagCompound();
-			currentTab.writeToNBT(nbt);
-			WindowCompartment.this.sendClientAction(ComponentCompartmentInventory.ACTION_COMP_CHANGE_TAB, nbt);
-		});
+		y2 = createTabNameControl(tabPropertyPanel, y2);
 		y2 += 20;
 		new ControlText(tabPropertyPanel, new Point(4, y2), "Tab Icon: ");
 		(this.tabIcon = new ControlItemDisplay(tabPropertyPanel, 58, y2 - 4)).setItemStack(new ItemStack(Items.PAPER));
@@ -210,6 +200,19 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		final ControlButton searchButton = new SearchButton(this, controlCompartment, compartmentWidth, compartmentPageHeight);
 		searchButton.addHelp("Search Button");
 		searchButton.addHelp("Clicking this will open the Search dialog. This allows you to search the inventory for specific items.");
+	}
+
+	private int createTabNameControl(Panel tabPropertyPanel, int y2) {
+		new ControlText(tabPropertyPanel, new Point(4, y2), "Tab Name:");
+		y2 += 12;
+		(this.tabName = new ControlTextEdit(tabPropertyPanel, 4, y2, 104, 12)).addEventHandler(EventTextEdit.class, EventHandlerOrigin.SELF, this.tabName, event -> {
+			final CompartmentTab currentTab = WindowCompartment.this.getCurrentTab();
+			currentTab.setName(event.getValue());
+			final NBTTagCompound nbt = new NBTTagCompound();
+			currentTab.writeToNBT(nbt);
+			WindowCompartment.this.sendClientAction(ComponentCompartmentInventory.ACTION_COMP_CHANGE_TAB, nbt);
+		});
+		return y2;
 	}
 
 	@SideOnly(Side.CLIENT)
