@@ -162,24 +162,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		int y2 = 4;
 		y2 = createTabNameControl(tabPropertyPanel, y2);
 		y2 += 20;
-		new ControlText(tabPropertyPanel, new Point(4, y2), "Tab Icon: ");
-		(this.tabIcon = new ControlItemDisplay(tabPropertyPanel, 58, y2 - 4)).setItemStack(new ItemStack(Items.PAPER));
-		this.tabIcon.addAttribute(Attribute.MOUSE_OVER);
-		this.tabIcon.addSelfEventHandler(EventMouse.Down.class, event -> {
-			if (WindowCompartment.this.getHeldItemStack().isEmpty()) {
-				return;
-			}
-			final binnie.core.machines.storage.CompartmentTab currentTab = WindowCompartment.this.getCurrentTab();
-			final ItemStack stack = WindowCompartment.this.getHeldItemStack().copy();
-			stack.setCount(1);
-			currentTab.setIcon(stack);
-			final NBTTagCompound nbt = new NBTTagCompound();
-			currentTab.writeToNBT(nbt);
-			WindowCompartment.this.sendClientAction(ComponentCompartmentInventory.ACTION_COMP_CHANGE_TAB, nbt);
-		});
-		this.tabColour = new ControlColourSelector(tabPropertyPanel, 82, y2 - 4, 16, 16, EnumColor.WHITE);
-		this.tabIcon.addHelp("Icon for Current Tab");
-		this.tabIcon.addHelp("Click here with an item to change");
+        createTabIconControl(tabPropertyPanel, y2);
 		y2 += 20;
 		new ControlText(tabPropertyPanel, new Point(4, y2), "Colour: ");
 		final int cw = 8;
@@ -202,7 +185,28 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		searchButton.addHelp("Clicking this will open the Search dialog. This allows you to search the inventory for specific items.");
 	}
 
-	private int createTabNameControl(Panel tabPropertyPanel, int y2) {
+    private void createTabIconControl(Panel tabPropertyPanel, int y2) {
+        new ControlText(tabPropertyPanel, new Point(4, y2), I18N.localise(ModId.CORE, "machine.storage.help.icon_label.text"));
+        (this.tabIcon = new ControlItemDisplay(tabPropertyPanel, 58, y2 - 4)).setItemStack(new ItemStack(Items.PAPER));
+        this.tabIcon.addAttribute(Attribute.MOUSE_OVER);
+        this.tabIcon.addSelfEventHandler(EventMouse.Down.class, event -> {
+            if (WindowCompartment.this.getHeldItemStack().isEmpty()) {
+                return;
+            }
+            final CompartmentTab currentTab = WindowCompartment.this.getCurrentTab();
+            final ItemStack stack = WindowCompartment.this.getHeldItemStack().copy();
+            stack.setCount(1);
+            currentTab.setIcon(stack);
+            final NBTTagCompound nbt = new NBTTagCompound();
+            currentTab.writeToNBT(nbt);
+            WindowCompartment.this.sendClientAction(ComponentCompartmentInventory.ACTION_COMP_CHANGE_TAB, nbt);
+        });
+        this.tabColour = new ControlColourSelector(tabPropertyPanel, 82, y2 - 4, 16, 16, EnumColor.WHITE);
+        this.tabIcon.addHelp(I18N.localise(ModId.CORE, "machine.storage.help.icon_label"));
+        this.tabIcon.addHelp(I18N.localise(ModId.CORE, "machine.storage.help.icon_label.desc"));
+    }
+
+    private int createTabNameControl(Panel tabPropertyPanel, int y2) {
 		new ControlText(tabPropertyPanel, new Point(4, y2), "Tab Name:");
 		y2 += 12;
 		(this.tabName = new ControlTextEdit(tabPropertyPanel, 4, y2, 104, 12)).addEventHandler(EventTextEdit.class, EventHandlerOrigin.SELF, this.tabName, event -> {
