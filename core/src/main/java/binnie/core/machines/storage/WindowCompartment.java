@@ -100,13 +100,13 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 	}
 
 	private ControlSlide createSlide() {
-        final ControlSlide slide = new ControlSlide(this, 0, 134, 136, 92, Alignment.LEFT);
-        slide.setLabel(I18N.localise(ModId.CORE, "machine.storage.help.slide_label"));
-        slide.setSlide(false);
-        slide.addHelp(I18N.localise(ModId.CORE, "machine.storage.help.slide_label"));
-        slide.addHelp(I18N.localise(ModId.CORE, "machine.storage.help.slide_label.desc"));
-        return slide;
-    }
+		final ControlSlide slide = new ControlSlide(this, 0, 134, 136, 92, Alignment.LEFT);
+		slide.setLabel(I18N.localise(ModId.CORE, "machine.storage.help.slide_label"));
+		slide.setSlide(false);
+		slide.addHelp(I18N.localise(ModId.CORE, "machine.storage.help.slide_label"));
+		slide.addHelp(I18N.localise(ModId.CORE, "machine.storage.help.slide_label.desc"));
+		return slide;
+	}
 
 	//TODO: Clean Up
 	@Override
@@ -157,12 +157,12 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		controlCompartment.setPosition(new Point((this.getWidth() - controlCompartment.getWidth()) / 2, controlCompartment.getYPos()));
 		new ControlPlayerInventory(this, true);
 
-        ControlSlide slide = createSlide();
+		ControlSlide slide = createSlide();
 		final Panel tabPropertyPanel = new Panel(slide, 16, 8, 112, 76, MinecraftGUI.PanelType.GRAY);
 		int y2 = 4;
 		y2 = createTabNameControl(tabPropertyPanel, y2);
 		y2 += 20;
-        createTabIconControl(tabPropertyPanel, y2);
+		createTabIconControl(tabPropertyPanel, y2);
 		y2 += 20;
 		createTabColourControl(tabPropertyPanel, y2);
 		createSearchControl(compartmentPageHeight, compartmentWidth, controlCompartment);
@@ -193,27 +193,27 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 	}
 
 	private void createTabIconControl(Panel tabPropertyPanel, int y2) {
-        new ControlText(tabPropertyPanel, new Point(4, y2), I18N.localise(ModId.CORE, "machine.storage.icon"));
-        (this.tabIcon = new ControlItemDisplay(tabPropertyPanel, 58, y2 - 4)).setItemStack(new ItemStack(Items.PAPER));
-        this.tabIcon.addAttribute(Attribute.MOUSE_OVER);
-        this.tabIcon.addSelfEventHandler(EventMouse.Down.class, event -> {
-            if (WindowCompartment.this.getHeldItemStack().isEmpty()) {
-                return;
-            }
-            final CompartmentTab currentTab = WindowCompartment.this.getCurrentTab();
-            final ItemStack stack = WindowCompartment.this.getHeldItemStack().copy();
-            stack.setCount(1);
-            currentTab.setIcon(stack);
-            final NBTTagCompound nbt = new NBTTagCompound();
-            currentTab.writeToNBT(nbt);
-            WindowCompartment.this.sendClientAction(ComponentCompartmentInventory.ACTION_COMP_CHANGE_TAB, nbt);
-        });
-        this.tabColour = new ControlColourSelector(tabPropertyPanel, 82, y2 - 4, 16, 16, EnumColor.WHITE);
-        this.tabIcon.addHelp(I18N.localise(ModId.CORE, "machine.storage.help.icon_label"));
-        this.tabIcon.addHelp(I18N.localise(ModId.CORE, "machine.storage.help.icon_label.desc"));
-    }
+		new ControlText(tabPropertyPanel, new Point(4, y2), I18N.localise(ModId.CORE, "machine.storage.icon"));
+		(this.tabIcon = new ControlItemDisplay(tabPropertyPanel, 58, y2 - 4)).setItemStack(new ItemStack(Items.PAPER));
+		this.tabIcon.addAttribute(Attribute.MOUSE_OVER);
+		this.tabIcon.addSelfEventHandler(EventMouse.Down.class, event -> {
+			if (WindowCompartment.this.getHeldItemStack().isEmpty()) {
+				return;
+			}
+			final CompartmentTab currentTab = WindowCompartment.this.getCurrentTab();
+			final ItemStack stack = WindowCompartment.this.getHeldItemStack().copy();
+			stack.setCount(1);
+			currentTab.setIcon(stack);
+			final NBTTagCompound nbt = new NBTTagCompound();
+			currentTab.writeToNBT(nbt);
+			WindowCompartment.this.sendClientAction(ComponentCompartmentInventory.ACTION_COMP_CHANGE_TAB, nbt);
+		});
+		this.tabColour = new ControlColourSelector(tabPropertyPanel, 82, y2 - 4, 16, 16, EnumColor.WHITE);
+		this.tabIcon.addHelp(I18N.localise(ModId.CORE, "machine.storage.help.icon_label"));
+		this.tabIcon.addHelp(I18N.localise(ModId.CORE, "machine.storage.help.icon_label.desc"));
+	}
 
-    private int createTabNameControl(Panel tabPropertyPanel, int y2) {
+	private int createTabNameControl(Panel tabPropertyPanel, int y2) {
 		new ControlText(tabPropertyPanel, new Point(4, y2), I18N.localise(ModId.CORE, "machine.storage.tab_name"));
 		y2 += 12;
 		(this.tabName = new ControlTextEdit(tabPropertyPanel, 4, y2, 104, 12)).addEventHandler(EventTextEdit.class, EventHandlerOrigin.SELF, this.tabName, event -> {
@@ -285,11 +285,11 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		return this.getTab(this.currentTab);
 	}
 
-    private ControlTab<Integer> createTab(int x1, int y1, int w, int h, Integer value) {
-        return new CompartmentTabIcon(this, x1, y1, w, h, value);
-    }
+	private ControlTab<Integer> createTab(int x1, int y1, int w, int h, Integer value) {
+		return new CompartmentTabIcon(this, x1, y1, w, h, value);
+	}
 
-    private static class CompartmentTabIcon extends ControlTabIcon<Integer> {
+	private static class CompartmentTabIcon extends ControlTabIcon<Integer> {
 		private final WindowCompartment windowCompartment;
 
 		public CompartmentTabIcon(WindowCompartment windowCompartment, int x, int y, int w, int h, Integer value) {
