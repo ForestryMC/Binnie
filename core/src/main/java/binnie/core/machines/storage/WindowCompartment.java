@@ -121,18 +121,14 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		final Control controlCompartment = new Control(this, x, y, compartmentWidth, compartmentHeight);
 		final ControlTabBar<Integer> tab = new ControlTabBar<>(controlCompartment, 0, 0, 24, compartmentPageHeight, Alignment.LEFT, Arrays.asList(tabs1), this::createTab);
 		setControlTab(tab);
-		x += 24;
+		x += tab.getWidth();
 		final ControlPages<Integer> compartmentPages = new ControlPages<>(controlCompartment, 24, 0, compartmentPageWidth, compartmentPageHeight);
-		final ControlPage[] page = new ControlPage[inv.getTabCount()];
-		for (int p = 0; p < inv.getTabCount(); ++p) {
-			page[p] = new ControlPage<>(compartmentPages, p);
-		}
 		CraftGUIUtil.linkWidgets(tab, compartmentPages);
 		int i = 0;
-		for (int p2 = 0; p2 < inv.getTabCount(); ++p2) {
-			final ControlPage thisPage = page[p2];
+		for (int pos = 0; pos < inv.getTabCount(); ++pos) {
+			final ControlPage thisPage = new ControlPage<>(compartmentPages, pos);
 			final Panel panel = new CompartmentCenterPanel(this, thisPage);
-			this.panels.put(panel, p2);
+			this.panels.put(panel, pos);
 			final int[] slotsIDs = new int[inv.getPageSize()];
 			for (int k = 0; k < inv.getPageSize(); ++k) {
 				slotsIDs[k] = i++;
@@ -145,7 +141,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 			tab2.setValue(tabs1[0]);
 			setControlTab(tab2);
 			CraftGUIUtil.linkWidgets(tab2, compartmentPages);
-			x += 24;
+			x += tab2.getWidth();
 		}
 		x += 16;
 		this.setSize(new Point(Math.max(32 + compartmentWidth, 252), this.getHeight()));
