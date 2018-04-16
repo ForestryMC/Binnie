@@ -2,6 +2,7 @@ package binnie.core.machines.base;
 
 import javax.annotation.Nullable;
 
+import binnie.core.util.EmptyHelper;
 import net.minecraft.util.EnumFacing;
 
 import net.minecraft.util.ResourceLocation;
@@ -14,9 +15,10 @@ import binnie.core.machines.power.ITankMachine;
 import binnie.core.machines.power.TankInfo;
 
 class DefaultTankContainer implements ITankMachine {
+
 	@Override
 	public TankInfo[] getTankInfos() {
-		return new TankInfo[0];
+		return EmptyHelper.TANK_INFO_EMPTY;
 	}
 
 	@Override
@@ -63,6 +65,6 @@ class DefaultTankContainer implements ITankMachine {
 
 	@Override
 	public IFluidTank[] getTanks() {
-		return new IFluidTank[0];
+		return EmptyHelper.FLUID_TANKS_EMPTY;
 	}
 }

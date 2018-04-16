@@ -39,19 +39,16 @@ public class ManagerLiquid extends ManagerBase {
 	public void createLiquids(IFluidDefinition[] liquids) {
 		for (IFluidDefinition liquid : liquids) {
 			FluidType type = liquid.getType();
-			final BinnieFluid fluid = this.createLiquid(type);
-			if (fluid == null) {
-				Log.error("Liquid registered incorrectly - {} ", type.getIdentifier());
-			}
+			this.createLiquid(type);
 		}
 	}
 
-	private BinnieFluid createLiquid(FluidType fluid) {
+	private void createLiquid(FluidType fluid) {
 		this.fluids.put(fluid.getIdentifier().toLowerCase(), fluid);
-		final BinnieFluid bFluid = new BinnieFluid(fluid);
-		FluidRegistry.registerFluid(bFluid);
-		FluidRegistry.addBucketForFluid(bFluid);
-		return bFluid;
+		BinnieFluid bFluid = new BinnieFluid(fluid);
+		if ((!FluidRegistry.registerFluid(bFluid)) || (FluidRegistry.addBucketForFluid(bFluid))) {
+			Log.error("Liquid registered incorrectly - {} ", fluid.getIdentifier());
+		}
 	}
 
 	@Nullable

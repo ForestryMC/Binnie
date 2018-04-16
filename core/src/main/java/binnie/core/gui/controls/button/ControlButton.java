@@ -25,7 +25,7 @@ public class ControlButton extends Control {
 		super(parent, x, y, width, height);
 		this.addAttribute(Attribute.MOUSE_OVER);
 		this.addSelfEventHandler(EventMouse.Down.class, event -> {
-			ControlButton.this.callEvent(new EventButtonClicked(ControlButton.this.getWidget()));
+			ControlButton.this.callEvent(new EventButtonClicked(ControlButton.this));
 			ControlButton.this.onMouseClick(event);
 		});
 	}
@@ -57,11 +57,13 @@ public class ControlButton extends Control {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		Object texture = CraftGUITexture.BUTTON_DISABLED;
+		final Object texture;
 		if (this.isMouseOver()) {
 			texture = CraftGUITexture.BUTTON_HIGHLIGHTED;
 		} else if (this.isEnabled()) {
 			texture = CraftGUITexture.BUTTON;
+		} else {
+			texture = CraftGUITexture.BUTTON_DISABLED;
 		}
 		CraftGUI.RENDER.texture(texture, this.getArea());
 	}

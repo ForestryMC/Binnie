@@ -19,6 +19,7 @@ import binnie.core.network.IPacketID;
 import binnie.core.network.IPacketProvider;
 import binnie.core.network.packet.MessageBinnie;
 import binnie.core.proxy.IProxyCore;
+import binnie.core.util.EmptyHelper;
 
 public abstract class AbstractMod implements IPacketProvider, IInitializable {
 	protected final List<IInitializable> modules;
@@ -40,15 +41,15 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
 
 	@Override
 	public IPacketID[] getPacketIDs() {
-		return new IPacketID[0];
+		return EmptyHelper.PACKET_IDS_EMPTY;
 	}
 
 	public IBinnieGUID[] getGUIDs() {
-		return new IBinnieGUID[0];
+		return EmptyHelper.BINNIE_GUIDS_EMPTY;
 	}
 
 	public Class<?>[] getConfigs() {
-		return new Class[0];
+		return EmptyHelper.CLASS_ARRAY_EMPTY;
 	}
 
 	public abstract IProxyCore getProxy();

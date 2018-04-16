@@ -29,16 +29,19 @@ public class PowerInfo implements INbtReadable, INbtWritable {
 		return (int) this.maxEnergy;
 	}
 
+	private static final String NBT_KEY_CURRENT = "current";
+	private static final String NBT_KEY_MAX = "max";
+
 	@Override
 	public void readFromNBT(final NBTTagCompound nbttagcompound) {
-		this.currentEnergy = nbttagcompound.getInteger("current");
-		this.maxEnergy = nbttagcompound.getInteger("max");
+		this.currentEnergy = nbttagcompound.getInteger(NBT_KEY_CURRENT);
+		this.maxEnergy = nbttagcompound.getInteger(NBT_KEY_MAX);
 	}
 
 	@Override
 	public NBTTagCompound writeToNBT(final NBTTagCompound nbttagcompound) {
-		nbttagcompound.setInteger("current", this.getStoredEnergy());
-		nbttagcompound.setInteger("max", this.getMaxEnergy());
+		nbttagcompound.setInteger(NBT_KEY_CURRENT, this.getStoredEnergy());
+		nbttagcompound.setInteger(NBT_KEY_MAX, this.getMaxEnergy());
 		return nbttagcompound;
 	}
 }

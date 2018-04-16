@@ -19,6 +19,7 @@ import forestry.api.genetics.ISpeciesRoot;
 import binnie.core.Binnie;
 import binnie.core.genetics.Gene;
 import binnie.core.util.I18N;
+import binnie.core.util.EmptyHelper;
 import binnie.genetics.Genetics;
 import binnie.core.api.genetics.IGene;
 import binnie.genetics.api.IItemSerum;
@@ -53,9 +54,9 @@ public class ItemSerumArray extends ItemGene implements IItemSerum {
 	public IGene[] getGenes(final ItemStack stack) {
 		GeneArrayItem geneItem = this.getGeneItem(stack);
 		if (geneItem != null) {
-			return geneItem.getGenes().toArray(new IGene[0]);
+			return geneItem.getGenes().toArray(EmptyHelper.GENES_EMPTY);
 		}
-		return new IGene[0];
+		return EmptyHelper.GENES_EMPTY;
 	}
 
 	@Override

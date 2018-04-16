@@ -1,5 +1,7 @@
 package binnie.core.machines.inventory;
 
+import org.apache.commons.lang3.StringUtils;
+
 import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -105,12 +107,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
 		compound = super.writeToNBT(compound);
-		NBTUtil.writeToList(compound, INVENTORY_KEY, inventory, (index, slot) -> {
-			NBTTagCompound slotTag = new NBTTagCompound();
-			slotTag.setInteger(INDEX_KEY, index);
-			slot.writeToNBT(slotTag);
-			return slotTag;
-		});
+		NBTUtil.writeToList(compound, INVENTORY_KEY, inventory, NBTUtil.writeToListConsumer(INDEX_KEY));
 		return compound;
 	}
 
@@ -223,7 +220,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 
 	@Override
 	public String getName() {
-		return "";
+		return StringUtils.EMPTY;
 	}
 
 	@Override

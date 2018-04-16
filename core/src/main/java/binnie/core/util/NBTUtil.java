@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 
+import forestry.api.core.INbtWritable;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -14,6 +15,15 @@ import net.minecraftforge.energy.IEnergyStorage;
 public class NBTUtil {
 
 	private NBTUtil() {
+	}
+
+	public static <V extends INbtWritable> BiFunction<Integer, V, NBTTagCompound> writeToListConsumer(final String Key) {
+		return (index, slot) -> {
+			NBTTagCompound nbtTagCompound = new NBTTagCompound();
+			nbtTagCompound.setInteger(Key, index);
+			slot.writeToNBT(nbtTagCompound);
+			return nbtTagCompound;
+		};
 	}
 
 	public static void readFromList(NBTTagCompound compound, String listKey, Consumer<NBTTagCompound> consumer){

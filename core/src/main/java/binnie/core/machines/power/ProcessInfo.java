@@ -12,10 +12,7 @@ public class ProcessInfo implements INbtReadable, INbtWritable {
 	private float energyPerTick;
 
 	public ProcessInfo(final IProcess process) {
-		this.currentProgress = 0.0f;
-		this.processEnergy = 0;
-		this.processTime = 0;
-		this.energyPerTick = 0.0f;
+		this();
 		this.energyPerTick = process.getEnergyPerTick();
 		if (process instanceof IProcessTimed) {
 			final IProcessTimed time = (IProcessTimed) process;
@@ -50,20 +47,25 @@ public class ProcessInfo implements INbtReadable, INbtWritable {
 		return this.energyPerTick;
 	}
 
+	private static final String NBT_KEY_ENERGY_PER_TICK = "ept";
+	private static final String NBT_KEY_PROCESS_ENERGY = "e";
+	private static final String NBT_KEY_PROCESS_TIME = "t";
+	private static final String NBT_KEY_CURRENT_PROGRESS = "p";
+
 	@Override
 	public void readFromNBT(final NBTTagCompound nbttagcompound) {
-		this.energyPerTick = nbttagcompound.getFloat("ept");
-		this.processEnergy = nbttagcompound.getInteger("e");
-		this.processTime = nbttagcompound.getInteger("t");
-		this.currentProgress = nbttagcompound.getFloat("p");
+		this.energyPerTick = nbttagcompound.getFloat(NBT_KEY_ENERGY_PER_TICK);
+		this.processEnergy = nbttagcompound.getInteger(NBT_KEY_PROCESS_ENERGY);
+		this.processTime = nbttagcompound.getInteger(NBT_KEY_PROCESS_TIME);
+		this.currentProgress = nbttagcompound.getFloat(NBT_KEY_CURRENT_PROGRESS);
 	}
 
 	@Override
 	public NBTTagCompound writeToNBT(final NBTTagCompound nbttagcompound) {
-		nbttagcompound.setFloat("ept", this.energyPerTick);
-		nbttagcompound.setFloat("p", this.currentProgress);
-		nbttagcompound.setInteger("e", this.processEnergy);
-		nbttagcompound.setInteger("t", this.processTime);
+		nbttagcompound.setFloat(NBT_KEY_ENERGY_PER_TICK, this.energyPerTick);
+		nbttagcompound.setInteger(NBT_KEY_PROCESS_ENERGY, this.processEnergy);
+		nbttagcompound.setInteger(NBT_KEY_PROCESS_TIME, this.processTime);
+		nbttagcompound.setFloat(NBT_KEY_CURRENT_PROGRESS, this.currentProgress);
 		return nbttagcompound;
 	}
 }

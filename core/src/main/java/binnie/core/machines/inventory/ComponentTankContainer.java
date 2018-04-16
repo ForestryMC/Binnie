@@ -22,6 +22,7 @@ import binnie.core.machines.IMachine;
 import binnie.core.machines.MachineComponent;
 import binnie.core.machines.power.ITankMachine;
 import binnie.core.machines.power.TankInfo;
+import binnie.core.util.EmptyHelper;
 import binnie.core.util.NBTUtil;
 
 public class ComponentTankContainer extends MachineComponent implements ITankMachine {
@@ -85,7 +86,7 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 	}
 
 	@Override
-	public void readFromNBT(NBTTagCompound compound) {
+	public void readFromNBT(final NBTTagCompound compound) {
 		super.readFromNBT(compound);
 		NBTUtil.readFromList(compound, TANKS_KEY, (tankNBT)->{
 			int index = tankNBT.getInteger(TANK_INDEX_KEY);
@@ -99,12 +100,7 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
 		compound = super.writeToNBT(compound);
-		NBTUtil.writeToList(compound, TANKS_KEY, tanks, (index, tank)->{
-			NBTTagCompound tankNBT = new NBTTagCompound();
-			tankNBT.setInteger(TANK_INDEX_KEY, index);
-			tank.writeToNBT(tankNBT);
-			return tankNBT;
-		});
+		NBTUtil.writeToList(compound, TANKS_KEY, tanks, NBTUtil.writeToListConsumer(TANK_INDEX_KEY));
 		return compound;
 	}
 
@@ -135,7 +131,7 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 		for (final TankSlot tank : this.tanks.values()) {
 			tankList.add(tank.getTank());
 		}
-		return tankList.toArray(new IFluidTank[0]);
+		return tankList.toArray(EmptyHelper.FLUID_TANKS_EMPTY);
 	}
 
 	@Override
@@ -229,10 +225,10 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 			for (final TankSlot tank : this.tanks.values()) {
 				ltanks.add(tank.getTank());
 			}
-			return ltanks.toArray(new IFluidTank[0]);
+			return ltanks.toArray(EmptyHelper.FLUID_TANKS_EMPTY);
 		}
 
-		private static int getTankIndexToFill(Map<Integer, TankSlot> tanks, @Nullable EnumFacing from, final FluidStack resource) {
+		private static int getTankIndexToFill(Map<Integer, TankSlot> tanks, @Nullable EnumFacing from, FluidStack resource) {
 			for (final TankSlot tank : tanks.values()) {
 				if (tank.isValid(resource) && tank.canInsert(from) && (tank.getContent() == null || tank.getContent().isFluidEqual(resource))) {
 					return tank.getIndex();
@@ -241,7 +237,7 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 			return -1;
 		}
 
-		private static int getTankIndexToDrain(Map<Integer, TankSlot> tanks, @Nullable EnumFacing from, @Nullable final FluidStack resource) {
+		private static int getTankIndexToDrain(Map<Integer, TankSlot> tanks, @Nullable EnumFacing from, @Nullable FluidStack resource) {
 			for (final TankSlot tank : tanks.values()) {
 				if (tank.getContent() != null && tank.canExtract(from) && (resource == null || resource.isFluidEqual(tank.getContent()))) {
 					return tank.getIndex();

@@ -357,11 +357,9 @@ public class Widget implements IWidget {
 	public void onRender(final RenderStage stage, int guiWidth, int guiHeight) {
 		if (stage == RenderStage.PRE_CHILDREN) {
 			this.onRenderBackground(guiWidth, guiHeight);
-		}
-		if (stage == RenderStage.POST_CHILDREN) {
+		} else if (stage == RenderStage.POST_CHILDREN) {
 			this.onRenderForeground(guiWidth, guiHeight);
-		}
-		if (stage == RenderStage.POST_SIBLINGS) {
+		} else if (stage == RenderStage.POST_SIBLINGS) {
 			this.onRenderOverlay();
 		}
 	}
@@ -451,10 +449,5 @@ public class Widget implements IWidget {
 	@Override
 	public final void delete() {
 		this.getTopParent().widgetDeleted(this);
-	}
-
-	//TODO: Why not use "this" ?
-	public IWidget getWidget() {
-		return this;
 	}
 }

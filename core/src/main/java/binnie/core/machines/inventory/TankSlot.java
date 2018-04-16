@@ -1,6 +1,7 @@
 package binnie.core.machines.inventory;
 
 import javax.annotation.Nullable;
+import org.apache.commons.lang3.StringUtils;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
@@ -33,8 +34,9 @@ public class TankSlot extends BaseSlot<FluidStack> {
 
 	@Override
 	public NBTTagCompound writeToNBT(final NBTTagCompound compound) {
-		if (this.getContent() != null) {
-			this.getContent().writeToNBT(compound);
+		final FluidStack fluidStack = this.getContent();
+		if (fluidStack != null) {
+			fluidStack.writeToNBT(compound);
 		}
 		return compound;
 	}
@@ -59,7 +61,7 @@ public class TankSlot extends BaseSlot<FluidStack> {
 			return I18N.localise(ModId.CORE, "gui.tank.validated", validator.getTooltip());
 		}
 		if (this.unlocLocation == null) {
-			return "";
+			return StringUtils.EMPTY;
 		}
 		return I18N.localise(this.unlocLocation);
 	}

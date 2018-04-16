@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import binnie.core.ModId;
 import binnie.core.api.gui.IWidget;
 import binnie.core.gui.CraftGUI;
 import binnie.core.gui.controls.ControlCheckbox;
@@ -20,18 +21,22 @@ import binnie.core.gui.minecraft.control.ControlPlayerInventory;
 import binnie.core.gui.minecraft.control.ControlSlot;
 import binnie.core.gui.renderer.RenderUtil;
 import binnie.core.gui.resource.textures.CraftGUITexture;
+import binnie.core.util.I18N;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.apache.commons.lang3.StringUtils;
 
 @SideOnly(Side.CLIENT)
 public class SearchDialog extends Dialog {
 	private final Control slotGrid;
 	private final WindowCompartment windowCompartment;
-	private String textSearch = "";
+	final ControlScrollableContent<IWidget> scroll;
+	private String textSearch = StringUtils.EMPTY;
 	private boolean sortByName;
 	private boolean includeItems;
 	private boolean includeBlocks;
@@ -40,12 +45,13 @@ public class SearchDialog extends Dialog {
 		super(windowCompartment, 252, 192);
 		this.windowCompartment = windowCompartment;
 
-		final ControlScrollableContent<IWidget> scroll = new SearchScrollContent(this);
+		scroll = new SearchScrollContent(this);
 		this.slotGrid = new Control(scroll, 1, 1, 108, 18);
 		scroll.setScrollableContent(this.slotGrid);
 		new ControlPlayerInventory(this, true);
 		new ControlTextEdit(this, 16, 16, 100, 14).addEventHandler(EventTextEdit.class, event -> {
-			textSearch = event.getValue();
+			final String value = event.getValue();
+			textSearch = (value == null) ? StringUtils.EMPTY : value;
 			updateSearch();
 		});
 		this.includeItems = true;
@@ -56,38 +62,49 @@ public class SearchDialog extends Dialog {
 		this.updateSearch();
 	}
 
-	private void updateSearch() {
-		Map<Integer, String> slotIds = new HashMap<>();
+	private Map<Integer, String> filter(final Map<Integer, String> slotIds) {
 		final IInventory inv = windowCompartment.getInventory();
 		for (int i = 0; i < inv.getSizeInventory(); ++i) {
 			final ItemStack stack = inv.getStackInSlot(i);
 			if (!stack.isEmpty()) {
 				final String name = stack.getDisplayName().toLowerCase();
-				if (this.textSearch == null || name.contains(this.textSearch)) {
-					if (this.includeBlocks || Block.getBlockFromItem(stack.getItem()) == Blocks.AIR) {
-						if (this.includeItems || Block.getBlockFromItem(stack.getItem()) != Blocks.AIR) {
+				if (this.textSearch.length() == 0 || name.contains(this.textSearch)) {
+					final Item item = stack.getItem();
+					final Block block = Block.getBlockFromItem(item);
+					if (this.includeBlocks || block == Blocks.AIR) {
+						if (this.includeItems || block != Blocks.AIR) {
 							slotIds.put(i, name);
 						}
 					}
 				}
 			}
 		}
+		return slotIds;
+	}
+
+	private Map<Integer, String> sort(final Map<Integer, String> slotIds) {
 		if (this.sortByName) {
 			final List<Map.Entry<Integer, String>> list = new LinkedList<>(slotIds.entrySet());
 			list.sort((o1, o2) -> -o2.getValue().compareTo(o1.getValue()));
-			final Map<Integer, String> result = new LinkedHashMap<>();
+			slotIds.clear();
 			for (final Map.Entry<Integer, String> entry : list) {
-				result.put(entry.getKey(), entry.getValue());
+				slotIds.put(entry.getKey(), entry.getValue());
 			}
-			slotIds = result;
 		}
+		return slotIds;
+	}
+
+	private void updateSearch() {
+		final Map<Integer, String> slotIds = new HashMap<>();
+		final Map<Integer, String> filtered = filter(slotIds);
+		final Map<Integer, String> sorted = sort(filtered);
 		int y = 0;
 		int x = 0;
 		final int width = 108;
-		final int height = 2 + 18 * (1 + (slotIds.size() - 1) / 6);
+		final int height = 2 + 18 * (1 + (sorted.size() - 1) / 6);
 		this.slotGrid.deleteAllChildren();
 		this.slotGrid.setSize(new Point(width, height));
-		for (final int k : slotIds.keySet()) {
+		for (final int k : sorted.keySet()) {
 			new ControlSlot.Builder(this.slotGrid, x, y).assign(k);
 			x += 18;
 			if (x >= 108) {
@@ -97,7 +114,7 @@ public class SearchDialog extends Dialog {
 		}
 		while (y < 108 || x != 0) {
 			// TODO: what was this supposed to do?
-			new ControlSlot.Builder(this.slotGrid, x, y);
+			//new ControlSlot.Builder(this.slotGrid, x, y);
 			x += 18;
 			if (x >= 108) {
 				x = 0;
@@ -118,7 +135,7 @@ public class SearchDialog extends Dialog {
 		@SideOnly(Side.CLIENT)
 		public void onRenderBackground(int guiWidth, int guiHeight) {
 			RenderUtil.setColour(11184810);
-			CraftGUI.RENDER.texture(CraftGUITexture.OUTLINE, searchDialog.windowCompartment.getArea().inset(new Border(0, 6, 0, 0)));
+			CraftGUI.RENDER.texture(CraftGUITexture.OUTLINE, searchDialog.scroll.getArea().inset(new Border(0, 6, 0, 0)));
 		}
 	}
 
@@ -126,7 +143,7 @@ public class SearchDialog extends Dialog {
 		private final SearchDialog searchDialog;
 
 		public SortAlphabeticalCheckbox(SearchDialog searchDialog) {
-			super(searchDialog, 16, 40, 100, "Sort A-Z", searchDialog.sortByName);
+			super(searchDialog, 16, 40, 100, I18N.localise(ModId.CORE, "machine.storage.search.sort_by_name"), searchDialog.sortByName);
 			this.searchDialog = searchDialog;
 		}
 
@@ -140,8 +157,8 @@ public class SearchDialog extends Dialog {
 	private static class IncludeItemsCheckbox extends ControlCheckbox {
 		private final SearchDialog searchDialog;
 
-		public IncludeItemsCheckbox(SearchDialog searchDialog) {
-			super(searchDialog, 16, 64, 100, "Include Items", searchDialog.includeItems);
+		public IncludeItemsCheckbox(final SearchDialog searchDialog) {
+			super(searchDialog, 16, 64, 100, I18N.localise(ModId.CORE, "machine.storage.search.include_items"), searchDialog.includeItems);
 			this.searchDialog = searchDialog;
 		}
 
@@ -155,8 +172,8 @@ public class SearchDialog extends Dialog {
 	private static class IncludeBlocksCheckbox extends ControlCheckbox {
 		private final SearchDialog searchDialog;
 
-		public IncludeBlocksCheckbox(SearchDialog searchDialog) {
-			super(searchDialog, 16, 88, 100, "Include Blocks", searchDialog.includeBlocks);
+		public IncludeBlocksCheckbox(final SearchDialog searchDialog) {
+			super(searchDialog, 16, 88, 100, I18N.localise(ModId.CORE, "machine.storage.search.include_blocks"), searchDialog.includeBlocks);
 			this.searchDialog = searchDialog;
 		}
 

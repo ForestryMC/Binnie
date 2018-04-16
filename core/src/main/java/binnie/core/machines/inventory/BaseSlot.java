@@ -20,7 +20,7 @@ public abstract class BaseSlot<V> implements INbtWritable, INbtReadable, IValida
 	private boolean readOnly;
 	private int index;
 
-	public BaseSlot(final int index, final ResourceLocation unlocLocation) {
+	public BaseSlot(final int index, @Nullable final ResourceLocation unlocLocation) {
 		this.access = new SidedAccess();
 		this.setIndex(index);
 		this.unlocLocation = unlocLocation;
@@ -89,12 +89,6 @@ public abstract class BaseSlot<V> implements INbtWritable, INbtReadable, IValida
 
 	public Collection<EnumFacing> getOutputSides() {
 		return this.access.getExtractionSides();
-	}
-
-	public void setOutputSides(final EnumSet<EnumFacing> sides) {
-		for (final EnumFacing side : EnumSet.complementOf(sides)) {
-			this.access.setExtract(side, false);
-		}
 	}
 
 	public abstract String getName();

@@ -17,6 +17,7 @@ import binnie.core.ManagerBase;
 import binnie.core.machines.inventory.ValidatorSprite;
 import binnie.core.machines.render.RenderTESRMachine;
 import binnie.core.proxy.IBinnieProxy;
+import binnie.core.util.EmptyHelper;
 import forestry.api.core.INbtReadable;
 import forestry.api.core.INbtWritable;
 
@@ -74,7 +75,7 @@ public class ManagerMachine extends ManagerBase {
 		}
 		interfaces.remove(INbtWritable.class);
 		interfaces.remove(INbtReadable.class);
-		this.componentInterfaceMap.put(component, interfaces.toArray(new Class[0]));
+		this.componentInterfaceMap.put(component, interfaces.toArray(EmptyHelper.CLASS_ARRAY_EMPTY));
 		final int networkID = this.nextNetworkID++;
 	}
 

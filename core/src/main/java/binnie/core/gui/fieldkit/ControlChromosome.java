@@ -40,7 +40,6 @@ public class ControlChromosome extends Control implements IControlValue<IChromos
 
 			if (breedingSystem != null) {
 				IFieldKitPlugin fieldKitPlugin = breedingSystem.getFieldKitPlugin();
-				fieldKitPlugin.getChromosomePickerPositions();
 
 				for (Map.Entry<IChromosomeType, IPoint> entry : fieldKitPlugin.getChromosomePickerPositions().entrySet()) {
 					IChromosomeType chromosomeType = entry.getKey();

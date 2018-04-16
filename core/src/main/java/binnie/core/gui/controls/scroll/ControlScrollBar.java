@@ -63,11 +63,13 @@ public class ControlScrollBar extends Control {
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		final Area renderArea = this.getRenderArea();
-		Object texture = CraftGUITexture.SCROLL_DISABLED;
+		Object texture;
 		if (this.isMouseOver()) {
 			texture = CraftGUITexture.SCROLL_HIGHLIGHTED;
 		} else if (this.isEnabled()) {
 			texture = CraftGUITexture.SCROLL;
+		} else {
+			texture = CraftGUITexture.SCROLL_DISABLED;
 		}
 		CraftGUI.RENDER.texture(texture, renderArea);
 	}

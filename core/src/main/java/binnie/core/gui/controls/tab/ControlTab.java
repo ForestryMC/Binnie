@@ -31,7 +31,7 @@ public class ControlTab<T> extends Control implements ITooltip, IControlValue<T>
 		this.value = value;
 		this.addAttribute(Attribute.MOUSE_OVER);
 		this.addSelfEventHandler(EventMouse.Down.class, event -> {
-			ControlTab.this.callEvent(new EventValueChanged<Object>(ControlTab.this.getWidget(), ControlTab.this.getValue()));
+			ControlTab.this.callEvent(new EventValueChanged<Object>(ControlTab.this, ControlTab.this.getValue()));
 		});
 	}
 
@@ -77,11 +77,13 @@ public class ControlTab<T> extends Control implements ITooltip, IControlValue<T>
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		Object texture = CraftGUITexture.TAB_DISABLED;
+		Object texture;
 		if (this.isMouseOver()) {
 			texture = CraftGUITexture.TAB_HIGHLIGHTED;
 		} else if (this.isCurrentSelection()) {
 			texture = CraftGUITexture.TAB;
+		} else {
+			texture = CraftGUITexture.TAB_DISABLED;
 		}
 		final ITexture lTexture = CraftGUI.RENDER.getTexture(texture);
 		final Alignment alignment = this.getTabPosition();

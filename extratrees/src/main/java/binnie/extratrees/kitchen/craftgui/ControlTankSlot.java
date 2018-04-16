@@ -20,7 +20,7 @@ public class ControlTankSlot extends ControlSlotFluid {
 			if (event.getButton() == 0) {
 				final NBTTagCompound nbt = new NBTTagCompound();
 				nbt.setByte("id", (byte) ControlTankSlot.this.tankID);
-				Window.get(ControlTankSlot.this.getWidget()).sendClientAction("tank-click", nbt);
+				Window.get(ControlTankSlot.this).sendClientAction("tank-click", nbt);
 			}
 		});
 	}

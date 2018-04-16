@@ -45,6 +45,7 @@ import binnie.core.gui.resource.stylesheet.StyleSheetManager;
 import binnie.core.gui.resource.textures.StandardTexture;
 import binnie.core.texture.BinnieCoreTexture;
 import binnie.core.util.I18N;
+import org.apache.commons.lang3.StringUtils;
 
 public class WindowFieldKit extends Window {
 	public static final int INDIVIDUAL_SLOT = 0;
@@ -106,7 +107,7 @@ public class WindowFieldKit extends Window {
 		new ControlSlot.Builder(this, handGlass.xPos() + 54, handGlass.yPos() + 26).assign(InventoryType.WINDOW, 0);
 		new ControlSlot.Builder(this, 208, 8).assign(InventoryType.WINDOW, 1);
 		(this.text = new ControlText(this, new Point(232, 13), I18N.localise("binniecore.gui.fieldkit.paper"))).setColor(2236962);
-		(this.text = new ControlText(this, new Area(0, 120, this.getWidth(), 24), "", TextJustification.MIDDLE_CENTER)).setColor(2236962);
+		(this.text = new ControlText(this, new Area(0, 120, this.getWidth(), 24), StringUtils.EMPTY, TextJustification.MIDDLE_CENTER)).setColor(2236962);
 		this.chromo = new ControlChromosome(this, 150, 24);
 		this.addEventHandler(EventValueChanged.class, EventHandlerOrigin.DIRECT_CHILD, this.chromo, event -> {
 			final IChromosomeType type = (IChromosomeType) event.getValue();
@@ -114,7 +115,7 @@ public class WindowFieldKit extends Window {
 				final String t = WindowFieldKit.this.info.get(type);
 				WindowFieldKit.this.text.setValue(t);
 			} else {
-				WindowFieldKit.this.text.setValue("");
+				WindowFieldKit.this.text.setValue(StringUtils.EMPTY);
 			}
 		});
 	}
@@ -209,10 +210,9 @@ public class WindowFieldKit extends Window {
 				kit.setItemDamage(64 - size);
 			}
 			((EntityPlayerMP) this.getPlayer()).updateHeldItem();
-		}
-		if (this.isClient()) {
+		} else if (this.isClient()) {
 			final ItemStack item = inventory.getStackInSlot(INDIVIDUAL_SLOT);
-			this.text.setValue("");
+			this.text.setValue(StringUtils.EMPTY);
 			if (!item.isEmpty() && !ManagerGenetics.isAnalysed(item)) {
 				if (inventory.getStackInSlot(PAPER_SLOT).isEmpty()) {
 					this.text.setValue(I18N.localise("binniecore.gui.fieldkit.paper.no"));

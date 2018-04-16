@@ -210,11 +210,6 @@ public class FlowerRoot extends SpeciesRoot implements IFlowerRoot {
 	}
 
 	@Override
-	public IAllele[] getRandomTemplate(Random rand) {
-		return speciesTemplates.values().toArray(new IAllele[0][])[rand.nextInt(speciesTemplates.values().size())];
-	}
-
-	@Override
 	public ArrayList<IFlowerMutation> getMutations(boolean shuffle) {
 		if (shuffle) {
 			Collections.shuffle(FlowerRoot.flowerMutations);

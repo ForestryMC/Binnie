@@ -1,8 +1,9 @@
 package binnie.core.gui.database;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import net.minecraft.util.text.TextFormatting;
 
@@ -27,9 +28,9 @@ public class PageBranchOverview extends PageBranch {
 	public PageBranchOverview(final IWidget parent, final DatabaseTab tab) {
 		super(parent, tab);
 		this.branchDescription = new ArrayList<>();
-		this.branchName = new ControlTextCentered(this, 8, "");
-		this.branchScientific = new ControlTextCentered(this, 32, "");
-		this.branchAuthority = new ControlTextCentered(this, 44, "");
+		this.branchName = new ControlTextCentered(this, 8, StringUtils.EMPTY);
+		this.branchScientific = new ControlTextCentered(this, 32, StringUtils.EMPTY);
+		this.branchAuthority = new ControlTextCentered(this, 44, StringUtils.EMPTY);
 	}
 
 	@Override
@@ -42,7 +43,7 @@ public class PageBranchOverview extends PageBranch {
 		}
 		this.branchDescription.clear();
 		String desc = branch.getDescription();
-		if (desc == null || Objects.equals(desc, "") || desc.contains("for.")) {
+		if (desc == null || StringUtils.isEmpty(desc) || desc.contains("for.")) {
 			desc = I18N.localise(DatabaseConstants.BRANCH_KEY + ".noDesc");
 		}
 		StringBuilder line = new StringBuilder();
@@ -50,7 +51,7 @@ public class PageBranchOverview extends PageBranch {
 		for (final String str : desc.split(" ")) {
 			if (RenderUtil.getTextWidth(line + " " + str) > 134) {
 				descLines.add(TextFormatting.ITALIC + line.toString() + TextFormatting.RESET);
-				line = new StringBuilder();
+				line.setLength(0);
 			}
 			line.append(' ').append(str);
 		}

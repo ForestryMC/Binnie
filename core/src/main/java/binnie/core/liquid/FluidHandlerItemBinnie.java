@@ -6,6 +6,8 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.templates.FluidHandlerItemStackSimple;
 
+import javax.annotation.Nullable;
+
 public class FluidHandlerItemBinnie extends FluidHandlerItemStackSimple {
 	private final FluidContainerType containerType;
 
@@ -14,7 +16,7 @@ public class FluidHandlerItemBinnie extends FluidHandlerItemStackSimple {
 		this.containerType = containerType;
 	}
 
-	private boolean contentsAllowed(FluidStack fluidStack) {
+	private boolean contentsAllowed(@Nullable FluidStack fluidStack) {
 		if (fluidStack == null) {
 			return false;
 		}
@@ -33,12 +35,12 @@ public class FluidHandlerItemBinnie extends FluidHandlerItemStackSimple {
 	}
 
 	@Override
-	public boolean canFillFluidType(FluidStack fluid) {
+	public boolean canFillFluidType(@Nullable FluidStack fluid) {
 		return contentsAllowed(fluid);
 	}
 
 	@Override
-	public boolean canDrainFluidType(FluidStack fluid) {
+	public boolean canDrainFluidType(@Nullable FluidStack fluid) {
 		return contentsAllowed(fluid);
 	}
 

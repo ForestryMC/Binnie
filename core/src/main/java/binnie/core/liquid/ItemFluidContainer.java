@@ -34,6 +34,8 @@ import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
 
 import binnie.core.Binnie;
+import binnie.core.ModId;
+import binnie.core.util.I18N;
 
 public class ItemFluidContainer extends ItemFood implements IItemModelRegister {
 	private final FluidContainerType container;
@@ -53,7 +55,7 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister {
 	public String getItemStackDisplayName(final ItemStack itemstack) {
 		FluidStack fluid = getContained(itemstack);
 		if (fluid == null) {
-			return "Empty " + container.getDisplayName();
+			return I18N.localise(ModId.CORE, "item.container.empty", container.getDisplayName());
 		}
 		return fluid.getFluid().getLocalizedName(fluid) + ' ' + this.container.getDisplayName();
 	}

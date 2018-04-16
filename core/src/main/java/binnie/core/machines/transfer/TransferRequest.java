@@ -7,6 +7,7 @@ import java.util.List;
 import binnie.core.machines.inventory.IInventorySlots;
 import binnie.core.machines.inventory.InventorySlot;
 import binnie.core.machines.power.ITankMachine;
+import binnie.core.util.EmptyHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -34,8 +35,8 @@ public class TransferRequest {
 
 	public TransferRequest(final ItemStack toTransfer, final IInventory destination) {
 		this.returnItem = ItemStack.EMPTY;
-		this.targetSlots = new int[0];
-		this.targetTanks = new int[0];
+		this.targetSlots = EmptyHelper.INT_ARRAY_EMPTY;
+		this.targetTanks = EmptyHelper.INT_ARRAY_EMPTY;
 		this.transferLiquids = true;
 		this.ignoreReadOnly = false;
 		this.insertedSlots = new ArrayList<>();
@@ -43,7 +44,7 @@ public class TransferRequest {
 		for (int i = 0; i < target.length; ++i) {
 			target[i] = i;
 		}
-		int[] targetTanks = new int[0];
+		int[] targetTanks = EmptyHelper.INT_ARRAY_EMPTY;
 		if (destination instanceof ITankMachine) {
 			targetTanks = new int[((ITankMachine) destination).getTanks().length];
 			for (int j = 0; j < targetTanks.length; ++j) {

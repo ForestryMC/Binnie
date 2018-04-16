@@ -18,7 +18,6 @@ public class ItemGenesis extends ItemCore implements IGuiItem {
 	public ItemGenesis() {
 		super("genesis");
 		this.setCreativeTab(Tabs.tabApiculture);
-		this.setUnlocalizedName("genesis");
 		this.setMaxStackSize(1);
 	}
 

@@ -1,7 +1,6 @@
 package binnie.core.block;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.block.Block;
@@ -40,20 +39,18 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 	}
 
 	public static boolean breakBlock(IBlockMetadata blockMetadata, @Nullable EntityPlayer player, World world, BlockPos pos) {
-		List<ItemStack> drops = new ArrayList<>();
+		List<ItemStack> drops = null;
 		Block block = (Block) blockMetadata;
 		TileEntityMetadata tile = TileEntityMetadata.getTile(world, pos);
 		if (tile != null && !tile.hasDroppedBlock()) {
 			drops = block.getDrops(world, pos, world.getBlockState(pos), 0);
 		}
 		boolean hasBeenBroken = world.setBlockToAir(pos);
-		if (hasBeenBroken && !world.isRemote && drops.size() > 0 && (player == null || !player.capabilities.isCreativeMode)) {
+		if (hasBeenBroken && !world.isRemote && drops != null && (player == null || !player.capabilities.isCreativeMode)) {
 			for (ItemStack drop : drops) {
 				spawnAsEntity(world, pos, drop);
 			}
-			if (tile != null) {
-				tile.dropBlock();
-			}
+			tile.dropBlock();
 		}
 		return hasBeenBroken;
 	}

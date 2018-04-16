@@ -1,5 +1,6 @@
 package binnie.core.machines;
 
+import binnie.core.util.EmptyHelper;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -39,7 +40,7 @@ public class MachineComponent implements INbtReadable, INbtWritable {
 	public Class<?>[] getComponentInterfaces() {
 		Class<?>[] componentInterfaces = Binnie.MACHINE.getComponentInterfaces(this.getClass());
 		if (componentInterfaces == null) {
-			return new Class[0];
+			return EmptyHelper.CLASS_ARRAY_EMPTY;
 		}
 		return componentInterfaces;
 	}

@@ -22,7 +22,6 @@ public class ItemMisc extends ItemCore {
 		super(name);
 		this.setCreativeTab(tab);
 		this.setHasSubtypes(true);
-		this.setUnlocalizedName(name);
 		this.items = items;
 	}
 

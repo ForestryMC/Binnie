@@ -6,6 +6,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 
+import org.apache.commons.lang3.StringUtils;
+
 class DefaultInventory implements IInventory {
 	@Override
 	public int getSizeInventory() {
@@ -88,7 +90,7 @@ class DefaultInventory implements IInventory {
 
 	@Override
 	public String getName() {
-		return "";
+		return StringUtils.EMPTY;
 	}
 
 	@Override
@@ -98,6 +100,6 @@ class DefaultInventory implements IInventory {
 
 	@Override
 	public ITextComponent getDisplayName() {
-		return new TextComponentString("");
+		return new TextComponentString(StringUtils.EMPTY);
 	}
 }

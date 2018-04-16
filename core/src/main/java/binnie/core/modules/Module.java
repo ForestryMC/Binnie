@@ -1,11 +1,13 @@
 package binnie.core.modules;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.Collections;
 import java.util.Set;
 
 public interface Module {
 	default String getFailMessage(){
-		return "";
+		return StringUtils.EMPTY;
 	}
 
 	default Set<String> getDependencyUids(){

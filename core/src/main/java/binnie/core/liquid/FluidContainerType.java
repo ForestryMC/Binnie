@@ -10,6 +10,7 @@ import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 
 import binnie.core.Mods;
+import binnie.core.ModId;
 import binnie.core.util.I18N;
 
 public enum FluidContainerType {
@@ -35,7 +36,7 @@ public enum FluidContainerType {
 	}
 
 	public String getDisplayName() {
-		return I18N.localise("binniecore.item.container." + this.name().toLowerCase());
+		return I18N.localise( ModId.CORE, "item.container." + this.getName());
 	}
 
 	public void setItem(ItemFluidContainer item) {
@@ -76,7 +77,6 @@ public enum FluidContainerType {
 
 	public ItemStack getFilled(Fluid fluid) {
 		ItemStack stack = getEmpty();
-		stack = stack.copy();
 		IFluidHandler fluidHandler = FluidUtil.getFluidHandler(stack);
 		if (fluidHandler != null) {
 			int fill = fluidHandler.fill(new FluidStack(fluid, Integer.MAX_VALUE), true);

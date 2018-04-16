@@ -21,7 +21,7 @@ import ic2.api.energy.tile.IEnergyTile;
 
 //@Optional.Interface(iface = "binnie.core.machines.component.IBuildcraft.TriggerProvider", modid = "BuildCraft|Silicon")
 public class ComponentPowerReceptor extends MachineComponent implements IPoweredMachine/*, IBuildcraft.TriggerProvider*/, IInteraction.ChunkUnload, IInteraction.Invalidation {
-	private static final int inputAverageTicks = 20;
+	private static final int INPUT_AVERAGE_TICKS = 20;
 	private final float previousPower;
 	private final LinkedList<Float> inputs;
 	private boolean registeredToIC2EnergyNet;
@@ -43,7 +43,7 @@ public class ComponentPowerReceptor extends MachineComponent implements IPowered
 	}
 
 	public static int getInputAverageTicks() {
-		return inputAverageTicks;
+		return INPUT_AVERAGE_TICKS;
 	}
 
 	@Override

@@ -1,5 +1,7 @@
 package binnie.core.util;
 
+import org.apache.commons.lang3.StringUtils;
+
 import javax.annotation.Nullable;
 import java.util.Collection;
 
@@ -14,12 +16,13 @@ import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 
 public class FluidStackUtil {
 
-	public static String toString(FluidStack fluidStack){
-		if(fluidStack == null){
+	public static String toString(@Nullable final FluidStack fluidStack) {
+		if (fluidStack == null) {
 			return "null";
 		}
-		NBTTagCompound tag = fluidStack.tag;
-		return fluidStack.getFluid().getName() + ':' + fluidStack.amount + (tag != null ? ":" + fluidStack.tag : "");
+		final NBTTagCompound tag = fluidStack.tag;
+		return fluidStack.getFluid().getName() + ':' + fluidStack.amount +
+				(tag != null ? ":" + fluidStack.tag : StringUtils.EMPTY);
 	}
 
 	public static NonNullList<FluidStack> removeEqualFluids(Collection<FluidStack> fluidsStacks) {
@@ -32,8 +35,8 @@ public class FluidStackUtil {
 		return dedupedFluidStacks;
 	}
 
-	public static boolean containsEqualFluid(NonNullList<FluidStack> fluidStacks, FluidStack query) {
-		for (FluidStack fluidStack : fluidStacks) {
+	public static boolean containsEqualFluid(final NonNullList<FluidStack> fluidStacks, final FluidStack query) {
+		for (final FluidStack fluidStack : fluidStacks) {
 			if (fluidStack.isFluidEqual(query)) {
 				return true;
 			}
@@ -42,7 +45,7 @@ public class FluidStackUtil {
 	}
 
 	@Nullable
-	public static ItemStack getContainer(FluidStack fluidStack) {
+	public static ItemStack getContainer(final FluidStack fluidStack) {
 		ItemStack[] containers = {
 			new ItemStack(Items.GLASS_BOTTLE),
 			new ItemStack(Items.BUCKET)

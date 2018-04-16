@@ -6,6 +6,7 @@ import net.minecraft.util.text.translation.I18n;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.IllegalFormatException;
 
@@ -14,7 +15,7 @@ public class I18NServer implements I18NProxy {
 
     public String localiseOrBlank(String key) {
         String trans = localise(key);
-        return trans.equals(key) ? "" : trans;
+        return trans.equals(key) ? StringUtils.EMPTY : trans;
     }
 
     public String localise(String key) {

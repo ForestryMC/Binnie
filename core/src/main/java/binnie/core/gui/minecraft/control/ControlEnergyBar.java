@@ -1,6 +1,7 @@
 package binnie.core.gui.minecraft.control;
 
 import java.text.NumberFormat;
+import java.util.regex.Pattern;
 
 import binnie.core.ModId;
 import binnie.core.api.gui.Alignment;
@@ -63,6 +64,9 @@ public class ControlEnergyBar extends Control implements ITooltip {
 		tooltip.add(energyString);
 	}
 
+	private static final Pattern PATTERN_MAX = Pattern.compile("$MAX$", Pattern.LITERAL);
+	private static final Pattern PATTERN_PERCENT = Pattern.compile("$PERCENT$", Pattern.LITERAL);
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getHelpTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
@@ -70,8 +74,8 @@ public class ControlEnergyBar extends Control implements ITooltip {
 		if (tooltipFlag.isAdvanced()) {
 			String currentFormat = I18N.localise(ModId.CORE, "gui.energy.amount.current");
 			NumberFormat numberFormat = I18N.getNumberFormat();
-			String currentString = currentFormat.replace("$MAX$", numberFormat.format(this.getStoredEnergy()))
-					.replace("$PERCENT$", I18N.getPercentFormat().format(this.getPercentage() / 100.0));
+			String currentString = PATTERN_MAX.matcher(currentFormat).replaceAll(numberFormat.format(this.getStoredEnergy()));
+			currentString = PATTERN_PERCENT.matcher(currentString).replaceAll(I18N.getPercentFormat().format(this.getPercentage() / 100.0));
 			tooltip.add(TextFormatting.GRAY + currentString);
 			String maxEnergy = numberFormat.format(this.getMaxEnergy());
 			tooltip.add(TextFormatting.GRAY + I18N.localise(ModId.CORE, "gui.energy.capacity", maxEnergy));

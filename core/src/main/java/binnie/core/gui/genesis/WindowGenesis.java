@@ -41,6 +41,7 @@ import binnie.core.gui.minecraft.control.ControlPlayerInventory;
 import binnie.core.gui.minecraft.control.ControlTabIcon;
 import binnie.core.gui.window.Panel;
 import binnie.core.util.I18N;
+import binnie.core.util.EmptyHelper;
 import binnie.core.gui.ControlGenesisOption;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -98,9 +99,9 @@ public class WindowGenesis extends Window {
 			}
 			Gene gene = (Gene) value;
 			Map<IChromosomeType, List<IAllele>> map = Binnie.GENETICS.getChromosomeMap(root);
-			List<Gene> options = new ArrayList<>();
 			IChromosomeType chromosomeType = gene.getChromosome();
 			List<IAllele> alleles = map.get(chromosomeType);
+			List<Gene> options = new ArrayList<>(alleles.size());
 			for (IAllele allele : alleles) {
 				options.add(new Gene(allele, chromosomeType, root));
 			}
@@ -127,8 +128,8 @@ public class WindowGenesis extends Window {
 	}
 
 	private void refreshTemplate(@Nullable IChromosomeType selection) {
-		List<Gene> genes = new ArrayList<>();
-		IChromosomeType[] chromosomeTypes = Binnie.GENETICS.getChromosomeMap(this.root).keySet().toArray(new IChromosomeType[0]);
+		IChromosomeType[] chromosomeTypes = Binnie.GENETICS.getChromosomeMap(this.root).keySet().toArray(EmptyHelper.CHROMOSOME_TYPES_EMPTY);
+		List<Gene> genes = new ArrayList<>(chromosomeTypes.length);
 		for (IChromosomeType type : chromosomeTypes) {
 			IAllele allele = this.template[type.ordinal()];
 			if (allele == null) {
@@ -170,11 +171,11 @@ public class WindowGenesis extends Window {
 		super.receiveGuiNBTOnServer(player, name, nbt);
 		if (name.equals(ACTION_GENESIS)) {
 			ItemStack stack = new ItemStack(nbt);
-			InventoryPlayer inventoryPlayer = player.inventory;
-			ItemStack playerStack = inventoryPlayer.getItemStack();
 			if (stack.isEmpty()) {
 				return;
 			}
+			InventoryPlayer inventoryPlayer = player.inventory;
+			ItemStack playerStack = inventoryPlayer.getItemStack();
 			if (playerStack.isEmpty()) {
 				inventoryPlayer.setItemStack(stack);
 			} else if (playerStack.isItemEqual(stack) && ItemStack.areItemStackTagsEqual(playerStack, stack)) {

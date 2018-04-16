@@ -70,7 +70,6 @@ public class ManagerGenetics extends ManagerBase {
 			if (!conv.isEmpty()) {
 				conv.setCount(stack.getCount());
 				stack = conv;
-
 			}
 			ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(stack);
 			if (root != null) {
@@ -179,11 +178,12 @@ public class ManagerGenetics extends ManagerBase {
 
 	private void loadAlleles() {
 		this.invalidChromosomeTypes.clear();
+		final ComparatorAllele comparator = new ComparatorAllele();
 		for (IBreedingSystem system : BREEDING_SYSTEMS.values()) {
 			ISpeciesRoot root = system.getSpeciesRoot();
 			Map<IChromosomeType, List<IAllele>> chromosomeMap = new LinkedHashMap<>();
 			for (IChromosomeType chromosome : root.getKaryotype()) {
-				TreeSet<IAllele> alleles = new TreeSet<>(new ComparatorAllele());
+				TreeSet<IAllele> alleles = new TreeSet<>(comparator);
 				for (IIndividual individual : root.getIndividualTemplates()) {
 					IGenome genome = individual.getGenome();
 					IAllele activeAllele = genome.getActiveAllele(chromosome);

@@ -92,8 +92,8 @@ public class RenderUtil {
 		double uMax = textureSprite.getMaxU();
 		double vMin = textureSprite.getMinV();
 		double vMax = textureSprite.getMaxV();
-		uMax = uMax - maskRight / 16.0 * (uMax - uMin);
-		vMax = vMax - maskTop / 16.0 * (vMax - vMin);
+		uMax -= maskRight / 16.0 * (uMax - uMin);
+		vMax -= maskTop / 16.0 * (vMax - vMin);
 
 		Tessellator tessellator = Tessellator.getInstance();
 		BufferBuilder bufferBuilder = tessellator.getBuffer();

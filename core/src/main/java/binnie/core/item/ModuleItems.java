@@ -1,6 +1,7 @@
 package binnie.core.item;
 
 import binnie.core.Constants;
+import binnie.core.proxy.BinnieProxy;
 import binnie.core.util.RecipeUtil;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -12,10 +13,11 @@ import binnie.core.IInitializable;
 public class ModuleItems implements IInitializable {
 	@Override
 	public void preInit() {
+		final BinnieProxy proxy = BinnieCore.getBinnieProxy();
 		BinnieCore.setFieldKit(new ItemFieldKit());
-		BinnieCore.getBinnieProxy().registerItem(BinnieCore.getFieldKit());
+		proxy.registerItem(BinnieCore.getFieldKit());
 		BinnieCore.setGenesis(new ItemGenesis());
-		BinnieCore.getBinnieProxy().registerItem(BinnieCore.getGenesis());
+		proxy.registerItem(BinnieCore.getGenesis());
 	}
 
 	@Override

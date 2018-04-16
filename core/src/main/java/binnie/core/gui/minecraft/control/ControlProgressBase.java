@@ -33,17 +33,25 @@ public class ControlProgressBase extends Control {
 			++minutes;
 			seconds -= 60;
 		}
-		String ts = "";
+		StringBuilder stringBuilder = new StringBuilder();
 		if (minutes > 0) {
-			ts = ts + minutes + " minute" + ((minutes == 1) ? "" : "s");
+			if (minutes == 1) {
+				stringBuilder.append(I18N.localise(ModId.CORE, "gui.progress.time.minute", minutes));
+			} else {
+				stringBuilder.append(I18N.localise(ModId.CORE, "gui.progress.time.minutes", minutes));
+			}
 		}
 		if (seconds > 0) {
-			if (ts.length() > 0) {
-				ts += " ";
+			if (stringBuilder.length() > 0) {
+				stringBuilder.append(' ');
 			}
-			ts = ts + seconds + " second" + ((seconds == 1) ? "" : "s");
+			if (seconds == 1) {
+				stringBuilder.append(I18N.localise(ModId.CORE, "gui.progress.time.second", seconds));
+			} else {
+				stringBuilder.append(I18N.localise(ModId.CORE, "gui.progress.time.seconds", seconds));
+			}
 		}
-		return ts;
+		return stringBuilder.toString();
 	}
 
 	public void setProgress(final float progress) {

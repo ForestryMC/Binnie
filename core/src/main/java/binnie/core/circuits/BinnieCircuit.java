@@ -14,8 +14,10 @@ public class BinnieCircuit implements ICircuit {
 	private final int limit;
 	private final List<String> tooltips;
 
+	private static final int TOOLTIPS_ARRAY_CAPACITY = 8;
+
 	public BinnieCircuit(final String uid, final int limit, final ICircuitLayout layout, final ItemStack itemStack) {
-		this.tooltips = new ArrayList<>();
+		this.tooltips = new ArrayList<>(TOOLTIPS_ARRAY_CAPACITY);
 		this.uid = "for.binnie.circuit." + uid;
 		this.limit = limit;
 		ChipsetManager.circuitRegistry.registerCircuit(this);

@@ -1,5 +1,7 @@
 package binnie.core.modules;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
@@ -29,11 +31,11 @@ public @interface BinnieModule {
 	/**
 	 * @return Version of the module, if any.
 	 */
-	String version() default "";
+	String version() default StringUtils.EMPTY;
 
 	/**
 	 * @return Localization key for a short description what the module does.
 	 */
-	String unlocalizedDescription() default "";
+	String unlocalizedDescription() default StringUtils.EMPTY;
 
 }

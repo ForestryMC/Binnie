@@ -46,6 +46,9 @@ class ComponentCompartmentInventory extends ComponentInventorySlots implements I
 		return this.tabs.computeIfAbsent(i, CompartmentTab::new);
 	}
 
+	private static final String NBT_KEY_TABS = "tabs";
+	private static final String NBT_KEY_COMP_TABS = "comp-tabs";
+
 	@Override
 	public void sendGuiNBTToClient(final Map<String, NBTTagCompound> nbt) {
 		final NBTTagList list = new NBTTagList();
@@ -55,14 +58,14 @@ class ComponentCompartmentInventory extends ComponentInventorySlots implements I
 			list.appendTag(nbt2);
 		}
 		final NBTTagCompound tag = new NBTTagCompound();
-		tag.setTag("tabs", list);
-		nbt.put("comp-tabs", tag);
+		tag.setTag(NBT_KEY_TABS, list);
+		nbt.put(NBT_KEY_COMP_TABS, tag);
 	}
 
 	@Override
-	public void receiveGuiNBTOnClient(EntityPlayer player, String name, NBTTagCompound nbt) {
-		if (name.equals("comp-tabs")) {
-			final NBTTagList tags = nbt.getTagList("tabs", 10);
+	public void receiveGuiNBTOnClient(final EntityPlayer player, final String name, final NBTTagCompound nbt) {
+		if (name.equals(NBT_KEY_COMP_TABS)) {
+			final NBTTagList tags = nbt.getTagList(NBT_KEY_TABS, 10);
 			for (int i = 0; i < tags.tagCount(); ++i) {
 				final NBTTagCompound tag = tags.getCompoundTagAt(i);
 				final CompartmentTab tab = new CompartmentTab(tag);
@@ -71,11 +74,13 @@ class ComponentCompartmentInventory extends ComponentInventorySlots implements I
 		}
 	}
 
+	public static final String ACTION_COMP_CHANGE_TAB = "comp-change-tab";
+
 	@Override
 	public void receiveGuiNBTOnServer(final EntityPlayer player, final String name, final NBTTagCompound nbt) {
-		if (name.equals("comp-change-tab")) {
-			final CompartmentTab tab2 = new CompartmentTab(nbt);
-			this.tabs.put(tab2.getId(), tab2);
+		if (name.equals(ACTION_COMP_CHANGE_TAB)) {
+			final CompartmentTab tab = new CompartmentTab(nbt);
+			this.tabs.put(tab.getId(), tab);
 			this.getMachine().getTileEntity().markDirty();
 		}
 	}
@@ -83,7 +88,7 @@ class ComponentCompartmentInventory extends ComponentInventorySlots implements I
 	@Override
 	public void readFromNBT(final NBTTagCompound compound) {
 		super.readFromNBT(compound);
-		final NBTTagList tags = compound.getTagList("tabs", 10);
+		final NBTTagList tags = compound.getTagList(NBT_KEY_TABS, 10);
 		for (int i = 0; i < tags.tagCount(); ++i) {
 			final NBTTagCompound tag = tags.getCompoundTagAt(i);
 			final CompartmentTab tab = new CompartmentTab(tag);
@@ -100,7 +105,7 @@ class ComponentCompartmentInventory extends ComponentInventorySlots implements I
 			this.getTab(i).writeToNBT(nbt2);
 			list.appendTag(nbt2);
 		}
-		nbt.setTag("tabs", list);
+		nbt.setTag(NBT_KEY_TABS, list);
 		return nbt;
 	}
 }

@@ -25,6 +25,7 @@ import binnie.core.machines.power.TankInfo;
 import binnie.core.machines.transfer.TransferRequest;
 import binnie.core.machines.transfer.TransferResult;
 import binnie.core.network.packet.MessageContainerUpdate;
+import binnie.core.util.EmptyHelper;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Sets;
 import com.mojang.authlib.GameProfile;
@@ -91,13 +92,14 @@ public class ContainerCraftGUI extends Container {
 		for (int i = 0; i < inventory.getSizeInventory(); ++i) {
 			if (inventory.dispenseOnClose(i)) {
 				ItemStack stack = inventory.getStackInSlot(i);
-				if (!stack.isEmpty()) {
-					TransferRequest transferRequest = new TransferRequest(stack, playerIn.inventory);
-					TransferResult transferResult = transferRequest.transfer(playerIn, true);
-					if (transferResult.isSuccess()) {
-						for (ItemStack result : transferResult.getRemaining()) {
-							playerIn.dropItem(result, false);
-						}
+				if (stack.isEmpty()) {
+					continue;
+				}
+				TransferRequest transferRequest = new TransferRequest(stack, playerIn.inventory);
+				TransferResult transferResult = transferRequest.transfer(playerIn, true);
+				if (transferResult.isSuccess()) {
+					for (ItemStack result : transferResult.getRemaining()) {
+						playerIn.dropItem(result, false);
 					}
 				}
 			}
@@ -166,7 +168,7 @@ public class ContainerCraftGUI extends Container {
 			request = new TransferRequest(itemstack, fromPlayer).setOrigin(shiftClickedSlot.inventory);
 		} else {
 			final int[] target = new int[36];
-			for (int i = 0; i < 36; ++i) {
+			for (int i = 0; i < target.length; ++i) {
 				target[i] = i;
 			}
 			request = new TransferRequest(itemstack, playerInventory).setOrigin(shiftClickedSlot.inventory).setTargetSlots(target);
@@ -244,7 +246,7 @@ public class ContainerCraftGUI extends Container {
 	@Override
 	public void detectAndSendChanges() {
 		super.detectAndSendChanges();
-		if (crafters.size() <= 0) {
+		if (crafters.isEmpty()) {
 			return;
 		}
 		sendTankChanges();
@@ -390,7 +392,7 @@ public class ContainerCraftGUI extends Container {
 				slots.add((CustomSlot) object);
 			}
 		}
-		return slots.toArray(new CustomSlot[0]);
+		return slots.toArray(EmptyHelper.CUSTOM_SLOTS_EMPTY);
 	}
 
 	@SideOnly(Side.CLIENT)

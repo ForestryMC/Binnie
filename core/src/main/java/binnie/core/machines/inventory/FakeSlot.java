@@ -5,6 +5,7 @@ import net.minecraft.nbt.NBTTagCompound;
 
 public final class FakeSlot extends InventorySlot {
 	public static final FakeSlot INSTANCE = new FakeSlot();
+	private static final String FAKE_SLOT = "Fake Slot!";
 
 	private FakeSlot() {
 		super(0, null);
@@ -40,7 +41,7 @@ public final class FakeSlot extends InventorySlot {
 
 	@Override
 	public String getName() {
-		return "Fake Slot!";
+		return FAKE_SLOT;
 	}
 
 	@Override

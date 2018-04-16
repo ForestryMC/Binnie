@@ -1,5 +1,7 @@
 package binnie.core.machines.storage;
 
+import org.apache.commons.lang3.StringUtils;
+
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -15,27 +17,32 @@ class CompartmentTab implements INbtWritable {
 	private final int id;
 
 	public CompartmentTab(int id) {
-		this.name = "";
+		this.name = StringUtils.EMPTY;
 		this.icon = new ItemStack(Items.PAPER);
 		this.color = EnumColor.WHITE;
 		this.id = id;
 	}
 
+	private static final String NBT_KEY_NAME = "name";
+	private static final String NBT_KEY_ICON = "icon";
+	private static final String NBT_KEY_COLOR = "color";
+	private static final String NBT_KEY_ID = "id";
+
 	public CompartmentTab(NBTTagCompound nbt) {
-		this.name = nbt.getString("name");
-		this.icon = new ItemStack(nbt.getCompoundTag("icon"));
-		this.color = EnumColor.values()[nbt.getByte("color")];
-		this.id = nbt.getByte("id");
+		this.name = nbt.getString(NBT_KEY_NAME);
+		this.icon = new ItemStack(nbt.getCompoundTag(NBT_KEY_ICON));
+		this.color = EnumColor.values()[nbt.getByte(NBT_KEY_COLOR)];
+		this.id = nbt.getByte(NBT_KEY_ID);
 	}
 
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
-		nbt.setString("name", this.name);
+		nbt.setString(NBT_KEY_NAME, this.name);
 		final NBTTagCompound n = new NBTTagCompound();
 		this.icon.writeToNBT(n);
-		nbt.setTag("icon", n);
-		nbt.setByte("color", (byte) this.color.ordinal());
-		nbt.setByte("id", (byte) this.id);
+		nbt.setTag(NBT_KEY_ICON, n);
+		nbt.setByte(NBT_KEY_COLOR, (byte) this.color.ordinal());
+		nbt.setByte(NBT_KEY_ID, (byte) this.id);
 		return nbt;
 	}
 

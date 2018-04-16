@@ -11,7 +11,6 @@ import binnie.core.api.gui.IPoint;
 import binnie.core.gui.KeyBindings;
 import binnie.core.gui.geometry.Point;
 import binnie.core.util.Log;
-import binnie.core.util.EmptyHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -29,6 +28,7 @@ import net.minecraftforge.fml.client.config.GuiUtils;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import org.apache.commons.lang3.StringUtils;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
@@ -141,7 +141,7 @@ public class GuiCraftGUI extends GuiContainer {
 
 		boolean containsItemRender = false;
 
-		List<String> textLines = new ArrayList<>();
+		List<String> textLines = new ArrayList<>(tooltip.getList().size());
 		for (final String string : tooltip.getList()) {
 			if (string != null) {
 				if (!string.contains(Tooltip.NBT_SEPARATOR)) {
@@ -156,7 +156,7 @@ public class GuiCraftGUI extends GuiContainer {
 		for (String textLine : textLines) {
 			int textLineWidth = font.getStringWidth(textLine);
 			if (textLine.contains(Tooltip.NBT_SEPARATOR)) {
-				textLineWidth = 12 + font.getStringWidth(PATTERN_NBT_CONTENT.matcher(textLine).replaceAll(EmptyHelper.EMPTY_STRING));
+				textLineWidth = 12 + font.getStringWidth(PATTERN_NBT_CONTENT.matcher(textLine).replaceAll(StringUtils.EMPTY));
 			}
 			if (textLineWidth > tooltipTextWidth) {
 				tooltipTextWidth =  textLineWidth;
@@ -200,7 +200,7 @@ public class GuiCraftGUI extends GuiContainer {
 
 		if (needsWrap) {
 			int wrappedTooltipWidth = 0;
-			List<String> wrappedTextLines = new ArrayList<>();
+			List<String> wrappedTextLines = new ArrayList<>(textLines.size());
 			for (int i = 0; i < textLines.size(); i++) {
 				String textLine = textLines.get(i);
 				List<String> wrappedLine = font.listFormattedStringToWidth(textLine, tooltipTextWidth);
@@ -211,7 +211,7 @@ public class GuiCraftGUI extends GuiContainer {
 				for (String line : wrappedLine) {
 					int lineWidth = font.getStringWidth(line);
 					if (textLine.contains(Tooltip.NBT_SEPARATOR)) {
-						lineWidth = 12 + font.getStringWidth(PATTERN_NBT_CONTENT.matcher(textLine).replaceAll(EmptyHelper.EMPTY_STRING));
+						lineWidth = 12 + font.getStringWidth(PATTERN_NBT_CONTENT.matcher(textLine).replaceAll(StringUtils.EMPTY));
 					}
 					if (lineWidth > wrappedTooltipWidth) {
 						wrappedTooltipWidth = lineWidth;
@@ -266,7 +266,7 @@ public class GuiCraftGUI extends GuiContainer {
 			}
 			if (line.contains(Tooltip.NBT_SEPARATOR)) {
 				drawItem(line, tooltipX, tooltipY);
-				line = "   " + PATTERN_NBT_CONTENT.matcher(line).replaceAll(EmptyHelper.EMPTY_STRING);
+				line = "   " + PATTERN_NBT_CONTENT.matcher(line).replaceAll(StringUtils.EMPTY);
 			}
 			font.drawStringWithShadow(line, tooltipX, tooltipY, -1);
 			if (lineNumber + 1 == titleLinesCount) {
