@@ -64,7 +64,6 @@ class ComponentCompartmentInventory extends ComponentInventorySlots implements I
 
 	@Override
 	public void receiveGuiNBTOnClient(final EntityPlayer player, final String name, final NBTTagCompound nbt) {
-		// TODO: RusTit: I think here should be ACTION_COMP_CHANGE_TAB key, need testing.
 		if (name.equals(NBT_KEY_COMP_TABS)) {
 			final NBTTagList tags = nbt.getTagList(NBT_KEY_TABS, 10);
 			for (int i = 0; i < tags.tagCount(); ++i) {
