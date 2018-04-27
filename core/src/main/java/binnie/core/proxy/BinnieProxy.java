@@ -2,6 +2,7 @@ package binnie.core.proxy;
 
 import java.io.File;
 
+import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -20,6 +21,7 @@ import binnie.core.AbstractMod;
 import binnie.core.network.BinnieCorePacketID;
 import binnie.core.network.INetworkedEntity;
 import binnie.core.network.packet.MessageUpdate;
+import binnie.core.liquid.FluidType;
 
 public abstract class BinnieProxy extends BinnieModProxy implements IBinnieProxy {
 	private short uniqueTextureUID;
@@ -88,6 +90,9 @@ public abstract class BinnieProxy extends BinnieModProxy implements IBinnieProxy
 
 	public void registerSprite(ResourceLocation location) {
 
+	}
+
+	public void registerFluidStateMapper(Block block, FluidType fluid) {
 	}
 
 	public short getUniqueTextureUID() {

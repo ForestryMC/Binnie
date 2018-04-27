@@ -1,148 +1,182 @@
 package binnie.core.liquid;
 
+import net.minecraft.block.Block;
 import net.minecraft.util.ResourceLocation;
 
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
 import binnie.core.Binnie;
 import binnie.core.Constants;
 import binnie.core.util.I18N;
 
+import javax.annotation.Nullable;
+import java.awt.*;
+
 public class FluidType {
-	private ResourceLocation textureFlowing;
-	private ResourceLocation textureStill;
-	private int color;
-	private int containerColor;
-	private int transparency;
-	private String unlocalizedName;
-	private final String identifier;
-	private ContainerShowHandler showHandler = (t)->true;
-	private ContainerPlaceHandler placeHandler = (t)->true;
+    private ResourceLocation textureFlowing;
+    private ResourceLocation textureStill;
+    private int color;
+    private int containerColor;
+    private int transparency;
+    private String unlocalizedName;
+    private final String identifier;
+    private ContainerShowHandler showHandler = (t)->true;
+    private ContainerPlaceHandler placeHandler = (t)->true;
+    private boolean flammable = false;
+    private int flammability = 0;
 
-	public FluidType(String identifier, String unlocalizedName, int color) {
-		this.identifier = "binnie." + identifier;
-		this.unlocalizedName = unlocalizedName.toLowerCase();
-		this.color = color;
-		this.containerColor = color;
-		ResourceLocation texture = new ResourceLocation(Constants.CORE_MOD_ID, "blocks/liquids/blank");
-		this.textureFlowing = texture;
-		this.textureStill = texture;
-	}
+    public FluidType(String identifier, String unlocalizedName, int color) {
+        this.identifier = "binnie." + identifier;
+        this.unlocalizedName = unlocalizedName.toLowerCase();
+        this.color = color;
+        this.containerColor = color;
+        ResourceLocation texture = new ResourceLocation(Constants.CORE_MOD_ID, "blocks/liquids/blank");
+        this.textureFlowing = texture;
+        this.textureStill = texture;
+    }
 
-	/* TEXTURES */
-	public FluidType setTextures(ResourceLocation texture) {
-		this.textureFlowing = texture;
-		this.textureStill = texture;
-		return this;
-	}
+    public FluidType setFlammable(final boolean flammable) {
+        this.flammable = flammable;
+        return this;
+    }
 
-	public FluidType setTextureFlowing(ResourceLocation textureFlowing) {
-		this.textureFlowing = textureFlowing;
-		return this;
-	}
+    public FluidType setFlammability(final int flammability) {
+        this.flammability = flammability;
+        return this;
+    }
 
-	public ResourceLocation getFlowing() {
-		return textureFlowing;
-	}
+    public Block makeBlock() {
+        return new BlockBinnieFluid(this, flammability, flammable);
+    }
 
-	public FluidType setTextureStill(ResourceLocation textureStill) {
-		this.textureStill = textureStill;
-		return this;
-	}
+    public final Color getParticleColor() {
+        return new Color(color);
+    }
 
-	public ResourceLocation getStill() {
-		return textureStill;
-	}
+    @Nullable
+    public final Fluid getFluid() {
+        return FluidRegistry.getFluid(identifier);
+    }
 
-	/* NAMES */
-	public String getDisplayName() {
-		return I18N.localise(unlocalizedName);
-	}
+    /* TEXTURES */
+    public FluidType setTextures(ResourceLocation texture) {
+        this.textureFlowing = texture;
+        this.textureStill = texture;
+        return this;
+    }
 
-	public FluidType setUnlocalizedName(String unlocalizedName) {
-		this.unlocalizedName = unlocalizedName;
-		return this;
-	}
+    public FluidType setTextureFlowing(ResourceLocation textureFlowing) {
+        this.textureFlowing = textureFlowing;
+        return this;
+    }
 
-	public String getIdentifier() {
-		return identifier;
-	}
+    public ResourceLocation getFlowing() {
+        return textureFlowing;
+    }
 
-	@Override
-	public String toString() {
-		return getDisplayName();
-	}
+    public FluidType setTextureStill(ResourceLocation textureStill) {
+        this.textureStill = textureStill;
+        return this;
+    }
 
-	public FluidStack get(int amount) {
-		return Binnie.LIQUID.getFluidStack(this.getIdentifier(), amount);
-	}
+    public ResourceLocation getStill() {
+        return textureStill;
+    }
 
-	public FluidStack get() {
-		return get(Fluid.BUCKET_VOLUME);
-	}
+    /* NAMES */
+    public String getDisplayName() {
+        return I18N.localise(unlocalizedName);
+    }
 
-	/* COLORS */
-	public FluidType setColor(int color) {
-		this.color = color;
-		return this;
-	}
+    public String getUnlocalizedName() {
+        return this.unlocalizedName;
+    }
 
-	public int getColor() {
-		return color;
-	}
+    public FluidType setUnlocalizedName(String unlocalizedName) {
+        this.unlocalizedName = unlocalizedName;
+        return this;
+    }
 
-	public FluidType setContainerColor(int containerColor) {
-		this.containerColor = containerColor;
-		return this;
-	}
+    public String getIdentifier() {
+        return identifier;
+    }
 
-	public int getContainerColor() {
-		return containerColor;
-	}
+    @Override
+    public String toString() {
+        return getDisplayName();
+    }
 
-	public FluidType setTransparency(double transparency) {
-		this.transparency = (int)(Math.min(1.0, transparency + 0.3) * 255.0);
-		return this;
-	}
+    public FluidStack get(int amount) {
+        return Binnie.LIQUID.getFluidStack(this.getIdentifier(), amount);
+    }
 
-	public FluidType setTransparency(int transparency) {
-		this.transparency = transparency;
-		return this;
-	}
+    public FluidStack get() {
+        return get(Fluid.BUCKET_VOLUME);
+    }
 
-	public int getTransparency() {
-		return transparency;
-	}
+    /* COLORS */
+    public FluidType setColor(int color) {
+        this.color = color;
+        return this;
+    }
 
-	/* HANDLERS*/
-	public FluidType setPlaceHandler(ContainerPlaceHandler placeHandler) {
-		this.placeHandler = placeHandler;
-		return this;
-	}
+    public int getColor() {
+        return color;
+    }
 
-	public FluidType setShowHandler(ContainerShowHandler showHandler) {
-		this.showHandler = showHandler;
-		return this;
-	}
+    public FluidType setContainerColor(int containerColor) {
+        this.containerColor = containerColor;
+        return this;
+    }
 
-	public boolean canPlaceIn(FluidContainerType type) {
-		return placeHandler.canPlaceIn(type);
-	}
+    public int getContainerColor() {
+        return containerColor;
+    }
 
-	public boolean showInCreative(FluidContainerType type) {
-		return showHandler.showInCreative(type);
-	}
+    public FluidType setTransparency(double transparency) {
+        this.transparency = (int)(Math.min(1.0, transparency + 0.3) * 255.0);
+        return this;
+    }
 
-	public interface ContainerShowHandler{
-		boolean showInCreative(FluidContainerType type);
-	}
+    public FluidType setTransparency(int transparency) {
+        this.transparency = transparency;
+        return this;
+    }
 
-	public interface ContainerPlaceHandler{
-		boolean canPlaceIn(FluidContainerType type);
-	}
+    public int getTransparency() {
+        return transparency;
+    }
 
-	public FluidType getDefinition() {
-		return this;
-	}
+    /* HANDLERS*/
+    public FluidType setPlaceHandler(ContainerPlaceHandler placeHandler) {
+        this.placeHandler = placeHandler;
+        return this;
+    }
+
+    public FluidType setShowHandler(ContainerShowHandler showHandler) {
+        this.showHandler = showHandler;
+        return this;
+    }
+
+    public boolean canPlaceIn(FluidContainerType type) {
+        return placeHandler.canPlaceIn(type);
+    }
+
+    public boolean showInCreative(FluidContainerType type) {
+        return showHandler.showInCreative(type);
+    }
+
+    public interface ContainerShowHandler{
+        boolean showInCreative(FluidContainerType type);
+    }
+
+    public interface ContainerPlaceHandler{
+        boolean canPlaceIn(FluidContainerType type);
+    }
+
+    public FluidType getDefinition() {
+        return this;
+    }
 }
