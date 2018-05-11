@@ -128,7 +128,11 @@ public class BlockETLog extends BlockLog implements IBlockMetadata {
 	@Override
 	public String getBlockName(ItemStack itemStack) {
 		int meta = TileEntityMetadata.getItemDamage(itemStack);
-		return I18N.localise("extratrees.block.log.name", ILogType.ExtraTreeLog.values()[meta].getName());
+		ILogType.ExtraTreeLog[] logs= ILogType.ExtraTreeLog.values();
+		if(meta < 0 || meta > logs.length) {
+			meta = 0;
+		}
+		return I18N.localise("extratrees.block.log.name", logs[meta].getName());
 	}
 
 	@Override
