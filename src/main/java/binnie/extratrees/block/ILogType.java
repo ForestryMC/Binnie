@@ -1,19 +1,22 @@
 package binnie.extratrees.block;
 
-import binnie.core.block.TileEntityMetadata;
-import binnie.core.util.I18N;
-import binnie.extratrees.ExtraTrees;
-import binnie.extratrees.api.IDesignMaterial;
-import cpw.mods.fml.common.registry.GameRegistry;
-import forestry.api.arboriculture.EnumWoodType;
-import forestry.api.arboriculture.TreeManager;
-import forestry.arboriculture.worldgen.BlockTypeLog;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+
 import net.minecraftforge.common.util.ForgeDirection;
+
+import forestry.api.arboriculture.EnumWoodType;
+import forestry.api.arboriculture.TreeManager;
+import forestry.arboriculture.worldgen.BlockTypeLog;
+
+import binnie.core.block.TileEntityMetadata;
+import binnie.core.util.I18N;
+import binnie.extratrees.ExtraTrees;
+import binnie.extratrees.api.IDesignMaterial;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 public interface ILogType {
 	void placeBlock(World p0, int p1, int p2, int p3);
