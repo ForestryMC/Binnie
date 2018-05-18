@@ -9,7 +9,6 @@ import binnie.core.BinnieCore;
 import binnie.core.machines.IMachineType;
 import binnie.core.machines.MachinePackage;
 import binnie.core.machines.TileEntityMachine;
-import static ic2.core.network.DataEncoder.EncodedType.ItemStack;
 
 enum Compartment implements IMachineType {
 	Compartment(StandardCompartment.PackageCompartment::new),
