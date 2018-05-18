@@ -186,7 +186,7 @@ public class TileEntityMachineBase extends TileEntity implements IInventoryMachi
 
 	@Override
 	public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing) {
-		return (capability == CapabilityEnergy.ENERGY && (canExtract() || canReceive())) || capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
+		return (capability == CapabilityEnergy.ENERGY && (canExtract() || canReceive())) || capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY && (!(getTankContainer() instanceof DefaultTankContainer))) || super.hasCapability(capability, facing);
 	}
 
 	@Override
