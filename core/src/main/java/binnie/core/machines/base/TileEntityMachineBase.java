@@ -7,8 +7,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
-
 import net.minecraft.util.ResourceLocation;
+
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.fluids.FluidStack;
@@ -17,6 +17,7 @@ import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
+import net.minecraftforge.items.wrapper.SidedInvWrapper;
 
 import net.minecraftforge.fml.common.Optional;
 
@@ -30,7 +31,6 @@ import binnie.core.machines.power.PowerInterface;
 import binnie.core.machines.power.TankInfo;
 import ic2.api.energy.tile.IEnergyEmitter;
 import ic2.api.energy.tile.IEnergySink;
-import net.minecraftforge.items.wrapper.SidedInvWrapper;
 
 @Optional.Interface(iface = "ic2.api.energy.tile.IEnergySink", modid = "ic2")
 public class TileEntityMachineBase extends TileEntity implements IInventoryMachine, ITankMachine, IPoweredMachine, ITickable, IEnergySink {
@@ -43,25 +43,25 @@ public class TileEntityMachineBase extends TileEntity implements IInventoryMachi
 
 	public ITankMachine getTankContainer() {
 		final ITankMachine inv = Machine.getInterface(ITankMachine.class, this);
-		return (inv == null || inv == this) ? new DefaultTankContainer() : inv;
+		return (inv == null || inv == this) ? DefaultTankContainer.INSTANCE : inv;
 	}
 
 	public IPoweredMachine getPower() {
 		final IPoweredMachine inv = Machine.getInterface(IPoweredMachine.class, this);
 		return (inv == null || inv == this) ? DefaultPower.INSTANCE : inv;
 	}
-	
+
 	@Override
 	public ItemStack removeStackFromSlot(int index) {
 		return this.getInventory().removeStackFromSlot(index);
 	}
-	
+
 	@Override
 	public boolean isUsableByPlayer(final EntityPlayer entityplayer) {
 		return !this.isInvalid() &&
-			this.getWorld().getTileEntity(getPos()) == this &&
-			entityplayer.getDistanceSqToCenter(getPos()) <= 64.0 &&
-			this.getInventory().isUsableByPlayer(entityplayer);
+				this.getWorld().getTileEntity(getPos()) == this &&
+				entityplayer.getDistanceSqToCenter(getPos()) <= 64.0 &&
+				this.getInventory().isUsableByPlayer(entityplayer);
 	}
 
 	@Override
@@ -186,7 +186,7 @@ public class TileEntityMachineBase extends TileEntity implements IInventoryMachi
 
 	@Override
 	public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing) {
-		return (capability == CapabilityEnergy.ENERGY && (canExtract() || canReceive())) || capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY && (!(getTankContainer() instanceof DefaultTankContainer))) || super.hasCapability(capability, facing);
+		return (capability == CapabilityEnergy.ENERGY && (canExtract() || canReceive())) || capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY && getTankContainer() != DefaultTankContainer.INSTANCE) || super.hasCapability(capability, facing);
 	}
 
 	@Override
