@@ -3,12 +3,15 @@ package binnie.genetics;
 import com.google.common.base.Preconditions;
 
 import javax.annotation.Nullable;
+import java.io.File;
 
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+
+import forestry.api.arboriculture.TreeManager;
 
 import binnie.core.AbstractMod;
 import binnie.core.Binnie;
@@ -22,6 +25,8 @@ import binnie.core.proxy.IProxyCore;
 import binnie.genetics.api.GeneticsApi;
 import binnie.genetics.api.acclimatiser.IAcclimatiserManager;
 import binnie.genetics.api.analyst.IAnalystManager;
+import binnie.genetics.config.ConfigHandler;
+import binnie.genetics.config.ConfigurationMain;
 import binnie.genetics.core.GeneticsGUI;
 import binnie.genetics.core.GeneticsPacket;
 import binnie.genetics.core.GeneticsTexture;
@@ -36,14 +41,13 @@ import binnie.genetics.machine.ModuleMachine;
 import binnie.genetics.machine.acclimatiser.AcclimatiserManager;
 import binnie.genetics.machine.sequencer.Sequencer;
 import binnie.genetics.proxy.Proxy;
-import forestry.api.arboriculture.TreeManager;
 
 @Mod(
-	modid = Constants.GENETICS_MOD_ID,
-	name = "Binnie's Genetics",
-	version = "@VERSION@",
-	acceptedMinecraftVersions = Constants.ACCEPTED_MINECRAFT_VERSIONS,
-	dependencies = "required-after:" + Constants.CORE_MOD_ID
+		modid = Constants.GENETICS_MOD_ID,
+		name = "Binnie's Genetics",
+		version = "@VERSION@",
+		acceptedMinecraftVersions = Constants.ACCEPTED_MINECRAFT_VERSIONS,
+		dependencies = "required-after:" + Constants.CORE_MOD_ID
 )
 public class Genetics extends AbstractMod {
 	public static final String CHANNEL = "GEN";
@@ -61,6 +65,9 @@ public class Genetics extends AbstractMod {
 	private static IAcclimatiserManager acclimatiserManager;
 	@Nullable
 	private static Icons icons;
+
+	public static ConfigHandler configHandler;
+
 
 	public static ModuleItems items() {
 		Preconditions.checkState(items != null);
@@ -84,7 +91,12 @@ public class Genetics extends AbstractMod {
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent evt) {
-		if(TreeManager.treeRoot != null) {
+		File configFile = new File(evt.getModConfigurationDirectory(), "forestry/genetics/main.conf");
+		configHandler = new ConfigHandler(configFile);
+		configHandler.addConfigurable(new ConfigurationMain());
+
+
+		if (TreeManager.treeRoot != null) {
 			TreeBreedingSystem treeBreedingSystem = new TreeBreedingSystem();
 			Binnie.GENETICS.registerBreedingSystem(treeBreedingSystem);
 		}
@@ -115,6 +127,7 @@ public class Genetics extends AbstractMod {
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent evt) {
 		super.init(evt);
+		configHandler.reload(true);
 	}
 
 	@Mod.EventHandler
