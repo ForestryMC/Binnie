@@ -8,6 +8,7 @@ import binnie.core.machines.Machine;
 import binnie.core.machines.errors.ErrorState;
 import binnie.core.machines.power.ComponentProcess;
 import binnie.core.machines.power.IProcess;
+import binnie.genetics.config.ConfigurationMain;
 import binnie.genetics.genetics.GeneTracker;
 import binnie.genetics.genetics.SequencerItem;
 import binnie.genetics.item.GeneticsItems;
@@ -29,12 +30,12 @@ public class SequencerLogic extends ComponentProcess implements IProcess {
 	@Override
 	public int getProcessLength() {
 		final ItemStack stack = this.getUtil().getStack(Sequencer.SLOT_TARGET);
-		return (int) (19200.0f * getSequenceStrength(stack));
+		return (int) (ConfigurationMain.sequencerTimeMultiplier * getSequenceStrength(stack));
 	}
 
 	@Override
 	public int getProcessEnergy() {
-		return this.getProcessLength() * 20;
+		return this.getProcessLength() * ConfigurationMain.sequencerEnergyMultiplier;
 	}
 
 	@Override

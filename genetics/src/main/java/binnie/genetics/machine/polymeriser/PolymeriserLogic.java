@@ -9,6 +9,7 @@ import binnie.core.machines.errors.ErrorState;
 import binnie.core.machines.power.ComponentProcessSetCost;
 import binnie.core.machines.power.IProcess;
 import binnie.core.util.I18N;
+import binnie.genetics.config.ConfigurationMain;
 import binnie.genetics.genetics.Engineering;
 import binnie.genetics.machine.GeneticsErrorCode;
 
@@ -18,7 +19,7 @@ public class PolymeriserLogic extends ComponentProcessSetCost implements IProces
 	private float bacteriaDrain;
 
 	public PolymeriserLogic(final Machine machine) {
-		super(machine, 96000, 2400);
+		super(machine, ConfigurationMain.polymeriserEnergy, ConfigurationMain.polymeriserTime);
 		this.dnaDrain = 0.0f;
 		this.bacteriaDrain = 0.0f;
 	}

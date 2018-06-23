@@ -18,6 +18,7 @@ import binnie.core.machines.errors.ErrorState;
 import binnie.core.machines.inventory.IChargedSlots;
 import binnie.core.machines.power.ComponentProcessSetCost;
 import binnie.core.machines.power.IProcess;
+import binnie.genetics.config.ConfigurationMain;
 import binnie.genetics.item.ItemSequence;
 import binnie.genetics.machine.GeneticsErrorCode;
 
@@ -27,7 +28,7 @@ public class IsolatorLogic extends ComponentProcessSetCost implements IProcess {
 	public static final float TARGET_LOSS_CHANCE = 0.05f;
 
 	public IsolatorLogic(final Machine machine) {
-		super(machine, 192000, 4800);
+		super(machine, ConfigurationMain.isolatorEnergy, ConfigurationMain.isolatorTime);
 	}
 
 	@Override

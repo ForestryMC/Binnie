@@ -9,11 +9,12 @@ import net.minecraft.item.ItemStack;
 import binnie.core.machines.IMachine;
 import binnie.core.machines.errors.ErrorState;
 import binnie.core.machines.power.ComponentProcessIndefinate;
+import binnie.genetics.config.ConfigurationMain;
 import binnie.genetics.machine.GeneticsErrorCode;
 
 public class AcclimatiserLogic extends ComponentProcessIndefinate {
 	public AcclimatiserLogic(final IMachine machine) {
-		super(machine, 2.0f);
+		super(machine, ConfigurationMain.acclimatiserEnergy);
 	}
 
 	@Override
