@@ -1,0 +1,355 @@
+genetics.machine.sequencer.info=˙ǝɯᴉʇ ꞁɐuoᴉʇɐʇndɯoɔ ᵷuoꞁ ɐ sɐɥ puɐ ǝʎp ʇuǝɔsǝɹonꞁɟ ɟo ǝsn ǝɥʇ sǝɹᴉnbǝɹ sᴉɥ⟘ ˙ɯǝɥʇ uᴉ ʇuǝsǝɹd sᴉ ǝꞁǝꞁꞁɐ ɥɔᴉɥʍ sǝuᴉɯɹǝʇǝp puɐ sɯnɹǝs pǝɔuǝnbǝsun sǝʞɐʇ ɹǝɔuǝnbǝS ǝɥ⟘
+genetics.machine.polymeriser.info=˙sʇǝᵷᵷnu pꞁoᵷ ᵷuᴉsn pǝʇɐɹǝꞁǝɔɔɐ ǝq uɐɔ sᴉɥ⟘ ˙ɐᴉɹǝʇɔɐq ᵷuᴉʇɐɔᴉꞁdǝɹ puɐ ⱯNᗡ ʍɐᴚ ᵷuᴉsn ɯǝɥʇ sꞁꞁᴉɟǝɹ puɐ sɯnɹǝs sǝʞɐʇ ɹǝsᴉɹǝɯʎꞁoԀ ǝɥ⟘
+genetics.machine.inoculator.info=˙ꞁnɟssǝɔɔns %00⥝ sᴉ ʇnq 'ɹoʇɔǝᴧ ɐᴉɹǝʇɔɐᗺ ɐ sǝɹᴉnbǝɹ puɐ ǝɯᴉʇ ᵷuoꞁ ʎɹǝʌ ɐ sǝʞɐʇ ssǝɔoɹd sᴉɥ⟘ ˙sꞁɐnpᴉʌᴉpuᴉ ǝꞁqɐpǝǝɹq oʇ sǝuǝᵷ ppɐ oʇ sɯnɹǝs sǝsn ɹoʇɐꞁnɔouI ǝɥ⟘
+genetics.machine.lab_machine.genepool.info=˙pǝʎoɹʇsǝp sᴉ ⱯNᗡ ǝɥʇ ɟo ǝɔɹnos ǝɥʇ puɐ ʇsoꞁ sᴉ uoᴉʇɐɯɹoɟuᴉ ɔᴉʇǝuǝᵷ ꞁꞁⱯ ˙ⱯNᗡ oʇuᴉ sᵷuᴉɥʇ ᵷuᴉʌᴉꞁ uʍop ʞɐǝɹq oʇ ꞁouɐɥʇǝ puɐ sǝɯʎzuǝ sǝsn ꞁoodǝuǝ⅁ ǝɥ⟘
+
+genetics.machine.lab_machine.analyser=ɹǝsʎꞁɐuⱯ
+genetics.machine.lab_machine.analyser.info=ǝuoʇsʍoꞁᵷ puɐ ǝʎp ǝꞁdɹnd ɯoɹɟ pǝʇɐǝɹɔ 'ǝʎᗡ ⱯNᗡ sǝɹᴉnbǝɹ sᴉɥ⟘ ˙ʇuǝsǝɹd sǝuǝᵷ ǝɥʇ ǝuᴉɯɹǝʇǝp oʇ ɯǝɥʇ sǝsʎꞁɐuɐ puɐ sɹǝɔuǝnbǝs ⱯNᗡ puɐ sꞁɐnpᴉʌᴉpuᴉ ǝꞁqɐpǝǝɹq sǝʞɐʇ ɹǝsʎꞁɐuⱯ ǝɥ⟘
+genetics.machine.lab_machine.analyser.tooltips.slots.unanalysed=ɯǝʇI pǝsʎꞁɐuɐu∩
+genetics.errors.analyser.insufficient.dye.desc=ǝsʎꞁɐuɐ oʇ ǝʎp ⱯNᗡ ɥᵷnouǝ ʇoN
+genetics.errors.analyser.already.analysed.desc=pǝsʎꞁɐuⱯ ʎpɐǝɹꞁⱯ
+genetics.errors.analyser.already.analysed.name=pǝsʎꞁɐuɐ uǝǝq ʎpɐǝɹꞁɐ sɐɥ ɯǝʇI
+genetics.errors.analyser.no.item.desc=ǝsʎꞁɐuɐ oʇ ɯǝʇᴉ oN
+
+genetics.machine.lab_machine.incubator=ɹoʇɐqnɔuI
+genetics.machine.lab_machine.incubator.info=˙ɥʇʍoɹᵷ ꞁɐᴉɹǝʇɔɐq ǝᵷɐɹnoɔuǝ oʇ ǝɹnʇɐɹǝdɯǝʇ ꞁɐǝpᴉ uɐ ʇɐ ʇᴉs oʇ ɯǝɥʇ sʍoꞁꞁɐ puɐ sɯǝʇᴉ puɐ spᴉnbᴉꞁ sǝuᴉqɯoɔ ɹoʇɐqnɔuI ǝɥ⟘
+
+genetics.machine.lab_machine.acclimatiser=ɹǝsᴉʇɐɯᴉꞁɔɔⱯ
+genetics.machine.lab_machine.acclimatiser.info=˙sꞁɐnpᴉʌᴉpuᴉ ɟo ǝɔuɐɹǝꞁoʇ ʎʇᴉpᴉɯnɥ puɐ ǝɹnʇɐɹǝdɯǝʇ ǝɥʇ ʇsnɾpɐ oʇ sɯǝʇᴉ ᵷuᴉsᴉʇɐɯᴉꞁɔɔɐ sǝsn ɹǝsᴉʇɐɯᴉꞁɔɔⱯ ǝɥ⟘
+
+genetics.adv_machine.splicer.info=˙ɹǝʍod ɟo sʇunoɯɐ ǝuɐsuᴉ spǝǝu ʇnq 'ʇsɐɟ sᴉ ʇI ˙sꞁɐnpᴉʌᴉpuᴉ oʇuᴉ sǝuǝᵷ ʇɹǝsuᴉ oʇ ǝuᴉɥɔɐɯ ꞁnɟɹǝʍod ʎꞁqᴉpǝɹɔuᴉ uɐ sᴉ ɹǝɔᴉꞁdS ǝɥ⟘
+
+
+genetics.tab.genetics=sɔᴉʇǝuǝ⅁
+
+genetics.errors.no.owner.name=ɹǝuʍO oN
+genetics.errors.no.owner.desc=ǝuᴉɥɔɐɯ sᴉɥʇ ɯᴉɐꞁɔ oʇ ʞɔoꞁq sᴉɥʇ ǝɔɐꞁdǝᴚ
+genetics.errors.no.individual.desc=ꞁɐnpᴉʌᴉpuI oN
+genetics.errors.no.serum.desc=ɯnɹǝS oN
+genetics.errors.empty.serum.name=ɯnɹǝS ʎʇdɯƎ
+genetics.errors.empty.serum.desc=ʎʇdɯǝ sᴉ ɯnɹǝS
+genetics.errors.invalid.serum.name=ɯnɹǝS pᴉꞁɐʌuI
+genetics.errors.invalid.serum.mismatch.desc=ʇǝᵷɹɐ⟘ puɐ ǝdʎ⟘ ɯnɹǝS ɟo ɥɔʇɐɯsᴉW
+genetics.errors.invalid.serum.no.genes.desc=sǝuǝᵷ ʎuɐ pꞁoɥ ʇou sǝop ɯnɹǝS
+genetics.errors.defunct.serum.name=ɯnɹǝS ʇɔunɟǝᗡ
+genetics.errors.defunct.serum.desc=ǝꞁǝꞁꞁɐ sᴉɥʇ sǝssǝssod ʎpɐǝɹꞁɐ ꞁɐnpᴉʌᴉpuI
+genetics.errors.no.enzyme.desc=ǝɯʎzuǝ oN
+
+genetics.machine.isolator=ɹoʇɐꞁosI
+genetics.machine.isolator.info=˙ɹǝɔuǝnbǝS ɐ uᴉ pǝɔuǝnbǝs puɐ ɹǝsᴉɹǝɯʎꞁoԀ ɐ uᴉ pǝᴉɟᴉꞁdɯɐ ǝq uǝɥʇ uɐɔ sɯnɹǝs pǝɔuǝnbǝsun ǝɥ⟘ ˙ⱯNᗡ ǝɥʇ dn ʇnɔ oʇ ǝɯʎzuǝ uɐ puɐ ʇuǝʌꞁos ɐ sɐ ꞁouɐɥʇǝ ɟo ǝsn ǝɥʇ sǝɹᴉnbǝɹ sᴉɥ⟘ ˙ꞁɐᴉʌ ǝɔuǝnbǝs ʎʇdɯǝ uɐ oʇuᴉ ʇᴉ sǝᴉdoɔ puɐ ꞁɐnpᴉʌᴉpuᴉ ɹǝɥʇo ɹo ǝǝɹʇ 'ǝǝq ɐ ɯoɹɟ ǝꞁǝꞁꞁɐ ɯopuɐɹ ɐ sǝʞɐʇ ɹoʇɐꞁosI ǝɥ⟘
+genetics.errors.isolator.no.room.desc=sǝɔuǝnbǝs ⱯNᗡ ɹoɟ ɯooɹ oN
+genetics.errors.isolator.no.empty.sequencer.desc=sꞁɐᴉʌ ɹǝɔuǝnbǝs ʎʇdɯǝ oN
+genetics.errors.isolator.insufficient.ethanol.desc=ꞁouɐɥʇƎ ʇuǝᴉɔᴉɟɟnsuI
+
+genetics.machine.sequencer=ɹǝɔuǝnbǝS
+genetics.errors.sequencer.insufficient.dye.desc=ǝʎᗡ ʇuǝᴉɔᴉɟɟnsuI
+genetics.errors.sequencer.no.space.desc=sǝɔuǝnbǝs ʎʇdɯǝ ɹoɟ ǝɔɐds oN
+genetics.errors.sequencer.no.dna.desc=ǝɔuǝnbǝs ⱯNᗡ oN
+genetics.machine.sequencer.texts.userless=sǝɔuǝnbǝs ǝʌɐs ʇou ꞁꞁᴉM ˙ssǝꞁɹǝs∩
+genetics.machine.sequencer.texts.sequenced.by=%s
+genetics.machine.sequencer.tooltips.slots.unsequenced.dna=ⱯNᗡ pǝɔuǝnbǝsu∩
+
+genetics.machine.polymeriser=ɹǝsᴉɹǝɯʎꞁoԀ
+genetics.machine.polymeriser.tooltips.logic.gene=sǝuǝᵷ ⥝ ᵷuᴉʇɐɔᴉꞁdǝᴚ
+genetics.machine.polymeriser.tooltips.logic.genes=ssǝuǝᵷ %s ᵷuᴉʇɐɔᴉꞁdǝᴚ
+genetics.machine.polymeriser.tooltips.slots.unfilled=ɯnɹǝS pǝꞁꞁᴉɟu∩
+genetics.errors.polymeriser.item.no.desc=ǝʇɐɔᴉꞁdǝɹ oʇ ɯǝʇᴉ oN
+genetics.errors.polymeriser.item.filled.desc=pǝꞁꞁᴉɟ ɯǝʇI
+genetics.errors.polymeriser.insufficient.bacteria.desc=ɐᴉɹǝʇɔɐᗺ ʇuǝᴉɔᴉɟɟnsuI
+genetics.errors.polymeriser.insufficient.dna.desc=ⱯNᗡ ʇuǝᴉɔᴉɟɟnsuI
+
+genetics.machine.inoculator=ɹoʇɐꞁnɔouI
+genetics.machine.inoculator.tooltips.logic.gene=ǝuǝᵷ ⥝ ɥʇᴉʍ ᵷuᴉʇɐꞁnɔouI
+genetics.machine.inoculator.tooltips.logic.genes=sǝuǝᵷ %s ɥʇᴉʍ ᵷuᴉʇɐꞁnɔouI
+genetics.errors.inoculator.insufficient.vector=ɹoʇɔǝᴧ ɥᵷnouǝ ʇoN
+
+genetics.machine.lab_machine.genepool=ꞁoodǝuǝ⅁
+genetics.errors.genepool.insufficient.ethanol.desc=ꞁouɐɥʇƎ ʇuǝᴉɔᴉɟɟnsuI
+genetics.errors.genepool.insufficient.enzyme.desc=ǝɯʎzuƎ ʇuǝᴉɔᴉɟɟnsuI
+
+genetics.machine.lab_machine.lab_machine=puɐʇS qɐꞀ
+genetics.machine.lab_machine.lab_machine.info=
+
+genetics.errors.analyser.insufficient.dye.name=ǝʎᗡ ʇuǝᴉɔᴉɟɟnsuI
+
+genetics.errors.incubator.insufficient.liquid.desc=pᴉnbᴉꞁ uoᴉʇɐqnɔuᴉ ɥᵷnouǝ ʇoN
+
+genetics.errors.acclimatiser.no.item.desc=sɯǝʇI ᵷuᴉsᴉʇɐɯᴉꞁɔɔⱯ oN
+genetics.errors.acclimatiser.can.not.acclimatise.desc=sɯǝʇᴉ ǝsǝɥʇ ɥʇᴉʍ ꞁɐnpᴉʌᴉpuᴉ sᴉɥʇ ǝsᴉʇɐɯᴉꞁɔɔⱯ ʇouuɐƆ
+genetics.machine.lab_machine.acclimatiser.tooltips.slots.acclimatising=sɯǝʇI ᵷuᴉsᴉʇɐɯᴉꞁɔɔⱯ
+
+genetics.machine.adv_machine.splicer=ɹǝɔᴉꞁdS
+genetics.machine.adv_machine.splicer.tooltips.slots.serum=sʎɐɹɹⱯ ⅋ sꞁɐᴉᴧ ɯnɹǝS
+genetics.machine.adv_machine.splicer.tooltips.slots.individual=ꞁɐnpᴉʌᴉpuI ǝꞁqɐǝɔᴉꞁds
+
+genetics.gui.registry.title=ʎɹʇsᴉᵷǝᴚ
+genetics.gui.registry.master.title=ʎɹʇsᴉᵷǝᴚ ɹǝʇsɐW
+
+genetics.gui.analyst.title=ʇsʎꞁɐuⱯ
+genetics.gui.analyst.desc=˙sꞁɐnpᴉʌᴉpuᴉ ǝꞁqɐpǝǝɹq oʇ sɯǝʇᴉ ɐꞁꞁᴉuɐʌ ʇɹǝʌuoɔ osꞁɐ uɐɔ ǝʎp sᴉɥ⟘ ˙ʇǝʎ pǝsʎꞁɐuɐ uǝǝq ʇou sɐɥ ʇᴉ ɟᴉ pǝɹᴉnbǝɹ sᴉ ǝʎᗡ ⱯNᗡ ˙ʇoꞁs ʇɟǝꞁ doʇ ǝɥʇ oʇ ʎꞁɟɹǝʇʇnq ɹo ɹǝʍoꞁɟ 'ǝǝɹʇ 'ǝǝq ɐ ppⱯ
+
+genetics.gui.analyst.biology=ʎᵷoꞁoᴉᗺ
+genetics.gui.analyst.biology.allDay=ʇɥᵷᴉu puɐ ʎɐp ꞁꞁɐ ǝʌᴉʇɔⱯ
+genetics.gui.analyst.biology.night=ʇɥᵷᴉu ʇɐ ǝʌᴉʇɔⱯ
+genetics.gui.analyst.biology.day=ʎɐp ǝɥʇ ᵷuᴉɹnp ǝʌᴉʇɔⱯ
+genetics.gui.analyst.biology.notRain=uᴉɐɹ ᵷuᴉɹnp ʞɹoʍ ʇouuɐƆ
+genetics.gui.analyst.biology.rain=uᴉɐɹ ᵷuᴉɹnp ʞɹoʍ uɐƆ
+genetics.gui.analyst.biology.underground=punoɹᵷɹǝpun ʞɹoʍ uɐƆ
+genetics.gui.analyst.biology.notUnderground=punoɹᵷɹǝpun ʞɹoʍ ʇouuɐƆ
+genetics.gui.analyst.biology.flammable=ǝꞁqɐɯɯɐꞁℲ
+genetics.gui.analyst.biology.nonflammable=ǝꞁqɐɯɯɐꞁɟuoN
+genetics.gui.analyst.biology.sappiness=%s
+genetics.gui.analyst.biology.fertility.drones=ǝʌᴉɥ ɹǝd sǝuoɹp %d
+genetics.gui.analyst.biology.fertility.drone=ǝʌᴉɥ ɹǝd ǝuoɹp ⥝
+genetics.gui.analyst.biology.fertility.moths=ᵷuᴉʎp ǝɹoɟǝq sɹɐꞁꞁᴉdɹǝʇɐɔ %d sʎɐꞀ
+genetics.gui.analyst.biology.fertility.moth=ᵷuᴉʎp ǝɹoɟǝq ɹɐꞁꞁᴉdɹǝʇɐɔ ⥝ sʎɐꞀ
+genetics.gui.analyst.biology.fertility.leaves=sǝʌɐǝꞁ %d ɹǝd ᵷuᴉꞁdɐS ⥝
+genetics.gui.analyst.biology.fertility.leaf=ɟɐǝꞁ ⥝ ɹǝd ᵷuᴉꞁdɐS ⥝
+genetics.gui.analyst.biology.caterpillarGestation=uoᴉʇɐʇsǝ⅁ ɹɐꞁꞁᴉdɹǝʇɐƆ
+genetics.gui.analyst.biology.flightSpeed=pǝǝdS ʇɥᵷᴉꞁℲ
+genetics.gui.analyst.biology.blocksPerSec=puoɔǝs ɹǝd sʞɔoꞁq %d
+genetics.gui.analyst.biology.mothSpawn.perLeaf=ɟɐǝꞁ ɹǝd %s ʎɹǝʌǝ uʍɐds sǝᴉꞁɟɹǝʇʇnᗺ
+genetics.gui.analyst.biology.mothSpawn=%s
+genetics.gui.analyst.biology.plantTypes=sǝdʎ⟘ ʇuɐꞁԀ
+genetics.gui.analyst.biology.averageLifespan=uɐdsǝɟᴉꞀ ǝᵷɐɹǝʌⱯ
+genetics.gui.analyst.biology.pollination=uoᴉʇɐuᴉꞁꞁoԀ
+genetics.gui.analyst.biology.seedDispersal=ꞁɐsɹǝdsᴉᗡ pǝǝS
+genetics.gui.analyst.biology.perLifetime=ǝɯᴉʇǝɟᴉꞁ ɹǝd %d
+genetics.gui.analyst.biology.mcDays=sʎɐp ƆW %s
+
+genetics.gui.analyst.behaviour=ɹnoᴉʌɐɥǝᗺ
+genetics.gui.analyst.behaviour.effect=%s
+genetics.gui.analyst.behaviour.pollinatesNearby=ʎqɹɐǝu sǝʇɐuᴉꞁꞁoԀ
+genetics.gui.analyst.behaviour.withinBlocks=sʞɔoꞁq %d uᴉɥʇᴉM
+genetics.gui.analyst.behaviour.everyTime=%s
+genetics.gui.analyst.behaviour.territory=%3$dx%2$dx%1$d :ʎɹoʇᴉɹɹǝ⟘
+genetics.gui.analyst.behaviour.metabolism=%s
+
+genetics.gui.analyst.genome.title=ǝɯouǝ⅁ %s
+genetics.gui.analyst.genome.active=ǝʌᴉʇɔⱯ
+genetics.gui.analyst.genome.inactive=ǝʌᴉʇɔɐuI
+
+genetics.gui.analyst.registry.title=ʎɹʇsᴉᵷǝᴚ
+
+genetics.gui.analyst.karyogram.title=ɯɐɹᵷoʎɹɐʞ
+
+genetics.gui.analyst.mutations.title=suoᴉʇɐʇnW
+genetics.gui.analyst.mutations.unknown.tooltip=uoᴉʇɐʇnW uʍouʞu∩
+genetics.gui.analyst.mutations.unknown=NMONʞN∩
+genetics.gui.analyst.mutations.further=suoᴉʇɐʇnW ɹǝɥʇɹnℲ
+genetics.gui.analyst.mutations.resultant=suoᴉʇɐʇnW ʇuɐʇꞁnsǝᴚ
+genetics.gui.analyst.mutations.currently=ʎꞁʇuǝɹɹnɔ
+genetics.gui.analyst.mutations.chance=ǝɔuɐɥƆ
+genetics.gui.analyst.mutations.bee.natural=ʇɐʇᴉqɐH ꞁɐɹnʇɐN
+genetics.gui.analyst.mutations.bee.hive=ǝʌᴉH ʎuɐ uᴉ punoℲ
+genetics.gui.analyst.mutations.bee.villager=sɹǝᵷɐꞁꞁᴉᴧ ɯoɹɟ ʇɥᵷnoᗺ
+genetics.gui.analyst.mutations.bee.dungeon=sʇsǝɥƆ uoǝᵷunᗡ
+
+genetics.gui.analyst.description.title=uoᴉʇdᴉɹɔsǝᗡ
+genetics.gui.analyst.description.discovered=ʎq pǝɹǝʌoɔsᴉᗡ
+genetics.gui.analyst.description.complexity=ʎʇᴉxǝꞁdɯoƆ ɔᴉʇǝuǝ⅁
+
+genetics.gui.analyst.soil.title=ꞁᴉoS
+genetics.gui.analyst.soil.tolerance.moisture=ǝɔuɐɹǝꞁo⟘ ǝɹnʇsᴉoW
+genetics.gui.analyst.soil.tolerance.ph=ǝɔuɐɹǝꞁo⟘ Hd
+genetics.gui.analyst.soil.recommended=ꞁᴉoS pǝpuǝɯɯoɔǝᴚ
+genetics.gui.analyst.soil.other=sꞁᴉoS ɹǝɥʇO
+
+genetics.gui.analyst.appearance.title=ǝɔuɐɹɐǝddⱯ
+genetics.gui.analyst.appearance.primary=ɹnoꞁoƆ ꞁɐʇǝԀ ʎɹɐɯᴉɹԀ
+genetics.gui.analyst.appearance.secondary=ɹnoꞁoƆ ꞁɐʇǝԀ ʎɹɐpuoɔǝS
+genetics.gui.analyst.appearance.stem=ɹnoꞁoƆ ɯǝʇS
+
+genetics.gui.analyst.specimen.title=uǝɯᴉɔǝdS
+
+genetics.gui.analyst.products.title=ǝɔnpoɹԀ
+genetics.gui.analyst.products.rate=ǝʇɐᴚ
+genetics.gui.analyst.products.natural=sʇɔnpoɹԀ ꞁɐɹnʇɐN
+genetics.gui.analyst.products.specialty=sʇɔnpoɹԀ ʎʇꞁɐᴉɔǝdS
+genetics.gui.analyst.products.refined=sʇɔnpoɹԀ pǝuᴉɟǝᴚ
+genetics.gui.analyst.products.centrifuges=ǝʌᴉᵷ oʇ sǝᵷnɟᴉɹʇuǝƆ
+genetics.gui.analyst.products.squeezes=ǝʌᴉᵷ oʇ sǝzǝǝnbS
+genetics.gui.analyst.products.every=ʎɹǝʌƎ
+
+genetics.gui.analyst.wood.title=pooM
+genetics.gui.analyst.wood.fireproof=ɟooɹdǝɹᴉℲ
+genetics.gui.analyst.wood.flammable=ǝꞁqɐɯɯɐꞁℲ
+genetics.gui.analyst.wood.logs=sᵷoꞀ
+genetics.gui.analyst.wood.refined=sʇɔnpoɹԀ pǝuᴉɟǝᴚ
+genetics.gui.analyst.wood.noFruits=sʇnu ɹo sʇᴉnɹɟ \n ou sɐɥ ǝǝɹʇ sᴉɥ⟘
+
+genetics.gui.analyst.growth.title=ɥʇʍoɹ⅁
+genetics.gui.analyst.growth.mature=uᴉ ǝɹnʇɐɯ sᵷuᴉꞁdɐS
+genetics.gui.analyst.growth.height=ʇɥᵷᴉǝH
+genetics.gui.analyst.growth.girth=ɥʇɹᴉ⅁
+
+genetics.gui.analyst.climate.title=ǝʇɐɯᴉꞁƆ
+genetics.gui.analyst.climate.temp=ǝɔuɐɹǝꞁo⟘ ˙dɯǝ⟘
+genetics.gui.analyst.climate.hum=ǝɔuɐɹǝꞁo⟘ ʎʇᴉpᴉɯnH
+genetics.gui.analyst.climate.biomes=sǝɯoᴉᗺ
+
+genetics.gui.analyst.fruit.title=ʇᴉnɹℲ
+genetics.gui.analyst.fruit.possible=sʇᴉnɹℲ ǝꞁqᴉssoԀ
+genetics.gui.analyst.fruit.specialty=ʇᴉnɹℲ ʎʇꞁɐᴉɔǝdS
+genetics.gui.analyst.fruit.natural=ʇᴉnɹℲ ꞁɐɹnʇɐN
+genetics.gui.analyst.fruit.yield=pꞁǝᴉ⅄
+genetics.gui.analyst.fruit.refined=sʇɔnpoɹԀ pǝuᴉɟǝᴚ
+genetics.gui.analyst.fruit.noFruits=sʇnu ɹo sʇᴉnɹɟ \n ou sɐɥ ǝǝɹʇ sᴉɥ⟘
+
+genetics.item.gene.empty=ʎʇdɯƎ
+genetics.item.gene.charge=ǝᵷɹɐɥƆ
+genetics.item.gene.charges=sǝᵷɹɐɥƆ
+genetics.item.gene.serum=ɯnɹǝS
+genetics.item.gene.serum.corrupted=ɯnɹǝS pǝʇdnɹɹoƆ
+genetics.item.gene.serum.array=ʎɐɹɹⱯ ɯnɹǝS
+genetics.item.gene.serum.array.corrupted=ʎɐɹɹⱯ ɯnɹǝS pǝʇdnɹɹoƆ
+genetics.item.gene.more.genes=˙ʎɐꞁdsᴉp oʇ ʇɟᴉɥs pꞁoH ˙sǝuǝᵷ ǝɹoɯ
+
+genetics.item.database.name=ǝsɐqɐʇɐᗡ ǝuǝ⅁
+genetics.item.database.master.name=ǝsɐqɐʇɐᗡ ǝuǝ⅁ ɹǝʇsɐW
+
+genetics.item.sequence.corrupted.name=ǝɔuǝnbǝS pǝʇdnɹɹoƆ
+genetics.item.sequence.name=ǝɔuǝnbǝS ⱯNᗡ
+
+genetics.item.sequence.0=ʇuᴉɐℲ ʎɹǝᴧ
+genetics.item.sequence.1=ʇuᴉɐℲ
+genetics.item.sequence.2=ʞɐǝM
+genetics.item.sequence.3=ǝᵷɐɹǝʌⱯ
+genetics.item.sequence.4=ᵷuoɹʇS
+genetics.item.sequence.5=ᵷuoɹʇS ʎɹǝᴧ
+genetics.item.sequence.unknown=uʍouʞu∩
+genetics.item.sequence.unsequenced=pǝɔuǝnbǝsu∩
+genetics.item.sequence.partially=(%s) pǝɔuǝnbǝS ʎꞁꞁɐᴉʇɹɐԀ
+genetics.item.sequence.sequenced=pǝɔuǝnbǝS ʎꞁꞁnℲ
+
+bee.modifier.format.max=(xɟᘔ˙% :xɐW) xɟᘔ˙%
+bee.modifier.format.min=(xɟᘔ˙% :uᴉW) xɟᘔ˙%
+
+
+extrabees.item.serum.tooltip.nocharge=ʎʇdɯƎ
+extrabees.item.serum.tooltip.charge1=ǝᵷɹɐɥƆ ⥝
+extrabees.item.serum.tooltip.manycharge=sǝᵷɹɐɥƆ %d
+extrabees.item.serum.corrupted=ɯnɹǝS pǝʇdnɹɹoƆ
+extrabees.item.serum.name=ɯnɹǝS %s
+extrabees.item.serum.empty=ɯnɹǝS ʎʇdɯƎ
+
+extrabees.item.template.corrupted=ǝʇɐꞁdɯǝ⟘ pǝʇdnɹɹoƆ
+extrabees.item.template.name=ǝʇɐꞁdɯǝ⟘ %s
+extrabees.item.template.empty=ǝʇɐꞁdɯǝ⟘ ʞuɐꞁᗺ
+
+extrabees.block.apiaristMachine.name=ǝuᴉɥɔɐW ʇsᴉɹɐᴉdⱯ
+extrabees.block.geneticMachine.name=ǝuᴉɥɔɐW ɔᴉʇǝuǝ⅁
+extrabees.block.advGeneticMachine.name=ǝuᴉɥɔɐW ɔᴉʇǝuǝ⅁ pǝɔuɐʌpⱯ
+
+extrabees.liquid.dna=ⱯNᗡ pᴉnbᴉꞀ
+
+
+extrabees.genetics.quality.awful=ꞁnɟʍⱯ
+extrabees.genetics.quality.poor=ɹooԀ
+extrabees.genetics.quality.average=ǝᵷɐɹǝʌⱯ
+extrabees.genetics.quality.good=poo⅁
+extrabees.genetics.quality.excellent=ʇuǝꞁꞁǝɔxƎ
+
+extrabees.genetics.quality.tooltip=ʎʇᴉꞁɐnΌ %s
+
+extrabees.genetics.allele.shortest=ʇsǝʇɹoɥS
+extrabees.genetics.allele.shorter=ɹǝʇɹoɥS
+extrabees.genetics.allele.short=ʇɹoɥS
+extrabees.genetics.allele.shortened=pǝuǝʇɹoɥS
+extrabees.genetics.allele.normal=ꞁɐɯɹoN
+extrabees.genetics.allele.elongated=pǝʇɐᵷuoꞁƎ
+extrabees.genetics.allele.long=ᵷuoꞀ
+extrabees.genetics.allele.longer=ɹǝᵷuoꞀ
+extrabees.genetics.allele.longest=ʇsǝᵷuoꞀ
+
+extrabees.genetics.allele.slowest=ʇsǝʍoꞁS
+extrabees.genetics.allele.slower=ɹǝʍoꞁS
+extrabees.genetics.allele.slow=ʍoꞁS
+extrabees.genetics.allele.norm=ꞁɐɯɹoN
+extrabees.genetics.allele.fast=ʇsɐℲ
+extrabees.genetics.allele.faster=ɹǝʇsɐℲ
+extrabees.genetics.allele.fastest=ʇsǝʇsɐℲ
+
+extrabees.genetics.allele.low=ʍoꞀ
+extrabees.genetics.allele.high=ɥᵷᴉH
+extrabees.genetics.allele.maximum=ɯnɯᴉxɐW
+
+extrabees.genetics.allele.average=ǝᵷɐɹǝʌⱯ
+
+extrabees.genetics.allele.default=ʇꞁnɐɟǝᗡ
+extrabees.genetics.allele.large=ǝᵷɹɐꞀ
+extrabees.genetics.allele.larger=ɹǝᵷɹɐꞀ
+extrabees.genetics.allele.largest=ʇsǝᵷɹɐꞀ
+
+extrabees.genetics.allele.none=ǝuoN
+extrabees.genetics.allele.both1=⥝ ɥʇoᗺ
+extrabees.genetics.allele.both2=ᘔ ɥʇoᗺ
+extrabees.genetics.allele.both3=Ɛ ɥʇoᗺ
+extrabees.genetics.allele.both4=ᔭ ɥʇoᗺ
+extrabees.genetics.allele.both5=5 ɥʇoᗺ
+extrabees.genetics.allele.up1=⥝ d∩
+extrabees.genetics.allele.up2=ᘔ d∩
+extrabees.genetics.allele.up3=Ɛ d∩
+extrabees.genetics.allele.up4=ᔭ d∩
+extrabees.genetics.allele.up5=5 d∩
+extrabees.genetics.allele.down1=⥝ uʍoᗡ
+extrabees.genetics.allele.down2=ᘔ uʍoᗡ
+extrabees.genetics.allele.down3=Ɛ uʍoᗡ
+extrabees.genetics.allele.down4=ᔭ uʍoᗡ
+extrabees.genetics.allele.down5=5 uʍoᗡ
+
+extrabees.genetics.allele.noeffect=uoᴉʇɐꞁꞁǝɔuɐƆ ʇɔǝɟɟƎ
+extrabees.genetics.allele.noflower=uoᴉʇɐuᴉꞁꞁod-uoN
+
+extrabees.genetics.allele.lifespan=uɐdsǝɟᴉꞀ %s
+extrabees.genetics.allele.production=uoᴉʇɔnpoɹԀ %s
+extrabees.genetics.allele.fertility=ʎʇᴉꞁᴉʇɹǝℲ %s
+extrabees.genetics.allele.flowering=ᵷuᴉɹǝʍoꞁℲ %s
+extrabees.genetics.allele.territory=ʎɹoʇᴉɹɹǝ⟘ %s
+extrabees.genetics.allele.tolerance=˙ꞁo⟘ %2$s %1$s
+extrabees.genetics.allele.species=sǝᴉɔǝdS %s
+extrabees.genetics.allele.effect=ʇɔǝɟɟƎ %s
+extrabees.genetics.allele.flower=uoᴉʇɐuᴉꞁꞁoԀ %s
+extrabees.genetics.allele.humidity=˙pᴉɯnH
+extrabees.genetics.allele.temperature=˙dɯǝ⟘
+extrabees.genetics.allele.nocturnal=ꞁɐuɹnʇɔoN
+extrabees.genetics.allele.caveDwelling=ᵷuᴉꞁꞁǝʍᗡ ǝʌɐƆ
+extrabees.genetics.allele.tolerantFlyer=ꞁꞁɐɟuᴉɐᴚ
+
+extrabees.genetics.corrupted=pǝʇdnɹɹoƆ
+
+genetics.gui.database.tab.species.genome.extrabees.title=ǝɯouǝ⅁
+genetics.gui.database.tab.species.genome.extrabees.speed=:pǝǝdS
+genetics.gui.database.tab.species.genome.extrabees.lifespan=:uɐdsǝɟᴉꞀ
+genetics.gui.database.tab.species.genome.extrabees.fertility=:ʎʇᴉꞁᴉʇɹǝℲ
+genetics.gui.database.tab.species.genome.extrabees.flowering=:ᵷuᴉɹǝʍoꞁℲ
+genetics.gui.database.tab.species.genome.extrabees.territory=:ʎɹoʇᴉɹɹǝ⟘
+genetics.gui.database.tab.species.genome.extrabees.behavior=:ɹoᴉʌɐɥǝᗺ
+genetics.gui.database.tab.species.genome.extrabees.sunlight=:ʇɥᵷᴉꞁunS
+genetics.gui.database.tab.species.genome.extrabees.rain=:uᴉɐᴚ
+genetics.gui.database.tab.species.genome.extrabees.flower=:ɹǝʍoꞁℲ
+genetics.gui.database.tab.species.genome.extrabees.effect=:ʇɔǝɟɟƎ
+genetics.gui.database.tab.species.genome.extrabees.tolerated=pǝʇɐɹǝꞁo⟘
+genetics.gui.database.tab.species.genome.extrabees.daytime=ǝɯᴉʇʎɐᗡ
+genetics.gui.database.tab.species.genome.extrabees.nighttime=ǝɯᴉʇʇɥᵷᴉN
+genetics.gui.database.tab.species.genome.extrabees.allDay=ʎɐᗡ ꞁꞁⱯ
+genetics.gui.database.tab.species.genome.extrabees.children=uǝɹpꞁᴉɥɔ %d
+genetics.gui.database.tab.species.genome.extrabees.notNeeded=pǝpǝǝN ʇoN
+genetics.gui.database.tab.species.genome.extrabees.required=pǝɹᴉnbǝᴚ
+
+genetics.gui.database.control.extrabees.time.hours=sɹnoɥ %s ʎɹǝʌƎ
+genetics.gui.database.control.extrabees.time.min=˙uᴉɯ %s ʎɹǝʌƎ
+genetics.gui.database.control.extrabees.time.sec=˙ɔǝs %s ʎɹǝʌƎ
+genetics.gui.database.products.extrabees.products=sʇɔnpoɹԀ
+genetics.gui.database.products.extrabees.specialties=sǝᴉʇꞁɐᴉɔǝdS
+
+genetics.gui.database.tab.species.overview=ʍǝᴉʌɹǝʌO
+genetics.gui.database.tab.species.classification=uoᴉʇɐɔᴉɟᴉssɐꞁƆ
+genetics.gui.database.tab.species.genome=ǝɯouǝ⅁
+genetics.gui.database.tab.species.products=sʇɔnpoɹԀ
+genetics.gui.database.tab.species.climate=ǝʇɐɯᴉꞁƆ
+genetics.gui.database.tab.species.resultant=suoᴉʇɐʇnW ʇuɐʇꞁnsǝᴚ
+genetics.gui.database.tab.species.further=suoᴉʇɐʇnW ɹǝɥʇɹnℲ
+genetics.gui.database.tab.branches.overview=ʍǝᴉʌɹǝʌO
+genetics.gui.database.tab.branches.species=sǝᴉɔǝdS
+genetics.gui.database.tab.breeder=ɹǝpǝǝɹᗺ
