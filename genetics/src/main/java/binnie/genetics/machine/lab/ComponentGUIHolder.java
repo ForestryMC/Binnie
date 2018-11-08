@@ -1,12 +1,6 @@
 package binnie.genetics.machine.lab;
 
-import binnie.core.machines.IMachine;
-import binnie.core.machines.MachineComponent;
-import binnie.core.machines.component.IInteraction;
-import binnie.core.api.gui.IGuiItem;
-import binnie.core.machines.network.INetwork;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -15,6 +9,12 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
+import binnie.core.api.gui.IGuiItem;
+import binnie.core.machines.IMachine;
+import binnie.core.machines.MachineComponent;
+import binnie.core.machines.component.IInteraction;
+import binnie.core.machines.network.INetwork;
 
 public class ComponentGUIHolder extends MachineComponent implements INetwork.TilePacketSync, IInteraction.RightClick {
 	public ComponentGUIHolder(final IMachine machine) {
@@ -29,24 +29,6 @@ public class ComponentGUIHolder extends MachineComponent implements INetwork.Til
 	private void setStack(ItemStack itemStack) {
 		IInventory inventory = getMachine().getMachineUtil().getInventory();
 		inventory.setInventorySlotContents(0, itemStack);
-	}
-
-	@Override
-	public void onDestruction() {
-		super.onDestruction();
-		ItemStack stack = getStack();
-		if (!stack.isEmpty()) {
-			final float f = this.getMachine().getWorld().rand.nextFloat() * 0.8f + 0.1f;
-			final float f2 = this.getMachine().getWorld().rand.nextFloat() * 0.8f + 0.1f;
-			final float f3 = this.getMachine().getWorld().rand.nextFloat() * 0.8f + 0.1f;
-			BlockPos pos = this.getMachine().getTileEntity().getPos();
-			final EntityItem entityitem = new EntityItem(this.getMachine().getWorld(), pos.getX() + f, pos.getY() + f2, pos.getZ() + f3, stack.copy());
-			final float accel = 0.05f;
-			entityitem.motionX = (float) this.getMachine().getWorld().rand.nextGaussian() * accel;
-			entityitem.motionY = (float) this.getMachine().getWorld().rand.nextGaussian() * accel + 0.2f;
-			entityitem.motionZ = (float) this.getMachine().getWorld().rand.nextGaussian() * accel;
-			this.getMachine().getWorld().spawnEntity(entityitem);
-		}
 	}
 
 	@Override
