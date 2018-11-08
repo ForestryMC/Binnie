@@ -13,7 +13,7 @@ buildscript {
 }
 
 plugins {
-    id "com.matthewprenger.cursegradle" version "1.0.9"
+    id "com.matthewprenger.cursegradle" version "1.1.0"
 }
 apply plugin: "se.bjurr.gitchangelog.git-changelog-gradle-plugin"
 apply plugin: 'idea'
@@ -163,7 +163,7 @@ curseforge {
         changelogType = 'html'
         releaseType = 'alpha'
         relations {
-            requiredLibrary 'forestry'
+            requiredDependency 'forestry'
         }
     }
 }
