@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import forestry.api.arboriculture.TreeManager;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -15,6 +14,7 @@ import forestry.api.arboriculture.IAlleleTreeSpecies;
 import forestry.api.arboriculture.ITreeGenome;
 import forestry.api.arboriculture.ITreeMutation;
 import forestry.api.arboriculture.ITreeRoot;
+import forestry.api.arboriculture.TreeManager;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IAlleleSpecies;
@@ -244,7 +244,7 @@ public class ExtraTreeMutation implements ITreeMutation {
 	public float getChance(World world, BlockPos pos, IAlleleTreeSpecies allele0, IAlleleTreeSpecies allele1, ITreeGenome genome0, ITreeGenome genome1) {
 		final int processedChance = this.chance;
 		final Biome biome = world.getBiome(pos);//WorldChunkManager().getBiomeGenAt(x, z);
-		if (biome.getTemperature() < this.minTemperature || biome.getTemperature() > this.maxTemperature) {
+		if (biome.getDefaultTemperature() < this.minTemperature || biome.getDefaultTemperature() > this.maxTemperature) {
 			return 0.0f;
 		}
 		if (biome.getRainfall() < this.minRainfall || biome.getRainfall() > this.maxRainfall) {

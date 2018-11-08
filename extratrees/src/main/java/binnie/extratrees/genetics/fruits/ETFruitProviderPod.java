@@ -31,7 +31,7 @@ public class ETFruitProviderPod extends ETFruitProviderNone {
 		}
 
 		IAlleleFruit activeAllele = (IAlleleFruit) genome.getActiveAllele(EnumTreeChromosome.FRUITS);
-		return TreeManager.treeRoot.setFruitBlock(world, genome, activeAllele, genome.getSappiness(), pos);
+		return TreeManager.treeRoot.setFruitBlock(world, genome, activeAllele, genome.getYield(), pos);
 	}
 
 	@Override
@@ -39,7 +39,7 @@ public class ETFruitProviderPod extends ETFruitProviderNone {
 		NonNullList<ItemStack> products = NonNullList.create();
 		if (this.pod != null) {
 			if (ripeningTime >= RIPENING_PERIOD) {
-				for (Map.Entry<ItemStack, Float> product : drops.entrySet()) {
+				for (Map.Entry<ItemStack, Float> product : this.products.entrySet()) {
 					ItemStack single = product.getKey().copy();
 					single.setCount(1);
 					for (int i = 0; i < product.getKey().getCount(); ++i) {

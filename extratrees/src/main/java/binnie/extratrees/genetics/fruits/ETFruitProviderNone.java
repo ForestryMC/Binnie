@@ -24,7 +24,7 @@ import binnie.core.Constants;
 import binnie.core.util.I18N;
 
 public class ETFruitProviderNone implements IFruitProvider {
-	protected final Map<ItemStack, Float> drops;
+	protected final Map<ItemStack, Float> products;
 	protected final IFruitFamily family;
 	protected final String name;
 	protected static final int RIPENING_PERIOD = 2;
@@ -32,11 +32,11 @@ public class ETFruitProviderNone implements IFruitProvider {
 	public ETFruitProviderNone(String name, IFruitFamily family) {
 		this.name = name;
 		this.family = family;
-		this.drops = new HashMap<>();
+		this.products = new HashMap<>();
 	}
 
 	public void addDrop(ItemStack product, float chance) {
-		this.drops.put(product, chance);
+		this.products.put(product, chance);
 	}
 
 	@Override
@@ -80,7 +80,7 @@ public class ETFruitProviderNone implements IFruitProvider {
 
 	@Override
 	public Map<ItemStack, Float> getProducts() {
-		return Collections.unmodifiableMap(drops);
+		return Collections.unmodifiableMap(products);
 	}
 
 	@Override

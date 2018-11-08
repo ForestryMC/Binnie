@@ -23,23 +23,6 @@ public enum EnumShrubLog implements IWoodType {
 	}
 
 	@Override
-	public int getCarbonization() {
-		return 4;
-	}
-
-	@Override
-	public float getCharcoalChance(int numberOfCharcoal) {
-		if (numberOfCharcoal == 3) {
-			return 0.75F;
-		} else if (numberOfCharcoal == 4) {
-			return 0.5F;
-		} else if (numberOfCharcoal == 5) {
-			return 0.25F;
-		}
-		return 0.15F;
-	}
-
-	@Override
 	public String getPlankTexture() {
 		return "blocks/planks_oak";
 	}

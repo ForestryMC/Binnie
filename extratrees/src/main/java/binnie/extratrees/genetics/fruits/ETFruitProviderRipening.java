@@ -2,7 +2,10 @@ package binnie.extratrees.genetics.fruits;
 
 import javax.annotation.Nullable;
 import java.awt.Color;
+import java.util.Map;
 
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -16,9 +19,11 @@ import forestry.api.genetics.IFruitFamily;
 
 public class ETFruitProviderRipening extends ETFruitProviderNone {
 
-	private int diffR, diffG, diffB;
 	private int ripeningPeriod;
 	private int colourCallow = 0xffffff;
+	private int diffR;
+	private int diffG;
+	private int diffB;
 	@Nullable
 	private final FruitSprite sprite;
 
@@ -47,13 +52,30 @@ public class ETFruitProviderRipening extends ETFruitProviderNone {
 		if (ripeningTime >= this.ripeningPeriod) {
 			return 1.0f;
 		}
-		return ripeningTime / this.ripeningPeriod;
+		return (float)ripeningTime / this.ripeningPeriod;
+	}
+
+	@Override
+	public int getRipeningPeriod() {
+		return ripeningPeriod;
 	}
 
 	@Override
 	public int getColour(ITreeGenome genome, IBlockAccess world, BlockPos pos, int ripeningTime) {
 		float stage = getRipeningStage(ripeningTime);
 		return getColour(stage);
+	}
+
+	@Override
+	public NonNullList<ItemStack> getFruits(ITreeGenome genome, World world, BlockPos pos, int ripeningTime) {
+		NonNullList<ItemStack> product = NonNullList.create();
+		for (Map.Entry<ItemStack, Float> entry : products.entrySet()) {
+			if (world.rand.nextFloat() <= entry.getValue()) {
+				product.add(entry.getKey().copy());
+			}
+		}
+
+		return product;
 	}
 
 	private int getColour(float stage) {
@@ -72,7 +94,6 @@ public class ETFruitProviderRipening extends ETFruitProviderNone {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerSprites() {
-		sprite.registerSprites();
 	}
 
 	@Nullable
@@ -83,5 +104,20 @@ public class ETFruitProviderRipening extends ETFruitProviderNone {
 		} else {
 			return null;
 		}
+	}
+
+	@Nullable
+	@Override
+	public ResourceLocation getDecorativeSprite() {
+		if (sprite != null) {
+			return sprite.getLocation();
+		} else {
+			return null;
+		}
+	}
+
+	@Override
+	public int getDecorativeColor() {
+		return getColour(1.0f);
 	}
 }

@@ -59,14 +59,4 @@ public class WoodProvider implements IWoodProvider {
 	public ItemStack getWoodStack() {
 		return TreeManager.woodAccess.getStack(type, WoodBlockKind.LOG, false);
 	}
-
-	@Override
-	public int getCarbonization() {
-		return type.getCarbonization();
-	}
-
-	@Override
-	public float getCharcoalChance(int numberOfCharcoal) {
-		return type.getCharcoalChance(numberOfCharcoal);
-	}
 }

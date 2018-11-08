@@ -18,9 +18,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 
+import forestry.api.climate.ClimateManager;
 import forestry.api.climate.IClimateState;
 import forestry.api.core.EnumTemperature;
-import forestry.api.core.ForestryAPI;
 
 import binnie.botany.api.gardening.EnumAcidity;
 import binnie.botany.api.gardening.EnumFertiliserType;
@@ -101,7 +101,7 @@ public class GardeningManager implements IGardeningManager {
 
 	@Override
 	public float getBiomeMoisture(World world, BlockPos pos) {
-		IClimateState info = ForestryAPI.climateManager.getClimateState(world, pos);
+		IClimateState info = ClimateManager.climateRoot.getState(world, pos);
 		double humidity = info.getHumidity();
 		double temperature = info.getTemperature();
 		double moisture = 3.2 * (humidity - 0.5) - 0.4 * (1.0 + temperature + 0.5 * temperature * temperature) + 1.1 - 1.6 * (temperature - 0.9) * (temperature - 0.9) - 0.002 * (pos.getY() - 64);
@@ -110,7 +110,7 @@ public class GardeningManager implements IGardeningManager {
 
 	@Override
 	public float getBiomePH(World world, BlockPos pos) {
-		IClimateState info = ForestryAPI.climateManager.getClimateState(world, pos);
+		IClimateState info = ClimateManager.climateRoot.getState(world, pos);
 		double humidity = info.getHumidity();
 		double temperature = info.getTemperature();
 		return (float) (-3.0 * (humidity - 0.5) + 0.5 * (temperature - 0.699999988079071) * (temperature - 0.699999988079071) + 0.02f * (pos.getY() - 64) - 0.15000000596046448);
@@ -213,7 +213,7 @@ public class GardeningManager implements IGardeningManager {
 		Biome biome = world.getBiome(pos);
 		EnumAcidity acidity = soil.getValue(BlockSoil.ACIDITY);
 		EnumMoisture moisture = soil.getValue(BlockSoil.MOISTURE);
-		EnumTemperature temperature = EnumTemperature.getFromValue(biome.getTemperature());
+		EnumTemperature temperature = EnumTemperature.getFromValue(biome.getDefaultTemperature());
 		return canTolerate(flower, acidity, moisture, temperature);
 	}
 

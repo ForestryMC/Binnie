@@ -36,6 +36,7 @@ import forestry.api.arboriculture.ITreeGenome;
 import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
 import forestry.api.core.Tabs;
+import forestry.arboriculture.blocks.BlockAbstractLeaves;
 import forestry.core.blocks.IColoredBlock;
 import forestry.core.proxy.Proxies;
 
@@ -238,7 +239,7 @@ public abstract class BlockETDecorativeLeaves extends Block implements IItemMode
 
 		ITreeGenome genome = treeDefinition.getGenome();
 
-		if (tintIndex == 0) {
+		if (tintIndex == BlockAbstractLeaves.FOLIAGE_COLOR_INDEX) {
 			return genome.getPrimary().getLeafSpriteProvider().getColor(false);
 		} else {
 			IFruitProvider fruitProvider = genome.getFruitProvider();

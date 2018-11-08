@@ -6,6 +6,7 @@ import javax.annotation.Nullable;
 import java.awt.Color;
 import java.util.Arrays;
 import java.util.Locale;
+import java.util.Random;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -28,6 +29,7 @@ import forestry.api.arboriculture.EnumTreeChromosome;
 import forestry.api.arboriculture.EnumVanillaWoodType;
 import forestry.api.arboriculture.IAlleleTreeSpecies;
 import forestry.api.arboriculture.IAlleleTreeSpeciesBuilder;
+import forestry.api.arboriculture.IFruitProvider;
 import forestry.api.arboriculture.ILeafSpriteProvider;
 import forestry.api.arboriculture.ITree;
 import forestry.api.arboriculture.ITreeGenerator;
@@ -78,6 +80,7 @@ import binnie.extratrees.gen.WorldGenTree3;
 import binnie.extratrees.gen.WorldGenTropical;
 import binnie.extratrees.gen.WorldGenWalnut;
 import binnie.extratrees.genetics.fruits.ETFruitFamily;
+import binnie.extratrees.modules.ModuleWood;
 import binnie.extratrees.wood.EnumETLog;
 import binnie.extratrees.wood.EnumShrubLog;
 
@@ -100,6 +103,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
+		}
 	},
 	SweetCrabapple("malus", "coronaria", EnumLeafType.DECIDUOUS, new Color(0x7A9953), new Color(0xFC359F), EnumSaplingType.Default, EnumETLog.Apple, new Color(0x7B7A7B)) {
 		@Override
@@ -120,6 +128,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(ETFruitFamily.CITRUS);
+		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
 		}
 	},
 	FloweringCrabapple("malus", "hopa", EnumLeafType.DECIDUOUS, new Color(0x7A9953), new Color(0xFC359F), EnumSaplingType.Default, EnumETLog.Apple, new Color(0x7B7A7B)) {
@@ -143,6 +156,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
+		}
 	},
 	PrairieCrabapple("malus", "ioensis", EnumLeafType.DECIDUOUS, new Color(0x7A9953), new Color(0xFC359F), EnumSaplingType.Default, EnumETLog.Apple, new Color(0x7B7A7B)) {
 		@Override
@@ -164,6 +182,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(ETFruitFamily.CITRUS);
+		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
 		}
 	},
 	Blackthorn("prunus", "spinosa", EnumLeafType.DECIDUOUS, new Color(0x6D8F1E), new Color(0xFF87C7), EnumSaplingType.Fruit, EnumForestryWoodType.PLUM, new Color(0xB68661)) {
@@ -187,6 +210,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
+		}
 	},
 	CherryPlum("prunus", "cerasifera", EnumLeafType.DECIDUOUS, new Color(0x6D8F1E), new Color(0xFF87C7), EnumSaplingType.Fruit, EnumForestryWoodType.PLUM, new Color(0xB68661)) {
 		@Override
@@ -208,6 +236,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(ETFruitFamily.CITRUS);
+		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
 		}
 	},
 	Peach("prunus", "persica", EnumLeafType.DECIDUOUS, new Color(0x6D8F1E), new Color(0xFF269A), EnumSaplingType.Fruit, EnumForestryWoodType.PLUM, new Color(0xB68661)) {
@@ -231,6 +264,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
+		}
 	},
 	Nectarine("prunus", "nectarina", EnumLeafType.DECIDUOUS, new Color(0x6D8F1E), new Color(0xFF269A), EnumSaplingType.Fruit, EnumForestryWoodType.PLUM, new Color(0xB68661)) {
 		@Override
@@ -251,6 +289,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(ETFruitFamily.CITRUS);
+		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
 		}
 	},
 	Apricot("prunus", "armeniaca", EnumLeafType.DECIDUOUS, new Color(0x6D8F1E), new Color(0xF5B8D8), EnumSaplingType.Fruit, EnumForestryWoodType.PLUM, new Color(0xB68661)) {
@@ -273,6 +316,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
+		}
 	},
 	Almond("prunus", "amygdalus", EnumLeafType.DECIDUOUS, new Color(0x6D8F1E), new Color(0xF584C0), EnumSaplingType.Fruit, EnumForestryWoodType.PLUM, new Color(0xB68661)) {
 		@Override
@@ -293,6 +341,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(ETFruitFamily.CITRUS);
+		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
 		}
 	},
 	WildCherry("prunus", "avium", EnumLeafType.DECIDUOUS, new Color(0x6D8F1E), new Color(0xF7EBF6), EnumSaplingType.Fruit, EnumETLog.Cherry, new Color(0x716850)) {
@@ -318,6 +371,12 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(ETFruitFamily.CITRUS);
 			species.setTemperature(EnumTemperature.NORMAL);
 			species.setRarity(0.0015F);
+			species.setGrowthProvider(new ClimateGrowthProvider(EnumTemperature.NORMAL, EnumTolerance.BOTH_1, EnumHumidity.NORMAL, EnumTolerance.NONE));
+		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
 		}
 	},
 	SourCherry("prunus", "cerasus", EnumLeafType.DECIDUOUS, new Color(0x6D8F1E), new Color(0xF7EBF6), EnumSaplingType.Fruit, EnumETLog.Cherry, new Color(0x716850)) {
@@ -338,6 +397,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(ETFruitFamily.CITRUS);
+		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
 		}
 	},
 	BlackCherry("prunus", "serotina", EnumLeafType.DECIDUOUS, new Color(0x6D8F1E), new Color(0xFAE1F8), EnumSaplingType.Fruit, EnumETLog.Cherry, new Color(0x716850)) {
@@ -362,6 +426,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
+		}
 	},
 	Orange("citrus", "sinensis", EnumLeafType.JUNGLE, new Color(0x88AF54), new Color(0xA3B850), EnumSaplingType.Fruit, EnumForestryWoodType.CITRUS, new Color(0x5B4B39)) {
 		@Override
@@ -383,6 +452,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(ETFruitFamily.CITRUS);
+		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
 		}
 	},
 	Manderin("citrus", "reticulata", EnumLeafType.JUNGLE, new Color(0x88AF54), new Color(0xA3B850), EnumSaplingType.Fruit, EnumForestryWoodType.CITRUS, new Color(0x5B4B39)) {
@@ -406,6 +480,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
+		}
 	},
 	Satsuma("citrus", "unshiu", EnumLeafType.JUNGLE, new Color(0x88AF54), new Color(0xA3B850), EnumSaplingType.Fruit, EnumForestryWoodType.CITRUS, new Color(0x5B4B39)) {
 		@Override
@@ -427,6 +506,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(ETFruitFamily.CITRUS);
+		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
 		}
 	},
 	Tangerine("citrus", "tangerina", EnumLeafType.JUNGLE, new Color(0x88AF54), new Color(0xA3B850), EnumSaplingType.Fruit, EnumForestryWoodType.CITRUS, new Color(0x5B4B39)) {
@@ -451,6 +535,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
+		}
 	},
 	Lime("citrus", "latifolia", EnumLeafType.JUNGLE, new Color(0x88AF54), new Color(0xA3B850), EnumSaplingType.Fruit, EnumForestryWoodType.CITRUS, new Color(0x5B4B39)) {
 		@Override
@@ -471,6 +560,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(ETFruitFamily.CITRUS);
+		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
 		}
 	},
 	KeyLime("citrus", "aurantifolia", EnumLeafType.JUNGLE, new Color(0x88AF54), new Color(0xA3B850), EnumSaplingType.Fruit, EnumForestryWoodType.CITRUS, new Color(0x5B4B39)) {
@@ -495,6 +589,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
+		}
 	},
 	FingerLime("citrus", "australasica", EnumLeafType.JUNGLE, new Color(0x88AF54), new Color(0xA3B850), EnumSaplingType.Fruit, EnumForestryWoodType.CITRUS, new Color(0x5B4B39)) {
 		@Override
@@ -517,6 +616,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
+		}
 	},
 	Pomelo("citrus", "maxima", EnumLeafType.JUNGLE, new Color(0x88AF54), new Color(0xA3B850), EnumSaplingType.Fruit, EnumForestryWoodType.CITRUS, new Color(0x5B4B39)) {
 		@Override
@@ -538,6 +642,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(ETFruitFamily.CITRUS);
+		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
 		}
 	},
 	Grapefruit("citrus", "paradisi", EnumLeafType.JUNGLE, new Color(0x88AF54), new Color(0xA3B850), EnumSaplingType.Fruit, EnumForestryWoodType.CITRUS, new Color(0x5B4B39)) {
@@ -562,6 +671,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
+		}
 	},
 	Kumquat("citrus", "margarita", EnumLeafType.JUNGLE, new Color(0x88AF54), new Color(0xA3B850), EnumSaplingType.Fruit, EnumForestryWoodType.CITRUS, new Color(0x5B4B39)) {
 		@Override
@@ -582,6 +696,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(ETFruitFamily.CITRUS);
+		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
 		}
 	},
 	Citron("citrus", "medica", EnumLeafType.JUNGLE, new Color(0x88AF54), new Color(0xA3B850), EnumSaplingType.Fruit, EnumForestryWoodType.CITRUS, new Color(0x5B4B39)) {
@@ -604,6 +723,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
+		}
 	},
 	BuddhaHand("citrus", "sarcodactylus", EnumLeafType.JUNGLE, new Color(0x88AF54), new Color(0xA3B850), EnumSaplingType.Fruit, EnumForestryWoodType.CITRUS, new Color(0x5B4B39)) {
 		@Override
@@ -623,6 +747,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(ETFruitFamily.CITRUS);
+		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
 		}
 	},
 	Banana("musa", "sinensis", EnumLeafType.PALM, new Color(0xA1CD8E), new Color(0x44E500), EnumSaplingType.Default, EnumETLog.Banana, new Color(0x85924F)) {
@@ -644,6 +773,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.jungle"));
 		}
+
 	},
 	RedBanana("musa", "rubra", EnumLeafType.PALM, new Color(0xA1CD8E), new Color(0x44E500), EnumSaplingType.Default, EnumETLog.Banana, new Color(0x85924F)) {
 		@Override
@@ -701,6 +831,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
 			species.addFruitFamily(ETFruitFamily.CITRUS);
+		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
 		}
 	},
 	Rowan("sorbus", "aucuparia", EnumLeafType.DECIDUOUS, new Color(0x9EC79B), new Color(0x9EE8B2), EnumSaplingType.Default, EnumETLog.Rowan, new Color(0xB6B09B)) {
@@ -793,6 +928,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
 		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
+		}
 	},
 	CopperBeech("fagus", "purpurea", EnumLeafType.DECIDUOUS, new Color(0x801318), new Color(0xD15B4D), EnumSaplingType.Default, EnumETLog.Beech, new Color(0xB2917E)) {
 		@Override
@@ -810,6 +950,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
+		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
 		}
 	},
 	Aspen("populus", "tremula", EnumLeafType.DECIDUOUS, new Color(0x8ACC37), new Color(0x8AE18F), EnumSaplingType.Default, EnumForestryWoodType.POPLAR, new Color(0x8CA687)) {
@@ -890,6 +1035,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
 		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
+		}
 	},
 	Sycamore("ficus", "sycomorus", EnumLeafType.DECIDUOUS, new Color(0xA0A52F), new Color(0xB4D55C), EnumSaplingType.Default, EnumETLog.Fig, new Color(0x807357)) {
 		@Override
@@ -909,6 +1059,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
 			species.addFruitFamily(ETFruitFamily.CITRUS);
+		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
 		}
 	},
 	Whitebeam("sorbus", "aria", EnumLeafType.DECIDUOUS, new Color(0xBACE99), new Color(0x72863F), EnumSaplingType.Default, EnumETLog.Whitebeam, new Color(0x786A6D)) {
@@ -966,6 +1121,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
 			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
+		}
 	},
 	Elm("ulmus", "procera", EnumLeafType.DECIDUOUS, new Color(0x7C9048), new Color(0x7CBE48), EnumSaplingType.Default, EnumETLog.Elm, new Color(0x848386)) {
 		@Override
@@ -1005,6 +1165,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
 			species.addFruitFamily(ETFruitFamily.BERRY);
 			species.addFruitFamily(ETFruitFamily.CITRUS);
+		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
 		}
 	},
 	Holly("ilex", "aquifolium", EnumLeafType.DECIDUOUS, new Color(0x254B4C), new Color(0x6E9284), EnumSaplingType.Default, EnumETLog.Holly, new Color(0xB5AA85)) {
@@ -1086,6 +1251,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
 		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
+		}
 	},
 	Fir("abies", "alba", EnumLeafType.CONIFERS, new Color(0x6F7C20), new Color(0x6FD120), EnumSaplingType.Default, EnumETLog.Fir, new Color(0x828382)) {
 		@Override
@@ -1131,6 +1301,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
 			species.addFruitFamily(ETFruitFamily.CITRUS);
+		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
 		}
 	},
 	RedMaple("acer", "ubrum", EnumLeafType.MAPLE, new Color(0xE82E17), new Color(0xE82E17), EnumSaplingType.Default, EnumForestryWoodType.MAPLE, new Color(0x8A8781)) {
@@ -1237,6 +1412,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
+		}
 	},
 	OsangeOrange("maclura", "pomifera", EnumLeafType.JUNGLE, new Color(0x687A50), new Color(0x687A50), EnumSaplingType.Default, EnumETLog.Maclura, new Color(0x8B5734)) {
 		@Override
@@ -1256,6 +1436,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.jungle"));
 			species.addFruitFamily(ETFruitFamily.CITRUS);
+		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
 		}
 	},
 	OldFustic("maclura", "tinctoria", EnumLeafType.JUNGLE, new Color(0x687A50), new Color(0x687A50), EnumSaplingType.Default, EnumETLog.Maclura, new Color(0x8B5734)) {
@@ -1383,6 +1568,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.jungle"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
 		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
+		}
 	},
 	Brazilnut("bertholletia", "excelsa", EnumLeafType.JUNGLE, new Color(0x7C8F7B), new Color(0x7C8F7B), EnumSaplingType.Default, EnumVanillaWoodType.JUNGLE, new Color(0x53411A)) {
 		@Override
@@ -1402,6 +1592,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.jungle"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
+		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
 		}
 	},
 	RoseGum("eucalyptus", "grandis", EnumLeafType.JUNGLE, new Color(0x9CA258), new Color(0x9CA258), EnumSaplingType.Default, EnumETLog.Eucalyptus, new Color(0xEADEDA)) {
@@ -1484,6 +1679,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.jungle"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
 		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
+		}
 	},
 	Coffee("coffea", "arabica", EnumLeafType.JUNGLE, new Color(0x6F9065), new Color(0x6F9065), EnumSaplingType.Default, EnumVanillaWoodType.JUNGLE, new Color(0x53411A)) {
 		@Override
@@ -1503,6 +1703,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.jungle"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
+		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
 		}
 	},
 	MonkeyPuzzle("araucaria", "araucana", EnumLeafType.CONIFERS, new Color(0x576158), new Color(0x576158), EnumSaplingType.Default, EnumForestryWoodType.PINE, new Color(0x735649)) {
@@ -1584,6 +1789,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.setRarity(0.0025F);
 			species.setGrowthProvider(new ClimateGrowthProvider(EnumTemperature.NORMAL, EnumTolerance.BOTH_1, EnumHumidity.NORMAL, EnumTolerance.NONE));
 		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
+		}
 	},
 	Redcurrant("ribes", "rubrum", EnumLeafType.DECIDUOUS, new Color(0x74AC00), new Color(0x74AC00), EnumSaplingType.Shrub, EnumShrubLog.INSTANCE, new Color(0xFFFFFF)) {
 		@Override
@@ -1609,6 +1819,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.setRarity(0.0025F);
 			species.setGrowthProvider(new ClimateGrowthProvider(EnumTemperature.NORMAL, EnumTolerance.BOTH_1, EnumHumidity.NORMAL, EnumTolerance.NONE));
 		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
+		}
 	},
 	Blackberry("rubus", "fruticosus", EnumLeafType.DECIDUOUS, new Color(0x92C15B), new Color(0x92C15B), EnumSaplingType.Shrub, EnumShrubLog.INSTANCE, new Color(0xFFFFFF)) {
 		@Override
@@ -1630,6 +1845,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
 			species.addFruitFamily(ETFruitFamily.BERRY);
+		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
 		}
 	},
 	Raspberry("rubus", "idaeus", EnumLeafType.DECIDUOUS, new Color(0x83B96E), new Color(0x83B96E), EnumSaplingType.Shrub, EnumShrubLog.INSTANCE, new Color(0xFFFFFF)) {
@@ -1656,6 +1876,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.setRarity(0.0025F);
 			species.setGrowthProvider(new ClimateGrowthProvider(EnumTemperature.NORMAL, EnumTolerance.BOTH_1, EnumHumidity.NORMAL, EnumTolerance.NONE));
 		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
+		}
 	},
 	Blueberry("vaccinium", "corymbosum", EnumLeafType.DECIDUOUS, new Color(0x72C750), new Color(0x72C750), EnumSaplingType.Shrub, EnumShrubLog.INSTANCE, new Color(0xFFFFFF)) {
 		@Override
@@ -1680,6 +1905,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(ETFruitFamily.BERRY);
 			species.setRarity(0.0025F);
 			species.setGrowthProvider(new ClimateGrowthProvider(EnumTemperature.NORMAL, EnumTolerance.BOTH_1, EnumHumidity.NORMAL, EnumTolerance.NONE));
+		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
 		}
 	},
 	Cranberry("vaccinium", "oxycoccos", EnumLeafType.DECIDUOUS, new Color(0x96D179), new Color(0x96D179), EnumSaplingType.Shrub, EnumShrubLog.INSTANCE, new Color(0xFFFFFF)) {
@@ -1706,6 +1936,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.setRarity(0.0025F);
 			species.setGrowthProvider(new ClimateGrowthProvider(EnumTemperature.NORMAL, EnumTolerance.BOTH_1, EnumHumidity.NORMAL, EnumTolerance.NONE));
 		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
+		}
 	},
 	Juniper("juniperus", "communis", EnumLeafType.CONIFERS, new Color(0x90B149), new Color(0x90B149), EnumSaplingType.Shrub, EnumShrubLog.INSTANCE, new Color(0xFFFFFF)) {
 		@Override
@@ -1731,6 +1966,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.setRarity(0.0025F);
 			species.setGrowthProvider(new ClimateGrowthProvider(EnumTemperature.NORMAL, EnumTolerance.BOTH_1, EnumHumidity.NORMAL, EnumTolerance.NONE));
 		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
+		}
 	},
 	Gooseberry("ribes", "grossularia", EnumLeafType.DECIDUOUS, new Color(0x79BB00), new Color(0x79BB00), EnumSaplingType.Shrub, EnumShrubLog.INSTANCE, new Color(0xFFFFFF)) {
 		@Override
@@ -1752,6 +1992,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
 			species.addFruitFamily(ETFruitFamily.BERRY);
+		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
 		}
 	},
 	GoldenRaspberry("rubus", "occidentalis", EnumLeafType.DECIDUOUS, new Color(0x83B96E), new Color(0x83B96E), EnumSaplingType.Shrub, EnumShrubLog.INSTANCE, new Color(0xFFFFFF)) {
@@ -1777,6 +2022,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(ETFruitFamily.BERRY);
 			species.setRarity(0.0025F);
 			species.setGrowthProvider(new ClimateGrowthProvider(EnumTemperature.NORMAL, EnumTolerance.BOTH_1, EnumHumidity.NORMAL, EnumTolerance.NONE));
+		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
 		}
 	},
 	Cinnamon("cinnamomum", "cassia", EnumLeafType.JUNGLE, new Color(0x738E0B), new Color(0x738E0B), EnumSaplingType.Default, EnumETLog.Cinnamon, new Color(0x86583C)) {
@@ -1835,6 +2085,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.jungle"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
 		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
+		}
 	},
 	Avacado("persea", "americana", EnumLeafType.JUNGLE, new Color(0x96A375), new Color(0x96A375), EnumSaplingType.Default, EnumVanillaWoodType.JUNGLE, new Color(0x53411A)) {
 		@Override
@@ -1854,6 +2109,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.jungle"));
 			species.addFruitFamily(ETFruitFamily.CITRUS);
+		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
 		}
 	},
 	Nutmeg("myristica", "fragrans", EnumLeafType.JUNGLE, new Color(0x488D4C), new Color(0x488D4C), EnumSaplingType.Default, EnumVanillaWoodType.JUNGLE, new Color(0x53411A)) {
@@ -1875,6 +2135,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.jungle"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
 		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
+		}
 	},
 	Allspice("pimenta", "dioica", EnumLeafType.JUNGLE, new Color(0x7C9724), new Color(0x7C9724), EnumSaplingType.Default, EnumVanillaWoodType.JUNGLE, new Color(0x53411A)) {
 		@Override
@@ -1894,6 +2159,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.jungle"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
+		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
 		}
 	},
 	Chilli("capsicum", "annuum", EnumLeafType.JUNGLE, new Color(0x2A9F01), new Color(0x2A9F01), EnumSaplingType.Default, EnumVanillaWoodType.JUNGLE, new Color(0x53411A)) {
@@ -1916,6 +2186,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.jungle"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
 		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
+		}
 	},
 	StarAnise("illicium", "verum", EnumLeafType.JUNGLE, new Color(0x7FC409), new Color(0x7FC409), EnumSaplingType.Default, EnumVanillaWoodType.JUNGLE, new Color(0x53411A)) {
 		@Override
@@ -1934,6 +2209,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.jungle"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
+		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
 		}
 	},
 	Mango("mangifera", "indica", EnumLeafType.JUNGLE, new Color(0x87B574), new Color(0x87B574), EnumSaplingType.Default, EnumVanillaWoodType.JUNGLE, new Color(0x53411A)) {
@@ -1959,6 +2239,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.jungle"));
 			species.addFruitFamily(ETFruitFamily.CITRUS);
 		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
+		}
 	},
 	Starfruit("averrhoa", "carambola", EnumLeafType.JUNGLE, new Color(0x6DA92D), new Color(0x6DA92D), EnumSaplingType.Default, EnumVanillaWoodType.JUNGLE, new Color(0x53411A)) {
 		@Override
@@ -1978,6 +2263,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.jungle"));
 			species.addFruitFamily(ETFruitFamily.CITRUS);
+		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
 		}
 	},
 	Candlenut("aleurites", "moluccana", EnumLeafType.DECIDUOUS, new Color(0x8AA36C), new Color(0x8AA36C), EnumSaplingType.Default, EnumVanillaWoodType.JUNGLE, new Color(0x53411A)) {
@@ -2000,6 +2290,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.jungle"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
 		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
+		}
 	},
 	DwarfHazel("Corylus", "americana", EnumLeafType.DECIDUOUS, new Color(0x9BB552), new Color(0x9BE152), EnumSaplingType.Shrub, EnumETLog.Hazel, new Color(0xAA986F)) {
 		@Override
@@ -2019,6 +2314,11 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
+		}
+
+		@Override
+		public boolean hasFruitLeaves() {
+			return true;
 		}
 	};
 
@@ -2132,6 +2432,10 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 	}
 
+	public boolean hasFruitLeaves(){
+		return false;
+	}
+
 	public String getUID() {
 		return name().toLowerCase();
 	}
@@ -2188,28 +2492,45 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 	@Override
 	public boolean setLeaves(ITreeGenome genome, World world, @Nullable GameProfile owner, BlockPos pos) {
-		boolean placed = world.setBlockState(pos, ModuleArboriculture.getBlocks().leaves.getDefaultState());
-		if (!placed) {
-			return false;
+		return setLeaves(genome, world, owner, pos, world.rand);
+	}
+
+	@Override
+	public boolean setLeaves(ITreeGenome genome, World world, @Nullable GameProfile owner, BlockPos pos, Random rand) {
+		if (owner == null && genome.matchesTemplateGenome()) {
+			IFruitProvider fruitProvider = genome.getFruitProvider();
+			String speciesUid = genome.getPrimary().getUID();
+			IBlockState defaultLeaves;
+			if(fruitProvider.isFruitLeaf(genome, world, pos) && rand.nextFloat() <= fruitProvider.getFruitChance(genome, world, pos)){
+				defaultLeaves = ModuleArboriculture.getBlocks().getDefaultLeavesFruit(speciesUid);
+			}else{
+				defaultLeaves = ModuleArboriculture.getBlocks().getDefaultLeaves(speciesUid);
+			}
+			return world.setBlockState(pos, defaultLeaves);
+		} else {
+			boolean placed = world.setBlockState(pos, ModuleArboriculture.getBlocks().leaves.getDefaultState());
+			if (!placed) {
+				return false;
+			}
+
+			Block block = world.getBlockState(pos).getBlock();
+			if (ModuleArboriculture.getBlocks().leaves != block) {
+				world.setBlockToAir(pos);
+				return false;
+			}
+
+			TileLeaves tileLeaves = TileUtil.getTile(world, pos, TileLeaves.class);
+			if (tileLeaves == null) {
+				world.setBlockToAir(pos);
+				return false;
+			}
+
+			tileLeaves.getOwnerHandler().setOwner(owner);
+			tileLeaves.setTree(new Tree(genome));
+
+			world.markBlockRangeForRenderUpdate(pos, pos);
+			return true;
 		}
-
-		Block block = world.getBlockState(pos).getBlock();
-		if (ModuleArboriculture.getBlocks().leaves != block) {
-			world.setBlockToAir(pos);
-			return false;
-		}
-
-		TileLeaves tileLeaves = TileUtil.getTile(world, pos, TileLeaves.class);
-		if (tileLeaves == null) {
-			world.setBlockToAir(pos);
-			return false;
-		}
-
-		tileLeaves.getOwnerHandler().setOwner(owner);
-		tileLeaves.setTree(new Tree(genome));
-
-		world.markBlockRangeForRenderUpdate(pos, pos);
-		return true;
 	}
 
 	private static class AlleleTemplate {

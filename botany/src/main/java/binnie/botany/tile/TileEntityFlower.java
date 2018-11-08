@@ -546,7 +546,7 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 
 	@Override
 	public EnumTemperature getTemperature() {
-		return EnumTemperature.getFromValue(world.getBiome(getPos()).getTemperature());
+		return EnumTemperature.getFromValue(world.getBiome(getPos()).getDefaultTemperature());
 	}
 
 	@Override

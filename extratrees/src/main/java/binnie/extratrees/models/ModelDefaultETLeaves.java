@@ -15,6 +15,7 @@ import forestry.api.arboriculture.IAlleleTreeSpecies;
 import forestry.api.arboriculture.ILeafSpriteProvider;
 import forestry.api.arboriculture.ITreeGenome;
 import forestry.api.core.IModelBaker;
+import forestry.arboriculture.blocks.BlockAbstractLeaves;
 import forestry.core.models.ModelBlockCached;
 import forestry.core.models.baker.ModelBaker;
 import forestry.core.proxy.Proxies;
@@ -58,13 +59,13 @@ public class ModelDefaultETLeaves extends ModelBlockCached<BlockETDefaultLeaves,
 		TextureAtlasSprite leafSprite = map.getAtlasSprite(leafSpriteLocation.toString());
 
 		// Render the plain leaf block.
-		baker.addBlockModel(null, leafSprite, 0);
+		baker.addBlockModel(null, leafSprite, BlockAbstractLeaves.FOLIAGE_COLOR_INDEX);
 
 		// Render overlay for fruit leaves.
 		ResourceLocation fruitSpriteLocation = genome.getFruitProvider().getDecorativeSprite();
 		if (fruitSpriteLocation != null) {
 			TextureAtlasSprite fruitSprite = map.getAtlasSprite(fruitSpriteLocation.toString());
-			baker.addBlockModel(null, fruitSprite, 1);
+			baker.addBlockModel(null, fruitSprite, BlockAbstractLeaves.FRUIT_COLOR_INDEX);
 		}
 
 		// Set the particle sprite

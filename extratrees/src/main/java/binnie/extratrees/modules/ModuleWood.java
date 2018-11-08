@@ -70,11 +70,13 @@ import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.api.CarpentryManager;
 import binnie.extratrees.blocks.BlockETDecorativeLeaves;
 import binnie.extratrees.blocks.BlockETDefaultLeaves;
+import binnie.extratrees.blocks.BlockETDefaultLeavesFruit;
 import binnie.extratrees.blocks.decor.BlockMultiFence;
 import binnie.extratrees.blocks.decor.MultiFenceRecipeEmbedded;
 import binnie.extratrees.blocks.decor.MultiFenceRecipeSize;
 import binnie.extratrees.blocks.decor.MultiFenceRecipeSolid;
 import binnie.extratrees.blocks.property.PropertyETType;
+import binnie.extratrees.blocks.property.PropertyETTypeFruit;
 import binnie.extratrees.blocks.wood.BlockETDoor;
 import binnie.extratrees.blocks.wood.BlockETFence;
 import binnie.extratrees.blocks.wood.BlockETLog;
@@ -124,6 +126,7 @@ public class ModuleWood extends BlankModule {
 	public static List<BlockETDecorativeLeaves> leavesDecorative = new ArrayList<>();
 	public static Map<String, ItemStack> speciesToLeavesDecorative = new HashMap<>();
 	public static List<BlockETDefaultLeaves> leavesDefault = new ArrayList<>();
+	public static List<BlockETDefaultLeavesFruit> leavesDefaultFruit = new ArrayList<>();
 	@Nullable
 	public static BlockMultiFence blockMultiFence;
 	@Nullable
@@ -307,6 +310,21 @@ public class ModuleWood extends BlankModule {
 				String speciesUid = treeDefinition.getUID();
 				IBlockState blockState = leaves.getDefaultState().withProperty(treeType, treeDefinition);
 				speciesToLeavesDefault.put(speciesUid, blockState);
+			}
+		}
+
+		leavesDefaultFruit = BlockETDefaultLeavesFruit.create();
+		Map speciesToLeavesDefaultFruit = ModuleArboriculture.getBlocks().speciesToLeavesDefaultFruit;
+		for (BlockETDefaultLeavesFruit leaves : leavesDefaultFruit) {
+			ExtraTrees.proxy.registerBlock(leaves, new ItemBlockLeaves(leaves));
+			registerOreDictWildcard(OreDictUtil.TREE_LEAVES, leaves);
+
+			PropertyETTypeFruit treeType = leaves.getVariant();
+			for (PropertyETTypeFruit.LeafVariant leafVariant : treeType.getAllowedValues()) {
+				Preconditions.checkNotNull(leafVariant);
+				String speciesUid = leafVariant.definition.getUID();
+				IBlockState blockState = leaves.getDefaultState().withProperty(treeType, leafVariant);
+				speciesToLeavesDefaultFruit.put(speciesUid, blockState);
 			}
 		}
 		

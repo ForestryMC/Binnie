@@ -2,10 +2,10 @@ package binnie.core.gui.events;
 
 import javax.annotation.Nullable;
 
+import binnie.core.api.gui.IWidget;
 import binnie.core.api.gui.events.Event;
 import binnie.core.api.gui.events.EventHandlerOrigin;
 import binnie.core.api.gui.events.OnEventHandler;
-import binnie.core.api.gui.IWidget;
 
 public final class EventHandler<E extends Event> {
 	private final OnEventHandler<E> onEventHandler;

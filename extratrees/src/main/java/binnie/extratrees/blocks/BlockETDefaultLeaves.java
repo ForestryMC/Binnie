@@ -26,7 +26,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import forestry.api.arboriculture.EnumGermlingType;
-import forestry.api.arboriculture.IFruitProvider;
+import forestry.api.arboriculture.ILeafSpriteProvider;
 import forestry.api.arboriculture.ITree;
 import forestry.api.arboriculture.ITreeGenome;
 import forestry.api.arboriculture.TreeManager;
@@ -145,14 +145,6 @@ public abstract class BlockETDefaultLeaves extends BlockAbstractLeaves {
 				drops.add(TreeManager.treeRoot.getMemberStack(sapling, EnumGermlingType.SAPLING));
 			}
 		}
-
-		// Add fruits
-		ITreeGenome genome = tree.getGenome();
-		IFruitProvider fruitProvider = genome.getFruitProvider();
-		if (fruitProvider.isFruitLeaf(genome, world, pos)) {
-			NonNullList<ItemStack> produceStacks = tree.produceStacks(world, pos, Integer.MAX_VALUE);
-			drops.addAll(produceStacks);
-		}
 	}
 
 	@Override
@@ -189,12 +181,8 @@ public abstract class BlockETDefaultLeaves extends BlockAbstractLeaves {
 			treeDefinition = ETTreeDefinition.OrchardApple;
 		}
 		ITreeGenome genome = treeDefinition.getGenome();
-		
-		if (tintIndex == 0) {
-			return genome.getPrimary().getLeafSpriteProvider().getColor(false);
-		} else {
-			IFruitProvider fruitProvider = genome.getFruitProvider();
-			return fruitProvider.getDecorativeColor();
-		}
+
+		ILeafSpriteProvider spriteProvider = genome.getPrimary().getLeafSpriteProvider();
+		return spriteProvider.getColor(false);
 	}
 }
