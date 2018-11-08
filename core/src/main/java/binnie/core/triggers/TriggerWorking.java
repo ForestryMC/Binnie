@@ -1,7 +1,10 @@
 package binnie.core.triggers;
 
+import binnie.core.machines.Machine;
+import binnie.core.machines.power.IProcess;
+
 public class TriggerWorking {
-	/*public static TriggerData isNotWorking(final Object inventory) {
+	public static TriggerData isNotWorking(final Object inventory) {
 		final IProcess process = Machine.getInterface(IProcess.class, inventory);
 		boolean b = false;
 		if (process != null) {
@@ -35,5 +38,5 @@ public class TriggerWorking {
 			b = (process.canWork() != null);
 		}
 		return new TriggerData(BinnieTrigger.triggerCannotWork, b);
-	}*/
+	}
 }

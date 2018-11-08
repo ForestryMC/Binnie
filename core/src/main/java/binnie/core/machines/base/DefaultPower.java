@@ -1,12 +1,17 @@
 package binnie.core.machines.base;
 
+import javax.annotation.Nonnull;
+
 import net.minecraft.util.EnumFacing;
 
 import net.minecraftforge.fml.common.Optional;
 
+import binnie.core.Constants;
 import binnie.core.machines.power.IPoweredMachine;
 import binnie.core.machines.power.PowerInfo;
 import binnie.core.machines.power.PowerInterface;
+
+import buildcraft.api.mj.IMjConnector;
 import ic2.api.energy.tile.IEnergyEmitter;
 
 class DefaultPower implements IPoweredMachine {
@@ -73,6 +78,42 @@ class DefaultPower implements IPoweredMachine {
 
 	@Override
 	public boolean canReceive() {
+		return false;
+	}
+
+	@Override
+	@Optional.Method(modid = Constants.BCLIB_MOD_ID)
+	public long extractPower(long min, long max, boolean simulate) {
+		return 0;
+	}
+
+	@Override
+	@Optional.Method(modid = Constants.BCLIB_MOD_ID)
+	public long getStored() {
+		return 0;
+	}
+
+	@Override
+	@Optional.Method(modid = Constants.BCLIB_MOD_ID)
+	public long getCapacity() {
+		return 0;
+	}
+
+	@Override
+	@Optional.Method(modid = Constants.BCLIB_MOD_ID)
+	public long getPowerRequested() {
+		return 0;
+	}
+
+	@Override
+	@Optional.Method(modid = Constants.BCLIB_MOD_ID)
+	public long receivePower(long microJoules, boolean simulate) {
+		return 0;
+	}
+
+	@Override
+	@Optional.Method(modid = Constants.BCLIB_MOD_ID)
+	public boolean canConnect(@Nonnull IMjConnector other) {
 		return false;
 	}
 }

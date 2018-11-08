@@ -1,35 +1,38 @@
 package binnie.core.triggers;
 
+import binnie.core.machines.Machine;
+import binnie.core.machines.power.IPoweredMachine;
+
 public class TriggerPower {
-	/*public static TriggerData powerNone(final Object tile) {
+	private TriggerPower() {
+	}
+
+	public static TriggerData powerNone(Object tile) {
 		return new TriggerData(BinnieTrigger.triggerPowerNone, getPercentage(tile) < 0.05000000074505806);
 	}
 
-	public static TriggerData powerLow(final Object tile) {
+	public static TriggerData powerLow(Object tile) {
 		return new TriggerData(BinnieTrigger.triggerPowerLow, getPercentage(tile) < 0.3499999940395355);
 	}
 
-	public static TriggerData powerMedium(final Object tile) {
-		final double p = getPercentage(tile);
-		return new TriggerData(BinnieTrigger.triggerPowerMedium, p >= 0.3499999940395355 && p <= 0.6499999761581421);
+	public static TriggerData powerMedium(Object tile) {
+		double percentage = getPercentage(tile);
+		return new TriggerData(BinnieTrigger.triggerPowerMedium, percentage >= 0.3499999940395355 && percentage <= 0.6499999761581421);
 	}
 
-	public static TriggerData powerHigh(final Object tile) {
-		final double p = getPercentage(tile);
+	public static TriggerData powerHigh(Object tile) {
 		return new TriggerData(BinnieTrigger.triggerPowerHigh, getPercentage(tile) > 0.6499999761581421);
 	}
 
-	public static TriggerData powerFull(final Object tile) {
-		final double p = getPercentage(tile);
+	public static TriggerData powerFull(Object tile) {
 		return new TriggerData(BinnieTrigger.triggerPowerFull, getPercentage(tile) > 0.949999988079071);
 	}
 
-	private static double getPercentage(final Object tile) {
-		final IPoweredMachine process = Machine.getInterface(IPoweredMachine.class, tile);
+	private static double getPercentage(Object tile) {
+		IPoweredMachine process = Machine.getInterface(IPoweredMachine.class, tile);
 		if (process != null) {
-			final double percentage = process.getInterface().getEnergy() / process.getInterface().getCapacity();
-			return percentage;
+			return (float)process.getInterface().getEnergy() / (float)process.getInterface().getCapacity();
 		}
 		return 0.0;
-	}*/
+	}
 }

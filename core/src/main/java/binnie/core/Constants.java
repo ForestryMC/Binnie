@@ -11,6 +11,8 @@ public final class Constants {
 	public static final String EXTRA_TREES_MOD_ID = "extratrees";
 	public static final String GENETICS_MOD_ID = "genetics";
 
+	public static final String BCLIB_MOD_ID = "buildcraftlib";
+
 	public static final String ACCEPTED_MINECRAFT_VERSIONS = "[1.12.2,1.13)";
 
 	public static final float SPAWN_KOEF = 1365.3999f;

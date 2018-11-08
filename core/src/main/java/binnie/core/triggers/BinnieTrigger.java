@@ -1,8 +1,28 @@
 package binnie.core.triggers;
 
-final class BinnieTrigger //implements ITriggerExternal
-{
-	/*private static int incrementalID;
+import javax.annotation.Nullable;
+
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ResourceLocation;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import forestry.core.triggers.Sprite;
+
+import binnie.core.AbstractMod;
+import binnie.core.BinnieCore;
+
+import buildcraft.api.core.render.ISprite;
+import buildcraft.api.statements.IStatement;
+import buildcraft.api.statements.IStatementContainer;
+import buildcraft.api.statements.IStatementParameter;
+import buildcraft.api.statements.ITriggerExternal;
+import buildcraft.api.statements.StatementManager;
+
+final class BinnieTrigger implements ITriggerExternal {
+	private static int incrementalID;
 	protected static BinnieTrigger triggerNoBlankTemplate;
 	protected static BinnieTrigger triggerNoTemplate;
 	protected static BinnieTrigger triggerIsWorking;
@@ -24,31 +44,27 @@ final class BinnieTrigger //implements ITriggerExternal
 	protected static BinnieTrigger triggerAcclimatiserDry;
 	private String desc;
 	private String tag;
-	private BinnieIcon icon;
+	@SideOnly(Side.CLIENT)
+	@Nullable
+	private ISprite icon;
 	private int id;
 
 	public BinnieTrigger(final String desc, final String tag, final String iconFile) {
-		this(desc, tag, BinnieCore.instance, iconFile);
+		this(desc, tag, BinnieCore.getInstance(), iconFile);
 	}
 
 	public BinnieTrigger(final String desc, final String tag, final AbstractMod mod, final String iconFile) {
-		this.id = 0;
 		this.id = BinnieTrigger.incrementalID++;
 		this.tag = tag;
 		StatementManager.registerStatement(this);
 		TriggerProvider.triggers.add(this);
-		this.icon = Binnie.Resource.getItemIcon(mod, iconFile);
+		this.icon = new Sprite(new ResourceLocation(mod.getModId(), String.format("textures/items/%s.png", iconFile)));
 		this.desc = desc;
 	}
 
 	@Override
 	public String getDescription() {
 		return this.desc;
-	}
-
-	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(final IIconRegister register) {
-		return this.icon.getIcon(register);
 	}
 
 	@Override
@@ -58,14 +74,8 @@ final class BinnieTrigger //implements ITriggerExternal
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public IIcon getIcon() {
-		return this.icon.getIcon();
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerIcons(final IIconRegister iconRegister) {
-		this.icon.registerIcon(iconRegister);
+	public ISprite getSprite() {
+		return icon;
 	}
 
 	@Override
@@ -89,11 +99,16 @@ final class BinnieTrigger //implements ITriggerExternal
 	}
 
 	@Override
-	public boolean isTriggerActive(final TileEntity target, final ForgeDirection side, final IStatementContainer source, final IStatementParameter[] parameters) {
+	public boolean isTriggerActive(TileEntity target, EnumFacing side, IStatementContainer source, IStatementParameter[] parameters) {
 		return false;
+	}
+
+	@Override
+	public IStatement[] getPossible() {
+		return new IStatement[0];
 	}
 
 	static {
 		BinnieTrigger.incrementalID = 800;
-	}*/
+	}
 }

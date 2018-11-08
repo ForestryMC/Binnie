@@ -1,5 +1,6 @@
 package binnie.core.machines.base;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,6 +22,7 @@ import net.minecraftforge.items.wrapper.SidedInvWrapper;
 
 import net.minecraftforge.fml.common.Optional;
 
+import binnie.core.Constants;
 import binnie.core.machines.Machine;
 import binnie.core.machines.inventory.IInventoryMachine;
 import binnie.core.machines.inventory.TankSlot;
@@ -29,6 +31,13 @@ import binnie.core.machines.power.ITankMachine;
 import binnie.core.machines.power.PowerInfo;
 import binnie.core.machines.power.PowerInterface;
 import binnie.core.machines.power.TankInfo;
+import binnie.core.util.MjHelper;
+
+import buildcraft.api.mj.IMjConnector;
+import buildcraft.api.mj.IMjPassiveProvider;
+import buildcraft.api.mj.IMjReadable;
+import buildcraft.api.mj.IMjReceiver;
+import buildcraft.api.mj.IMjRedstoneReceiver;
 import ic2.api.energy.tile.IEnergyEmitter;
 import ic2.api.energy.tile.IEnergySink;
 
@@ -185,6 +194,42 @@ public class TileEntityMachineBase extends TileEntity implements IInventoryMachi
 	}
 
 	@Override
+	@Optional.Method(modid = Constants.BCLIB_MOD_ID)
+	public long extractPower(long min, long max, boolean simulate) {
+		return this.getPower().extractPower(min, max, simulate);
+	}
+
+	@Override
+	@Optional.Method(modid = Constants.BCLIB_MOD_ID)
+	public long getStored() {
+		return this.getPower().getStored();
+	}
+
+	@Override
+	@Optional.Method(modid = Constants.BCLIB_MOD_ID)
+	public long getCapacity() {
+		return this.getPower().getCapacity();
+	}
+
+	@Override
+	@Optional.Method(modid = Constants.BCLIB_MOD_ID)
+	public long getPowerRequested() {
+		return this.getPower().getPowerRequested();
+	}
+
+	@Override
+	@Optional.Method(modid = Constants.BCLIB_MOD_ID)
+	public long receivePower(long microJoules, boolean simulate) {
+		return this.getPower().receivePower(microJoules, simulate);
+	}
+
+	@Override
+	@Optional.Method(modid = Constants.BCLIB_MOD_ID)
+	public boolean canConnect(@Nonnull IMjConnector other) {
+		return this.getPower().canConnect(other);
+	}
+
+	@Override
 	public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing) {
 		return (capability == CapabilityEnergy.ENERGY && (canExtract() || canReceive())) || capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY && getTankContainer() != DefaultTankContainer.INSTANCE) || super.hasCapability(capability, facing);
 	}
@@ -204,6 +249,24 @@ public class TileEntityMachineBase extends TileEntity implements IInventoryMachi
 			}
 		} else if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
 			return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(getHandler(facing));
+		} else if (MjHelper.isMjCapability(capability)) {
+			Capability<IMjConnector> mjConnector = MjHelper.CAP_CONNECTOR;
+			Capability<IMjPassiveProvider> mjPassiveProvider = MjHelper.CAP_PASSIVE_PROVIDER;
+			Capability<IMjReadable> mjReadable = MjHelper.CAP_READABLE;
+			Capability<IMjReceiver> mjReceiver = MjHelper.CAP_RECEIVER;
+			Capability<IMjRedstoneReceiver> mjRedstoneReceiver = MjHelper.CAP_REDSTONE_RECEIVER;
+
+			if (capability == mjPassiveProvider) {
+				return mjPassiveProvider.cast(this);
+			} else if (capability == mjReceiver) {
+				return mjReceiver.cast(this);
+			} else if (capability == mjRedstoneReceiver) {
+				return mjRedstoneReceiver.cast(this);
+			} else if (capability == mjReadable) {
+				return mjReadable.cast(this);
+			} else if (capability == mjConnector) {
+				return mjConnector.cast(this);
+			}
 		}
 		return super.getCapability(capability, facing);
 	}

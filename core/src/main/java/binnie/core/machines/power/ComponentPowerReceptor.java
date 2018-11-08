@@ -1,6 +1,8 @@
 package binnie.core.machines.power;
 
+import javax.annotation.Nonnull;
 import java.util.LinkedList;
+import java.util.List;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -9,18 +11,24 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 
 import net.minecraftforge.fml.common.Optional;
-
+import binnie.core.Constants;
 import binnie.core.Mods;
 import binnie.core.machines.IMachine;
 import binnie.core.machines.MachineComponent;
+import binnie.core.machines.component.IBuildcraft;
 import binnie.core.machines.component.IInteraction;
+import binnie.core.triggers.TriggerData;
+import binnie.core.triggers.TriggerPower;
+import binnie.core.util.MjHelper;
+
+import buildcraft.api.mj.IMjConnector;
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergyEmitter;
 import ic2.api.energy.tile.IEnergyTile;
 
-//@Optional.Interface(iface = "binnie.core.machines.component.IBuildcraft.TriggerProvider", modid = "BuildCraft|Silicon")
-public class ComponentPowerReceptor extends MachineComponent implements IPoweredMachine/*, IBuildcraft.TriggerProvider*/, IInteraction.ChunkUnload, IInteraction.Invalidation {
+@Optional.Interface(iface = "binnie.core.machines.component.IBuildcraft.TriggerProvider", modid = Constants.BCLIB_MOD_ID)
+public class ComponentPowerReceptor extends MachineComponent implements IPoweredMachine, IBuildcraft.TriggerProvider, IInteraction.ChunkUnload, IInteraction.Invalidation {
 	private static final int inputAverageTicks = 20;
 	private final float previousPower;
 	private final LinkedList<Float> inputs;
@@ -74,15 +82,15 @@ public class ComponentPowerReceptor extends MachineComponent implements IPowered
 		return new PowerInfo(this, 0.0f);
 	}
 
-	/*@Optional.Method(modid = "BuildCraft|Silicon")
 	@Override
+	@Optional.Method(modid = Constants.BCLIB_MOD_ID)
 	public final void getTriggers(final List<TriggerData> triggers) {
-		//triggers.add(TriggerPower.powerNone(this));
-		//triggers.add(TriggerPower.powerLow(this));
-		//triggers.add(TriggerPower.powerMedium(this));
-		//triggers.add(TriggerPower.powerHigh(this));
-		//triggers.add(TriggerPower.powerFull(this));
-	}*/
+		triggers.add(TriggerPower.powerNone(this));
+		triggers.add(TriggerPower.powerLow(this));
+		triggers.add(TriggerPower.powerMedium(this));
+		triggers.add(TriggerPower.powerHigh(this));
+		triggers.add(TriggerPower.powerFull(this));
+	}
 
 	@Override
 	@Optional.Method(modid = "ic2")
@@ -107,6 +115,45 @@ public class ComponentPowerReceptor extends MachineComponent implements IPowered
 	@Optional.Method(modid = "ic2")
 	public boolean acceptsEnergyFrom(IEnergyEmitter emitter, EnumFacing direction) {
 		return this.acceptsPowerSystem(PowerSystem.EU);
+	}
+
+	@Override
+	@Optional.Method(modid = Constants.BCLIB_MOD_ID)
+	public long extractPower(long min, long max, boolean simulate) {
+		int max1 = MjHelper.microToRf(max);
+		int actualMin = (int)container.useEnergy(PowerSystem.RF, max1, true);
+		if (actualMin < min) return 0;
+		return MjHelper.rfToMicro((int)container.useEnergy(PowerSystem.RF, max1, !simulate));
+	}
+
+	@Override
+	@Optional.Method(modid = Constants.BCLIB_MOD_ID)
+	public long getStored() {
+		return MjHelper.rfToMicro((int)container.getEnergy(PowerSystem.RF));
+	}
+
+	@Override
+	@Optional.Method(modid = Constants.BCLIB_MOD_ID)
+	public long getCapacity() {
+		return MjHelper.rfToMicro((int)container.getCapacity(PowerSystem.RF));
+	}
+
+	@Override
+	@Optional.Method(modid = Constants.BCLIB_MOD_ID)
+	public long getPowerRequested() {
+		return MjHelper.rfToMicro((int)Math.min(container.getEnergySpace(PowerSystem.RF), container.getCapacity(PowerSystem.RF) - container.getEnergy(PowerSystem.RF)));
+	}
+
+	@Override
+	@Optional.Method(modid = Constants.BCLIB_MOD_ID)
+	public long receivePower(long microJoules, boolean simulate) {
+		return microJoules - MjHelper.rfToMicro((int)container.addEnergy(PowerSystem.RF, MjHelper.microToRf(microJoules), !simulate));
+	}
+
+	@Override
+	@Optional.Method(modid = Constants.BCLIB_MOD_ID)
+	public boolean canConnect(@Nonnull IMjConnector other) {
+		return true;
 	}
 
 	@Override
