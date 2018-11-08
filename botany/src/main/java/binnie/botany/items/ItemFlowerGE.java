@@ -1,12 +1,8 @@
 package binnie.botany.items;
 
-import binnie.botany.api.BotanyAPI;
-import com.google.common.base.Preconditions;
-
 import javax.annotation.Nullable;
 import java.util.List;
 
-import forestry.api.genetics.IAlleleSpecies;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
@@ -35,12 +31,14 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
+import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.IPollinatable;
 import forestry.core.config.Config;
 import forestry.core.items.IColoredItem;
 
 import binnie.botany.CreativeTabBotany;
+import binnie.botany.api.BotanyAPI;
 import binnie.botany.api.genetics.EnumFlowerChromosome;
 import binnie.botany.api.genetics.EnumFlowerStage;
 import binnie.botany.api.genetics.IAlleleFlowerSpecies;
@@ -50,6 +48,7 @@ import binnie.botany.api.genetics.IFlowerType;
 import binnie.botany.blocks.BlockFlower;
 import binnie.botany.core.BotanyCore;
 import binnie.botany.genetics.Flower;
+import binnie.botany.genetics.FlowerDefinition;
 import binnie.botany.modules.ModuleFlowers;
 import binnie.core.util.I18N;
 
@@ -270,7 +269,9 @@ public class ItemFlowerGE extends Item implements IColoredItem, IItemModelRegist
 		@Override
 		public ModelResourceLocation getModelLocation(ItemStack stack) {
 			IFlower flower = BotanyCore.getFlowerRoot().getMember(stack);
-			Preconditions.checkNotNull(flower);
+			if(flower == null){
+				flower = FlowerDefinition.Poppy.getIndividual();
+			}
 			IAlleleFlowerSpecies flowerSpecies = flower.getGenome().getPrimary();
 			return flowerSpecies.getFlowerModel(type, flower.hasFlowered());
 		}
