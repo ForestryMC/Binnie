@@ -3,8 +3,8 @@ package binnie.core.machines.base;
 import javax.annotation.Nullable;
 
 import net.minecraft.util.EnumFacing;
-
 import net.minecraft.util.ResourceLocation;
+
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.IFluidHandler;
@@ -14,6 +14,9 @@ import binnie.core.machines.power.ITankMachine;
 import binnie.core.machines.power.TankInfo;
 
 class DefaultTankContainer implements ITankMachine {
+
+	public static final DefaultTankContainer INSTANCE = new DefaultTankContainer();
+
 	@Override
 	public TankInfo[] getTankInfos() {
 		return new TankInfo[0];

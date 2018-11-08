@@ -2,6 +2,13 @@ package binnie.core.machines;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import binnie.core.Binnie;
 import binnie.core.machines.base.TileEntityMachineBase;
 import binnie.core.machines.component.IInteraction;
@@ -10,11 +17,6 @@ import binnie.core.machines.inventory.IInventorySlots;
 import binnie.core.machines.inventory.InventorySlot;
 import binnie.core.network.INetworkedEntity;
 import binnie.core.network.packet.PacketPayload;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SPacketUpdateTileEntity;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TileEntityMachine extends TileEntityMachineBase implements INetworkedEntity, IInventorySlots {
 	@Nullable
@@ -38,7 +40,7 @@ public class TileEntityMachine extends TileEntityMachineBase implements INetwork
 	@Override
 	public void readFromNBT(final NBTTagCompound nbtTagCompound) {
 		super.readFromNBT(nbtTagCompound);
-		if(!nbtTagCompound.hasKey("sync")) {
+		if (!nbtTagCompound.hasKey("sync")) {
 			final String name = nbtTagCompound.getString("name");
 			final String group = nbtTagCompound.getString("group");
 			final MachinePackage pack = Binnie.MACHINE.getPackage(group, name);

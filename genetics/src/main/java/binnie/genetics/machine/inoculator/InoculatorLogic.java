@@ -2,6 +2,7 @@ package binnie.genetics.machine.inoculator;
 
 import javax.annotation.Nullable;
 
+import binnie.genetics.config.ConfigurationMain;
 import binnie.genetics.machine.splicer.Splicer;
 import net.minecraft.item.ItemStack;
 
@@ -21,8 +22,8 @@ import binnie.genetics.genetics.Engineering;
 import binnie.genetics.machine.GeneticsErrorCode;
 
 public class InoculatorLogic extends ComponentProcess implements IProcess {
-	public static final int PROCESS_BASE_LENGTH = 12000;
-	public static final int PROCESS_BASE_ENERGY = 600000;
+	public static final int PROCESS_BASE_LENGTH = ConfigurationMain.inoculatorTime;
+	public static final int PROCESS_BASE_ENERGY = ConfigurationMain.inoculatorEnergy;
 	public static final int BACTERIA_PER_PROCESS = 15;
 	private float bacteriaDrain;
 

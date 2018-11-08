@@ -27,10 +27,12 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 	private static final float ACCEL = 0.05f;
 
 	private final Map<Integer, InventorySlot> inventory;
+	private final Map<EnumFacing, int[]> slotsForFace;
 
 	public ComponentInventorySlots(final IMachine machine) {
 		super(machine);
 		this.inventory = new LinkedHashMap<>();
+		this.slotsForFace = new LinkedHashMap<>();
 	}
 
 	@Override
@@ -200,10 +202,14 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 
 	@Override
 	public int[] getSlotsForFace(final EnumFacing facing) {
-		return inventory.values().stream().
-			filter(slot -> slot.canInsert() || slot.canExtract())
-			.mapToInt(InventorySlot::getIndex)
-			.toArray();
+		if (!slotsForFace.containsKey(facing)) {
+			slotsForFace.put(facing, inventory.values().stream()
+				.filter(slot -> slot.canInsert() || slot.canExtract())
+				.mapToInt(InventorySlot::getIndex)
+				.toArray()
+			);
+		}
+		return slotsForFace.get(facing);
 	}
 
 	@Override

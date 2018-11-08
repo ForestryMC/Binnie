@@ -10,18 +10,19 @@ import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IIndividual;
 
+import binnie.core.api.genetics.IGene;
 import binnie.core.machines.Machine;
 import binnie.core.machines.errors.ErrorState;
 import binnie.core.machines.power.ComponentProcess;
 import binnie.core.machines.power.IProcess;
-import binnie.core.api.genetics.IGene;
 import binnie.genetics.api.IItemSerum;
+import binnie.genetics.config.ConfigurationMain;
 import binnie.genetics.genetics.Engineering;
 import binnie.genetics.machine.GeneticsErrorCode;
 
 public class SplicerLogic extends ComponentProcess implements IProcess {
-	public static final int PROCESS_ENERGY = 12000000;
-	public static final int PROCESS_LENGTH = 1200;
+	public static final int PROCESS_ENERGY = ConfigurationMain.splicerEnergy;
+	public static final int PROCESS_LENGTH = ConfigurationMain.splicerTime;
 	private int nOfGenes;
 
 	public SplicerLogic(final Machine machine) {

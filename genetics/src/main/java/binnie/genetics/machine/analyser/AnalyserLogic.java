@@ -1,19 +1,20 @@
 package binnie.genetics.machine.analyser;
 
-import binnie.core.genetics.ManagerGenetics;
 import net.minecraft.item.ItemStack;
 
+import binnie.core.genetics.ManagerGenetics;
 import binnie.core.machines.Machine;
 import binnie.core.machines.errors.ErrorState;
 import binnie.core.machines.power.ComponentProcessSetCost;
 import binnie.core.machines.power.IProcess;
+import binnie.genetics.config.ConfigurationMain;
 import binnie.genetics.machine.GeneticsErrorCode;
 
 public class AnalyserLogic extends ComponentProcessSetCost implements IProcess {
 	private static final float DYE_PER_TICK = 0.002f;
 
 	public AnalyserLogic(final Machine machine) {
-		super(machine, 9000, 300);
+		super(machine, ConfigurationMain.analyserEnergy, ConfigurationMain.analyserTime);
 	}
 
 	@Override
@@ -30,7 +31,7 @@ public class AnalyserLogic extends ComponentProcessSetCost implements IProcess {
 
 	@Override
 	public ErrorState canProgress() {
-		if(getMachine().getOwner() == null){
+		if (getMachine().getOwner() == null) {
 			return new ErrorState(GeneticsErrorCode.NO_OWNER, Analyser.SLOT_TARGET);
 		}
 		if (this.getUtil().getSlotCharge(Analyser.SLOT_DYE) == 0.0f) {
