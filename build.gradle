@@ -58,9 +58,6 @@ allprojects {
 		maven {
 			url = "https://mod-buildcraft.com/maven"
 		}
-		maven {
-			url = "http://maven.blamejared.com"
-		}
     }
 
     dependencies {
@@ -73,7 +70,6 @@ allprojects {
         deobfProvided "net.industrial-craft:industrialcraft-2:${ic2_version}:api"
         runtime "net.industrial-craft:industrialcraft-2:${ic2_version}"
         deobfProvided "CraftTweaker2:CraftTweaker2-API:${crafttweaker_version}"
-		runtime "CraftTweaker2:CraftTweaker2-MC1120-Main:${crafttweaker_mcversion}-${crafttweaker_version}"
 		deobfProvided "com.mod-buildcraft:buildcraft-api:${buildcraft_version}"
     }
 

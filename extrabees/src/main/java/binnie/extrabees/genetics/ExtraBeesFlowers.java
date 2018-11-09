@@ -1,10 +1,10 @@
 package binnie.extrabees.genetics;
 
+import com.google.common.collect.ImmutableList;
+
 import java.util.Collections;
 import java.util.List;
 
-import com.google.common.collect.ImmutableList;
-import forestry.api.genetics.IFlowerRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
@@ -22,6 +22,7 @@ import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAlleleFlowers;
 import forestry.api.genetics.ICheckPollinatable;
 import forestry.api.genetics.IFlowerProvider;
+import forestry.api.genetics.IFlowerRegistry;
 import forestry.api.genetics.IFruitBearer;
 import forestry.api.genetics.IIndividual;
 
@@ -122,6 +123,9 @@ public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers {
 			case SAPLING: {
 				return Collections.singletonList(Blocks.SAPLING);
 			}
+			case MYSTICAL:
+				Block flower = Utils.getBotaniaBlock("flower");
+				return flower == null ? Collections.emptyList() : Collections.singletonList(flower);
 			default: {
 				return Collections.emptyList();
 			}
