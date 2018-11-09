@@ -265,7 +265,7 @@ public enum Food implements IItemMiscProvider {
     PAPAYIMAR(8){
         @Override
         protected void registerOreDictEntries() {
-            registerCrop("Papayimar").registerOre(HARVESTCRAFT_LIST_ALLFRUIT);
+            registerCrop("Papayimar")/*.registerOre(HARVESTCRAFT_LIST_ALLFRUIT)*/;
         }
     },
     BLACKCURRANT(2){
