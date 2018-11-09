@@ -2,7 +2,6 @@ package binnie.extrabees.client.gui;
 
 import java.awt.Dimension;
 
-import binnie.core.ModId;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
@@ -13,6 +12,7 @@ import net.minecraftforge.items.IItemHandlerModifiable;
 
 import forestry.core.utils.SlotUtil;
 
+import binnie.core.ModId;
 import binnie.core.util.I18N;
 import binnie.extrabees.alveary.EnumAlvearyLogicType;
 import binnie.extrabees.utils.ExtraBeesResourceLocation;

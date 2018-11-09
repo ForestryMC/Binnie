@@ -34,7 +34,7 @@ import binnie.extrabees.utils.AlvearyMutationHandler;
 import binnie.extrabees.utils.MaterialBeehive;
 import binnie.extrabees.worldgen.ExtraBeesWorldGenerator;
 
-@ForestryModule(moduleID = ExtraBeesModuleUIDs.CORE, containerID = Constants.EXTRA_BEES_MOD_ID, name = "Core", coreModule = true)
+@ForestryModule(moduleID = ExtraBeesModuleUIDs.CORE, containerID = Constants.EXTRA_BEES_MOD_ID, name = "Core", unlocalizedDescription = "extrabees.module.core", coreModule = true)
 public class ModuleCore extends BlankModule {
 
 	@Nullable

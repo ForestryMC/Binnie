@@ -37,7 +37,9 @@ public class GuiContainerAlvearyPart<C extends AlvearyContainer> extends GuiCont
 
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+		this.drawDefaultBackground();
 		super.drawScreen(mouseX, mouseY, partialTicks);
+		this.renderHoveredToolTip(mouseX, mouseY);
 
 		if (mouseX > guiLeft + 6 && mouseX < guiLeft + 23 && mouseY > guiTop + 5 && mouseY < guiTop + 22) {
 			GuiUtils.drawHoveringText(Lists.newArrayList(container.tooltip), mouseX, mouseY, width, height, 150, fontRenderer);

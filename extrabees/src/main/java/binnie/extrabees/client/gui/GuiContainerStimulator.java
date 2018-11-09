@@ -19,4 +19,11 @@ public class GuiContainerStimulator extends GuiContainerAlvearyPart<ContainerSti
 		drawTexturedModalRect(guiLeft + 71, guiTop + 38, 0, 185, (int) energyScaled, 14);
 		drawTexturedModalRect(guiLeft + 71, guiTop + 38, 0, 165, 70, 14);
 	}
+
+	@Override
+	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+		this.drawDefaultBackground();
+		super.drawScreen(mouseX, mouseY, partialTicks);
+		this.renderHoveredToolTip(mouseX, mouseY);
+	}
 }

@@ -201,7 +201,7 @@ public final class BinnieCore extends AbstractMod {
 		this.addModule(new ModuleCraftGUI());
 		this.addModule(new ModuleStorage());
 		this.addModule(new ModuleItems());
-		if (Loader.isModLoaded("BuildCraft|Silicon")) {
+		if (Loader.isModLoaded(Constants.BCLIB_MOD_ID)) {
 			this.addModule(new ModuleTrigger());
 		}
 		if (ExtraBeesIntegration.isLoaded()) {

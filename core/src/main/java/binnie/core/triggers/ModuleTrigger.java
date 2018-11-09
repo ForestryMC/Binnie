@@ -5,9 +5,6 @@ import binnie.core.IInitializable;
 import buildcraft.api.statements.StatementManager;
 
 public class ModuleTrigger implements IInitializable {
-	@Override
-	public void preInit() {
-	}
 
 	@Override
 	public void init() {
@@ -29,9 +26,5 @@ public class ModuleTrigger implements IInitializable {
 		//BinnieTrigger.triggerSerumPure = new BinnieTrigger("Serum Pure", "binnie.trigger.serumPure", ExtraBees.instance, "triggers/SerumPure");
 		//BinnieTrigger.triggerSerumEmpty = new BinnieTrigger("Serum Pure", "binnie.trigger.serumEmpty", ExtraBees.instance, "triggers/SerumEmpty");
 		StatementManager.registerTriggerProvider(new TriggerProvider());
-	}
-
-	@Override
-	public void postInit() {
 	}
 }

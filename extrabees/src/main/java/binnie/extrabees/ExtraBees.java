@@ -56,6 +56,7 @@ public class ExtraBees  extends BlankModuleContainer {
 	public static IBreedingSystem beeBreedingSystem;
 
 	public ExtraBees(){
+		super();
 		MinecraftForge.EVENT_BUS.register(ModuleCore.class);
 	}
 	
@@ -105,7 +106,7 @@ public class ExtraBees  extends BlankModuleContainer {
 
 	@Override
 	public boolean isAvailable() {
-		return false;
+		return true;
 	}
 
 	@Override
