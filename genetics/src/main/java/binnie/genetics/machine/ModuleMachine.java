@@ -89,8 +89,8 @@ public class ModuleMachine implements IInitializable {
 		final Object[] standardCircuit = {Mods.Forestry.stack("chipsets", 1, 1)};
 		final Object[] advCircuit = {GeneticsItems.IntegratedCircuit.get(1)};
 		final String ironGear = !OreDictionary.getOres("gearIron").isEmpty() ? "gearIron" : "ingotIron";
-		final String goldGear = !OreDictionary.getOres("gearGold").isEmpty() ? "gearIron" : "ingotIron";
-		final String diamondGear = !OreDictionary.getOres("gearDiamond").isEmpty() ? "gearIron" : "ingotIron";
+		final String goldGear = !OreDictionary.getOres("gearGold").isEmpty() ? "gearGold" : "ingotIron";
+		final String diamondGear = !OreDictionary.getOres("gearDiamond").isEmpty() ? "gearDiamond" : "ingotIron";
 		for (final Object circuit : standardCircuit) {
 			recipeUtil.addRecipe("incubator", LaboratoryMachine.Incubator.get(1), "gFg", "cCc", "aPa", 'C', GeneticsItems.LaboratoryCasing.get(1), 'F', Blocks.FURNACE, 'c', circuit, 'g', Blocks.GLASS_PANE, 'P', "gearBronze", 'a', ironGear);
 			Item alyzer = Mods.Forestry.item("portable_alyzer");
