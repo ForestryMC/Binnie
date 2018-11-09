@@ -10,9 +10,9 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import binnie.extrabees.ExtraBees;
 import binnie.extrabees.blocks.BlockExtraBeeHives;
 import binnie.extrabees.blocks.type.EnumHiveType;
+import binnie.extrabees.modules.ModuleCore;
 
 public class WorldGenHiveRock extends WorldGenHive {
 
@@ -27,7 +27,7 @@ public class WorldGenHiveRock extends WorldGenHive {
 		while (block.isReplaceableOreGen(blockState, world, pos, BlockStateMatcher.forBlock(Blocks.STONE)))
 		{
 			if (hasAirOnOneSide(world, pos)) {
-				IBlockState hiveState = ExtraBees.hive.getDefaultState().withProperty(BlockExtraBeeHives.HIVE_TYPE, EnumHiveType.ROCK);
+				IBlockState hiveState = ModuleCore.hive.getDefaultState().withProperty(BlockExtraBeeHives.HIVE_TYPE, EnumHiveType.ROCK);
 				world.setBlockState(pos, hiveState);
 				return true;
 			}

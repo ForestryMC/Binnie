@@ -12,9 +12,4 @@ public class ModuleCore extends BlankModule {
 	public ModuleCore() {
 		super("forestry", "core");
 	}
-
-	@Override
-	public boolean canBeDisabled() {
-		return false;
-	}
 }

@@ -1,6 +1,6 @@
 package binnie.core.integration.extrabees;
 
-import com.google.common.base.Preconditions;
+import javax.annotation.Nullable;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
@@ -18,9 +18,13 @@ import binnie.core.IInitializable;
 public class ExtraBeesIntegration implements IInitializable {
 
 	private static final boolean loaded;
+	@Nullable
 	private static IAlleleBeeSpecies water;
+	@Nullable
 	private static IAlleleBeeSpecies rock;
+	@Nullable
 	private static IAlleleBeeSpecies basalt;
+	@Nullable
 	private static IAlleleBeeSpecies marble;
 	private static Block hive;
 
@@ -39,7 +43,7 @@ public class ExtraBeesIntegration implements IInitializable {
 
 	@Override
 	public void init() {
-		hive = Preconditions.checkNotNull(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("extrabees", "hive")));
+		hive = ForgeRegistries.BLOCKS.getValue(new ResourceLocation("extrabees", "hive"));
 	}
 
 	@Override
@@ -50,7 +54,10 @@ public class ExtraBeesIntegration implements IInitializable {
 		marble = getExtraBeesSpecies("marble");
 	}
 
-	public static ItemStack getHive(IAlleleSpecies speciesCurrent){
+	public static ItemStack getHive(@Nullable IAlleleSpecies speciesCurrent){
+		if(speciesCurrent == null || ExtraBeesIntegration.hive == null){
+			return ItemStack.EMPTY;
+		}
 		if (speciesCurrent == ExtraBeesIntegration.water) {
 			return new ItemStack(ExtraBeesIntegration.hive, 1, 0);
 		}
@@ -66,7 +73,8 @@ public class ExtraBeesIntegration implements IInitializable {
 		return ItemStack.EMPTY;
 	}
 
+	@Nullable
 	private IAlleleBeeSpecies getExtraBeesSpecies(String species) {
-		return Preconditions.checkNotNull((IAlleleBeeSpecies) AlleleManager.alleleRegistry.getAllele("extrabees.species." + species));
+		return (IAlleleBeeSpecies) AlleleManager.alleleRegistry.getAllele("extrabees.species." + species);
 	}
 }

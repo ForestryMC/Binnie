@@ -2,6 +2,7 @@ package binnie.botany.modules;
 
 import javax.annotation.Nullable;
 import java.awt.Color;
+import java.lang.reflect.Method;
 import java.util.function.Predicate;
 
 import net.minecraft.block.Block;
@@ -21,18 +22,23 @@ import net.minecraftforge.event.world.BlockEvent;
 
 import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
 import forestry.api.apiculture.FlowerManager;
 import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.IChromosomeType;
 import forestry.api.modules.ForestryModule;
 import forestry.api.storage.BackpackManager;
 import forestry.api.storage.IBackpackInterface;
+import forestry.core.genetics.alleles.AlleleHelper;
+import forestry.core.genetics.alleles.EnumAllele;
 import forestry.storage.BackpackDefinition;
 
 import binnie.botany.Botany;
 import binnie.botany.CreativeTabBotany;
 import binnie.botany.api.BotanyAPI;
 import binnie.botany.api.gardening.IBlockSoil;
+import binnie.botany.api.genetics.EnumFlowerChromosome;
 import binnie.botany.api.genetics.EnumFlowerStage;
 import binnie.botany.api.genetics.IFlower;
 import binnie.botany.api.genetics.IFlowerRoot;
@@ -119,11 +125,26 @@ public class ModuleFlowers extends BlankModule {
 
 	@Override
 	public void doInit() {
+		if(!ModuleManager.isModuleEnabled("forestry", "apiculture")) {
+			try {
+				Method createAlleles = ReflectionHelper.findMethod(AlleleHelper.class, "createAlleles", null, Class.class, IChromosomeType[].class);
+				createAlleles.invoke(AlleleHelper.getInstance(), EnumAllele.Fertility.class, new EnumFlowerChromosome[]{EnumFlowerChromosome.FERTILITY});
+				createAlleles.invoke(AlleleHelper.getInstance(), EnumAllele.Territory.class, new EnumFlowerChromosome[]{EnumFlowerChromosome.TERRITORY});
+				if(!ModuleManager.isModuleEnabled("forestry", "lepidopterology")){
+					createAlleles.invoke(AlleleHelper.getInstance(), EnumAllele.Tolerance.class, new EnumFlowerChromosome[]{EnumFlowerChromosome.TEMPERATURE_TOLERANCE, EnumFlowerChromosome.HUMIDITY_TOLERANCE});
+					createAlleles.invoke(AlleleHelper.getInstance(), EnumAllele.Lifespan.class, new EnumFlowerChromosome[]{EnumFlowerChromosome.LIFESPAN});
+				}
+			} catch (Exception e){
+				throw new IllegalStateException("Failed to find method 'createAlleles' of the " + AlleleHelper.class, e);
+			}
+		}
 		FlowerColorMutations.registerFlowerColorAlleles();
 		FlowerDefinition.initFlowers();
 
 		RecipeUtil recipeUtil = new RecipeUtil(Constants.BOTANY_MOD_ID);
-		FlowerManager.flowerRegistry.registerAcceptableFlower(flower, "flowersVanilla");
+		if(FlowerManager.flowerRegistry != null) {
+			FlowerManager.flowerRegistry.registerAcceptableFlower(flower, "flowersVanilla");
+		}
 		recipeUtil.addRecipe("botanist_backpack", botanistBackpack,
 			"X#X",
 			"VYZ",

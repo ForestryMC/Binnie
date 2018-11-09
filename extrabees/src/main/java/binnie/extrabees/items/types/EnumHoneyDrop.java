@@ -8,7 +8,7 @@ import net.minecraftforge.fluids.FluidStack;
 import forestry.api.recipes.RecipeManagers;
 
 import binnie.core.util.I18N;
-import binnie.extrabees.ExtraBees;
+import binnie.extrabees.modules.ModuleCore;
 import binnie.extrabees.utils.Utils;
 
 public enum EnumHoneyDrop implements IEBEnumItem {
@@ -87,7 +87,7 @@ public enum EnumHoneyDrop implements IEBEnumItem {
 
 	@Override
 	public ItemStack get(final int amount) {
-		return new ItemStack(ExtraBees.honeyDrop, amount, this.ordinal());
+		return new ItemStack(ModuleCore.honeyDrop, amount, this.ordinal());
 	}
 
 	@Override

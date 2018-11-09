@@ -12,6 +12,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.extrabees.ExtraBees;
+import binnie.extrabees.modules.ModuleCore;
 
 public enum ExtraBeeItems implements IEBItemMiscProvider {
 
@@ -190,7 +191,7 @@ public enum ExtraBeeItems implements IEBItemMiscProvider {
 
 	@Override
 	public ItemStack get(final int amount) {
-		return new ItemStack(ExtraBees.itemMisc, amount, this.ordinal());
+		return new ItemStack(ModuleCore.itemMisc, amount, this.ordinal());
 	}
 
 	@Override

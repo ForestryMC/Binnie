@@ -8,9 +8,9 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import binnie.extrabees.ExtraBees;
 import binnie.extrabees.blocks.BlockExtraBeeHives;
 import binnie.extrabees.blocks.type.EnumHiveType;
+import binnie.extrabees.modules.ModuleCore;
 
 public class WorldGenHiveWater extends WorldGenHive {
 
@@ -29,7 +29,7 @@ public class WorldGenHiveWater extends WorldGenHive {
 				materialBlockBelow == Material.CLAY ||
 				materialBlockBelow == Material.GROUND ||
 				materialBlockBelow == Material.ROCK) {
-			world.setBlockState(blockPos, ExtraBees.hive.getDefaultState().withProperty(BlockExtraBeeHives.HIVE_TYPE, EnumHiveType.WATER));
+			world.setBlockState(blockPos, ModuleCore.hive.getDefaultState().withProperty(BlockExtraBeeHives.HIVE_TYPE, EnumHiveType.WATER));
 		}
 		return true;
 	}

@@ -29,15 +29,15 @@ import forestry.api.core.Tabs;
 import forestry.apiculture.tiles.TileHive;
 
 import binnie.core.util.TileUtil;
-import binnie.extrabees.ExtraBees;
 import binnie.extrabees.blocks.type.EnumHiveType;
+import binnie.extrabees.modules.ModuleCore;
 
 public class BlockExtraBeeHives extends Block implements ITileEntityProvider {
 
 	public static final PropertyEnum<EnumHiveType> HIVE_TYPE = PropertyEnum.create("type", EnumHiveType.class);
 
 	public BlockExtraBeeHives() {
-		super(ExtraBees.materialBeehive);
+		super(ModuleCore.materialBeehive);
 		this.setLightLevel(0.2f);
 		this.setHardness(1.0f);
 		this.setTickRandomly(true);

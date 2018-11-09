@@ -1,20 +1,10 @@
 package binnie.extrabees.proxy;
 
-import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import binnie.core.proxy.BinnieModProxy;
 
-public class ExtraBeesCommonProxy {
-	public Block registerBlock(Block block) {
-		ForgeRegistries.BLOCKS.register(block);
-		return block;
-	}
-
-	public Item registerItem(Item item) {
-		ForgeRegistries.ITEMS.register(item);
-		return item;
-	}
+public class ExtraBeesCommonProxy extends BinnieModProxy {
 
 	public void registerModel(Item item, int meta) {
 	}

@@ -1,23 +1,25 @@
 package binnie.extrabees.items;
 
 import javax.annotation.Nullable;
+
 import net.minecraft.item.ItemStack;
+
+import net.minecraftforge.oredict.OreDictionary;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import forestry.api.core.Tabs;
-import forestry.core.items.IColoredItem;
 import forestry.api.apiculture.BeeManager;
 import forestry.api.arboriculture.TreeManager;
-import forestry.api.lepidopterology.ButterflyManager;
+import forestry.api.core.Tabs;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.ISpeciesRoot;
+import forestry.api.lepidopterology.ButterflyManager;
+import forestry.core.items.IColoredItem;
 
 import binnie.core.Mods;
-import binnie.extrabees.ExtraBees;
 import binnie.extrabees.items.types.EnumHoneyComb;
-import net.minecraftforge.oredict.OreDictionary;
+import binnie.extrabees.modules.ModuleCore;
 
 public class ItemHoneyComb extends ItemProduct<EnumHoneyComb> implements IColoredItem {
 
@@ -53,7 +55,7 @@ public class ItemHoneyComb extends ItemProduct<EnumHoneyComb> implements IColore
 		if(stack.isEmpty()){
 			return true;
 		}
-		if(stack.getItem() != ExtraBees.comb){
+		if(stack.getItem() != ModuleCore.comb){
 			return false;
 		}
 		EnumHoneyComb honeyComb = EnumHoneyComb.get(stack);

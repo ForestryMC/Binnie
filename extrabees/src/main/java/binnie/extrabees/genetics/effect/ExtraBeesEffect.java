@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import binnie.core.ModId;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -50,9 +49,10 @@ import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IEffectData;
 import forestry.core.render.ParticleRender;
 
+import binnie.core.ModId;
 import binnie.core.util.I18N;
-import binnie.extrabees.ExtraBees;
 import binnie.extrabees.genetics.ExtraBeesFlowers;
+import binnie.extrabees.modules.ModuleCore;
 import binnie.extrabees.utils.Utils;
 
 public enum ExtraBeesEffect implements IAlleleBeeEffect {
@@ -60,8 +60,8 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 		@Override
 		protected IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing, World world, BlockPos position) {
 			if (world.rand.nextInt(100) < 4) {
-				if (world.isAirBlock(position) && (world.isBlockNormalCube(position.down(), false) || world.getBlockState(position.down()).getBlock() == ExtraBees.ectoplasm)) {
-					world.setBlockState(position, ExtraBees.ectoplasm.getDefaultState());
+				if (world.isAirBlock(position) && (world.isBlockNormalCube(position.down(), false) || world.getBlockState(position.down()).getBlock() == ModuleCore.ectoplasm)) {
+					world.setBlockState(position, ModuleCore.ectoplasm.getDefaultState());
 				}
 				return storedData;
 			}

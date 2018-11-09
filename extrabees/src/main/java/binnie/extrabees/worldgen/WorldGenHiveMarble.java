@@ -12,9 +12,9 @@ import net.minecraft.world.World;
 
 import net.minecraftforge.oredict.OreDictionary;
 
-import binnie.extrabees.ExtraBees;
 import binnie.extrabees.blocks.BlockExtraBeeHives;
 import binnie.extrabees.blocks.type.EnumHiveType;
+import binnie.extrabees.modules.ModuleCore;
 
 public class WorldGenHiveMarble extends WorldGenHive {
 	private final Set<Block> validBlocks = new HashSet<>();
@@ -43,7 +43,7 @@ public class WorldGenHiveMarble extends WorldGenHive {
 			}
 		}
 
-		world.setBlockState(position, ExtraBees.hive.getDefaultState().withProperty(BlockExtraBeeHives.HIVE_TYPE, EnumHiveType.MARBLE));
+		world.setBlockState(position, ModuleCore.hive.getDefaultState().withProperty(BlockExtraBeeHives.HIVE_TYPE, EnumHiveType.MARBLE));
 
 		return true;
 	}

@@ -24,6 +24,7 @@ import binnie.core.liquid.FluidType;
 import binnie.core.liquid.IFluidDefinition;
 import binnie.core.modules.BlankModule;
 import binnie.core.modules.ExtraTreesModuleUIDs;
+import binnie.core.modules.ModuleManager;
 import binnie.core.util.OreDictionaryUtil;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.alcohol.GlasswareType;
@@ -76,12 +77,14 @@ public class ModuleAlcohol extends BlankModule {
 		IBreweryManager breweryManager = ExtraTreesRecipeManager.breweryManager;
 		IFruitPressManager fruitPressManager = ExtraTreesRecipeManager.fruitPressManager;
 
-		ItemStack wax = Mods.Forestry.stack("beeswax");
-		ItemStack waxCast = Mods.Forestry.stackWildcard("wax_cast");
-		for (GlasswareType glasswareType : GlasswareType.values()) {
-			ItemStack result = drink.getStack(glasswareType, null, 8);
-			Object[] recipe = glasswareType.getRecipePattern(wax.getItem());
-			RecipeManagers.fabricatorManager.addRecipe(waxCast, Fluids.GLASS.getFluid(glasswareType.getRecipeGlassCost()), result, recipe);
+		if(ModuleManager.isModuleEnabled("forestry", "apiculture")) {
+			ItemStack wax = Mods.Forestry.stack("beeswax");
+			ItemStack waxCast = Mods.Forestry.stackWildcard("wax_cast");
+			for (GlasswareType glasswareType : GlasswareType.values()) {
+				ItemStack result = drink.getStack(glasswareType, null, 8);
+				Object[] recipe = glasswareType.getRecipePattern(wax.getItem());
+				RecipeManagers.fabricatorManager.addRecipe(waxCast, Fluids.GLASS.getFluid(glasswareType.getRecipeGlassCost()), result, recipe);
+			}
 		}
 
 		if(fruitPressManager != null) {

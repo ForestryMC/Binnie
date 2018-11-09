@@ -7,7 +7,7 @@ import net.minecraftforge.fluids.FluidStack;
 import forestry.api.recipes.RecipeManagers;
 
 import binnie.core.util.I18N;
-import binnie.extrabees.ExtraBees;
+import binnie.extrabees.modules.ModuleCore;
 import binnie.extrabees.utils.Utils;
 
 public enum EnumPropolis implements IEBEnumItem {
@@ -71,7 +71,7 @@ public enum EnumPropolis implements IEBEnumItem {
 
 	@Override
 	public ItemStack get(final int amount) {
-		return new ItemStack(ExtraBees.propolis, amount, this.ordinal());
+		return new ItemStack(ModuleCore.propolis, amount, this.ordinal());
 	}
 
 	@Override

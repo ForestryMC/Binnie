@@ -13,6 +13,7 @@ import binnie.extrabees.blocks.BlockEctoplasm;
 import binnie.extrabees.blocks.BlockExtraBeeHives;
 import binnie.extrabees.blocks.type.EnumHiveType;
 import binnie.extrabees.genetics.ExtraBeeDefinition;
+import binnie.extrabees.modules.ModuleCore;
 import binnie.extrabees.utils.HiveDrop;
 import binnie.extrabees.utils.Utils;
 import binnie.extrabees.utils.config.ConfigurationMain;
@@ -20,26 +21,16 @@ import binnie.extrabees.utils.config.ConfigurationMain;
 public final class BlockRegister {
 
 	public static void preInitBlocks() {
-		registerHives();
-		registerMisc();
-		ExtraBees.alveary = ExtraBees.proxy.registerBlock(new BlockAlveary());
+		ModuleCore.ectoplasm = new BlockEctoplasm();
+		ForgeRegistries.BLOCKS.register(ModuleCore.ectoplasm);
+		ModuleCore.hive = new BlockExtraBeeHives();
+		ForgeRegistries.BLOCKS.register(ModuleCore.hive);
+		ModuleCore.alveary = new BlockAlveary();
+		ExtraBees.proxy.registerBlock(ModuleCore.alveary);
 		GameRegistry.registerTileEntity(TileEntityExtraBeesAlvearyPart.class, "TileEntityExtraBeesAlvearyPart");
 	}
 
 	public static void doInitBlocks() {
-		registerHiveDrops();
-	}
-
-	private static void registerMisc() {
-		ForgeRegistries.BLOCKS.register(ExtraBees.ectoplasm = new BlockEctoplasm());
-	}
-
-	@SuppressWarnings("all")
-	private static void registerHives() {
-		ForgeRegistries.BLOCKS.register(ExtraBees.hive = new BlockExtraBeeHives());
-	}
-
-	private static void registerHiveDrops() {
 		IAlleleBeeSpecies valiantSpecies = Utils.getSpecies(BeeDefinition.VALIANT);
 		EnumHiveType.WATER.addDrops(
 			new HiveDrop(ExtraBeeDefinition.WATER, 0.80).setIgnobleShare(0.5),

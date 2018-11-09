@@ -29,13 +29,14 @@ import binnie.extrabees.items.types.EnumHoneyComb;
 import binnie.extrabees.items.types.EnumHoneyDrop;
 import binnie.extrabees.items.types.EnumPropolis;
 import binnie.extrabees.items.types.ExtraBeeItems;
+import binnie.extrabees.modules.ModuleCore;
 
 public final class RecipeRegister {
 	private static final RecipeUtil RECIPE_UTIL = new RecipeUtil(ExtraBees.MODID);
 	
 	public static void doInitRecipes() {
 		if (Loader.isModLoaded("ic2")) {
-			RECIPE_UTIL.addRecipe("honey_crystal", ExtraBees.honeyCrystal.getCharged(0), "#@#", "@#@", "#@#", '@', Mods.Forestry.item("honey_drop"), '#', EnumHoneyDrop.ENERGY.get(1));
+			RECIPE_UTIL.addRecipe("honey_crystal", ModuleCore.honeyCrystal.getCharged(0), "#@#", "@#@", "#@#", '@', Mods.Forestry.item("honey_drop"), '#', EnumHoneyDrop.ENERGY.get(1));
 		}
 		for (final EnumHoneyComb info : EnumHoneyComb.values()) {
 			info.addRecipe();
@@ -71,7 +72,7 @@ public final class RecipeRegister {
 	}
 	
 	private static ItemStack getAlvearyPart(EnumAlvearyLogicType type) {
-		return new ItemStack(ExtraBees.alveary, 1, type.ordinal());
+		return new ItemStack(ModuleCore.alveary, 1, type.ordinal());
 	}
 	
 	private static void addForestryRecipes() {
@@ -79,7 +80,7 @@ public final class RecipeRegister {
 			100,
 			Binnie.LIQUID.getFluidStack(ManagerLiquid.WATER, 2000),
 			ItemStack.EMPTY,
-			new ItemStack(ExtraBees.dictionaryBees),
+			new ItemStack(ModuleCore.dictionaryBees),
 			"X#X", "YEY", "RDR",
 			'#', Blocks.GLASS_PANE,
 			'X', Items.GOLD_INGOT,

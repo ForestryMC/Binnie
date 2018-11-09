@@ -17,7 +17,7 @@ import forestry.api.recipes.RecipeManagers;
 
 import binnie.core.Mods;
 import binnie.core.util.I18N;
-import binnie.extrabees.ExtraBees;
+import binnie.extrabees.modules.ModuleCore;
 import binnie.extrabees.utils.Utils;
 
 public enum EnumHoneyComb implements IEBEnumItem {
@@ -643,7 +643,7 @@ public enum EnumHoneyComb implements IEBEnumItem {
 	}
 
 	public static void addSubtypes() {
-		OreDictionary.registerOre("beeComb", new ItemStack(ExtraBees.comb, 1, 32767));
+		OreDictionary.registerOre("beeComb", new ItemStack(ModuleCore.comb, 1, 32767));
 		ItemStack beeswax = Mods.Forestry.stack("beeswax");
 		ItemStack honeyDrop = Mods.Forestry.stack("honey_drop");
 		for(EnumHoneyComb comb : values()){
@@ -664,7 +664,7 @@ public enum EnumHoneyComb implements IEBEnumItem {
 
 	@Override
 	public ItemStack get(final int amount) {
-		return new ItemStack(ExtraBees.comb, amount, this.ordinal());
+		return new ItemStack(ModuleCore.comb, amount, this.ordinal());
 	}
 
 	@Override
