@@ -85,14 +85,15 @@ public class WoodManager {
 			final int damage = TileEntityMetadata.getItemDamage(stack);
 			return getFenceDescription(damage);
 		}
-		for (final IPlankType type : getAllPlankTypes()) {
+		//old default recipes for the wood fences
+		/*for (final IPlankType type : getAllPlankTypes()) {
 			if (type instanceof IFenceProvider) {
 				final ItemStack f = ((IFenceProvider) type).getFence();
 				if (ItemStack.areItemStacksEqual(stack, f)) {
 					return new FenceDescription(new FenceType(0), type, type);
 				}
 			}
-		}
+		}*/
 		return null;
 	}
 
@@ -133,13 +134,14 @@ public class WoodManager {
 	}
 
 	public static ItemStack getFence(final IPlankType plank, final IPlankType plank2, final FenceType type, final int amount) {
-		if (plank instanceof IFenceProvider && plank == plank2 && type.isPlain()) {
+		//old default recipes for the wood fences
+		/*if (plank instanceof IFenceProvider && plank == plank2 && type.isPlain()) {
 			final ItemStack original = ((IFenceProvider) plank).getFence();
 			if (!original.isEmpty()) {
 				original.setCount(amount);
 				return original;
 			}
-		}
+		}*/
 		final int ord = type.ordinal();
 		final int i = getPlankTypeIndex(plank) + 256 * ord;
 		final ItemStack stack = TileEntityMetadata.getItemStack(ModuleWood.blockMultiFence, i + 65536 * getPlankTypeIndex(plank2));

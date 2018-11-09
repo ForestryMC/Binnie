@@ -39,10 +39,10 @@ public class MultiFenceRecipeSolidWrapper implements IShapedCraftingRecipeWrappe
 		List<ItemStack> outputFences = new ArrayList<>();
 		if (plankType != null) {
 			if (plankTypeSecondary == null) {
-				for (IPlankType plankTypeSecondary : WoodManager.getAllPlankTypes()) {
-					if (plankType != plankTypeSecondary) {
-						fences.add(WoodManager.getFence(plankType, plankTypeSecondary, new FenceType(fenceType.getSize(), false, fenceType.isEmbossed()), 1));
-						outputFences.add(WoodManager.getFence(plankType, plankTypeSecondary, new FenceType(fenceType.getSize(), true, fenceType.isEmbossed()), 2));
+				for (IPlankType secondary : WoodManager.getAllPlankTypes()) {
+					if (plankType != secondary) {
+						fences.add(WoodManager.getFence(plankType, secondary, new FenceType(fenceType.getSize(), false, fenceType.isEmbossed()), 1));
+						outputFences.add(WoodManager.getFence(plankType, secondary, new FenceType(fenceType.getSize(), true, fenceType.isEmbossed()), 2));
 					}
 				}
 			} else {
@@ -50,11 +50,11 @@ public class MultiFenceRecipeSolidWrapper implements IShapedCraftingRecipeWrappe
 				outputFences.add(WoodManager.getFence(plankType, plankTypeSecondary, new FenceType(fenceType.getSize(), true, fenceType.isEmbossed()), 2));
 			}
 		} else {
-			for (IPlankType plankTypeSecondary : WoodManager.getAllPlankTypes()) {
-				for (IPlankType plankType : WoodManager.getAllPlankTypes()) {
-					if (plankType != plankTypeSecondary) {
-						fences.add(WoodManager.getFence(plankType, plankTypeSecondary, new FenceType(fenceType.getSize(), false, fenceType.isEmbossed()), 1));
-						outputFences.add(WoodManager.getFence(plankType, plankTypeSecondary, new FenceType(fenceType.getSize(), true, fenceType.isEmbossed()), 2));
+			for (IPlankType secondary : WoodManager.getAllPlankTypes()) {
+				for (IPlankType primary : WoodManager.getAllPlankTypes()) {
+					if (primary != secondary) {
+						fences.add(WoodManager.getFence(primary, secondary, new FenceType(fenceType.getSize(), false, fenceType.isEmbossed()), 1));
+						outputFences.add(WoodManager.getFence(primary, secondary, new FenceType(fenceType.getSize(), true, fenceType.isEmbossed()), 2));
 					}
 				}
 			}

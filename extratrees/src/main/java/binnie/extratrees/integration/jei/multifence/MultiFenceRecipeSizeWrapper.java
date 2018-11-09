@@ -33,11 +33,11 @@ public class MultiFenceRecipeSizeWrapper implements IRecipeWrapper {
 
 	public MultiFenceRecipeSizeWrapper(MultiFenceRecipePattern pattern, @Nullable IPlankType plankType, @Nullable IPlankType plankTypeSecond) {
 		this.pattern = pattern;
-		String recipePattern = pattern.getPattern();
+		String recipe = pattern.getPattern();
 		this.recipePattern = new String[3];
-		this.recipePattern[0] = recipePattern.substring(0, 3);
-		this.recipePattern[1] = recipePattern.substring(3, 6);
-		this.recipePattern[2] = recipePattern.substring(6);
+		this.recipePattern[0] = recipe.substring(0, 3);
+		this.recipePattern[1] = recipe.substring(3, 6);
+		this.recipePattern[2] = recipe.substring(6);
 		this.plankType = plankType;
 		this.plankTypeSecond = plankTypeSecond;
 	}
@@ -71,9 +71,9 @@ public class MultiFenceRecipeSizeWrapper implements IRecipeWrapper {
 		}
 		List<List<ItemStack>> itemInputs = NonNullList.withSize(9, NonNullList.create());
 		for (int p = 0; p < 3; p++) {
-			String recipePattern = this.recipePattern[p];
+			String pattern = this.recipePattern[p];
 			for (int index = 0; index < 3; index++) {
-				char c = recipePattern.charAt(index);
+				char c = pattern.charAt(index);
 				if (c == '0') {
 					itemInputs.set(p * 3 + index, types.get(0));
 				} else if (c == '1') {
@@ -88,17 +88,17 @@ public class MultiFenceRecipeSizeWrapper implements IRecipeWrapper {
 		List<ItemStack> outputs = new ArrayList<>();
 		itemOutputs.add(outputs);
 		for (int i = 0; i < size; i++) {
-			IPlankType plankType = this.plankType;
-			if (plankType == null) {
+			IPlankType primary = this.plankType;
+			if (primary == null) {
 				ItemStack item = types.get(0).get(i);
-				plankType = WoodManager.getPlankType(item);
+				primary = WoodManager.getPlankType(item);
 			}
-			IPlankType plankTypeSecond = this.plankTypeSecond;
-			if (plankTypeSecond == null) {
+			IPlankType secondary = this.plankTypeSecond;
+			if (secondary == null) {
 				ItemStack itemSecond = types.get(1).get(i);
-				plankTypeSecond = WoodManager.getPlankType(itemSecond);
+				secondary = WoodManager.getPlankType(itemSecond);
 			}
-			outputs.add(pattern.createFence(plankType, plankTypeSecond));
+			outputs.add(pattern.createFence(primary, secondary));
 		}
 		ingredients.setOutputLists(ItemStack.class, itemOutputs);
 		ingredients.setInputLists(ItemStack.class, itemInputs);

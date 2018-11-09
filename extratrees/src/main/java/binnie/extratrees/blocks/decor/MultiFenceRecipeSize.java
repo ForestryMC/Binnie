@@ -3,7 +3,6 @@ package binnie.extratrees.blocks.decor;
 import java.util.ArrayList;
 import java.util.List;
 
-import binnie.core.Constants;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
@@ -13,10 +12,11 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
 import net.minecraftforge.common.ForgeHooks;
-
-import binnie.extratrees.wood.planks.IPlankType;
-import binnie.extratrees.wood.WoodManager;
 import net.minecraftforge.registries.IForgeRegistryEntry;
+
+import binnie.core.Constants;
+import binnie.extratrees.wood.WoodManager;
+import binnie.extratrees.wood.planks.IPlankType;
 
 public class MultiFenceRecipeSize extends IForgeRegistryEntry.Impl<IRecipe> implements IRecipe {
 	private ItemStack cached = ItemStack.EMPTY;
@@ -58,7 +58,7 @@ public class MultiFenceRecipeSize extends IForgeRegistryEntry.Impl<IRecipe> impl
 			return false;
 		}
 		for (MultiFenceRecipePattern pattern : MultiFenceRecipePattern.VALUES) {
-			if (pattern.matches(recipePattern.toString()) && types.size()>0 && pattern.getTypeCount()<=types.size()) {
+			if (pattern.matches(recipePattern.toString()) && !types.isEmpty() && pattern.getTypeCount() <= types.size()) {
 				cached = pattern.createFence(types.get(0), types.get(pattern.getTypeCount() - 1));
 				return true;
 			}
