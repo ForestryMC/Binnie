@@ -1,12 +1,15 @@
 package binnie.extratrees;
 
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.oredict.OreDictionary;
 
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+
+import forestry.api.lepidopterology.ButterflyManager;
 
 import binnie.core.Binnie;
 import binnie.core.BinnieCore;
@@ -23,12 +26,12 @@ import binnie.extratrees.genetics.gui.analyst.ButterflyAnalystPagePlugin;
 import binnie.extratrees.genetics.gui.analyst.TreeAnalystPagePlugin;
 import binnie.extratrees.genetics.gui.analyst.TreeProducePlugin;
 import binnie.extratrees.gui.ExtraTreesGUID;
+import binnie.extratrees.liquid.Juice;
 import binnie.extratrees.machines.ExtraTreesErrorCode;
 import binnie.extratrees.modules.ModuleWood;
 import binnie.extratrees.proxy.Proxy;
 import binnie.genetics.api.GeneticsApi;
 import binnie.genetics.api.analyst.IAnalystManager;
-import forestry.api.lepidopterology.ButterflyManager;
 
 @Mod(
 	modid = Constants.EXTRA_TREES_MOD_ID,
@@ -73,6 +76,10 @@ public class ExtraTrees extends BlankModuleContainer {
 
 		for (ExtraTreesErrorCode errorCode : ExtraTreesErrorCode.values()) {
 			ErrorStateRegistry.registerErrorState(errorCode);
+		}
+
+		for(Juice juice : Juice.values()){
+			OreDictionary.registerOre(juice.getOreDict(), BinnieCore.getGlassBottle().getContainer(juice.getType()));
 		}
 	}
 

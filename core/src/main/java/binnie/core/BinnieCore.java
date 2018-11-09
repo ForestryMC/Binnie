@@ -6,8 +6,6 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.minecraft.item.Item;
-
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -79,6 +77,8 @@ public final class BinnieCore extends AbstractMod {
 	private static ItemGenesis genesis;
 	@Nullable
 	private static ItemFieldKit fieldKit;
+	@Nullable
+	private static ItemFluidContainer glassBottle;
 
 	public BinnieCore() {
 		FluidRegistry.enableUniversalBucket();
@@ -106,6 +106,11 @@ public final class BinnieCore extends AbstractMod {
 	public static ItemFieldKit getFieldKit() {
 		Preconditions.checkState(fieldKit != null, "fieldKit has not been init");
 		return fieldKit;
+	}
+
+	public static ItemFluidContainer getGlassBottle() {
+		Preconditions.checkState(glassBottle != null, "glassBottle has not been init");
+		return glassBottle;
 	}
 
 	public static void setFieldKit(ItemFieldKit fieldKit) {
@@ -170,8 +175,11 @@ public final class BinnieCore extends AbstractMod {
 			((ModuleContainer) container).setupAPI();
 		}
 		for (FluidContainerType container : FluidContainerType.getBinnieContainers()) {
-			Item item = new ItemFluidContainer(container);
+			ItemFluidContainer item = new ItemFluidContainer(container);
 			getProxy().registerItem(item);
+			if(container == FluidContainerType.GLASS){
+				glassBottle = item;
+			}
 		}
 		for (CoreErrorCode errorCode : CoreErrorCode.values()) {
 			ErrorStateRegistry.registerErrorState(errorCode);
