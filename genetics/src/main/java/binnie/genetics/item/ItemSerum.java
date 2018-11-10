@@ -1,7 +1,5 @@
 package binnie.genetics.item;
 
-import binnie.core.api.genetics.IBreedingSystem;
-import binnie.core.api.genetics.IGene;
 import com.google.common.base.Preconditions;
 
 import javax.annotation.Nullable;
@@ -18,6 +16,8 @@ import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.ISpeciesRoot;
 
 import binnie.core.Binnie;
+import binnie.core.api.genetics.IBreedingSystem;
+import binnie.core.api.genetics.IGene;
 import binnie.core.genetics.Gene;
 import binnie.core.util.I18N;
 import binnie.genetics.Genetics;
@@ -73,21 +73,27 @@ public class ItemSerum extends ItemGene implements IItemSerum {
 	@Override
 	public IGene[] getGenes(ItemStack stack) {
 		GeneItem geneItem = this.getGeneItem(stack);
-		Preconditions.checkNotNull(geneItem, "Cannot get genes from itemStack that is not a valid serum.");
+		if(geneItem == null){
+			return new IGene[0];
+		}
 		return new IGene[]{geneItem.getGene()};
 	}
 
 	@Override
 	public ISpeciesRoot getSpeciesRoot(ItemStack stack) {
 		GeneItem geneItem = this.getGeneItem(stack);
-		Preconditions.checkNotNull(geneItem, "Cannot get species root from itemStack that is not a valid serum.");
+		if(geneItem == null){
+			return null;
+		}
 		return geneItem.getSpeciesRoot();
 	}
 
 	@Override
 	public IGene getGene(ItemStack stack, int chromosome) {
 		GeneItem geneItem = this.getGeneItem(stack);
-		Preconditions.checkNotNull(geneItem, "Cannot get gene from itemStack that is not a valid serum.");
+		if(geneItem == null){
+			return null;
+		}
 		return geneItem.getGene();
 	}
 

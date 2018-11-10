@@ -119,7 +119,9 @@ public class ItemSequence extends ItemCore implements IItemAnalysable, IItemChar
 	@Override
 	public ItemStack analyse(final ItemStack stack) {
 		final SequencerItem seq = SequencerItem.create(stack);
-		Preconditions.checkNotNull(seq, "Cannot analyze itemstack that is not a valid item sequence");
+		if(seq == null){
+			return stack;
+		}
 		seq.setAnalysed(true);
 		seq.writeToItem(stack);
 		return stack;
@@ -143,7 +145,9 @@ public class ItemSequence extends ItemCore implements IItemAnalysable, IItemChar
 	@Override
 	public ISpeciesRoot getSpeciesRoot(ItemStack stack) {
 		final SequencerItem seq = SequencerItem.create(stack);
-		Preconditions.checkNotNull(seq, "Cannot getSpeciesRoot from itemstack that is not a valid item sequence");
+		if(seq == null){
+			return null;
+		}
 		return seq.getSpeciesRoot();
 	}
 }
