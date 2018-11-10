@@ -68,6 +68,7 @@ public class WindowInventory implements IInventory {
 			if (item.isEmpty()) {
 				this.setInventorySlotContents(index, ItemStack.EMPTY);
 			}
+			markDirty();
 			return output;
 		}
 		return ItemStack.EMPTY;
