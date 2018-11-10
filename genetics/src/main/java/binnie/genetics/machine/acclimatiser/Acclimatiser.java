@@ -14,6 +14,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.oredict.OreDictionary;
 
 import forestry.api.apiculture.EnumBeeChromosome;
 import forestry.api.genetics.AlleleManager;
@@ -37,6 +38,8 @@ public class Acclimatiser {
 	private static final List<IToleranceType> toleranceTypes = new ArrayList<>();
 	private static final Map<ItemStack, Float> temperatureItems = new HashMap<>();
 	private static final Map<ItemStack, Float> humidityItems = new HashMap<>();
+	private static final Map<Integer, Float> temperatureDicts = new HashMap<>();
+	private static final Map<Integer, Float> humidityDicts = new HashMap<>();
 
 	@Nullable
 	private static ToleranceSystem getToleranceSystem(final ItemStack stack, final ItemStack acclim) {
@@ -63,6 +66,13 @@ public class Acclimatiser {
 	}
 
 	public static float getTemperatureEffect(final ItemStack item) {
+		for(int oreDict : Acclimatiser.temperatureDicts.keySet()){
+			for(int id : OreDictionary.getOreIDs(item)){
+				if(id == oreDict){
+					return Acclimatiser.temperatureDicts.get(oreDict);
+				}
+			}
+		}
 		for (final ItemStack stack : Acclimatiser.temperatureItems.keySet()) {
 			if (ItemStackUtil.isItemEqual(stack, item, false, true)) {
 				return Acclimatiser.temperatureItems.get(stack);
@@ -72,6 +82,13 @@ public class Acclimatiser {
 	}
 
 	public static float getHumidityEffect(final ItemStack item) {
+		for(int oreDict : Acclimatiser.humidityDicts.keySet()){
+			for(int id : OreDictionary.getOreIDs(item)){
+				if(id == oreDict){
+					return Acclimatiser.humidityDicts.get(oreDict);
+				}
+			}
+		}
 		for (final ItemStack stack : Acclimatiser.humidityItems.keySet()) {
 			if (ItemStackUtil.isItemEqual(stack, item, false, true)) {
 				return Acclimatiser.humidityItems.get(stack);
@@ -94,6 +111,20 @@ public class Acclimatiser {
 		Acclimatiser.humidityItems.put(itemstack, amount);
 	}
 
+	public static void addTemperatureDict(String oreDict, final float amount) {
+		if (oreDict.isEmpty()) {
+			return;
+		}
+		Acclimatiser.temperatureDicts.put(OreDictionary.getOreID(oreDict), amount);
+	}
+
+	public static void addHumidityDict(String oreDict, final float amount) {
+		if (oreDict.isEmpty()) {
+			return;
+		}
+		Acclimatiser.humidityDicts.put(OreDictionary.getOreID(oreDict), amount);
+	}
+
 	public static void setupRecipes() {
 		if (BinnieCore.isApicultureActive()) {
 			addTolerance(EnumBeeChromosome.HUMIDITY_TOLERANCE, ToleranceType.Humidity);
@@ -109,7 +140,7 @@ public class Acclimatiser {
 		addTemperatureItem(new ItemStack(Items.SNOWBALL), -0.15f);
 		addTemperatureItem(new ItemStack(Blocks.ICE), -0.75f);
 		addHumidityItem(new ItemStack(Items.WATER_BUCKET), 0.75f);
-		addHumidityItem(new ItemStack(Blocks.SAND), -0.15f);
+		addHumidityDict("sand", -0.15f);
 		addTemperatureItem(FluidContainerType.CAN.getFilled(FluidRegistry.LAVA), 0.75f);
 		addTemperatureItem(FluidContainerType.REFRACTORY.getFilled(FluidRegistry.LAVA), 0.75f);
 		addHumidityItem(FluidContainerType.CAN.getFilled(FluidRegistry.WATER), 0.75f);
