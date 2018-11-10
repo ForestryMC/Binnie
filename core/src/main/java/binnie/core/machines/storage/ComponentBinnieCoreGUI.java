@@ -22,7 +22,7 @@ class ComponentBinnieCoreGUI extends MachineComponent implements IInteraction.Ri
 	}
 
 	@Override
-	public void onRightClick(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+	public void onRightClick(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		if (!player.isSneaking()) {
 			BinnieCore.getBinnieProxy().openGui(this.id, player, pos);
 		}

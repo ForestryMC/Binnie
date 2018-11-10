@@ -13,12 +13,12 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 import forestry.api.arboriculture.TreeManager;
 
-import binnie.core.AbstractMod;
 import binnie.core.Binnie;
 import binnie.core.BinnieCore;
 import binnie.core.Constants;
 import binnie.core.gui.IBinnieGUID;
 import binnie.core.machines.errors.ErrorStateRegistry;
+import binnie.core.modules.BlankModuleContainer;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.network.IPacketID;
 import binnie.core.proxy.IProxyCore;
@@ -47,7 +47,7 @@ import binnie.genetics.proxy.Proxy;
 	acceptedMinecraftVersions = Constants.ACCEPTED_MINECRAFT_VERSIONS,
 	dependencies = "required-after:" + Constants.CORE_MOD_ID
 )
-public class Genetics extends AbstractMod {
+public class Genetics extends BlankModuleContainer {
 	@Mod.Instance(Constants.GENETICS_MOD_ID)
 	public static Genetics instance;
 	@SidedProxy(clientSide = "binnie.genetics.proxy.ProxyClient", serverSide = "binnie.genetics.proxy.ProxyServer")
@@ -78,7 +78,6 @@ public class Genetics extends AbstractMod {
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent evt) {
-		super.preInit(evt);
 		File configFile = new File(evt.getModConfigurationDirectory(), "forestry/genetics/main.conf");
 		configHandler = new ConfigHandler(configFile);
 		configHandler.addConfigurable(new ConfigurationMain());

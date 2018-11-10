@@ -1,10 +1,6 @@
 package binnie.extrabees;
 
-import com.google.common.collect.Lists;
-
 import java.io.File;
-import java.lang.reflect.Method;
-import java.util.List;
 
 import net.minecraftforge.common.MinecraftForge;
 
@@ -15,17 +11,15 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 import forestry.api.apiculture.BeeManager;
-import forestry.core.gui.GuiIdRegistry;
-import forestry.core.gui.GuiType;
 
 import binnie.core.Binnie;
 import binnie.core.Constants;
 import binnie.core.api.genetics.IBreedingSystem;
 import binnie.core.gui.BinnieGUIHandler;
+import binnie.core.gui.IBinnieGUID;
 import binnie.core.modules.BlankModuleContainer;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.proxy.IProxyCore;
-import binnie.extrabees.alveary.TileEntityExtraBeesAlvearyPart;
 import binnie.extrabees.genetics.BeeBreedingSystem;
 import binnie.extrabees.genetics.gui.analyst.AnalystPagePlugin;
 import binnie.extrabees.gui.ExtraBeesGUID;
@@ -68,7 +62,6 @@ public class ExtraBees extends BlankModuleContainer {
 		File configFile = new File(event.getModConfigurationDirectory(), "forestry/extrabees/main.conf");
 		configHandler = new ConfigHandler(configFile);
 		configHandler.addConfigurable(new ConfigurationMain());
-		registerGuis();
 
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new BinnieGUIHandler(ExtraBeesGUID.values()));
 
@@ -87,16 +80,6 @@ public class ExtraBees extends BlankModuleContainer {
 	public void init(final FMLInitializationEvent evt) {
 		super.init(evt);
 		configHandler.reload(true);
-	}
-
-	private void registerGuis() {
-		try {
-			Method m = GuiIdRegistry.class.getDeclaredMethod("registerGuiHandlers", GuiType.class, List.class);
-			m.setAccessible(true);
-			m.invoke(null, GuiType.Tile, Lists.newArrayList(TileEntityExtraBeesAlvearyPart.class));
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
 	}
 
 	@Override
@@ -122,6 +105,11 @@ public class ExtraBees extends BlankModuleContainer {
 	@Override
 	public String getModId() {
 		return Constants.EXTRA_BEES_MOD_ID;
+	}
+
+	@Override
+	public IBinnieGUID[] getGUIDs() {
+		return ExtraBeesGUID.values();
 	}
 
 	@Override

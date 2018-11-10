@@ -42,8 +42,6 @@ public class ModuleCore extends BlankModule {
 	@Nullable
 	public static Block hive;
 	@Nullable
-	public static Block alveary;
-	@Nullable
 	public static Block ectoplasm;
 	@Nullable
 	public static Item comb;

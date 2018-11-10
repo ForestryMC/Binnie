@@ -31,7 +31,7 @@ import binnie.genetics.item.ItemSerum;
 import binnie.genetics.item.ItemSerumArray;
 import binnie.genetics.recipes.RegistryRecipe;
 
-@ForestryModule(moduleID = GeneticsModuleUIDs.CORE, containerID = Constants.GENETICS_MOD_ID, name = "Core", unlocalizedDescription = "genetics.module.core")
+@ForestryModule(moduleID = GeneticsModuleUIDs.CORE, containerID = Constants.GENETICS_MOD_ID, name = "Core", unlocalizedDescription = "genetics.module.core", coreModule = true)
 public class ModuleCore extends BlankModule {
 	public static ItemSerum itemSerum;
 	public static ItemSequence itemSequencer;
@@ -67,11 +67,6 @@ public class ModuleCore extends BlankModule {
 		Genetics.proxy.registerItem(itemSequencer);
 
 		Binnie.LIQUID.createLiquids(GeneticLiquid.values());
-	}
-
-	@Override
-	public void preInit() {
-
 	}
 
 	@Override

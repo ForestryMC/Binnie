@@ -7,4 +7,4 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 import mcp.MethodsReturnNonnullByDefault;
 
-import binnie.extrabees.utils.FieldsAreNonnullByDefault;
+import binnie.core.util.FieldsAreNonnullByDefault;

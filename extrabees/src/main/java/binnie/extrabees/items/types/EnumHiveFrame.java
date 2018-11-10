@@ -18,6 +18,7 @@ import forestry.api.apiculture.IBeeHousing;
 import forestry.api.apiculture.IBeeModifier;
 import forestry.api.apiculture.IHiveFrame;
 
+import binnie.core.Constants;
 import binnie.core.Mods;
 import binnie.core.util.I18N;
 import binnie.core.util.RecipeUtil;
@@ -98,7 +99,8 @@ public enum EnumHiveFrame implements IHiveFrame, IBeeModifier {
 
 	}
 
-	public static void init(RecipeUtil recipeUtil) {
+	public static void init() {
+		RecipeUtil recipeUtil = new RecipeUtil(Constants.EXTRA_BEES_MOD_ID);
 		ItemStack impregnatedFrame = Mods.Forestry.stack("frame_impregnated");
 		for (EnumHiveFrame frame : values()) {
 			frame.init(recipeUtil, impregnatedFrame);
@@ -150,22 +152,22 @@ public enum EnumHiveFrame implements IHiveFrame, IBeeModifier {
 
 	@Override
 	public boolean isSealed() {
-		return this.logic.getModifier(EnumBeeBooleanModifier.Sealed);
+		return this.logic.getModifier(EnumBeeBooleanModifier.SEALED);
 	}
 
 	@Override
 	public boolean isSelfLighted() {
-		return this.logic.getModifier(EnumBeeBooleanModifier.SelfLighted);
+		return this.logic.getModifier(EnumBeeBooleanModifier.SELF_LIGHTED);
 	}
 
 	@Override
 	public boolean isSunlightSimulated() {
-		return this.logic.getModifier(EnumBeeBooleanModifier.SunlightStimulated);
+		return this.logic.getModifier(EnumBeeBooleanModifier.SUNLIGHT_STIMULATED);
 	}
 
 	@Override
 	public boolean isHellish() {
-		return this.logic.getModifier(EnumBeeBooleanModifier.Hellish);
+		return this.logic.getModifier(EnumBeeBooleanModifier.HELLISH);
 	}
 
 	public String getName() {

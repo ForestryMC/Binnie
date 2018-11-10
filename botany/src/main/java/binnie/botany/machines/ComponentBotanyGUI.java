@@ -22,9 +22,9 @@ public class ComponentBotanyGUI extends MachineComponent implements IInteraction
 	}
 
 	@Override
-	public void onRightClick(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		if (!playerIn.isSneaking()) {
-			Botany.proxy.openGui(this.id, playerIn, pos);
+	public void onRightClick(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		if (!player.isSneaking()) {
+			Botany.proxy.openGui(this.id, player, pos);
 		}
 	}
 }

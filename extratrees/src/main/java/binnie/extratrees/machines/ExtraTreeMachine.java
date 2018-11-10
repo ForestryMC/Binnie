@@ -83,9 +83,9 @@ public enum ExtraTreeMachine implements IMachineType {
 		}
 
 		@Override
-		public void onRightClick(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-			if (!playerIn.isSneaking()) {
-				ExtraTrees.proxy.openGui(this.id, playerIn, pos);
+		public void onRightClick(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+			if (!player.isSneaking()) {
+				ExtraTrees.proxy.openGui(this.id, player, pos);
 			}
 		}
 	}

@@ -8,7 +8,9 @@ import net.minecraft.item.ItemStack;
 
 import forestry.api.genetics.ISpeciesRoot;
 
+import binnie.core.Constants;
 import binnie.core.integration.jei.Drawables;
+import binnie.core.modules.ModuleManager;
 import binnie.genetics.api.IItemChargeable;
 import binnie.genetics.integration.jei.database.DatabaseRecipeCategory;
 import binnie.genetics.integration.jei.database.DatabaseRecipeMaker;
@@ -32,6 +34,7 @@ import binnie.genetics.machine.GeneticMachine;
 import binnie.genetics.machine.LaboratoryMachine;
 import binnie.genetics.machine.incubator.IIncubatorRecipe;
 import binnie.genetics.machine.incubator.Incubator;
+import binnie.genetics.modules.GeneticsModuleUIDs;
 import binnie.genetics.modules.ModuleCore;
 
 import mezz.jei.api.IGuiHelper;
@@ -50,6 +53,9 @@ public class GeneticsJeiPlugin implements IModPlugin {
 
 	@Override
 	public void registerItemSubtypes(ISubtypeRegistry subtypeRegistry) {
+		if (!ModuleManager.isModuleEnabled(Constants.GENETICS_MOD_ID, GeneticsModuleUIDs.CORE)) {
+			return;
+		}
 		List<Item> chargeables = Arrays.asList(ModuleCore.itemSequencer, ModuleCore.itemSerum, ModuleCore.itemSerumArray);
 		ChargeableSubtypeInterpreter chargeableSubtypeInterpreter = new ChargeableSubtypeInterpreter();
 		for (Item chargeable : chargeables) {
@@ -59,6 +65,9 @@ public class GeneticsJeiPlugin implements IModPlugin {
 
 	@Override
 	public void registerCategories(IRecipeCategoryRegistration registry) {
+		if (!ModuleManager.isModuleEnabled(Constants.GENETICS_MOD_ID, GeneticsModuleUIDs.MACHINES)) {
+			return;
+		}
 		GeneticsJeiPlugin.jeiHelpers = registry.getJeiHelpers();
 		GeneticsJeiPlugin.guiHelper = jeiHelpers.getGuiHelper();
 		GeneticsJeiPlugin.drawables = Drawables.getDrawables(guiHelper);
@@ -78,6 +87,9 @@ public class GeneticsJeiPlugin implements IModPlugin {
 
 	@Override
 	public void register(IModRegistry registry) {
+		if (!ModuleManager.isModuleEnabled(Constants.GENETICS_MOD_ID, GeneticsModuleUIDs.MACHINES)) {
+			return;
+		}
 		registry.addRecipeCatalyst(LaboratoryMachine.Incubator.get(1), RecipeUids.INCUBATOR, RecipeUids.INCUBATOR_LARVAE);
 		registry.addRecipeCatalyst(GeneticMachine.Isolator.get(1), RecipeUids.ISOLATOR);
 		registry.addRecipeCatalyst(GeneticMachine.Polymeriser.get(1), RecipeUids.POLYMERISER);

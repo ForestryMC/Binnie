@@ -1,13 +1,9 @@
 package binnie.extrabees.init;
 
-import net.minecraftforge.fml.common.registry.GameRegistry;
-
 import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.apiculture.genetics.BeeDefinition;
 
 import binnie.extrabees.ExtraBees;
-import binnie.extrabees.alveary.BlockAlveary;
-import binnie.extrabees.alveary.TileEntityExtraBeesAlvearyPart;
 import binnie.extrabees.blocks.BlockEctoplasm;
 import binnie.extrabees.blocks.BlockExtraBeeHives;
 import binnie.extrabees.blocks.type.EnumHiveType;
@@ -24,9 +20,6 @@ public final class BlockRegister {
 		ExtraBees.proxy.registerBlock(ModuleCore.ectoplasm);
 		ModuleCore.hive = new BlockExtraBeeHives();
 		ExtraBees.proxy.registerBlock(ModuleCore.hive);
-		ModuleCore.alveary = new BlockAlveary();
-		ExtraBees.proxy.registerBlock(ModuleCore.alveary);
-		GameRegistry.registerTileEntity(TileEntityExtraBeesAlvearyPart.class, "TileEntityExtraBeesAlvearyPart");
 	}
 
 	public static void doInitBlocks() {

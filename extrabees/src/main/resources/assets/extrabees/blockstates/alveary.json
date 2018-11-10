@@ -6,49 +6,58 @@
   "variants": {
     "normal": [{}],
     "inventory": [{}],
-    "type":{
-      "mutator": {
+    "machine_type": {
+      "0": {
         "textures":{
           "end": "extrabees:tile/alveary/alveary_mutator_top",
           "side": "extrabees:tile/alveary/alveary_mutator_side"
         }
       },
-      "frame": {
+      "1": {
         "textures":{
           "end": "extrabees:tile/alveary/alveary_frame_top",
           "side": "extrabees:tile/alveary/alveary_frame_side"
         }
       },
-      "rainshield": {
+      "2": {
         "textures":{
           "end": "extrabees:tile/alveary/alveary_rainshield_top",
           "side": "extrabees:tile/alveary/alveary_rainshield_side"
         }
       },
-      "lighting": {
+      "3": {
         "textures":{
           "end": "extrabees:tile/alveary/alveary_lighting_top",
           "side": "extrabees:tile/alveary/alveary_lighting_side"
         }
       },
-      "stimulator": {
+      "4": {
         "textures":{
           "end": "extrabees:tile/alveary/alveary_stimulator_top",
           "side": "extrabees:tile/alveary/alveary_stimulator_side"
         }
       },
-      "hatchery": {
+      "5": {
         "textures":{
           "end": "extrabees:tile/alveary/alveary_hatchery_top",
           "side": "extrabees:tile/alveary/alveary_hatchery_side"
         }
       },
-      "transmission": {
+      "6": {
         "textures":{
           "end": "extrabees:tile/alveary/alveary_transmission_top",
           "side": "extrabees:tile/alveary/alveary_transmission_side"
         }
-      }
+      },
+      "7": {},
+      "8": {},
+      "9": {},
+      "10": {},
+      "11": {},
+      "12": {},
+      "13": {},
+      "14": {},
+      "15": {}
     }
   }
 }

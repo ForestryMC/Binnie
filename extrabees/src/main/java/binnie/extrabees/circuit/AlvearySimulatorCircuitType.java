@@ -31,7 +31,7 @@ public enum AlvearySimulatorCircuitType implements IBeeModifier {
 		PLANT.logic.setModifier(EnumBeeModifier.FLOWERING, 1.5f, 5.0f);
 		DEATH.logic.setModifier(EnumBeeModifier.LIFESPAN, 0.8f, 0.2f);
 		LIFE.logic.setModifier(EnumBeeModifier.LIFESPAN, 1.5f, 5.0f);
-		NETHER.logic.setModifier(EnumBeeBooleanModifier.Hellish);
+		NETHER.logic.setModifier(EnumBeeBooleanModifier.HELLISH);
 		MUTATION.logic.setModifier(EnumBeeModifier.MUTATION, 1.5f, 5.0f);
 		INHIBITOR.logic.setModifier(EnumBeeModifier.TERRITORY, 0.4f, 0.1f);
 		INHIBITOR.logic.setModifier(EnumBeeModifier.PRODUCTION, 0.9f, 0.5f);
@@ -109,22 +109,22 @@ public enum AlvearySimulatorCircuitType implements IBeeModifier {
 
 	@Override
 	public boolean isSealed() {
-		return this.logic.getModifier(EnumBeeBooleanModifier.Sealed);
+		return this.logic.getModifier(EnumBeeBooleanModifier.SEALED);
 	}
 
 	@Override
 	public boolean isSelfLighted() {
-		return this.logic.getModifier(EnumBeeBooleanModifier.SelfLighted);
+		return this.logic.getModifier(EnumBeeBooleanModifier.SELF_LIGHTED);
 	}
 
 	@Override
 	public boolean isSunlightSimulated() {
-		return this.logic.getModifier(EnumBeeBooleanModifier.SunlightStimulated);
+		return this.logic.getModifier(EnumBeeBooleanModifier.SUNLIGHT_STIMULATED);
 	}
 
 	@Override
 	public boolean isHellish() {
-		return this.logic.getModifier(EnumBeeBooleanModifier.Hellish);
+		return this.logic.getModifier(EnumBeeBooleanModifier.HELLISH);
 	}
 
 	public int getRecipe() {

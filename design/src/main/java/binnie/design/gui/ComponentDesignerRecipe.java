@@ -107,10 +107,10 @@ public class ComponentDesignerRecipe extends ComponentRecipe implements ICompone
 	}
 
 	@Override
-	public void sendGuiNBTToClient(final Map<String, NBTTagCompound> nbt) {
+	public void sendGuiNBTToClient(final Map<String, NBTTagCompound> data) {
 		final NBTTagCompound tag = new NBTTagCompound();
 		tag.setShort("d", (short) Design.getDesignManager().getDesignIndex(this.getDesign()));
-		nbt.put("design", tag);
+		data.put("design", tag);
 	}
 
 	@Override

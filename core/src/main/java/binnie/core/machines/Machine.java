@@ -297,9 +297,9 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 	}
 
 	@Override
-	public void sendGuiNBTToClient(final Map<String, NBTTagCompound> nbt) {
+	public void sendGuiNBTToClient(final Map<String, NBTTagCompound> data) {
 		for (final INetwork.SendGuiNBT send : this.getInterfaces(INetwork.SendGuiNBT.class)) {
-			send.sendGuiNBTToClient(nbt);
+			send.sendGuiNBTToClient(data);
 		}
 	}
 }

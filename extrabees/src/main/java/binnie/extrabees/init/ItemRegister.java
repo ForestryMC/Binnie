@@ -10,13 +10,11 @@ import forestry.api.core.Tabs;
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.items.ItemBeeDictionary;
 import binnie.extrabees.items.ItemBeeHive;
-import binnie.extrabees.items.ItemBlockAlveary;
 import binnie.extrabees.items.ItemHoneyComb;
 import binnie.extrabees.items.ItemHoneyCrystal;
 import binnie.extrabees.items.ItemHoneyDrop;
 import binnie.extrabees.items.ItemMiscProduct;
 import binnie.extrabees.items.ItemPropolis;
-import binnie.extrabees.items.types.EnumHiveFrame;
 import binnie.extrabees.items.types.EnumHoneyComb;
 import binnie.extrabees.items.types.ExtraBeeItems;
 import binnie.extrabees.modules.ModuleCore;
@@ -38,7 +36,6 @@ public final class ItemRegister {
 			}
 		}
 
-		ItemBlockAlveary itemAlveary = new ItemBlockAlveary(ModuleCore.alveary);
 		ItemBeeHive itemBeeHive = new ItemBeeHive(ModuleCore.hive);
 		ItemBlock ectoplasm = new ItemBlock(ModuleCore.ectoplasm);
 		ectoplasm.setRegistryName(ModuleCore.ectoplasm.getRegistryName());
@@ -47,12 +44,8 @@ public final class ItemRegister {
 
 		ExtraBees.proxy.registerItem(ectoplasm);
 		ExtraBees.proxy.registerModel(ectoplasm, 0);
-		ExtraBees.proxy.registerItem(itemAlveary);
 		ExtraBees.proxy.registerItem(itemBeeHive);
 		ExtraBees.proxy.registerItem(itemMisc);
-		for (final EnumHiveFrame frame : EnumHiveFrame.values()) {
-			ExtraBees.proxy.registerItem(frame.getItem());
-		}
 		ExtraBees.proxy.registerItem(ModuleCore.dictionaryBees);
 
 		OreDictionary.registerOre("ingotIron", Items.IRON_INGOT);

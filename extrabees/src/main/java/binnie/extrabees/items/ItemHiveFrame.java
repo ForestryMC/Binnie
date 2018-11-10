@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
 import net.minecraftforge.client.model.ModelLoader;
@@ -23,9 +24,9 @@ import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
 import forestry.api.core.Tabs;
 
+import binnie.core.Constants;
 import binnie.core.util.I18N;
 import binnie.extrabees.items.types.EnumHiveFrame;
-import binnie.extrabees.utils.ExtraBeesResourceLocation;
 
 public class ItemHiveFrame extends Item implements IHiveFrame, IBeeModifier, IItemModelRegister {
 
@@ -47,7 +48,7 @@ public class ItemHiveFrame extends Item implements IHiveFrame, IBeeModifier, IIt
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerModel(Item item, IModelManager manager) {
-		ExtraBeesResourceLocation location = new ExtraBeesResourceLocation("frames/" + getRegistryName().getResourcePath());
+		ResourceLocation location = new ResourceLocation(Constants.EXTRA_BEES_MOD_ID, "frames/" + getRegistryName().getResourcePath());
 		ModelResourceLocation inventory = new ModelResourceLocation(location, "inventory");
 		ModelLoader.setCustomModelResourceLocation(item, 0, inventory);
 	}

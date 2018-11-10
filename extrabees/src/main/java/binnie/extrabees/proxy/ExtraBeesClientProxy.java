@@ -31,9 +31,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import forestry.core.models.BlankModel;
 import forestry.core.models.ModelManager;
 
+import binnie.core.Constants;
 import binnie.extrabees.items.IItemModelProvider;
 import binnie.extrabees.modules.ModuleCore;
-import binnie.extrabees.utils.ExtraBeesResourceLocation;
 
 @SideOnly(Side.CLIENT)
 public class ExtraBeesClientProxy extends ExtraBeesCommonProxy {
@@ -74,9 +74,8 @@ public class ExtraBeesClientProxy extends ExtraBeesCommonProxy {
 	@SubscribeEvent
 	public void onModelsBaked(ModelBakeEvent event) {
 		IRegistry<ModelResourceLocation, IBakedModel> registry = event.getModelRegistry();
-		registerItemBlockLink(new ExtraBeesResourceLocation("alveary"), ModuleCore.alveary, registry);
-		registerItemBlockLink(new ExtraBeesResourceLocation("ectoplasm"), ModuleCore.ectoplasm, registry);
-		registerItemBlockLink(new ExtraBeesResourceLocation("hive"), ModuleCore.hive, registry);
+		registerItemBlockLink(new ResourceLocation(Constants.EXTRA_BEES_MOD_ID, "ectoplasm"), ModuleCore.ectoplasm, registry);
+		registerItemBlockLink(new ResourceLocation(Constants.EXTRA_BEES_MOD_ID, "hive"), ModuleCore.hive, registry);
 	}
 
 	private void registerItemBlockLink(ResourceLocation item, Block block, IRegistry<ModelResourceLocation, IBakedModel> registry) {

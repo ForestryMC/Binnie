@@ -47,7 +47,7 @@ class ComponentCompartmentInventory extends ComponentInventorySlots implements I
 	}
 
 	@Override
-	public void sendGuiNBTToClient(final Map<String, NBTTagCompound> nbt) {
+	public void sendGuiNBTToClient(final Map<String, NBTTagCompound> data) {
 		final NBTTagList list = new NBTTagList();
 		for (int i = 0; i < this.tabCount; ++i) {
 			final NBTTagCompound nbt2 = new NBTTagCompound();
@@ -56,7 +56,7 @@ class ComponentCompartmentInventory extends ComponentInventorySlots implements I
 		}
 		final NBTTagCompound tag = new NBTTagCompound();
 		tag.setTag("tabs", list);
-		nbt.put("comp-tabs", tag);
+		data.put("comp-tabs", tag);
 	}
 
 	@Override

@@ -10,7 +10,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public interface INetwork {
 	interface SendGuiNBT {
-		void sendGuiNBTToClient(final Map<String, NBTTagCompound> p0);
+		void sendGuiNBTToClient(final Map<String, NBTTagCompound> data);
 	}
 
 	interface TilePacketSync {

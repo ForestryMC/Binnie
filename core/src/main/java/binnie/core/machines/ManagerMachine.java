@@ -26,6 +26,7 @@ public class ManagerMachine extends ManagerBase {
 	private static ValidatorSprite spriteFrame;
 	private static ValidatorSprite spriteCircuit;
 	private static ValidatorSprite spriteBlock;
+	private static ValidatorSprite spriteMutator;
 	private final Map<Class<?>, Class<?>[]> componentInterfaceMap;
 	private final Map<String, MachineGroup> machineGroups;
 	private int nextNetworkID;
@@ -50,6 +51,10 @@ public class ManagerMachine extends ManagerBase {
 
 	public static ValidatorSprite getSpriteBlock() {
 		return spriteBlock;
+	}
+
+	public static ValidatorSprite getSpriteMutator() {
+		return spriteMutator;
 	}
 
 	public void registerMachineGroup(final MachineGroup group) {
@@ -85,6 +90,7 @@ public class ManagerMachine extends ManagerBase {
 		spriteFrame = new ValidatorSprite(BinnieCore.getInstance(), "validator/frame.0", "validator/frame.1");
 		spriteCircuit = new ValidatorSprite(BinnieCore.getInstance(), "validator/circuit.0", "validator/circuit.1");
 		spriteBlock = new ValidatorSprite(BinnieCore.getInstance(), "validator/block.0", "validator/block.1");
+		spriteMutator = new ValidatorSprite(BinnieCore.getInstance(), "validator/mutator.0", "validator/mutator.1");
 	}
 
 	@Override

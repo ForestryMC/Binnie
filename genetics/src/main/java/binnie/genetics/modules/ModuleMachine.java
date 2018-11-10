@@ -73,7 +73,7 @@ public class ModuleMachine extends BlankModule {
 	}
 
 	public ModuleMachine() {
-		super(Constants.GENETICS_MOD_ID, "core");
+		super(Constants.GENETICS_MOD_ID, GeneticsModuleUIDs.CORE);
 	}
 
 	@Override
