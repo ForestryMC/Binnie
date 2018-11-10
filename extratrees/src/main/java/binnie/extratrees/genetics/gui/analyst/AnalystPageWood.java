@@ -2,10 +2,6 @@ package binnie.extratrees.genetics.gui.analyst;
 
 import java.util.Collection;
 
-import binnie.core.api.gui.IArea;
-import binnie.core.api.gui.ITitledWidget;
-import binnie.core.gui.controls.core.Control;
-import binnie.genetics.api.analyst.IAnalystManager;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
 
@@ -18,14 +14,18 @@ import forestry.api.arboriculture.ITree;
 import forestry.api.arboriculture.ITreeGenome;
 import forestry.api.genetics.IAlleleBoolean;
 
+import binnie.core.api.gui.IArea;
+import binnie.core.api.gui.ITitledWidget;
 import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.ControlTextCentered;
+import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.geometry.Point;
 import binnie.core.gui.minecraft.control.ControlIconDisplay;
 import binnie.core.gui.minecraft.control.ControlItemDisplay;
 import binnie.core.util.I18N;
 import binnie.core.util.UniqueItemStackSet;
 import binnie.genetics.api.analyst.AnalystConstants;
+import binnie.genetics.api.analyst.IAnalystManager;
 
 @SideOnly(Side.CLIENT)
 public class AnalystPageWood extends Control implements ITitledWidget {

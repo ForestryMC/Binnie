@@ -168,8 +168,8 @@ public final class BinnieCore extends AbstractMod {
 		MinecraftForge.EVENT_BUS.register(Binnie.LIQUID);
 		MinecraftForge.EVENT_BUS.register(ModuleManager.class);
 		Binnie.CONFIGURATION.registerConfiguration(ConfigurationMods.class, this);
-		for(IModuleContainer container : ForestryAPI.moduleManager.getContainers()){
-			if(!(container instanceof ModuleContainer)){
+		for (IModuleContainer container : ForestryAPI.moduleManager.getContainers()) {
+			if (!(container instanceof ModuleContainer)) {
 				continue;
 			}
 			((ModuleContainer) container).setupAPI();
@@ -177,7 +177,7 @@ public final class BinnieCore extends AbstractMod {
 		for (FluidContainerType container : FluidContainerType.getBinnieContainers()) {
 			ItemFluidContainer item = new ItemFluidContainer(container);
 			getProxy().registerItem(item);
-			if(container == FluidContainerType.GLASS){
+			if (container == FluidContainerType.GLASS) {
 				glassBottle = item;
 			}
 		}

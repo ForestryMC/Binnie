@@ -1,6 +1,7 @@
 {
   "variants": {
-    "normal": { "model": "botany:ceramic" }
-	}
-
+    "normal": {
+      "model": "botany:ceramic"
+    }
+  }
 }

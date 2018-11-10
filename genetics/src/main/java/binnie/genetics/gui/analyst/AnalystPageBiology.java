@@ -1,5 +1,12 @@
 package binnie.genetics.gui.analyst;
 
+import net.minecraft.util.text.TextFormatting;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import forestry.api.genetics.IIndividual;
+
 import binnie.core.api.gui.IArea;
 import binnie.core.api.gui.ITitledWidget;
 import binnie.core.api.gui.IWidget;
@@ -10,10 +17,6 @@ import binnie.core.util.I18N;
 import binnie.genetics.api.analyst.AnalystConstants;
 import binnie.genetics.api.analyst.IAnalystManager;
 import binnie.genetics.api.analyst.IBiologyPlugin;
-import forestry.api.genetics.IIndividual;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class AnalystPageBiology<T extends IIndividual> extends Control implements ITitledWidget {

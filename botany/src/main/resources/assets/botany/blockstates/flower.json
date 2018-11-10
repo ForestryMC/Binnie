@@ -1,123 +1,361 @@
 {
   "variants": {
-    "flower=agapanthus,flowered=false": { "model": "botany:flowers/agapanthus" },
-    "flower=agapanthus,flowered=true": { "model": "botany:flowers/agapanthus_flowered" },
-    "flower=allium,flowered=false": { "model": "botany:flowers/allium" },
-    "flower=allium,flowered=true": { "model": "botany:flowers/allium_flowered" },
-    "flower=althea,flowered=false,section=0": { "model": "botany:flowers/double/althea_0" },
-    "flower=althea,flowered=false,section=1": { "model": "botany:flowers/double/althea_1" },
-    "flower=althea,flowered=true,section=0": { "model": "botany:flowers/double/althea_0_flowered" },
-    "flower=althea,flowered=true,section=1": { "model": "botany:flowers/double/althea_1_flowered" },
-    "flower=anemone,flowered=false": { "model": "botany:flowers/anemone" },
-    "flower=anemone,flowered=true": { "model": "botany:flowers/anemone_flowered" },
-    "flower=aquilegia,flowered=false": { "model": "botany:flowers/aquilegia" },
-    "flower=aquilegia,flowered=true": { "model": "botany:flowers/aquilegia_flowered" },
-    "flower=aster,flowered=false": { "model": "botany:flowers/aster" },
-    "flower=aster,flowered=true": { "model": "botany:flowers/aster_flowered" },
-    "flower=auricula,flowered=false": { "model": "botany:flowers/auricula" },
-    "flower=auricula,flowered=true": { "model": "botany:flowers/auricula_flowered" },
-    "flower=azalea,flowered=false": { "model": "botany:flowers/azalea" },
-    "flower=azalea,flowered=true": { "model": "botany:flowers/azalea_flowered" },
-    "flower=bluet,flowered=false": { "model": "botany:flowers/bluet" },
-    "flower=bluet,flowered=true": { "model": "botany:flowers/bluet_flowered" },
-    "flower=camellia,flowered=false,section=0": { "model": "botany:flowers/double/camellia_0" },
-    "flower=camellia,flowered=false,section=1": { "model": "botany:flowers/double/camellia_1" },
-    "flower=camellia,flowered=true,section=0": { "model": "botany:flowers/double/camellia_0_flowered" },
-    "flower=camellia,flowered=true,section=1": { "model": "botany:flowers/double/camellia_1_flowered" },
-    "flower=carnation,flowered=false": { "model": "botany:flowers/carnation" },
-    "flower=carnation,flowered=true": { "model": "botany:flowers/carnation_flowered" },
-    "flower=coneflower,flowered=false": { "model": "botany:flowers/coneflower" },
-    "flower=coneflower,flowered=true": { "model": "botany:flowers/coneflower_flowered" },
-    "flower=cornflower,flowered=false": { "model": "botany:flowers/cornflower" },
-    "flower=cornflower,flowered=true": { "model": "botany:flowers/cornflower_flowered" },
-    "flower=daffodil,flowered=false": { "model": "botany:flowers/daffodil" },
-    "flower=daffodil,flowered=true": { "model": "botany:flowers/daffodil_flowered" },
-    "flower=dahlia,flowered=false": { "model": "botany:flowers/dahlia" },
-    "flower=dahlia,flowered=true": { "model": "botany:flowers/dahlia_flowered" },
-    "flower=daisy,flowered=false": { "model": "botany:flowers/daisy" },
-    "flower=daisy,flowered=true": { "model": "botany:flowers/daisy_flowered" },
-    "flower=dandelion,flowered=false": { "model": "botany:flowers/dandelion" },
-    "flower=dandelion,flowered=true": { "model": "botany:flowers/dandelion_flowered" },
-    "flower=delphinium,flowered=false,section=0": { "model": "botany:flowers/double/delphinium_0" },
-    "flower=delphinium,flowered=false,section=1": { "model": "botany:flowers/double/delphinium_1" },
-    "flower=delphinium,flowered=true,section=0": { "model": "botany:flowers/double/delphinium_0_flowered" },
-    "flower=delphinium,flowered=true,section=1": { "model": "botany:flowers/double/delphinium_1_flowered" },
-    "flower=dianthus,flowered=false": { "model": "botany:flowers/dianthus" },
-    "flower=dianthus,flowered=true": { "model": "botany:flowers/dianthus_flowered" },
-    "flower=edelweiss,flowered=false": { "model": "botany:flowers/edelweiss" },
-    "flower=edelweiss,flowered=true": { "model": "botany:flowers/edelweiss_flowered" },
-    "flower=forget,flowered=false": { "model": "botany:flowers/forget" },
-    "flower=forget,flowered=true": { "model": "botany:flowers/forget_flowered" },
-    "flower=foxglove,flowered=false,section=0": { "model": "botany:flowers/double/foxglove_0" },
-    "flower=foxglove,flowered=false,section=1": { "model": "botany:flowers/double/foxglove_1" },
-    "flower=foxglove,flowered=true,section=0": { "model": "botany:flowers/double/foxglove_0_flowered" },
-    "flower=foxglove,flowered=true,section=1": { "model": "botany:flowers/double/foxglove_1_flowered" },
-    "flower=fuchsia,flowered=false": { "model": "botany:flowers/fuchsia" },
-    "flower=fuchsia,flowered=true": { "model": "botany:flowers/fuchsia_flowered" },
-    "flower=gaillardia,flowered=false": { "model": "botany:flowers/gaillardia" },
-    "flower=gaillardia,flowered=true": { "model": "botany:flowers/gaillardia_flowered" },
-    "flower=geranium,flowered=false": { "model": "botany:flowers/geranium" },
-    "flower=geranium,flowered=true": { "model": "botany:flowers/geranium_flowered" },
-    "flower=goldenrod,flowered=false,section=0": { "model": "botany:flowers/double/goldenrod_0" },
-    "flower=goldenrod,flowered=false,section=1": { "model": "botany:flowers/double/goldenrod_1" },
-    "flower=goldenrod,flowered=true,section=0": { "model": "botany:flowers/double/goldenrod_0_flowered" },
-    "flower=goldenrod,flowered=true,section=1": { "model": "botany:flowers/double/goldenrod_1_flowered" },
-    "flower=hollyhock,flowered=false,section=0": { "model": "botany:flowers/double/hollyhock_0" },
-    "flower=hollyhock,flowered=false,section=1": { "model": "botany:flowers/double/hollyhock_1" },
-    "flower=hollyhock,flowered=true,section=0": { "model": "botany:flowers/double/hollyhock_0_flowered" },
-    "flower=hollyhock,flowered=true,section=1": { "model": "botany:flowers/double/hollyhock_1_flowered" },
-    "flower=hydrangea,flowered=false,section=0": { "model": "botany:flowers/double/hydrangea_0" },
-    "flower=hydrangea,flowered=false,section=1": { "model": "botany:flowers/double/hydrangea_1" },
-    "flower=hydrangea,flowered=true,section=0": { "model": "botany:flowers/double/hydrangea_0_flowered" },
-    "flower=hydrangea,flowered=true,section=1": { "model": "botany:flowers/double/hydrangea_1_flowered" },
-    "flower=iris,flowered=false": { "model": "botany:flowers/iris" },
-    "flower=iris,flowered=true": { "model": "botany:flowers/iris_flowered" },
-    "flower=lavender,flowered=false,section=0": { "model": "botany:flowers/double/lavender_0" },
-    "flower=lavender,flowered=false,section=1": { "model": "botany:flowers/double/lavender_1" },
-    "flower=lavender,flowered=true,section=0": { "model": "botany:flowers/double/lavender_0_flowered" },
-    "flower=lavender,flowered=true,section=1": { "model": "botany:flowers/double/lavender_1_flowered" },
-    "flower=lilac,flowered=false,section=0": { "model": "botany:flowers/double/lilac_0" },
-    "flower=lilac,flowered=false,section=1": { "model": "botany:flowers/double/lilac_1" },
-    "flower=lilac,flowered=true,section=0": { "model": "botany:flowers/double/lilac_0_flowered" },
-    "flower=lilac,flowered=true,section=1": { "model": "botany:flowers/double/lilac_1_flowered" },
-    "flower=lily,flowered=false": { "model": "botany:flowers/lily" },
-    "flower=lily,flowered=true": { "model": "botany:flowers/lily_flowered" },
-    "flower=marigold,flowered=false": { "model": "botany:flowers/marigold" },
-    "flower=marigold,flowered=true": { "model": "botany:flowers/marigold_flowered" },
-    "flower=chrysanthemum,flowered=false": { "model": "botany:flowers/chrysanthemum" },
-    "flower=chrysanthemum,flowered=true": { "model": "botany:flowers/chrysanthemum_flowered" },
-    "flower=orchid,flowered=false": { "model": "botany:flowers/orchid" },
-    "flower=orchid,flowered=true": { "model": "botany:flowers/orchid_flowered" },
-    "flower=pansy,flowered=false": { "model": "botany:flowers/pansy" },
-    "flower=pansy,flowered=true": { "model": "botany:flowers/pansy_flowered" },
-    "flower=penstemon,flowered=false,section=0": { "model": "botany:flowers/double/penstemon_0" },
-    "flower=penstemon,flowered=false,section=1": { "model": "botany:flowers/double/penstemon_1" },
-    "flower=penstemon,flowered=true,section=0": { "model": "botany:flowers/double/penstemon_0_flowered" },
-    "flower=penstemon,flowered=true,section=1": { "model": "botany:flowers/double/penstemon_1_flowered" },
-    "flower=peony,flowered=false,section=0": { "model": "botany:flowers/double/peony_0" },
-    "flower=peony,flowered=false,section=1": { "model": "botany:flowers/double/peony_1" },
-    "flower=peony,flowered=true,section=0": { "model": "botany:flowers/double/peony_0_flowered" },
-    "flower=peony,flowered=true,section=1": { "model": "botany:flowers/double/peony_1_flowered" },
-    "flower=petunia,flowered=false": { "model": "botany:flowers/petunia" },
-    "flower=petunia,flowered=true": { "model": "botany:flowers/petunia_flowered" },
-    "flower=poppy,flowered=false": { "model": "botany:flowers/poppy" },
-    "flower=poppy,flowered=true": { "model": "botany:flowers/poppy_flowered" },
-    "flower=primrose,flowered=false": { "model": "botany:flowers/primrose" },
-    "flower=primrose,flowered=true": { "model": "botany:flowers/primrose_flowered" },
-    "flower=rose,flowered=false,section=0": { "model": "botany:flowers/double/rose_0" },
-    "flower=rose,flowered=false,section=1": { "model": "botany:flowers/double/rose_1" },
-    "flower=rose,flowered=true,section=0": { "model": "botany:flowers/double/rose_0_flowered" },
-    "flower=rose,flowered=true,section=1": { "model": "botany:flowers/double/rose_1_flowered" },
-    "flower=scabious,flowered=false": { "model": "botany:flowers/scabious" },
-    "flower=scabious,flowered=true": { "model": "botany:flowers/scabious_flowered" },
-    "flower=tulip,flowered=false": { "model": "botany:flowers/tulip" },
-    "flower=tulip,flowered=true": { "model": "botany:flowers/tulip_flowered" },
-    "flower=viola,flowered=false": { "model": "botany:flowers/viola" },
-    "flower=viola,flowered=true": { "model": "botany:flowers/viola_flowered" },
-    "flower=yarrow,flowered=false": { "model": "botany:flowers/yarrow" },
-    "flower=yarrow,flowered=true": { "model": "botany:flowers/yarrow_flowered" },
-    "flower=zinnia,flowered=false": { "model": "botany:flowers/zinnia" },
-    "flower=zinnia,flowered=true": { "model": "botany:flowers/zinnia_flowered" },
-    "seed=true": { "model": "botany:flowers/seed" }
+    "flower=agapanthus,flowered=false": {
+      "model": "botany:flowers/agapanthus"
+    },
+    "flower=agapanthus,flowered=true": {
+      "model": "botany:flowers/agapanthus_flowered"
+    },
+    "flower=allium,flowered=false": {
+      "model": "botany:flowers/allium"
+    },
+    "flower=allium,flowered=true": {
+      "model": "botany:flowers/allium_flowered"
+    },
+    "flower=althea,flowered=false,section=0": {
+      "model": "botany:flowers/double/althea_0"
+    },
+    "flower=althea,flowered=false,section=1": {
+      "model": "botany:flowers/double/althea_1"
+    },
+    "flower=althea,flowered=true,section=0": {
+      "model": "botany:flowers/double/althea_0_flowered"
+    },
+    "flower=althea,flowered=true,section=1": {
+      "model": "botany:flowers/double/althea_1_flowered"
+    },
+    "flower=anemone,flowered=false": {
+      "model": "botany:flowers/anemone"
+    },
+    "flower=anemone,flowered=true": {
+      "model": "botany:flowers/anemone_flowered"
+    },
+    "flower=aquilegia,flowered=false": {
+      "model": "botany:flowers/aquilegia"
+    },
+    "flower=aquilegia,flowered=true": {
+      "model": "botany:flowers/aquilegia_flowered"
+    },
+    "flower=aster,flowered=false": {
+      "model": "botany:flowers/aster"
+    },
+    "flower=aster,flowered=true": {
+      "model": "botany:flowers/aster_flowered"
+    },
+    "flower=auricula,flowered=false": {
+      "model": "botany:flowers/auricula"
+    },
+    "flower=auricula,flowered=true": {
+      "model": "botany:flowers/auricula_flowered"
+    },
+    "flower=azalea,flowered=false": {
+      "model": "botany:flowers/azalea"
+    },
+    "flower=azalea,flowered=true": {
+      "model": "botany:flowers/azalea_flowered"
+    },
+    "flower=bluet,flowered=false": {
+      "model": "botany:flowers/bluet"
+    },
+    "flower=bluet,flowered=true": {
+      "model": "botany:flowers/bluet_flowered"
+    },
+    "flower=camellia,flowered=false,section=0": {
+      "model": "botany:flowers/double/camellia_0"
+    },
+    "flower=camellia,flowered=false,section=1": {
+      "model": "botany:flowers/double/camellia_1"
+    },
+    "flower=camellia,flowered=true,section=0": {
+      "model": "botany:flowers/double/camellia_0_flowered"
+    },
+    "flower=camellia,flowered=true,section=1": {
+      "model": "botany:flowers/double/camellia_1_flowered"
+    },
+    "flower=carnation,flowered=false": {
+      "model": "botany:flowers/carnation"
+    },
+    "flower=carnation,flowered=true": {
+      "model": "botany:flowers/carnation_flowered"
+    },
+    "flower=coneflower,flowered=false": {
+      "model": "botany:flowers/coneflower"
+    },
+    "flower=coneflower,flowered=true": {
+      "model": "botany:flowers/coneflower_flowered"
+    },
+    "flower=cornflower,flowered=false": {
+      "model": "botany:flowers/cornflower"
+    },
+    "flower=cornflower,flowered=true": {
+      "model": "botany:flowers/cornflower_flowered"
+    },
+    "flower=daffodil,flowered=false": {
+      "model": "botany:flowers/daffodil"
+    },
+    "flower=daffodil,flowered=true": {
+      "model": "botany:flowers/daffodil_flowered"
+    },
+    "flower=dahlia,flowered=false": {
+      "model": "botany:flowers/dahlia"
+    },
+    "flower=dahlia,flowered=true": {
+      "model": "botany:flowers/dahlia_flowered"
+    },
+    "flower=daisy,flowered=false": {
+      "model": "botany:flowers/daisy"
+    },
+    "flower=daisy,flowered=true": {
+      "model": "botany:flowers/daisy_flowered"
+    },
+    "flower=dandelion,flowered=false": {
+      "model": "botany:flowers/dandelion"
+    },
+    "flower=dandelion,flowered=true": {
+      "model": "botany:flowers/dandelion_flowered"
+    },
+    "flower=delphinium,flowered=false,section=0": {
+      "model": "botany:flowers/double/delphinium_0"
+    },
+    "flower=delphinium,flowered=false,section=1": {
+      "model": "botany:flowers/double/delphinium_1"
+    },
+    "flower=delphinium,flowered=true,section=0": {
+      "model": "botany:flowers/double/delphinium_0_flowered"
+    },
+    "flower=delphinium,flowered=true,section=1": {
+      "model": "botany:flowers/double/delphinium_1_flowered"
+    },
+    "flower=dianthus,flowered=false": {
+      "model": "botany:flowers/dianthus"
+    },
+    "flower=dianthus,flowered=true": {
+      "model": "botany:flowers/dianthus_flowered"
+    },
+    "flower=edelweiss,flowered=false": {
+      "model": "botany:flowers/edelweiss"
+    },
+    "flower=edelweiss,flowered=true": {
+      "model": "botany:flowers/edelweiss_flowered"
+    },
+    "flower=forget,flowered=false": {
+      "model": "botany:flowers/forget"
+    },
+    "flower=forget,flowered=true": {
+      "model": "botany:flowers/forget_flowered"
+    },
+    "flower=foxglove,flowered=false,section=0": {
+      "model": "botany:flowers/double/foxglove_0"
+    },
+    "flower=foxglove,flowered=false,section=1": {
+      "model": "botany:flowers/double/foxglove_1"
+    },
+    "flower=foxglove,flowered=true,section=0": {
+      "model": "botany:flowers/double/foxglove_0_flowered"
+    },
+    "flower=foxglove,flowered=true,section=1": {
+      "model": "botany:flowers/double/foxglove_1_flowered"
+    },
+    "flower=fuchsia,flowered=false": {
+      "model": "botany:flowers/fuchsia"
+    },
+    "flower=fuchsia,flowered=true": {
+      "model": "botany:flowers/fuchsia_flowered"
+    },
+    "flower=gaillardia,flowered=false": {
+      "model": "botany:flowers/gaillardia"
+    },
+    "flower=gaillardia,flowered=true": {
+      "model": "botany:flowers/gaillardia_flowered"
+    },
+    "flower=geranium,flowered=false": {
+      "model": "botany:flowers/geranium"
+    },
+    "flower=geranium,flowered=true": {
+      "model": "botany:flowers/geranium_flowered"
+    },
+    "flower=goldenrod,flowered=false,section=0": {
+      "model": "botany:flowers/double/goldenrod_0"
+    },
+    "flower=goldenrod,flowered=false,section=1": {
+      "model": "botany:flowers/double/goldenrod_1"
+    },
+    "flower=goldenrod,flowered=true,section=0": {
+      "model": "botany:flowers/double/goldenrod_0_flowered"
+    },
+    "flower=goldenrod,flowered=true,section=1": {
+      "model": "botany:flowers/double/goldenrod_1_flowered"
+    },
+    "flower=hollyhock,flowered=false,section=0": {
+      "model": "botany:flowers/double/hollyhock_0"
+    },
+    "flower=hollyhock,flowered=false,section=1": {
+      "model": "botany:flowers/double/hollyhock_1"
+    },
+    "flower=hollyhock,flowered=true,section=0": {
+      "model": "botany:flowers/double/hollyhock_0_flowered"
+    },
+    "flower=hollyhock,flowered=true,section=1": {
+      "model": "botany:flowers/double/hollyhock_1_flowered"
+    },
+    "flower=hydrangea,flowered=false,section=0": {
+      "model": "botany:flowers/double/hydrangea_0"
+    },
+    "flower=hydrangea,flowered=false,section=1": {
+      "model": "botany:flowers/double/hydrangea_1"
+    },
+    "flower=hydrangea,flowered=true,section=0": {
+      "model": "botany:flowers/double/hydrangea_0_flowered"
+    },
+    "flower=hydrangea,flowered=true,section=1": {
+      "model": "botany:flowers/double/hydrangea_1_flowered"
+    },
+    "flower=iris,flowered=false": {
+      "model": "botany:flowers/iris"
+    },
+    "flower=iris,flowered=true": {
+      "model": "botany:flowers/iris_flowered"
+    },
+    "flower=lavender,flowered=false,section=0": {
+      "model": "botany:flowers/double/lavender_0"
+    },
+    "flower=lavender,flowered=false,section=1": {
+      "model": "botany:flowers/double/lavender_1"
+    },
+    "flower=lavender,flowered=true,section=0": {
+      "model": "botany:flowers/double/lavender_0_flowered"
+    },
+    "flower=lavender,flowered=true,section=1": {
+      "model": "botany:flowers/double/lavender_1_flowered"
+    },
+    "flower=lilac,flowered=false,section=0": {
+      "model": "botany:flowers/double/lilac_0"
+    },
+    "flower=lilac,flowered=false,section=1": {
+      "model": "botany:flowers/double/lilac_1"
+    },
+    "flower=lilac,flowered=true,section=0": {
+      "model": "botany:flowers/double/lilac_0_flowered"
+    },
+    "flower=lilac,flowered=true,section=1": {
+      "model": "botany:flowers/double/lilac_1_flowered"
+    },
+    "flower=lily,flowered=false": {
+      "model": "botany:flowers/lily"
+    },
+    "flower=lily,flowered=true": {
+      "model": "botany:flowers/lily_flowered"
+    },
+    "flower=marigold,flowered=false": {
+      "model": "botany:flowers/marigold"
+    },
+    "flower=marigold,flowered=true": {
+      "model": "botany:flowers/marigold_flowered"
+    },
+    "flower=chrysanthemum,flowered=false": {
+      "model": "botany:flowers/chrysanthemum"
+    },
+    "flower=chrysanthemum,flowered=true": {
+      "model": "botany:flowers/chrysanthemum_flowered"
+    },
+    "flower=orchid,flowered=false": {
+      "model": "botany:flowers/orchid"
+    },
+    "flower=orchid,flowered=true": {
+      "model": "botany:flowers/orchid_flowered"
+    },
+    "flower=pansy,flowered=false": {
+      "model": "botany:flowers/pansy"
+    },
+    "flower=pansy,flowered=true": {
+      "model": "botany:flowers/pansy_flowered"
+    },
+    "flower=penstemon,flowered=false,section=0": {
+      "model": "botany:flowers/double/penstemon_0"
+    },
+    "flower=penstemon,flowered=false,section=1": {
+      "model": "botany:flowers/double/penstemon_1"
+    },
+    "flower=penstemon,flowered=true,section=0": {
+      "model": "botany:flowers/double/penstemon_0_flowered"
+    },
+    "flower=penstemon,flowered=true,section=1": {
+      "model": "botany:flowers/double/penstemon_1_flowered"
+    },
+    "flower=peony,flowered=false,section=0": {
+      "model": "botany:flowers/double/peony_0"
+    },
+    "flower=peony,flowered=false,section=1": {
+      "model": "botany:flowers/double/peony_1"
+    },
+    "flower=peony,flowered=true,section=0": {
+      "model": "botany:flowers/double/peony_0_flowered"
+    },
+    "flower=peony,flowered=true,section=1": {
+      "model": "botany:flowers/double/peony_1_flowered"
+    },
+    "flower=petunia,flowered=false": {
+      "model": "botany:flowers/petunia"
+    },
+    "flower=petunia,flowered=true": {
+      "model": "botany:flowers/petunia_flowered"
+    },
+    "flower=poppy,flowered=false": {
+      "model": "botany:flowers/poppy"
+    },
+    "flower=poppy,flowered=true": {
+      "model": "botany:flowers/poppy_flowered"
+    },
+    "flower=primrose,flowered=false": {
+      "model": "botany:flowers/primrose"
+    },
+    "flower=primrose,flowered=true": {
+      "model": "botany:flowers/primrose_flowered"
+    },
+    "flower=rose,flowered=false,section=0": {
+      "model": "botany:flowers/double/rose_0"
+    },
+    "flower=rose,flowered=false,section=1": {
+      "model": "botany:flowers/double/rose_1"
+    },
+    "flower=rose,flowered=true,section=0": {
+      "model": "botany:flowers/double/rose_0_flowered"
+    },
+    "flower=rose,flowered=true,section=1": {
+      "model": "botany:flowers/double/rose_1_flowered"
+    },
+    "flower=scabious,flowered=false": {
+      "model": "botany:flowers/scabious"
+    },
+    "flower=scabious,flowered=true": {
+      "model": "botany:flowers/scabious_flowered"
+    },
+    "flower=tulip,flowered=false": {
+      "model": "botany:flowers/tulip"
+    },
+    "flower=tulip,flowered=true": {
+      "model": "botany:flowers/tulip_flowered"
+    },
+    "flower=viola,flowered=false": {
+      "model": "botany:flowers/viola"
+    },
+    "flower=viola,flowered=true": {
+      "model": "botany:flowers/viola_flowered"
+    },
+    "flower=yarrow,flowered=false": {
+      "model": "botany:flowers/yarrow"
+    },
+    "flower=yarrow,flowered=true": {
+      "model": "botany:flowers/yarrow_flowered"
+    },
+    "flower=zinnia,flowered=false": {
+      "model": "botany:flowers/zinnia"
+    },
+    "flower=zinnia,flowered=true": {
+      "model": "botany:flowers/zinnia_flowered"
+    },
+    "seed=true": {
+      "model": "botany:flowers/seed"
+    }
   }
 }

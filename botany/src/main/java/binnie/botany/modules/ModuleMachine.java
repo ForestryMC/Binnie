@@ -47,11 +47,11 @@ public class ModuleMachine extends BlankModule {
 			tileworkerBase = Mods.Forestry.stack("oak_stick");
 		}
 		recipeUtil.addRecipe("tileworker", BotanyMachine.Tileworker.get(1),
-				"wGw", "GsG", "ggg",
-				'G', Blocks.GLASS,
-				'g', tileworkerBase,
-				'w', Items.CLAY_BALL,
-				's', Mods.Forestry.stack("impregnated_casing")
+			"wGw", "GsG", "ggg",
+			'G', Blocks.GLASS,
+			'g', tileworkerBase,
+			'w', Items.CLAY_BALL,
+			's', Mods.Forestry.stack("impregnated_casing")
 		);
 	}
 }

@@ -1,22 +1,25 @@
 package binnie.core.gui.fieldkit;
 
+import com.google.common.base.Preconditions;
+
 import javax.annotation.Nullable;
 import java.util.Map;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import forestry.api.genetics.IChromosomeType;
+import forestry.api.genetics.ISpeciesRoot;
 
 import binnie.core.api.genetics.IBreedingSystem;
 import binnie.core.api.genetics.IFieldKitPlugin;
 import binnie.core.api.gui.IPoint;
 import binnie.core.api.gui.ITexture;
-import binnie.core.gui.CraftGUI;
 import binnie.core.api.gui.IWidget;
+import binnie.core.gui.CraftGUI;
 import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.controls.core.IControlValue;
 import binnie.core.gui.geometry.Point;
-import com.google.common.base.Preconditions;
-import forestry.api.genetics.IChromosomeType;
-import forestry.api.genetics.ISpeciesRoot;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ControlChromosome extends Control implements IControlValue<IChromosomeType> {
 	@Nullable

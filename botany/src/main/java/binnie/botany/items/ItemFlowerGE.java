@@ -188,8 +188,8 @@ public class ItemFlowerGE extends Item implements IColoredItem, IItemModelRegist
 			return flower.getGenome().getStemColor().getColor(flower.isWilted());
 		}
 		return (tintIndex == 1)
-				? flower.getGenome().getPrimaryColor().getColor(flower.isWilted())
-				: flower.getGenome().getSecondaryColor().getColor(flower.isWilted());
+			? flower.getGenome().getPrimaryColor().getColor(flower.isWilted())
+			: flower.getGenome().getSecondaryColor().getColor(flower.isWilted());
 	}
 
 	@Override
@@ -210,7 +210,7 @@ public class ItemFlowerGE extends Item implements IColoredItem, IItemModelRegist
 		return placeFlower(player, stack, world, pos, hand, facing, hitX, hitY, hitZ);
 	}
 
-	private EnumActionResult pollinateFlower(World world, BlockPos pos, EntityPlayer player, ItemStack stack){
+	private EnumActionResult pollinateFlower(World world, BlockPos pos, EntityPlayer player, ItemStack stack) {
 		IFlower flower = BotanyAPI.flowerRoot.getMember(stack);
 		TileEntity target = world.getTileEntity(pos);
 		if (!(target instanceof IPollinatable)) {
@@ -227,7 +227,7 @@ public class ItemFlowerGE extends Item implements IColoredItem, IItemModelRegist
 		return EnumActionResult.SUCCESS;
 	}
 
-	private EnumActionResult placeFlower(EntityPlayer player, ItemStack stack, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ){
+	private EnumActionResult placeFlower(EntityPlayer player, ItemStack stack, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		IBlockState blockState = world.getBlockState(pos);
 		Block block = blockState.getBlock();
 
@@ -269,7 +269,7 @@ public class ItemFlowerGE extends Item implements IColoredItem, IItemModelRegist
 		@Override
 		public ModelResourceLocation getModelLocation(ItemStack stack) {
 			IFlower flower = BotanyCore.getFlowerRoot().getMember(stack);
-			if(flower == null){
+			if (flower == null) {
 				flower = FlowerDefinition.Poppy.getIndividual();
 			}
 			IAlleleFlowerSpecies flowerSpecies = flower.getGenome().getPrimary();

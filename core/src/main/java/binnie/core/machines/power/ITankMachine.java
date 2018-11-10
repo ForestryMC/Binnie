@@ -3,8 +3,8 @@ package binnie.core.machines.power;
 import javax.annotation.Nullable;
 
 import net.minecraft.util.EnumFacing;
-
 import net.minecraft.util.ResourceLocation;
+
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 

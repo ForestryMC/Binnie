@@ -6,6 +6,7 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -35,7 +36,7 @@ public class EntityItemRenderer {
 				RenderManager rendermanager = Minecraft.getMinecraft().getRenderManager();
 				rendermanager.renderEntity(dummyEntityItem, 0.0D, 0.0D, 0.0D, 0.0F, 0.0F, false);
 
-//				rendermanager.renderEntity(dummyEntityItem, 0, 2, 0);
+				//				rendermanager.renderEntity(dummyEntityItem, 0, 2, 0);
 			}
 			GlStateManager.popMatrix();
 

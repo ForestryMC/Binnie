@@ -103,7 +103,9 @@ public class IncubatorLogic extends ComponentProcessIndefinate implements IProce
 			int potentialSlot = 0;
 			for (final int slot : Incubator.SLOT_QUEUE) {
 				final ItemStack stack = this.getUtil().getStack(slot);
-				if (stack.isEmpty()) continue;
+				if (stack.isEmpty()) {
+					continue;
+				}
 				for (final IIncubatorRecipe recipe2 : Incubator.getRecipes()) {
 					final boolean rightLiquid = recipe2.isInputLiquid(liquid);
 					final boolean rightItem = isStackValid(stack, recipe2);
@@ -137,7 +139,9 @@ public class IncubatorLogic extends ComponentProcessIndefinate implements IProce
 		}
 		for (final int slot : Incubator.SLOT_QUEUE) {
 			final ItemStack stack = this.getUtil().getStack(slot);
-			if (stack.isEmpty()) continue;
+			if (stack.isEmpty()) {
+				continue;
+			}
 
 			// Has inner item equal check
 			NonNullList<ItemStack> result = TransferRequest.mergeStacks(stack, incubator);
@@ -164,13 +168,13 @@ public class IncubatorLogic extends ComponentProcessIndefinate implements IProce
 		TransferRequest transferRequest = new TransferRequest(incubator, this.getInventory()).setTargetSlots(Incubator.SLOT_OUTPUT).ignoreValidation();
 		TransferResult transferResult = transferRequest.transfer(null, true);
 		if (transferResult.isSuccess()) {
-            NonNullList<ItemStack> results = transferResult.getRemaining();
-            if (results.size() == 1) {
-                final ItemStack leftover = results.get(0);
-                this.getUtil().setStack(Incubator.SLOT_INCUBATOR, leftover);
+			NonNullList<ItemStack> results = transferResult.getRemaining();
+			if (results.size() == 1) {
+				final ItemStack leftover = results.get(0);
+				this.getUtil().setStack(Incubator.SLOT_INCUBATOR, leftover);
 				return leftover.isEmpty();
-            }
-        }
-        return false;
+			}
+		}
+		return false;
 	}
 }

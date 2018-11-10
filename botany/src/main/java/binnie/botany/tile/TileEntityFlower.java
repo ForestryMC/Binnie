@@ -143,11 +143,11 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 	@Override
 	public boolean canMateWith(IIndividual individual) {
 		return isBreeding()
-				&& individual instanceof IFlower
-				&& getFlower() != null
-				&& getFlower().getMate() == null
-				&& getFlower().hasFlowered()
-				&& !getFlower().isGeneticEqual(individual);
+			&& individual instanceof IFlower
+			&& getFlower() != null
+			&& getFlower().getMate() == null
+			&& getFlower().hasFlowered()
+			&& !getFlower().isGeneticEqual(individual);
 	}
 
 	@Override
@@ -631,26 +631,26 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 
 	public int getPrimaryColour() {
 		return (renderInfo == null)
-				? EnumFlowerColor.Red.getFlowerColorAllele().getColor(false)
-				: renderInfo.getPrimary().getColor(isWilted());
+			? EnumFlowerColor.Red.getFlowerColorAllele().getColor(false)
+			: renderInfo.getPrimary().getColor(isWilted());
 	}
 
 	public int getSecondaryColour() {
 		return (renderInfo == null)
-				? EnumFlowerColor.Red.getFlowerColorAllele().getColor(false)
-				: renderInfo.getSecondary().getColor(isWilted());
+			? EnumFlowerColor.Red.getFlowerColorAllele().getColor(false)
+			: renderInfo.getSecondary().getColor(isWilted());
 	}
 
 	public int getStemColour() {
 		return (renderInfo == null)
-				? EnumFlowerColor.Green.getFlowerColorAllele().getColor(false)
-				: renderInfo.getStem().getColor(isWilted());
+			? EnumFlowerColor.Green.getFlowerColorAllele().getColor(false)
+			: renderInfo.getStem().getColor(isWilted());
 	}
 
 	public IFlowerType getType() {
 		return (renderInfo == null)
-				? EnumFlowerType.POPPY
-				: renderInfo.getType();
+			? EnumFlowerType.POPPY
+			: renderInfo.getType();
 	}
 
 	@Override

@@ -6,7 +6,6 @@ import java.text.NumberFormat;
 import java.util.Arrays;
 import java.util.Map;
 
-import mezz.jei.api.recipe.IRecipeWrapper;
 import org.apache.commons.lang3.time.DurationFormatUtils;
 
 import net.minecraft.client.Minecraft;
@@ -21,8 +20,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import binnie.genetics.item.GeneticLiquid;
 import binnie.genetics.machine.inoculator.InoculatorLogic;
 import binnie.genetics.machine.splicer.SplicerLogic;
+
 import mezz.jei.api.gui.IGuiIngredient;
 import mezz.jei.api.ingredients.IIngredients;
+import mezz.jei.api.recipe.IRecipeWrapper;
 
 public class InoculatorRecipeWrapper implements IRecipeWrapper {
 	private static final FluidStack BACTERIA_VECTOR = GeneticLiquid.BacteriaVector.get(InoculatorLogic.BACTERIA_PER_PROCESS);

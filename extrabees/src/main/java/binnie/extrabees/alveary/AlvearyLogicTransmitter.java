@@ -57,7 +57,7 @@ public class AlvearyLogicTransmitter extends AlvearyLogicElectrical {
 		if (output < 1) {
 			return;
 		}
-		for (IEnergyStorage handler :storages) {
+		for (IEnergyStorage handler : storages) {
 			int recieved = handler.receiveEnergy(output, false);
 			energyStorage.extractEnergy(recieved, false);
 			if (energyStorage.getEnergyStored() < output) {

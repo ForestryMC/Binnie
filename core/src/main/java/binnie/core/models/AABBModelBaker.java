@@ -26,13 +26,13 @@ import net.minecraftforge.common.model.IModelState;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import org.lwjgl.util.vector.Vector3f;
-
 import forestry.api.core.IModelBaker;
 import forestry.api.core.IModelBakerModel;
 import forestry.core.models.ModelManager;
 import forestry.core.models.baker.ModelBakerFace;
 import forestry.core.models.baker.ModelBakerModel;
+
+import org.lwjgl.util.vector.Vector3f;
 
 //AABB = AxisAlignedBoundingBox
 @SideOnly(Side.CLIENT)

@@ -39,7 +39,7 @@ public class WorldGenUtils {
 					BlockPos position = start.add(x, y, z);
 					Vec3i treeCenter = new Vec3i(center.getX(), position.getY(), center.getZ());
 					if (position.distanceSq(treeCenter) <= radius * radius + 0.01) {
-						if (position.distanceSq(treeCenter) <  radius * radius - (0.5f * 0.5f) || rand.nextFloat() >= bushiness) {
+						if (position.distanceSq(treeCenter) < radius * radius - (0.5f * 0.5f) || rand.nextFloat() >= bushiness) {
 							EnumFacing direction = VectUtil.direction(position, treeCenter);
 							block.setDirection(direction);
 							WorldGenHelper.addBlock(world, position, block, replace);

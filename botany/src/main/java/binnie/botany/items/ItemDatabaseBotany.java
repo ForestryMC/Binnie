@@ -1,6 +1,5 @@
 package binnie.botany.items;
 
-import binnie.core.api.gui.IGuiItem;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -18,6 +17,7 @@ import forestry.api.core.IModelManager;
 
 import binnie.botany.Botany;
 import binnie.botany.gui.BotanyGUI;
+import binnie.core.api.gui.IGuiItem;
 import binnie.core.util.I18N;
 
 public class ItemDatabaseBotany extends ItemBotany implements IItemModelRegister, IGuiItem {
@@ -30,7 +30,7 @@ public class ItemDatabaseBotany extends ItemBotany implements IItemModelRegister
 	@Override
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
 		if (this.isInCreativeTab(tab)) {
-			for(int i = 0;i < 2;i++) {
+			for (int i = 0; i < 2; i++) {
 				items.add(new ItemStack(this, 1, i));
 			}
 		}
@@ -46,7 +46,7 @@ public class ItemDatabaseBotany extends ItemBotany implements IItemModelRegister
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 		ItemStack itemStack = playerIn.getHeldItem(handIn);
-		openGuiOnRightClick(itemStack,  worldIn, playerIn);
+		openGuiOnRightClick(itemStack, worldIn, playerIn);
 		return super.onItemRightClick(worldIn, playerIn, handIn);
 	}
 

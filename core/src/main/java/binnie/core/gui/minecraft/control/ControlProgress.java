@@ -3,9 +3,9 @@ package binnie.core.gui.minecraft.control;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.core.gui.CraftGUI;
-import binnie.core.api.gui.IWidget;
 import binnie.core.api.gui.Alignment;
+import binnie.core.api.gui.IWidget;
+import binnie.core.gui.CraftGUI;
 import binnie.core.gui.resource.textures.Texture;
 
 public class ControlProgress extends ControlProgressBase {

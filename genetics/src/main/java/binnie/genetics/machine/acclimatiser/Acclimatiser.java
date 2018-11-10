@@ -66,9 +66,9 @@ public class Acclimatiser {
 	}
 
 	public static float getTemperatureEffect(final ItemStack item) {
-		for(int oreDict : Acclimatiser.temperatureDicts.keySet()){
-			for(int id : OreDictionary.getOreIDs(item)){
-				if(id == oreDict){
+		for (int oreDict : Acclimatiser.temperatureDicts.keySet()) {
+			for (int id : OreDictionary.getOreIDs(item)) {
+				if (id == oreDict) {
 					return Acclimatiser.temperatureDicts.get(oreDict);
 				}
 			}
@@ -82,9 +82,9 @@ public class Acclimatiser {
 	}
 
 	public static float getHumidityEffect(final ItemStack item) {
-		for(int oreDict : Acclimatiser.humidityDicts.keySet()){
-			for(int id : OreDictionary.getOreIDs(item)){
-				if(id == oreDict){
+		for (int oreDict : Acclimatiser.humidityDicts.keySet()) {
+			for (int id : OreDictionary.getOreIDs(item)) {
+				if (id == oreDict) {
 					return Acclimatiser.humidityDicts.get(oreDict);
 				}
 			}

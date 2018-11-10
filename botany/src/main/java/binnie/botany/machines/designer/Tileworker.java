@@ -1,17 +1,17 @@
 package binnie.botany.machines.designer;
 
-import binnie.design.DesignHelper;
-import binnie.design.EnumDesign;
-import binnie.design.api.IDesignerType;
-import binnie.design.blocks.BlockDesign;
 import net.minecraft.item.ItemStack;
 
 import binnie.botany.ceramic.CeramicDesignSystem;
 import binnie.botany.modules.ModuleCeramic;
 import binnie.core.util.I18N;
+import binnie.design.DesignHelper;
+import binnie.design.EnumDesign;
 import binnie.design.api.IDesign;
 import binnie.design.api.IDesignMaterial;
 import binnie.design.api.IDesignSystem;
+import binnie.design.api.IDesignerType;
+import binnie.design.blocks.BlockDesign;
 
 public class Tileworker implements IDesignerType {
 	private static final String name = "tileworker";

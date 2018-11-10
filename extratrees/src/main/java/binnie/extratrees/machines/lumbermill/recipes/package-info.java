@@ -5,5 +5,6 @@ package binnie.extratrees.machines.lumbermill.recipes;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import binnie.core.util.FieldsAreNonnullByDefault;
 import mcp.MethodsReturnNonnullByDefault;
+
+import binnie.core.util.FieldsAreNonnullByDefault;

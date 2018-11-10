@@ -15,8 +15,8 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.core.Constants;
 import binnie.core.AbstractMod;
+import binnie.core.Constants;
 import binnie.core.network.packet.MessageBinnie;
 
 public abstract class BinniePacketHandler implements IMessageHandler<MessageBinnie, IMessage> {

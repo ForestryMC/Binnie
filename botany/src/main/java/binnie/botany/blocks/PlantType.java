@@ -24,9 +24,9 @@ public enum PlantType implements IStringSerializable {
 		this.isWeed = isWeed;
 	}
 
-	public static PlantType getType(int meta){
-		if(meta >= values().length){
-			meta = values().length-1;
+	public static PlantType getType(int meta) {
+		if (meta >= values().length) {
+			meta = values().length - 1;
 		}
 		return values()[meta];
 	}

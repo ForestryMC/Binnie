@@ -6,8 +6,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import net.minecraft.item.ItemStack;
-
 import net.minecraft.util.NonNullList;
+
 import net.minecraftforge.fluids.FluidStack;
 
 import net.minecraftforge.fml.common.Optional;
@@ -62,7 +62,7 @@ public class BreweryRecipeManager implements IBreweryManager {
 		}
 		return null;
 	}
-	
+
 	@Nullable
 	public static IBreweryRecipe getRecipe(final BreweryCrafting crafting) {
 		if (crafting.getInputFluid() != null && !crafting.getYeast().isEmpty()) {
@@ -151,7 +151,7 @@ public class BreweryRecipeManager implements IBreweryManager {
 	}
 
 	@Optional.Method(modid = "jei")
-	private Object getWrapper(IBreweryRecipe recipe){
+	private Object getWrapper(IBreweryRecipe recipe) {
 		return new BreweryRecipeWrapper(recipe);
 	}
 

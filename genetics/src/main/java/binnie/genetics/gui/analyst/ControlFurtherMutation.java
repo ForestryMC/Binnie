@@ -1,8 +1,5 @@
 package binnie.genetics.gui.analyst;
 
-import binnie.core.api.genetics.IBreedingSystem;
-import binnie.genetics.Genetics;
-import binnie.genetics.api.analyst.AnalystConstants;
 import net.minecraft.client.renderer.GlStateManager;
 
 import net.minecraftforge.fml.relauncher.Side;
@@ -11,10 +8,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IMutation;
 
+import binnie.core.api.genetics.IBreedingSystem;
 import binnie.core.api.gui.IWidget;
 import binnie.core.gui.geometry.Point;
 import binnie.core.gui.renderer.RenderUtil;
 import binnie.core.util.I18N;
+import binnie.genetics.Genetics;
+import binnie.genetics.api.analyst.AnalystConstants;
 
 public class ControlFurtherMutation extends ControlMutation {
 	private final IAlleleSpecies resolute;

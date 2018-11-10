@@ -2,24 +2,24 @@ package binnie.genetics.machine.inoculator;
 
 import javax.annotation.Nullable;
 
-import binnie.genetics.config.ConfigurationMain;
-import binnie.genetics.machine.splicer.Splicer;
 import net.minecraft.item.ItemStack;
 
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IGenome;
 import forestry.api.genetics.IIndividual;
 
+import binnie.core.api.genetics.IGene;
 import binnie.core.machines.Machine;
 import binnie.core.machines.MachineUtil;
 import binnie.core.machines.errors.ErrorState;
 import binnie.core.machines.power.ComponentProcess;
 import binnie.core.machines.power.IProcess;
 import binnie.core.util.I18N;
-import binnie.core.api.genetics.IGene;
 import binnie.genetics.api.IItemSerum;
+import binnie.genetics.config.ConfigurationMain;
 import binnie.genetics.genetics.Engineering;
 import binnie.genetics.machine.GeneticsErrorCode;
+import binnie.genetics.machine.splicer.Splicer;
 
 public class InoculatorLogic extends ComponentProcess implements IProcess {
 	public static final int PROCESS_BASE_LENGTH = ConfigurationMain.inoculatorTime;

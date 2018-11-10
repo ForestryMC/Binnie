@@ -128,89 +128,89 @@ public class ModuleGardening extends BlankModule {
 		IGardeningManager gardening = BotanyCore.getGardening();
 
 		recipeUtil.addRecipe("trowel_wood",
-				trowelWood,
-				"d  ", " x ", "  s",
-				'd', Blocks.DIRT,
-				's', "stickWood",
-				'x', "plankWood"
+			trowelWood,
+			"d  ", " x ", "  s",
+			'd', Blocks.DIRT,
+			's', "stickWood",
+			'x', "plankWood"
 		);
 
 		recipeUtil.addRecipe("trowel_stone",
-				trowelStone,
-				"d  ", " x ", "  s",
-				'd', Blocks.DIRT,
-				's', "stickWood",
-				'x', "cobblestone"
+			trowelStone,
+			"d  ", " x ", "  s",
+			'd', Blocks.DIRT,
+			's', "stickWood",
+			'x', "cobblestone"
 		);
 
 		recipeUtil.addRecipe("trowel_iron",
-				trowelIron,
-				"d  ", " x ", "  s",
-				'd', Blocks.DIRT,
-				's', "stickWood",
-				'x', "ingotIron"
+			trowelIron,
+			"d  ", " x ", "  s",
+			'd', Blocks.DIRT,
+			's', "stickWood",
+			'x', "ingotIron"
 		);
 
 		recipeUtil.addRecipe("trowel_gold",
-				trowelGold,
-				"d  ", " x ", "  s",
-				'd', Blocks.DIRT,
-				's', "stickWood",
-				'x', "ingotGold"
+			trowelGold,
+			"d  ", " x ", "  s",
+			'd', Blocks.DIRT,
+			's', "stickWood",
+			'x', "ingotGold"
 		);
 
 		recipeUtil.addRecipe("trowel_diamond",
-				trowelDiamond,
-				"d  ", " x ", "  s",
-				'd', Blocks.DIRT,
-				's', "stickWood",
-				'x', "gemDiamond"
+			trowelDiamond,
+			"d  ", " x ", "  s",
+			'd', Blocks.DIRT,
+			's', "stickWood",
+			'x', "gemDiamond"
 		);
 
 		recipeUtil.addRecipe("soil_meter",
-				soilMeter,
-				" gg", " rg", "i  ",
-				'g', "ingotGold",
-				'r', "dustRedstone",
-				'i', "ingotIron"
+			soilMeter,
+			" gg", " rg", "i  ",
+			'g', "ingotGold",
+			'r', "dustRedstone",
+			'i', "ingotIron"
 		);
 
 		recipeUtil.addShapelessRecipe("weed_killer",
-				BotanyItems.WEEDKILLER.get(4),
-				new ItemStack(Items.SPIDER_EYE),
-				new ItemStack(Items.WHEAT_SEEDS),
-				new ItemStack(Items.WHEAT_SEEDS),
-				new ItemStack(Items.WHEAT_SEEDS)
+			BotanyItems.WEEDKILLER.get(4),
+			new ItemStack(Items.SPIDER_EYE),
+			new ItemStack(Items.WHEAT_SEEDS),
+			new ItemStack(Items.WHEAT_SEEDS),
+			new ItemStack(Items.WHEAT_SEEDS)
 		);
 
 		recipeUtil.addShapelessRecipe("powder_ash",
-				BotanyItems.POWDER_ASH.get(4),
-				Mods.Forestry.stack("ash")
+			BotanyItems.POWDER_ASH.get(4),
+			Mods.Forestry.stack("ash")
 		);
 
 		recipeUtil.addShapelessRecipe("powder_mulch",
-				BotanyItems.POWDER_MULCH.get(4),
-				Mods.Forestry.stack("mulch")
+			BotanyItems.POWDER_MULCH.get(4),
+			Mods.Forestry.stack("mulch")
 		);
 
 		recipeUtil.addShapelessRecipe("powder_compost",
-				BotanyItems.POWDER_COMPOST.get(4),
-				Mods.Forestry.stack("fertilizer_bio")
+			BotanyItems.POWDER_COMPOST.get(4),
+			Mods.Forestry.stack("fertilizer_bio")
 		);
 
 		recipeUtil.addShapelessRecipe("powder_fertilizer",
-				BotanyItems.POWDER_FERTILISER.get(4),
-				Mods.Forestry.stack("fertilizer_compound")
+			BotanyItems.POWDER_FERTILISER.get(4),
+			Mods.Forestry.stack("fertilizer_compound")
 		);
 
 		recipeUtil.addShapelessRecipe("powder_pulp",
-				BotanyItems.POWDER_PULP.get(4),
-				Mods.Forestry.stack("wood_pulp")
+			BotanyItems.POWDER_PULP.get(4),
+			Mods.Forestry.stack("wood_pulp")
 		);
 
 		recipeUtil.addShapelessRecipe("pigment_black",
-				BotanyItems.POWDER_SULPHUR.get(4),
-				"dustSulphur"
+			BotanyItems.POWDER_SULPHUR.get(4),
+			"dustSulphur"
 		);
 
 		gardening.registerFertiliser(EnumFertiliserType.ACID, BotanyItems.POWDER_SULPHUR.get(1), 1);
@@ -245,7 +245,7 @@ public class ModuleGardening extends BlankModule {
 				int pH = acidity.ordinal();
 				for (EnumSoilType type : EnumSoilType.values()) {
 					Map<EnumFertiliserType, Map<ItemStack, Integer>> fertilisers = gardening.getFertilisers();
-					for(EnumFertiliserType fertiliserType : EnumFertiliserType.values()) {
+					for (EnumFertiliserType fertiliserType : EnumFertiliserType.values()) {
 						for (Map.Entry<ItemStack, Integer> entry : fertilisers.get(fertiliserType).entrySet()) {
 							ItemStack stack = entry.getKey();
 							int strengthMax = entry.getValue();
@@ -260,7 +260,7 @@ public class ModuleGardening extends BlankModule {
 									} else {
 										endPh = type.ordinal() + strength;
 									}
-									if(endPh < 0 || endPh > 2 || pH == endPh){
+									if (endPh < 0 || endPh > 2 || pH == endPh) {
 										continue;
 									}
 									ItemStack start = getStack(type, acidity, moisture, weedkiller);
@@ -319,12 +319,12 @@ public class ModuleGardening extends BlankModule {
 		}
 
 		IBlockSoil soil = (IBlockSoil) block;
-		if(gardening.onFertiliseSoil(heldItem, soil, world, pos, player)){
+		if (gardening.onFertiliseSoil(heldItem, soil, world, pos, player)) {
 			return;
 		}
 
 		if (OreDictionaryUtil.hasOreName(heldItem, "weedkiller") && gardening.addWeedKiller(world, pos)) {
-			if(!player.capabilities.isCreativeMode) {
+			if (!player.capabilities.isCreativeMode) {
 				heldItem.shrink(1);
 			}
 		}

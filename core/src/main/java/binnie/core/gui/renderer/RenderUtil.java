@@ -1,8 +1,5 @@
 package binnie.core.gui.renderer;
 
-import binnie.core.api.gui.IArea;
-import binnie.core.api.gui.IPoint;
-import binnie.core.gui.geometry.Point;
 import com.google.common.base.Preconditions;
 
 import javax.annotation.Nullable;
@@ -31,7 +28,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import forestry.api.core.ForestryAPI;
 
 import binnie.core.BinnieCore;
+import binnie.core.api.gui.IArea;
+import binnie.core.api.gui.IPoint;
 import binnie.core.gui.geometry.Area;
+import binnie.core.gui.geometry.Point;
 import binnie.core.gui.geometry.TextJustification;
 
 @SideOnly(Side.CLIENT)
@@ -142,7 +142,7 @@ public class RenderUtil {
 		FontRenderer fontRenderer = Minecraft.getMinecraft().fontRenderer;
 		final List<String> wrappedStrings = fontRenderer.listFormattedStringToWidth(text, area.size().xPos());
 		final float totalHeight = wrappedStrings.size() * getTextHeight();
-		float posY =  pos.yPos();
+		float posY = pos.yPos();
 		if (area.size().yPos() > totalHeight) {
 			posY += (area.size().yPos() - totalHeight) * justification.getYOffset();
 		}

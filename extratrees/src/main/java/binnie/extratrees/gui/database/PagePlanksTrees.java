@@ -4,22 +4,22 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import binnie.core.Binnie;
-import binnie.core.api.genetics.IBreedingSystem;
-import binnie.extratrees.machines.lumbermill.recipes.LumbermillRecipeManager;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
+
 import com.mojang.authlib.GameProfile;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import forestry.api.arboriculture.IAlleleTreeSpecies;
 import forestry.api.arboriculture.ITreeGenome;
 import forestry.api.arboriculture.ITreeRoot;
 import forestry.api.arboriculture.TreeManager;
-import net.minecraft.item.ItemStack;
-
-import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import forestry.api.genetics.IAlleleSpecies;
 
+import binnie.core.Binnie;
+import binnie.core.api.genetics.IBreedingSystem;
 import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.ControlText;
 import binnie.core.gui.database.ControlSpeciesBox;
@@ -29,6 +29,7 @@ import binnie.core.gui.database.WindowAbstractDatabase;
 import binnie.core.gui.geometry.Area;
 import binnie.core.gui.geometry.TextJustification;
 import binnie.core.gui.minecraft.Window;
+import binnie.extratrees.machines.lumbermill.recipes.LumbermillRecipeManager;
 
 @SideOnly(Side.CLIENT)
 public class PagePlanksTrees extends PageAbstract<ItemStack> {

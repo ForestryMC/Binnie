@@ -1,8 +1,8 @@
 package binnie.genetics.machine.analyser;
 
-import binnie.core.genetics.ManagerGenetics;
 import net.minecraft.item.ItemStack;
 
+import binnie.core.genetics.ManagerGenetics;
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.util.I18N;
 

@@ -1,10 +1,10 @@
 package binnie.genetics.machine.acclimatiser;
 
-import binnie.genetics.api.acclimatiser.IToleranceType;
 import net.minecraft.item.ItemStack;
 
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.util.I18N;
+import binnie.genetics.api.acclimatiser.IToleranceType;
 
 public class ValidatorAcclimatiserItem extends SlotValidator {
 	public ValidatorAcclimatiserItem() {

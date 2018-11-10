@@ -5,13 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import binnie.core.api.genetics.IBreedingSystem;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IChromosomeType;
 
 import binnie.core.Binnie;
-import binnie.core.genetics.Gene;
+import binnie.core.api.genetics.IBreedingSystem;
 import binnie.core.api.gui.IWidget;
+import binnie.core.genetics.Gene;
 import binnie.core.gui.controls.ControlText;
 import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.controls.core.IControlValue;

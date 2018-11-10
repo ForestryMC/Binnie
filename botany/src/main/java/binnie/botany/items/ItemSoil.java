@@ -33,14 +33,14 @@ public class ItemSoil extends ItemBlock {
 		StringBuilder builder = new StringBuilder();
 		builder.append(BlockSoil.getMoisture(stack, true, true));
 
-		String phInfo =  BlockSoil.getPH(stack, true, true);
+		String phInfo = BlockSoil.getPH(stack, true, true);
 		if (phInfo.length() > 0) {
-			if(builder.length() > 0){
+			if (builder.length() > 0) {
 				builder.append(", ");
 			}
 			builder.append(phInfo);
 		}
-		if(builder.length() > 0){
+		if (builder.length() > 0) {
 			tooltip.add(builder.toString());
 		}
 

@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import binnie.botany.Botany;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.RenderItem;
@@ -18,6 +16,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import forestry.api.genetics.IAlleleInteger;
 import forestry.api.genetics.IAlyzerPlugin;
 
+import binnie.botany.Botany;
 import binnie.botany.api.BotanyAPI;
 import binnie.botany.api.genetics.EnumFlowerChromosome;
 import binnie.botany.api.genetics.EnumFlowerStage;
@@ -33,22 +32,22 @@ public class FlowerAlyzerPlugin implements IAlyzerPlugin {
 	public static final int COLUMN_1 = 90;
 	public static final int COLUMN_2 = 155;
 	private static final EnumFlowerChromosome[] firstPageChromosome = new EnumFlowerChromosome[]{
-			EnumFlowerChromosome.SPECIES,
-			EnumFlowerChromosome.SAPPINESS,
-			EnumFlowerChromosome.TERRITORY,
-			EnumFlowerChromosome.FERTILITY,
-			EnumFlowerChromosome.EFFECT,
-			EnumFlowerChromosome.LIFESPAN
+		EnumFlowerChromosome.SPECIES,
+		EnumFlowerChromosome.SAPPINESS,
+		EnumFlowerChromosome.TERRITORY,
+		EnumFlowerChromosome.FERTILITY,
+		EnumFlowerChromosome.EFFECT,
+		EnumFlowerChromosome.LIFESPAN
 	};
 	private static final EnumFlowerChromosome[] secondPageColorChromosome = new EnumFlowerChromosome[]{
-			EnumFlowerChromosome.PRIMARY,
-			EnumFlowerChromosome.SECONDARY,
-			EnumFlowerChromosome.STEM,
+		EnumFlowerChromosome.PRIMARY,
+		EnumFlowerChromosome.SECONDARY,
+		EnumFlowerChromosome.STEM,
 	};
 	private static final EnumFlowerChromosome[] secondPageToleranceChromosome = new EnumFlowerChromosome[]{
-			EnumFlowerChromosome.TEMPERATURE_TOLERANCE,
-			EnumFlowerChromosome.HUMIDITY_TOLERANCE,
-			EnumFlowerChromosome.PH_TOLERANCE
+		EnumFlowerChromosome.TEMPERATURE_TOLERANCE,
+		EnumFlowerChromosome.HUMIDITY_TOLERANCE,
+		EnumFlowerChromosome.PH_TOLERANCE
 	};
 	private static final int ROW_SIZE = 12;
 	private static final int MARGIN = 10;

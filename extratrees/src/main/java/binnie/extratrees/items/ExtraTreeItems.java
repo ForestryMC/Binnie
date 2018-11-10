@@ -24,7 +24,7 @@ public enum ExtraTreeItems implements IItemMiscProvider {
 	GRAIN_CORN("grain_corn"),
 	GRAIN_ROASTED("grain_roasted"),
 	GLASS_FITTING("glass_fitting");
-	
+
 	private final String name;
 
 	ExtraTreeItems(String name) {

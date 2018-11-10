@@ -26,9 +26,9 @@ public class WorldGenHiveWater extends WorldGenHive {
 		}
 		final Material materialBlockBelow = world.getBlockState(blockPos.down()).getMaterial();
 		if (materialBlockBelow == Material.SAND ||
-				materialBlockBelow == Material.CLAY ||
-				materialBlockBelow == Material.GROUND ||
-				materialBlockBelow == Material.ROCK) {
+			materialBlockBelow == Material.CLAY ||
+			materialBlockBelow == Material.GROUND ||
+			materialBlockBelow == Material.ROCK) {
 			world.setBlockState(blockPos, ModuleCore.hive.getDefaultState().withProperty(BlockExtraBeeHives.HIVE_TYPE, EnumHiveType.WATER));
 		}
 		return true;

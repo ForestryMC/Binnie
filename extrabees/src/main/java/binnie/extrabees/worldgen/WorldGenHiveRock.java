@@ -24,8 +24,7 @@ public class WorldGenHiveRock extends WorldGenHive {
 	public boolean generate(final World world, final Random random, BlockPos pos) {
 		IBlockState blockState = world.getBlockState(pos);
 		Block block = blockState.getBlock();
-		while (block.isReplaceableOreGen(blockState, world, pos, BlockStateMatcher.forBlock(Blocks.STONE)))
-		{
+		while (block.isReplaceableOreGen(blockState, world, pos, BlockStateMatcher.forBlock(Blocks.STONE))) {
 			if (hasAirOnOneSide(world, pos)) {
 				IBlockState hiveState = ModuleCore.hive.getDefaultState().withProperty(BlockExtraBeeHives.HIVE_TYPE, EnumHiveType.ROCK);
 				world.setBlockState(pos, hiveState);

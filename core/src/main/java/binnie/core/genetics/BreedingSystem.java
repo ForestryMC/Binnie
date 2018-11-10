@@ -9,8 +9,6 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
 
-import binnie.core.api.genetics.IBreedingSystem;
-import binnie.core.util.collect.ListMultiMap;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -38,8 +36,10 @@ import forestry.api.genetics.ISpeciesRoot;
 import forestry.api.genetics.ISpeciesType;
 
 import binnie.core.Binnie;
+import binnie.core.api.genetics.IBreedingSystem;
 import binnie.core.resource.BinnieSprite;
 import binnie.core.util.I18N;
+import binnie.core.util.collect.ListMultiMap;
 
 public abstract class BreedingSystem implements IBreedingSystem, IItemStackRepresentitive {
 	private float discoveredSpeciesPercentage;

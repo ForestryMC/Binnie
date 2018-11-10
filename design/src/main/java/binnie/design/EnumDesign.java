@@ -3,12 +3,13 @@ package binnie.design;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.util.ResourceLocation;
+
 import binnie.core.Constants;
 import binnie.core.util.I18N;
 import binnie.design.api.IDesign;
 import binnie.design.api.IDesignCategory;
 import binnie.design.api.ILayout;
-import net.minecraft.util.ResourceLocation;
 
 public enum EnumDesign implements IDesign {
 	Blank("blank"),
@@ -403,7 +404,9 @@ public enum EnumDesign implements IDesign {
 		return this.topPattern;
 	}
 
-	public void setTopPattern(final  ILayout layout) { this.topPattern = layout; }
+	public void setTopPattern(final ILayout layout) {
+		this.topPattern = layout;
+	}
 
 	public void setTopAndBottomPattern(final ILayout layout) {
 		this.topPattern = layout;

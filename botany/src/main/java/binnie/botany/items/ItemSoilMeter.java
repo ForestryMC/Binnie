@@ -1,6 +1,5 @@
 package binnie.botany.items;
 
-import binnie.botany.EnumHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -21,6 +20,7 @@ import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
 
 import binnie.botany.CreativeTabBotany;
+import binnie.botany.EnumHelper;
 import binnie.botany.api.gardening.EnumAcidity;
 import binnie.botany.api.gardening.EnumMoisture;
 import binnie.botany.api.gardening.IBlockSoil;
@@ -79,11 +79,11 @@ public class ItemSoilMeter extends Item implements IItemModelRegister {
 		if (gardening.isSoil(block) && worldIn.isRemote) {
 			IBlockSoil soil = (IBlockSoil) block;
 			String info = I18N.localise("botany.soil.type") + ": "
-					+ EnumHelper.getLocalisedName(soil.getType(worldIn, pos), true) + ", "
-					+ TextFormatting.WHITE + I18N.localise("botany.moisture") + ": "
-					+ EnumHelper.getLocalisedName(soil.getMoisture(worldIn, pos), true) + ", "
-					+ TextFormatting.WHITE + I18N.localise("botany.ph") + ": "
-					+ EnumHelper.getLocalisedName(soil.getPH(worldIn, pos), true);
+				+ EnumHelper.getLocalisedName(soil.getType(worldIn, pos), true) + ", "
+				+ TextFormatting.WHITE + I18N.localise("botany.moisture") + ": "
+				+ EnumHelper.getLocalisedName(soil.getMoisture(worldIn, pos), true) + ", "
+				+ TextFormatting.WHITE + I18N.localise("botany.ph") + ": "
+				+ EnumHelper.getLocalisedName(soil.getPH(worldIn, pos), true);
 
 			ITextComponent chat = new TextComponentString(info);
 			player.sendStatusMessage(chat, false);

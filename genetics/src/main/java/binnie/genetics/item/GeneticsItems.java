@@ -9,7 +9,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.core.item.IItemMiscProvider;
-import binnie.genetics.Genetics;
+import binnie.genetics.modules.ModuleCore;
 
 public enum GeneticsItems implements IItemMiscProvider {
 	LaboratoryCasing("Reinforced Casing", "casing_iron"),
@@ -49,7 +49,7 @@ public enum GeneticsItems implements IItemMiscProvider {
 
 	@Override
 	public ItemStack get(final int size) {
-		return new ItemStack(Genetics.items().getItemGenetics(), size, this.ordinal());
+		return new ItemStack(ModuleCore.itemGenetics, size, this.ordinal());
 	}
 
 	public ItemStack get(Item itemGenetics, final int size) {

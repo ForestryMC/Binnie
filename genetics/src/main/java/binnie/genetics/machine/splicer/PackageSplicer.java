@@ -19,7 +19,7 @@ import binnie.genetics.core.GeneticsGUI;
 import binnie.genetics.genetics.Engineering;
 import binnie.genetics.machine.AdvGeneticMachine;
 import binnie.genetics.machine.ComponentGeneticGUI;
-import binnie.genetics.machine.ModuleMachine;
+import binnie.genetics.modules.ModuleMachine;
 
 public class PackageSplicer extends AdvGeneticMachine.PackageAdvGeneticBase implements IMachineInformation {
 	public PackageSplicer() {
@@ -64,9 +64,7 @@ public class PackageSplicer extends AdvGeneticMachine.PackageAdvGeneticBase impl
 			if (!stack.isEmpty()) {
 				IMachine machine1 = transfer.getMachine();
 				MachineUtil machineUtil = machine1.getMachineUtil();
-				if (!machineUtil.getStack(Splicer.SLOT_SERUM_VIAL).isEmpty() && machine1.getInterface(SplicerLogic.class).isValidSerum() != null) {
-					return true;
-				}
+				return !machineUtil.getStack(Splicer.SLOT_SERUM_VIAL).isEmpty() && machine1.getInterface(SplicerLogic.class).isValidSerum() != null;
 			}
 			return false;
 		});

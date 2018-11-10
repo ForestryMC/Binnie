@@ -87,7 +87,7 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 	@Override
 	public void readFromNBT(NBTTagCompound compound) {
 		super.readFromNBT(compound);
-		NBTUtil.readFromList(compound, TANKS_KEY, (tankNBT)->{
+		NBTUtil.readFromList(compound, TANKS_KEY, (tankNBT) -> {
 			int index = tankNBT.getInteger(TANK_INDEX_KEY);
 			if (this.tanks.containsKey(index)) {
 				TankSlot tank = tanks.get(index);
@@ -99,7 +99,7 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
 		compound = super.writeToNBT(compound);
-		NBTUtil.writeToList(compound, TANKS_KEY, tanks, (index, tank)->{
+		NBTUtil.writeToList(compound, TANKS_KEY, tanks, (index, tank) -> {
 			NBTTagCompound tankNBT = new NBTTagCompound();
 			tankNBT.setInteger(TANK_INDEX_KEY, index);
 			tank.writeToNBT(tankNBT);

@@ -1,7 +1,8 @@
 package binnie.genetics.machine.acclimatiser;
 
-import binnie.genetics.api.acclimatiser.IToleranceType;
 import net.minecraft.item.ItemStack;
+
+import binnie.genetics.api.acclimatiser.IToleranceType;
 
 public enum ToleranceType implements IToleranceType {
 	Temperature,

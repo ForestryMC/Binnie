@@ -38,7 +38,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 	@Override
 	public ItemStack removeStackFromSlot(int index) {
 		InventorySlot slot = getInternalSlot(index);
-		if(slot.isFake()){
+		if (slot.isFake()) {
 			return ItemStack.EMPTY;
 		}
 		ItemStack content = slot.getItemStack();
@@ -156,7 +156,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 		return null;
 	}
 
-	private InventorySlot getInternalSlot(int index){
+	private InventorySlot getInternalSlot(int index) {
 		return inventory.getOrDefault(index, FakeSlot.INSTANCE);
 	}
 

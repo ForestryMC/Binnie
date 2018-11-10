@@ -34,13 +34,13 @@ public class LumbermillLogic extends ComponentProcessSetCost implements IProcess
 				return new ErrorState(ExtraTreesErrorCode.LUMBERMILL_NO_SPACE_PLANKS, new int[]{LumbermillMachine.SLOT_PLANKS});
 			}
 		}
-		if(!util.isSlotEmpty(LumbermillMachine.SLOT_BARK)){
+		if (!util.isSlotEmpty(LumbermillMachine.SLOT_BARK)) {
 			ItemStack itemStack = util.getStack(LumbermillMachine.SLOT_BARK);
 			if (itemStack.getCount() + 2 > itemStack.getMaxStackSize()) {
 				return new ErrorState(ExtraTreesErrorCode.LUMBERMILL_NO_SPACE_BARK, new int[]{LumbermillMachine.SLOT_BARK});
 			}
 		}
-		if(!util.isSlotEmpty(LumbermillMachine.SLOT_SAWDUST)){
+		if (!util.isSlotEmpty(LumbermillMachine.SLOT_SAWDUST)) {
 			ItemStack itemStack = util.getStack(LumbermillMachine.SLOT_SAWDUST);
 			if (itemStack.getCount() + 2 > itemStack.getMaxStackSize()) {
 				return new ErrorState(ExtraTreesErrorCode.LUMBERMILL_NO_SPACE_SAW_DUST, new int[]{LumbermillMachine.SLOT_SAWDUST});

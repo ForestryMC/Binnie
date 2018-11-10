@@ -36,7 +36,7 @@ public class StyleSheetManager implements IResourceManagerReloadListener {
 	public void onResourceManagerReload(final IResourceManager manager) {
 		sheets.clear();
 		try {
-			for(Map.Entry<String, ResourceLocation> entry : sheetLocations.entrySet()){
+			for (Map.Entry<String, ResourceLocation> entry : sheetLocations.entrySet()) {
 				ResourceLocation location = entry.getValue();
 				StyleSheet styleSheet = StyleSheetParser.parseSheet(manager, location);
 				sheets.put(entry.getKey(), styleSheet);
@@ -56,11 +56,11 @@ public class StyleSheetManager implements IResourceManagerReloadListener {
 		return getSheet(DEFAULT_SHEET);
 	}
 
-	public static StyleSheet getSheet(String name){
+	public static StyleSheet getSheet(String name) {
 		return sheets.get(name);
 	}
 
-	public static void registerLocation(String name, ResourceLocation location){
+	public static void registerLocation(String name, ResourceLocation location) {
 		sheetLocations.put(name, location);
 	}
 }

@@ -3,7 +3,6 @@ package binnie.genetics.integration.jei.inoculator;
 import java.util.ArrayList;
 import java.util.List;
 
-import binnie.core.api.genetics.IBreedingSystem;
 import net.minecraft.item.ItemStack;
 
 import net.minecraftforge.oredict.OreDictionary;
@@ -15,6 +14,7 @@ import forestry.api.genetics.ISpeciesRoot;
 import forestry.api.genetics.ISpeciesType;
 
 import binnie.core.Binnie;
+import binnie.core.api.genetics.IBreedingSystem;
 import binnie.core.genetics.Gene;
 import binnie.genetics.genetics.Engineering;
 import binnie.genetics.item.ItemSerum;

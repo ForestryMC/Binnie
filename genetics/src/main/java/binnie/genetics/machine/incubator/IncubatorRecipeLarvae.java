@@ -1,14 +1,16 @@
 package binnie.genetics.machine.incubator;
 
-import binnie.core.Mods;
-import binnie.core.machines.MachineUtil;
-import binnie.genetics.item.GeneticLiquid;
-import forestry.api.apiculture.BeeManager;
-import forestry.api.apiculture.EnumBeeType;
-import forestry.api.apiculture.IBee;
 import net.minecraft.item.ItemStack;
 
 import net.minecraftforge.oredict.OreDictionary;
+
+import forestry.api.apiculture.BeeManager;
+import forestry.api.apiculture.EnumBeeType;
+import forestry.api.apiculture.IBee;
+
+import binnie.core.Mods;
+import binnie.core.machines.MachineUtil;
+import binnie.genetics.item.GeneticLiquid;
 
 public class IncubatorRecipeLarvae extends IncubatorRecipe {
 	public IncubatorRecipeLarvae(ItemStack beeLarvaeWildcard) {

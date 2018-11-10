@@ -14,14 +14,15 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.io.IOUtils;
 
 import net.minecraft.client.resources.IResource;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.ResourceLocation;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.core.gui.geometry.Area;
 import binnie.core.gui.geometry.Border;
@@ -59,14 +60,14 @@ public class StyleSheetParser {
 		}
 	}
 
-	private static Map<String, ParsedTextureSheet> parseTextureSheets(JsonObject jsonObject){
+	private static Map<String, ParsedTextureSheet> parseTextureSheets(JsonObject jsonObject) {
 		JsonArray textureSheetsArray = JsonUtils.getJsonArray(jsonObject, SHEETS_KEY);
-		if(textureSheetsArray == null){
+		if (textureSheetsArray == null) {
 			return Collections.emptyMap();
 		}
 		Map<String, ParsedTextureSheet> textureSheets = new HashMap<>();
 		for (JsonElement element : textureSheetsArray) {
-			if(!element.isJsonObject()){
+			if (!element.isJsonObject()) {
 				continue;
 			}
 			try {
@@ -76,21 +77,21 @@ public class StyleSheetParser {
 				String path = JsonUtils.getString(sheetJson, PATH_KEY);
 				ParsedTextureSheet textureSheet = new ParsedTextureSheet(modid, path);
 				textureSheets.put(name, textureSheet);
-			}catch(Exception e){
+			} catch (Exception e) {
 				Log.warning("Failed to load stylesheet for Binnie's Mods.", e);
 			}
 		}
 		return textureSheets;
 	}
 
-	private static Map<String, Texture> parseTextures(JsonObject jsonObject, Map<String, ParsedTextureSheet> textureSheets){
+	private static Map<String, Texture> parseTextures(JsonObject jsonObject, Map<String, ParsedTextureSheet> textureSheets) {
 		JsonArray texturesJson = JsonUtils.getJsonArray(jsonObject, TEXTURES_KEY);
-		if(texturesJson == null){
+		if (texturesJson == null) {
 			return Collections.emptyMap();
 		}
 		Map<String, Texture> textures = new HashMap<>();
 		for (JsonElement element : texturesJson) {
-			if(!element.isJsonObject()){
+			if (!element.isJsonObject()) {
 				continue;
 			}
 			try {
@@ -112,7 +113,7 @@ public class StyleSheetParser {
 				}
 				Texture texture = new Texture(uv, padding, border, textureSheet);
 				textures.put(name, texture);
-			}catch(Exception e){
+			} catch (Exception e) {
 				Log.warning("Failed to load stylesheet for Binnie's Mods.", e);
 			}
 		}
@@ -124,7 +125,7 @@ public class StyleSheetParser {
 		if (ints.length < 1 || ints.length > 4) {
 			throw new JsonParseException("Parameter must have between one and four numbers");
 		}
-		for(int i = 0;i < uvArray.size();i++){
+		for (int i = 0; i < uvArray.size(); i++) {
 			JsonElement object = uvArray.get(i);
 			ints[i] = JsonUtils.getInt(object, "uv" + i);
 		}
@@ -145,7 +146,7 @@ public class StyleSheetParser {
 		if (ints.length < 1 || ints.length > 4) {
 			throw new JsonParseException("Parameter must have between one and four numbers");
 		}
-		for(int i = 0;i < array.size();i++){
+		for (int i = 0; i < array.size(); i++) {
 			JsonElement object = array.get(i);
 			ints[i] = JsonUtils.getInt(object, UV_KEY + i);
 		}

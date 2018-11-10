@@ -1,6 +1,7 @@
 {
   "variants": {
-    "normal": { "model": "botany:stained" }
-	}
-
+    "normal": {
+      "model": "botany:stained"
+    }
+  }
 }

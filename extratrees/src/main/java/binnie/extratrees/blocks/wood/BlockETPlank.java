@@ -8,8 +8,8 @@ import net.minecraft.util.ResourceLocation;
 import forestry.arboriculture.blocks.BlockForestryPlanks;
 
 import binnie.core.Constants;
-import binnie.extratrees.wood.EnumETLog;
 import binnie.extratrees.blocks.property.PropertyETWoodType;
+import binnie.extratrees.wood.EnumETLog;
 
 public abstract class BlockETPlank extends BlockForestryPlanks<EnumETLog> {
 	private BlockETPlank(boolean fireproof, int blockNumber) {

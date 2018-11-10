@@ -17,13 +17,13 @@ import binnie.core.gui.minecraft.control.ControlProgress;
 import binnie.core.gui.minecraft.control.ControlSlot;
 import binnie.core.gui.minecraft.control.ControlSlotArray;
 import binnie.core.gui.minecraft.control.ControlSlotCharge;
-import binnie.core.gui.resource.textures.Texture;
 import binnie.core.gui.resource.textures.StandardTexture;
+import binnie.core.gui.resource.textures.Texture;
 import binnie.core.gui.window.Panel;
+import binnie.core.gui.window.WindowMachine;
 import binnie.core.util.I18N;
 import binnie.genetics.Genetics;
 import binnie.genetics.core.GeneticsTexture;
-import binnie.core.gui.window.WindowMachine;
 
 public class WindowAnalyser extends WindowMachine {
 	private static final Texture PROGRESS_BASE = new StandardTexture(0, 51, 66, 40, GeneticsTexture.GUI_PROCESS);

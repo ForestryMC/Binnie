@@ -43,7 +43,7 @@ import binnie.genetics.api.analyst.IAnalystManager;
 	acceptedMinecraftVersions = Constants.ACCEPTED_MINECRAFT_VERSIONS,
 	dependencies = "required-after:" + Constants.CORE_MOD_ID
 )
-public class ExtraBees  extends BlankModuleContainer {
+public class ExtraBees extends BlankModuleContainer {
 
 	public static final String MODID = "extrabees";
 
@@ -55,11 +55,11 @@ public class ExtraBees  extends BlankModuleContainer {
 
 	public static IBreedingSystem beeBreedingSystem;
 
-	public ExtraBees(){
+	public ExtraBees() {
 		super();
 		MinecraftForge.EVENT_BUS.register(ModuleCore.class);
 	}
-	
+
 	public static ConfigHandler configHandler;
 
 	@Mod.EventHandler
@@ -72,7 +72,7 @@ public class ExtraBees  extends BlankModuleContainer {
 
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new BinnieGUIHandler(ExtraBeesGUID.values()));
 
-		if(BeeManager.beeRoot != null) {
+		if (BeeManager.beeRoot != null) {
 			beeBreedingSystem = new BeeBreedingSystem();
 			Binnie.GENETICS.registerBreedingSystem(beeBreedingSystem);
 		}
@@ -89,7 +89,7 @@ public class ExtraBees  extends BlankModuleContainer {
 		configHandler.reload(true);
 	}
 
-	private void registerGuis(){
+	private void registerGuis() {
 		try {
 			Method m = GuiIdRegistry.class.getDeclaredMethod("registerGuiHandlers", GuiType.class, List.class);
 			m.setAccessible(true);

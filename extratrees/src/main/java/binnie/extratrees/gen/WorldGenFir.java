@@ -19,17 +19,17 @@ public class WorldGenFir {
 		@Override
 		protected void generateLeaves(World world, Random rand, TreeBlockTypeLeaf leaf, List<BlockPos> branchEnds, BlockPos startPos) {
 			int leafSpawn = this.height + 1;
-			int patchyBottom = (int)(this.height / 2.5F);
+			int patchyBottom = (int) (this.height / 2.5F);
 			int bottom = 3 + rand.nextInt(2);
 			WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, girth, 1, WorldGenHelper.EnumReplaceMode.AIR);
 			WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, girth + 2F, 1, WorldGenHelper.EnumReplaceMode.AIR);
-			while(leafSpawn > patchyBottom){
-				if(rand.nextFloat() < 0.45F){
+			while (leafSpawn > patchyBottom) {
+				if (rand.nextFloat() < 0.45F) {
 					WorldGenHelper.generateCircle(world, rand, startPos.add((girth - 1) * (rand.nextBoolean() ? -1 : 1), leafSpawn, (girth - 1) * (rand.nextBoolean() ? -1 : 1)), 2, 2, 2, leaf, 0.5f, WorldGenHelper.EnumReplaceMode.SOFT);
 				}
 				WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, girth + 2.9F - (rand.nextBoolean() ? 1 : 0), 1, WorldGenHelper.EnumReplaceMode.AIR);
 			}
-			while(leafSpawn > bottom){
+			while (leafSpawn > bottom) {
 				WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, girth + 2.3F - (rand.nextBoolean() ? 1 : 0), 1, WorldGenHelper.EnumReplaceMode.AIR);
 			}
 			WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, girth + 1F, 1, WorldGenHelper.EnumReplaceMode.AIR);

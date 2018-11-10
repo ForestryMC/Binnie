@@ -9,17 +9,17 @@ import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IMutation;
 
 import binnie.core.api.genetics.IBreedingSystem;
+import binnie.core.api.gui.IWidget;
 import binnie.core.gui.Attribute;
 import binnie.core.gui.CraftGUI;
 import binnie.core.gui.ITooltip;
-import binnie.core.api.gui.IWidget;
 import binnie.core.gui.Tooltip;
 import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.geometry.Point;
 import binnie.core.gui.minecraft.Window;
-import binnie.core.gui.resource.textures.Texture;
 import binnie.core.gui.resource.textures.CraftGUITextureSheet;
 import binnie.core.gui.resource.textures.StandardTexture;
+import binnie.core.gui.resource.textures.Texture;
 import binnie.core.util.I18N;
 
 class ControlMutationSymbol extends Control implements ITooltip {
@@ -66,7 +66,7 @@ class ControlMutationSymbol extends Control implements ITooltip {
 			final IAlleleSpecies species2 = this.value.getAllele1();
 			final IBreedingSystem system = ((WindowAbstractDatabase) this.getTopParent()).getBreedingSystem();
 			final float chance = system.getChance(this.value, Window.get(this).getPlayer(), species1, species2);
-			tooltip.add(I18N.localise(DatabaseConstants.CONTROL_KEY+ ".chance", chance));
+			tooltip.add(I18N.localise(DatabaseConstants.CONTROL_KEY + ".chance", chance));
 			for (final String string : this.value.getSpecialConditions()) {
 				tooltip.add(string);
 			}

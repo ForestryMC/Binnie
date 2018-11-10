@@ -1,9 +1,19 @@
 {
   "variants": {
-    "plant_type=dead_flower": { "model": "botany:dead_flower" },
-    "plant_type=decaying_flower": { "model": "botany:decaying_flower" },
-    "plant_type=weeds": { "model": "botany:weeds" },
-    "plant_type=weeds_long": { "model": "botany:weeds_long" },
-    "plant_type=weeds_very_long": { "model": "botany:weeds_very_long" }
+    "plant_type=dead_flower": {
+      "model": "botany:dead_flower"
+    },
+    "plant_type=decaying_flower": {
+      "model": "botany:decaying_flower"
+    },
+    "plant_type=weeds": {
+      "model": "botany:weeds"
+    },
+    "plant_type=weeds_long": {
+      "model": "botany:weeds_long"
+    },
+    "plant_type=weeds_very_long": {
+      "model": "botany:weeds_very_long"
+    }
   }
 }

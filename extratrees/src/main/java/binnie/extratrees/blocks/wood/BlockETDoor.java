@@ -38,67 +38,67 @@ import binnie.extratrees.wood.EnumETLog;
 
 public class BlockETDoor extends BlockDoor implements IWoodTyped, IItemModelRegister, IStateMapperRegister, IColoredBlock {
 	private final EnumETLog woodType;
-	
+
 	public BlockETDoor(EnumETLog woodType) {
 		super(Material.WOOD);
 		this.woodType = woodType;
-		
+
 		setHarvestLevel("axe", 0);
 		setCreativeTab(Tabs.tabArboriculture);
 		String name = "doors." + woodType;
 		setUnlocalizedName(name);
 		setRegistryName(name);
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerModel(Item item, IModelManager manager) {
 		ModelBakery.registerItemVariants(item, new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "door"));
 		ProxyArboricultureClient.registerWoodMeshDefinition(item, new WoodMeshDefinition());
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	public static class WoodMeshDefinition implements IWoodItemMeshDefinition {
-		
+
 		@Override
 		public ModelResourceLocation getModelLocation(ItemStack stack) {
 			return new ModelResourceLocation(Constants.EXTRA_TREES_MOD_ID + ":door", "inventory");
 		}
-		
+
 		@Override
 		public ResourceLocation getDefaultModelLocation(ItemStack stack) {
 			return new ResourceLocation(Constants.EXTRA_TREES_MOD_ID + ":item/door");
 		}
-		
+
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerStateMapper() {
 		ProxyArboricultureClient.registerWoodStateMapper(this,
-				new WoodTypeStateMapper(this, null).addPropertyToRemove(POWERED));
+			new WoodTypeStateMapper(this, null).addPropertyToRemove(POWERED));
 	}
-	
+
 	@Override
 	public WoodBlockKind getBlockKind() {
 		return WoodBlockKind.DOOR;
 	}
-	
+
 	@Override
 	public boolean isFireproof() {
 		return false;
 	}
-	
+
 	@Override
 	public EnumETLog getWoodType(int meta) {
 		return woodType;
 	}
-	
+
 	@Override
 	public Collection<EnumETLog> getWoodTypes() {
 		return Collections.singleton(woodType);
 	}
-	
+
 	@Override
 	@SuppressWarnings("deprecation")
 	public float getBlockHardness(IBlockState blockState, World worldIn, BlockPos pos) {
@@ -106,7 +106,7 @@ public class BlockETDoor extends BlockDoor implements IWoodTyped, IItemModelRegi
 		EnumETLog woodType = getWoodType(meta);
 		return woodType.getHardness();
 	}
-	
+
 	/**
 	 * Get the Item that this Block should drop when harvested.
 	 */
@@ -114,16 +114,16 @@ public class BlockETDoor extends BlockDoor implements IWoodTyped, IItemModelRegi
 	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
 		return state.getValue(HALF) == BlockDoor.EnumDoorHalf.UPPER ? Items.AIR : getItem();
 	}
-	
+
 	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
 		return new ItemStack(getItem());
 	}
-	
+
 	private Item getItem() {
 		return TreeManager.woodAccess.getStack(woodType, getBlockKind(), false).getItem();
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int colorMultiplier(IBlockState state, @Nullable IBlockAccess worldIn, @Nullable BlockPos pos, int tintIndex) {

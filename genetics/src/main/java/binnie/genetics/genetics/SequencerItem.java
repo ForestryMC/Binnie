@@ -7,8 +7,8 @@ import net.minecraft.nbt.NBTTagCompound;
 
 import net.minecraftforge.common.util.Constants;
 
-import binnie.core.genetics.Gene;
 import binnie.core.api.genetics.IGene;
+import binnie.core.genetics.Gene;
 
 public class SequencerItem extends GeneItem {
 	private int sequenced;
@@ -27,7 +27,7 @@ public class SequencerItem extends GeneItem {
 			nbt.hasKey("gene", Constants.NBT.TAG_COMPOUND) &&
 			nbt.hasKey("seq", Constants.NBT.TAG_BYTE) &&
 			nbt.hasKey("ana")
-			) {
+		) {
 			NBTTagCompound geneNbt = nbt.getCompoundTag("gene");
 			Gene gene = Gene.create(geneNbt);
 			SequencerItem sequencerItem = new SequencerItem(gene);

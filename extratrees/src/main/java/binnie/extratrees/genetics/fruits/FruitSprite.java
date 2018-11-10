@@ -33,7 +33,7 @@ public enum FruitSprite {
 
 	@SideOnly(Side.CLIENT)
 	public void registerSprites() {
-		if(!isRegistered) {
+		if (!isRegistered) {
 			TextureMap map = Minecraft.getMinecraft().getTextureMapBlocks();
 			map.registerSprite(location);
 			isRegistered = true;

@@ -1,7 +1,7 @@
 {
-    "parent": "botany:block/soil",
-    "textures": {
-        "top": "botany:blocks/soil/loam.alkaline.normal.2",
-        "side": "botany:blocks/soil/loam.alkaline.normal.1"
-    }
+  "parent": "botany:block/soil",
+  "textures": {
+    "top": "botany:blocks/soil/loam.alkaline.normal.2",
+    "side": "botany:blocks/soil/loam.alkaline.normal.1"
+  }
 }

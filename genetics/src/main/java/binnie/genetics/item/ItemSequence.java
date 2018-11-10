@@ -34,10 +34,10 @@ import binnie.core.item.ItemCore;
 import binnie.core.modules.ModuleManager;
 import binnie.core.util.I18N;
 import binnie.genetics.CreativeTabGenetics;
-import binnie.genetics.Genetics;
 import binnie.genetics.api.IItemChargeable;
 import binnie.genetics.genetics.GeneItem;
 import binnie.genetics.genetics.SequencerItem;
+import binnie.genetics.modules.ModuleCore;
 
 public class ItemSequence extends ItemCore implements IItemAnalysable, IItemChargeable {
 	public ItemSequence() {
@@ -52,7 +52,7 @@ public class ItemSequence extends ItemCore implements IItemAnalysable, IItemChar
 	}
 
 	public static ItemStack create(final IGene gene, final boolean sequenced) {
-		final ItemStack item = new ItemStack(Genetics.items().itemSequencer);
+		final ItemStack item = new ItemStack(ModuleCore.itemSequencer);
 		item.setItemDamage(sequenced ? 0 : item.getMaxDamage());
 		final SequencerItem seq = new SequencerItem(gene);
 		seq.writeToItem(item);
@@ -94,15 +94,15 @@ public class ItemSequence extends ItemCore implements IItemAnalysable, IItemChar
 	@Override
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
 		if (this.isInCreativeTab(tab)) {
-			if(ModuleManager.isModuleEnabled("forestry", "apiculture")) {
+			if (ModuleManager.isModuleEnabled("forestry", "apiculture")) {
 				final IAlleleBeeSpecies species = (IAlleleBeeSpecies) AlleleManager.alleleRegistry.getAllele("forestry.speciesMeadows");
 				Preconditions.checkNotNull(species);
 				items.add(create(new Gene(species, EnumBeeChromosome.SPECIES, BeeManager.beeRoot), false));
-			} else if(ModuleManager.isModuleEnabled("forestry", "arboriculture")){
+			} else if (ModuleManager.isModuleEnabled("forestry", "arboriculture")) {
 				final IAlleleTreeSpecies species = (IAlleleTreeSpecies) AlleleManager.alleleRegistry.getAllele("forestry.treeOak");
 				Preconditions.checkNotNull(species);
 				items.add(create(new Gene(species, EnumTreeChromosome.SPECIES, TreeManager.treeRoot), false));
-			} else if(ModuleManager.isModuleEnabled("forestry", "lepidopterology")){
+			} else if (ModuleManager.isModuleEnabled("forestry", "lepidopterology")) {
 				final IAlleleButterflySpecies species = (IAlleleButterflySpecies) AlleleManager.alleleRegistry.getAllele("forestry.lepiAurora");
 				Preconditions.checkNotNull(species);
 				items.add(create(new Gene(species, EnumButterflyChromosome.SPECIES, ButterflyManager.butterflyRoot), false));
@@ -119,7 +119,7 @@ public class ItemSequence extends ItemCore implements IItemAnalysable, IItemChar
 	@Override
 	public ItemStack analyse(final ItemStack stack) {
 		final SequencerItem seq = SequencerItem.create(stack);
-		if(seq == null){
+		if (seq == null) {
 			return stack;
 		}
 		seq.setAnalysed(true);
@@ -145,7 +145,7 @@ public class ItemSequence extends ItemCore implements IItemAnalysable, IItemChar
 	@Override
 	public ISpeciesRoot getSpeciesRoot(ItemStack stack) {
 		final SequencerItem seq = SequencerItem.create(stack);
-		if(seq == null){
+		if (seq == null) {
 			return null;
 		}
 		return seq.getSpeciesRoot();

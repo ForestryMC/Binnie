@@ -2,6 +2,19 @@ package binnie.extratrees.genetics.gui.analyst;
 
 import java.util.List;
 
+import net.minecraft.util.text.TextFormatting;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import forestry.api.genetics.EnumTolerance;
+import forestry.api.genetics.IAlleleTolerance;
+import forestry.api.genetics.IIndividual;
+import forestry.api.lepidopterology.EnumButterflyChromosome;
+import forestry.api.lepidopterology.IAlleleButterflyEffect;
+import forestry.api.lepidopterology.IButterfly;
+import forestry.api.lepidopterology.IButterflyGenome;
+
 import binnie.core.Constants;
 import binnie.core.api.gui.IArea;
 import binnie.core.api.gui.ITitledWidget;
@@ -14,23 +27,13 @@ import binnie.core.gui.minecraft.control.ControlIconDisplay;
 import binnie.core.util.I18N;
 import binnie.core.util.TimeUtil;
 import binnie.extratrees.ExtraTrees;
+import binnie.genetics.api.analyst.AnalystConstants;
 import binnie.genetics.api.analyst.IAnalystIcons;
 import binnie.genetics.api.analyst.IAnalystManager;
 import binnie.genetics.api.analyst.IAnalystPagePlugin;
 import binnie.genetics.api.analyst.IBehaviourPlugin;
 import binnie.genetics.api.analyst.IBiologyPlugin;
 import binnie.genetics.api.analyst.IClimatePlugin;
-import binnie.genetics.api.analyst.AnalystConstants;
-import forestry.api.genetics.EnumTolerance;
-import forestry.api.genetics.IAlleleTolerance;
-import forestry.api.genetics.IIndividual;
-import forestry.api.lepidopterology.EnumButterflyChromosome;
-import forestry.api.lepidopterology.IAlleleButterflyEffect;
-import forestry.api.lepidopterology.IButterfly;
-import forestry.api.lepidopterology.IButterflyGenome;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ButterflyAnalystPagePlugin implements IAnalystPagePlugin<IButterfly> {
 	@Override
@@ -54,58 +57,58 @@ public class ButterflyAnalystPagePlugin implements IAnalystPagePlugin<IButterfly
 			IAnalystIcons icons = analystManager.getIcons();
 			if (butterfly.getGenome().getNocturnal()) {
 				new ControlIconDisplay(parent, (parent.getWidth() - 64) / 2, y, icons.getIconAllDay())
-						.addTooltip(I18N.localise(AnalystConstants.BIOLOGY_KEY + ".allDay"));
+					.addTooltip(I18N.localise(AnalystConstants.BIOLOGY_KEY + ".allDay"));
 			} else if (butterfly.getGenome().getPrimary().isNocturnal()) {
 				new ControlIconDisplay(parent, (parent.getWidth() - 64) / 2, y, icons.getIconNight())
-						.addTooltip(I18N.localise(AnalystConstants.BIOLOGY_KEY + ".night"));
+					.addTooltip(I18N.localise(AnalystConstants.BIOLOGY_KEY + ".night"));
 			} else {
 				new ControlIconDisplay(parent, (parent.getWidth() - 64) / 2, y, icons.getIconDaytime())
-						.addTooltip(I18N.localise(AnalystConstants.BIOLOGY_KEY + ".day"));
+					.addTooltip(I18N.localise(AnalystConstants.BIOLOGY_KEY + ".day"));
 			}
 
 			if (!butterfly.getGenome().getTolerantFlyer()) {
 				new ControlIconDisplay(parent, (parent.getWidth() - 64) / 2 + 24, y, icons.getIconNoRain())
-						.addTooltip(I18N.localise(AnalystConstants.BIOLOGY_KEY + ".notRain"));
+					.addTooltip(I18N.localise(AnalystConstants.BIOLOGY_KEY + ".notRain"));
 			} else {
 				new ControlIconDisplay(parent, (parent.getWidth() - 64) / 2 + 24, y, icons.getIconRain())
-						.addTooltip(I18N.localise(AnalystConstants.BIOLOGY_KEY + ".rain"));
+					.addTooltip(I18N.localise(AnalystConstants.BIOLOGY_KEY + ".rain"));
 			}
 
 			if (butterfly.getGenome().getFireResist()) {
 				new ControlIconDisplay(parent, (parent.getWidth() - 64) / 2 + 48, y, icons.getIconNoFire())
-						.addTooltip(I18N.localise(AnalystConstants.BIOLOGY_KEY + ".nonflammable"));
+					.addTooltip(I18N.localise(AnalystConstants.BIOLOGY_KEY + ".nonflammable"));
 			} else {
 				new ControlIconDisplay(parent, (parent.getWidth() - 64) / 2 + 48, y, icons.getIconFire())
-						.addTooltip(I18N.localise(AnalystConstants.BIOLOGY_KEY + ".flammable"));
+					.addTooltip(I18N.localise(AnalystConstants.BIOLOGY_KEY + ".flammable"));
 			}
 			y += 30;
 
 			int fertility = butterfly.getGenome().getFertility();
 			if (fertility > 1) {
 				new ControlTextCentered(parent, y, I18N.localise(AnalystConstants.BIOLOGY_KEY + ".fertility.moths", fertility))
-						.setColor(parent.getColor());
+					.setColor(parent.getColor());
 			} else {
 				new ControlTextCentered(parent, y, I18N.localise(AnalystConstants.BIOLOGY_KEY + ".fertility.moth"))
-						.setColor(parent.getColor());
+					.setColor(parent.getColor());
 			}
 
 			y += 32;
 			float caterpillarMatureTime = Constants.SPAWN_KOEF * Math.round(butterfly.getGenome().getLifespan() / (butterfly.getGenome().getFertility() * 2));
 			new ControlTextCentered(parent, y, I18N.localise(AnalystConstants.BIOLOGY_KEY + ".caterpillarGestation"))
-					.setColor(parent.getColor());
+				.setColor(parent.getColor());
 
 			y += 12;
 			new ControlTextCentered(parent, y, TextFormatting.BOLD + TimeUtil.getMCDayString(caterpillarMatureTime))
-					.setColor(parent.getColor());
+				.setColor(parent.getColor());
 
 			y += 22;
 			int speed = (int) (20.0f * butterfly.getGenome().getSpeed());
 			new ControlTextCentered(parent, y, I18N.localise(AnalystConstants.BIOLOGY_KEY + ".flightSpeed"))
-					.setColor(parent.getColor());
+				.setColor(parent.getColor());
 
 			y += 12;
 			new ControlTextCentered(parent, y, TextFormatting.BOLD + I18N.localise(AnalystConstants.BIOLOGY_KEY + ".blocksPerSec", speed))
-					.setColor(parent.getColor());
+				.setColor(parent.getColor());
 			y += 22;
 			return y;
 		}
@@ -118,26 +121,26 @@ public class ButterflyAnalystPagePlugin implements IAnalystPagePlugin<IButterfly
 			IButterflyGenome genome = individual.getGenome();
 			String metabolismAlleleName = ExtraTrees.mothBreedingSystem.getAlleleName(EnumButterflyChromosome.METABOLISM, genome.getActiveAllele(EnumButterflyChromosome.METABOLISM));
 			new ControlTextCentered(parent, y, I18N.localise(AnalystConstants.BEHAVIOUR_KEY + ".metabolism", metabolismAlleleName))
-					.setColor(parent.getColor());
+				.setColor(parent.getColor());
 			y += 20;
 
 			new ControlTextCentered(parent, y, I18N.localise(AnalystConstants.BEHAVIOUR_KEY + ".pollinatesNearby") + '\n' + genome.getFlowerProvider().getDescription())
-					.setColor(parent.getColor());
+				.setColor(parent.getColor());
 			y += 20;
 
 			new ControlTextCentered(parent, y, I18N.localise(AnalystConstants.BEHAVIOUR_KEY + ".everyTime", TimeUtil.getTimeString(1500)))
-					.setColor(parent.getColor());
+				.setColor(parent.getColor());
 			y += 22;
 
 			IAlleleButterflyEffect effect2 = genome.getEffect();
 			if (!effect2.getUID().contains("None")) {
 				String effectDesc2 = I18N.localiseOrBlank("binniecore.allele." + effect2.getUID() + ".desc");
 				String loc2 = effectDesc2.isEmpty()
-						? I18N.localise(AnalystConstants.BEHAVIOUR_KEY + ".effect", effect2.getAlleleName())
-						: effectDesc2;
+					? I18N.localise(AnalystConstants.BEHAVIOUR_KEY + ".effect", effect2.getAlleleName())
+					: effectDesc2;
 
 				new ControlText(parent, new Area(4, y, parent.getWidth() - 8, 0), loc2, TextJustification.TOP_CENTER)
-						.setColor(parent.getColor());
+					.setColor(parent.getColor());
 			}
 			return y;
 		}

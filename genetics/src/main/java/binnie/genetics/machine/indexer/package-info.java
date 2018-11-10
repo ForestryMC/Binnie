@@ -3,7 +3,8 @@
 @FieldsAreNonnullByDefault
 package binnie.genetics.machine.indexer;
 
-import binnie.core.util.FieldsAreNonnullByDefault;
+import javax.annotation.ParametersAreNonnullByDefault;
+
 import mcp.MethodsReturnNonnullByDefault;
 
-import javax.annotation.ParametersAreNonnullByDefault;
+import binnie.core.util.FieldsAreNonnullByDefault;

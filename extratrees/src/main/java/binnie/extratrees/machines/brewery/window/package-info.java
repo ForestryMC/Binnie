@@ -5,5 +5,6 @@ package binnie.extratrees.machines.brewery.window;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import binnie.core.util.FieldsAreNonnullByDefault;
 import mcp.MethodsReturnNonnullByDefault;
+
+import binnie.core.util.FieldsAreNonnullByDefault;

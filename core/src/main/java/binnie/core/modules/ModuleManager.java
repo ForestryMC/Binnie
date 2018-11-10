@@ -18,7 +18,7 @@ public class ModuleManager {
 
 	@SubscribeEvent
 	public static void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event) {
-		for(IModuleContainer container : containers.values()) {
+		for (IModuleContainer container : containers.values()) {
 			if (!event.getModID().equals(container.getID())) {
 				continue;
 			}

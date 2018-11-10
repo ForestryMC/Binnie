@@ -13,12 +13,12 @@ import binnie.core.gui.minecraft.control.ControlPlayerInventory;
 import binnie.core.gui.minecraft.control.ControlProgress;
 import binnie.core.gui.minecraft.control.ControlSlot;
 import binnie.core.gui.minecraft.control.ControlSlotArray;
-import binnie.core.gui.resource.textures.Texture;
 import binnie.core.gui.resource.textures.StandardTexture;
+import binnie.core.gui.resource.textures.Texture;
+import binnie.core.gui.window.WindowMachine;
 import binnie.core.util.I18N;
 import binnie.genetics.Genetics;
 import binnie.genetics.core.GeneticsTexture;
-import binnie.core.gui.window.WindowMachine;
 
 public class WindowAcclimatiser extends WindowMachine {
 	private static final Texture PROGRESS_BASE = new StandardTexture(0, 64, 64, 64, GeneticsTexture.GUI_PROCESS_3);
@@ -32,7 +32,7 @@ public class WindowAcclimatiser extends WindowMachine {
 	@SideOnly(Side.CLIENT)
 	public void initialiseClient() {
 		super.initialiseClient();
-		new ControlProgress(this, 65, 28 , PROGRESS_BASE, PROGRESS, Alignment.RIGHT);
+		new ControlProgress(this, 65, 28, PROGRESS_BASE, PROGRESS, Alignment.RIGHT);
 		int x = 16;
 		final int y = 32;
 		new ControlSlotArray.Builder(this, x, y, 2, 2).create(Acclimatiser.SLOT_RESERVE);

@@ -1,22 +1,22 @@
 package binnie.extratrees.genetics.gui.analyst;
 
-import binnie.core.Binnie;
-import binnie.core.api.genetics.IBreedingSystem;
-import binnie.core.api.gui.IArea;
-import binnie.core.api.gui.ITitledWidget;
-import binnie.core.gui.controls.core.Control;
-import binnie.core.util.TimeUtil;
-import forestry.api.arboriculture.TreeManager;
 import net.minecraft.util.text.TextFormatting;
 
 import forestry.api.arboriculture.EnumTreeChromosome;
 import forestry.api.arboriculture.ITree;
+import forestry.api.arboriculture.TreeManager;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IIndividual;
 
+import binnie.core.Binnie;
+import binnie.core.api.genetics.IBreedingSystem;
+import binnie.core.api.gui.IArea;
+import binnie.core.api.gui.ITitledWidget;
 import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.ControlTextCentered;
+import binnie.core.gui.controls.core.Control;
 import binnie.core.util.I18N;
+import binnie.core.util.TimeUtil;
 import binnie.genetics.api.analyst.AnalystConstants;
 
 public class AnalystPageGrowth extends Control implements ITitledWidget {

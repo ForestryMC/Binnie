@@ -10,10 +10,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import forestry.api.core.EnumTemperature;
 
+import binnie.core.api.gui.IWidget;
 import binnie.core.genetics.Tolerance;
 import binnie.core.gui.Attribute;
 import binnie.core.gui.ITooltip;
-import binnie.core.api.gui.IWidget;
 import binnie.core.gui.Tooltip;
 import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.geometry.Area;

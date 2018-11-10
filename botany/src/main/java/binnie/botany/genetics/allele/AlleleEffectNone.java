@@ -1,12 +1,12 @@
 package binnie.botany.genetics.allele;
 
-import binnie.core.Constants;
 import net.minecraft.world.World;
 
 import forestry.api.genetics.IEffectData;
 
 import binnie.botany.api.genetics.IAlleleFlowerEffect;
 import binnie.botany.api.genetics.IFlowerGenome;
+import binnie.core.Constants;
 
 public class AlleleEffectNone implements IAlleleFlowerEffect {
 	@Override

@@ -3,11 +3,12 @@ package binnie.core.api.gui;
 import javax.annotation.Nullable;
 import java.util.List;
 
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import binnie.core.api.gui.events.Event;
 import binnie.core.api.gui.events.EventHandlerOrigin;
 import binnie.core.api.gui.events.OnEventHandler;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public interface IWidget {
 	/**
@@ -122,7 +123,6 @@ public interface IWidget {
 	/* ATTRIBUTES */
 
 	/**
-	 *
 	 * @return true if this widget has this attribute
 	 */
 	boolean hasAttribute(IWidgetAttribute attribute);

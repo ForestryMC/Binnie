@@ -88,7 +88,7 @@ public class Widget implements IWidget {
 
 	@Override
 	public void addChild(IWidget child) {
-		if(child == null){
+		if (child == null) {
 			return;
 		}
 		IWidget topWidget = getTopChild();
@@ -100,8 +100,8 @@ public class Widget implements IWidget {
 	}
 
 	@Nullable
-	protected IWidget getFirstChild(){
-		if(children.isEmpty()){
+	protected IWidget getFirstChild() {
+		if (children.isEmpty()) {
 			return null;
 		}
 		return children.get(0);
@@ -129,7 +129,7 @@ public class Widget implements IWidget {
 
 	@Nullable
 	public IWidget getTopChild() {
-		if(children.isEmpty()){
+		if (children.isEmpty()) {
 			return null;
 		}
 		int childrenCount = getChildren().size();

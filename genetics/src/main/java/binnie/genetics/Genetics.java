@@ -35,30 +35,23 @@ import binnie.genetics.gui.Icons;
 import binnie.genetics.gui.analyst.AnalystManager;
 import binnie.genetics.gui.analyst.GeneticsProducePlugin;
 import binnie.genetics.item.ItemPunnettSquare;
-import binnie.genetics.item.ModuleItems;
 import binnie.genetics.machine.GeneticsErrorCode;
-import binnie.genetics.machine.ModuleMachine;
 import binnie.genetics.machine.acclimatiser.AcclimatiserManager;
 import binnie.genetics.machine.sequencer.Sequencer;
 import binnie.genetics.proxy.Proxy;
 
 @Mod(
-		modid = Constants.GENETICS_MOD_ID,
-		name = "Binnie's Genetics",
-		version = "@VERSION@",
-		acceptedMinecraftVersions = Constants.ACCEPTED_MINECRAFT_VERSIONS,
-		dependencies = "required-after:" + Constants.CORE_MOD_ID
+	modid = Constants.GENETICS_MOD_ID,
+	name = "Binnie's Genetics",
+	version = "@VERSION@",
+	acceptedMinecraftVersions = Constants.ACCEPTED_MINECRAFT_VERSIONS,
+	dependencies = "required-after:" + Constants.CORE_MOD_ID
 )
 public class Genetics extends AbstractMod {
-	public static final String CHANNEL = "GEN";
 	@Mod.Instance(Constants.GENETICS_MOD_ID)
 	public static Genetics instance;
 	@SidedProxy(clientSide = "binnie.genetics.proxy.ProxyClient", serverSide = "binnie.genetics.proxy.ProxyServer")
 	public static Proxy proxy;
-	@Nullable
-	private static ModuleItems items;
-	@Nullable
-	private static ModuleMachine machine;
 	@Nullable
 	private static IAnalystManager analystManager;
 	@Nullable
@@ -67,12 +60,6 @@ public class Genetics extends AbstractMod {
 	private static Icons icons;
 
 	public static ConfigHandler configHandler;
-
-
-	public static ModuleItems items() {
-		Preconditions.checkState(items != null);
-		return items;
-	}
 
 	public static IAnalystManager getAnalystManager() {
 		Preconditions.checkNotNull(analystManager);
@@ -91,6 +78,7 @@ public class Genetics extends AbstractMod {
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent evt) {
+		super.preInit(evt);
 		File configFile = new File(evt.getModConfigurationDirectory(), "forestry/genetics/main.conf");
 		configHandler = new ConfigHandler(configFile);
 		configHandler.addConfigurable(new ConfigurationMain());
@@ -137,8 +125,6 @@ public class Genetics extends AbstractMod {
 
 	@Override
 	protected void registerModules() {
-		addModule(items = new ModuleItems());
-		addModule(machine = new ModuleMachine());
 	}
 
 	@Override
@@ -153,7 +139,7 @@ public class Genetics extends AbstractMod {
 
 	@Override
 	public String getChannel() {
-		return CHANNEL;
+		return "GEN";
 	}
 
 	@Override

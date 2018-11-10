@@ -3,8 +3,8 @@ package binnie.genetics.gui.analyst;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.core.gui.CraftGUI;
 import binnie.core.api.gui.IWidget;
+import binnie.core.gui.CraftGUI;
 import binnie.core.gui.controls.scroll.ControlScrollBar;
 import binnie.core.gui.controls.scroll.ControlScrollableContent;
 import binnie.core.gui.geometry.Area;

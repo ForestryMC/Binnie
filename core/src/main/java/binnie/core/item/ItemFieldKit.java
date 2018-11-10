@@ -20,8 +20,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import forestry.api.core.IModelManager;
 
-import binnie.core.Constants;
 import binnie.core.BinnieCore;
+import binnie.core.Constants;
 import binnie.core.gui.BinnieCoreGUI;
 
 public class ItemFieldKit extends ItemCore {

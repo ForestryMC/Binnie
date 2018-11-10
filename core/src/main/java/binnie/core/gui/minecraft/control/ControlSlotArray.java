@@ -7,11 +7,12 @@ import java.util.List;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.minecraft.InventoryType;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class ControlSlotArray extends Control implements Iterable<ControlSlot> {

@@ -50,13 +50,13 @@ import forestry.core.blocks.properties.UnlistedBlockAccess;
 import forestry.core.blocks.properties.UnlistedBlockPos;
 import forestry.core.models.BlockModelEntry;
 
-import binnie.core.Constants;
 import binnie.botany.CreativeTabBotany;
+import binnie.botany.api.genetics.EnumFlowerColor;
 import binnie.botany.ceramic.brick.CeramicBrickPair;
 import binnie.botany.ceramic.brick.CeramicBrickType;
-import binnie.botany.api.genetics.EnumFlowerColor;
 import binnie.botany.tile.TileCeramic;
 import binnie.botany.tile.TileCeramicBrick;
+import binnie.core.Constants;
 import binnie.core.block.IMultipassBlock;
 import binnie.core.models.DefaultStateMapper;
 import binnie.core.models.ModelManager;
@@ -126,10 +126,10 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 		ResourceLocation resourceLocation = new ResourceLocation(Constants.BOTANY_MOD_ID, "ceramicBrick");
 		ModelLoader.setCustomStateMapper(this, new DefaultStateMapper(resourceLocation));
 		ModelManager.registerCustomBlockModel(new BlockModelEntry(
-				new ModelResourceLocation(resourceLocation, "normal"),
-				new ModelResourceLocation(resourceLocation, "inventory"),
-				new ModelMutlipass<>(BlockCeramicBrick.class),
-				this
+			new ModelResourceLocation(resourceLocation, "normal"),
+			new ModelResourceLocation(resourceLocation, "inventory"),
+			new ModelMutlipass<>(BlockCeramicBrick.class),
+			this
 		));
 	}
 
@@ -142,12 +142,12 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 	@Override
 	protected BlockStateContainer createBlockState() {
 		return new ExtendedBlockState(
-				this,
-				new IProperty[]{TYPE},
-				new IUnlistedProperty[]{
-						UnlistedBlockPos.POS,
-						UnlistedBlockAccess.BLOCKACCESS
-				}
+			this,
+			new IProperty[]{TYPE},
+			new IUnlistedProperty[]{
+				UnlistedBlockPos.POS,
+				UnlistedBlockAccess.BLOCKACCESS
+			}
 		);
 	}
 

@@ -12,13 +12,14 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import forestry.api.core.INbtReadable;
+import forestry.api.core.INbtWritable;
+
 import binnie.core.BinnieCore;
 import binnie.core.ManagerBase;
 import binnie.core.machines.inventory.ValidatorSprite;
 import binnie.core.machines.render.RenderTESRMachine;
 import binnie.core.proxy.IBinnieProxy;
-import forestry.api.core.INbtReadable;
-import forestry.api.core.INbtWritable;
 
 public class ManagerMachine extends ManagerBase {
 	private static ValidatorSprite spriteBee;

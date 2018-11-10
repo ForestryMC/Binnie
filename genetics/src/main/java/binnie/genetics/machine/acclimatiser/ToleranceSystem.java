@@ -2,8 +2,6 @@ package binnie.genetics.machine.acclimatiser;
 
 import java.util.Random;
 
-import binnie.genetics.api.acclimatiser.IToleranceType;
-import binnie.genetics.machine.splicer.Splicer;
 import net.minecraft.item.ItemStack;
 
 import forestry.api.genetics.AlleleManager;
@@ -15,6 +13,8 @@ import forestry.api.genetics.ISpeciesRoot;
 
 import binnie.core.genetics.Gene;
 import binnie.core.genetics.Tolerance;
+import binnie.genetics.api.acclimatiser.IToleranceType;
+import binnie.genetics.machine.splicer.Splicer;
 
 class ToleranceSystem {
 	private final String speciesRootUid;

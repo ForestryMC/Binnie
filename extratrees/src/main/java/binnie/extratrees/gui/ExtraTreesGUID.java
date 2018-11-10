@@ -10,11 +10,11 @@ import net.minecraftforge.fml.relauncher.Side;
 
 import binnie.core.gui.IBinnieGUID;
 import binnie.core.gui.minecraft.Window;
+import binnie.design.gui.WindowDesigner;
 import binnie.extratrees.gui.database.WindowArboristDatabase;
 import binnie.extratrees.gui.database.WindowLepidopteristDatabase;
 import binnie.extratrees.kitchen.craftgui.WindowBottleRack;
 import binnie.extratrees.machines.brewery.window.WindowBrewery;
-import binnie.design.gui.WindowDesigner;
 import binnie.extratrees.machines.distillery.window.WindowDistillery;
 import binnie.extratrees.machines.fruitpress.window.WindowPress;
 import binnie.extratrees.machines.lumbermill.window.WindowLumbermill;

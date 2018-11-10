@@ -4,10 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Objects;
 
-import binnie.core.api.genetics.IBreedingSystem;
-import binnie.core.api.gui.IArea;
-import binnie.core.api.gui.ITitledWidget;
-import binnie.core.gui.controls.ControlIndividualDisplay;
 import net.minecraft.util.text.TextFormatting;
 
 import net.minecraftforge.fml.relauncher.Side;
@@ -17,8 +13,12 @@ import forestry.api.arboriculture.EnumTreeChromosome;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IIndividual;
 
-import binnie.core.gui.CraftGUI;
+import binnie.core.api.genetics.IBreedingSystem;
+import binnie.core.api.gui.IArea;
+import binnie.core.api.gui.ITitledWidget;
 import binnie.core.api.gui.IWidget;
+import binnie.core.gui.CraftGUI;
+import binnie.core.gui.controls.ControlIndividualDisplay;
 import binnie.core.gui.controls.ControlTextCentered;
 import binnie.core.gui.controls.ControlTextEdit;
 import binnie.core.gui.controls.core.Control;
@@ -67,7 +67,7 @@ public class AnalystPageDatabase extends Control implements ITitledWidget {
 		new DatabaseScrollBar(this);
 	}
 
-	private static int getColor(IBreedingSystem system){
+	private static int getColor(IBreedingSystem system) {
 		int cOfSystem = system.getColour();
 		int cr = (0xFF0000 & cOfSystem) >> 16;
 		int cg = (0xFF00 & cOfSystem) >> 8;

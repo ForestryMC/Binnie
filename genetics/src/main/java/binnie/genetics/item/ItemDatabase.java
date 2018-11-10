@@ -1,6 +1,5 @@
 package binnie.genetics.item;
 
-import binnie.core.api.gui.IGuiItem;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -16,6 +15,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import forestry.api.core.IModelManager;
 
+import binnie.core.api.gui.IGuiItem;
 import binnie.core.item.ItemCore;
 import binnie.core.util.I18N;
 import binnie.genetics.CreativeTabGenetics;

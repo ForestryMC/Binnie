@@ -46,7 +46,7 @@ public enum GlasswareType {
 		this.contentHeight = contentHeight / SPRITE_PIXELS;
 		this.recipe = recipe;
 		StringBuilder builder = new StringBuilder();
-		for(String s : recipe) {
+		for (String s : recipe) {
 			builder.append(s);
 		}
 		String recipeString = builder.toString();

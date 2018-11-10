@@ -1,8 +1,10 @@
 package binnie.botany.api.gardening;
 
 import javax.annotation.Nullable;
-import binnie.botany.api.IBotanyColored;
+
 import net.minecraft.util.text.TextFormatting;
+
+import binnie.botany.api.IBotanyColored;
 
 public enum EnumMoisture implements IBotanyColored {
 	DRY(TextFormatting.YELLOW),
@@ -27,11 +29,11 @@ public enum EnumMoisture implements IBotanyColored {
 	}
 
 	public static EnumMoisture getFromValue(float rawMoisture) {
-		if(rawMoisture <= -1.0f){
+		if (rawMoisture <= -1.0f) {
 			return EnumMoisture.DRY;
-		}else if(rawMoisture >= 1.0f){
+		} else if (rawMoisture >= 1.0f) {
 			return EnumMoisture.DAMP;
-		}else{
+		} else {
 			return EnumMoisture.NORMAL;
 		}
 	}

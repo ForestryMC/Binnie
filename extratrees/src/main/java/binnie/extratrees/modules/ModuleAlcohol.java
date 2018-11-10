@@ -77,7 +77,7 @@ public class ModuleAlcohol extends BlankModule {
 		IBreweryManager breweryManager = ExtraTreesRecipeManager.breweryManager;
 		IFruitPressManager fruitPressManager = ExtraTreesRecipeManager.fruitPressManager;
 
-		if(ModuleManager.isModuleEnabled("forestry", "apiculture")) {
+		if (ModuleManager.isModuleEnabled("forestry", "apiculture")) {
 			ItemStack wax = Mods.Forestry.stack("beeswax");
 			ItemStack waxCast = Mods.Forestry.stackWildcard("wax_cast");
 			for (GlasswareType glasswareType : GlasswareType.values()) {
@@ -87,7 +87,7 @@ public class ModuleAlcohol extends BlankModule {
 			}
 		}
 
-		if(fruitPressManager != null) {
+		if (fruitPressManager != null) {
 			for (Juice juice : Juice.values()) {
 				String oreDict = juice.getSqueezing();
 				List<ItemStack> ores = new ArrayList<>(OreDictionary.getOres(oreDict));
@@ -112,7 +112,7 @@ public class ModuleAlcohol extends BlankModule {
 				}
 			}
 		}
-		if(breweryManager != null) {
+		if (breweryManager != null) {
 			for (Alcohol alcohol : Alcohol.values()) {
 				FluidType type = alcohol.getType();
 				for (String fermentLiquid : alcohol.getFermentationLiquid()) {
@@ -180,7 +180,7 @@ public class ModuleAlcohol extends BlankModule {
 	}
 
 
-	private <L extends IFluidDefinition & ICocktailIngredientProvider> void registerLiquids(L[] liquids){
+	private <L extends IFluidDefinition & ICocktailIngredientProvider> void registerLiquids(L[] liquids) {
 		Binnie.LIQUID.createLiquids(liquids);
 		Cocktail.registerIngredients(liquids);
 	}

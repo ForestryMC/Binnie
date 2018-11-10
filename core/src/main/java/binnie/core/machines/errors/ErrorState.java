@@ -5,18 +5,20 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import binnie.core.gui.minecraft.ContainerCraftGUI;
-import binnie.core.gui.minecraft.CustomSlot;
-import binnie.core.machines.inventory.InventorySlot;
-import binnie.core.machines.inventory.SlotValidator;
-import binnie.core.machines.inventory.Validator;
-import it.unimi.dsi.fastutil.ints.IntArraySet;
-import it.unimi.dsi.fastutil.ints.IntSet;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 
 import forestry.api.core.INbtReadable;
 import forestry.api.core.INbtWritable;
+
+import binnie.core.gui.minecraft.ContainerCraftGUI;
+import binnie.core.gui.minecraft.CustomSlot;
+import binnie.core.machines.inventory.InventorySlot;
+import binnie.core.machines.inventory.SlotValidator;
+import binnie.core.machines.inventory.Validator;
+
+import it.unimi.dsi.fastutil.ints.IntArraySet;
+import it.unimi.dsi.fastutil.ints.IntSet;
 
 public class ErrorState implements INbtReadable, INbtWritable {
 	/*private String name;

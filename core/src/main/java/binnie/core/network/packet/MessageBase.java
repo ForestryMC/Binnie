@@ -5,9 +5,10 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-import binnie.core.util.Log;
 import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.nbt.NBTTagCompound;
+
+import binnie.core.util.Log;
 
 import io.netty.buffer.ByteBuf;
 

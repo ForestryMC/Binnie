@@ -76,10 +76,11 @@ public class TileEntityMetadata extends TileEntity {
 	@Override
 	public void readFromNBT(final NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
-		if(world!=null)
+		if (world != null) {
 			setTileMetadata(nbt.getInteger("meta"), world.isRemote);
-		else
+		} else {
 			this.meta = nbt.getInteger("meta");
+		}
 	}
 
 	@Override

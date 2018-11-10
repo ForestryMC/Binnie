@@ -1,9 +1,11 @@
 package binnie.genetics.machine;
 
-import binnie.core.machines.inventory.TankValidator;
-import forestry.core.fluids.Fluids;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
+
+import forestry.core.fluids.Fluids;
+
+import binnie.core.machines.inventory.TankValidator;
 
 public class EthanolTankValidator extends TankValidator {
 	@Override

@@ -7,7 +7,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
-import forestry.api.climate.ClimateManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -40,7 +39,7 @@ public class GardeningManager implements IGardeningManager {
 	private final Map<EnumFertiliserType, Map<ItemStack, Integer>> fertilisers = new LinkedHashMap<>();
 
 	public GardeningManager() {
-		for(EnumFertiliserType type : EnumFertiliserType.values()){
+		for (EnumFertiliserType type : EnumFertiliserType.values()) {
 			fertilisers.put(type, new LinkedHashMap<>());
 		}
 	}
@@ -135,7 +134,7 @@ public class GardeningManager implements IGardeningManager {
 
 	@Override
 	public Collection<ItemStack> getFertilisers(EnumFertiliserType type) {
-	Set<ItemStack> items = fertilisers.get(type).keySet();
+		Set<ItemStack> items = fertilisers.get(type).keySet();
 		return Collections.unmodifiableSet(items);
 	}
 
@@ -157,7 +156,7 @@ public class GardeningManager implements IGardeningManager {
 
 	@Override
 	public int getFertiliserStrength(ItemStack stack) {
-		for(EnumFertiliserType type : EnumFertiliserType.values()) {
+		for (EnumFertiliserType type : EnumFertiliserType.values()) {
 			for (Map.Entry<ItemStack, Integer> entry : fertilisers.get(type).entrySet()) {
 				if (entry.getKey().isItemEqual(stack)) {
 					return entry.getValue();
@@ -174,7 +173,7 @@ public class GardeningManager implements IGardeningManager {
 			EnumSoilType type = soil.getType(world, pos);
 			int next = Math.min(type.ordinal() + fertiliserStrength, 2);
 			if (soil.fertilise(world, pos, EnumSoilType.values()[next])) {
-				if(!player.capabilities.isCreativeMode) {
+				if (!player.capabilities.isCreativeMode) {
 					heldItem.shrink(1);
 				}
 				return true;
@@ -185,7 +184,7 @@ public class GardeningManager implements IGardeningManager {
 			EnumAcidity pH = soil.getPH(world, pos);
 			int next = Math.max(pH.ordinal() - fertiliserStrength, 0);
 			if (soil.setPH(world, pos, EnumAcidity.values()[next])) {
-				if(!player.capabilities.isCreativeMode) {
+				if (!player.capabilities.isCreativeMode) {
 					heldItem.shrink(1);
 				}
 				return true;
@@ -196,7 +195,7 @@ public class GardeningManager implements IGardeningManager {
 			EnumAcidity pH = soil.getPH(world, pos);
 			int next = Math.min(pH.ordinal() + fertiliserStrength, 2);
 			if (soil.setPH(world, pos, EnumAcidity.values()[next])) {
-				if(!player.capabilities.isCreativeMode) {
+				if (!player.capabilities.isCreativeMode) {
 					heldItem.shrink(1);
 				}
 				return true;
@@ -265,7 +264,7 @@ public class GardeningManager implements IGardeningManager {
 		}
 
 		EnumSoilType type = getSoilType(world, pos);
-		IBlockState newState = getSoil(type, true,  oldState.getValue(BlockSoil.MOISTURE), oldState.getValue(BlockSoil.ACIDITY));
+		IBlockState newState = getSoil(type, true, oldState.getValue(BlockSoil.MOISTURE), oldState.getValue(BlockSoil.ACIDITY));
 		boolean done = world.setBlockState(pos, newState, 2);
 		if (done && BlockPlant.isWeed(world, pos.up())) {
 			world.setBlockToAir(pos.up());

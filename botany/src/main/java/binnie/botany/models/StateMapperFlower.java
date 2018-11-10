@@ -12,9 +12,9 @@ import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.core.Constants;
 import binnie.botany.api.genetics.IFlowerType;
 import binnie.botany.blocks.BlockFlower;
+import binnie.core.Constants;
 
 @SideOnly(Side.CLIENT)
 public class StateMapperFlower extends StateMapperBase {

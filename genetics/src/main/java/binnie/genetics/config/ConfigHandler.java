@@ -8,8 +8,6 @@ import java.util.Set;
 
 import net.minecraftforge.common.config.Configuration;
 
-import binnie.genetics.config.IConfigurable;
-
 public class ConfigHandler {
 
 	private final Configuration config;

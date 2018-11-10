@@ -54,8 +54,8 @@ public class ExtraBeesIntegration implements IInitializable {
 		marble = getExtraBeesSpecies("marble");
 	}
 
-	public static ItemStack getHive(@Nullable IAlleleSpecies speciesCurrent){
-		if(speciesCurrent == null || ExtraBeesIntegration.hive == null){
+	public static ItemStack getHive(@Nullable IAlleleSpecies speciesCurrent) {
+		if (speciesCurrent == null || ExtraBeesIntegration.hive == null) {
 			return ItemStack.EMPTY;
 		}
 		if (speciesCurrent == ExtraBeesIntegration.water) {

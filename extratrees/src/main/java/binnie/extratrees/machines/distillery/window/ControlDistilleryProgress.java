@@ -1,6 +1,5 @@
 package binnie.extratrees.machines.distillery.window;
 
-import binnie.core.gui.geometry.Point;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -9,16 +8,17 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.core.gui.CraftGUI;
+import binnie.core.api.gui.Alignment;
 import binnie.core.api.gui.IWidget;
+import binnie.core.gui.CraftGUI;
 import binnie.core.gui.events.EventMouse;
 import binnie.core.gui.geometry.Area;
-import binnie.core.api.gui.Alignment;
+import binnie.core.gui.geometry.Point;
 import binnie.core.gui.minecraft.Window;
 import binnie.core.gui.minecraft.control.ControlProgressBase;
 import binnie.core.gui.renderer.RenderUtil;
-import binnie.core.gui.resource.textures.Texture;
 import binnie.core.gui.resource.textures.StandardTexture;
+import binnie.core.gui.resource.textures.Texture;
 import binnie.core.machines.Machine;
 import binnie.extratrees.core.ExtraTreeTexture;
 import binnie.extratrees.machines.distillery.DistilleryLogic;

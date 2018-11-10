@@ -1,12 +1,14 @@
 package binnie.botany.tile;
 
+import net.minecraft.nbt.NBTTagCompound;
+
+import forestry.api.core.INbtWritable;
+
 import binnie.botany.api.genetics.EnumFlowerColor;
 import binnie.botany.api.genetics.IFlower;
 import binnie.botany.api.genetics.IFlowerColor;
 import binnie.botany.api.genetics.IFlowerType;
 import binnie.botany.genetics.EnumFlowerType;
-import forestry.api.core.INbtWritable;
-import net.minecraft.nbt.NBTTagCompound;
 
 public class FlowerRenderInfo implements INbtWritable {
 	private final IFlowerColor primary;

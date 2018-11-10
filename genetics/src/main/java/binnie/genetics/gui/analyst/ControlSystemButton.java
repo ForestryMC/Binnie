@@ -1,10 +1,11 @@
 package binnie.genetics.gui.analyst;
 
-import binnie.core.api.genetics.IBreedingSystem;
 import net.minecraft.client.util.ITooltipFlag;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import binnie.core.api.genetics.IBreedingSystem;
 import binnie.core.gui.Attribute;
 import binnie.core.gui.CraftGUI;
 import binnie.core.gui.Tooltip;

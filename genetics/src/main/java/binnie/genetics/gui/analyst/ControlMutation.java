@@ -1,12 +1,12 @@
 package binnie.genetics.gui.analyst;
 
-import binnie.core.api.genetics.IBreedingSystem;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IMutation;
 
+import binnie.core.api.genetics.IBreedingSystem;
 import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.geometry.Point;

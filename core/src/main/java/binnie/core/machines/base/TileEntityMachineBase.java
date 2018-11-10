@@ -68,9 +68,9 @@ public class TileEntityMachineBase extends TileEntity implements IInventoryMachi
 	@Override
 	public boolean isUsableByPlayer(final EntityPlayer entityplayer) {
 		return !this.isInvalid() &&
-				this.getWorld().getTileEntity(getPos()) == this &&
-				entityplayer.getDistanceSqToCenter(getPos()) <= 64.0 &&
-				this.getInventory().isUsableByPlayer(entityplayer);
+			this.getWorld().getTileEntity(getPos()) == this &&
+			entityplayer.getDistanceSqToCenter(getPos()) <= 64.0 &&
+			this.getInventory().isUsableByPlayer(entityplayer);
 	}
 
 	@Override

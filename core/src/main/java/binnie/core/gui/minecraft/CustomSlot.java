@@ -44,7 +44,7 @@ public class CustomSlot extends Slot {
 		//TODO modifier==mouseButton2?
 		if (stack.isEmpty() || modifier == ClickType.PICKUP_ALL) {
 			this.putStack(ItemStack.EMPTY);
-		}else {
+		} else {
 			stack = stack.copy();
 			stack.setCount(1);
 			this.putStack(stack);

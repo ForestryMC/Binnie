@@ -102,10 +102,10 @@ import binnie.extratrees.wood.planks.IPlankType;
 import binnie.extratrees.wood.planks.VanillaPlanks;
 
 @ForestryModule(
-		moduleID = ExtraTreesModuleUIDs.WOOD,
-		containerID = Constants.EXTRA_TREES_MOD_ID,
-		name = "Wood",
-		unlocalizedDescription = "extratrees.module.wood"
+	moduleID = ExtraTreesModuleUIDs.WOOD,
+	containerID = Constants.EXTRA_TREES_MOD_ID,
+	name = "Wood",
+	unlocalizedDescription = "extratrees.module.wood"
 )
 public class ModuleWood extends BlankModule {
 	public static List<BlockETLog> logs = new ArrayList<>();
@@ -150,7 +150,7 @@ public class ModuleWood extends BlankModule {
 		MinecraftForge.EVENT_BUS.register(this);
 		WoodAccess woodAccess = WoodAccess.getInstance();
 		registerPlanks();
-		
+
 		logs = BlockETLog.create(false);
 		logsFireproof = BlockETLog.create(true);
 		for (BlockETLog block : logs) {
@@ -252,7 +252,7 @@ public class ModuleWood extends BlankModule {
 			registerOreDictWildcard(OreDictUtil.FENCE_WOOD, block);
 			FMLInterModComms.sendMessage("forestry", "add-fence-block", block.getRegistryName().toString());
 		}
-		
+
 		woodAccess.registerFences(fences);
 		woodAccess.registerFences(fencesFireproof);
 
@@ -282,28 +282,28 @@ public class ModuleWood extends BlankModule {
 		//Forestry's API doesn't allow typed lists to be registered, but making a new one allows us to get away with it
 		woodAccess.registerFenceGates(new ArrayList<>(fenceGates));
 		woodAccess.registerFenceGates(new ArrayList<>(fenceGatesFireproof));
-		
+
 		doors = new ArrayList<>();
 		for (EnumETLog woodType : EnumETLog.VALUES) {
-			if(woodType.hasProducts()) {
+			if (woodType.hasProducts()) {
 				BlockETDoor door = new BlockETDoor(woodType);
 				ExtraTrees.proxy.registerBlock(door, new ItemBlockETWoodDoor(door));
 				registerOreDictWildcard(OreDictUtil.DOOR_WOOD, door);
 				doors.add(door);
 			}
 		}
-		
+
 		registerDoors(woodAccess, doors);
 
 		blockMultiFence = new BlockMultiFence();
 		ExtraTrees.proxy.registerBlock(blockMultiFence, new ItemMetadata(blockMultiFence));
-		
+
 		leavesDefault = BlockETDefaultLeaves.create();
 		Map speciesToLeavesDefault = ModuleArboriculture.getBlocks().speciesToLeavesDefault;
 		for (BlockETDefaultLeaves leaves : leavesDefault) {
 			ExtraTrees.proxy.registerBlock(leaves, new ItemBlockLeaves(leaves));
 			registerOreDictWildcard(OreDictUtil.TREE_LEAVES, leaves);
-			
+
 			PropertyETType treeType = leaves.getVariant();
 			for (ETTreeDefinition treeDefinition : treeType.getAllowedValues()) {
 				Preconditions.checkNotNull(treeDefinition);
@@ -327,7 +327,7 @@ public class ModuleWood extends BlankModule {
 				speciesToLeavesDefaultFruit.put(speciesUid, blockState);
 			}
 		}
-		
+
 		leavesDecorative = BlockETDecorativeLeaves.create();
 		speciesToLeavesDecorative = new HashMap<>();
 		for (BlockETDecorativeLeaves leaves : leavesDecorative) {
@@ -368,7 +368,7 @@ public class ModuleWood extends BlankModule {
 			registerWithoutVariants(woodAccess, block, WoodBlockKind.DOOR);
 		}
 	}
-	
+
 	private <T extends Block & IWoodTyped> void registerWithoutVariants(WoodAccess woodAccess, T woodTyped, WoodBlockKind woodBlockKind) {
 		boolean fireproof = woodTyped.isFireproof();
 		IBlockState blockState = woodTyped.getDefaultState();
@@ -379,7 +379,7 @@ public class ModuleWood extends BlankModule {
 		}
 		woodAccess.register(woodType, woodBlockKind, fireproof, blockState, itemStack);
 	}
-	
+
 	@Override
 	public void doInit() {
 		AlleleETFruitDefinition.init();
@@ -395,32 +395,32 @@ public class ModuleWood extends BlankModule {
 			ItemStack coalOutput = new ItemStack(Items.COAL, 1, 1);
 			GameRegistry.addSmelting(logInput, coalOutput, 0.15F);
 		}
-		
+
 		IWoodAccess woodAccess = TreeManager.woodAccess;
-		for(EnumETLog log : EnumETLog.VALUES){
+		for (EnumETLog log : EnumETLog.VALUES) {
 			ItemStack logs = woodAccess.getStack(log, WoodBlockKind.LOG, false);
 			ItemStack planks = log.getPlank().getStack(false);
 			ItemStack fireproofLogs = woodAccess.getStack(log, WoodBlockKind.LOG, true);
 			ItemStack fireproofPlanks = log.getPlank().getStack(true);
-			
+
 			planks.setCount(4);
 			recipeUtil.addShapelessRecipe(log.getUid() + "_planks", planks.copy(), logs.copy());
-			
+
 			fireproofPlanks.setCount(4);
 			recipeUtil.addShapelessRecipe(log.getUid() + "_fireproof_planks", fireproofPlanks.copy(), fireproofLogs);
 			if (ModuleUtils.isModuleActive(ForestryModuleUids.FACTORY, ForestryModuleUids.APICULTURE)) {
-				
+
 				logs.setCount(1);
 				fireproofLogs.setCount(1);
 				RecipeManagers.fabricatorManager.addRecipe(ItemStack.EMPTY, Fluids.GLASS.getFluid(500), fireproofLogs.copy(), new Object[]{
-						" # ",
-						"#X#",
-						" # ",
-						'#', Mods.Forestry.item("refractory_wax"),
-						'X', logs.copy()});
+					" # ",
+					"#X#",
+					" # ",
+					'#', Mods.Forestry.item("refractory_wax"),
+					'X', logs.copy()});
 			}
 		}
-		
+
 		for (ExtraTreePlanks plankType : ExtraTreePlanks.VALUES) {
 			for (boolean fireproof : new boolean[]{false, true}) {
 				ItemStack planks = woodAccess.getStack(plankType.getWoodType(), WoodBlockKind.PLANKS, fireproof);
@@ -443,30 +443,30 @@ public class ModuleWood extends BlankModule {
 
 				slabs.setCount(6);
 				recipeUtil.addRecipe(plankUid + "_slabs", slabs.copy(), "###", '#', planks.copy());
-				
+
 				fences.setCount(3);
 				planks.setCount(1);
 				recipeUtil.addRecipe(plankUid + "_fences", fences.copy(),
-						"#X#",
-						"#X#",
-						'#', planks.copy(), 'X', "stickWood");
-				
+					"#X#",
+					"#X#",
+					'#', planks.copy(), 'X', "stickWood");
+
 				fenceGates.setCount(1);
 				planks.setCount(1);
 				recipeUtil.addRecipe(plankUid + "_fence_gates", fenceGates.copy(),
-						"X#X",
-						"X#X",
-						'#', planks.copy(), 'X', "stickWood");
-				
-				if(!fireproof){
+					"X#X",
+					"X#X",
+					'#', planks.copy(), 'X', "stickWood");
+
+				if (!fireproof) {
 					ItemStack doors = woodAccess.getStack(plankType.getWoodType(), WoodBlockKind.DOOR, false);
 					doors.setCount(3);
 					planks.setCount(1);
 					recipeUtil.addRecipe(plankUid + "_doors", doors.copy(),
-							"## ",
-							"## ",
-							"## ",
-							'#', planks.copy());
+						"## ",
+						"## ",
+						"## ",
+						'#', planks.copy());
 				}
 			}
 			// Fabricator recipes
@@ -476,11 +476,11 @@ public class ModuleWood extends BlankModule {
 				planks.setCount(1);
 				fireproofPlanks.setCount(5);
 				RecipeManagers.fabricatorManager.addRecipe(ItemStack.EMPTY, Fluids.GLASS.getFluid(500), fireproofPlanks.copy(), new Object[]{
-						"X#X",
-						"#X#",
-						"X#X",
-						'#', Mods.Forestry.item("refractory_wax"),
-						'X', planks.copy()});
+					"X#X",
+					"#X#",
+					"X#X",
+					'#', Mods.Forestry.item("refractory_wax"),
+					'X', planks.copy()});
 			}
 		}
 		ForgeRegistries.RECIPES.register(new MultiFenceRecipeSize());
@@ -513,7 +513,7 @@ public class ModuleWood extends BlankModule {
 
 	@SubscribeEvent
 	public static void onRegisterAllele(AlleleRegisterEvent<IAlleleFruit> event) {
-		if(!ModuleManager.isModuleEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.WOOD)){
+		if (!ModuleManager.isModuleEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.WOOD)) {
 			return;
 		}
 		if (event.getAlleleClass() == IAlleleFruit.class) {
@@ -523,7 +523,7 @@ public class ModuleWood extends BlankModule {
 
 	@SubscribeEvent
 	public static void speciesRegister(AlleleSpeciesRegisterEvent event) {
-		if(!ModuleManager.isModuleEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.WOOD)){
+		if (!ModuleManager.isModuleEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.WOOD)) {
 			return;
 		}
 		if (event.getRoot() instanceof ITreeRoot) {
@@ -550,7 +550,7 @@ public class ModuleWood extends BlankModule {
 			int primaryColor = treeSpecies.getLeafColor().getRGB();
 			int secondaryColor = treeSpecies.getWoodColor().getRGB();
 			IBakedModel bakedModel = e.getModelRegistry().getObject(model);
-			if(bakedModel == null){
+			if (bakedModel == null) {
 				return;
 			}
 			e.getModelRegistry().putObject(model, new DoublePassBakedModel(bakedModel, primaryColor, secondaryColor));

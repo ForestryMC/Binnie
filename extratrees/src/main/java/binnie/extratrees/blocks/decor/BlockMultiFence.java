@@ -176,9 +176,9 @@ public class BlockMultiFence extends BlockFence implements IBlockMetadata, IStat
 		FenceType fenceType = this.getDescription(meta).getFenceType();
 
 		return I18N.localise("extratrees.block.multifence" + (twoTypes ? "2" : "") + ".grammar",
-				fenceType.getPrefix(),
-				typeFirst.getDesignMaterialName(),
-				typeSecond.getDesignMaterialName());
+			fenceType.getPrefix(),
+			typeFirst.getDesignMaterialName(),
+			typeSecond.getDesignMaterialName());
 	}
 
 	@SideOnly(Side.CLIENT)

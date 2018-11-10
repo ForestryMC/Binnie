@@ -2,10 +2,12 @@ package binnie.core.network.packet;
 
 import javax.annotation.Nullable;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 import net.minecraft.tileentity.TileEntity;
 
 import binnie.core.network.INetworkedEntity;
+
 import io.netty.buffer.ByteBuf;
 
 public class MessageUpdate extends MessageCoordinates {
@@ -40,7 +42,7 @@ public class MessageUpdate extends MessageCoordinates {
 			data.writeFloat(floatData);
 		}
 		for (final String stringData : this.payload.getStringPayload()) {
-			final byte[] bytes = stringData.getBytes("UTF-8");
+			final byte[] bytes = stringData.getBytes(StandardCharsets.UTF_8);
 			data.writeShort(bytes.length);
 			data.writeBytes(bytes);
 		}
@@ -65,7 +67,7 @@ public class MessageUpdate extends MessageCoordinates {
 		for (int i = 0; i < stringLength; ++i) {
 			final int length = data.readShort();
 			final byte[] string = data.readBytes(length).array();
-			this.payload.addString(new String(string, "UTF-8"));
+			this.payload.addString(new String(string, StandardCharsets.UTF_8));
 		}
 	}
 

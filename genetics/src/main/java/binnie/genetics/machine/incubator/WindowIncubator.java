@@ -16,12 +16,12 @@ import binnie.core.gui.minecraft.control.ControlMachineProgress;
 import binnie.core.gui.minecraft.control.ControlPlayerInventory;
 import binnie.core.gui.minecraft.control.ControlSlot;
 import binnie.core.gui.minecraft.control.ControlSlotArray;
-import binnie.core.gui.resource.textures.Texture;
 import binnie.core.gui.resource.textures.StandardTexture;
+import binnie.core.gui.resource.textures.Texture;
+import binnie.core.gui.window.WindowMachine;
 import binnie.core.util.I18N;
 import binnie.genetics.Genetics;
 import binnie.genetics.core.GeneticsTexture;
-import binnie.core.gui.window.WindowMachine;
 
 public class WindowIncubator extends WindowMachine {
 	private static final Texture PROGRESS_BASE = new StandardTexture(0, 91, 38, 32, GeneticsTexture.GUI_PROCESS);

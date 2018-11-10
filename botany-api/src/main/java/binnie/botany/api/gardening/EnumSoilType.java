@@ -1,7 +1,8 @@
 package binnie.botany.api.gardening;
 
-import binnie.botany.api.IBotanyColored;
 import net.minecraft.util.text.TextFormatting;
+
+import binnie.botany.api.IBotanyColored;
 
 public enum EnumSoilType implements IBotanyColored {
 	SOIL(TextFormatting.DARK_GRAY),

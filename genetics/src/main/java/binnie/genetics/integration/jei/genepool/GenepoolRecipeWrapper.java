@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
-import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 
@@ -18,7 +17,9 @@ import forestry.core.fluids.Fluids;
 import binnie.genetics.item.GeneticLiquid;
 import binnie.genetics.item.GeneticsItems;
 import binnie.genetics.machine.genepool.GenepoolLogic;
+
 import mezz.jei.api.ingredients.IIngredients;
+import mezz.jei.api.recipe.IRecipeWrapper;
 
 public class GenepoolRecipeWrapper implements IRecipeWrapper {
 	private static final ItemStack ENZYME = GeneticsItems.Enzyme.get(1);

@@ -1,8 +1,8 @@
 package binnie.extratrees.machines.fruitpress.window;
 
-import binnie.core.machines.ManagerMachine;
 import net.minecraft.item.ItemStack;
 
+import binnie.core.machines.ManagerMachine;
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.util.I18N;
 import binnie.extratrees.machines.fruitpress.recipes.FruitPressRecipeManager;

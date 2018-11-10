@@ -1,4 +1,4 @@
-package binnie.genetics.machine;
+package binnie.genetics.modules;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -6,19 +6,25 @@ import net.minecraft.item.Item;
 
 import net.minecraftforge.oredict.OreDictionary;
 
+import forestry.api.modules.ForestryModule;
+
 import binnie.core.Constants;
-import binnie.core.IInitializable;
 import binnie.core.Mods;
 import binnie.core.machines.MachineGroup;
 import binnie.core.machines.inventory.ValidatorSprite;
+import binnie.core.modules.BlankModule;
 import binnie.core.util.RecipeUtil;
 import binnie.genetics.CreativeTabGenetics;
 import binnie.genetics.Genetics;
 import binnie.genetics.item.GeneticsItems;
+import binnie.genetics.machine.AdvGeneticMachine;
+import binnie.genetics.machine.GeneticMachine;
+import binnie.genetics.machine.LaboratoryMachine;
 import binnie.genetics.machine.acclimatiser.Acclimatiser;
 import binnie.genetics.machine.incubator.Incubator;
 
-public class ModuleMachine implements IInitializable {
+@ForestryModule(moduleID = GeneticsModuleUIDs.MACHINES, containerID = Constants.GENETICS_MOD_ID, name = "Machines", unlocalizedDescription = "genetics.module.machines")
+public class ModuleMachine extends BlankModule {
 	private static ValidatorSprite spriteSequencer;
 	private static ValidatorSprite spriteSerum;
 	private static ValidatorSprite spriteEnzyme;
@@ -66,6 +72,10 @@ public class ModuleMachine implements IInitializable {
 		return packageLabMachine;
 	}
 
+	public ModuleMachine() {
+		super(Constants.GENETICS_MOD_ID, "core");
+	}
+
 	@Override
 	public void preInit() {
 		(packageGenetic = new MachineGroup(Genetics.instance, "machine", "machine", GeneticMachine.values())).setCreativeTab(CreativeTabGenetics.INSTANCE);
@@ -81,7 +91,7 @@ public class ModuleMachine implements IInitializable {
 	}
 
 	@Override
-	public void init() {
+	public void doInit() {
 		Incubator.addRecipes();
 
 		RecipeUtil recipeUtil = new RecipeUtil(Constants.GENETICS_MOD_ID);

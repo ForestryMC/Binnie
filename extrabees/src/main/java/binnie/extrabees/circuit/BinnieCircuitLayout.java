@@ -1,10 +1,10 @@
 package binnie.extrabees.circuit;
 
-import binnie.core.ModId;
 import forestry.api.circuits.ChipsetManager;
 import forestry.api.circuits.ICircuitLayout;
 import forestry.api.circuits.ICircuitSocketType;
 
+import binnie.core.ModId;
 import binnie.core.util.I18N;
 
 public class BinnieCircuitLayout implements ICircuitLayout {

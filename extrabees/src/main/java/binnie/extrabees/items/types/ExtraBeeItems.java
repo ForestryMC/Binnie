@@ -11,105 +11,104 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.extrabees.ExtraBees;
 import binnie.extrabees.modules.ModuleCore;
 
 public enum ExtraBeeItems implements IEBItemMiscProvider {
 
 	SCENTED_GEAR("Scented Gear", "scented_gear"),
-	DIAMOND_SHARD("Diamond Fragment", "diamond_shard"){
+	DIAMOND_SHARD("Diamond Fragment", "diamond_shard") {
 		@Override
 		protected void init() {
 			setGem("Diamond");
 		}
 	},
-	EMERALD_SHARD("Emerald Fragment", "emerald_shard"){
+	EMERALD_SHARD("Emerald Fragment", "emerald_shard") {
 		@Override
 		protected void init() {
 			setGem("Emerald");
 		}
 	},
-	RUBY_SHARD("Ruby Fragment", "ruby_shard"){
+	RUBY_SHARD("Ruby Fragment", "ruby_shard") {
 		@Override
 		protected void init() {
 			setGem("Ruby");
 		}
 	},
-	SAPPHIRE_SHARD("Sapphire Fragment", "sapphire_shard"){
+	SAPPHIRE_SHARD("Sapphire Fragment", "sapphire_shard") {
 		@Override
 		protected void init() {
 			setGem("Sapphire");
 		}
 	},
 	LAPIS_SHARD("Lapis Fragment", "lapis_shard"),
-	IRON_DUST("Iron Grains", "iron_dust"){
+	IRON_DUST("Iron Grains", "iron_dust") {
 		@Override
 		protected void init() {
 			setMetal("Iron");
 		}
 	},
-	GOLD_DUST("Gold Grains", "gold_dust"){
+	GOLD_DUST("Gold Grains", "gold_dust") {
 		@Override
 		protected void init() {
 			setMetal("Gold");
 		}
 	},
-	SILVER_DUST("Silver Grains", "silver_dust"){
+	SILVER_DUST("Silver Grains", "silver_dust") {
 		@Override
 		protected void init() {
 			setMetal("Silver");
 		}
 	},
-	PLATINUM_DUST("Platinum Grains", "platinum_dust"){
+	PLATINUM_DUST("Platinum Grains", "platinum_dust") {
 		@Override
 		protected void init() {
 			setMetal("Platinum");
 		}
 	},
-	COPPER_DUST("Copper Grains", "copper_dust"){
+	COPPER_DUST("Copper Grains", "copper_dust") {
 		@Override
 		protected void init() {
 			setMetal("Copper");
 		}
 	},
-	TIN_DUST("Tin Grains", "tin_dust"){
+	TIN_DUST("Tin Grains", "tin_dust") {
 		@Override
 		protected void init() {
 			setMetal("Tin");
 		}
 	},
-	NICKEL_DUST("Nickel Grains", "nickel_dust"){
+	NICKEL_DUST("Nickel Grains", "nickel_dust") {
 		@Override
 		protected void init() {
 			setMetal("Nickel");
 		}
 	},
-	LEAD_DUST("Lead Grains", "lead_dust"){
+	LEAD_DUST("Lead Grains", "lead_dust") {
 		@Override
 		protected void init() {
 			setMetal("Lead");
 		}
 	},
-	ZINC_DUST("Zinc Grains", "zinc_dust"){
+	ZINC_DUST("Zinc Grains", "zinc_dust") {
 		@Override
 		protected void init() {
 			setMetal("Zinc");
 		}
 	},
-	TITANIUM_DUST("Titanium Grains", "titanium_dust"){
+	TITANIUM_DUST("Titanium Grains", "titanium_dust") {
 		@Override
 		protected void init() {
 			setMetal("Titanium");
 		}
 	},
-	TUNGSTEN_DUST("Tungsten Grains", "tungsten_dust"){
+	TUNGSTEN_DUST("Tungsten Grains", "tungsten_dust") {
 		@Override
 		protected void init() {
 			setMetal("Tungsten");
 		}
 	},
 	URANIUM_DUST("Radioactive Fragments", "radioactive_dust"),
-	COAL_DUST("Coal Grains", "coal_dust"){
+	COAL_DUST("Coal Grains", "coal_dust") {
 		@Override
 		protected void init() {
 			setMetal("Coal");
@@ -123,19 +122,19 @@ public enum ExtraBeeItems implements IEBItemMiscProvider {
 	BLACK_DYE("Black Dye", "dye_black"),
 	BROWN_DYE("Brown Dye", "dye_brown"),
 	CLAY_DUST("Clay Dust", "clay_dust"),
-	YELLORIUM_DUST("Yellorium Grains", "yellorium_dust"){
+	YELLORIUM_DUST("Yellorium Grains", "yellorium_dust") {
 		@Override
 		protected void init() {
 			setMetal("Yellorium");
 		}
 	},
-	BLUTONIUM_DUST("Blutonium Grains", "blutonium_dust"){
+	BLUTONIUM_DUST("Blutonium Grains", "blutonium_dust") {
 		@Override
 		protected void init() {
 			setMetal("Blutonium");
 		}
 	},
-	CYANITE_DUST("Cyanite Grains", "cyanite_dust"){
+	CYANITE_DUST("Cyanite Grains", "cyanite_dust") {
 		@Override
 		protected void init() {
 			setMetal("Cyanite");
@@ -176,7 +175,7 @@ public enum ExtraBeeItems implements IEBItemMiscProvider {
 		return this.gemString == null || !gems.isEmpty();
 	}
 
-	protected void init(){
+	protected void init() {
 	}
 
 	@Override

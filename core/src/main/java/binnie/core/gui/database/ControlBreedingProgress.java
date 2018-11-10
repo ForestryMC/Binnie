@@ -5,15 +5,15 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.core.api.genetics.IBreedingSystem;
 import binnie.core.api.gui.IArea;
-import binnie.core.gui.CraftGUI;
 import binnie.core.api.gui.IWidget;
+import binnie.core.gui.CraftGUI;
 import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.geometry.Point;
 import binnie.core.gui.renderer.RenderUtil;
-import binnie.core.gui.resource.textures.Texture;
 import binnie.core.gui.resource.textures.CraftGUITexture;
 import binnie.core.gui.resource.textures.CraftGUITextureSheet;
 import binnie.core.gui.resource.textures.StandardTexture;
+import binnie.core.gui.resource.textures.Texture;
 
 class ControlBreedingProgress extends Control {
 	private static final Texture Progress = new StandardTexture(80, 22, 4, 4, CraftGUITextureSheet.CONTROLS);

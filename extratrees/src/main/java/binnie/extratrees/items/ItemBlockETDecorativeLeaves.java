@@ -1,6 +1,5 @@
 package binnie.extratrees.items;
 
-import binnie.core.ModId;
 import net.minecraft.item.ItemStack;
 
 import net.minecraftforge.fml.relauncher.Side;
@@ -13,6 +12,7 @@ import forestry.arboriculture.items.ItemBlockLeaves;
 import forestry.core.items.IColoredItem;
 import forestry.core.items.ItemBlockForestry;
 
+import binnie.core.ModId;
 import binnie.core.util.I18N;
 import binnie.extratrees.blocks.BlockETDecorativeLeaves;
 import binnie.extratrees.genetics.ETTreeDefinition;

@@ -62,7 +62,7 @@ public class TileEntityExtraBeesAlvearyPart extends MultiblockTileEntityForestry
 	public void readFromNBT(NBTTagCompound data) {
 		type = EnumAlvearyLogicType.VALUES[data.getByte("avType")];
 		initFromType();
-		if(alvearyLogic != null){
+		if (alvearyLogic != null) {
 			alvearyLogic.readFromNBT(data);
 		}
 		super.readFromNBT(data);

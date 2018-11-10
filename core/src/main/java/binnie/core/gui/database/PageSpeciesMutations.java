@@ -13,7 +13,7 @@ public class PageSpeciesMutations extends PageSpecies {
 
 	public PageSpeciesMutations(final IWidget parent, final DatabaseTab tab) {
 		super(parent, tab);
-		this.title = new ControlTextCentered(this, 8, I18N.localise(DatabaseConstants.MUTATIONS_KEY+ ".further"));
+		this.title = new ControlTextCentered(this, 8, I18N.localise(DatabaseConstants.MUTATIONS_KEY + ".further"));
 		this.list = new ControlMutationBox(this, 4, 20, 136, 152, ControlMutationBox.Type.Further);
 	}
 

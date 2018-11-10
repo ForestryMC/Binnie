@@ -43,7 +43,7 @@ import binnie.extratrees.genetics.ETTreeDefinition;
  */
 public abstract class BlockETDefaultLeaves extends BlockAbstractLeaves {
 	private static final int VARIANTS_PER_BLOCK = 4;
-	
+
 	public static List<BlockETDefaultLeaves> create() {
 		List<BlockETDefaultLeaves> blocks = new ArrayList<>();
 		final int blockCount = PropertyETType.getBlockCount(VARIANTS_PER_BLOCK);
@@ -59,27 +59,27 @@ public abstract class BlockETDefaultLeaves extends BlockAbstractLeaves {
 		}
 		return blocks;
 	}
-	
+
 	private final int blockNumber;
-	
+
 	public BlockETDefaultLeaves(int blockNumber) {
 		this.blockNumber = blockNumber;
 		PropertyETType variant = getVariant();
 		setDefaultState(this.blockState.getBaseState()
-				.withProperty(variant, variant.getFirstType())
-				.withProperty(CHECK_DECAY, false)
-				.withProperty(DECAYABLE, true));
+			.withProperty(variant, variant.getFirstType())
+			.withProperty(CHECK_DECAY, false)
+			.withProperty(DECAYABLE, true));
 		String name = "leaves.default." + blockNumber;
 		setUnlocalizedName(name);
 		setRegistryName(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, name));
 	}
-	
+
 	public int getBlockNumber() {
 		return blockNumber;
 	}
-	
+
 	public abstract PropertyETType getVariant();
-	
+
 	@Nullable
 	public ETTreeDefinition getTreeDefinition(IBlockState blockState) {
 		if (blockState.getBlock() == this) {
@@ -88,7 +88,7 @@ public abstract class BlockETDefaultLeaves extends BlockAbstractLeaves {
 			return null;
 		}
 	}
-	
+
 	@Override
 	public int damageDropped(IBlockState state) {
 		ETTreeDefinition treeDefinition = getTreeDefinition(state);
@@ -97,34 +97,34 @@ public abstract class BlockETDefaultLeaves extends BlockAbstractLeaves {
 		}
 		return treeDefinition.getMetadata() - blockNumber * VARIANTS_PER_BLOCK;
 	}
-	
+
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
 		return this.getDefaultState()
-				.withProperty(getVariant(), getTreeType(meta))
-				.withProperty(DECAYABLE, (meta & 4) == 0)
-				.withProperty(CHECK_DECAY, (meta & 8) > 0);
+			.withProperty(getVariant(), getTreeType(meta))
+			.withProperty(DECAYABLE, (meta & 4) == 0)
+			.withProperty(CHECK_DECAY, (meta & 8) > 0);
 	}
-	
+
 	@Override
 	public int getMetaFromState(IBlockState state) {
 		int i = damageDropped(state);
-		
+
 		if (!state.getValue(DECAYABLE)) {
 			i |= 4;
 		}
-		
+
 		if (state.getValue(CHECK_DECAY)) {
 			i |= 8;
 		}
-		
+
 		return i;
 	}
-	
+
 	protected BlockStateContainer createBlockState() {
 		return new BlockStateContainer(this, getVariant(), CHECK_DECAY, DECAYABLE);
 	}
-	
+
 	public ETTreeDefinition getTreeType(int meta) {
 		int variantCount = getVariant().getAllowedValues().size();
 		int variantMeta = (meta % variantCount) + blockNumber * VARIANTS_PER_BLOCK;
@@ -152,7 +152,7 @@ public abstract class BlockETDefaultLeaves extends BlockAbstractLeaves {
 		ETTreeDefinition type = getTreeType(meta);
 		return getDefaultState().withProperty(getVariant(), type);
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerModel(Item item, IModelManager manager) {
@@ -161,7 +161,7 @@ public abstract class BlockETDefaultLeaves extends BlockAbstractLeaves {
 			ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation("extratrees:leaves.default." + blockNumber, "inventory"));
 		}
 	}
-	
+
 	@Override
 	protected ITree getTree(IBlockAccess world, BlockPos pos) {
 		IBlockState blockState = world.getBlockState(pos);
@@ -172,7 +172,7 @@ public abstract class BlockETDefaultLeaves extends BlockAbstractLeaves {
 			return null;
 		}
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int colorMultiplier(IBlockState state, @Nullable IBlockAccess worldIn, @Nullable BlockPos pos, int tintIndex) {

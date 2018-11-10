@@ -3,10 +3,10 @@ package binnie.genetics.machine.acclimatiser;
 import java.util.ArrayList;
 import java.util.List;
 
-import binnie.core.machines.MachineUtil;
 import net.minecraft.item.ItemStack;
 
 import binnie.core.machines.IMachine;
+import binnie.core.machines.MachineUtil;
 import binnie.core.machines.errors.ErrorState;
 import binnie.core.machines.power.ComponentProcessIndefinate;
 import binnie.genetics.config.ConfigurationMain;

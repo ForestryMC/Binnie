@@ -43,12 +43,12 @@ public class ModuleContainer implements forestry.api.modules.IModuleContainer {
 		configHandlers = new HashSet<>();
 	}
 
-	public void setupAPI(){
-		for(IForestryModule module : loadedModules){
+	public void setupAPI() {
+		for (IForestryModule module : loadedModules) {
 			module.setupAPI();
 		}
 
-		for(IForestryModule module : unloadedModules){
+		for (IForestryModule module : unloadedModules) {
 			module.disabledSetupAPI();
 		}
 	}
@@ -67,7 +67,7 @@ public class ModuleContainer implements forestry.api.modules.IModuleContainer {
 			module.doInit();
 			module.registerRecipes();
 		}
-		for(IConfigHandler handler : configHandlers){
+		for (IConfigHandler handler : configHandlers) {
 			handler.loadConfig();
 		}
 	}
@@ -79,7 +79,7 @@ public class ModuleContainer implements forestry.api.modules.IModuleContainer {
 	}
 
 	public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event) {
-		for(IConfigHandler handler : configHandlers){
+		for (IConfigHandler handler : configHandlers) {
 			handler.loadConfig();
 		}
 	}
@@ -122,7 +122,7 @@ public class ModuleContainer implements forestry.api.modules.IModuleContainer {
 		return state.isAvailable();
 	}
 
-	public interface ContainerState{
+	public interface ContainerState {
 		boolean isAvailable();
 	}
 }

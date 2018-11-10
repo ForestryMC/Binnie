@@ -1,6 +1,6 @@
 {
-    "parent": "block/tinted_cross",
-    "textures": {
-        "cross": "botany:blocks/dead_flower"
-    }
+  "parent": "block/tinted_cross",
+  "textures": {
+    "cross": "botany:blocks/dead_flower"
+  }
 }

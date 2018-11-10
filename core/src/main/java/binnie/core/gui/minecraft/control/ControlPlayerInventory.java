@@ -3,11 +3,12 @@ package binnie.core.gui.minecraft.control;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.minecraft.InventoryType;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class ControlPlayerInventory extends Control {
@@ -44,7 +45,7 @@ public class ControlPlayerInventory extends Control {
 		this.slots = new ArrayList<>();
 		for (int row = 0; row < 6; ++row) {
 			for (int column = 0; column < 6; ++column) {
-				final ControlSlot slot = new ControlSlot.Builder(this, column * 18, row * 18).assign(InventoryType.PLAYER,column + row * 6);
+				final ControlSlot slot = new ControlSlot.Builder(this, column * 18, row * 18).assign(InventoryType.PLAYER, column + row * 6);
 				this.slots.add(slot);
 			}
 		}

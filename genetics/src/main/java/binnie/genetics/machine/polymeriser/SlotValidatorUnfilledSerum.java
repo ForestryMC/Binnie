@@ -5,7 +5,7 @@ import net.minecraft.item.ItemStack;
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.util.I18N;
 import binnie.genetics.api.IItemChargeable;
-import binnie.genetics.machine.ModuleMachine;
+import binnie.genetics.modules.ModuleMachine;
 
 public class SlotValidatorUnfilledSerum extends SlotValidator {
 	public SlotValidatorUnfilledSerum() {

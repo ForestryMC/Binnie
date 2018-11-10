@@ -44,8 +44,8 @@ public class CeramicBrickPair {
 		return type.canDouble() && colorSecond != colorFirst;
 	}
 
-	public static int getId(ItemStack stack){
-		if(!stack.hasTagCompound()){
+	public static int getId(ItemStack stack) {
+		if (!stack.hasTagCompound()) {
 			return EMPTY.ordinal();
 		}
 		NBTTagCompound nbtTagCompound = stack.getTagCompound();
@@ -85,7 +85,7 @@ public class CeramicBrickPair {
 	@Override
 	public boolean equals(Object obj) {
 		return obj instanceof CeramicBrickPair
-				&& ((CeramicBrickPair) obj).type == type;
+			&& ((CeramicBrickPair) obj).type == type;
 	}
 
 	public EnumFlowerColor getColorFirst() {

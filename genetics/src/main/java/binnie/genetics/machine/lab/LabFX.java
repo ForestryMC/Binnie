@@ -1,13 +1,15 @@
 package binnie.genetics.machine.lab;
 
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import binnie.core.machines.IMachine;
 import binnie.core.machines.MachineComponent;
 import binnie.core.machines.component.IRender;
 import binnie.core.util.EntityItemRenderer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class LabFX extends MachineComponent implements IRender.Render {
 	private final EntityItemRenderer entityItemRenderer;

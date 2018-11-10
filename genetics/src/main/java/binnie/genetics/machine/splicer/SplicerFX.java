@@ -2,7 +2,6 @@ package binnie.genetics.machine.splicer;
 
 import java.util.Random;
 
-import binnie.core.util.EntityItemRenderer;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleManager;
 import net.minecraft.item.ItemStack;
@@ -18,6 +17,7 @@ import binnie.core.machines.IMachine;
 import binnie.core.machines.MachineComponent;
 import binnie.core.machines.component.IRender;
 import binnie.core.machines.network.INetwork;
+import binnie.core.util.EntityItemRenderer;
 
 public class SplicerFX extends MachineComponent implements IRender.DisplayTick, IRender.Render, INetwork.TilePacketSync {
 	private final EntityItemRenderer entityItemRenderer;
@@ -30,7 +30,9 @@ public class SplicerFX extends MachineComponent implements IRender.DisplayTick, 
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void onDisplayTick(World world, BlockPos pos, Random rand) {
-		if (!this.getUtil().getProcess().isInProgress()) return;
+		if (!this.getUtil().getProcess().isInProgress()) {
+			return;
+		}
 		final int tick = (int) (world.getTotalWorldTime() % 3L);
 		if (tick == 0) {
 			final ParticleManager effectRenderer = BinnieCore.getBinnieProxy().getMinecraftInstance().effectRenderer;

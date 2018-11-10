@@ -5,5 +5,6 @@ package binnie.extrabees.genetics.gui.database;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import binnie.extrabees.utils.FieldsAreNonnullByDefault;
 import mcp.MethodsReturnNonnullByDefault;
+
+import binnie.extrabees.utils.FieldsAreNonnullByDefault;

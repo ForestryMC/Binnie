@@ -125,16 +125,16 @@ public class ModuleFlowers extends BlankModule {
 
 	@Override
 	public void doInit() {
-		if(!ModuleManager.isModuleEnabled("forestry", "apiculture")) {
+		if (!ModuleManager.isModuleEnabled("forestry", "apiculture")) {
 			try {
 				Method createAlleles = ReflectionHelper.findMethod(AlleleHelper.class, "createAlleles", null, Class.class, IChromosomeType[].class);
 				createAlleles.invoke(AlleleHelper.getInstance(), EnumAllele.Fertility.class, new EnumFlowerChromosome[]{EnumFlowerChromosome.FERTILITY});
 				createAlleles.invoke(AlleleHelper.getInstance(), EnumAllele.Territory.class, new EnumFlowerChromosome[]{EnumFlowerChromosome.TERRITORY});
-				if(!ModuleManager.isModuleEnabled("forestry", "lepidopterology")){
+				if (!ModuleManager.isModuleEnabled("forestry", "lepidopterology")) {
 					createAlleles.invoke(AlleleHelper.getInstance(), EnumAllele.Tolerance.class, new EnumFlowerChromosome[]{EnumFlowerChromosome.TEMPERATURE_TOLERANCE, EnumFlowerChromosome.HUMIDITY_TOLERANCE});
 					createAlleles.invoke(AlleleHelper.getInstance(), EnumAllele.Lifespan.class, new EnumFlowerChromosome[]{EnumFlowerChromosome.LIFESPAN});
 				}
-			} catch (Exception e){
+			} catch (Exception e) {
 				throw new IllegalStateException("Failed to find method 'createAlleles' of the " + AlleleHelper.class, e);
 			}
 		}
@@ -142,7 +142,7 @@ public class ModuleFlowers extends BlankModule {
 		FlowerDefinition.initFlowers();
 
 		RecipeUtil recipeUtil = new RecipeUtil(Constants.BOTANY_MOD_ID);
-		if(FlowerManager.flowerRegistry != null) {
+		if (FlowerManager.flowerRegistry != null) {
 			FlowerManager.flowerRegistry.registerAcceptableFlower(flower, "flowersVanilla");
 		}
 		recipeUtil.addRecipe("botanist_backpack", botanistBackpack,

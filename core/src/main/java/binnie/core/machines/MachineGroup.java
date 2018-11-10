@@ -9,8 +9,8 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
-import binnie.core.Binnie;
 import binnie.core.AbstractMod;
+import binnie.core.Binnie;
 import binnie.core.BinnieCore;
 
 public class MachineGroup {

@@ -1,6 +1,5 @@
 package binnie.extratrees.liquid;
 
-import binnie.extratrees.ExtraTrees;
 import net.minecraft.util.ResourceLocation;
 
 import net.minecraftforge.fluids.FluidStack;
@@ -9,6 +8,7 @@ import binnie.core.Constants;
 import binnie.core.liquid.FluidContainerType;
 import binnie.core.liquid.FluidType;
 import binnie.core.liquid.IFluidDefinition;
+import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.alcohol.CocktailLiquid;
 import binnie.extratrees.alcohol.ICocktailIngredient;
 import binnie.extratrees.alcohol.ICocktailIngredientProvider;
@@ -61,7 +61,7 @@ public enum Liqueur implements IFluidDefinition, ICocktailIngredientProvider {
 		type = new FluidType(ident, String.format("%s.fluid.%s.%s", ExtraTrees.instance.getModId(), "Liqueur", this.name()), color)
 			.setTransparency(transparency)
 			.setTextures(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "blocks/liquids/liquid"))
-			.setShowHandler((type)->type == FluidContainerType.GLASS);
+			.setShowHandler((type) -> type == FluidContainerType.GLASS);
 		cocktailLiquid = new CocktailLiquid(type, abv);
 	}
 

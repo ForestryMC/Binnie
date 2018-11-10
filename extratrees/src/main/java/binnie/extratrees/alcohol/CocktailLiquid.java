@@ -42,7 +42,7 @@ public class CocktailLiquid implements ICocktailLiquid {
 	@Override
 	public String getTooltip(int ratio) {
 		String unlocalized = "extratrees.cocktail.liquid.tooltip";
-		if(ratio > 1){
+		if (ratio > 1) {
 			unlocalized = "extratrees.cocktail.liquids.tooltip";
 		}
 		return I18N.localise(unlocalized, ratio, definition.getDisplayName());

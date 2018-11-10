@@ -9,6 +9,6 @@ public interface IDistilleryRecipe extends IBinnieRecipe {
 	FluidStack getInput();
 
 	FluidStack getOutput();
-	
+
 	int getLevel();
 }

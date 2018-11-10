@@ -1,6 +1,5 @@
 package binnie.core.resource;
 
-import binnie.core.api.gui.IBinnieSprite;
 import com.google.common.base.Preconditions;
 
 import javax.annotation.Nullable;
@@ -12,8 +11,9 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.core.Binnie;
 import binnie.core.AbstractMod;
+import binnie.core.Binnie;
+import binnie.core.api.gui.IBinnieSprite;
 
 public class BinnieSprite extends BinnieResource implements IBinnieSprite {
 

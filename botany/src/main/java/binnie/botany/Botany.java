@@ -31,8 +31,8 @@ import binnie.genetics.api.analyst.IAnalystManager;
 	version = "@VERSION@",
 	acceptedMinecraftVersions = Constants.ACCEPTED_MINECRAFT_VERSIONS,
 	dependencies = "required-after:" + Constants.CORE_MOD_ID + ';'
-			+	   "after:" + Constants.GENETICS_MOD_ID + ';'
-			+      "after:" + Constants.DESIGN_MOD_ID + ';'
+		+ "after:" + Constants.GENETICS_MOD_ID + ';'
+		+ "after:" + Constants.DESIGN_MOD_ID + ';'
 )
 public class Botany extends BlankModuleContainer {
 	public static final float AGE_CHANCE = 0.2f;
@@ -53,7 +53,7 @@ public class Botany extends BlankModuleContainer {
 			analystManager.registerAnalystPagePlugin(new FlowerAnalystPagePlugin());
 		}
 
-		if(ModuleManager.isModuleEnabled(Constants.BOTANY_MOD_ID, BotanyModuleUIDs.FLOWERS)) {
+		if (ModuleManager.isModuleEnabled(Constants.BOTANY_MOD_ID, BotanyModuleUIDs.FLOWERS)) {
 			IAcclimatiserManager acclimatiserManager = GeneticsApi.acclimatiserManager;
 			if (acclimatiserManager != null) {
 				acclimatiserManager.addTolerance(EnumFlowerChromosome.HUMIDITY_TOLERANCE, acclimatiserManager.getHumidityToleranceType());

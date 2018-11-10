@@ -1,15 +1,15 @@
 package binnie.core.gui.controls.tab;
 
-import binnie.core.api.gui.events.EventHandlerOrigin;
 import com.google.common.collect.Iterables;
 
 import java.util.Collection;
 
+import binnie.core.api.gui.Alignment;
 import binnie.core.api.gui.IWidget;
+import binnie.core.api.gui.events.EventHandlerOrigin;
 import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.controls.core.IControlValue;
 import binnie.core.gui.events.EventValueChanged;
-import binnie.core.api.gui.Alignment;
 
 public class ControlTabBar<T> extends Control implements IControlValue<T> {
 	public interface ITabCreator<T> {

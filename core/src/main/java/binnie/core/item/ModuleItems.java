@@ -1,13 +1,13 @@
 package binnie.core.item;
 
-import binnie.core.Constants;
-import binnie.core.util.RecipeUtil;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 import binnie.core.BinnieCore;
+import binnie.core.Constants;
 import binnie.core.IInitializable;
+import binnie.core.util.RecipeUtil;
 
 public class ModuleItems implements IInitializable {
 	@Override

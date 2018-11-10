@@ -2,8 +2,9 @@ package binnie.core.network.packet;
 
 import java.io.IOException;
 
-import binnie.core.util.Log;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+
+import binnie.core.util.Log;
 
 import io.netty.buffer.ByteBuf;
 

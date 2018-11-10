@@ -9,23 +9,23 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import org.lwjgl.opengl.GL11;
-
+import binnie.core.api.gui.IWidget;
 import binnie.core.gui.Attribute;
 import binnie.core.gui.CraftGUI;
-import binnie.core.api.gui.IWidget;
 import binnie.core.gui.geometry.Area;
 import binnie.core.gui.geometry.Point;
 import binnie.core.gui.minecraft.Window;
 import binnie.core.gui.minecraft.control.ControlProgressBase;
 import binnie.core.gui.renderer.RenderUtil;
-import binnie.core.gui.resource.textures.Texture;
 import binnie.core.gui.resource.textures.StandardTexture;
+import binnie.core.gui.resource.textures.Texture;
 import binnie.core.machines.Machine;
 import binnie.core.util.ItemStackSet;
 import binnie.extratrees.core.ExtraTreeTexture;
 import binnie.extratrees.machines.brewery.BreweryLogic;
 import binnie.extratrees.machines.brewery.recipes.BreweryRecipeManager;
+
+import org.lwjgl.opengl.GL11;
 
 public class ControlBreweryProgress extends ControlProgressBase {
 	private static final Texture BREWERY = new StandardTexture(0, 69, 34, 39, ExtraTreeTexture.GUI);

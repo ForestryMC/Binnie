@@ -3,8 +3,6 @@ package binnie.extratrees.blocks;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-import binnie.design.DesignHelper;
-import binnie.design.blocks.BlockDesign;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -29,7 +27,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.core.block.TileEntityMetadata;
 import binnie.core.util.I18N;
+import binnie.design.DesignHelper;
 import binnie.design.api.IDesign;
+import binnie.design.blocks.BlockDesign;
 import binnie.design.blocks.DesignBlock;
 import binnie.extratrees.carpentry.DesignSystem;
 import binnie.extratrees.carpentry.GlassType;
@@ -41,22 +41,22 @@ public class BlockStainedDesign extends BlockDesign {
 		this.setRegistryName("stainedGlass");
 		this.setHardness(0.3F);
 	}
-	
+
 	@Override
 	public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, ItemStack stack) {
 		player.addStat(StatList.getBlockStats(this));
 		player.addExhaustion(0.005F);
-		
+
 		if (EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH, stack) > 0 && te instanceof TileEntityMetadata) {
 			java.util.List<ItemStack> items = new java.util.ArrayList<>();
 			TileEntityMetadata tile = (TileEntityMetadata) te;
 			int damage = getDroppedMeta(state, tile.getTileMetadata());
 			ItemStack itemstack = TileEntityMetadata.getItemStack(this, damage);
-			
+
 			if (!itemstack.isEmpty()) {
 				items.add(itemstack);
 			}
-			
+
 			ForgeEventFactory.fireBlockHarvesting(items, worldIn, pos, state, 0, 1.0f, true, player);
 			for (ItemStack item : items) {
 				spawnAsEntity(worldIn, pos, item);
@@ -90,7 +90,7 @@ public class BlockStainedDesign extends BlockDesign {
 	public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer) {
 		return layer == BlockRenderLayer.TRANSLUCENT;
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	@Override
 	public int getRenderPasses() {

@@ -23,7 +23,7 @@ class ControlMutationItem extends ControlOption<IMutation> {
 		final IBreedingSystem system = ((WindowAbstractDatabase) this.getTopParent()).getBreedingSystem();
 		if (this.getValue() != null) {
 			final boolean isMutationDiscovered = system.isMutationDiscovered(this.getValue(), Window.get(this).getWorld(), Window.get(this).getUsername());
-			IAlleleSpecies  allele = this.getValue().getAllele0();
+			IAlleleSpecies allele = this.getValue().getAllele0();
 			EnumDiscoveryState state = ((isMaster || isMutationDiscovered) ? EnumDiscoveryState.SHOW : ((species.equals(allele)) ? EnumDiscoveryState.SHOW : EnumDiscoveryState.UNDETERMINED));
 			firstIndividual.setSpecies(allele, state);
 			allele = this.getValue().getAllele1();

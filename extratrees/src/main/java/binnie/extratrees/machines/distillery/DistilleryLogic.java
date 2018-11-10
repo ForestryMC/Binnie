@@ -3,7 +3,6 @@ package binnie.extratrees.machines.distillery;
 import javax.annotation.Nullable;
 import java.util.Map;
 
-import binnie.core.machines.MachineUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -11,6 +10,7 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 
 import binnie.core.machines.Machine;
+import binnie.core.machines.MachineUtil;
 import binnie.core.machines.errors.CoreErrorCode;
 import binnie.core.machines.errors.ErrorState;
 import binnie.core.machines.network.INetwork;

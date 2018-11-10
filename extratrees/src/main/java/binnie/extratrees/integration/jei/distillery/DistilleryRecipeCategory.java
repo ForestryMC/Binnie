@@ -1,28 +1,29 @@
 package binnie.extratrees.integration.jei.distillery;
 
-import binnie.core.gui.geometry.Point;
-import mezz.jei.api.recipe.IRecipeCategory;
 import net.minecraft.client.Minecraft;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import binnie.core.api.gui.Alignment;
 import binnie.core.gui.CraftGUI;
 import binnie.core.gui.geometry.Area;
-import binnie.core.api.gui.Alignment;
-import binnie.core.gui.resource.textures.Texture;
+import binnie.core.gui.geometry.Point;
 import binnie.core.gui.resource.textures.StandardTexture;
+import binnie.core.gui.resource.textures.Texture;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.core.ExtraTreeTexture;
 import binnie.extratrees.integration.jei.ExtraTreesJeiPlugin;
 import binnie.extratrees.integration.jei.RecipeUids;
 import binnie.extratrees.machines.distillery.DistilleryLogic;
 import binnie.extratrees.machines.distillery.DistilleryMachine;
+
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IGuiFluidStackGroup;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.gui.ITickTimer;
 import mezz.jei.api.ingredients.IIngredients;
+import mezz.jei.api.recipe.IRecipeCategory;
 
 public class DistilleryRecipeCategory implements IRecipeCategory<DistilleryRecipeWrapper> {
 	private static final Texture DISTILLERY_BASE = new StandardTexture(43, 0, 58, 60, ExtraTreeTexture.GUI);

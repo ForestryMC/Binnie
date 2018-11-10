@@ -1,7 +1,7 @@
 package binnie.extratrees.kitchen.craftgui;
 
-import binnie.core.gui.Attribute;
 import binnie.core.api.gui.IWidget;
+import binnie.core.gui.Attribute;
 import binnie.core.gui.minecraft.MinecraftGUI;
 import binnie.core.gui.window.Panel;
 

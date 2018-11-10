@@ -2,8 +2,6 @@ package binnie.design.blocks;
 
 import javax.annotation.Nullable;
 
-import binnie.design.DesignHelper;
-import binnie.design.EnumDesign;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -14,6 +12,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import binnie.design.DesignHelper;
+import binnie.design.EnumDesign;
 import binnie.design.api.IDesign;
 import binnie.design.api.IDesignMaterial;
 import binnie.design.api.IDesignSystem;

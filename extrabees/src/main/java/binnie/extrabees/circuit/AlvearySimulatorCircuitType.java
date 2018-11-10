@@ -3,12 +3,12 @@ package binnie.extrabees.circuit;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import binnie.core.ModId;
-import binnie.core.util.I18N;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeModifier;
 import forestry.api.circuits.ICircuitLayout;
 
+import binnie.core.ModId;
+import binnie.core.util.I18N;
 import binnie.extrabees.utils.BeeModifierLogic;
 import binnie.extrabees.utils.EnumBeeBooleanModifier;
 import binnie.extrabees.utils.EnumBeeModifier;

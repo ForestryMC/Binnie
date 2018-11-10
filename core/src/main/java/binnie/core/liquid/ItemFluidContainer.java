@@ -88,7 +88,7 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister {
 		ItemStack itemStack = new ItemStack(this);
 		IFluidHandler fluidHandler = new FluidHandlerItemBinnie(itemStack, container);
 		FluidStack fluidStack = type.get();
-		if(fluidStack == null){
+		if (fluidStack == null) {
 			return container.getEmpty();
 		}
 		if (fluidHandler.fill(fluidStack, true) == Fluid.BUCKET_VOLUME) {

@@ -62,7 +62,7 @@ class BinnieAction implements IActionExternal {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public ISprite getSprite() {
-		if(icon == null){
+		if (icon == null) {
 			this.icon = new Sprite(new ResourceLocation(modID, String.format("textures/items/%s.png", iconFile)));
 		}
 		return icon;

@@ -3,8 +3,6 @@ package binnie.design.gui;
 import javax.annotation.Nullable;
 import java.util.Map;
 
-import binnie.design.Design;
-import binnie.design.api.IDesignerType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -17,9 +15,11 @@ import binnie.core.machines.component.IComponentRecipe;
 import binnie.core.machines.errors.ErrorState;
 import binnie.core.machines.errors.IErrorStateSource;
 import binnie.core.machines.network.INetwork;
+import binnie.design.Design;
+import binnie.design.EnumDesign;
 import binnie.design.api.IDesign;
 import binnie.design.api.IDesignMaterial;
-import binnie.design.EnumDesign;
+import binnie.design.api.IDesignerType;
 
 public class ComponentDesignerRecipe extends ComponentRecipe implements IComponentRecipe, INetwork.GuiNBT, IErrorStateSource {
 	private final IDesignerType type;

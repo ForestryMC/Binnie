@@ -20,22 +20,22 @@ public class ItemBlockAlveary extends ItemBlock implements IItemModelProvider {
 		setRegistryName(block.getRegistryName());
 		setHasSubtypes(true);
 	}
-	
+
 	@Override
 	public int getMetadata(int damage) {
 		return damage;
 	}
-	
+
 	@Override
 	public String getUnlocalizedName(ItemStack stack) {
 		return ((BlockAlveary) block).getUnlocalizedName(stack.getMetadata());
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerModel(Item item) {
 		int i = 0;
-		for(EnumAlvearyLogicType type : EnumAlvearyLogicType.values()){
+		for (EnumAlvearyLogicType type : EnumAlvearyLogicType.values()) {
 			ModelLoader.setCustomModelResourceLocation(item, i, new ModelResourceLocation("extrabees:alveary", "type=" + type.getName()));
 			i++;
 		}

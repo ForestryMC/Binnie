@@ -80,7 +80,6 @@ import binnie.extratrees.gen.WorldGenTree3;
 import binnie.extratrees.gen.WorldGenTropical;
 import binnie.extratrees.gen.WorldGenWalnut;
 import binnie.extratrees.genetics.fruits.ETFruitFamily;
-import binnie.extratrees.modules.ModuleWood;
 import binnie.extratrees.wood.EnumETLog;
 import binnie.extratrees.wood.EnumShrubLog;
 
@@ -2432,7 +2431,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 	}
 
-	public boolean hasFruitLeaves(){
+	public boolean hasFruitLeaves() {
 		return false;
 	}
 
@@ -2501,9 +2500,9 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			IFruitProvider fruitProvider = genome.getFruitProvider();
 			String speciesUid = genome.getPrimary().getUID();
 			IBlockState defaultLeaves;
-			if(fruitProvider.isFruitLeaf(genome, world, pos) && rand.nextFloat() <= fruitProvider.getFruitChance(genome, world, pos)){
+			if (fruitProvider.isFruitLeaf(genome, world, pos) && rand.nextFloat() <= fruitProvider.getFruitChance(genome, world, pos)) {
 				defaultLeaves = ModuleArboriculture.getBlocks().getDefaultLeavesFruit(speciesUid);
-			}else{
+			} else {
 				defaultLeaves = ModuleArboriculture.getBlocks().getDefaultLeaves(speciesUid);
 			}
 			return world.setBlockState(pos, defaultLeaves);

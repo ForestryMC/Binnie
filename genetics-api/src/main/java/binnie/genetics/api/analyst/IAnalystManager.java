@@ -2,15 +2,19 @@ package binnie.genetics.api.analyst;
 
 import java.util.Collection;
 
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
+
+import net.minecraftforge.fluids.FluidStack;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import forestry.api.genetics.IIndividual;
+
 import binnie.core.api.gui.IArea;
 import binnie.core.api.gui.ITitledWidget;
 import binnie.core.api.gui.IWidget;
-import forestry.api.genetics.IIndividual;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public interface IAnalystManager {
 	void registerAnalystPagePlugin(IAnalystPagePlugin<?> analystPageFactory);

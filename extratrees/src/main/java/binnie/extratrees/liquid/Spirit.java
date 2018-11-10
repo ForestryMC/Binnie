@@ -1,6 +1,5 @@
 package binnie.extratrees.liquid;
 
-import binnie.extratrees.ExtraTrees;
 import net.minecraft.util.ResourceLocation;
 
 import net.minecraftforge.fluids.FluidStack;
@@ -9,6 +8,7 @@ import binnie.core.Constants;
 import binnie.core.liquid.FluidContainerType;
 import binnie.core.liquid.FluidType;
 import binnie.core.liquid.IFluidDefinition;
+import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.alcohol.CocktailLiquid;
 import binnie.extratrees.alcohol.ICocktailIngredient;
 import binnie.extratrees.alcohol.ICocktailIngredientProvider;
@@ -49,10 +49,10 @@ public enum Spirit implements IFluidDefinition, ICocktailIngredientProvider {
 	Spirit(final String ident, final int color, final double transparency, final float abv) {
 		this.abv = abv;
 		type = new FluidType(ident, String.format("%s.fluid.%s.%s", ExtraTrees.instance.getModId(), "Spirit", this.name()), color)
-				.setTextures(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "blocks/liquids/liquid"))
-				.setShowHandler(type -> type == FluidContainerType.GLASS)
-				.setTransparency(transparency)
-				.setFlammable(true);
+			.setTextures(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "blocks/liquids/liquid"))
+			.setShowHandler(type -> type == FluidContainerType.GLASS)
+			.setTransparency(transparency)
+			.setFlammable(true);
 		if (abv > 0.5) {
 			type.setFlammability((int) (abv * 100));
 		}

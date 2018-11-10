@@ -21,7 +21,7 @@ import binnie.genetics.core.GeneticsGUI;
 import binnie.genetics.item.GeneticLiquid;
 import binnie.genetics.machine.ComponentGeneticGUI;
 import binnie.genetics.machine.GeneticMachine;
-import binnie.genetics.machine.ModuleMachine;
+import binnie.genetics.modules.ModuleMachine;
 
 public class PackagePolymeriser extends GeneticMachine.PackageGeneticBase implements IMachineInformation {
 

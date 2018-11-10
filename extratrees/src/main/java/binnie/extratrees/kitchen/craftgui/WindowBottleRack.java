@@ -6,12 +6,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.core.gui.minecraft.Window;
 import binnie.core.gui.minecraft.control.ControlPlayerInventory;
 import binnie.core.machines.Machine;
 import binnie.extratrees.ExtraTrees;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WindowBottleRack extends Window {
 	public WindowBottleRack(final EntityPlayer player, final IInventory inventory, final Side side) {

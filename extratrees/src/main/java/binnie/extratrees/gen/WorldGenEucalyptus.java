@@ -30,7 +30,7 @@ public class WorldGenEucalyptus {
 				WorldGenUtils.generateCylinderFromTreeStartPos(world, rand, leaf, startPos.add(0, leafSpawn--, 0), girth, girth + 0.75F + (1.25F * rand.nextFloat()), 1, 0.3F, WorldGenHelper.EnumReplaceMode.SOFT);
 			}
 			for (int i = 0; i < 7; ++i) {
-				if(rand.nextFloat() > 0.45){
+				if (rand.nextFloat() > 0.45) {
 					leafSpawn--;
 					continue;
 				}

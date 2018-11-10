@@ -44,21 +44,21 @@ public enum ExtraTreesErrorCode implements IErrorStateDefinition {
 		return Constants.EXTRA_TREES_MOD_ID + ':' + name;
 	}
 
-	public String getDescription(){
+	public String getDescription() {
 		return I18N.localise("extratrees.errors." + name + ".desc");
 	}
 
-	public String getName(){
-		if(parent != null){
+	public String getName() {
+		if (parent != null) {
 			return parent.getName();
 		}
-		return  I18N.localise("extratrees.errors." + name + ".name");
+		return I18N.localise("extratrees.errors." + name + ".name");
 	}
 
 	@Override
 	@Nullable
 	public EnumErrorType getType() {
-		if(parent != null){
+		if (parent != null) {
 			return parent.getType();
 		}
 		return type;

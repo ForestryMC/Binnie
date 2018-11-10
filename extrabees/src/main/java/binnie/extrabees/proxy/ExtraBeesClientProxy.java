@@ -37,7 +37,7 @@ import binnie.extrabees.utils.ExtraBeesResourceLocation;
 
 @SideOnly(Side.CLIENT)
 public class ExtraBeesClientProxy extends ExtraBeesCommonProxy {
-	
+
 	private static final ModelManager modelManager = ModelManager.getInstance();
 
 	public static ModelManager getModelManager() {
@@ -47,22 +47,22 @@ public class ExtraBeesClientProxy extends ExtraBeesCommonProxy {
 	private static IBakedModel bakeModelFor(Block block) {
 		return new BakedModelForBlock(block);
 	}
-	
+
 	@Override
 	public Item registerItem(Item item) {
 		getModelManager().registerItemClient(item);
-		if(item instanceof IItemModelProvider){
+		if (item instanceof IItemModelProvider) {
 			((IItemModelProvider) item).registerModel(item);
 		}
 		return super.registerItem(item);
 	}
-	
+
 	@Override
 	public Block registerBlock(Block block) {
 		getModelManager().registerBlockClient(block);
 		return super.registerBlock(block);
 	}
-	
+
 	@Override
 	public void registerModel(@Nonnull Item item, int meta) {
 		ResourceLocation registryName = item.getRegistryName();
@@ -70,7 +70,7 @@ public class ExtraBeesClientProxy extends ExtraBeesCommonProxy {
 		ModelResourceLocation inventory = new ModelResourceLocation(registryName, "inventory");
 		ModelLoader.setCustomModelResourceLocation(item, meta, inventory);
 	}
-	
+
 	@SubscribeEvent
 	public void onModelsBaked(ModelBakeEvent event) {
 		IRegistry<ModelResourceLocation, IBakedModel> registry = event.getModelRegistry();

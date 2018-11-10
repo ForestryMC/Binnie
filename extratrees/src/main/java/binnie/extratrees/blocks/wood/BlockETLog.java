@@ -9,8 +9,8 @@ import forestry.arboriculture.blocks.BlockForestryLog;
 import forestry.arboriculture.blocks.PropertyWoodType;
 
 import binnie.core.Constants;
-import binnie.extratrees.wood.EnumETLog;
 import binnie.extratrees.blocks.property.PropertyETWoodType;
+import binnie.extratrees.wood.EnumETLog;
 
 public abstract class BlockETLog extends BlockForestryLog<EnumETLog> {
 	private BlockETLog(boolean fireproof, int blockNumber) {

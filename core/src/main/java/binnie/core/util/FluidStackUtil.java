@@ -6,16 +6,16 @@ import java.util.Collection;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-
 import net.minecraft.util.NonNullList;
+
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 
 public class FluidStackUtil {
 
-	public static String toString(FluidStack fluidStack){
-		if(fluidStack == null){
+	public static String toString(FluidStack fluidStack) {
+		if (fluidStack == null) {
 			return "null";
 		}
 		NBTTagCompound tag = fluidStack.tag;

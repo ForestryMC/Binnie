@@ -1,9 +1,5 @@
 package binnie.genetics.gui.analyst;
 
-import binnie.core.api.genetics.IBreedingSystem;
-import binnie.core.api.gui.IArea;
-import binnie.core.api.gui.ITitledWidget;
-import binnie.genetics.api.analyst.AnalystConstants;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.text.TextFormatting;
 
@@ -17,8 +13,11 @@ import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.ISpeciesRoot;
 
 import binnie.core.Binnie;
-import binnie.core.gui.CraftGUI;
+import binnie.core.api.genetics.IBreedingSystem;
+import binnie.core.api.gui.IArea;
+import binnie.core.api.gui.ITitledWidget;
 import binnie.core.api.gui.IWidget;
+import binnie.core.gui.CraftGUI;
 import binnie.core.gui.controls.ControlText;
 import binnie.core.gui.controls.ControlTextCentered;
 import binnie.core.gui.controls.core.Control;
@@ -26,6 +25,7 @@ import binnie.core.gui.geometry.Area;
 import binnie.core.gui.geometry.Point;
 import binnie.core.gui.geometry.TextJustification;
 import binnie.core.util.I18N;
+import binnie.genetics.api.analyst.AnalystConstants;
 
 @SideOnly(Side.CLIENT)
 public class AnalystPageGenome extends Control implements ITitledWidget {
@@ -57,10 +57,10 @@ public class AnalystPageGenome extends Control implements ITitledWidget {
 	@Override
 	public String getTitle() {
 		String stateKey = AnalystConstants.GENOME_KEY;
-		if(active){
-			stateKey+=".active";
-		}else{
-			stateKey+=".inactive";
+		if (active) {
+			stateKey += ".active";
+		} else {
+			stateKey += ".inactive";
 		}
 		return I18N.localise(AnalystConstants.GENOME_KEY + ".title", I18N.localise(stateKey));
 	}

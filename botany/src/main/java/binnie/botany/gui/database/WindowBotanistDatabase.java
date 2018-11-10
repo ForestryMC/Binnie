@@ -4,23 +4,23 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import binnie.core.api.gui.IArea;
-import binnie.core.gui.controls.page.ControlPage;
-import binnie.core.gui.database.ModeWidgets;
 import net.minecraft.entity.player.EntityPlayer;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.botany.Botany;
-import binnie.botany.api.genetics.IFlowerColor;
 import binnie.botany.api.genetics.EnumFlowerColor;
+import binnie.botany.api.genetics.IFlowerColor;
 import binnie.botany.modules.ModuleFlowers;
+import binnie.core.api.gui.IArea;
 import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.listbox.ControlListBox;
+import binnie.core.gui.controls.page.ControlPage;
 import binnie.core.gui.database.DatabaseConstants;
 import binnie.core.gui.database.DatabaseTab;
 import binnie.core.gui.database.IDatabaseMode;
+import binnie.core.gui.database.ModeWidgets;
 import binnie.core.gui.database.PageBranchOverview;
 import binnie.core.gui.database.PageBranchSpecies;
 import binnie.core.gui.database.PageBreeder;

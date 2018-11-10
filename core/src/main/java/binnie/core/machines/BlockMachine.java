@@ -113,7 +113,7 @@ class BlockMachine extends Block implements IBlockMachine, ITileEntityProvider {
 		super.addInformation(stack, player, tooltip, advanced);
 		if (GuiScreen.isShiftKeyDown()) {
 			MachinePackage machinePackage = this.getPackage(stack.getMetadata());
-			if(machinePackage != null){
+			if (machinePackage != null) {
 				tooltip.add(machinePackage.getInformation());
 			}
 		} else {

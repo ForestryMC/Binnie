@@ -3,31 +3,34 @@ package binnie.genetics.gui.analyst.tree;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.init.Biomes;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.biome.Biome;
+
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import forestry.api.core.EnumHumidity;
+import forestry.api.core.EnumTemperature;
+import forestry.api.genetics.EnumTolerance;
+import forestry.api.genetics.IIndividual;
+
 import binnie.core.api.gui.IArea;
 import binnie.core.api.gui.ITitledWidget;
 import binnie.core.api.gui.IWidget;
 import binnie.core.genetics.Tolerance;
 import binnie.core.gui.controls.ControlText;
 import binnie.core.gui.controls.ControlTextCentered;
+import binnie.core.gui.controls.ControlToleranceBar;
 import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.geometry.Area;
 import binnie.core.gui.geometry.Point;
 import binnie.core.gui.geometry.TextJustification;
 import binnie.core.util.I18N;
-import binnie.genetics.api.analyst.IClimatePlugin;
 import binnie.genetics.api.analyst.AnalystConstants;
+import binnie.genetics.api.analyst.IClimatePlugin;
 import binnie.genetics.gui.analyst.ControlBiome;
-import binnie.core.gui.controls.ControlToleranceBar;
-import forestry.api.core.EnumHumidity;
-import forestry.api.core.EnumTemperature;
-import forestry.api.genetics.EnumTolerance;
-import forestry.api.genetics.IIndividual;
-import net.minecraft.init.Biomes;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.biome.Biome;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class AnalystPageClimate<T extends IIndividual> extends Control implements ITitledWidget {

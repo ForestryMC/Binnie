@@ -1,7 +1,7 @@
 package binnie.core.gui.minecraft.control;
 
-import binnie.core.api.gui.IWidget;
 import binnie.core.api.gui.Alignment;
+import binnie.core.api.gui.IWidget;
 import binnie.core.gui.resource.textures.Texture;
 
 public class ControlMachineProgress extends ControlProgress {

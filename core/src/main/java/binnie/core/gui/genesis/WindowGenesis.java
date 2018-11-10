@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import binnie.core.api.genetics.IBreedingSystem;
-import binnie.core.api.gui.events.EventHandlerOrigin;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -15,6 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IChromosomeType;
@@ -24,16 +23,19 @@ import forestry.api.genetics.ISpeciesType;
 
 import binnie.core.Binnie;
 import binnie.core.BinnieCore;
+import binnie.core.api.genetics.IBreedingSystem;
+import binnie.core.api.gui.Alignment;
+import binnie.core.api.gui.IWidget;
+import binnie.core.api.gui.events.EventHandlerOrigin;
 import binnie.core.genetics.BreedingSystem;
 import binnie.core.genetics.Gene;
-import binnie.core.api.gui.IWidget;
+import binnie.core.gui.ControlGenesisOption;
 import binnie.core.gui.controls.listbox.ControlListBox;
 import binnie.core.gui.controls.listbox.ControlTextOption;
 import binnie.core.gui.controls.tab.ControlTabBar;
 import binnie.core.gui.events.EventMouse;
 import binnie.core.gui.events.EventValueChanged;
 import binnie.core.gui.geometry.Area;
-import binnie.core.api.gui.Alignment;
 import binnie.core.gui.minecraft.MinecraftGUI;
 import binnie.core.gui.minecraft.Window;
 import binnie.core.gui.minecraft.control.ControlItemDisplay;
@@ -41,8 +43,6 @@ import binnie.core.gui.minecraft.control.ControlPlayerInventory;
 import binnie.core.gui.minecraft.control.ControlTabIcon;
 import binnie.core.gui.window.Panel;
 import binnie.core.util.I18N;
-import binnie.core.gui.ControlGenesisOption;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WindowGenesis extends Window {
 	private static final String ACTION_GENESIS = "genesis";
@@ -117,7 +117,7 @@ public class WindowGenesis extends Window {
 			IAllele allele = gene.getAllele();
 			if (chromosomeType == speciesRoot.getSpeciesChromosomeType()) {
 				template = speciesRoot.getTemplate(allele.getUID());
-			}else {
+			} else {
 				template[chromosomeType.ordinal()] = allele;
 			}
 			refreshTemplate(chromosomeType);

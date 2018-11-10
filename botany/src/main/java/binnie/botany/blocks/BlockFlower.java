@@ -4,7 +4,6 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
 
-import binnie.botany.tile.FlowerRenderInfo;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.SoundType;
@@ -51,6 +50,7 @@ import binnie.botany.genetics.FlowerDefinition;
 import binnie.botany.models.StateMapperFlower;
 import binnie.botany.modules.ModuleFlowers;
 import binnie.botany.network.PacketID;
+import binnie.botany.tile.FlowerRenderInfo;
 import binnie.botany.tile.TileEntityFlower;
 import binnie.core.BinnieCore;
 import binnie.core.network.packet.MessageNBT;
@@ -215,9 +215,9 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 
 	protected boolean canPlaceBlockOn(Block block) {
 		return block == Blocks.GRASS
-				|| block == Blocks.DIRT
-				|| block == Blocks.FARMLAND
-				|| BotanyCore.getGardening().isSoil(block);
+			|| block == Blocks.DIRT
+			|| block == Blocks.FARMLAND
+			|| BotanyCore.getGardening().isSoil(block);
 	}
 
 	@Override

@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-import binnie.botany.api.genetics.EnumFlowerColor;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -31,6 +30,7 @@ import forestry.core.genetics.alleles.AlleleHelper;
 import forestry.core.genetics.alleles.EnumAllele;
 
 import binnie.botany.api.genetics.EnumFlowerChromosome;
+import binnie.botany.api.genetics.EnumFlowerColor;
 import binnie.botany.api.genetics.EnumFlowerStage;
 import binnie.botany.api.genetics.IAlleleFlowerSpecies;
 import binnie.botany.api.genetics.IBotanistTracker;

@@ -2,6 +2,15 @@ package binnie.botany.genetics.gui.analyst;
 
 import java.util.List;
 
+import net.minecraft.util.text.TextFormatting;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import forestry.api.genetics.EnumTolerance;
+import forestry.api.genetics.IAlleleTolerance;
+import forestry.api.genetics.IIndividual;
+
 import binnie.botany.api.genetics.EnumFlowerChromosome;
 import binnie.botany.api.genetics.IFlower;
 import binnie.botany.api.genetics.IFlowerGenome;
@@ -12,17 +21,11 @@ import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.ControlTextCentered;
 import binnie.core.util.I18N;
 import binnie.core.util.TimeUtil;
+import binnie.genetics.api.analyst.AnalystConstants;
 import binnie.genetics.api.analyst.IAnalystManager;
 import binnie.genetics.api.analyst.IAnalystPagePlugin;
 import binnie.genetics.api.analyst.IBiologyPlugin;
 import binnie.genetics.api.analyst.IClimatePlugin;
-import binnie.genetics.api.analyst.AnalystConstants;
-import forestry.api.genetics.EnumTolerance;
-import forestry.api.genetics.IAlleleTolerance;
-import forestry.api.genetics.IIndividual;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class FlowerAnalystPagePlugin implements IAnalystPagePlugin<IFlower> {
 	@Override
@@ -46,7 +49,7 @@ public class FlowerAnalystPagePlugin implements IAnalystPagePlugin<IFlower> {
 			y += 10;
 			int butterflySpawn2 = Math.round(Constants.SPAWN_KOEF / (flower.getGenome().getSappiness() * 0.2f));
 			new ControlTextCentered(parent, y, I18N.localise(AnalystConstants.BIOLOGY_KEY + ".mothSpawn", TimeUtil.getTimeString(butterflySpawn2)))
-					.setColor(parent.getColor());
+				.setColor(parent.getColor());
 			y += 30;
 
 			int fertility = flower.getGenome().getFertility();
@@ -70,27 +73,27 @@ public class FlowerAnalystPagePlugin implements IAnalystPagePlugin<IFlower> {
 			float floweringLifespan = (maxAge - 1) * 20.0f * 68.27f / ageChance - Constants.SPAWN_KOEF;
 
 			new ControlTextCentered(parent, y, I18N.localise(AnalystConstants.BIOLOGY_KEY + ".averageLifespan"))
-					.setColor(parent.getColor());
+				.setColor(parent.getColor());
 			y += 12;
 
 			new ControlTextCentered(parent, y, TextFormatting.BOLD + TimeUtil.getMCDayString(lifespan2))
-					.setColor(parent.getColor());
+				.setColor(parent.getColor());
 			y += 22;
 
 			new ControlTextCentered(parent, y, I18N.localise(AnalystConstants.BIOLOGY_KEY + ".seedDispersal"))
-					.setColor(parent.getColor());
+				.setColor(parent.getColor());
 			y += 12;
 
 			new ControlTextCentered(parent, y, TextFormatting.ITALIC + I18N.localise(AnalystConstants.BIOLOGY_KEY + ".perLifetime", (int) (floweringLifespan / dispersalTime)))
-					.setColor(parent.getColor());
+				.setColor(parent.getColor());
 			y += 22;
 
 			new ControlTextCentered(parent, y, I18N.localise(AnalystConstants.BIOLOGY_KEY + ".pollination"))
-					.setColor(parent.getColor());
+				.setColor(parent.getColor());
 			y += 12;
 
 			new ControlTextCentered(parent, y, TextFormatting.ITALIC + I18N.localise(AnalystConstants.BIOLOGY_KEY + ".perLifetime", (int) (floweringLifespan / pollinateTime)))
-					.setColor(parent.getColor());
+				.setColor(parent.getColor());
 			y += 22;
 			return y;
 		}

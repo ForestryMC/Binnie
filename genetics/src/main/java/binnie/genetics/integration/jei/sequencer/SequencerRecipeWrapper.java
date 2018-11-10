@@ -2,17 +2,18 @@ package binnie.genetics.integration.jei.sequencer;
 
 import java.util.Arrays;
 
-import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 
-import binnie.genetics.Genetics;
 import binnie.genetics.integration.jei.GeneticsJeiPlugin;
 import binnie.genetics.item.GeneticsItems;
 import binnie.genetics.machine.sequencer.SequencerLogic;
+import binnie.genetics.modules.ModuleCore;
+
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IDrawableAnimated;
 import mezz.jei.api.ingredients.IIngredients;
+import mezz.jei.api.recipe.IRecipeWrapper;
 
 public class SequencerRecipeWrapper implements IRecipeWrapper {
 	private final ItemStack input;
@@ -37,7 +38,7 @@ public class SequencerRecipeWrapper implements IRecipeWrapper {
 		ingredients.setInputs(ItemStack.class, Arrays.asList(
 			input,
 			GeneticsItems.FluorescentDye.get(1),
-			new ItemStack(Genetics.items().database)
+			new ItemStack(ModuleCore.database)
 		));
 
 		ingredients.setOutput(ItemStack.class, GeneticsItems.EmptySequencer.get(1));

@@ -7,7 +7,7 @@ public interface IFluidDefinition {
 
 	FluidStack get(int amount);
 
-	default FluidStack get(){
+	default FluidStack get() {
 		return get(Fluid.BUCKET_VOLUME);
 	}
 

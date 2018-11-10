@@ -2,10 +2,6 @@ package binnie.genetics.gui.analyst;
 
 import java.util.Objects;
 
-import binnie.core.api.gui.IArea;
-import binnie.core.api.gui.ITitledWidget;
-import binnie.core.gui.controls.core.Control;
-import binnie.genetics.api.analyst.AnalystConstants;
 import net.minecraft.util.text.TextFormatting;
 
 import net.minecraftforge.fml.relauncher.Side;
@@ -14,14 +10,18 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IIndividual;
 
-import binnie.core.gui.CraftGUI;
+import binnie.core.api.gui.IArea;
+import binnie.core.api.gui.ITitledWidget;
 import binnie.core.api.gui.IWidget;
+import binnie.core.gui.CraftGUI;
 import binnie.core.gui.controls.ControlText;
 import binnie.core.gui.controls.ControlTextCentered;
+import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.geometry.Area;
 import binnie.core.gui.geometry.Point;
 import binnie.core.gui.geometry.TextJustification;
 import binnie.core.util.I18N;
+import binnie.genetics.api.analyst.AnalystConstants;
 
 @SideOnly(Side.CLIENT)
 public class AnalystPageDescription extends Control implements ITitledWidget {
@@ -36,7 +36,6 @@ public class AnalystPageDescription extends Control implements ITitledWidget {
 		StringBuilder descBody = new StringBuilder(TextFormatting.ITALIC.toString());
 		String descSig = "";
 		if (Objects.equals(desc, "") || desc.contains("for.description") || desc.contains(".desc")) {
-			descBody.append("");
 		} else {
 			String[] descStrings = desc.split("\\|");
 			descBody.append(descStrings[0]);

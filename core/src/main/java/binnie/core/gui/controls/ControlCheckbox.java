@@ -3,9 +3,9 @@ package binnie.core.gui.controls;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import binnie.core.api.gui.IWidget;
 import binnie.core.gui.Attribute;
 import binnie.core.gui.CraftGUI;
-import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.controls.core.IControlValue;
 import binnie.core.gui.events.EventMouse;

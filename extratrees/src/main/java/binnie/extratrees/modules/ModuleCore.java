@@ -97,14 +97,14 @@ public class ModuleCore extends BlankModule {
 
 	@Override
 	public void preInit() {
-		if(ConfigurationMain.hopeField) {
+		if (ConfigurationMain.hopeField) {
 			VillageCreationExtraTrees.registerVillageComponents();
 		}
 	}
 
 	@Override
 	public void doInit() {
-		if(ConfigurationMain.hopeField) {
+		if (ConfigurationMain.hopeField) {
 			VillageCreationExtraTrees villageHandler = new VillageCreationExtraTrees();
 			VillagerRegistry villagerRegistry = VillagerRegistry.instance();
 			villagerRegistry.registerVillageCreationHandler(villageHandler);

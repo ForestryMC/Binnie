@@ -1,7 +1,7 @@
 {
-    "parent": "botany:block/soil",
-    "textures": {
-        "top": "botany:blocks/soil/flowerbed.alkaline.damp.2",
-        "side": "botany:blocks/soil/flowerbed.alkaline.damp.1"
-    }
+  "parent": "botany:block/soil",
+  "textures": {
+    "top": "botany:blocks/soil/flowerbed.alkaline.damp.2",
+    "side": "botany:blocks/soil/flowerbed.alkaline.damp.1"
+  }
 }

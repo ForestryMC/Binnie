@@ -4,7 +4,6 @@ import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
-import binnie.design.api.DesignAPI;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
@@ -14,12 +13,13 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.extratrees.ExtraTrees;
-import binnie.extratrees.api.CarpentryManager;
+import binnie.design.EnumPattern;
+import binnie.design.api.DesignAPI;
 import binnie.design.api.IDesignMaterial;
 import binnie.design.api.IDesignSystem;
 import binnie.design.api.IPattern;
-import binnie.design.EnumPattern;
+import binnie.extratrees.ExtraTrees;
+import binnie.extratrees.api.CarpentryManager;
 import binnie.extratrees.items.ExtraTreeItems;
 import binnie.extratrees.wood.planks.ExtraTreePlanks;
 

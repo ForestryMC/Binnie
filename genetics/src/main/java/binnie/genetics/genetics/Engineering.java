@@ -5,13 +5,13 @@ import javax.annotation.Nullable;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import binnie.genetics.Genetics;
 import binnie.core.api.genetics.IGene;
 import binnie.genetics.api.IItemChargeable;
 import binnie.genetics.api.IItemSerum;
 import binnie.genetics.item.GeneticsItems;
 import binnie.genetics.item.ItemSerum;
 import binnie.genetics.item.ItemSerumArray;
+import binnie.genetics.modules.ModuleCore;
 
 public class Engineering {
 	public static boolean isGeneAcceptor(ItemStack stack) {
@@ -25,7 +25,7 @@ public class Engineering {
 		}
 
 		int metadata = stack.getMetadata();
-		return item == Genetics.items().getItemGenetics()
+		return item == ModuleCore.itemGenetics
 			&& (metadata == GeneticsItems.EMPTY_SERUM.ordinal() || metadata == GeneticsItems.EMPTY_GENOME.ordinal());
 	}
 
@@ -56,7 +56,7 @@ public class Engineering {
 			((IItemSerum) item).addGene(stack, gene);
 		}
 
-		if (item == Genetics.items().getItemGenetics()) {
+		if (item == ModuleCore.itemGenetics) {
 			if (metadata == GeneticsItems.EMPTY_SERUM.ordinal()) {
 				return ItemSerum.create(gene);
 			} else if (metadata == GeneticsItems.EMPTY_GENOME.ordinal()) {
@@ -73,7 +73,7 @@ public class Engineering {
 				return ((IItemSerum) item).getGenes(serum);
 			}
 
-			if (item == Genetics.items().itemSequencer) {
+			if (item == ModuleCore.itemSequencer) {
 				SequencerItem sequencerItem = SequencerItem.create(serum);
 				if (sequencerItem != null) {
 					return new IGene[]{sequencerItem.getGene()};

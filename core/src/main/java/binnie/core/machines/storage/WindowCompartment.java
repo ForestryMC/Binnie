@@ -5,12 +5,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-import binnie.core.api.gui.ITexture;
-import binnie.core.api.gui.events.EventHandlerOrigin;
-import binnie.core.gui.geometry.Point;
-import binnie.core.gui.window.WindowMachine;
-import binnie.core.machines.IMachine;
-import binnie.core.machines.MachinePackage;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
@@ -21,6 +15,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.core.BinnieCore;
+import binnie.core.api.gui.Alignment;
+import binnie.core.api.gui.ITexture;
+import binnie.core.api.gui.events.EventHandlerOrigin;
 import binnie.core.gui.Attribute;
 import binnie.core.gui.CraftGUI;
 import binnie.core.gui.controls.ControlText;
@@ -34,7 +31,7 @@ import binnie.core.gui.events.EventMouse;
 import binnie.core.gui.events.EventTextEdit;
 import binnie.core.gui.events.EventValueChanged;
 import binnie.core.gui.geometry.CraftGUIUtil;
-import binnie.core.api.gui.Alignment;
+import binnie.core.gui.geometry.Point;
 import binnie.core.gui.minecraft.EnumColor;
 import binnie.core.gui.minecraft.IWindowAffectsShiftClick;
 import binnie.core.gui.minecraft.MinecraftGUI;
@@ -47,7 +44,10 @@ import binnie.core.gui.minecraft.control.ControlTabIcon;
 import binnie.core.gui.renderer.RenderUtil;
 import binnie.core.gui.resource.textures.CraftGUITexture;
 import binnie.core.gui.window.Panel;
+import binnie.core.gui.window.WindowMachine;
+import binnie.core.machines.IMachine;
 import binnie.core.machines.Machine;
+import binnie.core.machines.MachinePackage;
 import binnie.core.machines.transfer.TransferRequest;
 
 public class WindowCompartment extends WindowMachine implements IWindowAffectsShiftClick {

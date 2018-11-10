@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import binnie.botany.EnumHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -36,6 +35,7 @@ import forestry.api.core.IModelManager;
 import forestry.core.blocks.IColoredBlock;
 
 import binnie.botany.CreativeTabBotany;
+import binnie.botany.EnumHelper;
 import binnie.botany.api.genetics.EnumFlowerColor;
 import binnie.core.block.BlockMetadata;
 import binnie.core.block.IBlockMetadata;

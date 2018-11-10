@@ -1,6 +1,5 @@
 package binnie.extratrees.blocks;
 
-import binnie.design.DesignHelper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
@@ -14,6 +13,7 @@ import net.minecraft.world.World;
 import binnie.core.block.BlockMetadata;
 import binnie.core.block.TileEntityMetadata;
 import binnie.core.util.I18N;
+import binnie.design.DesignHelper;
 import binnie.design.blocks.DesignBlock;
 import binnie.extratrees.modules.ModuleCarpentry;
 

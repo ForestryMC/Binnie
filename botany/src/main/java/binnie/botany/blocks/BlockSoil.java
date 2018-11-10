@@ -3,7 +3,6 @@ package binnie.botany.blocks;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-import binnie.botany.EnumHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -30,18 +29,19 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
 
-import binnie.core.Constants;
 import binnie.botany.CreativeTabBotany;
+import binnie.botany.EnumHelper;
 import binnie.botany.api.gardening.EnumAcidity;
 import binnie.botany.api.gardening.EnumMoisture;
 import binnie.botany.api.gardening.EnumSoilType;
 import binnie.botany.api.gardening.IBlockSoil;
 import binnie.botany.core.BotanyCore;
-import binnie.core.modules.BotanyModuleUIDs;
 import binnie.botany.modules.ModuleFlowers;
 import binnie.botany.modules.ModuleGardening;
-import binnie.core.util.I18N;
+import binnie.core.Constants;
+import binnie.core.modules.BotanyModuleUIDs;
 import binnie.core.modules.ModuleManager;
+import binnie.core.util.I18N;
 
 public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 	public static final PropertyEnum<EnumMoisture> MOISTURE = PropertyEnum.create("moisture", EnumMoisture.class);
@@ -310,7 +310,7 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 	@Override
 	public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, IPlantable plantable) {
 		IBlockState plant = plantable.getPlant(world, pos.up());
-		if(ModuleManager.isModuleEnabled(Constants.BOTANY_MOD_ID, BotanyModuleUIDs.FLOWERS)) {
+		if (ModuleManager.isModuleEnabled(Constants.BOTANY_MOD_ID, BotanyModuleUIDs.FLOWERS)) {
 			if (plant.getBlock() == ModuleFlowers.flower) {
 				return true;
 			}

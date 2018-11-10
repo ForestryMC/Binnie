@@ -20,8 +20,8 @@ public class ExtraBeeSpecies extends AlleleBeeSpecies {
 
 	@Override
 	public IAlleleBeeSpeciesBuilder addProduct(ItemStack product, Float chance) {
-		if(product.isEmpty() || ItemHoneyComb.isInvalidComb(product)){
-			if(state == State.ACTIVE){
+		if (product.isEmpty() || ItemHoneyComb.isInvalidComb(product)) {
+			if (state == State.ACTIVE) {
 				state = State.INACTIVE;
 				return this;
 			}
@@ -31,8 +31,8 @@ public class ExtraBeeSpecies extends AlleleBeeSpecies {
 
 	@Override
 	public IAlleleBeeSpeciesBuilder addSpecialty(ItemStack specialty, Float chance) {
-		if(specialty.isEmpty() || ItemHoneyComb.isInvalidComb(specialty)){
-			if(state == State.ACTIVE){
+		if (specialty.isEmpty() || ItemHoneyComb.isInvalidComb(specialty)) {
+			if (state == State.ACTIVE) {
 				state = State.INACTIVE;
 				return this;
 			}
@@ -42,7 +42,7 @@ public class ExtraBeeSpecies extends AlleleBeeSpecies {
 
 	@Override
 	public IAlleleBeeSpecies build() {
-		if(state == State.INACTIVE){
+		if (state == State.INACTIVE) {
 			if (this.state != State.ACTIVE) {
 				AlleleManager.alleleRegistry.blacklistAllele(this.getUID());
 			}
@@ -50,7 +50,7 @@ public class ExtraBeeSpecies extends AlleleBeeSpecies {
 		return super.build();
 	}
 
-	public boolean isActive(){
+	public boolean isActive() {
 		return state == State.ACTIVE;
 	}
 

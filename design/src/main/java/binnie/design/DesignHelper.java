@@ -2,20 +2,22 @@ package binnie.design;
 
 import javax.annotation.Nullable;
 
-import binnie.core.block.TileEntityMetadata;
-import binnie.design.api.IDesign;
-import binnie.design.api.IDesignMaterial;
-import binnie.design.api.IDesignSystem;
-import binnie.design.blocks.BlockDesign;
-import binnie.design.blocks.DesignBlock;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 
+import binnie.core.block.TileEntityMetadata;
+import binnie.design.api.IDesign;
+import binnie.design.api.IDesignMaterial;
+import binnie.design.api.IDesignSystem;
+import binnie.design.blocks.BlockDesign;
+import binnie.design.blocks.DesignBlock;
+
 public final class DesignHelper {
-	private DesignHelper() {}
+	private DesignHelper() {
+	}
 
 	public static DesignBlock getDesignBlock(final IDesignSystem system, final int meta) {
 		final int plankID1 = meta & 0xFF;

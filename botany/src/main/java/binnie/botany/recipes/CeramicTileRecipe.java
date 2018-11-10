@@ -14,11 +14,12 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
-import binnie.core.Constants;
 import binnie.botany.ceramic.brick.CeramicBrickType;
 import binnie.botany.modules.ModuleCeramic;
+import binnie.core.Constants;
 
-public class CeramicTileRecipe extends IForgeRegistryEntry.Impl<IRecipe> implements IRecipe { private ItemStack cached = ItemStack.EMPTY;
+public class CeramicTileRecipe extends IForgeRegistryEntry.Impl<IRecipe> implements IRecipe {
+	private ItemStack cached = ItemStack.EMPTY;
 
 	public CeramicTileRecipe() {
 		setRegistryName(new ResourceLocation(Constants.BOTANY_MOD_ID, "ceramic_tile"));

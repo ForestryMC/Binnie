@@ -52,7 +52,7 @@ public class ETFruitProviderRipening extends ETFruitProviderNone {
 		if (ripeningTime >= this.ripeningPeriod) {
 			return 1.0f;
 		}
-		return (float)ripeningTime / this.ripeningPeriod;
+		return (float) ripeningTime / this.ripeningPeriod;
 	}
 
 	@Override

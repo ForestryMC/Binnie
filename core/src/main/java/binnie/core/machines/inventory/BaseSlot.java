@@ -7,9 +7,10 @@ import java.util.EnumSet;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 
-import binnie.core.util.IValidator;
 import forestry.api.core.INbtReadable;
 import forestry.api.core.INbtWritable;
+
+import binnie.core.util.IValidator;
 
 public abstract class BaseSlot<V> implements INbtWritable, INbtReadable, IValidator<V> {
 	@Nullable

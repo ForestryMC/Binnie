@@ -4,8 +4,6 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-import binnie.core.api.genetics.IBreedingSystem;
-import binnie.core.api.genetics.IGene;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -20,6 +18,8 @@ import forestry.api.core.INbtWritable;
 import forestry.api.genetics.ISpeciesRoot;
 
 import binnie.core.Binnie;
+import binnie.core.api.genetics.IBreedingSystem;
+import binnie.core.api.genetics.IGene;
 import binnie.core.genetics.Gene;
 import binnie.core.util.I18N;
 

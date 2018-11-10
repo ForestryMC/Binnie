@@ -89,7 +89,7 @@ public class BreweryLogic extends ComponentProcessSetCost implements IProcess, I
 			final FluidStack stack = this.getUtil().drainTank(BreweryMachine.TANK_INPUT, Fluid.BUCKET_VOLUME);
 			this.currentCrafting = this.getInputCrafting();
 			this.currentCrafting.setInputFluid(stack);
-			this.getUtil().drainTank(BreweryMachine.TANK_INPUT,  stack.amount);
+			this.getUtil().drainTank(BreweryMachine.TANK_INPUT, stack.amount);
 			this.getUtil().removeIngredients(new int[]{0, 1, 2, 3, 4}, BreweryMachine.SLOTS_INVENTORY);
 		}
 	}

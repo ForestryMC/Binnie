@@ -5,6 +5,7 @@ import java.io.IOException;
 import net.minecraft.util.math.BlockPos;
 
 import binnie.core.network.BinnieCorePacketID;
+
 import io.netty.buffer.ByteBuf;
 
 public class MessageMetadata extends MessageCoordinates {

@@ -2,6 +2,13 @@ package binnie.core.gui.fieldkit;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.client.util.ITooltipFlag;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import forestry.api.genetics.IChromosomeType;
+
 import binnie.core.Binnie;
 import binnie.core.gui.Attribute;
 import binnie.core.gui.CraftGUI;
@@ -11,13 +18,9 @@ import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.events.EventValueChanged;
 import binnie.core.gui.events.EventWidget;
 import binnie.core.gui.geometry.Point;
-import binnie.core.gui.resource.textures.Texture;
 import binnie.core.gui.resource.textures.StandardTexture;
+import binnie.core.gui.resource.textures.Texture;
 import binnie.core.texture.BinnieCoreTexture;
-import forestry.api.genetics.IChromosomeType;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ControlChromoPicker extends Control implements ITooltip {
 	private final Texture selected;

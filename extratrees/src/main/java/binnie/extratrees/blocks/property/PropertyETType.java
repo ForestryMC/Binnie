@@ -23,7 +23,7 @@ public class PropertyETType extends PropertyEnum<ETTreeDefinition> {
 		Collection<ETTreeDefinition> allowedValues = Collections2.filter(Lists.newArrayList(ETTreeDefinition.class.getEnumConstants()), filter);
 		return new PropertyETType(name, ETTreeDefinition.class, allowedValues);
 	}
-	
+
 	public ETTreeDefinition getFirstType() {
 		return getAllowedValues().iterator().next();
 	}

@@ -22,7 +22,7 @@ public class ItemBlockETWoodDoor extends ItemBlockETWood<BlockETDoor> implements
 	public ItemBlockETWoodDoor(BlockETDoor block) {
 		super(block);
 	}
-	
+
 	/**
 	 * Copy of {@link ItemDoor#onItemUse}
 	 * Called when a Block is right-clicked with this Item
@@ -34,13 +34,13 @@ public class ItemBlockETWoodDoor extends ItemBlockETWood<BlockETDoor> implements
 		} else {
 			IBlockState iblockstate = worldIn.getBlockState(pos);
 			Block block = iblockstate.getBlock();
-			
+
 			if (!block.isReplaceable(worldIn, pos)) {
 				pos = pos.offset(facing);
 			}
-			
+
 			ItemStack itemstack = player.getHeldItem(hand);
-			
+
 			if (player.canPlayerEdit(pos, facing, itemstack) && this.block.canPlaceBlockAt(worldIn, pos)) {
 				EnumFacing enumfacing = EnumFacing.fromAngle(player.rotationYaw);
 				int i = enumfacing.getFrontOffsetX();
@@ -56,7 +56,7 @@ public class ItemBlockETWoodDoor extends ItemBlockETWood<BlockETDoor> implements
 			}
 		}
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int getColorFromItemstack(ItemStack stack, int tintIndex) {

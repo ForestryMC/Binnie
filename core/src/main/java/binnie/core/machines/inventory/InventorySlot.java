@@ -19,7 +19,7 @@ public class InventorySlot extends BaseSlot<ItemStack> {
 		this.type = Type.Standard;
 	}
 
-	public boolean isFake(){
+	public boolean isFake() {
 		return false;
 	}
 
@@ -46,7 +46,7 @@ public class InventorySlot extends BaseSlot<ItemStack> {
 			this.content = ItemStack.EMPTY;
 			return stack;
 		}
-		 ItemStack stack = this.content.copy();
+		ItemStack stack = this.content.copy();
 		content.shrink(amount);
 		stack.setCount(amount);
 		return stack;

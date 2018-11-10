@@ -1,8 +1,8 @@
 {
-    "parent": "item/generated",
-    "textures": {
-        "layer0": "botany:blocks/flowers/double/hollyhock2.0",
-		"layer1": "botany:blocks/flowers/double/hollyhock2.1",
-		"layer2": "botany:blocks/flowers/double/hollyhock2.2"
-    }
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "botany:blocks/flowers/double/hollyhock2.0",
+    "layer1": "botany:blocks/flowers/double/hollyhock2.1",
+    "layer2": "botany:blocks/flowers/double/hollyhock2.2"
+  }
 }

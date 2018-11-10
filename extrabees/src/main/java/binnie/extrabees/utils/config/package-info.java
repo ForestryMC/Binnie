@@ -3,7 +3,8 @@
 @FieldsAreNonnullByDefault
 package binnie.extrabees.utils.config;
 
-import binnie.extrabees.utils.FieldsAreNonnullByDefault;
+import javax.annotation.ParametersAreNonnullByDefault;
+
 import mcp.MethodsReturnNonnullByDefault;
 
-import javax.annotation.ParametersAreNonnullByDefault;
+import binnie.extrabees.utils.FieldsAreNonnullByDefault;

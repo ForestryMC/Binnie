@@ -3,23 +3,23 @@ package binnie.extratrees.gui.database;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import binnie.core.Binnie;
-import binnie.core.api.gui.IArea;
-import binnie.core.gui.controls.page.ControlPage;
-import binnie.core.gui.database.ModeWidgets;
-import binnie.genetics.api.ITreeBreedingSystem;
-import forestry.api.arboriculture.TreeManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import forestry.api.arboriculture.TreeManager;
+
+import binnie.core.Binnie;
+import binnie.core.api.gui.IArea;
 import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.listbox.ControlListBox;
+import binnie.core.gui.controls.page.ControlPage;
 import binnie.core.gui.database.ControlItemStackOption;
 import binnie.core.gui.database.DatabaseTab;
 import binnie.core.gui.database.IDatabaseMode;
+import binnie.core.gui.database.ModeWidgets;
 import binnie.core.gui.database.PageBranchOverview;
 import binnie.core.gui.database.PageBranchSpecies;
 import binnie.core.gui.database.PageBreeder;
@@ -30,9 +30,10 @@ import binnie.core.gui.database.PageSpeciesResultant;
 import binnie.core.gui.database.WindowAbstractDatabase;
 import binnie.core.gui.minecraft.Window;
 import binnie.core.util.I18N;
-import binnie.extratrees.ExtraTrees;
 import binnie.design.api.IDesignMaterial;
+import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.wood.WoodManager;
+import binnie.genetics.api.ITreeBreedingSystem;
 
 public class WindowArboristDatabase extends WindowAbstractDatabase {
 	public static Window create(EntityPlayer player, Side side, boolean master) {

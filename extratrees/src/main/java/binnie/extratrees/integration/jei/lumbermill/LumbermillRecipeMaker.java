@@ -3,14 +3,17 @@ package binnie.extratrees.integration.jei.lumbermill;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
+
+import net.minecraftforge.oredict.OreDictionary;
+
 import binnie.extratrees.api.recipes.ExtraTreesRecipeManager;
 import binnie.extratrees.api.recipes.ILumbermillManager;
 import binnie.extratrees.api.recipes.ILumbermillRecipe;
 import binnie.extratrees.machines.lumbermill.recipes.LumbermillRecipeManager;
+
 import mezz.jei.api.IJeiHelpers;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
-import net.minecraftforge.oredict.OreDictionary;
 
 public class LumbermillRecipeMaker {
 	public static List<LumbermillRecipeWrapper> create(IJeiHelpers helpers) {

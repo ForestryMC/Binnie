@@ -58,7 +58,7 @@ public enum EnumETLog implements IWoodType {
 	private final String uid;
 	private final IPlankType plank;
 	private final boolean hasProducts;
-	
+
 	EnumETLog(final String name, final IPlankType plank) {
 		this(name, plank, true);
 	}
@@ -76,11 +76,11 @@ public enum EnumETLog implements IWoodType {
 		}
 		return VALUES[meta];
 	}
-	
+
 	public boolean hasProducts() {
 		return hasProducts;
 	}
-	
+
 	@Override
 	public String getName() {
 		return name().toLowerCase();

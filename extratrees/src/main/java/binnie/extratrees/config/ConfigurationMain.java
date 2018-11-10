@@ -24,7 +24,7 @@ public class ConfigurationMain implements IConfigHandler {
 		hopeField = config.getBoolean("village.hopeField", "general", alterLemon, "Adds a hope field to the village generation.");
 		//Wood Module
 		alterLemon = config.getBoolean("lemon.citrus.family", "general", alterLemon, "Uses reflection to convert the Forestry lemon tree to the Citrus family.");
-		if(config.hasChanged()){
+		if (config.hasChanged()) {
 			config.save();
 		}
 	}

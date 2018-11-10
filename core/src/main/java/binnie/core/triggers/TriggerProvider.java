@@ -17,8 +17,7 @@ import buildcraft.api.statements.ITriggerInternal;
 import buildcraft.api.statements.ITriggerInternalSided;
 import buildcraft.api.statements.ITriggerProvider;
 
-class TriggerProvider implements ITriggerProvider
-{
+class TriggerProvider implements ITriggerProvider {
 	static TriggerProvider instance;
 	public static List<BinnieTrigger> triggers;
 

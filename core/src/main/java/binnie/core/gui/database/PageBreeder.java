@@ -1,10 +1,10 @@
 package binnie.core.gui.database;
 
-import binnie.core.api.genetics.IBreedingSystem;
 import net.minecraft.util.text.TextFormatting;
 
 import com.mojang.authlib.GameProfile;
 
+import binnie.core.api.genetics.IBreedingSystem;
 import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.ControlTextCentered;
 import binnie.core.gui.controls.page.ControlPage;

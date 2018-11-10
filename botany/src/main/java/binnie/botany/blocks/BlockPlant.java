@@ -50,7 +50,7 @@ public class BlockPlant extends BlockBush implements IItemModelRegister {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerModel(Item item, IModelManager manager) {
-		for (int i = 0;i < PlantType.values().length;i++) {
+		for (int i = 0; i < PlantType.values().length; i++) {
 			PlantType type = PlantType.getType(i);
 			manager.registerItemModel(item, i, type.getName());
 		}

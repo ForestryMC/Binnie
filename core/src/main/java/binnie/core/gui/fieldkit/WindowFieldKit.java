@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import binnie.core.api.gui.events.EventHandlerOrigin;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
@@ -27,6 +26,7 @@ import forestry.api.genetics.ISpeciesRoot;
 import binnie.core.Binnie;
 import binnie.core.BinnieCore;
 import binnie.core.api.genetics.IBreedingSystem;
+import binnie.core.api.gui.events.EventHandlerOrigin;
 import binnie.core.genetics.ManagerGenetics;
 import binnie.core.gui.CraftGUI;
 import binnie.core.gui.controls.ControlText;
@@ -155,7 +155,7 @@ public class WindowFieldKit extends Window {
 		this.glassOffsetX *= 1 - this.analyseProgress;
 		this.glassOffsetY += this.glassVY;
 		this.glassOffsetY *= 1 - this.analyseProgress;
-		this.GlassControl.setOffset(new Point((int)this.glassOffsetX, (int)this.glassOffsetY));
+		this.GlassControl.setOffset(new Point((int) this.glassOffsetX, (int) this.glassOffsetY));
 	}
 
 	private void refreshSpecies() {

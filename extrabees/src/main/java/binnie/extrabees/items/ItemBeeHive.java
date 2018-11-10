@@ -44,13 +44,13 @@ public class ItemBeeHive extends ItemBlock implements IItemModelProvider {
 	@Override
 	public String getUnlocalizedName(ItemStack stack) {
 		EnumHiveType type = EnumHiveType.getHiveTypeForMeta(stack.getItemDamage());
-		return  "extrabees.block.hive." + type.getName();
+		return "extrabees.block.hive." + type.getName();
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerModel(Item item) {
-		for(EnumHiveType type : EnumHiveType.values()){
+		for (EnumHiveType type : EnumHiveType.values()) {
 			ModelLoader.setCustomModelResourceLocation(item, type.getMeta(), new ModelResourceLocation("extrabees:hive", "type=" + type.getName()));
 		}
 	}

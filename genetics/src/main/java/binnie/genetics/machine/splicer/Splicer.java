@@ -5,13 +5,14 @@ import com.google.common.base.Preconditions;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-import binnie.core.api.genetics.IGene;
 import forestry.api.apiculture.IBee;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IChromosome;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.ISpeciesRoot;
+
+import binnie.core.api.genetics.IGene;
 
 public class Splicer {
 	public static final int SLOT_SERUM_VIAL = 0;
@@ -29,7 +30,7 @@ public class Splicer {
 		}
 		NBTTagCompound targetTag = target.getTagCompound();
 		NBTTagCompound mate = null;
-		if(targetTag != null && targetTag.hasKey("Mate")){
+		if (targetTag != null && targetTag.hasKey("Mate")) {
 			mate = targetTag.getCompoundTag("Mate").copy();
 		}
 		ISpeciesRoot speciesRoot = AlleleManager.alleleRegistry.getSpeciesRoot(target);
@@ -63,7 +64,7 @@ public class Splicer {
 		}
 		NBTTagCompound nbt = new NBTTagCompound();
 		individual.writeToNBT(nbt);
-		if(mate != null) {
+		if (mate != null) {
 			nbt.setTag("Mate", mate);
 		}
 		target.setTagCompound(nbt);

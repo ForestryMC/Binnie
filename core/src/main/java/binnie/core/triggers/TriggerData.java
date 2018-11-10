@@ -5,8 +5,7 @@ import java.util.Map;
 
 import buildcraft.api.statements.ITriggerExternal;
 
-public class TriggerData implements Map.Entry<ITriggerExternal, Boolean>
-{
+public class TriggerData implements Map.Entry<ITriggerExternal, Boolean> {
 	@Nullable
 	private final ITriggerExternal key;
 	private Boolean value;

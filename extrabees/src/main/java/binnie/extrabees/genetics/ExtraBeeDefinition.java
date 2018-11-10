@@ -427,7 +427,7 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 			registerMutation(BeeDefinition.IMPERIAL, MINERAL, 5);
 		}
 	},
-	SODALITE(ExtraBeeBranchDefinition.MINERAL, "soda", false, new Color(0x154fed), new Color(0x999999)){
+	SODALITE(ExtraBeeBranchDefinition.MINERAL, "soda", false, new Color(0x154fed), new Color(0x999999)) {
 		@Override
 		protected void setSpeciesProperties(IAlleleBeeSpeciesBuilder beeSpecies) {
 			beeSpecies.addProduct(EnumHoneyComb.STONE.get(1), 0.20F)
@@ -439,7 +439,7 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 			registerMutation(LAPIS, BeeDefinition.DILIGENT, 5);
 		}
 	},
-	PYRITE(ExtraBeeBranchDefinition.MINERAL, "pyrus", false, new Color(0xe3a739), new Color(0x999999)){
+	PYRITE(ExtraBeeBranchDefinition.MINERAL, "pyrus", false, new Color(0xe3a739), new Color(0x999999)) {
 		@Override
 		protected void setSpeciesProperties(IAlleleBeeSpeciesBuilder beeSpecies) {
 			beeSpecies.addProduct(EnumHoneyComb.STONE.get(1), 0.20F)
@@ -451,7 +451,7 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 			registerMutation(IRON, BeeDefinition.SINISTER, 5);
 		}
 	},
-	BAUXITE(ExtraBeeBranchDefinition.MINERAL, "bauxus", false, new Color(0x9c6500), new Color(0x999999)){
+	BAUXITE(ExtraBeeBranchDefinition.MINERAL, "bauxus", false, new Color(0x9c6500), new Color(0x999999)) {
 		@Override
 		protected void setSpeciesProperties(IAlleleBeeSpeciesBuilder beeSpecies) {
 			beeSpecies.addProduct(EnumHoneyComb.STONE.get(1), 0.20F)
@@ -463,7 +463,7 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 			registerMutation(MINERAL, BeeDefinition.DILIGENT, 5);
 		}
 	},
-	CINNABAR(ExtraBeeBranchDefinition.MINERAL, "cinna", false, new Color(0x47320b), new Color(0x999999)){
+	CINNABAR(ExtraBeeBranchDefinition.MINERAL, "cinna", false, new Color(0x47320b), new Color(0x999999)) {
 		@Override
 		protected void setSpeciesProperties(IAlleleBeeSpeciesBuilder beeSpecies) {
 			beeSpecies.addProduct(EnumHoneyComb.STONE.get(1), 0.20F)
@@ -475,7 +475,7 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 			registerMutation(MINERAL, BeeDefinition.SINISTER, 5);
 		}
 	},
-	SPHALERITE(ExtraBeeBranchDefinition.MINERAL, "spahleri", false, new Color(0xdbd51d), new Color(0x999999)){
+	SPHALERITE(ExtraBeeBranchDefinition.MINERAL, "spahleri", false, new Color(0xdbd51d), new Color(0x999999)) {
 		@Override
 		protected void setSpeciesProperties(IAlleleBeeSpeciesBuilder beeSpecies) {
 			beeSpecies.addProduct(EnumHoneyComb.STONE.get(1), 0.20F)
@@ -1983,15 +1983,15 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 	}
 
 	private void init() {
-		if(speciesBuilder == null){
+		if (speciesBuilder == null) {
 			return;
 		}
-		if(isSecret()){
+		if (isSecret()) {
 			speciesBuilder.setIsSecret();
 		}
 		setSpeciesProperties(speciesBuilder);
 		species = speciesBuilder.build();
-		
+
 		template = branch.getTemplate();
 		AlleleHelper.getInstance().set(template, EnumBeeChromosome.SPECIES, species);
 		setAlleles(template);

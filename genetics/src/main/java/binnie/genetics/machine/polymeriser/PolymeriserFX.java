@@ -22,7 +22,9 @@ public class PolymeriserFX extends MachineComponent implements IRender.DisplayTi
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void onDisplayTick(World world, BlockPos pos, Random rand) {
-		if (!this.getUtil().getProcess().isInProgress()) return;
+		if (!this.getUtil().getProcess().isInProgress()) {
+			return;
+		}
 		final int tick = (int) (world.getTotalWorldTime() % 8L);
 		if (tick == 0 || tick == 3) {
 			final PolymeriserParticle polymeriserParticle = new PolymeriserParticle(world, pos);

@@ -21,7 +21,7 @@ public class TileUtil {
 		}
 	}
 
-	public interface ITileAction<T>  {
+	public interface ITileAction<T> {
 		void actOnTile(T tile);
 	}
 

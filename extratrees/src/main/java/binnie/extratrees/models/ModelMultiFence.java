@@ -21,9 +21,9 @@ import forestry.core.models.ModelBlockCached;
 import binnie.core.block.TileEntityMetadata;
 import binnie.core.models.AABBModelBaker;
 import binnie.core.models.ModelManager;
-import binnie.extratrees.wood.WoodManager;
 import binnie.extratrees.blocks.decor.BlockMultiFence;
 import binnie.extratrees.blocks.decor.FenceType;
+import binnie.extratrees.wood.WoodManager;
 
 public class ModelMultiFence extends ModelBlockCached<BlockMultiFence, ModelMultiFence.Key> {
 
@@ -178,8 +178,8 @@ public class ModelMultiFence extends ModelBlockCached<BlockMultiFence, ModelMult
 		float maxPostPos = 0.5f + POST_WIDGTH / 2.0f;
 		int meta = key.meta;
 		FenceType fenceType = key.type;
-		TextureAtlasSprite primarySprite =  block.getSprite(meta, false);
-		TextureAtlasSprite secondarySprite =  block.getSprite(meta, true);
+		TextureAtlasSprite primarySprite = block.getSprite(meta, false);
+		TextureAtlasSprite secondarySprite = block.getSprite(meta, true);
 
 		modelBaker.setModelBounds(new AxisAlignedBB(minPostPos, 0.0, minPostPos, maxPostPos, POST_HEIGHT, maxPostPos));
 		modelBaker.addBlockModel(null, primarySprite, 0);

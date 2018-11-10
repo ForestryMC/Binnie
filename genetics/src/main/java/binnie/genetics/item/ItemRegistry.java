@@ -1,12 +1,12 @@
 package binnie.genetics.item;
 
-import binnie.core.api.gui.IGuiItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
+import binnie.core.api.gui.IGuiItem;
 import binnie.core.item.ItemCore;
 import binnie.genetics.CreativeTabGenetics;
 import binnie.genetics.Genetics;

@@ -7,6 +7,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.nbt.NBTTagCompound;
 
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.core.api.gui.Alignment;
 import binnie.core.gui.minecraft.Window;
@@ -18,7 +19,6 @@ import binnie.core.machines.Machine;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.machines.distillery.DistilleryLogic;
 import binnie.extratrees.machines.distillery.DistilleryMachine;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WindowDistillery extends Window {
 	public WindowDistillery(final EntityPlayer player, final IInventory inventory, final Side side) {
@@ -61,7 +61,7 @@ public class WindowDistillery extends Window {
 
 	@Override
 	public void receiveGuiNBTOnServer(EntityPlayer player, String name, NBTTagCompound nbt) {
-		if("still-level".equals(name)){
+		if ("still-level".equals(name)) {
 			DistilleryLogic distilleryLogic = Machine.getInterface(DistilleryLogic.class, Window.get(this).getInventory());
 			if (distilleryLogic != null) {
 				distilleryLogic.setLevel(nbt.getByte("i"));

@@ -3,7 +3,6 @@ package binnie.extratrees.items;
 import javax.annotation.Nullable;
 import java.util.List;
 
-import binnie.core.api.gui.IGuiItem;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -23,6 +22,7 @@ import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
 import forestry.api.core.Tabs;
 
+import binnie.core.api.gui.IGuiItem;
 import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.gui.ExtraTreesGUID;

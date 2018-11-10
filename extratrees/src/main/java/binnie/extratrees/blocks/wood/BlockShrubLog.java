@@ -181,7 +181,7 @@ public class BlockShrubLog extends Block implements IWoodTyped, IStateMapperRegi
 	@SideOnly(Side.CLIENT)
 	@SuppressWarnings("deprecation")
 	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos,
-	                                    EnumFacing side) {
+		EnumFacing side) {
 		return true;
 	}
 

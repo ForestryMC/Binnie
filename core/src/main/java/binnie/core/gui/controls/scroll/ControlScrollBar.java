@@ -3,9 +3,9 @@ package binnie.core.gui.controls.scroll;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import binnie.core.api.gui.IWidget;
 import binnie.core.gui.Attribute;
 import binnie.core.gui.CraftGUI;
-import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.events.EventMouse;
 import binnie.core.gui.geometry.Area;
@@ -30,7 +30,7 @@ public class ControlScrollBar extends Control {
 			final float percentageIndex = ControlScrollBar.this.scrollable.getPercentageIndex();
 			final float minPercent = (1.0f - shownPercentage) * percentageIndex;
 			final float maxPercent = minPercent + shownPercentage;
-			float clickedPercentage = (float)ControlScrollBar.this.getRelativeMousePosition().yPos() / (ControlScrollBar.this.getHeight() - 2.0f);
+			float clickedPercentage = (float) ControlScrollBar.this.getRelativeMousePosition().yPos() / (ControlScrollBar.this.getHeight() - 2.0f);
 			clickedPercentage = Math.max(Math.min(clickedPercentage, 1.0f), 0.0f);
 			if (clickedPercentage > maxPercent) {
 				ControlScrollBar.this.scrollable.setPercentageIndex((clickedPercentage - shownPercentage) / (1.0f - shownPercentage));

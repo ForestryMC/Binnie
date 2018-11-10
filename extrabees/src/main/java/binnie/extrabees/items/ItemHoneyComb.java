@@ -51,11 +51,11 @@ public class ItemHoneyComb extends ItemProduct<EnumHoneyComb> implements IColore
 		return honeyComb.getSpriteColour(tintIndex);
 	}
 
-	public static boolean isInvalidComb(ItemStack stack){
-		if(stack.isEmpty()){
+	public static boolean isInvalidComb(ItemStack stack) {
+		if (stack.isEmpty()) {
 			return true;
 		}
-		if(stack.getItem() != ModuleCore.comb){
+		if (stack.getItem() != ModuleCore.comb) {
 			return false;
 		}
 		EnumHoneyComb honeyComb = EnumHoneyComb.get(stack);

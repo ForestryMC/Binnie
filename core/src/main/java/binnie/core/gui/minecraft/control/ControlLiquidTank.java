@@ -6,35 +6,32 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import binnie.core.ModId;
-import binnie.core.api.gui.IArea;
-import binnie.core.api.gui.IPoint;
-import binnie.core.gui.geometry.Point;
-import binnie.core.util.I18N;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.nbt.NBTTagCompound;
-
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.text.TextFormatting;
+
 import net.minecraftforge.fluids.Fluid;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import org.lwjgl.opengl.GL11;
-
 import binnie.core.BinnieCore;
+import binnie.core.ModId;
+import binnie.core.api.gui.IArea;
+import binnie.core.api.gui.IPoint;
+import binnie.core.api.gui.IWidget;
 import binnie.core.gui.Attribute;
 import binnie.core.gui.CraftGUI;
 import binnie.core.gui.ITooltip;
-import binnie.core.api.gui.IWidget;
 import binnie.core.gui.Tooltip;
 import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.events.EventMouse;
 import binnie.core.gui.geometry.Area;
+import binnie.core.gui.geometry.Point;
 import binnie.core.gui.minecraft.GuiCraftGUI;
 import binnie.core.gui.minecraft.MinecraftTooltip;
 import binnie.core.gui.minecraft.Window;
@@ -45,6 +42,9 @@ import binnie.core.machines.inventory.MachineSide;
 import binnie.core.machines.inventory.TankSlot;
 import binnie.core.machines.power.ITankMachine;
 import binnie.core.machines.power.TankInfo;
+import binnie.core.util.I18N;
+
+import org.lwjgl.opengl.GL11;
 
 public class ControlLiquidTank extends Control implements ITooltip {
 	public static final List<Integer> tankError = new ArrayList<>();

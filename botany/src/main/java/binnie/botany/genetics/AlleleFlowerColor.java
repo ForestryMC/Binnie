@@ -2,9 +2,10 @@ package binnie.botany.genetics;
 
 import java.awt.Color;
 
+import forestry.api.genetics.IAlleleInteger;
+
 import binnie.botany.api.genetics.IAlleleFlowerColor;
 import binnie.core.util.I18N;
-import forestry.api.genetics.IAlleleInteger;
 
 public class AlleleFlowerColor implements IAlleleFlowerColor {
 	private final int color;

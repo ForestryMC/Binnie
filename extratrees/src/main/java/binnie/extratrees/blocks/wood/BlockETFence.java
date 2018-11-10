@@ -11,8 +11,8 @@ import forestry.arboriculture.IWoodTyped;
 import forestry.arboriculture.blocks.BlockForestryFence;
 
 import binnie.core.Constants;
-import binnie.extratrees.wood.EnumETLog;
 import binnie.extratrees.blocks.property.PropertyETWoodType;
+import binnie.extratrees.wood.EnumETLog;
 
 public abstract class BlockETFence extends BlockForestryFence<EnumETLog> implements IWoodTyped, IItemModelRegister, IStateMapperRegister {
 	private BlockETFence(boolean fireproof, int blockNumber) {

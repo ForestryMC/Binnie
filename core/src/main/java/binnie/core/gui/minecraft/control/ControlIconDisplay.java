@@ -1,6 +1,5 @@
 package binnie.core.gui.minecraft.control;
 
-import binnie.core.api.gui.IBinnieSprite;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.ResourceLocation;
 
@@ -8,6 +7,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.core.BinnieCore;
+import binnie.core.api.gui.IBinnieSprite;
 import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.geometry.Point;

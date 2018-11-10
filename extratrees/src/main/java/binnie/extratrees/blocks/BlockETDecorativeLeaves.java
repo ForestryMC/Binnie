@@ -128,9 +128,7 @@ public abstract class BlockETDecorativeLeaves extends Block implements IItemMode
 	@SuppressWarnings("deprecation")
 	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
 		if (Proxies.render.fancyGraphicsEnabled() || blockAccess.getBlockState(pos.offset(side)).getBlock() != this) {
-			if (super.shouldSideBeRendered(blockState, blockAccess, pos, side)) {
-				return true;
-			}
+			return super.shouldSideBeRendered(blockState, blockAccess, pos, side);
 		}
 		return false;
 	}

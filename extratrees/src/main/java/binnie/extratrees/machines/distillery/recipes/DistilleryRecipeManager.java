@@ -20,7 +20,7 @@ public class DistilleryRecipeManager implements IDistilleryManager {
 	private static final List<IDistilleryRecipe> recipeList = new ArrayList<>();
 
 	static {
-		for(int i = 0;i < LEVELS;i++) {
+		for (int i = 0; i < LEVELS; i++) {
 			recipes.add(new HashMap<>());
 		}
 	}
@@ -41,7 +41,7 @@ public class DistilleryRecipeManager implements IDistilleryManager {
 		for (int i = 0; i < LEVELS; ++i) {
 			Map<Fluid, IDistilleryRecipe> recipesForLevel = recipes.get(i);
 			IDistilleryRecipe recipe = recipesForLevel.get(fluid.getFluid());
-			if(recipe == null){
+			if (recipe == null) {
 				continue;
 			}
 			if (recipe.getInput().isFluidEqual(fluid)) {

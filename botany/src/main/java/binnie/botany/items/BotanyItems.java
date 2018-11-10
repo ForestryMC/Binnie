@@ -31,7 +31,7 @@ public enum BotanyItems implements IItemMiscProvider {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(List<String> tooltip) {
-		if(this == MORTAR){
+		if (this == MORTAR) {
 			tooltip.add(I18N.localise("item.botany.mortar.tooltip"));
 		}
 	}

@@ -12,92 +12,92 @@ import forestry.api.apiculture.IBeeModifier;
 public enum EnumIndustrialFrame implements IBeeModifier {
 
 	EMPTY("Empty", 5, 0),
-	LIGHT("Glowstone Lighting", 2, 4){
+	LIGHT("Glowstone Lighting", 2, 4) {
 		@Override
 		protected void init() {
 			lighted = true;
 		}
 	},
-	RAIN("Rain Shielding", 2, 4){
+	RAIN("Rain Shielding", 2, 4) {
 		@Override
 		protected void init() {
 			rain = true;
 		}
 	},
-	SUNLIGHT("Sunlight Simulator", 4, 8){
+	SUNLIGHT("Sunlight Simulator", 4, 8) {
 		@Override
 		protected void init() {
 			lighted = true;
 			sunlight = true;
 		}
 	},
-	SOUL("Low Grade Mutagen", 5, 15){
+	SOUL("Low Grade Mutagen", 5, 15) {
 		@Override
 		protected void init() {
 			mutationMod = 1.3f;
 		}
 	},
-	URANIUM("High Grade Mutagen", 10, 50){
+	URANIUM("High Grade Mutagen", 10, 50) {
 		@Override
 		protected void init() {
 			mutationMod = 2.0f;
 		}
 	},
-	CAGE("Meshed Restrainer", 3, 12){
+	CAGE("Meshed Restrainer", 3, 12) {
 		@Override
 		protected void init() {
 			territoryMod = 0.4f;
 		}
 	},
-	FREEDOM("Territory Extension", 3, 16){
+	FREEDOM("Territory Extension", 3, 16) {
 		@Override
 		protected void init() {
 			territoryMod = 1.4f;
 		}
 	},
-	HONEY("Honey Amplifier", 4, 12){
+	HONEY("Honey Amplifier", 4, 12) {
 		@Override
 		protected void init() {
 			productionMod = 1.4f;
 		}
 	},
-	JELLY("Gelatin Amplifier", 8, 36){
+	JELLY("Gelatin Amplifier", 8, 36) {
 		@Override
 		protected void init() {
 			productionMod = 1.8f;
 		}
 	},
-	LEAF("Pollinator MK I", 3, 15){
+	LEAF("Pollinator MK I", 3, 15) {
 		@Override
 		protected void init() {
 			floweringMod = 1.4f;
 		}
 	},
-	POLLEN("Pollinator MK II", 7, 25){
+	POLLEN("Pollinator MK II", 7, 25) {
 		@Override
 		protected void init() {
 			floweringMod = 2.0f;
 		}
 	},
-	CLAY("Lifespan Extensor", 2, 10){
+	CLAY("Lifespan Extensor", 2, 10) {
 		@Override
 		protected void init() {
 			lifespanMod = 1.4f;
 		}
 	},
-	EMERALD("Eon Simulator", 7, 20){
+	EMERALD("Eon Simulator", 7, 20) {
 		@Override
 		protected void init() {
 			lifespanMod = 2.0f;
 		}
 	},
-	NETHER_STAR("Immortality Gate", 12, 50){
+	NETHER_STAR("Immortality Gate", 12, 50) {
 		@Override
 		protected void init() {
 			lifespanMod = 20.0f;
 		}
 	},
-	POISON("Mortality Inhibitor", 8, 18){
+	POISON("Mortality Inhibitor", 8, 18) {
 		@Override
 		protected void init() {
 			lifespanMod = 0.5f;
@@ -131,7 +131,7 @@ public enum EnumIndustrialFrame implements IBeeModifier {
 		init();
 	}
 
-	protected void init(){
+	protected void init() {
 
 	}
 

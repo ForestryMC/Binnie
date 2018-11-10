@@ -10,7 +10,7 @@ public class BreweryRecipeMaker {
 	public static List<BreweryRecipeWrapper> create() {
 		List<BreweryRecipeWrapper> recipes = new ArrayList<>();
 
-		if(ExtraTreesRecipeManager.breweryManager == null){
+		if (ExtraTreesRecipeManager.breweryManager == null) {
 			return recipes;
 		}
 

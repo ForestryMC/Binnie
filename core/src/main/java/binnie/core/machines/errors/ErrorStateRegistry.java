@@ -20,7 +20,7 @@ public class ErrorStateRegistry {
 	}
 
 	public static IErrorStateDefinition getErrorState(String name) {
-		if(name == null || name.isEmpty()){
+		if (name == null || name.isEmpty()) {
 			return CoreErrorCode.UNKNOWN;
 		}
 		return states.get(name);

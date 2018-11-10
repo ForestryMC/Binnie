@@ -39,7 +39,7 @@ import binnie.genetics.api.analyst.IAnalystManager;
 	version = "@VERSION@",
 	acceptedMinecraftVersions = Constants.ACCEPTED_MINECRAFT_VERSIONS,
 	dependencies = "required-after:" + Constants.CORE_MOD_ID + ';'
-			+      "after:" + Constants.DESIGN_MOD_ID + ';'
+		+ "after:" + Constants.DESIGN_MOD_ID + ';'
 )
 public class ExtraTrees extends BlankModuleContainer {
 
@@ -62,7 +62,7 @@ public class ExtraTrees extends BlankModuleContainer {
 		container.registerConfigHandler(new ConfigurationMain(container));
 		super.preInit(evt);
 
-		if(ButterflyManager.butterflyRoot != null) {
+		if (ButterflyManager.butterflyRoot != null) {
 			mothBreedingSystem = new MothBreedingSystem();
 			Binnie.GENETICS.registerBreedingSystem(mothBreedingSystem);
 		}
@@ -78,7 +78,7 @@ public class ExtraTrees extends BlankModuleContainer {
 			ErrorStateRegistry.registerErrorState(errorCode);
 		}
 
-		for(Juice juice : Juice.values()){
+		for (Juice juice : Juice.values()) {
 			OreDictionary.registerOre(juice.getOreDict(), BinnieCore.getGlassBottle().getContainer(juice.getType()));
 		}
 	}

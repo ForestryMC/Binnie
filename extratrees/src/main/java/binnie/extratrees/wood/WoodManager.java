@@ -20,8 +20,8 @@ import forestry.arboriculture.IWoodTyped;
 import forestry.core.utils.Translator;
 
 import binnie.core.block.TileEntityMetadata;
-import binnie.extratrees.api.CarpentryManager;
 import binnie.design.api.IDesignMaterial;
+import binnie.extratrees.api.CarpentryManager;
 import binnie.extratrees.blocks.decor.FenceDescription;
 import binnie.extratrees.blocks.decor.FenceType;
 import binnie.extratrees.modules.ModuleWood;
@@ -115,9 +115,9 @@ public class WoodManager {
 	public static ItemStack getDoor(final IPlankType plank) {
 		if (plank == VanillaPlanks.OAK) {
 			return new ItemStack(Items.OAK_DOOR);
-		}else if (plank == VanillaPlanks.BIRCH) {
+		} else if (plank == VanillaPlanks.BIRCH) {
 			return new ItemStack(Items.BIRCH_DOOR);
-		}else if (plank == VanillaPlanks.SPRUCE) {
+		} else if (plank == VanillaPlanks.SPRUCE) {
 			return new ItemStack(Items.SPRUCE_DOOR);
 		} else if (plank == VanillaPlanks.BIG_OAK) {
 			return new ItemStack(Items.DARK_OAK_DOOR);
@@ -150,7 +150,7 @@ public class WoodManager {
 	}
 
 	public static List<IPlankType> getAllPlankTypes() {
-		if(PLANK_TYPES == null){
+		if (PLANK_TYPES == null) {
 			PLANK_TYPES = new ArrayList<>();
 			Collections.addAll(PLANK_TYPES, ExtraTreePlanks.VALUES);
 			Collections.addAll(PLANK_TYPES, ForestryPlanks.values());

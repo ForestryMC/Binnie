@@ -6,21 +6,20 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import binnie.core.Constants;
-import binnie.design.api.DesignAPI;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-
 import net.minecraft.util.ResourceLocation;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import binnie.core.Constants;
+import binnie.core.api.gui.IWidget;
 import binnie.core.gui.Attribute;
 import binnie.core.gui.CraftGUI;
 import binnie.core.gui.ITooltip;
-import binnie.core.api.gui.IWidget;
 import binnie.core.gui.Tooltip;
 import binnie.core.gui.controls.ControlText;
 import binnie.core.gui.controls.core.Control;
@@ -33,9 +32,10 @@ import binnie.core.gui.renderer.RenderUtil;
 import binnie.core.gui.resource.textures.CraftGUITexture;
 import binnie.core.machines.TileEntityMachine;
 import binnie.core.util.I18N;
+import binnie.design.EnumDesign;
+import binnie.design.api.DesignAPI;
 import binnie.design.api.IDesign;
 import binnie.design.api.IDesignCategory;
-import binnie.design.EnumDesign;
 
 public class ControlTileSelect extends Control implements IControlValue<IDesign>, IControlScrollable {
 	private IDesign value;

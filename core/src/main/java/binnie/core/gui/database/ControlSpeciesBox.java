@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import binnie.core.api.genetics.IBreedingSystem;
 import com.mojang.authlib.GameProfile;
 
 import net.minecraftforge.fml.relauncher.Side;
@@ -13,6 +12,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IClassification;
 
+import binnie.core.api.genetics.IBreedingSystem;
 import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.listbox.ControlListBox;
 import binnie.core.gui.minecraft.Window;

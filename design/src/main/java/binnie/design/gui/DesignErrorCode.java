@@ -2,12 +2,13 @@ package binnie.design.gui;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.util.ResourceLocation;
+
 import binnie.core.Constants;
 import binnie.core.machines.errors.CoreErrorCode;
 import binnie.core.machines.errors.EnumErrorType;
 import binnie.core.machines.errors.IErrorStateDefinition;
 import binnie.core.util.I18N;
-import net.minecraft.util.ResourceLocation;
 
 public enum DesignErrorCode implements IErrorStateDefinition {
 	DESIGNER_NO_ADHESIVE("designer.no.adhesive", CoreErrorCode.NO_ITEM);
@@ -33,12 +34,12 @@ public enum DesignErrorCode implements IErrorStateDefinition {
 		return Constants.DESIGN_MOD_ID + ':' + name;
 	}
 
-	public String getDescription(){
+	public String getDescription() {
 		return I18N.localise(new ResourceLocation(Constants.DESIGN_MOD_ID, "errors." + name + ".desc"));
 	}
 
-	public String getName(){
-		if (parent != null){
+	public String getName() {
+		if (parent != null) {
 			return parent.getName();
 		}
 		return I18N.localise(new ResourceLocation(Constants.DESIGN_MOD_ID, "errors." + name + ".name"));
@@ -47,7 +48,7 @@ public enum DesignErrorCode implements IErrorStateDefinition {
 	@Override
 	@Nullable
 	public EnumErrorType getType() {
-		if (parent != null){
+		if (parent != null) {
 			return parent.getType();
 		}
 		return type;

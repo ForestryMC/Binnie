@@ -1,8 +1,5 @@
 package binnie.design.items;
 
-import binnie.design.DesignHelper;
-import binnie.design.blocks.BlockDesign;
-import binnie.design.blocks.DesignBlock;
 import net.minecraft.item.ItemStack;
 
 import net.minecraftforge.fml.relauncher.Side;
@@ -12,6 +9,9 @@ import forestry.core.items.IColoredItem;
 
 import binnie.core.block.ItemMetadata;
 import binnie.core.block.TileEntityMetadata;
+import binnie.design.DesignHelper;
+import binnie.design.blocks.BlockDesign;
+import binnie.design.blocks.DesignBlock;
 
 public class ItemDesign extends ItemMetadata implements IColoredItem {
 

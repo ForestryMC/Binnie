@@ -1,12 +1,14 @@
 package binnie.genetics.machine.lab;
 
-import static binnie.core.Constants.GENETICS_MOD_ID;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
+
 import binnie.core.machines.Machine;
 import binnie.core.machines.TileEntityTESRMachine;
 import binnie.core.machines.inventory.ComponentInventorySlots;
 import binnie.genetics.machine.GeneticMachine;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
+
+import static binnie.core.Constants.GENETICS_MOD_ID;
 
 public class PackageLabMachine extends GeneticMachine.PackageGeneticBase {
 	public PackageLabMachine() {

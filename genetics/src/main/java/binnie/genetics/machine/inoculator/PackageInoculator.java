@@ -1,7 +1,5 @@
 package binnie.genetics.machine.inoculator;
 
-import binnie.core.machines.inventory.TankValidator;
-import binnie.core.machines.TileEntityTESRMachine;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 
@@ -11,11 +9,13 @@ import binnie.core.gui.minecraft.IMachineInformation;
 import binnie.core.machines.IMachine;
 import binnie.core.machines.Machine;
 import binnie.core.machines.MachineUtil;
+import binnie.core.machines.TileEntityTESRMachine;
 import binnie.core.machines.inventory.ComponentInventorySlots;
 import binnie.core.machines.inventory.ComponentInventoryTransfer;
 import binnie.core.machines.inventory.ComponentTankContainer;
 import binnie.core.machines.inventory.InventorySlot;
 import binnie.core.machines.inventory.SlotValidator;
+import binnie.core.machines.inventory.TankValidator;
 import binnie.core.machines.power.ComponentPowerReceptor;
 import binnie.genetics.api.IItemSerum;
 import binnie.genetics.core.GeneticsGUI;
@@ -23,7 +23,7 @@ import binnie.genetics.genetics.Engineering;
 import binnie.genetics.item.GeneticLiquid;
 import binnie.genetics.machine.ComponentGeneticGUI;
 import binnie.genetics.machine.GeneticMachine;
-import binnie.genetics.machine.ModuleMachine;
+import binnie.genetics.modules.ModuleMachine;
 
 public class PackageInoculator extends GeneticMachine.PackageGeneticBase implements IMachineInformation {
 	public PackageInoculator() {
@@ -68,9 +68,7 @@ public class PackageInoculator extends GeneticMachine.PackageGeneticBase impleme
 			if (!stack.isEmpty()) {
 				IMachine machine1 = transfer.getMachine();
 				MachineUtil machineUtil = machine1.getMachineUtil();
-				if (!machineUtil.getStack(Inoculator.SLOT_SERUM_VIAL).isEmpty() && machine1.getInterface(InoculatorLogic.class).isValidSerum() != null) {
-					return true;
-				}
+				return !machineUtil.getStack(Inoculator.SLOT_SERUM_VIAL).isEmpty() && machine1.getInterface(InoculatorLogic.class).isValidSerum() != null;
 			}
 			return false;
 		});

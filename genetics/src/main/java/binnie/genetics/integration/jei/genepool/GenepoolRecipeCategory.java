@@ -1,19 +1,20 @@
 package binnie.genetics.integration.jei.genepool;
 
-import binnie.core.util.I18N;
-import mezz.jei.api.recipe.IRecipeCategory;
 import net.minecraft.client.Minecraft;
 
+import binnie.core.util.I18N;
 import binnie.genetics.Genetics;
 import binnie.genetics.integration.jei.GeneticsJeiPlugin;
 import binnie.genetics.integration.jei.RecipeUids;
 import binnie.genetics.machine.genepool.Genepool;
+
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IDrawableAnimated;
 import mezz.jei.api.gui.IGuiFluidStackGroup;
 import mezz.jei.api.gui.IGuiItemStackGroup;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
+import mezz.jei.api.recipe.IRecipeCategory;
 
 public class GenepoolRecipeCategory implements IRecipeCategory<GenepoolRecipeWrapper> {
 	private final IDrawableAnimated arrowAnimated;

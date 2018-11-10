@@ -1,5 +1,11 @@
 package binnie.extratrees.integration.jei;
 
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
+
 import binnie.core.Constants;
 import binnie.core.integration.jei.Drawables;
 import binnie.core.modules.ExtraTreesModuleUIDs;
@@ -19,6 +25,7 @@ import binnie.extratrees.machines.ExtraTreeMachine;
 import binnie.extratrees.modules.ModuleAlcohol;
 import binnie.extratrees.modules.ModuleWood;
 import binnie.extratrees.wood.WoodManager;
+
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.IJeiHelpers;
 import mezz.jei.api.IModPlugin;
@@ -26,10 +33,6 @@ import mezz.jei.api.IModRegistry;
 import mezz.jei.api.ISubtypeRegistry;
 import mezz.jei.api.JEIPlugin;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidUtil;
 
 @JEIPlugin
 public class ExtraTreesJeiPlugin implements IModPlugin {
@@ -39,7 +42,7 @@ public class ExtraTreesJeiPlugin implements IModPlugin {
 
 	@Override
 	public void registerItemSubtypes(ISubtypeRegistry subtypeRegistry) {
-		if(ModuleManager.isModuleEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.WOOD)){
+		if (ModuleManager.isModuleEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.WOOD)) {
 			subtypeRegistry.registerSubtypeInterpreter(Item.getItemFromBlock(ModuleWood.blockMultiFence), (ItemStack itemStack) -> {
 				FenceDescription desc = WoodManager.getFenceDescription(itemStack);
 				if (desc != null) {
@@ -49,7 +52,7 @@ public class ExtraTreesJeiPlugin implements IModPlugin {
 				return Integer.toString(itemStack.getItemDamage());
 			});
 		}
-		if(ModuleManager.isModuleEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.ALCOHOL)) {
+		if (ModuleManager.isModuleEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.ALCOHOL)) {
 			subtypeRegistry.registerSubtypeInterpreter(ModuleAlcohol.drink, (ItemStack itemStack) -> {
 				String glassware = ModuleAlcohol.drink.getGlassware(itemStack).getName();
 				FluidStack fluidStack = FluidUtil.getFluidContained(itemStack);
@@ -67,12 +70,12 @@ public class ExtraTreesJeiPlugin implements IModPlugin {
 		ExtraTreesJeiPlugin.guiHelper = jeiHelpers.getGuiHelper();
 		ExtraTreesJeiPlugin.drawables = Drawables.getDrawables(guiHelper);
 
-		if(ModuleManager.isModuleEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.MACHINES)) {
+		if (ModuleManager.isModuleEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.MACHINES)) {
 			registry.addRecipeCategories(
-					new LumbermillRecipeCategory(),
-					new FruitPressRecipeCategory(),
-					new BreweryRecipeCategory(),
-					new DistilleryRecipeCategory()
+				new LumbermillRecipeCategory(),
+				new FruitPressRecipeCategory(),
+				new BreweryRecipeCategory(),
+				new DistilleryRecipeCategory()
 			);
 		}
 	}
@@ -80,7 +83,7 @@ public class ExtraTreesJeiPlugin implements IModPlugin {
 	@Override
 	public void register(IModRegistry registry) {
 		IJeiHelpers jeiHelpers = registry.getJeiHelpers();
-		if(ModuleManager.isModuleEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.MACHINES)) {
+		if (ModuleManager.isModuleEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.MACHINES)) {
 			registry.addRecipeCatalyst(ExtraTreeMachine.Lumbermill.get(1), RecipeUids.LUMBERMILL);
 			registry.addRecipeCatalyst(ExtraTreeMachine.Press.get(1), RecipeUids.FRUIT_PRESS);
 			registry.addRecipeCatalyst(ExtraTreeMachine.BREWERY.get(1), RecipeUids.BREWING);
@@ -92,7 +95,7 @@ public class ExtraTreesJeiPlugin implements IModPlugin {
 			registry.addRecipes(DistilleryRecipeMaker.create(), RecipeUids.DISTILLING);
 		}
 
-		if(ModuleManager.isModuleEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.WOOD)) {
+		if (ModuleManager.isModuleEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.WOOD)) {
 			registry.addRecipeRegistryPlugin(new MultiFenceRecipeRegistryPlugin());
 		}
 	}

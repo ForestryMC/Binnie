@@ -21,25 +21,25 @@ public enum CoreErrorCode implements IErrorStateDefinition {
 	//Buildcraft
 	TASK_CANCELLED("task.cancelled"),
 	TASK_PAUSED("task.paused");
-	
+
 	private final String name;
 	private final EnumErrorType type;
-	
+
 	CoreErrorCode(String name) {
 		this(name, EnumErrorType.NONE);
 	}
-	
+
 	CoreErrorCode(String name, EnumErrorType type) {
 		this.name = name;
 		this.type = type;
 	}
-	
-	public String getDescription(){
+
+	public String getDescription() {
 		return I18N.localise("binniecore.errors." + name + ".desc");
 	}
-	
-	public String getName(){
-		return  I18N.localise("binniecore.errors." + name + ".name");
+
+	public String getName() {
+		return I18N.localise("binniecore.errors." + name + ".name");
 	}
 
 	@Override

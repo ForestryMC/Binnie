@@ -12,8 +12,7 @@ public interface IBuildcraft {
 		void getTriggers(final List<TriggerData> p0);
 	}
 
-	interface ActionProvider extends IActionReceptor
-	{
+	interface ActionProvider extends IActionReceptor {
 		void getActions(final List<IActionExternal> p0);
 	}
 }

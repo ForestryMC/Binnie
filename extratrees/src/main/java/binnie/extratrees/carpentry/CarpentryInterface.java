@@ -6,8 +6,8 @@ import java.util.Map;
 
 import net.minecraft.item.ItemStack;
 
-import binnie.extratrees.api.ICarpentryInterface;
 import binnie.design.api.IDesignMaterial;
+import binnie.extratrees.api.ICarpentryInterface;
 
 public class CarpentryInterface implements ICarpentryInterface {
 	private static final Map<Integer, IDesignMaterial> woodMap = new LinkedHashMap<>();
@@ -31,7 +31,6 @@ public class CarpentryInterface implements ICarpentryInterface {
 	public IDesignMaterial getWoodMaterial(final int index) {
 		return CarpentryInterface.woodMap.get(index);
 	}
-
 
 
 	@Override

@@ -86,7 +86,7 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
 
 	}
 
-	protected void preInitModules(FMLPreInitializationEvent event){
+	protected void preInitModules(FMLPreInitializationEvent event) {
 
 	}
 

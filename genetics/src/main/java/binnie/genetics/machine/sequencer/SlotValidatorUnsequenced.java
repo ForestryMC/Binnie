@@ -4,9 +4,9 @@ import net.minecraft.item.ItemStack;
 
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.util.I18N;
-import binnie.genetics.Genetics;
 import binnie.genetics.genetics.SequencerItem;
-import binnie.genetics.machine.ModuleMachine;
+import binnie.genetics.modules.ModuleCore;
+import binnie.genetics.modules.ModuleMachine;
 
 public class SlotValidatorUnsequenced extends SlotValidator {
 	public SlotValidatorUnsequenced() {
@@ -15,7 +15,7 @@ public class SlotValidatorUnsequenced extends SlotValidator {
 
 	@Override
 	public boolean isValid(final ItemStack itemStack) {
-		if (itemStack.getItem() == Genetics.items().itemSequencer) {
+		if (itemStack.getItem() == ModuleCore.itemSequencer) {
 			final SequencerItem seq = SequencerItem.create(itemStack);
 			return seq != null && seq.getSequenced() < 100;
 		}

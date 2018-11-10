@@ -1,13 +1,11 @@
 package binnie.extratrees.machines.lumbermill.recipes;
 
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Multimap;
+
 import javax.annotation.Nullable;
 import java.util.Collection;
 
-import binnie.core.util.OreDictionaryUtil;
-import binnie.extratrees.api.recipes.ILumbermillManager;
-import binnie.extratrees.api.recipes.ILumbermillRecipe;
-import com.google.common.collect.ArrayListMultimap;
-import com.google.common.collect.Multimap;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
@@ -16,7 +14,12 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.world.World;
+
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
+
+import binnie.core.util.OreDictionaryUtil;
+import binnie.extratrees.api.recipes.ILumbermillManager;
+import binnie.extratrees.api.recipes.ILumbermillRecipe;
 
 public class LumbermillRecipeManager implements ILumbermillManager {
 	private static final Multimap<Item, ILumbermillRecipe> recipes = ArrayListMultimap.create();

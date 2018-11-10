@@ -18,10 +18,10 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import binnie.core.AbstractMod;
+import binnie.core.liquid.FluidType;
 import binnie.core.network.BinnieCorePacketID;
 import binnie.core.network.INetworkedEntity;
 import binnie.core.network.packet.MessageUpdate;
-import binnie.core.liquid.FluidType;
 
 public abstract class BinnieProxy extends BinnieModProxy implements IBinnieProxy {
 	private short uniqueTextureUID;

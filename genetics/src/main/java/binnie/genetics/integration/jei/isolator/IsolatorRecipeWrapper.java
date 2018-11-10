@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
-import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 
@@ -17,7 +16,9 @@ import forestry.core.fluids.Fluids;
 
 import binnie.genetics.item.GeneticsItems;
 import binnie.genetics.machine.isolator.IsolatorLogic;
+
 import mezz.jei.api.ingredients.IIngredients;
+import mezz.jei.api.recipe.IRecipeWrapper;
 
 public class IsolatorRecipeWrapper implements IRecipeWrapper {
 	private static final FluidStack ETHANOL = Fluids.BIO_ETHANOL.getFluid(IsolatorLogic.ETHANOL_PER_PROCESS);

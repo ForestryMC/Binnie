@@ -70,7 +70,7 @@ public class BrewedGrainRecipe implements IBreweryRecipe {
 
 	@Override
 	public Collection<Object> getInputs() {
-		if(ingredientOreName == null) {
+		if (ingredientOreName == null) {
 			return ImmutableList.of(grainOreName, yeast);
 		}
 		return ImmutableList.of(grainOreName, yeast, ingredientOreName);

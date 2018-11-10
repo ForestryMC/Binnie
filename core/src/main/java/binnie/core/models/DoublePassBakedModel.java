@@ -43,10 +43,11 @@ public class DoublePassBakedModel implements IBakedModel {
 		List<BakedQuad> recolored = new LinkedList<>();
 		quads.forEach(quad -> {
 			if (quad.hasTintIndex()) {
-				if (quad.getTintIndex() == 0)
+				if (quad.getTintIndex() == 0) {
 					recolored.add(recolorQuad(quad, primaryColor));
-				else
+				} else {
 					recolored.add(recolorQuad(quad, secondaryColor));
+				}
 			} else {
 				recolored.add(quad);
 			}

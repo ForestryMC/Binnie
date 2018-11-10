@@ -3,12 +3,13 @@ package binnie.genetics.machine.indexer;
 import java.util.HashMap;
 import java.util.Map;
 
-import forestry.api.apiculture.BeeManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
+
+import forestry.api.apiculture.BeeManager;
 
 import binnie.core.machines.Machine;
 import binnie.core.machines.inventory.SetList;

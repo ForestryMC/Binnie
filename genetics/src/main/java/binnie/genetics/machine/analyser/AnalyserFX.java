@@ -2,7 +2,6 @@ package binnie.genetics.machine.analyser;
 
 import java.util.Random;
 
-import binnie.core.util.EntityItemRenderer;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleManager;
 import net.minecraft.item.ItemStack;
@@ -18,6 +17,7 @@ import binnie.core.machines.IMachine;
 import binnie.core.machines.MachineComponent;
 import binnie.core.machines.component.IRender;
 import binnie.core.machines.network.INetwork;
+import binnie.core.util.EntityItemRenderer;
 
 public class AnalyserFX extends MachineComponent implements IRender.DisplayTick, IRender.Render, INetwork.TilePacketSync {
 	private final EntityItemRenderer entityItemRenderer;
@@ -44,7 +44,7 @@ public class AnalyserFX extends MachineComponent implements IRender.DisplayTick,
 		}
 		final ItemStack itemstack = this.getUtil().getStack(6);
 		World world = this.getMachine().getWorld();
-		this.entityItemRenderer.renderInWorld(itemstack, world,  x + 0.5f, y + 0.8f, z + 0.5f);
+		this.entityItemRenderer.renderInWorld(itemstack, world, x + 0.5f, y + 0.8f, z + 0.5f);
 	}
 
 	@Override

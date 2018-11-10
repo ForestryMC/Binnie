@@ -1,8 +1,8 @@
 package binnie.extrabees.gui;
 
-import forestry.api.apiculture.BeeManager;
 import net.minecraft.util.math.Vec3i;
 
+import forestry.api.apiculture.BeeManager;
 import forestry.api.apiculture.IBee;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.genetics.EnumTolerance;
@@ -11,6 +11,7 @@ import forestry.api.genetics.IAlleleSpecies;
 import forestry.core.genetics.alleles.EnumAllele;
 
 import binnie.core.api.gui.IWidget;
+import binnie.core.genetics.AlleleHelper;
 import binnie.core.gui.controls.ControlText;
 import binnie.core.gui.controls.ControlTextCentered;
 import binnie.core.gui.database.DatabaseConstants;
@@ -19,7 +20,6 @@ import binnie.core.gui.database.PageSpecies;
 import binnie.core.gui.geometry.Area;
 import binnie.core.gui.geometry.TextJustification;
 import binnie.core.util.I18N;
-import binnie.core.genetics.AlleleHelper;
 
 public class PageSpeciesGenome extends PageSpecies {
 	private final ControlText title;

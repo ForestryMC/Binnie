@@ -1,5 +1,8 @@
 package binnie.core.gui.minecraft;
 
+import com.google.common.base.Preconditions;
+import com.google.common.collect.Sets;
+
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,6 +10,26 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.inventory.ClickType;
+import net.minecraft.inventory.Container;
+import net.minecraft.inventory.IContainerListener;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.NonNullList;
+
+import com.mojang.authlib.GameProfile;
+
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemHandlerHelper;
+import net.minecraftforge.items.wrapper.InvWrapper;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.core.BinnieCore;
 import binnie.core.gui.minecraft.control.ControlSlot;
@@ -25,24 +48,6 @@ import binnie.core.machines.power.TankInfo;
 import binnie.core.machines.transfer.TransferRequest;
 import binnie.core.machines.transfer.TransferResult;
 import binnie.core.network.packet.MessageContainerUpdate;
-import com.google.common.base.Preconditions;
-import com.google.common.collect.Sets;
-import com.mojang.authlib.GameProfile;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.inventory.ClickType;
-import net.minecraft.inventory.Container;
-import net.minecraft.inventory.IContainerListener;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Slot;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.NonNullList;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemHandlerHelper;
-import net.minecraftforge.items.wrapper.InvWrapper;
 
 public class ContainerCraftGUI extends Container {
 	private final Set<EntityPlayer> crafters = Sets.newConcurrentHashSet();
@@ -267,7 +272,7 @@ public class ContainerCraftGUI extends Container {
 		sendChangesToPlayers();
 	}
 
-	private void sendTankChanges(){
+	private void sendTankChanges() {
 		ITankMachine tanks = Machine.getInterface(ITankMachine.class, this.window.getInventory());
 		if (tanks != null && this.window.isServer()) {
 			for (int i = 0; i < tanks.getTankInfos().length; ++i) {
@@ -280,7 +285,7 @@ public class ContainerCraftGUI extends Container {
 		}
 	}
 
-	private void sendChangesToPlayers(){
+	private void sendChangesToPlayers() {
 		final Map<String, NBTTagCompound> sentThisTime = new HashMap<>();
 		for (final Map.Entry<String, NBTTagCompound> nbt : this.syncedNBT.entrySet()) {
 			nbt.getValue().setString("type", nbt.getKey());
@@ -511,15 +516,15 @@ public class ContainerCraftGUI extends Container {
 	@Nullable
 	private Slot createServerSlot(final InventoryType type, final int index, final int slotNumber) {
 		final IInventory inventory = this.getInventory(type);
-		if(inventorySlots.size() > slotNumber && inventorySlots.get(slotNumber) != null){
+		if (inventorySlots.size() > slotNumber && inventorySlots.get(slotNumber) != null) {
 			return null;
 		}
 		final Slot slot = new CustomSlot(inventory, index);
 		slot.slotNumber = slotNumber;
-		if(inventorySlots.size() > slotNumber) {
+		if (inventorySlots.size() > slotNumber) {
 			this.inventorySlots.set(slotNumber, slot);
 			this.inventoryItemStacks.set(slotNumber, ItemStack.EMPTY);
-		}else{
+		} else {
 			this.inventorySlots.add(slot);
 			this.inventoryItemStacks.add(ItemStack.EMPTY);
 		}

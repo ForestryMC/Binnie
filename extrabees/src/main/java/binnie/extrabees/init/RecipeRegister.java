@@ -33,7 +33,7 @@ import binnie.extrabees.modules.ModuleCore;
 
 public final class RecipeRegister {
 	private static final RecipeUtil RECIPE_UTIL = new RecipeUtil(ExtraBees.MODID);
-	
+
 	public static void doInitRecipes() {
 		if (Loader.isModLoaded("ic2")) {
 			RECIPE_UTIL.addRecipe("honey_crystal", ModuleCore.honeyCrystal.getCharged(0), "#@#", "@#@", "#@#", '@', Mods.Forestry.item("honey_drop"), '#', EnumHoneyDrop.ENERGY.get(1));
@@ -52,12 +52,12 @@ public final class RecipeRegister {
 		addMiscItemRecipes();
 		addAlvearyRecipes();
 	}
-	
+
 	private static void addAlvearyRecipes() {
 		ItemStack alveary = Mods.Forestry.stack("alveary.plain");
 		Item thermionicTubes = Mods.Forestry.item("thermionic_tubes");
 		Item chipsets = Mods.Forestry.item("chipsets");
-		
+
 		RECIPE_UTIL.addRecipe("alveary_mutator", getAlvearyPart(EnumAlvearyLogicType.MUTATOR), "g g", " a ", "t t", 'g', Items.GOLD_INGOT, 'a', alveary, 't', new ItemStack(thermionicTubes, 1, 5));
 		RECIPE_UTIL.addRecipe("alveary_frame", getAlvearyPart(EnumAlvearyLogicType.FRAME), "iii", "tat", " t ", 'i', Items.IRON_INGOT, 'a', alveary, 't', new ItemStack(thermionicTubes, 1, 4));
 		RECIPE_UTIL.addRecipe("alveary_rain_shield", getAlvearyPart(EnumAlvearyLogicType.RAINSHIELD), " b ", "bab", "t t", 'b', Items.BRICK, 'a', alveary, 't', new ItemStack(thermionicTubes, 1, 4));
@@ -70,11 +70,11 @@ public final class RecipeRegister {
 			type.createCircuit(stimulatorLayout);
 		}
 	}
-	
+
 	private static ItemStack getAlvearyPart(EnumAlvearyLogicType type) {
 		return new ItemStack(ModuleCore.alveary, 1, type.ordinal());
 	}
-	
+
 	private static void addForestryRecipes() {
 		RecipeManagers.carpenterManager.addRecipe(
 			100,
@@ -90,7 +90,7 @@ public final class RecipeRegister {
 			'E', Items.EMERALD
 		);
 	}
-	
+
 	private static void addMiscItemRecipes() {
 		final ItemStack lapisShard = ExtraBeeItems.LAPIS_SHARD.get(1);
 		RECIPE_UTIL.addShapelessRecipe("lapis_from_shards", new ItemStack(Items.DYE, 1, 4), lapisShard, lapisShard, lapisShard, lapisShard);

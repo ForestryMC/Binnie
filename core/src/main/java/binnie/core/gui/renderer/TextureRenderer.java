@@ -10,8 +10,6 @@ import net.minecraftforge.fml.client.config.GuiUtils;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import org.lwjgl.opengl.GL11;
-
 import binnie.core.BinnieCore;
 import binnie.core.api.gui.Alignment;
 import binnie.core.api.gui.IArea;
@@ -22,6 +20,8 @@ import binnie.core.api.gui.IWidget;
 import binnie.core.gui.geometry.Area;
 import binnie.core.gui.resource.stylesheet.IStyleSheet;
 import binnie.core.gui.resource.stylesheet.StyleSheetManager;
+
+import org.lwjgl.opengl.GL11;
 
 @SideOnly(Side.CLIENT)
 public class TextureRenderer {

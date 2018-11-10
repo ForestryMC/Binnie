@@ -47,8 +47,8 @@ public class PropertyFlower<I extends IFlowerType<I>> extends PropertyHelper<I> 
 	@Override
 	public Optional<I> parseValue(String value) {
 		IAllele allele = AlleleManager.alleleRegistry.getAllele(Constants.BOTANY_MOD_ID + ".flower" + StringUtils.capitalize(value));
-		if (IAlleleFlowerSpecies.class.isInstance(allele)) {
-			IAlleleFlowerSpecies alleleValue = IAlleleFlowerSpecies.class.cast(allele);
+		if (allele instanceof IAlleleFlowerSpecies) {
+			IAlleleFlowerSpecies alleleValue = (IAlleleFlowerSpecies) allele;
 			return Optional.of((I) alleleValue.getType());
 		}
 		return Optional.absent();

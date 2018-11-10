@@ -58,49 +58,49 @@ public class AnalystPagePlugin implements IAnalystPagePlugin<IBee> {
 			IAnalystIcons icons = analystManager.getIcons();
 			if (bee.getGenome().getNeverSleeps()) {
 				new ControlIconDisplay(parent, (parent.getWidth() - 64) / 2, y, icons.getIconAllDay())
-						.addTooltip(I18N.localise(AnalystConstants.BIOLOGY_KEY + ".allDay"));
+					.addTooltip(I18N.localise(AnalystConstants.BIOLOGY_KEY + ".allDay"));
 			} else if (bee.getGenome().getPrimary().isNocturnal()) {
 				new ControlIconDisplay(parent, (parent.getWidth() - 64) / 2, y, icons.getIconNight())
-						.addTooltip(I18N.localise(AnalystConstants.BIOLOGY_KEY + ".night"));
+					.addTooltip(I18N.localise(AnalystConstants.BIOLOGY_KEY + ".night"));
 			} else {
 				new ControlIconDisplay(parent, (parent.getWidth() - 64) / 2, y, icons.getIconDaytime())
-						.addTooltip(I18N.localise(AnalystConstants.BIOLOGY_KEY + ".day"));
+					.addTooltip(I18N.localise(AnalystConstants.BIOLOGY_KEY + ".day"));
 			}
 
 			if (!bee.getGenome().getToleratesRain()) {
 				new ControlIconDisplay(parent, (parent.getWidth() - 64) / 2 + 24, y, icons.getIconNoRain())
-						.addTooltip(I18N.localise(AnalystConstants.BIOLOGY_KEY + ".notRain"));
+					.addTooltip(I18N.localise(AnalystConstants.BIOLOGY_KEY + ".notRain"));
 			} else {
 				new ControlIconDisplay(parent, (parent.getWidth() - 64) / 2 + 24, y, icons.getIconRain())
-						.addTooltip(I18N.localise(AnalystConstants.BIOLOGY_KEY + ".rain"));
+					.addTooltip(I18N.localise(AnalystConstants.BIOLOGY_KEY + ".rain"));
 			}
 
 			if (bee.getGenome().getCaveDwelling()) {
 				new ControlIconDisplay(parent, (parent.getWidth() - 64) / 2 + 48, y, icons.getIconNoSky())
-						.addTooltip(I18N.localise(AnalystConstants.BIOLOGY_KEY + ".underground"));
+					.addTooltip(I18N.localise(AnalystConstants.BIOLOGY_KEY + ".underground"));
 			} else {
 				new ControlIconDisplay(parent, (parent.getWidth() - 64) / 2 + 48, y, icons.getIconSky())
-						.addTooltip(I18N.localise(AnalystConstants.BIOLOGY_KEY + ".notUnderground"));
+					.addTooltip(I18N.localise(AnalystConstants.BIOLOGY_KEY + ".notUnderground"));
 			}
 			y += 30;
 
 			int fertility = bee.getGenome().getFertility();
 			if (fertility > 1) {
 				new ControlTextCentered(parent, y, TextFormatting.BOLD + I18N.localise(AnalystConstants.BIOLOGY_KEY + ".fertility.drones", fertility))
-						.setColor(parent.getColor());
+					.setColor(parent.getColor());
 			} else {
 				new ControlTextCentered(parent, y, TextFormatting.BOLD + I18N.localise(AnalystConstants.BIOLOGY_KEY + ".fertility.drone"))
-						.setColor(parent.getColor());
+					.setColor(parent.getColor());
 			}
 
 			y += 22;
 			new ControlTextCentered(parent, y, I18N.localise(AnalystConstants.BIOLOGY_KEY + ".averageLifespan"))
-					.setColor(parent.getColor());
+				.setColor(parent.getColor());
 
 			y += 12;
 			int lifespan = bee.getGenome().getLifespan() * ModuleApiculture.ticksPerBeeWorkCycle;
 			new ControlTextCentered(parent, y, TextFormatting.BOLD + TimeUtil.getMCDayString(lifespan * (bee.getGenome().getNeverSleeps() ? 1.0f : 2.0f)))
-					.setColor(parent.getColor());
+				.setColor(parent.getColor());
 			y += 22;
 			return y;
 		}
@@ -113,11 +113,11 @@ public class AnalystPagePlugin implements IAnalystPagePlugin<IBee> {
 			y += 8;
 			int fertility = bee.getGenome().getFlowering();
 			new ControlTextCentered(parent, y, I18N.localise(AnalystConstants.BEHAVIOUR_KEY + ".pollinatesNearby") + '\n' + bee.getGenome().getFlowerProvider().getDescription())
-					.setColor(parent.getColor());
+				.setColor(parent.getColor());
 			y += 20;
 
 			new ControlTextCentered(parent, y, I18N.localise(AnalystConstants.BEHAVIOUR_KEY + ".everyTime", TimeUtil.getTimeString(ModuleApiculture.ticksPerBeeWorkCycle * 100 / fertility)))
-					.setColor(parent.getColor());
+				.setColor(parent.getColor());
 			y += 22;
 
 			IAlleleBeeEffect effect = bee.getGenome().getEffect();
@@ -125,20 +125,20 @@ public class AnalystPagePlugin implements IAnalystPagePlugin<IBee> {
 			if (!effect.getUID().contains("None")) {
 				String effectDesc = I18N.localiseOrBlank("binniecore.allele." + effect.getUID() + ".desc");
 				String loc = effectDesc.isEmpty()
-						? I18N.localise(AnalystConstants.BEHAVIOUR_KEY + ".effect", effect.getAlleleName())
-						: effectDesc;
+					? I18N.localise(AnalystConstants.BEHAVIOUR_KEY + ".effect", effect.getAlleleName())
+					: effectDesc;
 
 				new ControlText(parent, new Area(4, y, parent.getWidth() - 8, 0), loc, TextJustification.TOP_CENTER)
-						.setColor(parent.getColor());
+					.setColor(parent.getColor());
 				y += (int) (CraftGUI.RENDER.textHeight(loc, parent.getWidth() - 8) + 1.0f);
 
 				new ControlTextCentered(parent, y, I18N.localise(AnalystConstants.BEHAVIOUR_KEY + ".withinBlocks", (int) (t.getX() / 2.0f)))
-						.setColor(parent.getColor());
+					.setColor(parent.getColor());
 				y += 22;
 			}
 
 			new ControlTextCentered(parent, y, I18N.localise(AnalystConstants.BEHAVIOUR_KEY + ".territory", t.getX(), t.getY(), t.getZ()))
-					.setColor(parent.getColor());
+				.setColor(parent.getColor());
 			y += 22;
 			return y;
 		}

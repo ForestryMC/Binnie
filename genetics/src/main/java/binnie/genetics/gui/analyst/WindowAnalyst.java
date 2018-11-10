@@ -5,6 +5,18 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.IBreedingTracker;
+import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.ISpeciesRoot;
+
 import binnie.core.Binnie;
 import binnie.core.api.genetics.IBreedingSystem;
 import binnie.core.api.gui.Alignment;
@@ -31,16 +43,7 @@ import binnie.genetics.Genetics;
 import binnie.genetics.api.analyst.IAnalystPagePlugin;
 import binnie.genetics.core.GeneticsGUI;
 import binnie.genetics.item.GeneticsItems;
-import binnie.genetics.machine.ModuleMachine;
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IBreedingTracker;
-import forestry.api.genetics.IIndividual;
-import forestry.api.genetics.ISpeciesRoot;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import binnie.genetics.modules.ModuleMachine;
 
 public class WindowAnalyst extends Window {
 	@Nullable
@@ -186,7 +189,7 @@ public class WindowAnalyst extends Window {
 	}
 
 	@SideOnly(Side.CLIENT)
-	private void createPages(@Nullable ITitledWidget databasePage){
+	private void createPages(@Nullable ITitledWidget databasePage) {
 		if (isDatabase) {
 			analystPages.add((databasePage != null) ? databasePage : new AnalystPageDatabase(analystPanel, analystPageSize, currentSystem, isMaster));
 		}

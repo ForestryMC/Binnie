@@ -3,11 +3,6 @@ package binnie.design.blocks;
 import javax.annotation.Nullable;
 import java.util.List;
 
-import binnie.design.Design;
-import binnie.design.DesignHelper;
-import binnie.design.api.IDesign;
-import binnie.design.api.IDesignSystem;
-import binnie.design.api.IToolHammer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
@@ -51,12 +46,17 @@ import forestry.core.blocks.properties.UnlistedBlockPos;
 import forestry.core.models.BlockModelEntry;
 
 import binnie.core.block.BlockMetadata;
-import binnie.core.block.TileEntityMetadata;
 import binnie.core.block.IMultipassBlock;
+import binnie.core.block.TileEntityMetadata;
 import binnie.core.models.DefaultStateMapper;
 import binnie.core.models.ModelManager;
 import binnie.core.models.ModelMutlipass;
 import binnie.core.util.TileUtil;
+import binnie.design.Design;
+import binnie.design.DesignHelper;
+import binnie.design.api.IDesign;
+import binnie.design.api.IDesignSystem;
+import binnie.design.api.IToolHammer;
 
 public abstract class BlockDesign extends BlockMetadata implements IMultipassBlock<BlockDesign.Key>, IColoredBlock, ISpriteRegister, IItemModelRegister, IStateMapperRegister {
 	public static final EnumFacing[] RENDER_DIRECTIONS = new EnumFacing[]{EnumFacing.DOWN, EnumFacing.UP, EnumFacing.EAST, EnumFacing.WEST, EnumFacing.NORTH, EnumFacing.SOUTH};
@@ -74,7 +74,9 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
 
 	@SubscribeEvent
 	public void onClick(final PlayerInteractEvent.RightClickBlock event) {
-		if(event.getHand() != EnumHand.MAIN_HAND) return;
+		if (event.getHand() != EnumHand.MAIN_HAND) {
+			return;
+		}
 		final World world = event.getWorld();
 		final EntityPlayer player = event.getEntityPlayer();
 		final BlockPos pos = event.getPos();
@@ -234,7 +236,7 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
 	@Override
 	public TextureAtlasSprite getSprite(Key key, @Nullable EnumFacing facing, int pass) {
 		EnumFacing[] renderDirections = RENDER_DIRECTIONS;
-		if(key.item){
+		if (key.item) {
 			renderDirections = RENDER_DIRECTIONS_ITEM;
 		}
 		DesignBlock block = DesignHelper.getDesignBlock(this.getDesignSystem(), key.metadata);
@@ -260,10 +262,10 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
 
 		@Override
 		public boolean equals(Object obj) {
-			if(!(obj instanceof Key)){
+			if (!(obj instanceof Key)) {
 				return false;
 			}
-			Key k = (Key)obj;
+			Key k = (Key) obj;
 			return k.item == item && k.metadata == metadata;
 		}
 

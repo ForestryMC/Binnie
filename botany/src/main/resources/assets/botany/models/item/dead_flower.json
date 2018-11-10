@@ -1,6 +1,6 @@
 {
-    "parent": "item/generated",
-    "textures": {
-        "layer0": "botany:blocks/dead_flower"
-    }
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "botany:blocks/dead_flower"
+  }
 }

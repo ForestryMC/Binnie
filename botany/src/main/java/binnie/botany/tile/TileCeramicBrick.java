@@ -4,9 +4,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 
+import binnie.botany.api.genetics.EnumFlowerColor;
 import binnie.botany.ceramic.brick.CeramicBrickPair;
 import binnie.botany.ceramic.brick.CeramicBrickType;
-import binnie.botany.api.genetics.EnumFlowerColor;
 import binnie.botany.modules.ModuleCeramic;
 import binnie.core.block.TileEntityMetadata;
 

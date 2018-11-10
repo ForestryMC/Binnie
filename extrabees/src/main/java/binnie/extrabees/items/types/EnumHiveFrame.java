@@ -28,7 +28,7 @@ import binnie.extrabees.utils.EnumBeeModifier;
 
 public enum EnumHiveFrame implements IHiveFrame, IBeeModifier {
 
-	COCOA{
+	COCOA {
 		@Override
 		protected void init(RecipeUtil recipeUtil, ItemStack impregnatedFrame) {
 			logic.setModifier(EnumBeeModifier.LIFESPAN, 0.75f, 0.25f);
@@ -41,7 +41,7 @@ public enum EnumHiveFrame implements IHiveFrame, IBeeModifier {
 				'c', new ItemStack(Items.DYE, 1, 3));
 		}
 	},
-	CAGE{
+	CAGE {
 		@Override
 		protected void init(RecipeUtil recipeUtil, ItemStack impregnatedFrame) {
 			logic.setModifier(EnumBeeModifier.TERRITORY, 0.5f, 0.1f);
@@ -50,7 +50,7 @@ public enum EnumHiveFrame implements IHiveFrame, IBeeModifier {
 			recipeUtil.addShapelessRecipe("cage_frame", new ItemStack(EnumHiveFrame.CAGE.item), impregnatedFrame, Blocks.IRON_BARS);
 		}
 	},
-	SOUL(80){
+	SOUL(80) {
 		@Override
 		protected void init(RecipeUtil recipeUtil, ItemStack impregnatedFrame) {
 			logic.setModifier(EnumBeeModifier.MUTATION, 1.5f, 5.0f);
@@ -59,7 +59,7 @@ public enum EnumHiveFrame implements IHiveFrame, IBeeModifier {
 			recipeUtil.addShapelessRecipe("soul_frame", new ItemStack(EnumHiveFrame.SOUL.item), impregnatedFrame, Blocks.SOUL_SAND);
 		}
 	},
-	CLAY{
+	CLAY {
 		@Override
 		protected void init(RecipeUtil recipeUtil, ItemStack impregnatedFrame) {
 			logic.setModifier(EnumBeeModifier.LIFESPAN, 1.5f, 5.0f);
@@ -73,7 +73,7 @@ public enum EnumHiveFrame implements IHiveFrame, IBeeModifier {
 				'c', Items.CLAY_BALL);
 		}
 	},
-	DEBUG{
+	DEBUG {
 		@Override
 		protected void init(RecipeUtil recipeUtil, ItemStack impregnatedFrame) {
 			logic.setModifier(EnumBeeModifier.LIFESPAN, 1.0E-4f, 1.0E-4f);
@@ -94,13 +94,13 @@ public enum EnumHiveFrame implements IHiveFrame, IBeeModifier {
 		this.item = new ItemHiveFrame(this).setRegistryName("hive_frame." + name().toLowerCase());
 	}
 
-	protected void init(RecipeUtil recipeUtil, ItemStack impregnatedFrame){
+	protected void init(RecipeUtil recipeUtil, ItemStack impregnatedFrame) {
 
 	}
 
 	public static void init(RecipeUtil recipeUtil) {
 		ItemStack impregnatedFrame = Mods.Forestry.stack("frame_impregnated");
-		for(EnumHiveFrame frame : values()){
+		for (EnumHiveFrame frame : values()) {
 			frame.init(recipeUtil, impregnatedFrame);
 		}
 	}

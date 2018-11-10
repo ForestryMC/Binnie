@@ -1,6 +1,5 @@
 package binnie.genetics.item;
 
-import binnie.core.api.genetics.IBreedingSystem;
 import com.google.common.base.Preconditions;
 
 import javax.annotation.Nullable;
@@ -17,13 +16,14 @@ import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.ISpeciesRoot;
 
 import binnie.core.Binnie;
+import binnie.core.api.genetics.IBreedingSystem;
+import binnie.core.api.genetics.IGene;
 import binnie.core.genetics.Gene;
 import binnie.core.util.I18N;
-import binnie.genetics.Genetics;
-import binnie.core.api.genetics.IGene;
 import binnie.genetics.api.IItemSerum;
 import binnie.genetics.genetics.GeneArrayItem;
 import binnie.genetics.genetics.IGeneItem;
+import binnie.genetics.modules.ModuleCore;
 
 public class ItemSerumArray extends ItemGene implements IItemSerum {
 	public ItemSerumArray() {
@@ -32,7 +32,7 @@ public class ItemSerumArray extends ItemGene implements IItemSerum {
 	}
 
 	public static ItemStack create(final IGene gene) {
-		final ItemStack item = new ItemStack(Genetics.items().itemSerumArray);
+		final ItemStack item = new ItemStack(ModuleCore.itemSerumArray);
 		item.setItemDamage(item.getMaxDamage());
 		final GeneArrayItem seq = new GeneArrayItem(gene);
 		seq.writeToItem(item);

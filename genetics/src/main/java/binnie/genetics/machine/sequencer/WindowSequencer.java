@@ -8,10 +8,10 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import binnie.core.api.gui.Alignment;
 import binnie.core.gui.controls.ControlText;
 import binnie.core.gui.geometry.Area;
 import binnie.core.gui.geometry.CraftGUIUtil;
-import binnie.core.api.gui.Alignment;
 import binnie.core.gui.geometry.TextJustification;
 import binnie.core.gui.minecraft.GUIIcon;
 import binnie.core.gui.minecraft.control.ControlEnergyBar;
@@ -21,12 +21,12 @@ import binnie.core.gui.minecraft.control.ControlPlayerInventory;
 import binnie.core.gui.minecraft.control.ControlSlot;
 import binnie.core.gui.minecraft.control.ControlSlotArray;
 import binnie.core.gui.minecraft.control.ControlSlotCharge;
-import binnie.core.gui.resource.textures.Texture;
 import binnie.core.gui.resource.textures.StandardTexture;
+import binnie.core.gui.resource.textures.Texture;
+import binnie.core.gui.window.WindowMachine;
 import binnie.core.util.I18N;
 import binnie.genetics.Genetics;
 import binnie.genetics.core.GeneticsTexture;
-import binnie.core.gui.window.WindowMachine;
 
 public class WindowSequencer extends WindowMachine {
 	// TODO: why are these unused?

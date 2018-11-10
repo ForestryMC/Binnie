@@ -3,13 +3,16 @@
   "defaults": {
     "model": "binniecore:machine"
   },
-
   "variants": {
-    "normal": [{}],
-    "inventory": [{}],
-    "machine_type":{
+    "normal": [
+      {}
+    ],
+    "inventory": [
+      {}
+    ],
+    "machine_type": {
       "0": {
-        "textures":{
+        "textures": {
           "texture": "botany:blocks/tileworker"
         }
       },

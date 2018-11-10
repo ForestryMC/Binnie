@@ -1,8 +1,10 @@
 package binnie.botany.api.gardening;
 
 import javax.annotation.Nullable;
-import binnie.botany.api.IBotanyColored;
+
 import net.minecraft.util.text.TextFormatting;
+
+import binnie.botany.api.IBotanyColored;
 
 public enum EnumAcidity implements IBotanyColored {
 	ACID(TextFormatting.RED),
@@ -27,11 +29,11 @@ public enum EnumAcidity implements IBotanyColored {
 	}
 
 	public static EnumAcidity getFromValue(float rawAcidity) {
-		if(rawAcidity <= -1.0f){
+		if (rawAcidity <= -1.0f) {
 			return EnumAcidity.ACID;
-		}else if(rawAcidity >= 1.0f){
+		} else if (rawAcidity >= 1.0f) {
 			return EnumAcidity.ALKALINE;
-		}else{
+		} else {
 			return EnumAcidity.NEUTRAL;
 		}
 	}

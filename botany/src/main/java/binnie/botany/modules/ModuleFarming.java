@@ -25,6 +25,7 @@ public class ModuleFarming extends BlankModule {
 	public ModuleFarming() {
 		super(Constants.BOTANY_MOD_ID, BotanyModuleUIDs.FLOWERS);
 	}
+
 	@Override
 	public void registerItemsAndBlocks() {
 		insulatedTube = new ItemInsulatedTube();
@@ -59,7 +60,7 @@ public class ModuleFarming extends BlankModule {
 			}
 		}
 
-		for (EnumTubeMaterial mat: EnumTubeMaterial.VALUES) {
+		for (EnumTubeMaterial mat : EnumTubeMaterial.VALUES) {
 			RecipeUtil recipeUtil = new RecipeUtil(Constants.BOTANY_MOD_ID);
 			for (EnumTubeInsulate insulate : EnumTubeInsulate.VALUES) {
 				ItemStack tubes = new ItemStack(insulatedTube, 2, mat.ordinal() + 128 * insulate.ordinal());

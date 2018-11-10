@@ -12,7 +12,7 @@ import net.minecraftforge.fluids.FluidStack;
 import binnie.core.util.FluidStackUtil;
 import binnie.extratrees.api.recipes.IFruitPressRecipe;
 
-public class FruitPressRecipe implements IFruitPressRecipe{
+public class FruitPressRecipe implements IFruitPressRecipe {
 	private final ItemStack input;
 	private final FluidStack output;
 

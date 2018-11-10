@@ -4,9 +4,6 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 
-import binnie.extrabees.ExtraBees;
-import binnie.extrabees.gui.ExtraBeesGUID;
-import binnie.core.api.gui.IGuiItem;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
@@ -27,6 +24,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
 import forestry.api.core.Tabs;
+
+import binnie.core.api.gui.IGuiItem;
+import binnie.extrabees.ExtraBees;
+import binnie.extrabees.gui.ExtraBeesGUID;
 
 public class ItemBeeDictionary extends Item implements IItemModelRegister, IGuiItem {
 

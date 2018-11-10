@@ -44,27 +44,26 @@ public enum GeneticsErrorCode implements IErrorStateDefinition {
 	//Sequencer
 	SEQUENCER_INSUFFICIENT_DYE("sequencer.insufficient.dye", CoreErrorCode.NO_ITEM),
 	SEQUENCER_NO_SPACE("sequencer.no.space", CoreErrorCode.NO_SPACE),
-	SEQUENCER_NO_DNA("sequencer.no.dna", CoreErrorCode.NO_ITEM)
-	;
-	
+	SEQUENCER_NO_DNA("sequencer.no.dna", CoreErrorCode.NO_ITEM);
+
 	private final String name;
 	@Nullable
 	private final IErrorStateDefinition parent;
 	@Nullable
 	private final EnumErrorType type;
-	
+
 	GeneticsErrorCode(String name) {
 		this(name, null, EnumErrorType.NONE);
 	}
-	
+
 	GeneticsErrorCode(String name, EnumErrorType type) {
 		this(name, null, type);
 	}
-	
+
 	GeneticsErrorCode(String name, IErrorStateDefinition parent) {
 		this(name, parent, EnumErrorType.NONE);
 	}
-	
+
 	GeneticsErrorCode(String name, IErrorStateDefinition parent, EnumErrorType type) {
 		this.name = name;
 		this.parent = parent;
@@ -75,21 +74,21 @@ public enum GeneticsErrorCode implements IErrorStateDefinition {
 	public String getUID() {
 		return Constants.GENETICS_MOD_ID + ':' + name;
 	}
-	
-	public String getDescription(){
+
+	public String getDescription() {
 		return I18N.localise("genetics.errors." + name + ".desc");
 	}
-	
-	public String getName(){
-		if(parent != null){
+
+	public String getName() {
+		if (parent != null) {
 			return parent.getName();
 		}
-		return  I18N.localise("genetics.errors." + name + ".name");
+		return I18N.localise("genetics.errors." + name + ".name");
 	}
 
 	@Override
 	public EnumErrorType getType() {
-		if(parent != null){
+		if (parent != null) {
 			return parent.getType();
 		}
 		return type;

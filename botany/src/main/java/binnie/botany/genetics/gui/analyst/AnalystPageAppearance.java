@@ -1,8 +1,5 @@
 package binnie.botany.genetics.gui.analyst;
 
-import binnie.core.api.gui.IArea;
-import binnie.core.api.gui.ITitledWidget;
-import binnie.core.gui.controls.core.Control;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.text.TextFormatting;
 
@@ -16,8 +13,11 @@ import binnie.botany.api.genetics.IFlowerGenome;
 import binnie.botany.api.genetics.IFlowerType;
 import binnie.botany.gui.database.ControlColorDisplay;
 import binnie.botany.models.FlowerSpriteManager;
+import binnie.core.api.gui.IArea;
+import binnie.core.api.gui.ITitledWidget;
 import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.ControlTextCentered;
+import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.geometry.Point;
 import binnie.core.gui.minecraft.control.ControlIconDisplay;
 import binnie.core.gui.renderer.RenderUtil;
@@ -59,7 +59,7 @@ public class AnalystPageAppearance extends Control implements ITitledWidget {
 		private final IFlowerType type;
 
 		public FlowerIconDisplay(AnalystPageAppearance analystPageAppearance, int width, int y, int sections, IFlower flower, IFlowerType type) {
-			super(analystPageAppearance, (analystPageAppearance.getWidth() - width) / 2, y );
+			super(analystPageAppearance, (analystPageAppearance.getWidth() - width) / 2, y);
 			this.width = width;
 			this.sections = sections;
 			this.flower = flower;

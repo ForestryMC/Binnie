@@ -27,7 +27,9 @@ public class MultiFenceRecipeSize extends IForgeRegistryEntry.Impl<IRecipe> impl
 
 	@Override
 	public boolean matches(final InventoryCrafting inv, final World world) {
-		if(inv.getSizeInventory()!=9) return false;
+		if (inv.getSizeInventory() != 9) {
+			return false;
+		}
 		StringBuilder recipePattern = new StringBuilder();
 		List<IPlankType> types = new ArrayList<>();
 		for (int i = 0; i < inv.getSizeInventory(); ++i) {

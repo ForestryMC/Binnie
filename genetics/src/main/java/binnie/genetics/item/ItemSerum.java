@@ -20,10 +20,10 @@ import binnie.core.api.genetics.IBreedingSystem;
 import binnie.core.api.genetics.IGene;
 import binnie.core.genetics.Gene;
 import binnie.core.util.I18N;
-import binnie.genetics.Genetics;
 import binnie.genetics.api.IItemSerum;
 import binnie.genetics.genetics.GeneItem;
 import binnie.genetics.genetics.IGeneItem;
+import binnie.genetics.modules.ModuleCore;
 
 public class ItemSerum extends ItemGene implements IItemSerum {
 	public ItemSerum() {
@@ -32,7 +32,7 @@ public class ItemSerum extends ItemGene implements IItemSerum {
 	}
 
 	public static ItemStack create(final IGene gene) {
-		final ItemStack item = new ItemStack(Genetics.items().itemSerum);
+		final ItemStack item = new ItemStack(ModuleCore.itemSerum);
 		item.setItemDamage(item.getMaxDamage());
 		final GeneItem seq = new GeneItem(gene);
 		seq.writeToItem(item);
@@ -73,7 +73,7 @@ public class ItemSerum extends ItemGene implements IItemSerum {
 	@Override
 	public IGene[] getGenes(ItemStack stack) {
 		GeneItem geneItem = this.getGeneItem(stack);
-		if(geneItem == null){
+		if (geneItem == null) {
 			return new IGene[0];
 		}
 		return new IGene[]{geneItem.getGene()};
@@ -82,7 +82,7 @@ public class ItemSerum extends ItemGene implements IItemSerum {
 	@Override
 	public ISpeciesRoot getSpeciesRoot(ItemStack stack) {
 		GeneItem geneItem = this.getGeneItem(stack);
-		if(geneItem == null){
+		if (geneItem == null) {
 			return null;
 		}
 		return geneItem.getSpeciesRoot();
@@ -91,7 +91,7 @@ public class ItemSerum extends ItemGene implements IItemSerum {
 	@Override
 	public IGene getGene(ItemStack stack, int chromosome) {
 		GeneItem geneItem = this.getGeneItem(stack);
-		if(geneItem == null){
+		if (geneItem == null) {
 			return null;
 		}
 		return geneItem.getGene();

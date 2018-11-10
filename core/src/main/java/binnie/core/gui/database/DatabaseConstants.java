@@ -8,7 +8,7 @@ public class DatabaseConstants {
 	public static final String PAGES_PRE_FIX = ".pages";
 
 	public static final String KEY = "binniecore.gui.database";
-	public static final String DISCOVERED_KEY= KEY + ".discovered";
+	public static final String DISCOVERED_KEY = KEY + ".discovered";
 	public static final String MUTATIONS_KEY = KEY + ".mutations";
 	public static final String BREEDER_KEY = KEY + ".breeder";
 	public static final String SPECIES_KEY = KEY + ".species";

@@ -2,7 +2,6 @@ package binnie.genetics.machine.inoculator;
 
 import java.util.Random;
 
-import binnie.core.util.EntityItemRenderer;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -17,6 +16,7 @@ import binnie.core.machines.IMachine;
 import binnie.core.machines.MachineComponent;
 import binnie.core.machines.component.IRender;
 import binnie.core.machines.network.INetwork;
+import binnie.core.util.EntityItemRenderer;
 
 public class InoculatorFX extends MachineComponent implements IRender.DisplayTick, IRender.Render, INetwork.TilePacketSync {
 	private final EntityItemRenderer entityItemRenderer;
@@ -29,7 +29,9 @@ public class InoculatorFX extends MachineComponent implements IRender.DisplayTic
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void onDisplayTick(World world, BlockPos pos, Random rand) {
-		if (!this.getUtil().getProcess().isInProgress()) return;
+		if (!this.getUtil().getProcess().isInProgress()) {
+			return;
+		}
 		final int tick = (int) (world.getTotalWorldTime() % 3L);
 		if (tick == 0) {
 			final Particle particle = new InoculatorParticle(world, pos);

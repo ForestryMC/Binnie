@@ -79,7 +79,9 @@ public class MjHelper {
 	}
 
 	public static boolean isMjCapability(Capability<?> capability) {
-		if (!isLoaded()) return false;
+		if (!isLoaded()) {
+			return false;
+		}
 
 		return capability == CAP_CONNECTOR || capability == CAP_RECEIVER || capability == CAP_REDSTONE_RECEIVER ||
 			capability == CAP_READABLE || capability == CAP_PASSIVE_PROVIDER;

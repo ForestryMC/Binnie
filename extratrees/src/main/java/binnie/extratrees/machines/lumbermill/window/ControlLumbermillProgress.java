@@ -1,6 +1,5 @@
 package binnie.extratrees.machines.lumbermill.window;
 
-import binnie.core.api.gui.IPoint;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
@@ -15,22 +14,23 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import org.lwjgl.opengl.GL11;
-
-import binnie.core.gui.CraftGUI;
+import binnie.core.api.gui.IPoint;
 import binnie.core.api.gui.IWidget;
+import binnie.core.gui.CraftGUI;
 import binnie.core.gui.geometry.Area;
 import binnie.core.gui.geometry.Point;
 import binnie.core.gui.minecraft.MinecraftGUI;
 import binnie.core.gui.minecraft.Window;
 import binnie.core.gui.minecraft.control.ControlProgressBase;
 import binnie.core.gui.renderer.RenderUtil;
-import binnie.core.gui.resource.textures.Texture;
 import binnie.core.gui.resource.textures.StandardTexture;
+import binnie.core.gui.resource.textures.Texture;
 import binnie.core.gui.window.Panel;
 import binnie.extratrees.core.ExtraTreeTexture;
 import binnie.extratrees.machines.lumbermill.LumbermillMachine;
 import binnie.extratrees.machines.lumbermill.recipes.LumbermillRecipeManager;
+
+import org.lwjgl.opengl.GL11;
 
 public class ControlLumbermillProgress extends ControlProgressBase {
 	private static final Texture SAW = new StandardTexture(0, 0, 6, 32, ExtraTreeTexture.GUI);
@@ -105,13 +105,13 @@ public class ControlLumbermillProgress extends ControlProgressBase {
 	}
 
 	@SideOnly(Side.CLIENT)
-	private TextureAtlasSprite getWoodSprite(ItemStack stack){
+	private TextureAtlasSprite getWoodSprite(ItemStack stack) {
 		Minecraft mc = Minecraft.getMinecraft();
 		RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
 		ItemModelMesher modelMesher = renderItem.getItemModelMesher();
 		IBakedModel model = modelMesher.getItemModel(stack);
 		TextureAtlasSprite sprite = model.getParticleTexture();
-		if(sprite == mc.getTextureMapBlocks().getMissingSprite()){
+		if (sprite == mc.getTextureMapBlocks().getMissingSprite()) {
 			return getWoodSprite(new ItemStack(Blocks.LOG));
 		}
 		return sprite;

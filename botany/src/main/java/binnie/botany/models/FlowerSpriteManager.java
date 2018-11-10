@@ -9,9 +9,9 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.core.Binnie;
 import binnie.botany.Botany;
 import binnie.botany.api.genetics.IFlowerType;
+import binnie.core.Binnie;
 import binnie.core.resource.BinnieSprite;
 
 public class FlowerSpriteManager {

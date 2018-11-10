@@ -1,8 +1,4 @@
-package binnie.genetics.item;
-
-import com.google.common.base.Preconditions;
-
-import javax.annotation.Nullable;
+package binnie.genetics.modules;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -11,33 +7,47 @@ import net.minecraft.item.ItemStack;
 
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
+import forestry.api.modules.ForestryModule;
 import forestry.api.recipes.RecipeManagers;
 
 import binnie.core.Binnie;
 import binnie.core.Constants;
-import binnie.core.IInitializable;
 import binnie.core.Mods;
 import binnie.core.item.ItemMisc;
 import binnie.core.liquid.FluidContainerType;
 import binnie.core.liquid.ManagerLiquid;
+import binnie.core.modules.BlankModule;
 import binnie.core.util.RecipeUtil;
 import binnie.genetics.CreativeTabGenetics;
 import binnie.genetics.Genetics;
+import binnie.genetics.item.GeneticLiquid;
+import binnie.genetics.item.GeneticsItems;
+import binnie.genetics.item.ItemAnalyst;
+import binnie.genetics.item.ItemDatabase;
+import binnie.genetics.item.ItemMasterRegistry;
+import binnie.genetics.item.ItemRegistry;
+import binnie.genetics.item.ItemSequence;
+import binnie.genetics.item.ItemSerum;
+import binnie.genetics.item.ItemSerumArray;
 import binnie.genetics.recipes.RegistryRecipe;
 
-public class ModuleItems implements IInitializable {
-	public ItemSerum itemSerum;
-	public ItemSequence itemSequencer;
-	public ItemDatabase database;
-	public ItemAnalyst analyst;
-	public Item registry;
-	public Item masterRegistry;
-	public ItemSerumArray itemSerumArray;
-	@Nullable
-	private Item itemGenetics;
+@ForestryModule(moduleID = GeneticsModuleUIDs.CORE, containerID = Constants.GENETICS_MOD_ID, name = "Core", unlocalizedDescription = "genetics.module.core")
+public class ModuleCore extends BlankModule {
+	public static ItemSerum itemSerum;
+	public static ItemSequence itemSequencer;
+	public static ItemDatabase database;
+	public static ItemAnalyst analyst;
+	public static Item registry;
+	public static Item masterRegistry;
+	public static ItemSerumArray itemSerumArray;
+	public static Item itemGenetics;
+
+	public ModuleCore() {
+		super("forestry", "core");
+	}
 
 	@Override
-	public void preInit() {
+	public void registerItemsAndBlocks() {
 		itemSerum = new ItemSerum();
 		Genetics.proxy.registerItem(itemSerum);
 		itemSerumArray = new ItemSerumArray();
@@ -59,13 +69,13 @@ public class ModuleItems implements IInitializable {
 		Binnie.LIQUID.createLiquids(GeneticLiquid.values());
 	}
 
-	public Item getItemGenetics() {
-		Preconditions.checkState(itemGenetics != null);
-		return itemGenetics;
+	@Override
+	public void preInit() {
+
 	}
 
 	@Override
-	public void init() {
+	public void doInit() {
 		RecipeUtil recipeUtil = new RecipeUtil(Constants.GENETICS_MOD_ID);
 		recipeUtil.addShapelessRecipe("dna_dye_from_glowstone", GeneticsItems.DNADye.get(8),
 			Items.GLOWSTONE_DUST, new ItemStack(Items.DYE, 1, 5)
@@ -143,5 +153,10 @@ public class ModuleItems implements IInitializable {
 
 		RegistryRecipe recipe = RegistryRecipe.create(registry, itemGenetics);
 		recipeUtil.addRecipe("registry", recipe);
+	}
+
+	@Override
+	public void postInit() {
+
 	}
 }

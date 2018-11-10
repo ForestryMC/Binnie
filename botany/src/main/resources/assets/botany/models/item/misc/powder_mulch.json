@@ -1,6 +1,6 @@
 {
-    "parent": "item/generated",
-    "textures": {
-        "layer0": "botany:items/powder_mulch"
-    }
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "botany:items/powder_mulch"
+  }
 }

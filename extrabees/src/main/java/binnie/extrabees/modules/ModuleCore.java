@@ -107,8 +107,8 @@ public class ModuleCore extends BlankModule {
 	}
 
 	@SubscribeEvent
-	public static void onRegisterSpecies(AlleleSpeciesRegisterEvent<IAlleleBeeSpecies> event){
-		if(event.getRoot() != BeeManager.beeRoot){
+	public static void onRegisterSpecies(AlleleSpeciesRegisterEvent<IAlleleBeeSpecies> event) {
+		if (event.getRoot() != BeeManager.beeRoot) {
 			return;
 		}
 		ExtraBeeDefinition.doPreInit();

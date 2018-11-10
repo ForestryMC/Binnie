@@ -1,9 +1,11 @@
 package binnie.botany.genetics;
 
-import static binnie.botany.api.genetics.EnumFlowerColor.*;
+import forestry.api.genetics.AlleleManager;
+
 import binnie.botany.api.BotanyAPI;
 import binnie.botany.api.genetics.EnumFlowerColor;
-import forestry.api.genetics.AlleleManager;
+
+import static binnie.botany.api.genetics.EnumFlowerColor.*;
 
 public final class FlowerColorMutations {
 	private FlowerColorMutations() {

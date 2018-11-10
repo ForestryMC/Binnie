@@ -37,9 +37,9 @@ import forestry.api.core.Tabs;
 import binnie.core.liquid.AlcoholEffect;
 import binnie.core.liquid.DrinkManager;
 import binnie.core.liquid.IDrinkLiquid;
-import binnie.extratrees.liquid.Alcohol;
 import binnie.extratrees.alcohol.GlasswareType;
 import binnie.extratrees.alcohol.drink.FluidHandlerItemGlassware;
+import binnie.extratrees.liquid.Alcohol;
 
 import static net.minecraftforge.fluids.capability.templates.FluidHandlerItemStackSimple.FLUID_NBT_KEY;
 

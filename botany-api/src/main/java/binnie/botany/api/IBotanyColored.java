@@ -1,11 +1,11 @@
 package binnie.botany.api;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.text.TextFormatting;
 
-import javax.annotation.Nullable;
-
 public interface IBotanyColored extends IStringSerializable {
-    @Nullable
-    TextFormatting getColor();
+	@Nullable
+	TextFormatting getColor();
 }

@@ -6,11 +6,12 @@ import java.util.List;
 
 import net.minecraft.item.ItemStack;
 
-import binnie.extratrees.wood.planks.IPlankType;
-import binnie.extratrees.wood.WoodManager;
 import binnie.extratrees.blocks.decor.FenceDescription;
 import binnie.extratrees.blocks.decor.FenceType;
 import binnie.extratrees.blocks.decor.MultiFenceRecipePattern;
+import binnie.extratrees.wood.WoodManager;
+import binnie.extratrees.wood.planks.IPlankType;
+
 import mezz.jei.api.recipe.IFocus;
 import mezz.jei.api.recipe.IFocus.Mode;
 import mezz.jei.api.recipe.IRecipeCategory;

@@ -34,10 +34,10 @@ public interface IErrorStateDefinition {
 			return I18N.localise(ModId.CORE, "errors.missing.validated.slot.desc", validationString);
 		}
 	}
-	
+
 	String getName();
 
 	String getUID();
-	
+
 	EnumErrorType getType();
 }

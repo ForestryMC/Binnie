@@ -115,9 +115,9 @@ public class ItemInsulatedTube extends ItemCore implements IColoredItem {
 	public String getItemStackDisplayName(ItemStack itemStack) {
 		int meta = itemStack.getMetadata();
 		return I18N.localise(
-				"item.botany.insulated_tube.name",
-				EnumTubeMaterial.get(meta).getDisplayName(),
-				EnumTubeInsulate.get(meta).getDisplayName()
+			"item.botany.insulated_tube.name",
+			EnumTubeMaterial.get(meta).getDisplayName(),
+			EnumTubeInsulate.get(meta).getDisplayName()
 		);
 	}
 }

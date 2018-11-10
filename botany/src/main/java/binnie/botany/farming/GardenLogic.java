@@ -78,10 +78,10 @@ public class GardenLogic extends FarmLogic {
 	public boolean isAcceptedResource(ItemStack itemstack) {
 		IGardeningManager gardening = BotanyCore.getGardening();
 		return gardening.isSoil(itemstack.getItem()) ||
-				itemstack.getItem() == Item.getItemFromBlock(Blocks.SAND) ||
-				itemstack.getItem() == Item.getItemFromBlock(Blocks.DIRT) ||
-				gardening.isFertiliser(EnumFertiliserType.ACID, itemstack) ||
-				gardening.isFertiliser(EnumFertiliserType.ALKALINE, itemstack);
+			itemstack.getItem() == Item.getItemFromBlock(Blocks.SAND) ||
+			itemstack.getItem() == Item.getItemFromBlock(Blocks.DIRT) ||
+			gardening.isFertiliser(EnumFertiliserType.ACID, itemstack) ||
+			gardening.isFertiliser(EnumFertiliserType.ALKALINE, itemstack);
 	}
 
 	@Override
@@ -94,8 +94,8 @@ public class GardenLogic extends FarmLogic {
 	@Override
 	public boolean cultivate(World world, IFarmHousing farmHousing, BlockPos pos, FarmDirection direction, int extent) {
 		return maintainSoil(world, pos, direction, extent, farmHousing) ||
-				(!isManual() && maintainWater(world, pos, direction, extent, farmHousing)) ||
-				maintainCrops(world, pos.up(), direction, extent, farmHousing);
+			(!isManual() && maintainWater(world, pos, direction, extent, farmHousing)) ||
+			maintainCrops(world, pos.up(), direction, extent, farmHousing);
 	}
 
 	private boolean isWaste(ItemStack stack) {
@@ -206,28 +206,28 @@ public class GardenLogic extends FarmLogic {
 		EnumMoisture[] moistures;
 		if (moisture == EnumMoisture.DAMP) {
 			moistures = new EnumMoisture[]{
-					EnumMoisture.DAMP,
-					EnumMoisture.NORMAL,
-					EnumMoisture.DRY
+				EnumMoisture.DAMP,
+				EnumMoisture.NORMAL,
+				EnumMoisture.DRY
 			};
 		} else if (moisture == EnumMoisture.DRY) {
 			moistures = new EnumMoisture[]{
-					EnumMoisture.DRY,
-					EnumMoisture.DAMP,
-					EnumMoisture.DRY
+				EnumMoisture.DRY,
+				EnumMoisture.DAMP,
+				EnumMoisture.DRY
 			};
 		} else {
 			moistures = new EnumMoisture[]{
-					EnumMoisture.DRY,
-					EnumMoisture.NORMAL,
-					EnumMoisture.DAMP
+				EnumMoisture.DRY,
+				EnumMoisture.NORMAL,
+				EnumMoisture.DAMP
 			};
 		}
 
 		EnumAcidity[] acidities = {
-				EnumAcidity.NEUTRAL,
-				EnumAcidity.ACID,
-				EnumAcidity.ALKALINE
+			EnumAcidity.NEUTRAL,
+			EnumAcidity.ACID,
+			EnumAcidity.ALKALINE
 		};
 
 		for (EnumMoisture moist : moistures) {
@@ -319,7 +319,7 @@ public class GardenLogic extends FarmLogic {
 			return Collections.emptyList();
 		}
 		return farmables.stream().map(farmable -> farmable.getCropAt(world, pos.up(), world.getBlockState(pos.up())))
-				.filter(Objects::nonNull).collect(Collectors.toList());
+			.filter(Objects::nonNull).collect(Collectors.toList());
 	}
 
 	@Override

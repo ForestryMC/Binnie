@@ -4,17 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeSet;
 
-import binnie.core.ModId;
-import binnie.core.api.genetics.IFieldKitPlugin;
-import binnie.core.api.gui.IPoint;
-import binnie.core.api.gui.ITexture;
-import binnie.core.genetics.BreedingSystem;
-import binnie.core.genetics.ForestryAllele;
-import binnie.core.genetics.Tolerance;
-import binnie.core.gui.geometry.Point;
-import binnie.core.gui.resource.textures.StandardTexture;
-import binnie.core.texture.BinnieCoreTexture;
-import forestry.api.lepidopterology.ButterflyManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
@@ -26,11 +15,22 @@ import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.IMutation;
 import forestry.api.genetics.ISpeciesRoot;
 import forestry.api.genetics.ISpeciesType;
+import forestry.api.lepidopterology.ButterflyManager;
 import forestry.api.lepidopterology.EnumButterflyChromosome;
 import forestry.api.lepidopterology.EnumFlutterType;
 import forestry.api.lepidopterology.ILepidopteristTracker;
 
 import binnie.core.Binnie;
+import binnie.core.ModId;
+import binnie.core.api.genetics.IFieldKitPlugin;
+import binnie.core.api.gui.IPoint;
+import binnie.core.api.gui.ITexture;
+import binnie.core.genetics.BreedingSystem;
+import binnie.core.genetics.ForestryAllele;
+import binnie.core.genetics.Tolerance;
+import binnie.core.gui.geometry.Point;
+import binnie.core.gui.resource.textures.StandardTexture;
+import binnie.core.texture.BinnieCoreTexture;
 import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
 
@@ -65,24 +65,24 @@ public class MothBreedingSystem extends BreedingSystem {
 		if (chromosome == EnumButterflyChromosome.METABOLISM) {
 			final int metabolism = ((IAlleleInteger) allele).getValue();
 			if (metabolism >= 19) {
-				return I18N.localise(ModId.EXTRA_TREES,"allele.metabolism.highest");
+				return I18N.localise(ModId.EXTRA_TREES, "allele.metabolism.highest");
 			}
 			if (metabolism >= 16) {
-				return I18N.localise(ModId.EXTRA_TREES,"allele.metabolism.higher");
+				return I18N.localise(ModId.EXTRA_TREES, "allele.metabolism.higher");
 			}
 			if (metabolism >= 13) {
-				return I18N.localise(ModId.EXTRA_TREES,"allele.metabolism.high");
+				return I18N.localise(ModId.EXTRA_TREES, "allele.metabolism.high");
 			}
 			if (metabolism >= 10) {
-				return I18N.localise(ModId.EXTRA_TREES,"allele.metabolism.normal");
+				return I18N.localise(ModId.EXTRA_TREES, "allele.metabolism.normal");
 			}
 			if (metabolism >= 7) {
-				return I18N.localise(ModId.EXTRA_TREES,"allele.metabolism.slow");
+				return I18N.localise(ModId.EXTRA_TREES, "allele.metabolism.slow");
 			}
 			if (metabolism >= 4) {
-				return I18N.localise(ModId.EXTRA_TREES,"allele.metabolism.slower");
+				return I18N.localise(ModId.EXTRA_TREES, "allele.metabolism.slower");
 			}
-			return I18N.localise(ModId.EXTRA_TREES,"allele.metabolism.slowest");
+			return I18N.localise(ModId.EXTRA_TREES, "allele.metabolism.slowest");
 		} else {
 			if (chromosome == EnumButterflyChromosome.FERTILITY) {
 				final int metabolism = ((IAlleleInteger) allele).getValue();

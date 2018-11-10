@@ -1,6 +1,6 @@
 {
-    "parent": "item/generated",
-    "textures": {
-        "layer0": "botany:blocks/weeds_long"
-    }
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "botany:blocks/weeds_long"
+  }
 }

@@ -12,11 +12,11 @@ import binnie.core.api.gui.IArea;
 import binnie.core.api.gui.IPoint;
 import binnie.core.api.gui.ITopLevelWidget;
 import binnie.core.api.gui.IWidget;
-import binnie.core.gui.geometry.Point;
-import org.lwjgl.input.Mouse;
-
 import binnie.core.gui.events.EventMouse;
 import binnie.core.gui.events.EventWidget;
+import binnie.core.gui.geometry.Point;
+
+import org.lwjgl.input.Mouse;
 
 public abstract class TopLevelWidget extends Widget implements ITopLevelWidget {
 	protected IPoint mousePosition;

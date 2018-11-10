@@ -2,6 +2,13 @@ package binnie.core.gui.minecraft.control;
 
 import java.text.NumberFormat;
 
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.util.text.TextFormatting;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import binnie.core.ModId;
 import binnie.core.api.gui.Alignment;
 import binnie.core.api.gui.IArea;
@@ -20,11 +27,6 @@ import binnie.core.gui.resource.textures.CraftGUITexture;
 import binnie.core.machines.Machine;
 import binnie.core.machines.power.IProcess;
 import binnie.core.util.I18N;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ControlEnergyBar extends Control implements ITooltip {
 	public static boolean isError;
@@ -71,7 +73,7 @@ public class ControlEnergyBar extends Control implements ITooltip {
 			String currentFormat = I18N.localise(ModId.CORE, "gui.energy.amount.current");
 			NumberFormat numberFormat = I18N.getNumberFormat();
 			String currentString = currentFormat.replace("$MAX$", numberFormat.format(this.getStoredEnergy()))
-					.replace("$PERCENT$", I18N.getPercentFormat().format(this.getPercentage() / 100.0));
+				.replace("$PERCENT$", I18N.getPercentFormat().format(this.getPercentage() / 100.0));
 			tooltip.add(TextFormatting.GRAY + currentString);
 			String maxEnergy = numberFormat.format(this.getMaxEnergy());
 			tooltip.add(TextFormatting.GRAY + I18N.localise(ModId.CORE, "gui.energy.capacity", maxEnergy));

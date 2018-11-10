@@ -1,10 +1,5 @@
 package binnie.genetics.gui.analyst;
 
-import binnie.core.api.genetics.IBreedingSystem;
-import binnie.core.api.gui.IArea;
-import binnie.core.api.gui.ITitledWidget;
-import binnie.core.gui.controls.core.Control;
-import binnie.genetics.api.analyst.AnalystConstants;
 import net.minecraft.util.text.TextFormatting;
 
 import forestry.api.genetics.AlleleManager;
@@ -13,9 +8,14 @@ import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.ISpeciesRoot;
 
 import binnie.core.Binnie;
+import binnie.core.api.genetics.IBreedingSystem;
+import binnie.core.api.gui.IArea;
+import binnie.core.api.gui.ITitledWidget;
 import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.ControlTextCentered;
+import binnie.core.gui.controls.core.Control;
 import binnie.core.util.I18N;
+import binnie.genetics.api.analyst.AnalystConstants;
 
 public class AnalystPageKaryogram extends Control implements ITitledWidget {
 	public AnalystPageKaryogram(IWidget parent, IArea area, IIndividual ind) {
@@ -48,6 +48,6 @@ public class AnalystPageKaryogram extends Control implements ITitledWidget {
 
 	@Override
 	public String getTitle() {
-		return I18N.localise(AnalystConstants.KARYOGRAM_KEY+ ".title");
+		return I18N.localise(AnalystConstants.KARYOGRAM_KEY + ".title");
 	}
 }

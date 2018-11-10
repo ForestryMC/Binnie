@@ -1,16 +1,16 @@
 package binnie.extratrees.machines.designer;
 
-import binnie.design.DesignHelper;
-import binnie.design.api.IDesignerType;
 import net.minecraft.item.ItemStack;
 
 import binnie.core.util.I18N;
+import binnie.design.DesignHelper;
+import binnie.design.EnumDesign;
 import binnie.design.api.IDesign;
 import binnie.design.api.IDesignMaterial;
 import binnie.design.api.IDesignSystem;
+import binnie.design.api.IDesignerType;
 import binnie.design.blocks.BlockDesign;
 import binnie.extratrees.carpentry.DesignSystem;
-import binnie.design.EnumDesign;
 import binnie.extratrees.modules.ModuleCarpentry;
 
 public enum DesignerType implements IDesignerType {

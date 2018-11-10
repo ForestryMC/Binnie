@@ -12,6 +12,7 @@ import binnie.genetics.machine.inoculator.PackageInoculator;
 import binnie.genetics.machine.isolator.PackageIsolator;
 import binnie.genetics.machine.polymeriser.PackagePolymeriser;
 import binnie.genetics.machine.sequencer.PackageSequencer;
+import binnie.genetics.modules.ModuleMachine;
 
 public enum GeneticMachine implements IMachineType {
 	Isolator(PackageIsolator::new),

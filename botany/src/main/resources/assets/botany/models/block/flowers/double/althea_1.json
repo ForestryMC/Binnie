@@ -1,7 +1,8 @@
-{   "parent": "botany:block/flowers/flower",
-    "textures": {
-        "stem": "botany:blocks/flowers/double/althea2.0",
-		"petal": "botany:blocks/flowers/double/althea2.1",
-		"variant": "botany:blocks/flowers/double/althea2.3"
-    }
+{
+  "parent": "botany:block/flowers/flower",
+  "textures": {
+    "stem": "botany:blocks/flowers/double/althea2.0",
+    "petal": "botany:blocks/flowers/double/althea2.1",
+    "variant": "botany:blocks/flowers/double/althea2.3"
+  }
 }

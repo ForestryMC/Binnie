@@ -22,14 +22,14 @@ import binnie.extrabees.utils.Utils;
 
 public enum EnumHoneyComb implements IEBEnumItem {
 
-	BARREN(7564356, 12762791){
+	BARREN(7564356, 12762791) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			addProduct(beeswax, 1.00f);
 			addProduct(honeyDrop, 0.50f);
 		}
 	},
-	ROTTEN(4084257, 11652233){
+	ROTTEN(4084257, 11652233) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			addProduct(beeswax, 0.20f);
@@ -37,7 +37,7 @@ public enum EnumHoneyComb implements IEBEnumItem {
 			addProduct(new ItemStack(Items.ROTTEN_FLESH, 1, 0), 0.80f);
 		}
 	},
-	BONE(12895407, 14606017){
+	BONE(12895407, 14606017) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			addProduct(beeswax, 0.20f);
@@ -45,14 +45,14 @@ public enum EnumHoneyComb implements IEBEnumItem {
 			addProduct(new ItemStack(Items.DYE, 1, 15), 0.80f);
 		}
 	},
-	OIL(394760, 2894646){
+	OIL(394760, 2894646) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			tryAddProduct(EnumPropolis.OIL, 0.60f);
 			addProduct(honeyDrop, 0.75f);
 		}
 	},
-	COAL(10392696, 3682590){
+	COAL(10392696, 3682590) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			addProduct(beeswax, 0.80f);
@@ -60,56 +60,56 @@ public enum EnumHoneyComb implements IEBEnumItem {
 			tryAddProduct(ExtraBeeItems.COAL_DUST, 1.00f);
 		}
 	},
-	FUEL(10252096, 16761856){
+	FUEL(10252096, 16761856) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			tryAddProduct(EnumPropolis.FUEL, 0.60f);
 			addProduct(honeyDrop, 0.50f);
 		}
 	},
-	WATER(2568911, 7973065){
+	WATER(2568911, 7973065) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			tryAddProduct(EnumPropolis.WATER, 1.00f);
 			addProduct(honeyDrop, 0.90f);
 		}
 	},
-	MILK(14145991, 16777215){
+	MILK(14145991, 16777215) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			tryAddProduct(EnumHoneyDrop.MILK, 1.00f);
 			addProduct(honeyDrop, 0.90f);
 		}
 	},
-	FRUIT(8202548, 14372706){
+	FRUIT(8202548, 14372706) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			tryAddProduct(EnumHoneyDrop.APPLE, 1.00f);
 			addProduct(honeyDrop, 0.90f);
 		}
 	},
-	SEED(3428147, 7457902){
+	SEED(3428147, 7457902) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			tryAddProduct(EnumHoneyDrop.SEED, 1.00f);
 			addProduct(honeyDrop, 0.90f);
 		}
 	},
-	ALCOHOL(4293921, 14604622){
+	ALCOHOL(4293921, 14604622) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			tryAddProduct(EnumHoneyDrop.ALCOHOL, 1.00f);
 			addProduct(honeyDrop, 0.90f);
 		}
 	},
-	STONE(9211025, 13027020){
+	STONE(9211025, 13027020) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			addProduct(beeswax, 0.50f);
 			addProduct(honeyDrop, 0.25f);
 		}
 	},
-	REDSTONE(16422550, 15077392){
+	REDSTONE(16422550, 15077392) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			addProduct(beeswax, 0.80f);
@@ -117,7 +117,7 @@ public enum EnumHoneyComb implements IEBEnumItem {
 			addProduct(honeyDrop, 0.50f);
 		}
 	},
-	RESIN(16762703, 13208064){
+	RESIN(16762703, 13208064) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			addProduct(beeswax, 1.00f);
@@ -125,7 +125,7 @@ public enum EnumHoneyComb implements IEBEnumItem {
 			tryAddProduct(Utils.getIC2Item("itemHarz"), 0.50f);
 		}
 	},
-	IC2ENERGY(15332623, 2143177){
+	IC2ENERGY(15332623, 2143177) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			addProduct(beeswax, 0.80f);
@@ -133,35 +133,35 @@ public enum EnumHoneyComb implements IEBEnumItem {
 			tryAddProduct(EnumHoneyDrop.ENERGY, 1.00f);
 		}
 	},
-	IRON(3552564, 11038808){
+	IRON(3552564, 11038808) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			copyProducts(EnumHoneyComb.STONE);
 			tryAddProduct(ExtraBeeItems.IRON_DUST, 1.00f);
 		}
 	},
-	GOLD(3552564, 15125515){
+	GOLD(3552564, 15125515) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			copyProducts(EnumHoneyComb.STONE);
 			tryAddProduct(ExtraBeeItems.GOLD_DUST, 1.00f);
 		}
 	},
-	COPPER(3552564, 13722376){
+	COPPER(3552564, 13722376) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			copyProducts(EnumHoneyComb.STONE);
 			tryAddProduct(ExtraBeeItems.COPPER_DUST, 1.00f);
 		}
 	},
-	TIN(3552564, 12431805){
+	TIN(3552564, 12431805) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			copyProducts(EnumHoneyComb.STONE);
 			tryAddProduct(ExtraBeeItems.TIN_DUST, 1.00f);
 		}
 	},
-	SILVER(3552564, 14408667){
+	SILVER(3552564, 14408667) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			copyProducts(EnumHoneyComb.STONE);
@@ -169,14 +169,14 @@ public enum EnumHoneyComb implements IEBEnumItem {
 		}
 	},
 	BRONZE,
-	URANIUM(2031360, 4303667){
+	URANIUM(2031360, 4303667) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			copyProducts(EnumHoneyComb.STONE);
 			tryAddProduct("crushedUranium", 0.50f);
 		}
 	},
-	CLAY(7034426, 11583702){
+	CLAY(7034426, 11583702) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			addProduct(beeswax, 0.25f);
@@ -184,14 +184,14 @@ public enum EnumHoneyComb implements IEBEnumItem {
 			addProduct(new ItemStack(Items.CLAY_BALL), 0.80f);
 		}
 	},
-	OLD(4535060, 11769444){
+	OLD(4535060, 11769444) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			addProduct(beeswax, 1.00f);
 			addProduct(honeyDrop, 0.90f);
 		}
 	},
-	FUNGAL(7234891, 2856003){
+	FUNGAL(7234891, 2856003) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			addProduct(beeswax, 0.90f);
@@ -199,14 +199,14 @@ public enum EnumHoneyComb implements IEBEnumItem {
 			addProduct(new ItemStack(Blocks.RED_MUSHROOM_BLOCK, 1, 0), 0.75f);
 		}
 	},
-	CREOSOTE(10256652, 12429911){
+	CREOSOTE(10256652, 12429911) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			tryAddProduct(EnumPropolis.CREOSOTE, 0.70f);
 			addProduct(honeyDrop, 0.50f);
 		}
 	},
-	LATEX(5854529, 11051653){
+	LATEX(5854529, 11051653) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			addProduct(honeyDrop, 0.50f);
@@ -214,7 +214,7 @@ public enum EnumHoneyComb implements IEBEnumItem {
 			tryAddProduct("itemRubber", 1.00f);
 		}
 	},
-	ACIDIC(3441987, 1374014){
+	ACIDIC(3441987, 1374014) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			addProduct(beeswax, 0.80f);
@@ -222,14 +222,14 @@ public enum EnumHoneyComb implements IEBEnumItem {
 			tryAddProduct("dustSulfur", 0.75f);
 		}
 	},
-	VENOMOUS(8198269, 16724991){
+	VENOMOUS(8198269, 16724991) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			addProduct(beeswax, 0.80f);
 			tryAddProduct(EnumHoneyDrop.POISON, 0.80f);
 		}
 	},
-	SLIME(3884860, 8442245){
+	SLIME(3884860, 8442245) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			addProduct(beeswax, 1.00f);
@@ -237,14 +237,14 @@ public enum EnumHoneyComb implements IEBEnumItem {
 			addProduct(new ItemStack(Items.SLIME_BALL, 1, 0), 0.75f);
 		}
 	},
-	BLAZE(16738816, 16763904){
+	BLAZE(16738816, 16763904) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			addProduct(beeswax, 0.75f);
 			addProduct(new ItemStack(Items.BLAZE_POWDER, 1, 0), 1.00f);
 		}
 	},
-	COFFEE(5519389, 11763531){
+	COFFEE(5519389, 11763531) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			addProduct(beeswax, 0.90f);
@@ -252,7 +252,7 @@ public enum EnumHoneyComb implements IEBEnumItem {
 			tryAddProduct(Utils.getIC2Item("itemCofeePowder"), 0.75f);
 		}
 	},
-	GLACIAL(5146503, 13366002){
+	GLACIAL(5146503, 13366002) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			tryAddProduct(EnumHoneyDrop.ICE, 0.80f);
@@ -262,14 +262,14 @@ public enum EnumHoneyComb implements IEBEnumItem {
 	MINT,
 	CITRUS,
 	PEAT,
-	SHADOW(0, 3545141){
+	SHADOW(0, 3545141) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			addProduct(honeyDrop, 0.50f);
 			tryAddProduct("dustObsidian", 0.75f);
 		}
 	},
-	LEAD(3552564, 10125468){
+	LEAD(3552564, 10125468) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			copyProducts(EnumHoneyComb.STONE);
@@ -278,21 +278,21 @@ public enum EnumHoneyComb implements IEBEnumItem {
 	},
 	BRASS,
 	ELECTRUM,
-	ZINC(3552564, 15592447){
+	ZINC(3552564, 15592447) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			copyProducts(EnumHoneyComb.STONE);
 			tryAddProduct(ExtraBeeItems.ZINC_DUST, 1.00f);
 		}
 	},
-	TITANIUM(3552564, 11578083){
+	TITANIUM(3552564, 11578083) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			copyProducts(EnumHoneyComb.STONE);
 			tryAddProduct(ExtraBeeItems.TITANIUM_DUST, 1.00f);
 		}
 	},
-	TUNGSTEN(3552564, 1249812){
+	TUNGSTEN(3552564, 1249812) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			copyProducts(EnumHoneyComb.STONE);
@@ -301,14 +301,14 @@ public enum EnumHoneyComb implements IEBEnumItem {
 	},
 	STEEL,
 	IRIDIUM,
-	PLATINUM(3552564, 10125468){
+	PLATINUM(3552564, 10125468) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			copyProducts(EnumHoneyComb.STONE);
 			tryAddProduct(ExtraBeeItems.PLATINUM_DUST, 1.00f);
 		}
 	},
-	LAPIS(3552564, 4009179){
+	LAPIS(3552564, 4009179) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			copyProducts(EnumHoneyComb.STONE);
@@ -316,7 +316,7 @@ public enum EnumHoneyComb implements IEBEnumItem {
 		}
 	},
 	/* Tech Reborn*/
-	SODALITE(3552564, 1396717){
+	SODALITE(3552564, 1396717) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			tryAddProduct("dustSmallSodalite", 1.00f);
@@ -324,7 +324,7 @@ public enum EnumHoneyComb implements IEBEnumItem {
 			copyProducts(EnumHoneyComb.STONE);
 		}
 	},
-	PYRITE(3552564, 14919481){
+	PYRITE(3552564, 14919481) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			tryAddProduct("dustSmallPyrite", 1.00f);
@@ -332,7 +332,7 @@ public enum EnumHoneyComb implements IEBEnumItem {
 			copyProducts(EnumHoneyComb.STONE);
 		}
 	},
-	BAUXITE(3552564, 10249472){
+	BAUXITE(3552564, 10249472) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			tryAddProduct("dustSmallBauxite", 1.00f);
@@ -340,7 +340,7 @@ public enum EnumHoneyComb implements IEBEnumItem {
 			copyProducts(EnumHoneyComb.STONE);
 		}
 	},
-	CINNABAR(3552564, 4665867){
+	CINNABAR(3552564, 4665867) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			tryAddProduct("dustSmallCinnabar", 1.00f);
@@ -348,7 +348,7 @@ public enum EnumHoneyComb implements IEBEnumItem {
 			copyProducts(EnumHoneyComb.STONE);
 		}
 	},
-	SPHALERITE(3552564, 14406941){
+	SPHALERITE(3552564, 14406941) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			tryAddProduct("dustSmallSphalerite", 1.00f);
@@ -357,21 +357,21 @@ public enum EnumHoneyComb implements IEBEnumItem {
 		}
 	},
 	/* Gems */
-	EMERALD(3552564, 1900291){
+	EMERALD(3552564, 1900291) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			copyProducts(EnumHoneyComb.STONE);
 			tryAddProduct(ExtraBeeItems.EMERALD_SHARD, 1.00f);
 		}
 	},
-	RUBY(3552564, 14024704){
+	RUBY(3552564, 14024704) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			copyProducts(EnumHoneyComb.STONE);
 			tryAddProduct(ExtraBeeItems.RUBY_SHARD, 1.00f);
 		}
 	},
-	SAPPHIRE(3552564, 673791){
+	SAPPHIRE(3552564, 673791) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			copyProducts(EnumHoneyComb.STONE);
@@ -379,7 +379,7 @@ public enum EnumHoneyComb implements IEBEnumItem {
 		}
 	},
 	OLIVINE,
-	DIAMOND(3552564, 8371706){
+	DIAMOND(3552564, 8371706) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			copyProducts(EnumHoneyComb.STONE);
@@ -387,103 +387,103 @@ public enum EnumHoneyComb implements IEBEnumItem {
 		}
 	},
 	/* Dyes */
-	RED(13388876, 16711680){
+	RED(13388876, 16711680) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			addDyeSubtypes(beeswax, honeyDrop);
 		}
 	},
-	YELLOW(15066419, 16768256){
+	YELLOW(15066419, 16768256) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			addDyeSubtypes(beeswax, honeyDrop);
 		}
 	},
-	BLUE(10072818, 8959){
+	BLUE(10072818, 8959) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			addDyeSubtypes(beeswax, honeyDrop);
 		}
 	},
-	GREEN(6717235, 39168){
+	GREEN(6717235, 39168) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			addDyeSubtypes(beeswax, honeyDrop);
 		}
 	},
-	BLACK(1644825, 5723991){
+	BLACK(1644825, 5723991) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			addDyeSubtypes(beeswax, honeyDrop);
 		}
 	},
-	WHITE(14079702, 16777215){
+	WHITE(14079702, 16777215) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			addDyeSubtypes(beeswax, honeyDrop);
 		}
 	},
-	BROWN(8349260, 6042895){
+	BROWN(8349260, 6042895) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			addDyeSubtypes(beeswax, honeyDrop);
 		}
 	},
-	ORANGE(15905331, 16751872){
+	ORANGE(15905331, 16751872) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			addDyeSubtypes(beeswax, honeyDrop);
 		}
 	},
-	CYAN(5020082, 65509){
+	CYAN(5020082, 65509) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			addDyeSubtypes(beeswax, honeyDrop);
 		}
 	},
-	PURPLE(11691749, 11403519){
+	PURPLE(11691749, 11403519) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			addDyeSubtypes(beeswax, honeyDrop);
 		}
 	},
-	GRAY(5000268, 12237498){
+	GRAY(5000268, 12237498) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			addDyeSubtypes(beeswax, honeyDrop);
 		}
 	},
-	LIGHTBLUE(10072818, 40447){
+	LIGHTBLUE(10072818, 40447) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			addDyeSubtypes(beeswax, honeyDrop);
 		}
 	},
-	PINK(15905484, 16744671){
+	PINK(15905484, 16744671) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			addDyeSubtypes(beeswax, honeyDrop);
 		}
 	},
-	LIMEGREEN(8375321, 65288){
+	LIMEGREEN(8375321, 65288) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			addDyeSubtypes(beeswax, honeyDrop);
 		}
 	},
-	MAGENTA(15040472, 16711884){
+	MAGENTA(15040472, 16711884) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			addDyeSubtypes(beeswax, honeyDrop);
 		}
 	},
-	LIGHTGRAY(10066329, 13224393){
+	LIGHTGRAY(10066329, 13224393) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			addDyeSubtypes(beeswax, honeyDrop);
 		}
 	},
-	NICKEL(3552564, 16768764){
+	NICKEL(3552564, 16768764) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			copyProducts(EnumHoneyComb.STONE);
@@ -491,14 +491,14 @@ public enum EnumHoneyComb implements IEBEnumItem {
 		}
 	},
 	INVAR,
-	GLOWSTONE(10919006, 14730249){
+	GLOWSTONE(10919006, 14730249) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			addProduct(honeyDrop, 0.25f);
 			addProduct(new ItemStack(Items.GLOWSTONE_DUST), 1.00f);
 		}
 	},
-	SALTPETER(10919006, 14730249){
+	SALTPETER(10919006, 14730249) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			addProduct(honeyDrop, 0.25f);
@@ -507,7 +507,7 @@ public enum EnumHoneyComb implements IEBEnumItem {
 	},
 	PULP,
 	MULCH,
-	COMPOST(4338440, 7036475){
+	COMPOST(4338440, 7036475) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			addProduct(honeyDrop, 0.25f);
@@ -515,17 +515,17 @@ public enum EnumHoneyComb implements IEBEnumItem {
 			tryAddProduct(compost, 1.00f);
 		}
 	},
-	SAWDUST(12561009, 15913854){
+	SAWDUST(12561009, 15913854) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			SAWDUST.addProduct(honeyDrop, 0.25f);
 			SAWDUST.tryAddProduct("dustSawdust", 1.00f);
-			if(!isActive()) {
+			if (!isActive()) {
 				tryAddProduct("sawdust", 1.00f);
 			}
 		}
 	},
-	CERTUS(13029631, 3755363){
+	CERTUS(13029631, 3755363) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			addProduct(honeyDrop, 0.25f);
@@ -533,28 +533,28 @@ public enum EnumHoneyComb implements IEBEnumItem {
 			tryAddProduct("dustCertusQuartz", 0.20f);
 		}
 	},
-	ENDERPEARL(3446662, 206368){
+	ENDERPEARL(3446662, 206368) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			addProduct(honeyDrop, 0.25f);
 			tryAddProduct("dustEnderPearl", 0.25f);
 		}
 	},
-	YELLORIUM(2564173, 14019840){
+	YELLORIUM(2564173, 14019840) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			copyProducts(EnumHoneyComb.STONE);
 			tryAddProduct(ExtraBeeItems.YELLORIUM_DUST, 0.25f);
 		}
 	},
-	CYANITE(2564173, 34541){
+	CYANITE(2564173, 34541) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			copyProducts(EnumHoneyComb.STONE);
 			tryAddProduct(ExtraBeeItems.CYANITE_DUST, 0.25f);
 		}
 	},
-	BLUTONIUM(2564173, 1769702){
+	BLUTONIUM(2564173, 1769702) {
 		@Override
 		protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 			copyProducts(EnumHoneyComb.STONE);
@@ -597,10 +597,10 @@ public enum EnumHoneyComb implements IEBEnumItem {
 		return 0xffffff;
 	}
 
-	protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop){
+	protected void addSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 	}
 
-	protected void addDyeSubtypes(ItemStack beeswax, ItemStack honeyDrop){
+	protected void addDyeSubtypes(ItemStack beeswax, ItemStack honeyDrop) {
 		addProduct(honeyDrop, 0.80f);
 		addProduct(beeswax, 0.80f);
 		int index = ordinal() - EnumHoneyComb.RED.ordinal();
@@ -646,13 +646,13 @@ public enum EnumHoneyComb implements IEBEnumItem {
 		OreDictionary.registerOre("beeComb", new ItemStack(ModuleCore.comb, 1, 32767));
 		ItemStack beeswax = Mods.Forestry.stack("beeswax");
 		ItemStack honeyDrop = Mods.Forestry.stack("honey_drop");
-		for(EnumHoneyComb comb : values()){
+		for (EnumHoneyComb comb : values()) {
 			comb.addSubtypes(beeswax, honeyDrop);
 		}
 	}
 
 	public void addRecipe() {
-		if(isActive()) {
+		if (isActive()) {
 			RecipeManagers.centrifugeManager.addRecipe(20, this.get(1), this.products);
 		}
 	}

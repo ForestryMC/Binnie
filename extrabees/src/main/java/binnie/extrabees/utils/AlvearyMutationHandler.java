@@ -16,7 +16,7 @@ import net.minecraft.item.ItemStack;
 import static org.apache.commons.lang3.ObjectUtils.firstNonNull;
 
 public class AlvearyMutationHandler {
-    private static final int MUTATIONS_CAPACITY = 10;
+	private static final int MUTATIONS_CAPACITY = 10;
 
 	private static final List<Pair<ItemStack, Float>> MUTATIONS = new ArrayList<>(MUTATIONS_CAPACITY);
 
@@ -48,7 +48,7 @@ public class AlvearyMutationHandler {
 		MUTATIONS.sort(Comparator.comparing(Pair::getValue));
 	}
 
-	public static void registerMutationItems(){
+	public static void registerMutationItems() {
 		AlvearyMutationHandler.addMutationItem(new ItemStack(Blocks.SOUL_SAND), 1.5f);
 		AlvearyMutationHandler.addMutationItem(Utils.getIC2Item("UranFuel"), 4.0f);
 		AlvearyMutationHandler.addMutationItem(Utils.getIC2Item("MOXFuel"), 10.0f);

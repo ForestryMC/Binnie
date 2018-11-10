@@ -1,13 +1,31 @@
 {
   "variants": {
-    "acidity=acid,moisture=damp": { "model": "botany:flowerbed/acid_damp" },
-    "acidity=acid,moisture=dry": { "model": "botany:flowerbed/acid_dry" },
-    "acidity=acid,moisture=normal": { "model": "botany:flowerbed/acid" },
-    "acidity=alkaline,moisture=damp": { "model": "botany:flowerbed/alkaline_damp" },
-    "acidity=alkaline,moisture=dry": { "model": "botany:flowerbed/alkaline_dry" },
-    "acidity=alkaline,moisture=normal": { "model": "botany:flowerbed/alkaline" },
-    "acidity=neutral,moisture=damp": { "model": "botany:flowerbed/damp" },
-    "acidity=neutral,moisture=dry": { "model": "botany:flowerbed/dry" },
-    "acidity=neutral,moisture=normal": { "model": "botany:flowerbed/normal" }
+    "acidity=acid,moisture=damp": {
+      "model": "botany:flowerbed/acid_damp"
+    },
+    "acidity=acid,moisture=dry": {
+      "model": "botany:flowerbed/acid_dry"
+    },
+    "acidity=acid,moisture=normal": {
+      "model": "botany:flowerbed/acid"
+    },
+    "acidity=alkaline,moisture=damp": {
+      "model": "botany:flowerbed/alkaline_damp"
+    },
+    "acidity=alkaline,moisture=dry": {
+      "model": "botany:flowerbed/alkaline_dry"
+    },
+    "acidity=alkaline,moisture=normal": {
+      "model": "botany:flowerbed/alkaline"
+    },
+    "acidity=neutral,moisture=damp": {
+      "model": "botany:flowerbed/damp"
+    },
+    "acidity=neutral,moisture=dry": {
+      "model": "botany:flowerbed/dry"
+    },
+    "acidity=neutral,moisture=normal": {
+      "model": "botany:flowerbed/normal"
+    }
   }
 }

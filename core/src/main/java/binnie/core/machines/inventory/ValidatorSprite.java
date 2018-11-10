@@ -3,8 +3,8 @@ package binnie.core.machines.inventory;
 import java.util.ArrayList;
 import java.util.List;
 
-import binnie.core.Binnie;
 import binnie.core.AbstractMod;
+import binnie.core.Binnie;
 import binnie.core.resource.BinnieSprite;
 
 public class ValidatorSprite {

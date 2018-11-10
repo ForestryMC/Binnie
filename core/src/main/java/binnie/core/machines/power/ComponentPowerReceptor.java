@@ -11,6 +11,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 
 import net.minecraftforge.fml.common.Optional;
+
 import binnie.core.Constants;
 import binnie.core.Mods;
 import binnie.core.machines.IMachine;
@@ -121,33 +122,35 @@ public class ComponentPowerReceptor extends MachineComponent implements IPowered
 	@Optional.Method(modid = Constants.BCLIB_MOD_ID)
 	public long extractPower(long min, long max, boolean simulate) {
 		int max1 = MjHelper.microToRf(max);
-		int actualMin = (int)container.useEnergy(PowerSystem.RF, max1, true);
-		if (actualMin < min) return 0;
-		return MjHelper.rfToMicro((int)container.useEnergy(PowerSystem.RF, max1, !simulate));
+		int actualMin = (int) container.useEnergy(PowerSystem.RF, max1, true);
+		if (actualMin < min) {
+			return 0;
+		}
+		return MjHelper.rfToMicro((int) container.useEnergy(PowerSystem.RF, max1, !simulate));
 	}
 
 	@Override
 	@Optional.Method(modid = Constants.BCLIB_MOD_ID)
 	public long getStored() {
-		return MjHelper.rfToMicro((int)container.getEnergy(PowerSystem.RF));
+		return MjHelper.rfToMicro((int) container.getEnergy(PowerSystem.RF));
 	}
 
 	@Override
 	@Optional.Method(modid = Constants.BCLIB_MOD_ID)
 	public long getCapacity() {
-		return MjHelper.rfToMicro((int)container.getCapacity(PowerSystem.RF));
+		return MjHelper.rfToMicro((int) container.getCapacity(PowerSystem.RF));
 	}
 
 	@Override
 	@Optional.Method(modid = Constants.BCLIB_MOD_ID)
 	public long getPowerRequested() {
-		return MjHelper.rfToMicro((int)Math.min(container.getEnergySpace(PowerSystem.RF), container.getCapacity(PowerSystem.RF) - container.getEnergy(PowerSystem.RF)));
+		return MjHelper.rfToMicro((int) Math.min(container.getEnergySpace(PowerSystem.RF), container.getCapacity(PowerSystem.RF) - container.getEnergy(PowerSystem.RF)));
 	}
 
 	@Override
 	@Optional.Method(modid = Constants.BCLIB_MOD_ID)
 	public long receivePower(long microJoules, boolean simulate) {
-		return microJoules - MjHelper.rfToMicro((int)container.addEnergy(PowerSystem.RF, MjHelper.microToRf(microJoules), !simulate));
+		return microJoules - MjHelper.rfToMicro((int) container.addEnergy(PowerSystem.RF, MjHelper.microToRf(microJoules), !simulate));
 	}
 
 	@Override

@@ -93,7 +93,7 @@ public class BlockAlveary extends Block implements ITileEntityProvider {
 		meta = meta >= 0 && meta < EnumAlvearyLogicType.VALUES.length ? meta : 0;
 		return getDefaultState().withProperty(TYPE, EnumAlvearyLogicType.VALUES[meta]);
 	}
-	
+
 	@Override
 	public int damageDropped(IBlockState state) {
 		return getMetaFromState(state);

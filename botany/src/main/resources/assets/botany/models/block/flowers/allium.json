@@ -1,7 +1,8 @@
-{   "parent": "botany:block/flowers/flower",
-    "textures": {
-        "stem": "botany:blocks/flowers/allium.0",
-		"petal": "botany:blocks/flowers/allium.1",
-		"variant": "botany:blocks/flowers/allium.3"
-    }
+{
+  "parent": "botany:block/flowers/flower",
+  "textures": {
+    "stem": "botany:blocks/flowers/allium.0",
+    "petal": "botany:blocks/flowers/allium.1",
+    "variant": "botany:blocks/flowers/allium.3"
+  }
 }

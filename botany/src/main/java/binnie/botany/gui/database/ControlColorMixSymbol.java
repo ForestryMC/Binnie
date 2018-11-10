@@ -1,21 +1,22 @@
 package binnie.botany.gui.database;
 
 import net.minecraft.client.util.ITooltipFlag;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.botany.api.genetics.IColorMix;
+import binnie.core.api.gui.IWidget;
 import binnie.core.gui.Attribute;
 import binnie.core.gui.CraftGUI;
 import binnie.core.gui.ITooltip;
-import binnie.core.api.gui.IWidget;
 import binnie.core.gui.Tooltip;
 import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.database.DatabaseConstants;
 import binnie.core.gui.geometry.Point;
-import binnie.core.gui.resource.textures.Texture;
 import binnie.core.gui.resource.textures.CraftGUITextureSheet;
 import binnie.core.gui.resource.textures.StandardTexture;
+import binnie.core.gui.resource.textures.Texture;
 import binnie.core.util.I18N;
 
 public class ControlColorMixSymbol extends Control implements ITooltip {

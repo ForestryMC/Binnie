@@ -4,29 +4,29 @@ import java.util.Collections;
 import java.util.Set;
 
 public interface Module {
-	default String getFailMessage(){
+	default String getFailMessage() {
 		return "";
 	}
 
-	default Set<String> getDependencyUids(){
+	default Set<String> getDependencyUids() {
 		return Collections.emptySet();
 	}
 
-	default boolean canBeDisabled(){
+	default boolean canBeDisabled() {
 		return true;
 	}
 
-	default boolean isAvailable(){
+	default boolean isAvailable() {
 		return true;
 	}
 
-	default void setupAPI(){
+	default void setupAPI() {
 	}
 
-	default void disabledSetupAPI(){
+	default void disabledSetupAPI() {
 	}
 
-	default void registerItemsAndBlocks(){
+	default void registerItemsAndBlocks() {
 	}
 
 

@@ -1,16 +1,16 @@
 package binnie.botany.blocks;
 
-import binnie.design.DesignHelper;
-import binnie.design.blocks.BlockDesign;
-import binnie.design.blocks.DesignBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemStack;
 
+import binnie.botany.api.genetics.EnumFlowerColor;
 import binnie.botany.ceramic.CeramicColor;
 import binnie.botany.ceramic.CeramicDesignSystem;
-import binnie.botany.api.genetics.EnumFlowerColor;
 import binnie.core.util.I18N;
+import binnie.design.DesignHelper;
 import binnie.design.api.IDesign;
+import binnie.design.blocks.BlockDesign;
+import binnie.design.blocks.DesignBlock;
 
 public class BlockCeramicPatterned extends BlockDesign {
 	public BlockCeramicPatterned() {

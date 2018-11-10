@@ -7,11 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import binnie.core.api.gui.IPoint;
-import binnie.core.gui.KeyBindings;
-import binnie.core.gui.geometry.Point;
-import binnie.core.util.Log;
-import binnie.core.util.EmptyHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -29,14 +24,19 @@ import net.minecraftforge.fml.client.config.GuiUtils;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import org.lwjgl.input.Keyboard;
-import org.lwjgl.input.Mouse;
-
+import binnie.core.api.gui.IPoint;
 import binnie.core.api.gui.IWidget;
+import binnie.core.gui.KeyBindings;
 import binnie.core.gui.Tooltip;
 import binnie.core.gui.events.EventKey;
 import binnie.core.gui.events.EventMouse;
+import binnie.core.gui.geometry.Point;
 import binnie.core.gui.renderer.RenderUtil;
+import binnie.core.util.EmptyHelper;
+import binnie.core.util.Log;
+
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.input.Mouse;
 
 @SideOnly(Side.CLIENT)
 public class GuiCraftGUI extends GuiContainer {
@@ -107,7 +107,7 @@ public class GuiCraftGUI extends GuiContainer {
 		GlStateManager.popMatrix();
 		GlStateManager.disableLighting();
 		GlStateManager.disableDepth();
-		if(draggedItem.isEmpty()) {
+		if (draggedItem.isEmpty()) {
 			ITooltipFlag tooltipFlag = this.mc.gameSettings.advancedItemTooltips ? ITooltipFlag.TooltipFlags.ADVANCED : ITooltipFlag.TooltipFlags.NORMAL;
 			final MinecraftTooltip tooltip = new MinecraftTooltip();
 			boolean helpMode = this.isHelpMode();
@@ -159,7 +159,7 @@ public class GuiCraftGUI extends GuiContainer {
 				textLineWidth = 12 + font.getStringWidth(PATTERN_NBT_CONTENT.matcher(textLine).replaceAll(EmptyHelper.EMPTY_STRING));
 			}
 			if (textLineWidth > tooltipTextWidth) {
-				tooltipTextWidth =  textLineWidth;
+				tooltipTextWidth = textLineWidth;
 			}
 		}
 
@@ -170,7 +170,7 @@ public class GuiCraftGUI extends GuiContainer {
 		}
 	}
 
-	private void drawHoveringText(@Nonnull ItemStack itemStack, List<String> textLines, int mouseX, int mouseY, FontRenderer font, int tooltipTextWidth, MinecraftTooltip tooltip){
+	private void drawHoveringText(@Nonnull ItemStack itemStack, List<String> textLines, int mouseX, int mouseY, FontRenderer font, int tooltipTextWidth, MinecraftTooltip tooltip) {
 		GlStateManager.disableRescaleNormal();
 		RenderHelper.disableStandardItemLighting();
 		GlStateManager.disableLighting();
@@ -281,7 +281,7 @@ public class GuiCraftGUI extends GuiContainer {
 		GlStateManager.enableRescaleNormal();
 	}
 
-	private void drawItem(String line, int tooltipX, int tooltipY){
+	private void drawItem(String line, int tooltipX, int tooltipY) {
 		String itemTag = line.split(Tooltip.NBT_SEPARATOR)[1];
 		try {
 			NBTTagCompound nbt = JsonToNBT.getTagFromJson(itemTag);

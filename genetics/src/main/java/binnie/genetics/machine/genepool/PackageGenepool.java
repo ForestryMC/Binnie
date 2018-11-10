@@ -18,7 +18,7 @@ import binnie.genetics.item.GeneticsItems;
 import binnie.genetics.machine.ComponentGeneticGUI;
 import binnie.genetics.machine.EthanolTankValidator;
 import binnie.genetics.machine.GeneticMachine;
-import binnie.genetics.machine.ModuleMachine;
+import binnie.genetics.modules.ModuleMachine;
 
 public class PackageGenepool extends GeneticMachine.PackageGeneticBase implements IMachineInformation {
 	public PackageGenepool() {

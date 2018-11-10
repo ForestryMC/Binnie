@@ -15,8 +15,8 @@ public class FruitPressRecipeMaker {
 	public static List<FruitPressRecipeWrapper> create() {
 		List<FruitPressRecipeWrapper> recipes = new ArrayList<>();
 
-		if(ExtraTreesRecipeManager.fruitPressManager == null){
-			return  recipes;
+		if (ExtraTreesRecipeManager.fruitPressManager == null) {
+			return recipes;
 		}
 
 		Collection<IFruitPressRecipe> fruitPressRecipes = ExtraTreesRecipeManager.fruitPressManager.recipes();

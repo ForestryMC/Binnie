@@ -28,15 +28,15 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
 
-import binnie.core.Constants;
 import binnie.botany.CreativeTabBotany;
 import binnie.botany.api.gardening.EnumAcidity;
 import binnie.botany.api.gardening.EnumMoisture;
 import binnie.botany.api.gardening.EnumSoilType;
 import binnie.botany.api.gardening.IGardeningManager;
 import binnie.botany.core.BotanyCore;
-import binnie.core.modules.BotanyModuleUIDs;
 import binnie.botany.modules.ModuleFlowers;
+import binnie.core.Constants;
+import binnie.core.modules.BotanyModuleUIDs;
 import binnie.core.modules.ModuleManager;
 
 public class ItemTrowel extends Item implements IItemModelRegister {
