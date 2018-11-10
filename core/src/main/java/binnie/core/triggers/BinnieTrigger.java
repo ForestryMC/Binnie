@@ -42,8 +42,11 @@ final class BinnieTrigger implements ITriggerExternal {
 	protected static BinnieTrigger triggerAcclimatiserCold;
 	protected static BinnieTrigger triggerAcclimatiserWet;
 	protected static BinnieTrigger triggerAcclimatiserDry;
-	private String desc;
-	private String tag;
+
+	private final String desc;
+	private final String tag;
+	private final String modID;
+	private final String iconFile;
 	@SideOnly(Side.CLIENT)
 	@Nullable
 	private ISprite icon;
@@ -58,7 +61,8 @@ final class BinnieTrigger implements ITriggerExternal {
 		this.tag = tag;
 		StatementManager.registerStatement(this);
 		TriggerProvider.triggers.add(this);
-		this.icon = new Sprite(new ResourceLocation(mod.getModId(), String.format("textures/items/%s.png", iconFile)));
+		this.modID = mod.getModId();
+		this.iconFile = iconFile;
 		this.desc = desc;
 	}
 
@@ -75,6 +79,9 @@ final class BinnieTrigger implements ITriggerExternal {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public ISprite getSprite() {
+		if(icon == null) {
+			this.icon = new Sprite(new ResourceLocation(modID, String.format("textures/items/%s.png", iconFile)));
+		}
 		return icon;
 	}
 

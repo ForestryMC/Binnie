@@ -1,5 +1,7 @@
 package binnie.core.triggers;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
@@ -21,11 +23,17 @@ import buildcraft.api.statements.StatementManager;
 
 class BinnieAction implements IActionExternal {
 	private static int incrementalID;
+
 	public static BinnieAction actionPauseProcess;
 	public static BinnieAction actionCancelTask;
-	private String desc;
+
+	private final String desc;
+	@Nullable
+	@SideOnly(Side.CLIENT)
 	private Sprite icon;
-	private String tag;
+	private final String tag;
+	private final String modID;
+	private final String iconFile;
 	private int id;
 
 	BinnieAction(final String desc, final String tag, final String iconFile) {
@@ -33,11 +41,11 @@ class BinnieAction implements IActionExternal {
 	}
 
 	private BinnieAction(final String desc, final String tag, final AbstractMod mod, final String iconFile) {
-		this.id = 0;
 		this.id = BinnieAction.incrementalID++;
 		this.tag = tag;
 		StatementManager.registerStatement(this);
-		this.icon = new Sprite(new ResourceLocation(mod.getModId(), String.format("textures/items/%s.png", iconFile)));
+		this.modID = mod.getModId();
+		this.iconFile = iconFile;
 		this.desc = desc;
 	}
 
@@ -54,6 +62,9 @@ class BinnieAction implements IActionExternal {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public ISprite getSprite() {
+		if(icon == null){
+			this.icon = new Sprite(new ResourceLocation(modID, String.format("textures/items/%s.png", iconFile)));
+		}
 		return icon;
 	}
 
