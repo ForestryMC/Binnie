@@ -153,7 +153,7 @@ public class IncubatorLogic extends ComponentProcessIndefinate implements IProce
 	private void checkAvailability(@Nullable FluidStack liquid, ItemStack incubator) {
 		if (this.recipe != null && (incubator.isEmpty() || liquid == null || !this.recipe.isInputLiquid(liquid) || !isStackValid(incubator, recipe))) {
 			this.recipe = null;
-			tryEmptyIncubator(incubator);
+			//tryEmptyIncubator(incubator);
 		}
 	}
 
