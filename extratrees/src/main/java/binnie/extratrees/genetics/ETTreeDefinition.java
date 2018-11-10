@@ -1010,7 +1010,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
 			template.set(EnumTreeChromosome.GIRTH, ForestryAllele.Int.Int2.getAllele());
-			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Smaller.getAllele());
+			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Larger.getAllele());
 			template.set(EnumTreeChromosome.FERTILITY, ForestryAllele.Saplings.Low.getAllele());
 			template.set(EnumTreeChromosome.MATURATION, ForestryAllele.Maturation.Slower.getAllele());
 		}
@@ -1628,7 +1628,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
 			template.set(EnumTreeChromosome.GIRTH, ForestryAllele.Int.Int2.getAllele());
-			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Smallest.getAllele());
+			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Largest.getAllele());
 			template.set(EnumTreeChromosome.FERTILITY, ForestryAllele.Saplings.Lowest.getAllele());
 			template.set(EnumTreeChromosome.MATURATION, ForestryAllele.Maturation.Slower.getAllele());
 		}
