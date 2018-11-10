@@ -58,6 +58,9 @@ allprojects {
 		maven {
 			url = "https://mod-buildcraft.com/maven"
 		}
+		maven {
+			url "http://maven.blamejared.com"
+		}
     }
 
     dependencies {
