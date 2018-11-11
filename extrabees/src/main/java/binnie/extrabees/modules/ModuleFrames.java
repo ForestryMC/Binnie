@@ -15,7 +15,7 @@ public class ModuleFrames extends BlankModule {
 	}
 
 	@Override
-	public void preInit() {
+	public void registerItemsAndBlocks() {
 		for (EnumHiveFrame frame : EnumHiveFrame.values()) {
 			ExtraBees.proxy.registerItem(frame.getItem());
 		}

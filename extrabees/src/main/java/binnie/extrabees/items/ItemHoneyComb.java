@@ -18,10 +18,11 @@ import forestry.api.lepidopterology.ButterflyManager;
 import forestry.core.items.IColoredItem;
 
 import binnie.core.Mods;
+import binnie.core.item.ItemMisc;
 import binnie.extrabees.items.types.EnumHoneyComb;
 import binnie.extrabees.modules.ModuleCore;
 
-public class ItemHoneyComb extends ItemProduct<EnumHoneyComb> implements IColoredItem {
+public class ItemHoneyComb extends ItemMisc<EnumHoneyComb> implements IColoredItem {
 
 	private static final float RESEARCH_SUITABILITY = 0.4f;
 	private static final String BOTANY_UID = "rootFlowers";
@@ -33,11 +34,8 @@ public class ItemHoneyComb extends ItemProduct<EnumHoneyComb> implements IColore
 	}
 
 	public ItemHoneyComb() {
-		super(EnumHoneyComb.values());
-		this.setCreativeTab(Tabs.tabApiculture);
-		this.setUnlocalizedName("honey_comb");
-		setRegistryName("honey_comb");
-		BeeManager.beeRoot.setResearchSuitability(new ItemStack(this, 1, OreDictionary.WILDCARD_VALUE), RESEARCH_SUITABILITY);
+		super(Tabs.tabApiculture, EnumHoneyComb.values(), "honey_comb");
+		setResearchSuitability(BeeManager.beeRoot);
 		setResearchSuitability(TreeManager.treeRoot);
 		setResearchSuitability(ButterflyManager.butterflyRoot);
 
@@ -47,7 +45,7 @@ public class ItemHoneyComb extends ItemProduct<EnumHoneyComb> implements IColore
 	@SideOnly(Side.CLIENT)
 	@Override
 	public int getColorFromItemstack(ItemStack stack, int tintIndex) {
-		EnumHoneyComb honeyComb = get(stack);
+		EnumHoneyComb honeyComb = getProvider(stack);
 		return honeyComb.getSpriteColour(tintIndex);
 	}
 

@@ -3,14 +3,10 @@ package binnie.extrabees.items;
 import javax.annotation.Nullable;
 import java.util.List;
 
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-
-import net.minecraftforge.client.model.ModelLoader;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -24,7 +20,6 @@ import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
 import forestry.api.core.Tabs;
 
-import binnie.core.Constants;
 import binnie.core.util.I18N;
 import binnie.extrabees.items.types.EnumHiveFrame;
 
@@ -48,9 +43,7 @@ public class ItemHiveFrame extends Item implements IHiveFrame, IBeeModifier, IIt
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerModel(Item item, IModelManager manager) {
-		ResourceLocation location = new ResourceLocation(Constants.EXTRA_BEES_MOD_ID, "frames/" + getRegistryName().getResourcePath());
-		ModelResourceLocation inventory = new ModelResourceLocation(location, "inventory");
-		ModelLoader.setCustomModelResourceLocation(item, 0, inventory);
+		manager.registerItemModel(item, 0, "frames/" + getRegistryName().getResourcePath());
 	}
 
 	@Override

@@ -4,6 +4,7 @@ import com.google.common.base.MoreObjects;
 
 import javax.annotation.Nullable;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import net.minecraft.init.Blocks;
@@ -16,11 +17,13 @@ import net.minecraftforge.oredict.OreDictionary;
 import forestry.api.recipes.RecipeManagers;
 
 import binnie.core.Mods;
+import binnie.core.item.IItemEnum;
+import binnie.core.item.IItemMiscProvider;
 import binnie.core.util.I18N;
 import binnie.extrabees.modules.ModuleCore;
 import binnie.extrabees.utils.Utils;
 
-public enum EnumHoneyComb implements IEBEnumItem {
+public enum EnumHoneyComb implements IItemMiscProvider {
 
 	BARREN(7564356, 12762791) {
 		@Override
@@ -668,9 +671,10 @@ public enum EnumHoneyComb implements IEBEnumItem {
 	}
 
 	@Override
-	public String getName(final ItemStack itemStack) {
+	public String getDisplayName(final ItemStack itemStack) {
 		return I18N.localise("extrabees.item.comb." + this.name().toLowerCase());
 	}
+
 
 	public boolean addProduct(@Nullable Item item, final Float chance) {
 		return addProduct(new ItemStack(MoreObjects.firstNonNull(item, Item.getItemFromBlock(Blocks.AIR))), chance);
@@ -700,7 +704,7 @@ public enum EnumHoneyComb implements IEBEnumItem {
 		}
 	}
 
-	public void tryAddProduct(final IEBEnumItem type, final Float chance) {
+	public void tryAddProduct(final IItemEnum type, final Float chance) {
 		this.tryAddProduct(type.get(1), chance);
 		this.active = (this.active && type.isActive());
 	}
@@ -709,4 +713,12 @@ public enum EnumHoneyComb implements IEBEnumItem {
 		this.products.putAll(comb.products);
 	}
 
+	@Override
+	public void addInformation(List<String> tooltip) {
+	}
+
+	@Override
+	public String getModelPath() {
+		return "honey_comb";
+	}
 }

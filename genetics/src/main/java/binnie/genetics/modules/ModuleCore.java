@@ -40,7 +40,7 @@ public class ModuleCore extends BlankModule {
 	public static Item registry;
 	public static Item masterRegistry;
 	public static ItemSerumArray itemSerumArray;
-	public static Item itemGenetics;
+	public static ItemMisc<GeneticsItems> itemGenetics;
 
 	public ModuleCore() {
 		super("forestry", "core");

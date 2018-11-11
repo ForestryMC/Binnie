@@ -26,12 +26,13 @@ import forestry.api.core.IModelManager;
 import forestry.api.core.Tabs;
 
 import binnie.core.api.gui.IGuiItem;
+import binnie.core.util.I18N;
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.gui.ExtraBeesGUID;
 
-public class ItemBeeDictionary extends Item implements IItemModelRegister, IGuiItem {
+public class ItemDatabaseBee extends Item implements IItemModelRegister, IGuiItem {
 
-	public ItemBeeDictionary() {
+	public ItemDatabaseBee() {
 		this.setCreativeTab(Tabs.tabApiculture);
 		this.setUnlocalizedName("dictionary");
 		this.setMaxStackSize(1);
@@ -44,7 +45,7 @@ public class ItemBeeDictionary extends Item implements IItemModelRegister, IGuiI
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		super.addInformation(stack, worldIn, tooltip, flagIn);
 		if (stack.getItemDamage() > 0) {
-			tooltip.add("Flora-in-a-box");
+			tooltip.add(I18N.localise("extrabees.item.database.master.tooltip"));
 		}
 	}
 
@@ -65,15 +66,15 @@ public class ItemBeeDictionary extends Item implements IItemModelRegister, IGuiI
 
 	@Override
 	public void openGuiOnRightClick(ItemStack itemStack, World world, EntityPlayer player) {
-		final ExtraBeesGUID id = itemStack.getItemDamage() == 0 ? ExtraBeesGUID.DATABASE : ExtraBeesGUID.DATABASE_MASTER;
+		ExtraBeesGUID id = itemStack.getItemDamage() == 0 ? ExtraBeesGUID.DATABASE : ExtraBeesGUID.DATABASE_MASTER;
 		BlockPos pos = player.getPosition();
 		player.openGui(ExtraBees.instance, id.ordinal(), world, pos.getX(), pos.getY(), pos.getZ());
 	}
 
 	@Override
 	@Nonnull
-	public String getItemStackDisplayName(@Nonnull ItemStack i) {
-		return (i.getItemDamage() == 0) ? "Apiarist Database" : "Master Apiarist Database";
+	public String getItemStackDisplayName(@Nonnull ItemStack itemStack) {
+		return I18N.localise("extrabees.item.database." + (isMaster(itemStack) ? "master.name" : "name"));
 	}
 
 	@Override
@@ -82,5 +83,9 @@ public class ItemBeeDictionary extends Item implements IItemModelRegister, IGuiI
 	public void registerModel(Item item, IModelManager manager) {
 		ModelLoader.setCustomModelResourceLocation(this, 0, new ModelResourceLocation(getRegistryName(), "inventory"));
 		ModelLoader.setCustomModelResourceLocation(this, 1, new ModelResourceLocation(getRegistryName().toString() + "_master", "inventory"));
+	}
+
+	protected boolean isMaster(ItemStack itemStack) {
+		return itemStack.getMetadata() > 0;
 	}
 }

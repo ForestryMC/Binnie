@@ -5,15 +5,14 @@ import net.minecraft.item.ItemStack;
 import forestry.api.core.Tabs;
 import forestry.core.items.IColoredItem;
 
+import binnie.core.item.ItemMisc;
 import binnie.extrabees.items.types.EnumPropolis;
 
-public class ItemPropolis extends ItemProduct<EnumPropolis> implements IColoredItem {
+public class ItemPropolis extends ItemMisc<EnumPropolis> implements IColoredItem {
 
 	public ItemPropolis() {
-		super(EnumPropolis.values());
+		super(Tabs.tabApiculture, EnumPropolis.values(), "propolis");
 		this.setCreativeTab(Tabs.tabApiculture);
-		this.setUnlocalizedName("propolis");
-		setRegistryName("propolis");
 	}
 
 	@Override

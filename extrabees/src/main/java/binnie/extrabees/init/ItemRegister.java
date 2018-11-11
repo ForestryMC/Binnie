@@ -7,13 +7,13 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import forestry.api.core.Tabs;
 
+import binnie.core.item.ItemMisc;
 import binnie.extrabees.ExtraBees;
-import binnie.extrabees.items.ItemBeeDictionary;
 import binnie.extrabees.items.ItemBeeHive;
+import binnie.extrabees.items.ItemDatabaseBee;
 import binnie.extrabees.items.ItemHoneyComb;
 import binnie.extrabees.items.ItemHoneyCrystal;
 import binnie.extrabees.items.ItemHoneyDrop;
-import binnie.extrabees.items.ItemMiscProduct;
 import binnie.extrabees.items.ItemPropolis;
 import binnie.extrabees.items.types.EnumHoneyComb;
 import binnie.extrabees.items.types.ExtraBeeItems;
@@ -39,8 +39,8 @@ public final class ItemRegister {
 		ItemBeeHive itemBeeHive = new ItemBeeHive(ModuleCore.hive);
 		ItemBlock ectoplasm = new ItemBlock(ModuleCore.ectoplasm);
 		ectoplasm.setRegistryName(ModuleCore.ectoplasm.getRegistryName());
-		ItemMiscProduct itemMisc = ModuleCore.itemMisc = new ItemMiscProduct(Tabs.tabApiculture, ExtraBeeItems.values());
-		ModuleCore.dictionaryBees = new ItemBeeDictionary();
+		ItemMisc<ExtraBeeItems> itemMisc = ModuleCore.itemMisc = new ItemMisc<>(Tabs.tabApiculture, ExtraBeeItems.values(), "misc");
+		ModuleCore.dictionaryBees = new ItemDatabaseBee();
 
 		ExtraBees.proxy.registerItem(ectoplasm);
 		ExtraBees.proxy.registerModel(ectoplasm, 0);

@@ -11,148 +11,146 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import binnie.core.item.IItemMiscProvider;
+import binnie.core.util.I18N;
 import binnie.extrabees.modules.ModuleCore;
 
-public enum ExtraBeeItems implements IEBItemMiscProvider {
+public enum ExtraBeeItems implements IItemMiscProvider {
 
-	SCENTED_GEAR("Scented Gear", "scented_gear"),
-	DIAMOND_SHARD("Diamond Fragment", "diamond_shard") {
+	SCENTED_GEAR("scented_gear"),
+	DIAMOND_SHARD("diamond_shard") {
 		@Override
 		protected void init() {
 			setGem("Diamond");
 		}
 	},
-	EMERALD_SHARD("Emerald Fragment", "emerald_shard") {
+	EMERALD_SHARD("emerald_shard") {
 		@Override
 		protected void init() {
 			setGem("Emerald");
 		}
 	},
-	RUBY_SHARD("Ruby Fragment", "ruby_shard") {
+	RUBY_SHARD("ruby_shard") {
 		@Override
 		protected void init() {
 			setGem("Ruby");
 		}
 	},
-	SAPPHIRE_SHARD("Sapphire Fragment", "sapphire_shard") {
+	SAPPHIRE_SHARD("sapphire_shard") {
 		@Override
 		protected void init() {
 			setGem("Sapphire");
 		}
 	},
-	LAPIS_SHARD("Lapis Fragment", "lapis_shard"),
-	IRON_DUST("Iron Grains", "iron_dust") {
+	LAPIS_SHARD("lapis_shard"),
+	IRON_DUST("iron_dust") {
 		@Override
 		protected void init() {
 			setMetal("Iron");
 		}
 	},
-	GOLD_DUST("Gold Grains", "gold_dust") {
+	GOLD_DUST("gold_dust") {
 		@Override
 		protected void init() {
 			setMetal("Gold");
 		}
 	},
-	SILVER_DUST("Silver Grains", "silver_dust") {
+	SILVER_DUST("silver_dust") {
 		@Override
 		protected void init() {
 			setMetal("Silver");
 		}
 	},
-	PLATINUM_DUST("Platinum Grains", "platinum_dust") {
+	PLATINUM_DUST("platinum_dust") {
 		@Override
 		protected void init() {
 			setMetal("Platinum");
 		}
 	},
-	COPPER_DUST("Copper Grains", "copper_dust") {
+	COPPER_DUST("copper_dust") {
 		@Override
 		protected void init() {
 			setMetal("Copper");
 		}
 	},
-	TIN_DUST("Tin Grains", "tin_dust") {
+	TIN_DUST("tin_dust") {
 		@Override
 		protected void init() {
 			setMetal("Tin");
 		}
 	},
-	NICKEL_DUST("Nickel Grains", "nickel_dust") {
+	NICKEL_DUST("nickel_dust") {
 		@Override
 		protected void init() {
 			setMetal("Nickel");
 		}
 	},
-	LEAD_DUST("Lead Grains", "lead_dust") {
+	LEAD_DUST("lead_dust") {
 		@Override
 		protected void init() {
 			setMetal("Lead");
 		}
 	},
-	ZINC_DUST("Zinc Grains", "zinc_dust") {
+	ZINC_DUST("zinc_dust") {
 		@Override
 		protected void init() {
 			setMetal("Zinc");
 		}
 	},
-	TITANIUM_DUST("Titanium Grains", "titanium_dust") {
+	TITANIUM_DUST("titanium_dust") {
 		@Override
 		protected void init() {
 			setMetal("Titanium");
 		}
 	},
-	TUNGSTEN_DUST("Tungsten Grains", "tungsten_dust") {
+	TUNGSTEN_DUST("tungsten_dust") {
 		@Override
 		protected void init() {
 			setMetal("Tungsten");
 		}
 	},
-	URANIUM_DUST("Radioactive Fragments", "radioactive_dust"),
-	COAL_DUST("Coal Grains", "coal_dust") {
+	URANIUM_DUST("radioactive_dust"),
+	COAL_DUST("coal_dust") {
 		@Override
 		protected void init() {
 			setMetal("Coal");
 		}
 	},
-	RED_DYE("Red Dye", "dye_red"),
-	YELLOW_DYE("Yellow Dye", "dye_yellow"),
-	BLUE_DYE("Blue Dye", "dye_blue"),
-	GREEN_DYE("Green Dye", "dye_green"),
-	WHITE_DYE("White Dye", "dye_white"),
-	BLACK_DYE("Black Dye", "dye_black"),
-	BROWN_DYE("Brown Dye", "dye_brown"),
-	CLAY_DUST("Clay Dust", "clay_dust"),
-	YELLORIUM_DUST("Yellorium Grains", "yellorium_dust") {
+	RED_DYE("dye_red"),
+	YELLOW_DYE("dye_yellow"),
+	BLUE_DYE("dye_blue"),
+	GREEN_DYE("dye_green"),
+	WHITE_DYE("dye_white"),
+	BLACK_DYE("dye_black"),
+	BROWN_DYE("dye_brown"),
+	CLAY_DUST("clay_dust"),
+	YELLORIUM_DUST("yellorium_dust") {
 		@Override
 		protected void init() {
 			setMetal("Yellorium");
 		}
 	},
-	BLUTONIUM_DUST("Blutonium Grains", "blutonium_dust") {
+	BLUTONIUM_DUST("blutonium_dust") {
 		@Override
 		protected void init() {
 			setMetal("Blutonium");
 		}
 	},
-	CYANITE_DUST("Cyanite Grains", "cyanite_dust") {
+	CYANITE_DUST("cyanite_dust") {
 		@Override
 		protected void init() {
 			setMetal("Cyanite");
 		}
 	};
 
-	public final String name;
-	public final String modelPath;
+	public final String identifier;
 	@Nullable
 	public String metalString;
 	@Nullable
 	public String gemString;
 
-	ExtraBeeItems(String name, String modelPath) {
-		this.metalString = null;
-		this.gemString = null;
-		this.name = name;
-		this.modelPath = modelPath;
+	ExtraBeeItems(String identifier) {
+		this.identifier = identifier;
 		init();
 	}
 
@@ -184,8 +182,8 @@ public enum ExtraBeeItems implements IEBItemMiscProvider {
 	}
 
 	@Override
-	public String getName(final ItemStack itemStack) {
-		return this.name;
+	public String getDisplayName(final ItemStack itemStack) {
+		return I18N.localise("extrabees.item.misc." + this.identifier);
 	}
 
 	@Override
@@ -195,7 +193,7 @@ public enum ExtraBeeItems implements IEBItemMiscProvider {
 
 	@Override
 	public String getModelPath() {
-		return modelPath;
+		return identifier;
 	}
 
 }

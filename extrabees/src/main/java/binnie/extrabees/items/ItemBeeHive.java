@@ -15,9 +15,12 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import forestry.api.core.IItemModelRegister;
+import forestry.api.core.IModelManager;
+
 import binnie.extrabees.blocks.type.EnumHiveType;
 
-public class ItemBeeHive extends ItemBlock implements IItemModelProvider {
+public class ItemBeeHive extends ItemBlock implements IItemModelRegister {
 
 	public ItemBeeHive(@Nonnull final Block block) {
 		super(block);
@@ -47,9 +50,9 @@ public class ItemBeeHive extends ItemBlock implements IItemModelProvider {
 		return "extrabees.block.hive." + type.getName();
 	}
 
-	@SideOnly(Side.CLIENT)
 	@Override
-	public void registerModel(Item item) {
+	@SideOnly(Side.CLIENT)
+	public void registerModel(Item item, IModelManager manager) {
 		for (EnumHiveType type : EnumHiveType.values()) {
 			ModelLoader.setCustomModelResourceLocation(item, type.getMeta(), new ModelResourceLocation("extrabees:hive", "type=" + type.getName()));
 		}

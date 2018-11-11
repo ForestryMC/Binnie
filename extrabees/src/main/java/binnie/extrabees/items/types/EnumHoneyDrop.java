@@ -1,5 +1,7 @@
 package binnie.extrabees.items.types;
 
+import java.util.List;
+
 import net.minecraft.item.ItemStack;
 
 import net.minecraftforge.fluids.FluidRegistry;
@@ -7,11 +9,12 @@ import net.minecraftforge.fluids.FluidStack;
 
 import forestry.api.recipes.RecipeManagers;
 
+import binnie.core.item.IItemMiscProvider;
 import binnie.core.util.I18N;
 import binnie.extrabees.modules.ModuleCore;
 import binnie.extrabees.utils.Utils;
 
-public enum EnumHoneyDrop implements IEBEnumItem {
+public enum EnumHoneyDrop implements IItemMiscProvider {
 
 	ENERGY(10242418, 14905713, ""),
 	ACID(4961601, 4841020, "acid"),
@@ -91,9 +94,19 @@ public enum EnumHoneyDrop implements IEBEnumItem {
 	}
 
 	@Override
-	public String getName(final ItemStack itemStack) {
+	public String getDisplayName(final ItemStack itemStack) {
 		return I18N.localise("extrabees.item.honeydrop." + this.name().toLowerCase());
 	}
+
+	@Override
+	public void addInformation(List<String> tooltip) {
+	}
+
+	@Override
+	public String getModelPath() {
+		return "honey_drop";
+	}
+
 
 	public int getSpriteColour(int renderPass) {
 		if (renderPass == 0) {

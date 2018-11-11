@@ -46,7 +46,7 @@ import binnie.extratrees.village.VillageCreationExtraTrees;
 
 @ForestryModule(moduleID = ExtraTreesModuleUIDs.CORE, containerID = Constants.EXTRA_TREES_MOD_ID, coreModule = true, name = "Core", unlocalizedDescription = "extratrees.module.core")
 public class ModuleCore extends BlankModule {
-	public static ItemMisc itemMisc;
+	public static ItemMisc<ExtraTreeItems> itemMisc;
 	public static Item itemFood;
 	public static Item itemHammer;
 	public static Item itemDurableHammer;

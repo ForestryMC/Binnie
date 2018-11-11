@@ -1,16 +1,19 @@
 package binnie.extrabees.items.types;
 
+import java.util.List;
+
 import net.minecraft.item.ItemStack;
 
 import net.minecraftforge.fluids.FluidStack;
 
 import forestry.api.recipes.RecipeManagers;
 
+import binnie.core.item.IItemMiscProvider;
 import binnie.core.util.I18N;
 import binnie.extrabees.modules.ModuleCore;
 import binnie.extrabees.utils.Utils;
 
-public enum EnumPropolis implements IEBEnumItem {
+public enum EnumPropolis implements IItemMiscProvider {
 	WATER(2405321, 12762791, "Water"),
 	OIL(1519411, 12762791, "oil"),
 	FUEL(10718482, 12762791, "fuel"),
@@ -75,8 +78,17 @@ public enum EnumPropolis implements IEBEnumItem {
 	}
 
 	@Override
-	public String getName(final ItemStack itemStack) {
+	public String getDisplayName(final ItemStack itemStack) {
 		return I18N.localise("extrabees.item.propolis." + this.name().toLowerCase());
 	}
 
+
+	@Override
+	public void addInformation(List<String> tooltip) {
+	}
+
+	@Override
+	public String getModelPath() {
+		return "propolis";
+	}
 }

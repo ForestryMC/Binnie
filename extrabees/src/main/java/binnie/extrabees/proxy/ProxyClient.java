@@ -29,19 +29,18 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import forestry.core.models.BlankModel;
-import forestry.core.models.ModelManager;
 
 import binnie.core.Constants;
-import binnie.extrabees.items.IItemModelProvider;
+import binnie.core.models.ModelManager;
 import binnie.extrabees.modules.ModuleCore;
 
 @SideOnly(Side.CLIENT)
-public class ExtraBeesClientProxy extends ExtraBeesCommonProxy {
+public class ProxyClient extends ProxyCommon {
 
-	private static final ModelManager modelManager = ModelManager.getInstance();
+	private static final ModelManager MODEL_MANAGER = new ModelManager(Constants.EXTRA_BEES_MOD_ID);
 
 	public static ModelManager getModelManager() {
-		return modelManager;
+		return MODEL_MANAGER;
 	}
 
 	private static IBakedModel bakeModelFor(Block block) {
@@ -51,9 +50,6 @@ public class ExtraBeesClientProxy extends ExtraBeesCommonProxy {
 	@Override
 	public Item registerItem(Item item) {
 		getModelManager().registerItemClient(item);
-		if (item instanceof IItemModelProvider) {
-			((IItemModelProvider) item).registerModel(item);
-		}
 		return super.registerItem(item);
 	}
 
@@ -61,6 +57,16 @@ public class ExtraBeesClientProxy extends ExtraBeesCommonProxy {
 	public Block registerBlock(Block block) {
 		getModelManager().registerBlockClient(block);
 		return super.registerBlock(block);
+	}
+
+	@Override
+	public void registerModels() {
+		getModelManager().registerModels();
+	}
+
+	@Override
+	public void registerItemAndBlockColors() {
+		getModelManager().registerItemAndBlockColors();
 	}
 
 	@Override

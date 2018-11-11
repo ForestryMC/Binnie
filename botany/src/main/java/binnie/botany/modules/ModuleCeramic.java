@@ -45,7 +45,7 @@ public class ModuleCeramic extends BlankModule {
 
 	public static ItemPigment pigment;
 	public static ItemClay clay;
-	public static ItemMisc misc;
+	public static ItemMisc<CeramicItems> misc;
 
 	public ModuleCeramic() {
 		super(Constants.BOTANY_MOD_ID, BotanyModuleUIDs.CORE);
@@ -58,7 +58,7 @@ public class ModuleCeramic extends BlankModule {
 		ceramicTile = new BlockCeramicPatterned();
 		ceramicBrick = new BlockCeramicBrick();
 
-		misc = new ItemMisc(CreativeTabBotany.INSTANCE, CeramicItems.values(), "misc_ceramic");
+		misc = new ItemMisc<>(CreativeTabBotany.INSTANCE, CeramicItems.values(), "misc_ceramic");
 		pigment = new ItemPigment();
 		clay = new ItemClay();
 

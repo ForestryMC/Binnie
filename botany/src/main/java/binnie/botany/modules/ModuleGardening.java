@@ -64,7 +64,7 @@ public class ModuleGardening extends BlankModule {
 	public static BlockSoil loamNoWeed;
 	public static BlockSoil flowerbedNoWeed;
 	public static ItemSoilMeter soilMeter;
-	public static ItemMisc misc;
+	public static ItemMisc<BotanyItems> misc;
 
 	public ModuleGardening() {
 		super(Constants.BOTANY_MOD_ID, BotanyModuleUIDs.CORE);

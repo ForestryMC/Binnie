@@ -109,6 +109,37 @@ extrabees.item.honeydrop.limegreen=Lime Green Tinted Honey
 extrabees.item.honeydrop.magenta=Magenta Tinted Honey
 extrabees.item.honeydrop.lightgray=Light Gray Tinted Honey
 
+extrabees.item.misc.scented_gear=Scented Gear
+extrabees.item.misc.diamond_shard=Diamond Fragment
+extrabees.item.misc.emerald_shard=Emerald Fragment
+extrabees.item.misc.ruby_shard=Ruby Fragment
+extrabees.item.misc.sapphire_shard=Sapphire Fragment
+extrabees.item.misc.lapis_shard=Lapis Fragment
+extrabees.item.misc.iron_dust=Iron Grains
+extrabees.item.misc.gold_dust=Gold Grains
+extrabees.item.misc.silver_dust=Silver Grains
+extrabees.item.misc.platinum_dust=Platinum Grains
+extrabees.item.misc.copper_dust=Copper Grains
+extrabees.item.misc.tin_dust=Tin Grains
+extrabees.item.misc.nickel_dust=Nickel Grains
+extrabees.item.misc.lead_dust=Lead Grains
+extrabees.item.misc.zinc_dust=Zinc Grains
+extrabees.item.misc.titanium_dust=Titanium Grains
+extrabees.item.misc.tungsten_dust=Tungsten Grains
+extrabees.item.misc.radioactive_dust=Radioactive Fragments
+extrabees.item.misc.coal_dust=Coal Grains
+extrabees.item.misc.dye_red=Red Dye
+extrabees.item.misc.dye_yellow=Yellow Dye
+extrabees.item.misc.dye_blue=Blue Dye
+extrabees.item.misc.dye_green=Green Dye
+extrabees.item.misc.dye_white=White Dye
+extrabees.item.misc.dye_black=Black Dye
+extrabees.item.misc.dye_brown=Brown Dye
+extrabees.item.misc.clay_dust=Clay Dust
+extrabees.item.misc.yellorium_dust=Yellorium Grains
+extrabees.item.misc.blutonium_dust=Blutonium Grains
+extrabees.item.misc.cyanite_dust=Cyanite Grains
+
 extrabees.item.propolis.water=Watery Propolis
 extrabees.item.propolis.oil=Oily Propolis
 extrabees.item.propolis.fuel=Petroleum Propolis
@@ -123,6 +154,10 @@ extrabees.item.frame.cage.name=Restraint Frame
 extrabees.item.frame.soul.name=Soul Frame
 extrabees.item.frame.clay.name=Healing Frame
 extrabees.item.frame.debug.name=Nova Frame
+
+extrabees.item.database.master.tooltip=Flora-in-a-box
+extrabees.item.database.name=Apiarist Database
+extrabees.item.database.master.name=Master Apiarist Database
 
 extrabees.block.ectoplasm.name=Ectoplasm
 

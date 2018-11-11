@@ -24,7 +24,7 @@ import binnie.extrabees.genetics.BeeBreedingSystem;
 import binnie.extrabees.genetics.gui.analyst.AnalystPagePlugin;
 import binnie.extrabees.gui.ExtraBeesGUID;
 import binnie.extrabees.modules.ModuleCore;
-import binnie.extrabees.proxy.ExtraBeesCommonProxy;
+import binnie.extrabees.proxy.ProxyCommon;
 import binnie.extrabees.utils.config.ConfigHandler;
 import binnie.extrabees.utils.config.ConfigurationMain;
 import binnie.genetics.api.GeneticsApi;
@@ -44,8 +44,8 @@ public class ExtraBees extends BlankModuleContainer {
 	@Mod.Instance(MODID)
 	public static ExtraBees instance;
 
-	@SidedProxy(clientSide = "binnie.extrabees.proxy.ExtraBeesClientProxy", serverSide = "binnie.extrabees.proxy.ExtraBeesCommonProxy")
-	public static ExtraBeesCommonProxy proxy;
+	@SidedProxy(clientSide = "binnie.extrabees.proxy.ProxyClient", serverSide = "binnie.extrabees.proxy.ProxyCommon")
+	public static ProxyCommon proxy;
 
 	public static IBreedingSystem beeBreedingSystem;
 

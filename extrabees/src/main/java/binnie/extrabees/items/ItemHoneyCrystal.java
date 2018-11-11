@@ -21,6 +21,8 @@ import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import forestry.api.core.IItemModelRegister;
+import forestry.api.core.IModelManager;
 import forestry.api.core.Tabs;
 
 import binnie.core.Mods;
@@ -28,13 +30,14 @@ import binnie.core.util.I18N;
 
 import ic2.api.item.ElectricItem;
 import ic2.api.item.IElectricItem;
+import ic2.api.item.IElectricItemManager;
 import ic2.api.item.IItemHudInfo;
 
 @Optional.InterfaceList({
 	@Optional.Interface(modid = "ic2", iface = "ic2.api.item.IElectricItem"),
 	@Optional.Interface(modid = "ic2", iface = "ic2.api.item.IItemHudInfo")
 })
-public class ItemHoneyCrystal extends Item implements IElectricItem, IItemHudInfo, IItemModelProvider {
+public class ItemHoneyCrystal extends Item implements IElectricItem, IItemHudInfo, IItemModelRegister {
 	private static final int MAX_CHARGE = 8000;
 	private static final int TRANSFER_LIMIT = 500;
 	private static final int TIER = 1;
@@ -76,9 +79,11 @@ public class ItemHoneyCrystal extends Item implements IElectricItem, IItemHudInf
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerModel(Item item) {
-		ModelLoader.registerItemVariants(item, new ModelResourceLocation("extrabees:honey_crystal_full", "inventory"), new ModelResourceLocation("extrabees:honey_crystal_empty", "inventory"), new ModelResourceLocation("extrabees:honey_crystal", "inventory"));
-		ModelLoader.setCustomMeshDefinition(item, new HoneyCrystalMeshDefinition());
+	public void registerModel(Item item, IModelManager manager) {
+		manager.registerItemModel(item, new HoneyCrystalMeshDefinition());
+		ModelLoader.registerItemVariants(item, new ModelResourceLocation("extrabees:honey_crystal_full", "inventory"),
+			new ModelResourceLocation("extrabees:honey_crystal_empty", "inventory"),
+			new ModelResourceLocation("extrabees:honey_crystal", "inventory"));
 	}
 
 	@Override
@@ -86,31 +91,32 @@ public class ItemHoneyCrystal extends Item implements IElectricItem, IItemHudInf
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
 		ItemStack stack = player.getHeldItem(hand);
 		if (!world.isRemote && stack.getCount() == 1) {
-			if (ElectricItem.manager.getCharge(stack) > 0.0D) {
+			IElectricItemManager manager = ElectricItem.manager;
+			if (manager.getCharge(stack) > 0.0D) {
 				boolean transferred = false;
 
 				for (int i = 0; i < 9; ++i) {
 					ItemStack target = player.inventory.mainInventory.get(i);
-					if (target != null && target != stack && ElectricItem.manager.discharge(target, Double.POSITIVE_INFINITY, Integer.MAX_VALUE, true, true, true) <= 0.0D) {
-						double transfer = ElectricItem.manager.discharge(stack, 2.0D * TRANSFER_LIMIT, Integer.MAX_VALUE, true, true, true);
+					if (!target.isEmpty() && target != stack && manager.discharge(target, Double.POSITIVE_INFINITY, Integer.MAX_VALUE, true, true, true) <= 0.0D) {
+						double transfer = manager.discharge(stack, 2.0D * TRANSFER_LIMIT, Integer.MAX_VALUE, true, true, true);
 						if (transfer > 0.0D) {
-							transfer = ElectricItem.manager.charge(target, transfer, TIER, true, false);
+							transfer = manager.charge(target, transfer, TIER, true, false);
 							if (transfer > 0.0D) {
-								ElectricItem.manager.discharge(stack, transfer, Integer.MAX_VALUE, true, true, false);
+								manager.discharge(stack, transfer, Integer.MAX_VALUE, true, true, false);
 								transferred = true;
 							}
 						}
 					}
 				}
 
-				if (transferred && !world.isRemote) {
+				if (transferred) {
 					player.openContainer.detectAndSendChanges();
 				}
 			}
 
-			return new ActionResult(EnumActionResult.SUCCESS, stack);
+			return new ActionResult<>(EnumActionResult.SUCCESS, stack);
 		} else {
-			return new ActionResult(EnumActionResult.PASS, stack);
+			return new ActionResult<>(EnumActionResult.PASS, stack);
 		}
 	}
 
@@ -141,7 +147,7 @@ public class ItemHoneyCrystal extends Item implements IElectricItem, IItemHudInf
 	@Override
 	@Optional.Method(modid = "ic2")
 	public List<String> getHudInfo(ItemStack stack, boolean advanced) {
-		List<String> info = new LinkedList();
+		List<String> info = new LinkedList<>();
 		info.add(ElectricItem.manager.getToolTip(stack));
 		return info;
 	}

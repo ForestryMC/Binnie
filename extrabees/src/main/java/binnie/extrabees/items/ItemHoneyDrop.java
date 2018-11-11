@@ -14,12 +14,22 @@ import forestry.api.genetics.ISpeciesRoot;
 import forestry.api.lepidopterology.ButterflyManager;
 import forestry.core.items.IColoredItem;
 
+import binnie.core.item.ItemMisc;
 import binnie.extrabees.items.types.EnumHoneyDrop;
 
-public class ItemHoneyDrop extends ItemProduct<EnumHoneyDrop> implements IColoredItem {
+public class ItemHoneyDrop extends ItemMisc<EnumHoneyDrop> implements IColoredItem {
 
 	private static final float RESEARCH_SUITABILITY = 0.5f;
 	private static final String BOTANY_UID = "rootFlowers";
+
+	public ItemHoneyDrop() {
+		super(Tabs.tabApiculture, EnumHoneyDrop.values(), "honey_drop");
+		setResearchSuitability(BeeManager.beeRoot);
+		setResearchSuitability(TreeManager.treeRoot);
+		setResearchSuitability(ButterflyManager.butterflyRoot);
+
+		setResearchSuitability(AlleleManager.alleleRegistry.getSpeciesRoot(BOTANY_UID));
+	}
 
 	private void setResearchSuitability(@Nullable ISpeciesRoot speciesRoot) {
 		if (speciesRoot != null) {
@@ -27,21 +37,9 @@ public class ItemHoneyDrop extends ItemProduct<EnumHoneyDrop> implements IColore
 		}
 	}
 
-	public ItemHoneyDrop() {
-		super(EnumHoneyDrop.values());
-		this.setCreativeTab(Tabs.tabApiculture);
-		this.setUnlocalizedName("honey_drop");
-		setRegistryName("honey_drop");
-		BeeManager.beeRoot.setResearchSuitability(new ItemStack(this, 1, OreDictionary.WILDCARD_VALUE), RESEARCH_SUITABILITY);
-		setResearchSuitability(TreeManager.treeRoot);
-		setResearchSuitability(ButterflyManager.butterflyRoot);
-
-		setResearchSuitability(AlleleManager.alleleRegistry.getSpeciesRoot(BOTANY_UID));
-	}
-
 	@Override
 	public int getColorFromItemstack(ItemStack itemStack, int tintIndex) {
-		EnumHoneyDrop drop = get(itemStack);
+		EnumHoneyDrop drop = getProvider(itemStack);
 		return drop.getSpriteColour(tintIndex);
 	}
 }

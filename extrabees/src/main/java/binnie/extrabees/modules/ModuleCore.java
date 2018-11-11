@@ -20,6 +20,7 @@ import forestry.api.genetics.AlleleSpeciesRegisterEvent;
 import forestry.api.modules.ForestryModule;
 
 import binnie.core.Constants;
+import binnie.core.item.ItemMisc;
 import binnie.core.modules.BlankModule;
 import binnie.extrabees.genetics.ExtraBeeDefinition;
 import binnie.extrabees.genetics.ExtraBeesFlowers;
@@ -28,8 +29,9 @@ import binnie.extrabees.init.BlockRegister;
 import binnie.extrabees.init.ItemRegister;
 import binnie.extrabees.init.RecipeRegister;
 import binnie.extrabees.items.ItemHoneyCrystal;
-import binnie.extrabees.items.ItemMiscProduct;
+import binnie.extrabees.items.ItemPropolis;
 import binnie.extrabees.items.types.EnumHoneyComb;
+import binnie.extrabees.items.types.ExtraBeeItems;
 import binnie.extrabees.utils.AlvearyMutationHandler;
 import binnie.extrabees.utils.MaterialBeehive;
 import binnie.extrabees.worldgen.ExtraBeesWorldGenerator;
@@ -46,13 +48,13 @@ public class ModuleCore extends BlankModule {
 	@Nullable
 	public static Item comb;
 	@Nullable
-	public static Item propolis;
+	public static ItemPropolis propolis;
 	@Nullable
 	public static Item honeyDrop;
 	@Nullable
 	public static ItemHoneyCrystal honeyCrystal;
 	@Nullable
-	public static ItemMiscProduct itemMisc;
+	public static ItemMisc<ExtraBeeItems> itemMisc;
 	@Nullable
 	public static Item dictionaryBees;
 
