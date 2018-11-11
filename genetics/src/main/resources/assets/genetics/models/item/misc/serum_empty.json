@@ -1,6 +1,6 @@
 {
-    "parent": "item/generated",
-    "textures": {
-        "layer0": "genetics:items/serum_empty"
-    }
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "genetics:items/serum_empty"
+  }
 }

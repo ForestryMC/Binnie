@@ -4,29 +4,33 @@
     "model": "cube_column"
   },
   "variants": {
-    "normal": [{}],
-    "inventory": [{}],
-    "type":{
+    "normal": [
+      {}
+    ],
+    "inventory": [
+      {}
+    ],
+    "type": {
       "marble": {
-        "textures":{
+        "textures": {
           "end": "extrabees:blocks/hive/marble.1",
           "side": "extrabees:blocks/hive/marble.0"
         }
       },
       "nether": {
-        "textures":{
+        "textures": {
           "end": "extrabees:blocks/hive/nether.1",
           "side": "extrabees:blocks/hive/nether.0"
         }
       },
       "rock": {
-        "textures":{
+        "textures": {
           "end": "extrabees:blocks/hive/rock.1",
           "side": "extrabees:blocks/hive/rock.0"
         }
       },
       "water": {
-        "textures":{
+        "textures": {
           "end": "extrabees:blocks/hive/water.1",
           "side": "extrabees:blocks/hive/water.0"
         }

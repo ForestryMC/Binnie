@@ -3,38 +3,41 @@
   "defaults": {
     "model": "binniecore:storage"
   },
-
   "variants": {
-    "normal": [{}],
-    "inventory": [{}],
-    "machine_type":{
+    "normal": [
+      {}
+    ],
+    "inventory": [
+      {}
+    ],
+    "machine_type": {
       "0": {
-        "textures":{
+        "textures": {
           "all": "binniecore:tile/compartment"
         }
       },
       "1": {
-        "textures":{
+        "textures": {
           "all": "binniecore:tile/compartment_copper"
         }
       },
       "2": {
-        "textures":{
+        "textures": {
           "all": "binniecore:tile/compartment_bronze"
         }
       },
       "3": {
-        "textures":{
+        "textures": {
           "all": "binniecore:tile/compartment_iron"
         }
       },
       "4": {
-        "textures":{
+        "textures": {
           "all": "binniecore:tile/compartment_gold"
         }
       },
       "5": {
-        "textures":{
+        "textures": {
           "all": "binniecore:tile/compartment_diamond"
         }
       },

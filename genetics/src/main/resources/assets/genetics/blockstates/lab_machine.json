@@ -3,33 +3,36 @@
   "defaults": {
     "model": "genetics:machine"
   },
-
   "variants": {
-    "normal": [{}],
-    "inventory": [{}],
-    "machine_type":{
+    "normal": [
+      {}
+    ],
+    "inventory": [
+      {}
+    ],
+    "machine_type": {
       "0": {
-        "textures":{
+        "textures": {
           "all": "genetics:tile/lab_machine"
         }
       },
       "1": {
-         "textures":{
-           "all": "genetics:tile/analyser"
-         }
+        "textures": {
+          "all": "genetics:tile/analyser"
+        }
       },
       "2": {
-         "textures":{
-           "all": "genetics:tile/incubator"
-         }
+        "textures": {
+          "all": "genetics:tile/incubator"
+        }
       },
       "3": {
-        "textures":{
+        "textures": {
           "all": "genetics:tile/genepool"
         }
       },
       "4": {
-        "textures":{
+        "textures": {
           "all": "genetics:tile/acclimatiser"
         }
       },

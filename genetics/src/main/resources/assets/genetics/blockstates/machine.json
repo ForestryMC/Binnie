@@ -3,28 +3,31 @@
   "defaults": {
     "model": "genetics:machine"
   },
-
   "variants": {
-    "normal": [{}],
-    "inventory": [{}],
-    "machine_type":{
+    "normal": [
+      {}
+    ],
+    "inventory": [
+      {}
+    ],
+    "machine_type": {
       "0": {
-        "textures":{
+        "textures": {
           "all": "genetics:tile/isolator"
         }
       },
       "1": {
-        "textures":{
+        "textures": {
           "all": "genetics:tile/sequencer"
         }
       },
       "2": {
-        "textures":{
+        "textures": {
           "all": "genetics:tile/polymeriser"
         }
       },
       "3": {
-        "textures":{
+        "textures": {
           "all": "genetics:tile/inoculator"
         }
       },

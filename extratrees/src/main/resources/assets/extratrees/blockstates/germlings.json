@@ -1,115 +1,295 @@
 {
   "variants": {
-    "tree=orchardapple": { "model": "extratrees:saplings/tree_default" },
-    "tree=sweetcrabapple": { "model": "extratrees:saplings/tree_default" },
-    "tree=floweringcrabapple": { "model": "extratrees:saplings/tree_default" },
-    "tree=prairiecrabapple": { "model": "extratrees:saplings/tree_default" },
-
-    "tree=blackthorn": { "model": "extratrees:saplings/tree_fruit" },
-    "tree=cherryplum": { "model": "extratrees:saplings/tree_fruit" },
-    "tree=almond": { "model": "extratrees:saplings/tree_fruit" },
-    "tree=apricot": { "model": "extratrees:saplings/tree_fruit" },
-    "tree=peach": { "model": "extratrees:saplings/tree_fruit" },
-    "tree=nectarine": { "model": "extratrees:saplings/tree_fruit" },
-    "tree=wildcherry": { "model": "extratrees:saplings/tree_fruit" },
-    "tree=sourcherry": { "model": "extratrees:saplings/tree_fruit" },
-    "tree=blackcherry": { "model": "extratrees:saplings/tree_fruit" },
-
-    "tree=orange": { "model": "extratrees:saplings/tree_fruit" },
-    "tree=manderin": { "model": "extratrees:saplings/tree_fruit" },
-    "tree=satsuma": { "model": "extratrees:saplings/tree_fruit" },
-    "tree=tangerine": { "model": "extratrees:saplings/tree_fruit" },
-    "tree=lime": { "model": "extratrees:saplings/tree_fruit" },
-    "tree=keylime": { "model": "extratrees:saplings/tree_fruit" },
-    "tree=fingerlime": { "model": "extratrees:saplings/tree_fruit" },
-    "tree=pomelo": { "model": "extratrees:saplings/tree_fruit" },
-    "tree=grapefruit": { "model": "extratrees:saplings/tree_fruit" },
-    "tree=kumquat": { "model": "extratrees:saplings/tree_fruit" },
-    "tree=citron": { "model": "extratrees:saplings/tree_fruit" },
-    "tree=buddhahand": { "model": "extratrees:saplings/tree_fruit" },
-
-    "tree=banana": { "model": "extratrees:saplings/tree_default" },
-    "tree=redbanana": { "model": "extratrees:saplings/tree_default" },
-    "tree=plantain": { "model": "extratrees:saplings/tree_default" },
-
-    "tree=hemlock": { "model": "extratrees:saplings/tree_default" },
-    "tree=butternut": { "model": "extratrees:saplings/tree_default" },
-    "tree=rowan": { "model": "extratrees:saplings/tree_default" },
-
-    "tree=ash": { "model": "extratrees:saplings/tree_default" },
-    "tree=alder": { "model": "extratrees:saplings/tree_default" },
-    "tree=beech": { "model": "extratrees:saplings/tree_default" },
-    "tree=copperbeech": { "model": "extratrees:saplings/tree_default" },
-    "tree=aspen": { "model": "extratrees:saplings/tree_default" },
-    "tree=yew": { "model": "extratrees:saplings/tree_default" },
-
-    "tree=cypress": { "model": "extratrees:saplings/tree_poplar" },
-
-    "tree=douglasfir": { "model": "extratrees:saplings/tree_default" },
-    "tree=hazel": { "model": "extratrees:saplings/tree_default" },
-
-    "tree=dwarfhazel": { "model": "extratrees:saplings/tree_shrub" },
-
-    "tree=sycamore": { "model": "extratrees:saplings/tree_default" },
-    "tree=whitebeam": { "model": "extratrees:saplings/tree_default" },
-    "tree=hawthorn": { "model": "extratrees:saplings/tree_default" },
-    "tree=pecan": { "model": "extratrees:saplings/tree_default" },
-    "tree=fir": { "model": "extratrees:saplings/tree_default" },
-    "tree=cedar": { "model": "extratrees:saplings/tree_default" },
-    "tree=sallow": { "model": "extratrees:saplings/tree_default" },
-    "tree=elm": { "model": "extratrees:saplings/tree_default" },
-    "tree=elder": { "model": "extratrees:saplings/tree_default" },
-    "tree=holly": { "model": "extratrees:saplings/tree_default" },
-    "tree=hornbeam": { "model": "extratrees:saplings/tree_default" },
-    "tree=acornoak": { "model": "extratrees:saplings/tree_default" },
-    "tree=redmaple": { "model": "extratrees:saplings/tree_default" },
-    "tree=balsamfir": { "model": "extratrees:saplings/tree_default" },
-    "tree=loblollypine": { "model": "extratrees:saplings/tree_default" },
-    "tree=olive": { "model": "extratrees:saplings/tree_default" },
-    "tree=sweetgum": { "model": "extratrees:saplings/tree_default" },
-    "tree=locust": { "model": "extratrees:saplings/tree_default" },
-    "tree=pear": { "model": "extratrees:saplings/tree_default" },
-    "tree=osangeosange": { "model": "extratrees:saplings/tree_default" },
-    "tree=oldfustic": { "model": "extratrees:saplings/tree_default" },
-    "tree=brazilwood": { "model": "extratrees:saplings/tree_default" },
-    "tree=logwood": { "model": "extratrees:saplings/tree_default" },
-    "tree=rosewood": { "model": "extratrees:saplings/tree_default" },
-    "tree=purpleheart": { "model": "extratrees:saplings/tree_default" },
-    "tree=iroko": { "model": "extratrees:saplings/tree_default" },
-    "tree=gingko": { "model": "extratrees:saplings/tree_default" },
-    "tree=brazilnut": { "model": "extratrees:saplings/tree_default" },
-    "tree=rosegum": { "model": "extratrees:saplings/tree_default" },
-    "tree=swampgum": { "model": "extratrees:saplings/tree_default" },
-    "tree=box": { "model": "extratrees:saplings/tree_default" },
-    "tree=clove": { "model": "extratrees:saplings/tree_default" },
-    "tree=coffee": { "model": "extratrees:saplings/tree_default" },
-    "tree=monkeypuzzle": { "model": "extratrees:saplings/tree_default" },
-    "tree=rainbowgum": { "model": "extratrees:saplings/tree_default" },
-    "tree=pinkivory": { "model": "extratrees:saplings/tree_default" },
-    
-    
-    "tree=blackcurrant": { "model": "extratrees:saplings/tree_shrub" },
-    "tree=redcurrant": { "model": "extratrees:saplings/tree_shrub" },
-    "tree=blackberry": { "model": "extratrees:saplings/tree_shrub" },
-    "tree=raspberry": { "model": "extratrees:saplings/tree_shrub" },
-    "tree=blueberry": { "model": "extratrees:saplings/tree_shrub" },
-    "tree=cranberry": { "model": "extratrees:saplings/tree_shrub" },
-    "tree=juniper": { "model": "extratrees:saplings/tree_shrub" },
-    "tree=gooseberry": { "model": "extratrees:saplings/tree_shrub" },
-    "tree=goldenraspberry": { "model": "extratrees:saplings/tree_shrub" },
-    
-    
-    "tree=cinnamon": { "model": "extratrees:saplings/tree_default" },
-    "tree=coconut": { "model": "extratrees:saplings/tree_default" },
-    "tree=cashew": { "model": "extratrees:saplings/tree_default" },
-    "tree=avacado": { "model": "extratrees:saplings/tree_default" },
-    "tree=nutmeg": { "model": "extratrees:saplings/tree_default" },
-    "tree=allspice": { "model": "extratrees:saplings/tree_default" },
-    "tree=chilli": { "model": "extratrees:saplings/tree_default" },
-    "tree=staranise": { "model": "extratrees:saplings/tree_default" },
-    "tree=mango": { "model": "extratrees:saplings/tree_default" },
-    "tree=starfruit": { "model": "extratrees:saplings/tree_default" },
-    "tree=candlenut": { "model": "extratrees:saplings/tree_default" }
-
+    "tree=orchardapple": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=sweetcrabapple": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=floweringcrabapple": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=prairiecrabapple": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=blackthorn": {
+      "model": "extratrees:saplings/tree_fruit"
+    },
+    "tree=cherryplum": {
+      "model": "extratrees:saplings/tree_fruit"
+    },
+    "tree=almond": {
+      "model": "extratrees:saplings/tree_fruit"
+    },
+    "tree=apricot": {
+      "model": "extratrees:saplings/tree_fruit"
+    },
+    "tree=peach": {
+      "model": "extratrees:saplings/tree_fruit"
+    },
+    "tree=nectarine": {
+      "model": "extratrees:saplings/tree_fruit"
+    },
+    "tree=wildcherry": {
+      "model": "extratrees:saplings/tree_fruit"
+    },
+    "tree=sourcherry": {
+      "model": "extratrees:saplings/tree_fruit"
+    },
+    "tree=blackcherry": {
+      "model": "extratrees:saplings/tree_fruit"
+    },
+    "tree=orange": {
+      "model": "extratrees:saplings/tree_fruit"
+    },
+    "tree=manderin": {
+      "model": "extratrees:saplings/tree_fruit"
+    },
+    "tree=satsuma": {
+      "model": "extratrees:saplings/tree_fruit"
+    },
+    "tree=tangerine": {
+      "model": "extratrees:saplings/tree_fruit"
+    },
+    "tree=lime": {
+      "model": "extratrees:saplings/tree_fruit"
+    },
+    "tree=keylime": {
+      "model": "extratrees:saplings/tree_fruit"
+    },
+    "tree=fingerlime": {
+      "model": "extratrees:saplings/tree_fruit"
+    },
+    "tree=pomelo": {
+      "model": "extratrees:saplings/tree_fruit"
+    },
+    "tree=grapefruit": {
+      "model": "extratrees:saplings/tree_fruit"
+    },
+    "tree=kumquat": {
+      "model": "extratrees:saplings/tree_fruit"
+    },
+    "tree=citron": {
+      "model": "extratrees:saplings/tree_fruit"
+    },
+    "tree=buddhahand": {
+      "model": "extratrees:saplings/tree_fruit"
+    },
+    "tree=banana": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=redbanana": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=plantain": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=hemlock": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=butternut": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=rowan": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=ash": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=alder": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=beech": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=copperbeech": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=aspen": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=yew": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=cypress": {
+      "model": "extratrees:saplings/tree_poplar"
+    },
+    "tree=douglasfir": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=hazel": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=dwarfhazel": {
+      "model": "extratrees:saplings/tree_shrub"
+    },
+    "tree=sycamore": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=whitebeam": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=hawthorn": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=pecan": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=fir": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=cedar": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=sallow": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=elm": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=elder": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=holly": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=hornbeam": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=acornoak": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=redmaple": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=balsamfir": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=loblollypine": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=olive": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=sweetgum": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=locust": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=pear": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=osangeosange": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=oldfustic": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=brazilwood": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=logwood": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=rosewood": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=purpleheart": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=iroko": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=gingko": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=brazilnut": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=rosegum": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=swampgum": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=box": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=clove": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=coffee": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=monkeypuzzle": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=rainbowgum": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=pinkivory": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=blackcurrant": {
+      "model": "extratrees:saplings/tree_shrub"
+    },
+    "tree=redcurrant": {
+      "model": "extratrees:saplings/tree_shrub"
+    },
+    "tree=blackberry": {
+      "model": "extratrees:saplings/tree_shrub"
+    },
+    "tree=raspberry": {
+      "model": "extratrees:saplings/tree_shrub"
+    },
+    "tree=blueberry": {
+      "model": "extratrees:saplings/tree_shrub"
+    },
+    "tree=cranberry": {
+      "model": "extratrees:saplings/tree_shrub"
+    },
+    "tree=juniper": {
+      "model": "extratrees:saplings/tree_shrub"
+    },
+    "tree=gooseberry": {
+      "model": "extratrees:saplings/tree_shrub"
+    },
+    "tree=goldenraspberry": {
+      "model": "extratrees:saplings/tree_shrub"
+    },
+    "tree=cinnamon": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=coconut": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=cashew": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=avacado": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=nutmeg": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=allspice": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=chilli": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=staranise": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=mango": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=starfruit": {
+      "model": "extratrees:saplings/tree_default"
+    },
+    "tree=candlenut": {
+      "model": "extratrees:saplings/tree_default"
+    }
   }
 }

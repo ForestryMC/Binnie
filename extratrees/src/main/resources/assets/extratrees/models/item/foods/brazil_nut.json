@@ -1,6 +1,6 @@
 {
-    "parent": "item/generated",
-    "textures": {
-        "layer0": "extratrees:items/food/brazil_nut"
-    }
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "extratrees:items/food/brazil_nut"
+  }
 }

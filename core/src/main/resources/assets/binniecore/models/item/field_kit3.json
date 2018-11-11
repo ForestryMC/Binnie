@@ -1,6 +1,6 @@
 {
-    "parent": "item/generated",
-    "textures": {
-        "layer0": "binniecore:items/field_kit3"
-    }
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "binniecore:items/field_kit3"
+  }
 }

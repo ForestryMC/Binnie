@@ -4,47 +4,51 @@
     "model": "cube_column"
   },
   "variants": {
-    "normal": [{}],
-    "inventory": [{}],
+    "normal": [
+      {}
+    ],
+    "inventory": [
+      {}
+    ],
     "machine_type": {
       "0": {
-        "textures":{
+        "textures": {
           "end": "extrabees:tile/alveary/alveary_mutator_top",
           "side": "extrabees:tile/alveary/alveary_mutator_side"
         }
       },
       "1": {
-        "textures":{
+        "textures": {
           "end": "extrabees:tile/alveary/alveary_frame_top",
           "side": "extrabees:tile/alveary/alveary_frame_side"
         }
       },
       "2": {
-        "textures":{
+        "textures": {
           "end": "extrabees:tile/alveary/alveary_rainshield_top",
           "side": "extrabees:tile/alveary/alveary_rainshield_side"
         }
       },
       "3": {
-        "textures":{
+        "textures": {
           "end": "extrabees:tile/alveary/alveary_lighting_top",
           "side": "extrabees:tile/alveary/alveary_lighting_side"
         }
       },
       "4": {
-        "textures":{
+        "textures": {
           "end": "extrabees:tile/alveary/alveary_stimulator_top",
           "side": "extrabees:tile/alveary/alveary_stimulator_side"
         }
       },
       "5": {
-        "textures":{
+        "textures": {
           "end": "extrabees:tile/alveary/alveary_hatchery_top",
           "side": "extrabees:tile/alveary/alveary_hatchery_side"
         }
       },
       "6": {
-        "textures":{
+        "textures": {
           "end": "extrabees:tile/alveary/alveary_transmission_top",
           "side": "extrabees:tile/alveary/alveary_transmission_side"
         }

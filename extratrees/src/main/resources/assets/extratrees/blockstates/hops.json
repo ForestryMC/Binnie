@@ -1,101 +1,101 @@
 {
-    "forge_marker": 1,
-	"variants": {
-        "age=0,half=down": { 
-		"model": "crop",
-			"textures":{
-			  "crop": "extratrees:blocks/hops/hops_stage_0_down"
-			}
-		},
-        "age=1,half=down": { 
-		"model": "crop",
-			"textures":{
-			  "crop": "extratrees:blocks/hops/hops_stage_1_down"
-			}
-		},
-        "age=2,half=down": { 
-		"model": "crop",
-			"textures":{
-			  "crop": "extratrees:blocks/hops/hops_stage_2_down"
-			}
-		},
-        "age=3,half=down": { 
-		"model": "crop",
-			"textures":{
-			  "crop": "extratrees:blocks/hops/hops_stage_3_down"
-			}
-		},
-        "age=4,half=down": { 
-		"model": "crop",
-			"textures":{
-			  "crop": "extratrees:blocks/hops/hops_stage_4_down"
-			}
-		},
-        "age=5,half=down": { 
-		"model": "crop",
-			"textures":{
-			  "crop": "extratrees:blocks/hops/hops_stage_5_down"
-			}
-		},
-        "age=6,half=down": { 
-		"model": "crop",
-			"textures":{
-			  "crop": "extratrees:blocks/hops/hops_stage_6_down"
-			}
-		},
-        "age=7,half=down": { 
-		"model": "crop",
-			"textures":{
-			  "crop": "extratrees:blocks/hops/hops_stage_7_down"
-			}
-		},
-        "age=0,half=up": { 
-		"model": "crop",
-			"textures":{
-			  "crop": "extratrees:blocks/hops/hops_stage_0_up"
-			}
-		},
-        "age=1,half=up": { 
-		"model": "crop",
-			"textures":{
-			  "crop": "extratrees:blocks/hops/hops_stage_1_up"
-			}
-		},
-        "age=2,half=up": { 
-		"model": "crop",
-			"textures":{
-			  "crop": "extratrees:blocks/hops/hops_stage_2_up"
-			}
-		},
-        "age=3,half=up": { 
-		"model": "crop",
-			"textures":{
-			  "crop": "extratrees:blocks/hops/hops_stage_3_up"
-			}
-		},
-        "age=4,half=up": { 
-		"model": "crop",
-			"textures":{
-			  "crop": "extratrees:blocks/hops/hops_stage_4_up"
-			}
-		},
-        "age=5,half=up": { 
-		"model": "crop",
-			"textures":{
-			  "crop": "extratrees:blocks/hops/hops_stage_5_up"
-			}
-		},
-        "age=6,half=up": { 
-		"model": "crop",
-			"textures":{
-			  "crop": "extratrees:blocks/hops/hops_stage_6_up"
-			}
-		},
-        "age=7,half=up": { 
-		"model": "crop",
-			"textures":{
-			  "crop": "extratrees:blocks/hops/hops_stage_7_up"
-			}
-		}
+  "forge_marker": 1,
+  "variants": {
+    "age=0,half=down": {
+      "model": "crop",
+      "textures": {
+        "crop": "extratrees:blocks/hops/hops_stage_0_down"
+      }
+    },
+    "age=1,half=down": {
+      "model": "crop",
+      "textures": {
+        "crop": "extratrees:blocks/hops/hops_stage_1_down"
+      }
+    },
+    "age=2,half=down": {
+      "model": "crop",
+      "textures": {
+        "crop": "extratrees:blocks/hops/hops_stage_2_down"
+      }
+    },
+    "age=3,half=down": {
+      "model": "crop",
+      "textures": {
+        "crop": "extratrees:blocks/hops/hops_stage_3_down"
+      }
+    },
+    "age=4,half=down": {
+      "model": "crop",
+      "textures": {
+        "crop": "extratrees:blocks/hops/hops_stage_4_down"
+      }
+    },
+    "age=5,half=down": {
+      "model": "crop",
+      "textures": {
+        "crop": "extratrees:blocks/hops/hops_stage_5_down"
+      }
+    },
+    "age=6,half=down": {
+      "model": "crop",
+      "textures": {
+        "crop": "extratrees:blocks/hops/hops_stage_6_down"
+      }
+    },
+    "age=7,half=down": {
+      "model": "crop",
+      "textures": {
+        "crop": "extratrees:blocks/hops/hops_stage_7_down"
+      }
+    },
+    "age=0,half=up": {
+      "model": "crop",
+      "textures": {
+        "crop": "extratrees:blocks/hops/hops_stage_0_up"
+      }
+    },
+    "age=1,half=up": {
+      "model": "crop",
+      "textures": {
+        "crop": "extratrees:blocks/hops/hops_stage_1_up"
+      }
+    },
+    "age=2,half=up": {
+      "model": "crop",
+      "textures": {
+        "crop": "extratrees:blocks/hops/hops_stage_2_up"
+      }
+    },
+    "age=3,half=up": {
+      "model": "crop",
+      "textures": {
+        "crop": "extratrees:blocks/hops/hops_stage_3_up"
+      }
+    },
+    "age=4,half=up": {
+      "model": "crop",
+      "textures": {
+        "crop": "extratrees:blocks/hops/hops_stage_4_up"
+      }
+    },
+    "age=5,half=up": {
+      "model": "crop",
+      "textures": {
+        "crop": "extratrees:blocks/hops/hops_stage_5_up"
+      }
+    },
+    "age=6,half=up": {
+      "model": "crop",
+      "textures": {
+        "crop": "extratrees:blocks/hops/hops_stage_6_up"
+      }
+    },
+    "age=7,half=up": {
+      "model": "crop",
+      "textures": {
+        "crop": "extratrees:blocks/hops/hops_stage_7_up"
+      }
     }
+  }
 }

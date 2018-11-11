@@ -3,48 +3,51 @@
   "defaults": {
     "model": "binniecore:machine"
   },
-
   "variants": {
-    "normal": [{}],
-    "inventory": [{}],
-    "machine_type":{
+    "normal": [
+      {}
+    ],
+    "inventory": [
+      {}
+    ],
+    "machine_type": {
       "0": {
-        "textures":{
+        "textures": {
           "texture": "extratrees:blocks/sawmill"
         }
       },
-	  "1": {
-        "textures":{
+      "1": {
+        "textures": {
           "texture": "extratrees:blocks/carpenter"
         }
       },
-	 "2": {
-        "textures":{
+      "2": {
+        "textures": {
           "texture": "extratrees:blocks/paneler"
         }
       },
-	  "3": {
-        "textures":{
+      "3": {
+        "textures": {
           "texture": "extratrees:blocks/sawmill"
         }
       },
       "4": {
-	    "textures":{
+        "textures": {
           "texture": "extratrees:blocks/press"
         }
-	  },
+      },
       "5": {
-	    "textures":{
+        "textures": {
           "texture": "extratrees:blocks/brewery"
         }
-	  },
+      },
       "6": {
-        "textures":{
+        "textures": {
           "texture": "extratrees:blocks/distillery"
         }
       },
       "7": {
-        "textures":{
+        "textures": {
           "texture": "extratrees:blocks/paneler"
         }
       },

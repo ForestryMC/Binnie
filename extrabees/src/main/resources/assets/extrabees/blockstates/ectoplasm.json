@@ -4,12 +4,16 @@
     "model": "cube_column"
   },
   "variants": {
-    "normal": [{
-      "textures":{
-        "end": "extrabees:blocks/ectoplasm",
-        "side": "extrabees:blocks/ectoplasm"
+    "normal": [
+      {
+        "textures": {
+          "end": "extrabees:blocks/ectoplasm",
+          "side": "extrabees:blocks/ectoplasm"
+        }
       }
-    }],
-    "inventory": [{}]
+    ],
+    "inventory": [
+      {}
+    ]
   }
 }

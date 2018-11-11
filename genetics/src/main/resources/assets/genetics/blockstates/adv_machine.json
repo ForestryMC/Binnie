@@ -3,13 +3,16 @@
   "defaults": {
     "model": "genetics:machine"
   },
-
   "variants": {
-    "normal": [{}],
-    "inventory": [{}],
-    "machine_type":{
+    "normal": [
+      {}
+    ],
+    "inventory": [
+      {}
+    ],
+    "machine_type": {
       "0": {
-        "textures":{
+        "textures": {
           "all": "genetics:tile/splicer"
         }
       },
