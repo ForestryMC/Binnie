@@ -108,6 +108,11 @@ class BlockMachine extends Block implements IBlockMachine, ITileEntityProvider {
 	}
 
 	@Override
+	public MachineGroup getGroup() {
+		return group;
+	}
+
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, ITooltipFlag advanced) {
 		super.addInformation(stack, player, tooltip, advanced);

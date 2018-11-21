@@ -17,7 +17,7 @@ import binnie.core.Constants;
 import binnie.core.api.genetics.IBreedingSystem;
 import binnie.core.gui.BinnieGUIHandler;
 import binnie.core.gui.IBinnieGUID;
-import binnie.core.modules.BlankModuleContainer;
+import binnie.core.modules.ModuleProvider;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.proxy.IProxyCore;
 import binnie.extrabees.genetics.BeeBreedingSystem;
@@ -37,7 +37,7 @@ import binnie.genetics.api.analyst.IAnalystManager;
 	acceptedMinecraftVersions = Constants.ACCEPTED_MINECRAFT_VERSIONS,
 	dependencies = "required-after:" + Constants.CORE_MOD_ID
 )
-public class ExtraBees extends BlankModuleContainer {
+public class ExtraBees extends ModuleProvider {
 
 	public static final String MODID = "extrabees";
 
@@ -80,16 +80,6 @@ public class ExtraBees extends BlankModuleContainer {
 	public void init(final FMLInitializationEvent evt) {
 		super.init(evt);
 		configHandler.reload(true);
-	}
-
-	@Override
-	protected void registerModules() {
-
-	}
-
-	@Override
-	public boolean isAvailable() {
-		return true;
 	}
 
 	@Override

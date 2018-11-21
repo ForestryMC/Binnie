@@ -1,4 +1,4 @@
-package binnie.extrabees.modules;
+package binnie.core.modules;
 
 public class ExtraBeesModuleUIDs {
 	public static final String CORE = "extrabees.core";

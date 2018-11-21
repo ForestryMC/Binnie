@@ -17,12 +17,12 @@ import binnie.botany.machines.BotanyMachine;
 import binnie.core.Constants;
 import binnie.core.Mods;
 import binnie.core.machines.MachineGroup;
-import binnie.core.modules.BlankModule;
+import binnie.core.modules.BinnieModule;
 import binnie.core.modules.BotanyModuleUIDs;
 import binnie.core.util.RecipeUtil;
 
 @ForestryModule(moduleID = BotanyModuleUIDs.MACHINES, containerID = Constants.BOTANY_MOD_ID, name = "Machines", unlocalizedDescription = "botany.module.machines")
-public class ModuleMachine extends BlankModule {
+public class ModuleMachine extends BinnieModule {
 	public static Block blockMachine;
 
 	public ModuleMachine() {
@@ -33,7 +33,8 @@ public class ModuleMachine extends BlankModule {
 	public void registerItemsAndBlocks() {
 		final MachineGroup machineGroup = new MachineGroup(Botany.instance, "machine", "machine", BotanyMachine.values());
 		machineGroup.setCreativeTab(Tabs.tabArboriculture);
-		blockMachine = machineGroup.getBlock();
+		machineGroup.createContent();
+		blockMachine = machineGroup.block();
 	}
 
 	@Override

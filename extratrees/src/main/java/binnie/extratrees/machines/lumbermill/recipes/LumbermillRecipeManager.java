@@ -17,7 +17,7 @@ import net.minecraft.world.World;
 
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
-import binnie.core.util.OreDictionaryUtil;
+import binnie.core.util.OreDictUtils;
 import binnie.extratrees.api.recipes.ILumbermillManager;
 import binnie.extratrees.api.recipes.ILumbermillRecipe;
 
@@ -33,7 +33,7 @@ public class LumbermillRecipeManager implements ILumbermillManager {
 			}
 		}
 
-		if (OreDictionaryUtil.hasOreName(logStack, "logWood")) {
+		if (OreDictUtils.hasOreName(logStack, "logWood")) {
 			return getRecipeWithPlanksOutput(logStack.copy(), world);
 		}
 
@@ -49,7 +49,7 @@ public class LumbermillRecipeManager implements ILumbermillManager {
 				if (recipe.matches(FAKE_CRAFT_INV, world)) {
 					ItemStack recipeOutput = recipe.getCraftingResult(FAKE_CRAFT_INV);
 					if (!recipeOutput.isEmpty()) {
-						if (OreDictionaryUtil.hasOreName(recipeOutput, "plankWood")) {
+						if (OreDictUtils.hasOreName(recipeOutput, "plankWood")) {
 							return recipeOutput;
 						}
 					}

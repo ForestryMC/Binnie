@@ -22,10 +22,10 @@ import binnie.core.Mods;
 import binnie.core.liquid.DrinkManager;
 import binnie.core.liquid.FluidType;
 import binnie.core.liquid.IFluidDefinition;
-import binnie.core.modules.BlankModule;
+import binnie.core.modules.BinnieModule;
 import binnie.core.modules.ExtraTreesModuleUIDs;
-import binnie.core.modules.ModuleManager;
-import binnie.core.util.OreDictionaryUtil;
+import binnie.core.util.ModuleManager;
+import binnie.core.util.OreDictUtils;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.alcohol.GlasswareType;
 import binnie.extratrees.alcohol.ICocktailIngredientProvider;
@@ -45,7 +45,7 @@ import binnie.extratrees.liquid.Spirit;
 import binnie.extratrees.machines.distillery.DistilleryLogic;
 
 @ForestryModule(moduleID = ExtraTreesModuleUIDs.ALCOHOL, containerID = Constants.EXTRA_TREES_MOD_ID, name = "Alcohol", unlocalizedDescription = "extratrees.module.alcohol")
-public class ModuleAlcohol extends BlankModule {
+public class ModuleAlcohol extends BinnieModule {
 	@Nullable
 	public static ItemDrink drink;
 	@Nullable
@@ -76,7 +76,6 @@ public class ModuleAlcohol extends BlankModule {
 	public void doInit() {
 		IBreweryManager breweryManager = ExtraTreesRecipeManager.breweryManager;
 		IFruitPressManager fruitPressManager = ExtraTreesRecipeManager.fruitPressManager;
-
 		if (ModuleManager.isModuleEnabled("forestry", "apiculture")) {
 			ItemStack wax = Mods.Forestry.stack("beeswax");
 			ItemStack waxCast = Mods.Forestry.stackWildcard("wax_cast");
@@ -118,23 +117,23 @@ public class ModuleAlcohol extends BlankModule {
 				for (String fermentLiquid : alcohol.getFermentationLiquid()) {
 					FluidStack fluid = Binnie.LIQUID.getFluidStack(fermentLiquid);
 					if (fluid != null) {
-						breweryManager.addRecipe(fluid, type.get());
+						breweryManager.addRecipe(fluid, type.stack());
 					}
 				}
 			}
 
-			breweryManager.addGrainRecipe(OreDictionaryUtil.GRAIN_BARLEY, Alcohol.Ale.get(), OreDictionaryUtil.HOPS);
+			breweryManager.addGrainRecipe(OreDictUtils.GRAIN_BARLEY, Alcohol.Ale.get(), OreDictUtils.HOPS);
 
-			breweryManager.addGrainRecipe(OreDictionaryUtil.GRAIN_BARLEY, Alcohol.Lager.get(), OreDictionaryUtil.HOPS, ExtraTreeItems.LAGER_YEAST.get(1));
-			breweryManager.addGrainRecipe(OreDictionaryUtil.GRAIN_ROASTED, Alcohol.Stout.get(), OreDictionaryUtil.HOPS);
-			breweryManager.addGrainRecipe(OreDictionaryUtil.GRAIN_CORN, Alcohol.CornBeer.get(), OreDictionaryUtil.HOPS);
-			breweryManager.addGrainRecipe(OreDictionaryUtil.GRAIN_RYE, Alcohol.RyeBeer.get(), OreDictionaryUtil.HOPS);
-			breweryManager.addGrainRecipe(OreDictionaryUtil.GRAIN_WHEAT, Alcohol.WheatBeer.get(), OreDictionaryUtil.HOPS);
+			breweryManager.addGrainRecipe(OreDictUtils.GRAIN_BARLEY, Alcohol.Lager.get(), OreDictUtils.HOPS, ExtraTreeItems.LAGER_YEAST.get(1));
+			breweryManager.addGrainRecipe(OreDictUtils.GRAIN_ROASTED, Alcohol.Stout.get(), OreDictUtils.HOPS);
+			breweryManager.addGrainRecipe(OreDictUtils.GRAIN_CORN, Alcohol.CornBeer.get(), OreDictUtils.HOPS);
+			breweryManager.addGrainRecipe(OreDictUtils.GRAIN_RYE, Alcohol.RyeBeer.get(), OreDictUtils.HOPS);
+			breweryManager.addGrainRecipe(OreDictUtils.GRAIN_WHEAT, Alcohol.WheatBeer.get(), OreDictUtils.HOPS);
 
-			breweryManager.addGrainRecipe(OreDictionaryUtil.GRAIN_BARLEY, Alcohol.Barley.get());
-			breweryManager.addGrainRecipe(OreDictionaryUtil.GRAIN_CORN, Alcohol.Corn.get());
-			breweryManager.addGrainRecipe(OreDictionaryUtil.GRAIN_RYE, Alcohol.Rye.get());
-			breweryManager.addGrainRecipe(OreDictionaryUtil.GRAIN_WHEAT, Alcohol.Wheat.get());
+			breweryManager.addGrainRecipe(OreDictUtils.GRAIN_BARLEY, Alcohol.Barley.get());
+			breweryManager.addGrainRecipe(OreDictUtils.GRAIN_CORN, Alcohol.Corn.get());
+			breweryManager.addGrainRecipe(OreDictUtils.GRAIN_RYE, Alcohol.Rye.get());
+			breweryManager.addGrainRecipe(OreDictUtils.GRAIN_WHEAT, Alcohol.Wheat.get());
 		}
 
 		this.addDistillery(Alcohol.Apple, Spirit.AppleBrandy, Spirit.AppleLiquor, Spirit.NeutralSpirit);
@@ -181,7 +180,7 @@ public class ModuleAlcohol extends BlankModule {
 
 
 	private <L extends IFluidDefinition & ICocktailIngredientProvider> void registerLiquids(L[] liquids) {
-		Binnie.LIQUID.createLiquids(liquids);
+		//Binnie.LIQUID.createLiquids(liquids);
 		Cocktail.registerIngredients(liquids);
 	}
 }

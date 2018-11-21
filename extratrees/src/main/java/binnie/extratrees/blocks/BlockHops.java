@@ -25,7 +25,7 @@ import net.minecraft.world.World;
 
 import net.minecraftforge.common.EnumPlantType;
 
-import binnie.extratrees.modules.ModuleCore;
+import binnie.extratrees.modules.features.ExtraTreesFeatures;
 
 public class BlockHops extends BlockCrops {
 	public static final PropertyEnum<HopsHalf> HALF = PropertyEnum.create("half", HopsHalf.class);
@@ -122,12 +122,12 @@ public class BlockHops extends BlockCrops {
 
 	@Override
 	protected Item getCrop() {
-		return ModuleCore.itemHops;
+		return ExtraTreesFeatures.HOPS_ITEM.item();
 	}
 
 	@Override
 	protected Item getSeed() {
-		return ModuleCore.itemHops;
+		return ExtraTreesFeatures.HOPS_ITEM.item();
 	}
 
 	public void placeAt(World worldIn, BlockPos lowerPos, int flags) {

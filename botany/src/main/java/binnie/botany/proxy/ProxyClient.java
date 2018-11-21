@@ -11,27 +11,31 @@ import binnie.core.models.ModelManager;
 
 @SideOnly(Side.CLIENT)
 public class ProxyClient extends Proxy implements IBotanyProxy {
-	public static final ModelManager MODEL_MANAGER = new ModelManager(Constants.BOTANY_MOD_ID);
+	private static final ModelManager MODEL_MANAGER = new ModelManager(Constants.BOTANY_MOD_ID);
 
-	@Override
-	public Item registerItem(Item item) {
-		MODEL_MANAGER.registerItemClient(item);
-		return super.registerItem(item);
+	public static ModelManager getModelManager() {
+		return MODEL_MANAGER;
 	}
 
 	@Override
-	public Block registerBlock(Block block) {
-		MODEL_MANAGER.registerBlockClient(block);
-		return super.registerBlock(block);
+	public void onRegisterBlock(Block block) {
+		getModelManager().registerBlockClient(block);
+		super.onRegisterBlock(block);
+	}
+
+	@Override
+	public void onRegisterItem(Item item) {
+		getModelManager().registerItemClient(item);
+		super.onRegisterItem(item);
 	}
 
 	@Override
 	public void registerModels() {
-		MODEL_MANAGER.registerModels();
+		getModelManager().registerModels();
 	}
 
 	@Override
 	public void registerItemAndBlockColors() {
-		MODEL_MANAGER.registerItemAndBlockColors();
+		getModelManager().registerItemAndBlockColors();
 	}
 }

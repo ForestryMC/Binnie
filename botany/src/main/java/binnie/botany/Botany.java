@@ -12,15 +12,14 @@ import binnie.botany.genetics.gui.analyst.FlowerAnalystPagePlugin;
 import binnie.botany.gui.BotanyGUI;
 import binnie.botany.network.PacketID;
 import binnie.botany.proxy.Proxy;
-import binnie.core.BinnieCore;
 import binnie.core.Constants;
 import binnie.core.gui.IBinnieGUID;
-import binnie.core.modules.BlankModuleContainer;
 import binnie.core.modules.BotanyModuleUIDs;
-import binnie.core.modules.ModuleManager;
+import binnie.core.modules.ModuleProvider;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.network.IPacketID;
 import binnie.core.proxy.IProxyCore;
+import binnie.core.util.ModuleManager;
 import binnie.genetics.api.GeneticsApi;
 import binnie.genetics.api.acclimatiser.IAcclimatiserManager;
 import binnie.genetics.api.analyst.IAnalystManager;
@@ -34,7 +33,7 @@ import binnie.genetics.api.analyst.IAnalystManager;
 		+ "after:" + Constants.GENETICS_MOD_ID + ';'
 		+ "after:" + Constants.DESIGN_MOD_ID + ';'
 )
-public class Botany extends BlankModuleContainer {
+public class Botany extends ModuleProvider {
 	public static final float AGE_CHANCE = 0.2f;
 
 	@SuppressWarnings("NullableProblems")
@@ -74,17 +73,8 @@ public class Botany extends BlankModuleContainer {
 	}
 
 	@Override
-	protected void registerModules() {
-	}
-
-	@Override
 	public IBinnieGUID[] getGUIDs() {
 		return BotanyGUI.values();
-	}
-
-	@Override
-	public Class<?>[] getConfigs() {
-		return new Class[0];
 	}
 
 	@Override
@@ -110,11 +100,6 @@ public class Botany extends BlankModuleContainer {
 	@Override
 	protected Class<? extends BinniePacketHandler> getPacketHandler() {
 		return PacketHandler.class;
-	}
-
-	@Override
-	public boolean isAvailable() {
-		return BinnieCore.isBotanyActive();
 	}
 
 	public static class PacketHandler extends BinniePacketHandler {

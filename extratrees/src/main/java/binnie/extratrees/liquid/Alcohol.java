@@ -8,14 +8,17 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
 
 import binnie.core.Constants;
+import binnie.core.features.FeatureProvider;
 import binnie.core.liquid.FluidContainerType;
 import binnie.core.liquid.FluidType;
 import binnie.core.liquid.IFluidDefinition;
+import binnie.core.modules.ExtraTreesModuleUIDs;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.alcohol.CocktailLiquid;
 import binnie.extratrees.alcohol.ICocktailIngredient;
 import binnie.extratrees.alcohol.ICocktailIngredientProvider;
 
+@FeatureProvider(containerId = Constants.EXTRA_TREES_MOD_ID, moduleID = ExtraTreesModuleUIDs.ALCOHOL)
 public enum Alcohol implements IFluidDefinition, ICocktailIngredientProvider {
 	Apple("cider.apple", 16432700, 0.3, 0.05F) {
 		@Override
@@ -139,7 +142,7 @@ public enum Alcohol implements IFluidDefinition, ICocktailIngredientProvider {
 		this.fermentationLiquid = new ArrayList<>();
 		this.fermentationSolid = "";
 		init();
-		type = new FluidType(ident, String.format("%s.fluid.%s.%s", ExtraTrees.instance.getModId(), "Alcohol", this.name()), color)
+		type = ExtraTrees.instance.registry(ExtraTreesModuleUIDs.ALCOHOL).createFluid(ident, String.format("%s.fluid.%s.%s", ExtraTrees.instance.getModId(), "Alcohol", this.name()), color)
 			.setTransparency(transparency)
 			.setTextures(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "blocks/liquids/liquid"))
 			.setPlaceHandler((type) -> type == FluidContainerType.GLASS);
@@ -179,7 +182,7 @@ public enum Alcohol implements IFluidDefinition, ICocktailIngredientProvider {
 
 	@Override
 	public FluidStack get(final int amount) {
-		return type.get(amount);
+		return type.stack(amount);
 	}
 
 

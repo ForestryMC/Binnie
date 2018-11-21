@@ -15,6 +15,10 @@ public interface IProxyCore extends IInitializable {
 
 	Block registerBlock(Block block);
 
+	void onRegisterBlock(Block block);
+
+	void onRegisterItem(Item item);
+
 	<B extends Block> void registerBlock(B block, ItemBlock itemBlock);
 
 	void registerModels();

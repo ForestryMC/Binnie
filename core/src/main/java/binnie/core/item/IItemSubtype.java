@@ -2,7 +2,7 @@ package binnie.core.item;
 
 import net.minecraft.item.ItemStack;
 
-public interface IItemEnum {
+public interface IItemSubtype {
 	boolean isActive();
 
 	String getDisplayName(ItemStack stack);

@@ -5,7 +5,7 @@ import java.util.List;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public interface IItemMiscProvider extends IItemEnum {
+public interface IItemSubtypeMisc extends IItemSubtype {
 
 	@SideOnly(Side.CLIENT)
 	void addInformation(List<String> tooltip);

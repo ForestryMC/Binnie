@@ -21,7 +21,8 @@ import forestry.api.modules.ForestryModule;
 
 import binnie.core.Constants;
 import binnie.core.item.ItemMisc;
-import binnie.core.modules.BlankModule;
+import binnie.core.modules.BinnieModule;
+import binnie.core.modules.ExtraBeesModuleUIDs;
 import binnie.extrabees.genetics.ExtraBeeDefinition;
 import binnie.extrabees.genetics.ExtraBeesFlowers;
 import binnie.extrabees.genetics.effect.ExtraBeesEffect;
@@ -37,7 +38,7 @@ import binnie.extrabees.utils.MaterialBeehive;
 import binnie.extrabees.worldgen.ExtraBeesWorldGenerator;
 
 @ForestryModule(moduleID = ExtraBeesModuleUIDs.CORE, containerID = Constants.EXTRA_BEES_MOD_ID, name = "Core", unlocalizedDescription = "extrabees.module.core", coreModule = true)
-public class ModuleCore extends BlankModule {
+public class ModuleCore extends BinnieModule {
 
 	@Nullable
 	public static Material materialBeehive;

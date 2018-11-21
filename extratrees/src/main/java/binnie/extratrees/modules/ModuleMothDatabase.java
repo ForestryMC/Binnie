@@ -19,13 +19,13 @@ import forestry.api.recipes.RecipeManagers;
 import binnie.core.Binnie;
 import binnie.core.Constants;
 import binnie.core.liquid.ManagerLiquid;
-import binnie.core.modules.BlankModule;
+import binnie.core.modules.BinnieModule;
 import binnie.core.modules.ExtraTreesModuleUIDs;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.items.ItemMothDatabase;
 
 @ForestryModule(moduleID = ExtraTreesModuleUIDs.MOTH_DATABASE, containerID = Constants.EXTRA_TREES_MOD_ID, name = "Database", unlocalizedDescription = "extratrees.module.database.moth")
-public class ModuleMothDatabase extends BlankModule {
+public class ModuleMothDatabase extends BinnieModule {
 
 	public static Item itemDictionaryLepi;
 

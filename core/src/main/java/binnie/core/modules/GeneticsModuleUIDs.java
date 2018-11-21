@@ -1,4 +1,4 @@
-package binnie.genetics.modules;
+package binnie.core.modules;
 
 public class GeneticsModuleUIDs {
 	public static final String CORE = "genetics.core";

@@ -2,13 +2,12 @@ package binnie.core.liquid;
 
 import javax.annotation.Nullable;
 import java.util.LinkedHashMap;
+import java.util.Locale;
 import java.util.Map;
 
-import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.init.Items;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
 import net.minecraftforge.client.event.TextureStitchEvent;
@@ -22,11 +21,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import forestry.core.utils.OreDictUtil;
 
-import binnie.core.BinnieCore;
 import binnie.core.Constants;
 import binnie.core.ManagerBase;
-import binnie.core.proxy.BinnieProxy;
-import binnie.core.util.Log;
 import binnie.core.util.RecipeUtil;
 
 public class ManagerLiquid extends ManagerBase {
@@ -40,40 +36,8 @@ public class ManagerLiquid extends ManagerBase {
 		this.fluids = new LinkedHashMap<>();
 	}
 
-	public void createLiquids(IFluidDefinition[] liquids) {
-		for (IFluidDefinition liquid : liquids) {
-			FluidType type = liquid.getType();
-			final BinnieFluid fluid = this.createLiquid(type);
-			if (fluid == null) {
-				Log.error("Liquid registered incorrectly - {} ", type.getIdentifier());
-			}
-		}
-	}
-
-	private BinnieFluid createLiquid(FluidType fluid) {
-		this.fluids.put(fluid.getIdentifier().toLowerCase(), fluid);
-		final BinnieFluid bFluid = new BinnieFluid(fluid);
-		FluidRegistry.registerFluid(bFluid);
-		FluidRegistry.addBucketForFluid(bFluid);
-		createBlock(bFluid);
-		return bFluid;
-	}
-
-	private static void createBlock(BinnieFluid binnieFluid) {
-		FluidType fluidType = binnieFluid.getType();
-		String name = fluidType.getIdentifier();
-
-		Block fluidBlock = fluidType.makeBlock();
-		fluidBlock.setUnlocalizedName(fluidType.getUnlocalizedName());
-		fluidBlock.setRegistryName(name);
-		BinnieProxy proxy = BinnieCore.getBinnieProxy();
-		proxy.registerBlock(fluidBlock);
-
-		ItemBlock itemBlock = new ItemBlock(fluidBlock);
-		itemBlock.setRegistryName(name);
-		proxy.registerItem(itemBlock);
-
-		BinnieCore.getBinnieProxy().registerFluidStateMapper(fluidBlock, fluidType);
+	public void addLiquid(FluidType fluidType) {
+		this.fluids.put(fluidType.getIdentifier().toLowerCase(Locale.ENGLISH), fluidType);
 	}
 
 	@Nullable

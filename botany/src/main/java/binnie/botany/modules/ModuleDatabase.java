@@ -14,11 +14,11 @@ import binnie.botany.items.ItemDatabaseBotany;
 import binnie.core.Binnie;
 import binnie.core.Constants;
 import binnie.core.liquid.ManagerLiquid;
-import binnie.core.modules.BlankModule;
+import binnie.core.modules.BinnieModule;
 import binnie.core.modules.BotanyModuleUIDs;
 
 @ForestryModule(moduleID = BotanyModuleUIDs.DATABASE, containerID = Constants.BOTANY_MOD_ID, name = "Database", unlocalizedDescription = "botany.module.database")
-public class ModuleDatabase extends BlankModule {
+public class ModuleDatabase extends BinnieModule {
 	public static ItemDatabaseBotany database;
 
 	public ModuleDatabase() {

@@ -2,8 +2,10 @@ package binnie.core.liquid;
 
 import javax.annotation.Nullable;
 import java.awt.Color;
+import java.util.Locale;
 
 import net.minecraft.block.Block;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
 
 import net.minecraftforge.fluids.Fluid;
@@ -11,24 +13,27 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
 import binnie.core.Binnie;
+import binnie.core.BinnieCore;
 import binnie.core.Constants;
+import binnie.core.features.Feature;
+import binnie.core.features.IFeatureRegistry;
+import binnie.core.proxy.BinnieProxy;
 import binnie.core.util.I18N;
 
-public class FluidType {
+public class FluidType extends Feature {
 	private ResourceLocation textureFlowing;
 	private ResourceLocation textureStill;
 	private int color;
 	private int containerColor;
 	private int transparency;
 	private String unlocalizedName;
-	private final String identifier;
-	private ContainerShowHandler showHandler = (t) -> true;
-	private ContainerPlaceHandler placeHandler = (t) -> true;
+	private ContainerShowHandler showHandler = t -> true;
+	private ContainerPlaceHandler placeHandler = t -> true;
 	private boolean flammable = false;
 	private int flammability = 0;
 
-	public FluidType(String identifier, String unlocalizedName, int color) {
-		this.identifier = "binnie." + identifier;
+	public FluidType(IFeatureRegistry registry, String identifier, String unlocalizedName, int color) {
+		super(registry, "binnie." + identifier.toLowerCase(Locale.ENGLISH));
 		this.unlocalizedName = unlocalizedName.toLowerCase();
 		this.color = color;
 		this.containerColor = color;
@@ -37,12 +42,38 @@ public class FluidType {
 		this.textureStill = texture;
 	}
 
-	public FluidType setFlammable(final boolean flammable) {
+	@Override
+	public void create() {
+		Binnie.LIQUID.addLiquid(this);
+		final BinnieFluid bFluid = new BinnieFluid(this);
+		FluidRegistry.registerFluid(bFluid);
+		FluidRegistry.addBucketForFluid(bFluid);
+		createBlock(bFluid);
+	}
+
+	private static void createBlock(BinnieFluid binnieFluid) {
+		FluidType fluidType = binnieFluid.getType();
+		String name = fluidType.getIdentifier();
+
+		Block fluidBlock = fluidType.makeBlock();
+		fluidBlock.setUnlocalizedName(fluidType.getUnlocalizedName());
+		fluidBlock.setRegistryName(name);
+		BinnieProxy proxy = BinnieCore.getBinnieProxy();
+		proxy.registerBlock(fluidBlock);
+
+		ItemBlock itemBlock = new ItemBlock(fluidBlock);
+		itemBlock.setRegistryName(name);
+		proxy.registerItem(itemBlock);
+
+		BinnieCore.getBinnieProxy().registerFluidStateMapper(fluidBlock, fluidType);
+	}
+
+	public FluidType setFlammable(boolean flammable) {
 		this.flammable = flammable;
 		return this;
 	}
 
-	public FluidType setFlammability(final int flammability) {
+	public FluidType setFlammability(int flammability) {
 		this.flammability = flammability;
 		return this;
 	}
@@ -99,21 +130,21 @@ public class FluidType {
 		return this;
 	}
 
-	public String getIdentifier() {
-		return identifier;
-	}
-
 	@Override
 	public String toString() {
 		return getDisplayName();
 	}
 
-	public FluidStack get(int amount) {
-		return Binnie.LIQUID.getFluidStack(this.getIdentifier(), amount);
+	public FluidStack stack(int amount) {
+		Fluid fluid = getFluid();
+		if (fluid == null) {
+			throw new NullPointerException("This feature has no fluid to create a stack for.");
+		}
+		return new FluidStack(fluid, amount);
 	}
 
-	public FluidStack get() {
-		return get(Fluid.BUCKET_VOLUME);
+	public FluidStack stack() {
+		return stack(Fluid.BUCKET_VOLUME);
 	}
 
 	/* COLORS */

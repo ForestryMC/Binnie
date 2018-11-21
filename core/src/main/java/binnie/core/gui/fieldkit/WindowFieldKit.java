@@ -43,6 +43,7 @@ import binnie.core.gui.minecraft.control.ControlPlayerInventory;
 import binnie.core.gui.minecraft.control.ControlSlot;
 import binnie.core.gui.resource.stylesheet.StyleSheetManager;
 import binnie.core.gui.resource.textures.StandardTexture;
+import binnie.core.modules.features.BinnieItems;
 import binnie.core.texture.BinnieCoreTexture;
 import binnie.core.util.I18N;
 
@@ -199,7 +200,7 @@ public class WindowFieldKit extends Window {
 		WindowInventory inventory = getWindowInventory();
 		if (this.isServer()) {
 			final ItemStack kit = this.getPlayer().getHeldItemMainhand();
-			if (kit.isEmpty() || !kit.getItem().equals(BinnieCore.getFieldKit())) {
+			if (kit.isEmpty() || !kit.getItem().equals(BinnieItems.FIELD_KIT.item())) {
 				return;
 			}
 			ItemStack paper = inventory.getStackInSlot(PAPER_SLOT);

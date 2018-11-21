@@ -7,11 +7,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.core.item.IItemMiscProvider;
+import binnie.core.item.IItemSubtypeMisc;
 import binnie.core.util.I18N;
-import binnie.extratrees.modules.ModuleCore;
+import binnie.extratrees.modules.features.ExtraTreesFeatures;
 
-public enum ExtraTreeItems implements IItemMiscProvider {
+public enum ExtraTreeItems implements IItemSubtypeMisc {
 	SAWDUST("sawdust"),
 	Bark("bark"),
 	PROVEN_GEAR("proven_gear"),
@@ -53,6 +53,6 @@ public enum ExtraTreeItems implements IItemMiscProvider {
 
 	@Override
 	public ItemStack get(final int i) {
-		return new ItemStack(ModuleCore.itemMisc, i, this.ordinal());
+		return ExtraTreesFeatures.MISC.stack(i, ordinal());
 	}
 }

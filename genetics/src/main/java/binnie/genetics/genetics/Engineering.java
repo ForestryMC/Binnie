@@ -11,7 +11,7 @@ import binnie.genetics.api.IItemSerum;
 import binnie.genetics.item.GeneticsItems;
 import binnie.genetics.item.ItemSerum;
 import binnie.genetics.item.ItemSerumArray;
-import binnie.genetics.modules.ModuleCore;
+import binnie.genetics.modules.features.GeneticItems;
 
 public class Engineering {
 	public static boolean isGeneAcceptor(ItemStack stack) {
@@ -25,7 +25,7 @@ public class Engineering {
 		}
 
 		int metadata = stack.getMetadata();
-		return item == ModuleCore.itemGenetics
+		return item == GeneticItems.GENETICS.item()
 			&& (metadata == GeneticsItems.EMPTY_SERUM.ordinal() || metadata == GeneticsItems.EMPTY_GENOME.ordinal());
 	}
 
@@ -56,7 +56,7 @@ public class Engineering {
 			((IItemSerum) item).addGene(stack, gene);
 		}
 
-		if (item == ModuleCore.itemGenetics) {
+		if (item == GeneticItems.GENETICS.item()) {
 			if (metadata == GeneticsItems.EMPTY_SERUM.ordinal()) {
 				return ItemSerum.create(gene);
 			} else if (metadata == GeneticsItems.EMPTY_GENOME.ordinal()) {
@@ -73,7 +73,7 @@ public class Engineering {
 				return ((IItemSerum) item).getGenes(serum);
 			}
 
-			if (item == ModuleCore.itemSequencer) {
+			if (item == GeneticItems.SEQUENCE.item()) {
 				SequencerItem sequencerItem = SequencerItem.create(serum);
 				if (sequencerItem != null) {
 					return new IGene[]{sequencerItem.getGene()};

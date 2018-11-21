@@ -1,6 +1,5 @@
 package binnie.extrabees.init;
 
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemBlock;
 
 import net.minecraftforge.oredict.OreDictionary;
@@ -48,9 +47,6 @@ public final class ItemRegister {
 		ExtraBees.proxy.registerItem(itemMisc);
 		ExtraBees.proxy.registerItem(ModuleCore.dictionaryBees);
 
-		OreDictionary.registerOre("ingotIron", Items.IRON_INGOT);
-		OreDictionary.registerOre("ingotGold", Items.GOLD_INGOT);
-		OreDictionary.registerOre("gemDiamond", Items.DIAMOND);
 
 		OreDictionary.registerOre("dyeRed", ExtraBeeItems.RED_DYE.get(1));
 		OreDictionary.registerOre("dyeYellow", ExtraBeeItems.YELLOW_DYE.get(1));

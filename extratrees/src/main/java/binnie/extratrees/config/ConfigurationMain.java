@@ -4,8 +4,8 @@ import java.io.File;
 
 import net.minecraftforge.common.config.Configuration;
 
-import binnie.core.modules.IConfigHandler;
 import binnie.core.modules.ModuleContainer;
+import binnie.core.util.IConfigHandler;
 
 public class ConfigurationMain implements IConfigHandler {
 	public static boolean alterLemon = true;

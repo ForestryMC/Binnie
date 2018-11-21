@@ -3,6 +3,8 @@ package binnie.design;
 import javax.annotation.Nullable;
 import java.util.Objects;
 
+import net.minecraftforge.common.MinecraftForge;
+
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -12,6 +14,7 @@ import binnie.core.machines.errors.ErrorStateRegistry;
 import binnie.core.machines.inventory.ValidatorSprite;
 import binnie.design.api.DesignAPI;
 import binnie.design.api.IDesignManager;
+import binnie.design.blocks.BlockDesign;
 import binnie.design.gui.DesignErrorCode;
 
 @Mod(
@@ -43,6 +46,7 @@ public class Design {
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
+		MinecraftForge.EVENT_BUS.register(BlockDesign.class);
 		DesignAPI.manager = designManager = new DesignerManager();
 		spritePolish = new ValidatorSprite(Constants.DESIGN_MOD_ID, "validator/polish.0", "validator/polish.1");
 		for (DesignErrorCode errorCode : DesignErrorCode.values()) {

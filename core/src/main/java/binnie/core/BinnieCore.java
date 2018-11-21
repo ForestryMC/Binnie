@@ -1,8 +1,5 @@
 package binnie.core;
 
-import com.google.common.base.Preconditions;
-
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,30 +25,23 @@ import forestry.api.modules.IModuleContainer;
 
 import binnie.core.block.TileEntityMetadata;
 import binnie.core.config.ConfigurationMain;
-import binnie.core.config.ConfigurationMods;
 import binnie.core.gui.BinnieCoreGUI;
 import binnie.core.gui.BinnieGUIHandler;
 import binnie.core.gui.IBinnieGUID;
 import binnie.core.gui.minecraft.ModuleCraftGUI;
 import binnie.core.integration.extrabees.ExtraBeesIntegration;
-import binnie.core.item.ItemFieldKit;
-import binnie.core.item.ItemGenesis;
-import binnie.core.item.ModuleItems;
-import binnie.core.liquid.FluidContainerType;
-import binnie.core.liquid.ItemFluidContainer;
-import binnie.core.machines.MachineGroup;
 import binnie.core.machines.errors.CoreErrorCode;
 import binnie.core.machines.errors.ErrorStateRegistry;
-import binnie.core.machines.storage.ModuleStorage;
 import binnie.core.models.ModelManager;
 import binnie.core.modules.ModuleContainer;
-import binnie.core.modules.ModuleManager;
+import binnie.core.modules.ModuleProvider;
 import binnie.core.network.BinnieCorePacketID;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.network.IPacketID;
 import binnie.core.proxy.BinnieProxy;
 import binnie.core.proxy.IBinnieProxy;
 import binnie.core.triggers.ModuleTrigger;
+import binnie.core.util.ModuleManager;
 
 @Mod(
 	modid = Constants.CORE_MOD_ID,
@@ -60,61 +50,21 @@ import binnie.core.triggers.ModuleTrigger;
 	acceptedMinecraftVersions = Constants.ACCEPTED_MINECRAFT_VERSIONS,
 	dependencies = "required-after:forge@[14.23.1.2594,);" +
 		"required-after:forestry@[5.8.2.367,);" +
-		"after:jei@[4.7.8,);"
+		"after:jei@[4.12.0,);"
 )
-public final class BinnieCore extends AbstractMod {
+public final class BinnieCore extends ModuleProvider {
 
 	private static final List<AbstractMod> modList = new ArrayList<>();
 	@SuppressWarnings("NullableProblems")
 	@Mod.Instance(Constants.CORE_MOD_ID)
-	private static BinnieCore instance;
+	public static BinnieCore instance;
 	@SuppressWarnings("NullableProblems")
 	@SidedProxy(clientSide = "binnie.core.proxy.BinnieProxyClient", serverSide = "binnie.core.proxy.BinnieProxyServer")
 	private static BinnieProxy proxy;
-	@Nullable
-	private static MachineGroup packageCompartment;
-	@Nullable
-	private static ItemGenesis genesis;
-	@Nullable
-	private static ItemFieldKit fieldKit;
-	@Nullable
-	private static ItemFluidContainer glassBottle;
 
 	public BinnieCore() {
 		FluidRegistry.enableUniversalBucket();
 		MinecraftForge.EVENT_BUS.register(this);
-	}
-
-	public static MachineGroup getPackageCompartment() {
-		Preconditions.checkState(packageCompartment != null, "packageCompartment has not been init");
-		return packageCompartment;
-	}
-
-	public static void setPackageCompartment(MachineGroup packageCompartment) {
-		BinnieCore.packageCompartment = packageCompartment;
-	}
-
-	public static ItemGenesis getGenesis() {
-		Preconditions.checkState(genesis != null, "genesis has not been init");
-		return genesis;
-	}
-
-	public static void setGenesis(ItemGenesis genesis) {
-		BinnieCore.genesis = genesis;
-	}
-
-	public static ItemFieldKit getFieldKit() {
-		Preconditions.checkState(fieldKit != null, "fieldKit has not been init");
-		return fieldKit;
-	}
-
-	public static ItemFluidContainer getGlassBottle() {
-		Preconditions.checkState(glassBottle != null, "glassBottle has not been init");
-		return glassBottle;
-	}
-
-	public static void setFieldKit(ItemFieldKit fieldKit) {
-		BinnieCore.fieldKit = fieldKit;
 	}
 
 	public static BinnieCore getInstance() {
@@ -133,22 +83,6 @@ public final class BinnieCore extends AbstractMod {
 		return ForestryAPI.moduleManager.isModuleEnabled("forestry", "apiculture");
 	}
 
-	public static boolean isBotanyActive() {
-		return ConfigurationMods.botany;
-	}
-
-	public static boolean isGeneticsActive() {
-		return ConfigurationMods.genetics;
-	}
-
-	public static boolean isExtraBeesActive() {
-		return ExtraBeesIntegration.isLoaded() && isApicultureActive();
-	}
-
-	public static boolean isExtraTreesActive() {
-		return ConfigurationMods.extraTrees;
-	}
-
 	static void registerMod(final AbstractMod mod) {
 		BinnieCore.modList.add(mod);
 	}
@@ -156,9 +90,7 @@ public final class BinnieCore extends AbstractMod {
 	private static List<AbstractMod> getActiveMods() {
 		final List<AbstractMod> list = new ArrayList<>();
 		for (final AbstractMod mod : BinnieCore.modList) {
-			if (mod.isAvailable()) {
-				list.add(mod);
-			}
+			list.add(mod);
 		}
 		return list;
 	}
@@ -167,20 +99,13 @@ public final class BinnieCore extends AbstractMod {
 	public void preInit(final FMLPreInitializationEvent evt) {
 		MinecraftForge.EVENT_BUS.register(Binnie.LIQUID);
 		MinecraftForge.EVENT_BUS.register(ModuleManager.class);
-		Binnie.CONFIGURATION.registerConfiguration(ConfigurationMods.class, this);
 		for (IModuleContainer container : ForestryAPI.moduleManager.getContainers()) {
 			if (!(container instanceof ModuleContainer)) {
 				continue;
 			}
 			((ModuleContainer) container).setupAPI();
 		}
-		for (FluidContainerType container : FluidContainerType.getBinnieContainers()) {
-			ItemFluidContainer item = new ItemFluidContainer(container);
-			getProxy().registerItem(item);
-			if (container == FluidContainerType.GLASS) {
-				glassBottle = item;
-			}
-		}
+		ModuleManager.loadFeatures(evt.getAsmData());
 		for (CoreErrorCode errorCode : CoreErrorCode.values()) {
 			ErrorStateRegistry.registerErrorState(errorCode);
 		}
@@ -207,8 +132,6 @@ public final class BinnieCore extends AbstractMod {
 			this.addModule(baseManager);
 		}
 		this.addModule(new ModuleCraftGUI());
-		this.addModule(new ModuleStorage());
-		this.addModule(new ModuleItems());
 		if (Loader.isModLoaded(Constants.BCLIB_MOD_ID)) {
 			this.addModule(new ModuleTrigger());
 		}
@@ -252,11 +175,6 @@ public final class BinnieCore extends AbstractMod {
 	@Override
 	protected Class<? extends BinniePacketHandler> getPacketHandler() {
 		return PacketHandler.class;
-	}
-
-	@Override
-	public boolean isAvailable() {
-		return true;
 	}
 
 	//TODO RENDERING

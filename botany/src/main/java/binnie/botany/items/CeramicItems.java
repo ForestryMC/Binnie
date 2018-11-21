@@ -9,10 +9,10 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.botany.modules.ModuleCeramic;
-import binnie.core.item.IItemMiscProvider;
+import binnie.core.item.IItemSubtypeMisc;
 import binnie.core.util.I18N;
 
-public enum CeramicItems implements IItemMiscProvider {
+public enum CeramicItems implements IItemSubtypeMisc {
 	MORTAR;
 
 	private final String name;

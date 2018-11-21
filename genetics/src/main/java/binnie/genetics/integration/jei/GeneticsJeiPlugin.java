@@ -10,7 +10,8 @@ import forestry.api.genetics.ISpeciesRoot;
 
 import binnie.core.Constants;
 import binnie.core.integration.jei.Drawables;
-import binnie.core.modules.ModuleManager;
+import binnie.core.modules.GeneticsModuleUIDs;
+import binnie.core.util.ModuleManager;
 import binnie.genetics.api.IItemChargeable;
 import binnie.genetics.integration.jei.database.DatabaseRecipeCategory;
 import binnie.genetics.integration.jei.database.DatabaseRecipeMaker;
@@ -34,8 +35,7 @@ import binnie.genetics.machine.GeneticMachine;
 import binnie.genetics.machine.LaboratoryMachine;
 import binnie.genetics.machine.incubator.IIncubatorRecipe;
 import binnie.genetics.machine.incubator.Incubator;
-import binnie.genetics.modules.GeneticsModuleUIDs;
-import binnie.genetics.modules.ModuleCore;
+import binnie.genetics.modules.features.GeneticItems;
 
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.IJeiHelpers;
@@ -56,7 +56,7 @@ public class GeneticsJeiPlugin implements IModPlugin {
 		if (!ModuleManager.isModuleEnabled(Constants.GENETICS_MOD_ID, GeneticsModuleUIDs.CORE)) {
 			return;
 		}
-		List<Item> chargeables = Arrays.asList(ModuleCore.itemSequencer, ModuleCore.itemSerum, ModuleCore.itemSerumArray);
+		List<Item> chargeables = Arrays.asList(GeneticItems.SEQUENCE.item(), GeneticItems.SERUM.item(), GeneticItems.SERUM_ARRAY.item());
 		ChargeableSubtypeInterpreter chargeableSubtypeInterpreter = new ChargeableSubtypeInterpreter();
 		for (Item chargeable : chargeables) {
 			subtypeRegistry.registerSubtypeInterpreter(chargeable, chargeableSubtypeInterpreter);
@@ -97,8 +97,8 @@ public class GeneticsJeiPlugin implements IModPlugin {
 		registry.addRecipeCatalyst(GeneticMachine.Inoculator.get(1), RecipeUids.INOCULATOR);
 		registry.addRecipeCatalyst(AdvGeneticMachine.Splicer.get(1), RecipeUids.SPLICER);
 		registry.addRecipeCatalyst(LaboratoryMachine.Genepool.get(1), RecipeUids.GENEPOOL);
-		registry.addRecipeCatalyst(new ItemStack(ModuleCore.database), RecipeUids.DATABASE);
-		registry.addRecipeCatalyst(new ItemStack(ModuleCore.database, 1, 1), RecipeUids.DATABASE);
+		registry.addRecipeCatalyst(GeneticItems.DATABASE.stack(), RecipeUids.DATABASE);
+		registry.addRecipeCatalyst(GeneticItems.DATABASE.stack(1, 1), RecipeUids.DATABASE);
 
 		registry.addRecipes(Incubator.getRecipes(), RecipeUids.INCUBATOR);
 		registry.addRecipes(LarvaeIncubatorRecipeMaker.create(Incubator.getLarvaeRecipe()), RecipeUids.INCUBATOR);

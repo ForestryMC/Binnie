@@ -1,7 +1,6 @@
 package binnie.core.liquid;
 
-import javax.annotation.Nullable;
-
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import net.minecraftforge.fluids.Fluid;
@@ -9,69 +8,52 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 
-import binnie.core.Mods;
+import binnie.core.BinnieCore;
+import binnie.core.Constants;
+import binnie.core.features.FeatureProvider;
+import binnie.core.features.IFeatureItem;
+import binnie.core.features.IFeatureRegistry;
+import binnie.core.modules.BinnieCoreModuleUIDs;
 import binnie.core.util.I18N;
 
+@FeatureProvider(containerId = Constants.CORE_MOD_ID, moduleID = BinnieCoreModuleUIDs.CORE)
 public enum FluidContainerType {
-	CAPSULE,
-	REFRACTORY,
-	CAN,
-	GLASS,
-	CYLINDER;
+	CAPSULE(false),
+	REFRACTORY(false),
+	CAN(false),
+	GLASS(true),
+	CYLINDER(true);
 
-	@Nullable
-	private ItemFluidContainer item;
+	private final IFeatureItem<Item> feature;
 
-	public static FluidContainerType[] getBinnieContainers() {
-		return new FluidContainerType[]{GLASS, CYLINDER};
+	FluidContainerType(boolean coreContainer) {
+		String itemName = name().toLowerCase();
+		IFeatureRegistry registry = BinnieCore.instance.registry(BinnieCoreModuleUIDs.CORE);
+		if (coreContainer) {
+			this.feature = registry.createItem(itemName, () -> new ItemFluidContainer(this));
+		} else {
+			this.feature = registry.modItem("forestry", itemName);
+		}
 	}
 
-	public int getMaxStackSize() {
-		return 16;
+	public IFeatureItem<Item> getFeature() {
+		return feature;
 	}
 
-	public String getName() {
-		return this.name().toLowerCase();
+	public String getIdentifier() {
+		return feature.getIdentifier();
 	}
 
 	public String getDisplayName() {
-		return I18N.localise("binniecore.item.container." + this.name().toLowerCase());
-	}
-
-	public void setItem(ItemFluidContainer item) {
-		this.item = item;
+		return I18N.localise("binniecore.item.container." + getIdentifier());
 	}
 
 	public ItemStack get(int amount) {
-		if (item == null) {
-			throw new IllegalArgumentException("Null container item: " + this);
-		}
-		return new ItemStack(item, amount);
+		return feature.stack(amount);
 	}
 
 	public ItemStack getEmpty() {
-		switch (this) {
-			case CAN: {
-				return Mods.Forestry.stack("can");
-			}
-			case CAPSULE: {
-				return Mods.Forestry.stack("capsule");
-			}
-			case CYLINDER:
-			case GLASS: {
-				if (item != null) {
-					return new ItemStack(item);
-				} else {
-					throw new IllegalArgumentException("Null container item: " + this);
-				}
-			}
-			case REFRACTORY: {
-				return Mods.Forestry.stack("refractory");
-			}
-			default: {
-				throw new IllegalArgumentException("Unknown container: " + this);
-			}
-		}
+		return feature.stack();
 	}
 
 	public ItemStack getFilled(Fluid fluid) {

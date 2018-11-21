@@ -8,7 +8,23 @@ import net.minecraft.util.NonNullList;
 
 import net.minecraftforge.oredict.OreDictionary;
 
-public class OreDictionaryUtil {
+public class OreDictUtils {
+
+	public static final String INGOT_IRON = "ingotIron";
+	public static final String INGOT_GOLD = "ingotGold";
+
+	public static final String NUGGET_GOLD = "nuggetGold";
+
+	public static final String PANE_GLASS = "paneGlass";
+
+	public static final String GEAR_GOLD = "gearGold";
+	public static final String GEAR_IRON = "gearIron";
+	public static final String GEAR_COPPER = "gearCopper";
+	public static final String GEAR_TIN = "gearTin";
+	public static final String GEAR_BRONZE = "gearBronze";
+
+	public static final String GEM_DIAMOND = "gemDiamond";
+	public static final String GEM_EMERALD = "gemEmerald";
 
 	public static final String GRAIN_BARLEY = "seedBarley";
 	public static final String GRAIN_WHEAT = "seedWheat";
@@ -17,7 +33,11 @@ public class OreDictionaryUtil {
 	public static final String GRAIN_ROASTED = "seedRoasted";
 	public static final String HOPS = "cropHops";
 
-	private OreDictionaryUtil() {
+	public static final String PAPER = "paper";
+
+	public static final String DYE_BLACK = "dyeBlack";
+
+	private OreDictUtils() {
 
 	}
 
@@ -37,6 +57,14 @@ public class OreDictionaryUtil {
 	public static boolean hasOreId(ItemStack itemStack, int oreId) {
 		int[] oreIds = OreDictionary.getOreIDs(itemStack);
 		return contains(oreIds, oreId);
+	}
+
+	public static boolean exists(String oreName) {
+		return !getOres(oreName).isEmpty();
+	}
+
+	public static String getOrElse(String oreName, String fallback) {
+		return exists(oreName) ? oreName : fallback;
 	}
 
 	public static boolean hasOreName(ItemStack itemStack, String oreName) {

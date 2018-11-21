@@ -14,7 +14,8 @@ import binnie.core.BinnieCore;
 import binnie.core.Constants;
 import binnie.core.Mods;
 import binnie.core.machines.MachineGroup;
-import binnie.core.modules.BlankModule;
+import binnie.core.modules.BinnieModule;
+import binnie.core.modules.ExtraBeesModuleUIDs;
 import binnie.core.util.RecipeUtil;
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.circuit.AlvearySimulatorCircuitType;
@@ -24,7 +25,8 @@ import binnie.extrabees.machines.ExtraBeeMachines;
 import binnie.extrabees.machines.TileExtraBeeAlveary;
 
 @ForestryModule(moduleID = ExtraBeesModuleUIDs.ALVEARY, containerID = Constants.EXTRA_BEES_MOD_ID, name = "Alveary", unlocalizedDescription = "extrabees.module.alveary")
-public class ModuleAlveary extends BlankModule {
+public class ModuleAlveary extends BinnieModule {
+
 	public static Block blockAlveary;
 
 	public ModuleAlveary() {
@@ -36,7 +38,8 @@ public class ModuleAlveary extends BlankModule {
 		final MachineGroup machineGroup = new MachineGroup(ExtraBees.instance, "alveay", "alveary", ExtraBeeMachines.values());
 		machineGroup.setCreativeTab(Tabs.tabApiculture);
 		BinnieCore.getBinnieProxy().registerTileEntity(TileExtraBeeAlveary.class, "extrabees.tile.alveary");
-		ModuleAlveary.blockAlveary = machineGroup.getBlock();
+		machineGroup.createContent();
+		ModuleAlveary.blockAlveary = machineGroup.block();
 	}
 
 	@Override

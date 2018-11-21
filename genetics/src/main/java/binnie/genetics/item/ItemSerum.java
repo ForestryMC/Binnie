@@ -23,7 +23,7 @@ import binnie.core.util.I18N;
 import binnie.genetics.api.IItemSerum;
 import binnie.genetics.genetics.GeneItem;
 import binnie.genetics.genetics.IGeneItem;
-import binnie.genetics.modules.ModuleCore;
+import binnie.genetics.modules.features.GeneticItems;
 
 public class ItemSerum extends ItemGene implements IItemSerum {
 	public ItemSerum() {
@@ -32,7 +32,7 @@ public class ItemSerum extends ItemGene implements IItemSerum {
 	}
 
 	public static ItemStack create(final IGene gene) {
-		final ItemStack item = new ItemStack(ModuleCore.itemSerum);
+		final ItemStack item = GeneticItems.SERUM.stack(1);
 		item.setItemDamage(item.getMaxDamage());
 		final GeneItem seq = new GeneItem(gene);
 		seq.writeToItem(item);

@@ -1,6 +1,9 @@
 package binnie.extratrees;
 
+import net.minecraft.item.Item;
+
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.oredict.OreDictionary;
 
 import net.minecraftforge.fml.common.Mod;
@@ -8,16 +11,20 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import forestry.api.lepidopterology.ButterflyManager;
 
 import binnie.core.Binnie;
-import binnie.core.BinnieCore;
 import binnie.core.Constants;
 import binnie.core.api.genetics.IBreedingSystem;
+import binnie.core.features.IFeatureItem;
 import binnie.core.gui.IBinnieGUID;
+import binnie.core.liquid.FluidContainerType;
+import binnie.core.liquid.ItemFluidContainer;
 import binnie.core.machines.errors.ErrorStateRegistry;
-import binnie.core.modules.BlankModuleContainer;
+import binnie.core.modules.ModuleProvider;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.proxy.IProxyCore;
 import binnie.extratrees.config.ConfigurationMain;
@@ -41,7 +48,7 @@ import binnie.genetics.api.analyst.IAnalystManager;
 	dependencies = "required-after:" + Constants.CORE_MOD_ID + ';'
 		+ "after:" + Constants.DESIGN_MOD_ID + ';'
 )
-public class ExtraTrees extends BlankModuleContainer {
+public class ExtraTrees extends ModuleProvider {
 
 	@SuppressWarnings("NullableProblems")
 	@Mod.Instance(Constants.EXTRA_TREES_MOD_ID)
@@ -77,9 +84,16 @@ public class ExtraTrees extends BlankModuleContainer {
 		for (ExtraTreesErrorCode errorCode : ExtraTreesErrorCode.values()) {
 			ErrorStateRegistry.registerErrorState(errorCode);
 		}
+	}
 
-		for (Juice juice : Juice.values()) {
-			OreDictionary.registerOre(juice.getOreDict(), BinnieCore.getGlassBottle().getContainer(juice.getType()));
+	@SubscribeEvent(priority = EventPriority.LOW)
+	public void onRegisterItem(RegistryEvent.Register<Item> event) {
+		IFeatureItem glassFeature = FluidContainerType.GLASS.getFeature();
+		if (glassFeature.hasItem()) {
+			ItemFluidContainer container = (ItemFluidContainer) glassFeature.item();
+			for (Juice juice : Juice.values()) {
+				OreDictionary.registerOre(juice.getOreDict(), container.getContainer(juice.getType()));
+			}
 		}
 	}
 
@@ -94,17 +108,8 @@ public class ExtraTrees extends BlankModuleContainer {
 	}
 
 	@Override
-	protected void registerModules() {
-	}
-
-	@Override
 	public IBinnieGUID[] getGUIDs() {
 		return ExtraTreesGUID.values();
-	}
-
-	@Override
-	public Class<?>[] getConfigs() {
-		return new Class[]{ConfigurationMain.class};
 	}
 
 	@Override
@@ -125,11 +130,6 @@ public class ExtraTrees extends BlankModuleContainer {
 	@Override
 	protected Class<? extends BinniePacketHandler> getPacketHandler() {
 		return PacketHandler.class;
-	}
-
-	@Override
-	public boolean isAvailable() {
-		return BinnieCore.isExtraTreesActive();
 	}
 
 	public static class PacketHandler extends BinniePacketHandler {

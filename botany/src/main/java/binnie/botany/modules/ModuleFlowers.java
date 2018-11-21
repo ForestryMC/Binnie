@@ -55,14 +55,14 @@ import binnie.core.Binnie;
 import binnie.core.BinnieCore;
 import binnie.core.Constants;
 import binnie.core.api.genetics.IBreedingSystem;
-import binnie.core.modules.BlankModule;
+import binnie.core.modules.BinnieModule;
 import binnie.core.modules.BotanyModuleUIDs;
-import binnie.core.modules.ModuleManager;
+import binnie.core.util.ModuleManager;
 import binnie.core.util.RecipeUtil;
 import binnie.core.util.TileUtil;
 
 @ForestryModule(moduleID = BotanyModuleUIDs.FLOWERS, containerID = Constants.BOTANY_MOD_ID, name = "Flowers", unlocalizedDescription = "botany.module.flowers")
-public class ModuleFlowers extends BlankModule {
+public class ModuleFlowers extends BinnieModule {
 	public static final AlleleEffectNone alleleEffectNone = new AlleleEffectNone();
 	@Nullable
 	public static Item botanistBackpack;

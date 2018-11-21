@@ -11,11 +11,11 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.core.item.IItemMiscProvider;
+import binnie.core.item.IItemSubtypeMisc;
 import binnie.core.util.I18N;
 import binnie.extrabees.modules.ModuleCore;
 
-public enum ExtraBeeItems implements IItemMiscProvider {
+public enum ExtraBeeItems implements IItemSubtypeMisc {
 
 	SCENTED_GEAR("scented_gear"),
 	DIAMOND_SHARD("diamond_shard") {

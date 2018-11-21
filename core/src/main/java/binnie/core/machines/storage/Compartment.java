@@ -5,18 +5,18 @@ import java.util.function.Supplier;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 
-import binnie.core.BinnieCore;
 import binnie.core.machines.IMachineType;
 import binnie.core.machines.MachinePackage;
 import binnie.core.machines.TileEntityMachine;
+import binnie.core.modules.features.StorageMachines;
 
-enum Compartment implements IMachineType {
-	Compartment(StandardCompartment.PackageCompartment::new),
-	CompartmentCopper(StandardCompartment.PackageCompartmentCopper::new),
-	CompartmentBronze(StandardCompartment.PackageCompartmentBronze::new),
-	CompartmentIron(StandardCompartment.PackageCompartmentIron::new),
-	CompartmentGold(StandardCompartment.PackageCompartmentGold::new),
-	CompartmentDiamond(StandardCompartment.PackageCompartmentDiamond::new);
+public enum Compartment implements IMachineType {
+	COMPARTMENT(StandardCompartment.PackageCompartment::new),
+	COMPARTMENT_COPPER(StandardCompartment.PackageCompartmentCopper::new),
+	COMPARTMENT_BRONZE(StandardCompartment.PackageCompartmentBronze::new),
+	COMPARTMENT_IRON(StandardCompartment.PackageCompartmentIron::new),
+	COMPARTMENT_GOLD(StandardCompartment.PackageCompartmentGold::new),
+	COMPARTMENT_DIAMOND(StandardCompartment.PackageCompartmentDiamond::new);
 
 	private final Supplier<MachinePackage> supplier;
 
@@ -30,7 +30,7 @@ enum Compartment implements IMachineType {
 	}
 
 	public ItemStack get(final int i) {
-		return new ItemStack(BinnieCore.getPackageCompartment().getBlock(), i, this.ordinal());
+		return new ItemStack(StorageMachines.COMPARTMENT.block(), i, this.ordinal());
 	}
 
 	public abstract static class PackageCompartment extends MachinePackage {

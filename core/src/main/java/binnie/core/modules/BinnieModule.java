@@ -1,39 +1,30 @@
 package binnie.core.modules;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
+import com.google.common.collect.ImmutableSet;
 
-@Retention(RetentionPolicy.RUNTIME)
-public @interface BinnieModule {
+import java.util.Set;
 
-	/**
-	 * @return Unique identifier for the module, no spaces!
-	 */
-	String moduleID();
+import net.minecraft.util.ResourceLocation;
 
-	/**
-	 * @return True if this is a core module.
-	 */
-	boolean coreModule() default false;
+import forestry.api.modules.IForestryModule;
 
-	/**
-	 * @return The unique identifier of the module container.
-	 */
-	String moduleContainerID();
+public class BinnieModule implements IForestryModule {
 
-	/**
-	 * @return Nice and readable module name.
-	 */
-	String name();
+	private final ResourceLocation parent;
 
-	/**
-	 * @return Version of the module, if any.
-	 */
-	String version() default "";
+	public BinnieModule(String container, String module) {
+		this.parent = new ResourceLocation(container, module);
+	}
 
-	/**
-	 * @return Localization key for a short description what the module does.
-	 */
-	String unlocalizedDescription() default "";
+	public void onFeatureCreation() {
+	}
 
+	public void afterFeatureRegistartion() {
+
+	}
+
+	@Override
+	public Set<ResourceLocation> getDependencyUids() {
+		return ImmutableSet.of(parent);
+	}
 }

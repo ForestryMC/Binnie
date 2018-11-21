@@ -9,7 +9,7 @@ import net.minecraftforge.fluids.FluidUtil;
 import binnie.core.Constants;
 import binnie.core.integration.jei.Drawables;
 import binnie.core.modules.ExtraTreesModuleUIDs;
-import binnie.core.modules.ModuleManager;
+import binnie.core.util.ModuleManager;
 import binnie.extratrees.blocks.decor.FenceDescription;
 import binnie.extratrees.blocks.decor.FenceType;
 import binnie.extratrees.integration.jei.brewery.BreweryRecipeCategory;

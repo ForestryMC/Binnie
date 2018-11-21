@@ -40,8 +40,8 @@ import binnie.botany.modules.ModuleFlowers;
 import binnie.botany.modules.ModuleGardening;
 import binnie.core.Constants;
 import binnie.core.modules.BotanyModuleUIDs;
-import binnie.core.modules.ModuleManager;
 import binnie.core.util.I18N;
+import binnie.core.util.ModuleManager;
 
 public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 	public static final PropertyEnum<EnumMoisture> MOISTURE = PropertyEnum.create("moisture", EnumMoisture.class);

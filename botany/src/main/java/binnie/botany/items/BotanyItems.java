@@ -9,10 +9,10 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.botany.modules.ModuleGardening;
-import binnie.core.item.IItemMiscProvider;
+import binnie.core.item.IItemSubtypeMisc;
 import binnie.core.util.I18N;
 
-public enum BotanyItems implements IItemMiscProvider {
+public enum BotanyItems implements IItemSubtypeMisc {
 	POWDER_ASH,
 	POWDER_PULP,
 	POWDER_MULCH,

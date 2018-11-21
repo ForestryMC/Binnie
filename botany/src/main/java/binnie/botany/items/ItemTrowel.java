@@ -37,7 +37,7 @@ import binnie.botany.core.BotanyCore;
 import binnie.botany.modules.ModuleFlowers;
 import binnie.core.Constants;
 import binnie.core.modules.BotanyModuleUIDs;
-import binnie.core.modules.ModuleManager;
+import binnie.core.util.ModuleManager;
 
 public class ItemTrowel extends Item implements IItemModelRegister {
 	protected final ToolMaterial theToolMaterial;

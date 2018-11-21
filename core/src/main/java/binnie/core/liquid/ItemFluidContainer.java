@@ -41,12 +41,11 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister {
 	public ItemFluidContainer(FluidContainerType container) {
 		super(0, false);
 		this.container = container;
-		container.setItem(this);
-		this.maxStackSize = container.getMaxStackSize();
+		this.maxStackSize = 16;
 		this.setHasSubtypes(true);
-		this.setUnlocalizedName("container" + container.getName());
+		this.setUnlocalizedName("container" + container.getIdentifier());
 		this.setCreativeTab(CreativeTabs.MATERIALS);
-		setRegistryName(container.getName());
+		setRegistryName(container.getIdentifier());
 	}
 
 	@Override
@@ -87,7 +86,7 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister {
 	public ItemStack getContainer(FluidType type) {
 		ItemStack itemStack = new ItemStack(this);
 		IFluidHandler fluidHandler = new FluidHandlerItemBinnie(itemStack, container);
-		FluidStack fluidStack = type.get();
+		FluidStack fluidStack = type.stack();
 		if (fluidStack == null) {
 			return container.getEmpty();
 		}

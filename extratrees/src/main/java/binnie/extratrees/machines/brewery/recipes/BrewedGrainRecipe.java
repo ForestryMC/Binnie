@@ -16,7 +16,7 @@ import net.minecraftforge.fluids.FluidStack;
 import binnie.core.Binnie;
 import binnie.core.liquid.ManagerLiquid;
 import binnie.core.util.FluidStackUtil;
-import binnie.core.util.OreDictionaryUtil;
+import binnie.core.util.OreDictUtils;
 import binnie.extratrees.api.recipes.IBreweryCrafting;
 import binnie.extratrees.api.recipes.IBreweryRecipe;
 
@@ -86,7 +86,7 @@ public class BrewedGrainRecipe implements IBreweryRecipe {
 		if (itemStack.isEmpty()) {
 			return ingredientOreName == null;
 		}
-		return ingredientOreName != null && OreDictionaryUtil.hasOreName(itemStack, ingredientOreName);
+		return ingredientOreName != null && OreDictUtils.hasOreName(itemStack, ingredientOreName);
 	}
 
 	@Override
@@ -94,17 +94,17 @@ public class BrewedGrainRecipe implements IBreweryRecipe {
 		if (ingredientOreName == null) {
 			return Collections.emptyList();
 		}
-		return OreDictionaryUtil.getOres(ingredientOreName);
+		return OreDictUtils.getOres(ingredientOreName);
 	}
 
 	@Override
 	public boolean isGrain(ItemStack itemStack) {
-		return !itemStack.isEmpty() && OreDictionaryUtil.hasOreName(itemStack, grainOreName);
+		return !itemStack.isEmpty() && OreDictUtils.hasOreName(itemStack, grainOreName);
 	}
 
 	@Override
 	public List<ItemStack> getGrains() {
-		return OreDictionaryUtil.getOres(grainOreName);
+		return OreDictUtils.getOres(grainOreName);
 	}
 
 	@Override

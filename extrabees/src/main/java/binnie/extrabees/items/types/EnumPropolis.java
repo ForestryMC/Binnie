@@ -8,12 +8,12 @@ import net.minecraftforge.fluids.FluidStack;
 
 import forestry.api.recipes.RecipeManagers;
 
-import binnie.core.item.IItemMiscProvider;
+import binnie.core.item.IItemSubtypeMisc;
 import binnie.core.util.I18N;
 import binnie.extrabees.modules.ModuleCore;
 import binnie.extrabees.utils.Utils;
 
-public enum EnumPropolis implements IItemMiscProvider {
+public enum EnumPropolis implements IItemSubtypeMisc {
 	WATER(2405321, 12762791, "Water"),
 	OIL(1519411, 12762791, "oil"),
 	FUEL(10718482, 12762791, "fuel"),
@@ -57,7 +57,7 @@ public enum EnumPropolis implements IItemMiscProvider {
 		}
 	}
 
-	public int getSpriteColour(int renderPass) {
+	public int getColor(int renderPass) {
 		if (renderPass == 0) {
 			return primaryColor;
 		}

@@ -18,6 +18,6 @@ public class ItemPropolis extends ItemMisc<EnumPropolis> implements IColoredItem
 	@Override
 	public int getColorFromItemstack(final ItemStack itemStack, final int tintIndex) {
 		EnumPropolis type = EnumPropolis.get(itemStack);
-		return type.getSpriteColour(tintIndex);
+		return type.getColor(tintIndex);
 	}
 }

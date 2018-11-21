@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 import binnie.genetics.integration.jei.GeneticsJeiPlugin;
 import binnie.genetics.item.GeneticsItems;
 import binnie.genetics.machine.sequencer.SequencerLogic;
-import binnie.genetics.modules.ModuleCore;
+import binnie.genetics.modules.features.GeneticItems;
 
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IDrawableAnimated;
@@ -37,8 +37,8 @@ public class SequencerRecipeWrapper implements IRecipeWrapper {
 	public void getIngredients(IIngredients ingredients) {
 		ingredients.setInputs(ItemStack.class, Arrays.asList(
 			input,
-			GeneticsItems.FluorescentDye.get(1),
-			new ItemStack(ModuleCore.database)
+			GeneticItems.GENETICS.stack(GeneticsItems.FluorescentDye),
+			GeneticItems.DATABASE.stack()
 		));
 
 		ingredients.setOutput(ItemStack.class, GeneticsItems.EmptySequencer.get(1));

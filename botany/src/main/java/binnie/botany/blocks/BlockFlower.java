@@ -52,7 +52,7 @@ import binnie.botany.modules.ModuleFlowers;
 import binnie.botany.network.PacketID;
 import binnie.botany.tile.FlowerRenderInfo;
 import binnie.botany.tile.TileEntityFlower;
-import binnie.core.BinnieCore;
+import binnie.core.modules.features.BinnieItems;
 import binnie.core.network.packet.MessageNBT;
 import binnie.core.util.TileUtil;
 
@@ -85,7 +85,7 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		ItemStack heldItem = player.getHeldItemMainhand();
-		if (heldItem.isEmpty() || heldItem.getItem() != BinnieCore.getFieldKit() || !player.isSneaking()) {
+		if (heldItem.isEmpty() || heldItem.getItem() != BinnieItems.FIELD_KIT.item() || !player.isSneaking()) {
 			return false;
 		}
 		if (world.isRemote) {
@@ -107,7 +107,7 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 		NBTTagCompound info = new NBTTagCompound();
 		info.setString("Species", flowerGenome.getPrimary().getUID());
 		info.setString("Species2", flowerGenome.getSecondary().getUID());
-		info.setFloat("Age", flower.getAge() / flowerGenome.getLifespan());
+		info.setFloat("Age", (float) flower.getAge() / (float) flowerGenome.getLifespan());
 		info.setShort("Colour", (short) flowerGenome.getPrimaryColor().getID());
 		info.setShort("Colour2", (short) flowerGenome.getSecondaryColor().getID());
 		info.setBoolean("Wilting", flower.isWilted());

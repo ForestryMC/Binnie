@@ -73,32 +73,31 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
 	}
 
 	@SubscribeEvent
-	public void onClick(final PlayerInteractEvent.RightClickBlock event) {
+	public static void onClick(final PlayerInteractEvent.RightClickBlock event) {
 		if (event.getHand() != EnumHand.MAIN_HAND) {
 			return;
 		}
-		final World world = event.getWorld();
-		final EntityPlayer player = event.getEntityPlayer();
-		final BlockPos pos = event.getPos();
-		if (!(world.getBlockState(pos).getBlock() instanceof BlockDesign)) {
+		World world = event.getWorld();
+		EntityPlayer player = event.getEntityPlayer();
+		BlockPos pos = event.getPos();
+		IBlockState state = world.getBlockState(pos);
+		if (!(state.getBlock() instanceof BlockDesign)) {
 			return;
 		}
-		final BlockDesign blockC = (BlockDesign) world.getBlockState(pos).getBlock();
-		final ItemStack item = player.getHeldItemMainhand();
-		if (item.isEmpty()) {
+		BlockDesign blockDesign = (BlockDesign) state.getBlock();
+		ItemStack stack = player.getHeldItemMainhand();
+		if (stack.isEmpty()) {
 			return;
 		}
-		if (!(item.getItem() instanceof IToolHammer)) {
+		Item item = stack.getItem();
+		if (!(item instanceof IToolHammer) || !((IToolHammer) item).isActive(stack)) {
 			return;
 		}
-		if (!((IToolHammer) item.getItem()).isActive(item)) {
-			return;
-		}
-		final DesignBlock block = blockC.getCarpentryBlock(world, pos);
-		final TileEntityMetadata tile = TileUtil.getTile(world, pos, TileEntityMetadata.class);
+		DesignBlock carpentryBlock = blockDesign.getCarpentryBlock(world, pos);
+		TileEntityMetadata tile = TileUtil.getTile(world, pos, TileEntityMetadata.class);
 		if (tile != null && event.getFace() != null) {
-			block.rotate(event.getFace(), item, player, world, pos);
-			final int meta = block.getBlockMetadata(blockC.getDesignSystem());
+			carpentryBlock.rotate(event.getFace(), stack, player, world, pos);
+			int meta = carpentryBlock.getBlockMetadata(blockDesign.getDesignSystem());
 			tile.setTileMetadata(meta, true);
 		}
 	}

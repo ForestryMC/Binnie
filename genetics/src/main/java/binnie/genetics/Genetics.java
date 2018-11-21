@@ -14,11 +14,10 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import forestry.api.arboriculture.TreeManager;
 
 import binnie.core.Binnie;
-import binnie.core.BinnieCore;
 import binnie.core.Constants;
 import binnie.core.gui.IBinnieGUID;
 import binnie.core.machines.errors.ErrorStateRegistry;
-import binnie.core.modules.BlankModuleContainer;
+import binnie.core.modules.ModuleProvider;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.network.IPacketID;
 import binnie.core.proxy.IProxyCore;
@@ -47,7 +46,7 @@ import binnie.genetics.proxy.Proxy;
 	acceptedMinecraftVersions = Constants.ACCEPTED_MINECRAFT_VERSIONS,
 	dependencies = "required-after:" + Constants.CORE_MOD_ID
 )
-public class Genetics extends BlankModuleContainer {
+public class Genetics extends ModuleProvider {
 	@Mod.Instance(Constants.GENETICS_MOD_ID)
 	public static Genetics instance;
 	@SidedProxy(clientSide = "binnie.genetics.proxy.ProxyClient", serverSide = "binnie.genetics.proxy.ProxyServer")
@@ -123,10 +122,6 @@ public class Genetics extends BlankModuleContainer {
 	}
 
 	@Override
-	protected void registerModules() {
-	}
-
-	@Override
 	public IBinnieGUID[] getGUIDs() {
 		return GeneticsGUI.values();
 	}
@@ -154,11 +149,6 @@ public class Genetics extends BlankModuleContainer {
 	@Override
 	protected Class<? extends BinniePacketHandler> getPacketHandler() {
 		return PacketHandler.class;
-	}
-
-	@Override
-	public boolean isAvailable() {
-		return BinnieCore.isGeneticsActive();
 	}
 
 	public static class PacketHandler extends BinniePacketHandler {

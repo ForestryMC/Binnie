@@ -8,10 +8,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.core.item.IItemMiscProvider;
-import binnie.genetics.modules.ModuleCore;
+import binnie.core.item.IItemSubtypeMisc;
+import binnie.genetics.modules.features.GeneticItems;
 
-public enum GeneticsItems implements IItemMiscProvider {
+public enum GeneticsItems implements IItemSubtypeMisc {
 	LaboratoryCasing("Reinforced Casing", "casing_iron"),
 	DNADye("DNA Dye", "dna_dye"),
 	FluorescentDye("Fluorescent Dye", "dye_fluor"),
@@ -49,7 +49,7 @@ public enum GeneticsItems implements IItemMiscProvider {
 
 	@Override
 	public ItemStack get(final int size) {
-		return new ItemStack(ModuleCore.itemGenetics, size, this.ordinal());
+		return GeneticItems.GENETICS.stack(this);
 	}
 
 	public ItemStack get(Item itemGenetics, final int size) {

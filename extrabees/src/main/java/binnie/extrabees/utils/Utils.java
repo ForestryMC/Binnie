@@ -47,6 +47,7 @@ public class Utils {
 		return ForgeRegistries.BLOCKS.containsKey(key) ? ForgeRegistries.BLOCKS.getValue(key) : null;
 	}
 
+	@Nullable
 	private static Item getModItem(String mod, String name) {
 		ResourceLocation key = new ResourceLocation(mod, name);
 		return ForgeRegistries.ITEMS.containsKey(key) ? ForgeRegistries.ITEMS.getValue(key) : null;
@@ -61,6 +62,7 @@ public class Utils {
 		return null;
 	}
 
+	@Nullable
 	public static FluidStack getFluidFromName(String name, int amount) {
 		return FluidRegistry.getFluidStack(name.toLowerCase(), amount);
 	}

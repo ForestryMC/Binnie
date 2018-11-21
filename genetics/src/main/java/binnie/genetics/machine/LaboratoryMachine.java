@@ -11,7 +11,7 @@ import binnie.genetics.machine.analyser.PackageAnalyser;
 import binnie.genetics.machine.genepool.PackageGenepool;
 import binnie.genetics.machine.incubator.PackageIncubator;
 import binnie.genetics.machine.lab.PackageLabMachine;
-import binnie.genetics.modules.ModuleMachine;
+import binnie.genetics.modules.features.GeneticMachines;
 
 public enum LaboratoryMachine implements IMachineType {
 	LabMachine(PackageLabMachine::new),
@@ -31,7 +31,7 @@ public enum LaboratoryMachine implements IMachineType {
 		return supplier;
 	}
 
-	public ItemStack get(final int amount) {
-		return new ItemStack(ModuleMachine.getPackageLabMachine().getBlock(), amount, this.ordinal());
+	public ItemStack get(int amount) {
+		return GeneticMachines.LAB_MACHINE.stack(amount, ordinal());
 	}
 }

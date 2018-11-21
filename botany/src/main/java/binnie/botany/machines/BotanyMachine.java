@@ -11,7 +11,7 @@ import binnie.core.Constants;
 import binnie.core.machines.IMachineType;
 import binnie.core.machines.MachinePackage;
 import binnie.core.modules.BotanyModuleUIDs;
-import binnie.core.modules.ModuleManager;
+import binnie.core.util.ModuleManager;
 
 public enum BotanyMachine implements IMachineType {
 	Tileworker(() -> {

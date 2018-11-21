@@ -18,10 +18,10 @@ import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
 import forestry.api.core.Tabs;
 
-import binnie.core.item.IItemMiscProvider;
+import binnie.core.item.IItemSubtypeMisc;
 
 public class ItemETFood extends ItemFood implements IItemModelRegister {
-	static final IItemMiscProvider[] items = Food.VALUES;
+	static final IItemSubtypeMisc[] items = Food.VALUES;
 
 	public ItemETFood() {
 		super(0, 0.0f, false);
@@ -34,7 +34,7 @@ public class ItemETFood extends ItemFood implements IItemModelRegister {
 	@Override
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
 		if (this.isInCreativeTab(tab)) {
-			for (IItemMiscProvider item : ItemETFood.items) {
+			for (IItemSubtypeMisc item : ItemETFood.items) {
 				if (item.isActive()) {
 					items.add(this.getStack(item, 1));
 				}
@@ -42,31 +42,31 @@ public class ItemETFood extends ItemFood implements IItemModelRegister {
 		}
 	}
 
-	private IItemMiscProvider getItem(final int damage) {
+	private IItemSubtypeMisc getItem(final int damage) {
 		return (damage >= ItemETFood.items.length) ? ItemETFood.items[0] : ItemETFood.items[damage];
 	}
 
-	public ItemStack getStack(IItemMiscProvider type, int size) {
+	public ItemStack getStack(IItemSubtypeMisc type, int size) {
 		return new ItemStack(this, size, type.ordinal());
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		IItemMiscProvider item = this.getItem(stack.getItemDamage());
+		IItemSubtypeMisc item = this.getItem(stack.getItemDamage());
 		item.addInformation(tooltip);
 	}
 
 	@Override
 	public String getItemStackDisplayName(ItemStack itemStack) {
-		IItemMiscProvider item = this.getItem(itemStack.getItemDamage());
+		IItemSubtypeMisc item = this.getItem(itemStack.getItemDamage());
 		return item.getDisplayName(itemStack);
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerModel(Item item, IModelManager manager) {
-		for (IItemMiscProvider provider : items) {
+		for (IItemSubtypeMisc provider : items) {
 			manager.registerItemModel(item, provider.ordinal(), "foods/" + provider.getModelPath());
 		}
 	}

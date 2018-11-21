@@ -6,10 +6,9 @@ import java.util.List;
 
 import net.minecraft.item.ItemStack;
 
-import net.minecraftforge.oredict.OreDictionary;
-
+import binnie.core.features.StackOption;
 import binnie.genetics.integration.jei.GeneticsJeiPlugin;
-import binnie.genetics.modules.ModuleCore;
+import binnie.genetics.modules.features.GeneticItems;
 
 import mezz.jei.api.recipe.IStackHelper;
 
@@ -18,9 +17,9 @@ public class PolymeriserRecipeMaker {
 		List<PolymeriserRecipeWrapper> recipes = new ArrayList<>();
 
 		List<ItemStack> inputs = Arrays.asList(
-			new ItemStack(ModuleCore.itemSequencer, 1, OreDictionary.WILDCARD_VALUE),
-			new ItemStack(ModuleCore.itemSerum, 1, OreDictionary.WILDCARD_VALUE),
-			new ItemStack(ModuleCore.itemSerumArray, 1, OreDictionary.WILDCARD_VALUE)
+			GeneticItems.SEQUENCE.stack(StackOption.WILDCARD),
+			GeneticItems.SERUM.stack(StackOption.WILDCARD),
+			GeneticItems.SERUM_ARRAY.stack(StackOption.WILDCARD)
 		);
 
 		IStackHelper stackHelper = GeneticsJeiPlugin.jeiHelpers.getStackHelper();

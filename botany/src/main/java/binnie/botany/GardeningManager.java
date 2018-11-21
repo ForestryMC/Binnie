@@ -33,7 +33,7 @@ import binnie.botany.api.genetics.IFlowerGenome;
 import binnie.botany.blocks.BlockPlant;
 import binnie.botany.blocks.BlockSoil;
 import binnie.botany.modules.ModuleGardening;
-import binnie.core.util.OreDictionaryUtil;
+import binnie.core.util.OreDictUtils;
 
 public class GardeningManager implements IGardeningManager {
 	private final Map<EnumFertiliserType, Map<ItemStack, Integer>> fertilisers = new LinkedHashMap<>();
@@ -253,7 +253,7 @@ public class GardeningManager implements IGardeningManager {
 
 	@Override
 	public boolean isWeedkiller(ItemStack heldItem) {
-		return OreDictionaryUtil.hasOreName(heldItem, "weedkiller");
+		return OreDictUtils.hasOreName(heldItem, "weedkiller");
 	}
 
 	@Override

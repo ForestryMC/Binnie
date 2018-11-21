@@ -61,9 +61,9 @@ import binnie.core.Mods;
 import binnie.core.block.ItemMetadata;
 import binnie.core.liquid.ILiquidDefinition;
 import binnie.core.models.DoublePassBakedModel;
-import binnie.core.modules.BlankModule;
+import binnie.core.modules.BinnieModule;
 import binnie.core.modules.ExtraTreesModuleUIDs;
-import binnie.core.modules.ModuleManager;
+import binnie.core.util.ModuleManager;
 import binnie.core.util.ModuleUtils;
 import binnie.core.util.RecipeUtil;
 import binnie.extratrees.ExtraTrees;
@@ -107,7 +107,7 @@ import binnie.extratrees.wood.planks.VanillaPlanks;
 	name = "Wood",
 	unlocalizedDescription = "extratrees.module.wood"
 )
-public class ModuleWood extends BlankModule {
+public class ModuleWood extends BinnieModule {
 	public static List<BlockETLog> logs = new ArrayList<>();
 	public static List<BlockETLog> logsFireproof = new ArrayList<>();
 	public static List<BlockETPlank> planks = new ArrayList<>();
@@ -486,7 +486,7 @@ public class ModuleWood extends BlankModule {
 		ForgeRegistries.RECIPES.register(new MultiFenceRecipeSize());
 		ForgeRegistries.RECIPES.register(new MultiFenceRecipeEmbedded());
 		ForgeRegistries.RECIPES.register(new MultiFenceRecipeSolid());
-		this.addSqueezer(EnumVanillaWoodType.SPRUCE, ExtraTreeLiquid.Resin, 50);
+		this.addSqueezer(EnumVanillaWoodType.SPRUCE, ExtraTreeLiquid.RESIN, 50);
 	}
 
 	private void addSqueezer(final IWoodType log, final ILiquidDefinition liquid, final int amount, final float pulpChance) {

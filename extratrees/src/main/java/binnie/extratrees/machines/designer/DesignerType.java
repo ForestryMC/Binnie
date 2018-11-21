@@ -11,7 +11,7 @@ import binnie.design.api.IDesignSystem;
 import binnie.design.api.IDesignerType;
 import binnie.design.blocks.BlockDesign;
 import binnie.extratrees.carpentry.DesignSystem;
-import binnie.extratrees.modules.ModuleCarpentry;
+import binnie.extratrees.modules.features.CarpentryBlocks;
 
 public enum DesignerType implements IDesignerType {
 	Woodworker("woodworker"),
@@ -51,13 +51,13 @@ public enum DesignerType implements IDesignerType {
 	private BlockDesign getBlock() {
 		switch (this) {
 			case GlassWorker: {
-				return ModuleCarpentry.blockStained;
+				return CarpentryBlocks.STAINED.block();
 			}
 			case Panelworker: {
-				return ModuleCarpentry.blockPanel;
+				return CarpentryBlocks.PANEL.block();
 			}
 			default: {
-				return ModuleCarpentry.blockCarpentry;
+				return CarpentryBlocks.CARPENTRY.block();
 			}
 		}
 	}

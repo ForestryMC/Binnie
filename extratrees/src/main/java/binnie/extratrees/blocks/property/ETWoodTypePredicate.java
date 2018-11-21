@@ -21,9 +21,7 @@ public class ETWoodTypePredicate implements Predicate<EnumETLog> {
 	public boolean apply(@Nullable EnumETLog woodType) {
 		if (woodType != null) {
 			if (isLog || woodType.hasProducts()) {
-				if (woodType.getMetadata() >= minWoodTypeMeta && woodType.getMetadata() <= maxWoodTypeMeta) {
-					return true;
-				}
+				return woodType.getMetadata() >= minWoodTypeMeta && woodType.getMetadata() <= maxWoodTypeMeta;
 			}
 		}
 		return false;

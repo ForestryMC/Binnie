@@ -12,11 +12,12 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.genetics.integration.jei.GeneticsJeiPlugin;
-import binnie.genetics.modules.ModuleCore;
+import binnie.genetics.modules.features.GeneticItems;
 
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IDrawableAnimated;
 import mezz.jei.api.ingredients.IIngredients;
+import mezz.jei.api.ingredients.VanillaTypes;
 import mezz.jei.api.recipe.IRecipeWrapper;
 
 public class DatabaseRecipeWrapper implements IRecipeWrapper {
@@ -44,11 +45,11 @@ public class DatabaseRecipeWrapper implements IRecipeWrapper {
 
 	@Override
 	public void getIngredients(IIngredients ingredients) {
-		ingredients.setInputs(ItemStack.class, Arrays.asList(
+		ingredients.setInputs(VanillaTypes.ITEM, Arrays.asList(
 			input,
-			new ItemStack(ModuleCore.database)
+			GeneticItems.DATABASE.stack()
 		));
 
-		ingredients.setOutputLists(ItemStack.class, Collections.singletonList(outputs));
+		ingredients.setOutputLists(VanillaTypes.ITEM, Collections.singletonList(outputs));
 	}
 }

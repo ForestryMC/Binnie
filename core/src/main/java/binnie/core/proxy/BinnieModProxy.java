@@ -39,13 +39,23 @@ public class BinnieModProxy implements IBinnieModProxy {
 	@Override
 	public Item registerItem(Item item) {
 		ForgeRegistries.ITEMS.register(item);
+		onRegisterItem(item);
 		return item;
 	}
 
 	@Override
 	public Block registerBlock(Block block) {
 		ForgeRegistries.BLOCKS.register(block);
+		onRegisterBlock(block);
 		return block;
+	}
+
+	public void onRegisterBlock(Block block) {
+		//Used to register models on client side
+	}
+
+	public void onRegisterItem(Item item) {
+		//Used to register models on client side
 	}
 
 	@Override

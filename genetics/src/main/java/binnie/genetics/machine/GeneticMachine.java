@@ -12,7 +12,7 @@ import binnie.genetics.machine.inoculator.PackageInoculator;
 import binnie.genetics.machine.isolator.PackageIsolator;
 import binnie.genetics.machine.polymeriser.PackagePolymeriser;
 import binnie.genetics.machine.sequencer.PackageSequencer;
-import binnie.genetics.modules.ModuleMachine;
+import binnie.genetics.modules.features.GeneticMachines;
 
 public enum GeneticMachine implements IMachineType {
 	Isolator(PackageIsolator::new),
@@ -31,8 +31,8 @@ public enum GeneticMachine implements IMachineType {
 		return supplier;
 	}
 
-	public ItemStack get(final int i) {
-		return new ItemStack(ModuleMachine.getPackageGenetic().getBlock(), i, this.ordinal());
+	public ItemStack get(int amount) {
+		return GeneticMachines.GENETIC.stack(amount, ordinal());
 	}
 
 	public abstract static class PackageGeneticBase extends MachinePackage {

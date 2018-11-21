@@ -14,12 +14,12 @@ import binnie.botany.items.EnumTubeMaterial;
 import binnie.botany.items.ItemInsulatedTube;
 import binnie.core.Constants;
 import binnie.core.Mods;
-import binnie.core.modules.BlankModule;
+import binnie.core.modules.BinnieModule;
 import binnie.core.modules.BotanyModuleUIDs;
 import binnie.core.util.RecipeUtil;
 
 @ForestryModule(moduleID = BotanyModuleUIDs.FARMING, containerID = Constants.BOTANY_MOD_ID, name = "Farming", unlocalizedDescription = "botany.module.farming")
-public class ModuleFarming extends BlankModule {
+public class ModuleFarming extends BinnieModule {
 	public ItemInsulatedTube insulatedTube;
 
 	public ModuleFarming() {

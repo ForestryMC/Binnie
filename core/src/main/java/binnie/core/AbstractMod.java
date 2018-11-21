@@ -6,9 +6,11 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.MinecraftForge;
 
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
@@ -32,9 +34,9 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 
-	protected abstract void registerModules();
+	protected void registerModules() {
 
-	public abstract boolean isAvailable();
+	}
 
 	public abstract String getChannel();
 
@@ -78,7 +80,6 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
 			module.preInit();
 		}
 		preInitModules(event);
-		getProxy().registerModels();
 	}
 
 	@Override
@@ -113,5 +114,10 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
 	protected final void addModule(IInitializable init) {
 		this.modules.add(init);
 		MinecraftForge.EVENT_BUS.register(init);
+	}
+
+	@SubscribeEvent
+	public void registerModels(ModelRegistryEvent event) {
+		getProxy().registerModels();
 	}
 }

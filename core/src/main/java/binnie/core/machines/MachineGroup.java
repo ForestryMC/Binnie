@@ -5,43 +5,50 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
 
-import binnie.core.AbstractMod;
 import binnie.core.Binnie;
-import binnie.core.BinnieCore;
+import binnie.core.features.FeatureBlock;
+import binnie.core.features.FeatureBlockBased;
+import binnie.core.features.IFeatureRegistry;
+import binnie.core.modules.ModuleProvider;
 
-public class MachineGroup {
-	private final AbstractMod mod;
+public class MachineGroup extends FeatureBlockBased<BlockMachine, ItemMachine> {
+	private final Map<String, MachinePackage> packages = new LinkedHashMap<>();
+	private final Map<Integer, MachinePackage> packagesID = new LinkedHashMap<>();
 	private final String uid;
-	private final Map<String, MachinePackage> packages;
-	private final Map<Integer, MachinePackage> packagesID;
-	private final BlockMachine block;
+	private final IMachineType[] types;
 
-	public MachineGroup(final AbstractMod mod, final String uid, final String blockName, final IMachineType[] types) {
-		this.packages = new LinkedHashMap<>();
-		this.packagesID = new LinkedHashMap<>();
-		this.mod = mod;
+	public MachineGroup(ModuleProvider mod, String uid, String identifier, IMachineType[] types) {
+		super(mod.registry(mod.getModId() + ".core"), identifier);
+		setBlock(new FeatureBlock<>(registry, identifier, () -> new BlockMachine(this, identifier), ItemMachine::new));
+		init();
 		this.uid = uid;
-		createPackages(types);
-		Binnie.MACHINE.registerMachineGroup(this);
-		this.block = new BlockMachine(this, blockName);
-		mod.getProxy().registerBlock(this.block);
-		Item i = mod.getProxy().registerItem(new ItemMachine(this.block));
-		for (int j = 0; j < types.length; j++) {
-			BinnieCore.getBinnieProxy().registerModel(i, j, new ModelResourceLocation(i.getRegistryName(), "machine_type=" + j));
-		}
+		this.types = types;
 	}
 
-	private void createPackages(IMachineType[] types) {
+	public MachineGroup(IFeatureRegistry registry, String uid, String identifier, IMachineType... types) {
+		super(registry, identifier);
+		setBlock(new FeatureBlock<>(registry, identifier, () -> new BlockMachine(this, identifier), ItemMachine::new));
+		init();
+		this.types = types;
+		this.uid = uid;
+	}
+
+	@Override
+	protected void create() {
+		super.create();
+		createPackages(types);
+		Binnie.MACHINE.registerMachineGroup(this);
+	}
+
+	private void createPackages(IMachineType... types) {
 		for (IMachineType type : types) {
 			MachinePackage pack = type.getSupplier().get();
 			if (pack != null) {
 				pack.assignMetadata(type.ordinal());
 				pack.setActive(true);
-				this.addPackage(pack);
+				addPackage(pack);
 			}
 		}
 	}
@@ -56,8 +63,8 @@ public class MachineGroup {
 		return this.packages.values();
 	}
 
-	public BlockMachine getBlock() {
-		return this.block;
+	public int size() {
+		return getPackages().size();
 	}
 
 	@Nullable
@@ -70,18 +77,15 @@ public class MachineGroup {
 	}
 
 	public String getUID() {
-		return this.mod.getModId() + '.' + this.uid;
+		return registry.getModId() + '.' + this.uid;
 	}
 
 	public String getShortUID() {
 		return this.uid;
 	}
 
-	public void setCreativeTab(final CreativeTabs tab) {
-		this.block.setCreativeTab(tab);
-	}
-
-	public AbstractMod getMod() {
-		return this.mod;
+	public MachineGroup setCreativeTab(final CreativeTabs tab) {
+		onBlock(block -> block.setCreativeTab(tab));
+		return this;
 	}
 }

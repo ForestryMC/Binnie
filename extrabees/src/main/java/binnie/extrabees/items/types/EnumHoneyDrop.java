@@ -9,12 +9,12 @@ import net.minecraftforge.fluids.FluidStack;
 
 import forestry.api.recipes.RecipeManagers;
 
-import binnie.core.item.IItemMiscProvider;
+import binnie.core.item.IItemSubtypeMisc;
 import binnie.core.util.I18N;
 import binnie.extrabees.modules.ModuleCore;
 import binnie.extrabees.utils.Utils;
 
-public enum EnumHoneyDrop implements IItemMiscProvider {
+public enum EnumHoneyDrop implements IItemSubtypeMisc {
 
 	ENERGY(10242418, 14905713, ""),
 	ACID(4961601, 4841020, "acid"),

@@ -4,11 +4,15 @@ import net.minecraft.util.ResourceLocation;
 
 import net.minecraftforge.fluids.FluidStack;
 
+import binnie.core.Constants;
+import binnie.core.features.FeatureProvider;
 import binnie.core.liquid.FluidContainerType;
 import binnie.core.liquid.FluidType;
 import binnie.core.liquid.IFluidDefinition;
+import binnie.core.modules.GeneticsModuleUIDs;
 import binnie.genetics.Genetics;
 
+@FeatureProvider(containerId = Constants.GENETICS_MOD_ID, moduleID = GeneticsModuleUIDs.CORE)
 public enum GeneticLiquid implements IFluidDefinition {
 	GrowthMedium("growth.medium", 15460533),
 	Bacteria("bacteria", 14203521),
@@ -19,7 +23,7 @@ public enum GeneticLiquid implements IFluidDefinition {
 	private final FluidType type;
 
 	GeneticLiquid(final String ident, final int color) {
-		type = new FluidType(ident, String.format("%s.fluid.%s.%s", Genetics.instance.getModId(), "GeneticLiquid", this.name()), color)
+		type = Genetics.instance.registry(GeneticsModuleUIDs.CORE).createFluid(ident, String.format("%s.fluid.%s.%s", Genetics.instance.getModId(), "GeneticLiquid", this.name()), color)
 			.setTextures(new ResourceLocation(Genetics.instance.getModId(), "blocks/liquids/" + ident.replace(".", "_")))
 			.setColor(16777215)
 			.setContainerColor(color)
@@ -34,7 +38,7 @@ public enum GeneticLiquid implements IFluidDefinition {
 
 	@Override
 	public FluidStack get(final int amount) {
-		return type.get(amount);
+		return type.stack(amount);
 	}
 
 	@Override

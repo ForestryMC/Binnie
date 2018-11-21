@@ -19,7 +19,7 @@ import binnie.core.machines.MachinePackage;
 import binnie.core.machines.TileEntityMachine;
 import binnie.core.machines.component.IInteraction;
 import binnie.core.modules.ExtraTreesModuleUIDs;
-import binnie.core.modules.ModuleManager;
+import binnie.core.util.ModuleManager;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.gui.ExtraTreesGUID;
 import binnie.extratrees.machines.brewery.BreweryMachine;

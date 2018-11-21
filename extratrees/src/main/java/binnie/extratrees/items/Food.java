@@ -16,12 +16,12 @@ import forestry.api.recipes.RecipeManagers;
 import forestry.core.fluids.Fluids;
 
 import binnie.core.Mods;
-import binnie.core.item.IItemMiscProvider;
+import binnie.core.item.IItemSubtypeMisc;
 import binnie.core.util.I18N;
 import binnie.extratrees.liquid.Juice;
-import binnie.extratrees.modules.ModuleCore;
+import binnie.extratrees.modules.features.ExtraTreesFeatures;
 
-public enum Food implements IItemMiscProvider {
+public enum Food implements IItemSubtypeMisc {
 	CRABAPPLE(2) {
 		@Override
 		protected void registerOreDictEntries() {
@@ -424,7 +424,7 @@ public enum Food implements IItemMiscProvider {
 
 	@Override
 	public ItemStack get(final int i) {
-		return new ItemStack(ModuleCore.itemFood, i, this.ordinal());
+		return ExtraTreesFeatures.FOOD.stack(i, this.ordinal());
 	}
 
 	@Override

@@ -17,13 +17,13 @@ import net.minecraftforge.oredict.OreDictionary;
 import forestry.api.recipes.RecipeManagers;
 
 import binnie.core.Mods;
-import binnie.core.item.IItemEnum;
-import binnie.core.item.IItemMiscProvider;
+import binnie.core.item.IItemSubtype;
+import binnie.core.item.IItemSubtypeMisc;
 import binnie.core.util.I18N;
 import binnie.extrabees.modules.ModuleCore;
 import binnie.extrabees.utils.Utils;
 
-public enum EnumHoneyComb implements IItemMiscProvider {
+public enum EnumHoneyComb implements IItemSubtypeMisc {
 
 	BARREN(7564356, 12762791) {
 		@Override
@@ -704,7 +704,7 @@ public enum EnumHoneyComb implements IItemMiscProvider {
 		}
 	}
 
-	public void tryAddProduct(final IItemEnum type, final Float chance) {
+	public void tryAddProduct(final IItemSubtype type, final Float chance) {
 		this.tryAddProduct(type.get(1), chance);
 		this.active = (this.active && type.isActive());
 	}

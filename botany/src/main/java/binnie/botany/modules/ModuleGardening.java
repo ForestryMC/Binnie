@@ -44,13 +44,13 @@ import binnie.core.BinnieCore;
 import binnie.core.Constants;
 import binnie.core.Mods;
 import binnie.core.item.ItemMisc;
-import binnie.core.modules.BlankModule;
+import binnie.core.modules.BinnieModule;
 import binnie.core.modules.BotanyModuleUIDs;
-import binnie.core.util.OreDictionaryUtil;
+import binnie.core.util.OreDictUtils;
 import binnie.core.util.RecipeUtil;
 
 @ForestryModule(moduleID = BotanyModuleUIDs.GARDENING, containerID = Constants.BOTANY_MOD_ID, name = "Gardening", unlocalizedDescription = "botany.module.gardening")
-public class ModuleGardening extends BlankModule {
+public class ModuleGardening extends BinnieModule {
 	public static BlockPlant plant;
 	public static ItemTrowel trowelWood;
 	public static ItemTrowel trowelStone;
@@ -148,7 +148,7 @@ public class ModuleGardening extends BlankModule {
 			"d  ", " x ", "  s",
 			'd', Blocks.DIRT,
 			's', "stickWood",
-			'x', "ingotIron"
+			'x', OreDictUtils.INGOT_IRON
 		);
 
 		recipeUtil.addRecipe("trowel_gold",
@@ -172,7 +172,7 @@ public class ModuleGardening extends BlankModule {
 			" gg", " rg", "i  ",
 			'g', "ingotGold",
 			'r', "dustRedstone",
-			'i', "ingotIron"
+			'i', OreDictUtils.INGOT_IRON
 		);
 
 		recipeUtil.addShapelessRecipe("weed_killer",
@@ -323,7 +323,7 @@ public class ModuleGardening extends BlankModule {
 			return;
 		}
 
-		if (OreDictionaryUtil.hasOreName(heldItem, "weedkiller") && gardening.addWeedKiller(world, pos)) {
+		if (OreDictUtils.hasOreName(heldItem, "weedkiller") && gardening.addWeedKiller(world, pos)) {
 			if (!player.capabilities.isCreativeMode) {
 				heldItem.shrink(1);
 			}

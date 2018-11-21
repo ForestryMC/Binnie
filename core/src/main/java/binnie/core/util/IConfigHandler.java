@@ -1,4 +1,4 @@
-package binnie.core.modules;
+package binnie.core.util;
 
 public interface IConfigHandler {
 

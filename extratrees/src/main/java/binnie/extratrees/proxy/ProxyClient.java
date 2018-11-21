@@ -28,10 +28,10 @@ import binnie.extratrees.modules.ModuleWood;
 
 @SideOnly(Side.CLIENT)
 public class ProxyClient extends Proxy implements IExtraTreeProxy {
-	public static final ModelManager modelManager = new ModelManager(Constants.EXTRA_TREES_MOD_ID);
+	private static final ModelManager MODEL_MANAGER = new ModelManager(Constants.EXTRA_TREES_MOD_ID);
 
 	public static ModelManager getModelManager() {
-		return modelManager;
+		return MODEL_MANAGER;
 	}
 
 	@Override
@@ -53,15 +53,15 @@ public class ProxyClient extends Proxy implements IExtraTreeProxy {
 	}
 
 	@Override
-	public Item registerItem(Item item) {
-		getModelManager().registerItemClient(item);
-		return super.registerItem(item);
+	public void onRegisterBlock(Block block) {
+		getModelManager().registerBlockClient(block);
+		super.onRegisterBlock(block);
 	}
 
 	@Override
-	public Block registerBlock(Block block) {
-		getModelManager().registerBlockClient(block);
-		return super.registerBlock(block);
+	public void onRegisterItem(Item item) {
+		getModelManager().registerItemClient(item);
+		super.onRegisterItem(item);
 	}
 
 	@Override
@@ -96,7 +96,7 @@ public class ProxyClient extends Proxy implements IExtraTreeProxy {
 		for (BlockETSlab slab : ModuleWood.slabsDoubleFireproof) {
 			ModuleArboriculture.proxy.registerWoodModel(slab, true);
 		}
-		modelManager.registerModels();
+		MODEL_MANAGER.registerModels();
 	}
 
 	@Override

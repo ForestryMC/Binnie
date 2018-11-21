@@ -48,15 +48,15 @@ public class ProxyClient extends ProxyCommon {
 	}
 
 	@Override
-	public Item registerItem(Item item) {
-		getModelManager().registerItemClient(item);
-		return super.registerItem(item);
+	public void onRegisterBlock(Block block) {
+		MODEL_MANAGER.registerBlockClient(block);
+		super.onRegisterBlock(block);
 	}
 
 	@Override
-	public Block registerBlock(Block block) {
-		getModelManager().registerBlockClient(block);
-		return super.registerBlock(block);
+	public void onRegisterItem(Item item) {
+		MODEL_MANAGER.registerItemClient(item);
+		super.onRegisterItem(item);
 	}
 
 	@Override

@@ -1,23 +1,20 @@
 package binnie.extratrees.modules;
 
-import com.google.common.collect.ImmutableSet;
-
-import java.util.Set;
-
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
 
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.common.registry.VillagerRegistry;
 
-import forestry.api.core.Tabs;
 import forestry.api.fuels.EngineBronzeFuel;
 import forestry.api.fuels.FuelManager;
 import forestry.api.modules.ForestryModule;
@@ -28,71 +25,44 @@ import forestry.api.recipes.RecipeManagers;
 import binnie.core.Binnie;
 import binnie.core.Constants;
 import binnie.core.Mods;
-import binnie.core.item.ItemMisc;
 import binnie.core.liquid.ManagerLiquid;
-import binnie.core.modules.BlankModule;
+import binnie.core.modules.BinnieModule;
 import binnie.core.modules.ExtraTreesModuleUIDs;
 import binnie.core.util.RecipeUtil;
-import binnie.extratrees.ExtraTrees;
-import binnie.extratrees.blocks.BlockHops;
 import binnie.extratrees.config.ConfigurationMain;
 import binnie.extratrees.items.ExtraTreeItems;
 import binnie.extratrees.items.ExtraTreeLiquid;
 import binnie.extratrees.items.Food;
-import binnie.extratrees.items.ItemETFood;
-import binnie.extratrees.items.ItemHammer;
-import binnie.extratrees.items.ItemHops;
+import binnie.extratrees.modules.features.ExtraTreesFeatures;
 import binnie.extratrees.village.VillageCreationExtraTrees;
 
 @ForestryModule(moduleID = ExtraTreesModuleUIDs.CORE, containerID = Constants.EXTRA_TREES_MOD_ID, coreModule = true, name = "Core", unlocalizedDescription = "extratrees.module.core")
-public class ModuleCore extends BlankModule {
-	public static ItemMisc<ExtraTreeItems> itemMisc;
-	public static Item itemFood;
-	public static Item itemHammer;
-	public static Item itemDurableHammer;
-	public static Item itemHops;
-
-	public static BlockHops hops;
+public class ModuleCore extends BinnieModule {
 
 	public ModuleCore() {
-		super("forestry", "core");
+		super("forestry", "arboriculture");
+		MinecraftForge.EVENT_BUS.register(this);
 	}
 
-	@Override
-	public Set<ResourceLocation> getDependencyUids() {
-		return ImmutableSet.of(new ResourceLocation("forestry", "arboriculture"));
-	}
-
-	@Override
-	public void registerItemsAndBlocks() {
-		itemMisc = new ItemMisc(Tabs.tabArboriculture, ExtraTreeItems.values());
-		ExtraTrees.proxy.registerItem(itemMisc);
-
-		Binnie.LIQUID.createLiquids(ExtraTreeLiquid.values());
-		itemFood = new ItemETFood();
-		ExtraTrees.proxy.registerItem(itemFood);
-
-		itemHammer = new ItemHammer(false);
-		ExtraTrees.proxy.registerItem(itemHammer);
-		itemDurableHammer = new ItemHammer(true);
-		ExtraTrees.proxy.registerItem(itemDurableHammer);
-
-		hops = new BlockHops();
-		ExtraTrees.proxy.registerBlock(hops);
-
-		itemHops = new ItemHops(hops, Blocks.FARMLAND);
-		ExtraTrees.proxy.registerItem(itemHops);
-
-		OreDictionary.registerOre("pulpWood", ExtraTreeItems.SAWDUST.get(1));
-		Food.registerOreDictionary();
+	@SubscribeEvent(priority = EventPriority.LOW)
+	public void onRegisterItem(RegistryEvent.Register<Item> event) {
 		OreDictionary.registerOre("cropApple", Items.APPLE);
-		OreDictionary.registerOre("cropHops", itemHops);
 		OreDictionary.registerOre("seedWheat", Items.WHEAT_SEEDS);
-		OreDictionary.registerOre("seedWheat", ExtraTreeItems.GRAIN_WHEAT.get(1));
-		OreDictionary.registerOre("seedBarley", ExtraTreeItems.GRAIN_BARLEY.get(1));
-		OreDictionary.registerOre("seedCorn", ExtraTreeItems.GRAIN_CORN.get(1));
-		OreDictionary.registerOre("seedRye", ExtraTreeItems.GRAIN_RYE.get(1));
-		OreDictionary.registerOre("seedRoasted", ExtraTreeItems.GRAIN_ROASTED.get(1));
+		if (ExtraTreesFeatures.FOOD.hasItem()) {
+			Food.registerOreDictionary();
+		}
+		if (ExtraTreesFeatures.HOPS_ITEM.hasItem()) {
+			OreDictionary.registerOre("cropHops", ExtraTreesFeatures.HOPS_ITEM.item());
+		}
+		if (ExtraTreesFeatures.MISC.hasItem()) {
+			OreDictionary.registerOre("pulpWood", ExtraTreeItems.SAWDUST.get(1));
+
+			OreDictionary.registerOre("seedWheat", ExtraTreeItems.GRAIN_WHEAT.get(1));
+			OreDictionary.registerOre("seedBarley", ExtraTreeItems.GRAIN_BARLEY.get(1));
+			OreDictionary.registerOre("seedCorn", ExtraTreeItems.GRAIN_CORN.get(1));
+			OreDictionary.registerOre("seedRye", ExtraTreeItems.GRAIN_RYE.get(1));
+			OreDictionary.registerOre("seedRoasted", ExtraTreeItems.GRAIN_ROASTED.get(1));
+		}
 	}
 
 	@Override
@@ -162,10 +132,10 @@ public class ModuleCore extends BlankModule {
 		Food.CANDLENUT.addJuice(20, 50, 10);
 
 		RecipeUtil recipeUtil = new RecipeUtil(Constants.EXTRA_TREES_MOD_ID);
-		MinecraftForge.addGrassSeed(new ItemStack(itemHops), 5);
+		MinecraftForge.addGrassSeed(ExtraTreesFeatures.HOPS_ITEM.stack(), 5);
 
-		recipeUtil.addRecipe("durable_hammer", new ItemStack(itemDurableHammer, 1, 0), "wiw", " s ", " s ", 'w', Blocks.OBSIDIAN, 'i', Items.GOLD_INGOT, 's', Items.STICK);
-		recipeUtil.addRecipe("hammer", new ItemStack(itemHammer, 1, 0), "wiw", " s ", " s ", 'w', "plankWood", 'i', Items.IRON_INGOT, 's', Items.STICK);
+		recipeUtil.addRecipe("durable_hammer", ExtraTreesFeatures.DURABLE_HAMMER.stack(), "wiw", " s ", " s ", 'w', Blocks.OBSIDIAN, 'i', Items.GOLD_INGOT, 's', Items.STICK);
+		recipeUtil.addRecipe("hammer", ExtraTreesFeatures.HAMMER.stack(), "wiw", " s ", " s ", 'w', "plankWood", 'i', Items.IRON_INGOT, 's', Items.STICK);
 		recipeUtil.addRecipe("yeast", ExtraTreeItems.YEAST.get(8), " m ", "mbm", 'b', Items.BREAD, 'm', Blocks.BROWN_MUSHROOM);
 		recipeUtil.addRecipe("lager_yeast", ExtraTreeItems.LAGER_YEAST.get(8), "mbm", " m ", 'b', Items.BREAD, 'm', Blocks.BROWN_MUSHROOM);
 		recipeUtil.addRecipe("grain_wheat", ExtraTreeItems.GRAIN_WHEAT.get(5), " s ", "sss", " s ", 's', Items.WHEAT_SEEDS);
@@ -185,14 +155,14 @@ public class ModuleCore extends BlankModule {
 		}
 		ICarpenterManager carpenterManager = RecipeManagers.carpenterManager;
 		IStillManager stillManager = RecipeManagers.stillManager;
-		stillManager.addRecipe(25, ExtraTreeLiquid.Resin.get(5), ExtraTreeLiquid.Turpentine.get(3));
-		carpenterManager.addRecipe(25, ExtraTreeLiquid.Turpentine.get(50), ItemStack.EMPTY, itemMisc.getStack(ExtraTreeItems.WOOD_WAX, 4), "x", 'x', Mods.Forestry.stack("beeswax"));
+		stillManager.addRecipe(25, ExtraTreeLiquid.RESIN.get(5), ExtraTreeLiquid.TURPENTINE.get(3));
+		carpenterManager.addRecipe(25, ExtraTreeLiquid.TURPENTINE.get(50), ItemStack.EMPTY, ExtraTreesFeatures.MISC.stack(4, ExtraTreeItems.WOOD_WAX), "x", 'x', Mods.Forestry.stack("beeswax"));
 		FluidStack creosoteOil = Binnie.LIQUID.getFluidStack(ManagerLiquid.CREOSOTE, 50);
 		if (creosoteOil != null) {
-			carpenterManager.addRecipe(25, creosoteOil, ItemStack.EMPTY, itemMisc.getStack(ExtraTreeItems.WOOD_WAX, 1), "x", 'x', Mods.Forestry.stack("beeswax"));
+			carpenterManager.addRecipe(25, creosoteOil, ItemStack.EMPTY, ExtraTreesFeatures.MISC.stack(1, ExtraTreeItems.WOOD_WAX), "x", 'x', Mods.Forestry.stack("beeswax"));
 		}
 
-		FuelManager.bronzeEngineFuel.put(ExtraTreeLiquid.Sap.get(1).getFluid(), new EngineBronzeFuel(ExtraTreeLiquid.Sap.get(1).getFluid(), 20, 10000, 1));
-		FuelManager.bronzeEngineFuel.put(ExtraTreeLiquid.Resin.get(1).getFluid(), new EngineBronzeFuel(ExtraTreeLiquid.Resin.get(1).getFluid(), 30, 10000, 1));
+		FuelManager.bronzeEngineFuel.put(ExtraTreeLiquid.SAP.get(1).getFluid(), new EngineBronzeFuel(ExtraTreeLiquid.SAP.get(1).getFluid(), 20, 10000, 1));
+		FuelManager.bronzeEngineFuel.put(ExtraTreeLiquid.RESIN.get(1).getFluid(), new EngineBronzeFuel(ExtraTreeLiquid.RESIN.get(1).getFluid(), 30, 10000, 1));
 	}
 }

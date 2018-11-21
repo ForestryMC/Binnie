@@ -31,13 +31,13 @@ import binnie.core.api.genetics.IGene;
 import binnie.core.api.genetics.IItemAnalysable;
 import binnie.core.genetics.Gene;
 import binnie.core.item.ItemCore;
-import binnie.core.modules.ModuleManager;
 import binnie.core.util.I18N;
+import binnie.core.util.ModuleManager;
 import binnie.genetics.CreativeTabGenetics;
 import binnie.genetics.api.IItemChargeable;
 import binnie.genetics.genetics.GeneItem;
 import binnie.genetics.genetics.SequencerItem;
-import binnie.genetics.modules.ModuleCore;
+import binnie.genetics.modules.features.GeneticItems;
 
 public class ItemSequence extends ItemCore implements IItemAnalysable, IItemChargeable {
 	public ItemSequence() {
@@ -52,7 +52,7 @@ public class ItemSequence extends ItemCore implements IItemAnalysable, IItemChar
 	}
 
 	public static ItemStack create(final IGene gene, final boolean sequenced) {
-		final ItemStack item = new ItemStack(ModuleCore.itemSequencer);
+		final ItemStack item = GeneticItems.SEQUENCE.stack();
 		item.setItemDamage(sequenced ? 0 : item.getMaxDamage());
 		final SequencerItem seq = new SequencerItem(gene);
 		seq.writeToItem(item);

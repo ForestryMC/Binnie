@@ -30,14 +30,14 @@ import binnie.botany.recipes.PigmentRecipe;
 import binnie.core.Constants;
 import binnie.core.block.TileEntityMetadata;
 import binnie.core.item.ItemMisc;
-import binnie.core.modules.BlankModule;
+import binnie.core.modules.BinnieModule;
 import binnie.core.modules.BotanyModuleUIDs;
-import binnie.core.modules.ModuleManager;
+import binnie.core.util.ModuleManager;
 import binnie.core.util.RecipeUtil;
 import binnie.design.items.ItemDesign;
 
 @ForestryModule(moduleID = BotanyModuleUIDs.CERAMIC, containerID = Constants.BOTANY_MOD_ID, name = "Ceramic", unlocalizedDescription = "botany.module.ceramic")
-public class ModuleCeramic extends BlankModule {
+public class ModuleCeramic extends BinnieModule {
 	public static BlockCeramic ceramic;
 	public static BlockCeramicPatterned ceramicTile;
 	public static BlockStainedGlass stained;

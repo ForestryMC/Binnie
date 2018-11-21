@@ -9,11 +9,11 @@ public class ErrorStateRegistry {
 	public static void registerErrorState(IErrorStateDefinition state) {
 		String uid = state.getUID();
 		if (!uid.contains(":")) {
-			throw new RuntimeException("Binnie Error State name must be in the format <modid>:<name>.");
+			throw new IllegalArgumentException("Binnie Error State name must be in the format <modid>:<name>.");
 		}
 
 		if (states.containsKey(uid)) {
-			throw new RuntimeException("Binnie Error State does not possess a unique name.");
+			throw new IllegalArgumentException("Binnie Error State does not possess a unique name.");
 		}
 
 		states.put(uid, state);
