@@ -25,9 +25,9 @@ public enum ExtraBeesGUID implements IBinnieGUID {
 	DATABASE_MASTER;
 
 	@Override
-	public Window getWindow(final EntityPlayer player, final World world, final int x, final int y, final int z, final Side side) {
+	public Window getWindow(EntityPlayer player, World world, int x, int y, int z, Side side) {
 		Window window = null;
-		final TileEntity tileEntity = world.getTileEntity(new BlockPos(x, y, z));
+		TileEntity tileEntity = world.getTileEntity(new BlockPos(x, y, z));
 		IInventory object = null;
 		if (tileEntity instanceof IInventory) {
 			object = (IInventory) tileEntity;

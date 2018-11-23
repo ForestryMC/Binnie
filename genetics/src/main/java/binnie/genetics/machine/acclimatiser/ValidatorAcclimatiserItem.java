@@ -12,8 +12,8 @@ public class ValidatorAcclimatiserItem extends SlotValidator {
 	}
 
 	@Override
-	public boolean isValid(final ItemStack stack) {
-		for (final IToleranceType type : Acclimatiser.getToleranceTypes()) {
+	public boolean isValid(ItemStack stack) {
+		for (IToleranceType type : Acclimatiser.getToleranceTypes()) {
 			if (type.hasEffect(stack)) {
 				return true;
 			}

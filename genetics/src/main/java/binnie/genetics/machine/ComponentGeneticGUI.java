@@ -16,7 +16,7 @@ import binnie.genetics.core.GeneticsGUI;
 public class ComponentGeneticGUI extends MachineComponent implements IInteraction.RightClick {
 	private final GeneticsGUI id;
 
-	public ComponentGeneticGUI(final Machine machine, final GeneticsGUI id) {
+	public ComponentGeneticGUI(Machine machine, GeneticsGUI id) {
 		super(machine);
 		this.id = id;
 	}

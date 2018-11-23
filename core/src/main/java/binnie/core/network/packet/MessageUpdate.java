@@ -14,17 +14,17 @@ public class MessageUpdate extends MessageCoordinates {
 	@Nullable
 	private PacketPayload payload;
 
-	public MessageUpdate(final MessageBinnie message) {
+	public MessageUpdate(MessageBinnie message) {
 		super(message);
 	}
 
-	public MessageUpdate(final int id, final INetworkedEntity tile) {
+	public MessageUpdate(int id, INetworkedEntity tile) {
 		super(id, ((TileEntity) tile).getPos());
 		tile.writeToPacket(this.payload = new PacketPayload());
 	}
 
 	@Override
-	public void writeData(final ByteBuf data) throws IOException {
+	public void writeData(ByteBuf data) throws IOException {
 		super.writeData(data);
 		if (this.payload == null) {
 			data.writeInt(0);
@@ -35,26 +35,26 @@ public class MessageUpdate extends MessageCoordinates {
 		data.writeInt(this.payload.getIntPayload().size());
 		data.writeInt(this.payload.getFloatPayload().size());
 		data.writeInt(this.payload.getStringPayload().size());
-		for (final int intData : this.payload.getIntPayload()) {
+		for (int intData : this.payload.getIntPayload()) {
 			data.writeInt(intData);
 		}
-		for (final float floatData : this.payload.getFloatPayload()) {
+		for (float floatData : this.payload.getFloatPayload()) {
 			data.writeFloat(floatData);
 		}
-		for (final String stringData : this.payload.getStringPayload()) {
-			final byte[] bytes = stringData.getBytes(StandardCharsets.UTF_8);
+		for (String stringData : this.payload.getStringPayload()) {
+			byte[] bytes = stringData.getBytes(StandardCharsets.UTF_8);
 			data.writeShort(bytes.length);
 			data.writeBytes(bytes);
 		}
 	}
 
 	@Override
-	public void readData(final ByteBuf data) throws IOException {
+	public void readData(ByteBuf data) throws IOException {
 		super.readData(data);
 		this.payload = new PacketPayload();
-		final int intLength = data.readInt();
-		final int floatLength = data.readInt();
-		final int stringLength = data.readInt();
+		int intLength = data.readInt();
+		int floatLength = data.readInt();
+		int stringLength = data.readInt();
 		this.payload.getIntPayload().clear();
 		this.payload.getFloatPayload().clear();
 		this.payload.getStringPayload().clear();
@@ -65,8 +65,8 @@ public class MessageUpdate extends MessageCoordinates {
 			this.payload.addFloat(data.readFloat());
 		}
 		for (int i = 0; i < stringLength; ++i) {
-			final int length = data.readShort();
-			final byte[] string = data.readBytes(length).array();
+			int length = data.readShort();
+			byte[] string = data.readBytes(length).array();
 			this.payload.addString(new String(string, StandardCharsets.UTF_8));
 		}
 	}

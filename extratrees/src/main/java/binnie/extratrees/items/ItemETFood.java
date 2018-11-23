@@ -42,7 +42,7 @@ public class ItemETFood extends ItemFood implements IItemModelRegister {
 		}
 	}
 
-	private IItemSubtypeMisc getItem(final int damage) {
+	private IItemSubtypeMisc getItem(int damage) {
 		return (damage >= ItemETFood.items.length) ? ItemETFood.items[0] : ItemETFood.items[damage];
 	}
 

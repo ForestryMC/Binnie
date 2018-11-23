@@ -18,7 +18,7 @@ public enum KitchenMachine implements IMachineType {
 
 	private final Supplier<MachinePackage> supplier;
 
-	KitchenMachine(final Supplier<MachinePackage> supplier) {
+	KitchenMachine(Supplier<MachinePackage> supplier) {
 		this.supplier = supplier;
 	}
 
@@ -27,13 +27,13 @@ public enum KitchenMachine implements IMachineType {
 		return supplier;
 	}
 
-	public ItemStack get(final int i) {
+	public ItemStack get(int i) {
 		return new ItemStack(ModuleKitchen.blockKitchen, i, this.ordinal());
 	}
 
 	public abstract static class PackageKitchenMachine extends MachinePackage {
 
-		protected PackageKitchenMachine(final String uid) {
+		protected PackageKitchenMachine(String uid) {
 			super(uid);
 		}
 

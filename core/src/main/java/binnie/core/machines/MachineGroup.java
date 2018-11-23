@@ -53,7 +53,7 @@ public class MachineGroup extends FeatureBlockBased<BlockMachine, ItemMachine> {
 		}
 	}
 
-	private void addPackage(final MachinePackage pack) {
+	private void addPackage(MachinePackage pack) {
 		this.packages.put(pack.getUID(), pack);
 		this.packagesID.put(pack.getMetadata(), pack);
 		pack.setGroup(this);
@@ -68,11 +68,11 @@ public class MachineGroup extends FeatureBlockBased<BlockMachine, ItemMachine> {
 	}
 
 	@Nullable
-	public MachinePackage getPackage(final int metadata) {
+	public MachinePackage getPackage(int metadata) {
 		return this.packagesID.get(metadata);
 	}
 
-	public MachinePackage getPackage(final String name) {
+	public MachinePackage getPackage(String name) {
 		return this.packages.get(name);
 	}
 
@@ -84,7 +84,7 @@ public class MachineGroup extends FeatureBlockBased<BlockMachine, ItemMachine> {
 		return this.uid;
 	}
 
-	public MachineGroup setCreativeTab(final CreativeTabs tab) {
+	public MachineGroup setCreativeTab(CreativeTabs tab) {
 		onBlock(block -> block.setCreativeTab(tab));
 		return this;
 	}

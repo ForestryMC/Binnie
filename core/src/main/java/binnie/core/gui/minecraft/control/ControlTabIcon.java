@@ -13,7 +13,7 @@ import binnie.core.gui.geometry.Point;
 public class ControlTabIcon<T> extends ControlTab<T> {
 	private final ControlItemDisplay item;
 
-	public ControlTabIcon(final int x, final int y, final int w, final int h, final T value) {
+	public ControlTabIcon(int x, int y, int w, int h, T value) {
 		super(x, y, w, h, value);
 		this.item = new ControlItemDisplay(this, -8 + w / 2, -8 + h / 2);
 		this.item.setHasTooltip(false);
@@ -32,7 +32,7 @@ public class ControlTabIcon<T> extends ControlTab<T> {
 		super.onUpdateClient();
 		this.item.setItemStack(this.getItemStack());
 		ControlTabBar parent = (ControlTabBar) this.getParent();
-		final int x = parent.getDirection().x();
+		int x = parent.getDirection().x();
 		boolean selected = this.isCurrentSelection() || this.isMouseOver();
 		int xOffset = selected ? 0 : (-4 * x);
 		Point offset = new Point(xOffset, 0);

@@ -35,20 +35,20 @@ class TriggerProvider implements ITriggerProvider {
 		if (tile instanceof IBuildcraft.TriggerProvider) {
 			((IBuildcraft.TriggerProvider) tile).getTriggers(list);
 		}
-		for (final TriggerData data : list) {
+		for (TriggerData data : list) {
 			if (data.getKey() != null && data.getKey().getUniqueTag() != null) {
 				triggers.add(data.getKey());
 			}
 		}
 	}
 
-	public static boolean isTriggerActive(final ITriggerExternal trigger, final TileEntity tile) {
-		final LinkedList<TriggerData> list = new LinkedList<>();
-		final LinkedList<ITriggerExternal> triggerData = new LinkedList<>();
+	public static boolean isTriggerActive(ITriggerExternal trigger, TileEntity tile) {
+		LinkedList<TriggerData> list = new LinkedList<>();
+		LinkedList<ITriggerExternal> triggerData = new LinkedList<>();
 		if (tile instanceof IBuildcraft.TriggerProvider) {
 			((IBuildcraft.TriggerProvider) tile).getTriggers(list);
 		}
-		for (final TriggerData data : list) {
+		for (TriggerData data : list) {
 			if (data.getKey() == trigger) {
 				return data.getValue();
 			}

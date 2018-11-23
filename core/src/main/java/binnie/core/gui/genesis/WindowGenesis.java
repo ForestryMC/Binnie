@@ -53,7 +53,7 @@ public class WindowGenesis extends Window {
 	private ControlListBox<Gene> geneOptions;
 	private Panel panelPickup;
 
-	public WindowGenesis(final EntityPlayer player, @Nullable final IInventory inventory, final Side side) {
+	public WindowGenesis(EntityPlayer player, @Nullable IInventory inventory, Side side) {
 		super(342, 228, player, inventory, side);
 	}
 
@@ -72,11 +72,11 @@ public class WindowGenesis extends Window {
 	public void initialiseClient() {
 		new ControlPlayerInventory(this);
 		this.setTitle(I18N.localise("binniecore.gui.genesis.title"));
-		final ControlTabBar<IBreedingSystem> tabSystems = new GenesisTabSystems(this);
+		ControlTabBar<IBreedingSystem> tabSystems = new GenesisTabSystems(this);
 		this.root = Binnie.GENETICS.getActiveSystems().iterator().next().getSpeciesRoot();
 		this.template = this.root.getDefaultTemplate();
-		final Area one = new Area(32, 28, 170, 100);
-		final Area two = new Area(214, 28, 100, 100);
+		Area one = new Area(32, 28, 170, 100);
+		Area two = new Area(214, 28, 100, 100);
 		new Panel(this, one.outset(1), MinecraftGUI.PanelType.BLACK);
 		new Panel(this, two.outset(1), MinecraftGUI.PanelType.BLACK);
 		this.geneList = new GeneList(this, one);
@@ -166,7 +166,7 @@ public class WindowGenesis extends Window {
 	}
 
 	@Override
-	public void receiveGuiNBTOnServer(final EntityPlayer player, final String name, final NBTTagCompound nbt) {
+	public void receiveGuiNBTOnServer(EntityPlayer player, String name, NBTTagCompound nbt) {
 		super.receiveGuiNBTOnServer(player, name, nbt);
 		if (name.equals(ACTION_GENESIS)) {
 			ItemStack stack = new ItemStack(nbt);
@@ -178,7 +178,7 @@ public class WindowGenesis extends Window {
 			if (playerStack.isEmpty()) {
 				inventoryPlayer.setItemStack(stack);
 			} else if (playerStack.isItemEqual(stack) && ItemStack.areItemStackTagsEqual(playerStack, stack)) {
-				final int fit = stack.getMaxStackSize() - (stack.getCount() + playerStack.getCount());
+				int fit = stack.getMaxStackSize() - (stack.getCount() + playerStack.getCount());
 				if (fit >= 0) {
 					stack.grow(playerStack.getCount());
 					inventoryPlayer.setItemStack(stack);
@@ -203,8 +203,8 @@ public class WindowGenesis extends Window {
 
 			@Override
 			public ItemStack getItemStack() {
-				final ISpeciesType type = this.value.getDefaultType();
-				final IIndividual ind = this.value.getDefaultIndividual();
+				ISpeciesType type = this.value.getDefaultType();
+				IIndividual ind = this.value.getDefaultIndividual();
 				return this.value.getSpeciesRoot().getMemberStack(ind, type);
 			}
 
@@ -231,7 +231,7 @@ public class WindowGenesis extends Window {
 		}
 
 		@Override
-		public IWidget createOption(final Gene value, final int y) {
+		public IWidget createOption(Gene value, int y) {
 			return new ControlGenesisOption(this.getContent(), value, y);
 		}
 	}
@@ -242,7 +242,7 @@ public class WindowGenesis extends Window {
 		}
 
 		@Override
-		public IWidget createOption(final Gene value, final int y) {
+		public IWidget createOption(Gene value, int y) {
 			return new ControlTextOption<>(this.getContent(), value, y);
 		}
 	}

@@ -87,7 +87,7 @@ public class MultiFenceRecipeRegistryPlugin implements IRecipeRegistryPlugin {
 					recipes.add(new MultiFenceRecipeSizeWrapper(pattern, plankType));
 				}
 				for (int size = 0; size < 3; size++) {
-					for (final boolean solid : new boolean[]{false, true}) {
+					for (boolean solid : new boolean[]{false, true}) {
 						recipes.add(new MultiFenceRecipeEmbeddedWrapper(plankType, new FenceType(size, solid, false)));
 					}
 				}

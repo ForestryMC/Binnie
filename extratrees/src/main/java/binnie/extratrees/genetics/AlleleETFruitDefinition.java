@@ -418,10 +418,10 @@ public enum AlleleETFruitDefinition {
 
 		if (ConfigurationMain.alterLemon) {
 			try {
-				final IAlleleFruit lemon = (IAlleleFruit) AlleleManager.alleleRegistry.getAllele("forestry.fruitLemon");
-				final FruitProviderNone prov = (FruitProviderNone) lemon.getProvider();
-				final Field familyField = FruitProviderNone.class.getDeclaredField("family");
-				final Field modifiersField = Field.class.getDeclaredField("modifiers");
+				IAlleleFruit lemon = (IAlleleFruit) AlleleManager.alleleRegistry.getAllele("forestry.fruitLemon");
+				FruitProviderNone prov = (FruitProviderNone) lemon.getProvider();
+				Field familyField = FruitProviderNone.class.getDeclaredField("family");
+				Field modifiersField = Field.class.getDeclaredField("modifiers");
 				familyField.setAccessible(true);
 				modifiersField.setAccessible(true);
 				modifiersField.setInt(familyField, familyField.getModifiers() & 0xFFFFFFEF);

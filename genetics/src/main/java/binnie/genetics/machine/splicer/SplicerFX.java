@@ -22,7 +22,7 @@ import binnie.core.util.EntityItemRenderer;
 public class SplicerFX extends MachineComponent implements IRender.DisplayTick, IRender.Render, INetwork.TilePacketSync {
 	private final EntityItemRenderer entityItemRenderer;
 
-	public SplicerFX(final IMachine machine) {
+	public SplicerFX(IMachine machine) {
 		super(machine);
 		this.entityItemRenderer = new EntityItemRenderer();
 	}
@@ -33,28 +33,28 @@ public class SplicerFX extends MachineComponent implements IRender.DisplayTick, 
 		if (!this.getUtil().getProcess().isInProgress()) {
 			return;
 		}
-		final int tick = (int) (world.getTotalWorldTime() % 3L);
+		int tick = (int) (world.getTotalWorldTime() % 3L);
 		if (tick == 0) {
-			final ParticleManager effectRenderer = BinnieCore.getBinnieProxy().getMinecraftInstance().effectRenderer;
+			ParticleManager effectRenderer = BinnieCore.getBinnieProxy().getMinecraftInstance().effectRenderer;
 			effectRenderer.addEffect(new SplicerParticle(world, pos));
 		}
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void renderInWorld(double x, final double y, final double z) {
+	public void renderInWorld(double x, double y, double z) {
 		if (!this.getUtil().getProcess().isInProgress()) {
 			return;
 		}
-		final ItemStack stack = this.getUtil().getStack(9);
+		ItemStack stack = this.getUtil().getStack(9);
 		World world = this.getMachine().getWorld();
 		this.entityItemRenderer.renderInWorld(stack, world, x + 0.5, y + 1, z + 0.5);
 	}
 
 	@Override
-	public void syncToNBT(final NBTTagCompound nbt) {
-		final NBTTagCompound item = new NBTTagCompound();
-		final ItemStack stack = this.getUtil().getStack(9);
+	public void syncToNBT(NBTTagCompound nbt) {
+		NBTTagCompound item = new NBTTagCompound();
+		ItemStack stack = this.getUtil().getStack(9);
 		if (!stack.isEmpty()) {
 			stack.writeToNBT(item);
 			nbt.setTag("item", item);
@@ -62,7 +62,7 @@ public class SplicerFX extends MachineComponent implements IRender.DisplayTick, 
 	}
 
 	@Override
-	public void syncFromNBT(final NBTTagCompound nbt) {
+	public void syncFromNBT(NBTTagCompound nbt) {
 		if (nbt.hasKey("item")) {
 			this.getUtil().setStack(9, new ItemStack(nbt.getCompoundTag("item")));
 		} else {
@@ -79,8 +79,8 @@ public class SplicerFX extends MachineComponent implements IRender.DisplayTick, 
 	}
 
 	private static class SplicerParticle extends Particle {
-		private double axisX;
-		private double axisZ;
+		private final double axisX;
+		private final double axisZ;
 		private double angle;
 
 		public SplicerParticle(World world, BlockPos pos) {
@@ -102,9 +102,9 @@ public class SplicerFX extends MachineComponent implements IRender.DisplayTick, 
 		@SideOnly(Side.CLIENT)
 		public void onUpdate() {
 			super.onUpdate();
-			final double speed = 0.04;
+			double speed = 0.04;
 			this.angle -= speed;
-			final double dist = 0.25 + 0.2 * Math.sin(this.particleAge / 50.0f);
+			double dist = 0.25 + 0.2 * Math.sin(this.particleAge / 50.0f);
 			this.setPosition(this.axisX + dist * Math.sin(this.angle), this.posY, this.axisZ + dist * Math.cos(this.angle));
 			this.setAlphaF((float) Math.sin(Math.PI * this.particleAge / this.particleMaxAge));
 		}

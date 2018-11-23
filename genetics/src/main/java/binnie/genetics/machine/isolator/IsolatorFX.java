@@ -15,7 +15,7 @@ import binnie.core.machines.MachineComponent;
 import binnie.core.machines.component.IRender;
 
 public class IsolatorFX extends MachineComponent implements IRender.RandomDisplayTick, IRender.DisplayTick {
-	public IsolatorFX(final IMachine machine) {
+	public IsolatorFX(IMachine machine) {
 		super(machine);
 	}
 
@@ -25,7 +25,7 @@ public class IsolatorFX extends MachineComponent implements IRender.RandomDispla
 		if (!this.getUtil().getProcess().isInProgress()) {
 			return;
 		}
-		final Particle particle = new IsolaterParticleRandomTick(world, pos, rand);
+		Particle particle = new IsolaterParticleRandomTick(world, pos, rand);
 		BinnieCore.getBinnieProxy().getMinecraftInstance().effectRenderer.addEffect(particle);
 	}
 
@@ -35,9 +35,9 @@ public class IsolatorFX extends MachineComponent implements IRender.RandomDispla
 		if (!this.getUtil().getProcess().isInProgress()) {
 			return;
 		}
-		final int tick = (int) (world.getTotalWorldTime() % 6L);
+		int tick = (int) (world.getTotalWorldTime() % 6L);
 		if (tick == 0 || tick == 5) {
-			final Particle particle = new IsolatorParticle(world, pos);
+			Particle particle = new IsolatorParticle(world, pos);
 			BinnieCore.getBinnieProxy().getMinecraftInstance().effectRenderer.addEffect(particle);
 		}
 	}
@@ -70,8 +70,8 @@ public class IsolatorFX extends MachineComponent implements IRender.RandomDispla
 
 	@SideOnly(Side.CLIENT)
 	private static class IsolatorParticle extends Particle {
-		private double axisX;
-		private double axisZ;
+		private final double axisX;
+		private final double axisZ;
 		private double angle;
 
 		public IsolatorParticle(World world, BlockPos pos) {

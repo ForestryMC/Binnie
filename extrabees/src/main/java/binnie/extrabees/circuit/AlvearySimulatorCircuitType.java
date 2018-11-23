@@ -36,7 +36,7 @@ public enum AlvearySimulatorCircuitType implements IBeeModifier {
 		INHIBITOR.logic.setModifier(EnumBeeModifier.TERRITORY, 0.4f, 0.1f);
 		INHIBITOR.logic.setModifier(EnumBeeModifier.PRODUCTION, 0.9f, 0.5f);
 		TERRITORY.logic.setModifier(EnumBeeModifier.TERRITORY, 1.5f, 5.0f);
-		for (final AlvearySimulatorCircuitType type : values()) {
+		for (AlvearySimulatorCircuitType type : values()) {
 			type.logic.setModifier(EnumBeeModifier.GENETIC_DECAY, 1.5f, 10.0f);
 		}
 	}
@@ -45,7 +45,7 @@ public enum AlvearySimulatorCircuitType implements IBeeModifier {
 	private final int power;
 	private final BeeModifierLogic logic;
 
-	AlvearySimulatorCircuitType(final int recipe, final int power) {
+	AlvearySimulatorCircuitType(int recipe, int power) {
 		this.logic = new BeeModifierLogic();
 		this.recipe = recipe;
 		this.power = power;
@@ -53,10 +53,10 @@ public enum AlvearySimulatorCircuitType implements IBeeModifier {
 
 	private final static String CIRCUIT_TYPE_KEY = "alvearycircuittype";
 
-	public void createCircuit(final ICircuitLayout layout) {
-		final StimulatorCircuit circuit = new StimulatorCircuit(this, layout);
-		for (final EnumBeeModifier modifier : EnumBeeModifier.values()) {
-			final float mod = this.logic.getModifier(modifier, 1.0f);
+	public void createCircuit(ICircuitLayout layout) {
+		StimulatorCircuit circuit = new StimulatorCircuit(this, layout);
+		for (EnumBeeModifier modifier : EnumBeeModifier.values()) {
+			float mod = this.logic.getModifier(modifier, 1.0f);
 			int value;
 			String localizedString;
 			if (mod != 1.0f) {
@@ -70,7 +70,7 @@ public enum AlvearySimulatorCircuitType implements IBeeModifier {
 				circuit.addTooltip(localizedString);
 			}
 		}
-		for (final EnumBeeBooleanModifier modifier : EnumBeeBooleanModifier.values()) {
+		for (EnumBeeBooleanModifier modifier : EnumBeeBooleanModifier.values()) {
 			if (this.logic.getModifier(modifier)) {
 				circuit.addTooltip(modifier.getName());
 			}
@@ -78,32 +78,32 @@ public enum AlvearySimulatorCircuitType implements IBeeModifier {
 	}
 
 	@Override
-	public float getTerritoryModifier(@Nonnull final IBeeGenome genome, final float currentModifier) {
+	public float getTerritoryModifier(@Nonnull IBeeGenome genome, float currentModifier) {
 		return this.logic.getModifier(EnumBeeModifier.TERRITORY, currentModifier);
 	}
 
 	@Override
-	public float getMutationModifier(@Nonnull final IBeeGenome genome, @Nonnull final IBeeGenome mate, final float currentModifier) {
+	public float getMutationModifier(@Nonnull IBeeGenome genome, @Nonnull IBeeGenome mate, float currentModifier) {
 		return this.logic.getModifier(EnumBeeModifier.MUTATION, currentModifier);
 	}
 
 	@Override
-	public float getLifespanModifier(@Nonnull final IBeeGenome genome, @Nullable final IBeeGenome mate, final float currentModifier) {
+	public float getLifespanModifier(@Nonnull IBeeGenome genome, @Nullable IBeeGenome mate, float currentModifier) {
 		return this.logic.getModifier(EnumBeeModifier.LIFESPAN, currentModifier);
 	}
 
 	@Override
-	public float getProductionModifier(@Nonnull final IBeeGenome genome, final float currentModifier) {
+	public float getProductionModifier(@Nonnull IBeeGenome genome, float currentModifier) {
 		return this.logic.getModifier(EnumBeeModifier.PRODUCTION, currentModifier);
 	}
 
 	@Override
-	public float getFloweringModifier(@Nonnull final IBeeGenome genome, final float currentModifier) {
+	public float getFloweringModifier(@Nonnull IBeeGenome genome, float currentModifier) {
 		return this.logic.getModifier(EnumBeeModifier.FLOWERING, currentModifier);
 	}
 
 	@Override
-	public float getGeneticDecay(@Nonnull final IBeeGenome genome, final float currentModifier) {
+	public float getGeneticDecay(@Nonnull IBeeGenome genome, float currentModifier) {
 		return this.logic.getModifier(EnumBeeModifier.GENETIC_DECAY, currentModifier);
 	}
 

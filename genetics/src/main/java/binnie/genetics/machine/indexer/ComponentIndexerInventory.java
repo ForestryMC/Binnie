@@ -22,7 +22,7 @@ public abstract class ComponentIndexerInventory<T> extends ComponentInventory im
 	private T sortingMode;
 	private boolean needsSorting;
 
-	public ComponentIndexerInventory(final Machine machine) {
+	public ComponentIndexerInventory(Machine machine) {
 		super(machine);
 		this.indexerSize = -1;
 		this.guiRefreshCounter = 0;
@@ -40,7 +40,7 @@ public abstract class ComponentIndexerInventory<T> extends ComponentInventory im
 	}
 
 	@Override
-	public ItemStack getStackInSlot(final int index) {
+	public ItemStack getStackInSlot(int index) {
 		if (index >= 0 && index < this.indexerInventory.size()) {
 			return this.indexerInventory.get(index);
 		}
@@ -48,10 +48,10 @@ public abstract class ComponentIndexerInventory<T> extends ComponentInventory im
 	}
 
 	@Override
-	public ItemStack decrStackSize(final int index, final int amount) {
+	public ItemStack decrStackSize(int index, int amount) {
 		ItemStack stackInSlot = this.getStackInSlot(index);
 		if (!stackInSlot.isEmpty()) {
-			final ItemStack returnStack = stackInSlot.copy();
+			ItemStack returnStack = stackInSlot.copy();
 			this.setInventorySlotContents(index, ItemStack.EMPTY);
 			return returnStack;
 		}
@@ -65,7 +65,7 @@ public abstract class ComponentIndexerInventory<T> extends ComponentInventory im
 	}
 
 	@Override
-	public void setInventorySlotContents(final int index, final ItemStack itemStack) {
+	public void setInventorySlotContents(int index, ItemStack itemStack) {
 		if (index >= 0 && index < this.indexerInventory.size()) {
 			this.indexerInventory.set(index, itemStack);
 		} else if (!itemStack.isEmpty()) {
@@ -81,7 +81,7 @@ public abstract class ComponentIndexerInventory<T> extends ComponentInventory im
 	}
 
 	@Override
-	public boolean isUsableByPlayer(final EntityPlayer var1) {
+	public boolean isUsableByPlayer(EntityPlayer var1) {
 		return true;
 	}
 
@@ -90,17 +90,17 @@ public abstract class ComponentIndexerInventory<T> extends ComponentInventory im
 		return this.sortingMode;
 	}
 
-	public void setMode(final T mode) {
+	public void setMode(T mode) {
 		this.sortingMode = mode;
 		this.needsSorting = true;
 	}
 
 	@Override
-	public NBTTagCompound writeToNBT(final NBTTagCompound nbttagcompound2) {
-		NBTTagCompound nbttagcompound = super.writeToNBT(nbttagcompound2);
-		final NBTTagList indexerNBT = new NBTTagList();
-		for (final ItemStack item : this.indexerInventory) {
-			final NBTTagCompound itemNBT = new NBTTagCompound();
+	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+		NBTTagCompound nbttagcompound = super.writeToNBT(compound);
+		NBTTagList indexerNBT = new NBTTagList();
+		for (ItemStack item : this.indexerInventory) {
+			NBTTagCompound itemNBT = new NBTTagCompound();
 			item.writeToNBT(itemNBT);
 			indexerNBT.appendTag(itemNBT);
 		}
@@ -109,12 +109,12 @@ public abstract class ComponentIndexerInventory<T> extends ComponentInventory im
 	}
 
 	@Override
-	public void readFromNBT(final NBTTagCompound nbttagcompound) {
-		super.readFromNBT(nbttagcompound);
-		final NBTTagList indexerNBT = nbttagcompound.getTagList("indexer", 10);
+	public void readFromNBT(NBTTagCompound compound) {
+		super.readFromNBT(compound);
+		NBTTagList indexerNBT = compound.getTagList("indexer", 10);
 		this.indexerInventory.clear();
 		for (int i = 0; i < indexerNBT.tagCount(); ++i) {
-			final NBTTagCompound itemNBT = indexerNBT.getCompoundTagAt(i);
+			NBTTagCompound itemNBT = indexerNBT.getCompoundTagAt(i);
 			this.setInventorySlotContents(i, new ItemStack(itemNBT));
 		}
 		this.needsSorting = true;

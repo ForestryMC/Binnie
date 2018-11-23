@@ -13,12 +13,12 @@ import binnie.core.gui.resource.textures.CraftGUITexture;
 public class Panel extends Control {
 	private final IPanelType type;
 
-	public Panel(final IWidget parent, final int x, final int y, final int width, final int height, final IPanelType type) {
+	public Panel(IWidget parent, int x, int y, int width, int height, IPanelType type) {
 		super(parent, x, y, width, height);
 		this.type = type;
 	}
 
-	public Panel(final IWidget parent, final IArea area, final IPanelType type) {
+	public Panel(IWidget parent, IArea area, IPanelType type) {
 		this(parent, area.xPos(), area.yPos(), area.width(), area.height(), type);
 	}
 
@@ -29,7 +29,7 @@ public class Panel extends Control {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		final IPanelType panelType = this.getType();
+		IPanelType panelType = this.getType();
 		if (panelType instanceof MinecraftGUI.PanelType) {
 			switch ((MinecraftGUI.PanelType) panelType) {
 				case BLACK: {

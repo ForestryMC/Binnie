@@ -38,7 +38,7 @@ public class ControlLumbermillProgress extends ControlProgressBase {
 	private float oldProgress;
 	private float animation;
 
-	protected ControlLumbermillProgress(final IWidget parent, final int x, final int y) {
+	protected ControlLumbermillProgress(IWidget parent, int x, int y) {
 		super(parent, x, y, 66, 18);
 		this.oldProgress = 0;
 		this.animation = 0;
@@ -58,9 +58,9 @@ public class ControlLumbermillProgress extends ControlProgressBase {
 	@SideOnly(Side.CLIENT)
 	public void onRenderForeground(int guiWidth, int guiHeight) {
 		GlStateManager.disableLighting();
-		final int sawX = (int) (63 * this.progress);
+		int sawX = (int) (63 * this.progress);
 		CraftGUI.RENDER.texture(ControlLumbermillProgress.SAW, new Point(sawX, -8 + Math.round(6 * (float) Math.sin(this.animation))));
-		final ItemStack item = Window.get(this).getInventory().getStackInSlot(LumbermillMachine.SLOT_LOG);
+		ItemStack item = Window.get(this).getInventory().getStackInSlot(LumbermillMachine.SLOT_LOG);
 		if (item.isEmpty()) {
 			return;
 		}
@@ -79,7 +79,7 @@ public class ControlLumbermillProgress extends ControlProgressBase {
 			//CraftGUI.Render.iconBlock(new IPoint(1 + i * 16, 1), icon);
 			RenderUtil.drawSprite(new Point(1 + i * 16, 1), icon);
 		}
-		final ItemStack result = LumbermillRecipeManager.getPlankProduct(item, Minecraft.getMinecraft().world);
+		ItemStack result = LumbermillRecipeManager.getPlankProduct(item, Minecraft.getMinecraft().world);
 		if (result.isEmpty()) {
 			return;
 		}
@@ -92,7 +92,7 @@ public class ControlLumbermillProgress extends ControlProgressBase {
 		}
 		//final IIcon icon2 = block2.getIcon(2, result.getItemDamage());
 		TextureAtlasSprite sprite = getWoodSprite(result);
-		final IPoint pos = this.getAbsolutePosition();
+		IPoint pos = this.getAbsolutePosition();
 		CraftGUI.RENDER.limitArea(new Area(pos.add(Point.ZERO), new Point(Math.round(this.progress * 64) + 2, 18)), guiWidth, guiHeight);
 		GL11.glEnable(GL11.GL_SCISSOR_TEST);
 		for (int j = 0; j < 4; ++j) {

@@ -21,13 +21,13 @@ public class GenepoolLogic extends ComponentProcessSetCost implements IProcess {
 	public static final float ENZYME_PER_PROCESS = 0.25f;
 	private float ethanolDrain;
 
-	public GenepoolLogic(final Machine machine) {
+	public GenepoolLogic(Machine machine) {
 		super(machine, ConfigurationMain.genepoolEnergy, ConfigurationMain.genepoolTime);
 		this.ethanolDrain = 0.0f;
 	}
 
-	public static int getDNAAmount(final ItemStack stack) {
-		final ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(stack);
+	public static int getDNAAmount(ItemStack stack) {
+		ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(stack);
 
 		if (root == BeeManager.beeRoot) {
 			if (BeeManager.beeRoot.isDrone(stack)) {

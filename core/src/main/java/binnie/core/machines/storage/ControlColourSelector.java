@@ -17,14 +17,14 @@ import binnie.core.gui.renderer.RenderUtil;
 class ControlColourSelector extends Control implements ITooltip, IControlValue<EnumColor> {
 	private EnumColor value;
 
-	public ControlColourSelector(final IWidget parent, final int x, final int y, final int w, final int h, final EnumColor value) {
+	public ControlColourSelector(IWidget parent, int x, int y, int w, int h, EnumColor value) {
 		super(parent, x, y, w, h);
 		this.setValue(value);
 		this.addAttribute(Attribute.MOUSE_OVER);
 	}
 
 	@Override
-	public void getTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
+	public void getTooltip(Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		tooltip.add(this.value.toString());
 	}
 
@@ -34,7 +34,7 @@ class ControlColourSelector extends Control implements ITooltip, IControlValue<E
 	}
 
 	@Override
-	public void setValue(final EnumColor value) {
+	public void setValue(EnumColor value) {
 		this.value = value;
 		this.setColor(this.getValue().getColor());
 	}

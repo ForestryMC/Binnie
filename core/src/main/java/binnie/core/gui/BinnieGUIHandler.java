@@ -14,13 +14,13 @@ import binnie.core.gui.minecraft.Window;
 public final class BinnieGUIHandler implements IGuiHandler {
 	private final IBinnieGUID[] guiIds;
 
-	public BinnieGUIHandler(final IBinnieGUID[] guiIds) {
+	public BinnieGUIHandler(IBinnieGUID[] guiIds) {
 		this.guiIds = guiIds;
 	}
 
 	@Override
 	@Nullable
-	public final Object getServerGuiElement(final int id, final EntityPlayer player, final World world, final int x, final int y, final int z) {
+	public final Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
 		Window window = this.getWindow(id, player, world, x, y, z, Side.SERVER);
 		if (window == null) {
 			return null;
@@ -32,7 +32,7 @@ public final class BinnieGUIHandler implements IGuiHandler {
 	@Override
 	@Nullable
 	@SideOnly(Side.CLIENT)
-	public final Object getClientGuiElement(final int id, final EntityPlayer player, final World world, final int x, final int y, final int z) {
+	public final Object getClientGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
 		if (!world.isRemote) {
 			return this.getServerGuiElement(id, player, world, x, y, z);
 		}
@@ -44,7 +44,7 @@ public final class BinnieGUIHandler implements IGuiHandler {
 	}
 
 	@Nullable
-	public Window getWindow(final int id, final EntityPlayer player, final World world, final int x, final int y, final int z, final Side side) {
+	public Window getWindow(int id, EntityPlayer player, World world, int x, int y, int z, Side side) {
 		for (IBinnieGUID guid : guiIds) {
 			if (guid.ordinal() == id) {
 				return guid.getWindow(player, world, x, y, z, side);

@@ -21,7 +21,7 @@ public class ItemPunnettSquare extends ItemCore {
 	}
 
 	@Override
-	public String getItemStackDisplayName(final ItemStack itemstack) {
+	public String getItemStackDisplayName(ItemStack itemstack) {
 		return "Punnett Square";
 	}
 

@@ -8,7 +8,7 @@ import binnie.extratrees.machines.brewery.recipes.BreweryRecipeManager;
 
 public class TankValidatorFermentOutput extends TankValidator {
 	@Override
-	public boolean isValid(final FluidStack itemStack) {
+	public boolean isValid(FluidStack itemStack) {
 		return BreweryRecipeManager.isValidOutputLiquid(itemStack);
 	}
 

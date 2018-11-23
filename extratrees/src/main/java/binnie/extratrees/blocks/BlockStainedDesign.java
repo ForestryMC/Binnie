@@ -107,12 +107,12 @@ public class BlockStainedDesign extends BlockDesign {
 	}
 
 	@Override
-	public ItemStack getCreativeStack(final IDesign design) {
+	public ItemStack getCreativeStack(IDesign design) {
 		return DesignHelper.getItemStack(this, GlassType.get(0), GlassType.get(1), design);
 	}
 
 	@Override
-	public String getBlockName(final DesignBlock design) {
+	public String getBlockName(DesignBlock design) {
 		return I18N.localise("extratrees.block.stainedglass.name", design.getDesign().getName());
 	}
 }

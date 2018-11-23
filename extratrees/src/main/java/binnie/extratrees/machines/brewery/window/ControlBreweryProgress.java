@@ -32,7 +32,7 @@ public class ControlBreweryProgress extends ControlProgressBase {
 	// TODO: why is this unused?
 	private static final Texture BREWERY_OVERLAY = new StandardTexture(34, 69, 34, 39, ExtraTreeTexture.GUI);
 
-	protected ControlBreweryProgress(final IWidget parent, final int x, final int y) {
+	protected ControlBreweryProgress(IWidget parent, int x, int y) {
 		super(parent, x, y, 34, 39);
 		this.addAttribute(Attribute.MOUSE_OVER);
 	}
@@ -41,13 +41,13 @@ public class ControlBreweryProgress extends ControlProgressBase {
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		CraftGUI.RENDER.texture(BREWERY, Point.ZERO);
-		final BreweryLogic logic = Machine.getInterface(BreweryLogic.class, Window.get(this).getInventory());
+		BreweryLogic logic = Machine.getInterface(BreweryLogic.class, Window.get(this).getInventory());
 		if (logic == null || logic.getCurrentCrafting() == null || logic.getCurrentCrafting().getInputFluid() == null) {
 			return;
 		}
 		FluidStack output = BreweryRecipeManager.getOutput(logic.getCurrentCrafting());
 		FluidStack input = logic.getCurrentCrafting().getInputFluid();
-		final int fermentedHeight = (int) (32.0f * logic.getProgress() / 100.0f);
+		int fermentedHeight = (int) (32.0f * logic.getProgress() / 100.0f);
 		CraftGUI.RENDER.limitArea(new Area(new Point(1, 6).add(this.getAbsolutePosition()), new Point(32, 32 - fermentedHeight)), guiWidth, guiHeight);
 		GL11.glEnable(GL11.GL_SCISSOR_TEST);
 		RenderUtil.drawFluid(new Point(1, 6), input);
@@ -62,12 +62,12 @@ public class ControlBreweryProgress extends ControlProgressBase {
 		RenderUtil.drawFluid(new Point(1, 22), output);
 		RenderUtil.drawFluid(new Point(17, 22), output);
 		GL11.glDisable(GL11.GL_SCISSOR_TEST);
-		final ItemStackSet stacks = new ItemStackSet();
+		ItemStackSet stacks = new ItemStackSet();
 		Collections.addAll(stacks, logic.getCurrentCrafting().getInputGrains());
 		stacks.add(logic.getCurrentCrafting().getIngredient());
 		int x = 1;
 		int y = 6;
-		for (final ItemStack stack : stacks) {
+		for (ItemStack stack : stacks) {
 			RenderUtil.drawItem(new Point(x, y), stack);
 			x += 16;
 			if (x > 18) {

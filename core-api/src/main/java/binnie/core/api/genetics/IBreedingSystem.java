@@ -3,7 +3,7 @@ package binnie.core.api.genetics;
 import javax.annotation.Nullable;
 import java.util.Collection;
 import java.util.List;
-import java.util.TreeSet;
+import java.util.Set;
 
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.entity.player.EntityPlayer;
@@ -40,31 +40,31 @@ public interface IBreedingSystem {
 
 	List<IMutation> getDiscoveredMutations(World world, GameProfile player);
 
-	List<IMutation> getResultantMutations(final IAlleleSpecies species);
+	List<IMutation> getResultantMutations(IAlleleSpecies species);
 
-	List<IMutation> getFurtherMutations(final IAlleleSpecies species);
+	List<IMutation> getFurtherMutations(IAlleleSpecies species);
 
 	boolean isMutationDiscovered(IMutation mutation, World world, GameProfile name);
 
 	float getChance(IMutation mutation, EntityPlayer player, IAlleleSpecies firstSpecies, IAlleleSpecies secondSpecies);
 
-	String getAlleleName(final IChromosomeType chromosome, final IAllele allele);
+	String getAlleleName(IChromosomeType chromosome, IAllele allele);
 
-	String getChromosomeName(final IChromosomeType chromo);
+	String getChromosomeName(IChromosomeType chromosome);
 
-	String getChromosomeShortName(final IChromosomeType chromo);
+	String getChromosomeShortName(IChromosomeType chromosome);
 
 	@Nullable
-	IIndividual getConversion(final ItemStack stack);
+	IIndividual getConversion(ItemStack stack);
 
-	ItemStack getConversionStack(final ItemStack stack);
+	ItemStack getConversionStack(ItemStack stack);
 
 	@Nullable
 	IIndividual getIndividual(String uid);
 
 	void calculateArrays();
 
-	void addExtraAlleles(final IChromosomeType p0, final TreeSet<IAllele> p1);
+	void addExtraAlleles(IChromosomeType chromosome, Set<IAllele> alleles);
 
 	String getDescriptor();
 

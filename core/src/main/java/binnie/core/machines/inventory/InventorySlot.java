@@ -13,7 +13,7 @@ public class InventorySlot extends BaseSlot<ItemStack> {
 	private ItemStack content;
 	private Type type;
 
-	public InventorySlot(final int index, final ResourceLocation unlocLocation) {
+	public InventorySlot(int index, ResourceLocation unlocLocation) {
 		super(index, unlocLocation);
 		this.content = ItemStack.EMPTY;
 		this.type = Type.Standard;
@@ -29,7 +29,7 @@ public class InventorySlot extends BaseSlot<ItemStack> {
 		return this.content.isEmpty() ? ItemStack.EMPTY : this.content;
 	}
 
-	public void setContent(final ItemStack itemStack) {
+	public void setContent(ItemStack itemStack) {
 		this.content = itemStack;
 	}
 
@@ -37,7 +37,7 @@ public class InventorySlot extends BaseSlot<ItemStack> {
 		return this.content;
 	}
 
-	public ItemStack decrStackSize(final int amount) {
+	public ItemStack decrStackSize(int amount) {
 		if (this.content.isEmpty()) {
 			return ItemStack.EMPTY;
 		}
@@ -53,9 +53,9 @@ public class InventorySlot extends BaseSlot<ItemStack> {
 	}
 
 	@Override
-	public void readFromNBT(final NBTTagCompound slotNBT) {
+	public void readFromNBT(NBTTagCompound slotNBT) {
 		if (slotNBT.hasKey("item")) {
-			final NBTTagCompound itemNBT = slotNBT.getCompoundTag("item");
+			NBTTagCompound itemNBT = slotNBT.getCompoundTag("item");
 			this.content = new ItemStack(itemNBT);
 		} else {
 			this.content = ItemStack.EMPTY;
@@ -63,8 +63,8 @@ public class InventorySlot extends BaseSlot<ItemStack> {
 	}
 
 	@Override
-	public NBTTagCompound writeToNBT(final NBTTagCompound slotNBT) {
-		final NBTTagCompound itemNBT = new NBTTagCompound();
+	public NBTTagCompound writeToNBT(NBTTagCompound slotNBT) {
+		NBTTagCompound itemNBT = new NBTTagCompound();
 		if (!this.content.isEmpty()) {
 			this.content.writeToNBT(itemNBT);
 		}
@@ -77,7 +77,7 @@ public class InventorySlot extends BaseSlot<ItemStack> {
 		return (SlotValidator) super.getValidator();
 	}
 
-	public void setType(final Type type) {
+	public void setType(Type type) {
 		this.type = type;
 		if (type == Type.Recipe) {
 			//this.setReadOnly();

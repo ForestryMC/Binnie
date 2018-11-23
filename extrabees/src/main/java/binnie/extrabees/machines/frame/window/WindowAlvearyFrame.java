@@ -15,12 +15,12 @@ import binnie.core.machines.Machine;
 
 public class WindowAlvearyFrame extends Window {
 
-	public WindowAlvearyFrame(final EntityPlayer player, final IInventory inventory, final Side side) {
+	public WindowAlvearyFrame(EntityPlayer player, IInventory inventory, Side side) {
 		super(176, 144, player, inventory, side);
 	}
 
 	@Nullable
-	public static Window create(final EntityPlayer player, @Nullable final IInventory inventory, final Side side) {
+	public static Window create(EntityPlayer player, @Nullable IInventory inventory, Side side) {
 		if (inventory == null) {
 			return null;
 		}

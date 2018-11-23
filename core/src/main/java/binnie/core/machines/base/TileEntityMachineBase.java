@@ -46,17 +46,17 @@ public class TileEntityMachineBase extends TileEntity implements IInventoryMachi
 
 	@Override
 	public IInventoryMachine getInventory() {
-		final IInventoryMachine inv = Machine.getInterface(IInventoryMachine.class, this);
+		IInventoryMachine inv = Machine.getInterface(IInventoryMachine.class, this);
 		return (inv == null || inv == this) ? new DefaultMachineInventory() : inv;
 	}
 
 	public ITankMachine getTankContainer() {
-		final ITankMachine inv = Machine.getInterface(ITankMachine.class, this);
+		ITankMachine inv = Machine.getInterface(ITankMachine.class, this);
 		return (inv == null || inv == this) ? DefaultTankContainer.INSTANCE : inv;
 	}
 
 	public IPoweredMachine getPower() {
-		final IPoweredMachine inv = Machine.getInterface(IPoweredMachine.class, this);
+		IPoweredMachine inv = Machine.getInterface(IPoweredMachine.class, this);
 		return (inv == null || inv == this) ? DefaultPower.INSTANCE : inv;
 	}
 
@@ -66,7 +66,7 @@ public class TileEntityMachineBase extends TileEntity implements IInventoryMachi
 	}
 
 	@Override
-	public boolean isUsableByPlayer(final EntityPlayer entityplayer) {
+	public boolean isUsableByPlayer(EntityPlayer entityplayer) {
 		return !this.isInvalid() &&
 			this.getWorld().getTileEntity(getPos()) == this &&
 			entityplayer.getDistanceSqToCenter(getPos()) <= 64.0 &&
@@ -85,12 +85,12 @@ public class TileEntityMachineBase extends TileEntity implements IInventoryMachi
 	}
 
 	@Override
-	public boolean canInsertItem(final int i, final ItemStack itemstack, EnumFacing j) {
+	public boolean canInsertItem(int i, ItemStack itemstack, EnumFacing j) {
 		return this.getInventory().canInsertItem(i, itemstack, j);
 	}
 
 	@Override
-	public boolean canExtractItem(final int i, final ItemStack itemstack, EnumFacing j) {
+	public boolean canExtractItem(int i, ItemStack itemstack, EnumFacing j) {
 		return this.getInventory().canExtractItem(i, itemstack, j);
 	}
 
@@ -105,32 +105,32 @@ public class TileEntityMachineBase extends TileEntity implements IInventoryMachi
 	}
 
 	@Override
-	public boolean isTankReadOnly(final int index) {
+	public boolean isTankReadOnly(int index) {
 		return this.getTankContainer().isTankReadOnly(index);
 	}
 
 	@Override
-	public boolean isLiquidValidForTank(final FluidStack liquid, final int index) {
+	public boolean isLiquidValidForTank(FluidStack liquid, int index) {
 		return this.getTankContainer().isLiquidValidForTank(liquid, index);
 	}
 
 	@Override
-	public TankSlot addTank(final int index, final String name, final int capacity) {
+	public TankSlot addTank(int index, String name, int capacity) {
 		return this.getTankContainer().addTank(index, name, capacity);
 	}
 
 	@Override
-	public TankSlot addTank(final int index, final ResourceLocation name, final int capacity) {
+	public TankSlot addTank(int index, ResourceLocation name, int capacity) {
 		return this.getTankContainer().addTank(index, name, capacity);
 	}
 
 	@Override
-	public IFluidTank getTank(final int index) {
+	public IFluidTank getTank(int index) {
 		return this.getTankContainer().getTank(index);
 	}
 
 	@Override
-	public TankSlot getTankSlot(final int index) {
+	public TankSlot getTankSlot(int index) {
 		return this.getTankContainer().getTankSlot(index);
 	}
 

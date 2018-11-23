@@ -11,32 +11,32 @@ import binnie.core.machines.Machine;
 import binnie.core.machines.MachineComponent;
 
 public class ComponentBeeModifier extends MachineComponent implements IBeeModifier, IBeeListener {
-	public ComponentBeeModifier(final Machine machine) {
+	public ComponentBeeModifier(Machine machine) {
 		super(machine);
 	}
 
 	@Override
-	public float getTerritoryModifier(final IBeeGenome genome, final float currentModifier) {
+	public float getTerritoryModifier(IBeeGenome genome, float currentModifier) {
 		return 1.0f;
 	}
 
 	@Override
-	public float getMutationModifier(final IBeeGenome genome, final IBeeGenome mate, final float currentModifier) {
+	public float getMutationModifier(IBeeGenome genome, IBeeGenome mate, float currentModifier) {
 		return 1.0f;
 	}
 
 	@Override
-	public float getLifespanModifier(final IBeeGenome genome, @Nullable final IBeeGenome mate, final float currentModifier) {
+	public float getLifespanModifier(IBeeGenome genome, @Nullable IBeeGenome mate, float currentModifier) {
 		return 1.0f;
 	}
 
 	@Override
-	public float getProductionModifier(final IBeeGenome genome, final float currentModifier) {
+	public float getProductionModifier(IBeeGenome genome, float currentModifier) {
 		return 1.0f;
 	}
 
 	@Override
-	public float getFloweringModifier(final IBeeGenome genome, final float currentModifier) {
+	public float getFloweringModifier(IBeeGenome genome, float currentModifier) {
 		return 1.0f;
 	}
 
@@ -61,11 +61,11 @@ public class ComponentBeeModifier extends MachineComponent implements IBeeModifi
 	}
 
 	@Override
-	public void wearOutEquipment(final int amount) {
+	public void wearOutEquipment(int amount) {
 	}
 
 	@Override
-	public float getGeneticDecay(final IBeeGenome genome, final float currentModifier) {
+	public float getGeneticDecay(IBeeGenome genome, float currentModifier) {
 		return 1.0f;
 	}
 

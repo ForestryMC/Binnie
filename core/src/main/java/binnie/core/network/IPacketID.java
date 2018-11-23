@@ -5,5 +5,5 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import binnie.core.network.packet.MessageBinnie;
 
 public interface IPacketID extends IOrdinaled {
-	void onMessage(final MessageBinnie p0, final MessageContext p1);
+	void onMessage(MessageBinnie p0, MessageContext p1);
 }

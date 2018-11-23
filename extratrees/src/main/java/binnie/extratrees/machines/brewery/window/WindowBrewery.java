@@ -23,12 +23,12 @@ import binnie.extratrees.machines.brewery.BreweryMachine;
 public class WindowBrewery extends Window {
 	public static final String LANG_KEY = "extratrees.machine.brewery";
 
-	public WindowBrewery(final EntityPlayer player, final IInventory inventory, final Side side) {
+	public WindowBrewery(EntityPlayer player, IInventory inventory, Side side) {
 		super(228, 218, player, inventory, side);
 	}
 
 	@Nullable
-	public static Window create(final EntityPlayer player, @Nullable final IInventory inventory, final Side side) {
+	public static Window create(EntityPlayer player, @Nullable IInventory inventory, Side side) {
 		if (inventory == null) {
 			return null;
 		}

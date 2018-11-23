@@ -27,12 +27,12 @@ public class ItemRegistry extends ItemCore implements IGuiItem {
 	}
 
 	@Override
-	public void openGuiOnRightClick(ItemStack itemStack, World world, EntityPlayer player) {
+	public void openGui(ItemStack itemStack, World world, EntityPlayer player) {
 		Genetics.proxy.openGui(GeneticsGUI.REGISTRY, player, player.getPosition());
 	}
 
 	@Override
-	public String getItemStackDisplayName(final ItemStack i) {
+	public String getItemStackDisplayName(ItemStack i) {
 		return "Registry";
 	}
 }

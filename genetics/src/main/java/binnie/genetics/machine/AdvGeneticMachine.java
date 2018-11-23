@@ -14,7 +14,7 @@ public enum AdvGeneticMachine implements IMachineType {
 
 	private final Supplier<MachinePackage> supplier;
 
-	AdvGeneticMachine(final Supplier<MachinePackage> supplier) {
+	AdvGeneticMachine(Supplier<MachinePackage> supplier) {
 		this.supplier = supplier;
 	}
 
@@ -28,7 +28,7 @@ public enum AdvGeneticMachine implements IMachineType {
 	}
 
 	public abstract static class PackageAdvGeneticBase extends GeneticMachine.PackageGeneticBase {
-		protected PackageAdvGeneticBase(final String uid, final int flashColour, final boolean powered) {
+		protected PackageAdvGeneticBase(String uid, int flashColour, boolean powered) {
 			super(uid, flashColour);
 		}
 	}

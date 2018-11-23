@@ -34,14 +34,14 @@ public class TransferRequest {
 	private boolean ignoreReadOnly;
 	private final List<TransferSlot> insertedSlots;
 
-	public TransferRequest(final ItemStack toTransfer, final IInventory destination) {
+	public TransferRequest(ItemStack toTransfer, IInventory destination) {
 		this.returnItem = ItemStack.EMPTY;
 		this.targetSlots = new int[0];
 		this.targetTanks = new int[0];
 		this.transferLiquids = true;
 		this.ignoreReadOnly = false;
 		this.insertedSlots = new ArrayList<>();
-		final int[] target = new int[destination.getSizeInventory()];
+		int[] target = new int[destination.getSizeInventory()];
 		for (int i = 0; i < target.length; ++i) {
 			target[i] = i;
 		}
@@ -61,13 +61,13 @@ public class TransferRequest {
 		this.setTargetTanks(targetTanks);
 	}
 
-	private static boolean areItemsEqual(final ItemStack merged, final ItemStack itemstack) {
+	private static boolean areItemsEqual(ItemStack merged, ItemStack itemstack) {
 		return ItemStack.areItemStackTagsEqual(itemstack, merged) && itemstack.isItemEqual(merged);
 	}
 
-	public static NonNullList<ItemStack> mergeStacks(ItemStack itemstack, final ItemStack merged) {
+	public static NonNullList<ItemStack> mergeStacks(ItemStack itemstack, ItemStack merged) {
 		if (areItemsEqual(itemstack, merged)) {
-			final int space = merged.getMaxStackSize() - merged.getCount();
+			int space = merged.getMaxStackSize() - merged.getCount();
 			if (space > 0) {
 				if (itemstack.getCount() > space) {
 					itemstack.shrink(space);
@@ -89,7 +89,7 @@ public class TransferRequest {
 		return this;
 	}
 
-	private void setReturnItem(final ItemStack returnItem) {
+	private void setReturnItem(ItemStack returnItem) {
 		this.returnItem = returnItem;
 	}
 
@@ -131,7 +131,7 @@ public class TransferRequest {
 			}
 		}
 		if (!item.isEmpty()) {
-			for (final int slot : this.targetSlots) {
+			for (int slot : this.targetSlots) {
 				if (this.destination.isItemValidForSlot(slot, item) || this.ignoreReadOnly) {
 					if (this.destination instanceof IInventorySlots) {
 						InventorySlot inventorySlot = ((IInventorySlots) this.destination).getSlot(slot);
@@ -142,8 +142,8 @@ public class TransferRequest {
 					ItemStack stackInSlot = this.destination.getStackInSlot(slot);
 					if (!stackInSlot.isEmpty()) {
 						if (item.isStackable()) {
-							final ItemStack merged = stackInSlot.copy();
-							final NonNullList<ItemStack> newStacks = mergeStacks(item.copy(), merged.copy());
+							ItemStack merged = stackInSlot.copy();
+							NonNullList<ItemStack> newStacks = mergeStacks(item.copy(), merged.copy());
 							item = newStacks.get(0);
 							if (!areItemsEqual(merged, newStacks.get(1))) {
 								this.insertedSlots.add(new TransferSlot(slot, this.destination));
@@ -160,7 +160,7 @@ public class TransferRequest {
 			}
 		}
 		if (!item.isEmpty()) {
-			for (final int slot : this.targetSlots) {
+			for (int slot : this.targetSlots) {
 				if (this.destination.isItemValidForSlot(slot, item) || this.ignoreReadOnly) {
 					if (this.destination instanceof IInventorySlots) {
 						InventorySlot inventorySlot = ((IInventorySlots) this.destination).getSlot(slot);
@@ -191,7 +191,7 @@ public class TransferRequest {
 		return this.origin;
 	}
 
-	public TransferRequest setOrigin(@Nullable final IInventory origin) {
+	public TransferRequest setOrigin(@Nullable IInventory origin) {
 		this.origin = origin;
 		return this;
 	}
@@ -201,16 +201,16 @@ public class TransferRequest {
 		return this.destination;
 	}
 
-	private void setDestination(final IInventory destination) {
+	private void setDestination(IInventory destination) {
 		this.destination = destination;
 	}
 
-	public TransferRequest setTargetSlots(final int[] targetSlots) {
+	public TransferRequest setTargetSlots(int[] targetSlots) {
 		this.targetSlots = targetSlots;
 		return this;
 	}
 
-	public TransferRequest setTargetTanks(final int... targetTanks) {
+	public TransferRequest setTargetTanks(int... targetTanks) {
 		this.targetTanks = targetTanks;
 		return this;
 	}
@@ -219,7 +219,7 @@ public class TransferRequest {
 		private final int id;
 		private final IInventory inventory;
 
-		public TransferSlot(final int id, final IInventory inventory) {
+		public TransferSlot(int id, IInventory inventory) {
 			this.id = id;
 			this.inventory = inventory;
 		}

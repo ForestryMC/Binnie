@@ -2375,8 +2375,8 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 	}
 
 	public void preInit() {
-		final String scientific = StringUtils.capitalize(branchName);
-		final String uid = "trees." + branchName;
+		String scientific = StringUtils.capitalize(branchName);
+		String uid = "trees." + branchName;
 		branch = AlleleManager.alleleRegistry.getClassification("genus." + uid);
 		if (branch == null) {
 			branch = AlleleManager.alleleRegistry.createAndRegisterClassification(IClassification.EnumClassLevel.GENUS, uid, scientific);

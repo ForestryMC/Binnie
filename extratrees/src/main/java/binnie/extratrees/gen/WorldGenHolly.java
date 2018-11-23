@@ -12,7 +12,7 @@ public class WorldGenHolly {
 		public void generate() {
 			this.generateTreeTrunk(this.height, this.girth);
 			float leafSpawn = this.height + 1;
-			final float bottom = 1.0f;
+			float bottom = 1.0f;
 			float width = this.height * this.randBetween(0.4f, 0.45f);
 			if (width < 1.5f) {
 				width = 1.5f;

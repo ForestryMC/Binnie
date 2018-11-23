@@ -18,7 +18,7 @@ public class Texture implements ITexture {
 	private final Border border;
 	private final IBinnieTexture binnieTexture;
 
-	public Texture(final Area area, final Border padding, final Border border, final IBinnieTexture binnieTexture) {
+	public Texture(Area area, Border padding, Border border, IBinnieTexture binnieTexture) {
 		this.area = new Area(area);
 		this.padding = new Border(padding);
 		this.border = new Border(border);
@@ -57,13 +57,13 @@ public class Texture implements ITexture {
 	}
 
 	@Override
-	public ITexture crop(final Alignment anchor, final int dist) {
+	public ITexture crop(Alignment anchor, int dist) {
 		return this.crop(new Border(anchor.opposite(), dist));
 	}
 
 	@Override
-	public ITexture crop(final IBorder crop) {
-		final Texture copy = new Texture(this.area, this.padding, this.border, this.binnieTexture);
+	public ITexture crop(IBorder crop) {
+		Texture copy = new Texture(this.area, this.padding, this.border, this.binnieTexture);
 		if (crop.getBottom() > 0) {
 			copy.border.setBottom(0);
 			copy.padding.setBottom(copy.padding.getBottom() - Math.min(crop.getBottom(), copy.padding.getBottom()));

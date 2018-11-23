@@ -21,36 +21,36 @@ class ToleranceSystem {
 	private final IChromosomeType chromosomeType;
 	private final IToleranceType type;
 
-	ToleranceSystem(final IChromosomeType chromosomeType, final IToleranceType type) {
+	ToleranceSystem(IChromosomeType chromosomeType, IToleranceType type) {
 		this.speciesRootUid = chromosomeType.getSpeciesRoot().getUID();
 		this.chromosomeType = chromosomeType;
 		this.type = type;
 	}
 
-	public boolean canAlter(final ItemStack stack, final ItemStack acclim) {
-		final IIndividual member = AlleleManager.alleleRegistry.getIndividual(stack);
-		final IGenome genome = member.getGenome();
-		final IAlleleTolerance tolAllele = (IAlleleTolerance) genome.getActiveAllele(this.chromosomeType);
-		final Tolerance tol = Tolerance.get(tolAllele.getValue());
-		final float effect = this.type.getEffect(acclim);
+	public boolean canAlter(ItemStack stack, ItemStack acclim) {
+		IIndividual member = AlleleManager.alleleRegistry.getIndividual(stack);
+		IGenome genome = member.getGenome();
+		IAlleleTolerance tolAllele = (IAlleleTolerance) genome.getActiveAllele(this.chromosomeType);
+		Tolerance tol = Tolerance.get(tolAllele.getValue());
+		float effect = this.type.getEffect(acclim);
 		return (effect > 0.0f && tol.getBounds()[1] < 5) || (effect < 0.0f && tol.getBounds()[0] > -5);
 	}
 
-	public ItemStack alter(final ItemStack stack, final ItemStack acc) {
-		final Random rand = new Random();
-		final float effect = this.type.getEffect(acc);
+	public ItemStack alter(ItemStack stack, ItemStack acc) {
+		Random rand = new Random();
+		float effect = this.type.getEffect(acc);
 		if (rand.nextFloat() > Math.abs(effect)) {
 			return stack;
 		}
-		final IIndividual member = AlleleManager.alleleRegistry.getIndividual(stack);
-		final IGenome genome = member.getGenome();
-		final IAlleleTolerance tolAllele = (IAlleleTolerance) genome.getActiveAllele(this.chromosomeType);
-		final Tolerance tol = Tolerance.get(tolAllele.getValue());
-		final Tolerance newTol = Acclimatiser.alterTolerance(tol, effect);
+		IIndividual member = AlleleManager.alleleRegistry.getIndividual(stack);
+		IGenome genome = member.getGenome();
+		IAlleleTolerance tolAllele = (IAlleleTolerance) genome.getActiveAllele(this.chromosomeType);
+		Tolerance tol = Tolerance.get(tolAllele.getValue());
+		Tolerance newTol = Acclimatiser.alterTolerance(tol, effect);
 		if (rand.nextFloat() > 1.0f / (-newTol.getBounds()[0] + newTol.getBounds()[1])) {
 			return stack;
 		}
-		final ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(stack);
+		ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(stack);
 		boolean setPrimary = rand.nextBoolean();
 		boolean setSecondary = !setPrimary;
 		Gene gene = new Gene(newTol.getAllele(), this.chromosomeType, root);

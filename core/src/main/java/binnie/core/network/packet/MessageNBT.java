@@ -11,16 +11,16 @@ public class MessageNBT extends MessageBase {
 	@Nullable
 	private NBTTagCompound nbt;
 
-	public MessageNBT(final int id) {
+	public MessageNBT(int id) {
 		super(id);
 	}
 
-	public MessageNBT(final int id, final NBTTagCompound nbt) {
+	public MessageNBT(int id, NBTTagCompound nbt) {
 		this(id);
 		this.setTagCompound(nbt);
 	}
 
-	public MessageNBT(final MessageBinnie message) {
+	public MessageNBT(MessageBinnie message) {
 		super(message);
 	}
 
@@ -29,17 +29,17 @@ public class MessageNBT extends MessageBase {
 		return this.nbt;
 	}
 
-	void setTagCompound(final NBTTagCompound nbt) {
+	void setTagCompound(NBTTagCompound nbt) {
 		this.nbt = nbt;
 	}
 
 	@Override
-	public void writeData(final ByteBuf data) throws IOException {
+	public void writeData(ByteBuf data) throws IOException {
 		this.writeNBTTagCompound(this.nbt, data);
 	}
 
 	@Override
-	public void readData(final ByteBuf data) throws IOException {
+	public void readData(ByteBuf data) throws IOException {
 		this.nbt = this.readNBTTagCompound(data);
 	}
 }

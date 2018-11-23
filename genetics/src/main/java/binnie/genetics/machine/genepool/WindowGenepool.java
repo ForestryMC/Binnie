@@ -28,7 +28,7 @@ public class WindowGenepool extends WindowMachine {
 	private static final Texture PROGRESS_BASE = new StandardTexture(64, 0, 130, 21, GeneticsTexture.GUI_PROCESS_3);
 	private static final Texture PROGRESS = new StandardTexture(64, 21, 130, 21, GeneticsTexture.GUI_PROCESS_3);
 
-	public WindowGenepool(final EntityPlayer player, final IInventory inventory, final Side side) {
+	public WindowGenepool(EntityPlayer player, IInventory inventory, Side side) {
 		super(280, 198, player, inventory, side);
 	}
 
@@ -37,7 +37,7 @@ public class WindowGenepool extends WindowMachine {
 	public void initialiseClient() {
 		super.initialiseClient();
 		int x = 16;
-		final int y = 32;
+		int y = 32;
 		new ControlLiquidTank(this, x, y, Genepool.TANK_ETHANOL);
 		x += 26;
 		new ControlSlotArray.Builder(this, x, y + 3, 2, 3).create(Genepool.SLOT_RESERVE);

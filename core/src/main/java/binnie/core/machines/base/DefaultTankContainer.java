@@ -23,17 +23,17 @@ class DefaultTankContainer implements ITankMachine {
 	}
 
 	@Override
-	public boolean isTankReadOnly(final int index) {
+	public boolean isTankReadOnly(int index) {
 		return false;
 	}
 
 	@Override
-	public boolean isLiquidValidForTank(final FluidStack liquid, final int index) {
+	public boolean isLiquidValidForTank(FluidStack liquid, int index) {
 		return false;
 	}
 
 	@Override
-	public TankSlot addTank(final int index, final String name, final int capacity) {
+	public TankSlot addTank(int index, String name, int capacity) {
 		return null;
 	}
 
@@ -43,12 +43,12 @@ class DefaultTankContainer implements ITankMachine {
 	}
 
 	@Override
-	public IFluidTank getTank(final int index) {
+	public IFluidTank getTank(int index) {
 		return null;
 	}
 
 	@Override
-	public TankSlot getTankSlot(final int index) {
+	public TankSlot getTankSlot(int index) {
 		return null;
 	}
 

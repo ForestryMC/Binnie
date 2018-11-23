@@ -26,7 +26,7 @@ public class ItemIndustrialFrame extends Item {
 	}
 
 	@Nullable
-	public static EnumIndustrialFrame getFrame(final ItemStack stack) {
+	public static EnumIndustrialFrame getFrame(ItemStack stack) {
 		NBTTagCompound tagCompound = stack.getTagCompound();
 		if (tagCompound == null || !tagCompound.hasKey("frame")) {
 			return null;
@@ -51,7 +51,7 @@ public class ItemIndustrialFrame extends Item {
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		super.addInformation(stack, worldIn, tooltip, flagIn);
-		final EnumIndustrialFrame frame = getFrame(stack);
+		EnumIndustrialFrame frame = getFrame(stack);
 		if (frame == null) {
 			tooltip.add("Invalid Contents");
 		} else {
@@ -60,7 +60,7 @@ public class ItemIndustrialFrame extends Item {
 	}
 
 	@Override
-	public String getItemStackDisplayName(final ItemStack itemStack) {
+	public String getItemStackDisplayName(ItemStack itemStack) {
 		return "Industrial Frame";
 	}
 }

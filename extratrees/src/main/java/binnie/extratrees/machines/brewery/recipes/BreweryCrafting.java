@@ -26,7 +26,7 @@ public class BreweryCrafting implements INbtWritable, IBreweryCrafting {
 		this.yeast = yeast;
 	}
 
-	public static BreweryCrafting create(final NBTTagCompound nbt) {
+	public static BreweryCrafting create(NBTTagCompound nbt) {
 		FluidStack inputFluid = FluidStack.loadFluidStackFromNBT(nbt.getCompoundTag("fluid"));
 		ItemStack ingredient = new ItemStack(nbt.getCompoundTag("ingr"));
 		ItemStack[] inputGrains = new ItemStack[]{
@@ -47,9 +47,9 @@ public class BreweryCrafting implements INbtWritable, IBreweryCrafting {
 	}
 
 	@Override
-	public NBTTagCompound writeToNBT(final NBTTagCompound nbt) {
+	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		if (this.inputFluid != null) {
-			final NBTTagCompound fluidTag = new NBTTagCompound();
+			NBTTagCompound fluidTag = new NBTTagCompound();
 			this.inputFluid.writeToNBT(fluidTag);
 			nbt.setTag("fluid", fluidTag);
 		}
@@ -61,11 +61,11 @@ public class BreweryCrafting implements INbtWritable, IBreweryCrafting {
 		return nbt;
 	}
 
-	private NBTTagCompound getNBT(final ItemStack ingr) {
+	private NBTTagCompound getNBT(ItemStack ingr) {
 		if (ingr.isEmpty()) {
 			return new NBTTagCompound();
 		}
-		final NBTTagCompound nbt = new NBTTagCompound();
+		NBTTagCompound nbt = new NBTTagCompound();
 		ingr.writeToNBT(nbt);
 		return nbt;
 	}

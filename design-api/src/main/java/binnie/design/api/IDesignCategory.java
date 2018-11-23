@@ -7,7 +7,7 @@ public interface IDesignCategory {
 
 	List<IDesign> getDesigns();
 
-	void addDesign(final IDesign p0);
+	void addDesign(IDesign p0);
 
 	String getId();
 }

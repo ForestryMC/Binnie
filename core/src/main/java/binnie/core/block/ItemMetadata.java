@@ -13,12 +13,12 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemMetadata extends ItemBlock {
-	public ItemMetadata(final Block block) {
+	public ItemMetadata(Block block) {
 		super(block);
 	}
 
 	@Override
-	public int getMetadata(final int damage) {
+	public int getMetadata(int damage) {
 		return 0;
 	}
 

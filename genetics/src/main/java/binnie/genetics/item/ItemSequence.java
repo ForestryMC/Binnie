@@ -47,14 +47,14 @@ public class ItemSequence extends ItemCore implements IItemAnalysable, IItemChar
 		this.setCreativeTab(CreativeTabGenetics.INSTANCE);
 	}
 
-	public static ItemStack create(final IGene gene) {
+	public static ItemStack create(IGene gene) {
 		return create(gene, false);
 	}
 
-	public static ItemStack create(final IGene gene, final boolean sequenced) {
-		final ItemStack item = GeneticItems.SEQUENCE.stack();
+	public static ItemStack create(IGene gene, boolean sequenced) {
+		ItemStack item = GeneticItems.SEQUENCE.stack();
 		item.setItemDamage(sequenced ? 0 : item.getMaxDamage());
-		final SequencerItem seq = new SequencerItem(gene);
+		SequencerItem seq = new SequencerItem(gene);
 		seq.writeToItem(item);
 		return item;
 	}
@@ -95,15 +95,15 @@ public class ItemSequence extends ItemCore implements IItemAnalysable, IItemChar
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
 		if (this.isInCreativeTab(tab)) {
 			if (ModuleManager.isModuleEnabled("forestry", "apiculture")) {
-				final IAlleleBeeSpecies species = (IAlleleBeeSpecies) AlleleManager.alleleRegistry.getAllele("forestry.speciesMeadows");
+				IAlleleBeeSpecies species = (IAlleleBeeSpecies) AlleleManager.alleleRegistry.getAllele("forestry.speciesMeadows");
 				Preconditions.checkNotNull(species);
 				items.add(create(new Gene(species, EnumBeeChromosome.SPECIES, BeeManager.beeRoot), false));
 			} else if (ModuleManager.isModuleEnabled("forestry", "arboriculture")) {
-				final IAlleleTreeSpecies species = (IAlleleTreeSpecies) AlleleManager.alleleRegistry.getAllele("forestry.treeOak");
+				IAlleleTreeSpecies species = (IAlleleTreeSpecies) AlleleManager.alleleRegistry.getAllele("forestry.treeOak");
 				Preconditions.checkNotNull(species);
 				items.add(create(new Gene(species, EnumTreeChromosome.SPECIES, TreeManager.treeRoot), false));
 			} else if (ModuleManager.isModuleEnabled("forestry", "lepidopterology")) {
-				final IAlleleButterflySpecies species = (IAlleleButterflySpecies) AlleleManager.alleleRegistry.getAllele("forestry.lepiAurora");
+				IAlleleButterflySpecies species = (IAlleleButterflySpecies) AlleleManager.alleleRegistry.getAllele("forestry.lepiAurora");
 				Preconditions.checkNotNull(species);
 				items.add(create(new Gene(species, EnumButterflyChromosome.SPECIES, ButterflyManager.butterflyRoot), false));
 			}
@@ -111,14 +111,14 @@ public class ItemSequence extends ItemCore implements IItemAnalysable, IItemChar
 	}
 
 	@Override
-	public boolean isAnalysed(final ItemStack stack) {
-		final SequencerItem seq = SequencerItem.create(stack);
+	public boolean isAnalysed(ItemStack stack) {
+		SequencerItem seq = SequencerItem.create(stack);
 		return seq != null && seq.isAnalysed();
 	}
 
 	@Override
-	public ItemStack analyse(final ItemStack stack) {
-		final SequencerItem seq = SequencerItem.create(stack);
+	public ItemStack analyse(ItemStack stack) {
+		SequencerItem seq = SequencerItem.create(stack);
 		if (seq == null) {
 			return stack;
 		}
@@ -128,12 +128,12 @@ public class ItemSequence extends ItemCore implements IItemAnalysable, IItemChar
 	}
 
 	@Override
-	public float getAnalyseTimeMult(final ItemStack stack) {
+	public float getAnalyseTimeMult(ItemStack stack) {
 		return 1.0f;
 	}
 
 	@Override
-	public int getCharges(final ItemStack stack) {
+	public int getCharges(ItemStack stack) {
 		return stack.getMaxDamage() - stack.getItemDamage();
 	}
 
@@ -144,7 +144,7 @@ public class ItemSequence extends ItemCore implements IItemAnalysable, IItemChar
 
 	@Override
 	public ISpeciesRoot getSpeciesRoot(ItemStack stack) {
-		final SequencerItem seq = SequencerItem.create(stack);
+		SequencerItem seq = SequencerItem.create(stack);
 		if (seq == null) {
 			return null;
 		}

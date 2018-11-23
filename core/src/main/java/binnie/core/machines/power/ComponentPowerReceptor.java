@@ -36,11 +36,11 @@ public class ComponentPowerReceptor extends MachineComponent implements IPowered
 	private boolean registeredToIC2EnergyNet;
 	private final PowerInterface container;
 
-	public ComponentPowerReceptor(final IMachine machine) {
+	public ComponentPowerReceptor(IMachine machine) {
 		this(machine, 1000);
 	}
 
-	public ComponentPowerReceptor(final IMachine machine, final int storage) {
+	public ComponentPowerReceptor(IMachine machine, int storage) {
 		super(machine);
 		this.registeredToIC2EnergyNet = false;
 		this.previousPower = 0.0f;
@@ -56,17 +56,17 @@ public class ComponentPowerReceptor extends MachineComponent implements IPowered
 	}
 
 	@Override
-	public void readFromNBT(final NBTTagCompound nbttagcompound) {
-		super.readFromNBT(nbttagcompound);
-		this.container.readFromNBT(nbttagcompound);
+	public void readFromNBT(NBTTagCompound compound) {
+		super.readFromNBT(compound);
+		this.container.readFromNBT(compound);
 		if (!this.registeredToIC2EnergyNet) {
 			this.addToEnergyNet();
 		}
 	}
 
 	@Override
-	public NBTTagCompound writeToNBT(final NBTTagCompound nbttagcompound2) {
-		NBTTagCompound nbttagcompound = super.writeToNBT(nbttagcompound2);
+	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+		NBTTagCompound nbttagcompound = super.writeToNBT(compound);
 		this.container.writeToNBT(nbttagcompound);
 		return nbttagcompound;
 	}
@@ -85,7 +85,7 @@ public class ComponentPowerReceptor extends MachineComponent implements IPowered
 
 	@Override
 	@Optional.Method(modid = Constants.BCLIB_MOD_ID)
-	public final void getTriggers(final List<TriggerData> triggers) {
+	public final void getTriggers(List<TriggerData> triggers) {
 		triggers.add(TriggerPower.powerNone(this));
 		triggers.add(TriggerPower.powerLow(this));
 		triggers.add(TriggerPower.powerMedium(this));
@@ -107,7 +107,7 @@ public class ComponentPowerReceptor extends MachineComponent implements IPowered
 
 	@Override
 	@Optional.Method(modid = "ic2")
-	public double injectEnergy(EnumFacing directionFrom, final double amount, final double voltage) {
+	public double injectEnergy(EnumFacing directionFrom, double amount, double voltage) {
 		this.container.addEnergy(PowerSystem.EU, amount, true);
 		return 0.0;
 	}
@@ -160,12 +160,12 @@ public class ComponentPowerReceptor extends MachineComponent implements IPowered
 	}
 
 	@Override
-	public int receiveEnergy(final int maxReceive, final boolean simulate) {
+	public int receiveEnergy(int maxReceive, boolean simulate) {
 		return (int) this.container.addEnergy(PowerSystem.RF, maxReceive, !simulate);
 	}
 
 	@Override
-	public int extractEnergy(final int maxExtract, final boolean simulate) {
+	public int extractEnergy(int maxExtract, boolean simulate) {
 		return this.container.useEnergy(maxExtract, simulate);
 	}
 
@@ -194,7 +194,7 @@ public class ComponentPowerReceptor extends MachineComponent implements IPowered
 		return this.container;
 	}
 
-	private boolean acceptsPowerSystem(final PowerSystem system) {
+	private boolean acceptsPowerSystem(PowerSystem system) {
 		return true;
 	}
 

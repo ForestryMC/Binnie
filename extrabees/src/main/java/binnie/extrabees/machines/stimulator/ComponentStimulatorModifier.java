@@ -32,7 +32,7 @@ public class ComponentStimulatorModifier extends ComponentBeeModifier implements
 	private boolean powered;
 	private StimulatorCircuit[] modifiers;
 
-	public ComponentStimulatorModifier(final Machine machine) {
+	public ComponentStimulatorModifier(Machine machine) {
 		super(machine);
 		this.powerUsage = 0.0f;
 		this.powered = false;
@@ -45,7 +45,7 @@ public class ComponentStimulatorModifier extends ComponentBeeModifier implements
 		StimulatorCircuit[] oldModifiers = modifiers;
 		this.modifiers = this.getCircuits();
 		this.powerUsage = 0.0f;
-		for (final StimulatorCircuit beeMod : this.modifiers) {
+		for (StimulatorCircuit beeMod : this.modifiers) {
 			this.powerUsage += beeMod.getPowerUsage();
 		}
 		boolean oldPowered = powered;
@@ -64,13 +64,13 @@ public class ComponentStimulatorModifier extends ComponentBeeModifier implements
 	}
 
 	private StimulatorCircuit[] getCircuits() {
-		final ICircuitBoard board = this.getCircuit();
+		ICircuitBoard board = this.getCircuit();
 		if (board == null) {
 			return new StimulatorCircuit[0];
 		}
-		final ICircuit[] circuits = board.getCircuits();
-		final List<StimulatorCircuit> mod = new ArrayList<>();
-		for (final ICircuit circuit : circuits) {
+		ICircuit[] circuits = board.getCircuits();
+		List<StimulatorCircuit> mod = new ArrayList<>();
+		for (ICircuit circuit : circuits) {
 			if (circuit instanceof StimulatorCircuit) {
 				mod.add((StimulatorCircuit) circuit);
 			}
@@ -79,72 +79,72 @@ public class ComponentStimulatorModifier extends ComponentBeeModifier implements
 	}
 
 	@Override
-	public float getTerritoryModifier(final IBeeGenome genome, final float currentModifier) {
+	public float getTerritoryModifier(IBeeGenome genome, float currentModifier) {
 		float mod = 1.0f;
 		if (!this.powered) {
 			return mod;
 		}
-		for (final IBeeModifier beeMod : this.modifiers) {
+		for (IBeeModifier beeMod : this.modifiers) {
 			mod *= beeMod.getTerritoryModifier(genome, mod);
 		}
 		return mod;
 	}
 
 	@Override
-	public float getMutationModifier(final IBeeGenome genome, final IBeeGenome mate, final float currentModifier) {
+	public float getMutationModifier(IBeeGenome genome, IBeeGenome mate, float currentModifier) {
 		float mod = 1.0f;
 		if (!this.powered) {
 			return mod;
 		}
-		for (final IBeeModifier beeMod : this.modifiers) {
+		for (IBeeModifier beeMod : this.modifiers) {
 			mod *= beeMod.getMutationModifier(genome, mate, mod);
 		}
 		return mod;
 	}
 
 	@Override
-	public float getLifespanModifier(final IBeeGenome genome, @Nullable final IBeeGenome mate, final float currentModifier) {
+	public float getLifespanModifier(IBeeGenome genome, @Nullable IBeeGenome mate, float currentModifier) {
 		float mod = 1.0f;
 		if (!this.powered) {
 			return mod;
 		}
-		for (final IBeeModifier beeMod : this.modifiers) {
+		for (IBeeModifier beeMod : this.modifiers) {
 			mod *= beeMod.getLifespanModifier(genome, mate, mod);
 		}
 		return mod;
 	}
 
 	@Override
-	public float getProductionModifier(final IBeeGenome genome, final float currentModifier) {
+	public float getProductionModifier(IBeeGenome genome, float currentModifier) {
 		float mod = 1.0f;
 		if (!this.powered) {
 			return mod;
 		}
-		for (final IBeeModifier beeMod : this.modifiers) {
+		for (IBeeModifier beeMod : this.modifiers) {
 			mod *= beeMod.getProductionModifier(genome, mod);
 		}
 		return mod;
 	}
 
 	@Override
-	public float getFloweringModifier(final IBeeGenome genome, final float currentModifier) {
+	public float getFloweringModifier(IBeeGenome genome, float currentModifier) {
 		float mod = 1.0f;
 		if (!this.powered) {
 			return mod;
 		}
-		for (final IBeeModifier beeMod : this.modifiers) {
+		for (IBeeModifier beeMod : this.modifiers) {
 			mod *= beeMod.getFloweringModifier(genome, mod);
 		}
 		return mod;
 	}
 
 	@Override
-	public float getGeneticDecay(final IBeeGenome genome, final float currentModifier) {
+	public float getGeneticDecay(IBeeGenome genome, float currentModifier) {
 		float mod = 1.0f;
 		if (!this.powered) {
 			return mod;
 		}
-		for (final IBeeModifier beeMod : this.modifiers) {
+		for (IBeeModifier beeMod : this.modifiers) {
 			mod *= beeMod.getGeneticDecay(genome, mod);
 		}
 		return mod;
@@ -155,7 +155,7 @@ public class ComponentStimulatorModifier extends ComponentBeeModifier implements
 		if (!this.powered) {
 			return false;
 		}
-		for (final IBeeModifier beeMod : this.modifiers) {
+		for (IBeeModifier beeMod : this.modifiers) {
 			if (beeMod.isSealed()) {
 				return true;
 			}
@@ -168,7 +168,7 @@ public class ComponentStimulatorModifier extends ComponentBeeModifier implements
 		if (!this.powered) {
 			return false;
 		}
-		for (final IBeeModifier beeMod : this.modifiers) {
+		for (IBeeModifier beeMod : this.modifiers) {
 			if (beeMod.isSelfLighted()) {
 				return true;
 			}
@@ -181,7 +181,7 @@ public class ComponentStimulatorModifier extends ComponentBeeModifier implements
 		if (!this.powered) {
 			return false;
 		}
-		for (final IBeeModifier beeMod : this.modifiers) {
+		for (IBeeModifier beeMod : this.modifiers) {
 			if (beeMod.isSunlightSimulated()) {
 				return true;
 			}
@@ -194,7 +194,7 @@ public class ComponentStimulatorModifier extends ComponentBeeModifier implements
 		if (!this.powered) {
 			return false;
 		}
-		for (final IBeeModifier beeMod : this.modifiers) {
+		for (IBeeModifier beeMod : this.modifiers) {
 			if (beeMod.isHellish()) {
 				return true;
 			}
@@ -203,7 +203,7 @@ public class ComponentStimulatorModifier extends ComponentBeeModifier implements
 	}
 
 	@Override
-	public void wearOutEquipment(final int amount) {
+	public void wearOutEquipment(int amount) {
 		this.getUtil().useEnergyMJ(this.powerUsage);
 	}
 

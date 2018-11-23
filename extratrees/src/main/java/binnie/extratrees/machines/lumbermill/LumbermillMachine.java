@@ -29,9 +29,9 @@ public class LumbermillMachine extends ExtraTreeMachine.PackageExtraTreeMachine 
 	}
 
 	@Override
-	public void createMachine(final Machine machine) {
+	public void createMachine(Machine machine) {
 		new ExtraTreeMachine.ComponentExtraTreeGUI(machine, ExtraTreesGUID.LUMBERMILL);
-		final ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
+		ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
 
 		InventorySlot slotLog = inventory.addSlot(SLOT_LOG, getSlotRL("input"));
 		slotLog.setValidator(new SlotValidatorLog(machine.getWorld()));
@@ -41,7 +41,7 @@ public class LumbermillMachine extends ExtraTreeMachine.PackageExtraTreeMachine 
 		inventory.addSlot(SLOT_BARK, getSlotRL("byproduct")).setReadOnly();
 		inventory.addSlot(SLOT_SAWDUST, getSlotRL("byproduct")).setReadOnly();
 
-		final ComponentTankContainer tanks = new ComponentTankContainer(machine);
+		ComponentTankContainer tanks = new ComponentTankContainer(machine);
 		TankSlot tankWater = tanks.addTank(TANK_WATER, "input", TANK_WATER_CAPACITY);
 		tankWater.setValidator(new TankValidator.Basic(ManagerLiquid.WATER));
 

@@ -60,7 +60,7 @@ public class ItemFieldKit extends ItemCore {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		final int i = stack.getMaxDamage() - stack.getItemDamage();
+		int i = stack.getMaxDamage() - stack.getItemDamage();
 		if (i == 0) {
 			tooltip.add("No paper");
 		} else {
@@ -70,7 +70,7 @@ public class ItemFieldKit extends ItemCore {
 	}
 
 	@Override
-	public String getItemStackDisplayName(final ItemStack p_77653_1_) {
+	public String getItemStackDisplayName(ItemStack p_77653_1_) {
 		return "Field Kit";
 	}
 
@@ -78,7 +78,7 @@ public class ItemFieldKit extends ItemCore {
 	private class FieldKitMeshDefinition implements ItemMeshDefinition {
 		@Override
 		public ModelResourceLocation getModelLocation(ItemStack stack) {
-			final int damage = stack.getItemDamage();
+			int damage = stack.getItemDamage();
 			if (damage < 24) {
 				return fieldKit3;
 			}

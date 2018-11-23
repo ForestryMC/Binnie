@@ -27,7 +27,7 @@ public class BreweryLogic extends ComponentProcessSetCost implements IProcess, I
 	@Nullable
 	private BreweryCrafting currentCrafting;
 
-	public BreweryLogic(final Machine machine) {
+	public BreweryLogic(Machine machine) {
 		super(machine, 16000, 800);
 		this.currentCrafting = null;
 	}
@@ -86,7 +86,7 @@ public class BreweryLogic extends ComponentProcessSetCost implements IProcess, I
 	public void onUpdate() {
 		super.onUpdate();
 		if (this.canWork() == null && this.currentCrafting == null && this.getUtil().getTank(BreweryMachine.TANK_INPUT).getFluidAmount() >= Fluid.BUCKET_VOLUME) {
-			final FluidStack stack = this.getUtil().drainTank(BreweryMachine.TANK_INPUT, Fluid.BUCKET_VOLUME);
+			FluidStack stack = this.getUtil().drainTank(BreweryMachine.TANK_INPUT, Fluid.BUCKET_VOLUME);
 			this.currentCrafting = this.getInputCrafting();
 			this.currentCrafting.setInputFluid(stack);
 			this.getUtil().drainTank(BreweryMachine.TANK_INPUT, stack.amount);
@@ -95,8 +95,8 @@ public class BreweryLogic extends ComponentProcessSetCost implements IProcess, I
 	}
 
 	@Override
-	public void sendGuiNBTToClient(final Map<String, NBTTagCompound> data) {
-		final NBTTagCompound nbt = new NBTTagCompound();
+	public void sendGuiNBTToClient(Map<String, NBTTagCompound> data) {
+		NBTTagCompound nbt = new NBTTagCompound();
 		if (this.currentCrafting == null) {
 			nbt.setBoolean("null", true);
 		} else {
@@ -106,7 +106,7 @@ public class BreweryLogic extends ComponentProcessSetCost implements IProcess, I
 	}
 
 	@Override
-	public void receiveGuiNBTOnServer(final EntityPlayer player, final String name, final NBTTagCompound nbt) {
+	public void receiveGuiNBTOnServer(EntityPlayer player, String name, NBTTagCompound nbt) {
 
 	}
 

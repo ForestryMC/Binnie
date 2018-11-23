@@ -12,7 +12,7 @@ public class SlotValidatorMutator extends SlotValidator {
 	}
 
 	@Override
-	public boolean isValid(final ItemStack itemStack) {
+	public boolean isValid(ItemStack itemStack) {
 		return AlvearyMutationHandler.isMutationItem(itemStack);
 	}
 

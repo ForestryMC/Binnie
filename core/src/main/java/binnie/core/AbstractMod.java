@@ -72,11 +72,11 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
 	public void preInit(FMLPreInitializationEvent event) {
 		getProxy().setMod(this);
 		registerModules();
-		for (final Class<?> cls : this.getConfigs()) {
+		for (Class<?> cls : this.getConfigs()) {
 			Binnie.CONFIGURATION.registerConfiguration(cls, this);
 		}
 		this.getProxy().preInit();
-		for (final IInitializable module : this.modules) {
+		for (IInitializable module : this.modules) {
 			module.preInit();
 		}
 		preInitModules(event);
@@ -97,7 +97,7 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
 		this.wrapper = NetworkRegistry.INSTANCE.newSimpleChannel(this.getChannel());
 		this.wrapper.registerMessage(this.getPacketHandler(), MessageBinnie.class, 1, Side.CLIENT);
 		this.wrapper.registerMessage(this.getPacketHandler(), MessageBinnie.class, 1, Side.SERVER);
-		for (final IInitializable module : this.modules) {
+		for (IInitializable module : this.modules) {
 			module.init();
 		}
 		getProxy().registerItemAndBlockColors();
@@ -106,7 +106,7 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
 	@Override
 	public void postInit() {
 		this.getProxy().postInit();
-		for (final IInitializable module : this.modules) {
+		for (IInitializable module : this.modules) {
 			module.postInit();
 		}
 	}

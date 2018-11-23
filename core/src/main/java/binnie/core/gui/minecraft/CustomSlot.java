@@ -14,18 +14,18 @@ import binnie.core.machines.inventory.IInventorySlots;
 import binnie.core.machines.inventory.InventorySlot;
 
 public class CustomSlot extends Slot {
-	public CustomSlot(final IInventory inventory, final int index) {
+	public CustomSlot(IInventory inventory, int index) {
 		super(inventory, index, 0, 0);
 	}
 
 	@Override
-	public boolean isItemValid(final ItemStack stack) {
+	public boolean isItemValid(ItemStack stack) {
 		return !stack.isEmpty() && this.inventory.isItemValidForSlot(this.getSlotIndex(), stack);
 	}
 
 	@Nullable
 	public InventorySlot getInventorySlot() {
-		final IInventorySlots slots = Machine.getInterface(IInventorySlots.class, this.inventory);
+		IInventorySlots slots = Machine.getInterface(IInventorySlots.class, this.inventory);
 		if (slots != null) {
 			return slots.getSlot(this.getSlotIndex());
 		}
@@ -33,11 +33,11 @@ public class CustomSlot extends Slot {
 	}
 
 	public boolean handleClick() {
-		final InventorySlot slot = this.getInventorySlot();
+		InventorySlot slot = this.getInventorySlot();
 		return slot != null && slot.isRecipe();
 	}
 
-	public void onSlotClick(final ContainerCraftGUI container, final int dragType, final ClickType modifier, final EntityPlayer player) {
+	public void onSlotClick(ContainerCraftGUI container, int dragType, ClickType modifier, EntityPlayer player) {
 		InventoryPlayer inventory = player.inventory;
 		ItemStack stack = inventory.getItemStack();
 		ItemStack slotStack = getStack().copy();

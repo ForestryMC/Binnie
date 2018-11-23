@@ -40,7 +40,7 @@ public class Widget implements IWidget {
 	private final Collection<EventHandler<? extends Event>> eventHandlers;
 	private boolean visible;
 
-	public Widget(@Nullable final IWidget parent) {
+	public Widget(@Nullable IWidget parent) {
 		this.children = new ArrayList<>();
 		this.attributes = new ArrayList<>();
 		this.position = Point.ZERO;
@@ -55,11 +55,11 @@ public class Widget implements IWidget {
 
 	/* ATTRIBUTES */
 	@Override
-	public boolean hasAttribute(final IWidgetAttribute attribute) {
+	public boolean hasAttribute(IWidgetAttribute attribute) {
 		return this.attributes.contains(attribute);
 	}
 
-	public boolean addAttribute(final IWidgetAttribute attribute) {
+	public boolean addAttribute(IWidgetAttribute attribute) {
 		return this.attributes.add(attribute);
 	}
 
@@ -183,7 +183,7 @@ public class Widget implements IWidget {
 	}
 
 	@Override
-	public final void setCroppedZone(final IWidget relative, final IArea area) {
+	public final void setCroppedZone(IWidget relative, IArea area) {
 		this.cropArea = area;
 		this.cropped = true;
 		this.cropWidget = relative;
@@ -195,7 +195,7 @@ public class Widget implements IWidget {
 		return parent == null ? this.getPosition() : parent.getAbsolutePosition().add(this.getPosition());
 	}
 
-	public final void setSize(final IPoint vector) {
+	public final void setSize(IPoint vector) {
 		if (!vector.equals(this.size)) {
 			this.size = new Point(vector);
 			this.callEvent(new EventWidget.ChangeSize(this));
@@ -203,7 +203,7 @@ public class Widget implements IWidget {
 	}
 
 	@Override
-	public final void setOffset(final IPoint vector) {
+	public final void setOffset(IPoint vector) {
 		if (vector != this.offset) {
 			this.offset = new Point(vector);
 			this.callEvent(new EventWidget.ChangeOffset(this));
@@ -235,7 +235,7 @@ public class Widget implements IWidget {
 	}
 
 	@Override
-	public final void setColor(final int colour) {
+	public final void setColor(int colour) {
 		if (this.color != colour) {
 			this.color = colour;
 			this.callEvent(new EventWidget.ChangeColour(this));
@@ -263,7 +263,7 @@ public class Widget implements IWidget {
 		this.eventHandlers.add(new EventHandler<>(eventClass, EventHandlerOrigin.SELF, this, handler));
 	}
 
-	public void callEvent(final Event event) {
+	public void callEvent(Event event) {
 		this.getTopParent().receiveEvent(event);
 	}
 
@@ -301,18 +301,18 @@ public class Widget implements IWidget {
 
 	@Override
 	public final boolean calculateIsMouseOver() {
-		final IPoint mouse = this.getRelativeMousePosition();
+		IPoint mouse = this.getRelativeMousePosition();
 		if (!this.cropped || this.cropArea == null) {
 			return this.isMouseOverWidget(mouse);
 		}
-		final IWidget cropRelative = (this.cropWidget != null) ? this.cropWidget : this;
-		final IPoint pos = Point.sub(cropRelative.getAbsolutePosition(), this.getAbsolutePosition());
-		final IPoint size = new Point(this.cropArea.size().xPos(), this.cropArea.size().yPos());
-		final boolean inCrop = mouse.xPos() > pos.xPos() && mouse.yPos() > pos.yPos() && mouse.xPos() < pos.xPos() + size.xPos() && mouse.yPos() < pos.yPos() + size.yPos();
+		IWidget cropRelative = (this.cropWidget != null) ? this.cropWidget : this;
+		IPoint pos = Point.sub(cropRelative.getAbsolutePosition(), this.getAbsolutePosition());
+		IPoint size = new Point(this.cropArea.size().xPos(), this.cropArea.size().yPos());
+		boolean inCrop = mouse.xPos() > pos.xPos() && mouse.yPos() > pos.yPos() && mouse.xPos() < pos.xPos() + size.xPos() && mouse.yPos() < pos.yPos() + size.yPos();
 		return inCrop && this.isMouseOverWidget(mouse);
 	}
 
-	public boolean isMouseOverWidget(final IPoint relativeMouse) {
+	public boolean isMouseOverWidget(IPoint relativeMouse) {
 		return this.getArea().contains(relativeMouse);
 	}
 
@@ -340,10 +340,10 @@ public class Widget implements IWidget {
 		}
 		CraftGUI.RENDER.preRender(this, guiWidth, guiHeight);
 		this.onRender(RenderStage.PRE_CHILDREN, guiWidth, guiHeight);
-		for (final IWidget widget : this.getChildren()) {
+		for (IWidget widget : this.getChildren()) {
 			widget.render(guiWidth, guiHeight);
 		}
-		for (final IWidget widget : this.getChildren()) {
+		for (IWidget widget : this.getChildren()) {
 			CraftGUI.RENDER.preRender(widget, guiWidth, guiHeight);
 			widget.onRender(RenderStage.POST_SIBLINGS, guiWidth, guiHeight);
 			CraftGUI.RENDER.postRender(widget);
@@ -354,7 +354,7 @@ public class Widget implements IWidget {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void onRender(final RenderStage stage, int guiWidth, int guiHeight) {
+	public void onRender(RenderStage stage, int guiWidth, int guiHeight) {
 		if (stage == RenderStage.PRE_CHILDREN) {
 			this.onRenderBackground(guiWidth, guiHeight);
 		}
@@ -416,7 +416,7 @@ public class Widget implements IWidget {
 	}
 
 	@Override
-	public boolean isChildVisible(final IWidget child) {
+	public boolean isChildVisible(IWidget child) {
 		return true;
 	}
 
@@ -442,7 +442,7 @@ public class Widget implements IWidget {
 			((ITopLevelWidget) this).updateTopLevel();
 		}
 		this.onUpdateClient();
-		for (final IWidget widget : this.getChildren()) {
+		for (IWidget widget : this.getChildren()) {
 			widget.updateClient();
 		}
 	}

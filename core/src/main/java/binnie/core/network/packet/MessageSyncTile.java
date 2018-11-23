@@ -15,11 +15,11 @@ public class MessageSyncTile extends MessageNBT {
 	private int posY;
 	private int posZ;
 
-	public MessageSyncTile(final MessageBinnie message) {
+	public MessageSyncTile(MessageBinnie message) {
 		super(message);
 	}
 
-	public MessageSyncTile(final int id, final TileEntity tile, final NBTTagCompound nbt) {
+	public MessageSyncTile(int id, TileEntity tile, NBTTagCompound nbt) {
 		super(id, nbt);
 		this.posX = tile.getPos().getX();
 		this.posY = tile.getPos().getY();
@@ -27,7 +27,7 @@ public class MessageSyncTile extends MessageNBT {
 	}
 
 	@Override
-	public void writeData(final ByteBuf data) throws IOException {
+	public void writeData(ByteBuf data) throws IOException {
 		data.writeInt(this.posX);
 		data.writeInt(this.posY);
 		data.writeInt(this.posZ);
@@ -35,7 +35,7 @@ public class MessageSyncTile extends MessageNBT {
 	}
 
 	@Override
-	public void readData(final ByteBuf data) throws IOException {
+	public void readData(ByteBuf data) throws IOException {
 		this.posX = data.readInt();
 		this.posY = data.readInt();
 		this.posZ = data.readInt();
@@ -43,7 +43,7 @@ public class MessageSyncTile extends MessageNBT {
 	}
 
 	@Nullable
-	public TileEntity getTarget(final World world) {
+	public TileEntity getTarget(World world) {
 		return world.getTileEntity(new BlockPos(this.posX, this.posY, this.posZ));
 	}
 

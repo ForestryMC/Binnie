@@ -14,16 +14,16 @@ public class InfuserRecipes {
 	private static final Map<Fluid, FluidStack> RECIPES = new HashMap<>();
 
 	@Nullable
-	public static FluidStack getOutput(final FluidStack fluid, final ItemStack stack) {
+	public static FluidStack getOutput(FluidStack fluid, ItemStack stack) {
 		return RECIPES.get(fluid.getFluid());
 	}
 
-	public static boolean isValidInputLiquid(final FluidStack fluid) {
+	public static boolean isValidInputLiquid(FluidStack fluid) {
 		return RECIPES.containsKey(fluid.getFluid());
 	}
 
-	public static boolean isValidOutputLiquid(final FluidStack fluid) {
-		for (final Map.Entry<Fluid, FluidStack> entry : RECIPES.entrySet()) {
+	public static boolean isValidOutputLiquid(FluidStack fluid) {
+		for (Map.Entry<Fluid, FluidStack> entry : RECIPES.entrySet()) {
 			if (entry.getValue().isFluidEqual(fluid)) {
 				return true;
 			}
@@ -31,7 +31,7 @@ public class InfuserRecipes {
 		return false;
 	}
 
-	public static void addRecipe(final FluidStack input, final FluidStack output) {
+	public static void addRecipe(FluidStack input, FluidStack output) {
 		RECIPES.put(input.getFluid(), output);
 	}
 }

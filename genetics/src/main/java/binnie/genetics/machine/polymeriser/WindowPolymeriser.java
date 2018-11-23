@@ -28,7 +28,7 @@ public class WindowPolymeriser extends WindowMachine {
 	private static final Texture PROGRESS_BASE = new StandardTexture(76, 170, 160, 79, GeneticsTexture.GUI_PROCESS);
 	private static final Texture PROGRESS = new StandardTexture(76, 91, 160, 79, GeneticsTexture.GUI_PROCESS);
 
-	public WindowPolymeriser(final EntityPlayer player, final IInventory inventory, final Side side) {
+	public WindowPolymeriser(EntityPlayer player, IInventory inventory, Side side) {
 		super(278, 212, player, inventory, side);
 	}
 
@@ -37,7 +37,7 @@ public class WindowPolymeriser extends WindowMachine {
 	public void initialiseClient() {
 		super.initialiseClient();
 		int x = 16;
-		final int y = 38;
+		int y = 38;
 		new ControlSlotArray.Builder(this, x, y, 1, 4).create(Polymeriser.SLOT_SERUM_RESERVE);
 		new ControlIconDisplay(this, x + 18, y + 1, GUIIcon.ARROW_RIGHT.getIcon().getResourceLocation());
 		x += 34;
@@ -51,7 +51,7 @@ public class WindowPolymeriser extends WindowMachine {
 		new ControlSlotCharge(this, x + 30 + 20, y + 18 + 8, 1).setColor(16766976);
 		x += 138;
 		new ControlSlotArray.Builder(this, x, y + 9, 2, 2).create(Polymeriser.SLOT_SERUM_FINISHED);
-		final ControlErrorState errorState = new ControlErrorState(this, 244, 97);
+		ControlErrorState errorState = new ControlErrorState(this, 244, 97);
 		new ControlPlayerInventory(this);
 	}
 

@@ -39,12 +39,12 @@ public class WorldGenTree2 {
 		public void generate() {
 			this.generateTreeTrunk(this.height, this.girth);
 			float leafSpawn = this.height + 1;
-			final float bottom = this.randBetween(1, 2);
+			float bottom = this.randBetween(1, 2);
 			float width = this.height * this.randBetween(0.7f, 0.75f);
 			if (width > 7.0f) {
 				width = 7.0f;
 			}
-			final float coneHeight = leafSpawn - bottom;
+			float coneHeight = leafSpawn - bottom;
 			while (leafSpawn > bottom) {
 				float radius = 1.0f - (leafSpawn - bottom) / coneHeight;
 				radius *= 2.0f - radius;
@@ -71,7 +71,7 @@ public class WorldGenTree2 {
 		public void generate() {
 			this.generateTreeTrunk(this.height, this.girth);
 			float leafSpawn = this.height + 1;
-			final float bottom = 2.0f;
+			float bottom = 2.0f;
 			float width = this.height * this.randBetween(0.35f, 0.4f);
 			if (width < 2.0f) {
 				width = 2.0f;
@@ -101,7 +101,7 @@ public class WorldGenTree2 {
 		public void generate() {
 			this.generateTreeTrunk(this.height, this.girth);
 			float leafSpawn = this.height;
-			final float bottom = this.randBetween(1, 2);
+			float bottom = this.randBetween(1, 2);
 			float width = this.height * this.randBetween(0.25f, 0.3f);
 			if (width < 2.0f) {
 				width = 2.0f;
@@ -155,7 +155,7 @@ public class WorldGenTree2 {
 		public void generate() {
 			this.generateTreeTrunk(this.height, this.girth);
 			float leafSpawn = this.height + 2;
-			final float bottom = 2.0f;
+			float bottom = 2.0f;
 			float width = this.height * this.randBetween(0.55f, 0.6f);
 			if (width > 7.0f) {
 				width = 7.0f;
@@ -189,8 +189,8 @@ public class WorldGenTree2 {
 		public void generate() {
 			this.generateTreeTrunk(this.height, this.girth);
 			float leafSpawn = this.height;
-			final float bottom = 0.0f;
-			final float width = 1.5f;
+			float bottom = 0.0f;
+			float width = 1.5f;
 			while (leafSpawn > bottom) {
 				this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), width, 1, this.leaf, false);
 			}
@@ -212,7 +212,7 @@ public class WorldGenTree2 {
 		public void generate() {
 			this.generateTreeTrunk(this.height, this.girth);
 			float leafSpawn = this.height;
-			final float bottom = 2.0f;
+			float bottom = 2.0f;
 			float width = this.height * this.randBetween(0.25f, 0.3f);
 			if (width < 2.0f) {
 				width = 2.0f;

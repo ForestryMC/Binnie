@@ -21,12 +21,12 @@ public class Mods {
 	public static class Mod {
 		protected final String id;
 
-		private Mod(final String id) {
+		private Mod(String id) {
 			this.id = id;
 		}
 
 		@Nullable
-		public Item item(final String name) {
+		public Item item(String name) {
 			ResourceLocation key = new ResourceLocation(this.id, name);
 			if (!ForgeRegistries.ITEMS.containsKey(key)) {
 				return null;
@@ -35,7 +35,7 @@ public class Mods {
 		}
 
 		@Nullable
-		public Block block(final String name) {
+		public Block block(String name) {
 			ResourceLocation key = new ResourceLocation(this.id, name);
 			if (!ForgeRegistries.BLOCKS.containsKey(key)) {
 				throw new RuntimeException("Block not found: " + key);
@@ -43,15 +43,15 @@ public class Mods {
 			return ForgeRegistries.BLOCKS.getValue(key);
 		}
 
-		public ItemStack stackWildcard(final String name, int amount) {
+		public ItemStack stackWildcard(String name, int amount) {
 			return stack(name, amount, OreDictionary.WILDCARD_VALUE);
 		}
 
-		public ItemStack stackWildcard(final String name) {
+		public ItemStack stackWildcard(String name) {
 			return stack(name, 1, OreDictionary.WILDCARD_VALUE);
 		}
 
-		public ItemStack stack(final String name) {
+		public ItemStack stack(String name) {
 			Item item = this.item(name);
 			if (item == null) {
 				return ItemStack.EMPTY;
@@ -59,7 +59,7 @@ public class Mods {
 			return new ItemStack(item);
 		}
 
-		public ItemStack stack(final String name, final int amount) {
+		public ItemStack stack(String name, int amount) {
 			Item item = this.item(name);
 			if (item == null) {
 				return ItemStack.EMPTY;
@@ -67,7 +67,7 @@ public class Mods {
 			return new ItemStack(item, amount);
 		}
 
-		public ItemStack stack(final String name, final int amount, final int meta) {
+		public ItemStack stack(String name, int amount, int meta) {
 			Item item = this.item(name);
 			if (item == null) {
 				return ItemStack.EMPTY;
@@ -81,13 +81,13 @@ public class Mods {
 	}
 
 	public static class ModNonnull extends Mod {
-		private ModNonnull(final String id) {
+		private ModNonnull(String id) {
 			super(id);
 		}
 
 		@Override
 		@Nonnull
-		public Item item(final String name) {
+		public Item item(String name) {
 			Item item = super.item(name);
 			if (item == null) {
 				throw new RuntimeException("Item not found: " + this.id + ':' + name);
@@ -97,7 +97,7 @@ public class Mods {
 
 		@Override
 		@Nonnull
-		public Block block(final String name) {
+		public Block block(String name) {
 			Block block = super.block(name);
 			if (block == null) {
 				throw new RuntimeException("Block not found: " + this.id + ':' + name);
@@ -107,21 +107,21 @@ public class Mods {
 
 		@Override
 		@Nonnull
-		public ItemStack stack(final String name) {
+		public ItemStack stack(String name) {
 			Item item = this.item(name);
 			return new ItemStack(item);
 		}
 
 		@Override
 		@Nonnull
-		public ItemStack stack(final String name, final int amount) {
+		public ItemStack stack(String name, int amount) {
 			Item item = this.item(name);
 			return new ItemStack(item, amount);
 		}
 
 		@Override
 		@Nonnull
-		public ItemStack stack(final String name, final int amount, final int meta) {
+		public ItemStack stack(String name, int amount, int meta) {
 			Item item = this.item(name);
 			return new ItemStack(item, amount, meta);
 		}

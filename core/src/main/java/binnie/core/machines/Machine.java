@@ -45,7 +45,7 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 	@Nullable
 	private GameProfile owner;
 
-	public Machine(final MachinePackage pack, final TileEntity tile) {
+	public Machine(MachinePackage pack, TileEntity tile) {
 		this.componentInterfaceMap = new LinkedHashMap<>();
 		this.componentMap = new LinkedHashMap<>();
 		this.queuedInventoryUpdate = false;
@@ -56,7 +56,7 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 	}
 
 	@Nullable
-	public static IMachine getMachine(@Nullable final Object inventory) {
+	public static IMachine getMachine(@Nullable Object inventory) {
 		if (inventory instanceof IMachine) {
 			return (IMachine) inventory;
 		}
@@ -70,8 +70,8 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 	}
 
 	@Nullable
-	public static <T> T getInterface(final Class<T> interfac, @Nullable final Object inventory) {
-		final IMachine machine = getMachine(inventory);
+	public static <T> T getInterface(Class<T> interfac, @Nullable Object inventory) {
+		IMachine machine = getMachine(inventory);
 		if (machine != null) {
 			return machine.getInterface(interfac);
 		}
@@ -82,11 +82,11 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 	}
 
 	@Override
-	public void addComponent(final MachineComponent component) {
+	public void addComponent(MachineComponent component) {
 		Preconditions.checkNotNull(component, "Can't have a null machine component!");
 		component.setMachine(this);
 		this.componentMap.put(component.getClass(), component);
-		for (final Class<?> inter : component.getComponentInterfaces()) {
+		for (Class<?> inter : component.getComponentInterfaces()) {
 			if (!this.componentInterfaceMap.containsKey(inter)) {
 				this.componentInterfaceMap.put(inter, new ArrayList<>());
 			}
@@ -98,7 +98,7 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 		return this.componentMap.values();
 	}
 
-	public <T extends MachineComponent> T getComponent(final Class<T> componentClass) {
+	public <T extends MachineComponent> T getComponent(Class<T> componentClass) {
 		if (this.hasComponent(componentClass)) {
 			return componentClass.cast(this.componentMap.get(componentClass));
 		}
@@ -107,14 +107,14 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 
 	@Override
 	@Nullable
-	public <T> T getInterface(final Class<T> interfaceClass) {
+	public <T> T getInterface(Class<T> interfaceClass) {
 		if (this.hasInterface(interfaceClass)) {
 			return this.getInterfaces(interfaceClass).get(0);
 		}
 		if (interfaceClass.isInstance(this.getPackage())) {
 			return interfaceClass.cast(this.getPackage());
 		}
-		for (final MachineComponent component : this.getComponents()) {
+		for (MachineComponent component : this.getComponents()) {
 			if (interfaceClass.isInstance(component)) {
 				return interfaceClass.cast(component);
 			}
@@ -123,22 +123,22 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 	}
 
 	@Override
-	public <T> List<T> getInterfaces(final Class<T> interfaceClass) {
-		final List<T> interfaces = new ArrayList<>();
+	public <T> List<T> getInterfaces(Class<T> interfaceClass) {
+		List<T> interfaces = new ArrayList<>();
 		if (!this.hasInterface(interfaceClass)) {
 			return interfaces;
 		}
-		for (final MachineComponent component : this.componentInterfaceMap.get(interfaceClass)) {
+		for (MachineComponent component : this.componentInterfaceMap.get(interfaceClass)) {
 			interfaces.add(interfaceClass.cast(component));
 		}
 		return interfaces;
 	}
 
-	public boolean hasInterface(final Class<?> interfaceClass) {
+	public boolean hasInterface(Class<?> interfaceClass) {
 		return this.componentInterfaceMap.containsKey(interfaceClass);
 	}
 
-	public boolean hasComponent(final Class<?> componentClass) {
+	public boolean hasComponent(Class<?> componentClass) {
 		return this.componentMap.containsKey(componentClass);
 	}
 
@@ -148,8 +148,8 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 	}
 
 	@Override
-	public void writeToPacket(final PacketPayload payload) {
-		for (final MachineComponent component : this.getComponents()) {
+	public void writeToPacket(PacketPayload payload) {
+		for (MachineComponent component : this.getComponents()) {
 			if (component instanceof INetworkedEntity) {
 				((INetworkedEntity) component).writeToPacket(payload);
 			}
@@ -157,8 +157,8 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 	}
 
 	@Override
-	public void readFromPacket(final PacketPayload payload) {
-		for (final MachineComponent component : this.getComponents()) {
+	public void readFromPacket(PacketPayload payload) {
+		for (MachineComponent component : this.getComponents()) {
 			if (component instanceof INetworkedEntity) {
 				((INetworkedEntity) component).readFromPacket(payload);
 			}
@@ -167,7 +167,7 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 
 	public void onRightClick(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		List<IInteraction.RightClick> interfaces = this.getInterfaces(IInteraction.RightClick.class);
-		for (final IInteraction.RightClick component : interfaces) {
+		for (IInteraction.RightClick component : interfaces) {
 			component.onRightClick(world, pos, state, player, hand, facing, hitX, hitY, hitZ);
 		}
 	}
@@ -179,7 +179,7 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 
 	public void onUpdate() {
 		if (!this.getWorld().isRemote) {
-			for (final MachineComponent component : this.getComponents()) {
+			for (MachineComponent component : this.getComponents()) {
 				component.onUpdate();
 			}
 		} else {
@@ -187,7 +187,7 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 			updateClient();
 		}
 		if (this.queuedInventoryUpdate) {
-			for (final MachineComponent component : this.getComponents()) {
+			for (MachineComponent component : this.getComponents()) {
 				component.onInventoryUpdate();
 			}
 			TileEntity tileEntity = getTileEntity();
@@ -204,8 +204,8 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 	}
 
 	@Override
-	public void readFromNBT(final NBTTagCompound nbttagcompound) {
-		for (final MachineComponent component : this.getComponents()) {
+	public void readFromNBT(NBTTagCompound nbttagcompound) {
+		for (MachineComponent component : this.getComponents()) {
 			component.readFromNBT(nbttagcompound);
 		}
 		this.owner = NBTUtil.readGameProfileFromNBT(nbttagcompound.getCompoundTag("owner"));
@@ -213,12 +213,12 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 	}
 
 	@Override
-	public NBTTagCompound writeToNBT(final NBTTagCompound nbttagcompound) {
-		for (final MachineComponent component : this.getComponents()) {
+	public NBTTagCompound writeToNBT(NBTTagCompound nbttagcompound) {
+		for (MachineComponent component : this.getComponents()) {
 			component.writeToNBT(nbttagcompound);
 		}
 		if (this.owner != null) {
-			final NBTTagCompound nbt = new NBTTagCompound();
+			NBTTagCompound nbt = new NBTTagCompound();
 			NBTUtil.writeGameProfile(nbt, this.owner);
 			nbttagcompound.setTag("owner", nbt);
 		}
@@ -241,7 +241,7 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 	}
 
 	public void onBlockDestroy() {
-		for (final MachineComponent component : this.getComponents()) {
+		for (MachineComponent component : this.getComponents()) {
 			component.onDestruction();
 		}
 	}
@@ -253,13 +253,13 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 	}
 
 	@Override
-	public void setOwner(final GameProfile owner) {
+	public void setOwner(GameProfile owner) {
 		this.owner = owner;
 	}
 
 	@Nullable
 	public MessageBase getRefreshPacket() {
-		final NBTTagCompound nbt = new NBTTagCompound();
+		NBTTagCompound nbt = new NBTTagCompound();
 		this.syncToNBT(nbt);
 		if (nbt.hasNoTags()) {
 			return null;
@@ -268,22 +268,22 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 	}
 
 	@Override
-	public void syncToNBT(final NBTTagCompound nbt) {
-		for (final INetwork.TilePacketSync comp : this.getInterfaces(INetwork.TilePacketSync.class)) {
+	public void syncToNBT(NBTTagCompound nbt) {
+		for (INetwork.TilePacketSync comp : this.getInterfaces(INetwork.TilePacketSync.class)) {
 			comp.syncToNBT(nbt);
 		}
 	}
 
 	@Override
-	public void syncFromNBT(final NBTTagCompound nbt) {
-		for (final INetwork.TilePacketSync comp : this.getInterfaces(INetwork.TilePacketSync.class)) {
+	public void syncFromNBT(NBTTagCompound nbt) {
+		for (INetwork.TilePacketSync comp : this.getInterfaces(INetwork.TilePacketSync.class)) {
 			comp.syncFromNBT(nbt);
 		}
 	}
 
 	@Override
-	public void receiveGuiNBTOnServer(final EntityPlayer player, final String name, final NBTTagCompound nbt) {
-		for (final INetwork.ReceiveGuiNBT receive : this.getInterfaces(INetwork.ReceiveGuiNBT.class)) {
+	public void receiveGuiNBTOnServer(EntityPlayer player, String name, NBTTagCompound nbt) {
+		for (INetwork.ReceiveGuiNBT receive : this.getInterfaces(INetwork.ReceiveGuiNBT.class)) {
 			receive.receiveGuiNBTOnServer(player, name, nbt);
 		}
 	}
@@ -291,14 +291,14 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void receiveGuiNBTOnClient(EntityPlayer player, String name, NBTTagCompound nbt) {
-		for (final INetwork.ReceiveGuiNBT receive : this.getInterfaces(INetwork.ReceiveGuiNBT.class)) {
+		for (INetwork.ReceiveGuiNBT receive : this.getInterfaces(INetwork.ReceiveGuiNBT.class)) {
 			receive.receiveGuiNBTOnClient(player, name, nbt);
 		}
 	}
 
 	@Override
-	public void sendGuiNBTToClient(final Map<String, NBTTagCompound> data) {
-		for (final INetwork.SendGuiNBT send : this.getInterfaces(INetwork.SendGuiNBT.class)) {
+	public void sendGuiNBTToClient(Map<String, NBTTagCompound> data) {
+		for (INetwork.SendGuiNBT send : this.getInterfaces(INetwork.SendGuiNBT.class)) {
 			send.sendGuiNBTToClient(data);
 		}
 	}

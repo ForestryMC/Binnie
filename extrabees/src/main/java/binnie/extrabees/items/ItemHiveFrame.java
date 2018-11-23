@@ -27,7 +27,7 @@ public class ItemHiveFrame extends Item implements IHiveFrame, IBeeModifier, IIt
 
 	private final EnumHiveFrame frame;
 
-	public ItemHiveFrame(final EnumHiveFrame frame) {
+	public ItemHiveFrame(EnumHiveFrame frame) {
 		this.frame = frame;
 		this.setMaxDamage(frame.getMaxDamage());
 		this.setCreativeTab(Tabs.tabApiculture);
@@ -36,7 +36,7 @@ public class ItemHiveFrame extends Item implements IHiveFrame, IBeeModifier, IIt
 	}
 
 	@Override
-	public String getItemStackDisplayName(final ItemStack itemStack) {
+	public String getItemStackDisplayName(ItemStack itemStack) {
 		return this.frame.getName();
 	}
 
@@ -47,27 +47,27 @@ public class ItemHiveFrame extends Item implements IHiveFrame, IBeeModifier, IIt
 	}
 
 	@Override
-	public float getTerritoryModifier(final IBeeGenome genome, final float currentModifier) {
+	public float getTerritoryModifier(IBeeGenome genome, float currentModifier) {
 		return this.frame.getTerritoryModifier(genome, currentModifier);
 	}
 
 	@Override
-	public float getMutationModifier(final IBeeGenome genome, final IBeeGenome mate, final float currentModifier) {
+	public float getMutationModifier(IBeeGenome genome, IBeeGenome mate, float currentModifier) {
 		return this.frame.getMutationModifier(genome, mate, currentModifier);
 	}
 
 	@Override
-	public float getLifespanModifier(final IBeeGenome genome, @Nullable final IBeeGenome mate, final float currentModifier) {
+	public float getLifespanModifier(IBeeGenome genome, @Nullable IBeeGenome mate, float currentModifier) {
 		return this.frame.getLifespanModifier(genome, mate, currentModifier);
 	}
 
 	@Override
-	public float getProductionModifier(final IBeeGenome genome, final float currentModifier) {
+	public float getProductionModifier(IBeeGenome genome, float currentModifier) {
 		return this.frame.getProductionModifier(genome, currentModifier);
 	}
 
 	@Override
-	public ItemStack frameUsed(final IBeeHousing housing, final ItemStack frame, final IBee queen, final int wear) {
+	public ItemStack frameUsed(IBeeHousing housing, ItemStack frame, IBee queen, int wear) {
 		frame.setItemDamage(frame.getItemDamage() + wear);
 		if (frame.getItemDamage() >= frame.getMaxDamage()) {
 			return ItemStack.EMPTY;
@@ -76,7 +76,7 @@ public class ItemHiveFrame extends Item implements IHiveFrame, IBeeModifier, IIt
 	}
 
 	@Override
-	public float getFloweringModifier(final IBeeGenome genome, final float currentModifier) {
+	public float getFloweringModifier(IBeeGenome genome, float currentModifier) {
 		return 1.0f;
 	}
 
@@ -111,7 +111,7 @@ public class ItemHiveFrame extends Item implements IHiveFrame, IBeeModifier, IIt
 	}
 
 	@Override
-	public float getGeneticDecay(final IBeeGenome genome, final float currentModifier) {
+	public float getGeneticDecay(IBeeGenome genome, float currentModifier) {
 		return 1.0f;
 	}
 

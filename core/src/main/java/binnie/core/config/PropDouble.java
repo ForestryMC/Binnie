@@ -10,7 +10,7 @@ import net.minecraftforge.common.config.Property;
 @ConfigProperty.Type(propertyClass = PropDouble.PropertyDouble.class)
 public @interface PropDouble {
 	class PropertyDouble extends PropertyBase<Double, PropDouble> {
-		public PropertyDouble(final Field field, final BinnieConfiguration file, final ConfigProperty configProperty, final PropDouble annotedProperty) throws IllegalArgumentException, IllegalAccessException {
+		public PropertyDouble(Field field, BinnieConfiguration file, ConfigProperty configProperty, PropDouble annotedProperty) throws IllegalArgumentException, IllegalAccessException {
 			super(field, file, configProperty, annotedProperty);
 		}
 

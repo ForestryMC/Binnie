@@ -13,7 +13,7 @@ public class WorldGenTropical {
 			this.generateTreeTrunk(this.height, this.girth);
 			float leafSpawn = this.height;
 			float width = this.height * this.randBetween(0.7f, 0.75f);
-			final float bottom = 2.0f;
+			float bottom = 2.0f;
 			if (width < 1.2) {
 				width = 1.55f;
 			}

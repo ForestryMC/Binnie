@@ -65,7 +65,7 @@ public class ExtraTrees extends ModuleProvider {
 	}
 
 	@Mod.EventHandler
-	public void preInit(final FMLPreInitializationEvent evt) {
+	public void preInit(FMLPreInitializationEvent evt) {
 		container.registerConfigHandler(new ConfigurationMain(container));
 		super.preInit(evt);
 
@@ -98,12 +98,12 @@ public class ExtraTrees extends ModuleProvider {
 	}
 
 	@Mod.EventHandler
-	public void init(final FMLInitializationEvent evt) {
+	public void init(FMLInitializationEvent evt) {
 		super.init(evt);
 	}
 
 	@Mod.EventHandler
-	public void postInit(final FMLPostInitializationEvent evt) {
+	public void postInit(FMLPostInitializationEvent evt) {
 		super.postInit(evt);
 	}
 

@@ -24,7 +24,7 @@ public class WindowAcclimatiser extends WindowMachine {
 	private static final Texture PROGRESS_BASE = new StandardTexture(0, 64, 64, 64, GeneticsTexture.GUI_PROCESS_3);
 	private static final Texture PROGRESS = new StandardTexture(0, 64, 64, 64, GeneticsTexture.GUI_PROCESS_3);
 
-	public WindowAcclimatiser(final EntityPlayer player, final IInventory inventory, final Side side) {
+	public WindowAcclimatiser(EntityPlayer player, IInventory inventory, Side side) {
 		super(280, 198, player, inventory, side);
 	}
 
@@ -34,7 +34,7 @@ public class WindowAcclimatiser extends WindowMachine {
 		super.initialiseClient();
 		new ControlProgress(this, 65, 28, PROGRESS_BASE, PROGRESS, Alignment.RIGHT);
 		int x = 16;
-		final int y = 32;
+		int y = 32;
 		new ControlSlotArray.Builder(this, x, y, 2, 2).create(Acclimatiser.SLOT_RESERVE);
 		x += 54;
 		new ControlSlot.Builder(this, x + 18, y).assign(4);

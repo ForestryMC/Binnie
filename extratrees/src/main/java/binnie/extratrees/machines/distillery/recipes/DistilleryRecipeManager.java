@@ -26,7 +26,7 @@ public class DistilleryRecipeManager implements IDistilleryManager {
 	}
 
 	@Nullable
-	public static FluidStack getOutput(@Nullable final FluidStack fluid, final int level) {
+	public static FluidStack getOutput(@Nullable FluidStack fluid, int level) {
 		if (fluid != null) {
 			Map<Fluid, IDistilleryRecipe> recipesForLevel = recipes.get(level);
 			IDistilleryRecipe recipe = recipesForLevel.get(fluid.getFluid());
@@ -51,7 +51,7 @@ public class DistilleryRecipeManager implements IDistilleryManager {
 		return false;
 	}
 
-	public static boolean isValidOutputLiquid(final FluidStack fluid) {
+	public static boolean isValidOutputLiquid(FluidStack fluid) {
 		for (int i = 0; i < LEVELS; ++i) {
 			Map<Fluid, IDistilleryRecipe> recipesForLevel = recipes.get(i);
 			for (IDistilleryRecipe recipe : recipesForLevel.values()) {

@@ -12,8 +12,8 @@ public class WorldGenSorbus {
 		public void generate() {
 			this.generateTreeTrunk(this.height, this.girth);
 			int leafSpawn = this.height + 1;
-			final float bottom = this.randBetween(2, 3);
-			final float width = this.height * this.randBetween(0.5f, 0.6f);
+			float bottom = this.randBetween(2, 3);
+			float width = this.height * this.randBetween(0.5f, 0.6f);
 			this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), 0.4f * width, 1, this.leaf, false);
 			this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), 0.6f * width, 1, this.leaf, false);
 			this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), 0.8f * width, 1, this.leaf, false);
@@ -33,8 +33,8 @@ public class WorldGenSorbus {
 		public void generate() {
 			this.generateTreeTrunk(this.height, this.girth);
 			int leafSpawn = this.height + 1;
-			final float bottom = this.randBetween(2, 3);
-			final float width = this.height * this.randBetween(0.5f, 0.6f);
+			float bottom = this.randBetween(2, 3);
+			float width = this.height * this.randBetween(0.5f, 0.6f);
 			this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), 0.5f * width, 1, this.leaf, false);
 			while (leafSpawn > bottom) {
 				this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), this.randBetween(0.95f, 1.05f) * width, 1, this.leaf, false);

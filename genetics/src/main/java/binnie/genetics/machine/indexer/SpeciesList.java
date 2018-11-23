@@ -18,7 +18,7 @@ public class SpeciesList {
 		this.bees = new ArrayList<>();
 	}
 
-	public void add(final ItemStack stack) {
+	public void add(ItemStack stack) {
 		this.bees.add(stack);
 	}
 

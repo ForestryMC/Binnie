@@ -297,18 +297,18 @@ public enum EnumPattern implements IPattern {
 		this.horizontalFlip = Layout.get(this, false);
 	}
 
-	static void setupStripedPattern(final EnumPattern vert, final EnumPattern hori) {
+	static void setupStripedPattern(EnumPattern vert, EnumPattern hori) {
 		vert.setLeftRotation(hori, true);
 		hori.setLeftRotation(vert, false);
 		vert.setHorizontalFlip(vert, true);
 	}
 
-	static void setupChequeredPattern(final EnumPattern cheq) {
+	static void setupChequeredPattern(EnumPattern cheq) {
 		cheq.setLeftRotation(cheq, true);
 		cheq.setHorizontalFlip(cheq, true);
 	}
 
-	static void setupCornerPattern(final EnumPattern tl, final EnumPattern tr, final EnumPattern br, final EnumPattern bl) {
+	static void setupCornerPattern(EnumPattern tl, EnumPattern tr, EnumPattern br, EnumPattern bl) {
 		tl.setLeftRotation(bl, false);
 		tr.setLeftRotation(tl, false);
 		br.setLeftRotation(tr, false);
@@ -317,24 +317,24 @@ public enum EnumPattern implements IPattern {
 		bl.setHorizontalFlip(br, false);
 	}
 
-	static void setupInvert2Rot(final EnumPattern a, final EnumPattern b) {
+	static void setupInvert2Rot(EnumPattern a, EnumPattern b) {
 		a.setLeftRotation(b, true);
 		b.setLeftRotation(a, false);
 		a.setHorizontalFlip(b, false);
 	}
 
-	static void set2Rotation(final EnumPattern a, final EnumPattern b) {
+	static void set2Rotation(EnumPattern a, EnumPattern b) {
 		a.setLeftRotation(b, false);
 		b.setLeftRotation(a, false);
 		a.setHorizontalFlip(b, false);
 	}
 
-	static void setupBarredPattern(final EnumPattern vert, final EnumPattern hori) {
+	static void setupBarredPattern(EnumPattern vert, EnumPattern hori) {
 		vert.setLeftRotation(hori, false);
 		hori.setLeftRotation(vert, false);
 	}
 
-	static void setupEdgedPattern(final EnumPattern l, final EnumPattern t, final EnumPattern r, final EnumPattern b) {
+	static void setupEdgedPattern(EnumPattern l, EnumPattern t, EnumPattern r, EnumPattern b) {
 		l.setLeftRotation(b, false);
 		t.setLeftRotation(l, false);
 		r.setLeftRotation(t, false);
@@ -342,13 +342,13 @@ public enum EnumPattern implements IPattern {
 		l.setHorizontalFlip(r, false);
 	}
 
-	static void setupDiagonalPattern(final EnumPattern a, final EnumPattern b) {
+	static void setupDiagonalPattern(EnumPattern a, EnumPattern b) {
 		a.setLeftRotation(b, false);
 		b.setLeftRotation(a, false);
 		a.setHorizontalFlip(b, false);
 	}
 
-	static void setupBarredPattern(final EnumPattern l, final EnumPattern t, final EnumPattern r, final EnumPattern b) {
+	static void setupBarredPattern(EnumPattern l, EnumPattern t, EnumPattern r, EnumPattern b) {
 		l.setLeftRotation(b, false);
 		t.setLeftRotation(l, false);
 		r.setLeftRotation(t, false);
@@ -356,11 +356,11 @@ public enum EnumPattern implements IPattern {
 		l.setHorizontalFlip(r, false);
 	}
 
-	static void setupTSectionPattern(final EnumPattern l, final EnumPattern t, final EnumPattern r, final EnumPattern b) {
+	static void setupTSectionPattern(EnumPattern l, EnumPattern t, EnumPattern r, EnumPattern b) {
 		setupEdgedPattern(l, t, r, b);
 	}
 
-	private static void setupRotation(final EnumPattern t, final EnumPattern r, final EnumPattern b, final EnumPattern l) {
+	private static void setupRotation(EnumPattern t, EnumPattern r, EnumPattern b, EnumPattern l) {
 		setupEdgedPattern(l, t, r, b);
 	}
 
@@ -370,7 +370,7 @@ public enum EnumPattern implements IPattern {
 		return system.getPrimarySprite(this);
 	}
 
-	private void setHorizontalFlip(final EnumPattern pattern, final boolean inverted) {
+	private void setHorizontalFlip(EnumPattern pattern, boolean inverted) {
 		this.horizontalFlip = Layout.get(pattern, inverted);
 		pattern.horizontalFlip = Layout.get(this, inverted);
 	}
@@ -396,7 +396,7 @@ public enum EnumPattern implements IPattern {
 		return ordinal();
 	}
 
-	protected void setLeftRotation(final EnumPattern pattern, final boolean inverted) {
+	protected void setLeftRotation(EnumPattern pattern, boolean inverted) {
 		this.leftRotation = Layout.get(pattern, inverted);
 	}
 
@@ -408,7 +408,7 @@ public enum EnumPattern implements IPattern {
 		return this.layout(false);
 	}
 
-	public ILayout layout(final boolean invert) {
+	public ILayout layout(boolean invert) {
 		return Layout.get(this, invert);
 	}
 }

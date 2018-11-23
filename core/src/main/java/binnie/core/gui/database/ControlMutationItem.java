@@ -12,17 +12,17 @@ import binnie.core.gui.minecraft.Window;
 
 class ControlMutationItem extends ControlOption<IMutation> {
 
-	public ControlMutationItem(final ControlList<IMutation> controlList, final IMutation option, @Nullable final IAlleleSpecies species, final int y) {
+	public ControlMutationItem(ControlList<IMutation> controlList, IMutation option, @Nullable IAlleleSpecies species, int y) {
 		super(controlList, option, y);
 		ControlIndividualDisplay firstIndividual = new ControlIndividualDisplay(this, 4, 4);
 		ControlIndividualDisplay secondIndividual = new ControlIndividualDisplay(this, 44, 4);
 		ControlIndividualDisplay resultIndividual = new ControlIndividualDisplay(this, 104, 4);
 		ControlMutationSymbol addSymbol = new ControlMutationSymbol(this, 24, 4, 0);
 		ControlMutationSymbol arrowSymbol = new ControlMutationSymbol(this, 64, 4, 1);
-		final boolean isMaster = ((WindowAbstractDatabase) this.getTopParent()).isMaster();
-		final IBreedingSystem system = ((WindowAbstractDatabase) this.getTopParent()).getBreedingSystem();
+		boolean isMaster = ((WindowAbstractDatabase) this.getTopParent()).isMaster();
+		IBreedingSystem system = ((WindowAbstractDatabase) this.getTopParent()).getBreedingSystem();
 		if (this.getValue() != null) {
-			final boolean isMutationDiscovered = system.isMutationDiscovered(this.getValue(), Window.get(this).getWorld(), Window.get(this).getUsername());
+			boolean isMutationDiscovered = system.isMutationDiscovered(this.getValue(), Window.get(this).getWorld(), Window.get(this).getUsername());
 			IAlleleSpecies allele = this.getValue().getAllele0();
 			EnumDiscoveryState state = ((isMaster || isMutationDiscovered) ? EnumDiscoveryState.SHOW : ((species.equals(allele)) ? EnumDiscoveryState.SHOW : EnumDiscoveryState.UNDETERMINED));
 			firstIndividual.setSpecies(allele, state);

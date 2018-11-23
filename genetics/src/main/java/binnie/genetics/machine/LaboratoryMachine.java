@@ -22,7 +22,7 @@ public enum LaboratoryMachine implements IMachineType {
 
 	private final Supplier<MachinePackage> supplier;
 
-	LaboratoryMachine(final Supplier<MachinePackage> supplier) {
+	LaboratoryMachine(Supplier<MachinePackage> supplier) {
 		this.supplier = supplier;
 	}
 

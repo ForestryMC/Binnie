@@ -26,7 +26,7 @@ public enum MiscFluid implements IFluidDefinition, ICocktailLiquid {
 
 	private final FluidType type;
 
-	MiscFluid(final String ident, final int color, final double transparency) {
+	MiscFluid(String ident, int color, double transparency) {
 		type = ExtraTrees.instance.registry(ExtraTreesModuleUIDs.CORE).createFluid(ident, String.format("%s.fluid.%s.%s", ExtraTrees.instance.getModId(), "MiscFluid", this.name()), color)
 			.setTransparency(transparency)
 			.setTextures(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "blocks/liquids/liquid"))
@@ -54,7 +54,7 @@ public enum MiscFluid implements IFluidDefinition, ICocktailLiquid {
 	}
 
 	@Override
-	public FluidStack get(final int amount) {
+	public FluidStack get(int amount) {
 		return type.stack(amount);
 	}
 
@@ -64,7 +64,7 @@ public enum MiscFluid implements IFluidDefinition, ICocktailLiquid {
 	}
 
 	@Override
-	public String getTooltip(final int ratio) {
+	public String getTooltip(int ratio) {
 		return ratio + " Part" + ((ratio > 1) ? "s " : " ") + this.getDisplayName();
 	}
 

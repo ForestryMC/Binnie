@@ -20,7 +20,7 @@ public class WindowInventory implements IInventory {
 	private final Map<Integer, SlotValidator> validators;
 	private final List<Integer> disabledAutoDispenses;
 
-	public WindowInventory(final Window window) {
+	public WindowInventory(Window window) {
 		this.inventory = new HashMap<>();
 		this.validators = new HashMap<>();
 		this.disabledAutoDispenses = new ArrayList<>();
@@ -33,7 +33,7 @@ public class WindowInventory implements IInventory {
 			return 0;
 		}
 		int max = 0;
-		for (final int i : this.inventory.keySet()) {
+		for (int i : this.inventory.keySet()) {
 			if (i > max) {
 				max = i;
 			}
@@ -47,7 +47,7 @@ public class WindowInventory implements IInventory {
 	}
 
 	@Override
-	public ItemStack getStackInSlot(final int var1) {
+	public ItemStack getStackInSlot(int var1) {
 		if (this.inventory.containsKey(var1)) {
 			return this.inventory.get(var1);
 		}
@@ -55,11 +55,11 @@ public class WindowInventory implements IInventory {
 	}
 
 	@Override
-	public ItemStack decrStackSize(final int index, int amount) {
+	public ItemStack decrStackSize(int index, int amount) {
 		if (this.inventory.containsKey(index)) {
-			final ItemStack item = this.inventory.get(index);
-			final ItemStack output = item.copy();
-			final int available = item.getCount();
+			ItemStack item = this.inventory.get(index);
+			ItemStack output = item.copy();
+			int available = item.getCount();
 			if (amount > available) {
 				amount = available;
 			}
@@ -75,7 +75,7 @@ public class WindowInventory implements IInventory {
 	}
 
 	@Override
-	public void setInventorySlotContents(final int index, final ItemStack stack) {
+	public void setInventorySlotContents(int index, ItemStack stack) {
 		this.inventory.put(index, stack);
 		this.markDirty();
 	}
@@ -91,33 +91,33 @@ public class WindowInventory implements IInventory {
 	}
 
 	@Override
-	public boolean isUsableByPlayer(final EntityPlayer var1) {
+	public boolean isUsableByPlayer(EntityPlayer var1) {
 		return true;
 	}
 
 	@Override
-	public boolean isItemValidForSlot(final int i, final ItemStack itemstack) {
+	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
 		return !this.validators.containsKey(i) || this.validators.get(i).isValid(itemstack);
 	}
 
-	public void createSlot(final int slot) {
+	public void createSlot(int slot) {
 		this.inventory.put(slot, ItemStack.EMPTY);
 	}
 
-	public void setValidator(final int slot, final SlotValidator validator) {
+	public void setValidator(int slot, SlotValidator validator) {
 		this.validators.put(slot, validator);
 	}
 
-	public void disableAutoDispense(final int i) {
+	public void disableAutoDispense(int i) {
 		this.disabledAutoDispenses.add(i);
 	}
 
-	public boolean dispenseOnClose(final int i) {
+	public boolean dispenseOnClose(int i) {
 		return !this.disabledAutoDispenses.contains(i);
 	}
 
 	@Nullable
-	public SlotValidator getValidator(final int slotIndex) {
+	public SlotValidator getValidator(int slotIndex) {
 		return this.validators.get(slotIndex);
 	}
 

@@ -15,9 +15,9 @@ public class AlvearyFrame extends ExtraBeeMachines.AlvearyPackage implements IMa
 	}
 
 	@Override
-	public void createMachine(final Machine machine) {
+	public void createMachine(Machine machine) {
 		new ExtraBeeMachines.ComponentExtraBeeGUI(machine, ExtraBeesGUID.ALVEARY_FRAME);
-		final ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
+		ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
 		inventory.addSlot(AlvearyFrame.SLOT_FRAME, getSlotRL("frame")).setValidator(new SlotValidatorFrame());
 		new ComponentFrameModifier(machine);
 	}

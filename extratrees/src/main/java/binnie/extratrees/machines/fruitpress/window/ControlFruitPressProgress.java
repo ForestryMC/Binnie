@@ -30,15 +30,15 @@ public class ControlFruitPressProgress extends ControlProgressBase {
 	private static final Texture PressTexture = new StandardTexture(6, 0, 24, 52, ExtraTreeTexture.GUI);
 	private static final Texture PressSlot = new StandardTexture(9, 52, 34, 17, ExtraTreeTexture.GUI);
 
-	protected ControlFruitPressProgress(final IWidget parent, final int x, final int y) {
+	protected ControlFruitPressProgress(IWidget parent, int x, int y) {
 		super(parent, x, y, 37, 69);
 		this.addAttribute(Attribute.MOUSE_OVER);
 		this.addSelfEventHandler(EventMouse.Down.class, event -> {
 			if (event.getY() - event.getOrigin().getAbsolutePosition().yPos() > 52 + Math.round(16 * progress)) {
-				final NBTTagCompound action = new NBTTagCompound();
+				NBTTagCompound action = new NBTTagCompound();
 				Window.get(ControlFruitPressProgress.this.getWidget()).sendClientAction("clear-fruit", action);
 			} else {
-				final NBTTagCompound action = new NBTTagCompound();
+				NBTTagCompound action = new NBTTagCompound();
 				Window.get(ControlFruitPressProgress.this.getWidget()).sendClientAction("fruitpress-click", action);
 			}
 		});
@@ -54,7 +54,7 @@ public class ControlFruitPressProgress extends ControlProgressBase {
 		if (slotFromInventory == null) {
 			return;
 		}
-		final ItemStack input = slotFromInventory.getStack();
+		ItemStack input = slotFromInventory.getStack();
 		if (input.isEmpty() || FruitPressRecipeManager.getOutput(input) == null) {
 			return;
 		}

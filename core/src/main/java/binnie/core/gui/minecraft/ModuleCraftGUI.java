@@ -5,7 +5,7 @@ import binnie.core.IInitializable;
 public class ModuleCraftGUI implements IInitializable {
 	@Override
 	public void preInit() {
-		for (final GUIIcon icon : GUIIcon.values()) {
+		for (GUIIcon icon : GUIIcon.values()) {
 			icon.register();
 		}
 	}

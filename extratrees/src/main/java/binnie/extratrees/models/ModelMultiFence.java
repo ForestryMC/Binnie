@@ -97,9 +97,9 @@ public class ModelMultiFence extends ModelBlockCached<BlockMultiFence, ModelMult
 		int meta = key.meta;
 		FenceType type = key.type;
 		for (int i = 0; i < 5; ++i) {
-			final float thickness = 0.125f;
+			float thickness = 0.125f;
 			boolean secondary = false;
-			final boolean bottomBar = !type.isSolid();
+			boolean bottomBar = !type.isSolid();
 			float topBarMaxY = 1.0f - SCALE;
 			float topBarMinY = 1.0f - SCALE * 3.0f;
 			float bottomBarMaxY = 0.5f - SCALE;

@@ -23,12 +23,12 @@ public class BeeModifierLogic {
 		this.booleanModifiers = new ArrayList<>();
 	}
 
-	public float getModifier(EnumBeeModifier modifier, final float currentModifier) {
+	public float getModifier(EnumBeeModifier modifier, float currentModifier) {
 		if (!this.modifiers.containsKey(modifier)) {
 			return 1.0f;
 		}
-		final float mult = this.modifiers.get(modifier)[0];
-		final float limit = this.modifiers.get(modifier)[1];
+		float mult = this.modifiers.get(modifier)[0];
+		float limit = this.modifiers.get(modifier)[1];
 		if (limit >= 1.0f) {
 			if (limit <= currentModifier) {
 				return 1.0f;
@@ -42,24 +42,24 @@ public class BeeModifierLogic {
 		}
 	}
 
-	public boolean getModifier(final EnumBeeBooleanModifier modifier) {
+	public boolean getModifier(EnumBeeBooleanModifier modifier) {
 		return this.booleanModifiers.contains(modifier);
 	}
 
-	public void setModifier(final EnumBeeBooleanModifier modifier) {
+	public void setModifier(EnumBeeBooleanModifier modifier) {
 		this.booleanModifiers.add(modifier);
 	}
 
-	public void setModifier(final EnumBeeModifier modifier, final float mult, final float max) {
+	public void setModifier(EnumBeeModifier modifier, float mult, float max) {
 		this.modifiers.put(modifier, new Float[]{mult, max});
 	}
 
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, List<String> tooltip, ITooltipFlag flagIn) {
 		for (Map.Entry<EnumBeeModifier, Float[]> modifier : modifiers.entrySet()) {
-			final EnumBeeModifier key = modifier.getKey();
-			final Float[] value = modifier.getValue();
-			final String modifierName = key.getName();
+			EnumBeeModifier key = modifier.getKey();
+			Float[] value = modifier.getValue();
+			String modifierName = key.getName();
 			Float multiplier = value[0];
 			Float limit = value[1];
 			if (multiplier < 0.01) {
@@ -68,8 +68,8 @@ public class BeeModifierLogic {
 			if (limit < 0.01) {
 				limit = 0f;
 			}
-			final String formatKey = limit >= 1.0f ? "bee.modifier.format.max" : "bee.modifier.format.min";
-			final String valueString = I18N.localise(formatKey, multiplier, limit);
+			String formatKey = limit >= 1.0f ? "bee.modifier.format.max" : "bee.modifier.format.min";
+			String valueString = I18N.localise(formatKey, multiplier, limit);
 			tooltip.add(modifierName + ": " + valueString);
 		}
 	}

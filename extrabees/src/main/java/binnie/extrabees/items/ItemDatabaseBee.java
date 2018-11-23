@@ -13,7 +13,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import net.minecraftforge.client.model.ModelLoader;
@@ -25,12 +24,12 @@ import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
 import forestry.api.core.Tabs;
 
-import binnie.core.api.gui.IGuiItem;
+import binnie.core.gui.IBinnieGUID;
+import binnie.core.gui.IBinnieGuiItem;
 import binnie.core.util.I18N;
-import binnie.extrabees.ExtraBees;
 import binnie.extrabees.gui.ExtraBeesGUID;
 
-public class ItemDatabaseBee extends Item implements IItemModelRegister, IGuiItem {
+public class ItemDatabaseBee extends Item implements IItemModelRegister, IBinnieGuiItem {
 
 	public ItemDatabaseBee() {
 		this.setCreativeTab(Tabs.tabApiculture);
@@ -59,16 +58,14 @@ public class ItemDatabaseBee extends Item implements IItemModelRegister, IGuiIte
 
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-		final ItemStack itemStack = playerIn.getHeldItem(handIn);
-		openGuiOnRightClick(itemStack, worldIn, playerIn);
+		ItemStack itemStack = playerIn.getHeldItem(handIn);
+		openGui(itemStack, worldIn, playerIn);
 		return super.onItemRightClick(worldIn, playerIn, handIn);
 	}
 
 	@Override
-	public void openGuiOnRightClick(ItemStack itemStack, World world, EntityPlayer player) {
-		ExtraBeesGUID id = itemStack.getItemDamage() == 0 ? ExtraBeesGUID.DATABASE : ExtraBeesGUID.DATABASE_MASTER;
-		BlockPos pos = player.getPosition();
-		player.openGui(ExtraBees.instance, id.ordinal(), world, pos.getX(), pos.getY(), pos.getZ());
+	public IBinnieGUID getGuiID(ItemStack itemStack) {
+		return isMaster(itemStack) ? ExtraBeesGUID.DATABASE_MASTER : ExtraBeesGUID.DATABASE;
 	}
 
 	@Override

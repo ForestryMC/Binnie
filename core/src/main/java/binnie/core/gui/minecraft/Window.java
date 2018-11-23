@@ -70,7 +70,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 	@Nullable
 	private final IInventory entityInventory;
 
-	public Window(final int width, final int height, final EntityPlayer player, @Nullable final IInventory inventory, final Side side) {
+	public Window(int width, int height, EntityPlayer player, @Nullable IInventory inventory, Side side) {
 		this.titleButtonLeft = 8;
 		this.titleButtonRight = 8;
 		this.bgText1 = null;
@@ -85,7 +85,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 		if (side == Side.CLIENT) {
 			this.setSize(new Point(width, height));
 			this.gui = new GuiCraftGUI(this);
-			for (final EnumHighlighting h : EnumHighlighting.values()) {
+			for (EnumHighlighting h : EnumHighlighting.values()) {
 				ControlSlot.highlighting.put(h, new ArrayList<>());
 			}
 			CraftGUI.RENDER.setStyleSheet(StyleSheetManager.getDefaultSheet());
@@ -108,15 +108,15 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 		}
 	}
 
-	public static <T extends Window> T get(final IWidget widget) {
+	public static <T extends Window> T get(IWidget widget) {
 		return (T) widget.getTopParent();
 	}
 
 	@SideOnly(Side.CLIENT)
-	public void getTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
-		final Deque<IWidget> queue = this.calculateMousedOverWidgets();
+	public void getTooltip(Tooltip tooltip, ITooltipFlag tooltipFlag) {
+		Deque<IWidget> queue = this.calculateMousedOverWidgets();
 		while (!queue.isEmpty()) {
-			final IWidget widget = queue.removeFirst();
+			IWidget widget = queue.removeFirst();
 			if (widget.isEnabled() && widget.isVisible() && widget.calculateIsMouseOver()) {
 				if (widget instanceof ITooltip) {
 					((ITooltip) widget).getTooltip(tooltip, tooltipFlag);
@@ -132,9 +132,9 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 	}
 
 	public boolean getHelpTooltip(MinecraftTooltip tooltip, ITooltipFlag tooltipFlag) {
-		final Deque<IWidget> queue = this.calculateMousedOverWidgets();
+		Deque<IWidget> queue = this.calculateMousedOverWidgets();
 		while (!queue.isEmpty()) {
-			final IWidget widget = queue.removeFirst();
+			IWidget widget = queue.removeFirst();
 			if (widget.isEnabled() && widget.isVisible() && widget.calculateIsMouseOver()) {
 				if (widget instanceof ITooltipHelp) {
 					((ITooltipHelp) widget).getHelpTooltip(tooltip, tooltipFlag);
@@ -154,7 +154,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 
 	protected abstract String getBackgroundTextureName();
 
-	public IBinnieTexture getBackgroundTextureFile(final int i) {
+	public IBinnieTexture getBackgroundTextureFile(int i) {
 		return new BackgroundTexture(this, i);
 	}
 
@@ -171,7 +171,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 		return null;
 	}
 
-	public void setTitle(final String title) {
+	public void setTitle(String title) {
 		(this.title = new ControlTextCentered(this, 12, title)).setColor(4210752);
 	}
 
@@ -275,31 +275,31 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 		return this.getPlayer().world;
 	}
 
-	public void sendClientAction(final String name, final NBTTagCompound action) {
+	public void sendClientAction(String name, NBTTagCompound action) {
 		action.setString("type", name);
-		final MessageCraftGUI packet = new MessageCraftGUI(action);
+		MessageCraftGUI packet = new MessageCraftGUI(action);
 		BinnieCore.getBinnieProxy().sendToServer(packet);
 	}
 
 	@Override
-	public void receiveGuiNBTOnServer(final EntityPlayer player, final String name, final NBTTagCompound nbt) {
+	public void receiveGuiNBTOnServer(EntityPlayer player, String name, NBTTagCompound nbt) {
 
 	}
 
 	@Override
 	public void receiveGuiNBTOnClient(EntityPlayer player, String name, NBTTagCompound nbt) {
 		if (name.equals("username")) {
-			final int w = this.getWidth();
-			final int titleButtonRight = this.titleButtonRight + 16;
+			int w = this.getWidth();
+			int titleButtonRight = this.titleButtonRight + 16;
 			this.titleButtonRight = titleButtonRight;
-			final ControlUser controlUser = new ControlUser(this, w - titleButtonRight, 8, nbt.getString("username"));
+			ControlUser controlUser = new ControlUser(this, w - titleButtonRight, 8, nbt.getString("username"));
 			this.titleButtonRight += 6;
 		}
 		if (name.equals("power-system")) {
-			final int w2 = this.getWidth();
-			final int titleButtonRight2 = this.titleButtonRight + 16;
+			int w2 = this.getWidth();
+			int titleButtonRight2 = this.titleButtonRight + 16;
 			this.titleButtonRight = titleButtonRight2;
-			final ControlPowerSystem controlPowerSystem = new ControlPowerSystem(this, w2 - titleButtonRight2, 8, PowerSystem.get(nbt.getByte("system")));
+			ControlPowerSystem controlPowerSystem = new ControlPowerSystem(this, w2 - titleButtonRight2, 8, PowerSystem.get(nbt.getByte("system")));
 			this.titleButtonRight += 6;
 		}
 	}

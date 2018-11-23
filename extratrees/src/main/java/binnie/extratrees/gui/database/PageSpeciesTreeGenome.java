@@ -41,7 +41,7 @@ import binnie.core.util.I18N;
 
 @SideOnly(Side.CLIENT)
 public class PageSpeciesTreeGenome extends PageSpecies {
-	public PageSpeciesTreeGenome(final IWidget parent, final DatabaseTab tab) {
+	public PageSpeciesTreeGenome(IWidget parent, DatabaseTab tab) {
 		super(parent, tab);
 	}
 
@@ -54,28 +54,28 @@ public class PageSpeciesTreeGenome extends PageSpecies {
 	}*/
 
 	@Override
-	public void onValueChanged(final IAlleleSpecies species) {
+	public void onValueChanged(IAlleleSpecies species) {
 		this.deleteAllChildren();
-		final IAllele[] template = TreeManager.treeRoot.getTemplate(species.getUID());
+		IAllele[] template = TreeManager.treeRoot.getTemplate(species.getUID());
 		if (template == null) {
 			return;
 		}
-		final ITree tree = TreeManager.treeRoot.templateAsIndividual(template);
+		ITree tree = TreeManager.treeRoot.templateAsIndividual(template);
 
-		final ITreeGenome genome = tree.getGenome();
-		final IAlleleTreeSpecies treeSpecies = genome.getPrimary();
-		final int w = 144;
-		final int h = 176;
+		ITreeGenome genome = tree.getGenome();
+		IAlleleTreeSpecies treeSpecies = genome.getPrimary();
+		int w = 144;
+		int h = 176;
 		new ControlText(this, new Area(0, 4, w, 16), this.getValue().toString(), TextJustification.MIDDLE_CENTER);
-		final ControlScrollableContent scrollable = new ControlScrollableContent(this, 4, 20, w - 8, h - 8 - 16, 12);
-		final Control contents = new Control(scrollable, 0, 0, w - 8 - 12, h - 8 - 16);
-		final int tw = w - 8 - 12;
-		final int w2 = 65;
-		final int w3 = tw - 50;
+		ControlScrollableContent scrollable = new ControlScrollableContent(this, 4, 20, w - 8, h - 8 - 16, 12);
+		Control contents = new Control(scrollable, 0, 0, w - 8 - 12, h - 8 - 16);
+		int tw = w - 8 - 12;
+		int w2 = 65;
+		int w3 = tw - 50;
 		int y = 0;
-		final int th = 14;
-		final int th2 = 18;
-		final IBreedingSystem syst = Binnie.GENETICS.getSystem(TreeManager.treeRoot);
+		int th = 14;
+		int th2 = 18;
+		IBreedingSystem syst = Binnie.GENETICS.getSystem(TreeManager.treeRoot);
 		new ControlText(contents, new Area(w2, y, w3, th), treeSpecies.getPlantType().toString(), TextJustification.MIDDLE_LEFT);
 		y += th;
 		new ControlText(contents, new Area(0, y, w2, th), I18N.localise("binniecore.gui.temperature.short") + " : ", TextJustification.MIDDLE_RIGHT);
@@ -103,7 +103,7 @@ public class PageSpeciesTreeGenome extends PageSpecies {
 		ItemStack log = treeSpecies.getWoodProvider().getWoodStack();
 		if (log.isEmpty()) {
 			new ControlText(contents, new Area(0, y, w2, th2), I18N.localise("extratrees.gui.database.log") + " : ", TextJustification.MIDDLE_RIGHT);
-			final ControlItemDisplay display = new ControlItemDisplay(contents, w2, y);
+			ControlItemDisplay display = new ControlItemDisplay(contents, w2, y);
 			display.setItemStack(log);
 			display.setTooltip();
 			y += th2;
@@ -118,7 +118,7 @@ public class PageSpeciesTreeGenome extends PageSpecies {
 		if (!fruits.isEmpty()) {
 			new ControlText(contents, new Area(0, y, w2, th2), syst.getChromosomeShortName(EnumTreeChromosome.FRUITS) + " : ", TextJustification.MIDDLE_RIGHT);
 			for (ItemStack fruitw : fruits) {
-				final ControlItemDisplay display2 = new ControlItemDisplay(contents, w2, y);
+				ControlItemDisplay display2 = new ControlItemDisplay(contents, w2, y);
 				display2.setItemStack(fruitw);
 				display2.setTooltip();
 				y += th2;

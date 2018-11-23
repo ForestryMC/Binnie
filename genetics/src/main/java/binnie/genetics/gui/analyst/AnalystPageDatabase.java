@@ -181,7 +181,7 @@ public class AnalystPageDatabase extends Control implements ITitledWidget {
 		private final IBreedingSystem system;
 		private final AnalystPageDatabase analystPageDatabase;
 
-		public ItemScrollList(final AnalystPageDatabase analystPageDatabase, Collection<IAlleleSpecies> options, IBreedingSystem system) {
+		public ItemScrollList(AnalystPageDatabase analystPageDatabase, Collection<IAlleleSpecies> options, IBreedingSystem system) {
 			super(analystPageDatabase.scroll, 0, 0, analystPageDatabase.scroll.getWidth(), analystPageDatabase.scroll.getHeight());
 			this.options = options;
 			this.system = system;

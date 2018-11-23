@@ -42,7 +42,7 @@ public class SearchDialog extends Dialog {
 		super(windowCompartment, 252, 192);
 		this.windowCompartment = windowCompartment;
 
-		final ControlScrollableContent<IWidget> scroll = new SearchScrollContent(this);
+		ControlScrollableContent<IWidget> scroll = new SearchScrollContent(this);
 		this.slotGrid = new Control(scroll, 1, 1, 108, 18);
 		scroll.setScrollableContent(this.slotGrid);
 		new ControlPlayerInventory(this, true);
@@ -60,11 +60,11 @@ public class SearchDialog extends Dialog {
 
 	private void updateSearch() {
 		Map<Integer, String> slotIds = new HashMap<>();
-		final IInventory inv = windowCompartment.getInventory();
+		IInventory inv = windowCompartment.getInventory();
 		for (int i = 0; i < inv.getSizeInventory(); ++i) {
-			final ItemStack stack = inv.getStackInSlot(i);
+			ItemStack stack = inv.getStackInSlot(i);
 			if (!stack.isEmpty()) {
-				final String name = stack.getDisplayName().toLowerCase();
+				String name = stack.getDisplayName().toLowerCase();
 				if (this.textSearch == null || name.contains(this.textSearch)) {
 					if (this.includeBlocks || Block.getBlockFromItem(stack.getItem()) == Blocks.AIR) {
 						if (this.includeItems || Block.getBlockFromItem(stack.getItem()) != Blocks.AIR) {
@@ -75,21 +75,21 @@ public class SearchDialog extends Dialog {
 			}
 		}
 		if (this.sortByName) {
-			final List<Map.Entry<Integer, String>> list = new LinkedList<>(slotIds.entrySet());
+			List<Map.Entry<Integer, String>> list = new LinkedList<>(slotIds.entrySet());
 			list.sort((o1, o2) -> -o2.getValue().compareTo(o1.getValue()));
-			final Map<Integer, String> result = new LinkedHashMap<>();
-			for (final Map.Entry<Integer, String> entry : list) {
+			Map<Integer, String> result = new LinkedHashMap<>();
+			for (Map.Entry<Integer, String> entry : list) {
 				result.put(entry.getKey(), entry.getValue());
 			}
 			slotIds = result;
 		}
 		int y = 0;
 		int x = 0;
-		final int width = 108;
-		final int height = 2 + 18 * (1 + (slotIds.size() - 1) / 6);
+		int width = 108;
+		int height = 2 + 18 * (1 + (slotIds.size() - 1) / 6);
 		this.slotGrid.deleteAllChildren();
 		this.slotGrid.setSize(new Point(width, height));
-		for (final int k : slotIds.keySet()) {
+		for (int k : slotIds.keySet()) {
 			new ControlSlot.Builder(this.slotGrid, x, y).assign(k);
 			x += 18;
 			if (x >= 108) {
@@ -133,7 +133,7 @@ public class SearchDialog extends Dialog {
 		}
 
 		@Override
-		protected void onValueChanged(final boolean value) {
+		protected void onValueChanged(boolean value) {
 			searchDialog.sortByName = value;
 			searchDialog.updateSearch();
 		}
@@ -148,7 +148,7 @@ public class SearchDialog extends Dialog {
 		}
 
 		@Override
-		protected void onValueChanged(final boolean value) {
+		protected void onValueChanged(boolean value) {
 			searchDialog.includeItems = value;
 			searchDialog.updateSearch();
 		}
@@ -163,7 +163,7 @@ public class SearchDialog extends Dialog {
 		}
 
 		@Override
-		protected void onValueChanged(final boolean value) {
+		protected void onValueChanged(boolean value) {
 			searchDialog.includeBlocks = value;
 			searchDialog.updateSearch();
 		}

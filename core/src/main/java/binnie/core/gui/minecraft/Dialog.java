@@ -15,7 +15,7 @@ import binnie.core.gui.resource.textures.CraftGUITexture;
 
 @SideOnly(Side.CLIENT)
 public abstract class Dialog extends Control {
-	public Dialog(final IWidget parent, final int w, final int h) {
+	public Dialog(IWidget parent, int w, int h) {
 		super(parent, (parent.getWidth() - w) / 2, (parent.getHeight() - h) / 2, w, h);
 		this.addAttribute(Attribute.MOUSE_OVER);
 		this.addAttribute(Attribute.ALWAYS_ON_TOP);
@@ -36,7 +36,7 @@ public abstract class Dialog extends Control {
 	}
 
 	@Override
-	public boolean isMouseOverWidget(final IPoint relativeMouse) {
+	public boolean isMouseOverWidget(IPoint relativeMouse) {
 		return true;
 	}
 }

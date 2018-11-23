@@ -582,8 +582,8 @@ public enum EnumHoneyComb implements IItemSubtypeMisc {
 		this.secondaryColor = secondaryColor;
 	}
 
-	public static EnumHoneyComb get(final ItemStack itemStack) {
-		final int i = itemStack.getItemDamage();
+	public static EnumHoneyComb get(ItemStack itemStack) {
+		int i = itemStack.getItemDamage();
 		if (i >= 0 && i < values().length) {
 			return values()[i];
 		}
@@ -666,21 +666,21 @@ public enum EnumHoneyComb implements IItemSubtypeMisc {
 	}
 
 	@Override
-	public ItemStack get(final int amount) {
+	public ItemStack get(int amount) {
 		return new ItemStack(ModuleCore.comb, amount, this.ordinal());
 	}
 
 	@Override
-	public String getDisplayName(final ItemStack itemStack) {
+	public String getDisplayName(ItemStack itemStack) {
 		return I18N.localise("extrabees.item.comb." + this.name().toLowerCase());
 	}
 
 
-	public boolean addProduct(@Nullable Item item, final Float chance) {
+	public boolean addProduct(@Nullable Item item, Float chance) {
 		return addProduct(new ItemStack(MoreObjects.firstNonNull(item, Item.getItemFromBlock(Blocks.AIR))), chance);
 	}
 
-	public boolean addProduct(final ItemStack item, final Float chance) {
+	public boolean addProduct(ItemStack item, Float chance) {
 		if (item.isEmpty()) {
 			return false;
 		}
@@ -688,15 +688,15 @@ public enum EnumHoneyComb implements IItemSubtypeMisc {
 		return true;
 	}
 
-	public void tryAddProduct(final ItemStack item, final Float chance) {
+	public void tryAddProduct(ItemStack item, Float chance) {
 		this.active = this.addProduct(item, chance);
 	}
 
-	public void tryAddProduct(@Nullable final Item item, final Float chance) {
+	public void tryAddProduct(@Nullable Item item, Float chance) {
 		this.active = this.addProduct(item, chance);
 	}
 
-	public void tryAddProduct(final String oreDict, final Float chance) {
+	public void tryAddProduct(String oreDict, Float chance) {
 		if (!OreDictionary.getOres(oreDict).isEmpty()) {
 			this.tryAddProduct(OreDictionary.getOres(oreDict).get(0), chance);
 		} else {
@@ -704,12 +704,12 @@ public enum EnumHoneyComb implements IItemSubtypeMisc {
 		}
 	}
 
-	public void tryAddProduct(final IItemSubtype type, final Float chance) {
+	public void tryAddProduct(IItemSubtype type, Float chance) {
 		this.tryAddProduct(type.get(1), chance);
 		this.active = (this.active && type.isActive());
 	}
 
-	public void copyProducts(final EnumHoneyComb comb) {
+	public void copyProducts(EnumHoneyComb comb) {
 		this.products.putAll(comb.products);
 	}
 

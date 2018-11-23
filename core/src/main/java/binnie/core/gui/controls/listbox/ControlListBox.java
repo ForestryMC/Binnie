@@ -9,7 +9,7 @@ import binnie.core.gui.events.EventKey;
 import binnie.core.util.IValidator;
 
 public class ControlListBox<T> extends ControlScrollableContent<ControlList<T>> implements IControlValue<T> {
-	public ControlListBox(final IWidget parent, final int x, final int y, final int w, final int h, final int scrollBarSize) {
+	public ControlListBox(IWidget parent, int x, int y, int w, int h, int scrollBarSize) {
 		super(parent, x, y, w, h, scrollBarSize);
 
 		ControlList<T> content = this.getContent();
@@ -37,19 +37,19 @@ public class ControlListBox<T> extends ControlScrollableContent<ControlList<T>> 
 	}
 
 	@Override
-	public final void setValue(final T value) {
+	public final void setValue(T value) {
 		this.getContent().setValue(value);
 	}
 
-	public void setOptions(final Collection<T> options) {
+	public void setOptions(Collection<T> options) {
 		this.getContent().setOptions(options);
 	}
 
-	public IWidget createOption(final T value, final int y) {
+	public IWidget createOption(T value, int y) {
 		return new ControlOption<>(this.getContent(), value, y);
 	}
 
-	public void setValidator(final IValidator<IWidget> validator) {
+	public void setValidator(IValidator<IWidget> validator) {
 		this.getContent().setValidator(validator);
 	}
 }

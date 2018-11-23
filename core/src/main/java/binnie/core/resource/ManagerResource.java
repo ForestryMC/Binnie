@@ -16,35 +16,35 @@ public class ManagerResource {
 		this.sprites = new ArrayList<>();
 	}
 
-	public BinnieResource getPNG(final AbstractMod mod, final ResourceType type, final String path) {
+	public BinnieResource getPNG(AbstractMod mod, ResourceType type, String path) {
 		return this.getFile(mod, type, path + ".png");
 	}
 
-	public BinnieResource getFile(final AbstractMod mod, final ResourceType type, final String path) {
+	public BinnieResource getFile(AbstractMod mod, ResourceType type, String path) {
 		return new BinnieResource(mod, type, path);
 	}
 
-	public BinnieResource getPNG(final String mod, final ResourceType type, final String path) {
+	public BinnieResource getPNG(String mod, ResourceType type, String path) {
 		return this.getFile(mod, type, path + ".png");
 	}
 
-	public BinnieResource getFile(final String mod, final ResourceType type, final String path) {
+	public BinnieResource getFile(String mod, ResourceType type, String path) {
 		return new BinnieResource(mod, type, path);
 	}
 
-	public void registerSprite(final BinnieSprite binnieIcon) {
+	public void registerSprite(BinnieSprite binnieIcon) {
 		this.sprites.add(binnieIcon);
 	}
 
-	public BinnieSprite getItemSprite(final AbstractMod mod, final String iconFile) {
+	public BinnieSprite getItemSprite(AbstractMod mod, String iconFile) {
 		return new BinnieSprite(mod, ResourceType.ITEM, iconFile);
 	}
 
-	public BinnieSprite getItemSprite(final String modId, final String iconFile) {
+	public BinnieSprite getItemSprite(String modId, String iconFile) {
 		return new BinnieSprite(modId, ResourceType.ITEM, iconFile);
 	}
 
-	public BinnieSprite getBlockSprite(final AbstractMod mod, final String iconFile) {
+	public BinnieSprite getBlockSprite(AbstractMod mod, String iconFile) {
 		return new BinnieSprite(mod, ResourceType.Block, iconFile);
 	}
 

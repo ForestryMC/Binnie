@@ -4,7 +4,7 @@ import forestry.api.arboriculture.ITree;
 
 public class WorldGenSpruce {
 	public static class GiantSpruce extends WorldGenTree {
-		public GiantSpruce(final ITree tree) {
+		public GiantSpruce(ITree tree) {
 			super(tree);
 		}
 
@@ -12,9 +12,9 @@ public class WorldGenSpruce {
 		public void generate() {
 			this.generateTreeTrunk(this.height, this.girth);
 			float leafSpawn = this.height + 3;
-			final float bottom = this.randBetween(3, 4);
-			final float width = this.height / this.randBetween(2.5f, 3.0f);
-			final float coneHeight = leafSpawn - bottom;
+			float bottom = this.randBetween(3, 4);
+			float width = this.height / this.randBetween(2.5f, 3.0f);
+			float coneHeight = leafSpawn - bottom;
 			while (leafSpawn > bottom) {
 				float radius = 1.0f - (leafSpawn - bottom) / coneHeight;
 				radius = 0.15f + 0.85f * radius;
@@ -33,7 +33,7 @@ public class WorldGenSpruce {
 	}
 
 	public static class AlpineSpruce extends WorldGenTree {
-		public AlpineSpruce(final ITree tree) {
+		public AlpineSpruce(ITree tree) {
 			super(tree);
 		}
 
@@ -41,9 +41,9 @@ public class WorldGenSpruce {
 		public void generate() {
 			this.generateTreeTrunk(this.height, this.girth);
 			float leafSpawn = this.height + 5;
-			final float bottom = this.randBetween(2, 3);
-			final float width = this.height / this.randBetween(2.0f, 2.5f);
-			final float coneHeight = leafSpawn - bottom;
+			float bottom = this.randBetween(2, 3);
+			float width = this.height / this.randBetween(2.0f, 2.5f);
+			float coneHeight = leafSpawn - bottom;
 			leafSpawn -= 2.0f;
 			while (leafSpawn > bottom) {
 				float radius = 1.0f - (leafSpawn - bottom) / coneHeight;
@@ -63,7 +63,7 @@ public class WorldGenSpruce {
 	}
 
 	public static class WhiteSpruce extends WorldGenTree {
-		public WhiteSpruce(final ITree tree) {
+		public WhiteSpruce(ITree tree) {
 			super(tree);
 		}
 
@@ -71,9 +71,9 @@ public class WorldGenSpruce {
 		public void generate() {
 			this.generateTreeTrunk(this.height, this.girth);
 			float leafSpawn = this.height + 2;
-			final float bottom = this.randBetween(2, 3);
-			final float width = this.height / this.randBetween(2.2f, 2.5f);
-			final float coneHeight = leafSpawn - bottom;
+			float bottom = this.randBetween(2, 3);
+			float width = this.height / this.randBetween(2.2f, 2.5f);
+			float coneHeight = leafSpawn - bottom;
 			while (leafSpawn > bottom) {
 				float radius = 1.0f - (leafSpawn - bottom) / coneHeight;
 				radius = (float) Math.sqrt(radius);
@@ -91,7 +91,7 @@ public class WorldGenSpruce {
 	}
 
 	public static class BlackSpruce extends WorldGenTree {
-		public BlackSpruce(final ITree tree) {
+		public BlackSpruce(ITree tree) {
 			super(tree);
 		}
 
@@ -99,9 +99,9 @@ public class WorldGenSpruce {
 		public void generate() {
 			this.generateTreeTrunk(this.height, this.girth);
 			float leafSpawn = this.height + 2;
-			final float bottom = this.randBetween(2, 3);
-			final float width = this.height / this.randBetween(2.2f, 2.5f);
-			final float coneHeight = leafSpawn - bottom;
+			float bottom = this.randBetween(2, 3);
+			float width = this.height / this.randBetween(2.2f, 2.5f);
+			float coneHeight = leafSpawn - bottom;
 			while (leafSpawn > bottom) {
 				float radius = 1.0f - (leafSpawn - bottom) / coneHeight;
 				radius = (float) Math.sqrt(radius);

@@ -5,12 +5,12 @@ import net.minecraft.init.MobEffects;
 import net.minecraft.potion.PotionEffect;
 
 public class AlcoholEffect {
-	public static void makeDrunk(final EntityPlayer player, final float strength) {
+	public static void makeDrunk(EntityPlayer player, float strength) {
 		PotionEffect potionEffect = player.getActivePotionEffect(MobEffects.NAUSEA);
-		final int existingStrength = potionEffect != null ? potionEffect.getAmplifier() : 0;
-		final int existingTime = potionEffect != null ? potionEffect.getDuration() : 0;
+		int existingStrength = potionEffect != null ? potionEffect.getAmplifier() : 0;
+		int existingTime = potionEffect != null ? potionEffect.getDuration() : 0;
 		int time = (int) (100.0 * Math.sqrt(strength)) + existingTime;
-		final float intensity = 0.1f * strength + existingStrength + existingTime / 500;
+		float intensity = 0.1f * strength + existingStrength + existingTime / 500;
 		if (time < 5) {
 			time = 5;
 		}

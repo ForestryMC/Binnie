@@ -21,7 +21,7 @@ public class WorldGenHiveRock extends WorldGenHive {
 	}
 
 	@Override
-	public boolean generate(final World world, final Random random, BlockPos pos) {
+	public boolean generate(World world, Random random, BlockPos pos) {
 		IBlockState blockState = world.getBlockState(pos);
 		Block block = blockState.getBlock();
 		while (block.isReplaceableOreGen(blockState, world, pos, BlockStateMatcher.forBlock(Blocks.STONE))) {
@@ -37,7 +37,7 @@ public class WorldGenHiveRock extends WorldGenHive {
 		return false;
 	}
 
-	public boolean hasAirOnOneSide(final World world, final BlockPos pos) {
+	public boolean hasAirOnOneSide(World world, BlockPos pos) {
 		for (EnumFacing facing : EnumFacing.HORIZONTALS) {
 			BlockPos sidePos = pos.offset(facing);
 			if (world.isBlockLoaded(sidePos) && world.isAirBlock(sidePos)) {

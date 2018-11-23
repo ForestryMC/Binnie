@@ -35,7 +35,7 @@ public class WindowSequencer extends WindowMachine {
 
 	private ControlText slotText;
 
-	public WindowSequencer(final EntityPlayer player, final IInventory inventory, final Side side) {
+	public WindowSequencer(EntityPlayer player, IInventory inventory, Side side) {
 		super(226, 224, player, inventory, side);
 	}
 
@@ -61,18 +61,18 @@ public class WindowSequencer extends WindowMachine {
 			new ControlIconDisplay(this, 0, 0, GUIIcon.ARROW_RIGHT.getIcon().getResourceLocation()),
 			new ControlSlot.Builder(this, 0, 0).assign(6)
 		);
-		final ControlSlot slotTarget = new ControlSlot.Builder(this, x + 96, y + 16).assign(5);
+		ControlSlot slotTarget = new ControlSlot.Builder(this, x + 96, y + 16).assign(5);
 		x = 34;
 		y = 92;
 		this.slotText = new ControlText(this, new Area(0, y, this.getWidth(), 12), TextFormatting.DARK_GRAY + I18N.localise("genetics.machine.sequencer.texts.userless"), TextJustification.MIDDLE_CENTER);
 		y += 20;
-		final ControlSlot slotDye = new ControlSlot.Builder(this, x, y).assign(0);
+		ControlSlot slotDye = new ControlSlot.Builder(this, x, y).assign(0);
 		x += 20;
 		new ControlSlotCharge(this, x, y, 0).setColor(16750848);
 		x += 32;
 		new ControlEnergyBar(this, x, y, 60, 16, Alignment.LEFT);
 		x += 92;
-		final ControlErrorState errorState = new ControlErrorState(this, x, y + 1);
+		ControlErrorState errorState = new ControlErrorState(this, x, y + 1);
 		new ControlPlayerInventory(this);
 	}
 

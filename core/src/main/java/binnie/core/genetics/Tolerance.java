@@ -16,16 +16,16 @@ public enum Tolerance {
 	private final int[] bounds;
 	private final String uid;
 
-	Tolerance(final int a, final int b) {
+	Tolerance(int a, int b) {
 		this.bounds = new int[]{a, b};
 		this.uid = "forestry.tolerance" + WordUtils.capitalize(this.toString());
 	}
 
-	public static Tolerance get(final forestry.api.genetics.EnumTolerance tol) {
+	public static Tolerance get(forestry.api.genetics.EnumTolerance tol) {
 		return values()[tol.ordinal()];
 	}
 
-	public static <T extends Enum<T>> boolean canTolerate(final T base, final T test, final forestry.api.genetics.EnumTolerance tol) {
+	public static <T extends Enum<T>> boolean canTolerate(T base, T test, forestry.api.genetics.EnumTolerance tol) {
 		return get(tol).canTolerate(base, test);
 	}
 
@@ -46,7 +46,7 @@ public enum Tolerance {
 		return AlleleManager.alleleRegistry.getAllele(this.getUID());
 	}
 
-	public <T extends Enum<T>> boolean canTolerate(final T base, final T test) {
+	public <T extends Enum<T>> boolean canTolerate(T base, T test) {
 		return test.ordinal() <= base.ordinal() + this.bounds[1] && test.ordinal() >= base.ordinal() + this.bounds[0];
 	}
 }

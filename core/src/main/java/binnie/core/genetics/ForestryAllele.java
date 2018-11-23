@@ -162,7 +162,7 @@ public class ForestryAllele {
 		True,
 		False;
 
-		public static IAllele get(final boolean bool) {
+		public static IAllele get(boolean bool) {
 			return (bool ? Bool.True : Bool.False).getAllele();
 		}
 

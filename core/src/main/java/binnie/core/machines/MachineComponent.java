@@ -11,7 +11,7 @@ import binnie.core.Binnie;
 public class MachineComponent implements INbtReadable, INbtWritable {
 	private IMachine machine;
 
-	public MachineComponent(final IMachine machine) {
+	public MachineComponent(IMachine machine) {
 		this.machine = machine;
 		machine.addComponent(this);
 	}
@@ -20,17 +20,17 @@ public class MachineComponent implements INbtReadable, INbtWritable {
 		return this.machine;
 	}
 
-	public void setMachine(final IMachine machine) {
+	public void setMachine(IMachine machine) {
 		this.machine = machine;
 	}
 
 	@Override
-	public void readFromNBT(final NBTTagCompound nbttagcompound) {
+	public void readFromNBT(NBTTagCompound compound) {
 	}
 
 	@Override
-	public NBTTagCompound writeToNBT(final NBTTagCompound nbttagcompound) {
-		return nbttagcompound;
+	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+		return compound;
 	}
 
 	public void onUpdate() {

@@ -23,7 +23,7 @@ public enum BinnieCoreTexture implements IBinnieTexture {
 	@Nullable
 	private BinnieResource resource;
 
-	BinnieCoreTexture(final ResourceType base, final String texture) {
+	BinnieCoreTexture(ResourceType base, String texture) {
 		this.texture = texture;
 		this.type = base;
 	}

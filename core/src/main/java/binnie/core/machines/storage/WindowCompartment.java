@@ -57,7 +57,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 	private ControlColourSelector tabColour;
 	private int currentTab;
 
-	public WindowCompartment(final EntityPlayer player, @Nullable final IInventory inventory, final Side side) {
+	public WindowCompartment(EntityPlayer player, @Nullable IInventory inventory, Side side) {
 		super(320, 226, player, inventory, side);
 		this.panels = new HashMap<>();
 		this.currentTab = 0;
@@ -72,8 +72,8 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		MachinePackage machinePackage = machine.getPackage();
 		this.setTitle(machinePackage.getDisplayName());
 		int x = 16;
-		final int y = 32;
-		final ComponentCompartmentInventory inv = machine.getInterface(ComponentCompartmentInventory.class);
+		int y = 32;
+		ComponentCompartmentInventory inv = machine.getInterface(ComponentCompartmentInventory.class);
 		Integer[] tabs1 = new Integer[0];
 		Integer[] tabs2 = new Integer[0];
 		if (inv.getTabCount() == 4) {
@@ -88,40 +88,40 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 			tabs1 = new Integer[]{0, 1, 2, 3};
 			tabs2 = new Integer[]{4, 5, 6, 7};
 		}
-		final boolean doubleTabbed = tabs2.length > 0;
-		final int compartmentPageWidth = 16 + 18 * inv.getPageSize() / 5;
-		final int compartmentPageHeight = 106;
-		final int compartmentWidth = compartmentPageWidth + (doubleTabbed ? 48 : 24);
-		final int compartmentHeight = compartmentPageHeight;
-		final Control controlCompartment = new Control(this, x, y, compartmentWidth, compartmentHeight);
-		final ControlTabBar<Integer> tab = new ControlTabBar<>(controlCompartment, 0, 0, 24, compartmentPageHeight, Alignment.LEFT, Arrays.asList(tabs1), (x1, y1, w, h, value) -> {
+		boolean doubleTabbed = tabs2.length > 0;
+		int compartmentPageWidth = 16 + 18 * inv.getPageSize() / 5;
+		int compartmentPageHeight = 106;
+		int compartmentWidth = compartmentPageWidth + (doubleTabbed ? 48 : 24);
+		int compartmentHeight = compartmentPageHeight;
+		Control controlCompartment = new Control(this, x, y, compartmentWidth, compartmentHeight);
+		ControlTabBar<Integer> tab = new ControlTabBar<>(controlCompartment, 0, 0, 24, compartmentPageHeight, Alignment.LEFT, Arrays.asList(tabs1), (x1, y1, w, h, value) -> {
 			return new CompartmentTabIcon(this, x1, y1, w, h, value);
 		});
-		final String[] tabHelp = {"Compartment Tab", "Tabs that divide the inventory into sections. Each one can be labelled seperately."};
+		String[] tabHelp = {"Compartment Tab", "Tabs that divide the inventory into sections. Each one can be labelled seperately."};
 		tab.addHelp(tabHelp);
 		tab.addEventHandler(EventValueChanged.class, EventHandlerOrigin.DIRECT_CHILD, tab, event -> {
 			if (event.getValue() == null) {
 				return;
 			}
-			final NBTTagCompound nbt = new NBTTagCompound();
-			final int i = (Integer) event.getValue();
+			NBTTagCompound nbt = new NBTTagCompound();
+			int i = (Integer) event.getValue();
 			nbt.setByte("i", (byte) i);
 			Window.get(tab).sendClientAction("tab-change", nbt);
 			WindowCompartment.this.currentTab = i;
 		});
 		x += 24;
-		final ControlPages<Integer> compartmentPages = new ControlPages<>(controlCompartment, 24, 0, compartmentPageWidth, compartmentPageHeight);
-		final ControlPage[] page = new ControlPage[inv.getTabCount()];
+		ControlPages<Integer> compartmentPages = new ControlPages<>(controlCompartment, 24, 0, compartmentPageWidth, compartmentPageHeight);
+		ControlPage[] page = new ControlPage[inv.getTabCount()];
 		for (int p = 0; p < inv.getTabCount(); ++p) {
 			page[p] = new ControlPage<>(compartmentPages, p);
 		}
 		CraftGUIUtil.linkWidgets(tab, compartmentPages);
 		int i = 0;
 		for (int p2 = 0; p2 < inv.getTabCount(); ++p2) {
-			final ControlPage thisPage = page[p2];
-			final Panel panel = new CompartmentCenterPanel(this, thisPage);
+			ControlPage thisPage = page[p2];
+			Panel panel = new CompartmentCenterPanel(this, thisPage);
 			this.panels.put(panel, p2);
-			final int[] slotsIDs = new int[inv.getPageSize()];
+			int[] slotsIDs = new int[inv.getPageSize()];
 			for (int k = 0; k < inv.getPageSize(); ++k) {
 				slotsIDs[k] = i++;
 			}
@@ -129,7 +129,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		}
 		x += compartmentPageWidth;
 		if (tabs2.length > 0) {
-			final ControlTabBar<Integer> tab2 = new ControlTabBar<>(controlCompartment, 24 + compartmentPageWidth, 0, 24, compartmentPageHeight, Alignment.RIGHT, Arrays.asList(tabs2), (x1, y1, w, h, value) -> {
+			ControlTabBar<Integer> tab2 = new ControlTabBar<>(controlCompartment, 24 + compartmentPageWidth, 0, 24, compartmentPageHeight, Alignment.RIGHT, Arrays.asList(tabs2), (x1, y1, w, h, value) -> {
 				return new CompartmentTabIcon(this, x1, y1, w, h, value);
 			});
 			tab2.setValue(tabs1[0]);
@@ -138,8 +138,8 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 				if (event.getValue() == null) {
 					return;
 				}
-				final NBTTagCompound nbt = new NBTTagCompound();
-				final int iVal = (Integer) event.getValue();
+				NBTTagCompound nbt = new NBTTagCompound();
+				int iVal = (Integer) event.getValue();
 				nbt.setByte("i", (byte) iVal);
 				Window.get(tab).sendClientAction("tab-change", nbt);
 				WindowCompartment.this.currentTab = iVal;
@@ -150,22 +150,22 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		x += 16;
 		this.setSize(new Point(Math.max(32 + compartmentWidth, 252), this.getHeight()));
 		controlCompartment.setPosition(new Point((this.getWidth() - controlCompartment.getWidth()) / 2, controlCompartment.getYPos()));
-		final ControlPlayerInventory invent = new ControlPlayerInventory(this, true);
-		final ControlSlide slide = new ControlSlide(this, 0, 134, 136, 92, Alignment.LEFT);
+		ControlPlayerInventory invent = new ControlPlayerInventory(this, true);
+		ControlSlide slide = new ControlSlide(this, 0, 134, 136, 92, Alignment.LEFT);
 		slide.setLabel("Tab Properties");
 		slide.setSlide(false);
 		slide.addHelp("Tab Properties");
 		slide.addHelp("The label, colour and icon of the Tab can be altered here. Clicking on the icon with a held item will change it.");
-		final Panel tabPropertyPanel = new Panel(slide, 16, 8, 112, 76, MinecraftGUI.PanelType.GRAY);
+		Panel tabPropertyPanel = new Panel(slide, 16, 8, 112, 76, MinecraftGUI.PanelType.GRAY);
 		int y2 = 4;
 		new ControlText(tabPropertyPanel, new Point(4, y2), "Tab Name:");
-		final Panel parent = tabPropertyPanel;
-		final int x2 = 4;
+		Panel parent = tabPropertyPanel;
+		int x2 = 4;
 		y2 += 12;
 		(this.tabName = new ControlTextEdit(parent, x2, y2, 104, 12)).addEventHandler(EventTextEdit.class, EventHandlerOrigin.SELF, this.tabName, event -> {
-			final binnie.core.machines.storage.CompartmentTab currentTab = WindowCompartment.this.getCurrentTab();
+			binnie.core.machines.storage.CompartmentTab currentTab = WindowCompartment.this.getCurrentTab();
 			currentTab.setName(event.getValue());
-			final NBTTagCompound nbt = new NBTTagCompound();
+			NBTTagCompound nbt = new NBTTagCompound();
 			currentTab.writeToNBT(nbt);
 			WindowCompartment.this.sendClientAction("comp-change-tab", nbt);
 		});
@@ -177,11 +177,11 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 			if (WindowCompartment.this.getHeldItemStack().isEmpty()) {
 				return;
 			}
-			final binnie.core.machines.storage.CompartmentTab currentTab = WindowCompartment.this.getCurrentTab();
-			final ItemStack stack = WindowCompartment.this.getHeldItemStack().copy();
+			binnie.core.machines.storage.CompartmentTab currentTab = WindowCompartment.this.getCurrentTab();
+			ItemStack stack = WindowCompartment.this.getHeldItemStack().copy();
 			stack.setCount(1);
 			currentTab.setIcon(stack);
-			final NBTTagCompound nbt = new NBTTagCompound();
+			NBTTagCompound nbt = new NBTTagCompound();
 			currentTab.writeToNBT(nbt);
 			WindowCompartment.this.sendClientAction("comp-change-tab", nbt);
 		});
@@ -190,14 +190,14 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		this.tabIcon.addHelp("Click here with an item to change");
 		y2 += 20;
 		new ControlText(tabPropertyPanel, new Point(4, y2), "Colour: ");
-		final int cw = 8;
-		final Panel panelColour = new Panel(tabPropertyPanel, 40, y2 - 4, cw * 8 + 2, cw * 2 + 1, MinecraftGUI.PanelType.GRAY);
+		int cw = 8;
+		Panel panelColour = new Panel(tabPropertyPanel, 40, y2 - 4, cw * 8 + 2, cw * 2 + 1, MinecraftGUI.PanelType.GRAY);
 		for (int cc = 0; cc < 16; ++cc) {
-			final ControlColourSelector color = new ControlColourSelector(panelColour, 1 + cw * (cc % 8), 1 + cw * (cc / 8), cw, cw, EnumColor.values()[cc]);
+			ControlColourSelector color = new ControlColourSelector(panelColour, 1 + cw * (cc % 8), 1 + cw * (cc / 8), cw, cw, EnumColor.values()[cc]);
 			color.addSelfEventHandler(EventMouse.Down.class, event -> {
-				final binnie.core.machines.storage.CompartmentTab currentTab = WindowCompartment.this.getCurrentTab();
+				binnie.core.machines.storage.CompartmentTab currentTab = WindowCompartment.this.getCurrentTab();
 				currentTab.setColor(color.getValue());
-				final NBTTagCompound nbt = new NBTTagCompound();
+				NBTTagCompound nbt = new NBTTagCompound();
 				currentTab.writeToNBT(nbt);
 				WindowCompartment.this.sendClientAction("comp-change-tab", nbt);
 			});
@@ -205,7 +205,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 			color.addHelp("Select a colour to highlight the current tab");
 		}
 		y2 += 20;
-		final ControlButton searchButton = new SearchButton(this, controlCompartment, compartmentWidth, compartmentPageHeight);
+		ControlButton searchButton = new SearchButton(this, controlCompartment, compartmentWidth, compartmentPageHeight);
 		searchButton.addHelp("Search Button");
 		searchButton.addHelp("Clicking this will open the Search dialog. This allows you to search the inventory for specific items.");
 	}
@@ -231,7 +231,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 	}
 
 	@Override
-	public void receiveGuiNBTOnServer(final EntityPlayer player, final String name, final NBTTagCompound nbt) {
+	public void receiveGuiNBTOnServer(EntityPlayer player, String name, NBTTagCompound nbt) {
 		super.receiveGuiNBTOnServer(player, name, nbt);
 		if (name.equals("tab-change")) {
 			this.currentTab = nbt.getByte("i");
@@ -254,14 +254,14 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 	}
 
 	@Override
-	public void alterRequest(final TransferRequest request) {
+	public void alterRequest(TransferRequest request) {
 		if (request.getDestination() == this.getInventory()) {
-			final ComponentCompartmentInventory inv = Machine.getMachine(this.getInventory()).getInterface(ComponentCompartmentInventory.class);
+			ComponentCompartmentInventory inv = Machine.getMachine(this.getInventory()).getInterface(ComponentCompartmentInventory.class);
 			request.setTargetSlots(inv.getSlotsForTab(this.currentTab));
 		}
 	}
 
-	public CompartmentTab getTab(final int i) {
+	public CompartmentTab getTab(int i) {
 		return Machine.getInterface(ComponentCompartmentInventory.class, this.getInventory()).getTab(i);
 	}
 
@@ -310,7 +310,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		@Override
 		@SideOnly(Side.CLIENT)
 		public void onRenderForeground(int guiWidth, int guiHeight) {
-			final ITexture iTexture = CraftGUI.RENDER.getTexture(CraftGUITexture.TAB_OUTLINE);
+			ITexture iTexture = CraftGUI.RENDER.getTexture(CraftGUITexture.TAB_OUTLINE);
 			binnie.core.machines.storage.CompartmentTab tab = windowCompartment.getTab(windowCompartment.panels.get(this));
 			RenderUtil.setColour(tab.getColor().getColor());
 			CraftGUI.RENDER.texture(iTexture, this.getArea().inset(3));
@@ -327,14 +327,14 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 
 		@Override
 		@SideOnly(Side.CLIENT)
-		protected void onMouseClick(final EventMouse.Down event) {
+		protected void onMouseClick(EventMouse.Down event) {
 			windowCompartment.createSearchDialog();
 		}
 
 		@Override
 		@SideOnly(Side.CLIENT)
 		public void onRenderBackground(int guiWidth, int guiHeight) {
-			final Object texture = this.isMouseOver() ? CraftGUITexture.TAB_HIGHLIGHTED : CraftGUITexture.TAB;
+			Object texture = this.isMouseOver() ? CraftGUITexture.TAB_HIGHLIGHTED : CraftGUITexture.TAB;
 			CraftGUI.RENDER.texture(CraftGUI.RENDER.getTexture(texture).crop(Alignment.BOTTOM, 8), this.getArea());
 		}
 	}

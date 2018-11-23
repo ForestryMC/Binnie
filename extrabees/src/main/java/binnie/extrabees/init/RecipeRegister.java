@@ -32,13 +32,13 @@ public final class RecipeRegister {
 		if (Loader.isModLoaded("ic2")) {
 			RECIPE_UTIL.addRecipe("honey_crystal", ModuleCore.honeyCrystal.getCharged(0), "#@#", "@#@", "#@#", '@', Mods.Forestry.item("honey_drop"), '#', EnumHoneyDrop.ENERGY.get(1));
 		}
-		for (final EnumHoneyComb info : EnumHoneyComb.values()) {
+		for (EnumHoneyComb info : EnumHoneyComb.values()) {
 			info.addRecipe();
 		}
-		for (final EnumHoneyDrop info2 : EnumHoneyDrop.values()) {
+		for (EnumHoneyDrop info2 : EnumHoneyDrop.values()) {
 			info2.addRecipe();
 		}
-		for (final EnumPropolis info3 : EnumPropolis.values()) {
+		for (EnumPropolis info3 : EnumPropolis.values()) {
 			info3.addRecipe();
 		}
 		addForestryRecipes();
@@ -62,9 +62,9 @@ public final class RecipeRegister {
 	}
 
 	private static void addMiscItemRecipes() {
-		final ItemStack lapisShard = ExtraBeeItems.LAPIS_SHARD.get(1);
+		ItemStack lapisShard = ExtraBeeItems.LAPIS_SHARD.get(1);
 		RECIPE_UTIL.addShapelessRecipe("lapis_from_shards", new ItemStack(Items.DYE, 1, 4), lapisShard, lapisShard, lapisShard, lapisShard);
-		for (final ExtraBeeItems item : ExtraBeeItems.values()) {
+		for (ExtraBeeItems item : ExtraBeeItems.values()) {
 			if (item.metalString != null) {
 				ItemStack dust = null;
 				ItemStack ingot = null;
@@ -74,7 +74,7 @@ public final class RecipeRegister {
 				if (!OreDictionary.getOres("dust" + item.metalString).isEmpty()) {
 					dust = OreDictionary.getOres("dust" + item.metalString).get(0).copy();
 				}
-				final ItemStack input = item.get(1);
+				ItemStack input = item.get(1);
 				if (dust != null) {
 					RECIPE_UTIL.addShapelessRecipe(item.getModelPath() + "_dust", dust, input, input, input, input);
 				} else if (ingot != null) {
@@ -87,7 +87,7 @@ public final class RecipeRegister {
 				if (!OreDictionary.getOres("gem" + item.gemString).isEmpty()) {
 					gem = OreDictionary.getOres("gem" + item.gemString).get(0);
 				}
-				final ItemStack input2 = item.get(1);
+				ItemStack input2 = item.get(1);
 				if (gem != null) {
 					RECIPE_UTIL.addShapelessRecipe(item.getModelPath() + "_gem", gem.copy(), input2, input2, input2, input2, input2, input2, input2, input2, input2);
 				}

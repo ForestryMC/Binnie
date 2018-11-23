@@ -38,11 +38,11 @@ public enum Juice implements IFluidDefinition, ICocktailIngredientProvider {
 	RedGrape("juice.red.grape", 9775412, 0.6, "RedGrape", "Grape");
 
 	private String squeezing;
-	private String oreDict;
+	private final String oreDict;
 	private final FluidType type;
 	private final CocktailLiquid cocktailLiquid;
 
-	Juice(final String ident, final int colour, final double transparency, final String squeezing, String oreDict) {
+	Juice(String ident, int colour, double transparency, String squeezing, String oreDict) {
 		this.addSqueezing("crop" + squeezing);
 		this.oreDict = "food" + oreDict + "juice";
 
@@ -53,7 +53,7 @@ public enum Juice implements IFluidDefinition, ICocktailIngredientProvider {
 		cocktailLiquid = new CocktailLiquid(type, 0.0F);
 	}
 
-	private void addSqueezing(final String oreDict) {
+	private void addSqueezing(String oreDict) {
 		this.squeezing = oreDict;
 	}
 
@@ -63,7 +63,7 @@ public enum Juice implements IFluidDefinition, ICocktailIngredientProvider {
 	}
 
 	@Override
-	public FluidStack get(final int amount) {
+	public FluidStack get(int amount) {
 		return type.stack(amount);
 	}
 

@@ -45,7 +45,7 @@ public class FluidType extends Feature {
 	@Override
 	public void create() {
 		Binnie.LIQUID.addLiquid(this);
-		final BinnieFluid bFluid = new BinnieFluid(this);
+		BinnieFluid bFluid = new BinnieFluid(this);
 		FluidRegistry.registerFluid(bFluid);
 		FluidRegistry.addBucketForFluid(bFluid);
 		createBlock(bFluid);

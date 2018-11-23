@@ -13,7 +13,7 @@ public class AlvearyTransmission extends ExtraBeeMachines.AlvearyPackage impleme
 	}
 
 	@Override
-	public void createMachine(final Machine machine) {
+	public void createMachine(Machine machine) {
 		new ComponentPowerReceptor(machine, 1000);
 		new ComponentTransmission(machine);
 	}

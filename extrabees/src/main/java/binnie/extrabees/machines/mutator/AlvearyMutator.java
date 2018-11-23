@@ -15,9 +15,9 @@ public class AlvearyMutator extends ExtraBeeMachines.AlvearyPackage implements I
 	}
 
 	@Override
-	public void createMachine(final Machine machine) {
+	public void createMachine(Machine machine) {
 		new ExtraBeeMachines.ComponentExtraBeeGUI(machine, ExtraBeesGUID.ALVEARY_MUTATOR);
-		final ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
+		ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
 		inventory.addSlot(AlvearyMutator.SLOT_MUTATOR, getSlotRL("mutator")).setValidator(new SlotValidatorMutator());
 		new ComponentMutatorModifier(machine);
 	}

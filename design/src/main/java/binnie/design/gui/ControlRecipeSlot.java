@@ -13,14 +13,14 @@ import binnie.core.machines.TileEntityMachine;
 import binnie.core.machines.component.IComponentRecipe;
 
 public class ControlRecipeSlot extends ControlSlotBase {
-	public ControlRecipeSlot(final IWidget parent, final int x, final int y) {
+	public ControlRecipeSlot(IWidget parent, int x, int y) {
 		super(parent, x, y, 50);
 		this.addSelfEventHandler(EventMouse.Down.class, event -> {
-			final TileEntity tile = (TileEntity) Window.get(ControlRecipeSlot.this.getWidget()).getInventory();
+			TileEntity tile = (TileEntity) Window.get(ControlRecipeSlot.this.getWidget()).getInventory();
 			if (!(tile instanceof TileEntityMachine)) {
 				return;
 			}
-			final NBTTagCompound nbt = new NBTTagCompound();
+			NBTTagCompound nbt = new NBTTagCompound();
 			Window.get(ControlRecipeSlot.this.getWidget()).sendClientAction("recipe", nbt);
 		});
 		this.setRotating();
@@ -28,7 +28,7 @@ public class ControlRecipeSlot extends ControlSlotBase {
 
 	@Override
 	public ItemStack getItemStack() {
-		final IComponentRecipe recipe = Machine.getInterface(IComponentRecipe.class, Window.get(this).getInventory());
+		IComponentRecipe recipe = Machine.getInterface(IComponentRecipe.class, Window.get(this).getInventory());
 		if (recipe != null && recipe.isRecipe()) {
 			return recipe.getProduct();
 		}

@@ -11,11 +11,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public interface IDesignSystem {
 	@Nullable
 	@SideOnly(Side.CLIENT)
-	TextureAtlasSprite getPrimarySprite(final IPattern pattern);
+	TextureAtlasSprite getPrimarySprite(IPattern pattern);
 
 	@Nullable
 	@SideOnly(Side.CLIENT)
-	TextureAtlasSprite getSecondarySprite(final IPattern pattern);
+	TextureAtlasSprite getSecondarySprite(IPattern pattern);
 
 	@SideOnly(Side.CLIENT)
 	void registerSprites();
@@ -23,14 +23,14 @@ public interface IDesignSystem {
 	IDesignMaterial getDefaultMaterial();
 
 	@Nullable
-	IDesignMaterial getMaterial(final int p0);
+	IDesignMaterial getMaterial(int p0);
 
-	int getMaterialIndex(final IDesignMaterial p0);
+	int getMaterialIndex(IDesignMaterial p0);
 
 	IDesignMaterial getDefaultMaterial2();
 
 	ItemStack getAdhesive();
 
 	@Nullable
-	IDesignMaterial getMaterial(final ItemStack p0);
+	IDesignMaterial getMaterial(ItemStack p0);
 }

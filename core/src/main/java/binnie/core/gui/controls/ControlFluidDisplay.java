@@ -29,11 +29,11 @@ public class ControlFluidDisplay extends Control implements ITooltip {
 	private FluidStack fluidStack;
 	private boolean hastooltip;
 
-	public ControlFluidDisplay(final IWidget parent, final int x, final int y) {
+	public ControlFluidDisplay(IWidget parent, int x, int y) {
 		this(parent, x, y, 16);
 	}
 
-	public ControlFluidDisplay(final IWidget parent, final int x, final int y, final FluidStack stack, final boolean tooltip) {
+	public ControlFluidDisplay(IWidget parent, int x, int y, FluidStack stack, boolean tooltip) {
 		this(parent, x, y, 16);
 		this.setFluidStack(stack);
 		if (tooltip) {
@@ -41,7 +41,7 @@ public class ControlFluidDisplay extends Control implements ITooltip {
 		}
 	}
 
-	public ControlFluidDisplay(final IWidget parent, final int x, final int y, final int size) {
+	public ControlFluidDisplay(IWidget parent, int x, int y, int size) {
 		super(parent, x, y, size, size);
 		this.fluidStack = null;
 		this.hastooltip = false;
@@ -58,24 +58,24 @@ public class ControlFluidDisplay extends Control implements ITooltip {
 		if (this.fluidStack == null) {
 			return;
 		}
-		final IPoint relativeToWindow = this.getAbsolutePosition().sub(this.getTopParent().getPosition());
+		IPoint relativeToWindow = this.getAbsolutePosition().sub(this.getTopParent().getPosition());
 		if (relativeToWindow.xPos() > Window.get(this).getSize().xPos() + 100 || relativeToWindow.yPos() > Window.get(this).getSize().yPos() + 100) {
 			return;
 		}
 		if (this.fluidStack != null) {
-			final Fluid fluid = this.fluidStack.getFluid();
-			final int hex = fluid.getColor(this.fluidStack);
-			final int r = (hex & 0xFF0000) >> 16;
-			final int g = (hex & 0xFF00) >> 8;
-			final int b = hex & 0xFF;
-			final ResourceLocation iconRL = this.fluidStack.getFluid().getStill();
+			Fluid fluid = this.fluidStack.getFluid();
+			int hex = fluid.getColor(this.fluidStack);
+			int r = (hex & 0xFF0000) >> 16;
+			int g = (hex & 0xFF00) >> 8;
+			int b = hex & 0xFF;
+			ResourceLocation iconRL = this.fluidStack.getFluid().getStill();
 			TextureAtlasSprite icon = FMLClientHandler.instance().getClient().getTextureMapBlocks().getAtlasSprite(iconRL.toString());
 			GlStateManager.color(r / 255.0f, g / 255.0f, b / 255.0f, 1.0f);
 			GlStateManager.enableBlend();
 			GlStateManager.blendFunc(770, 771);
 			if (this.getSize().xPos() != 16) {
 				GlStateManager.pushMatrix();
-				final float scale = this.getSize().xPos() / 16.0f;
+				float scale = this.getSize().xPos() / 16.0f;
 				GlStateManager.scale(scale, scale, 1.0f);
 				RenderUtil.drawSprite(Point.ZERO, icon);
 				GlStateManager.popMatrix();
@@ -86,12 +86,12 @@ public class ControlFluidDisplay extends Control implements ITooltip {
 		}
 	}
 
-	public void setFluidStack(@Nullable final FluidStack fluidStack) {
+	public void setFluidStack(@Nullable FluidStack fluidStack) {
 		this.fluidStack = fluidStack;
 	}
 
 	@Override
-	public void getTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
+	public void getTooltip(Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		if (this.hastooltip && this.fluidStack != null) {
 			tooltip.add(this.fluidStack.getLocalizedName());
 		}

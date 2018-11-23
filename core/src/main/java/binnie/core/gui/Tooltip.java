@@ -43,7 +43,7 @@ public class Tooltip {
 		this.tooltip.add(string);
 	}
 
-	public void add(final List<String> list) {
+	public void add(List<String> list) {
 		this.tooltip.addAll(list);
 	}
 
@@ -55,7 +55,7 @@ public class Tooltip {
 		return this.tooltip.size() > 0;
 	}
 
-	public void setMaxWidth(final int w) {
+	public void setMaxWidth(int w) {
 		this.maxWidth = w;
 	}
 
@@ -63,7 +63,7 @@ public class Tooltip {
 		return this.type;
 	}
 
-	public void setType(final ITooltipType type) {
+	public void setType(ITooltipType type) {
 		this.type = type;
 	}
 

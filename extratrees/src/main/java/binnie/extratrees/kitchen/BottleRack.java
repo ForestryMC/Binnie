@@ -13,9 +13,9 @@ public class BottleRack {
 		}
 
 		@Override
-		public void createMachine(final Machine machine) {
+		public void createMachine(Machine machine) {
 			new ExtraTreeMachine.ComponentExtraTreeGUI(machine, ExtraTreesGUID.KITCHEN_BOTTLE_RACK);
-			final ComponentTankContainer inventory = new ComponentTankContainer(machine);
+			ComponentTankContainer inventory = new ComponentTankContainer(machine);
 			for (int x = 0; x < 36; ++x) {
 				inventory.addTank(x, "input", 1000);
 				inventory.getTankSlot(x);

@@ -16,7 +16,7 @@ public class BlockEctoplasm extends BlockWeb {
 	}
 
 	@Override
-	public int quantityDropped(final Random rand) {
+	public int quantityDropped(Random rand) {
 		return (rand.nextInt(5) == 0) ? 1 : 0;
 	}
 

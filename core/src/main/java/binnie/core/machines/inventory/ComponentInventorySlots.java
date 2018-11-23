@@ -29,7 +29,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 	private final Map<Integer, InventorySlot> inventory;
 	private final Map<EnumFacing, int[]> slotsForFace;
 
-	public ComponentInventorySlots(final IMachine machine) {
+	public ComponentInventorySlots(IMachine machine) {
 		super(machine);
 		this.inventory = new LinkedHashMap<>();
 		this.slotsForFace = new LinkedHashMap<>();
@@ -62,7 +62,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 	}
 
 	@Override
-	public ItemStack getStackInSlot(final int index) {
+	public ItemStack getStackInSlot(int index) {
 		if (this.inventory.containsKey(index)) {
 			return this.inventory.get(index).getItemStack();
 		}
@@ -70,7 +70,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 	}
 
 	@Override
-	public ItemStack decrStackSize(final int index, final int amount) {
+	public ItemStack decrStackSize(int index, int amount) {
 		InventorySlot slot = getInternalSlot(index);
 		ItemStack stack = slot.decrStackSize(amount);
 		if (!stack.isEmpty()) {
@@ -94,7 +94,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 	}
 
 	@Override
-	public void readFromNBT(final NBTTagCompound compound) {
+	public void readFromNBT(NBTTagCompound compound) {
 		super.readFromNBT(compound);
 		NBTUtil.readFromList(compound, INVENTORY_KEY, (slotNBT) -> {
 			int index = slotNBT.getInteger(INDEX_KEY);
@@ -116,7 +116,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 		return compound;
 	}
 
-	public final InventorySlot addSlot(final int index, final ResourceLocation unlocLocation) {
+	public final InventorySlot addSlot(int index, ResourceLocation unlocLocation) {
 		InventorySlot slot = new InventorySlot(index, unlocLocation);
 		this.inventory.put(index, slot);
 		return slot;
@@ -126,12 +126,12 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 	 * @deprecated use {@link #addSlot(int, ResourceLocation)}
 	 */
 	@Deprecated
-	public final InventorySlot addSlot(final int index, final String unlocName) {
+	public final InventorySlot addSlot(int index, String unlocName) {
 		ResourceLocation unlocLocation = new ResourceLocation(Constants.CORE_MOD_ID, "gui.slot." + unlocName);
 		return addSlot(index, unlocLocation);
 	}
 
-	public final InventorySlot[] addSlotArray(final int[] indexes, final ResourceLocation unlocalizedName) {
+	public final InventorySlot[] addSlotArray(int[] indexes, ResourceLocation unlocalizedName) {
 		return Arrays.stream(indexes)
 			.mapToObj(index -> addSlot(index, unlocalizedName))
 			.toArray(InventorySlot[]::new);
@@ -141,7 +141,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 	 * @deprecated use {@link #addSlotArray(int[], ResourceLocation)}
 	 */
 	@Deprecated
-	public final InventorySlot[] addSlotArray(final int[] indexes, final String unlocalizedName) {
+	public final InventorySlot[] addSlotArray(int[] indexes, String unlocalizedName) {
 		return Arrays.stream(indexes)
 			.mapToObj(index -> addSlot(index, unlocalizedName))
 			.toArray(InventorySlot[]::new);
@@ -149,7 +149,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 
 	@Override
 	@Nullable
-	public InventorySlot getSlot(final int index) {
+	public InventorySlot getSlot(int index) {
 		if (this.inventory.containsKey(index)) {
 			return this.inventory.get(index);
 		}
@@ -160,8 +160,8 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 		return inventory.getOrDefault(index, FakeSlot.INSTANCE);
 	}
 
-	private boolean isReadOnly(final int slot) {
-		final InventorySlot iSlot = this.getSlot(slot);
+	private boolean isReadOnly(int slot) {
+		InventorySlot iSlot = this.getSlot(slot);
 		return iSlot == null || iSlot.isReadOnly();
 	}
 
@@ -171,7 +171,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 	}
 
 	@Override
-	public boolean isItemValidForSlot(final int index, final ItemStack itemStack) {
+	public boolean isItemValidForSlot(int index, ItemStack itemStack) {
 		InventorySlot slot = this.getSlot(index);
 		return slot != null && (slot.isValid(itemStack) && !this.isReadOnly(index));
 	}
@@ -187,11 +187,11 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 			if (slot.isRecipe() || stack.isEmpty()) {
 				continue;
 			}
-			final float xOffset = rand.nextFloat() * 0.8f + 0.1f;
-			final float yOffset = rand.nextFloat() * 0.8f + 0.1f;
-			final float zOffset = rand.nextFloat() * 0.8f + 0.1f;
+			float xOffset = rand.nextFloat() * 0.8f + 0.1f;
+			float yOffset = rand.nextFloat() * 0.8f + 0.1f;
+			float zOffset = rand.nextFloat() * 0.8f + 0.1f;
 
-			final EntityItem entityItem = new EntityItem(world, pos.getX() + xOffset, pos.getY() + yOffset, pos.getZ() + zOffset, stack.copy());
+			EntityItem entityItem = new EntityItem(world, pos.getX() + xOffset, pos.getY() + yOffset, pos.getZ() + zOffset, stack.copy());
 			entityItem.motionX = (float) rand.nextGaussian() * ACCEL;
 			entityItem.motionY = (float) rand.nextGaussian() * ACCEL + 0.2f;
 			entityItem.motionZ = (float) rand.nextGaussian() * ACCEL;
@@ -201,7 +201,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 	}
 
 	@Override
-	public int[] getSlotsForFace(final EnumFacing facing) {
+	public int[] getSlotsForFace(EnumFacing facing) {
 		if (!slotsForFace.containsKey(facing)) {
 			slotsForFace.put(facing, inventory.values().stream()
 				.filter(slot -> slot.canInsert() || slot.canExtract())
@@ -213,7 +213,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 	}
 
 	@Override
-	public boolean canInsertItem(final int index, final ItemStack itemstack, final EnumFacing direction) {
+	public boolean canInsertItem(int index, ItemStack itemstack, EnumFacing direction) {
 		if (!isItemValidForSlot(index, itemstack)) {
 			return false;
 		}
@@ -222,7 +222,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 	}
 
 	@Override
-	public boolean canExtractItem(final int index, final ItemStack itemstack, final EnumFacing direction) {
+	public boolean canExtractItem(int index, ItemStack itemstack, EnumFacing direction) {
 		InventorySlot slot = this.getSlot(index);
 		return slot != null && slot.canExtract(direction);
 	}
@@ -238,7 +238,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 	}
 
 	@Override
-	public boolean isUsableByPlayer(final EntityPlayer var1) {
+	public boolean isUsableByPlayer(EntityPlayer var1) {
 		return true;
 	}
 

@@ -12,11 +12,11 @@ import binnie.core.gui.minecraft.Window;
 import binnie.extratrees.ExtraTrees;
 
 public class WindowSetSquare extends Window {
-	public WindowSetSquare(final EntityPlayer player, @Nullable final IInventory inventory, final Side side) {
+	public WindowSetSquare(EntityPlayer player, @Nullable IInventory inventory, Side side) {
 		super(150, 150, player, inventory, side);
 	}
 
-	public static Window create(final EntityPlayer player, final World world, final int x, final int y, final int z, final Side side) {
+	public static Window create(EntityPlayer player, World world, int x, int y, int z, Side side) {
 		return new WindowSetSquare(player, null, side);
 	}
 

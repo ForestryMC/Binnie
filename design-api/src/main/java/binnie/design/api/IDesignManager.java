@@ -4,17 +4,17 @@ import java.util.Collection;
 import java.util.List;
 
 public interface IDesignManager {
-	void registerDesignSystem(final IDesignSystem system);
+	void registerDesignSystem(IDesignSystem system);
 
 	Collection<IDesignSystem> getDesignSystems();
 
-	boolean registerDesign(final int index, final IDesign design);
+	boolean registerDesign(int index, IDesign design);
 
-	int getDesignIndex(final IDesign design);
+	int getDesignIndex(IDesign design);
 
-	IDesign getDesign(final int index);
+	IDesign getDesign(int index);
 
-	boolean registerDesignCategory(final IDesignCategory category);
+	boolean registerDesignCategory(IDesignCategory category);
 
 	Collection<IDesignCategory> getAllDesignCategories();
 

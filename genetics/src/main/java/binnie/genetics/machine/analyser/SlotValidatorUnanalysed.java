@@ -12,7 +12,7 @@ public class SlotValidatorUnanalysed extends SlotValidator {
 	}
 
 	@Override
-	public boolean isValid(final ItemStack itemStack) {
+	public boolean isValid(ItemStack itemStack) {
 		return ManagerGenetics.isAnalysable(itemStack) && !ManagerGenetics.isAnalysed(itemStack);
 	}
 

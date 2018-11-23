@@ -15,7 +15,7 @@ import binnie.core.machines.MachineComponent;
 import binnie.core.machines.component.IRender;
 
 public class GenepoolFX extends MachineComponent implements IRender.DisplayTick {
-	public GenepoolFX(final IMachine machine) {
+	public GenepoolFX(IMachine machine) {
 		super(machine);
 	}
 
@@ -23,7 +23,7 @@ public class GenepoolFX extends MachineComponent implements IRender.DisplayTick 
 	@Override
 	public void onDisplayTick(World world, BlockPos pos, Random rand) {
 		if (this.getUtil().getProcess().isInProgress()) {
-			final Particle particle = new GenepoolParticle(world, pos, rand);
+			Particle particle = new GenepoolParticle(world, pos, rand);
 			BinnieCore.getBinnieProxy().getMinecraftInstance().effectRenderer.addEffect(particle);
 		}
 	}

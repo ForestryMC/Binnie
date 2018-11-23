@@ -39,8 +39,8 @@ public class HiveDrop implements IHiveDrop {
 
 	@Override
 	public NonNullList<ItemStack> getExtraItems(IBlockAccess world, BlockPos pos, int fortune) {
-		final NonNullList<ItemStack> ret = NonNullList.create();
-		for (final ItemStack stack : this.extra) {
+		NonNullList<ItemStack> ret = NonNullList.create();
+		for (ItemStack stack : this.extra) {
 			ret.add(stack.copy());
 		}
 		return ret;

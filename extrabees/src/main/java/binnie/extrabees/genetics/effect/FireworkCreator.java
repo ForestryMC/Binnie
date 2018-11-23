@@ -40,16 +40,16 @@ public class FireworkCreator {
 			this.trail = true;
 		}
 
-		public void setShape(final Shape shape) {
+		public void setShape(Shape shape) {
 			this.shape = (byte) shape.ordinal();
 		}
 
-		public void addColor(final int color) {
+		public void addColor(int color) {
 			this.colors.add(color);
 		}
 
 		NBTTagCompound getNBT() {
-			final NBTTagCompound nbt = new NBTTagCompound();
+			NBTTagCompound nbt = new NBTTagCompound();
 			if (this.flicker) {
 				nbt.setBoolean("Flicker", true);
 			}
@@ -59,7 +59,7 @@ public class FireworkCreator {
 			if (this.colors.size() == 0) {
 				this.addColor(16777215);
 			}
-			final int[] array = new int[this.colors.size()];
+			int[] array = new int[this.colors.size()];
 			for (int i = 0; i < this.colors.size(); ++i) {
 				array[i] = this.colors.get(i);
 			}
@@ -69,14 +69,14 @@ public class FireworkCreator {
 		}
 
 		public ItemStack getFirework() {
-			final NBTTagCompound var15 = new NBTTagCompound();
-			final NBTTagCompound var16 = new NBTTagCompound();
-			final NBTTagList var17 = new NBTTagList();
+			NBTTagCompound var15 = new NBTTagCompound();
+			NBTTagCompound var16 = new NBTTagCompound();
+			NBTTagList var17 = new NBTTagList();
 			var17.appendTag(this.getNBT());
 			var16.setTag("Explosions", var17);
 			var16.setByte("Flight", (byte) 0);
 			var15.setTag("Fireworks", var16);
-			final ItemStack item = new ItemStack(Items.FIREWORKS);
+			ItemStack item = new ItemStack(Items.FIREWORKS);
 			item.setTagCompound(var15);
 			return item;
 		}

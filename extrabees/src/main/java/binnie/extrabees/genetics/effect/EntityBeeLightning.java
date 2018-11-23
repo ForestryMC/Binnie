@@ -15,11 +15,11 @@ public class EntityBeeLightning extends EntityLightningBolt {
 	private int lightningState;
 	private int boltLivingTime;
 
-	public EntityBeeLightning(final World world) {
+	public EntityBeeLightning(World world) {
 		super(world, 0, 0, 0, true);
 	}
 
-	public EntityBeeLightning(final World world, final double x, final double y, final double z) {
+	public EntityBeeLightning(World world, double x, double y, double z) {
 		super(world, x, y, z, false);
 		this.lightningState = 2;
 		this.boltLivingTime = this.rand.nextInt(3) + 1;
@@ -36,10 +36,10 @@ public class EntityBeeLightning extends EntityLightningBolt {
 				--this.boltLivingTime;
 				this.lightningState = 1;
 				this.boltVertex = this.rand.nextLong();
-				final int i = MathHelper.floor(this.posX);
-				final int j = MathHelper.floor(this.posY);
-				final int k = MathHelper.floor(this.posZ);
-				final BlockPos pos = new BlockPos(i, j, k);
+				int i = MathHelper.floor(this.posX);
+				int j = MathHelper.floor(this.posY);
+				int k = MathHelper.floor(this.posZ);
+				BlockPos pos = new BlockPos(i, j, k);
 				if (!this.world.isRemote && this.world.isAreaLoaded(pos, 10)) {
 					if (this.world.isAirBlock(pos) && Blocks.FIRE.canPlaceBlockAt(this.world, pos)) {
 						this.world.setBlockState(pos, Blocks.FIRE.getDefaultState());
@@ -51,8 +51,8 @@ public class EntityBeeLightning extends EntityLightningBolt {
 			if (this.world.isRemote) {
 				this.world.setLastLightningBolt(2);
 			} else {
-				final double d0 = 3.0;
-				final List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, new AxisAlignedBB(this.posX - d0, this.posY - d0, this.posZ - d0, this.posX + d0, this.posY + 6.0 + d0, this.posZ + d0));
+				double d0 = 3.0;
+				List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, new AxisAlignedBB(this.posX - d0, this.posY - d0, this.posZ - d0, this.posX + d0, this.posY + 6.0 + d0, this.posZ + d0));
 				for (Entity entity : list) {
 					entity.onStruckByLightning(this);
 				}

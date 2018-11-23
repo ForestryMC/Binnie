@@ -27,7 +27,7 @@ public class IsolatorLogic extends ComponentProcessSetCost implements IProcess {
 	public static final int ETHANOL_PER_PROCESS = 10;
 	public static final float TARGET_LOSS_CHANCE = 0.05f;
 
-	public IsolatorLogic(final Machine machine) {
+	public IsolatorLogic(Machine machine) {
 		super(machine, ConfigurationMain.isolatorEnergy, ConfigurationMain.isolatorTime);
 	}
 
@@ -59,13 +59,13 @@ public class IsolatorLogic extends ComponentProcessSetCost implements IProcess {
 	@Override
 	protected void onFinishTask() {
 		super.onFinishTask();
-		final Random rand = this.getMachine().getWorld().rand;
+		Random rand = this.getMachine().getWorld().rand;
 		MachineUtil util = this.getUtil();
-		final ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(util.getStack(Isolator.SLOT_TARGET));
+		ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(util.getStack(Isolator.SLOT_TARGET));
 		if (root == null) {
 			return;
 		}
-		final IIndividual individual = root.getMember(util.getStack(Isolator.SLOT_TARGET));
+		IIndividual individual = root.getMember(util.getStack(Isolator.SLOT_TARGET));
 		if (individual == null) {
 			return;
 		}
@@ -76,7 +76,7 @@ public class IsolatorLogic extends ComponentProcessSetCost implements IProcess {
 		IAllele allele = rand.nextBoolean() ? genome.getActiveAllele(chromosome) : genome.getInactiveAllele(chromosome);
 		Gene gene = Gene.create(allele, chromosome, root);
 
-		final ItemStack serum = ItemSequence.create(gene);
+		ItemStack serum = ItemSequence.create(gene);
 		util.setStack(Isolator.SLOT_RESULUT, serum);
 		util.decreaseStack(Isolator.SLOT_SEQUENCER_VIAL, 1);
 		if (rand.nextFloat() < TARGET_LOSS_CHANCE) {

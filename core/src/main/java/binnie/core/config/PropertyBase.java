@@ -17,7 +17,7 @@ abstract class PropertyBase<ValueType, AnnotationType extends Annotation> {
 	private final List<String> comments;
 	private final Field field;
 
-	protected PropertyBase(final Field field, final BinnieConfiguration file, final ConfigProperty configProperty, final AnnotationType annotedProperty) throws IllegalArgumentException, IllegalAccessException {
+	protected PropertyBase(Field field, BinnieConfiguration file, ConfigProperty configProperty, AnnotationType annotedProperty) throws IllegalArgumentException, IllegalAccessException {
 		this.comments = new ArrayList<>();
 		this.field = field;
 		this.file = file;
@@ -25,7 +25,7 @@ abstract class PropertyBase<ValueType, AnnotationType extends Annotation> {
 		this.annotatedProperty = annotedProperty;
 		this.defaultValue = this.getDefaultValue(field);
 		this.property = this.getProperty();
-		for (final String comment : configProperty.comment()) {
+		for (String comment : configProperty.comment()) {
 			this.addComment(comment);
 		}
 		this.addComments();
@@ -49,17 +49,17 @@ abstract class PropertyBase<ValueType, AnnotationType extends Annotation> {
 		return this.configProperty.key();
 	}
 
-	protected ValueType getDefaultValue(final Field field) throws IllegalArgumentException, IllegalAccessException {
+	protected ValueType getDefaultValue(Field field) throws IllegalArgumentException, IllegalAccessException {
 		return (ValueType) field.get(null);
 	}
 
-	protected void addComment(final String comment) {
+	protected void addComment(String comment) {
 		this.comments.add(comment);
 	}
 
 	protected String getComment() {
 		StringBuilder comment = new StringBuilder();
-		for (final String com : this.comments) {
+		for (String com : this.comments) {
 			comment.append(com).append(' ');
 		}
 		return comment.toString();

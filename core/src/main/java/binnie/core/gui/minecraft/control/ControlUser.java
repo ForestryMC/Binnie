@@ -18,7 +18,7 @@ import binnie.core.gui.resource.textures.CraftGUITexture;
 public class ControlUser extends Control implements ITooltip {
 	private final String username;
 
-	public ControlUser(final IWidget parent, final int x, final int y, final String username) {
+	public ControlUser(IWidget parent, int x, int y, String username) {
 		super(parent, x, y, 16, 16);
 		this.addAttribute(Attribute.MOUSE_OVER);
 		this.username = username;
@@ -31,7 +31,7 @@ public class ControlUser extends Control implements ITooltip {
 	}
 
 	@Override
-	public void getTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
+	public void getTooltip(Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		tooltip.setType(Tooltip.Type.USER);
 		tooltip.add("Owner");
 		if (!Objects.equals(this.username, "")) {

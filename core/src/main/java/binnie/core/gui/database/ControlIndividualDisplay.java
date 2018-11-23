@@ -33,11 +33,11 @@ public class ControlIndividualDisplay extends ControlItemDisplay implements IToo
 	@Nullable
 	private IAlleleSpecies species;
 
-	public ControlIndividualDisplay(final IWidget parent, final int x, final int y) {
+	public ControlIndividualDisplay(IWidget parent, int x, int y) {
 		this(parent, x, y, 16);
 	}
 
-	public ControlIndividualDisplay(final IWidget parent, final int x, final int y, final int size) {
+	public ControlIndividualDisplay(IWidget parent, int x, int y, int size) {
 		super(parent, x, y, size);
 		this.species = null;
 		this.discovered = EnumDiscoveryState.SHOW;
@@ -48,18 +48,18 @@ public class ControlIndividualDisplay extends ControlItemDisplay implements IToo
 		});
 	}
 
-	public void setSpecies(final IAlleleSpecies species) {
+	public void setSpecies(IAlleleSpecies species) {
 		this.setSpecies(species, EnumDiscoveryState.SHOW);
 	}
 
-	public void setSpecies(final IAlleleSpecies species, EnumDiscoveryState state) {
-		final ISpeciesRoot speciesRoot = Binnie.GENETICS.getSpeciesRoot(species);
-		final IBreedingSystem system = Binnie.GENETICS.getSystem(speciesRoot);
-		final IAllele[] template = system.getSpeciesRoot().getTemplate(species);
-		final IIndividual ind = system.getSpeciesRoot().templateAsIndividual(template);
+	public void setSpecies(IAlleleSpecies species, EnumDiscoveryState state) {
+		ISpeciesRoot speciesRoot = Binnie.GENETICS.getSpeciesRoot(species);
+		IBreedingSystem system = Binnie.GENETICS.getSystem(speciesRoot);
+		IAllele[] template = system.getSpeciesRoot().getTemplate(species);
+		IIndividual ind = system.getSpeciesRoot().templateAsIndividual(template);
 		super.setItemStack(system.getSpeciesRoot().getMemberStack(ind, system.getDefaultType()));
 		this.species = species;
-		final GameProfile username = Window.get(this).getUsername();
+		GameProfile username = Window.get(this).getUsername();
 		if (state == EnumDiscoveryState.UNDETERMINED) {
 			state = (system.isSpeciesDiscovered(species, Window.get(this).getWorld(), username) ? EnumDiscoveryState.DISCOVERED : EnumDiscoveryState.UNDISCOVERED);
 		}
@@ -99,7 +99,7 @@ public class ControlIndividualDisplay extends ControlItemDisplay implements IToo
 	}
 
 	@Override
-	public void getTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
+	public void getTooltip(Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		if (this.species != null) {
 			switch (this.discovered) {
 				case SHOW: {

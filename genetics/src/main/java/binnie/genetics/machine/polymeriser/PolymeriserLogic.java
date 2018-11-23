@@ -18,7 +18,7 @@ public class PolymeriserLogic extends ComponentProcessSetCost implements IProces
 	private float dnaDrain;
 	private float bacteriaDrain;
 
-	public PolymeriserLogic(final Machine machine) {
+	public PolymeriserLogic(Machine machine) {
 		super(machine, ConfigurationMain.polymeriserEnergy, ConfigurationMain.polymeriserTime);
 		this.dnaDrain = 0.0f;
 		this.bacteriaDrain = 0.0f;
@@ -45,20 +45,20 @@ public class PolymeriserLogic extends ComponentProcessSetCost implements IProces
 
 	@Override
 	public int getProcessLength() {
-		final ItemStack serum = this.getUtil().getStack(Polymeriser.SLOT_SERUM);
+		ItemStack serum = this.getUtil().getStack(Polymeriser.SLOT_SERUM);
 		return (int) (super.getProcessLength() * getNumberOfGenes(serum) * this.getCatalyst());
 	}
 
 	@Override
 	public int getProcessEnergy() {
-		final ItemStack serum = this.getUtil().getStack(Polymeriser.SLOT_SERUM);
+		ItemStack serum = this.getUtil().getStack(Polymeriser.SLOT_SERUM);
 		return (int) (super.getProcessEnergy() * getNumberOfGenes(serum) * this.getCatalyst());
 	}
 
 	@Override
 	public void onTickTask() {
 		super.onTickTask();
-		final ItemStack serum = this.getUtil().getStack(Polymeriser.SLOT_SERUM);
+		ItemStack serum = this.getUtil().getStack(Polymeriser.SLOT_SERUM);
 
 		this.getUtil().useCharge(Polymeriser.SLOT_GOLD, PolymeriserLogic.chargePerProcess * this.getProgressPerTick() / 100.0f);
 		this.dnaDrain += getDNAPerProcess(serum) * this.getProgressPerTick() / 100.0f;
@@ -75,7 +75,7 @@ public class PolymeriserLogic extends ComponentProcessSetCost implements IProces
 
 	@Override
 	public String getTooltip() {
-		final ItemStack serum = this.getUtil().getStack(Polymeriser.SLOT_SERUM);
+		ItemStack serum = this.getUtil().getStack(Polymeriser.SLOT_SERUM);
 		int n = getNumberOfGenes(serum);
 		if (n > 1) {
 			return String.format(I18N.localise("genetics.machine.polymeriser.tooltips.logic.genes"), Integer.valueOf(n).toString());

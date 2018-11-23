@@ -17,7 +17,7 @@ import binnie.core.machines.component.IInteraction;
 import binnie.core.machines.network.INetwork;
 
 public class ComponentGUIHolder extends MachineComponent implements INetwork.TilePacketSync, IInteraction.RightClick {
-	public ComponentGUIHolder(final IMachine machine) {
+	public ComponentGUIHolder(IMachine machine) {
 		super(machine);
 	}
 
@@ -49,7 +49,7 @@ public class ComponentGUIHolder extends MachineComponent implements INetwork.Til
 				}
 			} else if (stack.getItem() instanceof IGuiItem) {
 				IGuiItem labStandItem = (IGuiItem) stack.getItem();
-				labStandItem.openGuiOnRightClick(stack, world, player);
+				labStandItem.openGui(stack, world, player);
 			}
 		}
 	}

@@ -10,7 +10,7 @@ public class AlvearyLighting extends ExtraBeeMachines.AlvearyPackage implements 
 	}
 
 	@Override
-	public void createMachine(final Machine machine) {
+	public void createMachine(Machine machine) {
 		new ComponentLighting(machine);
 	}
 }

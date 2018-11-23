@@ -21,7 +21,7 @@ public class ControlTextEdit extends Control implements IControlValue<String> {
 	private final GuiTextField field;
 	private String cachedValue;
 
-	public ControlTextEdit(final IWidget parent, final int x, final int y, final int width, final int height) {
+	public ControlTextEdit(IWidget parent, int x, int y, int width, int height) {
 		super(parent, x, y, width, height);
 		this.cachedValue = "";
 		this.field = new GuiTextField(0, this.getWindow().getGui().getFontRenderer(), 0, 0, 10, 10);
@@ -30,7 +30,7 @@ public class ControlTextEdit extends Control implements IControlValue<String> {
 		this.field.setEnableBackgroundDrawing(false);
 		this.addSelfEventHandler(EventKey.Down.class, event -> {
 			this.field.textboxKeyTyped(event.getCharacter(), event.getKey());
-			final String text = this.getValue();
+			String text = this.getValue();
 			if (!text.equals(this.cachedValue)) {
 				this.cachedValue = text;
 				this.callEvent(new EventTextEdit(ControlTextEdit.this, this.cachedValue));
@@ -54,13 +54,13 @@ public class ControlTextEdit extends Control implements IControlValue<String> {
 	}
 
 	@Override
-	public void setValue(final String value) {
+	public void setValue(String value) {
 		if (!this.getValue().equals(value)) {
 			this.field.setText(value);
 		}
 	}
 
-	protected void onTextEdit(final String value) {
+	protected void onTextEdit(String value) {
 	}
 
 	@Override

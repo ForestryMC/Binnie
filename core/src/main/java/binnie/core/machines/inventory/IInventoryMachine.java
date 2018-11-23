@@ -14,12 +14,12 @@ public interface IInventoryMachine extends IInventory, ISidedInventory {
 	}
 
 	@Override
-	default ItemStack getStackInSlot(final int index) {
+	default ItemStack getStackInSlot(int index) {
 		return this.getInventory().getStackInSlot(index);
 	}
 
 	@Override
-	default ItemStack decrStackSize(final int index, final int amount) {
+	default ItemStack decrStackSize(int index, int amount) {
 		return this.getInventory().decrStackSize(index, amount);
 	}
 
@@ -29,7 +29,7 @@ public interface IInventoryMachine extends IInventory, ISidedInventory {
 	}
 
 	@Override
-	default void setInventorySlotContents(final int index, final ItemStack itemStack) {
+	default void setInventorySlotContents(int index, ItemStack itemStack) {
 		this.getInventory().setInventorySlotContents(index, itemStack);
 	}
 
@@ -64,7 +64,7 @@ public interface IInventoryMachine extends IInventory, ISidedInventory {
 	}
 
 	@Override
-	default boolean isItemValidForSlot(final int slot, final ItemStack itemStack) {
+	default boolean isItemValidForSlot(int slot, ItemStack itemStack) {
 		return this.getInventory().isItemValidForSlot(slot, itemStack);
 	}
 

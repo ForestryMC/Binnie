@@ -20,7 +20,7 @@ public class WorldGenConifer {
 		protected void generateLeaves(World world, Random rand, TreeBlockTypeLeaf leaf, List<BlockPos> branchEnds, BlockPos startPos) {
 			float leafSpawn = this.height + girth * 4;
 			float bottom = WorldGenUtils.randBetween(rand, 2, 3);
-			final float coneHeight = leafSpawn - bottom;
+			float coneHeight = leafSpawn - bottom;
 			float width = (girth * height / 3);
 			if (width > 9) {
 				width = 9;
@@ -44,12 +44,12 @@ public class WorldGenConifer {
 		public void generate() {
 			this.generateTreeTrunk(this.height, this.girth);
 			float leafSpawn = this.height + 2;
-			final float bottom = 1.0f;
+			float bottom = 1.0f;
 			float width = this.height * this.randBetween(0.15f, 0.2f);
 			if (width > 7.0f) {
 				width = 7.0f;
 			}
-			final float coneHeight = leafSpawn - bottom;
+			float coneHeight = leafSpawn - bottom;
 			while (leafSpawn > bottom) {
 				float radius = 1.0f - (leafSpawn - bottom) / coneHeight;
 				radius *= width - 1.0f;
@@ -76,12 +76,12 @@ public class WorldGenConifer {
 		public void generate() {
 			this.generateTreeTrunk(this.height, this.girth);
 			float leafSpawn = this.height + 2;
-			final float bottom = this.randBetween(1, 2);
+			float bottom = this.randBetween(1, 2);
 			float width = this.height * this.randBetween(0.7f, 0.75f);
 			if (width > 7.0f) {
 				width = 7.0f;
 			}
-			final float coneHeight = leafSpawn - bottom;
+			float coneHeight = leafSpawn - bottom;
 			while (leafSpawn > bottom) {
 				float radius = 1.0f - (leafSpawn - bottom) / coneHeight;
 				radius *= 2.0f - radius;
@@ -107,12 +107,12 @@ public class WorldGenConifer {
 		public void generate() {
 			this.generateTreeTrunk(this.height, this.girth);
 			float leafSpawn = this.height + 3;
-			final float bottom = this.randBetween(2, 3);
+			float bottom = this.randBetween(2, 3);
 			float width = this.height * this.randBetween(0.7f, 0.75f);
 			if (width > 7.0f) {
 				width = 7.0f;
 			}
-			final float coneHeight = leafSpawn - bottom;
+			float coneHeight = leafSpawn - bottom;
 			while (leafSpawn > bottom) {
 				this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), this.girth, 1, this.leaf, false);
 			}
@@ -158,7 +158,7 @@ public class WorldGenConifer {
 		public void generate() {
 			this.generateTreeTrunk(this.height, this.girth);
 			float leafSpawn = this.height + 2;
-			final float bottom = this.height * this.randBetween(0.65f, 0.7f);
+			float bottom = this.height * this.randBetween(0.65f, 0.7f);
 			float width = this.height * this.randBetween(0.25f, 0.3f);
 			if (width > 7.0f) {
 				width = 7.0f;

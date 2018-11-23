@@ -33,7 +33,7 @@ public abstract class BlockETSlab extends BlockForestrySlab<EnumETLog> {
 		return WoodManager.getDisplayName(this, woodType);
 	}
 
-	public static List<BlockETSlab> create(boolean fireproof, final boolean doubleSlab) {
+	public static List<BlockETSlab> create(boolean fireproof, boolean doubleSlab) {
 		List<BlockETSlab> blocks = new ArrayList<>();
 		PropertyETWoodType[] variants = PropertyETWoodType.create("variant", VARIANTS_PER_BLOCK, false);
 		for (int i = 0; i < variants.length; i++) {

@@ -5,7 +5,7 @@ import binnie.core.gui.geometry.Border;
 import binnie.core.resource.IBinnieTexture;
 
 public class PaddedTexture extends Texture {
-	public PaddedTexture(final int u, final int v, final int w, final int h, final int offset, final IBinnieTexture textureFile, final int leftPadding, final int rightPadding, final int topPadding, final int bottomPadding) {
+	public PaddedTexture(int u, int v, int w, int h, int offset, IBinnieTexture textureFile, int leftPadding, int rightPadding, int topPadding, int bottomPadding) {
 		super(new Area(u, v, w, h), new Border(topPadding, rightPadding, bottomPadding, leftPadding), new Border(offset), textureFile);
 	}
 }

@@ -17,17 +17,17 @@ import binnie.core.gui.renderer.RenderUtil;
 public class ControlIconDisplay extends Control {
 	private final TextureAtlasSprite sprite;
 
-	public ControlIconDisplay(final IWidget parent, final int x, final int y) {
+	public ControlIconDisplay(IWidget parent, int x, int y) {
 		super(parent, x, y, 16, 16);
 		this.sprite = null;
 	}
 
-	public ControlIconDisplay(final IWidget parent, final int x, final int y, final ResourceLocation icon) {
+	public ControlIconDisplay(IWidget parent, int x, int y, ResourceLocation icon) {
 		super(parent, x, y, 16, 16);
 		this.sprite = BinnieCore.getBinnieProxy().getTextureAtlasSprite(icon);
 	}
 
-	public ControlIconDisplay(final IWidget parent, final int x, final int y, IBinnieSprite sprite) {
+	public ControlIconDisplay(IWidget parent, int x, int y, IBinnieSprite sprite) {
 		super(parent, x, y, 16, 16);
 		this.sprite = sprite.getSprite();
 	}

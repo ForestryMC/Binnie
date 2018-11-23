@@ -17,12 +17,12 @@ import binnie.core.util.I18N;
 import binnie.extrabees.machines.stimulator.AlvearyStimulator;
 
 public class WindowAlvearyStimulator extends Window {
-	public WindowAlvearyStimulator(final EntityPlayer player, final IInventory inventory, final Side side) {
+	public WindowAlvearyStimulator(EntityPlayer player, IInventory inventory, Side side) {
 		super(176, 144, player, inventory, side);
 	}
 
 	@Nullable
-	public static Window create(final EntityPlayer player, @Nullable final IInventory inventory, final Side side) {
+	public static Window create(EntityPlayer player, @Nullable IInventory inventory, Side side) {
 		if (inventory == null) {
 			return null;
 		}

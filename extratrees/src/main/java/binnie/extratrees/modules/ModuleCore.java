@@ -149,7 +149,7 @@ public class ModuleCore extends BinnieModule {
 		GameRegistry.addSmelting(ExtraTreeItems.GRAIN_CORN.get(1), ExtraTreeItems.GRAIN_ROASTED.get(1), 0.0f);
 		GameRegistry.addSmelting(ExtraTreeItems.GRAIN_BARLEY.get(1), ExtraTreeItems.GRAIN_ROASTED.get(1), 0.0f);
 		try {
-			final Item minium = (Item) Class.forName("com.pahimar.ee3.lib.ItemIds").getField("minium_shard").get(null);
+			Item minium = (Item) Class.forName("com.pahimar.ee3.lib.ItemIds").getField("minium_shard").get(null);
 			recipeUtil.addShapelessRecipe("papayimar", Food.PAPAYIMAR.get(1), minium, "cropPapaya");
 		} catch (Exception ignored) {
 		}

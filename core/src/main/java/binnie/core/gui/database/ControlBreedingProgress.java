@@ -20,7 +20,7 @@ class ControlBreedingProgress extends Control {
 	private final float percentage;
 	private final int colour;
 
-	public ControlBreedingProgress(final IWidget parent, final int x, final int y, final int width, final int height, final IBreedingSystem system, final float percentage) {
+	public ControlBreedingProgress(IWidget parent, int x, int y, int width, int height, IBreedingSystem system, float percentage) {
 		super(parent, x, y, width, height);
 		this.percentage = percentage;
 		this.colour = system.getColour();
@@ -30,7 +30,7 @@ class ControlBreedingProgress extends Control {
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		CraftGUI.RENDER.texture(CraftGUITexture.PANEL_BLACK, this.getArea());
-		final IArea area = this.getArea().inset(1);
+		IArea area = this.getArea().inset(1);
 		area.setSize(new Point(Math.round(area.size().xPos() * this.percentage), area.size().yPos()));
 		RenderUtil.setColour(this.colour);
 		CraftGUI.RENDER.texture(ControlBreedingProgress.Progress, area);

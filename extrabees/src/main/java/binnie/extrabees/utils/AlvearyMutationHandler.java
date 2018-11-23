@@ -20,13 +20,13 @@ public class AlvearyMutationHandler {
 
 	private static final List<Pair<ItemStack, Float>> MUTATIONS = new ArrayList<>(MUTATIONS_CAPACITY);
 
-	public static boolean isMutationItem(final ItemStack item) {
+	public static boolean isMutationItem(ItemStack item) {
 		return getMutationMult(item) > 1.0f;
 	}
 
-	public static float getMutationMult(final ItemStack item) {
+	public static float getMutationMult(ItemStack item) {
 		if (!item.isEmpty()) {
-			for (final Pair<ItemStack, Float> comp : MUTATIONS) {
+			for (Pair<ItemStack, Float> comp : MUTATIONS) {
 				ItemStack key = comp.getKey();
 				if (item.isItemEqual(key) && ItemStack.areItemStackTagsEqual(item, key)) {
 					return comp.getValue();
@@ -40,7 +40,7 @@ public class AlvearyMutationHandler {
 		addMutationItem(new ItemStack(firstNonNull(item, Item.getItemFromBlock(Blocks.AIR))), chance);
 	}
 
-	public static void addMutationItem(final ItemStack item, final float chance) {
+	public static void addMutationItem(ItemStack item, float chance) {
 		if (item.isEmpty()) {
 			return;
 		}

@@ -45,7 +45,7 @@ public abstract class TopLevelWidget extends Widget implements ITopLevelWidget {
 		});
 	}
 
-	public void setDraggedWidget(@Nullable final IWidget widget, final int button) {
+	public void setDraggedWidget(@Nullable IWidget widget, int button) {
 		if (this.draggedWidget == widget) {
 			return;
 		}
@@ -64,7 +64,7 @@ public abstract class TopLevelWidget extends Widget implements ITopLevelWidget {
 		return this.mousedOverWidget;
 	}
 
-	public void setMousedOverWidget(@Nullable final IWidget widget) {
+	public void setMousedOverWidget(@Nullable IWidget widget) {
 		if (this.mousedOverWidget == widget) {
 			return;
 		}
@@ -82,7 +82,7 @@ public abstract class TopLevelWidget extends Widget implements ITopLevelWidget {
 		return this.draggedWidget;
 	}
 
-	public void setDraggedWidget(@Nullable final IWidget widget) {
+	public void setDraggedWidget(@Nullable IWidget widget) {
 		this.setDraggedWidget(widget, -1);
 	}
 
@@ -91,7 +91,7 @@ public abstract class TopLevelWidget extends Widget implements ITopLevelWidget {
 		return this.focusedWidget;
 	}
 
-	public void setFocusedWidget(@Nullable final IWidget widget) {
+	public void setFocusedWidget(@Nullable IWidget widget) {
 		IWidget newWidget = widget;
 		if (this.focusedWidget == newWidget) {
 			return;
@@ -109,15 +109,15 @@ public abstract class TopLevelWidget extends Widget implements ITopLevelWidget {
 	}
 
 	@Override
-	public boolean isMouseOver(final IWidget widget) {
+	public boolean isMouseOver(IWidget widget) {
 		return this.getMousedOverWidget() == widget;
 	}
 
-	public boolean isDragged(final IWidget widget) {
+	public boolean isDragged(IWidget widget) {
 		return this.getDraggedWidget() == widget;
 	}
 
-	public boolean isFocused(final IWidget widget) {
+	public boolean isFocused(IWidget widget) {
 		return this.getFocusedWidget() == widget;
 	}
 
@@ -136,9 +136,9 @@ public abstract class TopLevelWidget extends Widget implements ITopLevelWidget {
 
 	@Nullable
 	private IWidget calculateMousedOverWidget() {
-		final Deque<IWidget> queue = this.calculateMousedOverWidgets();
+		Deque<IWidget> queue = this.calculateMousedOverWidgets();
 		while (!queue.isEmpty()) {
-			final IWidget widget = queue.removeFirst();
+			IWidget widget = queue.removeFirst();
 			if (widget.isEnabled() && widget.isVisible() && widget.canMouseOver() && widget.calculateIsMouseOver()) {
 				return widget;
 			}
@@ -147,8 +147,8 @@ public abstract class TopLevelWidget extends Widget implements ITopLevelWidget {
 	}
 
 	public Deque<IWidget> calculateMousedOverWidgets() {
-		final Deque<IWidget> list = new ArrayDeque<>();
-		for (final IWidget widget : this.getQueuedWidgets(this)) {
+		Deque<IWidget> list = new ArrayDeque<>();
+		for (IWidget widget : this.getQueuedWidgets(this)) {
 			if (widget.calculateIsMouseOver()) {
 				list.addLast(widget);
 			}
@@ -156,7 +156,7 @@ public abstract class TopLevelWidget extends Widget implements ITopLevelWidget {
 		return list;
 	}
 
-	private Collection<IWidget> getQueuedWidgets(final IWidget widget) {
+	private Collection<IWidget> getQueuedWidgets(IWidget widget) {
 		List<IWidget> widgets = new ArrayList<>();
 		boolean addChildren = true;
 		IArea croppedZone = widget.getCroppedZone();
@@ -166,7 +166,7 @@ public abstract class TopLevelWidget extends Widget implements ITopLevelWidget {
 		if (addChildren) {
 			ListIterator<IWidget> iterator = widget.getChildren().listIterator(widget.getChildren().size());
 			while (iterator.hasPrevious()) {
-				final IWidget child = iterator.previous();
+				IWidget child = iterator.previous();
 				widgets.addAll(this.getQueuedWidgets(child));
 			}
 		}
@@ -174,9 +174,9 @@ public abstract class TopLevelWidget extends Widget implements ITopLevelWidget {
 		return widgets;
 	}
 
-	public void setMousePosition(final int x, final int y) {
-		final float dx = x - this.mousePosition.xPos();
-		final float dy = y - this.mousePosition.yPos();
+	public void setMousePosition(int x, int y) {
+		float dx = x - this.mousePosition.xPos();
+		float dy = y - this.mousePosition.yPos();
 		if (dx != 0.0f || dy != 0.0f) {
 			if (this.getDraggedWidget() != null) {
 				this.callEvent(new EventMouse.Drag(this.getDraggedWidget(), dx, dy));
@@ -196,7 +196,7 @@ public abstract class TopLevelWidget extends Widget implements ITopLevelWidget {
 	}
 
 	@Override
-	public void widgetDeleted(final IWidget widget) {
+	public void widgetDeleted(IWidget widget) {
 		if (this.isMouseOver(widget)) {
 			this.setMousedOverWidget(null);
 		}

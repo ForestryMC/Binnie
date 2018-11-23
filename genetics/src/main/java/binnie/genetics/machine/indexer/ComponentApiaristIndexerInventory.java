@@ -15,7 +15,7 @@ import binnie.core.machines.Machine;
 import binnie.core.machines.inventory.SetList;
 
 public class ComponentApiaristIndexerInventory extends ComponentIndexerInventory<ComponentApiaristIndexerInventory.Mode> implements IInventory {
-	public ComponentApiaristIndexerInventory(final Machine machine) {
+	public ComponentApiaristIndexerInventory(Machine machine) {
 		super(machine);
 	}
 
@@ -38,16 +38,16 @@ public class ComponentApiaristIndexerInventory extends ComponentIndexerInventory
 			case Species:
 			case Type: {
 
-				final Map<Integer, SpeciesList> speciesList = new HashMap<>();
-				for (final ItemStack itemStack : this.getIndexerInventory()) {
-					final int species = itemStack.getItemDamage();
+				Map<Integer, SpeciesList> speciesList = new HashMap<>();
+				for (ItemStack itemStack : this.getIndexerInventory()) {
+					int species = itemStack.getItemDamage();
 					if (!speciesList.containsKey(species)) {
 						speciesList.put(species, new SpeciesList());
 					}
 					speciesList.get(species).add(itemStack);
 				}
-				for (final SpeciesList sortableList : speciesList.values()) {
-					for (final ItemStack beeStack : sortableList.getBees()) {
+				for (SpeciesList sortableList : speciesList.values()) {
+					for (ItemStack beeStack : sortableList.getBees()) {
 						if (BeeManager.beeRoot.isDrone(beeStack)) {
 							sortableList.getDrones().add(this.getIndexerInventory().indexOf(beeStack));
 						} else if (BeeManager.beeRoot.isMated(beeStack)) {
@@ -141,7 +141,7 @@ public class ComponentApiaristIndexerInventory extends ComponentIndexerInventory
 	}
 
 	@Override
-	public boolean isItemValidForSlot(final int i, final ItemStack itemstack) {
+	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
 		return true;
 	}
 

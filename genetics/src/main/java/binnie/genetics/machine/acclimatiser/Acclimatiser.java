@@ -42,10 +42,10 @@ public class Acclimatiser {
 	private static final Map<Integer, Float> humidityDicts = new HashMap<>();
 
 	@Nullable
-	private static ToleranceSystem getToleranceSystem(final ItemStack stack, final ItemStack acclim) {
-		final ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(stack);
+	private static ToleranceSystem getToleranceSystem(ItemStack stack, ItemStack acclim) {
+		ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(stack);
 		if (root != null) {
-			for (final ToleranceSystem system : Acclimatiser.toleranceSystems) {
+			for (ToleranceSystem system : Acclimatiser.toleranceSystems) {
 				if (Objects.equals(root.getUID(), system.getSpeciesRootUid()) && system.getType().hasEffect(acclim)) {
 					return system;
 				}
@@ -65,7 +65,7 @@ public class Acclimatiser {
 		return toleranceTypes;
 	}
 
-	public static float getTemperatureEffect(final ItemStack item) {
+	public static float getTemperatureEffect(ItemStack item) {
 		for (int oreDict : Acclimatiser.temperatureDicts.keySet()) {
 			for (int id : OreDictionary.getOreIDs(item)) {
 				if (id == oreDict) {
@@ -73,7 +73,7 @@ public class Acclimatiser {
 				}
 			}
 		}
-		for (final ItemStack stack : Acclimatiser.temperatureItems.keySet()) {
+		for (ItemStack stack : Acclimatiser.temperatureItems.keySet()) {
 			if (ItemStackUtil.isItemEqual(stack, item, false, true)) {
 				return Acclimatiser.temperatureItems.get(stack);
 			}
@@ -81,7 +81,7 @@ public class Acclimatiser {
 		return 0.0f;
 	}
 
-	public static float getHumidityEffect(final ItemStack item) {
+	public static float getHumidityEffect(ItemStack item) {
 		for (int oreDict : Acclimatiser.humidityDicts.keySet()) {
 			for (int id : OreDictionary.getOreIDs(item)) {
 				if (id == oreDict) {
@@ -89,7 +89,7 @@ public class Acclimatiser {
 				}
 			}
 		}
-		for (final ItemStack stack : Acclimatiser.humidityItems.keySet()) {
+		for (ItemStack stack : Acclimatiser.humidityItems.keySet()) {
 			if (ItemStackUtil.isItemEqual(stack, item, false, true)) {
 				return Acclimatiser.humidityItems.get(stack);
 			}
@@ -97,28 +97,28 @@ public class Acclimatiser {
 		return 0.0f;
 	}
 
-	public static void addTemperatureItem(final ItemStack itemstack, final float amount) {
+	public static void addTemperatureItem(ItemStack itemstack, float amount) {
 		if (itemstack.isEmpty()) {
 			return;
 		}
 		Acclimatiser.temperatureItems.put(itemstack, amount);
 	}
 
-	public static void addHumidityItem(final ItemStack itemstack, final float amount) {
+	public static void addHumidityItem(ItemStack itemstack, float amount) {
 		if (itemstack.isEmpty()) {
 			return;
 		}
 		Acclimatiser.humidityItems.put(itemstack, amount);
 	}
 
-	public static void addTemperatureDict(String oreDict, final float amount) {
+	public static void addTemperatureDict(String oreDict, float amount) {
 		if (oreDict.isEmpty()) {
 			return;
 		}
 		Acclimatiser.temperatureDicts.put(OreDictionary.getOreID(oreDict), amount);
 	}
 
-	public static void addHumidityDict(String oreDict, final float amount) {
+	public static void addHumidityDict(String oreDict, float amount) {
 		if (oreDict.isEmpty()) {
 			return;
 		}
@@ -148,11 +148,11 @@ public class Acclimatiser {
 		addHumidityItem(FluidContainerType.CAPSULE.getFilled(FluidRegistry.WATER), 0.75f);
 	}
 
-	public static boolean canAcclimatise(final ItemStack stack, final List<ItemStack> acclimatisers) {
+	public static boolean canAcclimatise(ItemStack stack, List<ItemStack> acclimatisers) {
 		if (stack.isEmpty() || acclimatisers.isEmpty()) {
 			return true;
 		}
-		for (final ItemStack acclim : acclimatisers) {
+		for (ItemStack acclim : acclimatisers) {
 			if (canAcclimatise(stack, acclim)) {
 				return true;
 			}
@@ -160,20 +160,20 @@ public class Acclimatiser {
 		return false;
 	}
 
-	public static boolean canAcclimatise(final ItemStack stack, final ItemStack acclim) {
-		final ToleranceSystem system = getToleranceSystem(stack, acclim);
+	public static boolean canAcclimatise(ItemStack stack, ItemStack acclim) {
+		ToleranceSystem system = getToleranceSystem(stack, acclim);
 		return system != null && system.canAlter(stack, acclim);
 	}
 
-	public static ItemStack acclimatise(final ItemStack stack, final ItemStack acc) {
-		final ToleranceSystem system = getToleranceSystem(stack, acc);
+	public static ItemStack acclimatise(ItemStack stack, ItemStack acc) {
+		ToleranceSystem system = getToleranceSystem(stack, acc);
 		if (system == null) {
 			return stack;
 		}
 		return system.alter(stack, acc);
 	}
 
-	public static Tolerance alterTolerance(final Tolerance tol, final float effect) {
+	public static Tolerance alterTolerance(Tolerance tol, float effect) {
 		int[] bounds = tol.getBounds();
 		int[] range;
 		if (effect < 0.0f) {
@@ -187,16 +187,16 @@ public class Acclimatiser {
 		if (range[1] > 5) {
 			range[1] = 5;
 		}
-		final EnumTolerance[] up = {EnumTolerance.NONE, EnumTolerance.UP_1, EnumTolerance.UP_2, EnumTolerance.UP_3, EnumTolerance.UP_4, EnumTolerance.UP_5};
-		final EnumTolerance[] down = {EnumTolerance.NONE, EnumTolerance.DOWN_1, EnumTolerance.DOWN_2, EnumTolerance.DOWN_3, EnumTolerance.DOWN_4, EnumTolerance.DOWN_5};
-		final EnumTolerance[] both = {EnumTolerance.NONE, EnumTolerance.BOTH_1, EnumTolerance.BOTH_2, EnumTolerance.BOTH_3, EnumTolerance.BOTH_4, EnumTolerance.BOTH_5};
+		EnumTolerance[] up = {EnumTolerance.NONE, EnumTolerance.UP_1, EnumTolerance.UP_2, EnumTolerance.UP_3, EnumTolerance.UP_4, EnumTolerance.UP_5};
+		EnumTolerance[] down = {EnumTolerance.NONE, EnumTolerance.DOWN_1, EnumTolerance.DOWN_2, EnumTolerance.DOWN_3, EnumTolerance.DOWN_4, EnumTolerance.DOWN_5};
+		EnumTolerance[] both = {EnumTolerance.NONE, EnumTolerance.BOTH_1, EnumTolerance.BOTH_2, EnumTolerance.BOTH_3, EnumTolerance.BOTH_4, EnumTolerance.BOTH_5};
 		if (range[0] == 0) {
 			return Tolerance.get(up[range[1]]);
 		}
 		if (range[1] == 0) {
 			return Tolerance.get(down[-range[0]]);
 		}
-		final int avg = (int) ((-range[0] + range[1]) / 2.0f + 0.6f);
+		int avg = (int) ((-range[0] + range[1]) / 2.0f + 0.6f);
 		return Tolerance.get(both[avg]);
 	}
 }

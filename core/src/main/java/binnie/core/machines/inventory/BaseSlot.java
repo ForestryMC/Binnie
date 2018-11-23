@@ -21,7 +21,7 @@ public abstract class BaseSlot<V> implements INbtWritable, INbtReadable, IValida
 	private boolean readOnly;
 	private int index;
 
-	public BaseSlot(final int index, final ResourceLocation unlocLocation) {
+	public BaseSlot(int index, ResourceLocation unlocLocation) {
 		this.access = new SidedAccess();
 		this.setIndex(index);
 		this.unlocLocation = unlocLocation;
@@ -33,7 +33,7 @@ public abstract class BaseSlot<V> implements INbtWritable, INbtReadable, IValida
 	}
 
 	@Override
-	public boolean isValid(@Nullable final V item) {
+	public boolean isValid(@Nullable V item) {
 		return item == null || this.validator == null || this.validator.isValid(item);
 	}
 
@@ -48,7 +48,7 @@ public abstract class BaseSlot<V> implements INbtWritable, INbtReadable, IValida
 		return this.index;
 	}
 
-	private void setIndex(final int index) {
+	private void setIndex(int index) {
 		this.index = index;
 	}
 
@@ -92,8 +92,8 @@ public abstract class BaseSlot<V> implements INbtWritable, INbtReadable, IValida
 		return this.access.getExtractionSides();
 	}
 
-	public void setOutputSides(final EnumSet<EnumFacing> sides) {
-		for (final EnumFacing side : EnumSet.complementOf(sides)) {
+	public void setOutputSides(EnumSet<EnumFacing> sides) {
+		for (EnumFacing side : EnumSet.complementOf(sides)) {
 			this.access.setExtract(side, false);
 		}
 	}
@@ -105,7 +105,7 @@ public abstract class BaseSlot<V> implements INbtWritable, INbtReadable, IValida
 		return this.validator;
 	}
 
-	public BaseSlot<V> setValidator(final Validator<V> val) {
+	public BaseSlot<V> setValidator(Validator<V> val) {
 		this.validator = val;
 		return this;
 	}

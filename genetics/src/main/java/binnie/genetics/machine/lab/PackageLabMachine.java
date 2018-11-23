@@ -16,7 +16,7 @@ public class PackageLabMachine extends GeneticMachine.PackageGeneticBase {
 	}
 
 	@Override
-	public void createMachine(final Machine machine) {
+	public void createMachine(Machine machine) {
 		new ComponentGUIHolder(machine);
 		new LabFX(machine);
 		ComponentInventorySlots inventory = new ComponentInventorySlots(machine);

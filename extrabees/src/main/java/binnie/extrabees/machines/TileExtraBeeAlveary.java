@@ -27,13 +27,13 @@ public class TileExtraBeeAlveary extends TileEntityMachine implements
 	private static final IBeeModifier BLANK_MODIFIER = new DefaultBeeModifier();
 	private static final IBeeListener BLANK_LISTENER = new DefaultBeeListener();
 
-	private IMultiblockLogicAlveary structureLogic;
+	private final IMultiblockLogicAlveary structureLogic;
 
 	public TileExtraBeeAlveary() {
 		this.structureLogic = MultiblockManager.logicFactory.createAlvearyLogic();
 	}
 
-	public TileExtraBeeAlveary(final ExtraBeeMachines.AlvearyPackage alvearyPackage) {
+	public TileExtraBeeAlveary(ExtraBeeMachines.AlvearyPackage alvearyPackage) {
 		super(alvearyPackage);
 		this.structureLogic = MultiblockManager.logicFactory.createAlvearyLogic();
 	}

@@ -49,24 +49,24 @@ public class ControlSlot extends ControlSlotBase {
 	public static boolean shiftClickActive;
 
 	static {
-		for (final EnumHighlighting h : EnumHighlighting.values()) {
+		for (EnumHighlighting h : EnumHighlighting.values()) {
 			ControlSlot.highlighting.put(h, new ArrayList<>());
 		}
 	}
 
 	public final Slot slot;
 
-	public ControlSlot(final IWidget parent, final int x, final int y, final Slot slot) {
+	public ControlSlot(IWidget parent, int x, int y, Slot slot) {
 		super(parent, x, y);
 		this.slot = slot;
 		this.addSelfEventHandler(EventMouse.Down.class, event -> {
 			Window superParent = (Window) ControlSlot.this.getTopParent();
 			GuiCraftGUI superParentGui = superParent.getGui();
 			Minecraft mc = superParentGui.getMinecraft();
-			final PlayerControllerMP playerController = mc.playerController;
-			final int windowId = superParent.getContainer().windowId;
-			final int slotNumber = this.slot.slotNumber;
-			final int button = event.getButton();
+			PlayerControllerMP playerController = mc.playerController;
+			int windowId = superParent.getContainer().windowId;
+			int slotNumber = this.slot.slotNumber;
+			int button = event.getButton();
 			Window.get(this.getWidget()).getGui();
 			if (playerController != null) {
 				boolean clone = mc.gameSettings.keyBindPickBlock.isActiveAndMatches(button - 100);
@@ -87,11 +87,11 @@ public class ControlSlot extends ControlSlotBase {
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		CraftGUI.RENDER.texture(CraftGUITexture.SLOT, Point.ZERO);
-		final InventorySlot islot = this.getInventorySlot();
+		InventorySlot islot = this.getInventorySlot();
 		if (islot != null) {
 			SlotValidator validator = islot.getValidator();
 			if (validator != null) {
-				final TextureAtlasSprite icon = validator.getIcon(!islot.getInputSides().isEmpty());
+				TextureAtlasSprite icon = validator.getIcon(!islot.getInputSides().isEmpty());
 				if (icon != null && icon != Minecraft.getMinecraft().getTextureMapBlocks().getMissingSprite()) {
 					GlStateManager.enableBlend();
 					RenderUtil.drawSprite(new Point(1, 1), icon);
@@ -105,7 +105,7 @@ public class ControlSlot extends ControlSlotBase {
 	@SideOnly(Side.CLIENT)
 	public void onRenderForeground(int guiWidth, int guiHeight) {
 		boolean highlighted = false;
-		for (final Map.Entry<EnumHighlighting, List<Integer>> highlight : ControlSlot.highlighting.entrySet()) {
+		for (Map.Entry<EnumHighlighting, List<Integer>> highlight : ControlSlot.highlighting.entrySet()) {
 			if (highlight.getKey() == EnumHighlighting.SHIFT_CLICK && !ControlSlot.shiftClickActive) {
 				continue;
 			}
@@ -113,7 +113,7 @@ public class ControlSlot extends ControlSlotBase {
 				continue;
 			}
 			highlighted = true;
-			final int c = -1442840576 + Math.min(highlight.getKey().getColour(), 16777215);
+			int c = -1442840576 + Math.min(highlight.getKey().getColour(), 16777215);
 			GlStateManager.disableBlend();
 			GlStateManager.disableDepth();
 			RenderUtil.drawGradientRect(new Area(1, 1, 16, 16), c, c);
@@ -138,7 +138,7 @@ public class ControlSlot extends ControlSlotBase {
 	@SideOnly(Side.CLIENT)
 	public void onRenderOverlay() {
 		boolean highlighted = false;
-		for (final Map.Entry<EnumHighlighting, List<Integer>> highlight : ControlSlot.highlighting.entrySet()) {
+		for (Map.Entry<EnumHighlighting, List<Integer>> highlight : ControlSlot.highlighting.entrySet()) {
 			if (highlight.getKey() == EnumHighlighting.SHIFT_CLICK && !ControlSlot.shiftClickActive) {
 				continue;
 			}
@@ -146,7 +146,7 @@ public class ControlSlot extends ControlSlotBase {
 				continue;
 			}
 			highlighted = true;
-			final int c = highlight.getKey().getColour();
+			int c = highlight.getKey().getColour();
 			IArea area = this.getArea();
 			if (this.getParent() instanceof ControlSlotArray || this.getParent() instanceof ControlPlayerInventory) {
 				area = this.getParent().getArea();
@@ -166,16 +166,16 @@ public class ControlSlot extends ControlSlotBase {
 			ControlSlot.shiftClickActive = true;
 		}
 		if (Window.get(this).getGui().isHelpMode() && this.isMouseOver()) {
-			for (final ControlSlot slot2 : this.getControlSlots()) {
+			for (ControlSlot slot2 : this.getControlSlots()) {
 				ControlSlot.highlighting.get(EnumHighlighting.HELP).add(slot2.slot.slotNumber);
 			}
 		}
 	}
 
 	private List<ControlSlot> getControlSlots() {
-		final List<ControlSlot> slots = new ArrayList<>();
+		List<ControlSlot> slots = new ArrayList<>();
 		if (this.getParent() instanceof ControlSlotArray || this.getParent() instanceof ControlPlayerInventory) {
-			for (final IWidget child : this.getParent().getChildren()) {
+			for (IWidget child : this.getParent().getChildren()) {
 				slots.add((ControlSlot) child);
 			}
 		} else {
@@ -190,8 +190,8 @@ public class ControlSlot extends ControlSlotBase {
 	}
 
 	@Override
-	public void getHelpTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
-		final InventorySlot slot = this.getInventorySlot();
+	public void getHelpTooltip(Tooltip tooltip, ITooltipFlag tooltipFlag) {
+		InventorySlot slot = this.getInventorySlot();
 		if (slot != null) {
 			tooltip.add(slot.getName());
 			if (tooltipFlag.isAdvanced()) {
@@ -209,7 +209,7 @@ public class ControlSlot extends ControlSlotBase {
 			}
 		} else if (this.slot.inventory instanceof WindowInventory) {
 			if (tooltipFlag.isAdvanced()) {
-				final SlotValidator s = ((WindowInventory) this.slot.inventory).getValidator(this.slot.getSlotIndex());
+				SlotValidator s = ((WindowInventory) this.slot.inventory).getValidator(this.slot.getSlotIndex());
 				tooltip.add("Accepts: " + ((s == null) ? "Any Item" : s.getTooltip()));
 			}
 		} else if (this.slot.inventory instanceof InventoryPlayer) {
@@ -234,17 +234,17 @@ public class ControlSlot extends ControlSlotBase {
 		private final int x;
 		private final int y;
 
-		public Builder(final IWidget parent, final int x, final int y) {
+		public Builder(IWidget parent, int x, int y) {
 			this.parent = parent;
 			this.x = x;
 			this.y = y;
 		}
 
-		public ControlSlot assign(final int index) {
+		public ControlSlot assign(int index) {
 			return assign(InventoryType.MACHINE, index);
 		}
 
-		public ControlSlot assign(final InventoryType inventory, final int index) {
+		public ControlSlot assign(InventoryType inventory, int index) {
 			Slot slot = ((Window) parent.getTopParent()).getContainer().createClientSlot(inventory, index);
 			return new ControlSlot(parent, x, y, slot);
 		}

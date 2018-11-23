@@ -23,7 +23,7 @@ public class StimulatorCircuit implements ICircuit, IBeeModifier {
 	private final String uid;
 	private final List<String> tooltip;
 
-	public StimulatorCircuit(final AlvearySimulatorCircuitType type, final ICircuitLayout layout) {
+	public StimulatorCircuit(AlvearySimulatorCircuitType type, ICircuitLayout layout) {
 		uid = "binnie.circuit.stimulator." + type.toString().toLowerCase();
 		this.type = type;
 		ItemStack stack = new ItemStack(Mods.Forestry.item("thermionic_tubes"), 1, type.getRecipe());
@@ -41,27 +41,27 @@ public class StimulatorCircuit implements ICircuit, IBeeModifier {
 	}
 
 	@Override
-	public float getTerritoryModifier(@Nonnull final IBeeGenome genome, final float currentModifier) {
+	public float getTerritoryModifier(@Nonnull IBeeGenome genome, float currentModifier) {
 		return this.type.getTerritoryModifier(genome, currentModifier);
 	}
 
 	@Override
-	public float getMutationModifier(@Nonnull final IBeeGenome genome, @Nonnull final IBeeGenome mate, final float currentModifier) {
+	public float getMutationModifier(@Nonnull IBeeGenome genome, @Nonnull IBeeGenome mate, float currentModifier) {
 		return this.type.getMutationModifier(genome, mate, currentModifier);
 	}
 
 	@Override
-	public float getLifespanModifier(@Nonnull final IBeeGenome genome, @Nullable final IBeeGenome mate, final float currentModifier) {
+	public float getLifespanModifier(@Nonnull IBeeGenome genome, @Nullable IBeeGenome mate, float currentModifier) {
 		return this.type.getLifespanModifier(genome, mate, currentModifier);
 	}
 
 	@Override
-	public float getProductionModifier(@Nonnull final IBeeGenome genome, final float currentModifier) {
+	public float getProductionModifier(@Nonnull IBeeGenome genome, float currentModifier) {
 		return this.type.getProductionModifier(genome, currentModifier);
 	}
 
 	@Override
-	public float getFloweringModifier(@Nonnull final IBeeGenome genome, final float currentModifier) {
+	public float getFloweringModifier(@Nonnull IBeeGenome genome, float currentModifier) {
 		return this.type.getFloweringModifier(genome, currentModifier);
 	}
 
@@ -86,7 +86,7 @@ public class StimulatorCircuit implements ICircuit, IBeeModifier {
 	}
 
 	@Override
-	public float getGeneticDecay(@Nonnull final IBeeGenome genome, final float currentModifier) {
+	public float getGeneticDecay(@Nonnull IBeeGenome genome, float currentModifier) {
 		return this.type.getGeneticDecay(genome, currentModifier);
 	}
 

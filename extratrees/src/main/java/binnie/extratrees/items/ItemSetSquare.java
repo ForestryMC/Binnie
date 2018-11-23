@@ -16,7 +16,7 @@ import binnie.design.api.IToolHammer;
 public class ItemSetSquare extends Item implements IToolHammer, IItemModelRegister {
 	private final EnumSetSquareMode mode;
 
-	public ItemSetSquare(final EnumSetSquareMode mode) {
+	public ItemSetSquare(EnumSetSquareMode mode) {
 		this.mode = mode;
 		this.setCreativeTab(CreativeTabs.TOOLS);
 		this.setUnlocalizedName("setSquare" + mode);
@@ -31,17 +31,17 @@ public class ItemSetSquare extends Item implements IToolHammer, IItemModelRegist
 	}
 
 	@Override
-	public String getItemStackDisplayName(final ItemStack i) {
+	public String getItemStackDisplayName(ItemStack i) {
 		return "Set Square";
 	}
 
 	@Override
-	public boolean isActive(final ItemStack item) {
+	public boolean isActive(ItemStack item) {
 		return this.mode == EnumSetSquareMode.Rotate;
 	}
 
 	@Override
-	public void onHammerUsed(final ItemStack item, final EntityPlayer player) {
+	public void onHammerUsed(ItemStack item, EntityPlayer player) {
 	}
 
 	public enum EnumSetSquareMode {

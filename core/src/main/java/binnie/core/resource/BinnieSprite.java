@@ -20,11 +20,11 @@ public class BinnieSprite extends BinnieResource implements IBinnieSprite {
 	@Nullable
 	private TextureAtlasSprite sprite;
 
-	public BinnieSprite(final AbstractMod mod, final ResourceType type, final String path) {
+	public BinnieSprite(AbstractMod mod, ResourceType type, String path) {
 		this(mod.getModId(), type, path);
 	}
 
-	public BinnieSprite(final String modid, final ResourceType type, final String path) {
+	public BinnieSprite(String modid, ResourceType type, String path) {
 		super(modid, type, path);
 		this.sprite = null;
 		Binnie.RESOURCE.registerSprite(this);

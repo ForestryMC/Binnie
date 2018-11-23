@@ -17,7 +17,7 @@ import binnie.core.machines.power.PowerSystem;
 public class ControlPowerSystem extends Control implements ITooltip {
 	private final PowerSystem system;
 
-	public ControlPowerSystem(final IWidget parent, final int x, final int y, final PowerSystem system) {
+	public ControlPowerSystem(IWidget parent, int x, int y, PowerSystem system) {
 		super(parent, x, y, 16, 16);
 		this.addAttribute(Attribute.MOUSE_OVER);
 		this.system = system;
@@ -30,7 +30,7 @@ public class ControlPowerSystem extends Control implements ITooltip {
 	}
 
 	@Override
-	public void getTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
+	public void getTooltip(Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		tooltip.setType(Tooltip.Type.POWER);
 		tooltip.add("Power Supply");
 		tooltip.add("Powered by " + this.system.getUnitName());

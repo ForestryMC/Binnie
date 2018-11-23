@@ -11,21 +11,21 @@ public class DrinkManager {
 	private static final Map<String, IDrinkLiquid> DRINK_LIQUIDS = new HashMap<>();
 
 	@Nullable
-	public static IDrinkLiquid getLiquid(final String id) {
+	public static IDrinkLiquid getLiquid(String id) {
 		return DrinkManager.DRINK_LIQUIDS.get(id.toLowerCase());
 	}
 
-	public static void registerDrinkLiquid(final IDrinkLiquid liquid) {
+	public static void registerDrinkLiquid(IDrinkLiquid liquid) {
 		DrinkManager.DRINK_LIQUIDS.put(liquid.getIdentifier(), liquid);
 	}
 
 	@Nullable
-	public static IDrinkLiquid getLiquid(final Fluid fluid) {
+	public static IDrinkLiquid getLiquid(Fluid fluid) {
 		return getLiquid(fluid.getName());
 	}
 
 	@Nullable
-	public static IDrinkLiquid getLiquid(final FluidStack fluid) {
+	public static IDrinkLiquid getLiquid(FluidStack fluid) {
 		return getLiquid(fluid.getFluid());
 	}
 }

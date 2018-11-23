@@ -34,36 +34,36 @@ public class Control extends Widget implements ITooltipHelp, ITooltip {
 		this(parent, area.xPos(), area.yPos(), area.width(), area.height());
 	}
 
-	public void addHelp(final String string) {
+	public void addHelp(String string) {
 		this.helpStrings.add(string);
 	}
 
-	public void addHelp(final String[] strings) {
-		for (final String string : strings) {
+	public void addHelp(String[] strings) {
+		for (String string : strings) {
 			this.addHelp(string);
 		}
 	}
 
-	public void addTooltip(final String string) {
+	public void addTooltip(String string) {
 		this.addAttribute(Attribute.MOUSE_OVER);
 		this.tooltipStrings.add(string);
 	}
 
-	public void addTooltip(final String[] strings) {
-		for (final String string : strings) {
+	public void addTooltip(String[] strings) {
+		for (String string : strings) {
 			this.addTooltip(string);
 		}
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getHelpTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
+	public void getHelpTooltip(Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		tooltip.add(this.helpStrings);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
+	public void getTooltip(Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		tooltip.add(this.tooltipStrings);
 	}
 

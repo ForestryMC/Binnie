@@ -7,7 +7,7 @@ import binnie.core.machines.IMachine;
 public abstract class ComponentProcess extends ComponentProcessIndefinate implements IProcessTimed {
 	private float progressAmount;
 
-	public ComponentProcess(final IMachine machine) {
+	public ComponentProcess(IMachine machine) {
 		super(machine, 0.0f);
 		this.progressAmount = 0.0f;
 	}
@@ -41,7 +41,7 @@ public abstract class ComponentProcess extends ComponentProcessIndefinate implem
 		}
 	}
 
-	public void alterProgress(final float f) {
+	public void alterProgress(float f) {
 		this.progressAmount += f;
 	}
 
@@ -61,7 +61,7 @@ public abstract class ComponentProcess extends ComponentProcessIndefinate implem
 		return this.progressAmount;
 	}
 
-	public void setProgress(final float f) {
+	public void setProgress(float f) {
 		this.progressAmount = f;
 	}
 
@@ -69,14 +69,14 @@ public abstract class ComponentProcess extends ComponentProcessIndefinate implem
 	}
 
 	@Override
-	public void readFromNBT(final NBTTagCompound nbt) {
-		super.readFromNBT(nbt);
-		this.progressAmount = nbt.getFloat("progress");
+	public void readFromNBT(NBTTagCompound compound) {
+		super.readFromNBT(compound);
+		this.progressAmount = compound.getFloat("progress");
 	}
 
 	@Override
-	public NBTTagCompound writeToNBT(final NBTTagCompound nbt1) {
-		NBTTagCompound nbt = super.writeToNBT(nbt1);
+	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+		NBTTagCompound nbt = super.writeToNBT(compound);
 		nbt.setFloat("progress", this.progressAmount);
 		return nbt;
 	}

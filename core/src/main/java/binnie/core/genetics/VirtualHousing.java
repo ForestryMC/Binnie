@@ -14,7 +14,7 @@ import forestry.api.genetics.IHousing;
 class VirtualHousing implements IHousing {
 	private final EntityPlayer player;
 
-	public VirtualHousing(final EntityPlayer player) {
+	public VirtualHousing(EntityPlayer player) {
 		this.player = player;
 	}
 

@@ -41,7 +41,7 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 	private IDesign value;
 	private final float shownHeight;
 
-	protected ControlTileSelect(final IWidget parent, final int x, final int y) {
+	protected ControlTileSelect(IWidget parent, int x, int y) {
 		super(parent, x, y, 102, 20 * (DesignAPI.manager.getSortedDesigns().size() / 4) + 22);
 		this.value = EnumDesign.Blank;
 		this.shownHeight = 92.0f;
@@ -54,7 +54,7 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 	}
 
 	@Override
-	public void setPercentageIndex(final float index) {
+	public void setPercentageIndex(float index) {
 	}
 
 	@Override
@@ -68,19 +68,19 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 	}
 
 	@Override
-	public void setValue(final IDesign value) {
+	public void setValue(IDesign value) {
 		this.value = value;
 	}
 
 	@Override
-	public void movePercentage(final float percentage) {
+	public void movePercentage(float percentage) {
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onUpdateClient() {
 		super.onUpdateClient();
-		final TileEntityMachine tile = (TileEntityMachine) Window.get(this).getInventory();
+		TileEntityMachine tile = (TileEntityMachine) Window.get(this).getInventory();
 		if (tile == null) {
 			return;
 		}
@@ -88,14 +88,14 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 		this.setValue(recipe.getDesign());
 	}
 
-	public void refresh(final String filterText) {
+	public void refresh(String filterText) {
 		this.deleteAllChildren();
 		int cx = 2;
 		int cy = 2;
-		final Map<IDesignCategory, List<IDesign>> designs = new HashMap<>();
-		for (final IDesignCategory category : DesignAPI.manager.getAllDesignCategories()) {
+		Map<IDesignCategory, List<IDesign>> designs = new HashMap<>();
+		for (IDesignCategory category : DesignAPI.manager.getAllDesignCategories()) {
 			designs.put(category, new ArrayList<>());
-			for (final IDesign tile : category.getDesigns()) {
+			for (IDesign tile : category.getDesigns()) {
 				if (Objects.equals(filterText, "") || tile.getName().toLowerCase().contains(filterText)) {
 					designs.get(category).add(tile);
 				}
@@ -104,11 +104,11 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 				designs.remove(category);
 			}
 		}
-		for (final IDesignCategory category : designs.keySet()) {
+		for (IDesignCategory category : designs.keySet()) {
 			cx = 2;
 			new ControlText(this, new Point(cx, cy + 3), category.getName());
 			cy += 16;
-			for (final IDesign tile : designs.get(category)) {
+			for (IDesign tile : designs.get(category)) {
 				if (cx > 90) {
 					cx = 2;
 					cy += 20;
@@ -118,7 +118,7 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 			}
 			cy += 20;
 		}
-		final int height = cy;
+		int height = cy;
 		this.setSize(new Point(this.getSize().xPos(), height));
 	}
 
@@ -130,25 +130,25 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 	public static class ControlTile extends Control implements IControlValue<IDesign>, ITooltip {
 		private IDesign value;
 
-		protected ControlTile(final IWidget parent, final int x, final int y, final IDesign value) {
+		protected ControlTile(IWidget parent, int x, int y, IDesign value) {
 			super(parent, x, y, 18, 18);
 			this.value = value;
 			this.addAttribute(Attribute.MOUSE_OVER);
 			this.addSelfEventHandler(EventMouse.Down.class, event -> {
-				final TileEntityMachine tile = (TileEntityMachine) Window.get(ControlTile.this.getWidget()).getInventory();
+				TileEntityMachine tile = (TileEntityMachine) Window.get(ControlTile.this.getWidget()).getInventory();
 				if (tile == null) {
 					return;
 				}
 				// TODO: why is recipe unused here?
 				ComponentDesignerRecipe recipe = tile.getMachine().getComponent(ComponentDesignerRecipe.class);
-				final NBTTagCompound nbt = new NBTTagCompound();
+				NBTTagCompound nbt = new NBTTagCompound();
 				nbt.setShort("d", (short) DesignAPI.manager.getDesignIndex(ControlTile.this.getValue()));
 				Window.get(ControlTile.this.getWidget()).sendClientAction("design", nbt);
 			});
 		}
 
 		@Override
-		public void getTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
+		public void getTooltip(Tooltip tooltip, ITooltipFlag tooltipFlag) {
 			tooltip.add(I18N.localise(new ResourceLocation(Constants.DESIGN_MOD_ID, "gui.designer.pattern"), this.getValue().getName()));
 		}
 
@@ -158,7 +158,7 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 		}
 
 		@Override
-		public void setValue(final IDesign value) {
+		public void setValue(IDesign value) {
 			this.value = value;
 		}
 
@@ -171,7 +171,7 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 		@Override
 		@SideOnly(Side.CLIENT)
 		public void onRenderForeground(int guiWidth, int guiHeight) {
-			final ItemStack image = ((WindowDesigner) this.getTopParent()).getDesignerType().getDisplayStack(this.getValue());
+			ItemStack image = ((WindowDesigner) this.getTopParent()).getDesignerType().getDisplayStack(this.getValue());
 			RenderUtil.drawItem(new Point(1, 1), image);
 			GlStateManager.disableBlend();
 			if (((IControlValue) this.getParent()).getValue() != this.getValue()) {

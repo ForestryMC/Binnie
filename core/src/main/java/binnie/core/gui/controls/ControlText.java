@@ -17,11 +17,11 @@ public class ControlText extends Control implements IControlValue<String> {
 	private String text;
 	private final TextJustification align;
 
-	public ControlText(final IWidget parent, final IPoint pos, final String text) {
+	public ControlText(IWidget parent, IPoint pos, String text) {
 		this(parent, new Area(pos, new Point(500, 0)), text, TextJustification.TOP_LEFT);
 	}
 
-	public ControlText(final IWidget parent, final IArea area, final String text, final TextJustification align) {
+	public ControlText(IWidget parent, IArea area, String text, TextJustification align) {
 		super(parent, area.pos().xPos(), area.pos().yPos(), area.size().xPos(), area.size().yPos());
 		this.text = text;
 		this.align = align;
@@ -39,7 +39,7 @@ public class ControlText extends Control implements IControlValue<String> {
 	}
 
 	@Override
-	public void setValue(final String text) {
+	public void setValue(String text) {
 		this.text = text;
 	}
 }

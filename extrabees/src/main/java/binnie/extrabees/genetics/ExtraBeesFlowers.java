@@ -49,7 +49,7 @@ public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers {
 	}
 
 	public static void doInit() {
-		for (final ExtraBeesFlowers effect : values()) {
+		for (ExtraBeesFlowers effect : values()) {
 			effect.register();
 		}
 	}
@@ -132,8 +132,8 @@ public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers {
 		}
 	}
 
-	public boolean isAcceptedFlower(final World world, final BlockPos pos) {
-		final Block block = world.getBlockState(pos).getBlock();
+	public boolean isAcceptedFlower(World world, BlockPos pos) {
+		Block block = world.getBlockState(pos).getBlock();
 		switch (this) {
 			case WATER: {
 				return block == Blocks.WATERLILY;
@@ -212,20 +212,20 @@ public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers {
 	@Override
 	public NonNullList<ItemStack> affectProducts(World world, IIndividual individual, BlockPos pos, NonNullList<ItemStack> products) {
 		if (this == ExtraBeesFlowers.MYSTICAL) {
-			final NonNullList<ItemStack> prods = NonNullList.create();
+			NonNullList<ItemStack> prods = NonNullList.create();
 			prods.addAll(products);
 			for (int k = 0; k < 50; ++k) {
-				final int tX = 7;
-				final int tY = 7;
-				final int tZ = 3;
-				final int x2 = pos.getX() - tX + world.rand.nextInt(1 + 2 * tX);
-				final int y2 = pos.getY() - tY + world.rand.nextInt(1 + 2 * tY);
-				final int z2 = pos.getZ() - tZ + world.rand.nextInt(1 + 2 * tZ);
-				final BlockPos pos2 = new BlockPos(x2, y2, z2);
-				final Block block = world.getBlockState(pos2).getBlock();
+				int tX = 7;
+				int tY = 7;
+				int tZ = 3;
+				int x2 = pos.getX() - tX + world.rand.nextInt(1 + 2 * tX);
+				int y2 = pos.getY() - tY + world.rand.nextInt(1 + 2 * tY);
+				int z2 = pos.getZ() - tZ + world.rand.nextInt(1 + 2 * tZ);
+				BlockPos pos2 = new BlockPos(x2, y2, z2);
+				Block block = world.getBlockState(pos2).getBlock();
 				if (block == Utils.getBotaniaBlock("flower")) {
-					final int meta = world.getBlockState(pos2).getBlock().getMetaFromState(world.getBlockState(pos2));
-					final Item item = Utils.getBotaniaItem("petal");
+					int meta = world.getBlockState(pos2).getBlock().getMetaFromState(world.getBlockState(pos2));
+					Item item = Utils.getBotaniaItem("petal");
 					if (item != null) {
 						prods.add(new ItemStack(item, 1, meta));
 					}

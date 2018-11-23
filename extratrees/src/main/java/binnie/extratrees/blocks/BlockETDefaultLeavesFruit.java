@@ -50,9 +50,9 @@ public abstract class BlockETDefaultLeavesFruit extends BlockAbstractLeaves {
 
 	public static List<BlockETDefaultLeavesFruit> create() {
 		List<BlockETDefaultLeavesFruit> blocks = new ArrayList<>();
-		final int blockCount = PropertyETTypeFruit.getBlockCount(VARIANTS_PER_BLOCK);
+		int blockCount = PropertyETTypeFruit.getBlockCount(VARIANTS_PER_BLOCK);
 		for (int blockNumber = 0; blockNumber < blockCount; blockNumber++) {
-			final PropertyETTypeFruit variant = PropertyETTypeFruit.create("variant", blockNumber, VARIANTS_PER_BLOCK);
+			PropertyETTypeFruit variant = PropertyETTypeFruit.create("variant", blockNumber, VARIANTS_PER_BLOCK);
 			BlockETDefaultLeavesFruit block = new BlockETDefaultLeavesFruit(blockNumber) {
 				@Override
 				public PropertyETTypeFruit getVariant() {

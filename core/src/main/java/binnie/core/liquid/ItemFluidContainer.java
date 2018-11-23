@@ -49,7 +49,7 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister {
 	}
 
 	@Override
-	public String getItemStackDisplayName(final ItemStack itemstack) {
+	public String getItemStackDisplayName(ItemStack itemstack) {
 		FluidStack fluid = getContained(itemstack);
 		if (fluid == null) {
 			return "Empty " + container.getDisplayName();
@@ -109,11 +109,11 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister {
 	}
 
 	@Override
-	protected void onFoodEaten(final ItemStack itemStack, final World world, final EntityPlayer player) {
+	protected void onFoodEaten(ItemStack itemStack, World world, EntityPlayer player) {
 		if (!world.isRemote) {
 			FluidStack fluid = getContained(itemStack);
 			if (fluid != null) {
-				final IDrinkLiquid liquid = DrinkManager.getLiquid(fluid);
+				IDrinkLiquid liquid = DrinkManager.getLiquid(fluid);
 				if (liquid != null) {
 					AlcoholEffect.makeDrunk(player, liquid.getABV() * fluid.amount);
 				}
@@ -122,7 +122,7 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister {
 	}
 
 	@Override
-	public EnumAction getItemUseAction(final ItemStack stack) {
+	public EnumAction getItemUseAction(ItemStack stack) {
 		if (isDrinkable(stack)) {
 			return EnumAction.DRINK;
 		}
@@ -159,12 +159,12 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister {
 		return 0;
 	}
 
-	private boolean isDrinkable(final ItemStack stack) {
-		final FluidStack fluid = getContained(stack);
+	private boolean isDrinkable(ItemStack stack) {
+		FluidStack fluid = getContained(stack);
 		if (fluid == null) {
 			return false;
 		}
-		final IDrinkLiquid liquid = DrinkManager.getLiquid(fluid);
+		IDrinkLiquid liquid = DrinkManager.getLiquid(fluid);
 		return liquid != null && liquid.isConsumable();
 	}
 

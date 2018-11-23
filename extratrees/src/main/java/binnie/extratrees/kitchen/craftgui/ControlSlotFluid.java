@@ -27,11 +27,11 @@ public class ControlSlotFluid extends Control implements ITooltip {
 	@Nullable
 	protected FluidStack fluidStack;
 
-	public ControlSlotFluid(final IWidget parent, final int x, final int y, @Nullable final FluidStack fluid) {
+	public ControlSlotFluid(IWidget parent, int x, int y, @Nullable FluidStack fluid) {
 		this(parent, x, y, 18, fluid);
 	}
 
-	public ControlSlotFluid(final IWidget parent, final int x, final int y, final int size, @Nullable final FluidStack fluid) {
+	public ControlSlotFluid(IWidget parent, int x, int y, int size, @Nullable FluidStack fluid) {
 		super(parent, x, y, size, size);
 		this.addAttribute(Attribute.MOUSE_OVER);
 		this.itemDisplay = new ControlFluidDisplay(this, 1, 1, size - 2);
@@ -44,7 +44,7 @@ public class ControlSlotFluid extends Control implements ITooltip {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		final int size = this.getSize().xPos();
+		int size = this.getSize().xPos();
 		CraftGUI.RENDER.texture(CraftGUITexture.SLOT, this.getArea());
 		if (this.getTopParent().getMousedOverWidget() == this) {
 			RenderUtil.drawGradientRect(new Area(new Point(1, 1), this.getArea().size().sub(new Point(2, 2))), -2130706433, -2130706433);
@@ -59,8 +59,8 @@ public class ControlSlotFluid extends Control implements ITooltip {
 	}
 
 	@Override
-	public void getTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
-		final FluidStack item = this.getFluidStack();
+	public void getTooltip(Tooltip tooltip, ITooltipFlag tooltipFlag) {
+		FluidStack item = this.getFluidStack();
 		if (item == null) {
 			return;
 		}

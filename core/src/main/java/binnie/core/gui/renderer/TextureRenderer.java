@@ -27,19 +27,19 @@ import org.lwjgl.opengl.GL11;
 public class TextureRenderer {
 	private IStyleSheet styleSheet;
 
-	private static void renderTexturePadded(final IArea area, final IArea texture, final IBorder padding) {
+	private static void renderTexturePadded(IArea area, IArea texture, IBorder padding) {
 		int borderLeft = padding.getLeft();
 		int borderRight = padding.getRight();
 		int borderTop = padding.getTop();
 		int borderBottom = padding.getBottom();
-		final int posX = area.pos().xPos();
-		final int posY = area.pos().yPos();
-		final int width = area.size().xPos();
-		final int height = area.size().yPos();
-		final int textWidth = texture.width();
-		final int textHeight = texture.height();
-		final int u = texture.xPos();
-		final int v = texture.yPos();
+		int posX = area.pos().xPos();
+		int posY = area.pos().yPos();
+		int width = area.size().xPos();
+		int height = area.size().yPos();
+		int textWidth = texture.width();
+		int textHeight = texture.height();
+		int u = texture.xPos();
+		int v = texture.yPos();
 		if (borderTop + borderBottom > height) {
 			borderTop = height / 2;
 			borderBottom = height / 2;
@@ -54,7 +54,7 @@ public class TextureRenderer {
 		GuiUtils.drawTexturedModalRect(posX + width - borderRight, posY + height - borderBottom, u + textWidth - borderRight, v + textHeight - borderBottom, borderRight, borderBottom, 0);
 		int texturingWidth;
 		for (int currentXPos = borderLeft; currentXPos < width - borderRight; currentXPos += texturingWidth) {
-			final int distanceXRemaining = width - borderRight - currentXPos;
+			int distanceXRemaining = width - borderRight - currentXPos;
 			texturingWidth = textWidth - borderLeft - borderRight;
 			if (texturingWidth > distanceXRemaining) {
 				texturingWidth = distanceXRemaining;
@@ -66,7 +66,7 @@ public class TextureRenderer {
 			GuiUtils.drawTexturedModalRect(posX + currentXPos, posY + height - borderBottom, u + borderLeft, v + textHeight - borderBottom, texturingWidth, borderBottom, 0);
 			int texturingHeight;
 			for (int currentYPos = borderTop; currentYPos < height - borderBottom; currentYPos += texturingHeight) {
-				final int distanceYRemaining = height - borderBottom - currentYPos;
+				int distanceYRemaining = height - borderBottom - currentYPos;
 				texturingHeight = textHeight - borderTop - borderBottom;
 				if (texturingHeight > distanceYRemaining) {
 					texturingHeight = distanceYRemaining;
@@ -79,7 +79,7 @@ public class TextureRenderer {
 		}
 		int texturingHeight2;
 		for (int currentYPos2 = borderTop; currentYPos2 < height - borderBottom; currentYPos2 += texturingHeight2) {
-			final int distanceYRemaining2 = height - borderBottom - currentYPos2;
+			int distanceYRemaining2 = height - borderBottom - currentYPos2;
 			texturingHeight2 = textHeight - borderTop - borderBottom;
 			if (texturingHeight2 > distanceYRemaining2) {
 				texturingHeight2 = distanceYRemaining2;
@@ -96,21 +96,21 @@ public class TextureRenderer {
 		this.styleSheet = styleSheet;
 	}
 
-	public final void preRender(final IWidget widget, int guiWidth, int guiHeight) {
+	public final void preRender(IWidget widget, int guiWidth, int guiHeight) {
 		GlStateManager.pushMatrix();
 		GlStateManager.translate(widget.getPosition().xPos(), widget.getPosition().yPos(), 0.0f);
 		RenderUtil.setColour(widget.getColor());
 		if (widget.isCroppedWidet()) {
-			final IWidget cropRelative = (widget.getCropWidget() != null) ? widget.getCropWidget() : widget;
-			final IPoint pos = cropRelative.getAbsolutePosition();
-			final IArea cropZone = widget.getCroppedZone();
+			IWidget cropRelative = (widget.getCropWidget() != null) ? widget.getCropWidget() : widget;
+			IPoint pos = cropRelative.getAbsolutePosition();
+			IArea cropZone = widget.getCroppedZone();
 			GL11.glEnable(GL11.GL_SCISSOR_TEST);
 			this.limitArea(new Area(pos.add(cropZone.pos()), cropZone.size()), guiWidth, guiHeight);
 		}
 		GlStateManager.disableDepth();
 	}
 
-	public final void postRender(final IWidget widget) {
+	public final void postRender(IWidget widget) {
 		if (widget.isCroppedWidet()) {
 			GL11.glDisable(GL11.GL_SCISSOR_TEST);
 		}
@@ -118,7 +118,7 @@ public class TextureRenderer {
 		GlStateManager.popMatrix();
 	}
 
-	public ITexture getTexture(final Object key) {
+	public ITexture getTexture(Object key) {
 		if (key instanceof ITexture) {
 			return (ITexture) key;
 		}
@@ -128,54 +128,54 @@ public class TextureRenderer {
 		return this.styleSheet.getTexture(key);
 	}
 
-	public void setTexture(@Nullable final ITexture texture) {
+	public void setTexture(@Nullable ITexture texture) {
 		if (texture != null) {
 			BinnieCore.getBinnieProxy().bindTexture(texture.getResourceLocation());
 		}
 	}
 
-	public void texture(final Object texture, final IPoint position) {
+	public void texture(Object texture, IPoint position) {
 		this.texture(this.getTexture(texture), position);
 	}
 
-	public void texture(@Nullable final ITexture texture, final IPoint position) {
+	public void texture(@Nullable ITexture texture, IPoint position) {
 		if (texture == null) {
 			return;
 		}
 		this.setTexture(texture);
-		final IPoint point = position.sub(texture.getBorder().getLeft(), texture.getBorder().getTop());
-		final IArea textureArea = texture.getArea().outset(texture.getBorder());
+		IPoint point = position.sub(texture.getBorder().getLeft(), texture.getBorder().getTop());
+		IArea textureArea = texture.getArea().outset(texture.getBorder());
 		GuiUtils.drawTexturedModalRect(point.xPos(), point.yPos(), textureArea.pos().xPos(), textureArea.pos().yPos(), textureArea.size().xPos(), textureArea.size().yPos(), 0);
 	}
 
-	public void texture(final Object window, final IArea area) {
+	public void texture(Object window, IArea area) {
 		this.texture(this.getTexture(window), area);
 	}
 
-	public void texture(@Nullable final ITexture texture, final IArea area) {
+	public void texture(@Nullable ITexture texture, IArea area) {
 		if (texture == null) {
 			return;
 		}
 		this.setTexture(texture);
-		final IArea textureArea = texture.getArea().outset(texture.getBorder());
-		final IArea targetArea = area.outset(texture.getBorder());
+		IArea textureArea = texture.getArea().outset(texture.getBorder());
+		IArea targetArea = area.outset(texture.getBorder());
 		if (textureArea.width() == targetArea.width() && textureArea.height() == targetArea.height()) {
-			final IPoint position = targetArea.pos();
+			IPoint position = targetArea.pos();
 			GuiUtils.drawTexturedModalRect(position.xPos(), position.yPos(), textureArea.pos().xPos(), textureArea.pos().yPos(), textureArea.size().xPos(), textureArea.size().yPos(), 0);
 		} else {
 			renderTexturePadded(targetArea, textureArea, texture.getTotalPadding());
 		}
 	}
 
-	public void limitArea(final IArea area, int guiWidth, int guiHeight) {
+	public void limitArea(IArea area, int guiWidth, int guiHeight) {
 		float x = area.pos().xPos();
 		float y = area.pos().yPos();
 		float w = area.size().xPos();
 		float h = area.size().yPos();
 		y = guiHeight - (y + h);
 		Minecraft minecraft = Minecraft.getMinecraft();
-		final float scaleX = guiWidth / (float) minecraft.displayWidth;
-		final float scaleY = guiHeight / (float) minecraft.displayHeight;
+		float scaleX = guiWidth / (float) minecraft.displayWidth;
+		float scaleY = guiHeight / (float) minecraft.displayHeight;
 		x += 0.0f;
 		y += 0.0f;
 		w += 0.0f;
@@ -183,15 +183,15 @@ public class TextureRenderer {
 		GL11.glScissor((int) (x / scaleX), (int) (y / scaleY), (int) (w / scaleX), (int) (h / scaleY));
 	}
 
-	public int textHeight(final String text, final int width) {
+	public int textHeight(String text, int width) {
 		Minecraft minecraft = Minecraft.getMinecraft();
 		FontRenderer fontRenderer = minecraft.fontRenderer;
 		return fontRenderer.listFormattedStringToWidth(text, width).size() * RenderUtil.getTextHeight();
 	}
 
-	public void texturePercentage(final ITexture texture, final IArea area, final Alignment direction, final float percentage) {
-		final int dist = (direction == Alignment.TOP || direction == Alignment.BOTTOM) ? Math.round(percentage * texture.height()) : Math.round(percentage * texture.width());
-		final int dim = (direction == Alignment.TOP || direction == Alignment.BOTTOM) ? texture.height() : texture.width();
+	public void texturePercentage(ITexture texture, IArea area, Alignment direction, float percentage) {
+		int dist = (direction == Alignment.TOP || direction == Alignment.BOTTOM) ? Math.round(percentage * texture.height()) : Math.round(percentage * texture.width());
+		int dim = (direction == Alignment.TOP || direction == Alignment.BOTTOM) ? texture.height() : texture.width();
 		int x = area.pos().xPos();
 		int y = area.pos().yPos();
 		int w = area.size().xPos();

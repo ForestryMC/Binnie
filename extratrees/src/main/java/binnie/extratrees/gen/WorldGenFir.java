@@ -46,12 +46,12 @@ public class WorldGenFir {
 		public void generate() {
 			this.generateTreeTrunk(this.height, this.girth);
 			float leafSpawn = this.height + 2;
-			final float bottom = this.randBetween(2, 3);
+			float bottom = this.randBetween(2, 3);
 			float width = this.height / this.randBetween(2.5f, 3.0f);
 			if (width > 7.0f) {
 				width = 7.0f;
 			}
-			final float coneHeight = leafSpawn - bottom;
+			float coneHeight = leafSpawn - bottom;
 			while (leafSpawn > bottom) {
 				float radius = 1.0f - (leafSpawn - bottom) / coneHeight;
 				radius *= width;
@@ -77,12 +77,12 @@ public class WorldGenFir {
 		public void generate() {
 			this.generateTreeTrunk(this.height, this.girth);
 			float leafSpawn = this.height + 2;
-			final float bottom = 1.0f;
+			float bottom = 1.0f;
 			float width = this.height / this.randBetween(2.0f, 2.5f);
 			if (width > 7.0f) {
 				width = 7.0f;
 			}
-			final float coneHeight = leafSpawn - bottom;
+			float coneHeight = leafSpawn - bottom;
 			while (leafSpawn > bottom) {
 				float radius = 1.0f - (leafSpawn - bottom) / coneHeight;
 				radius *= width;

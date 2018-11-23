@@ -138,7 +138,7 @@ public enum Alcohol implements IFluidDefinition, ICocktailIngredientProvider {
 	private String fermentationSolid;
 	private final CocktailLiquid cocktailLiquid;
 
-	Alcohol(final String ident, final int color, final double transparency, float abv) {
+	Alcohol(String ident, int color, double transparency, float abv) {
 		this.fermentationLiquid = new ArrayList<>();
 		this.fermentationSolid = "";
 		init();
@@ -167,11 +167,11 @@ public enum Alcohol implements IFluidDefinition, ICocktailIngredientProvider {
 		return fermentationLiquid;
 	}
 
-	protected void addFementation(final Juice juice) {
+	protected void addFementation(Juice juice) {
 		this.fermentationLiquid.add(juice.getType().getIdentifier());
 	}
 
-	protected void addFementation(final String oreDict) {
+	protected void addFementation(String oreDict) {
 		this.fermentationSolid = oreDict;
 	}
 
@@ -181,7 +181,7 @@ public enum Alcohol implements IFluidDefinition, ICocktailIngredientProvider {
 	}
 
 	@Override
-	public FluidStack get(final int amount) {
+	public FluidStack get(int amount) {
 		return type.stack(amount);
 	}
 

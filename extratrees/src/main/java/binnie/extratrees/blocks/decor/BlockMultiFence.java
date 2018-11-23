@@ -62,7 +62,7 @@ public class BlockMultiFence extends BlockFence implements IBlockMetadata, IStat
 		this.setSoundType(SoundType.WOOD);
 	}
 
-	public FenceDescription getDescription(final int meta) {
+	public FenceDescription getDescription(int meta) {
 		return WoodManager.getFenceDescription(meta);
 	}
 
@@ -84,7 +84,7 @@ public class BlockMultiFence extends BlockFence implements IBlockMetadata, IStat
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(final World var1, final int i) {
+	public TileEntity createNewTileEntity(World var1, int i) {
 		return new TileEntityMetadata();
 	}
 
@@ -94,12 +94,12 @@ public class BlockMultiFence extends BlockFence implements IBlockMetadata, IStat
 	}
 
 	@Override
-	public int getPlacedMeta(final ItemStack stack, final World world, final BlockPos pos, final EnumFacing clickedBlock) {
+	public int getPlacedMeta(ItemStack stack, World world, BlockPos pos, EnumFacing clickedBlock) {
 		return TileEntityMetadata.getItemDamage(stack);
 	}
 
 	@Override
-	public int getDroppedMeta(IBlockState state, final int tileMeta) {
+	public int getDroppedMeta(IBlockState state, int tileMeta) {
 		return tileMeta;
 	}
 
@@ -115,22 +115,22 @@ public class BlockMultiFence extends BlockFence implements IBlockMetadata, IStat
 	}
 
 	@Override
-	public boolean isWood(final IBlockAccess world, final BlockPos pos) {
+	public boolean isWood(IBlockAccess world, BlockPos pos) {
 		return true;
 	}
 
 	@Override
-	public int getFlammability(final IBlockAccess world, final BlockPos pos, final EnumFacing face) {
+	public int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face) {
 		return 20;
 	}
 
 	@Override
-	public boolean isFlammable(final IBlockAccess world, final BlockPos pos, final EnumFacing face) {
+	public boolean isFlammable(IBlockAccess world, BlockPos pos, EnumFacing face) {
 		return true;
 	}
 
 	@Override
-	public int getFireSpreadSpeed(final IBlockAccess world, final BlockPos pos, final EnumFacing face) {
+	public int getFireSpreadSpeed(IBlockAccess world, BlockPos pos, EnumFacing face) {
 		return 5;
 	}
 

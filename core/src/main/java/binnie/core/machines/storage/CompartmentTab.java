@@ -31,7 +31,7 @@ class CompartmentTab implements INbtWritable {
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		nbt.setString("name", this.name);
-		final NBTTagCompound n = new NBTTagCompound();
+		NBTTagCompound n = new NBTTagCompound();
 		this.icon.writeToNBT(n);
 		nbt.setTag("icon", n);
 		nbt.setByte("color", (byte) this.color.ordinal());
@@ -43,7 +43,7 @@ class CompartmentTab implements INbtWritable {
 		return this.name;
 	}
 
-	public void setName(final String name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 
@@ -51,7 +51,7 @@ class CompartmentTab implements INbtWritable {
 		return this.icon;
 	}
 
-	public void setIcon(final ItemStack icon) {
+	public void setIcon(ItemStack icon) {
 		this.icon = icon;
 	}
 
@@ -59,7 +59,7 @@ class CompartmentTab implements INbtWritable {
 		return this.color;
 	}
 
-	public void setColor(final EnumColor color) {
+	public void setColor(EnumColor color) {
 		this.color = color;
 	}
 

@@ -29,7 +29,7 @@ public final class ModeWidgets {
 
 	public ModeWidgets(IDatabaseMode mode, WindowAbstractDatabase database, IListBoxCreator listBoxCreator) {
 		this.modePage = new ControlPage<>(database.getModePages(), 0, 0, database.getSize().xPos(), database.getSize().yPos(), mode);
-		final IArea listBoxArea = database.getPanelSearch().getArea().inset(2);
+		IArea listBoxArea = database.getPanelSearch().getArea().inset(2);
 		this.listBox = listBoxCreator.createListBox(listBoxArea, this.modePage);
 		CraftGUIUtil.alignToWidget(this.listBox, database.getPanelSearch());
 		CraftGUIUtil.moveWidget(this.listBox, new Point(2, 2));

@@ -27,7 +27,7 @@ public class PropertyETWoodType extends PropertyWoodType<EnumETLog> {
 		} else {
 			length = ExtraTreePlanks.VALUES.length;
 		}
-		final int variantCount = (int) Math.ceil((float) length / variantsPerBlock);
+		int variantCount = (int) Math.ceil((float) length / variantsPerBlock);
 		PropertyETWoodType[] variants = new PropertyETWoodType[variantCount];
 		for (int variantNumber = 0; variantNumber < variantCount; variantNumber++) {
 			ETWoodTypePredicate filter = new ETWoodTypePredicate(variantNumber, variantsPerBlock, isLog);

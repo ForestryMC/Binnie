@@ -12,7 +12,7 @@ import binnie.core.gui.resource.textures.Texture;
 public class ControlImage extends Control {
 	private final Object key;
 
-	public ControlImage(final IWidget parent, final int x, final int y, final Texture text) {
+	public ControlImage(IWidget parent, int x, int y, Texture text) {
 		super(parent, x, y, text.width(), text.height());
 		this.key = text;
 	}

@@ -26,7 +26,7 @@ public interface IBinnieProxy extends IProxyCore {
 
 	void bindTexture(ResourceLocation location);
 
-	void openGui(final AbstractMod p0, final int p1, final EntityPlayer p2, final BlockPos pos);
+	void openGui(AbstractMod p0, int p1, EntityPlayer p2, BlockPos pos);
 
 	World getWorld();
 
@@ -34,7 +34,7 @@ public interface IBinnieProxy extends IProxyCore {
 
 	boolean needsTagCompoundSynched(Item item);
 
-	void registerTileEntity(final Class<? extends TileEntity> tile, final String id);
+	void registerTileEntity(Class<? extends TileEntity> tile, String id);
 
 	<T extends TileEntity> void registerTileEntity(Class<? extends T> tile, String id, ClientSupplier<TileEntitySpecialRenderer<T>> rendererSupplier);
 

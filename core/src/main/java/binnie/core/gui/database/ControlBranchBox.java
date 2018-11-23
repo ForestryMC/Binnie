@@ -6,12 +6,12 @@ import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.listbox.ControlListBox;
 
 class ControlBranchBox extends ControlListBox<IClassification> {
-	public ControlBranchBox(final IWidget parent, final int x, final int y, final int width, final int height) {
+	public ControlBranchBox(IWidget parent, int x, int y, int width, int height) {
 		super(parent, x, y, width, height, 12);
 	}
 
 	@Override
-	public IWidget createOption(final IClassification value, final int y) {
+	public IWidget createOption(IClassification value, int y) {
 		return new ControlBranchBoxOption(this.getContent(), value, y);
 	}
 }

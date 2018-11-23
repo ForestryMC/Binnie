@@ -33,7 +33,7 @@ public interface IWidget {
 	 */
 	IPoint getSize();
 
-	void setOffset(final IPoint p0);
+	void setOffset(IPoint p0);
 
 	/**
 	 * @return the area of this widget

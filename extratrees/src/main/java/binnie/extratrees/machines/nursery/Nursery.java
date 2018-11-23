@@ -15,8 +15,8 @@ public class Nursery {
 		}
 
 		@Override
-		public void createMachine(final Machine machine) {
-			final ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
+		public void createMachine(Machine machine) {
+			ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
 			inventory.addSlot(Nursery.SLOT_CATERPILLAR, getSlotRL("caterpillar"));
 		}
 

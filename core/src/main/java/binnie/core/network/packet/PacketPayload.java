@@ -17,15 +17,15 @@ public class PacketPayload {
 		this.stringPayload.clear();
 	}
 
-	public void addInteger(final int a) {
+	public void addInteger(int a) {
 		this.intPayload.add(a);
 	}
 
-	public void addFloat(final float a) {
+	public void addFloat(float a) {
 		this.floatPayload.add(a);
 	}
 
-	public void addString(final String a) {
+	public void addString(String a) {
 		this.stringPayload.add(a);
 	}
 

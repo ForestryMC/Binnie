@@ -7,11 +7,11 @@ import binnie.core.gui.IBinnieGUID;
 import binnie.core.network.packet.MessageBase;
 
 public interface IBinnieModProxy extends IProxyCore {
-	void openGui(final IBinnieGUID p0, final EntityPlayer p1, final BlockPos pos);
+	void openGui(IBinnieGUID p0, EntityPlayer p1, BlockPos pos);
 
-	void sendToAll(final MessageBase p0);
+	void sendToAll(MessageBase p0);
 
-	void sendToPlayer(final MessageBase p0, final EntityPlayer p1);
+	void sendToPlayer(MessageBase p0, EntityPlayer p1);
 
-	void sendToServer(final MessageBase p0);
+	void sendToServer(MessageBase p0);
 }

@@ -14,15 +14,15 @@ public class MessageCoordinates extends MessageBase {
 	private int posY;
 	private int posZ;
 
-	public MessageCoordinates(final MessageBinnie message) {
+	public MessageCoordinates(MessageBinnie message) {
 		super(message);
 	}
 
-	public MessageCoordinates(final int id, final BlockPos coordinates) {
+	public MessageCoordinates(int id, BlockPos coordinates) {
 		this(id, coordinates.getX(), coordinates.getY(), coordinates.getZ());
 	}
 
-	public MessageCoordinates(final int id, final int posX, final int posY, final int posZ) {
+	public MessageCoordinates(int id, int posX, int posY, int posZ) {
 		super(id);
 		this.posX = posX;
 		this.posY = posY;
@@ -30,14 +30,14 @@ public class MessageCoordinates extends MessageBase {
 	}
 
 	@Override
-	public void writeData(final ByteBuf data) throws IOException {
+	public void writeData(ByteBuf data) throws IOException {
 		data.writeInt(this.posX);
 		data.writeInt(this.posY);
 		data.writeInt(this.posZ);
 	}
 
 	@Override
-	public void readData(final ByteBuf data) throws IOException {
+	public void readData(ByteBuf data) throws IOException {
 		this.posX = data.readInt();
 		this.posY = data.readInt();
 		this.posZ = data.readInt();
@@ -48,7 +48,7 @@ public class MessageCoordinates extends MessageBase {
 	}
 
 	@Nullable
-	public TileEntity getTileEntity(final World world) {
+	public TileEntity getTileEntity(World world) {
 		return world.getTileEntity(getCoordinates());
 	}
 }

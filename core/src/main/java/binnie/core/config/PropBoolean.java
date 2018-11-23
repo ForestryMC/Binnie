@@ -10,7 +10,7 @@ import net.minecraftforge.common.config.Property;
 @ConfigProperty.Type(propertyClass = PropBoolean.PropertyBoolean.class)
 public @interface PropBoolean {
 	class PropertyBoolean extends PropertyBase<Boolean, PropBoolean> {
-		public PropertyBoolean(final Field field, final BinnieConfiguration file, final ConfigProperty configProperty, final PropBoolean annotedProperty) throws IllegalArgumentException, IllegalAccessException {
+		public PropertyBoolean(Field field, BinnieConfiguration file, ConfigProperty configProperty, PropBoolean annotedProperty) throws IllegalArgumentException, IllegalAccessException {
 			super(field, file, configProperty, annotedProperty);
 		}
 

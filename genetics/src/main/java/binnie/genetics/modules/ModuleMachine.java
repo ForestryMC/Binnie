@@ -70,7 +70,7 @@ public class ModuleMachine extends BinnieModule {
 		Object[] advCircuit = {GeneticsItems.IntegratedCircuit.get(1)};
 		String ironGear = OreDictUtils.getOrElse(OreDictUtils.GEAR_IRON, OreDictUtils.INGOT_IRON);
 		String goldGear = OreDictUtils.getOrElse(OreDictUtils.GEAR_GOLD, OreDictUtils.INGOT_IRON);
-		final String diamondGear = !OreDictionary.getOres("gearDiamond").isEmpty() ? "gearDiamond" : "ingotIron";
+		String diamondGear = !OreDictionary.getOres("gearDiamond").isEmpty() ? "gearDiamond" : "ingotIron";
 		for (Object circuit : standardCircuit) {
 			recipeUtil.addRecipe("incubator", LaboratoryMachine.Incubator.get(1), "gFg", "cCc", "aPa", 'C', GeneticsItems.LaboratoryCasing.get(1), 'F', Blocks.FURNACE, 'c', circuit, 'g', Blocks.GLASS_PANE, 'P', OreDictUtils.GEAR_BRONZE, 'a', ironGear);
 			Item alyzer = Mods.Forestry.item("portable_alyzer");

@@ -19,7 +19,7 @@ public class PackageIncubator extends GeneticMachine.PackageGeneticBase implemen
 	}
 
 	@Override
-	public void createMachine(final Machine machine) {
+	public void createMachine(Machine machine) {
 		new ComponentGeneticGUI(machine, GeneticsGUI.INCUBATOR);
 		ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
 		for (InventorySlot slot : inventory.addSlotArray(Incubator.SLOT_QUEUE, getSlotRL("input"))) {

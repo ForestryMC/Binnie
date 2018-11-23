@@ -4,5 +4,5 @@ import javax.annotation.Nullable;
 
 public interface IInventorySlots {
 	@Nullable
-	InventorySlot getSlot(final int index);
+	InventorySlot getSlot(int index);
 }

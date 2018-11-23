@@ -63,17 +63,17 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
 	public static final EnumFacing[] RENDER_DIRECTIONS_ITEM = new EnumFacing[]{EnumFacing.DOWN, EnumFacing.UP, EnumFacing.WEST, EnumFacing.EAST, EnumFacing.SOUTH, EnumFacing.NORTH};
 	private final IDesignSystem designSystem;
 
-	public BlockDesign(final IDesignSystem system, final Material material) {
+	public BlockDesign(IDesignSystem system, Material material) {
 		super(material);
 		this.designSystem = system;
 	}
 
-	public static int getMetadata(final int plank1, final int plank2, final int design) {
+	public static int getMetadata(int plank1, int plank2, int design) {
 		return plank1 + (plank2 << 9) + (design << 18);
 	}
 
 	@SubscribeEvent
-	public static void onClick(final PlayerInteractEvent.RightClickBlock event) {
+	public static void onClick(PlayerInteractEvent.RightClickBlock event) {
 		if (event.getHand() != EnumHand.MAIN_HAND) {
 			return;
 		}
@@ -102,11 +102,11 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
 		}
 	}
 
-	public abstract ItemStack getCreativeStack(final IDesign p0);
+	public abstract ItemStack getCreativeStack(IDesign p0);
 
 	@Override
 	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> itemList) {
-		for (final IDesign design : Design.getDesignManager().getSortedDesigns()) {
+		for (IDesign design : Design.getDesignManager().getSortedDesigns()) {
 			itemList.add(this.getCreativeStack(design));
 		}
 	}
@@ -116,14 +116,14 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
 	}
 
 	@Override
-	public String getDisplayName(final ItemStack itemStack) {
-		final DesignBlock block = DesignHelper.getDesignBlock(this.getDesignSystem(), TileEntityMetadata.getItemDamage(itemStack));
+	public String getDisplayName(ItemStack itemStack) {
+		DesignBlock block = DesignHelper.getDesignBlock(this.getDesignSystem(), TileEntityMetadata.getItemDamage(itemStack));
 		return this.getBlockName(block);
 	}
 
-	public abstract String getBlockName(final DesignBlock p0);
+	public abstract String getBlockName(DesignBlock p0);
 
-	public DesignBlock getCarpentryBlock(final IBlockAccess world, final BlockPos pos) {
+	public DesignBlock getCarpentryBlock(IBlockAccess world, BlockPos pos) {
 		return DesignHelper.getDesignBlock(this.getDesignSystem(), TileEntityMetadata.getTileMetadata(world, pos));
 	}
 
@@ -156,23 +156,23 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
 		}
 	}
 
-	public int primaryColor(final int damage) {
-		final DesignBlock block = DesignHelper.getDesignBlock(this.getDesignSystem(), damage);
+	public int primaryColor(int damage) {
+		DesignBlock block = DesignHelper.getDesignBlock(this.getDesignSystem(), damage);
 		return block.getPrimaryColour();
 	}
 
-	public int secondaryColor(final int damage) {
-		final DesignBlock block = DesignHelper.getDesignBlock(this.getDesignSystem(), damage);
+	public int secondaryColor(int damage) {
+		DesignBlock block = DesignHelper.getDesignBlock(this.getDesignSystem(), damage);
 		return block.getSecondaryColour();
 	}
 
-	public ItemStack getItemStack(final int plank1, final int plank2, final int design) {
+	public ItemStack getItemStack(int plank1, int plank2, int design) {
 		return TileEntityMetadata.getItemStack(this, getMetadata(plank1, plank2, design));
 	}
 
 	@Override
 	public int getDroppedMeta(IBlockState state, int tileMetadata) {
-		final DesignBlock block = DesignHelper.getDesignBlock(this.getDesignSystem(), tileMetadata);
+		DesignBlock block = DesignHelper.getDesignBlock(this.getDesignSystem(), tileMetadata);
 		return block.getItemMetadata(this.getDesignSystem());
 	}
 

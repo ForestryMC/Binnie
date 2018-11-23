@@ -23,7 +23,7 @@ public enum BotanyMachine implements IMachineType {
 
 	private final Supplier<MachinePackage> supplier;
 
-	BotanyMachine(final Supplier<MachinePackage> supplier) {
+	BotanyMachine(Supplier<MachinePackage> supplier) {
 		this.supplier = supplier;
 	}
 
@@ -32,7 +32,7 @@ public enum BotanyMachine implements IMachineType {
 		return this.supplier;
 	}
 
-	public ItemStack get(final int i) {
+	public ItemStack get(int i) {
 		return new ItemStack(ModuleMachine.blockMachine, i, this.ordinal());
 	}
 

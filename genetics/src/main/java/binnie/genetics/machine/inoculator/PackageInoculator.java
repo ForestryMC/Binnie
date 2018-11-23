@@ -31,13 +31,13 @@ public class PackageInoculator extends GeneticMachine.PackageGeneticBase impleme
 	}
 
 	@Override
-	public void createMachine(final Machine machine) {
+	public void createMachine(Machine machine) {
 		new ComponentGeneticGUI(machine, GeneticsGUI.INOCULATOR);
-		final ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
+		ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
 		InventorySlot slotSerumVial = inventory.addSlot(Inoculator.SLOT_SERUM_VIAL, getSlotRL("serum.active"));
 		slotSerumVial.forbidInteraction();
 		slotSerumVial.setReadOnly();
-		final SlotValidator serumValid = new SerumSlotValidator();
+		SlotValidator serumValid = new SerumSlotValidator();
 		slotSerumVial.setValidator(serumValid);
 		for (InventorySlot slot : inventory.addSlotArray(Inoculator.SLOT_SERUM_RESERVE, getSlotRL("serum.input"))) {
 			slot.setValidator(serumValid);
@@ -55,12 +55,12 @@ public class PackageInoculator extends GeneticMachine.PackageGeneticBase impleme
 		slotTarget.setValidator(new ValidatorIndividualInoculate());
 		slotTarget.setReadOnly();
 		slotTarget.forbidInteraction();
-		for (final InventorySlot slot : inventory.addSlotArray(Inoculator.SLOT_FINISHED, getSlotRL("output"))) {
+		for (InventorySlot slot : inventory.addSlotArray(Inoculator.SLOT_FINISHED, getSlotRL("output"))) {
 			slot.setReadOnly();
 			slot.forbidInsertion();
 			slot.setValidator(new ValidatorIndividualInoculate());
 		}
-		final ComponentInventoryTransfer transfer = new ComponentInventoryTransfer(machine);
+		ComponentInventoryTransfer transfer = new ComponentInventoryTransfer(machine);
 		transfer.addRestock(Inoculator.SLOT_RESERVE, 9, 1);
 		transfer.addRestock(Inoculator.SLOT_SERUM_RESERVE, 0);
 		transfer.addStorage(Inoculator.SLOT_SERUM_VIAL, Inoculator.SLOT_SERUM_EXPENDED, (stack) -> Engineering.getCharges(stack) == 0);
@@ -89,7 +89,7 @@ public class PackageInoculator extends GeneticMachine.PackageGeneticBase impleme
 		}
 
 		@Override
-		public boolean isValid(final ItemStack itemStack) {
+		public boolean isValid(ItemStack itemStack) {
 			return itemStack.getItem() instanceof IItemSerum;
 		}
 
@@ -101,7 +101,7 @@ public class PackageInoculator extends GeneticMachine.PackageGeneticBase impleme
 
 	private static class BacteriaVectorTankValidator extends TankValidator {
 		@Override
-		public boolean isValid(final FluidStack object) {
+		public boolean isValid(FluidStack object) {
 			return GeneticLiquid.BacteriaVector.get(1).isFluidEqual(object);
 		}
 

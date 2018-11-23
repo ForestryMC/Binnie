@@ -21,8 +21,8 @@ public class BreweryRecipeManager implements IBreweryManager {
 
 	private static final Set<IBreweryRecipe> recipes = new HashSet<>();
 
-	public static boolean isValidGrain(final ItemStack itemstack) {
-		for (final IBreweryRecipe recipe : recipes) {
+	public static boolean isValidGrain(ItemStack itemstack) {
+		for (IBreweryRecipe recipe : recipes) {
 			if (recipe.isGrain(itemstack)) {
 				return true;
 			}
@@ -30,8 +30,8 @@ public class BreweryRecipeManager implements IBreweryManager {
 		return false;
 	}
 
-	public static boolean isValidYeast(final ItemStack itemstack) {
-		for (final IBreweryRecipe recipe : recipes) {
+	public static boolean isValidYeast(ItemStack itemstack) {
+		for (IBreweryRecipe recipe : recipes) {
 			ItemStack yeast = recipe.getYeast();
 			if (yeast.isItemEqual(itemstack)) {
 				return true;
@@ -40,9 +40,9 @@ public class BreweryRecipeManager implements IBreweryManager {
 		return false;
 	}
 
-	public static void getOutput(final FluidStack stack, NonNullList<FluidStack> outputFluids) {
-		final BreweryCrafting crafting = new BreweryCrafting(stack, ItemStack.EMPTY, null, ItemStack.EMPTY);
-		for (final IBreweryRecipe recipe : recipes) {
+	public static void getOutput(FluidStack stack, NonNullList<FluidStack> outputFluids) {
+		BreweryCrafting crafting = new BreweryCrafting(stack, ItemStack.EMPTY, null, ItemStack.EMPTY);
+		for (IBreweryRecipe recipe : recipes) {
 			FluidStack output = recipe.getOutput(crafting);
 			if (output != null) {
 				outputFluids.add(output);
@@ -51,9 +51,9 @@ public class BreweryRecipeManager implements IBreweryManager {
 	}
 
 	@Nullable
-	public static FluidStack getOutput(final BreweryCrafting crafting) {
+	public static FluidStack getOutput(BreweryCrafting crafting) {
 		if (crafting.getInputFluid() != null && !crafting.getYeast().isEmpty()) {
-			for (final IBreweryRecipe recipe : recipes) {
+			for (IBreweryRecipe recipe : recipes) {
 				FluidStack output = recipe.getOutput(crafting);
 				if (output != null) {
 					return output;
@@ -64,9 +64,9 @@ public class BreweryRecipeManager implements IBreweryManager {
 	}
 
 	@Nullable
-	public static IBreweryRecipe getRecipe(final BreweryCrafting crafting) {
+	public static IBreweryRecipe getRecipe(BreweryCrafting crafting) {
 		if (crafting.getInputFluid() != null && !crafting.getYeast().isEmpty()) {
-			for (final IBreweryRecipe recipe : recipes) {
+			for (IBreweryRecipe recipe : recipes) {
 				FluidStack output = recipe.getOutput(crafting);
 				if (output != null) {
 					return recipe;
@@ -76,8 +76,8 @@ public class BreweryRecipeManager implements IBreweryManager {
 		return null;
 	}
 
-	public static boolean isValidIngredient(final ItemStack itemstack) {
-		for (final IBreweryRecipe recipe : recipes) {
+	public static boolean isValidIngredient(ItemStack itemstack) {
+		for (IBreweryRecipe recipe : recipes) {
 			if (recipe.isIngredient(itemstack)) {
 				return true;
 			}
@@ -85,8 +85,8 @@ public class BreweryRecipeManager implements IBreweryManager {
 		return false;
 	}
 
-	public static boolean isValidInputLiquid(final FluidStack fluid) {
-		for (final IBreweryRecipe recipe : recipes) {
+	public static boolean isValidInputLiquid(FluidStack fluid) {
+		for (IBreweryRecipe recipe : recipes) {
 			FluidStack input = recipe.getInput();
 			if (input.isFluidEqual(fluid)) {
 				return true;
@@ -95,8 +95,8 @@ public class BreweryRecipeManager implements IBreweryManager {
 		return false;
 	}
 
-	public static boolean isValidOutputLiquid(final FluidStack fluid) {
-		for (final IBreweryRecipe recipe : recipes) {
+	public static boolean isValidOutputLiquid(FluidStack fluid) {
+		for (IBreweryRecipe recipe : recipes) {
 			FluidStack output = recipe.getOutput();
 			if (output.isFluidEqual(fluid)) {
 				return true;

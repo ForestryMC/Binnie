@@ -154,11 +154,11 @@ public enum ExtraBeeItems implements IItemSubtypeMisc {
 		init();
 	}
 
-	protected void setGem(final String string) {
+	protected void setGem(String string) {
 		this.gemString = string;
 	}
 
-	protected void setMetal(final String string) {
+	protected void setMetal(String string) {
 		this.metalString = string;
 	}
 
@@ -178,16 +178,16 @@ public enum ExtraBeeItems implements IItemSubtypeMisc {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(final List<String> tooltip) {
+	public void addInformation(List<String> tooltip) {
 	}
 
 	@Override
-	public String getDisplayName(final ItemStack itemStack) {
+	public String getDisplayName(ItemStack itemStack) {
 		return I18N.localise("extrabees.item.misc." + this.identifier);
 	}
 
 	@Override
-	public ItemStack get(final int amount) {
+	public ItemStack get(int amount) {
 		return new ItemStack(ModuleCore.itemMisc, amount, this.ordinal());
 	}
 

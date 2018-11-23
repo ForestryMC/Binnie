@@ -95,7 +95,7 @@ public class ErrorState implements INbtReadable, INbtWritable {
 	}
 
 	@Override
-	public void readFromNBT(final NBTTagCompound nbt) {
+	public void readFromNBT(NBTTagCompound nbt) {
 		this.nameDefinition = ErrorStateRegistry.getErrorState(nbt.getString("name"));
 		this.definition = ErrorStateRegistry.getErrorState(nbt.getString("desc"));
 		this.data = nbt.getIntArray("data");
@@ -105,7 +105,7 @@ public class ErrorState implements INbtReadable, INbtWritable {
 	}
 
 	@Override
-	public NBTTagCompound writeToNBT(final NBTTagCompound nbt) {
+	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		nbt.setString("name", nameDefinition.getUID());
 		nbt.setString("desc", definition.getUID());
 		nbt.setIntArray("data", this.data);
@@ -137,7 +137,7 @@ public class ErrorState implements INbtReadable, INbtWritable {
 		Collection<CustomSlot> slots = new ArrayList<>();
 		if (isItemError()) {
 			IntSet slotNumbers = new IntArraySet(getData());
-			for (final CustomSlot cslot : container.getCustomSlots()) {
+			for (CustomSlot cslot : container.getCustomSlots()) {
 				if (!(cslot.inventory instanceof InventoryPlayer) && slotNumbers.contains(cslot.getSlotIndex())) {
 					slots.add(cslot);
 				}

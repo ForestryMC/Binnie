@@ -27,7 +27,7 @@ public class InoculatorLogic extends ComponentProcess implements IProcess {
 	public static final int BACTERIA_PER_PROCESS = 15;
 	private float bacteriaDrain;
 
-	public InoculatorLogic(final Machine machine) {
+	public InoculatorLogic(Machine machine) {
 		super(machine);
 		this.bacteriaDrain = 0.0f;
 	}
@@ -49,8 +49,8 @@ public class InoculatorLogic extends ComponentProcess implements IProcess {
 
 	public static ItemStack applySerum(ItemStack target, ItemStack serum) {
 		ItemStack applied = target.copy();
-		final IGene[] genes = ((IItemSerum) serum.getItem()).getGenes(serum);
-		for (final IGene gene : genes) {
+		IGene[] genes = ((IItemSerum) serum.getItem()).getGenes(serum);
+		for (IGene gene : genes) {
 			Splicer.setGene(gene, applied, true, true);
 		}
 		return applied;
@@ -87,7 +87,7 @@ public class InoculatorLogic extends ComponentProcess implements IProcess {
 		if (this.getUtil().isSlotEmpty(Inoculator.SLOT_SERUM_VIAL)) {
 			return new ErrorState(GeneticsErrorCode.NO_SERUM, Inoculator.SLOT_SERUM_VIAL);
 		}
-		final ErrorState state = this.isValidSerum();
+		ErrorState state = this.isValidSerum();
 		if (state != null) {
 			return state;
 		}
@@ -103,21 +103,21 @@ public class InoculatorLogic extends ComponentProcess implements IProcess {
 
 	@Nullable
 	public ErrorState isValidSerum() {
-		final ItemStack serum = this.getUtil().getStack(Inoculator.SLOT_SERUM_VIAL);
-		final ItemStack target = this.getUtil().getStack(Inoculator.SLOT_TARGET);
-		final IGene[] genes = Engineering.getGenes(serum);
+		ItemStack serum = this.getUtil().getStack(Inoculator.SLOT_SERUM_VIAL);
+		ItemStack target = this.getUtil().getStack(Inoculator.SLOT_TARGET);
+		IGene[] genes = Engineering.getGenes(serum);
 		if (genes.length == 0) {
 			return new ErrorState(GeneticsErrorCode.INVALID_SERUM_NO);
 		}
 		if (!genes[0].getSpeciesRoot().isMember(target)) {
 			return new ErrorState(GeneticsErrorCode.INVALID_SERUM_MISMATCH);
 		}
-		final IIndividual individual = genes[0].getSpeciesRoot().getMember(target);
+		IIndividual individual = genes[0].getSpeciesRoot().getMember(target);
 		if (individual != null) {
-			final IGenome genome = individual.getGenome();
-			for (final IGene gene : genes) {
-				final IAllele a = genome.getActiveAllele(gene.getChromosome());
-				final IAllele b = genome.getInactiveAllele(gene.getChromosome());
+			IGenome genome = individual.getGenome();
+			for (IGene gene : genes) {
+				IAllele a = genome.getActiveAllele(gene.getChromosome());
+				IAllele b = genome.getInactiveAllele(gene.getChromosome());
 				if (!a.getUID().equals(gene.getAllele().getUID()) || !b.getUID().equals(gene.getAllele().getUID())) {
 					return null;
 				}
@@ -131,8 +131,8 @@ public class InoculatorLogic extends ComponentProcess implements IProcess {
 		super.onFinishTask();
 		MachineUtil util = this.getUtil();
 
-		final ItemStack serum = util.getStack(Inoculator.SLOT_SERUM_VIAL);
-		final ItemStack target = util.getStack(Inoculator.SLOT_TARGET);
+		ItemStack serum = util.getStack(Inoculator.SLOT_SERUM_VIAL);
+		ItemStack target = util.getStack(Inoculator.SLOT_TARGET);
 
 		ItemStack applied = applySerum(target, serum);
 		util.setStack(Inoculator.SLOT_TARGET, applied);

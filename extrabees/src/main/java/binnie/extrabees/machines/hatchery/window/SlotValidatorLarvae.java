@@ -14,7 +14,7 @@ public class SlotValidatorLarvae extends SlotValidator {
 	}
 
 	@Override
-	public boolean isValid(final ItemStack itemStack) {
+	public boolean isValid(ItemStack itemStack) {
 		return Utils.getBeeRoot().isMember(itemStack) && Utils.getBeeRoot().getType(itemStack) == EnumBeeType.LARVAE;
 	}
 

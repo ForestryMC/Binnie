@@ -15,12 +15,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
 
-import binnie.botany.Botany;
 import binnie.botany.gui.BotanyGUI;
-import binnie.core.api.gui.IGuiItem;
+import binnie.core.gui.IBinnieGUID;
+import binnie.core.gui.IBinnieGuiItem;
 import binnie.core.util.I18N;
 
-public class ItemDatabaseBotany extends ItemBotany implements IItemModelRegister, IGuiItem {
+public class ItemDatabaseBotany extends ItemBotany implements IItemModelRegister, IBinnieGuiItem {
 	public ItemDatabaseBotany() {
 		super("database");
 		setMaxStackSize(1);
@@ -46,21 +46,21 @@ public class ItemDatabaseBotany extends ItemBotany implements IItemModelRegister
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 		ItemStack itemStack = playerIn.getHeldItem(handIn);
-		openGuiOnRightClick(itemStack, worldIn, playerIn);
+		openGui(itemStack, worldIn, playerIn);
 		return super.onItemRightClick(worldIn, playerIn, handIn);
 	}
 
 	@Override
-	public void openGuiOnRightClick(ItemStack itemStack, World world, EntityPlayer player) {
-		if (itemStack.getMetadata() == 0) {
-			Botany.proxy.openGui(BotanyGUI.DATABASE, player, player.getPosition());
-		} else {
-			Botany.proxy.openGui(BotanyGUI.DATABASE_MASTER, player, player.getPosition());
-		}
+	public IBinnieGUID getGuiID(ItemStack itemStack) {
+		return isMaster(itemStack) ? BotanyGUI.DATABASE_MASTER : BotanyGUI.DATABASE;
 	}
 
 	@Override
-	public String getItemStackDisplayName(ItemStack i) {
-		return I18N.localise("item.botany.database." + ((i.getItemDamage() == 0) ? "name" : "master.name"));
+	public String getItemStackDisplayName(ItemStack itemStack) {
+		return I18N.localise("item.botany.database." + (isMaster(itemStack) ? "master.name" : "name"));
+	}
+
+	protected boolean isMaster(ItemStack itemStack) {
+		return itemStack.getMetadata() > 0;
 	}
 }

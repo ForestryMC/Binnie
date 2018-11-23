@@ -14,7 +14,7 @@ public class EthanolTankValidator extends TankValidator {
 	}
 
 	@Override
-	public boolean isValid(final FluidStack stack) {
+	public boolean isValid(FluidStack stack) {
 		return Fluids.BIO_ETHANOL.getTag().equals(stack.getFluid().getName());
 	}
 }

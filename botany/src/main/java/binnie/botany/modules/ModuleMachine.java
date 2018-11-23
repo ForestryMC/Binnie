@@ -31,7 +31,7 @@ public class ModuleMachine extends BinnieModule {
 
 	@Override
 	public void registerItemsAndBlocks() {
-		final MachineGroup machineGroup = new MachineGroup(Botany.instance, "machine", "machine", BotanyMachine.values());
+		MachineGroup machineGroup = new MachineGroup(Botany.instance, "machine", "machine", BotanyMachine.values());
 		machineGroup.setCreativeTab(Tabs.tabArboriculture);
 		machineGroup.createContent();
 		blockMachine = machineGroup.block();

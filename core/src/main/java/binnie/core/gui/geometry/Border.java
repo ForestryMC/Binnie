@@ -11,30 +11,30 @@ public class Border implements IBorder {
 	private int l;
 	private int r;
 
-	public Border(final int pad) {
+	public Border(int pad) {
 		this(pad, pad, pad, pad);
 	}
 
-	public Border(final int tb, final int rl) {
+	public Border(int tb, int rl) {
 		this(tb, rl, tb, rl);
 	}
 
-	public Border(final int t, final int rl, final int b) {
+	public Border(int t, int rl, int b) {
 		this(t, rl, b, rl);
 	}
 
-	public Border(final int t, final int r, final int b, final int l) {
+	public Border(int t, int r, int b, int l) {
 		this.t = t;
 		this.b = b;
 		this.l = l;
 		this.r = r;
 	}
 
-	public Border(final Alignment edge, final int n) {
+	public Border(Alignment edge, int n) {
 		this((edge == Alignment.TOP) ? n : 0, (edge == Alignment.RIGHT) ? n : 0, (edge == Alignment.BOTTOM) ? n : 0, (edge == Alignment.LEFT) ? n : 0);
 	}
 
-	public Border(final Border padding) {
+	public Border(Border padding) {
 		this(padding.getTop(), padding.getRight(), padding.getBottom(), padding.getLeft());
 	}
 
@@ -59,22 +59,22 @@ public class Border implements IBorder {
 	}
 
 	@Override
-	public void setTop(final int amount) {
+	public void setTop(int amount) {
 		this.t = amount;
 	}
 
 	@Override
-	public void setBottom(final int amount) {
+	public void setBottom(int amount) {
 		this.b = amount;
 	}
 
 	@Override
-	public void setLeft(final int amount) {
+	public void setLeft(int amount) {
 		this.l = amount;
 	}
 
 	@Override
-	public void setRight(final int amount) {
+	public void setRight(int amount) {
 		this.r = amount;
 	}
 
@@ -84,7 +84,7 @@ public class Border implements IBorder {
 	}
 
 	@Override
-	public IBorder add(final IBorder o) {
+	public IBorder add(IBorder o) {
 		return new Border(this.getTop() + o.getTop(), this.getRight() + o.getRight(), this.getBottom() + o.getBottom(), this.getLeft() + o.getLeft());
 	}
 

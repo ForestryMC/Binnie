@@ -16,23 +16,23 @@ public class TankSlot extends BaseSlot<FluidStack> {
 	private final FluidTank tank;
 
 	@Deprecated
-	public TankSlot(final int index, final String name, final int capacity) {
+	public TankSlot(int index, String name, int capacity) {
 		this(index, new ResourceLocation(Constants.CORE_MOD_ID, "gui.tank." + name), capacity);
 	}
 
-	public TankSlot(final int index, final ResourceLocation name, final int capacity) {
+	public TankSlot(int index, ResourceLocation name, int capacity) {
 		super(index, name);
 		this.tank = new FluidTank(capacity);
 	}
 
 	@Override
-	public void readFromNBT(final NBTTagCompound compound) {
-		final FluidStack liquid = FluidStack.loadFluidStackFromNBT(compound);
+	public void readFromNBT(NBTTagCompound compound) {
+		FluidStack liquid = FluidStack.loadFluidStackFromNBT(compound);
 		this.setContent(liquid);
 	}
 
 	@Override
-	public NBTTagCompound writeToNBT(final NBTTagCompound compound) {
+	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
 		if (this.getContent() != null) {
 			this.getContent().writeToNBT(compound);
 		}

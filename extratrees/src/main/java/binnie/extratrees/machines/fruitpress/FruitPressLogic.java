@@ -16,7 +16,7 @@ public class FruitPressLogic extends ComponentProcessSetCost implements IProcess
 
 	private int lastProgress;
 
-	public FruitPressLogic(final Machine machine) {
+	public FruitPressLogic(Machine machine) {
 		super(machine, PROCESS_ENERGY, PROCESS_LENGTH);
 		this.lastProgress = 0;
 	}
@@ -50,15 +50,15 @@ public class FruitPressLogic extends ComponentProcessSetCost implements IProcess
 	@Override
 	public void onUpdate() {
 		super.onUpdate();
-		final FluidStack output = FruitPressRecipeManager.getOutput(this.getUtil().getStack(FruitPressMachine.SLOT_CURRENT));
+		FluidStack output = FruitPressRecipeManager.getOutput(this.getUtil().getStack(FruitPressMachine.SLOT_CURRENT));
 		if (output == null) {
 			return;
 		}
-		final int newProgress = (int) this.getProgress();
+		int newProgress = (int) this.getProgress();
 		while (this.lastProgress + 4 <= newProgress) {
-			final int change = newProgress - this.lastProgress;
-			final int amount = output.amount * change / 100;
-			final FluidStack tank = new FluidStack(output, amount);
+			int change = newProgress - this.lastProgress;
+			int amount = output.amount * change / 100;
+			FluidStack tank = new FluidStack(output, amount);
 			this.getUtil().fillTank(FruitPressMachine.TANK_OUTPUT, tank);
 			this.lastProgress += 4;
 		}

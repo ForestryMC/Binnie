@@ -24,18 +24,18 @@ public class ControlGeneScroll extends Control implements IControlValue<IBreedin
 	@Nullable
 	private IBreedingSystem system;
 
-	protected ControlGeneScroll(final IWidget parent, final int x, final int y, final int w, final int h) {
+	protected ControlGeneScroll(IWidget parent, int x, int y, int w, int h) {
 		super(parent, x, y, w, h);
 		this.filter = "";
 		this.system = null;
 	}
 
-	public void setFilter(final String filter) {
+	public void setFilter(String filter) {
 		this.filter = filter.toLowerCase();
 		this.refresh();
 	}
 
-	public void setGenes(final IBreedingSystem system) {
+	public void setGenes(IBreedingSystem system) {
 		this.system = system;
 		this.refresh();
 	}
@@ -45,15 +45,15 @@ public class ControlGeneScroll extends Control implements IControlValue<IBreedin
 			return;
 		}
 		this.deleteAllChildren();
-		final GeneTracker tracker = GeneTracker.getTracker(Window.get(this).getWorld(), Window.get(this).getUsername());
-		final Map<IChromosomeType, List<IAllele>> genes = Binnie.GENETICS.getChromosomeMap(this.system.getSpeciesRoot());
+		GeneTracker tracker = GeneTracker.getTracker(Window.get(this).getWorld(), Window.get(this).getUsername());
+		Map<IChromosomeType, List<IAllele>> genes = Binnie.GENETICS.getChromosomeMap(this.system.getSpeciesRoot());
 		int x = 0;
 		int y = 0;
-		final boolean master = ((WindowGeneBank) Window.get(this)).isMaster();
-		for (final Map.Entry<IChromosomeType, List<IAllele>> entry : genes.entrySet()) {
-			final List<IAllele> discovered = new ArrayList<>();
-			for (final IAllele allele : entry.getValue()) {
-				final Gene gene = new Gene(allele, entry.getKey(), this.system.getSpeciesRoot());
+		boolean master = ((WindowGeneBank) Window.get(this)).isMaster();
+		for (Map.Entry<IChromosomeType, List<IAllele>> entry : genes.entrySet()) {
+			List<IAllele> discovered = new ArrayList<>();
+			for (IAllele allele : entry.getValue()) {
+				Gene gene = new Gene(allele, entry.getKey(), this.system.getSpeciesRoot());
 				if ((master || tracker.isSequenced(new Gene(allele, entry.getKey(), this.system.getSpeciesRoot()))) && gene.getName().toLowerCase().contains(this.filter)) {
 					discovered.add(allele);
 				}
@@ -64,7 +64,7 @@ public class ControlGeneScroll extends Control implements IControlValue<IBreedin
 			x = 0;
 			new ControlText(this, new Point(x, y), this.system.getChromosomeName(entry.getKey()));
 			y += 12;
-			for (final IAllele allele : discovered) {
+			for (IAllele allele : discovered) {
 				if (x + 18 > this.getSize().xPos()) {
 					y += 20;
 					x = 0;
@@ -83,7 +83,7 @@ public class ControlGeneScroll extends Control implements IControlValue<IBreedin
 	}
 
 	@Override
-	public void setValue(final IBreedingSystem system) {
+	public void setValue(IBreedingSystem system) {
 		this.setGenes(system);
 	}
 }

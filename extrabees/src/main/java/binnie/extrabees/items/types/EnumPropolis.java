@@ -42,8 +42,8 @@ public enum EnumPropolis implements IItemSubtypeMisc {
 		this.liquidName = liquidName;
 	}
 
-	public static EnumPropolis get(final ItemStack itemStack) {
-		final int i = itemStack.getItemDamage();
+	public static EnumPropolis get(ItemStack itemStack) {
+		int i = itemStack.getItemDamage();
 		if (i >= 0 && i < values().length) {
 			return values()[i];
 		}
@@ -51,7 +51,7 @@ public enum EnumPropolis implements IItemSubtypeMisc {
 	}
 
 	public void addRecipe() {
-		final FluidStack liquid = Utils.getFluidFromName(this.liquidName, 500);
+		FluidStack liquid = Utils.getFluidFromName(this.liquidName, 500);
 		if (liquid != null) {
 			RecipeManagers.squeezerManager.addRecipe(20, this.get(1), liquid, ItemStack.EMPTY, 0);
 		}
@@ -73,12 +73,12 @@ public enum EnumPropolis implements IItemSubtypeMisc {
 	}
 
 	@Override
-	public ItemStack get(final int amount) {
+	public ItemStack get(int amount) {
 		return new ItemStack(ModuleCore.propolis, amount, this.ordinal());
 	}
 
 	@Override
-	public String getDisplayName(final ItemStack itemStack) {
+	public String getDisplayName(ItemStack itemStack) {
 		return I18N.localise("extrabees.item.propolis." + this.name().toLowerCase());
 	}
 

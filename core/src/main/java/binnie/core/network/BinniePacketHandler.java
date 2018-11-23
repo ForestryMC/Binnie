@@ -27,7 +27,7 @@ public abstract class BinniePacketHandler implements IMessageHandler<MessageBinn
 	@Nullable
 	private IPacketProvider provider;
 
-	public BinniePacketHandler(final AbstractMod mod) {
+	public BinniePacketHandler(AbstractMod mod) {
 		this.setProvider(mod);
 	}
 
@@ -36,15 +36,15 @@ public abstract class BinniePacketHandler implements IMessageHandler<MessageBinn
 		return provider;
 	}
 
-	public void setProvider(final IPacketProvider provider) {
+	public void setProvider(IPacketProvider provider) {
 		this.provider = provider;
 	}
 
 	@Override
 	@Nullable
-	public IMessage onMessage(final MessageBinnie message, final MessageContext ctx) {
-		final int packetId = message.getId();
-		for (final IPacketID id : this.getProvider().getPacketIDs()) {
+	public IMessage onMessage(MessageBinnie message, MessageContext ctx) {
+		int packetId = message.getId();
+		for (IPacketID id : this.getProvider().getPacketIDs()) {
 			if (id.ordinal() == packetId) {
 				messageProxy.onMessage(id, message, ctx);
 				return null;
@@ -54,13 +54,13 @@ public abstract class BinniePacketHandler implements IMessageHandler<MessageBinn
 	}
 
 	private static abstract class MessageProxy {
-		protected static void checkThreadAndEnqueue(final IPacketID id, final MessageBinnie message, final MessageContext ctx, IThreadListener threadListener) {
+		protected static void checkThreadAndEnqueue(IPacketID id, MessageBinnie message, MessageContext ctx, IThreadListener threadListener) {
 			if (!threadListener.isCallingFromMinecraftThread()) {
 				threadListener.addScheduledTask(() -> id.onMessage(message, ctx));
 			}
 		}
 
-		public abstract void onMessage(final IPacketID id, final MessageBinnie message, final MessageContext ctx);
+		public abstract void onMessage(IPacketID id, MessageBinnie message, MessageContext ctx);
 	}
 
 	@SuppressWarnings("unused")

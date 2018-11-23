@@ -7,7 +7,7 @@ import binnie.core.machines.Machine;
 import binnie.extrabees.utils.ComponentBeeModifier;
 
 public class ComponentRainShield extends ComponentBeeModifier implements IBeeModifier, IBeeListener {
-	public ComponentRainShield(final Machine machine) {
+	public ComponentRainShield(Machine machine) {
 		super(machine);
 	}
 

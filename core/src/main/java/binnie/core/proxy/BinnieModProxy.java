@@ -32,7 +32,7 @@ public class BinnieModProxy implements IBinnieModProxy {
 	}
 
 	@Override
-	public void setMod(final AbstractMod mod) {
+	public void setMod(AbstractMod mod) {
 		this.mod = mod;
 	}
 
@@ -77,24 +77,24 @@ public class BinnieModProxy implements IBinnieModProxy {
 	}
 
 	@Override
-	public void openGui(final IBinnieGUID ID, final EntityPlayer player, final BlockPos pos) {
+	public void openGui(IBinnieGUID ID, EntityPlayer player, BlockPos pos) {
 		BinnieCore.getBinnieProxy().openGui(this.getMod(), ID.ordinal(), player, pos);
 	}
 
 	@Override
-	public void sendToAll(final MessageBase packet) {
+	public void sendToAll(MessageBase packet) {
 		this.getMod().getNetworkWrapper().sendToAll(packet.GetMessage());
 	}
 
 	@Override
-	public void sendToPlayer(final MessageBase packet, final EntityPlayer entityplayer) {
+	public void sendToPlayer(MessageBase packet, EntityPlayer entityplayer) {
 		if (entityplayer instanceof EntityPlayerMP) {
 			this.getMod().getNetworkWrapper().sendTo(packet.GetMessage(), (EntityPlayerMP) entityplayer);
 		}
 	}
 
 	@Override
-	public void sendToServer(final MessageBase packet) {
+	public void sendToServer(MessageBase packet) {
 		this.getMod().getNetworkWrapper().sendToServer(packet.GetMessage());
 	}
 

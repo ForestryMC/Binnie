@@ -29,7 +29,7 @@ public class ControlDistilleryProgress extends ControlProgressBase {
 	public static final Texture LIQUID_FLOW = new StandardTexture(101, 0, 38, 66, ExtraTreeTexture.GUI);
 	public static final Texture OUTPUT = new StandardTexture(68, 66, 17, 7, ExtraTreeTexture.GUI);
 
-	protected ControlDistilleryProgress(final IWidget parent, final int x, final int y) {
+	protected ControlDistilleryProgress(IWidget parent, int x, int y) {
 		super(parent, x, y, 58, 66);
 		this.addSelfEventHandler(EventMouse.Down.class, event -> {
 			int distillationLevel = -1;
@@ -41,7 +41,7 @@ public class ControlDistilleryProgress extends ControlProgressBase {
 				distillationLevel = 2;
 			}
 			if (distillationLevel >= 0) {
-				final NBTTagCompound nbt = new NBTTagCompound();
+				NBTTagCompound nbt = new NBTTagCompound();
 				nbt.setByte("i", (byte) distillationLevel);
 				Window.get(ControlDistilleryProgress.this.getWidget()).sendClientAction("still-level", nbt);
 			}
@@ -53,7 +53,7 @@ public class ControlDistilleryProgress extends ControlProgressBase {
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		CraftGUI.RENDER.texture(DISTILLERY_BASE, Point.ZERO);
 		CraftGUI.RENDER.texturePercentage(LIQUID_FLOW, new Area(18, 0, 38, 66), Alignment.LEFT, this.progress);
-		final DistilleryLogic component = Machine.getInterface(DistilleryLogic.class, Window.get(this).getInventory());
+		DistilleryLogic component = Machine.getInterface(DistilleryLogic.class, Window.get(this).getInventory());
 		FluidStack stack = null;
 		if (component != null) {
 			stack = component.getCurrentFluid();
@@ -70,7 +70,7 @@ public class ControlDistilleryProgress extends ControlProgressBase {
 	public void onRenderForeground(int guiWidth, int guiHeight) {
 		DistilleryLogic distilleryLogic = Machine.getInterface(DistilleryLogic.class, Window.get(this).getInventory());
 		if (distilleryLogic != null) {
-			final int level = distilleryLogic.getLevel();
+			int level = distilleryLogic.getLevel();
 			GlStateManager.enableAlpha();
 			CraftGUI.RENDER.texture(OUTPUT, new Point(47, 14 + level * 15));
 			CraftGUI.RENDER.texture(DISTILLERY_OVERLAY, Point.ZERO);

@@ -54,7 +54,7 @@ public class WindowDesigner extends Window {
 		new ControlText(this, new Area(190, 36, 114, 10), I18N.localise(new ResourceLocation(Constants.DESIGN_MOD_ID, "gui.design")), TextJustification.TOP_CENTER).setColor(4473924);
 		new Panel(this, 188, 48, 118, 126, MinecraftGUI.PanelType.GRAY);
 		this.textEdit = new ControlTextEdit(this, 188, 178, 118, 12);
-		final ControlScrollableContent scroll = new ControlScrollableContent(this, 190, 50, 114, 122, 12);
+		ControlScrollableContent scroll = new ControlScrollableContent(this, 190, 50, 114, 122, 12);
 		scroll.setScrollableContent(this.tileSelect = new ControlTileSelect(scroll, 0, 0));
 		new ControlPlayerInventory(this).setPosition(new Point(14, 96));
 		new ControlErrorState(this, 76, 65);

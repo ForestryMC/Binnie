@@ -9,13 +9,13 @@ import binnie.design.api.IDesignerType;
 public class SlotValidatorDesignAdhesive extends SlotValidator {
 	private final IDesignerType type;
 
-	public SlotValidatorDesignAdhesive(final IDesignerType type) {
+	public SlotValidatorDesignAdhesive(IDesignerType type) {
 		super(Design.getSpritePolish());
 		this.type = type;
 	}
 
 	@Override
-	public boolean isValid(final ItemStack itemStack) {
+	public boolean isValid(ItemStack itemStack) {
 		return this.type.getSystem().getAdhesive().isItemEqual(itemStack);
 	}
 

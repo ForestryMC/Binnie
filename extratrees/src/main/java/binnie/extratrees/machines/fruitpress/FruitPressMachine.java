@@ -25,18 +25,18 @@ public class FruitPressMachine extends ExtraTreeMachine.PackageExtraTreeMachine 
 	}
 
 	@Override
-	public void createMachine(final Machine machine) {
+	public void createMachine(Machine machine) {
 		new ExtraTreeMachine.ComponentExtraTreeGUI(machine, ExtraTreesGUID.PRESS);
-		final ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
-		final InventorySlot input = inventory.addSlot(SLOT_FRUIT, getSlotRL("input"));
+		ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
+		InventorySlot input = inventory.addSlot(SLOT_FRUIT, getSlotRL("input"));
 		input.setValidator(new SlotValidatorSqueezable());
 		input.forbidExtraction();
 
-		final InventorySlot process = inventory.addSlot(SLOT_CURRENT, getSlotRL("process"));
+		InventorySlot process = inventory.addSlot(SLOT_CURRENT, getSlotRL("process"));
 		process.setValidator(new SlotValidatorSqueezable());
 		process.forbidInteraction();
 
-		final ComponentTankContainer tanks = new ComponentTankContainer(machine);
+		ComponentTankContainer tanks = new ComponentTankContainer(machine);
 		tanks.addTank(TANK_OUTPUT, "output", TANK_OUTPUT_CAPACITY).setReadOnly();
 		new ComponentPowerReceptor(machine);
 		new ComponentInventoryTransfer(machine).addRestock(new int[]{SLOT_FRUIT}, SLOT_CURRENT, 1);

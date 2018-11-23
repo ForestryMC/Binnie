@@ -5,7 +5,7 @@ import net.minecraft.item.ItemStack;
 public interface IComponentRecipe {
 	boolean isRecipe();
 
-	ItemStack doRecipe(final boolean takeItem);
+	ItemStack doRecipe(boolean takeItem);
 
 	ItemStack getProduct();
 }

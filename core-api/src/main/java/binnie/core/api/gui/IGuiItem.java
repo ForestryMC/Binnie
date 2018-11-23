@@ -5,5 +5,5 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public interface IGuiItem {
-	void openGuiOnRightClick(ItemStack itemStack, World world, EntityPlayer player);
+	void openGui(ItemStack itemStack, World world, EntityPlayer player);
 }

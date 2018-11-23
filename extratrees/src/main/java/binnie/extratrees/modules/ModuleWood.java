@@ -489,13 +489,13 @@ public class ModuleWood extends BinnieModule {
 		this.addSqueezer(EnumVanillaWoodType.SPRUCE, ExtraTreeLiquid.RESIN, 50);
 	}
 
-	private void addSqueezer(final IWoodType log, final ILiquidDefinition liquid, final int amount, final float pulpChance) {
-		final FluidStack liquidStack = liquid.get(amount);
+	private void addSqueezer(IWoodType log, ILiquidDefinition liquid, int amount, float pulpChance) {
+		FluidStack liquidStack = liquid.get(amount);
 		ItemStack logStack = TreeManager.woodAccess.getStack(log, WoodBlockKind.LOG, false);
 		RecipeManagers.squeezerManager.addRecipe(10, logStack, liquidStack, Mods.Forestry.stack("wood_pulp"), (int) (100.0f * pulpChance));
 	}
 
-	private void addSqueezer(final IWoodType log, final ILiquidDefinition liquid, final int amount) {
+	private void addSqueezer(IWoodType log, ILiquidDefinition liquid, int amount) {
 		this.addSqueezer(log, liquid, amount, 0.5f);
 	}
 

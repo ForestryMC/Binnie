@@ -20,14 +20,14 @@ public interface ITankMachine extends IValidatedTankContainer {
 	 * @deprecated use {@link #addTank(int, ResourceLocation, int)}
 	 */
 	@Deprecated
-	TankSlot addTank(final int index, final String name, final int capacity);
+	TankSlot addTank(int index, String name, int capacity);
 
-	TankSlot addTank(final int index, final ResourceLocation name, final int capacity);
+	TankSlot addTank(int index, ResourceLocation name, int capacity);
 
-	IFluidTank getTank(final int index);
+	IFluidTank getTank(int index);
 
 	@Nullable
-	TankSlot getTankSlot(final int index);
+	TankSlot getTankSlot(int index);
 
 	@Nullable
 	IFluidHandler getHandler(@Nullable EnumFacing from);

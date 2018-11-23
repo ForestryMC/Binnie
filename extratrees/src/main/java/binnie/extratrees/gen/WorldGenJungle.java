@@ -12,7 +12,7 @@ public class WorldGenJungle {
 		public void generate() {
 			this.generateTreeTrunk(this.height, this.girth);
 			float leafSpawn = this.height;
-			final float bottom = 1.0f;
+			float bottom = 1.0f;
 			float width = this.height * this.randBetween(0.15f, 0.2f);
 			if (width < 2.0f) {
 				width = 2.0f;
@@ -39,7 +39,7 @@ public class WorldGenJungle {
 		public void generate() {
 			this.generateTreeTrunk(this.height, this.girth);
 			float leafSpawn = this.height;
-			final float bottom = this.randBetween(1, 2);
+			float bottom = this.randBetween(1, 2);
 			float width = this.height * this.randBetween(0.25f, 0.3f);
 			if (width < 2.0f) {
 				width = 2.0f;
@@ -67,7 +67,7 @@ public class WorldGenJungle {
 		public void generate() {
 			this.generateTreeTrunk(this.height, this.girth);
 			float leafSpawn = this.height + 1;
-			final float bottom = this.randBetween(1, 2);
+			float bottom = this.randBetween(1, 2);
 			float width = this.height * this.randBetween(0.2f, 0.25f);
 			if (width < 2.0f) {
 				width = 2.0f;
@@ -122,7 +122,7 @@ public class WorldGenJungle {
 		public void generate() {
 			this.generateTreeTrunk(this.height, this.girth);
 			float leafSpawn = this.height;
-			final float bottom = this.randBetween(1, 2);
+			float bottom = this.randBetween(1, 2);
 			float width = this.height * this.randBetween(0.2f, 0.25f);
 			if (width < 2.0f) {
 				width = 2.0f;
@@ -150,7 +150,7 @@ public class WorldGenJungle {
 		public void generate() {
 			this.generateTreeTrunk(this.height, this.girth);
 			float leafSpawn = this.height;
-			final float bottom = this.randBetween(1, 2);
+			float bottom = this.randBetween(1, 2);
 			float width = this.height * this.randBetween(0.25f, 0.3f);
 			if (width < 2.0f) {
 				width = 2.0f;
@@ -178,7 +178,7 @@ public class WorldGenJungle {
 		public void generate() {
 			this.generateTreeTrunk(this.height, this.girth);
 			float leafSpawn = this.height;
-			final float bottom = 1.0f;
+			float bottom = 1.0f;
 			float width = this.height * this.randBetween(0.25f, 0.3f);
 			if (width < 2.0f) {
 				width = 2.0f;
@@ -206,7 +206,7 @@ public class WorldGenJungle {
 		public void generate() {
 			this.generateTreeTrunk(this.height, this.girth);
 			float leafSpawn = this.height + 1;
-			final float bottom = this.height - 3;
+			float bottom = this.height - 3;
 			float width = this.height * this.randBetween(0.25f, 0.3f);
 			if (width < 2.0f) {
 				width = 2.0f;
@@ -235,7 +235,7 @@ public class WorldGenJungle {
 		public void generate() {
 			this.generateTreeTrunk(this.height, this.girth);
 			float leafSpawn = this.height;
-			final float bottom = 1.0f;
+			float bottom = 1.0f;
 			float width = this.height * this.randBetween(0.15f, 0.2f);
 			if (width < 1.5f) {
 				width = 1.5f;

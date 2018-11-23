@@ -61,7 +61,7 @@ public enum ExtraTreePlanks implements IPlankType, IFenceProvider, IStringSerial
 	@SideOnly(Side.CLIENT)
 	private TextureAtlasSprite sprite;
 
-	ExtraTreePlanks(final int color) {
+	ExtraTreePlanks(int color) {
 		this.color = color;
 	}
 

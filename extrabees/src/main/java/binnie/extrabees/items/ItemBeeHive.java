@@ -22,7 +22,7 @@ import binnie.extrabees.blocks.type.EnumHiveType;
 
 public class ItemBeeHive extends ItemBlock implements IItemModelRegister {
 
-	public ItemBeeHive(@Nonnull final Block block) {
+	public ItemBeeHive(@Nonnull Block block) {
 		super(block);
 		setRegistryName(block.getRegistryName());
 		this.setMaxDamage(0);

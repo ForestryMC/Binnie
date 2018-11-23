@@ -2,7 +2,7 @@ package binnie.botany.genetics;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeSet;
+import java.util.Set;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -101,7 +101,7 @@ public class FlowerBreedingSystem extends BreedingSystem {
 	}
 
 	@Override
-	public void addExtraAlleles(IChromosomeType chromosome, TreeSet<IAllele> alleles) {
+	public void addExtraAlleles(IChromosomeType chromosome, Set<IAllele> alleles) {
 		switch ((EnumFlowerChromosome) chromosome) {
 			case FERTILITY:
 				for (ForestryAllele.Fertility fertility : ForestryAllele.Fertility.values()) {

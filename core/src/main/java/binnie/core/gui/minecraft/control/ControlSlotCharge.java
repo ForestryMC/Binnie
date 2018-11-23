@@ -22,13 +22,13 @@ import binnie.core.util.I18N;
 public class ControlSlotCharge extends Control {
 	private final int slot;
 
-	public ControlSlotCharge(final IWidget parent, final int x, final int y, final int slot) {
+	public ControlSlotCharge(IWidget parent, int x, int y, int slot) {
 		super(parent, x, y, 4, 18);
 		this.slot = slot;
 	}
 
 	float getCharge() {
-		final IChargedSlots slots = Machine.getInterface(IChargedSlots.class, Window.get(this).getInventory());
+		IChargedSlots slots = Machine.getInterface(IChargedSlots.class, Window.get(this).getInventory());
 		return (slots == null) ? 0.0f : slots.getCharge(this.slot);
 	}
 
@@ -41,7 +41,7 @@ public class ControlSlotCharge extends Control {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getHelpTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
+	public void getHelpTooltip(Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		NumberFormat percentFormat = I18N.getPercentFormat();
 		String chargePercent = percentFormat.format(this.getCharge());
 		tooltip.add(I18N.localise(ModId.CORE, "gui.charge.remaining.percent", chargePercent));

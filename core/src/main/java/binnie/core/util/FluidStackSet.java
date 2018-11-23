@@ -22,8 +22,8 @@ class FluidStackSet implements Set<FluidStack> {
 	}
 
 	@Nullable
-	protected FluidStack getExisting(final FluidStack stack) {
-		for (final FluidStack stack2 : this.fluidStacks) {
+	protected FluidStack getExisting(FluidStack stack) {
+		for (FluidStack stack2 : this.fluidStacks) {
 			if (stack2.isFluidEqual(stack)) {
 				return stack2;
 			}
@@ -32,7 +32,7 @@ class FluidStackSet implements Set<FluidStack> {
 	}
 
 	@Override
-	public boolean add(final FluidStack e) {
+	public boolean add(FluidStack e) {
 		if (e != null) {
 			FluidStack existing = this.getExisting(e);
 			if (existing == null) {
@@ -44,9 +44,9 @@ class FluidStackSet implements Set<FluidStack> {
 	}
 
 	@Override
-	public boolean addAll(final Collection<? extends FluidStack> c) {
+	public boolean addAll(Collection<? extends FluidStack> c) {
 		boolean addedAll = true;
-		for (final FluidStack stack : c) {
+		for (FluidStack stack : c) {
 			addedAll = (this.add(stack) && addedAll);
 		}
 		return addedAll;
@@ -58,14 +58,14 @@ class FluidStackSet implements Set<FluidStack> {
 	}
 
 	@Override
-	public boolean contains(final Object o) {
+	public boolean contains(Object o) {
 		return o instanceof FluidStack && this.getExisting((FluidStack) o) != null;
 	}
 
 	@Override
-	public boolean containsAll(final Collection<?> c) {
+	public boolean containsAll(Collection<?> c) {
 		boolean addedAll = true;
-		for (final Object o : c) {
+		for (Object o : c) {
 			addedAll = (addedAll && this.contains(o));
 		}
 		return false;
@@ -82,10 +82,10 @@ class FluidStackSet implements Set<FluidStack> {
 	}
 
 	@Override
-	public boolean remove(final Object o) {
+	public boolean remove(Object o) {
 		if (this.contains(o)) {
-			final FluidStack r = (FluidStack) o;
-			final FluidStack existing = this.getExisting(r);
+			FluidStack r = (FluidStack) o;
+			FluidStack existing = this.getExisting(r);
 			if (existing != null && existing.amount > r.amount) {
 				existing.amount -= r.amount;
 			} else {
@@ -96,17 +96,17 @@ class FluidStackSet implements Set<FluidStack> {
 	}
 
 	@Override
-	public boolean removeAll(final Collection<?> c) {
+	public boolean removeAll(Collection<?> c) {
 		boolean addedAll = true;
-		for (final Object o : c) {
-			final boolean removed = this.remove(o);
+		for (Object o : c) {
+			boolean removed = this.remove(o);
 			addedAll = (removed && addedAll);
 		}
 		return false;
 	}
 
 	@Override
-	public boolean retainAll(final Collection<?> c) {
+	public boolean retainAll(Collection<?> c) {
 		return this.fluidStacks.retainAll(c);
 	}
 
@@ -121,7 +121,7 @@ class FluidStackSet implements Set<FluidStack> {
 	}
 
 	@Override
-	public <T> T[] toArray(final T[] a) {
+	public <T> T[] toArray(T[] a) {
 		return this.fluidStacks.toArray(a);
 	}
 }

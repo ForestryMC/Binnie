@@ -21,7 +21,7 @@ public enum ExtraTreeTexture implements IBinnieTexture {
 	@Nullable
 	private BinnieResource resource;
 
-	ExtraTreeTexture(final ResourceType base, final String texture) {
+	ExtraTreeTexture(ResourceType base, String texture) {
 		this.texture = texture;
 		this.type = base;
 	}

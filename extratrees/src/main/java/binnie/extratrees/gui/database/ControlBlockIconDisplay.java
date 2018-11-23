@@ -13,7 +13,7 @@ import binnie.core.gui.renderer.RenderUtil;
 public class ControlBlockIconDisplay extends Control {
 	private final TextureAtlasSprite icon;
 
-	public ControlBlockIconDisplay(final IWidget parent, final int x, final int y, final TextureAtlasSprite icon) {
+	public ControlBlockIconDisplay(IWidget parent, int x, int y, TextureAtlasSprite icon) {
 		super(parent, x, y, 18, 18);
 		this.icon = icon;
 	}

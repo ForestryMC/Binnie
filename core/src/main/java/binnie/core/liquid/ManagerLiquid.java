@@ -41,7 +41,7 @@ public class ManagerLiquid extends ManagerBase {
 	}
 
 	@Nullable
-	public FluidStack getFluidStack(final String name, final int amount) {
+	public FluidStack getFluidStack(String name, int amount) {
 		return FluidRegistry.getFluidStack(name.toLowerCase(), amount);
 	}
 

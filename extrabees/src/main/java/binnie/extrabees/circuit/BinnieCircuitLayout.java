@@ -12,7 +12,7 @@ public class BinnieCircuitLayout implements ICircuitLayout {
 	private final String uid;
 	private final ICircuitSocketType socketType;
 
-	public BinnieCircuitLayout(final String uid, final ICircuitSocketType socketType) {
+	public BinnieCircuitLayout(String uid, ICircuitSocketType socketType) {
 		this.uid = uid;
 		this.socketType = socketType;
 		ChipsetManager.circuitRegistry.registerLayout(this);

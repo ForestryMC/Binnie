@@ -14,15 +14,15 @@ import binnie.core.util.EntityItemRenderer;
 public class LabFX extends MachineComponent implements IRender.Render {
 	private final EntityItemRenderer entityItemRenderer;
 
-	public LabFX(final IMachine machine) {
+	public LabFX(IMachine machine) {
 		super(machine);
 		this.entityItemRenderer = new EntityItemRenderer();
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void renderInWorld(final double x, final double y, final double z) {
-		final ItemStack stack = this.getUtil().getStack(0);
+	public void renderInWorld(double x, double y, double z) {
+		ItemStack stack = this.getUtil().getStack(0);
 		World world = this.getMachine().getWorld();
 		this.entityItemRenderer.renderInWorld(stack, world, x + 0.5, y + 0.8, z + 0.5);
 	}

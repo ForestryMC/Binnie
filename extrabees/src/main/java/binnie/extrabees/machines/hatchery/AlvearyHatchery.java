@@ -16,10 +16,10 @@ public class AlvearyHatchery extends ExtraBeeMachines.AlvearyPackage implements 
 	}
 
 	@Override
-	public void createMachine(final Machine machine) {
+	public void createMachine(Machine machine) {
 		new ExtraBeeMachines.ComponentExtraBeeGUI(machine, ExtraBeesGUID.ALVEARY_HATCHERY);
-		final ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
-		for (final InventorySlot slot : inventory.addSlotArray(AlvearyHatchery.SLOT_LARVAE, "hatchery")) {
+		ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
+		for (InventorySlot slot : inventory.addSlotArray(AlvearyHatchery.SLOT_LARVAE, "hatchery")) {
 			slot.setValidator(new SlotValidatorLarvae());
 		}
 		new ComponentFrameModifier(machine);

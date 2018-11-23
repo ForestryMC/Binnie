@@ -22,12 +22,12 @@ import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
 import forestry.api.core.Tabs;
 
-import binnie.core.api.gui.IGuiItem;
+import binnie.core.gui.IBinnieGUID;
+import binnie.core.gui.IBinnieGuiItem;
 import binnie.core.util.I18N;
-import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.gui.ExtraTreesGUID;
 
-public class ItemMothDatabase extends Item implements IItemModelRegister, IGuiItem {
+public class ItemMothDatabase extends Item implements IItemModelRegister, IBinnieGuiItem {
 
 	public ItemMothDatabase() {
 		setCreativeTab(Tabs.tabLepidopterology);
@@ -62,20 +62,13 @@ public class ItemMothDatabase extends Item implements IItemModelRegister, IGuiIt
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
 		ItemStack itemStack = player.getHeldItem(hand);
-		openGuiOnRightClick(itemStack, world, player);
+		openGui(itemStack, world, player);
 		return new ActionResult<>(EnumActionResult.PASS, itemStack);
 	}
 
 	@Override
-	public void openGuiOnRightClick(ItemStack itemStack, World world, EntityPlayer player) {
-		final ExtraTreesGUID id;
-		if (isMaster(itemStack)) {
-			id = ExtraTreesGUID.MOTH_DATABASE_MASTER;
-		} else {
-			id = ExtraTreesGUID.MOTH_DATABASE;
-		}
-
-		ExtraTrees.proxy.openGui(id, player, player.getPosition());
+	public IBinnieGUID getGuiID(ItemStack itemStack) {
+		return isMaster(itemStack) ? ExtraTreesGUID.MOTH_DATABASE_MASTER : ExtraTreesGUID.MOTH_DATABASE;
 	}
 
 	@Override

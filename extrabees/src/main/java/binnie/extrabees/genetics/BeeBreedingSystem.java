@@ -3,7 +3,7 @@ package binnie.extrabees.genetics;
 import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeSet;
+import java.util.Set;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -44,7 +44,7 @@ public class BeeBreedingSystem extends BreedingSystem {
 	}
 
 	@Override
-	public float getChance(final IMutation mutation, final EntityPlayer player, final IAlleleSpecies firstSpecies, final IAlleleSpecies secondSpecies) {
+	public float getChance(IMutation mutation, EntityPlayer player, IAlleleSpecies firstSpecies, IAlleleSpecies secondSpecies) {
 		return ((IBeeMutation) mutation).
 			getChance(new VirtualBeeHousing(player),
 				(IAlleleBeeSpecies) firstSpecies,
@@ -71,7 +71,7 @@ public class BeeBreedingSystem extends BreedingSystem {
 	}
 
 	@Override
-	public String getAlleleName(final IChromosomeType chromosome, final IAllele allele) {
+	public String getAlleleName(IChromosomeType chromosome, IAllele allele) {
 		if (chromosome == EnumBeeChromosome.FERTILITY) {
 			if (allele.getUID().contains("Low")) {
 				return I18N.localise("binniecore.allele.fertility.low");
@@ -90,7 +90,7 @@ public class BeeBreedingSystem extends BreedingSystem {
 	}
 
 	@Override
-	public boolean isDNAManipulable(final ItemStack member) {
+	public boolean isDNAManipulable(ItemStack member) {
 		ISpeciesType type = this.getSpeciesRoot().getType(member);
 		return isDNAManipulable(type);
 	}
@@ -106,41 +106,41 @@ public class BeeBreedingSystem extends BreedingSystem {
 	}
 
 	@Override
-	public void addExtraAlleles(final IChromosomeType chromosome, final TreeSet<IAllele> alleles) {
+	public void addExtraAlleles(IChromosomeType chromosome, Set<IAllele> alleles) {
 		switch ((EnumBeeChromosome) chromosome) {
 			case FERTILITY: {
-				for (final ForestryAllele.Fertility a : ForestryAllele.Fertility.values()) {
+				for (ForestryAllele.Fertility a : ForestryAllele.Fertility.values()) {
 					alleles.add(a.getAllele());
 				}
 				break;
 			}
 			case FLOWERING: {
-				for (final ForestryAllele.Flowering a2 : ForestryAllele.Flowering.values()) {
+				for (ForestryAllele.Flowering a2 : ForestryAllele.Flowering.values()) {
 					alleles.add(a2.getAllele());
 				}
 				break;
 			}
 			case HUMIDITY_TOLERANCE:
 			case TEMPERATURE_TOLERANCE: {
-				for (final Tolerance a3 : Tolerance.values()) {
+				for (Tolerance a3 : Tolerance.values()) {
 					alleles.add(a3.getAllele());
 				}
 				break;
 			}
 			case LIFESPAN: {
-				for (final ForestryAllele.Lifespan a4 : ForestryAllele.Lifespan.values()) {
+				for (ForestryAllele.Lifespan a4 : ForestryAllele.Lifespan.values()) {
 					alleles.add(a4.getAllele());
 				}
 				break;
 			}
 			case SPEED: {
-				for (final ForestryAllele.Speed a5 : ForestryAllele.Speed.values()) {
+				for (ForestryAllele.Speed a5 : ForestryAllele.Speed.values()) {
 					alleles.add(a5.getAllele());
 				}
 				break;
 			}
 			case TERRITORY: {
-				for (final ForestryAllele.Territory a6 : ForestryAllele.Territory.values()) {
+				for (ForestryAllele.Territory a6 : ForestryAllele.Territory.values()) {
 					alleles.add(a6.getAllele());
 				}
 				break;
@@ -148,7 +148,7 @@ public class BeeBreedingSystem extends BreedingSystem {
 			case NEVER_SLEEPS:
 			case CAVE_DWELLING:
 			case TOLERATES_RAIN: {
-				for (final ForestryAllele.Bool a7 : ForestryAllele.Bool.values()) {
+				for (ForestryAllele.Bool a7 : ForestryAllele.Bool.values()) {
 					alleles.add(a7.getAllele());
 				}
 				break;

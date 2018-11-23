@@ -57,31 +57,31 @@ public class ManagerMachine extends ManagerBase {
 		return spriteMutator;
 	}
 
-	public void registerMachineGroup(final MachineGroup group) {
+	public void registerMachineGroup(MachineGroup group) {
 		this.machineGroups.put(group.getUID(), group);
 	}
 
-	public MachineGroup getGroup(final String name) {
+	public MachineGroup getGroup(String name) {
 		return this.machineGroups.get(name);
 	}
 
-	public MachinePackage getPackage(final String group, final String name) {
-		final MachineGroup machineGroup = this.getGroup(group);
+	public MachinePackage getPackage(String group, String name) {
+		MachineGroup machineGroup = this.getGroup(group);
 		return (machineGroup == null) ? null : machineGroup.getPackage(name);
 	}
 
-	private void registerComponentClass(final Class<? extends MachineComponent> component) {
+	private void registerComponentClass(Class<? extends MachineComponent> component) {
 		if (this.componentInterfaceMap.containsKey(component)) {
 			return;
 		}
-		final Set<Class<?>> interfaces = new HashSet<>();
+		Set<Class<?>> interfaces = new HashSet<>();
 		for (Class<?> currentClass = component; currentClass != null; currentClass = currentClass.getSuperclass()) {
 			Collections.addAll(interfaces, currentClass.getInterfaces());
 		}
 		interfaces.remove(INbtWritable.class);
 		interfaces.remove(INbtReadable.class);
 		this.componentInterfaceMap.put(component, interfaces.toArray(new Class[0]));
-		final int networkID = this.nextNetworkID++;
+		int networkID = this.nextNetworkID++;
 	}
 
 	@Override
@@ -108,7 +108,7 @@ public class ManagerMachine extends ManagerBase {
 	}
 
 	@Nullable
-	public Class<?>[] getComponentInterfaces(final Class<? extends MachineComponent> clss) {
+	public Class<?>[] getComponentInterfaces(Class<? extends MachineComponent> clss) {
 		if (!this.componentInterfaceMap.containsKey(clss)) {
 			this.registerComponentClass(clss);
 		}

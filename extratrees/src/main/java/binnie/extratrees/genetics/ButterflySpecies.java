@@ -59,7 +59,7 @@ public enum ButterflySpecies implements IButterflyDefinition {
 		String branchName = scientific.split(" ")[0].toLowerCase();
 		String binomial = scientific.split(" ")[1];
 
-		final String branchUid = "trees." + branchName.toLowerCase();
+		String branchUid = "trees." + branchName.toLowerCase();
 		IClassification branch = AlleleManager.alleleRegistry.getClassification("genus." + branchUid);
 		if (branch == null) {
 			branch = AlleleManager.alleleRegistry.createAndRegisterClassification(IClassification.EnumClassLevel.GENUS, branchUid, scientific);

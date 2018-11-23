@@ -24,43 +24,43 @@ public class TileEntityMetadata extends TileEntity {
 	}
 
 	@Nullable
-	public static TileEntityMetadata getTile(final IBlockAccess world, final BlockPos pos) {
-		final TileEntity tile = world.getTileEntity(pos);
+	public static TileEntityMetadata getTile(IBlockAccess world, BlockPos pos) {
+		TileEntity tile = world.getTileEntity(pos);
 		if (!(tile instanceof TileEntityMetadata)) {
 			return null;
 		}
 		return (TileEntityMetadata) tile;
 	}
 
-	public static ItemStack getItemStack(final Block block, final int damage) {
-		final Item item = Item.getItemFromBlock(block);
+	public static ItemStack getItemStack(Block block, int damage) {
+		Item item = Item.getItemFromBlock(block);
 		Preconditions.checkNotNull(item, "Could not get item for block %s", block);
-		final ItemStack itemStack = new ItemStack(item, 1, 0);
+		ItemStack itemStack = new ItemStack(item, 1, 0);
 		setItemDamage(itemStack, damage);
 		return itemStack;
 	}
 
-	public static void setItemDamage(final ItemStack item, final int i) {
+	public static void setItemDamage(ItemStack item, int i) {
 		item.setItemDamage((i < 16387) ? i : 16387);
-		final NBTTagCompound tag = new NBTTagCompound();
+		NBTTagCompound tag = new NBTTagCompound();
 		tag.setInteger("meta", i);
 		item.setTagCompound(tag);
 	}
 
-	public static int getItemDamage(final ItemStack item) {
+	public static int getItemDamage(ItemStack item) {
 		if (item.hasTagCompound() && item.getTagCompound().hasKey("meta")) {
 			return item.getTagCompound().getInteger("meta");
 		}
 		return item.getItemDamage();
 	}
 
-	public static int getTileMetadata(final IBlockAccess world, final BlockPos pos) {
-		final TileEntityMetadata tile = getTile(world, pos);
+	public static int getTileMetadata(IBlockAccess world, BlockPos pos) {
+		TileEntityMetadata tile = getTile(world, pos);
 		return (tile == null) ? 0 : tile.getTileMetadata();
 	}
 
 	@Override
-	public boolean receiveClientEvent(final int id, final int type) {
+	public boolean receiveClientEvent(int id, int type) {
 		if (id == 42) {
 			this.meta = type;
 			markDirty();
@@ -74,7 +74,7 @@ public class TileEntityMetadata extends TileEntity {
 	}
 
 	@Override
-	public void readFromNBT(final NBTTagCompound nbt) {
+	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
 		if (world != null) {
 			setTileMetadata(nbt.getInteger("meta"), world.isRemote);
@@ -84,7 +84,7 @@ public class TileEntityMetadata extends TileEntity {
 	}
 
 	@Override
-	public NBTTagCompound writeToNBT(final NBTTagCompound nbt) {
+	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
 		nbt.setInteger("meta", this.meta);
 		return nbt;
@@ -94,7 +94,7 @@ public class TileEntityMetadata extends TileEntity {
 		return this.meta;
 	}
 
-	public void setTileMetadata(final int meta, final boolean notify) {
+	public void setTileMetadata(int meta, boolean notify) {
 		if (this.meta != meta) {
 			this.meta = meta;
 			if (notify) {

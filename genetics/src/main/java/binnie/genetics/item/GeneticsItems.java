@@ -27,7 +27,7 @@ public enum GeneticsItems implements IItemSubtypeMisc {
 	private final String name;
 	private final String modelPath;
 
-	GeneticsItems(final String name, final String modelPath) {
+	GeneticsItems(String name, String modelPath) {
 		this.name = name;
 		this.modelPath = modelPath;
 	}
@@ -39,20 +39,20 @@ public enum GeneticsItems implements IItemSubtypeMisc {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(final List<String> tooltip) {
+	public void addInformation(List<String> tooltip) {
 	}
 
 	@Override
-	public String getDisplayName(final ItemStack stack) {
+	public String getDisplayName(ItemStack stack) {
 		return this.name;
 	}
 
 	@Override
-	public ItemStack get(final int size) {
+	public ItemStack get(int size) {
 		return GeneticItems.GENETICS.stack(this);
 	}
 
-	public ItemStack get(Item itemGenetics, final int size) {
+	public ItemStack get(Item itemGenetics, int size) {
 		return new ItemStack(itemGenetics, size, this.ordinal());
 	}
 

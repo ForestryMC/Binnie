@@ -12,7 +12,7 @@ public class WorldGenPoplar {
 		public void generate() {
 			this.generateTreeTrunk(this.height, this.girth);
 			float leafSpawn = this.height;
-			final float bottom = this.randBetween(this.height / 2, this.height / 2 + 1) + 1;
+			float bottom = this.randBetween(this.height / 2, this.height / 2 + 1) + 1;
 			float width = this.height * this.randBetween(0.25f, 0.35f);
 			if (width < 2.0f) {
 				width = 2.0f;

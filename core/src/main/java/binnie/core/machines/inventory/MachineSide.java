@@ -21,7 +21,7 @@ public class MachineSide {
 	public static final EnumSet<EnumFacing> SIDES = EnumSet.of(EnumFacing.NORTH, EnumFacing.SOUTH, EnumFacing.EAST, EnumFacing.WEST);
 	private static final List<EnumFacing> ALL = ImmutableList.of(EnumFacing.UP, EnumFacing.DOWN, EnumFacing.NORTH, EnumFacing.SOUTH, EnumFacing.EAST, EnumFacing.WEST);
 
-	public static String asString(final Collection<EnumFacing> sides) {
+	public static String asString(Collection<EnumFacing> sides) {
 		if (sides.containsAll(MachineSide.ALL)) {
 			return I18N.localise(ModId.CORE, "side.any");
 		}

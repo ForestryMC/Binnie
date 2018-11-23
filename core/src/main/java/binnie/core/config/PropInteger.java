@@ -10,7 +10,7 @@ import net.minecraftforge.common.config.Property;
 @ConfigProperty.Type(propertyClass = PropInteger.PropertyInteger.class)
 public @interface PropInteger {
 	class PropertyInteger extends PropertyBase<Integer, PropInteger> {
-		public PropertyInteger(final Field field, final BinnieConfiguration file, final ConfigProperty configProperty, final PropInteger annotedProperty) throws IllegalArgumentException, IllegalAccessException {
+		public PropertyInteger(Field field, BinnieConfiguration file, ConfigProperty configProperty, PropInteger annotedProperty) throws IllegalArgumentException, IllegalAccessException {
 			super(field, file, configProperty, annotedProperty);
 		}
 

@@ -67,7 +67,7 @@ public enum DesignSystem implements IDesignSystem {
 	}
 
 	@Override
-	public IDesignMaterial getMaterial(final int id) {
+	public IDesignMaterial getMaterial(int id) {
 		switch (this) {
 			case Glass: {
 				return GlassType.get(id);
@@ -82,7 +82,7 @@ public enum DesignSystem implements IDesignSystem {
 	}
 
 	@Override
-	public int getMaterialIndex(final IDesignMaterial id) {
+	public int getMaterialIndex(IDesignMaterial id) {
 		switch (this) {
 			case Glass: {
 				return GlassType.getIndex(id);
@@ -112,7 +112,7 @@ public enum DesignSystem implements IDesignSystem {
 
 	@Override
 	@Nullable
-	public IDesignMaterial getMaterial(final ItemStack stack) {
+	public IDesignMaterial getMaterial(ItemStack stack) {
 		switch (this) {
 			case Glass: {
 				return GlassType.get(stack);
@@ -144,7 +144,7 @@ public enum DesignSystem implements IDesignSystem {
 	@Override
 	@Nullable
 	@SideOnly(Side.CLIENT)
-	public TextureAtlasSprite getPrimarySprite(final IPattern pattern) {
+	public TextureAtlasSprite getPrimarySprite(IPattern pattern) {
 		if (pattern instanceof EnumPattern) {
 			return this.primary.get(((EnumPattern) pattern).ordinal());
 		}
@@ -154,7 +154,7 @@ public enum DesignSystem implements IDesignSystem {
 	@Override
 	@Nullable
 	@SideOnly(Side.CLIENT)
-	public TextureAtlasSprite getSecondarySprite(final IPattern pattern) {
+	public TextureAtlasSprite getSecondarySprite(IPattern pattern) {
 		if (pattern instanceof EnumPattern) {
 			return this.secondary.get(((EnumPattern) pattern).ordinal());
 		}
@@ -165,7 +165,7 @@ public enum DesignSystem implements IDesignSystem {
 	@SideOnly(Side.CLIENT)
 	public void registerSprites() {
 		TextureMap textureMap = Minecraft.getMinecraft().getTextureMapBlocks();
-		for (final EnumPattern pattern : EnumPattern.values()) {
+		for (EnumPattern pattern : EnumPattern.values()) {
 			ResourceLocation primaryLocation = new ResourceLocation(getModId(), "blocks/" + getTexturePath() + '/' + pattern.toString().toLowerCase() + ".0");
 			ResourceLocation secondaryLocation = new ResourceLocation(getModId(), "blocks/" + getTexturePath() + '/' + pattern.toString().toLowerCase() + ".1");
 			this.primary.put(pattern.ordinal(), textureMap.registerSprite(primaryLocation));

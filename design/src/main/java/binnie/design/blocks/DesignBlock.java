@@ -38,7 +38,7 @@ public class DesignBlock {
 	private EnumFacing facing;
 	private boolean panel;
 
-	public DesignBlock(final IDesignSystem system, @Nullable final IDesignMaterial primaryWood, @Nullable final IDesignMaterial secondaryWood, @Nullable final IDesign design, final int rotation, @Nullable final EnumFacing dir) {
+	public DesignBlock(IDesignSystem system, @Nullable IDesignMaterial primaryWood, @Nullable IDesignMaterial secondaryWood, @Nullable IDesign design, int rotation, @Nullable EnumFacing dir) {
 		this.panel = false;
 		this.rotation = rotation;
 
@@ -92,7 +92,7 @@ public class DesignBlock {
 		return this.getSecondaryMaterial().getColour();
 	}
 
-	EnumFacing getRotation(final EnumFacing dir, final EnumFacing.Axis axis) {
+	EnumFacing getRotation(EnumFacing dir, EnumFacing.Axis axis) {
 		if (axis == EnumFacing.Axis.Y) {
 			switch (dir) {
 				case EAST: {
@@ -407,7 +407,7 @@ public class DesignBlock {
 		return this.facing;
 	}
 
-	public void setFacing(final EnumFacing facing) {
+	public void setFacing(EnumFacing facing) {
 		this.facing = facing;
 	}
 
@@ -415,8 +415,8 @@ public class DesignBlock {
 		return this.rotation;
 	}
 
-	public void rotate(EnumFacing facing, final ItemStack hammer, final EntityPlayer player, final World world, BlockPos pos) {
-		final IToolHammer hammerI = (IToolHammer) hammer.getItem();
+	public void rotate(EnumFacing facing, ItemStack hammer, EntityPlayer player, World world, BlockPos pos) {
+		IToolHammer hammerI = (IToolHammer) hammer.getItem();
 		if (player.isSneaking()) {
 			if (this.panel) {
 				EnumFacing newFacing = this.getFacing();
@@ -453,11 +453,11 @@ public class DesignBlock {
 		return EnumFacing.DOWN;
 	}
 
-	public int getBlockMetadata(final IDesignSystem system) {
+	public int getBlockMetadata(IDesignSystem system) {
 		return DesignHelper.getBlockMetadata(system, this);
 	}
 
-	public int getItemMetadata(final IDesignSystem system) {
+	public int getItemMetadata(IDesignSystem system) {
 		return DesignHelper.getItemMetadata(system, this);
 	}
 

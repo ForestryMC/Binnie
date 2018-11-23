@@ -8,7 +8,7 @@ import binnie.extratrees.machines.distillery.recipes.DistilleryRecipeManager;
 
 public class TankValidatorDistilleryInput extends TankValidator {
 	@Override
-	public boolean isValid(final FluidStack itemStack) {
+	public boolean isValid(FluidStack itemStack) {
 		return DistilleryRecipeManager.isValidInputLiquid(itemStack);
 	}
 

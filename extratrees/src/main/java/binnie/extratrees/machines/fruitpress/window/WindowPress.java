@@ -24,12 +24,12 @@ import binnie.extratrees.machines.fruitpress.FruitPressLogic;
 import binnie.extratrees.machines.fruitpress.FruitPressMachine;
 
 public class WindowPress extends Window {
-	public WindowPress(final EntityPlayer player, final IInventory inventory, final Side side) {
+	public WindowPress(EntityPlayer player, IInventory inventory, Side side) {
 		super(194, 192, player, inventory, side);
 	}
 
 	@Nullable
-	public static Window create(final EntityPlayer player, @Nullable final IInventory inventory, final Side side) {
+	public static Window create(EntityPlayer player, @Nullable IInventory inventory, Side side) {
 		if (inventory == null) {
 			return null;
 		}
@@ -60,9 +60,9 @@ public class WindowPress extends Window {
 	}
 
 	@Override
-	public void receiveGuiNBTOnServer(final EntityPlayer player, final String name, final NBTTagCompound nbt) {
+	public void receiveGuiNBTOnServer(EntityPlayer player, String name, NBTTagCompound nbt) {
 		super.receiveGuiNBTOnServer(player, name, nbt);
-		final FruitPressLogic logic = Machine.getInterface(FruitPressLogic.class, this.getInventory());
+		FruitPressLogic logic = Machine.getInterface(FruitPressLogic.class, this.getInventory());
 		if (logic != null) {
 			if (name.equals("fruitpress-click") && logic.canWork() == null && (logic.canProgress() == null || logic.canProgress().isPowerError())) {
 				logic.alterProgress(2.0f);

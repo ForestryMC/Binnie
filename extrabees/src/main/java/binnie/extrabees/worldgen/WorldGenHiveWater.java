@@ -19,12 +19,12 @@ public class WorldGenHiveWater extends WorldGenHive {
 	}
 
 	@Override
-	public boolean generate(final World world, final Random random, final BlockPos blockPos) {
-		final Block block = world.getBlockState(blockPos).getBlock();
+	public boolean generate(World world, Random random, BlockPos blockPos) {
+		Block block = world.getBlockState(blockPos).getBlock();
 		if (block != Blocks.WATER && block != Blocks.FLOWING_WATER) {
 			return false;
 		}
-		final Material materialBlockBelow = world.getBlockState(blockPos.down()).getMaterial();
+		Material materialBlockBelow = world.getBlockState(blockPos.down()).getMaterial();
 		if (materialBlockBelow == Material.SAND ||
 			materialBlockBelow == Material.CLAY ||
 			materialBlockBelow == Material.GROUND ||

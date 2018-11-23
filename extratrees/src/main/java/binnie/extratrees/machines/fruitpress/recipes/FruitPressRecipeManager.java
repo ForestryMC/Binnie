@@ -18,12 +18,12 @@ public class FruitPressRecipeManager implements IFruitPressManager {
 	//Map<input fruit item, Pair<input fruit, output fluid>>
 	private static final Multimap<Item, IFruitPressRecipe> recipes = ArrayListMultimap.create();
 
-	public static boolean isInput(final ItemStack itemstack) {
+	public static boolean isInput(ItemStack itemstack) {
 		return getOutput(itemstack) != null;
 	}
 
 	@Nullable
-	public static FluidStack getOutput(final ItemStack itemstack) {
+	public static FluidStack getOutput(ItemStack itemstack) {
 		if (itemstack.isEmpty()) {
 			return null;
 		}
@@ -37,7 +37,7 @@ public class FruitPressRecipeManager implements IFruitPressManager {
 		return null;
 	}
 
-	public void addRecipe(final ItemStack stack, final FluidStack fluid) {
+	public void addRecipe(ItemStack stack, FluidStack fluid) {
 		if (getOutput(stack) != null) {
 			return;
 		}

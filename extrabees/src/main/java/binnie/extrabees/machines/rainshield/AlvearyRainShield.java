@@ -11,7 +11,7 @@ public class AlvearyRainShield extends ExtraBeeMachines.AlvearyPackage implement
 	}
 
 	@Override
-	public void createMachine(final Machine machine) {
+	public void createMachine(Machine machine) {
 		new ComponentRainShield(machine);
 	}
 }

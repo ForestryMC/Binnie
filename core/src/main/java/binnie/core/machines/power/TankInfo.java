@@ -15,7 +15,7 @@ public class TankInfo implements INbtReadable, INbtWritable {
 	private FluidStack liquid;
 	private float capacity;
 
-	public TankInfo(final IFluidTank tank) {
+	public TankInfo(IFluidTank tank) {
 		this.capacity = 0.0f;
 		this.capacity = tank.getCapacity();
 		this.liquid = tank.getFluid();
@@ -25,8 +25,8 @@ public class TankInfo implements INbtReadable, INbtWritable {
 		this.capacity = 0.0f;
 	}
 
-	public static TankInfo[] get(final ITankMachine machine) {
-		final TankInfo[] info = new TankInfo[machine.getTanks().length];
+	public static TankInfo[] get(ITankMachine machine) {
+		TankInfo[] info = new TankInfo[machine.getTanks().length];
 		for (int i = 0; i < info.length; ++i) {
 			info[i] = new TankInfo(machine.getTanks()[i]);
 		}
@@ -50,7 +50,7 @@ public class TankInfo implements INbtReadable, INbtWritable {
 	}
 
 	@Override
-	public void readFromNBT(final NBTTagCompound nbt) {
+	public void readFromNBT(NBTTagCompound nbt) {
 		this.capacity = nbt.getInteger("capacity");
 		if (nbt.hasKey("liquid")) {
 			this.liquid = FluidStack.loadFluidStackFromNBT(nbt.getCompoundTag("liquid"));
@@ -58,12 +58,12 @@ public class TankInfo implements INbtReadable, INbtWritable {
 	}
 
 	@Override
-	public NBTTagCompound writeToNBT(final NBTTagCompound nbt) {
+	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		nbt.setInteger("capacity", (int) this.getCapacity());
 		if (this.liquid == null) {
 			return nbt;
 		}
-		final NBTTagCompound tag = new NBTTagCompound();
+		NBTTagCompound tag = new NBTTagCompound();
 		this.liquid.writeToNBT(tag);
 		nbt.setTag("liquid", tag);
 		return nbt;

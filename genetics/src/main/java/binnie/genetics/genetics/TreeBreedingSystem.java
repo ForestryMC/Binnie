@@ -8,7 +8,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.TreeSet;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -67,10 +66,10 @@ public class TreeBreedingSystem extends BreedingSystem implements binnie.genetic
 	}
 
 	@Override
-	public float getChance(final IMutation mutation, final EntityPlayer player, final IAlleleSpecies firstSpecies, final IAlleleSpecies secondSpecies) {
+	public float getChance(IMutation mutation, EntityPlayer player, IAlleleSpecies firstSpecies, IAlleleSpecies secondSpecies) {
 		ISpeciesRoot speciesRoot = this.getSpeciesRoot();
-		final ITreeGenome genome0 = (ITreeGenome) speciesRoot.templateAsGenome(speciesRoot.getTemplate(firstSpecies));
-		final ITreeGenome genome2 = (ITreeGenome) speciesRoot.templateAsGenome(speciesRoot.getTemplate(secondSpecies));
+		ITreeGenome genome0 = (ITreeGenome) speciesRoot.templateAsGenome(speciesRoot.getTemplate(firstSpecies));
+		ITreeGenome genome2 = (ITreeGenome) speciesRoot.templateAsGenome(speciesRoot.getTemplate(secondSpecies));
 		return ((ITreeMutation) mutation).getChance(player.world, player.getPosition(), (IAlleleTreeSpecies) firstSpecies, (IAlleleTreeSpecies) secondSpecies, genome0, genome2);
 	}
 
@@ -90,28 +89,28 @@ public class TreeBreedingSystem extends BreedingSystem implements binnie.genetic
 	}
 
 	@Override
-	public String getAlleleName(final IChromosomeType chromosome, final IAllele allele) {
+	public String getAlleleName(IChromosomeType chromosome, IAllele allele) {
 		if (chromosome == EnumTreeChromosome.GIRTH) {
-			final IAlleleInteger alleleInteger = (IAlleleInteger) allele;
+			IAlleleInteger alleleInteger = (IAlleleInteger) allele;
 			return alleleInteger.getValue() + "x" + alleleInteger.getValue();
 		}
 		if (chromosome == EnumTreeChromosome.FRUITS && allele.getUID().contains(".")) {
-			final IFruitProvider provider = ((IAlleleFruit) allele).getProvider();
+			IFruitProvider provider = ((IAlleleFruit) allele).getProvider();
 			return (provider.getProducts().isEmpty()) ? I18N.localise("binniecore.allele.none") : provider.getProducts().keySet().iterator().next().getDisplayName();
 		}
 		return super.getAlleleName(chromosome, allele);
 	}
 
 	@Override
-	public void onSyncBreedingTracker(final IBreedingTracker tracker) {
+	public void onSyncBreedingTracker(IBreedingTracker tracker) {
 		this.discoveredFruits.clear();
 		this.discoveredWoods.clear();
-		for (final IAlleleSpecies species : this.getDiscoveredSpecies(tracker)) {
-			final IAlleleTreeSpecies tSpecies = (IAlleleTreeSpecies) species;
-			final ITreeGenome genome = (ITreeGenome) this.getSpeciesRoot().templateAsGenome(this.getSpeciesRoot().getTemplate(tSpecies));
+		for (IAlleleSpecies species : this.getDiscoveredSpecies(tracker)) {
+			IAlleleTreeSpecies tSpecies = (IAlleleTreeSpecies) species;
+			ITreeGenome genome = (ITreeGenome) this.getSpeciesRoot().templateAsGenome(this.getSpeciesRoot().getTemplate(tSpecies));
 
 			IAlleleTreeSpecies treeSpecies = genome.getPrimary();
-			final ItemStack wood = treeSpecies.getWoodProvider().getWoodStack();
+			ItemStack wood = treeSpecies.getWoodProvider().getWoodStack();
 			if (!wood.isEmpty()) {
 				this.discoveredWoods.add(wood);
 			}
@@ -126,12 +125,12 @@ public class TreeBreedingSystem extends BreedingSystem implements binnie.genetic
 	@Override
 	public final void calculateArrays() {
 		super.calculateArrays();
-		for (final IAlleleSpecies species : this.allActiveSpecies) {
-			final IAlleleTreeSpecies tSpecies = (IAlleleTreeSpecies) species;
-			final ITreeGenome genome = (ITreeGenome) this.getSpeciesRoot().templateAsGenome(this.getSpeciesRoot().getTemplate(tSpecies));
+		for (IAlleleSpecies species : this.allActiveSpecies) {
+			IAlleleTreeSpecies tSpecies = (IAlleleTreeSpecies) species;
+			ITreeGenome genome = (ITreeGenome) this.getSpeciesRoot().templateAsGenome(this.getSpeciesRoot().getTemplate(tSpecies));
 
 			IAlleleTreeSpecies treeSpecies = genome.getPrimary();
-			final ItemStack wood = treeSpecies.getWoodProvider().getWoodStack();
+			ItemStack wood = treeSpecies.getWoodProvider().getWoodStack();
 			if (!wood.isEmpty()) {
 				this.allWoods.add(wood);
 			}
@@ -144,13 +143,13 @@ public class TreeBreedingSystem extends BreedingSystem implements binnie.genetic
 	}
 
 	@Override
-	public Collection<IAlleleSpecies> getTreesThatBearFruit(final ItemStack fruit, final boolean master, final World world, final GameProfile player) {
-		final Collection<IAlleleSpecies> set = master ? this.getAllSpecies() : this.getDiscoveredSpecies(world, player);
-		final List<IAlleleSpecies> found = new ArrayList<>();
-		for (final IAlleleSpecies species : set) {
-			final IAlleleTreeSpecies tSpecies = (IAlleleTreeSpecies) species;
-			final ITreeGenome genome = (ITreeGenome) this.getSpeciesRoot().templateAsGenome(this.getSpeciesRoot().getTemplate(tSpecies));
-			for (final ItemStack fruit2 : genome.getFruitProvider().getProducts().keySet()) {
+	public Collection<IAlleleSpecies> getTreesThatBearFruit(ItemStack fruit, boolean master, World world, GameProfile player) {
+		Collection<IAlleleSpecies> set = master ? this.getAllSpecies() : this.getDiscoveredSpecies(world, player);
+		List<IAlleleSpecies> found = new ArrayList<>();
+		for (IAlleleSpecies species : set) {
+			IAlleleTreeSpecies tSpecies = (IAlleleTreeSpecies) species;
+			ITreeGenome genome = (ITreeGenome) this.getSpeciesRoot().templateAsGenome(this.getSpeciesRoot().getTemplate(tSpecies));
+			for (ItemStack fruit2 : genome.getFruitProvider().getProducts().keySet()) {
 				if (fruit2.isItemEqual(fruit)) {
 					found.add(species);
 				}
@@ -160,22 +159,22 @@ public class TreeBreedingSystem extends BreedingSystem implements binnie.genetic
 	}
 
 	@Override
-	public Collection<IAlleleSpecies> getTreesThatCanBearFruit(final ItemStack fruit, final boolean master, final World world, final GameProfile player) {
-		final Collection<IAlleleSpecies> set = master ? this.getAllSpecies() : this.getDiscoveredSpecies(world, player);
-		final List<IAlleleSpecies> found = new ArrayList<>();
-		final Set<IFruitFamily> providers = new HashSet<>();
-		for (final IAlleleSpecies species : set) {
-			final IAlleleTreeSpecies tSpecies = (IAlleleTreeSpecies) species;
-			final ITreeGenome genome = (ITreeGenome) this.getSpeciesRoot().templateAsGenome(this.getSpeciesRoot().getTemplate(tSpecies));
-			for (final ItemStack fruit2 : genome.getFruitProvider().getProducts().keySet()) {
+	public Collection<IAlleleSpecies> getTreesThatCanBearFruit(ItemStack fruit, boolean master, World world, GameProfile player) {
+		Collection<IAlleleSpecies> set = master ? this.getAllSpecies() : this.getDiscoveredSpecies(world, player);
+		List<IAlleleSpecies> found = new ArrayList<>();
+		Set<IFruitFamily> providers = new HashSet<>();
+		for (IAlleleSpecies species : set) {
+			IAlleleTreeSpecies tSpecies = (IAlleleTreeSpecies) species;
+			ITreeGenome genome = (ITreeGenome) this.getSpeciesRoot().templateAsGenome(this.getSpeciesRoot().getTemplate(tSpecies));
+			for (ItemStack fruit2 : genome.getFruitProvider().getProducts().keySet()) {
 				if (fruit2.isItemEqual(fruit)) {
 					providers.add(genome.getFruitProvider().getFamily());
 				}
 			}
 		}
-		for (final IAlleleSpecies species : set) {
-			final IAlleleTreeSpecies tSpecies = (IAlleleTreeSpecies) species;
-			for (final IFruitFamily family : providers) {
+		for (IAlleleSpecies species : set) {
+			IAlleleTreeSpecies tSpecies = (IAlleleTreeSpecies) species;
+			for (IFruitFamily family : providers) {
 				if (tSpecies.getSuitableFruit().contains(family)) {
 					found.add(species);
 					break;
@@ -186,14 +185,14 @@ public class TreeBreedingSystem extends BreedingSystem implements binnie.genetic
 	}
 
 	@Override
-	public Collection<IAlleleSpecies> getTreesThatHaveWood(final ItemStack wood, final boolean master, final World world, final GameProfile player) {
-		final Collection<IAlleleSpecies> set = master ? this.getAllSpecies() : this.getDiscoveredSpecies(world, player);
-		final List<IAlleleSpecies> found = new ArrayList<>();
-		for (final IAlleleSpecies species : set) {
+	public Collection<IAlleleSpecies> getTreesThatHaveWood(ItemStack wood, boolean master, World world, GameProfile player) {
+		Collection<IAlleleSpecies> set = master ? this.getAllSpecies() : this.getDiscoveredSpecies(world, player);
+		List<IAlleleSpecies> found = new ArrayList<>();
+		for (IAlleleSpecies species : set) {
 			IAlleleTreeSpecies tSpecies = (IAlleleTreeSpecies) species;
 			ITreeGenome genome = TreeManager.treeRoot.templateAsGenome(TreeManager.treeRoot.getTemplate(tSpecies));
 			IAlleleTreeSpecies treeSpecies = genome.getPrimary();
-			final ItemStack woodStack = treeSpecies.getWoodProvider().getWoodStack();
+			ItemStack woodStack = treeSpecies.getWoodProvider().getWoodStack();
 
 			if (woodStack.isItemEqual(wood)) {
 				found.add(species);
@@ -203,7 +202,7 @@ public class TreeBreedingSystem extends BreedingSystem implements binnie.genetic
 	}
 
 	@Override
-	public boolean isDNAManipulable(final ItemStack member) {
+	public boolean isDNAManipulable(ItemStack member) {
 		ISpeciesType type = this.getSpeciesRoot().getType(member);
 		return isDNAManipulable(type);
 	}
@@ -215,7 +214,7 @@ public class TreeBreedingSystem extends BreedingSystem implements binnie.genetic
 
 	@Override
 	@Nullable
-	public IIndividual getConversion(final ItemStack stack) {
+	public IIndividual getConversion(ItemStack stack) {
 		/*for (final Map.Entry<ItemStack, IIndividual> entry : TreeManager.treeRoot.getIndividualTemplates()) {
 			if (ItemStack.areItemStacksEqual(stack, entry.getKey())) {
 				return entry.getValue();
@@ -230,46 +229,46 @@ public class TreeBreedingSystem extends BreedingSystem implements binnie.genetic
 	}
 
 	@Override
-	public void addExtraAlleles(final IChromosomeType chromosome, final TreeSet<IAllele> alleles) {
+	public void addExtraAlleles(IChromosomeType chromosome, Set<IAllele> alleles) {
 		switch ((EnumTreeChromosome) chromosome) {
 			case FERTILITY: {
-				for (final ForestryAllele.Saplings a : ForestryAllele.Saplings.values()) {
+				for (ForestryAllele.Saplings a : ForestryAllele.Saplings.values()) {
 					alleles.add(a.getAllele());
 				}
 				break;
 			}
 			case GIRTH: {
-				for (final ForestryAllele.Int a2 : ForestryAllele.Int.values()) {
+				for (ForestryAllele.Int a2 : ForestryAllele.Int.values()) {
 					alleles.add(a2.getAllele());
 				}
 				break;
 			}
 			case HEIGHT: {
-				for (final ForestryAllele.TreeHeight a3 : ForestryAllele.TreeHeight.values()) {
+				for (ForestryAllele.TreeHeight a3 : ForestryAllele.TreeHeight.values()) {
 					alleles.add(a3.getAllele());
 				}
 				break;
 			}
 			case MATURATION: {
-				for (final ForestryAllele.Maturation a4 : ForestryAllele.Maturation.values()) {
+				for (ForestryAllele.Maturation a4 : ForestryAllele.Maturation.values()) {
 					alleles.add(a4.getAllele());
 				}
 				break;
 			}
 			case SAPPINESS: {
-				for (final ForestryAllele.Sappiness a5 : ForestryAllele.Sappiness.values()) {
+				for (ForestryAllele.Sappiness a5 : ForestryAllele.Sappiness.values()) {
 					alleles.add(a5.getAllele());
 				}
 				break;
 			}
 			case YIELD: {
-				for (final ForestryAllele.Yield a7 : ForestryAllele.Yield.values()) {
+				for (ForestryAllele.Yield a7 : ForestryAllele.Yield.values()) {
 					alleles.add(a7.getAllele());
 				}
 				break;
 			}
 			case FIREPROOF: {
-				for (final ForestryAllele.Bool a8 : ForestryAllele.Bool.values()) {
+				for (ForestryAllele.Bool a8 : ForestryAllele.Bool.values()) {
 					alleles.add(a8.getAllele());
 				}
 				break;

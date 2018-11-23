@@ -14,11 +14,11 @@ import binnie.core.gui.resource.textures.CraftGUITexture;
 public class ControlScrollBar extends Control {
 	protected final IControlScrollable scrollable;
 
-	public ControlScrollBar(final ControlScroll parent) {
+	public ControlScrollBar(ControlScroll parent) {
 		this(parent, 0, 0, parent.getSize().xPos(), parent.getSize().yPos(), parent.getScrollableWidget());
 	}
 
-	public ControlScrollBar(final IWidget parent, final int x, final int y, final int w, final int h, final IControlScrollable scrollable2) {
+	public ControlScrollBar(IWidget parent, int x, int y, int w, int h, IControlScrollable scrollable2) {
 		super(parent, x, y, w, h);
 		this.scrollable = scrollable2;
 		this.addAttribute(Attribute.MOUSE_OVER);
@@ -26,10 +26,10 @@ public class ControlScrollBar extends Control {
 			ControlScrollBar.this.scrollable.movePercentage(event.getDy() / (float) (ControlScrollBar.this.getHeight() - ControlScrollBar.this.getBarHeight()));
 		});
 		this.addSelfEventHandler(EventMouse.Down.class, event -> {
-			final float shownPercentage = ControlScrollBar.this.scrollable.getPercentageShown();
-			final float percentageIndex = ControlScrollBar.this.scrollable.getPercentageIndex();
-			final float minPercent = (1.0f - shownPercentage) * percentageIndex;
-			final float maxPercent = minPercent + shownPercentage;
+			float shownPercentage = ControlScrollBar.this.scrollable.getPercentageShown();
+			float percentageIndex = ControlScrollBar.this.scrollable.getPercentageIndex();
+			float minPercent = (1.0f - shownPercentage) * percentageIndex;
+			float maxPercent = minPercent + shownPercentage;
 			float clickedPercentage = (float) ControlScrollBar.this.getRelativeMousePosition().yPos() / (ControlScrollBar.this.getHeight() - 2.0f);
 			clickedPercentage = Math.max(Math.min(clickedPercentage, 1.0f), 0.0f);
 			if (clickedPercentage > maxPercent) {
@@ -55,14 +55,14 @@ public class ControlScrollBar extends Control {
 		if (height < 6) {
 			height = 6;
 		}
-		final int yOffset = Math.round((this.getHeight() - this.getBarHeight()) * this.scrollable.getPercentageIndex());
+		int yOffset = Math.round((this.getHeight() - this.getBarHeight()) * this.scrollable.getPercentageIndex());
 		return new Area(0, yOffset, this.getSize().xPos(), height);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		final Area renderArea = this.getRenderArea();
+		Area renderArea = this.getRenderArea();
 		Object texture = CraftGUITexture.SCROLL_DISABLED;
 		if (this.isMouseOver()) {
 			texture = CraftGUITexture.SCROLL_HIGHLIGHTED;

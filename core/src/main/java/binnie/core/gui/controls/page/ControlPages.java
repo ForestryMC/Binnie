@@ -13,13 +13,13 @@ import binnie.core.gui.events.EventValueChanged;
 public class ControlPages<T> extends Control implements IControlValues<T>, IControlValue<T> {
 	private T value;
 
-	public ControlPages(final IWidget parent, final int x, final int y, final int w, final int h) {
+	public ControlPages(IWidget parent, int x, int y, int w, int h) {
 		super(parent, x, y, w, h);
 		this.value = null;
 	}
 
 	@Override
-	public boolean isChildVisible(final IWidget child) {
+	public boolean isChildVisible(IWidget child) {
 		return child != null && this.value == ((IControlValue) child).getValue();
 	}
 
@@ -29,7 +29,7 @@ public class ControlPages<T> extends Control implements IControlValues<T>, ICont
 	}
 
 	@Override
-	public void setValue(final T value) {
+	public void setValue(T value) {
 		if (this.value != value) {
 			this.value = value;
 			this.callEvent(new EventValueChanged<Object>(this, value));
@@ -38,8 +38,8 @@ public class ControlPages<T> extends Control implements IControlValues<T>, ICont
 
 	@Override
 	public Collection<T> getValues() {
-		final List<T> list = new ArrayList<>();
-		for (final IWidget child : this.getChildren()) {
+		List<T> list = new ArrayList<>();
+		for (IWidget child : this.getChildren()) {
 			list.add((T) ((IControlValue) child).getValue());
 		}
 		return list;

@@ -25,11 +25,11 @@ public class ControlItemDisplay extends Control implements ITooltip {
 	private ItemStack itemStack;
 	private boolean rotating;
 
-	public ControlItemDisplay(final IWidget parent, final int x, final int y) {
+	public ControlItemDisplay(IWidget parent, int x, int y) {
 		this(parent, x, y, 16);
 	}
 
-	public ControlItemDisplay(final IWidget parent, final int f, final int y, final ItemStack stack, final boolean tooltip) {
+	public ControlItemDisplay(IWidget parent, int f, int y, ItemStack stack, boolean tooltip) {
 		this(parent, f, y, 16);
 		this.setItemStack(stack);
 		if (tooltip) {
@@ -37,7 +37,7 @@ public class ControlItemDisplay extends Control implements ITooltip {
 		}
 	}
 
-	public ControlItemDisplay(final IWidget parent, final int x, final int y, final int size) {
+	public ControlItemDisplay(IWidget parent, int x, int y, int size) {
 		super(parent, x, y, size, size);
 		this.itemStack = ItemStack.EMPTY;
 		this.hasTooltip = false;
@@ -56,7 +56,7 @@ public class ControlItemDisplay extends Control implements ITooltip {
 			return;
 		}
 
-		final IPoint relativeToWindow = this.getAbsolutePosition().sub(this.getTopParent().getPosition());
+		IPoint relativeToWindow = this.getAbsolutePosition().sub(this.getTopParent().getPosition());
 		if (relativeToWindow.xPos() > Window.get(this).getSize().xPos() + 100 || relativeToWindow.yPos() > Window.get(this).getSize().yPos() + 100) {
 			return;
 		}
@@ -64,7 +64,7 @@ public class ControlItemDisplay extends Control implements ITooltip {
 		GlStateManager.enableDepth();
 		if (this.getSize().xPos() != 16) {
 			GlStateManager.pushMatrix();
-			final float scale = this.getSize().xPos() / 16.0f;
+			float scale = this.getSize().xPos() / 16.0f;
 			GlStateManager.scale(scale, scale, 1);
 			RenderUtil.drawItem(Point.ZERO, this.itemStack, this.rotating);
 			GlStateManager.popMatrix();
@@ -95,7 +95,7 @@ public class ControlItemDisplay extends Control implements ITooltip {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
+	public void getTooltip(Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		if (this.hasTooltip && !this.itemStack.isEmpty()) {
 			List<String> itemStackTooltip = this.itemStack.getTooltip(((Window) this.getTopParent()).getPlayer(), tooltipFlag);
 			tooltip.add(itemStackTooltip);

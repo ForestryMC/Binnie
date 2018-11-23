@@ -15,12 +15,12 @@ import binnie.core.machines.Machine;
 import binnie.extrabees.machines.hatchery.AlvearyHatchery;
 
 public class WindowAlvearyHatchery extends Window {
-	public WindowAlvearyHatchery(final EntityPlayer player, final IInventory inventory, final Side side) {
+	public WindowAlvearyHatchery(EntityPlayer player, IInventory inventory, Side side) {
 		super(176, 144, player, inventory, side);
 	}
 
 	@Nullable
-	public static Window create(final EntityPlayer player, @Nullable final IInventory inventory, final Side side) {
+	public static Window create(EntityPlayer player, @Nullable IInventory inventory, Side side) {
 		if (inventory == null) {
 			return null;
 		}
@@ -31,7 +31,7 @@ public class WindowAlvearyHatchery extends Window {
 	public void initialiseClient() {
 		this.setTitle(Machine.getMachine(this.getInventory()).getPackage().getDisplayName());
 		ControlPlayerInventory playerInventory = new ControlPlayerInventory(this);
-		final ControlSlotArray.Builder slot = new ControlSlotArray.Builder(this, 43, 30, 5, 1);
+		ControlSlotArray.Builder slot = new ControlSlotArray.Builder(this, 43, 30, 5, 1);
 		slot.create(AlvearyHatchery.SLOT_LARVAE);
 	}
 

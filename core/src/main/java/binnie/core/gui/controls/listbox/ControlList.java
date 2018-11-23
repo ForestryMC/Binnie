@@ -24,7 +24,7 @@ public class ControlList<T> extends Control implements IControlValue<T> {
 	@Nullable
 	private T value;
 
-	protected ControlList(final ControlListBox<T> parent, final int x, final int y, final int w, final int h, @Nullable final T defaultValue) {
+	protected ControlList(ControlListBox<T> parent, int x, int y, int w, int h, @Nullable T defaultValue) {
 		super(parent, x, y, w, h);
 		this.value = defaultValue;
 		this.defaultValue = defaultValue;
@@ -40,13 +40,13 @@ public class ControlList<T> extends Control implements IControlValue<T> {
 	}
 
 	@Override
-	public void setValue(@Nullable final T value) {
+	public void setValue(@Nullable T value) {
 		if (value == this.value) {
 			return;
 		}
 		this.value = value;
 		if (this.optionWidgets.containsKey(value)) {
-			final IWidget child = this.optionWidgets.get(value);
+			IWidget child = this.optionWidgets.get(value);
 			this.parent.ensureVisible(child.getYPos(), child.getYPos() + child.getHeight(), this.getHeight());
 		}
 		this.parent.callEvent(new EventValueChanged<Object>(this.parent, value));
@@ -60,7 +60,7 @@ public class ControlList<T> extends Control implements IControlValue<T> {
 	public void filterOptions() {
 		int height = 0;
 		this.optionWidgets.clear();
-		for (final Map.Entry<T, IWidget> entry : this.allOptions.entrySet()) {
+		for (Map.Entry<T, IWidget> entry : this.allOptions.entrySet()) {
 			if (this.isValidOption(entry.getValue())) {
 				entry.getValue().show();
 				this.optionWidgets.put(entry.getKey(), entry.getValue());
@@ -78,19 +78,19 @@ public class ControlList<T> extends Control implements IControlValue<T> {
 		return this.optionWidgets.keySet();
 	}
 
-	public void setOptions(final Collection<T> options) {
+	public void setOptions(Collection<T> options) {
 		this.deleteAllChildren();
 		this.allOptions.clear();
-		for (final T option : options) {
-			final IWidget optionWidget = this.parent.createOption(option, 0);
+		for (T option : options) {
+			IWidget optionWidget = this.parent.createOption(option, 0);
 			this.allOptions.put(option, optionWidget);
 		}
 		this.filterOptions();
 	}
 
-	public int getIndexOf(final T value) {
+	public int getIndexOf(T value) {
 		int index = 0;
-		for (final T option : this.getOptions()) {
+		for (T option : this.getOptions()) {
 			if (option.equals(value)) {
 				return index;
 			}
@@ -103,9 +103,9 @@ public class ControlList<T> extends Control implements IControlValue<T> {
 		return this.getIndexOf(this.getValue());
 	}
 
-	public void setIndex(final int currentIndex) {
+	public void setIndex(int currentIndex) {
 		int index = 0;
-		for (final T option : this.getOptions()) {
+		for (T option : this.getOptions()) {
 			if (index == currentIndex) {
 				this.setValue(option);
 				return;
@@ -115,11 +115,11 @@ public class ControlList<T> extends Control implements IControlValue<T> {
 		this.setValue(defaultValue);
 	}
 
-	private boolean isValidOption(final IWidget widget) {
+	private boolean isValidOption(IWidget widget) {
 		return this.validator == null || this.validator.isValid(widget);
 	}
 
-	public void setValidator(final IValidator<IWidget> validator) {
+	public void setValidator(IValidator<IWidget> validator) {
 		if (this.validator != validator) {
 			this.validator = validator;
 			this.filterOptions();

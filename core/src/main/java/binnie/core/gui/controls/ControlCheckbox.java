@@ -18,7 +18,7 @@ import binnie.core.gui.resource.textures.CraftGUITexture;
 public class ControlCheckbox extends Control implements IControlValue<Boolean> {
 	private boolean value;
 
-	public ControlCheckbox(final IWidget parent, final int x, final int y, final int w, final String text, final boolean bool) {
+	public ControlCheckbox(IWidget parent, int x, int y, int w, String text, boolean bool) {
 		super(parent, x, y, (w > 16) ? w : 16, 16);
 		this.value = bool;
 		if (w > 16) {
@@ -30,7 +30,7 @@ public class ControlCheckbox extends Control implements IControlValue<Boolean> {
 		});
 	}
 
-	protected void onValueChanged(final boolean value) {
+	protected void onValueChanged(boolean value) {
 	}
 
 	@Override
@@ -39,7 +39,7 @@ public class ControlCheckbox extends Control implements IControlValue<Boolean> {
 	}
 
 	@Override
-	public void setValue(final Boolean value) {
+	public void setValue(Boolean value) {
 		this.value = value;
 		this.onValueChanged(value);
 		this.callEvent(new EventValueChanged<Object>(this, value));

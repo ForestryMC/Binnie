@@ -13,7 +13,7 @@ public class SlotValidatorBreweryYeast extends SlotValidator {
 	}
 
 	@Override
-	public boolean isValid(final ItemStack itemStack) {
+	public boolean isValid(ItemStack itemStack) {
 		return BreweryRecipeManager.isValidYeast(itemStack);
 	}
 

@@ -31,11 +31,11 @@ public class TreeGenBase extends WorldGenerator {
 		this.minPodHeight = 3;
 	}
 
-	protected final int randBetween(final int a, final int b) {
+	protected final int randBetween(int a, int b) {
 		return a + this.rand.nextInt(b - a);
 	}
 
-	protected final float randBetween(final float a, final float b) {
+	protected final float randBetween(float a, float b) {
 		return a + this.rand.nextFloat() * (b - a);
 	}
 

@@ -11,7 +11,7 @@ public class DatabaseTab implements ITooltipHelp {
 	private final String modId;
 	private final String unloc;
 
-	public DatabaseTab(final AbstractMod mod, final String unloc) {
+	public DatabaseTab(AbstractMod mod, String unloc) {
 		this.modId = mod.getModId();
 		this.unloc = unloc;
 	}
@@ -27,7 +27,7 @@ public class DatabaseTab implements ITooltipHelp {
 	}
 
 	@Override
-	public void getHelpTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
+	public void getHelpTooltip(Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		tooltip.add(I18N.localiseOrBlank(this.modId + ".gui.database.tab." + this.unloc + ".help"));
 	}
 }

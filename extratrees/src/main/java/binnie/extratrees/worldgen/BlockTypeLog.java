@@ -14,7 +14,7 @@ public class BlockTypeLog implements WorldGenBlockType {
 	}
 
 	@Override
-	public void setBlock(final World world, final ITreeGenData tree, final BlockPos pos) {
+	public void setBlock(World world, ITreeGenData tree, BlockPos pos) {
 		treeGenData.setLogBlock(world, pos, EnumFacing.UP);
 	}
 }

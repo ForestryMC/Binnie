@@ -48,7 +48,7 @@ import org.lwjgl.opengl.GL11;
 
 public class ControlLiquidTank extends Control implements ITooltip {
 	public static final List<Integer> tankError = new ArrayList<>();
-	private int tankID;
+	private final int tankID;
 	private boolean horizontal;
 
 	public ControlLiquidTank(IWidget parent, int x, int y, int tankID) {
@@ -63,7 +63,7 @@ public class ControlLiquidTank extends Control implements ITooltip {
 		this.addAttribute(Attribute.MOUSE_OVER);
 		this.addSelfEventHandler(EventMouse.Down.class, event -> {
 			if (event.getButton() == 0) {
-				final NBTTagCompound nbt = new NBTTagCompound();
+				NBTTagCompound nbt = new NBTTagCompound();
 				nbt.setByte("id", (byte) ControlLiquidTank.this.tankID);
 				Window.get(ControlLiquidTank.this.getWidget()).sendClientAction("tank-click", nbt);
 			}
@@ -88,10 +88,10 @@ public class ControlLiquidTank extends Control implements ITooltip {
 		CraftGUI.RENDER.texture(this.horizontal ? CraftGUITexture.HORIZONTAL_LIQUID_TANK : CraftGUITexture.LIQUID_TANK, Point.ZERO);
 		GuiCraftGUI gui = Window.get(this).getGui();
 		if (this.isMouseOver() && gui.isHelpMode()) {
-			final int c = -1442840576 + MinecraftTooltip.getOutline(Tooltip.Type.HELP);
+			int c = -1442840576 + MinecraftTooltip.getOutline(Tooltip.Type.HELP);
 			RenderUtil.drawGradientRect(this.getArea().inset(1), c, c);
 		} else if (ControlLiquidTank.tankError.contains(this.tankID)) {
-			final int c = -1442840576 + MinecraftTooltip.getOutline(MinecraftTooltip.Type.ERROR);
+			int c = -1442840576 + MinecraftTooltip.getOutline(MinecraftTooltip.Type.ERROR);
 			RenderUtil.drawGradientRect(this.getArea().inset(1), c, c);
 		} else if (this.getTopParent().getMousedOverWidget() == this) {
 			if (!gui.getDraggedItem().isEmpty()) {
@@ -102,21 +102,21 @@ public class ControlLiquidTank extends Control implements ITooltip {
 		}
 
 		if (this.isTankValid()) {
-			final int height = this.horizontal ? 16 : 58;
-			final int squaled = Math.round(height * (this.getTank().getAmount() / this.getTank().getCapacity()));
-			final int yPos = height + 1;
-			final Fluid fluid = this.getTank().getLiquid().getFluid();
-			final int hex = fluid.getColor(this.getTank().getLiquid());
-			final int r = (hex & 0xFF0000) >> 16;
-			final int g = (hex & 0xFF00) >> 8;
-			final int b = hex & 0xFF;
+			int height = this.horizontal ? 16 : 58;
+			int squaled = Math.round(height * (this.getTank().getAmount() / this.getTank().getCapacity()));
+			int yPos = height + 1;
+			Fluid fluid = this.getTank().getLiquid().getFluid();
+			int hex = fluid.getColor(this.getTank().getLiquid());
+			int r = (hex & 0xFF0000) >> 16;
+			int g = (hex & 0xFF00) >> 8;
+			int b = hex & 0xFF;
 			GlStateManager.color(r / 255.0f, g / 255.0f, b / 255.0f, 1.0f);
 			GlStateManager.enableBlend();
 			{
 				GlStateManager.blendFunc(770, 771);
-				final IPoint pos = this.getAbsolutePosition();
-				final IPoint offset = new Point(0, height - squaled);
-				final IArea limited = this.getArea().inset(1);
+				IPoint pos = this.getAbsolutePosition();
+				IPoint offset = new Point(0, height - squaled);
+				IArea limited = this.getArea().inset(1);
 				if (this.horizontal) {
 					limited.setSize(new Point(limited.width() - 1, limited.height()));
 				}
@@ -126,7 +126,7 @@ public class ControlLiquidTank extends Control implements ITooltip {
 					BinnieCore.getBinnieProxy().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 					for (int y = 0; y < height; y += 16) {
 						for (int x = 0; x < (this.horizontal ? 58 : 16); x += 16) {
-							final TextureAtlasSprite icon = BinnieCore.getBinnieProxy().getTextureAtlasSprite(fluid.getStill());
+							TextureAtlasSprite icon = BinnieCore.getBinnieProxy().getTextureAtlasSprite(fluid.getStill());
 							RenderUtil.drawSprite(new Point(1 + x, 1 + y), icon);
 						}
 					}
@@ -144,12 +144,12 @@ public class ControlLiquidTank extends Control implements ITooltip {
 		CraftGUI.RENDER.texture(this.horizontal ? CraftGUITexture.HORIZONTAL_LIQUID_TANK_OVERLAY : CraftGUITexture.LIQUID_TANK_OVERLAY, Point.ZERO);
 		GuiCraftGUI gui = Window.get(this).getGui();
 		if (this.isMouseOver() && gui.isHelpMode()) {
-			final IArea area = this.getArea();
+			IArea area = this.getArea();
 			RenderUtil.setColour(MinecraftTooltip.getOutline(Tooltip.Type.HELP));
 			CraftGUI.RENDER.texture(CraftGUITexture.OUTLINE, area.outset(1));
 		}
 		if (ControlLiquidTank.tankError.contains(this.tankID)) {
-			final IArea area = this.getArea();
+			IArea area = this.getArea();
 			RenderUtil.setColour(MinecraftTooltip.getOutline(MinecraftTooltip.Type.ERROR));
 			CraftGUI.RENDER.texture(CraftGUITexture.OUTLINE, area.outset(1));
 		}
@@ -157,9 +157,9 @@ public class ControlLiquidTank extends Control implements ITooltip {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getHelpTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
+	public void getHelpTooltip(Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		if (this.getTankSlot() != null) {
-			final TankSlot slot = this.getTankSlot();
+			TankSlot slot = this.getTankSlot();
 			tooltip.add(slot.getName());
 			NumberFormat numberFormat = I18N.getNumberFormat();
 			tooltip.add(I18N.localise(ModId.CORE, "gui.tank.capacity", numberFormat.format(this.getTankCapacity())));
@@ -181,11 +181,11 @@ public class ControlLiquidTank extends Control implements ITooltip {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
+	public void getTooltip(Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		if (this.isTankValid()) {
 			NumberFormat numberFormat = I18N.getNumberFormat();
 			NumberFormat percentFormat = I18N.getPercentFormat();
-			final float percentage = this.getTank().getAmount() / this.getTankCapacity();
+			float percentage = this.getTank().getAmount() / this.getTankCapacity();
 			tooltip.add(this.getTank().getName());
 			String percentFull = percentFormat.format(percentage);
 			tooltip.add(I18N.localise(ModId.CORE, "gui.tank.percent.full", percentFull));
@@ -198,7 +198,7 @@ public class ControlLiquidTank extends Control implements ITooltip {
 
 	@Nullable
 	private TankSlot getTankSlot() {
-		final ITankMachine tank = Machine.getInterface(ITankMachine.class, Window.get(this).getInventory());
+		ITankMachine tank = Machine.getInterface(ITankMachine.class, Window.get(this).getInventory());
 		return (tank != null) ? tank.getTankSlot(this.tankID) : null;
 	}
 

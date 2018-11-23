@@ -48,7 +48,7 @@ public class ETFruitProviderRipening extends ETFruitProviderNone {
 		return this;
 	}
 
-	private float getRipeningStage(final int ripeningTime) {
+	private float getRipeningStage(int ripeningTime) {
 		if (ripeningTime >= this.ripeningPeriod) {
 			return 1.0f;
 		}

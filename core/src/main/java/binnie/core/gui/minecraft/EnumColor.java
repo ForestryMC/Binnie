@@ -22,7 +22,7 @@ public enum EnumColor {
 	private final String name;
 	private final char code;
 
-	EnumColor(final String name, int color, final char code) {
+	EnumColor(String name, int color, char code) {
 		this.name = name;
 		this.color = color;
 		this.code = code;

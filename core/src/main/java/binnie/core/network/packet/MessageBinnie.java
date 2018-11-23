@@ -16,13 +16,13 @@ public final class MessageBinnie implements IMessage {
 	public MessageBinnie() {
 	}
 
-	public MessageBinnie(final int id, final MessageBase base) {
+	public MessageBinnie(int id, MessageBase base) {
 		this.id = id;
 		this.message = base;
 	}
 
 	@Override
-	public void toBytes(final ByteBuf buf) {
+	public void toBytes(ByteBuf buf) {
 		buf.writeByte(this.id);
 		try {
 			this.message.writeData(buf);
@@ -32,7 +32,7 @@ public final class MessageBinnie implements IMessage {
 	}
 
 	@Override
-	public void fromBytes(final ByteBuf buf) {
+	public void fromBytes(ByteBuf buf) {
 		this.id = buf.readByte();
 		this.data = buf.retain();
 	}

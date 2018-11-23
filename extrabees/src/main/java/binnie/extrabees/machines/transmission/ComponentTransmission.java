@@ -18,7 +18,7 @@ import binnie.extrabees.machines.TileExtraBeeAlveary;
 import binnie.extrabees.utils.ComponentBeeModifier;
 
 public class ComponentTransmission extends ComponentBeeModifier implements IBeeModifier, IBeeListener {
-	public ComponentTransmission(final Machine machine) {
+	public ComponentTransmission(Machine machine) {
 		super(machine);
 	}
 
@@ -30,8 +30,8 @@ public class ComponentTransmission extends ComponentBeeModifier implements IBeeM
 		if (energy == 0) {
 			return;
 		}
-		final TileExtraBeeAlveary tile = (TileExtraBeeAlveary) this.getMachine().getTileEntity();
-		final List<IEnergyStorage> handlers = new LinkedList<>();
+		TileExtraBeeAlveary tile = (TileExtraBeeAlveary) this.getMachine().getTileEntity();
+		List<IEnergyStorage> handlers = new LinkedList<>();
 		for (IMultiblockComponent component : tile.getAlvearyBlocks()) {
 			if (!(component instanceof TileEntity)) {
 				continue;
@@ -44,7 +44,7 @@ public class ComponentTransmission extends ComponentBeeModifier implements IBeeM
 		if (handlers.isEmpty()) {
 			return;
 		}
-		final int maxOutput = 500;
+		int maxOutput = 500;
 		int output = energy / handlers.size();
 		if (output > maxOutput) {
 			output = maxOutput;
@@ -52,8 +52,8 @@ public class ComponentTransmission extends ComponentBeeModifier implements IBeeM
 		if (output < 1) {
 			output = 1;
 		}
-		for (final IEnergyStorage handler : handlers) {
-			final int recieved = handler.receiveEnergy(output, false);
+		for (IEnergyStorage handler : handlers) {
+			int recieved = handler.receiveEnergy(output, false);
 			this.getUtil().getPoweredMachine().receiveEnergy(-recieved, false);
 			energy = this.getUtil().getPoweredMachine().getEnergyStored();
 			if (energy <= 0) {

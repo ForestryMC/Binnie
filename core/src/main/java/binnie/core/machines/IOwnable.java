@@ -8,5 +8,5 @@ interface IOwnable {
 	@Nullable
 	GameProfile getOwner();
 
-	void setOwner(final GameProfile owner);
+	void setOwner(GameProfile owner);
 }

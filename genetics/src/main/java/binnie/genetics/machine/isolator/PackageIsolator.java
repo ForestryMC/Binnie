@@ -25,11 +25,11 @@ public class PackageIsolator extends GeneticMachine.PackageGeneticBase implement
 	}
 
 	@Override
-	public void createMachine(final Machine machine) {
+	public void createMachine(Machine machine) {
 		// GUI
 		new ComponentGeneticGUI(machine, GeneticsGUI.ISOLATOR);
 		// Inventory
-		final ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
+		ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
 		InventorySlot slotEnzyme = inventory.addSlot(Isolator.SLOT_ENZYME, getSlotRL("enzyme"));
 		slotEnzyme.setValidator(new SlotValidator.Item(GeneticsItems.Enzyme.get(1), ModuleMachine.getSpriteEnzyme()));
 		slotEnzyme.forbidExtraction();
@@ -57,13 +57,13 @@ public class PackageIsolator extends GeneticMachine.PackageGeneticBase implement
 			slot.forbidInsertion();
 		}
 		// Tanks
-		final ComponentTankContainer tanks = new ComponentTankContainer(machine);
+		ComponentTankContainer tanks = new ComponentTankContainer(machine);
 		tanks.addTank(Isolator.TANK_ETHANOL, "input", 1000).setValidator(new EthanolTankValidator());
 		//Charged Slots
-		final ComponentChargedSlots chargedSlots = new ComponentChargedSlots(machine);
+		ComponentChargedSlots chargedSlots = new ComponentChargedSlots(machine);
 		chargedSlots.addCharge(Isolator.SLOT_ENZYME);
 		// Transfer
-		final ComponentInventoryTransfer transfer = new ComponentInventoryTransfer(machine);
+		ComponentInventoryTransfer transfer = new ComponentInventoryTransfer(machine);
 		transfer.addRestock(Isolator.SLOT_RESERVE, Isolator.SLOT_TARGET, 1);
 		transfer.addStorage(Isolator.SLOT_RESULUT, Isolator.SLOT_FINISHED);
 		// Logic

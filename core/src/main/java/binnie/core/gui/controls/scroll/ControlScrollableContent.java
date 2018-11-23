@@ -15,7 +15,7 @@ public class ControlScrollableContent<T extends IWidget> extends Control impleme
 	private final int scrollBarSize;
 	private float percentageIndex;
 
-	public ControlScrollableContent(final IWidget parent, final int x, final int y, final int w, final int h, final int scrollBarSize) {
+	public ControlScrollableContent(IWidget parent, int x, int y, int w, int h, int scrollBarSize) {
 		super(parent, x, y, w, h);
 		this.percentageIndex = 0;
 		if (scrollBarSize != 0) {
@@ -26,14 +26,14 @@ public class ControlScrollableContent<T extends IWidget> extends Control impleme
 				if (ControlScrollableContent.this.getMovementRange() == 0) {
 					return;
 				}
-				final float percentageMove = 0.8f / ControlScrollableContent.this.getMovementRange();
+				float percentageMove = 0.8f / ControlScrollableContent.this.getMovementRange();
 				ControlScrollableContent.this.movePercentage(percentageMove * -event.getDWheel());
 			}
 		});
 		this.scrollBarSize = scrollBarSize;
 	}
 
-	public void setScrollableContent(@Nullable final T child) {
+	public void setScrollableContent(@Nullable T child) {
 		this.controlChild = child;
 		if (child == null) {
 			return;
@@ -69,12 +69,12 @@ public class ControlScrollableContent<T extends IWidget> extends Control impleme
 	}
 
 	@Override
-	public void setPercentageIndex(final float index) {
+	public void setPercentageIndex(float index) {
 		this.movePercentage(index - this.percentageIndex);
 	}
 
 	@Override
-	public void movePercentage(final float percentage) {
+	public void movePercentage(float percentage) {
 		if (this.controlChild == null) {
 			return;
 		}
@@ -95,7 +95,7 @@ public class ControlScrollableContent<T extends IWidget> extends Control impleme
 		if (this.controlChild == null) {
 			return 0;
 		}
-		final float range = this.controlChild.getSize().yPos() - this.getSize().yPos();
+		float range = this.controlChild.getSize().yPos() - this.getSize().yPos();
 		return Math.max(range, 0);
 	}
 
@@ -104,13 +104,13 @@ public class ControlScrollableContent<T extends IWidget> extends Control impleme
 		this.setPercentageIndex(this.getPercentageIndex());
 	}
 
-	public void ensureVisible(float minY, float maxY, final float totalY) {
+	public void ensureVisible(float minY, float maxY, float totalY) {
 		minY /= totalY;
 		maxY /= totalY;
-		final float shownPercentage = this.getPercentageShown();
-		final float percentageIndex = this.getPercentageIndex();
-		final float minPercent = (1 - shownPercentage) * percentageIndex;
-		final float maxPercent = minPercent + shownPercentage;
+		float shownPercentage = this.getPercentageShown();
+		float percentageIndex = this.getPercentageIndex();
+		float minPercent = (1 - shownPercentage) * percentageIndex;
+		float maxPercent = minPercent + shownPercentage;
 		if (maxY > maxPercent) {
 			this.setPercentageIndex((maxY - shownPercentage) / (1 - shownPercentage));
 		}

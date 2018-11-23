@@ -21,7 +21,7 @@ public class ControlButton extends Control {
 	@Nullable
 	private String text;
 
-	public ControlButton(final IWidget parent, final int x, final int y, final int width, final int height) {
+	public ControlButton(IWidget parent, int x, int y, int width, int height) {
 		super(parent, x, y, width, height);
 		this.addAttribute(Attribute.MOUSE_OVER);
 		this.addSelfEventHandler(EventMouse.Down.class, event -> {
@@ -30,13 +30,13 @@ public class ControlButton extends Control {
 		});
 	}
 
-	public ControlButton(final IWidget parent, final int x, final int y, final int width, final int height, final String text) {
+	public ControlButton(IWidget parent, int x, int y, int width, int height, String text) {
 		this(parent, x, y, width, height);
 		this.text = text;
 		this.textWidget = new ControlText(this, this.getArea(), text, TextJustification.MIDDLE_CENTER);
 	}
 
-	protected void onMouseClick(final EventMouse.Down event) {
+	protected void onMouseClick(EventMouse.Down event) {
 	}
 
 	@Override

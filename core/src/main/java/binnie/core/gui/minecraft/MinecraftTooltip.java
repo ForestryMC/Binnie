@@ -35,7 +35,7 @@ public class MinecraftTooltip extends Tooltip {
 		private final String mainText;
 		private final String bodyText;
 
-		TypeColour(final int outline, final TextFormatting mainText, final TextFormatting bodyText) {
+		TypeColour(int outline, TextFormatting mainText, TextFormatting bodyText) {
 			this.outline = outline;
 			this.mainText = mainText.toString();
 			this.bodyText = bodyText.toString();

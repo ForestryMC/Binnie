@@ -135,7 +135,7 @@ public enum Cocktail {
 	private final int colour;
 	private final Map<ICocktailIngredient, Integer> ingredients;
 
-	Cocktail(final String name, final GlasswareType glasswareType, final int colour) {
+	Cocktail(String name, GlasswareType glasswareType, int colour) {
 		this.ingredients = new HashMap<>();
 		this.name = name;
 		this.glasswareType = glasswareType;
@@ -143,10 +143,10 @@ public enum Cocktail {
 	}
 
 	@Nullable
-	public static Cocktail get(final Map<ICocktailIngredient, Integer> ingredients) {
-		for (final Cocktail cocktail : values()) {
+	public static Cocktail get(Map<ICocktailIngredient, Integer> ingredients) {
+		for (Cocktail cocktail : values()) {
 			boolean is = true;
-			for (final Map.Entry<ICocktailIngredient, Integer> entry : ingredients.entrySet()) {
+			for (Map.Entry<ICocktailIngredient, Integer> entry : ingredients.entrySet()) {
 				if (!Objects.equals(cocktail.ingredients.get(entry.getKey()), entry.getValue())) {
 					is = false;
 				}
@@ -158,7 +158,7 @@ public enum Cocktail {
 		return null;
 	}
 
-	public static void registerIngredient(final ICocktailIngredient ingredient) {
+	public static void registerIngredient(ICocktailIngredient ingredient) {
 		String id = ingredient.getIdentifier().toLowerCase();
 		Cocktail.cocktailIngredients.put(id, ingredient);
 		DrinkLiquid liquid = new DrinkLiquid(ingredient.getDisplayName(), ingredient.getColor(), ingredient.getTransparency(), ingredient.getABV(), id);
@@ -175,19 +175,19 @@ public enum Cocktail {
 		}
 	}
 
-	public static ICocktailIngredient getIngredient(final String name2) {
+	public static ICocktailIngredient getIngredient(String name2) {
 		return Cocktail.cocktailIngredients.get(name2.toLowerCase());
 	}
 
-	public static boolean isIngredient(final String name) {
+	public static boolean isIngredient(String name) {
 		return Cocktail.cocktailIngredients.containsKey(name.toLowerCase());
 	}
 
-	private void add(final ICocktailIngredient ingredient, final int ratio) {
+	private void add(ICocktailIngredient ingredient, int ratio) {
 		this.ingredients.put(ingredient, ratio);
 	}
 
-	private void add(final ICocktailIngredientProvider ingredient, final int ratio) {
+	private void add(ICocktailIngredientProvider ingredient, int ratio) {
 		add(ingredient.getIngredient(), ratio);
 	}
 }

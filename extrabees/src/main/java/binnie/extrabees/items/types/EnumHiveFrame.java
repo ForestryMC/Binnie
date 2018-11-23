@@ -112,7 +112,7 @@ public enum EnumHiveFrame implements IHiveFrame, IBeeModifier {
 	}
 
 	@Override
-	public ItemStack frameUsed(final IBeeHousing house, final ItemStack frame, final IBee queen, final int wear) {
+	public ItemStack frameUsed(IBeeHousing house, ItemStack frame, IBee queen, int wear) {
 		frame.setItemDamage(frame.getItemDamage() + wear);
 		if (frame.getItemDamage() >= frame.getMaxDamage()) {
 			return ItemStack.EMPTY;
@@ -121,32 +121,32 @@ public enum EnumHiveFrame implements IHiveFrame, IBeeModifier {
 	}
 
 	@Override
-	public float getTerritoryModifier(final IBeeGenome genome, final float currentModifier) {
+	public float getTerritoryModifier(IBeeGenome genome, float currentModifier) {
 		return this.logic.getModifier(EnumBeeModifier.TERRITORY, currentModifier);
 	}
 
 	@Override
-	public float getMutationModifier(final IBeeGenome genome, final IBeeGenome mate, final float currentModifier) {
+	public float getMutationModifier(IBeeGenome genome, IBeeGenome mate, float currentModifier) {
 		return this.logic.getModifier(EnumBeeModifier.MUTATION, currentModifier);
 	}
 
 	@Override
-	public float getLifespanModifier(final IBeeGenome genome, @Nullable final IBeeGenome mate, final float currentModifier) {
+	public float getLifespanModifier(IBeeGenome genome, @Nullable IBeeGenome mate, float currentModifier) {
 		return this.logic.getModifier(EnumBeeModifier.LIFESPAN, currentModifier);
 	}
 
 	@Override
-	public float getProductionModifier(final IBeeGenome genome, final float currentModifier) {
+	public float getProductionModifier(IBeeGenome genome, float currentModifier) {
 		return this.logic.getModifier(EnumBeeModifier.PRODUCTION, currentModifier);
 	}
 
 	@Override
-	public float getFloweringModifier(final IBeeGenome genome, final float currentModifier) {
+	public float getFloweringModifier(IBeeGenome genome, float currentModifier) {
 		return this.logic.getModifier(EnumBeeModifier.FLOWERING, currentModifier);
 	}
 
 	@Override
-	public float getGeneticDecay(final IBeeGenome genome, final float currentModifier) {
+	public float getGeneticDecay(IBeeGenome genome, float currentModifier) {
 		return this.logic.getModifier(EnumBeeModifier.GENETIC_DECAY, currentModifier);
 	}
 

@@ -25,7 +25,7 @@ public class IncubatorLogic extends ComponentProcessIndefinate implements IProce
 	private final Random rand;
 	private boolean roomForOutput;
 
-	public IncubatorLogic(final Machine machine) {
+	public IncubatorLogic(Machine machine) {
 		super(machine, ConfigurationMain.incubatorEnergy);
 		this.recipe = null;
 		this.rand = new Random();
@@ -70,10 +70,10 @@ public class IncubatorLogic extends ComponentProcessIndefinate implements IProce
 	}
 
 	@Nullable
-	private IIncubatorRecipe getRecipe(final ItemStack stack, final FluidStack liquid) {
-		for (final IIncubatorRecipe recipe : Incubator.getRecipes()) {
-			final boolean rightLiquid = recipe.isInputLiquid(liquid);
-			final boolean rightItem = isStackValid(stack, recipe);
+	private IIncubatorRecipe getRecipe(ItemStack stack, FluidStack liquid) {
+		for (IIncubatorRecipe recipe : Incubator.getRecipes()) {
+			boolean rightLiquid = recipe.isInputLiquid(liquid);
+			boolean rightItem = isStackValid(stack, recipe);
 			if (rightLiquid && rightItem) {
 				return recipe;
 			}
@@ -87,13 +87,13 @@ public class IncubatorLogic extends ComponentProcessIndefinate implements IProce
 		if (!this.getUtil().isServer()) {
 			return;
 		}
-		final FluidStack liquid = this.getUtil().getFluid(Incubator.TANK_INPUT);
-		final ItemStack incubator = this.getUtil().getStack(Incubator.SLOT_INCUBATOR);
+		FluidStack liquid = this.getUtil().getFluid(Incubator.TANK_INPUT);
+		ItemStack incubator = this.getUtil().getStack(Incubator.SLOT_INCUBATOR);
 		checkAvailability(liquid, incubator);
 		addSameFromInputToIncubator(incubator);
 		if (this.recipe == null && liquid != null) {
 			if (!incubator.isEmpty()) {
-				final IIncubatorRecipe recipe = this.getRecipe(incubator, liquid);
+				IIncubatorRecipe recipe = this.getRecipe(incubator, liquid);
 				if (recipe != null) {
 					this.recipe = recipe;
 					return;
@@ -101,14 +101,14 @@ public class IncubatorLogic extends ComponentProcessIndefinate implements IProce
 			}
 			IIncubatorRecipe potential = null;
 			int potentialSlot = 0;
-			for (final int slot : Incubator.SLOT_QUEUE) {
-				final ItemStack stack = this.getUtil().getStack(slot);
+			for (int slot : Incubator.SLOT_QUEUE) {
+				ItemStack stack = this.getUtil().getStack(slot);
 				if (stack.isEmpty()) {
 					continue;
 				}
-				for (final IIncubatorRecipe recipe2 : Incubator.getRecipes()) {
-					final boolean rightLiquid = recipe2.isInputLiquid(liquid);
-					final boolean rightItem = isStackValid(stack, recipe2);
+				for (IIncubatorRecipe recipe2 : Incubator.getRecipes()) {
+					boolean rightLiquid = recipe2.isInputLiquid(liquid);
+					boolean rightItem = isStackValid(stack, recipe2);
 					if (rightLiquid && rightItem) {
 						potential = recipe2;
 						potentialSlot = slot;
@@ -122,7 +122,7 @@ public class IncubatorLogic extends ComponentProcessIndefinate implements IProce
 			if (potential != null) {
 				if (tryEmptyIncubator(incubator)) {
 					this.recipe = potential;
-					final ItemStack stack2 = this.getUtil().getStack(potentialSlot);
+					ItemStack stack2 = this.getUtil().getStack(potentialSlot);
 					this.getUtil().setStack(potentialSlot, ItemStack.EMPTY);
 					this.getUtil().setStack(Incubator.SLOT_INCUBATOR, stack2);
 				}
@@ -137,8 +137,8 @@ public class IncubatorLogic extends ComponentProcessIndefinate implements IProce
 		if (incubator.isEmpty() || incubator.getCount() == incubator.getMaxStackSize()) {
 			return;
 		}
-		for (final int slot : Incubator.SLOT_QUEUE) {
-			final ItemStack stack = this.getUtil().getStack(slot);
+		for (int slot : Incubator.SLOT_QUEUE) {
+			ItemStack stack = this.getUtil().getStack(slot);
 			if (stack.isEmpty()) {
 				continue;
 			}
@@ -170,7 +170,7 @@ public class IncubatorLogic extends ComponentProcessIndefinate implements IProce
 		if (transferResult.isSuccess()) {
 			NonNullList<ItemStack> results = transferResult.getRemaining();
 			if (results.size() == 1) {
-				final ItemStack leftover = results.get(0);
+				ItemStack leftover = results.get(0);
 				this.getUtil().setStack(Incubator.SLOT_INCUBATOR, leftover);
 				return leftover.isEmpty();
 			}

@@ -15,13 +15,13 @@ public class FenceType {
 	private final boolean solid;
 	private final boolean embossed;
 
-	public FenceType(final int size, final boolean solid, final boolean embedded) {
+	public FenceType(int size, boolean solid, boolean embedded) {
 		this.size = size;
 		this.solid = solid;
 		this.embossed = embedded;
 	}
 
-	public FenceType(final int meta) {
+	public FenceType(int meta) {
 		this.size = (meta & 0x3);
 		this.solid = ((meta >> 2 & 0x1) > 0);
 		this.embossed = ((meta >> 3 & 0x1) > 0);
@@ -31,8 +31,8 @@ public class FenceType {
 		if (VALUES == null) {
 			VALUES = new ArrayList<>();
 			for (int size = 0; size < 3; ++size) {
-				for (final boolean solid : new boolean[]{false, true}) {
-					for (final boolean embedded : new boolean[]{false, true}) {
+				for (boolean solid : new boolean[]{false, true}) {
+					for (boolean embedded : new boolean[]{false, true}) {
 						VALUES.add(new FenceType(size, solid, embedded));
 					}
 				}
@@ -80,9 +80,9 @@ public class FenceType {
 	}
 
 	@Override
-	public boolean equals(final Object obj) {
+	public boolean equals(Object obj) {
 		if (obj instanceof FenceType) {
-			final FenceType o = (FenceType) obj;
+			FenceType o = (FenceType) obj;
 			return o.size == this.size && o.embossed == this.embossed && o.solid == this.solid;
 		}
 		return super.equals(obj);

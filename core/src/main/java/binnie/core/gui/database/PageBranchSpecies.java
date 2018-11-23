@@ -21,7 +21,7 @@ public class PageBranchSpecies extends PageBranch {
 		public void onHandleEvent(final EventValueChanged<IAlleleSpecies> event) {
 	}*/
 
-	public PageBranchSpecies(final IWidget parent, final DatabaseTab tab) {
+	public PageBranchSpecies(IWidget parent, DatabaseTab tab) {
 		super(parent, tab);
 		this.pageBranchSpecies_title = new ControlTextCentered(this, 8, I18N.localise(DatabaseConstants.SPECIES_KEY));
 		this.addEventHandler(EventValueChanged.class, event -> {
@@ -33,7 +33,7 @@ public class PageBranchSpecies extends PageBranch {
 	}
 
 	@Override
-	public void onValueChanged(final IClassification branch) {
+	public void onValueChanged(IClassification branch) {
 		this.pageBranchSpecies_speciesList.setBranch(branch);
 	}
 }

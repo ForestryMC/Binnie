@@ -23,7 +23,7 @@ public class PackageSequencer extends GeneticMachine.PackageGeneticBase implemen
 	}
 
 	@Override
-	public void createMachine(final Machine machine) {
+	public void createMachine(Machine machine) {
 		new ComponentGeneticGUI(machine, GeneticsGUI.SEQUENCER);
 		ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
 		InventorySlot slotDye = inventory.addSlot(Sequencer.SLOT_DYE, getSlotRL("dye"));

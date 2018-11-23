@@ -64,20 +64,20 @@ public enum EnumHoneyDrop implements IItemSubtypeMisc {
 		this.liquidName = liquidName;
 	}
 
-	public static EnumHoneyDrop get(final ItemStack itemStack) {
-		final int i = itemStack.getItemDamage();
+	public static EnumHoneyDrop get(ItemStack itemStack) {
+		int i = itemStack.getItemDamage();
 		if (i >= 0 && i < values().length) {
 			return values()[i];
 		}
 		return values()[0];
 	}
 
-	public void addRemnant(final ItemStack stack) {
+	public void addRemnant(ItemStack stack) {
 		this.remnant = stack;
 	}
 
 	public void addRecipe() {
-		final FluidStack liquid = Utils.getFluidFromName(this.getLiquidName(), 200);
+		FluidStack liquid = Utils.getFluidFromName(this.getLiquidName(), 200);
 		if (liquid != null) {
 			RecipeManagers.squeezerManager.addRecipe(10, this.get(1), liquid, this.getRemnant(), 100);
 		}
@@ -89,12 +89,12 @@ public enum EnumHoneyDrop implements IItemSubtypeMisc {
 	}
 
 	@Override
-	public ItemStack get(final int amount) {
+	public ItemStack get(int amount) {
 		return new ItemStack(ModuleCore.honeyDrop, amount, this.ordinal());
 	}
 
 	@Override
-	public String getDisplayName(final ItemStack itemStack) {
+	public String getDisplayName(ItemStack itemStack) {
 		return I18N.localise("extrabees.item.honeydrop." + this.name().toLowerCase());
 	}
 

@@ -12,8 +12,8 @@ public class WorldGenMaple {
 		public void generate() {
 			this.generateTreeTrunk(this.height, this.girth);
 			float leafSpawn = this.height + 2;
-			final float bottom = this.randBetween(1, 2);
-			final float bottom2 = (this.height + bottom) / 2.0f;
+			float bottom = this.randBetween(1, 2);
+			float bottom2 = (this.height + bottom) / 2.0f;
 			float width = 2.0f;
 			this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), 0.4f * width, 1, this.leaf, false);
 			while (leafSpawn > bottom2) {

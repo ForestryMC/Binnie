@@ -6,5 +6,5 @@ import net.minecraft.world.World;
 import forestry.api.world.ITreeGenData;
 
 public interface WorldGenBlockType {
-	void setBlock(final World world, final ITreeGenData tree, final BlockPos pos);
+	void setBlock(World world, ITreeGenData tree, BlockPos pos);
 }

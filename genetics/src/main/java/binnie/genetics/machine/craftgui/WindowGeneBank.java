@@ -87,15 +87,15 @@ public class WindowGeneBank extends WindowMachine {
 			}
 		});
 		int x = 16;
-		final int y = 32;
+		int y = 32;
 		new ControlPlayerInventory(this, x, y);
 		x += 124;
 		int boxX = x;
-		final int geneBoxWidth = 120;
+		int geneBoxWidth = 120;
 		new Panel(this, boxX + 24, 32, geneBoxWidth, 120, MinecraftGUI.PanelType.BLACK);
 		new Panel(this, boxX + 24 + geneBoxWidth, 32, 14, 120, MinecraftGUI.PanelType.GRAY);
-		final ControlScrollableContent<ControlGeneScroll> scroll = new ControlScrollableContent<>(this, boxX + 24 + 2, 34, geneBoxWidth + 10, 116, 12);
-		final ControlTextEdit edit = new ControlTextEdit(this, boxX + 27 + geneBoxWidth - 70, 18, 80, 12);
+		ControlScrollableContent<ControlGeneScroll> scroll = new ControlScrollableContent<>(this, boxX + 24 + 2, 34, geneBoxWidth + 10, 116, 12);
+		ControlTextEdit edit = new ControlTextEdit(this, boxX + 27 + geneBoxWidth - 70, 18, 80, 12);
 		this.addEventHandler(EventTextEdit.class, EventHandlerOrigin.SELF, edit, event -> {
 			String value = event.getValue();
 			if (value == null) {
@@ -106,20 +106,20 @@ public class WindowGeneBank extends WindowMachine {
 		this.genes = new ControlGeneScroll(scroll, 1, 1, geneBoxWidth, 116);
 		scroll.setScrollableContent(this.genes);
 		this.genes.setGenes(Binnie.GENETICS.getFirstActiveSystem());
-		final ControlTabBar<IBreedingSystem> tabBar = new GeneBankTabBar(this, boxX);
+		ControlTabBar<IBreedingSystem> tabBar = new GeneBankTabBar(this, boxX);
 		tabBar.setValue(Binnie.GENETICS.getFirstActiveSystem());
 		boxX -= 8;
-		final ControlTabBar<String> infoTabs = new ControlTabBar<>(this, boxX + 8, 160, 16, 50, Alignment.LEFT, Arrays.asList("Info", "Stats", "Ranking"));
-		final Panel panelProject = new Panel(this, boxX + 24, 160, geneBoxWidth + 20, 50, MinecraftGUI.PanelType.BLACK);
+		ControlTabBar<String> infoTabs = new ControlTabBar<>(this, boxX + 8, 160, 16, 50, Alignment.LEFT, Arrays.asList("Info", "Stats", "Ranking"));
+		Panel panelProject = new Panel(this, boxX + 24, 160, geneBoxWidth + 20, 50, MinecraftGUI.PanelType.BLACK);
 		int totalGenes = 0;
 		int seqGenes = 0;
-		for (final IBreedingSystem system : Binnie.GENETICS.getActiveSystems()) {
-			final GeneTracker tracker = GeneTracker.getTracker(this.getWorld(), this.getUsername());
-			final Map<IChromosomeType, List<IAllele>> genes = Binnie.GENETICS.getChromosomeMap(system.getSpeciesRoot());
-			for (final Map.Entry<IChromosomeType, List<IAllele>> entry : genes.entrySet()) {
+		for (IBreedingSystem system : Binnie.GENETICS.getActiveSystems()) {
+			GeneTracker tracker = GeneTracker.getTracker(this.getWorld(), this.getUsername());
+			Map<IChromosomeType, List<IAllele>> genes = Binnie.GENETICS.getChromosomeMap(system.getSpeciesRoot());
+			for (Map.Entry<IChromosomeType, List<IAllele>> entry : genes.entrySet()) {
 				totalGenes += entry.getValue().size();
-				for (final IAllele allele : entry.getValue()) {
-					final Gene gene = new Gene(allele, entry.getKey(), system.getSpeciesRoot());
+				for (IAllele allele : entry.getValue()) {
+					Gene gene = new Gene(allele, entry.getKey(), system.getSpeciesRoot());
 					if (tracker.isSequenced(gene)) {
 						++seqGenes;
 					}
@@ -154,7 +154,7 @@ public class WindowGeneBank extends WindowMachine {
 		IChromosomeType chromosome;
 		IBreedingSystem system;
 
-		public ChromosomeType(final IChromosomeType chromosome, final IBreedingSystem system) {
+		public ChromosomeType(IChromosomeType chromosome, IBreedingSystem system) {
 			this.chromosome = chromosome;
 			this.system = system;
 		}
@@ -167,7 +167,7 @@ public class WindowGeneBank extends WindowMachine {
 
 	private static class GeneBankTabBar extends ControlTabBar<IBreedingSystem> {
 
-		public GeneBankTabBar(final WindowGeneBank windowGeneBank, int boxX) {
+		public GeneBankTabBar(WindowGeneBank windowGeneBank, int boxX) {
 			super(windowGeneBank, boxX, 32, 24, 120, Alignment.LEFT, Binnie.GENETICS.getActiveSystems(), (x, y, w, h, value) -> new GeneBankTab(windowGeneBank, x, y, w, h, value));
 		}
 
@@ -180,16 +180,16 @@ public class WindowGeneBank extends WindowMachine {
 			}
 
 			@Override
-			public void getTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
+			public void getTooltip(Tooltip tooltip, ITooltipFlag tooltipFlag) {
 				tooltip.add(this.getValue().toString());
 				int totalGenes = 0;
 				int seqGenes = 0;
-				final GeneTracker tracker = GeneTracker.getTracker(windowGeneBank.getWorld(), windowGeneBank.getUsername());
-				final Map<IChromosomeType, List<IAllele>> genes = Binnie.GENETICS.getChromosomeMap(this.getValue().getSpeciesRoot());
-				for (final Map.Entry<IChromosomeType, List<IAllele>> entry : genes.entrySet()) {
+				GeneTracker tracker = GeneTracker.getTracker(windowGeneBank.getWorld(), windowGeneBank.getUsername());
+				Map<IChromosomeType, List<IAllele>> genes = Binnie.GENETICS.getChromosomeMap(this.getValue().getSpeciesRoot());
+				for (Map.Entry<IChromosomeType, List<IAllele>> entry : genes.entrySet()) {
 					totalGenes += entry.getValue().size();
-					for (final IAllele allele : entry.getValue()) {
-						final Gene gene = new Gene(allele, entry.getKey(), this.getValue().getSpeciesRoot());
+					for (IAllele allele : entry.getValue()) {
+						Gene gene = new Gene(allele, entry.getKey(), this.getValue().getSpeciesRoot());
 						if (tracker.isSequenced(gene)) {
 							++seqGenes;
 						}

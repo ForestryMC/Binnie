@@ -52,11 +52,11 @@ final class BinnieTrigger implements ITriggerExternal {
 	private ISprite icon;
 	private int id;
 
-	public BinnieTrigger(final String desc, final String tag, final String iconFile) {
+	public BinnieTrigger(String desc, String tag, String iconFile) {
 		this(desc, tag, BinnieCore.getInstance(), iconFile);
 	}
 
-	public BinnieTrigger(final String desc, final String tag, final AbstractMod mod, final String iconFile) {
+	public BinnieTrigger(String desc, String tag, AbstractMod mod, String iconFile) {
 		this.id = BinnieTrigger.incrementalID++;
 		this.tag = tag;
 		StatementManager.registerStatement(this);
@@ -96,7 +96,7 @@ final class BinnieTrigger implements ITriggerExternal {
 	}
 
 	@Override
-	public IStatementParameter createParameter(final int index) {
+	public IStatementParameter createParameter(int index) {
 		return null;
 	}
 

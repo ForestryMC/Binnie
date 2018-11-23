@@ -4,8 +4,8 @@ import binnie.core.machines.Machine;
 import binnie.core.machines.power.IProcess;
 
 public class TriggerWorking {
-	public static TriggerData isNotWorking(final Object inventory) {
-		final IProcess process = Machine.getInterface(IProcess.class, inventory);
+	public static TriggerData isNotWorking(Object inventory) {
+		IProcess process = Machine.getInterface(IProcess.class, inventory);
 		boolean b = false;
 		if (process != null) {
 			b = (process.canWork() != null && process.canProgress() != null);
@@ -13,8 +13,8 @@ public class TriggerWorking {
 		return new TriggerData(BinnieTrigger.triggerIsNotWorking, b);
 	}
 
-	public static TriggerData isWorking(final Object inventory) {
-		final IProcess process = Machine.getInterface(IProcess.class, inventory);
+	public static TriggerData isWorking(Object inventory) {
+		IProcess process = Machine.getInterface(IProcess.class, inventory);
 		boolean b = false;
 		if (process != null) {
 			b = (process.canWork() == null && process.canProgress() == null);
@@ -22,8 +22,8 @@ public class TriggerWorking {
 		return new TriggerData(BinnieTrigger.triggerIsWorking, b);
 	}
 
-	public static TriggerData canWork(final Object inventory) {
-		final IProcess process = Machine.getInterface(IProcess.class, inventory);
+	public static TriggerData canWork(Object inventory) {
+		IProcess process = Machine.getInterface(IProcess.class, inventory);
 		boolean b = false;
 		if (process != null) {
 			b = (process.canWork() == null);
@@ -31,8 +31,8 @@ public class TriggerWorking {
 		return new TriggerData(BinnieTrigger.triggerCanWork, b);
 	}
 
-	public static TriggerData cannotWork(final Object inventory) {
-		final IProcess process = Machine.getInterface(IProcess.class, inventory);
+	public static TriggerData cannotWork(Object inventory) {
+		IProcess process = Machine.getInterface(IProcess.class, inventory);
 		boolean b = false;
 		if (process != null) {
 			b = (process.canWork() != null);

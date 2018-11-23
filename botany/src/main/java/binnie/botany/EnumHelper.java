@@ -11,7 +11,7 @@ import binnie.core.ModId;
 import binnie.core.util.I18N;
 
 public class EnumHelper {
-	public static String getLocalisedName(final IBotanyColored enumClass, boolean withColor) {
+	public static String getLocalisedName(IBotanyColored enumClass, boolean withColor) {
 		String localisedName = I18N.localise(ModId.BOTANY, getKeyGroup(enumClass) + '.' + enumClass.getName());
 		TextFormatting color = enumClass.getColor();
 		if (withColor && color != null) {
@@ -20,7 +20,7 @@ public class EnumHelper {
 		return localisedName;
 	}
 
-	private static String getKeyGroup(final IBotanyColored enumClass) {
+	private static String getKeyGroup(IBotanyColored enumClass) {
 		if (enumClass instanceof EnumAcidity) {
 			return "ph";
 		} else if (enumClass instanceof EnumMoisture) {

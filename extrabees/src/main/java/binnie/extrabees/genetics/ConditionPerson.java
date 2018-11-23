@@ -14,7 +14,7 @@ public class ConditionPerson implements IMutationCondition {
 
 	private final String name;
 
-	public ConditionPerson(final String name) {
+	public ConditionPerson(String name) {
 		this.name = name;
 	}
 

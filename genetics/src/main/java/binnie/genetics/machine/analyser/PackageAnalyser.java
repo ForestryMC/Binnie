@@ -25,7 +25,7 @@ public class PackageAnalyser extends GeneticMachine.PackageGeneticBase implement
 	}
 
 	@Override
-	public void createMachine(final Machine machine) {
+	public void createMachine(Machine machine) {
 		new ComponentGeneticGUI(machine, GeneticsGUI.ANALYSER);
 		ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
 		for (InventorySlot slot : inventory.addSlotArray(Analyser.SLOT_RESERVE, getSlotRL("input"))) {
@@ -62,7 +62,7 @@ public class PackageAnalyser extends GeneticMachine.PackageGeneticBase implement
 		}
 
 		@Override
-		public boolean isValid(final ItemStack itemStack) {
+		public boolean isValid(ItemStack itemStack) {
 			return itemStack.isItemEqual(GeneticsItems.DNADye.get(1));
 		}
 

@@ -15,11 +15,11 @@ import io.netty.buffer.ByteBuf;
 public class MessageBase {
 	private int id;
 
-	public MessageBase(final int id) {
+	public MessageBase(int id) {
 		this.id = id;
 	}
 
-	public MessageBase(final MessageBinnie message) {
+	public MessageBase(MessageBinnie message) {
 		ByteBuf data = message.getData();
 		try {
 			this.readData(data);
@@ -34,17 +34,17 @@ public class MessageBase {
 	}
 
 	@Nullable
-	protected NBTTagCompound readNBTTagCompound(final ByteBuf data) throws IOException {
-		final short length = data.readShort();
+	protected NBTTagCompound readNBTTagCompound(ByteBuf data) throws IOException {
+		short length = data.readShort();
 		if (length < 0) {
 			return null;
 		}
-		final byte[] compressed = new byte[length];
+		byte[] compressed = new byte[length];
 		data.readBytes(compressed);
 		return CompressedStreamTools.readCompressed(new ByteArrayInputStream(compressed));
 	}
 
-	protected void writeNBTTagCompound(@Nullable final NBTTagCompound nbttagcompound, final ByteBuf data) throws IOException {
+	protected void writeNBTTagCompound(@Nullable NBTTagCompound nbttagcompound, ByteBuf data) throws IOException {
 		if (nbttagcompound == null) {
 			data.writeShort(-1);
 		} else {
@@ -57,9 +57,9 @@ public class MessageBase {
 		}
 	}
 
-	public void writeData(final ByteBuf data) throws IOException {
+	public void writeData(ByteBuf data) throws IOException {
 	}
 
-	public void readData(final ByteBuf data) throws IOException {
+	public void readData(ByteBuf data) throws IOException {
 	}
 }

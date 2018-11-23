@@ -68,7 +68,7 @@ public class PackagePolymeriser extends GeneticMachine.PackageGeneticBase implem
 
 	private static class BacteriaTankValidator extends TankValidator {
 		@Override
-		public boolean isValid(final FluidStack itemStack) {
+		public boolean isValid(FluidStack itemStack) {
 			return GeneticLiquid.BacteriaPoly.get(1).isFluidEqual(itemStack);
 		}
 
@@ -80,7 +80,7 @@ public class PackagePolymeriser extends GeneticMachine.PackageGeneticBase implem
 
 	private static class DnaTankValidator extends TankValidator {
 		@Override
-		public boolean isValid(final FluidStack itemStack) {
+		public boolean isValid(FluidStack itemStack) {
 			return GeneticLiquid.RawDNA.get(1).isFluidEqual(itemStack);
 		}
 

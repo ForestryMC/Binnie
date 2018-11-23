@@ -33,7 +33,7 @@ public class StyleSheetManager implements IResourceManagerReloadListener {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void onResourceManagerReload(final IResourceManager manager) {
+	public void onResourceManagerReload(IResourceManager manager) {
 		sheets.clear();
 		try {
 			for (Map.Entry<String, ResourceLocation> entry : sheetLocations.entrySet()) {

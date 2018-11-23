@@ -42,7 +42,7 @@ public enum ExtraBeeMachines implements IMachineType {
 		this.supplier = supplier;
 	}
 
-	public ItemStack get(final int size) {
+	public ItemStack get(int size) {
 		return new ItemStack(ModuleAlveary.blockAlveary, size, this.ordinal());
 	}
 
@@ -54,7 +54,7 @@ public enum ExtraBeeMachines implements IMachineType {
 	public static class ComponentExtraBeeGUI extends MachineComponent implements IInteraction.RightClick {
 		ExtraBeesGUID id;
 
-		public ComponentExtraBeeGUI(final Machine machine, final ExtraBeesGUID id) {
+		public ComponentExtraBeeGUI(Machine machine, ExtraBeesGUID id) {
 			super(machine);
 			this.id = id;
 		}
@@ -69,7 +69,7 @@ public enum ExtraBeeMachines implements IMachineType {
 
 	public abstract static class AlvearyPackage extends MachinePackage {
 
-		public AlvearyPackage(final String id) {
+		public AlvearyPackage(String id) {
 			super(id);
 		}
 

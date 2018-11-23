@@ -25,18 +25,18 @@ import binnie.genetics.api.ITreeBreedingSystem;
 public class PageFruit extends PageAbstract<ItemStack> {
 	private final boolean treesThatBearFruit;
 
-	public PageFruit(final IWidget parent, final DatabaseTab tab, final boolean treesThatBearFruit) {
+	public PageFruit(IWidget parent, DatabaseTab tab, boolean treesThatBearFruit) {
 		super(parent, tab);
 		this.treesThatBearFruit = treesThatBearFruit;
 	}
 
 	@Override
-	public void onValueChanged(final ItemStack species) {
+	public void onValueChanged(ItemStack species) {
 		this.deleteAllChildren();
-		final WindowAbstractDatabase database = Window.get(this);
+		WindowAbstractDatabase database = Window.get(this);
 		new ControlText(this, new Area(0, 0, this.getSize().xPos(), 24), I18N.localise("extratrees.gui.database.tab.fruit." + (this.treesThatBearFruit ? "natural" : "potential")), TextJustification.MIDDLE_CENTER);
 		ITreeBreedingSystem breedingSystem = (ITreeBreedingSystem) database.getBreedingSystem();
-		final Collection<IAlleleSpecies> trees;
+		Collection<IAlleleSpecies> trees;
 		if (this.treesThatBearFruit) {
 			trees = breedingSystem.getTreesThatBearFruit(species, database.isMaster(), database.getWorld(), database.getUsername());
 		} else {

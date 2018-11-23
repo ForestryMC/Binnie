@@ -17,21 +17,20 @@ import binnie.core.BinnieCore;
 public class ItemMachine extends ItemBlock implements IItemModelRegister {
 	private final IBlockMachine associatedBlock;
 
-	public ItemMachine(final Block block) {
+	public ItemMachine(Block block) {
 		super(block);
-		this.setMaxDamage(0);
 		this.setHasSubtypes(true);
 		this.associatedBlock = (IBlockMachine) block;
 		setRegistryName(block.getRegistryName());
 	}
 
 	@Override
-	public int getMetadata(final int i) {
+	public int getMetadata(int i) {
 		return i;
 	}
 
 	@Override
-	public String getItemStackDisplayName(final ItemStack itemstack) {
+	public String getItemStackDisplayName(ItemStack itemstack) {
 		return this.associatedBlock.getMachineName(itemstack.getItemDamage());
 	}
 

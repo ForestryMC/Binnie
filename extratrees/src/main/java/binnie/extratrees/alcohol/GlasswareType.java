@@ -40,7 +40,7 @@ public enum GlasswareType {
 	private final String[] recipe;
 	private final int recipeGlassCost;
 
-	GlasswareType(final int capacity, final int contentBottom, final int contentHeight, String... recipe) {
+	GlasswareType(int capacity, int contentBottom, int contentHeight, String... recipe) {
 		this.capacity = capacity;
 		this.contentBottom = contentBottom / SPRITE_PIXELS;
 		this.contentHeight = contentHeight / SPRITE_PIXELS;
@@ -76,7 +76,7 @@ public enum GlasswareType {
 		return modelLocation;
 	}
 
-	public ItemStack get(final int i) {
+	public ItemStack get(int i) {
 		return ModuleAlcohol.drink.getStack(this, null);
 	}
 

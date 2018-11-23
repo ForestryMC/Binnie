@@ -29,7 +29,7 @@ public class WindowInoculator extends WindowMachine {
 	private static final Texture PROGRESS_BASE = new StandardTexture(0, 72, 142, 72, GeneticsTexture.GUI_PROCESS_2);
 	private static final Texture PROGRESS = new StandardTexture(0, 0, 142, 72, GeneticsTexture.GUI_PROCESS_2);
 
-	public WindowInoculator(final EntityPlayer player, final IInventory inventory, final Side side) {
+	public WindowInoculator(EntityPlayer player, IInventory inventory, Side side) {
 		super(266, 240, player, inventory, side);
 	}
 
@@ -38,7 +38,7 @@ public class WindowInoculator extends WindowMachine {
 	public void initialiseClient() {
 		super.initialiseClient();
 		int x = 16;
-		final int y = 32;
+		int y = 32;
 		new ControlLiquidTank(this, x, y + 18 + 16, Inoculator.TANK_VEKTOR);
 		CraftGUIUtil.horizontalGrid(x, y,
 			new ControlSlotArray.Builder(this, 0, 0, 2, 1).create(Inoculator.SLOT_SERUM_RESERVE),

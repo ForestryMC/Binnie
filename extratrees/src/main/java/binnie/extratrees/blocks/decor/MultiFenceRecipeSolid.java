@@ -22,7 +22,7 @@ public class MultiFenceRecipeSolid extends IForgeRegistryEntry.Impl<IRecipe> imp
 	}
 
 	@Override
-	public boolean matches(final InventoryCrafting inv, final World world) {
+	public boolean matches(InventoryCrafting inv, World world) {
 		for (int row = 0; row < 3; ++row) {
 			ItemStack a = inv.getStackInSlot(row * 3);
 			ItemStack b = inv.getStackInSlot(row * 3 + 1);
@@ -45,7 +45,7 @@ public class MultiFenceRecipeSolid extends IForgeRegistryEntry.Impl<IRecipe> imp
 	}
 
 	@Override
-	public ItemStack getCraftingResult(final InventoryCrafting inv) {
+	public ItemStack getCraftingResult(InventoryCrafting inv) {
 		return this.getRecipeOutput();
 	}
 

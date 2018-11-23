@@ -14,7 +14,7 @@ import binnie.core.gui.window.Panel;
 public class PageSpeciesImage extends PageSpecies {
 	private final ControlIndividualDisplay display;
 
-	public PageSpeciesImage(final IWidget parent, final DatabaseTab tab) {
+	public PageSpeciesImage(IWidget parent, DatabaseTab tab) {
 		super(parent, tab);
 		new Panel(this, 7, 25, 130, 120, MinecraftGUI.PanelType.GRAY);
 		this.display = new ControlIndividualDisplay(this, 12, 25, 120);
@@ -23,7 +23,7 @@ public class PageSpeciesImage extends PageSpecies {
 	}
 
 	@Override
-	public void onValueChanged(final IAlleleSpecies species) {
+	public void onValueChanged(IAlleleSpecies species) {
 		this.display.setSpecies(species, EnumDiscoveryState.SHOW);
 	}
 }

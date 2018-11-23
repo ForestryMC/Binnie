@@ -11,14 +11,14 @@ public class PageSpeciesResultant extends PageSpecies {
 	private final ControlText title;
 	private final ControlMutationBox list;
 
-	public PageSpeciesResultant(final IWidget parent, final DatabaseTab tab) {
+	public PageSpeciesResultant(IWidget parent, DatabaseTab tab) {
 		super(parent, tab);
 		this.title = new ControlTextCentered(this, 8, I18N.localise(DatabaseConstants.MUTATIONS_KEY + ".resultant"));
 		this.list = new ControlMutationBox(this, 4, 20, 136, 152, ControlMutationBox.Type.Resultant);
 	}
 
 	@Override
-	public void onValueChanged(final IAlleleSpecies species) {
+	public void onValueChanged(IAlleleSpecies species) {
 		this.list.setSpecies(species);
 	}
 }

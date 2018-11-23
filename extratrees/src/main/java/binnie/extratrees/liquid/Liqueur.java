@@ -59,7 +59,7 @@ public enum Liqueur implements IFluidDefinition, ICocktailIngredientProvider {
 	private final FluidType type;
 	private final CocktailLiquid cocktailLiquid;
 
-	Liqueur(final String ident, final int color, final double transparency, float abv) {
+	Liqueur(String ident, int color, double transparency, float abv) {
 		this.abv = abv;
 		type = ExtraTrees.instance.registry(ExtraTreesModuleUIDs.ALCOHOL).createFluid(ident, String.format("%s.fluid.%s.%s", ExtraTrees.instance.getModId(), "Liqueur", this.name()), color)
 			.setTransparency(transparency)
@@ -68,7 +68,7 @@ public enum Liqueur implements IFluidDefinition, ICocktailIngredientProvider {
 		cocktailLiquid = new CocktailLiquid(type, abv);
 	}
 
-	private void addFlavour(final String oreDict) {
+	private void addFlavour(String oreDict) {
 	}
 
 	@Override
@@ -77,7 +77,7 @@ public enum Liqueur implements IFluidDefinition, ICocktailIngredientProvider {
 	}
 
 	@Override
-	public FluidStack get(final int amount) {
+	public FluidStack get(int amount) {
 		return type.stack(amount);
 	}
 

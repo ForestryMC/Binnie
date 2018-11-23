@@ -29,7 +29,7 @@ public class WindowAnalyser extends WindowMachine {
 	private static final Texture PROGRESS_BASE = new StandardTexture(0, 51, 66, 40, GeneticsTexture.GUI_PROCESS);
 	private static final Texture PROGRESS = new StandardTexture(66, 51, 66, 40, GeneticsTexture.GUI_PROCESS);
 
-	public WindowAnalyser(final EntityPlayer player, final IInventory inventory, final Side side) {
+	public WindowAnalyser(EntityPlayer player, IInventory inventory, Side side) {
 		super(220, 210, player, inventory, side);
 	}
 
@@ -38,7 +38,7 @@ public class WindowAnalyser extends WindowMachine {
 	public void initialiseClient() {
 		super.initialiseClient();
 		int x = 16;
-		final int y = 32;
+		int y = 32;
 		new ControlSlotArray.Builder(this, x, y, 2, 3).create(Analyser.SLOT_RESERVE);
 		x += 28;
 		new ControlSlot.Builder(this, x, y + 54 + 8).assign(13);

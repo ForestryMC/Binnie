@@ -10,14 +10,14 @@ import binnie.design.api.IDesignerType;
 public class SlotValidatorDesignMaterial extends SlotValidator {
 	private final IDesignerType type;
 
-	public SlotValidatorDesignMaterial(final IDesignerType type) {
+	public SlotValidatorDesignMaterial(IDesignerType type) {
 		super(ManagerMachine.getSpriteBlock());
 		this.type = type;
 	}
 
 	@Override
-	public boolean isValid(final ItemStack itemStack) {
-		final IDesignMaterial mat = this.type.getSystem().getMaterial(itemStack);
+	public boolean isValid(ItemStack itemStack) {
+		IDesignMaterial mat = this.type.getSystem().getMaterial(itemStack);
 		return !itemStack.isEmpty() && mat != null;
 	}
 

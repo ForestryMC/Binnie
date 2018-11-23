@@ -38,11 +38,11 @@ public enum ExtraTreeItems implements IItemSubtypeMisc {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(final List<String> tooltip) {
+	public void addInformation(List<String> tooltip) {
 	}
 
 	@Override
-	public String getDisplayName(final ItemStack stack) {
+	public String getDisplayName(ItemStack stack) {
 		return I18N.localise("extratrees.item." + name + ".name");
 	}
 
@@ -52,7 +52,7 @@ public enum ExtraTreeItems implements IItemSubtypeMisc {
 	}
 
 	@Override
-	public ItemStack get(final int i) {
+	public ItemStack get(int i) {
 		return ExtraTreesFeatures.MISC.stack(i, ordinal());
 	}
 }

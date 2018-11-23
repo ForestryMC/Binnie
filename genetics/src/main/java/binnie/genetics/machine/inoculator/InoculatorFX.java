@@ -21,7 +21,7 @@ import binnie.core.util.EntityItemRenderer;
 public class InoculatorFX extends MachineComponent implements IRender.DisplayTick, IRender.Render, INetwork.TilePacketSync {
 	private final EntityItemRenderer entityItemRenderer;
 
-	public InoculatorFX(final IMachine machine) {
+	public InoculatorFX(IMachine machine) {
 		super(machine);
 		this.entityItemRenderer = new EntityItemRenderer();
 	}
@@ -32,28 +32,28 @@ public class InoculatorFX extends MachineComponent implements IRender.DisplayTic
 		if (!this.getUtil().getProcess().isInProgress()) {
 			return;
 		}
-		final int tick = (int) (world.getTotalWorldTime() % 3L);
+		int tick = (int) (world.getTotalWorldTime() % 3L);
 		if (tick == 0) {
-			final Particle particle = new InoculatorParticle(world, pos);
+			Particle particle = new InoculatorParticle(world, pos);
 			BinnieCore.getBinnieProxy().getMinecraftInstance().effectRenderer.addEffect(particle);
 		}
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void renderInWorld(final double x, final double y, final double z) {
+	public void renderInWorld(double x, double y, double z) {
 		if (!this.getUtil().getProcess().isInProgress()) {
 			return;
 		}
-		final ItemStack stack = this.getUtil().getStack(9);
+		ItemStack stack = this.getUtil().getStack(9);
 		World world = this.getMachine().getWorld();
 		this.entityItemRenderer.renderInWorld(stack, world, x + 0.5, y + 0.8, z + 0.5);
 	}
 
 	@Override
-	public void syncToNBT(final NBTTagCompound nbt) {
-		final NBTTagCompound item = new NBTTagCompound();
-		final ItemStack stack = this.getUtil().getStack(9);
+	public void syncToNBT(NBTTagCompound nbt) {
+		NBTTagCompound item = new NBTTagCompound();
+		ItemStack stack = this.getUtil().getStack(9);
 		if (!stack.isEmpty()) {
 			stack.writeToNBT(item);
 			nbt.setTag("item", item);
@@ -61,7 +61,7 @@ public class InoculatorFX extends MachineComponent implements IRender.DisplayTic
 	}
 
 	@Override
-	public void syncFromNBT(final NBTTagCompound nbt) {
+	public void syncFromNBT(NBTTagCompound nbt) {
 		if (nbt.hasKey("item")) {
 			this.getUtil().setStack(9, new ItemStack(nbt.getCompoundTag("item")));
 		} else {
@@ -79,8 +79,8 @@ public class InoculatorFX extends MachineComponent implements IRender.DisplayTic
 
 	@SideOnly(Side.CLIENT)
 	private static class InoculatorParticle extends Particle {
-		private double axisX;
-		private double axisZ;
+		private final double axisX;
+		private final double axisZ;
 		private double angle;
 
 		public InoculatorParticle(World world, BlockPos pos) {
@@ -105,7 +105,7 @@ public class InoculatorFX extends MachineComponent implements IRender.DisplayTic
 				speed += (this.particleAge - 60) / 4000.0f;
 			}
 			this.angle += speed;
-			final double dist = 0.27;
+			double dist = 0.27;
 			this.setPosition(this.axisX + dist * Math.sin(this.angle), this.posY, this.axisZ + dist * Math.cos(this.angle));
 			this.setAlphaF((float) Math.cos(Math.PI / 2f * this.particleAge / this.particleMaxAge));
 			if (this.particleAge > 40) {

@@ -22,13 +22,13 @@ public class Tileworker implements IDesignerType {
 	}
 
 	@Override
-	public ItemStack getBlock(final IDesignMaterial type1, IDesignMaterial type2, final IDesign design) {
+	public ItemStack getBlock(IDesignMaterial type1, IDesignMaterial type2, IDesign design) {
 		int stackSize = 2;
 		if (design == EnumDesign.Blank) {
 			type2 = type1;
 			stackSize = 1;
 		}
-		final ItemStack stack = DesignHelper.getItemStack(this.getBlock(), type1, type2, design);
+		ItemStack stack = DesignHelper.getItemStack(this.getBlock(), type1, type2, design);
 		stack.setCount(stackSize);
 		return stack;
 	}
@@ -38,7 +38,7 @@ public class Tileworker implements IDesignerType {
 	}
 
 	@Override
-	public ItemStack getDisplayStack(final IDesign design) {
+	public ItemStack getDisplayStack(IDesign design) {
 		return this.getBlock(this.getSystem().getDefaultMaterial(), this.getSystem().getDefaultMaterial2(), design);
 	}
 

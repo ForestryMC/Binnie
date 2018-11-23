@@ -8,7 +8,7 @@ public enum ToleranceType implements IToleranceType {
 	Temperature,
 	Humidity;
 
-	public float getEffect(final ItemStack stack) {
+	public float getEffect(ItemStack stack) {
 		switch (this) {
 			case Temperature: {
 				return Acclimatiser.getTemperatureEffect(stack);

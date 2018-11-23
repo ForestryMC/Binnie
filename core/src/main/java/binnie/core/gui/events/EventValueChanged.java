@@ -9,7 +9,7 @@ public class EventValueChanged<T> extends Event {
 	@Nullable
 	private final T value;
 
-	public EventValueChanged(final IWidget origin, @Nullable final T value) {
+	public EventValueChanged(IWidget origin, @Nullable T value) {
 		super(origin);
 		this.value = value;
 	}

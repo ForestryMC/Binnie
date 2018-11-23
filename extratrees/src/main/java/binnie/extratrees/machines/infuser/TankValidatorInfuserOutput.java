@@ -6,7 +6,7 @@ import binnie.core.machines.inventory.TankValidator;
 
 public class TankValidatorInfuserOutput extends TankValidator {
 	@Override
-	public boolean isValid(final FluidStack itemStack) {
+	public boolean isValid(FluidStack itemStack) {
 		return InfuserRecipes.isValidOutputLiquid(itemStack);
 	}
 

@@ -41,11 +41,11 @@ public class RenderUtil {
 
 	}
 
-	public static void drawItem(final Point pos, final ItemStack itemStack) {
+	public static void drawItem(Point pos, ItemStack itemStack) {
 		drawItem(pos, itemStack, false);
 	}
 
-	public static void drawItem(final Point pos, final ItemStack itemStack, final boolean rotating) {
+	public static void drawItem(Point pos, ItemStack itemStack, boolean rotating) {
 		GlStateManager.enableBlend();
 		GlStateManager.enableDepth();
 		GlStateManager.pushAttrib();
@@ -57,7 +57,7 @@ public class RenderUtil {
 
 		if (rotating) {
 			GlStateManager.pushMatrix();
-			final float phase = Minecraft.getSystemTime() / 20;
+			float phase = Minecraft.getSystemTime() / 20;
 			/** {@link RenderItem#setupGuiTransform(int, int, boolean)} It adds 100 to zLevel from
 			 * {@link RenderItem#renderItemAndEffectIntoGUI(net.minecraft.entity.EntityLivingBase, net.minecraft.item.ItemStack, int, int)}.
 			 * So z=150
@@ -105,11 +105,11 @@ public class RenderUtil {
 		tessellator.draw();
 	}
 
-	public static void setColour(final int hexColour) {
+	public static void setColour(int hexColour) {
 		int a = (hexColour & 0xFF000000) >> 24;
-		final int r = (hexColour & 0xFF0000) >> 16;
-		final int g = (hexColour & 0xFF00) >> 8;
-		final int b = hexColour & 0xFF;
+		int r = (hexColour & 0xFF0000) >> 16;
+		int g = (hexColour & 0xFF00) >> 8;
+		int b = hexColour & 0xFF;
 		if (a < 0) {
 			a += 256;
 		}
@@ -120,7 +120,7 @@ public class RenderUtil {
 		}
 	}
 
-	public static int getTextWidth(final String text) {
+	public static int getTextWidth(String text) {
 		FontRenderer fontRenderer = Minecraft.getMinecraft().fontRenderer;
 		return fontRenderer.getStringWidth(text);
 	}
@@ -130,24 +130,24 @@ public class RenderUtil {
 		return (fontRenderer == null) ? 0 : fontRenderer.FONT_HEIGHT;
 	}
 
-	public static void drawText(final IPoint pos, final String text, final int colour) {
+	public static void drawText(IPoint pos, String text, int colour) {
 		drawText(new Area(pos, new Point(500, 500)), TextJustification.TOP_LEFT, text, colour);
 	}
 
-	public static void drawText(final IArea area, final TextJustification justification, final String text, final int colour) {
-		final IPoint pos = area.pos();
+	public static void drawText(IArea area, TextJustification justification, String text, int colour) {
+		IPoint pos = area.pos();
 		if (area.size().xPos() <= 0.0f) {
 			return;
 		}
 		FontRenderer fontRenderer = Minecraft.getMinecraft().fontRenderer;
-		final List<String> wrappedStrings = fontRenderer.listFormattedStringToWidth(text, area.size().xPos());
-		final float totalHeight = wrappedStrings.size() * getTextHeight();
+		List<String> wrappedStrings = fontRenderer.listFormattedStringToWidth(text, area.size().xPos());
+		float totalHeight = wrappedStrings.size() * getTextHeight();
 		float posY = pos.yPos();
 		if (area.size().yPos() > totalHeight) {
 			posY += (area.size().yPos() - totalHeight) * justification.getYOffset();
 		}
-		for (final String string : wrappedStrings) {
-			final float stringWidth = getTextWidth(string);
+		for (String string : wrappedStrings) {
+			float stringWidth = getTextWidth(string);
 			float posX = area.size().xPos() - stringWidth;
 			posX *= justification.getXOffset();
 			GlStateManager.disableDepth();
@@ -157,30 +157,30 @@ public class RenderUtil {
 		GlStateManager.color(1.0f, 1.0f, 1.0f);
 	}
 
-	public static void drawSolidRect(float left, float top, float right, float bottom, final int color) {
+	public static void drawSolidRect(float left, float top, float right, float bottom, int color) {
 		GuiUtils.drawGradientRect(0, (int) left, (int) top, (int) right, (int) bottom, color, color);
 	}
 
-	public static void drawSolidRect(final IArea area, final int colour) {
+	public static void drawSolidRect(IArea area, int colour) {
 		drawSolidRect(area.pos().xPos(), area.pos().yPos(), area.pos().xPos() + area.size().xPos(), area.pos().yPos() + area.size().yPos(), 0xFF000000 | colour);
 	}
 
-	public static void drawSolidRectWithAlpha(final IArea area, final int color) {
+	public static void drawSolidRectWithAlpha(IArea area, int color) {
 		drawSolidRect(area.pos().xPos(), area.pos().yPos(), area.pos().xPos() + area.size().xPos(), area.pos().yPos() + area.size().yPos(), color);
 	}
 
-	public static void drawGradientRect(final IArea area, final int startColor, final int endColor) {
+	public static void drawGradientRect(IArea area, int startColor, int endColor) {
 		GuiUtils.drawGradientRect(0, area.pos().xPos(), area.pos().yPos(), area.pos().xPos() + area.size().xPos(), area.pos().yPos() + area.size().yPos(), startColor, endColor);
 	}
 
-	public static void drawSprite(final Point pos, @Nullable final TextureAtlasSprite icon) {
+	public static void drawSprite(Point pos, @Nullable TextureAtlasSprite icon) {
 		if (icon != null) {
 			BinnieCore.getBinnieProxy().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 			drawTexture(pos.xPos(), pos.yPos(), icon, 0, 0, 0);
 		}
 	}
 
-	public static void drawGuiSprite(final Point pos, @Nullable final TextureAtlasSprite icon) {
+	public static void drawGuiSprite(Point pos, @Nullable TextureAtlasSprite icon) {
 		if (icon != null) {
 			BinnieCore.getBinnieProxy().bindTexture(ForestryAPI.textureManager.getGuiTextureMap());
 			drawTexture(pos.xPos(), pos.yPos(), icon, 0, 0, 0);

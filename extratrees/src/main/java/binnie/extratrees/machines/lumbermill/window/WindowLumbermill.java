@@ -20,12 +20,12 @@ import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.machines.lumbermill.LumbermillMachine;
 
 public class WindowLumbermill extends Window {
-	public WindowLumbermill(final EntityPlayer player, final IInventory inventory, final Side side) {
+	public WindowLumbermill(EntityPlayer player, IInventory inventory, Side side) {
 		super(220, 192, player, inventory, side);
 	}
 
 	@Nullable
-	public static Window create(final EntityPlayer player, @Nullable final IInventory inventory, final Side side) {
+	public static Window create(EntityPlayer player, @Nullable IInventory inventory, Side side) {
 		if (inventory == null) {
 			return null;
 		}

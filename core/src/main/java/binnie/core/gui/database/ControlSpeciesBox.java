@@ -21,29 +21,29 @@ import binnie.core.gui.minecraft.Window;
 public class ControlSpeciesBox extends ControlListBox<IAlleleSpecies> {
 	private IClassification branch;
 
-	public ControlSpeciesBox(final IWidget parent, final int x, final int y, final int width, final int height) {
+	public ControlSpeciesBox(IWidget parent, int x, int y, int width, int height) {
 		super(parent, x, y, width, height, 12);
 		this.branch = null;
 	}
 
 	@Override
-	public IWidget createOption(final IAlleleSpecies value, final int y) {
+	public IWidget createOption(IAlleleSpecies value, int y) {
 		return new ControlSpeciesBoxOption(this.getContent(), value, y);
 	}
 
-	public void setBranch(final IClassification branch) {
+	public void setBranch(IClassification branch) {
 		if (branch != this.branch) {
 			this.branch = branch;
-			final List<IAlleleSpecies> speciesList2 = new ArrayList<>();
+			List<IAlleleSpecies> speciesList2 = new ArrayList<>();
 			this.movePercentage(-100.0f);
 			this.setOptions(speciesList2);
 			//final EntityPlayer player = Window.get(this).getPlayer();
-			final GameProfile playerName = Window.get(this).getUsername();
-			final WindowAbstractDatabase db = Window.get(this);
+			GameProfile playerName = Window.get(this).getUsername();
+			WindowAbstractDatabase db = Window.get(this);
 			IBreedingSystem breedingSystem = db.getBreedingSystem();
-			final Collection<IAlleleSpecies> speciesList3 = db.isMaster() ? breedingSystem.getAllSpecies() : breedingSystem.getDiscoveredSpecies(db.getWorld(), playerName);
+			Collection<IAlleleSpecies> speciesList3 = db.isMaster() ? breedingSystem.getAllSpecies() : breedingSystem.getDiscoveredSpecies(db.getWorld(), playerName);
 			if (branch != null) {
-				for (final IAlleleSpecies species : branch.getMemberSpecies()) {
+				for (IAlleleSpecies species : branch.getMemberSpecies()) {
 					if (speciesList3.contains(species)) {
 						speciesList2.add(species);
 					}

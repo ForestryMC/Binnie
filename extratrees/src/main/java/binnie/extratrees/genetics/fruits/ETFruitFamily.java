@@ -10,7 +10,7 @@ public enum ETFruitFamily implements IFruitFamily {
 	private final String uid;
 	private final String scientific;
 
-	ETFruitFamily(final String name, final String uid, final String scientific) {
+	ETFruitFamily(String name, String uid, String scientific) {
 		this.name = name;
 		this.uid = uid;
 		this.scientific = scientific;

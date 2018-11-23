@@ -5,7 +5,7 @@ import binnie.core.api.gui.IWidget;
 public class Event {
 	private final IWidget origin;
 
-	public Event(final IWidget origin) {
+	public Event(IWidget origin) {
 		this.origin = origin;
 	}
 
@@ -13,7 +13,7 @@ public class Event {
 		return this.origin;
 	}
 
-	public boolean isOrigin(final IWidget widget) {
+	public boolean isOrigin(IWidget widget) {
 		return this.origin == widget;
 	}
 }

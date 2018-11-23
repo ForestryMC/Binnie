@@ -61,7 +61,7 @@ public enum ExtraTreeMachine implements IMachineType {
 
 	private final Supplier<MachinePackage> supplier;
 
-	ExtraTreeMachine(final Supplier<MachinePackage> supplier) {
+	ExtraTreeMachine(Supplier<MachinePackage> supplier) {
 		this.supplier = supplier;
 	}
 
@@ -70,14 +70,14 @@ public enum ExtraTreeMachine implements IMachineType {
 		return this.supplier;
 	}
 
-	public ItemStack get(final int i) {
+	public ItemStack get(int i) {
 		return new ItemStack(ModuleMachine.blockMachine, i, this.ordinal());
 	}
 
 	public static class ComponentExtraTreeGUI extends MachineComponent implements IInteraction.RightClick {
 		private final ExtraTreesGUID id;
 
-		public ComponentExtraTreeGUI(final Machine machine, final ExtraTreesGUID id) {
+		public ComponentExtraTreeGUI(Machine machine, ExtraTreesGUID id) {
 			super(machine);
 			this.id = id;
 		}
@@ -92,7 +92,7 @@ public enum ExtraTreeMachine implements IMachineType {
 
 	public abstract static class PackageExtraTreeMachine extends MachinePackage {
 
-		protected PackageExtraTreeMachine(final String uid) {
+		protected PackageExtraTreeMachine(String uid) {
 			super(uid);
 		}
 

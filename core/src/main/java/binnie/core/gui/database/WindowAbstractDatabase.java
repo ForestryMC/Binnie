@@ -52,7 +52,7 @@ public abstract class WindowAbstractDatabase extends Window {
 	@Nullable
 	private IAlleleSpecies gotoSpecies;
 
-	public WindowAbstractDatabase(final EntityPlayer player, final Side side, final boolean master, final IBreedingSystem system, final int wid) {
+	public WindowAbstractDatabase(EntityPlayer player, Side side, boolean master, IBreedingSystem system, int wid) {
 		super(100, 192, player, null, side);
 		this.selectionBoxWidth = 95;
 		this.modes = new HashMap<>();
@@ -65,11 +65,11 @@ public abstract class WindowAbstractDatabase extends Window {
 		this.selectionBoxWidth = wid;
 	}
 
-	public void changeMode(final IDatabaseMode mode) {
+	public void changeMode(IDatabaseMode mode) {
 		this.modePages.setValue(mode);
 	}
 
-	public ControlPages<DatabaseTab> getInfoPages(final IDatabaseMode mode) {
+	public ControlPages<DatabaseTab> getInfoPages(IDatabaseMode mode) {
 		ModeWidgets modeWidgets = this.modes.get(mode);
 		return modeWidgets.getInfoPages();
 	}
@@ -97,7 +97,7 @@ public abstract class WindowAbstractDatabase extends Window {
 		return this.system;
 	}
 
-	protected ModeWidgets createMode(final IDatabaseMode mode, final ModeWidgets widgets) {
+	protected ModeWidgets createMode(IDatabaseMode mode, ModeWidgets widgets) {
 		this.modes.put(mode, widgets);
 		return widgets;
 	}
@@ -131,7 +131,7 @@ public abstract class WindowAbstractDatabase extends Window {
 			}
 		});
 		this.addEventHandler(EventTextEdit.class, EventHandlerOrigin.DIRECT_CHILD, this, event -> {
-			for (final ModeWidgets widgets : WindowAbstractDatabase.this.modes.values()) {
+			for (ModeWidgets widgets : WindowAbstractDatabase.this.modes.values()) {
 				widgets.getListBox().setValidator(object -> {
 					if (Objects.equals(event.getValue(), "")) {
 						return true;
@@ -147,16 +147,16 @@ public abstract class WindowAbstractDatabase extends Window {
 		this.modePages = new ControlPages<>(this, 0, 0, this.getSize().xPos(), this.getSize().yPos());
 		new ControlTextEdit(this, 176, 184, this.selectionBoxWidth, 16);
 		this.createMode(Mode.SPECIES, new ModeWidgets(Mode.SPECIES, this, (area, modePage) -> {
-			final GameProfile playerName = this.getUsername();
-			final Collection<IAlleleSpecies> speciesList = this.master ? this.system.getAllSpecies() : this.system.getDiscoveredSpecies(this.getWorld(), playerName);
+			GameProfile playerName = this.getUsername();
+			Collection<IAlleleSpecies> speciesList = this.master ? this.system.getAllSpecies() : this.system.getDiscoveredSpecies(this.getWorld(), playerName);
 			ControlSpeciesBox controlSpeciesBox = new ControlSpeciesBox(modePage, area.xPos(), area.yPos(), area.width(), area.height());
 			controlSpeciesBox.setOptions(speciesList);
 			return controlSpeciesBox;
 		}));
 		this.createMode(Mode.BRANCHES, new ModeWidgets(Mode.BRANCHES, this, (area, modePage) -> {
-			final EntityPlayer player = this.getPlayer();
-			final GameProfile playerName = player.getGameProfile();
-			final Collection<IClassification> speciesList = this.master ? this.system.getAllBranches() : this.system.getDiscoveredBranches(this.getWorld(), playerName);
+			EntityPlayer player = this.getPlayer();
+			GameProfile playerName = player.getGameProfile();
+			Collection<IClassification> speciesList = this.master ? this.system.getAllBranches() : this.system.getDiscoveredBranches(this.getWorld(), playerName);
 			ControlBranchBox controlBranchBox = new ControlBranchBox(modePage, area.xPos(), area.yPos(), area.width(), area.height());
 			controlBranchBox.setOptions(speciesList);
 			return controlBranchBox;
@@ -165,10 +165,10 @@ public abstract class WindowAbstractDatabase extends Window {
 			return new ControlListBox(modePage, area.xPos(), area.yPos(), area.width(), area.height(), 12);
 		}));
 		this.addTabs();
-		final ControlTabBar<IDatabaseMode> tab = new ControlTabBar<>(this, 176 + this.selectionBoxWidth, 24, 22, 176, Alignment.RIGHT, this.modePages.getValues(), DatabaseControlTab::new);
+		ControlTabBar<IDatabaseMode> tab = new ControlTabBar<>(this, 176 + this.selectionBoxWidth, 24, 22, 176, Alignment.RIGHT, this.modePages.getValues(), DatabaseControlTab::new);
 		CraftGUIUtil.linkWidgets(tab, this.modePages);
 		this.changeMode(Mode.SPECIES);
-		for (final IDatabaseMode mode : this.modes.keySet()) {
+		for (IDatabaseMode mode : this.modes.keySet()) {
 			ModeWidgets modeWidgets = this.modes.get(mode);
 			modeWidgets.setInfoTabs(new ControlTabBar<>(modeWidgets.getModePage(), 8, 24, 16, 176, Alignment.LEFT, modeWidgets.getInfoPages().getValues()));
 			CraftGUIUtil.linkWidgets(modeWidgets.getInfoTabs(), modeWidgets.getInfoPages());
@@ -177,7 +177,7 @@ public abstract class WindowAbstractDatabase extends Window {
 
 	@Override
 	public void initialiseServer() {
-		final IBreedingTracker tracker = this.system.getSpeciesRoot().getBreedingTracker(this.getWorld(), this.getUsername());
+		IBreedingTracker tracker = this.system.getSpeciesRoot().getBreedingTracker(this.getWorld(), this.getUsername());
 		if (tracker != null) {
 			tracker.synchToPlayer(this.getPlayer());
 		}
@@ -187,7 +187,7 @@ public abstract class WindowAbstractDatabase extends Window {
 	protected void addTabs() {
 	}
 
-	public void gotoSpecies(final IAlleleSpecies value) {
+	public void gotoSpecies(IAlleleSpecies value) {
 		if (value != null) {
 			this.modePages.setValue(Mode.SPECIES);
 			this.changeMode(Mode.SPECIES);
@@ -195,7 +195,7 @@ public abstract class WindowAbstractDatabase extends Window {
 		}
 	}
 
-	public void gotoSpeciesDelayed(final IAlleleSpecies species) {
+	public void gotoSpeciesDelayed(IAlleleSpecies species) {
 		this.gotoSpecies = species;
 	}
 

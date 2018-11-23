@@ -18,7 +18,7 @@ import binnie.core.util.I18N;
 
 @SideOnly(Side.CLIENT)
 public class ControlHelp extends Control implements ITooltip {
-	public ControlHelp(final IWidget parent, final int x, final int y) {
+	public ControlHelp(IWidget parent, int x, int y) {
 		super(parent, x, y, 16, 16);
 		this.addAttribute(Attribute.MOUSE_OVER);
 	}
@@ -30,16 +30,16 @@ public class ControlHelp extends Control implements ITooltip {
 	}
 
 	@Override
-	public void getTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
+	public void getTooltip(Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		this.getTooltip(tooltip);
 	}
 
 	@Override
-	public void getHelpTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
+	public void getHelpTooltip(Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		this.getTooltip(tooltip);
 	}
 
-	private void getTooltip(final Tooltip tooltip) {
+	private void getTooltip(Tooltip tooltip) {
 		tooltip.setMaxWidth(140);
 		tooltip.setType(Tooltip.Type.HELP);
 		tooltip.add(I18N.localise(ModId.CORE, "gui.help.title"));

@@ -29,7 +29,7 @@ public class PageSpeciesOverview extends PageSpecies {
 	private final ControlIndividualDisplay controlInd1;
 	private final ControlIndividualDisplay controlInd2;
 
-	public PageSpeciesOverview(final IWidget parent, final DatabaseTab tab) {
+	public PageSpeciesOverview(IWidget parent, DatabaseTab tab) {
 		super(parent, tab);
 		this.controlInd1 = new ControlIndividualDisplay(this, 5, 5);
 		this.controlInd2 = new ControlIndividualDisplay(this, 123, 5);
@@ -42,21 +42,21 @@ public class PageSpeciesOverview extends PageSpecies {
 	}
 
 	@Override
-	public void onValueChanged(final IAlleleSpecies species) {
+	public void onValueChanged(IAlleleSpecies species) {
 		this.controlInd1.setSpecies(species, EnumDiscoveryState.SHOW);
 		this.controlInd2.setSpecies(species, EnumDiscoveryState.SHOW);
-		final String branchBinomial = species.getBranch().getScientific();
+		String branchBinomial = species.getBranch().getScientific();
 		this.controlName.setValue(TextFormatting.UNDERLINE + species.getAlleleName());
 		this.controlScientific.setValue(TextFormatting.ITALIC + branchBinomial + ' ' + species.getBinomial());
 		this.controlAuthority.setValue(I18N.localise(DatabaseConstants.KEY + ".discovered") + ": " + TextFormatting.BOLD + species.getAuthority());
 		this.controlComplexity.setValue(I18N.localise(DatabaseConstants.KEY + ".overview.complexity") + ": " + species.getComplexity());
-		final String desc = species.getDescription();
+		String desc = species.getDescription();
 		StringBuilder descBody = new StringBuilder(TextFormatting.ITALIC.toString());
 		String descSig = "";
 		if (desc == null || Objects.equals(desc, "") || desc.contains("for.description") || desc.contains(".desc")) {
 			descBody.append(I18N.localise(DatabaseConstants.KEY + ".no.description"));
 		} else {
-			final String[] descStrings = desc.split("\\|");
+			String[] descStrings = desc.split("\\|");
 			descBody.append(descStrings[0]);
 			for (int i = 1; i < descStrings.length - 1; ++i) {
 				descBody.append(' ').append(descStrings[i]);
@@ -67,7 +67,7 @@ public class PageSpeciesOverview extends PageSpecies {
 		}
 		this.controlDescription.setValue(descBody.toString() + TextFormatting.RESET);
 		this.controlSignature.setValue(descSig);
-		final int descHeight = CraftGUI.RENDER.textHeight(this.controlDescription.getValue(), this.controlDescription.getSize().xPos());
+		int descHeight = CraftGUI.RENDER.textHeight(this.controlDescription.getValue(), this.controlDescription.getSize().xPos());
 		this.controlSignature.setPosition(new Point(controlSignature.getPosition().xPos(), this.controlDescription.getPosition().yPos() + descHeight + 10));
 	}
 }

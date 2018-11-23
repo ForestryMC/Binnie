@@ -25,7 +25,7 @@ public class SplicerLogic extends ComponentProcess implements IProcess {
 	public static final int PROCESS_LENGTH = ConfigurationMain.splicerTime;
 	private int nOfGenes;
 
-	public SplicerLogic(final Machine machine) {
+	public SplicerLogic(Machine machine) {
 		super(machine);
 		this.nOfGenes = 0;
 	}
@@ -52,13 +52,13 @@ public class SplicerLogic extends ComponentProcess implements IProcess {
 		if (serum.isEmpty() || target.isEmpty()) {
 			return 1;
 		}
-		final IIndividual ind = AlleleManager.alleleRegistry.getIndividual(target);
-		final IGene[] genes = ((IItemSerum) serum.getItem()).getGenes(serum);
+		IIndividual ind = AlleleManager.alleleRegistry.getIndividual(target);
+		IGene[] genes = ((IItemSerum) serum.getItem()).getGenes(serum);
 		if (ind.getGenome().getSpeciesRoot() != ((IItemSerum) serum.getItem()).getSpeciesRoot(serum)) {
 			return 1;
 		}
 		int i = 0;
-		for (final IGene gene : genes) {
+		for (IGene gene : genes) {
 			if (ind.getGenome().getActiveAllele(gene.getChromosome()) != gene.getAllele() || ind.getGenome().getInactiveAllele(gene.getChromosome()) != gene.getAllele()) {
 				++i;
 			}
@@ -81,13 +81,13 @@ public class SplicerLogic extends ComponentProcess implements IProcess {
 	@Override
 	public void onInventoryUpdate() {
 		super.onInventoryUpdate();
-		final ItemStack serum = this.getUtil().getStack(0);
-		final ItemStack target = this.getUtil().getStack(9);
+		ItemStack serum = this.getUtil().getStack(0);
+		ItemStack target = this.getUtil().getStack(9);
 		this.nOfGenes = getGenesToUse(serum, target);
 	}
 
 	private int getFullNumberOfGenes() {
-		final ItemStack serum = this.getUtil().getStack(0);
+		ItemStack serum = this.getUtil().getStack(0);
 		if (serum.isEmpty()) {
 			return 1;
 		}
@@ -100,8 +100,8 @@ public class SplicerLogic extends ComponentProcess implements IProcess {
 
 	@Override
 	public String getTooltip() {
-		final int n = this.getNumberOfGenes();
-		final int f = this.getFullNumberOfGenes();
+		int n = this.getNumberOfGenes();
+		int f = this.getFullNumberOfGenes();
 		return "Splicing in " + n + ((f > 1) ? ("/" + f) : "") + " gene" + ((n > 1) ? "s" : "");
 	}
 
@@ -116,7 +116,7 @@ public class SplicerLogic extends ComponentProcess implements IProcess {
 			return new ErrorState(GeneticsErrorCode.NO_SERUM, Splicer.SLOT_SERUM_VIAL);
 		}
 
-		final ErrorState state = this.isValidSerum();
+		ErrorState state = this.isValidSerum();
 		if (state != null) {
 			return state;
 		}
@@ -129,24 +129,24 @@ public class SplicerLogic extends ComponentProcess implements IProcess {
 
 	@Nullable
 	public ErrorState isValidSerum() {
-		final ItemStack serum = this.getUtil().getStack(Splicer.SLOT_SERUM_VIAL);
+		ItemStack serum = this.getUtil().getStack(Splicer.SLOT_SERUM_VIAL);
 		if (serum.isEmpty()) {
 			return null;
 		}
-		final ItemStack target = this.getUtil().getStack(Splicer.SLOT_TARGET);
-		final IGene[] genes = Engineering.getGenes(serum);
+		ItemStack target = this.getUtil().getStack(Splicer.SLOT_TARGET);
+		IGene[] genes = Engineering.getGenes(serum);
 		if (genes.length == 0) {
 			return new ErrorState(GeneticsErrorCode.INVALID_SERUM_NO);
 		}
 		if (!genes[0].getSpeciesRoot().isMember(target)) {
 			return new ErrorState(GeneticsErrorCode.INVALID_SERUM_MISMATCH);
 		}
-		final IIndividual individual = genes[0].getSpeciesRoot().getMember(target);
+		IIndividual individual = genes[0].getSpeciesRoot().getMember(target);
 		boolean hasAll = true;
-		for (final IGene gene : genes) {
+		for (IGene gene : genes) {
 			if (hasAll) {
-				final IAllele a = individual.getGenome().getActiveAllele(gene.getChromosome());
-				final IAllele b = individual.getGenome().getInactiveAllele(gene.getChromosome());
+				IAllele a = individual.getGenome().getActiveAllele(gene.getChromosome());
+				IAllele b = individual.getGenome().getInactiveAllele(gene.getChromosome());
 				hasAll = (hasAll && a.getUID().equals(gene.getAllele().getUID()) && b.getUID().equals(gene.getAllele().getUID()));
 			}
 		}
@@ -159,12 +159,12 @@ public class SplicerLogic extends ComponentProcess implements IProcess {
 	@Override
 	protected void onFinishTask() {
 		super.onFinishTask();
-		final ItemStack serum = this.getUtil().getStack(Splicer.SLOT_SERUM_VIAL);
+		ItemStack serum = this.getUtil().getStack(Splicer.SLOT_SERUM_VIAL);
 		Preconditions.checkState(!serum.isEmpty());
-		final ItemStack target = this.getUtil().getStack(Splicer.SLOT_TARGET);
+		ItemStack target = this.getUtil().getStack(Splicer.SLOT_TARGET);
 		Preconditions.checkState(!target.isEmpty());
-		final IGene[] genes = ((IItemSerum) serum.getItem()).getGenes(serum);
-		for (final IGene gene : genes) {
+		IGene[] genes = ((IItemSerum) serum.getItem()).getGenes(serum);
+		for (IGene gene : genes) {
 			Splicer.setGene(gene, target, true, true);
 		}
 		this.getUtil().damageItem(serum, Splicer.SLOT_SERUM_VIAL, 1);

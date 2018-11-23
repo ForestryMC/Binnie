@@ -10,7 +10,7 @@ import binnie.extratrees.alcohol.GlasswareType;
 public class ControlSlotGlassware extends ControlSlotBase implements IControlValue<GlasswareType> {
 	private GlasswareType glasswareType;
 
-	public ControlSlotGlassware(final IWidget parent, final int x, final int y, final GlasswareType glasswareType) {
+	public ControlSlotGlassware(IWidget parent, int x, int y, GlasswareType glasswareType) {
 		super(parent, x, y);
 		this.glasswareType = glasswareType;
 	}
@@ -21,7 +21,7 @@ public class ControlSlotGlassware extends ControlSlotBase implements IControlVal
 	}
 
 	@Override
-	public void setValue(final GlasswareType value) {
+	public void setValue(GlasswareType value) {
 		this.glasswareType = value;
 	}
 

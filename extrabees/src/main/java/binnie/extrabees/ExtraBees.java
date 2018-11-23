@@ -57,7 +57,7 @@ public class ExtraBees extends ModuleProvider {
 	public static ConfigHandler configHandler;
 
 	@Mod.EventHandler
-	public void preInit(final FMLPreInitializationEvent event) {
+	public void preInit(FMLPreInitializationEvent event) {
 		super.preInit(event);
 		File configFile = new File(event.getModConfigurationDirectory(), "forestry/extrabees/main.conf");
 		configHandler = new ConfigHandler(configFile);
@@ -77,7 +77,7 @@ public class ExtraBees extends ModuleProvider {
 	}
 
 	@Mod.EventHandler
-	public void init(final FMLInitializationEvent evt) {
+	public void init(FMLInitializationEvent evt) {
 		super.init(evt);
 		configHandler.reload(true);
 	}

@@ -18,16 +18,16 @@ public class InfuserMachine extends ExtraTreeMachine.PackageExtraTreeMachine imp
 	}
 
 	@Override
-	public void createMachine(final Machine machine) {
+	public void createMachine(Machine machine) {
 		new ExtraTreeMachine.ComponentExtraTreeGUI(machine, ExtraTreesGUID.INFUSER);
-		final ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
-		final ComponentTankContainer tanks = new ComponentTankContainer(machine);
+		ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
+		ComponentTankContainer tanks = new ComponentTankContainer(machine);
 
-		final TankSlot input = tanks.addTank(Infuser.TANK_INPUT, "input", 5000);
+		TankSlot input = tanks.addTank(Infuser.TANK_INPUT, "input", 5000);
 		input.setValidator(new TankValidatorInfuserInput());
 		input.forbidExtraction();
 
-		final TankSlot output = tanks.addTank(Infuser.TANK_OUTPUT, "output", 5000);
+		TankSlot output = tanks.addTank(Infuser.TANK_OUTPUT, "output", 5000);
 		output.setValidator(new TankValidatorInfuserOutput());
 		output.setReadOnly();
 

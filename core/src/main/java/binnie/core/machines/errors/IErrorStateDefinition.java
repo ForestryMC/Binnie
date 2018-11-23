@@ -25,7 +25,7 @@ public interface IErrorStateDefinition {
 		if (validatorStrings.size() == 0) {
 			return getDescription();
 		} else {
-			final String validationString;
+			String validationString;
 			if (validatorStrings.size() == 1) {
 				validationString = validatorStrings.get(0);
 			} else {

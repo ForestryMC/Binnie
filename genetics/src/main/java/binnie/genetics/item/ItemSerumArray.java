@@ -31,16 +31,16 @@ public class ItemSerumArray extends ItemGene implements IItemSerum {
 		this.setMaxDamage(16);
 	}
 
-	public static ItemStack create(final IGene gene) {
-		final ItemStack item = GeneticItems.SERUM_ARRAY.stack();
+	public static ItemStack create(IGene gene) {
+		ItemStack item = GeneticItems.SERUM_ARRAY.stack();
 		item.setItemDamage(item.getMaxDamage());
-		final GeneArrayItem seq = new GeneArrayItem(gene);
+		GeneArrayItem seq = new GeneArrayItem(gene);
 		seq.writeToItem(item);
 		return item;
 	}
 
 	@Override
-	public int getCharges(final ItemStack stack) {
+	public int getCharges(ItemStack stack) {
 		return stack.getMaxDamage() - stack.getItemDamage();
 	}
 
@@ -50,7 +50,7 @@ public class ItemSerumArray extends ItemGene implements IItemSerum {
 	}
 
 	@Override
-	public IGene[] getGenes(final ItemStack stack) {
+	public IGene[] getGenes(ItemStack stack) {
 		GeneArrayItem geneItem = this.getGeneItem(stack);
 		if (geneItem != null) {
 			return geneItem.getGenes().toArray(new IGene[0]);
@@ -60,7 +60,7 @@ public class ItemSerumArray extends ItemGene implements IItemSerum {
 
 	@Override
 	@Nullable
-	public ISpeciesRoot getSpeciesRoot(final ItemStack stack) {
+	public ISpeciesRoot getSpeciesRoot(ItemStack stack) {
 		GeneArrayItem geneItem = this.getGeneItem(stack);
 		if (geneItem != null) {
 			return geneItem.getSpeciesRoot();
@@ -70,7 +70,7 @@ public class ItemSerumArray extends ItemGene implements IItemSerum {
 
 	@Override
 	@Nullable
-	public IGene getGene(final ItemStack stack, final int chromosome) {
+	public IGene getGene(ItemStack stack, int chromosome) {
 		GeneArrayItem geneItem = this.getGeneItem(stack);
 		if (geneItem != null) {
 			return geneItem.getGene(chromosome);
@@ -80,7 +80,7 @@ public class ItemSerumArray extends ItemGene implements IItemSerum {
 	}
 
 	@Override
-	public GeneArrayItem getGeneItem(final ItemStack itemStack) {
+	public GeneArrayItem getGeneItem(ItemStack itemStack) {
 		return new GeneArrayItem(itemStack);
 	}
 
@@ -109,7 +109,7 @@ public class ItemSerumArray extends ItemGene implements IItemSerum {
 	}
 
 	@Override
-	public String getItemStackDisplayName(final ItemStack itemstack) {
+	public String getItemStackDisplayName(ItemStack itemstack) {
 		GeneArrayItem geneItem = getGeneItem(itemstack);
 		if (geneItem != null) {
 			ISpeciesRoot speciesRoot = geneItem.getSpeciesRoot();
@@ -122,8 +122,8 @@ public class ItemSerumArray extends ItemGene implements IItemSerum {
 	}
 
 	@Override
-	public ItemStack addGene(final ItemStack stack, final IGene gene) {
-		final IGeneItem geneItem = this.getGeneItem(stack);
+	public ItemStack addGene(ItemStack stack, IGene gene) {
+		IGeneItem geneItem = this.getGeneItem(stack);
 		Preconditions.checkNotNull(geneItem, "Cannot add gene to itemStack that is not a valid serum array.");
 		geneItem.addGene(gene);
 		geneItem.writeToItem(stack);

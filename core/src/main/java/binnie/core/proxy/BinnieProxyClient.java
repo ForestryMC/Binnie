@@ -73,7 +73,7 @@ public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy
 
 	@Override
 	public void registerFluidStateMapper(Block block, FluidType fluid) {
-		final ModelResourceLocation fluidLocation = new ModelResourceLocation("binniecore:blockbinniefluid", fluid.getIdentifier());
+		ModelResourceLocation fluidLocation = new ModelResourceLocation("binniecore:blockbinniefluid", fluid.getIdentifier());
 		StateMapperBase ignoreState = new FluidStateMapper(fluidLocation);
 		ModelLoader.setCustomStateMapper(block, ignoreState);
 		ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(block), new FluidItemMeshDefinition(fluidLocation));
@@ -117,13 +117,13 @@ public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy
 	}
 
 	@Override
-	public void bindTexture(final ResourceLocation location) {
+	public void bindTexture(ResourceLocation location) {
 		this.getMinecraftInstance().getTextureManager().bindTexture(location);
 	}
 
 	@Override
-	public boolean checkTexture(final ResourceLocation location) {
-		final SimpleTexture texture = new SimpleTexture(location);
+	public boolean checkTexture(ResourceLocation location) {
+		SimpleTexture texture = new SimpleTexture(location);
 		try {
 			texture.loadTexture(this.getMinecraftInstance().getResourceManager());
 		} catch (IOException e) {
@@ -158,7 +158,7 @@ public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy
 	}
 
 	@Override
-	public <T extends TileEntity> void registerTileEntity(Class<? extends T> tile, final String id, ClientSupplier<TileEntitySpecialRenderer<T>> rendererSupplier) {
+	public <T extends TileEntity> void registerTileEntity(Class<? extends T> tile, String id, ClientSupplier<TileEntitySpecialRenderer<T>> rendererSupplier) {
 		ClientRegistry.registerTileEntity(tile, id, rendererSupplier.get());
 	}
 
@@ -174,7 +174,7 @@ public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy
 
 	@Override
 	public void preInit() {
-		final IResourceManager manager = Minecraft.getMinecraft().getResourceManager();
+		IResourceManager manager = Minecraft.getMinecraft().getResourceManager();
 		if (manager instanceof IReloadableResourceManager) {
 			IReloadableResourceManager resourceManager = (IReloadableResourceManager) manager;
 			resourceManager.registerReloadListener(new StyleSheetManager());

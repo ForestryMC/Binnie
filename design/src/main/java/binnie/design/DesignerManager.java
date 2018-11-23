@@ -22,7 +22,7 @@ public final class DesignerManager implements IDesignManager {
 
 	}
 
-	public void registerDesignSystem(final IDesignSystem system) {
+	public void registerDesignSystem(IDesignSystem system) {
 		this.systems.add(system);
 	}
 
@@ -31,13 +31,13 @@ public final class DesignerManager implements IDesignManager {
 	}
 
 	@Override
-	public boolean registerDesign(final int index, final IDesign design) {
+	public boolean registerDesign(int index, IDesign design) {
 		return designMap.put(index, design) == null;
 	}
 
 	@Override
-	public int getDesignIndex(final IDesign design) {
-		for (final Integer integer : designMap.keySet()) {
+	public int getDesignIndex(IDesign design) {
+		for (Integer integer : designMap.keySet()) {
 			if (designMap.get(integer).equals(design)) {
 				return integer;
 			}
@@ -46,19 +46,19 @@ public final class DesignerManager implements IDesignManager {
 	}
 
 	@Override
-	public IDesign getDesign(final int index) {
+	public IDesign getDesign(int index) {
 		return designMap.get(index);
 	}
 
 	@Override
-	public boolean registerDesignCategory(final IDesignCategory category) {
+	public boolean registerDesignCategory(IDesignCategory category) {
 		return designCategories.put(category.getId(), category) == null;
 	}
 
 	@Override
 	public Collection<IDesignCategory> getAllDesignCategories() {
-		final List<IDesignCategory> categories = new ArrayList<>();
-		for (final IDesignCategory category : designCategories.values()) {
+		List<IDesignCategory> categories = new ArrayList<>();
+		for (IDesignCategory category : designCategories.values()) {
 			if (category.getDesigns().size() > 0) {
 				categories.add(category);
 			}
@@ -68,8 +68,8 @@ public final class DesignerManager implements IDesignManager {
 
 	@Override
 	public List<IDesign> getSortedDesigns() {
-		final List<IDesign> designs = new ArrayList<>();
-		for (final IDesignCategory category : this.getAllDesignCategories()) {
+		List<IDesign> designs = new ArrayList<>();
+		for (IDesignCategory category : this.getAllDesignCategories()) {
 			designs.addAll(category.getDesigns());
 		}
 		return designs;

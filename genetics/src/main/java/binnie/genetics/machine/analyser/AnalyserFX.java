@@ -22,7 +22,7 @@ import binnie.core.util.EntityItemRenderer;
 public class AnalyserFX extends MachineComponent implements IRender.DisplayTick, IRender.Render, INetwork.TilePacketSync {
 	private final EntityItemRenderer entityItemRenderer;
 
-	public AnalyserFX(final IMachine machine) {
+	public AnalyserFX(IMachine machine) {
 		super(machine);
 		this.entityItemRenderer = new EntityItemRenderer();
 	}
@@ -31,26 +31,26 @@ public class AnalyserFX extends MachineComponent implements IRender.DisplayTick,
 	@Override
 	public void onDisplayTick(World world, BlockPos pos, Random rand) {
 		if (this.getUtil().getProcess().isInProgress()) {
-			final ParticleManager effectRenderer = BinnieCore.getBinnieProxy().getMinecraftInstance().effectRenderer;
+			ParticleManager effectRenderer = BinnieCore.getBinnieProxy().getMinecraftInstance().effectRenderer;
 			effectRenderer.addEffect(new AnalyserParticle(world, pos, rand));
 		}
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void renderInWorld(final double x, final double y, final double z) {
+	public void renderInWorld(double x, double y, double z) {
 		if (!this.getUtil().getProcess().isInProgress()) {
 			return;
 		}
-		final ItemStack itemstack = this.getUtil().getStack(6);
+		ItemStack itemstack = this.getUtil().getStack(6);
 		World world = this.getMachine().getWorld();
 		this.entityItemRenderer.renderInWorld(itemstack, world, x + 0.5f, y + 0.8f, z + 0.5f);
 	}
 
 	@Override
-	public void syncToNBT(final NBTTagCompound nbt) {
-		final NBTTagCompound item = new NBTTagCompound();
-		final ItemStack stack = this.getUtil().getStack(6);
+	public void syncToNBT(NBTTagCompound nbt) {
+		NBTTagCompound item = new NBTTagCompound();
+		ItemStack stack = this.getUtil().getStack(6);
 		if (!stack.isEmpty()) {
 			stack.writeToNBT(item);
 			nbt.setTag("item", item);
@@ -58,7 +58,7 @@ public class AnalyserFX extends MachineComponent implements IRender.DisplayTick,
 	}
 
 	@Override
-	public void syncFromNBT(final NBTTagCompound nbt) {
+	public void syncFromNBT(NBTTagCompound nbt) {
 		if (nbt.hasKey("item")) {
 			this.getUtil().setStack(6, new ItemStack(nbt.getCompoundTag("item")));
 		} else {

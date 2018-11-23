@@ -15,14 +15,14 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import forestry.api.core.IModelManager;
 
-import binnie.core.api.gui.IGuiItem;
+import binnie.core.gui.IBinnieGUID;
+import binnie.core.gui.IBinnieGuiItem;
 import binnie.core.item.ItemCore;
 import binnie.core.util.I18N;
 import binnie.genetics.CreativeTabGenetics;
-import binnie.genetics.Genetics;
 import binnie.genetics.core.GeneticsGUI;
 
-public class ItemDatabase extends ItemCore implements IGuiItem {
+public class ItemDatabase extends ItemCore implements IBinnieGuiItem {
 
 	public ItemDatabase() {
 		super("geneticdatabase");
@@ -49,7 +49,7 @@ public class ItemDatabase extends ItemCore implements IGuiItem {
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
 		ItemStack itemStack = player.getHeldItem(hand);
-		openGuiOnRightClick(itemStack, world, player);
+		openGui(itemStack, world, player);
 		return new ActionResult<>(EnumActionResult.PASS, itemStack);
 	}
 
@@ -63,13 +63,7 @@ public class ItemDatabase extends ItemCore implements IGuiItem {
 	}
 
 	@Override
-	public void openGuiOnRightClick(ItemStack itemStack, World world, EntityPlayer player) {
-		final GeneticsGUI id;
-		if (isMaster(itemStack)) {
-			id = GeneticsGUI.DATABASE_MASTER;
-		} else {
-			id = GeneticsGUI.DATABASE;
-		}
-		Genetics.proxy.openGui(id, player, player.getPosition());
+	public IBinnieGUID getGuiID(ItemStack itemStack) {
+		return isMaster(itemStack) ? GeneticsGUI.DATABASE_MASTER : GeneticsGUI.DATABASE;
 	}
 }

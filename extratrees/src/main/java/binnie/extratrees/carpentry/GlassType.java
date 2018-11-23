@@ -27,10 +27,10 @@ public class GlassType implements IDesignMaterial {
 
 	static {
 		GlassType.types = new LinkedHashMap<>();
-		for (final StandardColor c : StandardColor.values()) {
+		for (StandardColor c : StandardColor.values()) {
 			GlassType.types.put(c.ordinal(), new GlassType(c.ordinal(), c.name, c.colour));
 		}
-		for (final EnumFlowerColor c2 : EnumFlowerColor.values()) {
+		for (EnumFlowerColor c2 : EnumFlowerColor.values()) {
 			GlassType.types.put(128 + c2.ordinal(), new GlassType(128 + c2.ordinal(), c2.getFlowerColorAllele().getColorName(), c2.getFlowerColorAllele().getColor(false)));
 		}
 	}
@@ -39,14 +39,14 @@ public class GlassType implements IDesignMaterial {
 	private final int colour;
 	private final int id;
 
-	private GlassType(final int id, final String name, final int colour) {
+	private GlassType(int id, String name, int colour) {
 		this.id = id;
 		this.name = name;
 		this.colour = colour;
 	}
 
-	public static int getIndex(final IDesignMaterial id) {
-		for (final Map.Entry<Integer, GlassType> entry : GlassType.types.entrySet()) {
+	public static int getIndex(IDesignMaterial id) {
+		for (Map.Entry<Integer, GlassType> entry : GlassType.types.entrySet()) {
 			if (entry.getValue() == id) {
 				return entry.getKey();
 			}
@@ -54,13 +54,13 @@ public class GlassType implements IDesignMaterial {
 		return 0;
 	}
 
-	public static IDesignMaterial get(final int id) {
+	public static IDesignMaterial get(int id) {
 		return GlassType.types.get(id);
 	}
 
 	@Nullable
-	public static IDesignMaterial get(final ItemStack stack) {
-		for (final Map.Entry<Integer, GlassType> entry : GlassType.types.entrySet()) {
+	public static IDesignMaterial get(ItemStack stack) {
+		for (Map.Entry<Integer, GlassType> entry : GlassType.types.entrySet()) {
 			if (stack.isItemEqual(entry.getValue().getStack())) {
 				return entry.getValue();
 			}
@@ -116,7 +116,7 @@ public class GlassType implements IDesignMaterial {
 		private final String name;
 		private final int colour;
 
-		StandardColor(final String name, final int colour) {
+		StandardColor(String name, int colour) {
 			this.name = name;
 			this.colour = colour;
 		}

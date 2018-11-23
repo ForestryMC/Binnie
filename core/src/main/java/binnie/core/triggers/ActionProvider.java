@@ -38,7 +38,7 @@ class ActionProvider implements IActionProvider {
 		if (tile instanceof IBuildcraft.ActionProvider) {
 			((IBuildcraft.ActionProvider) tile).getActions(tileActions);
 		}
-		for (final IActionExternal action : tileActions) {
+		for (IActionExternal action : tileActions) {
 			if (action != null && action.getUniqueTag() != null) {
 				actions.add(action);
 			}

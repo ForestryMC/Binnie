@@ -11,14 +11,14 @@ import binnie.extrabees.utils.AlvearyMutationHandler;
 import binnie.extrabees.utils.ComponentBeeModifier;
 
 public class ComponentMutatorModifier extends ComponentBeeModifier implements IBeeModifier, IBeeListener {
-	public ComponentMutatorModifier(final Machine machine) {
+	public ComponentMutatorModifier(Machine machine) {
 		super(machine);
 	}
 
 	@Override
-	public float getMutationModifier(final IBeeGenome genome, final IBeeGenome mate, final float currentModifier) {
+	public float getMutationModifier(IBeeGenome genome, IBeeGenome mate, float currentModifier) {
 		ItemStack mutator = this.getUtil().getStack(AlvearyMutator.SLOT_MUTATOR);
-		final float mult = AlvearyMutationHandler.getMutationMult(mutator);
+		float mult = AlvearyMutationHandler.getMutationMult(mutator);
 		return Math.min(mult * currentModifier, 15f);
 	}
 

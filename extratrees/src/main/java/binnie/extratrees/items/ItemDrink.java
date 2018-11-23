@@ -64,18 +64,18 @@ public class ItemDrink extends ItemFood implements IItemModelRegister {
 		return GlasswareType.values()[nbt.getShort(TYPE_NBT_KEY)];
 	}
 
-	public ItemStack getStack(final GlasswareType glass, @Nullable final FluidStack fluid, int amount) {
-		final ItemStack stack = new ItemStack(this, amount);
+	public ItemStack getStack(GlasswareType glass, @Nullable FluidStack fluid, int amount) {
+		ItemStack stack = new ItemStack(this, amount);
 		this.saveGlassware(glass, stack);
 		this.saveFluid(fluid, stack);
 		return stack;
 	}
 
-	public ItemStack getStack(final GlasswareType glass, @Nullable final FluidStack fluid) {
+	public ItemStack getStack(GlasswareType glass, @Nullable FluidStack fluid) {
 		return getStack(glass, fluid, 1);
 	}
 
-	public void saveGlassware(final GlasswareType container, final ItemStack stack) {
+	public void saveGlassware(GlasswareType container, ItemStack stack) {
 		NBTTagCompound nbt = stack.getTagCompound();
 		if (nbt == null) {
 			stack.setTagCompound(nbt = new NBTTagCompound());
@@ -83,7 +83,7 @@ public class ItemDrink extends ItemFood implements IItemModelRegister {
 		nbt.setShort(TYPE_NBT_KEY, (short) container.ordinal());
 	}
 
-	public void saveFluid(@Nullable FluidStack fluid, final ItemStack stack) {
+	public void saveFluid(@Nullable FluidStack fluid, ItemStack stack) {
 		NBTTagCompound nbt = stack.getTagCompound();
 		if (nbt == null) {
 			stack.setTagCompound(nbt = new NBTTagCompound());
@@ -117,7 +117,7 @@ public class ItemDrink extends ItemFood implements IItemModelRegister {
 	@Override
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
 		if (this.isInCreativeTab(tab)) {
-			for (final GlasswareType glasswareType : GlasswareType.values()) {
+			for (GlasswareType glasswareType : GlasswareType.values()) {
 				items.add(this.getStack(glasswareType, null));
 			}
 			items.add(this.getStack(GlasswareType.WINE, Alcohol.RedWine.get(GlasswareType.WINE.getCapacity())));
@@ -125,16 +125,16 @@ public class ItemDrink extends ItemFood implements IItemModelRegister {
 	}
 
 	@Override
-	public String getItemStackDisplayName(final ItemStack stack) {
-		final FluidStack fluid = FluidUtil.getFluidContained(stack);
-		final IDrinkLiquid liquid = (fluid == null) ? null : DrinkManager.getLiquid(fluid.getFluid());
-		final String liquidName = (liquid == null) ? null : liquid.getName();
+	public String getItemStackDisplayName(ItemStack stack) {
+		FluidStack fluid = FluidUtil.getFluidContained(stack);
+		IDrinkLiquid liquid = (fluid == null) ? null : DrinkManager.getLiquid(fluid.getFluid());
+		String liquidName = (liquid == null) ? null : liquid.getName();
 		return this.getGlassware(stack).getName(liquidName);
 	}
 
 	@Override
 	public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving) {
-		final IFluidHandler handler = stack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null);
+		IFluidHandler handler = stack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null);
 		if (handler != null && entityLiving instanceof EntityPlayer) {
 			EntityPlayer entityplayer = (EntityPlayer) entityLiving;
 			entityplayer.getFoodStats().addStats(this, stack);
@@ -154,8 +154,8 @@ public class ItemDrink extends ItemFood implements IItemModelRegister {
 	@Override
 	protected void onFoodEaten(ItemStack stack, World world, EntityPlayer player) {
 		super.onFoodEaten(stack, world, player);
-		final FluidStack fluid = FluidUtil.getFluidContained(stack);
-		final IDrinkLiquid liquid = (fluid == null) ? null : DrinkManager.getLiquid(fluid.getFluid());
+		FluidStack fluid = FluidUtil.getFluidContained(stack);
+		IDrinkLiquid liquid = (fluid == null) ? null : DrinkManager.getLiquid(fluid.getFluid());
 		float strength = (liquid == null) ? 0.0f : liquid.getABV();
 		if (strength > 0.0f) {
 			AlcoholEffect.makeDrunk(player, strength);
@@ -163,7 +163,7 @@ public class ItemDrink extends ItemFood implements IItemModelRegister {
 	}
 
 	@Override
-	public EnumAction getItemUseAction(final ItemStack itemStack) {
+	public EnumAction getItemUseAction(ItemStack itemStack) {
 		if (FluidUtil.getFluidContained(itemStack) != null) {
 			return EnumAction.DRINK;
 		} else {
@@ -172,7 +172,7 @@ public class ItemDrink extends ItemFood implements IItemModelRegister {
 	}
 
 	@Override
-	public int getMaxItemUseDuration(final ItemStack stack) {
+	public int getMaxItemUseDuration(ItemStack stack) {
 		return 16;
 	}
 

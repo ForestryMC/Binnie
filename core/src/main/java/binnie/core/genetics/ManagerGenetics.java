@@ -49,16 +49,16 @@ public class ManagerGenetics extends ManagerBase {
 		this.chromosomeArray = new LinkedHashMap<>();
 	}
 
-	public static boolean isAnalysable(final ItemStack stack) {
-		final IIndividual ind = AlleleManager.alleleRegistry.getIndividual(stack);
+	public static boolean isAnalysable(ItemStack stack) {
+		IIndividual ind = AlleleManager.alleleRegistry.getIndividual(stack);
 		return ind != null || stack.getItem() instanceof IItemAnalysable || Binnie.GENETICS.getConversion(stack) != null;
 	}
 
-	public static boolean isAnalysed(final ItemStack stack) {
+	public static boolean isAnalysed(ItemStack stack) {
 		if (stack.isEmpty()) {
 			return false;
 		}
-		final IIndividual ind = AlleleManager.alleleRegistry.getIndividual(stack);
+		IIndividual ind = AlleleManager.alleleRegistry.getIndividual(stack);
 		if (ind != null) {
 			return ind.isAnalyzed();
 		}
@@ -75,11 +75,11 @@ public class ManagerGenetics extends ManagerBase {
 			}
 			ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(stack);
 			if (root != null) {
-				final IIndividual ind = root.getMember(stack);
+				IIndividual ind = root.getMember(stack);
 				ind.analyze();
 				IBreedingTracker breedingTracker = ind.getGenome().getSpeciesRoot().getBreedingTracker(world, username);
 				breedingTracker.registerBirth(ind);
-				final NBTTagCompound nbttagcompound = new NBTTagCompound();
+				NBTTagCompound nbttagcompound = new NBTTagCompound();
 				ind.writeToNBT(nbttagcompound);
 				stack.setTagCompound(nbttagcompound);
 				return stack;
@@ -97,8 +97,8 @@ public class ManagerGenetics extends ManagerBase {
 	}
 
 	@Nullable
-	public IBreedingSystem getSystem(final String string) {
-		for (final IBreedingSystem system : this.BREEDING_SYSTEMS.values()) {
+	public IBreedingSystem getSystem(String string) {
+		for (IBreedingSystem system : this.BREEDING_SYSTEMS.values()) {
 			if (system.getIdent().equals(string)) {
 				return system;
 			}
@@ -106,18 +106,18 @@ public class ManagerGenetics extends ManagerBase {
 		return null;
 	}
 
-	public IBreedingSystem getSystem(final ISpeciesRoot root) {
+	public IBreedingSystem getSystem(ISpeciesRoot root) {
 		String rootUID = root.getUID();
 		IBreedingSystem system = this.getSystem(rootUID);
 		Preconditions.checkState(system != null, "Could not find system for species root %s", rootUID);
 		return system;
 	}
 
-	public ISpeciesRoot getSpeciesRoot(final IAlleleSpecies species) {
+	public ISpeciesRoot getSpeciesRoot(IAlleleSpecies species) {
 		return species.getRoot();
 	}
 
-	public int[] getTolerance(final forestry.api.genetics.EnumTolerance tol) {
+	public int[] getTolerance(forestry.api.genetics.EnumTolerance tol) {
 		return Tolerance.values()[tol.ordinal()].getBounds();
 	}
 
@@ -134,14 +134,14 @@ public class ManagerGenetics extends ManagerBase {
 		return first;
 	}
 
-	public void registerBreedingSystem(final IBreedingSystem system) {
+	public void registerBreedingSystem(IBreedingSystem system) {
 		this.BREEDING_SYSTEMS.put(system.getSpeciesRoot(), system);
 	}
 
 	@Nullable
-	public IBreedingSystem getConversionSystem(final ItemStack stack) {
+	public IBreedingSystem getConversionSystem(ItemStack stack) {
 		if (!stack.isEmpty()) {
-			for (final IBreedingSystem system : this.getActiveSystems()) {
+			for (IBreedingSystem system : this.getActiveSystems()) {
 				if (system.getConversion(stack) != null) {
 					return system;
 				}
@@ -150,9 +150,9 @@ public class ManagerGenetics extends ManagerBase {
 		return null;
 	}
 
-	public ItemStack getConversionStack(final ItemStack stack) {
+	public ItemStack getConversionStack(ItemStack stack) {
 		if (!stack.isEmpty()) {
-			final IBreedingSystem system = this.getConversionSystem(stack);
+			IBreedingSystem system = this.getConversionSystem(stack);
 			if (system != null) {
 				return system.getConversionStack(stack);
 			}
@@ -161,13 +161,13 @@ public class ManagerGenetics extends ManagerBase {
 	}
 
 	@Nullable
-	public IIndividual getConversion(final ItemStack stack) {
-		final IBreedingSystem system = this.getConversionSystem(stack);
+	public IIndividual getConversion(ItemStack stack) {
+		IBreedingSystem system = this.getConversionSystem(stack);
 		return (system == null) ? null : system.getConversion(stack);
 	}
 
 	@SubscribeEvent
-	public void onWorldLoad(final WorldEvent.Load event) {
+	public void onWorldLoad(WorldEvent.Load event) {
 		this.refreshData();
 	}
 
@@ -201,7 +201,7 @@ public class ManagerGenetics extends ManagerBase {
 				if (alleles.size() == 0) {
 					this.invalidChromosomeTypes.add(chromosome);
 				} else {
-					final List<IAllele> alleleList = new ArrayList<>(alleles);
+					List<IAllele> alleleList = new ArrayList<>(alleles);
 					chromosomeMap.put(chromosome, alleleList);
 				}
 			}
@@ -209,21 +209,21 @@ public class ManagerGenetics extends ManagerBase {
 		}
 	}
 
-	public Map<IChromosomeType, List<IAllele>> getChromosomeMap(final ISpeciesRoot root) {
+	public Map<IChromosomeType, List<IAllele>> getChromosomeMap(ISpeciesRoot root) {
 		return this.chromosomeArray.get(root);
 	}
 
-	public Collection<IChromosomeType> getActiveChromosomes(final ISpeciesRoot root) {
+	public Collection<IChromosomeType> getActiveChromosomes(ISpeciesRoot root) {
 		return this.getChromosomeMap(root).keySet();
 	}
 
-	public boolean isInvalidChromosome(final IChromosomeType type) {
+	public boolean isInvalidChromosome(IChromosomeType type) {
 		return this.invalidChromosomeTypes.contains(type);
 	}
 
 	static class ComparatorAllele implements Comparator<IAllele> {
 		@Override
-		public int compare(final IAllele o1, final IAllele o2) {
+		public int compare(IAllele o1, IAllele o2) {
 			if (o1 == null || o2 == null) {
 				throw new NullPointerException("Allele is null!");
 			}

@@ -16,16 +16,16 @@ import binnie.core.gui.minecraft.InventoryType;
 
 @SideOnly(Side.CLIENT)
 public class ControlSlotArray extends Control implements Iterable<ControlSlot> {
-	private List<ControlSlot> slots;
+	private final List<ControlSlot> slots;
 
-	private ControlSlotArray(final IWidget parent, final int x, final int y, final int columns, final int rows) {
+	private ControlSlotArray(IWidget parent, int x, int y, int columns, int rows) {
 		super(parent, x, y, columns * 18, rows * 18);
 		this.slots = new ArrayList<>();
 	}
 
-	public void setItemStacks(final ItemStack[] array) {
+	public void setItemStacks(ItemStack[] array) {
 		int i = 0;
-		for (final ItemStack item : array) {
+		for (ItemStack item : array) {
 			if (i >= this.slots.size()) {
 				return;
 			}
@@ -36,7 +36,7 @@ public class ControlSlotArray extends Control implements Iterable<ControlSlot> {
 		}
 	}
 
-	public ControlSlot getControlSlot(final int i) {
+	public ControlSlot getControlSlot(int i) {
 		return this.slots.get(i);
 	}
 
@@ -52,7 +52,7 @@ public class ControlSlotArray extends Control implements Iterable<ControlSlot> {
 		private final int columns;
 		private final int rows;
 
-		public Builder(final IWidget parent, final int x, final int y, final int columns, final int rows) {
+		public Builder(IWidget parent, int x, int y, int columns, int rows) {
 			this.parent = parent;
 			this.x = x;
 			this.y = y;
@@ -60,11 +60,11 @@ public class ControlSlotArray extends Control implements Iterable<ControlSlot> {
 			this.rows = rows;
 		}
 
-		public ControlSlotArray create(final int[] index) {
+		public ControlSlotArray create(int[] index) {
 			return this.create(InventoryType.MACHINE, index);
 		}
 
-		public ControlSlotArray create(final InventoryType type, final int[] index) {
+		public ControlSlotArray create(InventoryType type, int[] index) {
 			ControlSlotArray controlSlots = new ControlSlotArray(parent, x, y, columns, rows);
 			int i = 0;
 			for (int row = 0; row < rows; ++row) {

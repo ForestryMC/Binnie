@@ -6,7 +6,7 @@ import binnie.core.machines.IMachine;
 import binnie.core.machines.MachineComponent;
 
 public abstract class ComponentInventory extends MachineComponent implements IInventory {
-	public ComponentInventory(final IMachine machine) {
+	public ComponentInventory(IMachine machine) {
 		super(machine);
 	}
 

@@ -49,7 +49,7 @@ public enum Spirit implements IFluidDefinition, ICocktailIngredientProvider {
 	private final FluidType type;
 	private final CocktailLiquid cocktailLiquid;
 
-	Spirit(final String ident, final int color, final double transparency, final float abv) {
+	Spirit(String ident, int color, double transparency, float abv) {
 		this.abv = abv;
 		type = ExtraTrees.instance.registry(ExtraTreesModuleUIDs.ALCOHOL).createFluid(ident, String.format("%s.fluid.%s.%s", ExtraTrees.instance.getModId(), "Spirit", this.name()), color)
 			.setTextures(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "blocks/liquids/liquid"))
@@ -68,7 +68,7 @@ public enum Spirit implements IFluidDefinition, ICocktailIngredientProvider {
 	}
 
 	@Override
-	public FluidStack get(final int amount) {
+	public FluidStack get(int amount) {
 		return type.stack(amount);
 	}
 

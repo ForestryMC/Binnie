@@ -34,7 +34,7 @@ class SidedAccess {
 		return this.getAccess(side).canExtract();
 	}
 
-	public boolean canAccess(final EnumFacing side) {
+	public boolean canAccess(EnumFacing side) {
 		return this.getAccess(side).canAccess();
 	}
 

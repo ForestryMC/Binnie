@@ -25,23 +25,23 @@ import binnie.extratrees.wood.planks.IPlankType;
 
 @SideOnly(Side.CLIENT)
 public class PagePlanksOverview extends PageAbstract<ItemStack> {
-	public PagePlanksOverview(final IWidget parent, final DatabaseTab tab) {
+	public PagePlanksOverview(IWidget parent, DatabaseTab tab) {
 		super(parent, tab);
 	}
 
 	@Override
-	public void onValueChanged(final ItemStack species) {
+	public void onValueChanged(ItemStack species) {
 		this.deleteAllChildren();
-		final WindowAbstractDatabase database = Window.get(this);
+		WindowAbstractDatabase database = Window.get(this);
 		IPoint size = getSize();
 		new ControlText(this, new Area(0, 0, size.xPos(), 24), species.getDisplayName(), TextJustification.MIDDLE_CENTER);
 		new ControlText(this, new Area(12, 24, size.xPos() - 24, 24), I18N.localise(DatabaseConstants.EXTRATREES_KEY + ".planks.use"), TextJustification.MIDDLE_LEFT);
-		final IPlankType type = WoodManager.getPlankType(species);
+		IPlankType type = WoodManager.getPlankType(species);
 		int x = 12;
 		if (type != null) {
-			final ItemStack fence = WoodManager.getFence(type, new FenceType(0), 1);
-			final ItemStack gate = WoodManager.getGate(type);
-			final ItemStack door = WoodManager.getDoor(type);
+			ItemStack fence = WoodManager.getFence(type, new FenceType(0), 1);
+			ItemStack gate = WoodManager.getGate(type);
+			ItemStack door = WoodManager.getDoor(type);
 			if (!fence.isEmpty()) {
 				new ControlItemDisplay(this, x, 48).setItemStack(fence);
 				x += 22;
@@ -55,8 +55,8 @@ public class PagePlanksOverview extends PageAbstract<ItemStack> {
 				x += 22;
 			}
 		}
-		final ControlText controlDescription = new ControlText(this, new Area(8, 84, this.getSize().xPos() - 16, 0), "", TextJustification.MIDDLE_CENTER);
-		final ControlText controlSignature = new ControlText(this, new Area(8, 84, this.getSize().xPos() - 16, 0), "", TextJustification.BOTTOM_RIGHT);
+		ControlText controlDescription = new ControlText(this, new Area(8, 84, this.getSize().xPos() - 16, 0), "", TextJustification.MIDDLE_CENTER);
+		ControlText controlSignature = new ControlText(this, new Area(8, 84, this.getSize().xPos() - 16, 0), "", TextJustification.BOTTOM_RIGHT);
 		String desc = "";
 		if (type != null) {
 			desc = type.getDescription();
@@ -66,7 +66,7 @@ public class PagePlanksOverview extends PageAbstract<ItemStack> {
 		if (desc == null || desc.length() == 0) {
 			descBody.append(I18N.localise(DatabaseConstants.KEY + ".nodescription"));
 		} else {
-			final String[] descStrings = desc.split("\\|");
+			String[] descStrings = desc.split("\\|");
 			descBody.append(descStrings[0]);
 			for (int i = 1; i < descStrings.length - 1; ++i) {
 				descBody.append(' ').append(descStrings[i]);
@@ -77,7 +77,7 @@ public class PagePlanksOverview extends PageAbstract<ItemStack> {
 		}
 		controlDescription.setValue(descBody + "§r");
 		controlSignature.setValue(descSig + "§r");
-		final int descHeight = CraftGUI.RENDER.textHeight(controlDescription.getValue(), controlDescription.getSize().xPos());
+		int descHeight = CraftGUI.RENDER.textHeight(controlDescription.getValue(), controlDescription.getSize().xPos());
 		controlSignature.setPosition(new Point(controlSignature.getPosition().xPos(), controlDescription.getPosition().yPos() + descHeight + 10));
 	}
 }

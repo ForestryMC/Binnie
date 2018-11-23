@@ -17,7 +17,7 @@ class ParsedTextureSheet implements IBinnieTexture {
 	@Nullable
 	private BinnieResource resource;
 
-	public ParsedTextureSheet(final String modid, final String path) {
+	public ParsedTextureSheet(String modid, String path) {
 		this.modid = modid;
 		this.path = path;
 	}

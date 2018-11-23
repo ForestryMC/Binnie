@@ -36,14 +36,14 @@ public class ItemMasterRegistry extends ItemCore implements IGuiItem {
 	}
 
 	@Override
-	public void openGuiOnRightClick(ItemStack itemStack, World world, EntityPlayer player) {
+	public void openGui(ItemStack itemStack, World world, EntityPlayer player) {
 		if (!Binnie.GENETICS.getActiveSystems().isEmpty()) {
 			Genetics.proxy.openGui(GeneticsGUI.MASTER_REGISTRY, player, player.getPosition());
 		}
 	}
 
 	@Override
-	public String getItemStackDisplayName(final ItemStack i) {
+	public String getItemStackDisplayName(ItemStack i) {
 		return "Master Registry";
 	}
 }

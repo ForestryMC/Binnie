@@ -16,18 +16,18 @@ public class MessageMetadata extends MessageCoordinates {
 		this.meta = meta;
 	}
 
-	public MessageMetadata(final MessageBinnie message) {
+	public MessageMetadata(MessageBinnie message) {
 		super(message);
 	}
 
 	@Override
-	public void writeData(final ByteBuf data) throws IOException {
+	public void writeData(ByteBuf data) throws IOException {
 		super.writeData(data);
 		data.writeInt(this.meta);
 	}
 
 	@Override
-	public void readData(final ByteBuf data) throws IOException {
+	public void readData(ByteBuf data) throws IOException {
 		super.readData(data);
 		this.meta = data.readInt();
 	}

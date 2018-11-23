@@ -16,5 +16,5 @@ public interface IDrinkLiquid {
 
 	float getABV();
 
-	FluidStack get(final int p0);
+	FluidStack get(int p0);
 }

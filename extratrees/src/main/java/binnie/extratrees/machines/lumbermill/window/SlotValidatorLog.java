@@ -17,7 +17,7 @@ public class SlotValidatorLog extends SlotValidator {
 	}
 
 	@Override
-	public boolean isValid(final ItemStack itemStack) {
+	public boolean isValid(ItemStack itemStack) {
 		ItemStack plank = LumbermillRecipeManager.getPlankProduct(itemStack, world);
 		return !plank.isEmpty();
 	}

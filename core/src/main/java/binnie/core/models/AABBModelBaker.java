@@ -216,14 +216,14 @@ public class AABBModelBaker implements IModelBaker {
 		}
 
 		for (BoundModelBakerFace face : faces) {
-			final AxisAlignedBB modelBounds = face.modelBounds;
-			final Vector3f from = new Vector3f((float) modelBounds.minX * 16.0f, (float) modelBounds.minY * 16.0f, (float) modelBounds.minZ * 16.0f);
-			final Vector3f to = new Vector3f((float) modelBounds.maxX * 16.0f, (float) modelBounds.maxY * 16.0f, (float) modelBounds.maxZ * 16.0f);
-			final EnumFacing myFace = face.face;
-			final float[] uvs = getFaceUvs(myFace, to, from);
+			AxisAlignedBB modelBounds = face.modelBounds;
+			Vector3f from = new Vector3f((float) modelBounds.minX * 16.0f, (float) modelBounds.minY * 16.0f, (float) modelBounds.minZ * 16.0f);
+			Vector3f to = new Vector3f((float) modelBounds.maxX * 16.0f, (float) modelBounds.maxY * 16.0f, (float) modelBounds.maxZ * 16.0f);
+			EnumFacing myFace = face.face;
+			float[] uvs = getFaceUvs(myFace, to, from);
 
-			final BlockFaceUV uv = new BlockFaceUV(uvs, 0);
-			final BlockPartFace bpf = new BlockPartFace(myFace, face.colorIndex, "", uv);
+			BlockFaceUV uv = new BlockFaceUV(uvs, 0);
+			BlockPartFace bpf = new BlockPartFace(myFace, face.colorIndex, "", uv);
 
 			BakedQuad bf = faceBakery.makeBakedQuad(from, to, bpf, face.spite, myFace, mr, null, true, true);
 

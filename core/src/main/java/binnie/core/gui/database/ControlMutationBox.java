@@ -16,31 +16,31 @@ class ControlMutationBox extends ControlListBox<IMutation> {
 	@Nullable
 	private IAlleleSpecies species;
 
-	public ControlMutationBox(final IWidget parent, final int x, final int y, final int width, final int height, final Type type) {
+	public ControlMutationBox(IWidget parent, int x, int y, int width, int height, Type type) {
 		super(parent, x, y, width, height, 12);
 		this.species = null;
 		this.type = type;
 	}
 
 	@Override
-	public IWidget createOption(final IMutation value, final int y) {
+	public IWidget createOption(IMutation value, int y) {
 		return new ControlMutationItem(this.getContent(), value, this.species, y);
 	}
 
-	public void setSpecies(@Nullable final IAlleleSpecies species) {
+	public void setSpecies(@Nullable IAlleleSpecies species) {
 		if (species != this.species) {
 			this.species = species;
 			this.movePercentage(-100.0f);
-			final IBreedingSystem system = ((WindowAbstractDatabase) this.getTopParent()).getBreedingSystem();
-			final List<IMutation> discovered = system.getDiscoveredMutations(Window.get(this).getWorld(), Window.get(this).getUsername());
+			IBreedingSystem system = ((WindowAbstractDatabase) this.getTopParent()).getBreedingSystem();
+			List<IMutation> discovered = system.getDiscoveredMutations(Window.get(this).getWorld(), Window.get(this).getUsername());
 			if (species != null) {
 				if (this.type == Type.Resultant) {
 					this.setOptions(system.getResultantMutations(species));
 				} else {
-					final List<IMutation> mutations = system.getFurtherMutations(species);
+					List<IMutation> mutations = system.getFurtherMutations(species);
 					int i = 0;
 					while (i < mutations.size()) {
-						final IMutation mutation = mutations.get(i);
+						IMutation mutation = mutations.get(i);
 						if (!discovered.contains(mutation) && !((IAlleleSpecies) mutation.getTemplate()[0]).isCounted()) {
 							mutations.remove(i);
 						} else {

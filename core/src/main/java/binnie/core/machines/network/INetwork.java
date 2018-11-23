@@ -10,7 +10,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public interface INetwork {
 	interface SendGuiNBT {
-		void sendGuiNBTToClient(final Map<String, NBTTagCompound> data);
+		void sendGuiNBTToClient(Map<String, NBTTagCompound> data);
 	}
 
 	interface TilePacketSync {
@@ -20,10 +20,10 @@ public interface INetwork {
 	}
 
 	interface ReceiveGuiNBT {
-		void receiveGuiNBTOnServer(final EntityPlayer player, final String name, final NBTTagCompound nbt);
+		void receiveGuiNBTOnServer(EntityPlayer player, String name, NBTTagCompound nbt);
 
 		@SideOnly(Side.CLIENT)
-		void receiveGuiNBTOnClient(final EntityPlayer player, final String name, final NBTTagCompound nbt);
+		void receiveGuiNBTOnClient(EntityPlayer player, String name, NBTTagCompound nbt);
 	}
 
 	interface GuiNBT extends ReceiveGuiNBT, SendGuiNBT {

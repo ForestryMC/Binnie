@@ -27,7 +27,7 @@ public class WindowIncubator extends WindowMachine {
 	private static final Texture PROGRESS_BASE = new StandardTexture(0, 91, 38, 32, GeneticsTexture.GUI_PROCESS);
 	private static final Texture PROGRESS = new StandardTexture(38, 91, 38, 32, GeneticsTexture.GUI_PROCESS);
 
-	public WindowIncubator(final EntityPlayer player, final IInventory inventory, final Side side) {
+	public WindowIncubator(EntityPlayer player, IInventory inventory, Side side) {
 		super(228, 196, player, inventory, side);
 	}
 
@@ -36,7 +36,7 @@ public class WindowIncubator extends WindowMachine {
 	public void initialiseClient() {
 		super.initialiseClient();
 		int x = 16;
-		final int y = 32;
+		int y = 32;
 		new ControlLiquidTank(this, x, y, Incubator.TANK_INPUT);
 		x += 26;
 		new ControlSlotArray.Builder(this, x, y + 3, 1, 3).create(Incubator.SLOT_QUEUE);

@@ -59,11 +59,11 @@ public enum EnumETLog implements IWoodType {
 	private final IPlankType plank;
 	private final boolean hasProducts;
 
-	EnumETLog(final String name, final IPlankType plank) {
+	EnumETLog(String name, IPlankType plank) {
 		this(name, plank, true);
 	}
 
-	EnumETLog(final String name, final IPlankType plank, boolean hasProducts) {
+	EnumETLog(String name, IPlankType plank, boolean hasProducts) {
 		this.name = name;
 		this.uid = name.toLowerCase(Locale.ENGLISH).replace(" ", "_");
 		this.plank = plank;

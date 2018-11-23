@@ -24,7 +24,7 @@ public class PageBranchOverview extends PageBranch {
 	private final ControlText branchAuthority;
 	private final List<ControlText> branchDescription;
 
-	public PageBranchOverview(final IWidget parent, final DatabaseTab tab) {
+	public PageBranchOverview(IWidget parent, DatabaseTab tab) {
 		super(parent, tab);
 		this.branchDescription = new ArrayList<>();
 		this.branchName = new ControlTextCentered(this, 8, "");
@@ -33,11 +33,11 @@ public class PageBranchOverview extends PageBranch {
 	}
 
 	@Override
-	public void onValueChanged(final IClassification branch) {
+	public void onValueChanged(IClassification branch) {
 		this.branchName.setValue(TextFormatting.UNDERLINE + I18N.localise(DatabaseConstants.BRANCH_KEY + ".name", branch.getName()));
 		this.branchScientific.setValue(TextFormatting.ITALIC + I18N.localise(DatabaseConstants.BRANCH_KEY + ".apidae", branch.getScientific()));
 		this.branchAuthority.setValue(I18N.localise(DatabaseConstants.BRANCH_KEY + ".discoveredBy", TextFormatting.BOLD + branch.getMemberSpecies()[0].getAuthority()));
-		for (final IWidget widget : this.branchDescription) {
+		for (IWidget widget : this.branchDescription) {
 			this.deleteChild(widget);
 		}
 		this.branchDescription.clear();
@@ -46,8 +46,8 @@ public class PageBranchOverview extends PageBranch {
 			desc = I18N.localise(DatabaseConstants.BRANCH_KEY + ".noDesc");
 		}
 		StringBuilder line = new StringBuilder();
-		final List<String> descLines = new ArrayList<>();
-		for (final String str : desc.split(" ")) {
+		List<String> descLines = new ArrayList<>();
+		for (String str : desc.split(" ")) {
 			if (RenderUtil.getTextWidth(line + " " + str) > 134) {
 				descLines.add(TextFormatting.ITALIC + line.toString() + TextFormatting.RESET);
 				line = new StringBuilder();
@@ -56,7 +56,7 @@ public class PageBranchOverview extends PageBranch {
 		}
 		descLines.add(line.toString());
 		int i = 0;
-		for (final String dLine : descLines) {
+		for (String dLine : descLines) {
 			this.branchDescription.add(new ControlTextCentered(this, 84 + 12 * i++, dLine));
 		}
 	}

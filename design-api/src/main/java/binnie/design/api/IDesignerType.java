@@ -9,7 +9,7 @@ public interface IDesignerType {
 
 	String getMaterialTooltip();
 
-	ItemStack getDisplayStack(final IDesign design);
+	ItemStack getDisplayStack(IDesign design);
 
 	String getName();
 }

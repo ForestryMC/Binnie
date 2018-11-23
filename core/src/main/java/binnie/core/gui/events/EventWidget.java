@@ -4,54 +4,54 @@ import binnie.core.api.gui.IWidget;
 import binnie.core.api.gui.events.Event;
 
 public class EventWidget extends Event {
-	public EventWidget(final IWidget origin) {
+	public EventWidget(IWidget origin) {
 		super(origin);
 	}
 
 	public static class Show extends EventWidget {
-		public Show(final IWidget origin) {
+		public Show(IWidget origin) {
 			super(origin);
 		}
 	}
 
 	public static class Hide extends EventWidget {
-		public Hide(final IWidget origin) {
+		public Hide(IWidget origin) {
 			super(origin);
 		}
 	}
 
 	public static class ChangePosition extends EventWidget {
-		public ChangePosition(final IWidget origin) {
+		public ChangePosition(IWidget origin) {
 			super(origin);
 		}
 	}
 
 	public static class ChangeSize extends EventWidget {
-		public ChangeSize(final IWidget origin) {
+		public ChangeSize(IWidget origin) {
 			super(origin);
 		}
 	}
 
 	public static class ChangeOffset extends EventWidget {
-		public ChangeOffset(final IWidget origin) {
+		public ChangeOffset(IWidget origin) {
 			super(origin);
 		}
 	}
 
 	public static class ChangeColour extends EventWidget {
-		public ChangeColour(final IWidget origin) {
+		public ChangeColour(IWidget origin) {
 			super(origin);
 		}
 	}
 
 	public static class StartMouseOver extends EventWidget {
-		public StartMouseOver(final IWidget origin) {
+		public StartMouseOver(IWidget origin) {
 			super(origin);
 		}
 	}
 
 	public static class EndMouseOver extends EventWidget {
-		public EndMouseOver(final IWidget origin) {
+		public EndMouseOver(IWidget origin) {
 			super(origin);
 		}
 	}
@@ -59,7 +59,7 @@ public class EventWidget extends Event {
 	public static class StartDrag extends EventWidget {
 		private final int button;
 
-		public StartDrag(final IWidget origin, final int button) {
+		public StartDrag(IWidget origin, int button) {
 			super(origin);
 			this.button = button;
 		}
@@ -70,19 +70,19 @@ public class EventWidget extends Event {
 	}
 
 	public static class EndDrag extends EventWidget {
-		public EndDrag(final IWidget origin) {
+		public EndDrag(IWidget origin) {
 			super(origin);
 		}
 	}
 
 	public static class GainFocus extends EventWidget {
-		public GainFocus(final IWidget origin) {
+		public GainFocus(IWidget origin) {
 			super(origin);
 		}
 	}
 
 	public static class LoseFocus extends EventWidget {
-		public LoseFocus(final IWidget origin) {
+		public LoseFocus(IWidget origin) {
 			super(origin);
 		}
 	}

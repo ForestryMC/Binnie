@@ -22,7 +22,7 @@ public enum GeneticMachine implements IMachineType {
 
 	private final Supplier<MachinePackage> supplier;
 
-	GeneticMachine(final Supplier<MachinePackage> supplier) {
+	GeneticMachine(Supplier<MachinePackage> supplier) {
 		this.supplier = supplier;
 	}
 
@@ -38,7 +38,7 @@ public enum GeneticMachine implements IMachineType {
 	public abstract static class PackageGeneticBase extends MachinePackage {
 		private final int colour;
 
-		protected PackageGeneticBase(final String uid, final int flashColour) {
+		protected PackageGeneticBase(String uid, int flashColour) {
 			super(uid);
 			this.colour = flashColour;
 		}

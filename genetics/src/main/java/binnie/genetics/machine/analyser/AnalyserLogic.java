@@ -13,7 +13,7 @@ import binnie.genetics.machine.GeneticsErrorCode;
 public class AnalyserLogic extends ComponentProcessSetCost implements IProcess {
 	private static final float DYE_PER_TICK = 0.002f;
 
-	public AnalyserLogic(final Machine machine) {
+	public AnalyserLogic(Machine machine) {
 		super(machine, ConfigurationMain.analyserEnergy, ConfigurationMain.analyserTime);
 	}
 
@@ -22,7 +22,7 @@ public class AnalyserLogic extends ComponentProcessSetCost implements IProcess {
 		if (this.getUtil().isSlotEmpty(Analyser.SLOT_TARGET)) {
 			return new ErrorState(GeneticsErrorCode.ANALYSER_NO_ITEM, Analyser.SLOT_TARGET);
 		}
-		final boolean analysed = ManagerGenetics.isAnalysed(this.getUtil().getStack(Analyser.SLOT_TARGET));
+		boolean analysed = ManagerGenetics.isAnalysed(this.getUtil().getStack(Analyser.SLOT_TARGET));
 		if (analysed) {
 			return new ErrorState(GeneticsErrorCode.ANALYSER_ALREADY_ANALYSED, Analyser.SLOT_TARGET);
 		}

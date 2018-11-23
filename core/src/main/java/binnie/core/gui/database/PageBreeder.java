@@ -14,7 +14,7 @@ import binnie.core.util.I18N;
 public class PageBreeder extends ControlPage<DatabaseTab> {
 	private final GameProfile player;
 
-	public PageBreeder(final IWidget parent, final GameProfile player, final DatabaseTab tab) {
+	public PageBreeder(IWidget parent, GameProfile player, DatabaseTab tab) {
 		super(parent, 0, 0, parent.getSize().xPos(), parent.getSize().yPos(), tab);
 		this.player = player;
 		this.onPageRefresh();
@@ -22,7 +22,7 @@ public class PageBreeder extends ControlPage<DatabaseTab> {
 
 	public void onPageRefresh() {
 		this.deleteAllChildren();
-		final IBreedingSystem system = ((WindowAbstractDatabase) Window.get(this)).getBreedingSystem();
+		IBreedingSystem system = ((WindowAbstractDatabase) Window.get(this)).getBreedingSystem();
 		new ControlTextCentered(this, 8, TextFormatting.UNDERLINE + system.getDescriptor() + ' ' + I18N.localise(DatabaseConstants.BREEDER_KEY + ".profile"));
 		new ControlTextCentered(this, 75, system.getDiscoveredSpeciesCount() + '/' + system.getTotalSpeciesCount() + ' ' + I18N.localise(DatabaseConstants.BREEDER_KEY + ".species"));
 		new ControlBreedingProgress(this, 20, 87, 102, 14, system, system.getDiscoveredSpeciesPercentage());

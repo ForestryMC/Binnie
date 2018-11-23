@@ -78,7 +78,7 @@ public class ModelManager implements IModelManager {
 
 	public static void registerCustomModels(ModelBakeEvent event) {
 		IRegistry<ModelResourceLocation, IBakedModel> registry = event.getModelRegistry();
-		for (final BlockModelEntry entry : customBlockModels) {
+		for (BlockModelEntry entry : customBlockModels) {
 			registry.putObject(entry.blockModelLocation, entry.model);
 			if (entry.itemModelLocation != null) {
 				registry.putObject(entry.itemModelLocation, entry.model);

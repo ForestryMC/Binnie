@@ -90,15 +90,15 @@ public class ModuleAlcohol extends BinnieModule {
 			for (Juice juice : Juice.values()) {
 				String oreDict = juice.getSqueezing();
 				List<ItemStack> ores = new ArrayList<>(OreDictionary.getOres(oreDict));
-				for (final Food food : Food.values()) {
+				for (Food food : Food.values()) {
 					if (food.getOres().contains(oreDict)) {
 						ores.add(food.get(1));
 					}
 				}
-				for (final ItemStack stack : ores) {
-					for (final ISqueezerRecipe entry : RecipeManagers.squeezerManager.recipes()) {
-						final ItemStack input = entry.getResources().get(0);
-						final FluidStack output = entry.getFluidOutput();
+				for (ItemStack stack : ores) {
+					for (ISqueezerRecipe entry : RecipeManagers.squeezerManager.recipes()) {
+						ItemStack input = entry.getResources().get(0);
+						FluidStack output = entry.getFluidOutput();
 						if (!ItemStack.areItemStacksEqual(stack, input) && !OreDictionary.itemMatches(input, stack, true)) {
 							continue;
 						}
@@ -161,11 +161,11 @@ public class ModuleAlcohol extends BinnieModule {
 		this.addDistillery(Alcohol.Corn, Spirit.CornWhiskey, Spirit.Vodka, Spirit.NeutralSpirit);
 	}
 
-	private void addDistillery(final IFluidDefinition source, final IFluidDefinition singleDistilled, final IFluidDefinition doubleDistilled, final IFluidDefinition tripleDistilled) {
-		final int inAmount = DistilleryLogic.INPUT_FLUID_AMOUNT;
-		final int outAmount1 = inAmount * 4 / 5;
-		final int outAmount2 = inAmount * 2 / 5;
-		final int outAmount3 = inAmount / 5;
+	private void addDistillery(IFluidDefinition source, IFluidDefinition singleDistilled, IFluidDefinition doubleDistilled, IFluidDefinition tripleDistilled) {
+		int inAmount = DistilleryLogic.INPUT_FLUID_AMOUNT;
+		int outAmount1 = inAmount * 4 / 5;
+		int outAmount2 = inAmount * 2 / 5;
+		int outAmount3 = inAmount / 5;
 
 		IDistilleryManager distilleryManager = ExtraTreesRecipeManager.distilleryManager;
 

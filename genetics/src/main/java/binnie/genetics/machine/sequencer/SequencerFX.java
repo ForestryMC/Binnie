@@ -16,7 +16,7 @@ import binnie.core.machines.component.IRender;
 import binnie.core.resource.BinnieSprite;
 
 public class SequencerFX extends MachineComponent implements IRender.RandomDisplayTick, IRender.DisplayTick {
-	public SequencerFX(final IMachine machine) {
+	public SequencerFX(IMachine machine) {
 		super(machine);
 	}
 
@@ -36,17 +36,17 @@ public class SequencerFX extends MachineComponent implements IRender.RandomDispl
 		if (!this.getUtil().getProcess().isInProgress()) {
 			return;
 		}
-		final int ticks = (int) (world.getTotalWorldTime() % 16L);
+		int ticks = (int) (world.getTotalWorldTime() % 16L);
 		if (ticks == 0) {
-			final Particle particle = new SequencerParticle(world, pos);
+			Particle particle = new SequencerParticle(world, pos);
 			BinnieCore.getBinnieProxy().getMinecraftInstance().effectRenderer.addEffect(particle);
 		}
 	}
 
 	@SideOnly(Side.CLIENT)
 	private static class SequencerParticleRandomTick extends Particle {
-		private double axisX;
-		private double axisZ;
+		private final double axisX;
+		private final double axisZ;
 		private double angle;
 
 		public SequencerParticleRandomTick(World world, BlockPos pos, Random rand) {

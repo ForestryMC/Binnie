@@ -9,11 +9,11 @@ import net.minecraft.world.World;
 
 import forestry.api.core.Tabs;
 
-import binnie.core.BinnieCore;
-import binnie.core.api.gui.IGuiItem;
 import binnie.core.gui.BinnieCoreGUI;
+import binnie.core.gui.IBinnieGUID;
+import binnie.core.gui.IBinnieGuiItem;
 
-public class ItemGenesis extends ItemCore implements IGuiItem {
+public class ItemGenesis extends ItemCore implements IBinnieGuiItem {
 
 	public ItemGenesis() {
 		super("genesis");
@@ -25,17 +25,17 @@ public class ItemGenesis extends ItemCore implements IGuiItem {
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 		ItemStack itemStack = playerIn.getHeldItem(handIn);
-		openGuiOnRightClick(itemStack, worldIn, playerIn);
+		openGui(itemStack, worldIn, playerIn);
 		return new ActionResult<>(EnumActionResult.SUCCESS, itemStack);
 	}
 
 	@Override
-	public void openGuiOnRightClick(ItemStack itemStack, World world, EntityPlayer playerIn) {
-		BinnieCore.getBinnieProxy().openGui(BinnieCoreGUI.GENESIS, playerIn, playerIn.getPosition());
+	public IBinnieGUID getGuiID(ItemStack itemStack) {
+		return BinnieCoreGUI.GENESIS;
 	}
 
 	@Override
-	public String getItemStackDisplayName(final ItemStack i) {
+	public String getItemStackDisplayName(ItemStack i) {
 		return "Genesis";
 	}
 }

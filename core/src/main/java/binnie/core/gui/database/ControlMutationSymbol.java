@@ -29,7 +29,7 @@ class ControlMutationSymbol extends Control implements ITooltip {
 	private boolean discovered;
 	private final int type;
 
-	protected ControlMutationSymbol(final IWidget parent, final int x, final int y, final int type) {
+	protected ControlMutationSymbol(IWidget parent, int x, int y, int type) {
 		super(parent, x, y, 16 + type * 16, 16);
 		this.value = null;
 		this.type = type;
@@ -47,10 +47,10 @@ class ControlMutationSymbol extends Control implements ITooltip {
 		}
 	}
 
-	public void setValue(final IMutation value) {
+	public void setValue(IMutation value) {
 		this.value = value;
-		final boolean isMaster = ((WindowAbstractDatabase) this.getTopParent()).isMaster();
-		final IBreedingSystem system = ((WindowAbstractDatabase) this.getTopParent()).getBreedingSystem();
+		boolean isMaster = ((WindowAbstractDatabase) this.getTopParent()).isMaster();
+		IBreedingSystem system = ((WindowAbstractDatabase) this.getTopParent()).getBreedingSystem();
 		this.discovered = (isMaster || system.isMutationDiscovered(value, Window.get(this).getWorld(), Window.get(this).getUsername()));
 		if (this.discovered) {
 			this.setColor(16777215);
@@ -60,14 +60,14 @@ class ControlMutationSymbol extends Control implements ITooltip {
 	}
 
 	@Override
-	public void getTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
+	public void getTooltip(Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		if (this.type == 1 && this.discovered) {
-			final IAlleleSpecies species1 = this.value.getAllele0();
-			final IAlleleSpecies species2 = this.value.getAllele1();
-			final IBreedingSystem system = ((WindowAbstractDatabase) this.getTopParent()).getBreedingSystem();
-			final float chance = system.getChance(this.value, Window.get(this).getPlayer(), species1, species2);
+			IAlleleSpecies species1 = this.value.getAllele0();
+			IAlleleSpecies species2 = this.value.getAllele1();
+			IBreedingSystem system = ((WindowAbstractDatabase) this.getTopParent()).getBreedingSystem();
+			float chance = system.getChance(this.value, Window.get(this).getPlayer(), species1, species2);
 			tooltip.add(I18N.localise(DatabaseConstants.CONTROL_KEY + ".chance", chance));
-			for (final String string : this.value.getSpecialConditions()) {
+			for (String string : this.value.getSpecialConditions()) {
 				tooltip.add(string);
 			}
 		}

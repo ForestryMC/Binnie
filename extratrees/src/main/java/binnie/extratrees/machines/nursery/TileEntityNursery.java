@@ -15,7 +15,7 @@ import forestry.api.lepidopterology.IButterflyNursery;
 import binnie.core.machines.TileEntityMachine;
 
 public class TileEntityNursery extends TileEntityMachine implements IButterflyNursery {
-	public TileEntityNursery(final Nursery.PackageNursery pack) {
+	public TileEntityNursery(Nursery.PackageNursery pack) {
 		super(pack);
 	}
 
@@ -47,7 +47,7 @@ public class TileEntityNursery extends TileEntityMachine implements IButterflyNu
 	}
 
 	@Override
-	public void setCaterpillar(@Nullable final IButterfly butterfly) {
+	public void setCaterpillar(@Nullable IButterfly butterfly) {
 		IButterflyNursery nursery = this.getNursery();
 		if (nursery != null) {
 			nursery.setCaterpillar(butterfly);
@@ -61,7 +61,7 @@ public class TileEntityNursery extends TileEntityMachine implements IButterflyNu
 	}
 
 	@Override
-	public boolean canNurse(final IButterfly butterfly) {
+	public boolean canNurse(IButterfly butterfly) {
 		return this.getCaterpillar() == null;
 	}
 

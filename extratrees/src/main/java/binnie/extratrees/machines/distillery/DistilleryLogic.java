@@ -27,7 +27,7 @@ public class DistilleryLogic extends ComponentProcessSetCost implements IProcess
 	private FluidStack currentFluid;
 	private int level;
 
-	public DistilleryLogic(final Machine machine) {
+	public DistilleryLogic(Machine machine) {
 		super(machine, 16000, 800);
 		this.currentFluid = null;
 		this.level = 0;
@@ -44,17 +44,17 @@ public class DistilleryLogic extends ComponentProcessSetCost implements IProcess
 	}
 
 	@Override
-	public void readFromNBT(final NBTTagCompound nbt) {
-		super.readFromNBT(nbt);
-		this.level = nbt.getByte("dlevel");
+	public void readFromNBT(NBTTagCompound compound) {
+		super.readFromNBT(compound);
+		this.level = compound.getByte("dlevel");
 
-		NBTTagCompound fluidNbt = nbt.getCompoundTag("fluid");
+		NBTTagCompound fluidNbt = compound.getCompoundTag("fluid");
 		this.currentFluid = FluidStack.loadFluidStackFromNBT(fluidNbt);
 	}
 
 	@Override
-	public NBTTagCompound writeToNBT(final NBTTagCompound nbt2) {
-		NBTTagCompound nbt = super.writeToNBT(nbt2);
+	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+		NBTTagCompound nbt = super.writeToNBT(compound);
 		nbt.setByte("dlevel", (byte) this.level);
 
 		NBTTagCompound fluidNbt = new NBTTagCompound();
@@ -81,7 +81,7 @@ public class DistilleryLogic extends ComponentProcessSetCost implements IProcess
 			return new ErrorState(CoreErrorCode.TANK_EMPTY);
 		}
 
-		final MachineUtil util = this.getUtil();
+		MachineUtil util = this.getUtil();
 		FluidStack fluidInOutputTank = util.getFluid(DistilleryMachine.TANK_OUTPUT);
 		if (fluidInOutputTank != null) {
 			FluidStack inputFluid = util.getFluid(DistilleryMachine.TANK_INPUT);
@@ -100,7 +100,7 @@ public class DistilleryLogic extends ComponentProcessSetCost implements IProcess
 
 	@Override
 	protected void onFinishTask() {
-		final FluidStack output = DistilleryRecipeManager.getOutput(this.currentFluid, this.level);
+		FluidStack output = DistilleryRecipeManager.getOutput(this.currentFluid, this.level);
 		if (output != null) {
 			this.getUtil().fillTank(DistilleryMachine.TANK_OUTPUT, output);
 		}
@@ -108,7 +108,7 @@ public class DistilleryLogic extends ComponentProcessSetCost implements IProcess
 	}
 
 	@Override
-	public void receiveGuiNBTOnServer(final EntityPlayer player, final String name, final NBTTagCompound nbt) {
+	public void receiveGuiNBTOnServer(EntityPlayer player, String name, NBTTagCompound nbt) {
 
 	}
 
@@ -128,8 +128,8 @@ public class DistilleryLogic extends ComponentProcessSetCost implements IProcess
 	}
 
 	@Override
-	public void sendGuiNBTToClient(final Map<String, NBTTagCompound> data) {
-		final NBTTagCompound nbt = new NBTTagCompound();
+	public void sendGuiNBTToClient(Map<String, NBTTagCompound> data) {
+		NBTTagCompound nbt = new NBTTagCompound();
 		if (this.currentFluid == null) {
 			nbt.setBoolean("null", true);
 		} else {

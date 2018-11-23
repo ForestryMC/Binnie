@@ -62,9 +62,9 @@ public abstract class BlockETDecorativeLeaves extends Block implements IItemMode
 
 	public static List<BlockETDecorativeLeaves> create() {
 		List<BlockETDecorativeLeaves> blocks = new ArrayList<>();
-		final int blockCount = PropertyETType.getBlockCount(VARIANTS_PER_BLOCK);
+		int blockCount = PropertyETType.getBlockCount(VARIANTS_PER_BLOCK);
 		for (int blockNumber = 0; blockNumber < blockCount; blockNumber++) {
-			final PropertyETType variant = PropertyETType.create("variant", blockNumber, VARIANTS_PER_BLOCK);
+			PropertyETType variant = PropertyETType.create("variant", blockNumber, VARIANTS_PER_BLOCK);
 			BlockETDecorativeLeaves block = new BlockETDecorativeLeaves(blockNumber) {
 				@Override
 				public PropertyETType getVariant() {

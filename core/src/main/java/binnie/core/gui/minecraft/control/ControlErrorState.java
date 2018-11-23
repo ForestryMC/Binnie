@@ -26,7 +26,7 @@ public class ControlErrorState extends Control implements ITooltip {
 	private ErrorState errorState;
 	private int type;
 
-	public ControlErrorState(final IWidget parent, final int x, final int y) {
+	public ControlErrorState(IWidget parent, int x, int y) {
 		super(parent, x, y, 16, 16);
 		this.type = 0;
 		this.addAttribute(Attribute.MOUSE_OVER);
@@ -74,15 +74,15 @@ public class ControlErrorState extends Control implements ITooltip {
 			}
 		}
 		if (this.errorState.isTankError()) {
-			for (final int slot : this.errorState.getData()) {
+			for (int slot : this.errorState.getData()) {
 				ControlLiquidTank.tankError.add(slot);
 			}
 		}
 	}
 
 	@Override
-	public void getTooltip(final Tooltip tooltipOrig, ITooltipFlag tooltipFlag) {
-		final MinecraftTooltip tooltip = (MinecraftTooltip) tooltipOrig;
+	public void getTooltip(Tooltip tooltipOrig, ITooltipFlag tooltipFlag) {
+		MinecraftTooltip tooltip = (MinecraftTooltip) tooltipOrig;
 		if (this.errorState != null) {
 			if (this.type == 0) {
 				tooltip.setType(MinecraftTooltip.Type.ERROR);

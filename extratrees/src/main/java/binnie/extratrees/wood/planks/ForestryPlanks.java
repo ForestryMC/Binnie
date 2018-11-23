@@ -52,7 +52,7 @@ public enum ForestryPlanks implements IPlankType, IFenceProvider {
 	@SideOnly(Side.CLIENT)
 	private TextureAtlasSprite sprite;
 
-	ForestryPlanks(final int color, IWoodType woodType) {
+	ForestryPlanks(int color, IWoodType woodType) {
 		this.color = color;
 		this.woodType = woodType;
 	}

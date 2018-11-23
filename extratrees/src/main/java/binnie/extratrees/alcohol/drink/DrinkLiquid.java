@@ -12,7 +12,7 @@ public class DrinkLiquid implements IDrinkLiquid {
 	private final float abv;
 	private final String ident;
 
-	public DrinkLiquid(final String name, final int colour, final float transparency, final float abv, final String ident) {
+	public DrinkLiquid(String name, int colour, float transparency, float abv, String ident) {
 		this.name = name;
 		this.colour = colour;
 		this.transparency = transparency;
@@ -51,7 +51,7 @@ public class DrinkLiquid implements IDrinkLiquid {
 	}
 
 	@Override
-	public FluidStack get(final int amount) {
+	public FluidStack get(int amount) {
 		return Binnie.LIQUID.getFluidStack(this.ident, amount);
 	}
 }

@@ -30,12 +30,12 @@ public abstract class BinnieProxy extends BinnieModProxy implements IBinnieProxy
 		this.uniqueTextureUID = 1200;
 	}
 
-	public boolean checkTexture(final ResourceLocation location) {
+	public boolean checkTexture(ResourceLocation location) {
 		return false;
 	}
 
 	@Override
-	public void openGui(final AbstractMod mod, final int id, final EntityPlayer player, final BlockPos pos) {
+	public void openGui(AbstractMod mod, int id, EntityPlayer player, BlockPos pos) {
 		player.openGui(mod.getMod(), id, player.world, pos.getX(), pos.getY(), pos.getZ());
 	}
 
@@ -44,7 +44,7 @@ public abstract class BinnieProxy extends BinnieModProxy implements IBinnieProxy
 	}
 
 	@Override
-	public boolean needsTagCompoundSynched(final Item item) {
+	public boolean needsTagCompoundSynched(Item item) {
 		return item.getShareTag();
 	}
 
@@ -79,12 +79,12 @@ public abstract class BinnieProxy extends BinnieModProxy implements IBinnieProxy
 	}
 
 	@Override
-	public void registerTileEntity(final Class<? extends TileEntity> tile, final String id) {
+	public void registerTileEntity(Class<? extends TileEntity> tile, String id) {
 		GameRegistry.registerTileEntity(tile, id);
 	}
 
-	public void sendNetworkEntityPacket(final INetworkedEntity entity) {
-		final MessageUpdate packet = new MessageUpdate(BinnieCorePacketID.NETWORK_ENTITY_UPDATE.ordinal(), entity);
+	public void sendNetworkEntityPacket(INetworkedEntity entity) {
+		MessageUpdate packet = new MessageUpdate(BinnieCorePacketID.NETWORK_ENTITY_UPDATE.ordinal(), entity);
 		this.sendToAll(packet);
 	}
 
@@ -96,7 +96,7 @@ public abstract class BinnieProxy extends BinnieModProxy implements IBinnieProxy
 	}
 
 	public short getUniqueTextureUID() {
-		final short uniqueTextureUID = this.uniqueTextureUID;
+		short uniqueTextureUID = this.uniqueTextureUID;
 		this.uniqueTextureUID = (short) (uniqueTextureUID + 1);
 		return uniqueTextureUID;
 	}
@@ -105,7 +105,7 @@ public abstract class BinnieProxy extends BinnieModProxy implements IBinnieProxy
 	 * Binds GL to this texture location.
 	 */
 	@Override
-	public void bindTexture(final ResourceLocation location) {
+	public void bindTexture(ResourceLocation location) {
 	}
 
 	/**

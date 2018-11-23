@@ -18,7 +18,7 @@ import binnie.extrabees.utils.ComponentBeeModifier;
 import binnie.extrabees.utils.Utils;
 
 public class ComponentFrameModifier extends ComponentBeeModifier implements IBeeModifier, IBeeListener {
-	public ComponentFrameModifier(final Machine machine) {
+	public ComponentFrameModifier(Machine machine) {
 		super(machine);
 	}
 
@@ -27,12 +27,12 @@ public class ComponentFrameModifier extends ComponentBeeModifier implements IBee
 		if (new Random().nextInt(2400) == 0) {
 			TileEntity tile = this.getMachine().getTileEntity();
 			if (tile instanceof TileExtraBeeAlveary) {
-				final IBeeHousing house = ((TileExtraBeeAlveary) tile).getMultiblockLogic().getController();
+				IBeeHousing house = ((TileExtraBeeAlveary) tile).getMultiblockLogic().getController();
 				if (house != null && !house.getErrorLogic().hasErrors()) {
-					final ItemStack queenStack = house.getBeeInventory().getQueen();
-					final IBee queen = (queenStack.isEmpty()) ? null : Utils.getBeeRoot().getMember(queenStack);
+					ItemStack queenStack = house.getBeeInventory().getQueen();
+					IBee queen = (queenStack.isEmpty()) ? null : Utils.getBeeRoot().getMember(queenStack);
 					if (queen != null) {
-						final ItemStack larvae = Utils.getBeeRoot().getMemberStack(Utils.getBeeRoot().getBee(queen.getGenome()), EnumBeeType.LARVAE);
+						ItemStack larvae = Utils.getBeeRoot().getMemberStack(Utils.getBeeRoot().getBee(queen.getGenome()), EnumBeeType.LARVAE);
 						new TransferRequest(larvae, this.getInventory()).transfer(null, true);
 					}
 				}

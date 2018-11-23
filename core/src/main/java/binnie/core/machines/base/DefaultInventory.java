@@ -18,12 +18,12 @@ class DefaultInventory implements IInventory {
 	}
 
 	@Override
-	public ItemStack getStackInSlot(final int i) {
+	public ItemStack getStackInSlot(int i) {
 		return ItemStack.EMPTY;
 	}
 
 	@Override
-	public ItemStack decrStackSize(final int i, final int j) {
+	public ItemStack decrStackSize(int i, int j) {
 		return ItemStack.EMPTY;
 	}
 
@@ -33,7 +33,7 @@ class DefaultInventory implements IInventory {
 	}
 
 	@Override
-	public void setInventorySlotContents(final int i, final ItemStack itemstack) {
+	public void setInventorySlotContents(int i, ItemStack itemstack) {
 	}
 
 	@Override
@@ -62,7 +62,7 @@ class DefaultInventory implements IInventory {
 	}
 
 	@Override
-	public boolean isItemValidForSlot(final int i, final ItemStack itemstack) {
+	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
 		return false;
 	}
 

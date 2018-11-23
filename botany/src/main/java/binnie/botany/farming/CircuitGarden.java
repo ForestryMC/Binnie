@@ -23,7 +23,7 @@ public class CircuitGarden extends BinnieCircuit {
 	private final GardenLogic logic;
 
 	public CircuitGarden(EnumMoisture moisture, @Nullable EnumAcidity ph, boolean manual, boolean fertilised, ItemStack recipe, ItemStack icon) {
-		super(getName(moisture, ph, manual, fertilised), 4, getLayout(manual), recipe);
+		super(getName(moisture, ph, manual, fertilised), getLayout(manual), recipe);
 		isManual = manual;
 		logic = new GardenLogic(moisture, ph, isManual, fertilised, icon, I18N.localise(getUnlocalizedName()));
 		String info = I18N.localise("botany.moisture") + ": " + EnumHelper.getLocalisedName(moisture, true) + TextFormatting.GRAY + ", ";

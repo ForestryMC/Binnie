@@ -9,7 +9,7 @@ public enum ResourceType {
 
 	private final String name;
 
-	ResourceType(final String name) {
+	ResourceType(String name) {
 		this.name = name;
 	}
 

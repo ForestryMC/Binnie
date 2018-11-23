@@ -9,7 +9,7 @@ public enum Alignment {
 	private final int x;
 	private final int y;
 
-	Alignment(int x, final int y) {
+	Alignment(int x, int y) {
 		this.x = x;
 		this.y = y;
 	}

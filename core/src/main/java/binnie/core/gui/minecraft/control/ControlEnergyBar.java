@@ -32,7 +32,7 @@ public class ControlEnergyBar extends Control implements ITooltip {
 	public static boolean isError;
 	private final Alignment direction;
 
-	public ControlEnergyBar(final IWidget parent, final int x, final int y, final int width, final int height, final Alignment direction) {
+	public ControlEnergyBar(IWidget parent, int x, int y, int width, int height, Alignment direction) {
 		super(parent, x, y, width, height);
 		this.direction = direction;
 		this.addAttribute(Attribute.MOUSE_OVER);
@@ -56,7 +56,7 @@ public class ControlEnergyBar extends Control implements ITooltip {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
+	public void getTooltip(Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		tooltip.add(I18N.localise(ModId.CORE, "gui.energy.bar"));
 		NumberFormat numberFormat = I18N.getNumberFormat();
 		String storedEnergy = numberFormat.format(this.getStoredEnergy());
@@ -67,7 +67,7 @@ public class ControlEnergyBar extends Control implements ITooltip {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getHelpTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
+	public void getHelpTooltip(Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		tooltip.add(I18N.localise(ModId.CORE, "gui.energy.bar"));
 		if (tooltipFlag.isAdvanced()) {
 			String currentFormat = I18N.localise(ModId.CORE, "gui.energy.amount.current");
@@ -77,7 +77,7 @@ public class ControlEnergyBar extends Control implements ITooltip {
 			tooltip.add(TextFormatting.GRAY + currentString);
 			String maxEnergy = numberFormat.format(this.getMaxEnergy());
 			tooltip.add(TextFormatting.GRAY + I18N.localise(ModId.CORE, "gui.energy.capacity", maxEnergy));
-			final IProcess process = Machine.getInterface(IProcess.class, Window.get(this).getInventory());
+			IProcess process = Machine.getInterface(IProcess.class, Window.get(this).getInventory());
 			if (process != null) {
 				String energyPerTick = numberFormat.format((int) process.getEnergyPerTick());
 				tooltip.add(TextFormatting.GRAY + I18N.localise(ModId.CORE, "gui.energy.cost.per.tick", energyPerTick));
@@ -89,31 +89,31 @@ public class ControlEnergyBar extends Control implements ITooltip {
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		CraftGUI.RENDER.texture(CraftGUITexture.ENERGY_BAR_BACK, this.getArea());
-		final float percentage = this.getPercentage() / 100.0f;
+		float percentage = this.getPercentage() / 100.0f;
 		int colourFromPercentage = this.getColourFromPercentage(percentage);
 		RenderUtil.setColour(colourFromPercentage);
-		final IArea area = this.getArea();
+		IArea area = this.getArea();
 		switch (this.direction) {
 			case TOP:
 			case BOTTOM: {
 				IPoint fullSize = area.size();
-				final int height = Math.round(fullSize.yPos() * percentage);
+				int height = Math.round(fullSize.yPos() * percentage);
 				area.setSize(new Point(fullSize.xPos(), height));
 				area.setYPos(fullSize.yPos() - height);
 				break;
 			}
 			case LEFT:
 			case RIGHT: {
-				final int width = Math.round(area.size().xPos() * percentage);
+				int width = Math.round(area.size().xPos() * percentage);
 				area.setSize(new Point(width, area.size().yPos()));
 				break;
 			}
 		}
 		if (this.isMouseOver() && Window.get(this).getGui().isHelpMode()) {
-			final int c = -1442840576 + MinecraftTooltip.getOutline(Tooltip.Type.HELP);
+			int c = -1442840576 + MinecraftTooltip.getOutline(Tooltip.Type.HELP);
 			RenderUtil.drawGradientRect(this.getArea().inset(1), c, c);
 		} else if (ControlEnergyBar.isError) {
-			final int c = -1442840576 + MinecraftTooltip.getOutline(MinecraftTooltip.Type.ERROR);
+			int c = -1442840576 + MinecraftTooltip.getOutline(MinecraftTooltip.Type.ERROR);
 			RenderUtil.drawGradientRect(this.getArea().inset(1), c, c);
 		}
 		CraftGUI.RENDER.texture(CraftGUITexture.ENERGY_BAR_GLOW, area);
@@ -125,22 +125,22 @@ public class ControlEnergyBar extends Control implements ITooltip {
 	@SideOnly(Side.CLIENT)
 	public void onRenderForeground(int guiWidth, int guiHeight) {
 		if (this.isMouseOver() && Window.get(this).getGui().isHelpMode()) {
-			final IArea area = this.getArea();
+			IArea area = this.getArea();
 			RenderUtil.setColour(MinecraftTooltip.getOutline(Tooltip.Type.HELP));
 			CraftGUI.RENDER.texture(CraftGUITexture.OUTLINE, area.outset(1));
 		} else if (ControlEnergyBar.isError) {
-			final IArea area = this.getArea();
+			IArea area = this.getArea();
 			RenderUtil.setColour(MinecraftTooltip.getOutline(MinecraftTooltip.Type.ERROR));
 			CraftGUI.RENDER.texture(CraftGUITexture.OUTLINE, area.outset(1));
 		}
 	}
 
-	public int getColourFromPercentage(final float percentage) {
+	public int getColourFromPercentage(float percentage) {
 		if (percentage > 0.5) {
-			final int r = (int) ((1.0 - 2.0 * (percentage - 0.5)) * 255.0);
+			int r = (int) ((1.0 - 2.0 * (percentage - 0.5)) * 255.0);
 			return (r << 16) + 65280;
 		} else {
-			final int g = (int) (255.0f * (2.0f * percentage));
+			int g = (int) (255.0f * (2.0f * percentage));
 			return 16711680 + (g << 8);
 		}
 	}

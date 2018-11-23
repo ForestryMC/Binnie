@@ -25,12 +25,12 @@ public class BlockCarpentry extends BlockDesign {
 	}
 
 	@Override
-	public ItemStack getCreativeStack(final IDesign design) {
+	public ItemStack getCreativeStack(IDesign design) {
 		return DesignHelper.getItemStack(this, ExtraTreePlanks.Apple, VanillaPlanks.BIRCH, design);
 	}
 
 	@Override
-	public String getBlockName(final DesignBlock design) {
+	public String getBlockName(DesignBlock design) {
 		return I18N.localise("extratrees.block.woodentile.name", design.getDesign().getName());
 	}
 }

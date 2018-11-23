@@ -8,27 +8,27 @@ public final class Area implements IArea {
 	private IPoint pos;
 	private IPoint size;
 
-	public Area(final Area area) {
+	public Area(Area area) {
 		this(area.pos().xPos(), area.pos().yPos(), area.size().xPos(), area.size().yPos());
 	}
 
-	public Area(final IPoint pos, final IPoint size) {
+	public Area(IPoint pos, IPoint size) {
 		this(pos.xPos(), pos.yPos(), size.xPos(), size.yPos());
 	}
 
-	public Area(final int xywh) {
+	public Area(int xywh) {
 		this(xywh, xywh, xywh, xywh);
 	}
 
-	public Area(final int xy, final int wh) {
+	public Area(int xy, int wh) {
 		this(xy, xy, wh, wh);
 	}
 
-	public Area(final int x, final int y, final int wh) {
+	public Area(int x, int y, int wh) {
 		this(x, y, wh, wh);
 	}
 
-	public Area(final int x, final int y, final int w, final int h) {
+	public Area(int x, int y, int w, int h) {
 		this.pos = new Point(x, y);
 		this.size = new Point(w, h);
 	}
@@ -44,7 +44,7 @@ public final class Area implements IArea {
 	}
 
 	@Override
-	public void setPosition(final IPoint position) {
+	public void setPosition(IPoint position) {
 		this.pos = position.copy();
 	}
 
@@ -59,12 +59,12 @@ public final class Area implements IArea {
 	}
 
 	@Override
-	public void setSize(final IPoint size) {
+	public void setSize(IPoint size) {
 		this.size = size.copy();
 	}
 
 	@Override
-	public boolean contains(final IPoint position) {
+	public boolean contains(IPoint position) {
 		return position.xPos() >= this.pos().xPos() && position.yPos() >= this.pos.yPos() && position.xPos() <= this.pos().xPos() + this.size().xPos() && position.yPos() <= this.pos().yPos() + this.size().yPos();
 	}
 
@@ -89,42 +89,42 @@ public final class Area implements IArea {
 	}
 
 	@Override
-	public void setXPos(final int xPos) {
+	public void setXPos(int xPos) {
 		this.pos = new Point(xPos, this.pos.yPos());
 	}
 
 	@Override
-	public void setYPos(final int yPos) {
+	public void setYPos(int yPos) {
 		this.pos = new Point(this.pos.xPos(), yPos);
 	}
 
 	@Override
-	public void setWidth(final int width) {
+	public void setWidth(int width) {
 		this.size = new Point(width, this.size.yPos());
 	}
 
 	@Override
-	public void setHeight(final int height) {
+	public void setHeight(int height) {
 		this.size = new Point(this.size.xPos(), height);
 	}
 
 	@Override
-	public IArea inset(final IBorder border) {
+	public IArea inset(IBorder border) {
 		return new Area(this.xPos() + border.getLeft(), this.yPos() + border.getTop(), this.width() - border.getLeft() - border.getRight(), this.height() - border.getTop() - border.getBottom());
 	}
 
 	@Override
-	public IArea outset(final int outset) {
+	public IArea outset(int outset) {
 		return this.outset(new Border(outset));
 	}
 
 	@Override
-	public IArea outset(final IBorder border) {
+	public IArea outset(IBorder border) {
 		return new Area(this.xPos() - border.getLeft(), this.yPos() - border.getTop(), this.width() + border.getLeft() + border.getRight(), this.height() + border.getTop() + border.getBottom());
 	}
 
 	@Override
-	public IArea inset(final int inset) {
+	public IArea inset(int inset) {
 		return this.inset(new Border(inset));
 	}
 
@@ -134,7 +134,7 @@ public final class Area implements IArea {
 	}
 
 	@Override
-	public IArea shift(final int dx, final int f) {
+	public IArea shift(int dx, int f) {
 		return new Area(this.xPos() + dx, this.yPos() + f, this.width(), this.height());
 	}
 }

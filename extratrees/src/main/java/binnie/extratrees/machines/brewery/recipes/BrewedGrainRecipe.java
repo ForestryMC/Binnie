@@ -41,7 +41,7 @@ public class BrewedGrainRecipe implements IBreweryRecipe {
 	public FluidStack getOutput(IBreweryCrafting crafting) {
 		if (WATER.isFluidEqual(crafting.getInputFluid()) && isIngredient(crafting.getIngredient()) && yeast.isItemEqual(crafting.getYeast())) {
 			int grainCount = 0;
-			for (final ItemStack stack : crafting.getInputGrains()) {
+			for (ItemStack stack : crafting.getInputGrains()) {
 				if (stack == null) {
 					return null;
 				}

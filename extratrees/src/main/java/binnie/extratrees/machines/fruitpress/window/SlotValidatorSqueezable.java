@@ -13,7 +13,7 @@ public class SlotValidatorSqueezable extends SlotValidator {
 	}
 
 	@Override
-	public boolean isValid(final ItemStack itemStack) {
+	public boolean isValid(ItemStack itemStack) {
 		return FruitPressRecipeManager.isInput(itemStack);
 	}
 

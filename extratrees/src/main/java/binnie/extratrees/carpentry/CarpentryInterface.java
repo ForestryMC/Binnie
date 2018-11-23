@@ -13,13 +13,13 @@ public class CarpentryInterface implements ICarpentryInterface {
 	private static final Map<Integer, IDesignMaterial> woodMap = new LinkedHashMap<>();
 
 	@Override
-	public boolean registerCarpentryWood(final int index, final IDesignMaterial wood) {
+	public boolean registerCarpentryWood(int index, IDesignMaterial wood) {
 		return CarpentryInterface.woodMap.put(index, wood) == null;
 	}
 
 	@Override
-	public int getCarpentryWoodIndex(final IDesignMaterial wood) {
-		for (final Integer integer : CarpentryInterface.woodMap.keySet()) {
+	public int getCarpentryWoodIndex(IDesignMaterial wood) {
+		for (Integer integer : CarpentryInterface.woodMap.keySet()) {
 			if (CarpentryInterface.woodMap.get(integer).equals(wood)) {
 				return integer;
 			}
@@ -28,17 +28,17 @@ public class CarpentryInterface implements ICarpentryInterface {
 	}
 
 	@Override
-	public IDesignMaterial getWoodMaterial(final int index) {
+	public IDesignMaterial getWoodMaterial(int index) {
 		return CarpentryInterface.woodMap.get(index);
 	}
 
 
 	@Override
 	@Nullable
-	public IDesignMaterial getWoodMaterial(final ItemStack stack) {
-		for (final Map.Entry<Integer, IDesignMaterial> entry : CarpentryInterface.woodMap.entrySet()) {
+	public IDesignMaterial getWoodMaterial(ItemStack stack) {
+		for (Map.Entry<Integer, IDesignMaterial> entry : CarpentryInterface.woodMap.entrySet()) {
 			for (boolean fireproof : new boolean[]{true, false}) {
-				final ItemStack key = entry.getValue().getStack(fireproof);
+				ItemStack key = entry.getValue().getStack(fireproof);
 				if (key.isItemEqual(stack)) {
 					return entry.getValue();
 				}

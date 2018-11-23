@@ -22,8 +22,8 @@ public class WorldGenHiveNether extends WorldGenHive {
 	}
 
 	@Override
-	public boolean generate(final World world, final Random random, final BlockPos pos) {
-		final Biome biome = world.getBiome(pos);
+	public boolean generate(World world, Random random, BlockPos pos) {
+		Biome biome = world.getBiome(pos);
 		if (!BiomeDictionary.hasType(biome, BiomeDictionary.Type.NETHER)) {
 			return false;
 		}
@@ -33,7 +33,7 @@ public class WorldGenHiveNether extends WorldGenHive {
 		return true;
 	}
 
-	public boolean embedInWall(final World world, final Block blockID, final BlockPos pos) {
+	public boolean embedInWall(World world, Block blockID, BlockPos pos) {
 		if (world.getBlockState(pos).getBlock() != blockID) {
 			return false;
 		}

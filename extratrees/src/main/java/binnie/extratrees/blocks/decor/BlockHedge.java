@@ -41,18 +41,18 @@ public class BlockHedge extends Block implements IBlockFence, IColoredBlock {
 		if (type == EnumLeafType.CONIFERS) {
 			return ColorizerFoliage.getFoliageColorPine();
 		}
-		final double d0 = 0.5;
-		final double d2 = 1.0;
+		double d0 = 0.5;
+		double d2 = 1.0;
 		return ColorizerFoliage.getFoliageColor(d0, d2);
 	}
 
 	@Override
 	@SuppressWarnings("deprecation")
 	public void addCollisionBoxToList(IBlockState state, World world, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean p_185477_7_) {
-		final boolean connectNegZ = this.canConnectFenceTo(world, pos.north());
-		final boolean connectPosZ = this.canConnectFenceTo(world, pos.south());
-		final boolean connectNegX = this.canConnectFenceTo(world, pos.west());
-		final boolean connectPosX = this.canConnectFenceTo(world, pos.east());
+		boolean connectNegZ = this.canConnectFenceTo(world, pos.north());
+		boolean connectPosZ = this.canConnectFenceTo(world, pos.south());
+		boolean connectNegX = this.canConnectFenceTo(world, pos.west());
+		boolean connectPosX = this.canConnectFenceTo(world, pos.east());
 		float f = 0.25f;
 		float f2 = 0.75f;
 		float f3 = 0.25f;
@@ -89,10 +89,10 @@ public class BlockHedge extends Block implements IBlockFence, IColoredBlock {
 	@Override
 	@SuppressWarnings("deprecation")
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
-		final boolean connectNegZ = this.canConnectFenceTo(world, pos.north());
-		final boolean connectPosZ = this.canConnectFenceTo(world, pos.south());
-		final boolean connectNegX = this.canConnectFenceTo(world, pos.west());
-		final boolean connectPosX = this.canConnectFenceTo(world, pos.east());
+		boolean connectNegZ = this.canConnectFenceTo(world, pos.north());
+		boolean connectPosZ = this.canConnectFenceTo(world, pos.south());
+		boolean connectNegX = this.canConnectFenceTo(world, pos.west());
+		boolean connectPosX = this.canConnectFenceTo(world, pos.east());
 		float f = 0.25f;
 		float f2 = 0.75f;
 		float f3 = 0.25f;
@@ -175,7 +175,7 @@ public class BlockHedge extends Block implements IBlockFence, IColoredBlock {
 		return ForestryAPI.textureManager.getIcon(this.isFull(meta) ? type.plainUID : type.fancyUID);
 	}*/
 
-	private boolean isFull(final int meta) {
+	private boolean isFull(int meta) {
 		return meta / 8 > 0;
 	}
 

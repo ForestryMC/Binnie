@@ -13,7 +13,7 @@ public class ControlProgress extends ControlProgressBase {
 	private final Texture progressBar;
 	private final Alignment direction;
 
-	public ControlProgress(final IWidget parent, final int x, final int y, final Texture progressBlank, final Texture progressBar, final Alignment dir) {
+	public ControlProgress(IWidget parent, int x, int y, Texture progressBlank, Texture progressBar, Alignment dir) {
 		super(parent, x, y, (progressBlank == null) ? 0 : progressBlank.width(), (progressBlank == null) ? 0 : progressBlank.height());
 		this.progressBlank = progressBlank;
 		this.progressBar = progressBar;

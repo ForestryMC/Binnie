@@ -34,33 +34,33 @@ public class BreweryMachine extends ExtraTreeMachine.PackageExtraTreeMachine imp
 	}
 
 	@Override
-	public void createMachine(final Machine machine) {
+	public void createMachine(Machine machine) {
 		new ExtraTreeMachine.ComponentExtraTreeGUI(machine, ExtraTreesGUID.BREWERY);
-		final ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
+		ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
 
-		for (final InventorySlot slot : inventory.addSlotArray(SLOT_RECIPE_GRAINS, new ResourceLocation(Constants.CORE_MOD_ID, "gui.slot.grain"))) {
+		for (InventorySlot slot : inventory.addSlotArray(SLOT_RECIPE_GRAINS, new ResourceLocation(Constants.CORE_MOD_ID, "gui.slot.grain"))) {
 			slot.setValidator(new SlotValidatorBreweryGrain());
 			slot.setType(InventorySlot.Type.Recipe);
 		}
 
-		for (final InventorySlot slot : inventory.addSlotArray(SLOTS_INVENTORY, new ResourceLocation(Constants.CORE_MOD_ID, "gui.slot.inventory"))) {
+		for (InventorySlot slot : inventory.addSlotArray(SLOTS_INVENTORY, new ResourceLocation(Constants.CORE_MOD_ID, "gui.slot.inventory"))) {
 			slot.forbidExtraction();
 		}
 
-		final InventorySlot yeast = inventory.addSlot(SLOT_YEAST, getSlotRL("yeast"));
+		InventorySlot yeast = inventory.addSlot(SLOT_YEAST, getSlotRL("yeast"));
 		yeast.setValidator(new SlotValidatorBreweryYeast());
 		yeast.setType(InventorySlot.Type.Recipe);
 
-		final InventorySlot ingredient = inventory.addSlot(SLOT_RECIPE_INPUT, getSlotRL("ingredient"));
+		InventorySlot ingredient = inventory.addSlot(SLOT_RECIPE_INPUT, getSlotRL("ingredient"));
 		ingredient.setValidator(new SlotValidatorBreweryIngredient());
 		ingredient.setType(InventorySlot.Type.Recipe);
 
-		final ComponentTankContainer tanks = new ComponentTankContainer(machine);
+		ComponentTankContainer tanks = new ComponentTankContainer(machine);
 		TankSlot input = tanks.addTank(TANK_INPUT, "input", 5000);
 		input.setValidator(new TankValidatorFermentInput());
 		input.forbidExtraction();
 
-		final TankSlot output = tanks.addTank(TANK_OUTPUT, "output", 5000);
+		TankSlot output = tanks.addTank(TANK_OUTPUT, "output", 5000);
 		output.setValidator(new TankValidatorFermentOutput());
 		output.setReadOnly();
 

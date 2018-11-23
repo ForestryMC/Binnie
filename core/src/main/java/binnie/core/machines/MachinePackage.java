@@ -12,7 +12,7 @@ public abstract class MachinePackage {
 	private int metadata;
 	private MachineGroup group;
 
-	protected MachinePackage(final String uid) {
+	protected MachinePackage(String uid) {
 		this.active = true;
 		this.metadata = -1;
 		this.uid = uid;
@@ -22,7 +22,7 @@ public abstract class MachinePackage {
 		return this.uid;
 	}
 
-	public abstract void createMachine(final Machine p0);
+	public abstract void createMachine(Machine p0);
 
 	public abstract TileEntity createTileEntity();
 
@@ -34,7 +34,7 @@ public abstract class MachinePackage {
 		return this.metadata;
 	}
 
-	public void assignMetadata(final int meta) {
+	public void assignMetadata(int meta) {
 		this.metadata = meta;
 	}
 
@@ -42,7 +42,7 @@ public abstract class MachinePackage {
 		return this.group;
 	}
 
-	public void setGroup(final MachineGroup group) {
+	public void setGroup(MachineGroup group) {
 		this.group = group;
 	}
 
@@ -50,7 +50,7 @@ public abstract class MachinePackage {
 		return this.active;
 	}
 
-	public void setActive(final boolean active) {
+	public void setActive(boolean active) {
 		this.active = active;
 	}
 

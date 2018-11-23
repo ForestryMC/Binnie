@@ -2,7 +2,7 @@ package binnie.extratrees.genetics;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeSet;
+import java.util.Set;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -41,7 +41,7 @@ public class MothBreedingSystem extends BreedingSystem {
 	}
 
 	@Override
-	public float getChance(final IMutation mutation, final EntityPlayer player, final IAlleleSpecies firstSpecies, final IAlleleSpecies secondSpecies) {
+	public float getChance(IMutation mutation, EntityPlayer player, IAlleleSpecies firstSpecies, IAlleleSpecies secondSpecies) {
 		return 0.0f;
 	}
 
@@ -61,9 +61,9 @@ public class MothBreedingSystem extends BreedingSystem {
 	}
 
 	@Override
-	public String getAlleleName(final IChromosomeType chromosome, final IAllele allele) {
+	public String getAlleleName(IChromosomeType chromosome, IAllele allele) {
 		if (chromosome == EnumButterflyChromosome.METABOLISM) {
-			final int metabolism = ((IAlleleInteger) allele).getValue();
+			int metabolism = ((IAlleleInteger) allele).getValue();
 			if (metabolism >= 19) {
 				return I18N.localise(ModId.EXTRA_TREES, "allele.metabolism.highest");
 			}
@@ -85,7 +85,7 @@ public class MothBreedingSystem extends BreedingSystem {
 			return I18N.localise(ModId.EXTRA_TREES, "allele.metabolism.slowest");
 		} else {
 			if (chromosome == EnumButterflyChromosome.FERTILITY) {
-				final int metabolism = ((IAlleleInteger) allele).getValue();
+				int metabolism = ((IAlleleInteger) allele).getValue();
 				return metabolism + "x";
 			}
 			return super.getAlleleName(chromosome, allele);
@@ -93,7 +93,7 @@ public class MothBreedingSystem extends BreedingSystem {
 	}
 
 	@Override
-	public boolean isDNAManipulable(final ItemStack member) {
+	public boolean isDNAManipulable(ItemStack member) {
 		ISpeciesType type = this.getSpeciesRoot().getType(member);
 		return type != null && isDNAManipulable(type);
 	}
@@ -109,22 +109,22 @@ public class MothBreedingSystem extends BreedingSystem {
 	}
 
 	@Override
-	public void addExtraAlleles(final IChromosomeType chromosome, final TreeSet<IAllele> alleles) {
+	public void addExtraAlleles(IChromosomeType chromosome, Set<IAllele> alleles) {
 		switch ((EnumButterflyChromosome) chromosome) {
 			case FERTILITY: {
-				for (final ForestryAllele.Int a : ForestryAllele.Int.values()) {
+				for (ForestryAllele.Int a : ForestryAllele.Int.values()) {
 					alleles.add(a.getAllele());
 				}
 				break;
 			}
 			case LIFESPAN: {
-				for (final ForestryAllele.Lifespan a2 : ForestryAllele.Lifespan.values()) {
+				for (ForestryAllele.Lifespan a2 : ForestryAllele.Lifespan.values()) {
 					alleles.add(a2.getAllele());
 				}
 				break;
 			}
 			case METABOLISM: {
-				for (final ForestryAllele.Int a : ForestryAllele.Int.values()) {
+				for (ForestryAllele.Int a : ForestryAllele.Int.values()) {
 					alleles.add(a.getAllele());
 				}
 				break;
@@ -132,19 +132,19 @@ public class MothBreedingSystem extends BreedingSystem {
 			case TOLERANT_FLYER:
 			case FIRE_RESIST:
 			case NOCTURNAL: {
-				for (final ForestryAllele.Bool a3 : ForestryAllele.Bool.values()) {
+				for (ForestryAllele.Bool a3 : ForestryAllele.Bool.values()) {
 					alleles.add(a3.getAllele());
 				}
 				break;
 			}
 			case SIZE: {
-				for (final ForestryAllele.Size a4 : ForestryAllele.Size.values()) {
+				for (ForestryAllele.Size a4 : ForestryAllele.Size.values()) {
 					alleles.add(a4.getAllele());
 				}
 				break;
 			}
 			case SPEED: {
-				for (final ForestryAllele.Speed a5 : ForestryAllele.Speed.values()) {
+				for (ForestryAllele.Speed a5 : ForestryAllele.Speed.values()) {
 					alleles.add(a5.getAllele());
 				}
 				break;

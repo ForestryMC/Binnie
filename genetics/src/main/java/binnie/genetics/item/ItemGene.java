@@ -46,12 +46,12 @@ public abstract class ItemGene extends ItemCore implements IColoredItem {
 		}
 	}
 
-	public int getCharges(final ItemStack stack) {
+	public int getCharges(ItemStack stack) {
 		return stack.getMaxDamage() - stack.getItemDamage();
 	}
 
 	@Override
-	public abstract String getItemStackDisplayName(final ItemStack itemStack);
+	public abstract String getItemStackDisplayName(ItemStack itemStack);
 
 	@Override
 	public abstract void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items);

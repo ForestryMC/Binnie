@@ -21,12 +21,12 @@ import binnie.extratrees.machines.distillery.DistilleryLogic;
 import binnie.extratrees.machines.distillery.DistilleryMachine;
 
 public class WindowDistillery extends Window {
-	public WindowDistillery(final EntityPlayer player, final IInventory inventory, final Side side) {
+	public WindowDistillery(EntityPlayer player, IInventory inventory, Side side) {
 		super(224, 192, player, inventory, side);
 	}
 
 	@Nullable
-	public static Window create(final EntityPlayer player, @Nullable final IInventory inventory, final Side side) {
+	public static Window create(EntityPlayer player, @Nullable IInventory inventory, Side side) {
 		if (inventory == null) {
 			return null;
 		}

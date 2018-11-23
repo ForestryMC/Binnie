@@ -35,7 +35,7 @@ public class ModuleAlveary extends BinnieModule {
 
 	@Override
 	public void preInit() {
-		final MachineGroup machineGroup = new MachineGroup(ExtraBees.instance, "alveay", "alveary", ExtraBeeMachines.values());
+		MachineGroup machineGroup = new MachineGroup(ExtraBees.instance, "alveay", "alveary", ExtraBeeMachines.values());
 		machineGroup.setCreativeTab(Tabs.tabApiculture);
 		BinnieCore.getBinnieProxy().registerTileEntity(TileExtraBeeAlveary.class, "extrabees.tile.alveary");
 		machineGroup.createContent();
@@ -57,7 +57,7 @@ public class ModuleAlveary extends BinnieModule {
 		recipeUtil.addRecipe("alveary_hatchery", ExtraBeeMachines.HATCHERY.get(1), "i i", " a ", "iti", 'i', Blocks.GLASS_PANE, 'a', alveary, 't', new ItemStack(thermionicTubes, 1, 5));
 		recipeUtil.addRecipe("alveary_transmission", ExtraBeeMachines.TRANSMISSION.get(1), " t ", "tat", " t ", 'a', alveary, 't', "gearTin");
 		ICircuitLayout stimulatorLayout = new BinnieCircuitLayout("Stimulator", BinnieCircuitSocketType.STIMULATOR);
-		for (final AlvearySimulatorCircuitType type : AlvearySimulatorCircuitType.values()) {
+		for (AlvearySimulatorCircuitType type : AlvearySimulatorCircuitType.values()) {
 			type.createCircuit(stimulatorLayout);
 		}
 	}

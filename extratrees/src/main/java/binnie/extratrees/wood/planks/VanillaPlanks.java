@@ -28,7 +28,7 @@ public enum VanillaPlanks implements IPlankType {
 	@SideOnly(Side.CLIENT)
 	private TextureAtlasSprite sprite;
 
-	VanillaPlanks(final int color, IWoodType woodType) {
+	VanillaPlanks(int color, IWoodType woodType) {
 		this.color = color;
 		this.woodType = woodType;
 	}

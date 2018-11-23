@@ -10,7 +10,7 @@ class StandardCompartment {
 		}
 
 		@Override
-		public void createMachine(final Machine machine) {
+		public void createMachine(Machine machine) {
 			new ComponentBinnieCoreGUI(machine, BinnieCoreGUI.COMPARTMENT);
 			new ComponentCompartmentInventory(machine, 4, 25);
 		}
@@ -22,7 +22,7 @@ class StandardCompartment {
 		}
 
 		@Override
-		public void createMachine(final Machine machine) {
+		public void createMachine(Machine machine) {
 			new ComponentBinnieCoreGUI(machine, BinnieCoreGUI.COMPARTMENT);
 			new ComponentCompartmentInventory(machine, 6, 25);
 		}
@@ -34,7 +34,7 @@ class StandardCompartment {
 		}
 
 		@Override
-		public void createMachine(final Machine machine) {
+		public void createMachine(Machine machine) {
 			new ComponentBinnieCoreGUI(machine, BinnieCoreGUI.COMPARTMENT);
 			new ComponentCompartmentInventory(machine, 8, 25);
 		}
@@ -46,7 +46,7 @@ class StandardCompartment {
 		}
 
 		@Override
-		public void createMachine(final Machine machine) {
+		public void createMachine(Machine machine) {
 			new ComponentBinnieCoreGUI(machine, BinnieCoreGUI.COMPARTMENT);
 			new ComponentCompartmentInventory(machine, 4, 50);
 		}
@@ -58,7 +58,7 @@ class StandardCompartment {
 		}
 
 		@Override
-		public void createMachine(final Machine machine) {
+		public void createMachine(Machine machine) {
 			new ComponentBinnieCoreGUI(machine, BinnieCoreGUI.COMPARTMENT);
 			new ComponentCompartmentInventory(machine, 6, 50);
 		}
@@ -70,7 +70,7 @@ class StandardCompartment {
 		}
 
 		@Override
-		public void createMachine(final Machine machine) {
+		public void createMachine(Machine machine) {
 			new ComponentBinnieCoreGUI(machine, BinnieCoreGUI.COMPARTMENT);
 			new ComponentCompartmentInventory(machine, 8, 50);
 		}

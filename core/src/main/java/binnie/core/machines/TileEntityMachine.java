@@ -22,7 +22,7 @@ public class TileEntityMachine extends TileEntityMachineBase implements INetwork
 	@Nullable
 	private Machine machine;
 
-	public TileEntityMachine(final MachinePackage pack) {
+	public TileEntityMachine(MachinePackage pack) {
 		this.setMachine(pack);
 	}
 
@@ -38,39 +38,49 @@ public class TileEntityMachine extends TileEntityMachineBase implements INetwork
 	}
 
 	@Override
-	public void readFromNBT(final NBTTagCompound nbtTagCompound) {
+	public void readFromNBT(NBTTagCompound nbtTagCompound) {
 		super.readFromNBT(nbtTagCompound);
 		if (!nbtTagCompound.hasKey("sync")) {
-			final String name = nbtTagCompound.getString("name");
-			final String group = nbtTagCompound.getString("group");
-			final MachinePackage pack = Binnie.MACHINE.getPackage(group, name);
+			String name = nbtTagCompound.getString("name");
+			String group = nbtTagCompound.getString("group");
+			MachinePackage pack = Binnie.MACHINE.getPackage(group, name);
 			if (pack == null) {
 				this.invalidate();
 				return;
 			}
 			this.setMachine(pack);
-			this.getMachine().readFromNBT(nbtTagCompound);
+			if (machine != null) {
+				machine.readFromNBT(nbtTagCompound);
+			}
 		}
 	}
 
 	@Override
-	public NBTTagCompound writeToNBT(final NBTTagCompound nbtTagCompound2) {
+	public NBTTagCompound writeToNBT(NBTTagCompound nbtTagCompound2) {
 		NBTTagCompound nbtTagCompound = super.writeToNBT(nbtTagCompound2);
-		final String name = this.machine.getPackage().getUID();
-		final String group = this.machine.getPackage().getGroup().getUID();
-		nbtTagCompound.setString("group", group);
-		nbtTagCompound.setString("name", name);
-		this.getMachine().writeToNBT(nbtTagCompound);
+		if (machine != null) {
+			String name = this.machine.getPackage().getUID();
+			String group = this.machine.getPackage().getGroup().getUID();
+			nbtTagCompound.setString("group", group);
+			nbtTagCompound.setString("name", name);
+			machine.writeToNBT(nbtTagCompound);
+		}
 		return nbtTagCompound;
 	}
 
 	@Override
-	public void writeToPacket(final PacketPayload payload) {
+	public void writeToPacket(PacketPayload payload) {
+		if (machine == null) {
+			return;
+		}
 		this.machine.writeToPacket(payload);
 	}
 
 	@Override
-	public void readFromPacket(final PacketPayload payload) {
+	public void readFromPacket(PacketPayload payload) {
+		if (machine == null) {
+			return;
+		}
 		this.machine.readFromPacket(payload);
 	}
 
@@ -92,7 +102,9 @@ public class TileEntityMachine extends TileEntityMachineBase implements INetwork
 	public NBTTagCompound getUpdateTag() {
 		NBTTagCompound compound = super.getUpdateTag();
 		NBTTagCompound syncCompound = new NBTTagCompound();
-		machine.syncToNBT(syncCompound);
+		if (machine != null) {
+			machine.syncToNBT(syncCompound);
+		}
 		compound.setTag("sync", syncCompound);
 		return compound;
 	}
@@ -101,6 +113,9 @@ public class TileEntityMachine extends TileEntityMachineBase implements INetwork
 	public void handleUpdateTag(NBTTagCompound tag) {
 		super.handleUpdateTag(tag);
 		NBTTagCompound syncCompound = tag.getCompoundTag("sync");
+		if (machine == null) {
+			return;
+		}
 		machine.syncFromNBT(syncCompound);
 	}
 
@@ -124,16 +139,22 @@ public class TileEntityMachine extends TileEntityMachineBase implements INetwork
 	@Override
 	public void invalidate() {
 		super.invalidate();
-		for (IInteraction.Invalidation c : this.getMachine().getInterfaces(IInteraction.Invalidation.class)) {
-			c.onInvalidation();
+		if (machine == null) {
+			return;
+		}
+		for (IInteraction.Invalidation component : machine.getInterfaces(IInteraction.Invalidation.class)) {
+			component.onInvalidation();
 		}
 	}
 
 	@Override
 	public void onChunkUnload() {
 		super.onChunkUnload();
-		for (IInteraction.ChunkUnload c : this.getMachine().getInterfaces(IInteraction.ChunkUnload.class)) {
-			c.onChunkUnload();
+		if (machine == null) {
+			return;
+		}
+		for (IInteraction.ChunkUnload component : machine.getInterfaces(IInteraction.ChunkUnload.class)) {
+			component.onChunkUnload();
 		}
 	}
 

@@ -5,7 +5,7 @@ public enum PunnettGUITexture {
 	CHROMOSOME_OVERLAY("chromosome_overlay");
 	private final String name;
 
-	PunnettGUITexture(final String name) {
+	PunnettGUITexture(String name) {
 		this.name = name;
 	}
 

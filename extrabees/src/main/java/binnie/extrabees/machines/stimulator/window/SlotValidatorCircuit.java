@@ -13,7 +13,7 @@ public class SlotValidatorCircuit extends SlotValidator {
 	}
 
 	@Override
-	public boolean isValid(final ItemStack itemStack) {
+	public boolean isValid(ItemStack itemStack) {
 		return !itemStack.isEmpty() && ChipsetManager.circuitRegistry.isChipset(itemStack);
 	}
 

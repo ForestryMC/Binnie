@@ -15,7 +15,7 @@ import binnie.core.machines.power.IProcess;
 public class InfuserLogic extends ComponentProcessSetCost implements IProcess {
 	private ItemStack infusing;
 
-	public InfuserLogic(final Machine machine) {
+	public InfuserLogic(Machine machine) {
 		super(machine, 16000, 800);
 	}
 
@@ -60,7 +60,7 @@ public class InfuserLogic extends ComponentProcessSetCost implements IProcess {
 
 	@Override
 	protected void onFinishTask() {
-		final FluidStack output = this.getOutput();
+		FluidStack output = this.getOutput();
 		if (output != null) {
 			this.getUtil().fillTank(Infuser.TANK_OUTPUT, output.copy());
 		}

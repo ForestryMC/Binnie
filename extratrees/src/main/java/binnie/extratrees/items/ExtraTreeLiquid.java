@@ -21,7 +21,7 @@ public enum ExtraTreeLiquid implements ILiquidDefinition {
 
 	private final FluidType type;
 
-	ExtraTreeLiquid(final String ident, final int color) {
+	ExtraTreeLiquid(String ident, int color) {
 		type = ExtraTrees.instance.registry(ExtraTreesModuleUIDs.CORE).createFluid(ident, String.format("%s.fluid.%s.%s", ExtraTrees.instance.getModId(), "ExtraTreeLiquid", this.name()), color)
 			.setShowHandler(fluidType -> fluidType == FluidContainerType.CAN || fluidType == FluidContainerType.CAPSULE)
 			.setTransparency(255)
@@ -29,7 +29,7 @@ public enum ExtraTreeLiquid implements ILiquidDefinition {
 	}
 
 	@Override
-	public FluidStack get(final int amount) {
+	public FluidStack get(int amount) {
 		return type.stack(amount);
 	}
 

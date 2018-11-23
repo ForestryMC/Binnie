@@ -26,11 +26,11 @@ import binnie.core.gui.resource.textures.CraftGUITexture;
 public abstract class ControlSlotBase extends Control implements ITooltip {
 	private final ControlItemDisplay itemDisplay;
 
-	public ControlSlotBase(final IWidget parent, final int x, final int y) {
+	public ControlSlotBase(IWidget parent, int x, int y) {
 		this(parent, x, y, 18);
 	}
 
-	public ControlSlotBase(final IWidget parent, final int x, final int y, final int size) {
+	public ControlSlotBase(IWidget parent, int x, int y, int size) {
 		super(parent, x, y, size, size);
 		this.addAttribute(Attribute.MOUSE_OVER);
 		this.itemDisplay = new ControlItemDisplay(this, 1, 1, size - 2);
@@ -62,8 +62,8 @@ public abstract class ControlSlotBase extends Control implements ITooltip {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
-		final ItemStack stack = this.getItemStack();
+	public void getTooltip(Tooltip tooltip, ITooltipFlag tooltipFlag) {
+		ItemStack stack = this.getItemStack();
 		if (stack.isEmpty()) {
 			return;
 		}

@@ -28,7 +28,7 @@ public class WindowIsolator extends WindowMachine {
 	private static final Texture PROGRESS_BASE = new StandardTexture(0, 218, 142, 17, GeneticsTexture.GUI_PROCESS_3);
 	private static final Texture PROGRESS = new StandardTexture(0, 201, 142, 17, GeneticsTexture.GUI_PROCESS_3);
 
-	public WindowIsolator(final EntityPlayer player, final IInventory inventory, final Side side) {
+	public WindowIsolator(EntityPlayer player, IInventory inventory, Side side) {
 		super(330, 208, player, inventory, side);
 	}
 
@@ -37,7 +37,7 @@ public class WindowIsolator extends WindowMachine {
 	public void initialiseClient() {
 		super.initialiseClient();
 		int x = 16;
-		final int y = 32;
+		int y = 32;
 		new ControlLiquidTank(this, x, y, Isolator.TANK_ETHANOL);
 		x += 26;
 		new ControlSlotArray.Builder(this, x, y + 3, 1, 3).create(Isolator.SLOT_RESERVE);

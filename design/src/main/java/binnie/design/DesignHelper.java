@@ -19,50 +19,50 @@ public final class DesignHelper {
 	private DesignHelper() {
 	}
 
-	public static DesignBlock getDesignBlock(final IDesignSystem system, final int meta) {
-		final int plankID1 = meta & 0xFF;
-		final int plankID2 = meta >> 8 & 0xFF;
-		final int tile = meta >> 16 & 0x3FF;
-		final int rotation = meta >> 26 & 0x3;
-		final int axis = meta >> 28 & 0x7;
-		final IDesignMaterial type1 = system.getMaterial(plankID1);
-		final IDesignMaterial type2 = system.getMaterial(plankID2);
-		final IDesign type3 = Design.getDesignManager().getDesign(tile);
+	public static DesignBlock getDesignBlock(IDesignSystem system, int meta) {
+		int plankID1 = meta & 0xFF;
+		int plankID2 = meta >> 8 & 0xFF;
+		int tile = meta >> 16 & 0x3FF;
+		int rotation = meta >> 26 & 0x3;
+		int axis = meta >> 28 & 0x7;
+		IDesignMaterial type1 = system.getMaterial(plankID1);
+		IDesignMaterial type2 = system.getMaterial(plankID2);
+		IDesign type3 = Design.getDesignManager().getDesign(tile);
 		return new DesignBlock(system, type1, type2, type3, rotation, EnumFacing.VALUES[axis]);
 	}
 
-	public static int getBlockMetadata(final IDesignSystem system, final DesignBlock block) {
-		final int plank1 = system.getMaterialIndex(block.getPrimaryMaterial());
-		final int plank2 = system.getMaterialIndex(block.getSecondaryMaterial());
-		final int design = Design.getDesignManager().getDesignIndex(block.getDesign());
-		final int rotation = block.getRotation();
-		final int facing = block.getFacing().ordinal();
+	public static int getBlockMetadata(IDesignSystem system, DesignBlock block) {
+		int plank1 = system.getMaterialIndex(block.getPrimaryMaterial());
+		int plank2 = system.getMaterialIndex(block.getSecondaryMaterial());
+		int design = Design.getDesignManager().getDesignIndex(block.getDesign());
+		int rotation = block.getRotation();
+		int facing = block.getFacing().ordinal();
 		return getMetadata(plank1, plank2, design, rotation, facing);
 	}
 
-	public static int getItemMetadata(final IDesignSystem system, final DesignBlock block) {
-		final int plank1 = system.getMaterialIndex(block.getPrimaryMaterial());
-		final int plank2 = system.getMaterialIndex(block.getSecondaryMaterial());
-		final int design = Design.getDesignManager().getDesignIndex(block.getDesign());
+	public static int getItemMetadata(IDesignSystem system, DesignBlock block) {
+		int plank1 = system.getMaterialIndex(block.getPrimaryMaterial());
+		int plank2 = system.getMaterialIndex(block.getSecondaryMaterial());
+		int design = Design.getDesignManager().getDesignIndex(block.getDesign());
 		return getMetadata(plank1, plank2, design, 0, EnumFacing.UP.ordinal());
 	}
 
-	public static ItemStack getItemStack(final BlockDesign block, final IDesignMaterial type1, final IDesignMaterial type2, final IDesign design) {
+	public static ItemStack getItemStack(BlockDesign block, IDesignMaterial type1, IDesignMaterial type2, IDesign design) {
 		int designIndex = Design.getDesignManager().getDesignIndex(design);
 		int materialIndex1 = block.getDesignSystem().getMaterialIndex(type1);
 		int materialIndex2 = block.getDesignSystem().getMaterialIndex(type2);
 		return getItemStack(block, materialIndex1, materialIndex2, designIndex);
 	}
 
-	public static ItemStack getItemStack(final BlockDesign block, final int type1, final int type2, final int design) {
+	public static ItemStack getItemStack(BlockDesign block, int type1, int type2, int design) {
 		return TileEntityMetadata.getItemStack(block, getMetadata(type1, type2, design, 0, EnumFacing.UP.ordinal()));
 	}
 
-	public static ItemStack getItemStack(final BlockDesign blockC, final DesignBlock block) {
+	public static ItemStack getItemStack(BlockDesign blockC, DesignBlock block) {
 		return getItemStack(blockC, block.getPrimaryMaterial(), block.getSecondaryMaterial(), block.getDesign());
 	}
 
-	public static int getMetadata(final int plank1, final int plank2, final int design, final int rotation, final int facing) {
+	public static int getMetadata(int plank1, int plank2, int design, int rotation, int facing) {
 		return plank1 + (plank2 << 8) + (design << 16) + (rotation << 26) + (facing << 28);
 	}
 

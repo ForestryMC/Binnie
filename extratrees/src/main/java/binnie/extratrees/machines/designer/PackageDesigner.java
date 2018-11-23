@@ -18,7 +18,7 @@ import binnie.extratrees.machines.ExtraTreeMachine;
 public final class PackageDesigner extends MachinePackage implements IMachineInformation {
 	private final IDesignerType type;
 
-	public PackageDesigner(final IDesignerType type) {
+	public PackageDesigner(IDesignerType type) {
 		super(type.getName());
 		this.type = type;
 	}
@@ -29,9 +29,9 @@ public final class PackageDesigner extends MachinePackage implements IMachineInf
 	}
 
 	@Override
-	public void createMachine(final Machine machine) {
+	public void createMachine(Machine machine) {
 		new ExtraTreeMachine.ComponentExtraTreeGUI(machine, ExtraTreesGUID.WOODWORKER);
-		final ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
+		ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
 		inventory.addSlot(DesignerSlots.ADHESIVE_SLOT, getSlotRL("polish")).setValidator(new SlotValidatorDesignAdhesive(this.type));
 		inventory.addSlot(DesignerSlots.DESIGN_SLOT_1, getSlotRL("wood")).setValidator(new SlotValidatorDesignMaterial(this.type));
 		inventory.addSlot(DesignerSlots.DESIGN_SLOT_2, getSlotRL("wood")).setValidator(new SlotValidatorDesignMaterial(this.type));

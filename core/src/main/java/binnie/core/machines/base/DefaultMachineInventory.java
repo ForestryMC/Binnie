@@ -22,7 +22,7 @@ class DefaultMachineInventory implements IInventoryMachine {
 	}
 
 	@Override
-	public boolean isUsableByPlayer(final EntityPlayer entityplayer) {
+	public boolean isUsableByPlayer(EntityPlayer entityplayer) {
 		return false;
 	}
 

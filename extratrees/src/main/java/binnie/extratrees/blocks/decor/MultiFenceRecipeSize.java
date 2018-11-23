@@ -26,7 +26,7 @@ public class MultiFenceRecipeSize extends IForgeRegistryEntry.Impl<IRecipe> impl
 	}
 
 	@Override
-	public boolean matches(final InventoryCrafting inv, final World world) {
+	public boolean matches(InventoryCrafting inv, World world) {
 		if (inv.getSizeInventory() != 9) {
 			return false;
 		}
@@ -70,7 +70,7 @@ public class MultiFenceRecipeSize extends IForgeRegistryEntry.Impl<IRecipe> impl
 	}
 
 	@Override
-	public ItemStack getCraftingResult(final InventoryCrafting inv) {
+	public ItemStack getCraftingResult(InventoryCrafting inv) {
 		return this.getRecipeOutput();
 	}
 

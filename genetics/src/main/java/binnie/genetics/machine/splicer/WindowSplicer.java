@@ -29,7 +29,7 @@ public class WindowSplicer extends WindowMachine {
 	private static final Texture PROGRESS_BASE = new StandardTexture(0, 72, 142, 72, GeneticsTexture.GUI_PROCESS_2);
 	private static final Texture PROGRESS = new StandardTexture(0, 0, 142, 72, GeneticsTexture.GUI_PROCESS_2);
 
-	public WindowSplicer(final EntityPlayer player, final IInventory inventory, final Side side) {
+	public WindowSplicer(EntityPlayer player, IInventory inventory, Side side) {
 		super(280, 240, player, inventory, side);
 	}
 

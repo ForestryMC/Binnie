@@ -39,7 +39,7 @@ public class ProxyClient extends Proxy implements IExtraTreeProxy {
 		//ForestryAPI.textureManager.registerIconProvider(FruitSprite.Average);
 	}
 
-	private static void registerBlockModel(final BlockModelEntry index) {
+	private static void registerBlockModel(BlockModelEntry index) {
 		ModelManager.registerCustomBlockModel(index);
 		if (index.addStateMapper) {
 			StateMapperBase ignoreState = new BlockModeStateMapper(index);

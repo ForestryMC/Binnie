@@ -46,9 +46,9 @@ public abstract class BlockETDefaultLeaves extends BlockAbstractLeaves {
 
 	public static List<BlockETDefaultLeaves> create() {
 		List<BlockETDefaultLeaves> blocks = new ArrayList<>();
-		final int blockCount = PropertyETType.getBlockCount(VARIANTS_PER_BLOCK);
+		int blockCount = PropertyETType.getBlockCount(VARIANTS_PER_BLOCK);
 		for (int blockNumber = 0; blockNumber < blockCount; blockNumber++) {
-			final PropertyETType variant = PropertyETType.create("variant", blockNumber, VARIANTS_PER_BLOCK);
+			PropertyETType variant = PropertyETType.create("variant", blockNumber, VARIANTS_PER_BLOCK);
 			BlockETDefaultLeaves block = new BlockETDefaultLeaves(blockNumber) {
 				@Override
 				public PropertyETType getVariant() {

@@ -19,7 +19,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockMetadata extends BlockContainer implements IBlockMetadata {
-	public BlockMetadata(final Material material) {
+	public BlockMetadata(Material material) {
 		super(material);
 	}
 
@@ -74,7 +74,7 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(final World var1, final int i) {
+	public TileEntity createNewTileEntity(World var1, int i) {
 		return new TileEntityMetadata();
 	}
 
@@ -90,12 +90,12 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 
 	/* IBLOCKMETADATA */
 	@Override
-	public String getDisplayName(final ItemStack itemStack) {
+	public String getDisplayName(ItemStack itemStack) {
 		return this.getLocalizedName();
 	}
 
 	@Override
-	public int getPlacedMeta(final ItemStack item, final World world, final BlockPos pos, final EnumFacing clickedBlock) {
+	public int getPlacedMeta(ItemStack item, World world, BlockPos pos, EnumFacing clickedBlock) {
 		return TileEntityMetadata.getItemDamage(item);
 	}
 

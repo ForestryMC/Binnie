@@ -31,10 +31,10 @@ public class ItemSerum extends ItemGene implements IItemSerum {
 		this.setMaxDamage(16);
 	}
 
-	public static ItemStack create(final IGene gene) {
-		final ItemStack item = GeneticItems.SERUM.stack(1);
+	public static ItemStack create(IGene gene) {
+		ItemStack item = GeneticItems.SERUM.stack(1);
 		item.setItemDamage(item.getMaxDamage());
-		final GeneItem seq = new GeneItem(gene);
+		GeneItem seq = new GeneItem(gene);
 		seq.writeToItem(item);
 		return item;
 	}
@@ -57,7 +57,7 @@ public class ItemSerum extends ItemGene implements IItemSerum {
 				if (chromosomeMap != null) {
 					for (Map.Entry<IChromosomeType, List<IAllele>> entry : chromosomeMap.entrySet()) {
 						IChromosomeType chromosome = entry.getKey();
-						for (final IAllele allele : entry.getValue()) {
+						for (IAllele allele : entry.getValue()) {
 							Gene gene = Gene.create(allele, chromosome, root);
 							IGeneItem geneItem = new GeneItem(gene);
 							ItemStack stack = new ItemStack(this);
@@ -116,7 +116,7 @@ public class ItemSerum extends ItemGene implements IItemSerum {
 
 	@Override
 	public ItemStack addGene(ItemStack stack, IGene gene) {
-		final IGeneItem geneI = this.getGeneItem(stack);
+		IGeneItem geneI = this.getGeneItem(stack);
 		Preconditions.checkNotNull(geneI, "Cannot add gene to itemStack that is not a valid serum.");
 		geneI.addGene(gene);
 		geneI.writeToItem(stack);

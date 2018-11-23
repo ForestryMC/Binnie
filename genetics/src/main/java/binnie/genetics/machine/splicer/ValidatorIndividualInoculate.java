@@ -15,8 +15,8 @@ public class ValidatorIndividualInoculate extends SlotValidator {
 	}
 
 	@Override
-	public boolean isValid(final ItemStack object) {
-		final ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(object);
+	public boolean isValid(ItemStack object) {
+		ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(object);
 		return root != null && Binnie.GENETICS.getSystem(root).isDNAManipulable(object);
 	}
 

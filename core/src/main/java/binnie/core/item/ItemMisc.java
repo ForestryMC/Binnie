@@ -18,7 +18,7 @@ import forestry.api.core.IModelManager;
 public class ItemMisc<T extends IItemSubtypeMisc> extends ItemCore {
 	private final T[] items;
 
-	public ItemMisc(final CreativeTabs tab, T[] items, String name) {
+	public ItemMisc(CreativeTabs tab, T[] items, String name) {
 		super(name);
 		this.setCreativeTab(tab);
 		this.setHasSubtypes(true);
@@ -74,7 +74,7 @@ public class ItemMisc<T extends IItemSubtypeMisc> extends ItemCore {
 	}
 
 	@Override
-	public String getItemStackDisplayName(final ItemStack stack) {
+	public String getItemStackDisplayName(ItemStack stack) {
 		T item = this.getProvider(stack.getItemDamage());
 		return item.getDisplayName(stack);
 	}

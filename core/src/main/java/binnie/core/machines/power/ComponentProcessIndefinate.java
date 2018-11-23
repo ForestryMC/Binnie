@@ -19,7 +19,7 @@ public abstract class ComponentProcessIndefinate extends MachineComponent implem
 	private float actionPauseProcess;
 	private float actionCancelTask;
 
-	public ComponentProcessIndefinate(final IMachine machine, final float energyPerTick) {
+	public ComponentProcessIndefinate(IMachine machine, float energyPerTick) {
 		super(machine);
 		this.actionPauseProcess = 0.0f;
 		this.actionCancelTask = 0.0f;
@@ -28,12 +28,12 @@ public abstract class ComponentProcessIndefinate extends MachineComponent implem
 	}
 
 	@Override
-	public void syncFromNBT(final NBTTagCompound nbt) {
+	public void syncFromNBT(NBTTagCompound nbt) {
 		this.inProgress = nbt.getBoolean("progress");
 	}
 
 	@Override
-	public void syncToNBT(final NBTTagCompound nbt) {
+	public void syncToNBT(NBTTagCompound nbt) {
 		nbt.setBoolean("progress", this.inProgress);
 	}
 

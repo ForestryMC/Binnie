@@ -12,7 +12,7 @@ public interface IMachine extends IOwnable {
 	MachineUtil getMachineUtil();
 
 	@Nullable
-	<T> T getInterface(Class<T> Interface);
+	<T> T getInterface(Class<T> interfaceClass);
 
 	void markDirty();
 
@@ -20,7 +20,7 @@ public interface IMachine extends IOwnable {
 
 	TileEntity getTileEntity();
 
-	<T> Collection<T> getInterfaces(Class<T> Interface);
+	<T> Collection<T> getInterfaces(Class<T> interfaceClass);
 
 	MachinePackage getPackage();
 }

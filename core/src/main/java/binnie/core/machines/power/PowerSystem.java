@@ -10,19 +10,19 @@ public enum PowerSystem {
 
 	private final double conversion;
 
-	PowerSystem(final double conversion) {
+	PowerSystem(double conversion) {
 		this.conversion = conversion;
 	}
 
-	public static PowerSystem get(final int i) {
+	public static PowerSystem get(int i) {
 		return values()[i % values().length];
 	}
 
-	public double convertTo(final int value) {
+	public double convertTo(int value) {
 		return value / this.conversion;
 	}
 
-	public int convertFrom(final double value) {
+	public int convertFrom(double value) {
 		return (int) (value * this.conversion);
 	}
 
@@ -30,7 +30,7 @@ public enum PowerSystem {
 		return this.name();
 	}
 
-	public ItemStack saveTo(final ItemStack stack) {
+	public ItemStack saveTo(ItemStack stack) {
 		NBTTagCompound tag = stack.getTagCompound();
 		if (tag == null) {
 			tag = new NBTTagCompound();

@@ -16,7 +16,7 @@ import binnie.core.gui.geometry.Point;
 class ControlSpeciesBoxOption extends ControlTextOption<IAlleleSpecies> {
 	private final ControlIndividualDisplay controlBee;
 
-	public ControlSpeciesBoxOption(final ControlList<IAlleleSpecies> controlList, final IAlleleSpecies option, final int y) {
+	public ControlSpeciesBoxOption(ControlList<IAlleleSpecies> controlList, IAlleleSpecies option, int y) {
 		super(controlList, option, option.getAlleleName(), y);
 		this.setSize(new Point(this.getSize().xPos(), 20));
 		(this.controlBee = new ControlIndividualDisplay(this, 2, 2)).setSpecies(this.getValue(), EnumDiscoveryState.UNDETERMINED);
@@ -30,8 +30,8 @@ class ControlSpeciesBoxOption extends ControlTextOption<IAlleleSpecies> {
 		}
 		CraftGUIUtil.moveWidget(this.textWidget, new Point(22, 0));
 		this.textWidget.setSize(this.textWidget.getSize().sub(new Point(24, 0)));
-		final int th = CraftGUI.RENDER.textHeight(this.textWidget.getValue(), this.textWidget.getSize().xPos());
-		final int height = Math.max(20, th + 6);
+		int th = CraftGUI.RENDER.textHeight(this.textWidget.getValue(), this.textWidget.getSize().xPos());
+		int height = Math.max(20, th + 6);
 		this.setSize(new Point(this.getSize().xPos(), height));
 		this.textWidget.setSize(new Point(this.textWidget.getSize().xPos(), height));
 		this.controlBee.setPosition(new Point(controlBee.getPosition().xPos(), (height - 18) / 2));

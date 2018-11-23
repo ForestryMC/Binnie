@@ -26,7 +26,7 @@ public class ControlTab<T> extends Control implements ITooltip, IControlValue<T>
 	protected T value;
 	private ControlTabBar<T> tabBar;
 
-	public ControlTab(final int x, final int y, final int w, final int h, final T value) {
+	public ControlTab(int x, int y, int w, int h, T value) {
 		super(null, x, y, w, h);
 		this.value = value;
 		this.addAttribute(Attribute.MOUSE_OVER);
@@ -42,8 +42,8 @@ public class ControlTab<T> extends Control implements ITooltip, IControlValue<T>
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
-		final String name = this.getName();
+	public void getTooltip(Tooltip tooltip, ITooltipFlag tooltipFlag) {
+		String name = this.getName();
 		if (name != null && !name.isEmpty()) {
 			tooltip.add(this.getName());
 		}
@@ -58,7 +58,7 @@ public class ControlTab<T> extends Control implements ITooltip, IControlValue<T>
 	}
 
 	@Override
-	public void setValue(final T value) {
+	public void setValue(T value) {
 		this.value = value;
 	}
 
@@ -83,10 +83,10 @@ public class ControlTab<T> extends Control implements ITooltip, IControlValue<T>
 		} else if (this.isCurrentSelection()) {
 			texture = CraftGUITexture.TAB;
 		}
-		final ITexture lTexture = CraftGUI.RENDER.getTexture(texture);
-		final Alignment alignment = this.getTabPosition();
+		ITexture lTexture = CraftGUI.RENDER.getTexture(texture);
+		Alignment alignment = this.getTabPosition();
 		ITexture iTexture = lTexture.crop(alignment, 8);
-		final IArea area = this.getArea();
+		IArea area = this.getArea();
 		if (texture == CraftGUITexture.TAB_DISABLED) {
 			if (alignment == Alignment.TOP || alignment == Alignment.LEFT) {
 				area.setPosition(area.getPosition().sub(new Point(4 * alignment.x(), 4 * alignment.y())));
@@ -97,8 +97,8 @@ public class ControlTab<T> extends Control implements ITooltip, IControlValue<T>
 		}
 		CraftGUI.RENDER.texture(iTexture, area);
 		if (this instanceof ControlTabIcon) {
-			final ControlTabIcon icon = (ControlTabIcon) this;
-			final ControlItemDisplay item = (ControlItemDisplay) getFirstChild();
+			ControlTabIcon icon = (ControlTabIcon) this;
+			ControlItemDisplay item = (ControlItemDisplay) getFirstChild();
 			if (texture == CraftGUITexture.TAB_DISABLED) {
 				item.setColor(-1431655766);
 			} else {

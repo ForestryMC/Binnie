@@ -50,7 +50,7 @@ class BlockMachine extends Block implements IBlockMachine, ITileEntityProvider {
 
 	@Override
 	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> itemList) {
-		for (final MachinePackage pack : this.group.getPackages()) {
+		for (MachinePackage pack : this.group.getPackages()) {
 			if (pack.isActive()) {
 				itemList.add(new ItemStack(this, 1, pack.getMetadata()));
 			}
@@ -97,12 +97,12 @@ class BlockMachine extends Block implements IBlockMachine, ITileEntityProvider {
 	}
 
 	@Nullable
-	private MachinePackage getPackage(final int meta) {
+	private MachinePackage getPackage(int meta) {
 		return this.group.getPackage(meta);
 	}
 
 	@Override
-	public String getMachineName(final int meta) {
+	public String getMachineName(int meta) {
 		MachinePackage machinePackage = this.getPackage(meta);
 		return (machinePackage == null) ? "Unnamed Machine" : machinePackage.getDisplayName();
 	}
@@ -132,7 +132,7 @@ class BlockMachine extends Block implements IBlockMachine, ITileEntityProvider {
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(final World world, final int meta) {
+	public TileEntity createNewTileEntity(World world, int meta) {
 		MachinePackage machinePackage = this.group.getPackage(meta);
 		if (machinePackage == null) {
 			machinePackage = this.group.getPackage(0);
@@ -168,7 +168,7 @@ class BlockMachine extends Block implements IBlockMachine, ITileEntityProvider {
 		if (world.isRemote) {
 			return;
 		}
-		final IMachine machine = Machine.getMachine(world.getTileEntity(pos));
+		IMachine machine = Machine.getMachine(world.getTileEntity(pos));
 		if (machine == null) {
 			return;
 		}
@@ -179,7 +179,7 @@ class BlockMachine extends Block implements IBlockMachine, ITileEntityProvider {
 
 	@Override
 	public void breakBlock(World world, BlockPos pos, IBlockState state) {
-		final TileEntityMachine entity = TileUtil.getTile(world, pos, TileEntityMachine.class);
+		TileEntityMachine entity = TileUtil.getTile(world, pos, TileEntityMachine.class);
 		if (entity != null) {
 			entity.onBlockDestroy();
 		}

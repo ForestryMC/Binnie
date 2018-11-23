@@ -15,7 +15,7 @@ import binnie.core.machines.MachineComponent;
 import binnie.core.machines.component.IRender;
 
 public class PolymeriserFX extends MachineComponent implements IRender.DisplayTick {
-	public PolymeriserFX(final IMachine machine) {
+	public PolymeriserFX(IMachine machine) {
 		super(machine);
 	}
 
@@ -25,17 +25,17 @@ public class PolymeriserFX extends MachineComponent implements IRender.DisplayTi
 		if (!this.getUtil().getProcess().isInProgress()) {
 			return;
 		}
-		final int tick = (int) (world.getTotalWorldTime() % 8L);
+		int tick = (int) (world.getTotalWorldTime() % 8L);
 		if (tick == 0 || tick == 3) {
-			final PolymeriserParticle polymeriserParticle = new PolymeriserParticle(world, pos);
+			PolymeriserParticle polymeriserParticle = new PolymeriserParticle(world, pos);
 			BinnieCore.getBinnieProxy().getMinecraftInstance().effectRenderer.addEffect(polymeriserParticle);
 		}
 	}
 
 	@SideOnly(Side.CLIENT)
 	private static class PolymeriserParticle extends Particle {
-		private double axisX;
-		private double axisZ;
+		private final double axisX;
+		private final double axisZ;
 		private double angle;
 
 		public PolymeriserParticle(World world, BlockPos pos) {

@@ -15,26 +15,26 @@ public abstract class SlotValidator extends Validator<ItemStack> {
 	@Nullable
 	private final ValidatorSprite sprite;
 
-	public SlotValidator(@Nullable final ValidatorSprite icon) {
+	public SlotValidator(@Nullable ValidatorSprite icon) {
 		this.sprite = icon;
 	}
 
 	@Nullable
 	@SideOnly(Side.CLIENT)
-	public TextureAtlasSprite getIcon(final boolean input) {
+	public TextureAtlasSprite getIcon(boolean input) {
 		return (this.sprite == null) ? null : this.sprite.getSprite(input).getSprite();
 	}
 
 	public static class Item extends SlotValidator {
 		private final ItemStack target;
 
-		public Item(final ItemStack target, final ValidatorSprite icon) {
+		public Item(ItemStack target, ValidatorSprite icon) {
 			super(icon);
 			this.target = target;
 		}
 
 		@Override
-		public boolean isValid(final ItemStack itemStack) {
+		public boolean isValid(ItemStack itemStack) {
 			return itemStack.isItemEqual(this.target);
 		}
 
@@ -50,7 +50,7 @@ public abstract class SlotValidator extends Validator<ItemStack> {
 		}
 
 		@Override
-		public boolean isValid(final ItemStack itemStack) {
+		public boolean isValid(ItemStack itemStack) {
 			return AlleleManager.alleleRegistry.getIndividual(itemStack) != null;
 		}
 

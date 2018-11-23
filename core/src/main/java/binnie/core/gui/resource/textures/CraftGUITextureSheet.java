@@ -22,7 +22,7 @@ public enum CraftGUITextureSheet implements IBinnieTexture {
 	@Nullable
 	private BinnieResource resource;
 
-	CraftGUITextureSheet(final String name) {
+	CraftGUITextureSheet(String name) {
 		this.name = name;
 	}
 

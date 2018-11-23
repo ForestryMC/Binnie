@@ -27,13 +27,13 @@ public class PackageSplicer extends AdvGeneticMachine.PackageAdvGeneticBase impl
 	}
 
 	@Override
-	public void createMachine(final Machine machine) {
+	public void createMachine(Machine machine) {
 		new ComponentGeneticGUI(machine, GeneticsGUI.SPLICER);
-		final ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
+		ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
 		InventorySlot slotSerumVial = inventory.addSlot(Splicer.SLOT_SERUM_VIAL, getSlotRL("serum.active"));
 		slotSerumVial.forbidInteraction();
 		slotSerumVial.setReadOnly();
-		final SlotValidator serumValid = new SerumSlotValidator();
+		SlotValidator serumValid = new SerumSlotValidator();
 		slotSerumVial.setValidator(serumValid);
 		for (InventorySlot slot : inventory.addSlotArray(Splicer.SLOT_SERUM_RESERVE, getSlotRL("serum.input"))) {
 			slot.setValidator(serumValid);
@@ -56,7 +56,7 @@ public class PackageSplicer extends AdvGeneticMachine.PackageAdvGeneticBase impl
 			slot.forbidInsertion();
 			slot.setValidator(new ValidatorIndividualInoculate());
 		}
-		final ComponentInventoryTransfer transfer = new ComponentInventoryTransfer(machine);
+		ComponentInventoryTransfer transfer = new ComponentInventoryTransfer(machine);
 		transfer.addRestock(Splicer.SLOT_RESERVE, Splicer.SLOT_TARGET, 1);
 		transfer.addRestock(Splicer.SLOT_SERUM_RESERVE, Splicer.SLOT_SERUM_VIAL);
 		transfer.addStorage(Splicer.SLOT_SERUM_VIAL, Splicer.SLOT_SERUM_EXPENDED, (stack) -> Engineering.getCharges(stack) == 0);
@@ -84,7 +84,7 @@ public class PackageSplicer extends AdvGeneticMachine.PackageAdvGeneticBase impl
 		}
 
 		@Override
-		public boolean isValid(final ItemStack itemStack) {
+		public boolean isValid(ItemStack itemStack) {
 			return itemStack.getItem() instanceof IItemSerum;
 		}
 

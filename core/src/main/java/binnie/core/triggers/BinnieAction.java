@@ -36,11 +36,11 @@ class BinnieAction implements IActionExternal {
 	private final String iconFile;
 	private int id;
 
-	BinnieAction(final String desc, final String tag, final String iconFile) {
+	BinnieAction(String desc, String tag, String iconFile) {
 		this(desc, tag, BinnieCore.getInstance(), iconFile);
 	}
 
-	private BinnieAction(final String desc, final String tag, final AbstractMod mod, final String iconFile) {
+	private BinnieAction(String desc, String tag, AbstractMod mod, String iconFile) {
 		this.id = BinnieAction.incrementalID++;
 		this.tag = tag;
 		StatementManager.registerStatement(this);
@@ -79,7 +79,7 @@ class BinnieAction implements IActionExternal {
 	}
 
 	@Override
-	public IStatementParameter createParameter(final int index) {
+	public IStatementParameter createParameter(int index) {
 		return null;
 	}
 

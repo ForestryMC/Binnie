@@ -83,20 +83,20 @@ public final class BinnieCore extends ModuleProvider {
 		return ForestryAPI.moduleManager.isModuleEnabled("forestry", "apiculture");
 	}
 
-	static void registerMod(final AbstractMod mod) {
+	static void registerMod(AbstractMod mod) {
 		BinnieCore.modList.add(mod);
 	}
 
 	private static List<AbstractMod> getActiveMods() {
-		final List<AbstractMod> list = new ArrayList<>();
-		for (final AbstractMod mod : BinnieCore.modList) {
+		List<AbstractMod> list = new ArrayList<>();
+		for (AbstractMod mod : BinnieCore.modList) {
 			list.add(mod);
 		}
 		return list;
 	}
 
 	@Mod.EventHandler
-	public void preInit(final FMLPreInitializationEvent evt) {
+	public void preInit(FMLPreInitializationEvent evt) {
 		MinecraftForge.EVENT_BUS.register(Binnie.LIQUID);
 		MinecraftForge.EVENT_BUS.register(ModuleManager.class);
 		for (IModuleContainer container : ForestryAPI.moduleManager.getContainers()) {
@@ -113,22 +113,22 @@ public final class BinnieCore extends ModuleProvider {
 	}
 
 	@Mod.EventHandler
-	public void init(final FMLInitializationEvent evt) {
+	public void init(FMLInitializationEvent evt) {
 		super.init(evt);
-		for (final AbstractMod mod : getActiveMods()) {
+		for (AbstractMod mod : getActiveMods()) {
 			NetworkRegistry.INSTANCE.registerGuiHandler(mod.getMod(), new BinnieGUIHandler(mod.getGUIDs()));
 		}
 		GameRegistry.registerTileEntity(TileEntityMetadata.class, "binnie.tile.metadata");
 	}
 
 	@Mod.EventHandler
-	public void postInit(final FMLPostInitializationEvent evt) {
+	public void postInit(FMLPostInitializationEvent evt) {
 		super.postInit(evt);
 	}
 
 	@Override
 	protected void registerModules() {
-		for (final ManagerBase baseManager : Binnie.MANAGERS) {
+		for (ManagerBase baseManager : Binnie.MANAGERS) {
 			this.addModule(baseManager);
 		}
 		this.addModule(new ModuleCraftGUI());
@@ -180,7 +180,7 @@ public final class BinnieCore extends ModuleProvider {
 	//TODO RENDERING
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
-	public void handleTextureRemap(final TextureStitchEvent.Pre event) {
+	public void handleTextureRemap(TextureStitchEvent.Pre event) {
 		/*if (event.map.getTextureType() == 0) {
 			Binnie.Liquid.reloadIcons(event.map);
 		}*/

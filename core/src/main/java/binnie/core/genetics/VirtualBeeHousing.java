@@ -27,29 +27,29 @@ public class VirtualBeeHousing extends VirtualHousing implements IBeeHousing, IB
 	private final List<IBeeModifier> beeModifier = new ArrayList<>();
 	private final InventoryBeeHousing beeInventory;
 
-	public VirtualBeeHousing(final EntityPlayer player) {
+	public VirtualBeeHousing(EntityPlayer player) {
 		super(player);
 		beeModifier.add(this);
 		beeInventory = new InventoryBeeHousing(12);
 	}
 
 	@Override
-	public float getTerritoryModifier(final IBeeGenome genome, final float currentModifier) {
+	public float getTerritoryModifier(IBeeGenome genome, float currentModifier) {
 		return 1.0f;
 	}
 
 	@Override
-	public float getMutationModifier(final IBeeGenome genome, final IBeeGenome mate, final float currentModifier) {
+	public float getMutationModifier(IBeeGenome genome, IBeeGenome mate, float currentModifier) {
 		return 1.0f;
 	}
 
 	@Override
-	public float getLifespanModifier(final IBeeGenome genome, @Nullable final IBeeGenome mate, final float currentModifier) {
+	public float getLifespanModifier(IBeeGenome genome, @Nullable IBeeGenome mate, float currentModifier) {
 		return 1.0f;
 	}
 
 	@Override
-	public float getProductionModifier(final IBeeGenome genome, final float currentModifier) {
+	public float getProductionModifier(IBeeGenome genome, float currentModifier) {
 		return 1.0f;
 	}
 
@@ -74,12 +74,12 @@ public class VirtualBeeHousing extends VirtualHousing implements IBeeHousing, IB
 	}
 
 	@Override
-	public float getFloweringModifier(final IBeeGenome genome, final float currentModifier) {
+	public float getFloweringModifier(IBeeGenome genome, float currentModifier) {
 		return 1.0f;
 	}
 
 	@Override
-	public float getGeneticDecay(final IBeeGenome genome, final float currentModifier) {
+	public float getGeneticDecay(IBeeGenome genome, float currentModifier) {
 		return 1.0f;
 	}
 

@@ -116,7 +116,7 @@ public enum EnumIndustrialFrame implements IBeeModifier {
 	private final int wearMod;
 	private final int power;
 
-	EnumIndustrialFrame(final String name, final int wear, final int power) {
+	EnumIndustrialFrame(String name, int wear, int power) {
 		this.territoryMod = 1.0f;
 		this.mutationMod = 1.0f;
 		this.lifespanMod = 1.0f;
@@ -135,36 +135,36 @@ public enum EnumIndustrialFrame implements IBeeModifier {
 
 	}
 
-	public static ItemStack getItemStack(final Item item, final EnumIndustrialFrame frame) {
-		final ItemStack stack = new ItemStack(item);
-		final NBTTagCompound nbt = new NBTTagCompound();
+	public static ItemStack getItemStack(Item item, EnumIndustrialFrame frame) {
+		ItemStack stack = new ItemStack(item);
+		NBTTagCompound nbt = new NBTTagCompound();
 		nbt.setInteger("frame", frame.ordinal());
 		stack.setTagCompound(nbt);
 		return stack;
 	}
 
 	@Override
-	public float getTerritoryModifier(final IBeeGenome genome, final float currentModifier) {
+	public float getTerritoryModifier(IBeeGenome genome, float currentModifier) {
 		return this.territoryMod;
 	}
 
 	@Override
-	public float getMutationModifier(final IBeeGenome genome, final IBeeGenome mate, final float currentModifier) {
+	public float getMutationModifier(IBeeGenome genome, IBeeGenome mate, float currentModifier) {
 		return this.mutationMod;
 	}
 
 	@Override
-	public float getLifespanModifier(final IBeeGenome genome, @Nullable final IBeeGenome mate, final float currentModifier) {
+	public float getLifespanModifier(IBeeGenome genome, @Nullable IBeeGenome mate, float currentModifier) {
 		return this.lifespanMod;
 	}
 
 	@Override
-	public float getProductionModifier(final IBeeGenome genome, final float currentModifier) {
+	public float getProductionModifier(IBeeGenome genome, float currentModifier) {
 		return this.productionMod;
 	}
 
 	@Override
-	public float getFloweringModifier(final IBeeGenome genome, final float currentModifier) {
+	public float getFloweringModifier(IBeeGenome genome, float currentModifier) {
 		return this.floweringMod;
 	}
 
@@ -201,7 +201,7 @@ public enum EnumIndustrialFrame implements IBeeModifier {
 	}
 
 	@Override
-	public float getGeneticDecay(final IBeeGenome genome, final float currentModifier) {
+	public float getGeneticDecay(IBeeGenome genome, float currentModifier) {
 		return 1.0f;
 	}
 

@@ -22,17 +22,17 @@ import binnie.genetics.api.ITreeBreedingSystem;
 
 @SideOnly(Side.CLIENT)
 public class PageWood extends PageAbstract<ItemStack> {
-	public PageWood(final IWidget parent, final DatabaseTab tab) {
+	public PageWood(IWidget parent, DatabaseTab tab) {
 		super(parent, tab);
 	}
 
 	@Override
-	public void onValueChanged(final ItemStack species) {
+	public void onValueChanged(ItemStack species) {
 		this.deleteAllChildren();
-		final WindowAbstractDatabase database = Window.get(this);
+		WindowAbstractDatabase database = Window.get(this);
 		new ControlText(this, new Area(0, 0, this.getSize().xPos(), 24), this.getValue().toString(), TextJustification.MIDDLE_CENTER);
 		ITreeBreedingSystem breedingSystem = (ITreeBreedingSystem) database.getBreedingSystem();
-		final Collection<IAlleleSpecies> trees = breedingSystem.getTreesThatHaveWood(species, database.isMaster(), database.getWorld(), database.getUsername());
+		Collection<IAlleleSpecies> trees = breedingSystem.getTreesThatHaveWood(species, database.isMaster(), database.getWorld(), database.getUsername());
 		new ControlSpeciesBox(this, 4, 24, this.getSize().xPos() - 8, this.getSize().yPos() - 4 - 24).setOptions(trees);
 	}
 }

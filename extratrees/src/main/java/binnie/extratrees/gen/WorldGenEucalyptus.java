@@ -48,7 +48,7 @@ public class WorldGenEucalyptus {
 		@Override
 		public void generate() {
 			this.generateTreeTrunk(this.height, this.girth);
-			final int offset = (this.girth - 1) / 2;
+			int offset = (this.girth - 1) / 2;
 			for (int x = 0; x < this.girth; ++x) {
 				for (int y = 0; y < this.girth; ++y) {
 					for (int i = 0; i < 2; ++i) {
@@ -58,7 +58,7 @@ public class WorldGenEucalyptus {
 				}
 			}
 			float leafSpawn = this.height + 2;
-			final float bottom = this.randBetween(0.4f, 0.5f) * this.height;
+			float bottom = this.randBetween(0.4f, 0.5f) * this.height;
 			float width = this.height * this.randBetween(0.05f, 0.1f);
 			if (width < 1.5f) {
 				width = 1.5f;
@@ -88,7 +88,7 @@ public class WorldGenEucalyptus {
 		public void generate() {
 			this.generateTreeTrunk(this.height, this.girth);
 			float leafSpawn = this.height + 2;
-			final float bottom = this.randBetween(0.5f, 0.6f) * this.height;
+			float bottom = this.randBetween(0.5f, 0.6f) * this.height;
 			float width = this.height * this.randBetween(0.15f, 0.2f);
 			if (width < 1.5f) {
 				width = 1.5f;

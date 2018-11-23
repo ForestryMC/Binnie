@@ -17,11 +17,11 @@ public class AlvearyStimulator extends ExtraBeeMachines.AlvearyPackage implement
 	}
 
 	@Override
-	public void createMachine(final Machine machine) {
+	public void createMachine(Machine machine) {
 		new ExtraBeeMachines.ComponentExtraBeeGUI(machine, ExtraBeesGUID.ALVEARY_STIMULATOR);
-		final ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
+		ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
 		inventory.addSlot(AlvearyStimulator.SLOT_CIRCUIT, getSlotRL("circuit")).setValidator(new SlotValidatorCircuit());
-		final ComponentPowerReceptor power = new ComponentPowerReceptor(machine);
+		ComponentPowerReceptor power = new ComponentPowerReceptor(machine);
 		new ComponentStimulatorModifier(machine);
 	}
 }

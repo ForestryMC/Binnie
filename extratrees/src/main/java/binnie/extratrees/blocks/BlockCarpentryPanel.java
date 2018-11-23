@@ -31,7 +31,7 @@ public class BlockCarpentryPanel extends BlockCarpentry {
 	@Override
 	@SuppressWarnings("deprecation")
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-		final DesignBlock block = this.getCarpentryBlock(source, pos);
+		DesignBlock block = this.getCarpentryBlock(source, pos);
 		switch (block.getFacing()) {
 			case DOWN: {
 				return new AxisAlignedBB(0.0f, 0.0f, 0.0f, 1.0f, 0.0625f, 1.0f);
@@ -61,8 +61,8 @@ public class BlockCarpentryPanel extends BlockCarpentry {
 	}
 
 	@Override
-	public String getDisplayName(final ItemStack itemStack) {
-		final DesignBlock block = DesignHelper.getDesignBlock(this.getDesignSystem(), TileEntityMetadata.getItemDamage(itemStack));
+	public String getDisplayName(ItemStack itemStack) {
+		DesignBlock block = DesignHelper.getDesignBlock(this.getDesignSystem(), TileEntityMetadata.getItemDamage(itemStack));
 		return I18N.localise("extratrees.block.woodenpanel.name", block.getDesign().getName());
 	}
 
@@ -85,7 +85,7 @@ public class BlockCarpentryPanel extends BlockCarpentry {
 
 	@Override
 	public int getPlacedMeta(ItemStack item, World world, BlockPos pos, EnumFacing clickedBlock) {
-		final DesignBlock block = ModuleCarpentry.getCarpentryPanel(this.getDesignSystem(), TileEntityMetadata.getItemDamage(item));
+		DesignBlock block = ModuleCarpentry.getCarpentryPanel(this.getDesignSystem(), TileEntityMetadata.getItemDamage(item));
 		EnumFacing facing = clickedBlock;
 		boolean valid = true;
 		if (!DesignHelper.isValidPanelPlacement(world, pos, facing)) {
@@ -115,7 +115,7 @@ public class BlockCarpentryPanel extends BlockCarpentry {
 	public void onNeighborChange(IBlockAccess blockAccess, BlockPos pos, BlockPos neighbor) {
 		super.onNeighborChange(blockAccess, pos, neighbor);
 		World world = (World) blockAccess;
-		final DesignBlock block = this.getCarpentryBlock(blockAccess, pos);
+		DesignBlock block = this.getCarpentryBlock(blockAccess, pos);
 		if (!DesignHelper.isValidPanelPlacement(blockAccess, pos, block.getFacing())) {
 			NonNullList<ItemStack> drops = NonNullList.create();
 			BlockMetadata.getDrops(drops, this, blockAccess, pos);

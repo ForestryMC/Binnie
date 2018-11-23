@@ -22,9 +22,9 @@ public class ControlSequencerProgress extends ControlProgressBase {
 	private static final TextFormatting[] COLORS = {TextFormatting.GREEN, TextFormatting.LIGHT_PURPLE, TextFormatting.AQUA, TextFormatting.RED};
 	private final ControlText textControl;
 
-	public ControlSequencerProgress(final IWidget parent, final int x, final int y) {
+	public ControlSequencerProgress(IWidget parent, int x, int y) {
 		super(parent, x, y, 100, 52);
-		final Panel panel = new Panel(this, 0, 0, 100, 52, MinecraftGUI.PanelType.GRAY);
+		Panel panel = new Panel(this, 0, 0, 100, 52, MinecraftGUI.PanelType.GRAY);
 		this.textControl = new ControlText(panel, new Area(4, 4, 92, 44), "", TextJustification.MIDDLE_CENTER);
 	}
 

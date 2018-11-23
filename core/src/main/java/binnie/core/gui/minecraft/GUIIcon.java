@@ -21,7 +21,7 @@ public enum GUIIcon {
 	private final String path;
 	private BinnieSprite icon;
 
-	GUIIcon(final String path) {
+	GUIIcon(String path) {
 		this.path = path;
 	}
 

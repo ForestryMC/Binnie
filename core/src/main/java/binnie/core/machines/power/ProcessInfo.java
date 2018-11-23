@@ -11,14 +11,14 @@ public class ProcessInfo implements INbtReadable, INbtWritable {
 	private int processTime;
 	private float energyPerTick;
 
-	public ProcessInfo(final IProcess process) {
+	public ProcessInfo(IProcess process) {
 		this.currentProgress = 0.0f;
 		this.processEnergy = 0;
 		this.processTime = 0;
 		this.energyPerTick = 0.0f;
 		this.energyPerTick = process.getEnergyPerTick();
 		if (process instanceof IProcessTimed) {
-			final IProcessTimed time = (IProcessTimed) process;
+			IProcessTimed time = (IProcessTimed) process;
 			this.currentProgress = time.getProgress();
 			this.processEnergy = time.getProcessEnergy();
 			this.processTime = time.getProcessLength();
@@ -51,7 +51,7 @@ public class ProcessInfo implements INbtReadable, INbtWritable {
 	}
 
 	@Override
-	public void readFromNBT(final NBTTagCompound nbttagcompound) {
+	public void readFromNBT(NBTTagCompound nbttagcompound) {
 		this.energyPerTick = nbttagcompound.getFloat("ept");
 		this.processEnergy = nbttagcompound.getInteger("e");
 		this.processTime = nbttagcompound.getInteger("t");
@@ -59,7 +59,7 @@ public class ProcessInfo implements INbtReadable, INbtWritable {
 	}
 
 	@Override
-	public NBTTagCompound writeToNBT(final NBTTagCompound nbttagcompound) {
+	public NBTTagCompound writeToNBT(NBTTagCompound nbttagcompound) {
 		nbttagcompound.setFloat("ept", this.energyPerTick);
 		nbttagcompound.setFloat("p", this.currentProgress);
 		nbttagcompound.setInteger("e", this.processEnergy);

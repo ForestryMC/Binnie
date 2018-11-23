@@ -18,7 +18,7 @@ public class BlockTypeLeaf implements WorldGenBlockType {
 	}
 
 	@Override
-	public void setBlock(final World world, final ITreeGenData tree, final BlockPos pos) {
+	public void setBlock(World world, ITreeGenData tree, BlockPos pos) {
 		tree.setLeaves(world, owner, pos);
 	}
 }

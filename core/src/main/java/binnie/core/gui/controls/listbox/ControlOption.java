@@ -13,7 +13,7 @@ import binnie.core.gui.resource.textures.CraftGUITexture;
 public class ControlOption<T> extends Control implements IControlValue<T> {
 	private T value;
 
-	public ControlOption(final ControlList<T> controlList, final T option, final int height) {
+	public ControlOption(ControlList<T> controlList, T option, int height) {
 		super(controlList, 0, height, controlList.getSize().xPos(), 20);
 		this.value = option;
 		this.addAttribute(Attribute.MOUSE_OVER);
@@ -37,7 +37,7 @@ public class ControlOption<T> extends Control implements IControlValue<T> {
 	}
 
 	@Override
-	public void setValue(final T value) {
+	public void setValue(T value) {
 		this.value = value;
 	}
 

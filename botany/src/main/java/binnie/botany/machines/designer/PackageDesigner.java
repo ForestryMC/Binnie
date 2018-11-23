@@ -21,7 +21,7 @@ import binnie.design.gui.SlotValidatorDesignMaterial;
 public final class PackageDesigner extends MachinePackage implements IMachineInformation {
 	private final IDesignerType type;
 
-	public PackageDesigner(final IDesignerType type) {
+	public PackageDesigner(IDesignerType type) {
 		super(type.getName());
 		this.type = type;
 	}
@@ -32,9 +32,9 @@ public final class PackageDesigner extends MachinePackage implements IMachineInf
 	}
 
 	@Override
-	public void createMachine(final Machine machine) {
+	public void createMachine(Machine machine) {
 		new ComponentBotanyGUI(machine, BotanyGUI.TILEWORKER);
-		final ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
+		ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
 		InventorySlot mortarSlot = inventory.addSlot(DesignerSlots.ADHESIVE_SLOT, new ResourceLocation(Constants.BOTANY_MOD_ID, "gui.slot.mortar"));
 		mortarSlot.setValidator(new SlotValidatorDesignAdhesive(this.type));
 		InventorySlot ceramicSlot1 = inventory.addSlot(DesignerSlots.DESIGN_SLOT_1, new ResourceLocation(Constants.BOTANY_MOD_ID, "gui.slot.ceramic"));

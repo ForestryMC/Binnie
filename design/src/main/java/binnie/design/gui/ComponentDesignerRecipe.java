@@ -25,21 +25,21 @@ public class ComponentDesignerRecipe extends ComponentRecipe implements ICompone
 	private final IDesignerType type;
 	private IDesign design;
 
-	public ComponentDesignerRecipe(final Machine machine, final IDesignerType type) {
+	public ComponentDesignerRecipe(Machine machine, IDesignerType type) {
 		super(machine);
 		this.design = EnumDesign.Diamond;
 		this.type = type;
 	}
 
 	@Override
-	public void readFromNBT(final NBTTagCompound nbttagcompound) {
-		super.readFromNBT(nbttagcompound);
-		this.setDesign(Design.getDesignManager().getDesign(nbttagcompound.getInteger("design")));
+	public void readFromNBT(NBTTagCompound compound) {
+		super.readFromNBT(compound);
+		this.setDesign(Design.getDesignManager().getDesign(compound.getInteger("design")));
 	}
 
 	@Override
-	public NBTTagCompound writeToNBT(final NBTTagCompound nbttagcompound1) {
-		NBTTagCompound nbttagcompound = super.writeToNBT(nbttagcompound1);
+	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+		NBTTagCompound nbttagcompound = super.writeToNBT(compound);
 		nbttagcompound.setInteger("design", Design.getDesignManager().getDesignIndex(this.design));
 		return nbttagcompound;
 	}
@@ -51,28 +51,28 @@ public class ComponentDesignerRecipe extends ComponentRecipe implements ICompone
 
 	@Override
 	public ItemStack getProduct() {
-		final ItemStack plank1 = this.getUtil().getStack(DesignerSlots.DESIGN_SLOT_1);
-		final ItemStack plank2 = this.getUtil().getStack(DesignerSlots.DESIGN_SLOT_2);
+		ItemStack plank1 = this.getUtil().getStack(DesignerSlots.DESIGN_SLOT_1);
+		ItemStack plank2 = this.getUtil().getStack(DesignerSlots.DESIGN_SLOT_2);
 		if (plank1.isEmpty() || plank2.isEmpty()) {
 			return ItemStack.EMPTY;
 		}
-		final IDesignMaterial type1 = this.type.getSystem().getMaterial(plank1);
-		final IDesignMaterial type2 = this.type.getSystem().getMaterial(plank2);
-		final IDesign design = this.getDesign();
+		IDesignMaterial type1 = this.type.getSystem().getMaterial(plank1);
+		IDesignMaterial type2 = this.type.getSystem().getMaterial(plank2);
+		IDesign design = this.getDesign();
 		return this.type.getBlock(type1, type2, design);
 	}
 
 	@Override
-	public ItemStack doRecipe(final boolean takeItem) {
+	public ItemStack doRecipe(boolean takeItem) {
 		if (!this.isRecipe()) {
 			return ItemStack.EMPTY;
 		}
 		if (this.canWork() != null) {
 			return ItemStack.EMPTY;
 		}
-		final ItemStack product = this.getProduct();
+		ItemStack product = this.getProduct();
 		if (takeItem) {
-			final ItemStack a = this.getUtil().decreaseStack(DesignerSlots.DESIGN_SLOT_1, 1);
+			ItemStack a = this.getUtil().decreaseStack(DesignerSlots.DESIGN_SLOT_1, 1);
 			if (a.isEmpty()) {
 				this.getUtil().decreaseStack(DesignerSlots.DESIGN_SLOT_2, 1);
 			} else if (this.design != EnumDesign.Blank) {
@@ -87,7 +87,7 @@ public class ComponentDesignerRecipe extends ComponentRecipe implements ICompone
 		return this.design;
 	}
 
-	private void setDesign(final IDesign design) {
+	private void setDesign(IDesign design) {
 		this.design = design;
 	}
 
@@ -107,8 +107,8 @@ public class ComponentDesignerRecipe extends ComponentRecipe implements ICompone
 	}
 
 	@Override
-	public void sendGuiNBTToClient(final Map<String, NBTTagCompound> data) {
-		final NBTTagCompound tag = new NBTTagCompound();
+	public void sendGuiNBTToClient(Map<String, NBTTagCompound> data) {
+		NBTTagCompound tag = new NBTTagCompound();
 		tag.setShort("d", (short) Design.getDesignManager().getDesignIndex(this.getDesign()));
 		data.put("design", tag);
 	}
@@ -121,15 +121,15 @@ public class ComponentDesignerRecipe extends ComponentRecipe implements ICompone
 	}
 
 	@Override
-	public void receiveGuiNBTOnServer(final EntityPlayer player, final String name, final NBTTagCompound nbt) {
+	public void receiveGuiNBTOnServer(EntityPlayer player, String name, NBTTagCompound nbt) {
 		if (name.equals("recipe")) {
-			final InventoryPlayer playerInv = player.inventory;
-			final ItemStack recipe = this.doRecipe(false);
+			InventoryPlayer playerInv = player.inventory;
+			ItemStack recipe = this.doRecipe(false);
 			if (!recipe.isEmpty()) {
 				if (playerInv.getItemStack().isEmpty()) {
 					playerInv.setItemStack(this.doRecipe(true));
 				} else if (playerInv.getItemStack().isItemEqual(recipe) && ItemStack.areItemStackTagsEqual(playerInv.getItemStack(), recipe)) {
-					final int fit = recipe.getMaxStackSize() - (recipe.getCount() + playerInv.getItemStack().getCount());
+					int fit = recipe.getMaxStackSize() - (recipe.getCount() + playerInv.getItemStack().getCount());
 					if (fit >= 0) {
 						this.doRecipe(true);
 						recipe.grow(playerInv.getItemStack().getCount());

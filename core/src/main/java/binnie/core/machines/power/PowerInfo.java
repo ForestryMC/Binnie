@@ -9,7 +9,7 @@ public class PowerInfo implements INbtReadable, INbtWritable {
 	private float currentEnergy;
 	private float maxEnergy;
 
-	public PowerInfo(final IPoweredMachine machine, final float currentInput) {
+	public PowerInfo(IPoweredMachine machine, float currentInput) {
 		this.currentEnergy = 0.0f;
 		this.maxEnergy = 0.0f;
 		this.currentEnergy = (float) machine.getInterface().getEnergy(PowerSystem.RF);
@@ -30,13 +30,13 @@ public class PowerInfo implements INbtReadable, INbtWritable {
 	}
 
 	@Override
-	public void readFromNBT(final NBTTagCompound nbttagcompound) {
+	public void readFromNBT(NBTTagCompound nbttagcompound) {
 		this.currentEnergy = nbttagcompound.getInteger("current");
 		this.maxEnergy = nbttagcompound.getInteger("max");
 	}
 
 	@Override
-	public NBTTagCompound writeToNBT(final NBTTagCompound nbttagcompound) {
+	public NBTTagCompound writeToNBT(NBTTagCompound nbttagcompound) {
 		nbttagcompound.setInteger("current", this.getStoredEnergy());
 		nbttagcompound.setInteger("max", this.getMaxEnergy());
 		return nbttagcompound;

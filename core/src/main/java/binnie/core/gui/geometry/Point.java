@@ -62,7 +62,7 @@ public class Point implements IPoint {
 	}
 
 	@Override
-	public boolean equals(final IPoint other) {
+	public boolean equals(IPoint other) {
 		return this.xPos() == other.xPos() && this.yPos() == other.yPos();
 	}
 }

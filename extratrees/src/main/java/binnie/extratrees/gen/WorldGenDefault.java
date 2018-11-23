@@ -6,7 +6,7 @@ import binnie.extratrees.worldgen.BlockTypeLog;
 import binnie.extratrees.worldgen.WorldGenBlockType;
 
 public class WorldGenDefault extends WorldGenTree {
-	public WorldGenDefault(final ITreeGenData tree) {
+	public WorldGenDefault(ITreeGenData tree) {
 		super(tree);
 	}
 

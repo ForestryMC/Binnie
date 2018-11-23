@@ -14,12 +14,12 @@ public class PageSpeciesClassification extends PageSpecies {
 	private final Map<IClassification.EnumClassLevel, ControlText> levels;
 	private final ControlText genus;
 
-	public PageSpeciesClassification(final IWidget parent, final DatabaseTab tab) {
+	public PageSpeciesClassification(IWidget parent, DatabaseTab tab) {
 		super(parent, tab);
 		this.levels = new LinkedHashMap<>();
 		int y = 16;
-		for (final IClassification.EnumClassLevel level : IClassification.EnumClassLevel.values()) {
-			final ControlText text = new ControlTextCentered(this, y, "");
+		for (IClassification.EnumClassLevel level : IClassification.EnumClassLevel.values()) {
+			ControlText text = new ControlTextCentered(this, y, "");
 			text.setColor(level.getColour());
 			this.levels.put(level, text);
 			y += 12;
@@ -28,7 +28,7 @@ public class PageSpeciesClassification extends PageSpecies {
 	}
 
 	@Override
-	public void onValueChanged(final IAlleleSpecies species) {
+	public void onValueChanged(IAlleleSpecies species) {
 		if (species != null) {
 			for (ControlText control : this.levels.values()) {
 				control.setValue("- - -");

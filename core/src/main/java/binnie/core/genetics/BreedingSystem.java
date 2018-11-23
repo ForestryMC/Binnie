@@ -7,7 +7,6 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
-import java.util.TreeSet;
 
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.entity.player.EntityPlayer;
@@ -36,6 +35,7 @@ import forestry.api.genetics.ISpeciesRoot;
 import forestry.api.genetics.ISpeciesType;
 
 import binnie.core.Binnie;
+import binnie.core.ModId;
 import binnie.core.api.genetics.IBreedingSystem;
 import binnie.core.resource.BinnieSprite;
 import binnie.core.util.I18N;
@@ -77,17 +77,17 @@ public abstract class BreedingSystem implements IBreedingSystem, IItemStackRepre
 	}
 
 	@Override
-	public String getChromosomeName(final IChromosomeType chromo) {
-		return I18N.localise("binniecore." + this.getSpeciesRoot().getUID() + ".chromosome." + chromo.getName());
+	public String getChromosomeName(IChromosomeType chromosome) {
+		return I18N.localise(ModId.CORE, this.getSpeciesRoot().getUID() + ".chromosome." + chromosome.getName());
 	}
 
 	@Override
-	public String getChromosomeShortName(final IChromosomeType chromo) {
-		return I18N.localise("binniecore." + this.getSpeciesRoot().getUID() + ".chromosome." + chromo.getName() + ".short");
+	public String getChromosomeShortName(IChromosomeType chromosome) {
+		return I18N.localise(ModId.CORE, this.getSpeciesRoot().getUID() + ".chromosome." + chromosome.getName() + ".short");
 	}
 
 	@Override
-	public final String getEpitome(final float discoveredPercentage) {
+	public final String getEpitome(float discoveredPercentage) {
 		int i = 0;
 		if (discoveredPercentage == 1.0f) {
 			i = 6;
@@ -106,9 +106,6 @@ public abstract class BreedingSystem implements IBreedingSystem, IItemStackRepre
 		}
 		return I18N.localise("binniecore." + this.getSpeciesRoot().getUID() + ".epitome." + i);
 	}
-
-	@Override
-	public abstract ISpeciesRoot getSpeciesRoot();
 
 	@Override
 	public final List<IClassification> getAllBranches() {
@@ -187,13 +184,13 @@ public abstract class BreedingSystem implements IBreedingSystem, IItemStackRepre
 		this.allMutations = new ArrayList<>();
 		List<? extends IMutation> speciesMutations = speciesRoot.getMutations(false);
 		if (!speciesMutations.isEmpty()) {
-			final Set<IMutation> mutations = new LinkedHashSet<>(speciesMutations);
-			for (final IMutation mutation : mutations) {
+			Set<IMutation> mutations = new LinkedHashSet<>(speciesMutations);
+			for (IMutation mutation : mutations) {
 				this.allMutations.add(mutation);
-				final Set<IAlleleSpecies> participatingSpecies = new LinkedHashSet<>();
+				Set<IAlleleSpecies> participatingSpecies = new LinkedHashSet<>();
 				participatingSpecies.add(mutation.getAllele0());
 				participatingSpecies.add(mutation.getAllele1());
-				for (final IAlleleSpecies species : participatingSpecies) {
+				for (IAlleleSpecies species : participatingSpecies) {
 					this.allFurtherMutations.put(species, mutation);
 					if (this.allActiveSpecies.contains(species)) {
 						this.furtherMutations.put(species, mutation);
@@ -208,12 +205,12 @@ public abstract class BreedingSystem implements IBreedingSystem, IItemStackRepre
 	}
 
 	@Override
-	public final boolean isBlacklisted(final IAllele allele) {
+	public final boolean isBlacklisted(IAllele allele) {
 		return AlleleManager.alleleRegistry.isBlacklisted(allele.getUID());
 	}
 
 	@Override
-	public final List<IMutation> getResultantMutations(final IAlleleSpecies species) {
+	public final List<IMutation> getResultantMutations(IAlleleSpecies species) {
 		if (this.resultantMutations.isEmpty()) {
 			this.calculateArrays();
 		}
@@ -221,7 +218,7 @@ public abstract class BreedingSystem implements IBreedingSystem, IItemStackRepre
 	}
 
 	@Override
-	public final List<IMutation> getFurtherMutations(final IAlleleSpecies species) {
+	public final List<IMutation> getFurtherMutations(IAlleleSpecies species) {
 		if (this.furtherMutations.isEmpty()) {
 			this.calculateArrays();
 		}
@@ -229,33 +226,33 @@ public abstract class BreedingSystem implements IBreedingSystem, IItemStackRepre
 	}
 
 	@Override
-	public final boolean isMutationDiscovered(final IMutation mutation, final World world, final GameProfile name) {
+	public final boolean isMutationDiscovered(IMutation mutation, World world, GameProfile name) {
 		return this.isMutationDiscovered(mutation, this.getSpeciesRoot().getBreedingTracker(world, name));
 	}
 
 	@Override
-	public final boolean isMutationDiscovered(final IMutation mutation, final IBreedingTracker tracker) {
+	public final boolean isMutationDiscovered(IMutation mutation, IBreedingTracker tracker) {
 		return tracker.isDiscovered(mutation);
 	}
 
 	@Override
-	public final boolean isSpeciesDiscovered(final IAlleleSpecies species, final World world, final GameProfile name) {
+	public final boolean isSpeciesDiscovered(IAlleleSpecies species, World world, GameProfile name) {
 		return this.isSpeciesDiscovered(species, this.getSpeciesRoot().getBreedingTracker(world, name));
 	}
 
 	@Override
-	public final boolean isSpeciesDiscovered(final IAlleleSpecies species, final IBreedingTracker tracker) {
+	public final boolean isSpeciesDiscovered(IAlleleSpecies species, IBreedingTracker tracker) {
 		return tracker.isDiscovered(species);
 	}
 
 	@Override
-	public final boolean isSecret(final IAlleleSpecies species) {
+	public final boolean isSecret(IAlleleSpecies species) {
 		return !species.isCounted();
 	}
 
 	@Override
-	public final boolean isSecret(final IClassification branch) {
-		for (final IAlleleSpecies species : branch.getMemberSpecies()) {
+	public final boolean isSecret(IClassification branch) {
+		for (IAlleleSpecies species : branch.getMemberSpecies()) {
 			if (!this.isSecret(species)) {
 				return false;
 			}
@@ -264,11 +261,11 @@ public abstract class BreedingSystem implements IBreedingSystem, IItemStackRepre
 	}
 
 	@Override
-	public final Collection<IClassification> getDiscoveredBranches(final World world, final GameProfile player) {
-		final List<IClassification> branches = new ArrayList<>();
-		for (final IClassification branch : this.getAllBranches()) {
+	public final Collection<IClassification> getDiscoveredBranches(World world, GameProfile player) {
+		List<IClassification> branches = new ArrayList<>();
+		for (IClassification branch : this.getAllBranches()) {
 			boolean discovered = false;
-			for (final IAlleleSpecies species : branch.getMemberSpecies()) {
+			for (IAlleleSpecies species : branch.getMemberSpecies()) {
 				if (this.isSpeciesDiscovered(species, world, player)) {
 					discovered = true;
 				}
@@ -281,11 +278,11 @@ public abstract class BreedingSystem implements IBreedingSystem, IItemStackRepre
 	}
 
 	@Override
-	public final Collection<IClassification> getDiscoveredBranches(final IBreedingTracker tracker) {
-		final List<IClassification> branches = new ArrayList<>();
-		for (final IClassification branch : this.getAllBranches()) {
+	public final Collection<IClassification> getDiscoveredBranches(IBreedingTracker tracker) {
+		List<IClassification> branches = new ArrayList<>();
+		for (IClassification branch : this.getAllBranches()) {
 			boolean discovered = false;
-			for (final IAlleleSpecies species : branch.getMemberSpecies()) {
+			for (IAlleleSpecies species : branch.getMemberSpecies()) {
 				if (this.isSpeciesDiscovered(species, tracker)) {
 					discovered = true;
 				}
@@ -298,9 +295,9 @@ public abstract class BreedingSystem implements IBreedingSystem, IItemStackRepre
 	}
 
 	@Override
-	public final Collection<IAlleleSpecies> getDiscoveredSpecies(final World world, final GameProfile player) {
-		final List<IAlleleSpecies> speciesList = new ArrayList<>();
-		for (final IAlleleSpecies species : this.getAllSpecies()) {
+	public final Collection<IAlleleSpecies> getDiscoveredSpecies(World world, GameProfile player) {
+		List<IAlleleSpecies> speciesList = new ArrayList<>();
+		for (IAlleleSpecies species : this.getAllSpecies()) {
 			if (this.isSpeciesDiscovered(species, world, player)) {
 				speciesList.add(species);
 			}
@@ -309,9 +306,9 @@ public abstract class BreedingSystem implements IBreedingSystem, IItemStackRepre
 	}
 
 	@Override
-	public final Collection<IAlleleSpecies> getDiscoveredSpecies(final IBreedingTracker tracker) {
-		final List<IAlleleSpecies> speciesList = new ArrayList<>();
-		for (final IAlleleSpecies species : this.getAllSpecies()) {
+	public final Collection<IAlleleSpecies> getDiscoveredSpecies(IBreedingTracker tracker) {
+		List<IAlleleSpecies> speciesList = new ArrayList<>();
+		for (IAlleleSpecies species : this.getAllSpecies()) {
 			if (this.isSpeciesDiscovered(species, tracker)) {
 				speciesList.add(species);
 			}
@@ -319,9 +316,9 @@ public abstract class BreedingSystem implements IBreedingSystem, IItemStackRepre
 		return speciesList;
 	}
 
-	public final List<IMutation> getDiscoveredMutations(final World world, final GameProfile player) {
-		final List<IMutation> speciesList = new ArrayList<>();
-		for (final IMutation species : this.getAllMutations()) {
+	public final List<IMutation> getDiscoveredMutations(World world, GameProfile player) {
+		List<IMutation> speciesList = new ArrayList<>();
+		for (IMutation species : this.getAllMutations()) {
 			if (this.isMutationDiscovered(species, world, player)) {
 				speciesList.add(species);
 			}
@@ -346,8 +343,8 @@ public abstract class BreedingSystem implements IBreedingSystem, IItemStackRepre
 
 	@Override
 	@SubscribeEvent
-	public final void onSyncBreedingTracker(final ForestryEvent.SyncedBreedingTracker event) {
-		final IBreedingTracker tracker = event.tracker;
+	public final void onSyncBreedingTracker(ForestryEvent.SyncedBreedingTracker event) {
+		IBreedingTracker tracker = event.tracker;
 		if (!this.getTrackerClass().isInstance(tracker)) {
 			return;
 		}
@@ -355,7 +352,7 @@ public abstract class BreedingSystem implements IBreedingSystem, IItemStackRepre
 	}
 
 	@Override
-	public final void syncTracker(final IBreedingTracker tracker) {
+	public final void syncTracker(IBreedingTracker tracker) {
 		if (allActiveSpecies.isEmpty()) {
 			calculateArrays();
 		}
@@ -364,9 +361,7 @@ public abstract class BreedingSystem implements IBreedingSystem, IItemStackRepre
 		this.discoveredSpeciesCount = 0;
 		this.totalSecretCount = 0;
 		this.discoveredSecretCount = 0;
-		final Collection<IAlleleSpecies> discoveredSpecies = this.getDiscoveredSpecies(tracker);
-		final Collection<IAlleleSpecies> allSpecies = this.getAllSpecies();
-		for (final IAlleleSpecies species : allSpecies) {
+		for (IAlleleSpecies species : allSpecies) {
 			if (!this.isSecret(species)) {
 				++this.totalSpeciesCount;
 				if (!this.isSpeciesDiscovered(species, tracker)) {
@@ -384,9 +379,8 @@ public abstract class BreedingSystem implements IBreedingSystem, IItemStackRepre
 		this.discoveredBranchPercentage = 0.0f;
 		this.totalBranchCount = 0;
 		this.discoveredBranchCount = 0;
-		final Collection<IClassification> discoveredBranches = this.getDiscoveredBranches(tracker);
-		final Collection<IClassification> allBranches = this.getAllBranches();
-		for (final IClassification branch : allBranches) {
+		Collection<IClassification> discoveredBranches = this.getDiscoveredBranches(tracker);
+		for (IClassification branch : allBranches) {
 			if (!this.isSecret(branch)) {
 				++this.totalBranchCount;
 				if (!discoveredBranches.contains(branch)) {
@@ -403,12 +397,12 @@ public abstract class BreedingSystem implements IBreedingSystem, IItemStackRepre
 		}
 		this.discoveredSpeciesPercentage = this.discoveredSpeciesCount / this.totalSpeciesCount;
 		this.discoveredBranchPercentage = this.discoveredBranchCount / this.totalBranchCount;
-		final String epithet = this.getEpitome();
+		//final String epithet = this.getEpitome();
 		this.onSyncBreedingTracker(tracker);
 	}
 
 	@Override
-	public void onSyncBreedingTracker(final IBreedingTracker tracker) {
+	public void onSyncBreedingTracker(IBreedingTracker tracker) {
 	}
 
 	@Override
@@ -427,10 +421,7 @@ public abstract class BreedingSystem implements IBreedingSystem, IItemStackRepre
 	}
 
 	@Override
-	public abstract int getColour();
-
-	@Override
-	public String getAlleleName(final IChromosomeType chromosome, final IAllele allele) {
+	public String getAlleleName(IChromosomeType chromosome, IAllele allele) {
 		if (allele instanceof IAlleleBoolean) {
 			IAlleleBoolean alleleBoolean = (IAlleleBoolean) allele;
 			return alleleBoolean.getValue() ? I18N.localise("binniecore.allele.true") : I18N.localise("binniecore.allele.false");
@@ -448,7 +439,7 @@ public abstract class BreedingSystem implements IBreedingSystem, IItemStackRepre
 
 	@Override
 	public ItemStack getItemStackRepresentitive() {
-		final IIndividual first = this.getSpeciesRoot().getIndividualTemplates().get(0);
+		IIndividual first = this.getSpeciesRoot().getIndividualTemplates().get(0);
 		return this.getSpeciesRoot().getMemberStack(first, this.getDefaultType());
 	}
 
@@ -459,7 +450,7 @@ public abstract class BreedingSystem implements IBreedingSystem, IItemStackRepre
 
 	@Override
 	@Nullable
-	public IIndividual getConversion(final ItemStack stack) {
+	public IIndividual getConversion(ItemStack stack) {
 		return null;
 	}
 
@@ -474,10 +465,7 @@ public abstract class BreedingSystem implements IBreedingSystem, IItemStackRepre
 	}
 
 	@Override
-	public abstract void addExtraAlleles(final IChromosomeType p0, final TreeSet<IAllele> p1);
-
-	@Override
-	public ItemStack getConversionStack(final ItemStack stack) {
+	public ItemStack getConversionStack(ItemStack stack) {
 		IIndividual conversion = this.getConversion(stack);
 		if (conversion == null) {
 			return ItemStack.EMPTY;
@@ -495,7 +483,7 @@ public abstract class BreedingSystem implements IBreedingSystem, IItemStackRepre
 	}
 
 	@Override
-	public ItemStack getDefaultMember(final String uid) {
+	public ItemStack getDefaultMember(String uid) {
 		IIndividual individual = this.getIndividual(uid);
 		if (individual == null) {
 			return ItemStack.EMPTY;

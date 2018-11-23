@@ -14,12 +14,12 @@ import binnie.core.machines.Machine;
 import binnie.extratrees.ExtraTrees;
 
 public class WindowBottleRack extends Window {
-	public WindowBottleRack(final EntityPlayer player, final IInventory inventory, final Side side) {
+	public WindowBottleRack(EntityPlayer player, IInventory inventory, Side side) {
 		super(248, 180, player, inventory, side);
 	}
 
 	@Nullable
-	public static Window create(final EntityPlayer player, @Nullable final IInventory inventory, final Side side) {
+	public static Window create(EntityPlayer player, @Nullable IInventory inventory, Side side) {
 		if (inventory == null) {
 			return null;
 		}
@@ -41,8 +41,8 @@ public class WindowBottleRack extends Window {
 	public void initialiseClient() {
 		this.setTitle(Machine.getMachine(this.getInventory()).getPackage().getDisplayName());
 		for (int i = 0; i < 36; ++i) {
-			final int x = i % 12;
-			final int y = i / 12;
+			int x = i % 12;
+			int y = i / 12;
 			new ControlTankSlot(this, 16 + x * 18, 32 + y * 18, i);
 		}
 		new ControlPlayerInventory(this);

@@ -9,11 +9,11 @@ public class BinnieResource {
 	private final String path;
 	private final ResourceType type;
 
-	public BinnieResource(final AbstractMod mod, final ResourceType type, final String path) {
+	public BinnieResource(AbstractMod mod, ResourceType type, String path) {
 		this(mod.getModId(), type, path);
 	}
 
-	public BinnieResource(final String modid, final ResourceType type, final String path) {
+	public BinnieResource(String modid, ResourceType type, String path) {
 		this.mod = modid;
 		this.type = type;
 		this.path = path;

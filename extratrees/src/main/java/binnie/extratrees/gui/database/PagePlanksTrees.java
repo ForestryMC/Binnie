@@ -33,16 +33,16 @@ import binnie.extratrees.machines.lumbermill.recipes.LumbermillRecipeManager;
 
 @SideOnly(Side.CLIENT)
 public class PagePlanksTrees extends PageAbstract<ItemStack> {
-	public PagePlanksTrees(final IWidget parent, final DatabaseTab tab) {
+	public PagePlanksTrees(IWidget parent, DatabaseTab tab) {
 		super(parent, tab);
 	}
 
 	@Override
-	public void onValueChanged(final ItemStack species) {
+	public void onValueChanged(ItemStack species) {
 		this.deleteAllChildren();
-		final WindowAbstractDatabase database = Window.get(this);
+		WindowAbstractDatabase database = Window.get(this);
 		new ControlText(this, new Area(0, 0, this.getSize().xPos(), 24), species.getDisplayName(), TextJustification.MIDDLE_CENTER);
-		final Collection<IAlleleSpecies> trees = getTreesThatMakePlanks(species, database.isMaster(), database.getWorld(), database.getUsername());
+		Collection<IAlleleSpecies> trees = getTreesThatMakePlanks(species, database.isMaster(), database.getWorld(), database.getUsername());
 		new ControlSpeciesBox(this, 4, 24, this.getSize().xPos() - 8, this.getSize().yPos() - 4 - 24).setOptions(trees);
 	}
 
@@ -52,13 +52,13 @@ public class PagePlanksTrees extends PageAbstract<ItemStack> {
 		}
 		ITreeRoot treeRoot = TreeManager.treeRoot;
 		IBreedingSystem system = Binnie.GENETICS.getSystem(treeRoot);
-		final Collection<IAlleleSpecies> set = master ? system.getAllSpecies() : system.getDiscoveredSpecies(world, player);
-		final List<IAlleleSpecies> found = new ArrayList<>();
-		for (final IAlleleSpecies species : set) {
-			final IAlleleTreeSpecies tSpecies = (IAlleleTreeSpecies) species;
+		Collection<IAlleleSpecies> set = master ? system.getAllSpecies() : system.getDiscoveredSpecies(world, player);
+		List<IAlleleSpecies> found = new ArrayList<>();
+		for (IAlleleSpecies species : set) {
+			IAlleleTreeSpecies tSpecies = (IAlleleTreeSpecies) species;
 			ITreeGenome genome = treeRoot.templateAsGenome(treeRoot.getTemplate(tSpecies));
 			IAlleleTreeSpecies treeSpecies = genome.getPrimary();
-			final ItemStack woodStack = treeSpecies.getWoodProvider().getWoodStack();
+			ItemStack woodStack = treeSpecies.getWoodProvider().getWoodStack();
 			ItemStack plankProduct = LumbermillRecipeManager.getPlankProduct(woodStack, world);
 			if (!plankProduct.isEmpty() && fruit.isItemEqual(plankProduct)) {
 				found.add(species);

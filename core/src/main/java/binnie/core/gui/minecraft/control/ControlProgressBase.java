@@ -22,13 +22,13 @@ import binnie.core.util.I18N;
 public class ControlProgressBase extends Control {
 	protected float progress;
 
-	public ControlProgressBase(final IWidget parent, final int x, final int y, final int w, final int h) {
+	public ControlProgressBase(IWidget parent, int x, int y, int w, int h) {
 		super(parent, x, y, w, h);
 		this.progress = 0.0f;
 		this.addAttribute(Attribute.MOUSE_OVER);
 	}
 
-	public static String convertTime(final int time) {
+	public static String convertTime(int time) {
 		int seconds = (int) (time / 20.0f);
 		int minutes = 0;
 		while (seconds >= 60) {
@@ -48,7 +48,7 @@ public class ControlProgressBase extends Control {
 		return ts;
 	}
 
-	public void setProgress(final float progress) {
+	public void setProgress(float progress) {
 		this.progress = progress;
 		if (this.progress < 0.0f) {
 			this.progress = 0.0f;
@@ -63,7 +63,7 @@ public class ControlProgressBase extends Control {
 
 	@Override
 	public void onUpdateClient() {
-		final ProcessInfo process = this.getProcess();
+		ProcessInfo process = this.getProcess();
 		if (process != null) {
 			this.setProgress(process.getCurrentProgress() / 100.0f);
 		}
@@ -71,14 +71,14 @@ public class ControlProgressBase extends Control {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getHelpTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
-		final ProcessInfo process = this.getProcess();
+	public void getHelpTooltip(Tooltip tooltip, ITooltipFlag tooltipFlag) {
+		ProcessInfo process = this.getProcess();
 		if (process != null) {
 			tooltip.add(I18N.localise(ModId.CORE, "gui.progress.title"));
 			if (this.progress == 0.0f) {
 				tooltip.add(I18N.localise(ModId.CORE, "gui.progress.no.progress"));
 			} else if (process.getProcessTime() > 0) {
-				final IProcess machineProcess = Machine.getMachine(Window.get(this).getInventory()).getInterface(IProcess.class);
+				IProcess machineProcess = Machine.getMachine(Window.get(this).getInventory()).getInterface(IProcess.class);
 				String percentProgress = I18N.getPercentFormat().format((int) process.getCurrentProgress() / 100.0);
 				tooltip.add(machineProcess.getTooltip() + " (" + percentProgress + ')');
 			} else {

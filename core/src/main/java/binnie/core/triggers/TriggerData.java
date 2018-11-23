@@ -29,7 +29,7 @@ public class TriggerData implements Map.Entry<ITriggerExternal, Boolean> {
 	}
 
 	@Override
-	public Boolean setValue(final Boolean value) {
+	public Boolean setValue(Boolean value) {
 		Boolean old = this.value;
 		this.value = value;
 		return old;

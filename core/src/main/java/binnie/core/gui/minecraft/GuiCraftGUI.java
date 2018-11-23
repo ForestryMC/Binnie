@@ -44,7 +44,7 @@ public class GuiCraftGUI extends GuiContainer {
 	private final Window window;
 	private ItemStack draggedItem;
 
-	public GuiCraftGUI(final Window window) {
+	public GuiCraftGUI(Window window) {
 		super(window.getContainer());
 		this.mousePos = Point.ZERO;
 		this.window = window;
@@ -62,7 +62,7 @@ public class GuiCraftGUI extends GuiContainer {
 	}
 
 	@Override
-	protected void drawGuiContainerBackgroundLayer(final float var1, final int var2, final int var3) {
+	protected void drawGuiContainerBackgroundLayer(float var1, int var2, int var3) {
 	}
 
 	@Override
@@ -81,7 +81,7 @@ public class GuiCraftGUI extends GuiContainer {
 	}
 
 	@Override
-	public void drawScreen(final int mouseX, final int mouseY, final float partialTicks) {
+	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
 		this.window.setMousePosition(mouseX - this.window.getPosition().xPos(), mouseY - this.window.getPosition().yPos());
 		this.drawDefaultBackground();
 		GlStateManager.disableRescaleNormal();
@@ -96,7 +96,7 @@ public class GuiCraftGUI extends GuiContainer {
 		GlStateManager.pushMatrix();
 		GlStateManager.enableRescaleNormal();
 		OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240.0f, 240.0f);
-		final InventoryPlayer playerInventory = this.mc.player.inventory;
+		InventoryPlayer playerInventory = this.mc.player.inventory;
 		this.draggedItem = playerInventory.getItemStack();
 		if (!this.draggedItem.isEmpty()) {
 			GlStateManager.translate(0, 0, 200);
@@ -109,7 +109,7 @@ public class GuiCraftGUI extends GuiContainer {
 		GlStateManager.disableDepth();
 		if (draggedItem.isEmpty()) {
 			ITooltipFlag tooltipFlag = this.mc.gameSettings.advancedItemTooltips ? ITooltipFlag.TooltipFlags.ADVANCED : ITooltipFlag.TooltipFlags.NORMAL;
-			final MinecraftTooltip tooltip = new MinecraftTooltip();
+			MinecraftTooltip tooltip = new MinecraftTooltip();
 			boolean helpMode = this.isHelpMode();
 			if (helpMode || this.showBasicHelpTooltips()) {
 				tooltip.setType(Tooltip.Type.HELP);
@@ -133,16 +133,16 @@ public class GuiCraftGUI extends GuiContainer {
 
 	private static final Pattern PATTERN_NBT_CONTENT = Pattern.compile(Tooltip.NBT_SEPARATOR + "(.*?)" + Tooltip.NBT_SEPARATOR);
 
-	public void renderTooltip(final Point mousePosition, final MinecraftTooltip tooltip) {
-		final int mouseX = mousePosition.xPos();
-		final int mouseY = mousePosition.yPos();
-		final FontRenderer font = this.getFontRenderer();
+	public void renderTooltip(Point mousePosition, MinecraftTooltip tooltip) {
+		int mouseX = mousePosition.xPos();
+		int mouseY = mousePosition.yPos();
+		FontRenderer font = this.getFontRenderer();
 		ItemStack itemStack = tooltip.getItemStack();
 
 		boolean containsItemRender = false;
 
 		List<String> textLines = new ArrayList<>();
-		for (final String string : tooltip.getList()) {
+		for (String string : tooltip.getList()) {
 			if (string != null) {
 				if (!string.contains(Tooltip.NBT_SEPARATOR)) {
 					textLines.addAll(font.listFormattedStringToWidth(string, tooltip.getMaxWidth()));
@@ -245,14 +245,14 @@ public class GuiCraftGUI extends GuiContainer {
 			tooltipY = this.height - tooltipHeight - 6;
 		}
 		this.zLevel = 300.0f;
-		final int backgroundColor = 0xF0100010;
+		int backgroundColor = 0xF0100010;
 		drawGradientRect(tooltipX - 3, tooltipY - 4, tooltipX + tooltipTextWidth + 3, tooltipY - 3, backgroundColor, backgroundColor);
 		drawGradientRect(tooltipX - 3, tooltipY + tooltipHeight + 3, tooltipX + tooltipTextWidth + 3, tooltipY + tooltipHeight + 4, backgroundColor, backgroundColor);
 		drawGradientRect(tooltipX - 3, tooltipY - 3, tooltipX + tooltipTextWidth + 3, tooltipY + tooltipHeight + 3, backgroundColor, backgroundColor);
 		drawGradientRect(tooltipX - 4, tooltipY - 3, tooltipX - 3, tooltipY + tooltipHeight + 3, backgroundColor, backgroundColor);
 		drawGradientRect(tooltipX + tooltipTextWidth + 3, tooltipY - 3, tooltipX + tooltipTextWidth + 4, tooltipY + tooltipHeight + 3, backgroundColor, backgroundColor);
-		final int borderColorStart = 0x50000000 + MinecraftTooltip.getOutline(tooltip.getType());
-		final int borderColorEnd = (borderColorStart & 0xFEFEFE) >> 1 | borderColorStart & 0xFF000000;
+		int borderColorStart = 0x50000000 + MinecraftTooltip.getOutline(tooltip.getType());
+		int borderColorEnd = (borderColorStart & 0xFEFEFE) >> 1 | borderColorStart & 0xFF000000;
 		drawGradientRect(tooltipX - 3, tooltipY - 3 + 1, tooltipX - 3 + 1, tooltipY + tooltipHeight + 3 - 1, borderColorStart, borderColorEnd);
 		drawGradientRect(tooltipX + tooltipTextWidth + 2, tooltipY - 3 + 1, tooltipX + tooltipTextWidth + 3, tooltipY + tooltipHeight + 3 - 1, borderColorStart, borderColorEnd);
 		drawGradientRect(tooltipX - 3, tooltipY - 3, tooltipX + tooltipTextWidth + 3, tooltipY - 3 + 1, borderColorStart, borderColorStart);
@@ -297,7 +297,7 @@ public class GuiCraftGUI extends GuiContainer {
 	}
 
 	@Override
-	protected void mouseClicked(final int x, final int y, final int button) {
+	protected void mouseClicked(int x, int y, int button) {
 		IWidget origin = this.window;
 		if (this.window.getMousedOverWidget() != null) {
 			origin = this.window.getMousedOverWidget();
@@ -311,11 +311,11 @@ public class GuiCraftGUI extends GuiContainer {
 	}
 
 	@Override
-	protected void keyTyped(final char c, final int key) {
+	protected void keyTyped(char c, int key) {
 		if (key == 1 || (key == this.mc.gameSettings.keyBindInventory.getKeyCode() && this.window.getFocusedWidget() == null)) {
 			this.mc.player.closeScreen();
 		}
-		final IWidget origin = (this.window.getFocusedWidget() == null) ? this.window : this.window.getFocusedWidget();
+		IWidget origin = (this.window.getFocusedWidget() == null) ? this.window : this.window.getFocusedWidget();
 		this.window.callEvent(new EventKey.Down(origin, c, key));
 	}
 
@@ -332,8 +332,8 @@ public class GuiCraftGUI extends GuiContainer {
 	}
 
 	//@Override
-	protected void mouseMovedOrUp(final int x, final int y, final int button) {
-		final IWidget origin = (this.window.getMousedOverWidget() == null) ? this.window : this.window.getMousedOverWidget();
+	protected void mouseMovedOrUp(int x, int y, int button) {
+		IWidget origin = (this.window.getMousedOverWidget() == null) ? this.window : this.window.getMousedOverWidget();
 		if (button != 0) {
 			this.window.callEvent(new EventMouse.Up(origin, x, y, button));
 		}
@@ -342,7 +342,7 @@ public class GuiCraftGUI extends GuiContainer {
 	@Override
 	public void handleMouseInput() throws IOException {
 		super.handleMouseInput();
-		final int dWheel = Mouse.getDWheel();
+		int dWheel = Mouse.getDWheel();
 		if (dWheel != 0) {
 			this.window.callEvent(new EventMouse.Wheel(this.window, dWheel));
 		}
@@ -374,7 +374,7 @@ public class GuiCraftGUI extends GuiContainer {
 		return this.fontRenderer;
 	}
 
-	public void resize(final IPoint size) {
+	public void resize(IPoint size) {
 		this.xSize = size.xPos();
 		this.ySize = size.yPos();
 		this.guiLeft = (this.width - this.xSize) / 2;

@@ -395,7 +395,7 @@ public enum Food implements IItemSubtypeMisc {
 	private final int hunger;
 	private final List<String> ores;
 
-	Food(final int hunger) {
+	Food(int hunger) {
 		this.ores = new ArrayList<>();
 		this.hunger = hunger;
 	}
@@ -418,12 +418,12 @@ public enum Food implements IItemSubtypeMisc {
 	}
 
 	@Override
-	public String getDisplayName(final ItemStack stack) {
+	public String getDisplayName(ItemStack stack) {
 		return I18N.localise("extratrees.item.food." + this.name().toLowerCase());
 	}
 
 	@Override
-	public ItemStack get(final int i) {
+	public ItemStack get(int i) {
 		return ExtraTreesFeatures.FOOD.stack(i, this.ordinal());
 	}
 
@@ -434,28 +434,28 @@ public enum Food implements IItemSubtypeMisc {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(final List<String> tooltip) {
+	public void addInformation(List<String> tooltip) {
 	}
 
-	public void addJuice(final Juice juice, final int time, final int amount, final int mulch) {
+	public void addJuice(Juice juice, int time, int amount, int mulch) {
 		RecipeManagers.squeezerManager.addRecipe(time, this.get(1), Fluids.JUICE.getFluid(amount), Mods.Forestry.stack("mulch"), mulch);
 	}
 
-	public void addJuice(final int time, final int amount, final int mulch) {
+	public void addJuice(int time, int amount, int mulch) {
 		RecipeManagers.squeezerManager.addRecipe(time, this.get(1), Fluids.JUICE.getFluid(amount), Mods.Forestry.stack("mulch"), mulch);
 	}
 
-	public void addOil(final int time, final int amount, final int mulch) {
+	public void addOil(int time, int amount, int mulch) {
 		RecipeManagers.squeezerManager.addRecipe(time, this.get(1), Fluids.SEED_OIL.getFluid(amount), Mods.Forestry.stack("mulch"), mulch);
 	}
 
-	protected Food registerCrop(final String string) {
-		final String name = "crop" + string;
+	protected Food registerCrop(String string) {
+		String name = "crop" + string;
 		this.ores.add(name);
 		return registerOre(name);
 	}
 
-	protected Food registerOre(final String string) {
+	protected Food registerOre(String string) {
 		OreDictionary.registerOre(string, this.get(1));
 		return this;
 	}

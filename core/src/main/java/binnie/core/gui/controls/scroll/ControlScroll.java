@@ -6,7 +6,7 @@ import binnie.core.gui.controls.core.Control;
 public class ControlScroll extends Control {
 	private final IControlScrollable scrollWidget;
 
-	public ControlScroll(final IWidget parent, final int x, final int y, final int width, final int height, final IControlScrollable scrollWidget) {
+	public ControlScroll(IWidget parent, int x, int y, int width, int height, IControlScrollable scrollWidget) {
 		super(parent, x, y, width, height);
 		this.scrollWidget = scrollWidget;
 		new ControlScrollBar(this);

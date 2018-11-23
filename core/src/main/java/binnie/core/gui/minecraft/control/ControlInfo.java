@@ -16,7 +16,7 @@ import binnie.core.gui.resource.textures.CraftGUITexture;
 public class ControlInfo extends Control implements ITooltip {
 	private final String info;
 
-	public ControlInfo(final IWidget parent, final int x, final int y, final String info) {
+	public ControlInfo(IWidget parent, int x, int y, String info) {
 		super(parent, x, y, 16, 16);
 		this.addAttribute(Attribute.MOUSE_OVER);
 		this.info = info;
@@ -29,7 +29,7 @@ public class ControlInfo extends Control implements ITooltip {
 	}
 
 	@Override
-	public void getTooltip(final Tooltip tooltip, ITooltipFlag tooltipFlag) {
+	public void getTooltip(Tooltip tooltip, ITooltipFlag tooltipFlag) {
 		tooltip.setType(Tooltip.Type.INFORMATION);
 		tooltip.add("Info");
 		tooltip.add(this.info);

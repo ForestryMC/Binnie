@@ -22,7 +22,7 @@ public enum GeneticLiquid implements IFluidDefinition {
 
 	private final FluidType type;
 
-	GeneticLiquid(final String ident, final int color) {
+	GeneticLiquid(String ident, int color) {
 		type = Genetics.instance.registry(GeneticsModuleUIDs.CORE).createFluid(ident, String.format("%s.fluid.%s.%s", Genetics.instance.getModId(), "GeneticLiquid", this.name()), color)
 			.setTextures(new ResourceLocation(Genetics.instance.getModId(), "blocks/liquids/" + ident.replace(".", "_")))
 			.setColor(16777215)
@@ -37,7 +37,7 @@ public enum GeneticLiquid implements IFluidDefinition {
 	}
 
 	@Override
-	public FluidStack get(final int amount) {
+	public FluidStack get(int amount) {
 		return type.stack(amount);
 	}
 

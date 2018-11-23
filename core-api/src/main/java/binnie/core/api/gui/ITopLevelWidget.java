@@ -8,10 +8,10 @@ public interface ITopLevelWidget extends IWidget {
 	@Nullable
 	IWidget getMousedOverWidget();
 
-	boolean isMouseOver(final IWidget p0);
+	boolean isMouseOver(IWidget p0);
 
 	void updateTopLevel();
 
-	void widgetDeleted(final IWidget p0);
+	void widgetDeleted(IWidget p0);
 
 }

@@ -26,7 +26,7 @@ public class PackageGenepool extends GeneticMachine.PackageGeneticBase implement
 	}
 
 	@Override
-	public void createMachine(final Machine machine) {
+	public void createMachine(Machine machine) {
 		new ComponentGeneticGUI(machine, GeneticsGUI.GENEPOOL);
 		ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
 		InventorySlot slotEnzyme = inventory.addSlot(Genepool.SLOT_ENZYME, getSlotRL("enzyme"));

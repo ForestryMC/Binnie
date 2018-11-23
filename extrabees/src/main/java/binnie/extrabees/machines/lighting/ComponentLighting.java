@@ -7,7 +7,7 @@ import binnie.core.machines.Machine;
 import binnie.extrabees.utils.ComponentBeeModifier;
 
 public class ComponentLighting extends ComponentBeeModifier implements IBeeModifier, IBeeListener {
-	public ComponentLighting(final Machine machine) {
+	public ComponentLighting(Machine machine) {
 		super(machine);
 	}
 

@@ -26,12 +26,12 @@ import binnie.core.machines.Machine;
 import binnie.extrabees.utils.AlvearyMutationHandler;
 
 public class WindowAlvearyMutator extends Window {
-	public WindowAlvearyMutator(final EntityPlayer player, final IInventory inventory, final Side side) {
+	public WindowAlvearyMutator(EntityPlayer player, IInventory inventory, Side side) {
 		super(176, 176, player, inventory, side);
 	}
 
 	@Nullable
-	public static Window create(final EntityPlayer player, @Nullable final IInventory inventory, final Side side) {
+	public static Window create(EntityPlayer player, @Nullable IInventory inventory, Side side) {
 		if (inventory == null) {
 			return null;
 		}
@@ -44,13 +44,13 @@ public class WindowAlvearyMutator extends Window {
 		new ControlPlayerInventory(this);
 		new ControlSlot.Builder(this, 79, 30).assign(0);
 		new ControlText(this, new Area(0, 52, getWidth(), 16), "Possible Mutagens:", TextJustification.MIDDLE_CENTER).setColor(5592405);
-		final int size = AlvearyMutationHandler.getMutagens().size();
-		final int w = size * 18;
+		int size = AlvearyMutationHandler.getMutagens().size();
+		int w = size * 18;
 		NumberFormat numberFormat = NumberFormat.getNumberInstance(MinecraftForgeClient.getLocale());
 		if (size > 0) {
 			int x = (getWidth() - w) / 2;
-			for (final Pair<ItemStack, Float> mutagen : AlvearyMutationHandler.getMutagens()) {
-				final ControlItemDisplay display = new ControlItemDisplay(this, x, 66);
+			for (Pair<ItemStack, Float> mutagen : AlvearyMutationHandler.getMutagens()) {
+				ControlItemDisplay display = new ControlItemDisplay(this, x, 66);
 				display.setItemStack(mutagen.getKey());
 				display.setTooltip();
 				Float multiplier = mutagen.getValue();
