@@ -424,7 +424,7 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 
 		@Override
 		protected void registerMutations() {
-			registerMutation(BeeDefinition.IMPERIAL, MINERAL, 5);
+			registerMutation(WATER, MINERAL, 5);
 		}
 	},
 	SODALITE(ExtraBeeBranchDefinition.MINERAL, "soda", false, new Color(0x154fed), new Color(0x999999)) {
