@@ -92,16 +92,12 @@ public class ModuleCore extends BlankModule {
 		ExtraBeesFlowers.doInit();
 		ExtraBeeDefinition.doInit();
 		BlockRegister.doInitBlocks();
+		AlvearyMutationHandler.registerMutationItems();
 	}
 
 	@Override
 	public void registerRecipes() {
 		RecipeRegister.doInitRecipes();
-	}
-
-	@Override
-	public void postInit() {
-		AlvearyMutationHandler.registerMutationItems();
 	}
 
 	@SubscribeEvent
@@ -117,7 +113,7 @@ public class ModuleCore extends BlankModule {
 		for (RegistryEvent.MissingMappings.Mapping<Item> entry : event.getAllMappings()) {
 			if (entry.key.toString().equals("genetics:dictionary")) {
 				ResourceLocation newTotem = new ResourceLocation("extrabees:dictionary");
-				Item value = ForgeRegistries.ITEMS.getValue(newTotem);
+				Item value = event.getRegistry().getValue(newTotem);
 				if (value != null) {
 					entry.remap(value);
 				}

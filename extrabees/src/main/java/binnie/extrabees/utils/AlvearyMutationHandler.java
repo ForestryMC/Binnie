@@ -20,11 +20,11 @@ public class AlvearyMutationHandler {
 
 	private static final List<Pair<ItemStack, Float>> MUTATIONS = new ArrayList<>(MUTATIONS_CAPACITY);
 
-	public static boolean isMutationItem(final ItemStack item) {
+	public static boolean isMutationItem(ItemStack item) {
 		return getMutationMult(item) > 1.0f;
 	}
 
-	public static float getMutationMult(final ItemStack item) {
+	public static float getMutationMult(ItemStack item) {
 		if (!item.isEmpty()) {
 			for (final Pair<ItemStack, Float> comp : MUTATIONS) {
 				ItemStack key = comp.getKey();
@@ -40,7 +40,7 @@ public class AlvearyMutationHandler {
 		addMutationItem(new ItemStack(firstNonNull(item, Item.getItemFromBlock(Blocks.AIR))), chance);
 	}
 
-	public static void addMutationItem(final ItemStack item, final float chance) {
+	public static void addMutationItem(ItemStack item, float chance) {
 		if (item.isEmpty()) {
 			return;
 		}
@@ -50,6 +50,8 @@ public class AlvearyMutationHandler {
 
 	public static void registerMutationItems() {
 		AlvearyMutationHandler.addMutationItem(new ItemStack(Blocks.SOUL_SAND), 1.5f);
+		AlvearyMutationHandler.addMutationItem(new ItemStack(Items.ENDER_PEARL), 2.0f);
+		AlvearyMutationHandler.addMutationItem(new ItemStack(Items.ENDER_EYE), 4.0f);
 		AlvearyMutationHandler.addMutationItem(Utils.getIC2Item("UranFuel"), 4.0f);
 		AlvearyMutationHandler.addMutationItem(Utils.getIC2Item("MOXFuel"), 10.0f);
 		AlvearyMutationHandler.addMutationItem(Utils.getIC2Item("Plutonium"), 8.0f);
@@ -57,9 +59,7 @@ public class AlvearyMutationHandler {
 		AlvearyMutationHandler.addMutationItem(Utils.getIC2Item("Uran235"), 4.0f);
 		AlvearyMutationHandler.addMutationItem(Utils.getIC2Item("smallUran235"), 2.5f);
 		AlvearyMutationHandler.addMutationItem(Utils.getIC2Item("Uran238"), 2.0f);
-		AlvearyMutationHandler.addMutationItem(new ItemStack(Items.ENDER_PEARL), 2.0f);
-		AlvearyMutationHandler.addMutationItem(new ItemStack(Items.ENDER_EYE), 4.0f);
-	}
+		}
 
 	public static List<Pair<ItemStack, Float>> getMutagens() {
 		return Collections.unmodifiableList(MUTATIONS);
