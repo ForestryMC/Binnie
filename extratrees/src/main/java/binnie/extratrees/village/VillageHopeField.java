@@ -26,10 +26,6 @@ public class VillageHopeField extends StructureVillagePieces.Village {
 	private Block cropTypeC;
 	private Block cropTypeD;
 
-	@SuppressWarnings("unused")
-	public VillageHopeField() {
-	}
-
 	public VillageHopeField(StructureVillagePieces.Start start, int type, Random rand, StructureBoundingBox boundingBox, EnumFacing facing) {
 		super(start, type);
 		this.setCoordBaseMode(facing);

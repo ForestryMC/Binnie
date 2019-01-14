@@ -54,6 +54,9 @@ public class ModuleContainer implements forestry.api.modules.IModuleContainer {
 	}
 
 	protected void runPreInit(FMLPreInitializationEvent event) {
+		for (IConfigHandler handler : configHandlers) {
+			handler.loadConfig();
+		}
 		for (IForestryModule module : loadedModules) {
 			module.registerItemsAndBlocks();
 		}
@@ -66,9 +69,6 @@ public class ModuleContainer implements forestry.api.modules.IModuleContainer {
 		for (IForestryModule module : loadedModules) {
 			module.doInit();
 			module.registerRecipes();
-		}
-		for (IConfigHandler handler : configHandlers) {
-			handler.loadConfig();
 		}
 	}
 
