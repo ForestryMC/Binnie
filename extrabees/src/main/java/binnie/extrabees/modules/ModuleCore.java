@@ -85,13 +85,12 @@ public class ModuleCore extends BlankModule {
 	@Override
 	public void doInit() {
 		EnumHoneyComb.addSubtypes();
-		ExtraBeesWorldGenerator extraBeesWorldGenerator = new ExtraBeesWorldGenerator();
-		extraBeesWorldGenerator.doInit();
-		GameRegistry.registerWorldGenerator(extraBeesWorldGenerator, 0);
 		ExtraBeesEffect.doInit();
 		ExtraBeesFlowers.doInit();
 		ExtraBeeDefinition.doInit();
 		BlockRegister.doInitBlocks();
+		ExtraBeesWorldGenerator extraBeesWorldGenerator = new ExtraBeesWorldGenerator();
+		extraBeesWorldGenerator.doInit();
 		AlvearyMutationHandler.registerMutationItems();
 	}
 
