@@ -20,6 +20,7 @@ import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.arboriculture.EnumTreeChromosome;
 import forestry.api.arboriculture.IAlleleTreeSpecies;
 import forestry.api.arboriculture.TreeManager;
+import forestry.api.core.ForestryAPI;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.ISpeciesRoot;
 import forestry.api.lepidopterology.ButterflyManager;
@@ -31,7 +32,6 @@ import binnie.core.api.genetics.IGene;
 import binnie.core.api.genetics.IItemAnalysable;
 import binnie.core.genetics.Gene;
 import binnie.core.item.ItemCore;
-import binnie.core.modules.ModuleManager;
 import binnie.core.util.I18N;
 import binnie.genetics.CreativeTabGenetics;
 import binnie.genetics.api.IItemChargeable;
@@ -94,15 +94,15 @@ public class ItemSequence extends ItemCore implements IItemAnalysable, IItemChar
 	@Override
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
 		if (this.isInCreativeTab(tab)) {
-			if (ModuleManager.isModuleEnabled("forestry", "apiculture")) {
+			if (ForestryAPI.moduleManager.isModuleEnabled("forestry", "apiculture")) {
 				final IAlleleBeeSpecies species = (IAlleleBeeSpecies) AlleleManager.alleleRegistry.getAllele("forestry.speciesMeadows");
 				Preconditions.checkNotNull(species);
 				items.add(create(new Gene(species, EnumBeeChromosome.SPECIES, BeeManager.beeRoot), false));
-			} else if (ModuleManager.isModuleEnabled("forestry", "arboriculture")) {
+			} else if (ForestryAPI.moduleManager.isModuleEnabled("forestry", "arboriculture")) {
 				final IAlleleTreeSpecies species = (IAlleleTreeSpecies) AlleleManager.alleleRegistry.getAllele("forestry.treeOak");
 				Preconditions.checkNotNull(species);
 				items.add(create(new Gene(species, EnumTreeChromosome.SPECIES, TreeManager.treeRoot), false));
-			} else if (ModuleManager.isModuleEnabled("forestry", "lepidopterology")) {
+			} else if (ForestryAPI.moduleManager.isModuleEnabled("forestry", "lepidopterology")) {
 				final IAlleleButterflySpecies species = (IAlleleButterflySpecies) AlleleManager.alleleRegistry.getAllele("forestry.lepiAurora");
 				Preconditions.checkNotNull(species);
 				items.add(create(new Gene(species, EnumButterflyChromosome.SPECIES, ButterflyManager.butterflyRoot), false));

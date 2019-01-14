@@ -4,6 +4,8 @@ import java.util.function.Supplier;
 
 import net.minecraft.item.ItemStack;
 
+import forestry.api.core.ForestryAPI;
+
 import binnie.botany.machines.designer.PackageDesigner;
 import binnie.botany.machines.designer.Tileworker;
 import binnie.botany.modules.ModuleMachine;
@@ -11,11 +13,10 @@ import binnie.core.Constants;
 import binnie.core.machines.IMachineType;
 import binnie.core.machines.MachinePackage;
 import binnie.core.modules.BotanyModuleUIDs;
-import binnie.core.modules.ModuleManager;
 
 public enum BotanyMachine implements IMachineType {
 	Tileworker(() -> {
-		if (ModuleManager.isModuleEnabled(Constants.BOTANY_MOD_ID, BotanyModuleUIDs.CERAMIC)) {
+		if (ForestryAPI.moduleManager.isModuleEnabled(Constants.BOTANY_MOD_ID, BotanyModuleUIDs.CERAMIC)) {
 			return new PackageDesigner(new Tileworker());
 		}
 		return null;

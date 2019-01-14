@@ -40,6 +40,7 @@ import forestry.api.arboriculture.IWoodAccess;
 import forestry.api.arboriculture.IWoodType;
 import forestry.api.arboriculture.TreeManager;
 import forestry.api.arboriculture.WoodBlockKind;
+import forestry.api.core.ForestryAPI;
 import forestry.api.genetics.AlleleRegisterEvent;
 import forestry.api.genetics.AlleleSpeciesRegisterEvent;
 import forestry.api.lepidopterology.IButterflyRoot;
@@ -63,7 +64,6 @@ import binnie.core.liquid.ILiquidDefinition;
 import binnie.core.models.DoublePassBakedModel;
 import binnie.core.modules.BlankModule;
 import binnie.core.modules.ExtraTreesModuleUIDs;
-import binnie.core.modules.ModuleManager;
 import binnie.core.util.ModuleUtils;
 import binnie.core.util.RecipeUtil;
 import binnie.extratrees.ExtraTrees;
@@ -513,7 +513,7 @@ public class ModuleWood extends BlankModule {
 
 	@SubscribeEvent
 	public static void onRegisterAllele(AlleleRegisterEvent<IAlleleFruit> event) {
-		if (!ModuleManager.isModuleEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.WOOD)) {
+		if (!ForestryAPI.moduleManager.isModuleEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.WOOD)) {
 			return;
 		}
 		if (event.getAlleleClass() == IAlleleFruit.class) {
@@ -523,7 +523,7 @@ public class ModuleWood extends BlankModule {
 
 	@SubscribeEvent
 	public static void speciesRegister(AlleleSpeciesRegisterEvent event) {
-		if (!ModuleManager.isModuleEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.WOOD)) {
+		if (!ForestryAPI.moduleManager.isModuleEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.WOOD)) {
 			return;
 		}
 		if (event.getRoot() instanceof ITreeRoot) {

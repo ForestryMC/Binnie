@@ -26,6 +26,7 @@ import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import forestry.api.core.ForestryAPI;
 import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
 
@@ -40,7 +41,6 @@ import binnie.botany.modules.ModuleFlowers;
 import binnie.botany.modules.ModuleGardening;
 import binnie.core.Constants;
 import binnie.core.modules.BotanyModuleUIDs;
-import binnie.core.modules.ModuleManager;
 import binnie.core.util.I18N;
 
 public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
@@ -310,7 +310,7 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 	@Override
 	public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, IPlantable plantable) {
 		IBlockState plant = plantable.getPlant(world, pos.up());
-		if (ModuleManager.isModuleEnabled(Constants.BOTANY_MOD_ID, BotanyModuleUIDs.FLOWERS)) {
+		if (ForestryAPI.moduleManager.isModuleEnabled(Constants.BOTANY_MOD_ID, BotanyModuleUIDs.FLOWERS)) {
 			if (plant.getBlock() == ModuleFlowers.flower) {
 				return true;
 			}
