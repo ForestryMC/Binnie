@@ -22,10 +22,6 @@ public class ModuleStorage implements IInitializable {
 
 	@Override
 	public void init() {
-	}
-
-	@Override
-	public void postInit() {
 		RecipeUtil recipeUtil = new RecipeUtil(Constants.CORE_MOD_ID);
 		final String ironGear = OreDictionary.getOres("gearIron").isEmpty() ? "ingotIron" : "gearIron";
 		final String goldGear = OreDictionary.getOres("gearGold").isEmpty() ? "ingotGold" : "gearGold";
