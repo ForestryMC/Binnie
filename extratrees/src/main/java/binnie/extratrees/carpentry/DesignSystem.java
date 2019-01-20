@@ -20,7 +20,7 @@ import binnie.design.api.IDesignSystem;
 import binnie.design.api.IPattern;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.api.CarpentryManager;
-import binnie.extratrees.items.ExtraTreeItems;
+import binnie.extratrees.items.ExtraTreeMiscItems;
 import binnie.extratrees.wood.planks.ExtraTreePlanks;
 
 public enum DesignSystem implements IDesignSystem {
@@ -130,10 +130,10 @@ public enum DesignSystem implements IDesignSystem {
 	public ItemStack getAdhesive() {
 		switch (this) {
 			case Glass: {
-				return ExtraTreeItems.GLASS_FITTING.get(1);
+				return ExtraTreeMiscItems.GLASS_FITTING.stack(1);
 			}
 			case Wood: {
-				return ExtraTreeItems.WOOD_WAX.get(1);
+				return ExtraTreeMiscItems.WOOD_WAX.stack(1);
 			}
 			default: {
 				throw new IllegalStateException("Unknown design system: " + this);

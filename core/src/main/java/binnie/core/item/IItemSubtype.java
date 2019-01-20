@@ -9,7 +9,11 @@ public interface IItemSubtype {
 
 	int ordinal();
 
-	ItemStack get(int amount);
+	ItemStack stack(int amount);
+
+	default ItemStack stack() {
+		return stack(1);
+	}
 
 	String name();
 }

@@ -26,7 +26,7 @@ public class BlockEctoplasm extends BlockWeb {
 	}
 
 	@Override
-	public String getUnlocalizedName() {
+	public String getTranslationKey() {
 		return "extrabees.block.ectoplasm";
 	}
 }

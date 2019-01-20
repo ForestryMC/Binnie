@@ -18,7 +18,7 @@ public class ItemGenesis extends ItemCore implements IBinnieGuiItem {
 	public ItemGenesis() {
 		super("genesis");
 		this.setCreativeTab(Tabs.tabApiculture);
-		this.setUnlocalizedName("genesis");
+		this.setTranslationKey("genesis");
 		this.setMaxStackSize(1);
 	}
 

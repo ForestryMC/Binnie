@@ -25,7 +25,7 @@ public abstract class ItemGene extends ItemCore implements IColoredItem {
 		super(unlocName);
 		this.setMaxStackSize(1);
 		this.setMaxDamage(16);
-		this.setUnlocalizedName(unlocName);
+		this.setTranslationKey(unlocName);
 		this.setCreativeTab(CreativeTabGenetics.INSTANCE);
 	}
 

@@ -1,47 +1,78 @@
 package binnie.core.liquid;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 
-import binnie.core.BinnieCore;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
+
 import binnie.core.Constants;
-import binnie.core.features.FeatureProvider;
-import binnie.core.features.IFeatureItem;
-import binnie.core.features.IFeatureRegistry;
+import binnie.core.features.FeatureType;
+import binnie.core.features.IFeatureConstructor;
+import binnie.core.features.IItemFeature;
+import binnie.core.features.RegisterFeatureEvent;
 import binnie.core.modules.BinnieCoreModuleUIDs;
 import binnie.core.util.I18N;
 
-@FeatureProvider(containerId = Constants.CORE_MOD_ID, moduleID = BinnieCoreModuleUIDs.CORE)
-public enum FluidContainerType {
+@Mod.EventBusSubscriber(modid = Constants.CORE_MOD_ID)
+public enum FluidContainerType implements IItemFeature<Item, Item> {
 	CAPSULE(false),
 	REFRACTORY(false),
 	CAN(false),
 	GLASS(true),
 	CYLINDER(true);
 
-	private final IFeatureItem<Item> feature;
+
+	private final String identifier;
+	private final IFeatureConstructor<Item> constructor;
+	@Nullable
+	private Item item;
 
 	FluidContainerType(boolean coreContainer) {
-		String itemName = name().toLowerCase();
-		IFeatureRegistry registry = BinnieCore.instance.registry(BinnieCoreModuleUIDs.CORE);
+		this.identifier = name().toLowerCase();
 		if (coreContainer) {
-			this.feature = registry.createItem(itemName, () -> new ItemFluidContainer(this));
+			this.constructor = () -> new ItemFluidContainer(this);
 		} else {
-			this.feature = registry.modItem("forestry", itemName);
+			this.constructor = () -> ForgeRegistries.ITEMS.getValue(new ResourceLocation("forestry", identifier));
 		}
 	}
 
-	public IFeatureItem<Item> getFeature() {
-		return feature;
+	@SubscribeEvent
+	public static void registerFeatures(RegisterFeatureEvent event) {
+		event.register(FluidContainerType.class);
 	}
 
 	public String getIdentifier() {
-		return feature.getIdentifier();
+		return identifier;
+	}
+
+	@Override
+	public IFeatureConstructor<Item> getConstructor() {
+		return constructor;
+	}
+
+	@Override
+	public FeatureType getType() {
+		return FeatureType.ITEM;
+	}
+
+	@Override
+	public String getModId() {
+		return Constants.CORE_MOD_ID;
+	}
+
+	@Override
+	public String getModuleId() {
+		return BinnieCoreModuleUIDs.CORE;
 	}
 
 	public String getDisplayName() {
@@ -49,11 +80,11 @@ public enum FluidContainerType {
 	}
 
 	public ItemStack get(int amount) {
-		return feature.stack(amount);
+		return new ItemStack(item(), amount);
 	}
 
 	public ItemStack getEmpty() {
-		return feature.stack();
+		return new ItemStack(item());
 	}
 
 	public ItemStack getFilled(Fluid fluid) {
@@ -67,5 +98,22 @@ public enum FluidContainerType {
 			}
 		}
 		throw new IllegalStateException("Could not fill fluid handler for container: " + this);
+	}
+
+
+	@Override
+	public void setItem(Item item) {
+		this.item = item;
+	}
+
+	@Override
+	public boolean hasItem() {
+		return item != null;
+	}
+
+	@Nullable
+	@Override
+	public Item getItem() {
+		return item;
 	}
 }

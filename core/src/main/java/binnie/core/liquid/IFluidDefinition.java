@@ -1,15 +1,41 @@
 package binnie.core.liquid;
 
+import javax.annotation.Nullable;
+
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 
-public interface IFluidDefinition {
+import binnie.core.features.IModFeature;
 
-	FluidStack get(int amount);
+public interface IFluidDefinition extends IModFeature<FluidType> {
 
-	default FluidStack get() {
-		return get(Fluid.BUCKET_VOLUME);
+	default FluidType apply(FluidType fluid) {
+		return fluid;
 	}
 
-	FluidType getType();
+	void setFluid(FluidType fluid);
+
+	@Nullable
+	FluidType getFluid();
+
+	boolean hasFluid();
+
+	default FluidType fluid() {
+		FluidType block = getFluid();
+		if (block == null) {
+			throw new IllegalStateException("Called feature getter method before content creation.");
+		}
+		return block;
+	}
+
+	default FluidStack stack(int amount) {
+		if (hasFluid()) {
+			return new FluidStack(fluid().getFluid(), amount);
+		}
+		throw new IllegalStateException("This feature has no item to create a stack for.");
+	}
+
+	default FluidStack stack() {
+		return stack(Fluid.BUCKET_VOLUME);
+	}
 }

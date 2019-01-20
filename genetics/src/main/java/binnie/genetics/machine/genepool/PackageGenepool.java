@@ -30,7 +30,7 @@ public class PackageGenepool extends GeneticMachine.PackageGeneticBase implement
 		new ComponentGeneticGUI(machine, GeneticsGUI.GENEPOOL);
 		ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
 		InventorySlot slotEnzyme = inventory.addSlot(Genepool.SLOT_ENZYME, getSlotRL("enzyme"));
-		slotEnzyme.setValidator(new SlotValidator.Item(GeneticsItems.Enzyme.get(1), ModuleMachine.getSpriteEnzyme()));
+		slotEnzyme.setValidator(new SlotValidator.Item(GeneticsItems.Enzyme.stack(1), ModuleMachine.getSpriteEnzyme()));
 		slotEnzyme.forbidExtraction();
 		InventorySlot slotProcess = inventory.addSlot(Genepool.SLOT_BEE, getSlotRL("process"));
 		slotProcess.setValidator(new SlotValidator.Individual());

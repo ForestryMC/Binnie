@@ -22,7 +22,7 @@ import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IRecipeWrapper;
 
 public class GenepoolRecipeWrapper implements IRecipeWrapper {
-	private static final ItemStack ENZYME = GeneticsItems.Enzyme.get(1);
+	private static final ItemStack ENZYME = GeneticsItems.Enzyme.stack(1);
 
 	private final ItemStack input;
 	private final FluidStack dnaOutput;
@@ -31,7 +31,7 @@ public class GenepoolRecipeWrapper implements IRecipeWrapper {
 	public GenepoolRecipeWrapper(ItemStack input) {
 		this.input = input;
 		int dnaAmount = GenepoolLogic.getDNAAmount(input);
-		this.dnaOutput = GeneticLiquid.RawDNA.get(dnaAmount);
+		this.dnaOutput = GeneticLiquid.RawDNA.stack(dnaAmount);
 		this.ethanolInput = Fluids.BIO_ETHANOL.getFluid(Math.round(dnaAmount * 1.2f));
 	}
 

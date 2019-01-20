@@ -84,10 +84,10 @@ public class ExtraTreesJeiPlugin implements IModPlugin {
 	public void register(IModRegistry registry) {
 		IJeiHelpers jeiHelpers = registry.getJeiHelpers();
 		if (ModuleManager.isModuleEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.MACHINES)) {
-			registry.addRecipeCatalyst(ExtraTreeMachine.Lumbermill.get(1), RecipeUids.LUMBERMILL);
-			registry.addRecipeCatalyst(ExtraTreeMachine.Press.get(1), RecipeUids.FRUIT_PRESS);
+			registry.addRecipeCatalyst(ExtraTreeMachine.LUMBERMILL.get(1), RecipeUids.LUMBERMILL);
+			registry.addRecipeCatalyst(ExtraTreeMachine.PRESS.get(1), RecipeUids.FRUIT_PRESS);
 			registry.addRecipeCatalyst(ExtraTreeMachine.BREWERY.get(1), RecipeUids.BREWING);
-			registry.addRecipeCatalyst(ExtraTreeMachine.Distillery.get(1), RecipeUids.DISTILLING);
+			registry.addRecipeCatalyst(ExtraTreeMachine.DISTILLERY.get(1), RecipeUids.DISTILLING);
 
 			registry.addRecipes(LumbermillRecipeMaker.create(jeiHelpers), RecipeUids.LUMBERMILL);
 			registry.addRecipes(FruitPressRecipeMaker.create(), RecipeUids.FRUIT_PRESS);

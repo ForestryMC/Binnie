@@ -18,19 +18,13 @@ public class CreativeTabBotany extends CreativeTabs {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public String getTranslatedTabLabel() {
-		return getTabLabel();
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
 	public String getTabLabel() {
 		return I18N.localise("botany.tab.botany");
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public ItemStack getTabIconItem() {
+	public ItemStack createIcon() {
 		return new ItemStack(Blocks.RED_FLOWER, 1, 5);
 	}
 }

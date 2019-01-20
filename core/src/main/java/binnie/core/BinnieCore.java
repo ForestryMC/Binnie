@@ -1,7 +1,9 @@
 package binnie.core;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
@@ -25,6 +27,7 @@ import forestry.api.modules.IModuleContainer;
 
 import binnie.core.block.TileEntityMetadata;
 import binnie.core.config.ConfigurationMain;
+import binnie.core.features.ModFeatureRegistry;
 import binnie.core.gui.BinnieCoreGUI;
 import binnie.core.gui.BinnieGUIHandler;
 import binnie.core.gui.IBinnieGUID;
@@ -54,7 +57,7 @@ import binnie.core.util.ModuleManager;
 )
 public final class BinnieCore extends ModuleProvider {
 
-	private static final List<AbstractMod> modList = new ArrayList<>();
+	private static final Map<String, AbstractMod> modList = new HashMap<>();
 	@SuppressWarnings("NullableProblems")
 	@Mod.Instance(Constants.CORE_MOD_ID)
 	public static BinnieCore instance;
@@ -84,12 +87,16 @@ public final class BinnieCore extends ModuleProvider {
 	}
 
 	static void registerMod(AbstractMod mod) {
-		BinnieCore.modList.add(mod);
+		BinnieCore.modList.put(mod.getModId(), mod);
+	}
+
+	public static AbstractMod getMod(String modId) {
+		return modList.get(modId);
 	}
 
 	private static List<AbstractMod> getActiveMods() {
 		List<AbstractMod> list = new ArrayList<>();
-		for (AbstractMod mod : BinnieCore.modList) {
+		for (AbstractMod mod : BinnieCore.modList.values()) {
 			list.add(mod);
 		}
 		return list;
@@ -99,13 +106,13 @@ public final class BinnieCore extends ModuleProvider {
 	public void preInit(FMLPreInitializationEvent evt) {
 		MinecraftForge.EVENT_BUS.register(Binnie.LIQUID);
 		MinecraftForge.EVENT_BUS.register(ModuleManager.class);
+		ModFeatureRegistry.fireEvent();
 		for (IModuleContainer container : ForestryAPI.moduleManager.getContainers()) {
 			if (!(container instanceof ModuleContainer)) {
 				continue;
 			}
 			((ModuleContainer) container).setupAPI();
 		}
-		ModuleManager.loadFeatures(evt.getAsmData());
 		for (CoreErrorCode errorCode : CoreErrorCode.values()) {
 			ErrorStateRegistry.registerErrorState(errorCode);
 		}

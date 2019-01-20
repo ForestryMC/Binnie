@@ -47,7 +47,7 @@ public enum BotanyItems implements IItemSubtypeMisc {
 	}
 
 	@Override
-	public ItemStack get(int size) {
+	public ItemStack stack(int size) {
 		return new ItemStack(ModuleGardening.misc, size, ordinal());
 	}
 

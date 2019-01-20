@@ -1,23 +1,19 @@
 package binnie.extrabees.modules;
 
-import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import forestry.api.circuits.ICircuitLayout;
-import forestry.api.core.Tabs;
 import forestry.api.modules.ForestryModule;
 
 import binnie.core.BinnieCore;
 import binnie.core.Constants;
 import binnie.core.Mods;
-import binnie.core.machines.MachineGroup;
 import binnie.core.modules.BinnieModule;
 import binnie.core.modules.ExtraBeesModuleUIDs;
 import binnie.core.util.RecipeUtil;
-import binnie.extrabees.ExtraBees;
 import binnie.extrabees.circuit.AlvearySimulatorCircuitType;
 import binnie.extrabees.circuit.BinnieCircuitLayout;
 import binnie.extrabees.circuit.BinnieCircuitSocketType;
@@ -27,19 +23,13 @@ import binnie.extrabees.machines.TileExtraBeeAlveary;
 @ForestryModule(moduleID = ExtraBeesModuleUIDs.ALVEARY, containerID = Constants.EXTRA_BEES_MOD_ID, name = "Alveary", unlocalizedDescription = "extrabees.module.alveary")
 public class ModuleAlveary extends BinnieModule {
 
-	public static Block blockAlveary;
-
 	public ModuleAlveary() {
 		super(Constants.EXTRA_BEES_MOD_ID, ExtraBeesModuleUIDs.CORE);
 	}
 
 	@Override
 	public void preInit() {
-		MachineGroup machineGroup = new MachineGroup(ExtraBees.instance, "alveay", "alveary", ExtraBeeMachines.values());
-		machineGroup.setCreativeTab(Tabs.tabApiculture);
 		BinnieCore.getBinnieProxy().registerTileEntity(TileExtraBeeAlveary.class, "extrabees.tile.alveary");
-		machineGroup.createContent();
-		ModuleAlveary.blockAlveary = machineGroup.block();
 	}
 
 	@Override

@@ -41,6 +41,6 @@ public class SequencerRecipeWrapper implements IRecipeWrapper {
 			GeneticItems.DATABASE.stack()
 		));
 
-		ingredients.setOutput(ItemStack.class, GeneticsItems.EmptySequencer.get(1));
+		ingredients.setOutput(ItemStack.class, GeneticsItems.EmptySequencer.stack(1));
 	}
 }

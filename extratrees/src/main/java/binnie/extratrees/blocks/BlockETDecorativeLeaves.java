@@ -56,7 +56,7 @@ public abstract class BlockETDecorativeLeaves extends Block implements IItemMode
 		this.setLightOpacity(1);
 		this.setSoundType(SoundType.PLANT);
 		String name = "leaves.decorative." + blockNumber;
-		setUnlocalizedName(name);
+		setTranslationKey(name);
 		setRegistryName(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, name));
 	}
 
@@ -103,7 +103,7 @@ public abstract class BlockETDecorativeLeaves extends Block implements IItemMode
 	 * Called When an Entity Collided with the Block
 	 */
 	@Override
-	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
+	public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
 		entityIn.motionX *= 0.4D;
 		entityIn.motionZ *= 0.4D;
 	}
@@ -135,7 +135,7 @@ public abstract class BlockETDecorativeLeaves extends Block implements IItemMode
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getBlockLayer() {
+	public BlockRenderLayer getRenderLayer() {
 		return BlockRenderLayer.CUTOUT_MIPPED; // fruit overlays require CUTOUT_MIPPED, even in Fast graphics
 	}
 

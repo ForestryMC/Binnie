@@ -109,7 +109,7 @@ public class ModuleGardening extends BinnieModule {
 		//BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(ceramicTile), new MultipassItemRenderer());
 		//BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(ceramicBrick), new MultipassItemRenderer());
 
-		OreDictionary.registerOre("weedkiller", BotanyItems.WEEDKILLER.get(1));
+		OreDictionary.registerOre("weedkiller", BotanyItems.WEEDKILLER.stack(1));
 		OreDictionary.registerOre("toolTrowel", trowelWood);
 		OreDictionary.registerOre("toolTrowel", trowelStone);
 		OreDictionary.registerOre("toolTrowel", trowelIron);
@@ -176,7 +176,7 @@ public class ModuleGardening extends BinnieModule {
 		);
 
 		recipeUtil.addShapelessRecipe("weed_killer",
-			BotanyItems.WEEDKILLER.get(4),
+			BotanyItems.WEEDKILLER.stack(4),
 			new ItemStack(Items.SPIDER_EYE),
 			new ItemStack(Items.WHEAT_SEEDS),
 			new ItemStack(Items.WHEAT_SEEDS),
@@ -184,49 +184,49 @@ public class ModuleGardening extends BinnieModule {
 		);
 
 		recipeUtil.addShapelessRecipe("powder_ash",
-			BotanyItems.POWDER_ASH.get(4),
+			BotanyItems.POWDER_ASH.stack(4),
 			Mods.Forestry.stack("ash")
 		);
 
 		recipeUtil.addShapelessRecipe("powder_mulch",
-			BotanyItems.POWDER_MULCH.get(4),
+			BotanyItems.POWDER_MULCH.stack(4),
 			Mods.Forestry.stack("mulch")
 		);
 
 		recipeUtil.addShapelessRecipe("powder_compost",
-			BotanyItems.POWDER_COMPOST.get(4),
+			BotanyItems.POWDER_COMPOST.stack(4),
 			Mods.Forestry.stack("fertilizer_bio")
 		);
 
 		recipeUtil.addShapelessRecipe("powder_fertilizer",
-			BotanyItems.POWDER_FERTILISER.get(4),
+			BotanyItems.POWDER_FERTILISER.stack(4),
 			Mods.Forestry.stack("fertilizer_compound")
 		);
 
 		recipeUtil.addShapelessRecipe("powder_pulp",
-			BotanyItems.POWDER_PULP.get(4),
+			BotanyItems.POWDER_PULP.stack(4),
 			Mods.Forestry.stack("wood_pulp")
 		);
 
 		recipeUtil.addShapelessRecipe("pigment_black",
-			BotanyItems.POWDER_SULPHUR.get(4),
+			BotanyItems.POWDER_SULPHUR.stack(4),
 			"dustSulphur"
 		);
 
-		gardening.registerFertiliser(EnumFertiliserType.ACID, BotanyItems.POWDER_SULPHUR.get(1), 1);
-		gardening.registerFertiliser(EnumFertiliserType.ACID, BotanyItems.POWDER_MULCH.get(1), 1);
+		gardening.registerFertiliser(EnumFertiliserType.ACID, BotanyItems.POWDER_SULPHUR.stack(1), 1);
+		gardening.registerFertiliser(EnumFertiliserType.ACID, BotanyItems.POWDER_MULCH.stack(1), 1);
 		gardening.registerFertiliser(EnumFertiliserType.ACID, Mods.Forestry.stack("mulch"), 2);
 		for (ItemStack stack : OreDictionary.getOres("dustSulfur")) {
 			gardening.registerFertiliser(EnumFertiliserType.ACID, stack, 2);
 		}
 
-		gardening.registerFertiliser(EnumFertiliserType.ALKALINE, BotanyItems.POWDER_ASH.get(1), 1);
-		gardening.registerFertiliser(EnumFertiliserType.ALKALINE, BotanyItems.POWDER_PULP.get(1), 1);
+		gardening.registerFertiliser(EnumFertiliserType.ALKALINE, BotanyItems.POWDER_ASH.stack(1), 1);
+		gardening.registerFertiliser(EnumFertiliserType.ALKALINE, BotanyItems.POWDER_PULP.stack(1), 1);
 		gardening.registerFertiliser(EnumFertiliserType.ALKALINE, Mods.Forestry.stack("ash"), 2);
 		gardening.registerFertiliser(EnumFertiliserType.ALKALINE, Mods.Forestry.stack("wood_pulp"), 2);
 
-		gardening.registerFertiliser(EnumFertiliserType.NUTRIENT, BotanyItems.POWDER_COMPOST.get(1), 1);
-		gardening.registerFertiliser(EnumFertiliserType.NUTRIENT, BotanyItems.POWDER_FERTILISER.get(1), 1);
+		gardening.registerFertiliser(EnumFertiliserType.NUTRIENT, BotanyItems.POWDER_COMPOST.stack(1), 1);
+		gardening.registerFertiliser(EnumFertiliserType.NUTRIENT, BotanyItems.POWDER_FERTILISER.stack(1), 1);
 		gardening.registerFertiliser(EnumFertiliserType.NUTRIENT, Mods.Forestry.stack("fertilizer_bio"), 2);
 		gardening.registerFertiliser(EnumFertiliserType.NUTRIENT, Mods.Forestry.stack("fertilizer_compound"), 2);
 

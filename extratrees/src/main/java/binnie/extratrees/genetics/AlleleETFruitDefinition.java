@@ -37,145 +37,145 @@ public enum AlleleETFruitDefinition {
 	Blackthorn("blackthorn", 10, 7180062, 14561129, FruitSprite.SMALL, PRUNES) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.Blackthorn.get(1), 1.0f);
+			addProduct(Food.Blackthorn.stack(1), 1.0f);
 		}
 	},
 	CherryPlum("cherry_plum", 10, 7180062, 15211595, FruitSprite.SMALL, PRUNES) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.CHERRY_PLUM.get(1), 1.0f);
+			addProduct(Food.CHERRY_PLUM.stack(1), 1.0f);
 		}
 	},
 	Peach("peach", 10, 7180062, 16424995, FruitSprite.AVERAGE, PRUNES) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.PEACH.get(1), 1.0f);
+			addProduct(Food.PEACH.stack(1), 1.0f);
 		}
 	},
 	Nectarine("nectarine", 10, 7180062, 16405795, FruitSprite.AVERAGE, PRUNES) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.NECTARINE.get(1), 1.0f);
+			addProduct(Food.NECTARINE.stack(1), 1.0f);
 		}
 	},
 	Apricot("apricot", 10, 7180062, 16437027, FruitSprite.AVERAGE, PRUNES) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.APRICOT.get(1), 1.0f);
+			addProduct(Food.APRICOT.stack(1), 1.0f);
 		}
 	},
 	Almond("almond", 10, 7180062, 9364342, FruitSprite.SMALL, PRUNES) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.ALMOND.get(1), 1.0f);
+			addProduct(Food.ALMOND.stack(1), 1.0f);
 		}
 	},
 	WildCherry("wild_cherry", 10, 7180062, 16711680, FruitSprite.TINY, PRUNES) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.WILD_CHERRY.get(1), 1.0f);
+			addProduct(Food.WILD_CHERRY.stack(1), 1.0f);
 		}
 	},
 	SourCherry("sour_cherry", 10, 7180062, 10225963, FruitSprite.TINY, PRUNES) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.SOUR_CHERRY.get(1), 1.0f);
+			addProduct(Food.SOUR_CHERRY.stack(1), 1.0f);
 		}
 	},
 	BlackCherry("black_cherry", 10, 7180062, 4852249, FruitSprite.TINY, PRUNES) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.BLACK_CHERRY.get(1), 1.0f);
+			addProduct(Food.BLACK_CHERRY.stack(1), 1.0f);
 		}
 	},
 	Fig("fig", 9, 14201186, 7094086, FruitSprite.SMALL, PRUNES) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.FIG.get(1), 1.0f);
+			addProduct(Food.FIG.stack(1), 1.0f);
 		}
 	},
 	Elderberry("elderberry", 9, 7444317, 5331779, FruitSprite.TINY, PRUNES) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.ELDERBERRY.get(1), 1.0f);
+			addProduct(Food.ELDERBERRY.stack(1), 1.0f);
 		}
 	},
 	Olive("olive", 9, 8887861, 6444842, FruitSprite.SMALL, PRUNES) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.OLIVE.get(1), 1.0f);
+			addProduct(Food.OLIVE.stack(1), 1.0f);
 		}
 	},
 	Orange("orange", 10, 3665987, 16749578, FruitSprite.AVERAGE, CITRUS) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.ORANGE.get(1), 1.0f);
+			addProduct(Food.ORANGE.stack(1), 1.0f);
 		}
 	},
 	Manderin("manderin", 10, 3665987, 16749578, FruitSprite.AVERAGE, CITRUS) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.MANDERIN.get(1), 1.0f);
+			addProduct(Food.MANDERIN.stack(1), 1.0f);
 		}
 	},
 	Tangerine("tangerine", 10, 3665987, 16749578, FruitSprite.AVERAGE, CITRUS) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.TANGERINE.get(1), 1.0f);
+			addProduct(Food.TANGERINE.stack(1), 1.0f);
 		}
 	},
 	Satsuma("satsuma", 10, 3665987, 16749578, FruitSprite.AVERAGE, CITRUS) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.SATSUMA.get(1), 1.0f);
+			addProduct(Food.SATSUMA.stack(1), 1.0f);
 		}
 	},
 	KeyLime("key_lime", 10, 3665987, 10223428, FruitSprite.SMALL, CITRUS) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.KEY_LIME.get(1), 1.0f);
+			addProduct(Food.KEY_LIME.stack(1), 1.0f);
 		}
 	},
 	Lime("lime", 10, 3665987, 10223428, FruitSprite.AVERAGE, CITRUS) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.LIME.get(1), 1.0f);
+			addProduct(Food.LIME.stack(1), 1.0f);
 		}
 	},
 	FingerLime("finger_lime", 10, 3665987, 11156280, FruitSprite.SMALL, CITRUS) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.FINGER_LIME.get(1), 1.0f);
+			addProduct(Food.FINGER_LIME.stack(1), 1.0f);
 		}
 	},
 	Pomelo("pomelo", 10, 3665987, 6083402, FruitSprite.LARGER, CITRUS) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.POMELO.get(1), 1.0f);
+			addProduct(Food.POMELO.stack(1), 1.0f);
 		}
 	},
 	Grapefruit("grapefruit", 10, 3665987, 16749578, FruitSprite.LARGE, CITRUS) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.GRAPEFRUIT.get(1), 1.0f);
+			addProduct(Food.GRAPEFRUIT.stack(1), 1.0f);
 		}
 	},
 	Kumquat("kumquat", 10, 3665987, 16749578, FruitSprite.SMALL, CITRUS) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.KUMQUAT.get(1), 1.0f);
+			addProduct(Food.KUMQUAT.stack(1), 1.0f);
 		}
 	},
 	Citron("citron", 10, 3665987, 16772192, FruitSprite.LARGE, CITRUS) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.CITRON.get(1), 1.0f);
+			addProduct(Food.CITRON.stack(1), 1.0f);
 		}
 	},
 	BuddhaHand("buddha_hand", 10, 3665987, 16772192, FruitSprite.LARGE, CITRUS) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.BUDDHA_HAND.get(1), 1.0f);
+			addProduct(Food.BUDDHA_HAND.stack(1), 1.0f);
 		}
 	},
 	Apple("apple", 10, 7915859, 16193046, FruitSprite.AVERAGE, POMES) {
@@ -187,205 +187,205 @@ public enum AlleleETFruitDefinition {
 	Crabapple("crabapple", 10, 7915859, 16760140, FruitSprite.AVERAGE, POMES) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.CRABAPPLE.get(1), 1.0f);
+			addProduct(Food.CRABAPPLE.stack(1), 1.0f);
 		}
 	},
 	Mango("mango", 10, 6654997, 15902262, FruitSprite.AVERAGE, POMES) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.MANGO.get(1), 1.0f);
+			addProduct(Food.MANGO.stack(1), 1.0f);
 		}
 	},
 	Pear("pear", 10, 10456913, 10474833, FruitSprite.PEAR, POMES) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.PEAR.get(1), 1.0f);
+			addProduct(Food.PEAR.stack(1), 1.0f);
 		}
 	},
 	OsangeOsange("osange_osange", 10, 9934674, 10665767, FruitSprite.LARGER, POMES) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.OSANGE_ORANGE.get(1), 1.0f);
+			addProduct(Food.OSANGE_ORANGE.stack(1), 1.0f);
 		}
 	},
 	Banana("banana", FruitPod.BANANA, JUNGLE) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.BANANA.get(2), 1.0f);
+			addProduct(Food.BANANA.stack(2), 1.0f);
 		}
 	},
 	RedBanana("red_banana", FruitPod.RED_BANANA, JUNGLE) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.RED_BANANA.get(2), 1.0f);
+			addProduct(Food.RED_BANANA.stack(2), 1.0f);
 		}
 	},
 	Plantain("platain", FruitPod.PLANTAIN, JUNGLE) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.PLANTAIN.get(2), 1.0f);
+			addProduct(Food.PLANTAIN.stack(2), 1.0f);
 		}
 	},
 	Coffee("coffee", 8, 7433501, 16273254, FruitSprite.TINY, JUNGLE) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.COFFEE.get(1), 1.0f);
+			addProduct(Food.COFFEE.stack(1), 1.0f);
 		}
 	},
 	Coconut("coconut", FruitPod.COCONUT, JUNGLE) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.COCONUT.get(1), 1.0f);
+			addProduct(Food.COCONUT.stack(1), 1.0f);
 		}
 	},
 	Cashew("cashew", 8, 12879132, 15289111, FruitSprite.AVERAGE, JUNGLE) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.CASHEW.get(1), 1.0f);
+			addProduct(Food.CASHEW.stack(1), 1.0f);
 		}
 	},
 	Avacado("avacado", 10, 10272370, 2170640, FruitSprite.PEAR, JUNGLE) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.AVACADO.get(1), 1.0f);
+			addProduct(Food.AVACADO.stack(1), 1.0f);
 		}
 	},
 	Nutmeg("nutmeg", 9, 14861101, 11305813, FruitSprite.TINY, JUNGLE) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.NUTMEG.get(1), 1.0f);
+			addProduct(Food.NUTMEG.stack(1), 1.0f);
 		}
 	},
 	Allspice("allspice", 9, 15180922, 7423542, FruitSprite.TINY, JUNGLE) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.ALLSPICE.get(1), 1.0f);
+			addProduct(Food.ALLSPICE.stack(1), 1.0f);
 		}
 	},
 	Chilli("chilli", 10, 7430757, 15145010, FruitSprite.SMALL, JUNGLE) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.CHILLI.get(1), 1.0f);
+			addProduct(Food.CHILLI.stack(1), 1.0f);
 		}
 	},
 	StarAnise("star_anise", 8, 8733742, 13917189, FruitSprite.TINY, JUNGLE) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.STAR_ANISE.get(1), 1.0f);
+			addProduct(Food.STAR_ANISE.stack(1), 1.0f);
 		}
 	},
 	Starfruit("starfruit", 10, 9814541, 15061550, FruitSprite.AVERAGE, JUNGLE) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.STARFRUIT.get(1), 1.0f);
+			addProduct(Food.STARFRUIT.stack(1), 1.0f);
 		}
 	},
 	Candlenut("candlenut", 8, 8235123, 14600882, FruitSprite.SMALL, JUNGLE) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.CANDLENUT.get(1), 1.0f);
+			addProduct(Food.CANDLENUT.stack(1), 1.0f);
 		}
 	},
 	Hazelnut("hazelnut", 7, 8223006, 14463606, FruitSprite.SMALL, NUX) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.HAZELNUT.get(1), 1.0f);
+			addProduct(Food.HAZELNUT.stack(1), 1.0f);
 		}
 	},
 	Butternut("butternut", 7, 11712336, 16102498, FruitSprite.SMALL, NUX) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.BUTTERNUT.get(1), 1.0f);
+			addProduct(Food.BUTTERNUT.stack(1), 1.0f);
 		}
 	},
 	Beechnut("beechnut", 8, 14401148, 6241845, FruitSprite.TINY, NUX) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.BEECHNUT.get(1), 1.0f);
+			addProduct(Food.BEECHNUT.stack(1), 1.0f);
 		}
 	},
 	Pecan("pecan", 8, 10660940, 15781769, FruitSprite.SMALL, NUX) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.PECAN.get(1), 1.0f);
+			addProduct(Food.PECAN.stack(1), 1.0f);
 		}
 	},
 	BrazilNut("brazil_nut", 10, 5875561, 9852208, FruitSprite.LARGE, NUX) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.BRAZIL_NUT.get(4), 1.0f);
+			addProduct(Food.BRAZIL_NUT.stack(4), 1.0f);
 		}
 	},
 	Acorn("acorn", 6, 7516710, 11364893, FruitSprite.TINY, NUX) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.ACORN.get(1), 1.0f);
+			addProduct(Food.ACORN.stack(1), 1.0f);
 		}
 	},
 	GingkoNut("gingko_nut", 7, 9213787, 15063725, FruitSprite.TINY, NUX) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.GINGKO_NUT.get(1), 1.0f);
+			addProduct(Food.GINGKO_NUT.stack(1), 1.0f);
 		}
 	},
 	Clove("clove", 9, 6847532, 11224133, FruitSprite.TINY, NUX) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.CLOVE.get(1), 1.0f);
+			addProduct(Food.CLOVE.stack(1), 1.0f);
 		}
 	},
 	Blackcurrant("blackcurrant", 8, 9407571, 4935251, FruitSprite.TINY, BERRY) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.BLACKCURRANT.get(2), 1.0f);
+			addProduct(Food.BLACKCURRANT.stack(2), 1.0f);
 		}
 	},
 	Redcurrant("redcurrant", 8, 13008910, 15080974, FruitSprite.TINY, BERRY) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.REDCURRANT.get(2), 1.0f);
+			addProduct(Food.REDCURRANT.stack(2), 1.0f);
 		}
 	},
 	Blackberry("blackberry", 8, 9399665, 4801393, FruitSprite.TINY, BERRY) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.BLACKBERRY.get(2), 1.0f);
+			addProduct(Food.BLACKBERRY.stack(2), 1.0f);
 		}
 	},
 	Raspberry("raspberry", 8, 15520197, 14510449, FruitSprite.TINY, BERRY) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.RASPBERRY.get(2), 1.0f);
+			addProduct(Food.RASPBERRY.stack(2), 1.0f);
 		}
 	},
 	Blueberry("blueberry", 8, 10203799, 6329278, FruitSprite.TINY, BERRY) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.BLUEBERRY.get(2), 1.0f);
+			addProduct(Food.BLUEBERRY.stack(2), 1.0f);
 		}
 	},
 	Cranberry("cranberry", 8, 12232496, 14555696, FruitSprite.TINY, BERRY) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.CRANBERRY.get(2), 1.0f);
+			addProduct(Food.CRANBERRY.stack(2), 1.0f);
 		}
 	},
 	Juniper("juniper", 8, 10194034, 6316914, FruitSprite.TINY, BERRY) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.JUNIPER.get(2), 1.0f);
+			addProduct(Food.JUNIPER.stack(2), 1.0f);
 		}
 	},
 	Gooseberry("gooseberry", 8, 12164944, 12177232, FruitSprite.TINY, BERRY) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.GOOSEBERRY.get(2), 1.0f);
+			addProduct(Food.GOOSEBERRY.stack(2), 1.0f);
 		}
 	},
 	GoldenRaspberry("golden_raspberry", 8, 12496955, 15970363, FruitSprite.TINY, BERRY) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.GOLDEN_RASPBERRY.get(2), 1.0f);
+			addProduct(Food.GOLDEN_RASPBERRY.stack(2), 1.0f);
 		}
 	}
 	//	, Papayimar("papayimar", FruitPod.PAPAYIMAR)

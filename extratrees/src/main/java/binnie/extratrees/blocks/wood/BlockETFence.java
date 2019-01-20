@@ -23,7 +23,7 @@ public abstract class BlockETFence extends BlockForestryFence<EnumETLog> impleme
 		}
 		name += blockNumber;
 		setRegistryName(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, name));
-		setUnlocalizedName(name);
+		setTranslationKey(name);
 	}
 
 	public static List<BlockETFence> create(boolean fireproof) {

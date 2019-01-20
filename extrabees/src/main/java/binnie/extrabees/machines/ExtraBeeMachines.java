@@ -25,7 +25,7 @@ import binnie.extrabees.machines.mutator.AlvearyMutator;
 import binnie.extrabees.machines.rainshield.AlvearyRainShield;
 import binnie.extrabees.machines.stimulator.AlvearyStimulator;
 import binnie.extrabees.machines.transmission.AlvearyTransmission;
-import binnie.extrabees.modules.ModuleAlveary;
+import binnie.extrabees.modules.features.AlvearyMachines;
 
 public enum ExtraBeeMachines implements IMachineType {
 	MUTATOR(AlvearyMutator::new),
@@ -43,7 +43,7 @@ public enum ExtraBeeMachines implements IMachineType {
 	}
 
 	public ItemStack get(int size) {
-		return new ItemStack(ModuleAlveary.blockAlveary, size, this.ordinal());
+		return AlvearyMachines.ALVEARY.stack(size, this.ordinal());
 	}
 
 	@Override

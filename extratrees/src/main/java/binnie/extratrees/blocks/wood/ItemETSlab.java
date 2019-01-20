@@ -23,7 +23,7 @@ public class ItemETSlab extends ItemSlab {
 	}
 
 	@Override
-	public String getUnlocalizedName(ItemStack stack) {
+	public String getTranslationKey(ItemStack stack) {
 		BlockETSlab wood = (BlockETSlab) getBlock();
 		int meta = stack.getMetadata();
 		IWoodType woodType = wood.getWoodType(meta);

@@ -79,7 +79,7 @@ public enum EnumHoneyDrop implements IItemSubtypeMisc {
 	public void addRecipe() {
 		FluidStack liquid = Utils.getFluidFromName(this.getLiquidName(), 200);
 		if (liquid != null) {
-			RecipeManagers.squeezerManager.addRecipe(10, this.get(1), liquid, this.getRemnant(), 100);
+			RecipeManagers.squeezerManager.addRecipe(10, this.stack(1), liquid, this.getRemnant(), 100);
 		}
 	}
 
@@ -89,7 +89,7 @@ public enum EnumHoneyDrop implements IItemSubtypeMisc {
 	}
 
 	@Override
-	public ItemStack get(int amount) {
+	public ItemStack stack(int amount) {
 		return new ItemStack(ModuleCore.honeyDrop, amount, this.ordinal());
 	}
 

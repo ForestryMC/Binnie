@@ -22,8 +22,8 @@ import mezz.jei.api.recipe.IRecipeWrapper;
 
 public class IsolatorRecipeWrapper implements IRecipeWrapper {
 	private static final FluidStack ETHANOL = Fluids.BIO_ETHANOL.getFluid(IsolatorLogic.ETHANOL_PER_PROCESS);
-	private static final ItemStack EMPTY_SEQUENCE = GeneticsItems.EmptySequencer.get(1);
-	private static final ItemStack ENZYME = GeneticsItems.Enzyme.get(1);
+	private static final ItemStack EMPTY_SEQUENCE = GeneticsItems.EmptySequencer.stack(1);
+	private static final ItemStack ENZYME = GeneticsItems.Enzyme.stack(1);
 
 	private final ItemStack input;
 	private final ItemStack output;

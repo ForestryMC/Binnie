@@ -28,31 +28,31 @@ import binnie.extratrees.machines.designer.PackageDesigner;
 import binnie.extratrees.machines.distillery.DistilleryMachine;
 import binnie.extratrees.machines.fruitpress.FruitPressMachine;
 import binnie.extratrees.machines.lumbermill.LumbermillMachine;
-import binnie.extratrees.modules.ModuleMachine;
+import binnie.extratrees.modules.features.ExtraTreesMachines;
 
 public enum ExtraTreeMachine implements IMachineType {
-	Lumbermill(LumbermillMachine::new),
-	Woodworker(() -> {
+	LUMBERMILL(LumbermillMachine::new),
+	WOODWORKER(() -> {
 		if (ModuleManager.isModuleEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.CARPENTRY)) {
 			return new PackageDesigner(DesignerType.Woodworker);
 		}
 		return null;
 	}),
-	Panelworker(() -> {
+	PANELWORKER(() -> {
 		if (ModuleManager.isModuleEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.CARPENTRY)) {
 			return new PackageDesigner(DesignerType.Panelworker);
 		}
 		return null;
 	}),
-	Nursery(() -> {
+	NURSERY(() -> {
 		// TODO: implement
 		// binnie.extratrees.machines.nursery.Nursery.PackageNursery::new
 		return null;
 	}),
-	Press(FruitPressMachine::new),
+	PRESS(FruitPressMachine::new),
 	BREWERY(BreweryMachine::new),
-	Distillery(DistilleryMachine::new),
-	Glassworker(() -> {
+	DISTILLERY(DistilleryMachine::new),
+	GLASSWORKER(() -> {
 		if (ModuleManager.isModuleEnabled(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.CARPENTRY)) {
 			return new PackageDesigner(DesignerType.GlassWorker);
 		}
@@ -71,7 +71,7 @@ public enum ExtraTreeMachine implements IMachineType {
 	}
 
 	public ItemStack get(int i) {
-		return new ItemStack(ModuleMachine.blockMachine, i, this.ordinal());
+		return ExtraTreesMachines.MACHINE.stack(i, ordinal());
 	}
 
 	public static class ComponentExtraTreeGUI extends MachineComponent implements IInteraction.RightClick {

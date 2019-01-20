@@ -87,7 +87,7 @@ public class SequencerLogic extends ComponentProcess implements IProcess {
 		GeneTracker.getTracker(this.getMachine().getWorld(), this.getMachine().getOwner()).registerGene(seqItem.getGene());
 		this.getUtil().decreaseStack(Sequencer.SLOT_TARGET, 1);
 		if (this.getUtil().getStack(Sequencer.SLOT_DONE).isEmpty()) {
-			this.getUtil().setStack(Sequencer.SLOT_DONE, GeneticsItems.EmptySequencer.get(1));
+			this.getUtil().setStack(Sequencer.SLOT_DONE, GeneticsItems.EmptySequencer.stack(1));
 		} else {
 			this.getUtil().decreaseStack(Sequencer.SLOT_DONE, -1);
 		}

@@ -43,7 +43,7 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister {
 		this.container = container;
 		this.maxStackSize = 16;
 		this.setHasSubtypes(true);
-		this.setUnlocalizedName("container" + container.getIdentifier());
+		this.setTranslationKey("container" + container.getIdentifier());
 		this.setCreativeTab(CreativeTabs.MATERIALS);
 		setRegistryName(container.getIdentifier());
 	}
@@ -190,7 +190,7 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister {
 		public FluidContainerMeshDefinition() {
 			ResourceLocation location = getRegistryName();
 			this.location = new ModelResourceLocation(location, "inventory");
-			this.empty = new ModelResourceLocation(new ResourceLocation(location.getResourceDomain(), location.getResourcePath() + "_empty"), "inventory");
+			this.empty = new ModelResourceLocation(new ResourceLocation(location.getNamespace(), location.getPath() + "_empty"), "inventory");
 		}
 
 		@Override

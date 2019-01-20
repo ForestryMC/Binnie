@@ -18,19 +18,13 @@ public class CreativeTabGenetics extends CreativeTabs {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public String getTranslatedTabLabel() {
-		return getTabLabel();
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
 	public String getTabLabel() {
 		return I18N.localise("genetics.tab.genetics");
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public ItemStack getTabIconItem() {
-		return GeneticsItems.EMPTY_SERUM.get(1);
+	public ItemStack createIcon() {
+		return GeneticsItems.EMPTY_SERUM.stack(1);
 	}
 }

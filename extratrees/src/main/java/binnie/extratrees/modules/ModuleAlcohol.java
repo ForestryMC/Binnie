@@ -8,8 +8,11 @@ import java.util.Objects;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
+
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import forestry.api.modules.ForestryModule;
 import forestry.api.recipes.ISqueezerRecipe;
@@ -19,6 +22,8 @@ import forestry.core.fluids.Fluids;
 import binnie.core.Binnie;
 import binnie.core.Constants;
 import binnie.core.Mods;
+import binnie.core.features.FeatureCreationEvent;
+import binnie.core.features.FeatureType;
 import binnie.core.liquid.DrinkManager;
 import binnie.core.liquid.FluidType;
 import binnie.core.liquid.IFluidDefinition;
@@ -34,7 +39,7 @@ import binnie.extratrees.api.recipes.ExtraTreesRecipeManager;
 import binnie.extratrees.api.recipes.IBreweryManager;
 import binnie.extratrees.api.recipes.IDistilleryManager;
 import binnie.extratrees.api.recipes.IFruitPressManager;
-import binnie.extratrees.items.ExtraTreeItems;
+import binnie.extratrees.items.ExtraTreeMiscItems;
 import binnie.extratrees.items.Food;
 import binnie.extratrees.items.ItemDrink;
 import binnie.extratrees.liquid.Alcohol;
@@ -53,6 +58,7 @@ public class ModuleAlcohol extends BinnieModule {
 
 	public ModuleAlcohol() {
 		super(Constants.EXTRA_TREES_MOD_ID, ExtraTreesModuleUIDs.CORE);
+		MinecraftForge.EVENT_BUS.register(this);
 	}
 
 	@Override
@@ -65,10 +71,6 @@ public class ModuleAlcohol extends BinnieModule {
 	public void preInit() {
 		//ModuleAlcohol.drinkRendererID = BinnieCore.proxy.getUniqueRenderID();
 		//BinnieCore.proxy.registerCustomItemRenderer(ExtraTrees.drink, new CocktailRenderer());
-		registerLiquids(Juice.values());
-		registerLiquids(Alcohol.values());
-		registerLiquids(Spirit.values());
-		registerLiquids(Liqueur.values());
 		DrinkManager.registerDrinkLiquid(new DrinkLiquid("Water", 13421823, 0.1f, 0.0f, "water"));
 	}
 
@@ -92,7 +94,7 @@ public class ModuleAlcohol extends BinnieModule {
 				List<ItemStack> ores = new ArrayList<>(OreDictionary.getOres(oreDict));
 				for (Food food : Food.values()) {
 					if (food.getOres().contains(oreDict)) {
-						ores.add(food.get(1));
+						ores.add(food.stack(1));
 					}
 				}
 				for (ItemStack stack : ores) {
@@ -106,14 +108,14 @@ public class ModuleAlcohol extends BinnieModule {
 						if (Objects.equals(output.getFluid().getName(), "seedoil")) {
 							amount *= 2;
 						}
-						fruitPressManager.addRecipe(stack, juice.get(amount));
+						fruitPressManager.addRecipe(stack, juice.stack(amount));
 					}
 				}
 			}
 		}
 		if (breweryManager != null) {
 			for (Alcohol alcohol : Alcohol.values()) {
-				FluidType type = alcohol.getType();
+				FluidType type = alcohol.fluid();
 				for (String fermentLiquid : alcohol.getFermentationLiquid()) {
 					FluidStack fluid = Binnie.LIQUID.getFluidStack(fermentLiquid);
 					if (fluid != null) {
@@ -122,18 +124,18 @@ public class ModuleAlcohol extends BinnieModule {
 				}
 			}
 
-			breweryManager.addGrainRecipe(OreDictUtils.GRAIN_BARLEY, Alcohol.Ale.get(), OreDictUtils.HOPS);
+			breweryManager.addGrainRecipe(OreDictUtils.GRAIN_BARLEY, Alcohol.Ale.stack(), OreDictUtils.HOPS);
 
-			breweryManager.addGrainRecipe(OreDictUtils.GRAIN_BARLEY, Alcohol.Lager.get(), OreDictUtils.HOPS, ExtraTreeItems.LAGER_YEAST.get(1));
-			breweryManager.addGrainRecipe(OreDictUtils.GRAIN_ROASTED, Alcohol.Stout.get(), OreDictUtils.HOPS);
-			breweryManager.addGrainRecipe(OreDictUtils.GRAIN_CORN, Alcohol.CornBeer.get(), OreDictUtils.HOPS);
-			breweryManager.addGrainRecipe(OreDictUtils.GRAIN_RYE, Alcohol.RyeBeer.get(), OreDictUtils.HOPS);
-			breweryManager.addGrainRecipe(OreDictUtils.GRAIN_WHEAT, Alcohol.WheatBeer.get(), OreDictUtils.HOPS);
+			breweryManager.addGrainRecipe(OreDictUtils.GRAIN_BARLEY, Alcohol.Lager.stack(), OreDictUtils.HOPS, ExtraTreeMiscItems.LAGER_YEAST.stack(1));
+			breweryManager.addGrainRecipe(OreDictUtils.GRAIN_ROASTED, Alcohol.Stout.stack(), OreDictUtils.HOPS);
+			breweryManager.addGrainRecipe(OreDictUtils.GRAIN_CORN, Alcohol.CornBeer.stack(), OreDictUtils.HOPS);
+			breweryManager.addGrainRecipe(OreDictUtils.GRAIN_RYE, Alcohol.RyeBeer.stack(), OreDictUtils.HOPS);
+			breweryManager.addGrainRecipe(OreDictUtils.GRAIN_WHEAT, Alcohol.WheatBeer.stack(), OreDictUtils.HOPS);
 
-			breweryManager.addGrainRecipe(OreDictUtils.GRAIN_BARLEY, Alcohol.Barley.get());
-			breweryManager.addGrainRecipe(OreDictUtils.GRAIN_CORN, Alcohol.Corn.get());
-			breweryManager.addGrainRecipe(OreDictUtils.GRAIN_RYE, Alcohol.Rye.get());
-			breweryManager.addGrainRecipe(OreDictUtils.GRAIN_WHEAT, Alcohol.Wheat.get());
+			breweryManager.addGrainRecipe(OreDictUtils.GRAIN_BARLEY, Alcohol.Barley.stack());
+			breweryManager.addGrainRecipe(OreDictUtils.GRAIN_CORN, Alcohol.Corn.stack());
+			breweryManager.addGrainRecipe(OreDictUtils.GRAIN_RYE, Alcohol.Rye.stack());
+			breweryManager.addGrainRecipe(OreDictUtils.GRAIN_WHEAT, Alcohol.Wheat.stack());
 		}
 
 		this.addDistillery(Alcohol.Apple, Spirit.AppleBrandy, Spirit.AppleLiquor, Spirit.NeutralSpirit);
@@ -169,18 +171,29 @@ public class ModuleAlcohol extends BinnieModule {
 
 		IDistilleryManager distilleryManager = ExtraTreesRecipeManager.distilleryManager;
 
-		distilleryManager.addRecipe(source.get(inAmount), singleDistilled.get(outAmount1), 0);
-		distilleryManager.addRecipe(source.get(inAmount), doubleDistilled.get(outAmount2), 1);
-		distilleryManager.addRecipe(source.get(inAmount), tripleDistilled.get(outAmount3), 2);
+		distilleryManager.addRecipe(source.stack(inAmount), singleDistilled.stack(outAmount1), 0);
+		distilleryManager.addRecipe(source.stack(inAmount), doubleDistilled.stack(outAmount2), 1);
+		distilleryManager.addRecipe(source.stack(inAmount), tripleDistilled.stack(outAmount3), 2);
 
-		distilleryManager.addRecipe(singleDistilled.get(inAmount), doubleDistilled.get(outAmount2), 0);
-		distilleryManager.addRecipe(singleDistilled.get(inAmount), tripleDistilled.get(outAmount3), 1);
-		distilleryManager.addRecipe(doubleDistilled.get(inAmount), tripleDistilled.get(outAmount2), 0);
+		distilleryManager.addRecipe(singleDistilled.stack(inAmount), doubleDistilled.stack(outAmount2), 0);
+		distilleryManager.addRecipe(singleDistilled.stack(inAmount), tripleDistilled.stack(outAmount3), 1);
+		distilleryManager.addRecipe(doubleDistilled.stack(inAmount), tripleDistilled.stack(outAmount2), 0);
 	}
 
 
 	private <L extends IFluidDefinition & ICocktailIngredientProvider> void registerLiquids(L[] liquids) {
 		//Binnie.LIQUID.createLiquids(liquids);
 		Cocktail.registerIngredients(liquids);
+	}
+
+	@SubscribeEvent
+	public void afterFluidCreation(FeatureCreationEvent event) {
+		if (!event.containerID.equals(Constants.EXTRA_TREES_MOD_ID) || event.type != FeatureType.FLUID) {
+			return;
+		}
+		registerLiquids(Juice.values());
+		registerLiquids(Alcohol.values());
+		registerLiquids(Spirit.values());
+		registerLiquids(Liqueur.values());
 	}
 }

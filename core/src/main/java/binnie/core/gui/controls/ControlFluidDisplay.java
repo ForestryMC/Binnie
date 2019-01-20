@@ -27,7 +27,7 @@ import binnie.core.gui.renderer.RenderUtil;
 public class ControlFluidDisplay extends Control implements ITooltip {
 	@Nullable
 	private FluidStack fluidStack;
-	private boolean hastooltip;
+	private boolean hasTooltip;
 
 	public ControlFluidDisplay(IWidget parent, int x, int y) {
 		this(parent, x, y, 16);
@@ -44,11 +44,11 @@ public class ControlFluidDisplay extends Control implements ITooltip {
 	public ControlFluidDisplay(IWidget parent, int x, int y, int size) {
 		super(parent, x, y, size, size);
 		this.fluidStack = null;
-		this.hastooltip = false;
+		this.hasTooltip = false;
 	}
 
 	public void setTooltip() {
-		this.hastooltip = true;
+		this.hasTooltip = true;
 		this.addAttribute(Attribute.MOUSE_OVER);
 	}
 
@@ -64,13 +64,9 @@ public class ControlFluidDisplay extends Control implements ITooltip {
 		}
 		if (this.fluidStack != null) {
 			Fluid fluid = this.fluidStack.getFluid();
-			int hex = fluid.getColor(this.fluidStack);
-			int r = (hex & 0xFF0000) >> 16;
-			int g = (hex & 0xFF00) >> 8;
-			int b = hex & 0xFF;
 			ResourceLocation iconRL = this.fluidStack.getFluid().getStill();
 			TextureAtlasSprite icon = FMLClientHandler.instance().getClient().getTextureMapBlocks().getAtlasSprite(iconRL.toString());
-			GlStateManager.color(r / 255.0f, g / 255.0f, b / 255.0f, 1.0f);
+			RenderUtil.setColour(fluid.getColor(this.fluidStack));
 			GlStateManager.enableBlend();
 			GlStateManager.blendFunc(770, 771);
 			if (this.getSize().xPos() != 16) {
@@ -92,7 +88,7 @@ public class ControlFluidDisplay extends Control implements ITooltip {
 
 	@Override
 	public void getTooltip(Tooltip tooltip, ITooltipFlag tooltipFlag) {
-		if (this.hastooltip && this.fluidStack != null) {
+		if (this.hasTooltip && this.fluidStack != null) {
 			tooltip.add(this.fluidStack.getLocalizedName());
 		}
 	}

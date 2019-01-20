@@ -177,7 +177,7 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 	}
 
 	@Override
-	public String getUnlocalizedName() {
+	public String getTranslationKey() {
 		return String.format("%s.block.flower", Botany.instance.getModId());
 	}
 
@@ -261,7 +261,7 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 	}
 
 	@Override
-	public BlockRenderLayer getBlockLayer() {
+	public BlockRenderLayer getRenderLayer() {
 		return BlockRenderLayer.CUTOUT;
 	}
 

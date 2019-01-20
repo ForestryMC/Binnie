@@ -187,7 +187,7 @@ public enum ExtraBeeItems implements IItemSubtypeMisc {
 	}
 
 	@Override
-	public ItemStack get(int amount) {
+	public ItemStack stack(int amount) {
 		return new ItemStack(ModuleCore.itemMisc, amount, this.ordinal());
 	}
 

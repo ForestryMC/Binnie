@@ -25,7 +25,7 @@ public class ItemETFood extends ItemFood implements IItemModelRegister {
 
 	public ItemETFood() {
 		super(0, 0.0f, false);
-		this.setUnlocalizedName("food");
+		this.setTranslationKey("food");
 		this.setCreativeTab(Tabs.tabArboriculture);
 		this.setHasSubtypes(true);
 		setRegistryName("food");

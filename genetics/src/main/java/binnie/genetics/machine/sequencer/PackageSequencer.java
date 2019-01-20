@@ -27,7 +27,7 @@ public class PackageSequencer extends GeneticMachine.PackageGeneticBase implemen
 		new ComponentGeneticGUI(machine, GeneticsGUI.SEQUENCER);
 		ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
 		InventorySlot slotDye = inventory.addSlot(Sequencer.SLOT_DYE, getSlotRL("dye"));
-		slotDye.setValidator(new SlotValidator.Item(GeneticsItems.FluorescentDye.get(1), ModuleMachine.getSpriteDye()));
+		slotDye.setValidator(new SlotValidator.Item(GeneticsItems.FluorescentDye.stack(1), ModuleMachine.getSpriteDye()));
 		slotDye.forbidExtraction();
 		for (InventorySlot slot : inventory.addSlotArray(Sequencer.SLOT_RESERVE, getSlotRL("input"))) {
 			slot.setValidator(new SlotValidatorUnsequenced());

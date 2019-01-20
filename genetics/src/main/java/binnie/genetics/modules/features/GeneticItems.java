@@ -1,13 +1,20 @@
 package binnie.genetics.modules.features;
 
+import javax.annotation.Nullable;
+
+import net.minecraft.item.Item;
+
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
 import binnie.core.Constants;
-import binnie.core.features.FeatureItem;
-import binnie.core.features.FeatureProvider;
-import binnie.core.features.IFeatureRegistry;
+import binnie.core.features.FeatureType;
+import binnie.core.features.IFeatureConstructor;
+import binnie.core.features.IItemFeature;
+import binnie.core.features.RegisterFeatureEvent;
 import binnie.core.item.ItemMisc;
 import binnie.core.modules.GeneticsModuleUIDs;
 import binnie.genetics.CreativeTabGenetics;
-import binnie.genetics.Genetics;
 import binnie.genetics.item.GeneticsItems;
 import binnie.genetics.item.ItemAnalyst;
 import binnie.genetics.item.ItemDatabase;
@@ -17,21 +24,70 @@ import binnie.genetics.item.ItemSequence;
 import binnie.genetics.item.ItemSerum;
 import binnie.genetics.item.ItemSerumArray;
 
-@FeatureProvider(containerId = Constants.GENETICS_MOD_ID, moduleID = GeneticsModuleUIDs.CORE)
-public class GeneticItems {
-	public static final FeatureItem<ItemSerum> SERUM = features().createItem("serum", ItemSerum::new);
-	public static final FeatureItem<ItemSerumArray> SERUM_ARRAY = features().createItem("serum_array", ItemSerumArray::new);
-	public static final FeatureItem<ItemSequence> SEQUENCE = features().createItem("sequence", ItemSequence::new);
-	public static final FeatureItem<ItemDatabase> DATABASE = features().createItem("geneticdatabase", ItemDatabase::new);
-	public static final FeatureItem<ItemAnalyst> ANALYST = features().createItem("analyst", ItemAnalyst::new);
-	public static final FeatureItem<ItemRegistry> REGISTRY = features().createItem("registry", ItemRegistry::new);
-	public static final FeatureItem<ItemMasterRegistry> MASTER_REGISTRY = features().createItem("master_registry", ItemMasterRegistry::new);
-	public static final FeatureItem<ItemMisc<GeneticsItems>> GENETICS = features().createItem("misc", () -> new ItemMisc<>(CreativeTabGenetics.INSTANCE, GeneticsItems.values()));
+@Mod.EventBusSubscriber(modid = Constants.GENETICS_MOD_ID)
+public enum GeneticItems implements IItemFeature<Item, Item> {
+	SERUM("serum", ItemSerum::new),
+	SERUM_ARRAY("serum_array", ItemSerumArray::new),
+	SEQUENCE("sequence", ItemSequence::new),
+	DATABASE("geneticdatabase", ItemDatabase::new),
+	ANALYST("analyst", ItemAnalyst::new),
+	REGISTRY("registry", ItemRegistry::new),
+	MASTER_REGISTRY("master_registry", ItemMasterRegistry::new),
+	GENETICS("misc", () -> new ItemMisc<>(CreativeTabGenetics.INSTANCE, GeneticsItems.values()));
 
-	private static IFeatureRegistry features() {
-		return Genetics.instance.registry(GeneticsModuleUIDs.CORE);
+	private final String identifier;
+	private final IFeatureConstructor<Item> constructor;
+	@Nullable
+	private Item item;
+
+	GeneticItems(String identifier, IFeatureConstructor<Item> supplier) {
+		this.identifier = identifier;
+		this.constructor = supplier;
 	}
 
-	private GeneticItems() {
+	@SubscribeEvent
+	public static void registerFeatures(RegisterFeatureEvent event) {
+		event.register(GeneticItems.class);
+	}
+
+	@Override
+	public boolean hasItem() {
+		return item != null;
+	}
+
+	@Override
+	@Nullable
+	public Item getItem() {
+		return item;
+	}
+
+	@Override
+	public String getIdentifier() {
+		return identifier;
+	}
+
+	@Override
+	public void setItem(@Nullable Item item) {
+		this.item = item;
+	}
+
+	@Override
+	public IFeatureConstructor<Item> getConstructor() {
+		return constructor;
+	}
+
+	@Override
+	public FeatureType getType() {
+		return FeatureType.ITEM;
+	}
+
+	@Override
+	public String getModId() {
+		return Constants.GENETICS_MOD_ID;
+	}
+
+	@Override
+	public String getModuleId() {
+		return GeneticsModuleUIDs.CORE;
 	}
 }

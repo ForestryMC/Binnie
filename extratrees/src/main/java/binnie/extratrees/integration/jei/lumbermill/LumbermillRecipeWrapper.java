@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
-import binnie.extratrees.items.ExtraTreeItems;
+import binnie.extratrees.items.ExtraTreeMiscItems;
 import binnie.extratrees.machines.lumbermill.LumbermillLogic;
 
 import mezz.jei.api.ingredients.IIngredients;
@@ -30,9 +30,9 @@ public class LumbermillRecipeWrapper implements IRecipeWrapper {
 		ingredients.setInput(FluidStack.class, WATER);
 
 		ingredients.setOutputs(ItemStack.class, Arrays.asList(
-			ExtraTreeItems.Bark.get(2),
+			ExtraTreeMiscItems.Bark.stack(2),
 			outputPlanks,
-			ExtraTreeItems.SAWDUST.get(2)
+			ExtraTreeMiscItems.SAWDUST.stack(2)
 		));
 	}
 }

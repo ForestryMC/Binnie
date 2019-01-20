@@ -32,7 +32,7 @@ public class ItemHiveFrame extends Item implements IHiveFrame, IBeeModifier, IIt
 		this.setMaxDamage(frame.getMaxDamage());
 		this.setCreativeTab(Tabs.tabApiculture);
 		this.setMaxStackSize(1);
-		this.setUnlocalizedName("hive_frame");
+		this.setTranslationKey("hive_frame");
 	}
 
 	@Override
@@ -43,7 +43,7 @@ public class ItemHiveFrame extends Item implements IHiveFrame, IBeeModifier, IIt
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerModel(Item item, IModelManager manager) {
-		manager.registerItemModel(item, 0, "frames/" + getRegistryName().getResourcePath());
+		manager.registerItemModel(item, 0, "frames/" + getRegistryName().getPath());
 	}
 
 	@Override

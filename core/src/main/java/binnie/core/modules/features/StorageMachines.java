@@ -1,23 +1,83 @@
 package binnie.core.modules.features;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.creativetab.CreativeTabs;
 
-import binnie.core.BinnieCore;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
 import binnie.core.Constants;
-import binnie.core.features.FeatureProvider;
-import binnie.core.features.IFeatureRegistry;
+import binnie.core.features.FeatureType;
+import binnie.core.features.IFeatureConstructor;
+import binnie.core.features.IMachineFeature;
+import binnie.core.features.RegisterFeatureEvent;
 import binnie.core.machines.MachineGroup;
 import binnie.core.machines.storage.Compartment;
 import binnie.core.modules.BinnieCoreModuleUIDs;
 
-@FeatureProvider(containerId = Constants.CORE_MOD_ID, moduleID = BinnieCoreModuleUIDs.STORAGE)
-public class StorageMachines {
-	public static final MachineGroup COMPARTMENT = features().createMachine("machine.storage", "storage", Compartment.values()).setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+@Mod.EventBusSubscriber(modid = Constants.CORE_MOD_ID)
+public enum StorageMachines implements IMachineFeature {
+	COMPARTMENT("storage", () -> new MachineGroup("machine.storage", "storage", Compartment.values()));
 
-	private static IFeatureRegistry features() {
-		return BinnieCore.instance.registry(BinnieCoreModuleUIDs.STORAGE);
+	private final String identifier;
+	private final IFeatureConstructor<MachineGroup> constructor;
+	@Nullable
+	private MachineGroup group;
+
+	StorageMachines(String identifier, IFeatureConstructor<MachineGroup> constructor) {
+		this.identifier = identifier;
+		this.constructor = constructor;
 	}
 
-	private StorageMachines() {
+	@SubscribeEvent
+	public static void registerFeatures(RegisterFeatureEvent event) {
+		event.register(StorageMachines.class);
+	}
+
+	@Override
+	public MachineGroup apply(MachineGroup group) {
+		group.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+		return IMachineFeature.super.apply(group);
+	}
+
+	@Override
+	public String getIdentifier() {
+		return identifier;
+	}
+
+	@Override
+	public MachineGroup getGroup() {
+		return group;
+	}
+
+	@Override
+	public boolean hasGroup() {
+		return group != null;
+	}
+
+	@Override
+	public void setGroup(@Nullable MachineGroup group) {
+		this.group = group;
+	}
+
+	@Override
+	public IFeatureConstructor<MachineGroup> getConstructor() {
+		return constructor;
+	}
+
+	@Override
+	public FeatureType getType() {
+		return FeatureType.MACHINE;
+	}
+
+	@Override
+	public String getModId() {
+		return Constants.CORE_MOD_ID;
+	}
+
+	@Override
+	public String getModuleId() {
+		return BinnieCoreModuleUIDs.STORAGE;
 	}
 }

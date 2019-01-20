@@ -37,7 +37,7 @@ import binnie.core.machines.component.IRender;
 import binnie.core.util.I18N;
 import binnie.core.util.TileUtil;
 
-class BlockMachine extends Block implements IBlockMachine, ITileEntityProvider {
+public class BlockMachine extends Block implements IBlockMachine, ITileEntityProvider {
 	public static final PropertyInteger MACHINE_TYPE = PropertyInteger.create("machine_type", 0, 15);
 	private final MachineGroup group;
 

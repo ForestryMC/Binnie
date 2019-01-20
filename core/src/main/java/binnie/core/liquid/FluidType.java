@@ -15,12 +15,13 @@ import net.minecraftforge.fluids.FluidStack;
 import binnie.core.Binnie;
 import binnie.core.BinnieCore;
 import binnie.core.Constants;
-import binnie.core.features.Feature;
-import binnie.core.features.IFeatureRegistry;
+import binnie.core.features.IFeatureObject;
+import binnie.core.features.IModFeature;
 import binnie.core.proxy.BinnieProxy;
 import binnie.core.util.I18N;
 
-public class FluidType extends Feature {
+public class FluidType implements IFeatureObject {
+	private final String identifier;
 	private ResourceLocation textureFlowing;
 	private ResourceLocation textureStill;
 	private int color;
@@ -32,8 +33,8 @@ public class FluidType extends Feature {
 	private boolean flammable = false;
 	private int flammability = 0;
 
-	public FluidType(IFeatureRegistry registry, String identifier, String unlocalizedName, int color) {
-		super(registry, "binnie." + identifier.toLowerCase(Locale.ENGLISH));
+	public FluidType(String identifier, String unlocalizedName, int color) {
+		this.identifier = "binnie." + identifier.toLowerCase(Locale.ENGLISH);
 		this.unlocalizedName = unlocalizedName.toLowerCase();
 		this.color = color;
 		this.containerColor = color;
@@ -42,8 +43,12 @@ public class FluidType extends Feature {
 		this.textureStill = texture;
 	}
 
+	public String getIdentifier() {
+		return identifier;
+	}
+
 	@Override
-	public void create() {
+	public void init(IModFeature feature) {
 		Binnie.LIQUID.addLiquid(this);
 		BinnieFluid bFluid = new BinnieFluid(this);
 		FluidRegistry.registerFluid(bFluid);
@@ -53,16 +58,15 @@ public class FluidType extends Feature {
 
 	private static void createBlock(BinnieFluid binnieFluid) {
 		FluidType fluidType = binnieFluid.getType();
-		String name = fluidType.getIdentifier();
 
 		Block fluidBlock = fluidType.makeBlock();
-		fluidBlock.setUnlocalizedName(fluidType.getUnlocalizedName());
-		fluidBlock.setRegistryName(name);
+		fluidBlock.setTranslationKey(fluidType.getTranslationKey());
+		fluidBlock.setRegistryName(fluidType.identifier);
 		BinnieProxy proxy = BinnieCore.getBinnieProxy();
 		proxy.registerBlock(fluidBlock);
 
 		ItemBlock itemBlock = new ItemBlock(fluidBlock);
-		itemBlock.setRegistryName(name);
+		itemBlock.setRegistryName(fluidType.identifier);
 		proxy.registerItem(itemBlock);
 
 		BinnieCore.getBinnieProxy().registerFluidStateMapper(fluidBlock, fluidType);
@@ -121,11 +125,11 @@ public class FluidType extends Feature {
 		return I18N.localise(unlocalizedName);
 	}
 
-	public String getUnlocalizedName() {
+	public String getTranslationKey() {
 		return this.unlocalizedName;
 	}
 
-	public FluidType setUnlocalizedName(String unlocalizedName) {
+	public FluidType setTranslationKey(String unlocalizedName) {
 		this.unlocalizedName = unlocalizedName;
 		return this;
 	}
@@ -205,9 +209,5 @@ public class FluidType extends Feature {
 
 	public interface ContainerPlaceHandler {
 		boolean canPlaceIn(FluidContainerType type);
-	}
-
-	public FluidType getDefinition() {
-		return this;
 	}
 }

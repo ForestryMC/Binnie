@@ -613,35 +613,35 @@ public enum EnumHoneyComb implements IItemSubtypeMisc {
 		ItemStack dye = new ItemStack(Items.DYE, 1, meta);
 		switch (meta) {
 			case 0: {
-				dye = ExtraBeeItems.BLACK_DYE.get(1);
+				dye = ExtraBeeItems.BLACK_DYE.stack(1);
 				break;
 			}
 			case 1: {
-				dye = ExtraBeeItems.RED_DYE.get(1);
+				dye = ExtraBeeItems.RED_DYE.stack(1);
 				break;
 			}
 			case 2: {
-				dye = ExtraBeeItems.GREEN_DYE.get(1);
+				dye = ExtraBeeItems.GREEN_DYE.stack(1);
 				break;
 			}
 			case 3: {
-				dye = ExtraBeeItems.BROWN_DYE.get(1);
+				dye = ExtraBeeItems.BROWN_DYE.stack(1);
 				break;
 			}
 			case 4: {
-				dye = ExtraBeeItems.BLUE_DYE.get(1);
+				dye = ExtraBeeItems.BLUE_DYE.stack(1);
 				break;
 			}
 			case 11: {
-				dye = ExtraBeeItems.YELLOW_DYE.get(1);
+				dye = ExtraBeeItems.YELLOW_DYE.stack(1);
 				break;
 			}
 			case 15: {
-				dye = ExtraBeeItems.WHITE_DYE.get(1);
+				dye = ExtraBeeItems.WHITE_DYE.stack(1);
 				break;
 			}
 		}
-		addProduct(drop.get(1), 1.00f);
+		addProduct(drop.stack(1), 1.00f);
 		drop.addRemnant(dye);
 	}
 
@@ -656,7 +656,7 @@ public enum EnumHoneyComb implements IItemSubtypeMisc {
 
 	public void addRecipe() {
 		if (isActive()) {
-			RecipeManagers.centrifugeManager.addRecipe(20, this.get(1), this.products);
+			RecipeManagers.centrifugeManager.addRecipe(20, this.stack(1), this.products);
 		}
 	}
 
@@ -666,7 +666,7 @@ public enum EnumHoneyComb implements IItemSubtypeMisc {
 	}
 
 	@Override
-	public ItemStack get(int amount) {
+	public ItemStack stack(int amount) {
 		return new ItemStack(ModuleCore.comb, amount, this.ordinal());
 	}
 
@@ -705,7 +705,7 @@ public enum EnumHoneyComb implements IItemSubtypeMisc {
 	}
 
 	public void tryAddProduct(IItemSubtype type, Float chance) {
-		this.tryAddProduct(type.get(1), chance);
+		this.tryAddProduct(type.stack(1), chance);
 		this.active = (this.active && type.isActive());
 	}
 

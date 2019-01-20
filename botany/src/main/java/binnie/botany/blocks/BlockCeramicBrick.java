@@ -210,7 +210,7 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public BlockRenderLayer getBlockLayer() {
+	public BlockRenderLayer getRenderLayer() {
 		return BlockRenderLayer.CUTOUT;
 	}
 

@@ -23,7 +23,7 @@ public class ItemHammer extends Item implements IToolHammer, IItemModelRegister 
 		setMaxStackSize(1);
 		setMaxDamage(durable ? 1562 : 251);
 		String name = durable ? "durable_hammer" : "hammer";
-		setUnlocalizedName(name);
+		setTranslationKey(name);
 		setRegistryName(name);
 	}
 

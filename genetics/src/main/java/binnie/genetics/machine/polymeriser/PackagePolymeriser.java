@@ -69,24 +69,24 @@ public class PackagePolymeriser extends GeneticMachine.PackageGeneticBase implem
 	private static class BacteriaTankValidator extends TankValidator {
 		@Override
 		public boolean isValid(FluidStack itemStack) {
-			return GeneticLiquid.BacteriaPoly.get(1).isFluidEqual(itemStack);
+			return GeneticLiquid.BacteriaPoly.stack(1).isFluidEqual(itemStack);
 		}
 
 		@Override
 		public String getTooltip() {
-			return GeneticLiquid.BacteriaPoly.get(1).getLocalizedName();
+			return GeneticLiquid.BacteriaPoly.stack(1).getLocalizedName();
 		}
 	}
 
 	private static class DnaTankValidator extends TankValidator {
 		@Override
 		public boolean isValid(FluidStack itemStack) {
-			return GeneticLiquid.RawDNA.get(1).isFluidEqual(itemStack);
+			return GeneticLiquid.RawDNA.stack(1).isFluidEqual(itemStack);
 		}
 
 		@Override
 		public String getTooltip() {
-			return GeneticLiquid.RawDNA.get(1).getLocalizedName();
+			return GeneticLiquid.RawDNA.stack(1).getLocalizedName();
 		}
 	}
 }

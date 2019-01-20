@@ -81,12 +81,12 @@ public class ModuleCeramic extends BinnieModule {
 		ForgeRegistries.RECIPES.register(new CeramicTileRecipe());
 
 		if (ModuleManager.isModuleEnabled(Constants.BOTANY_MOD_ID, BotanyModuleUIDs.GARDENING)) {
-			recipeUtil.addShapelessRecipe("mortar_old", CeramicItems.MORTAR.get(1), BotanyItems.MORTAR.get(1));
+			recipeUtil.addShapelessRecipe("mortar_old", CeramicItems.MORTAR.stack(1), BotanyItems.MORTAR.stack(1));
 		}
 
 		recipeUtil.addShapelessRecipe("pigment_black", new ItemStack(pigment, 2, EnumFlowerColor.Black.ordinal()), "pigment", "pigment", "dyeBlack");
 
-		recipeUtil.addRecipe("mortar", CeramicItems.MORTAR.get(6),
+		recipeUtil.addRecipe("mortar", CeramicItems.MORTAR.stack(6),
 			" c ",
 			"cgc",
 			" c ",

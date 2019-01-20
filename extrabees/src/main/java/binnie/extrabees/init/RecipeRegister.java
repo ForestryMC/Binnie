@@ -30,7 +30,7 @@ public final class RecipeRegister {
 
 	public static void doInitRecipes() {
 		if (Loader.isModLoaded("ic2")) {
-			RECIPE_UTIL.addRecipe("honey_crystal", ModuleCore.honeyCrystal.getCharged(0), "#@#", "@#@", "#@#", '@', Mods.Forestry.item("honey_drop"), '#', EnumHoneyDrop.ENERGY.get(1));
+			RECIPE_UTIL.addRecipe("honey_crystal", ModuleCore.honeyCrystal.getCharged(0), "#@#", "@#@", "#@#", '@', Mods.Forestry.item("honey_drop"), '#', EnumHoneyDrop.ENERGY.stack(1));
 		}
 		for (EnumHoneyComb info : EnumHoneyComb.values()) {
 			info.addRecipe();
@@ -62,7 +62,7 @@ public final class RecipeRegister {
 	}
 
 	private static void addMiscItemRecipes() {
-		ItemStack lapisShard = ExtraBeeItems.LAPIS_SHARD.get(1);
+		ItemStack lapisShard = ExtraBeeItems.LAPIS_SHARD.stack(1);
 		RECIPE_UTIL.addShapelessRecipe("lapis_from_shards", new ItemStack(Items.DYE, 1, 4), lapisShard, lapisShard, lapisShard, lapisShard);
 		for (ExtraBeeItems item : ExtraBeeItems.values()) {
 			if (item.metalString != null) {
@@ -74,7 +74,7 @@ public final class RecipeRegister {
 				if (!OreDictionary.getOres("dust" + item.metalString).isEmpty()) {
 					dust = OreDictionary.getOres("dust" + item.metalString).get(0).copy();
 				}
-				ItemStack input = item.get(1);
+				ItemStack input = item.stack(1);
 				if (dust != null) {
 					RECIPE_UTIL.addShapelessRecipe(item.getModelPath() + "_dust", dust, input, input, input, input);
 				} else if (ingot != null) {
@@ -87,7 +87,7 @@ public final class RecipeRegister {
 				if (!OreDictionary.getOres("gem" + item.gemString).isEmpty()) {
 					gem = OreDictionary.getOres("gem" + item.gemString).get(0);
 				}
-				ItemStack input2 = item.get(1);
+				ItemStack input2 = item.stack(1);
 				if (gem != null) {
 					RECIPE_UTIL.addShapelessRecipe(item.getModelPath() + "_gem", gem.copy(), input2, input2, input2, input2, input2, input2, input2, input2, input2);
 				}
@@ -100,6 +100,6 @@ public final class RecipeRegister {
 		} else {
 			gear = new ItemStack(Blocks.PLANKS, 1);
 		}
-		RecipeManagers.carpenterManager.addRecipe(100, Fluids.FOR_HONEY.getFluid(500), ItemStack.EMPTY, ExtraBeeItems.SCENTED_GEAR.get(1), " j ", "bgb", " p ", 'j', Mods.Forestry.item("royal_jelly"), 'b', Mods.Forestry.item("beeswax"), 'p', Mods.Forestry.item("pollen"), 'g', gear);
+		RecipeManagers.carpenterManager.addRecipe(100, Fluids.FOR_HONEY.getFluid(500), ItemStack.EMPTY, ExtraBeeItems.SCENTED_GEAR.stack(1), " j ", "bgb", " p ", 'j', Mods.Forestry.item("royal_jelly"), 'b', Mods.Forestry.item("beeswax"), 'p', Mods.Forestry.item("pollen"), 'g', gear);
 	}
 }

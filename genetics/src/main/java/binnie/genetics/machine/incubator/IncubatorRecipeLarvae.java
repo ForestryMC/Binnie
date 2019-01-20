@@ -14,7 +14,7 @@ import binnie.genetics.item.GeneticLiquid;
 
 public class IncubatorRecipeLarvae extends IncubatorRecipe {
 	public IncubatorRecipeLarvae(ItemStack beeLarvaeWildcard) {
-		super(beeLarvaeWildcard, GeneticLiquid.GrowthMedium.get(50), null, 1.0f, 0.05f);
+		super(beeLarvaeWildcard, GeneticLiquid.GrowthMedium.stack(50), null, 1.0f, 0.05f);
 	}
 
 	@Override

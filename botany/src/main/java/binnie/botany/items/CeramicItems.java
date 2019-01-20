@@ -38,7 +38,7 @@ public enum CeramicItems implements IItemSubtypeMisc {
 	}
 
 	@Override
-	public ItemStack get(int size) {
+	public ItemStack stack(int size) {
 		return new ItemStack(ModuleCeramic.misc, size, ordinal());
 	}
 

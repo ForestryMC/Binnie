@@ -124,7 +124,7 @@ public class ModelManager implements IModelManager {
 
 	@Override
 	public ModelResourceLocation getModelLocation(Item item) {
-		String itemName = item.getRegistryName().getResourcePath();
+		String itemName = item.getRegistryName().getPath();
 		return getModelLocation(itemName);
 	}
 

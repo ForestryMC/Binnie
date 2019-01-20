@@ -1,15 +1,17 @@
 package binnie.core.features;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import binnie.core.item.IItemSubtype;
 
-public interface IFeatureItem<I extends Item> {
-
-	String getIdentifier();
-
+public interface IItemProvider<I extends Item> {
 	boolean hasItem();
+
+	@Nullable
+	I getItem();
 
 	I item();
 

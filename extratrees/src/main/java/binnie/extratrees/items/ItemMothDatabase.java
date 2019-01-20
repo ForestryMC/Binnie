@@ -31,7 +31,7 @@ public class ItemMothDatabase extends Item implements IItemModelRegister, IBinni
 
 	public ItemMothDatabase() {
 		setCreativeTab(Tabs.tabLepidopterology);
-		setUnlocalizedName("databaseLepi");
+		setTranslationKey("databaseLepi");
 		setRegistryName("databaseLepi");
 		setMaxStackSize(1);
 	}

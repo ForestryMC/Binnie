@@ -1,7 +1,7 @@
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 @FieldsAreNonnullByDefault
-package binnie.core.features.integration;
+package binnie.extrabees.modules.features;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 

@@ -22,7 +22,7 @@ public class ItemMisc<T extends IItemSubtypeMisc> extends ItemCore {
 		super(name);
 		this.setCreativeTab(tab);
 		this.setHasSubtypes(true);
-		this.setUnlocalizedName(name);
+		this.setTranslationKey(name);
 		this.items = items;
 	}
 

@@ -99,7 +99,7 @@ public class CeramicDesignSystem implements IDesignSystem {
 
 	@Override
 	public ItemStack getAdhesive() {
-		return CeramicItems.MORTAR.get(1);
+		return CeramicItems.MORTAR.stack(1);
 	}
 
 	@Override

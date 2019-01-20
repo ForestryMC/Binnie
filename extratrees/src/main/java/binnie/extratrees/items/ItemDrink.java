@@ -49,7 +49,7 @@ public class ItemDrink extends ItemFood implements IItemModelRegister {
 	public ItemDrink() {
 		super(0, 0.0f, false);
 		this.setCreativeTab(Tabs.tabArboriculture);
-		this.setUnlocalizedName("drink");
+		this.setTranslationKey("drink");
 		this.setRegistryName("drink");
 		this.setHasSubtypes(true);
 		this.setMaxStackSize(1);
@@ -120,7 +120,7 @@ public class ItemDrink extends ItemFood implements IItemModelRegister {
 			for (GlasswareType glasswareType : GlasswareType.values()) {
 				items.add(this.getStack(glasswareType, null));
 			}
-			items.add(this.getStack(GlasswareType.WINE, Alcohol.RedWine.get(GlasswareType.WINE.getCapacity())));
+			items.add(this.getStack(GlasswareType.WINE, Alcohol.RedWine.stack(GlasswareType.WINE.getCapacity())));
 		}
 	}
 

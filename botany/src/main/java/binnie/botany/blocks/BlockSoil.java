@@ -54,7 +54,7 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 		super(Material.GROUND);
 		this.type = type;
 		this.weedKilled = weedKilled;
-		setUnlocalizedName("botany.soil." + type.getName());
+		setTranslationKey("botany.soil." + type.getName());
 		setCreativeTab(CreativeTabBotany.INSTANCE);
 		setRegistryName(blockName);
 		setTickRandomly(true);
@@ -124,8 +124,8 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 	}
 
 	@Override
-	public String getUnlocalizedName() {
-		return super.getUnlocalizedName().replaceFirst("tile.", "");
+	public String getTranslationKey() {
+		return super.getTranslationKey().replaceFirst("tile.", "");
 	}
 
 	@Override

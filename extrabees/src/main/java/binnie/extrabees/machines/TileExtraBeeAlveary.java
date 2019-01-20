@@ -131,7 +131,7 @@ public class TileExtraBeeAlveary extends TileEntityMachine implements
 	public void readFromNBT(NBTTagCompound nbtTagCompound) {
 		super.readFromNBT(nbtTagCompound);
 		NBTTagCompound tag = nbtTagCompound.getCompoundTag("structureLogic");
-		if (!tag.hasNoTags()) {
+		if (!tag.isEmpty()) {
 			structureLogic.readFromNBT(tag);
 		}
 	}

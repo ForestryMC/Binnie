@@ -6,7 +6,7 @@ import net.minecraftforge.fluids.FluidStack;
 
 import binnie.extratrees.api.recipes.ExtraTreesRecipeManager;
 import binnie.extratrees.integration.crafttweaker.CraftTweakerUtil;
-import binnie.extratrees.items.ExtraTreeItems;
+import binnie.extratrees.items.ExtraTreeMiscItems;
 import binnie.extratrees.machines.brewery.recipes.BrewedGrainRecipe;
 import binnie.extratrees.machines.brewery.recipes.BreweryRecipe;
 
@@ -27,7 +27,7 @@ public class BreweryRecipeHandler extends GenericRecipeHandler {
 	public static void addRecipe(ILiquidStack input, ILiquidStack output, @Optional IItemStack yeast) {
 		FluidStack inputStack = CraftTweakerUtil.getLiquidStack(input);
 		FluidStack outputStack = CraftTweakerUtil.getLiquidStack(output);
-		ItemStack yeastStack = ExtraTreeItems.YEAST.get(1);
+		ItemStack yeastStack = ExtraTreeMiscItems.YEAST.stack(1);
 		if (yeast != null) {
 			yeastStack = CraftTweakerUtil.getItemStack(yeast);
 		}
@@ -37,7 +37,7 @@ public class BreweryRecipeHandler extends GenericRecipeHandler {
 	@ZenMethod
 	public static void addGrainRecipe(IOreDictEntry grainOreName, ILiquidStack output, @Optional IOreDictEntry ingredientOreName, @Optional IItemStack yeast) {
 		FluidStack outputStack = CraftTweakerUtil.getLiquidStack(output);
-		ItemStack yeastStack = ExtraTreeItems.YEAST.get(1);
+		ItemStack yeastStack = ExtraTreeMiscItems.YEAST.stack(1);
 		if (yeast != null) {
 			yeastStack = CraftTweakerUtil.getItemStack(yeast);
 		}

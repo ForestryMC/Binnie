@@ -19,7 +19,7 @@ import binnie.core.Mods;
 import binnie.core.item.IItemSubtypeMisc;
 import binnie.core.util.I18N;
 import binnie.extratrees.liquid.Juice;
-import binnie.extratrees.modules.features.ExtraTreesFeatures;
+import binnie.extratrees.modules.features.ExtraTreesItems;
 
 public enum Food implements IItemSubtypeMisc {
 	CRABAPPLE(2) {
@@ -423,8 +423,8 @@ public enum Food implements IItemSubtypeMisc {
 	}
 
 	@Override
-	public ItemStack get(int i) {
-		return ExtraTreesFeatures.FOOD.stack(i, this.ordinal());
+	public ItemStack stack(int i) {
+		return ExtraTreesItems.FOOD.stack(i, this.ordinal());
 	}
 
 	@Override
@@ -438,15 +438,15 @@ public enum Food implements IItemSubtypeMisc {
 	}
 
 	public void addJuice(Juice juice, int time, int amount, int mulch) {
-		RecipeManagers.squeezerManager.addRecipe(time, this.get(1), Fluids.JUICE.getFluid(amount), Mods.Forestry.stack("mulch"), mulch);
+		RecipeManagers.squeezerManager.addRecipe(time, this.stack(1), Fluids.JUICE.getFluid(amount), Mods.Forestry.stack("mulch"), mulch);
 	}
 
 	public void addJuice(int time, int amount, int mulch) {
-		RecipeManagers.squeezerManager.addRecipe(time, this.get(1), Fluids.JUICE.getFluid(amount), Mods.Forestry.stack("mulch"), mulch);
+		RecipeManagers.squeezerManager.addRecipe(time, this.stack(1), Fluids.JUICE.getFluid(amount), Mods.Forestry.stack("mulch"), mulch);
 	}
 
 	public void addOil(int time, int amount, int mulch) {
-		RecipeManagers.squeezerManager.addRecipe(time, this.get(1), Fluids.SEED_OIL.getFluid(amount), Mods.Forestry.stack("mulch"), mulch);
+		RecipeManagers.squeezerManager.addRecipe(time, this.stack(1), Fluids.SEED_OIL.getFluid(amount), Mods.Forestry.stack("mulch"), mulch);
 	}
 
 	protected Food registerCrop(String string) {
@@ -456,7 +456,7 @@ public enum Food implements IItemSubtypeMisc {
 	}
 
 	protected Food registerOre(String string) {
-		OreDictionary.registerOre(string, this.get(1));
+		OreDictionary.registerOre(string, this.stack(1));
 		return this;
 	}
 

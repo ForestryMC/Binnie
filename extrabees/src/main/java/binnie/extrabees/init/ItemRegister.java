@@ -48,13 +48,13 @@ public final class ItemRegister {
 		ExtraBees.proxy.registerItem(ModuleCore.dictionaryBees);
 
 
-		OreDictionary.registerOre("dyeRed", ExtraBeeItems.RED_DYE.get(1));
-		OreDictionary.registerOre("dyeYellow", ExtraBeeItems.YELLOW_DYE.get(1));
-		OreDictionary.registerOre("dyeBlue", ExtraBeeItems.BLUE_DYE.get(1));
-		OreDictionary.registerOre("dyeGreen", ExtraBeeItems.GREEN_DYE.get(1));
-		OreDictionary.registerOre("dyeBlack", ExtraBeeItems.BLACK_DYE.get(1));
-		OreDictionary.registerOre("dyeWhite", ExtraBeeItems.WHITE_DYE.get(1));
-		OreDictionary.registerOre("dyeBrown", ExtraBeeItems.BROWN_DYE.get(1));
+		OreDictionary.registerOre("dyeRed", ExtraBeeItems.RED_DYE.stack(1));
+		OreDictionary.registerOre("dyeYellow", ExtraBeeItems.YELLOW_DYE.stack(1));
+		OreDictionary.registerOre("dyeBlue", ExtraBeeItems.BLUE_DYE.stack(1));
+		OreDictionary.registerOre("dyeGreen", ExtraBeeItems.GREEN_DYE.stack(1));
+		OreDictionary.registerOre("dyeBlack", ExtraBeeItems.BLACK_DYE.stack(1));
+		OreDictionary.registerOre("dyeWhite", ExtraBeeItems.WHITE_DYE.stack(1));
+		OreDictionary.registerOre("dyeBrown", ExtraBeeItems.BROWN_DYE.stack(1));
 
 		OreDictionary.registerOre("binnie_database", ModuleCore.dictionaryBees);
 	}

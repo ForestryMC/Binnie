@@ -1,18 +1,23 @@
 package binnie.genetics.item;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.util.ResourceLocation;
 
-import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import binnie.core.Constants;
-import binnie.core.features.FeatureProvider;
+import binnie.core.features.FeatureType;
+import binnie.core.features.IFeatureConstructor;
+import binnie.core.features.RegisterFeatureEvent;
 import binnie.core.liquid.FluidContainerType;
 import binnie.core.liquid.FluidType;
 import binnie.core.liquid.IFluidDefinition;
 import binnie.core.modules.GeneticsModuleUIDs;
 import binnie.genetics.Genetics;
 
-@FeatureProvider(containerId = Constants.GENETICS_MOD_ID, moduleID = GeneticsModuleUIDs.CORE)
+@Mod.EventBusSubscriber(modid = Constants.GENETICS_MOD_ID)
 public enum GeneticLiquid implements IFluidDefinition {
 	GrowthMedium("growth.medium", 15460533),
 	Bacteria("bacteria", 14203521),
@@ -20,29 +25,71 @@ public enum GeneticLiquid implements IFluidDefinition {
 	RawDNA("dna.raw", 15089129),
 	BacteriaVector("bacteria.vector", 15960958);
 
-	private final FluidType type;
+	/* Feature */
+	private final IFeatureConstructor<FluidType> constructor;
+	private final String identifier;
+	@Nullable
+	private FluidType fluid;
 
-	GeneticLiquid(String ident, int color) {
-		type = Genetics.instance.registry(GeneticsModuleUIDs.CORE).createFluid(ident, String.format("%s.fluid.%s.%s", Genetics.instance.getModId(), "GeneticLiquid", this.name()), color)
-			.setTextures(new ResourceLocation(Genetics.instance.getModId(), "blocks/liquids/" + ident.replace(".", "_")))
+	GeneticLiquid(String identifier, int color) {
+		this.identifier = identifier;
+		constructor = () -> new FluidType(identifier, String.format("%s.fluid.%s.%s", Genetics.instance.getModId(), "GeneticLiquid", this.name()), color)
+			.setTextures(new ResourceLocation(Genetics.instance.getModId(), "blocks/liquids/" + identifier.replace(".", "_")))
 			.setColor(16777215)
 			.setContainerColor(color)
 			.setPlaceHandler((type) -> ordinal() == 0 || type == FluidContainerType.CYLINDER)
 			.setShowHandler((type) -> type == FluidContainerType.CYLINDER);
 	}
 
+	@SubscribeEvent
+	public static void registerFeatures(RegisterFeatureEvent event) {
+		event.register(GeneticLiquid.class);
+	}
+
 	@Override
 	public String toString() {
-		return type.toString();
+		return fluid().toString();
+	}
+
+	/* Feature */
+	@Override
+	public String getIdentifier() {
+		return identifier;
 	}
 
 	@Override
-	public FluidStack get(int amount) {
-		return type.stack(amount);
+	public IFeatureConstructor<FluidType> getConstructor() {
+		return constructor;
 	}
 
 	@Override
-	public FluidType getType() {
-		return type;
+	public boolean hasFluid() {
+		return fluid != null;
+	}
+
+	@Nullable
+	@Override
+	public FluidType getFluid() {
+		return fluid;
+	}
+
+	@Override
+	public void setFluid(FluidType fluid) {
+		this.fluid = fluid;
+	}
+
+	@Override
+	public FeatureType getType() {
+		return FeatureType.FLUID;
+	}
+
+	@Override
+	public String getModId() {
+		return Constants.GENETICS_MOD_ID;
+	}
+
+	@Override
+	public String getModuleId() {
+		return GeneticsModuleUIDs.CORE;
 	}
 }

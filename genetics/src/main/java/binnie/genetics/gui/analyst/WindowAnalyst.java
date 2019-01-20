@@ -91,7 +91,7 @@ public class WindowAnalyst extends Window {
 	private void setupValidators() {
 		if (!isDatabase) {
 			getWindowInventory().setValidator(0, new AnalystSlotValidator(this));
-			getWindowInventory().setValidator(1, new SlotValidator.Item(GeneticsItems.DNADye.get(1), ModuleMachine.getSpriteDye()));
+			getWindowInventory().setValidator(1, new SlotValidator.Item(GeneticsItems.DNADye.stack(1), ModuleMachine.getSpriteDye()));
 		}
 	}
 

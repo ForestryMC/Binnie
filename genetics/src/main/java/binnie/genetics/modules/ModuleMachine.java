@@ -67,24 +67,24 @@ public class ModuleMachine extends BinnieModule {
 		RecipeUtil recipeUtil = new RecipeUtil(Constants.GENETICS_MOD_ID);
 		Acclimatiser.setupRecipes();
 		Object[] standardCircuit = {Mods.Forestry.stack("chipsets", 1, 1)};
-		Object[] advCircuit = {GeneticsItems.IntegratedCircuit.get(1)};
+		Object[] advCircuit = {GeneticsItems.IntegratedCircuit.stack(1)};
 		String ironGear = OreDictUtils.getOrElse(OreDictUtils.GEAR_IRON, OreDictUtils.INGOT_IRON);
 		String goldGear = OreDictUtils.getOrElse(OreDictUtils.GEAR_GOLD, OreDictUtils.INGOT_IRON);
 		String diamondGear = !OreDictionary.getOres("gearDiamond").isEmpty() ? "gearDiamond" : "ingotIron";
 		for (Object circuit : standardCircuit) {
-			recipeUtil.addRecipe("incubator", LaboratoryMachine.Incubator.get(1), "gFg", "cCc", "aPa", 'C', GeneticsItems.LaboratoryCasing.get(1), 'F', Blocks.FURNACE, 'c', circuit, 'g', Blocks.GLASS_PANE, 'P', OreDictUtils.GEAR_BRONZE, 'a', ironGear);
+			recipeUtil.addRecipe("incubator", LaboratoryMachine.Incubator.get(1), "gFg", "cCc", "aPa", 'C', GeneticsItems.LaboratoryCasing.stack(1), 'F', Blocks.FURNACE, 'c', circuit, 'g', Blocks.GLASS_PANE, 'P', OreDictUtils.GEAR_BRONZE, 'a', ironGear);
 			Item alyzer = Mods.Forestry.item("portable_alyzer");
-			recipeUtil.addRecipe("analyzer", LaboratoryMachine.Analyser.get(1), "gBg", "cCc", "aPa", 'C', GeneticsItems.LaboratoryCasing.get(1), 'B', alyzer, 'c', circuit, 'g', Blocks.GLASS_PANE, 'P', OreDictUtils.GEAR_BRONZE, 'a', GeneticsItems.DNADye.get(1));
-			recipeUtil.addRecipe("genepool", LaboratoryMachine.Genepool.get(1), "gBg", "cCc", "aPa", 'C', GeneticsItems.LaboratoryCasing.get(1), 'B', OreDictUtils.GEAR_BRONZE, 'c', circuit, 'g', Blocks.GLASS_PANE, 'P', OreDictUtils.GEAR_BRONZE, 'a', Blocks.GLASS);
-			recipeUtil.addRecipe("acclimatizer", LaboratoryMachine.Acclimatiser.get(1), "gBg", "cCc", "aPa", 'C', GeneticsItems.LaboratoryCasing.get(1), 'B', Items.LAVA_BUCKET, 'c', circuit, 'g', Blocks.GLASS_PANE, 'P', OreDictUtils.GEAR_BRONZE, 'a', Items.WATER_BUCKET);
+			recipeUtil.addRecipe("analyzer", LaboratoryMachine.Analyser.get(1), "gBg", "cCc", "aPa", 'C', GeneticsItems.LaboratoryCasing.stack(1), 'B', alyzer, 'c', circuit, 'g', Blocks.GLASS_PANE, 'P', OreDictUtils.GEAR_BRONZE, 'a', GeneticsItems.DNADye.stack(1));
+			recipeUtil.addRecipe("genepool", LaboratoryMachine.Genepool.get(1), "gBg", "cCc", "aPa", 'C', GeneticsItems.LaboratoryCasing.stack(1), 'B', OreDictUtils.GEAR_BRONZE, 'c', circuit, 'g', Blocks.GLASS_PANE, 'P', OreDictUtils.GEAR_BRONZE, 'a', Blocks.GLASS);
+			recipeUtil.addRecipe("acclimatizer", LaboratoryMachine.Acclimatiser.get(1), "gBg", "cCc", "aPa", 'C', GeneticsItems.LaboratoryCasing.stack(1), 'B', Items.LAVA_BUCKET, 'c', circuit, 'g', Blocks.GLASS_PANE, 'P', OreDictUtils.GEAR_BRONZE, 'a', Items.WATER_BUCKET);
 		}
 		for (Object circuit : advCircuit) {
-			recipeUtil.addRecipe("isolator", GeneticMachine.Isolator.get(1), "gBg", "cCc", "aPa", 'C', GeneticsItems.LaboratoryCasing.get(1), 'B', goldGear, 'c', circuit, 'g', Items.GOLD_NUGGET, 'P', OreDictUtils.GEAR_BRONZE, 'a', GeneticsItems.Enzyme.get(1));
-			recipeUtil.addRecipe("polymeriser", GeneticMachine.Polymeriser.get(1), "gBg", "cCc", "gPg", 'C', GeneticsItems.LaboratoryCasing.get(1), 'B', ironGear, 'c', circuit, 'g', Items.GOLD_NUGGET, 'P', OreDictUtils.GEAR_BRONZE);
-			recipeUtil.addRecipe("sequencer", GeneticMachine.Sequencer.get(1), "gBg", "cCc", "aPa", 'C', GeneticsItems.LaboratoryCasing.get(1), 'B', OreDictUtils.GEAR_BRONZE, 'c', circuit, 'g', Items.GOLD_NUGGET, 'P', OreDictUtils.GEAR_BRONZE, 'a', GeneticsItems.FluorescentDye.get(1));
-			recipeUtil.addRecipe("inoculator", GeneticMachine.Inoculator.get(1), "gBg", "cCc", "aPa", 'C', GeneticsItems.LaboratoryCasing.get(1), 'B', diamondGear, 'c', circuit, 'g', Items.GOLD_NUGGET, 'P', OreDictUtils.GEAR_BRONZE, 'a', Items.EMERALD);
+			recipeUtil.addRecipe("isolator", GeneticMachine.Isolator.get(1), "gBg", "cCc", "aPa", 'C', GeneticsItems.LaboratoryCasing.stack(1), 'B', goldGear, 'c', circuit, 'g', Items.GOLD_NUGGET, 'P', OreDictUtils.GEAR_BRONZE, 'a', GeneticsItems.Enzyme.stack(1));
+			recipeUtil.addRecipe("polymeriser", GeneticMachine.Polymeriser.get(1), "gBg", "cCc", "gPg", 'C', GeneticsItems.LaboratoryCasing.stack(1), 'B', ironGear, 'c', circuit, 'g', Items.GOLD_NUGGET, 'P', OreDictUtils.GEAR_BRONZE);
+			recipeUtil.addRecipe("sequencer", GeneticMachine.Sequencer.get(1), "gBg", "cCc", "aPa", 'C', GeneticsItems.LaboratoryCasing.stack(1), 'B', OreDictUtils.GEAR_BRONZE, 'c', circuit, 'g', Items.GOLD_NUGGET, 'P', OreDictUtils.GEAR_BRONZE, 'a', GeneticsItems.FluorescentDye.stack(1));
+			recipeUtil.addRecipe("inoculator", GeneticMachine.Inoculator.get(1), "gBg", "cCc", "aPa", 'C', GeneticsItems.LaboratoryCasing.stack(1), 'B', diamondGear, 'c', circuit, 'g', Items.GOLD_NUGGET, 'P', OreDictUtils.GEAR_BRONZE, 'a', Items.EMERALD);
 		}
-		recipeUtil.addRecipe("splicer", AdvGeneticMachine.Splicer.get(1), "gBg", "cCc", "aPa", 'C', GeneticsItems.IntegratedCasing.get(1), 'B', diamondGear, 'c', GeneticsItems.IntegratedCPU.get(1), 'g', Items.GOLD_NUGGET, 'P', OreDictUtils.GEAR_BRONZE, 'a', Items.BLAZE_ROD);
-		recipeUtil.addRecipe("lab_machine", LaboratoryMachine.LabMachine.get(1), "igi", "gCg", "igi", 'C', GeneticsItems.LaboratoryCasing.get(1), 'i', OreDictUtils.INGOT_IRON, 'g', Blocks.GLASS_PANE);
+		recipeUtil.addRecipe("splicer", AdvGeneticMachine.Splicer.get(1), "gBg", "cCc", "aPa", 'C', GeneticsItems.IntegratedCasing.stack(1), 'B', diamondGear, 'c', GeneticsItems.IntegratedCPU.stack(1), 'g', Items.GOLD_NUGGET, 'P', OreDictUtils.GEAR_BRONZE, 'a', Items.BLAZE_ROD);
+		recipeUtil.addRecipe("lab_machine", LaboratoryMachine.LabMachine.get(1), "igi", "gCg", "igi", 'C', GeneticsItems.LaboratoryCasing.stack(1), 'i', OreDictUtils.INGOT_IRON, 'g', Blocks.GLASS_PANE);
 	}
 }

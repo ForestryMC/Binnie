@@ -63,12 +63,12 @@ public class PackageAnalyser extends GeneticMachine.PackageGeneticBase implement
 
 		@Override
 		public boolean isValid(ItemStack itemStack) {
-			return itemStack.isItemEqual(GeneticsItems.DNADye.get(1));
+			return itemStack.isItemEqual(GeneticsItems.DNADye.stack(1));
 		}
 
 		@Override
 		public String getTooltip() {
-			return GeneticsItems.DNADye.get(1).getDisplayName();
+			return GeneticsItems.DNADye.stack(1).getDisplayName();
 		}
 	}
 }

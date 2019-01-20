@@ -15,7 +15,7 @@ import net.minecraftforge.fml.common.Optional;
 import binnie.extratrees.api.recipes.IBreweryManager;
 import binnie.extratrees.api.recipes.IBreweryRecipe;
 import binnie.extratrees.integration.jei.brewery.BreweryRecipeWrapper;
-import binnie.extratrees.items.ExtraTreeItems;
+import binnie.extratrees.items.ExtraTreeMiscItems;
 
 public class BreweryRecipeManager implements IBreweryManager {
 
@@ -107,7 +107,7 @@ public class BreweryRecipeManager implements IBreweryManager {
 
 	@Override
 	public void addRecipe(FluidStack input, FluidStack output) {
-		addRecipe(input, output, ExtraTreeItems.YEAST.get(1));
+		addRecipe(input, output, ExtraTreeMiscItems.YEAST.stack(1));
 	}
 
 	@Override
@@ -122,7 +122,7 @@ public class BreweryRecipeManager implements IBreweryManager {
 
 	@Override
 	public void addGrainRecipe(String grainOreName, FluidStack output, @Nullable String ingredientOreName) {
-		addGrainRecipe(grainOreName, output, ingredientOreName, ExtraTreeItems.YEAST.get(1));
+		addGrainRecipe(grainOreName, output, ingredientOreName, ExtraTreeMiscItems.YEAST.stack(1));
 	}
 
 	@Override

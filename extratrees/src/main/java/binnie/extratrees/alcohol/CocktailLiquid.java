@@ -15,7 +15,7 @@ public class CocktailLiquid implements ICocktailLiquid {
 	}
 
 	@Override
-	public FluidStack get(int amount) {
+	public FluidStack stack(int amount) {
 		return definition.stack(amount);
 	}
 

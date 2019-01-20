@@ -31,11 +31,11 @@ public class PackageIsolator extends GeneticMachine.PackageGeneticBase implement
 		// Inventory
 		ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
 		InventorySlot slotEnzyme = inventory.addSlot(Isolator.SLOT_ENZYME, getSlotRL("enzyme"));
-		slotEnzyme.setValidator(new SlotValidator.Item(GeneticsItems.Enzyme.get(1), ModuleMachine.getSpriteEnzyme()));
+		slotEnzyme.setValidator(new SlotValidator.Item(GeneticsItems.Enzyme.stack(1), ModuleMachine.getSpriteEnzyme()));
 		slotEnzyme.forbidExtraction();
 
 		InventorySlot slotSequencer = inventory.addSlot(Isolator.SLOT_SEQUENCER_VIAL, getSlotRL("sequencervial"));
-		slotSequencer.setValidator(new SlotValidator.Item(GeneticsItems.EmptySequencer.get(1), ModuleMachine.getSpriteSequencer()));
+		slotSequencer.setValidator(new SlotValidator.Item(GeneticsItems.EmptySequencer.stack(1), ModuleMachine.getSpriteSequencer()));
 		slotSequencer.forbidExtraction();
 
 		for (InventorySlot slot : inventory.addSlotArray(Isolator.SLOT_RESERVE, getSlotRL("input"))) {

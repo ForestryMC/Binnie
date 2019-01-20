@@ -1,11 +1,18 @@
 package binnie.extratrees.liquid;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.util.ResourceLocation;
 
 import net.minecraftforge.fluids.FluidStack;
 
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
 import binnie.core.Constants;
-import binnie.core.features.FeatureProvider;
+import binnie.core.features.FeatureType;
+import binnie.core.features.IFeatureConstructor;
+import binnie.core.features.RegisterFeatureEvent;
 import binnie.core.liquid.FluidContainerType;
 import binnie.core.liquid.FluidType;
 import binnie.core.liquid.IFluidDefinition;
@@ -13,7 +20,7 @@ import binnie.core.modules.ExtraTreesModuleUIDs;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.alcohol.ICocktailLiquid;
 
-@FeatureProvider(containerId = Constants.EXTRA_TREES_MOD_ID, moduleID = ExtraTreesModuleUIDs.CORE)
+@Mod.EventBusSubscriber(modid = Constants.CORE_MOD_ID)
 public enum MiscFluid implements IFluidDefinition, ICocktailLiquid {
 	CarbonatedWater("water.carbonated", 13421823, 0.10000000149011612),
 	TonicWater("water.tonic", 13421823, 0.10000000149011612),
@@ -24,43 +31,48 @@ public enum MiscFluid implements IFluidDefinition, ICocktailLiquid {
 	AgaveNectar("syrup.agave", 13598245, 0.699999988079071),
 	GrenadineSyrup("syrup.grenadine", 16009573, 0.800000011920929);
 
-	private final FluidType type;
+	/* Feature */
+	private final IFeatureConstructor<FluidType> constructor;
+	private final String identifier;
+	@Nullable
+	private FluidType fluid;
 
-	MiscFluid(String ident, int color, double transparency) {
-		type = ExtraTrees.instance.registry(ExtraTreesModuleUIDs.CORE).createFluid(ident, String.format("%s.fluid.%s.%s", ExtraTrees.instance.getModId(), "MiscFluid", this.name()), color)
+	MiscFluid(String identifier, int color, double transparency) {
+		this.identifier = identifier;
+		constructor = () -> new FluidType(identifier, String.format("%s.fluid.%s.%s", ExtraTrees.instance.getModId(), "MiscFluid", this.name()), color)
 			.setTransparency(transparency)
 			.setTextures(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "blocks/liquids/liquid"))
 			.setShowHandler((type) -> type == FluidContainerType.GLASS);
 	}
 
+	@SubscribeEvent
+	public static void registerFeatures(RegisterFeatureEvent event) {
+		event.register(MiscFluid.class);
+	}
+
 	@Override
 	public String toString() {
-		return type.toString();
+		return fluid().toString();
 	}
 
 	@Override
 	public String getDisplayName() {
-		return type.getDisplayName();
-	}
-
-	@Override
-	public String getIdentifier() {
-		return type.getIdentifier();
+		return fluid().getDisplayName();
 	}
 
 	@Override
 	public int getColor() {
-		return type.getColor();
+		return fluid().getColor();
 	}
 
 	@Override
-	public FluidStack get(int amount) {
-		return type.stack(amount);
+	public FluidStack stack(int amount) {
+		return fluid().stack(amount);
 	}
 
 	@Override
 	public int getTransparency() {
-		return type.getTransparency();
+		return fluid().getTransparency();
 	}
 
 	@Override
@@ -73,8 +85,45 @@ public enum MiscFluid implements IFluidDefinition, ICocktailLiquid {
 		return 0.0f;
 	}
 
+	/* Feature */
 	@Override
-	public FluidType getType() {
-		return type;
+	public String getIdentifier() {
+		return identifier;
+	}
+
+	@Override
+	public IFeatureConstructor<FluidType> getConstructor() {
+		return constructor;
+	}
+
+	@Override
+	public boolean hasFluid() {
+		return fluid != null;
+	}
+
+	@Nullable
+	@Override
+	public FluidType getFluid() {
+		return fluid;
+	}
+
+	@Override
+	public void setFluid(FluidType fluid) {
+		this.fluid = fluid;
+	}
+
+	@Override
+	public FeatureType getType() {
+		return FeatureType.FLUID;
+	}
+
+	@Override
+	public String getModId() {
+		return Constants.EXTRA_TREES_MOD_ID;
+	}
+
+	@Override
+	public String getModuleId() {
+		return ExtraTreesModuleUIDs.CORE;
 	}
 }

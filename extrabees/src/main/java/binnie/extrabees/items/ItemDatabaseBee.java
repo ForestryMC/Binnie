@@ -33,7 +33,7 @@ public class ItemDatabaseBee extends Item implements IItemModelRegister, IBinnie
 
 	public ItemDatabaseBee() {
 		this.setCreativeTab(Tabs.tabApiculture);
-		this.setUnlocalizedName("dictionary");
+		this.setTranslationKey("dictionary");
 		this.setMaxStackSize(1);
 		setRegistryName("dictionary");
 		setHasSubtypes(true);

@@ -21,7 +21,7 @@ public abstract class BlockETLog extends BlockForestryLog<EnumETLog> {
 		}
 		name += blockNumber;
 		setRegistryName(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, name));
-		setUnlocalizedName(name);
+		setTranslationKey(name);
 	}
 
 	public static List<BlockETLog> create(boolean fireproof) {

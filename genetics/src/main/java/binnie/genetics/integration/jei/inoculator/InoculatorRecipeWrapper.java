@@ -26,7 +26,7 @@ import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IRecipeWrapper;
 
 public class InoculatorRecipeWrapper implements IRecipeWrapper {
-	private static final FluidStack BACTERIA_VECTOR = GeneticLiquid.BacteriaVector.get(InoculatorLogic.BACTERIA_PER_PROCESS);
+	private static final FluidStack BACTERIA_VECTOR = GeneticLiquid.BacteriaVector.stack(InoculatorLogic.BACTERIA_PER_PROCESS);
 
 	private final ItemStack inputSerum;
 	private final ItemStack wildcardTarget;

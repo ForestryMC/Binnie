@@ -16,7 +16,7 @@ public class ItemAnalyst extends ItemCore implements IGuiItem {
 	public ItemAnalyst() {
 		super("analyst");
 		this.setCreativeTab(CreativeTabGenetics.INSTANCE);
-		this.setUnlocalizedName("analyst");
+		this.setTranslationKey("analyst");
 		this.setMaxStackSize(1);
 	}
 

@@ -72,7 +72,7 @@ public class GenepoolLogic extends ComponentProcessSetCost implements IProcess {
 		MachineUtil util = getUtil();
 		ItemStack individual = util.getStack(Genepool.SLOT_BEE);
 		int amount = getDNAAmount(individual);
-		util.fillTank(Genepool.TANK_DNA, GeneticLiquid.RawDNA.get(amount));
+		util.fillTank(Genepool.TANK_DNA, GeneticLiquid.RawDNA.stack(amount));
 		util.deleteStack(Genepool.SLOT_BEE);
 	}
 

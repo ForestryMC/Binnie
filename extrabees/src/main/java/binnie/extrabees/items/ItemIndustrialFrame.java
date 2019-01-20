@@ -22,7 +22,7 @@ public class ItemIndustrialFrame extends Item {
 		this.setCreativeTab(CreativeTabs.MISC);
 		this.setMaxDamage(400);
 		this.setMaxStackSize(1);
-		this.setUnlocalizedName("industrialFrame");
+		this.setTranslationKey("industrialFrame");
 	}
 
 	@Nullable

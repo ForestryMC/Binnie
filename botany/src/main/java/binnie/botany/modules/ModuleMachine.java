@@ -1,6 +1,5 @@
 package binnie.botany.modules;
 
-import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -9,32 +8,20 @@ import net.minecraft.util.ResourceLocation;
 
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
-import forestry.api.core.Tabs;
 import forestry.api.modules.ForestryModule;
 
-import binnie.botany.Botany;
 import binnie.botany.machines.BotanyMachine;
 import binnie.core.Constants;
 import binnie.core.Mods;
-import binnie.core.machines.MachineGroup;
 import binnie.core.modules.BinnieModule;
 import binnie.core.modules.BotanyModuleUIDs;
 import binnie.core.util.RecipeUtil;
 
 @ForestryModule(moduleID = BotanyModuleUIDs.MACHINES, containerID = Constants.BOTANY_MOD_ID, name = "Machines", unlocalizedDescription = "botany.module.machines")
 public class ModuleMachine extends BinnieModule {
-	public static Block blockMachine;
 
 	public ModuleMachine() {
 		super(Constants.BOTANY_MOD_ID, BotanyModuleUIDs.CORE);
-	}
-
-	@Override
-	public void registerItemsAndBlocks() {
-		MachineGroup machineGroup = new MachineGroup(Botany.instance, "machine", "machine", BotanyMachine.values());
-		machineGroup.setCreativeTab(Tabs.tabArboriculture);
-		machineGroup.createContent();
-		blockMachine = machineGroup.block();
 	}
 
 	@Override

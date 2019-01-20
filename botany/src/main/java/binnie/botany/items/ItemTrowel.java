@@ -49,7 +49,7 @@ public class ItemTrowel extends Item implements IItemModelRegister {
 		setMaxDamage(toolMaterial.getMaxUses());
 		setCreativeTab(CreativeTabBotany.INSTANCE);
 		modelName = "trowel_" + materialName;
-		setUnlocalizedName("botany." + modelName);
+		setTranslationKey("botany." + modelName);
 		setRegistryName(modelName);
 	}
 

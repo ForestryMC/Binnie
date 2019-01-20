@@ -16,7 +16,7 @@ public class ItemRegistry extends ItemCore implements IGuiItem {
 	public ItemRegistry() {
 		super("registry");
 		this.setCreativeTab(CreativeTabGenetics.INSTANCE);
-		this.setUnlocalizedName("registry");
+		this.setTranslationKey("registry");
 		this.setMaxStackSize(1);
 	}
 

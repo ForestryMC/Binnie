@@ -19,7 +19,7 @@ import forestry.api.lepidopterology.ButterflyManager;
 import binnie.core.Binnie;
 import binnie.core.Constants;
 import binnie.core.api.genetics.IBreedingSystem;
-import binnie.core.features.IFeatureItem;
+import binnie.core.features.IItemFeature;
 import binnie.core.gui.IBinnieGUID;
 import binnie.core.liquid.FluidContainerType;
 import binnie.core.liquid.ItemFluidContainer;
@@ -88,11 +88,11 @@ public class ExtraTrees extends ModuleProvider {
 
 	@SubscribeEvent(priority = EventPriority.LOW)
 	public void onRegisterItem(RegistryEvent.Register<Item> event) {
-		IFeatureItem glassFeature = FluidContainerType.GLASS.getFeature();
+		IItemFeature glassFeature = FluidContainerType.GLASS;
 		if (glassFeature.hasItem()) {
 			ItemFluidContainer container = (ItemFluidContainer) glassFeature.item();
 			for (Juice juice : Juice.values()) {
-				OreDictionary.registerOre(juice.getOreDict(), container.getContainer(juice.getType()));
+				OreDictionary.registerOre(juice.getOreDict(), container.getContainer(juice.fluid()));
 			}
 		}
 	}

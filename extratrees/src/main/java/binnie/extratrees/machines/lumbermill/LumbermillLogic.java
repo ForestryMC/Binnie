@@ -7,7 +7,7 @@ import binnie.core.machines.MachineUtil;
 import binnie.core.machines.errors.ErrorState;
 import binnie.core.machines.power.ComponentProcessSetCost;
 import binnie.core.machines.power.IProcess;
-import binnie.extratrees.items.ExtraTreeItems;
+import binnie.extratrees.items.ExtraTreeMiscItems;
 import binnie.extratrees.machines.ExtraTreesErrorCode;
 import binnie.extratrees.machines.lumbermill.recipes.LumbermillRecipeManager;
 
@@ -66,8 +66,8 @@ public class LumbermillLogic extends ComponentProcessSetCost implements IProcess
 			return;
 		}
 		util.addStack(LumbermillMachine.SLOT_PLANKS, result);
-		util.addStack(LumbermillMachine.SLOT_SAWDUST, ExtraTreeItems.SAWDUST.get(2));
-		util.addStack(LumbermillMachine.SLOT_BARK, ExtraTreeItems.Bark.get(2));
+		util.addStack(LumbermillMachine.SLOT_SAWDUST, ExtraTreeMiscItems.SAWDUST.stack(2));
+		util.addStack(LumbermillMachine.SLOT_BARK, ExtraTreeMiscItems.Bark.stack(2));
 		util.decreaseStack(LumbermillMachine.SLOT_LOG, 1);
 	}
 

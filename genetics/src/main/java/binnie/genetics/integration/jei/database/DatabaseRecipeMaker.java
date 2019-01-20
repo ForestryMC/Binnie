@@ -18,7 +18,7 @@ public class DatabaseRecipeMaker {
 		List<DatabaseRecipeWrapper> recipes = new ArrayList<>();
 
 		{
-			ItemStack emptySerum = GeneticsItems.EMPTY_SERUM.get(1);
+			ItemStack emptySerum = GeneticsItems.EMPTY_SERUM.stack(1);
 			ItemStack resultSerum = GeneticItems.SERUM.stack(1, OreDictionary.WILDCARD_VALUE);
 			IStackHelper stackHelper = GeneticsJeiPlugin.jeiHelpers.getStackHelper();
 			List<ItemStack> subtypes = stackHelper.toItemStackList(resultSerum);
@@ -32,7 +32,7 @@ public class DatabaseRecipeMaker {
 		}
 
 		{
-			ItemStack emptySerumArray = GeneticsItems.EMPTY_GENOME.get(1);
+			ItemStack emptySerumArray = GeneticsItems.EMPTY_GENOME.stack(1);
 			ItemStack resultSerumArray = GeneticItems.SERUM_ARRAY.stack(1, OreDictionary.WILDCARD_VALUE);
 			IStackHelper stackHelper = GeneticsJeiPlugin.jeiHelpers.getStackHelper();
 			List<ItemStack> subtypes = stackHelper.toItemStackList(resultSerumArray);

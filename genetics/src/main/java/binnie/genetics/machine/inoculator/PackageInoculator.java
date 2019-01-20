@@ -102,7 +102,7 @@ public class PackageInoculator extends GeneticMachine.PackageGeneticBase impleme
 	private static class BacteriaVectorTankValidator extends TankValidator {
 		@Override
 		public boolean isValid(FluidStack object) {
-			return GeneticLiquid.BacteriaVector.get(1).isFluidEqual(object);
+			return GeneticLiquid.BacteriaVector.stack(1).isFluidEqual(object);
 		}
 
 		@Override

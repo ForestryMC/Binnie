@@ -12,8 +12,6 @@ import forestry.api.recipes.RecipeManagers;
 import binnie.core.Binnie;
 import binnie.core.Constants;
 import binnie.core.Mods;
-import binnie.core.features.FeatureItem;
-import binnie.core.item.ItemMisc;
 import binnie.core.liquid.FluidContainerType;
 import binnie.core.liquid.ManagerLiquid;
 import binnie.core.modules.BinnieModule;
@@ -40,37 +38,36 @@ public class ModuleCore extends BinnieModule {
 
 	@Override
 	public void doInit() {
-		FeatureItem<ItemMisc<GeneticsItems>> geneticsItem = GeneticItems.GENETICS;
 		RecipeUtil recipeUtil = new RecipeUtil(Constants.GENETICS_MOD_ID);
-		recipeUtil.addShapelessRecipe("dna_dye_from_glowstone", GeneticsItems.DNADye.get(8),
+		recipeUtil.addShapelessRecipe("dna_dye_from_glowstone", GeneticsItems.DNADye.stack(8),
 			Items.GLOWSTONE_DUST, new ItemStack(Items.DYE, 1, 5)
 		);
-		recipeUtil.addRecipe("laboratory_casing", geneticsItem.stack(GeneticsItems.LaboratoryCasing),
+		recipeUtil.addRecipe("laboratory_casing", GeneticsItems.LaboratoryCasing.stack(),
 			"iii",
 			"iYi",
 			"iii",
 			'i', OreDictUtils.INGOT_IRON, 'Y', Mods.Forestry.item("sturdy_machine")
 		);
-		recipeUtil.addShapelessRecipe("dna_dye", geneticsItem.stack(2, GeneticsItems.DNADye), "dyePurple", "dyeMagenta", "dyePink");
-		recipeUtil.addShapelessRecipe("fluorescent_dye", geneticsItem.stack(2, GeneticsItems.FluorescentDye), "dyeOrange", "dyeYellow", "dustGlowstone");
-		recipeUtil.addShapelessRecipe("growth_medium", geneticsItem.stack(2, GeneticsItems.GrowthMedium), new ItemStack(Items.DYE, 1, 15), Items.SUGAR);
-		recipeUtil.addRecipe("empty_sequencer", geneticsItem.stack(GeneticsItems.EmptySequencer),
+		recipeUtil.addShapelessRecipe("dna_dye", GeneticsItems.DNADye.stack(2), "dyePurple", "dyeMagenta", "dyePink");
+		recipeUtil.addShapelessRecipe("fluorescent_dye", GeneticsItems.FluorescentDye.stack(2), "dyeOrange", "dyeYellow", "dustGlowstone");
+		recipeUtil.addShapelessRecipe("growth_medium", GeneticsItems.GrowthMedium.stack(2), new ItemStack(Items.DYE, 1, 15), Items.SUGAR);
+		recipeUtil.addRecipe("empty_sequencer", GeneticsItems.EmptySequencer.stack(),
 			" p ",
 			"iGi",
 			" p ",
 			'i', "ingotGold", 'G', Blocks.GLASS_PANE, 'p', Items.PAPER
 		);
-		recipeUtil.addRecipe("empty_serum", geneticsItem.stack(GeneticsItems.EMPTY_SERUM),
+		recipeUtil.addRecipe("empty_serum", GeneticsItems.EMPTY_SERUM.stack(),
 			" g ",
 			" G ",
 			"GGG",
 			'g', "ingotGold", 'G', Blocks.GLASS_PANE
 		);
-		recipeUtil.addRecipe("empty_genome", geneticsItem.stack(GeneticsItems.EMPTY_GENOME),
+		recipeUtil.addRecipe("empty_genome", GeneticsItems.EMPTY_GENOME.stack(),
 			"sss",
 			"sss",
 			"sss",
-			's', geneticsItem.stack(GeneticsItems.EMPTY_SERUM)
+			's', GeneticsItems.EMPTY_SERUM.stack()
 		);
 		recipeUtil.addRecipe("cylinder", FluidContainerType.CYLINDER.get(8),
 			" g ",
@@ -78,23 +75,23 @@ public class ModuleCore extends BinnieModule {
 			"   ",
 			'g', Blocks.GLASS_PANE
 		);
-		recipeUtil.addRecipe("integrated_circuit", geneticsItem.stack(GeneticsItems.IntegratedCircuit),
+		recipeUtil.addRecipe("integrated_circuit", GeneticsItems.IntegratedCircuit.stack(),
 			"l g",
 			" c ",
 			"g l",
 			'c', Mods.Forestry.stack("chipsets", 1, 1), 'l', new ItemStack(Items.DYE, 1, 4), 'g', "dustGlowstone"
 		);
-		recipeUtil.addRecipe("integrated_casing", geneticsItem.stack(GeneticsItems.IntegratedCasing),
+		recipeUtil.addRecipe("integrated_casing", GeneticsItems.IntegratedCasing.stack(),
 			"ccc",
 			"cdc",
 			"ccc",
-			'c', geneticsItem.stack(GeneticsItems.IntegratedCircuit), 'd', geneticsItem.stack(GeneticsItems.LaboratoryCasing)
+			'c', GeneticsItems.IntegratedCircuit.stack(), 'd', GeneticsItems.LaboratoryCasing.stack()
 		);
-		recipeUtil.addRecipe("integrated_cpu", geneticsItem.stack(GeneticsItems.IntegratedCPU),
+		recipeUtil.addRecipe("integrated_cpu", GeneticsItems.IntegratedCPU.stack(),
 			"ccc",
 			"cdc",
 			"ccc",
-			'c', geneticsItem.stack(GeneticsItems.IntegratedCircuit), 'd', Items.DIAMOND
+			'c', GeneticsItems.IntegratedCircuit.stack(), 'd', Items.DIAMOND
 		);
 
 
@@ -105,16 +102,16 @@ public class ModuleCore extends BinnieModule {
 			"RDR",
 			'#', Blocks.GLASS_PANE, 'X', Items.DIAMOND, 'Y', Items.DIAMOND, 'R', Items.REDSTONE, 'D', Items.ENDER_EYE, 'E', Blocks.OBSIDIAN
 		);
-		GameRegistry.addSmelting(GeneticItems.SEQUENCE.item(), geneticsItem.stack(GeneticsItems.EmptySequencer), 0.0f);
-		GameRegistry.addSmelting(GeneticItems.SERUM.item(), geneticsItem.stack(GeneticsItems.EMPTY_SERUM), 0.0f);
-		GameRegistry.addSmelting(GeneticItems.SERUM_ARRAY.item(), geneticsItem.stack(GeneticsItems.EMPTY_GENOME), 0.0f);
+		GameRegistry.addSmelting(GeneticItems.SEQUENCE.item(), GeneticsItems.EmptySequencer.stack(), 0.0f);
+		GameRegistry.addSmelting(GeneticItems.SERUM.item(), GeneticsItems.EMPTY_SERUM.stack(), 0.0f);
+		GameRegistry.addSmelting(GeneticItems.SERUM_ARRAY.item(), GeneticsItems.EMPTY_GENOME.stack(), 0.0f);
 
 		recipeUtil.addRecipe("analyst",
 			GeneticItems.ANALYST.stack(),
 			" c ",
 			"cac",
 			" d ",
-			'c', geneticsItem.stack(GeneticsItems.IntegratedCircuit), 'a', Mods.Forestry.item("portable_alyzer"), 'd', new ItemStack(Items.DIAMOND)
+			'c', GeneticsItems.IntegratedCircuit.stack(), 'a', Mods.Forestry.item("portable_alyzer"), 'd', new ItemStack(Items.DIAMOND)
 		);
 
 		RegistryRecipe recipe = RegistryRecipe.create(GeneticItems.REGISTRY.item(), GeneticItems.GENETICS.item());

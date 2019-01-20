@@ -24,11 +24,11 @@ public abstract class BlockETSlab extends BlockForestrySlab<EnumETLog> {
 		}
 		name += blockNumber;
 		setRegistryName(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, name));
-		setUnlocalizedName(name);
+		setTranslationKey(name);
 	}
 
 	@Override
-	public String getUnlocalizedName(int meta) {
+	public String getTranslationKey(int meta) {
 		EnumETLog woodType = getWoodType(meta);
 		return WoodManager.getDisplayName(this, woodType);
 	}

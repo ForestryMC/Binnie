@@ -28,15 +28,15 @@ public class Incubator {
 	private static IncubatorRecipeLarvae LARVAE_RECIPE;
 
 	public static void addRecipes() {
-		Incubator.RECIPES.add(new IncubatorRecipe(GeneticsItems.GrowthMedium.get(1), new FluidStack(FluidRegistry.WATER, 25), GeneticLiquid.GrowthMedium.get(25), 0.2f));
-		Incubator.RECIPES.add(new IncubatorRecipe(new ItemStack(Items.WHEAT), GeneticLiquid.GrowthMedium.get(25), GeneticLiquid.Bacteria.get(5), 0.2f));
-		Incubator.RECIPES.add(new IncubatorRecipe(GeneticsItems.GrowthMedium.get(1), GeneticLiquid.Bacteria.get(0), GeneticLiquid.Bacteria.get(5), 0.05f));
-		Incubator.RECIPES.add(new IncubatorRecipe(new ItemStack(Items.SUGAR), GeneticLiquid.Bacteria.get(2), null, 0.5f, 0.2f)
-			.setOutputStack(GeneticsItems.Enzyme.get(1)));
-		Incubator.RECIPES.add(new IncubatorRecipe(GeneticsItems.GrowthMedium.get(1), GeneticLiquid.BacteriaPoly.get(0), GeneticLiquid.BacteriaPoly.get(5), 0.05f));
-		Incubator.RECIPES.add(new IncubatorRecipe(GeneticsItems.GrowthMedium.get(1), GeneticLiquid.BacteriaVector.get(0), GeneticLiquid.BacteriaVector.get(5), 0.05f));
-		Incubator.RECIPES.add(new IncubatorRecipe(new ItemStack(Items.DYE, 1, 15), GeneticLiquid.Bacteria.get(10), GeneticLiquid.BacteriaPoly.get(10), 0.1f));
-		Incubator.RECIPES.add(new IncubatorRecipe(new ItemStack(Items.BLAZE_POWDER), GeneticLiquid.Bacteria.get(10), GeneticLiquid.BacteriaVector.get(10), 0.05f));
+		Incubator.RECIPES.add(new IncubatorRecipe(GeneticsItems.GrowthMedium.stack(1), new FluidStack(FluidRegistry.WATER, 25), GeneticLiquid.GrowthMedium.stack(25), 0.2f));
+		Incubator.RECIPES.add(new IncubatorRecipe(new ItemStack(Items.WHEAT), GeneticLiquid.GrowthMedium.stack(25), GeneticLiquid.Bacteria.stack(5), 0.2f));
+		Incubator.RECIPES.add(new IncubatorRecipe(GeneticsItems.GrowthMedium.stack(1), GeneticLiquid.Bacteria.stack(0), GeneticLiquid.Bacteria.stack(5), 0.05f));
+		Incubator.RECIPES.add(new IncubatorRecipe(new ItemStack(Items.SUGAR), GeneticLiquid.Bacteria.stack(2), null, 0.5f, 0.2f)
+			.setOutputStack(GeneticsItems.Enzyme.stack(1)));
+		Incubator.RECIPES.add(new IncubatorRecipe(GeneticsItems.GrowthMedium.stack(1), GeneticLiquid.BacteriaPoly.stack(0), GeneticLiquid.BacteriaPoly.stack(5), 0.05f));
+		Incubator.RECIPES.add(new IncubatorRecipe(GeneticsItems.GrowthMedium.stack(1), GeneticLiquid.BacteriaVector.stack(0), GeneticLiquid.BacteriaVector.stack(5), 0.05f));
+		Incubator.RECIPES.add(new IncubatorRecipe(new ItemStack(Items.DYE, 1, 15), GeneticLiquid.Bacteria.stack(10), GeneticLiquid.BacteriaPoly.stack(10), 0.1f));
+		Incubator.RECIPES.add(new IncubatorRecipe(new ItemStack(Items.BLAZE_POWDER), GeneticLiquid.Bacteria.stack(10), GeneticLiquid.BacteriaVector.stack(10), 0.05f));
 		if (BinnieCore.isApicultureActive()) {
 			ItemStack beeLarvaeWildcard = Mods.Forestry.stack("bee_larvae_ge", 1, OreDictionary.WILDCARD_VALUE);
 			LARVAE_RECIPE = new IncubatorRecipeLarvae(beeLarvaeWildcard);

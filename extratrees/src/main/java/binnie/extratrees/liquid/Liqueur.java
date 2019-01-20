@@ -1,11 +1,16 @@
 package binnie.extratrees.liquid;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.util.ResourceLocation;
 
-import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import binnie.core.Constants;
-import binnie.core.features.FeatureProvider;
+import binnie.core.features.FeatureType;
+import binnie.core.features.IFeatureConstructor;
+import binnie.core.features.RegisterFeatureEvent;
 import binnie.core.liquid.FluidContainerType;
 import binnie.core.liquid.FluidType;
 import binnie.core.liquid.IFluidDefinition;
@@ -15,7 +20,7 @@ import binnie.extratrees.alcohol.CocktailLiquid;
 import binnie.extratrees.alcohol.ICocktailIngredient;
 import binnie.extratrees.alcohol.ICocktailIngredientProvider;
 
-@FeatureProvider(containerId = Constants.EXTRA_TREES_MOD_ID, moduleID = ExtraTreesModuleUIDs.ALCOHOL)
+@Mod.EventBusSubscriber(modid = Constants.EXTRA_TREES_MOD_ID)
 public enum Liqueur implements IFluidDefinition, ICocktailIngredientProvider {
 	Almond("liqueur.almond", 14966063, 0.3, 0.2F),
 	Orange("liqueur.orange", 16353536, 0.4, 0.2F),
@@ -55,17 +60,28 @@ public enum Liqueur implements IFluidDefinition, ICocktailIngredientProvider {
 		Liqueur.Raspberry.addFlavour("cropRaspberry");
 	}
 
-	private final float abv;
-	private final FluidType type;
-	private final CocktailLiquid cocktailLiquid;
+	/* Feature */
+	private final IFeatureConstructor<FluidType> constructor;
+	private final String identifier;
+	@Nullable
+	private FluidType fluid;
 
-	Liqueur(String ident, int color, double transparency, float abv) {
+	private final float abv;
+	@Nullable
+	private CocktailLiquid cocktailLiquid;
+
+	Liqueur(String identifier, int color, double transparency, float abv) {
 		this.abv = abv;
-		type = ExtraTrees.instance.registry(ExtraTreesModuleUIDs.ALCOHOL).createFluid(ident, String.format("%s.fluid.%s.%s", ExtraTrees.instance.getModId(), "Liqueur", this.name()), color)
+		this.identifier = identifier;
+		constructor = () -> new FluidType(identifier, String.format("%s.fluid.%s.%s", ExtraTrees.instance.getModId(), "Liqueur", this.name()), color)
 			.setTransparency(transparency)
 			.setTextures(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "blocks/liquids/liquid"))
 			.setShowHandler((type) -> type == FluidContainerType.GLASS);
-		cocktailLiquid = new CocktailLiquid(type, abv);
+	}
+
+	@SubscribeEvent
+	public static void registerFeatures(RegisterFeatureEvent event) {
+		event.register(Liqueur.class);
 	}
 
 	private void addFlavour(String oreDict) {
@@ -73,21 +89,58 @@ public enum Liqueur implements IFluidDefinition, ICocktailIngredientProvider {
 
 	@Override
 	public String toString() {
-		return type.toString();
-	}
-
-	@Override
-	public FluidStack get(int amount) {
-		return type.stack(amount);
-	}
-
-	@Override
-	public FluidType getType() {
-		return type;
+		return fluid.toString();
 	}
 
 	@Override
 	public ICocktailIngredient getIngredient() {
-		return cocktailLiquid;
+		if (cocktailLiquid != null) {
+			return cocktailLiquid;
+		} else {
+			throw new IllegalStateException("Called feature getter method before content creation was called in the pre init.");
+		}
+	}
+
+	/* Feature */
+	@Override
+	public String getIdentifier() {
+		return identifier;
+	}
+
+	@Override
+	public IFeatureConstructor<FluidType> getConstructor() {
+		return constructor;
+	}
+
+	@Override
+	public boolean hasFluid() {
+		return fluid != null;
+	}
+
+	@Nullable
+	@Override
+	public FluidType getFluid() {
+		return fluid;
+	}
+
+	@Override
+	public void setFluid(FluidType fluid) {
+		this.fluid = fluid;
+		cocktailLiquid = new CocktailLiquid(this.fluid, 0.0F);
+	}
+
+	@Override
+	public FeatureType getType() {
+		return FeatureType.FLUID;
+	}
+
+	@Override
+	public String getModId() {
+		return Constants.EXTRA_TREES_MOD_ID;
+	}
+
+	@Override
+	public String getModuleId() {
+		return ExtraTreesModuleUIDs.ALCOHOL;
 	}
 }

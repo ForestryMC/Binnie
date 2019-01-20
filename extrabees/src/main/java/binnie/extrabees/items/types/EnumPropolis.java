@@ -53,7 +53,7 @@ public enum EnumPropolis implements IItemSubtypeMisc {
 	public void addRecipe() {
 		FluidStack liquid = Utils.getFluidFromName(this.liquidName, 500);
 		if (liquid != null) {
-			RecipeManagers.squeezerManager.addRecipe(20, this.get(1), liquid, ItemStack.EMPTY, 0);
+			RecipeManagers.squeezerManager.addRecipe(20, this.stack(1), liquid, ItemStack.EMPTY, 0);
 		}
 	}
 
@@ -73,7 +73,7 @@ public enum EnumPropolis implements IItemSubtypeMisc {
 	}
 
 	@Override
-	public ItemStack get(int amount) {
+	public ItemStack stack(int amount) {
 		return new ItemStack(ModuleCore.propolis, amount, this.ordinal());
 	}
 

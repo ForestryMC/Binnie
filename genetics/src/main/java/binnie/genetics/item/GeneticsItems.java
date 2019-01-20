@@ -48,7 +48,7 @@ public enum GeneticsItems implements IItemSubtypeMisc {
 	}
 
 	@Override
-	public ItemStack get(int size) {
+	public ItemStack stack(int size) {
 		return GeneticItems.GENETICS.stack(this);
 	}
 

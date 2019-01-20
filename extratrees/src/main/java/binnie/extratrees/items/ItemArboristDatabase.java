@@ -31,7 +31,7 @@ public class ItemArboristDatabase extends Item implements IItemModelRegister, IB
 
 	public ItemArboristDatabase() {
 		setCreativeTab(Tabs.tabArboriculture);
-		setUnlocalizedName("databaseTree");
+		setTranslationKey("databaseTree");
 		setRegistryName("databaseTree");
 		setMaxStackSize(1);
 	}

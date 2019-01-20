@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 
 import binnie.botany.machines.designer.PackageDesigner;
 import binnie.botany.machines.designer.Tileworker;
-import binnie.botany.modules.ModuleMachine;
+import binnie.botany.modules.features.BotanyMachines;
 import binnie.core.Constants;
 import binnie.core.machines.IMachineType;
 import binnie.core.machines.MachinePackage;
@@ -33,7 +33,7 @@ public enum BotanyMachine implements IMachineType {
 	}
 
 	public ItemStack get(int i) {
-		return new ItemStack(ModuleMachine.blockMachine, i, this.ordinal());
+		return BotanyMachines.MACHINE.stack(i, this.ordinal());
 	}
 
 }
