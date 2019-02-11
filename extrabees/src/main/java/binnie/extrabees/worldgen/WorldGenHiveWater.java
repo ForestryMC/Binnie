@@ -1,36 +1,58 @@
 package binnie.extrabees.worldgen;
 
-import java.util.Random;
+import javax.annotation.Nullable;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import binnie.extrabees.blocks.BlockExtraBeeHives;
-import binnie.extrabees.blocks.type.EnumHiveType;
-import binnie.extrabees.modules.ModuleCore;
+import forestry.api.apiculture.hives.IHiveGen;
 
-public class WorldGenHiveWater extends WorldGenHive {
+public class WorldGenHiveWater implements IHiveGen {
 
-	public WorldGenHiveWater(int rate) {
-		super(rate);
+	public WorldGenHiveWater() {
+	}
+
+	@Nullable
+	@Override
+	public BlockPos getPosForHive(World world, int x, int z) {
+		// get to the ground
+		final BlockPos topPos = world.getHeight(new BlockPos(x, 0, z));
+		int maxHeight = topPos.getY();
+		if (topPos.getY() == 0) {
+			return null;
+		}
+
+		final BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos(topPos);
+
+		for (int i = 0; i < 10; i++) {
+			pos.setY(world.rand.nextInt(maxHeight));
+			if (isValidLocation(world, pos)) {
+				return pos;
+			}
+		}
+
+		return null;
+	}
+
+
+	@Override
+	public boolean isValidLocation(World world, BlockPos pos) {
+		if (world.getBlockState(pos).getBlock() != Blocks.WATER) {
+			return false;
+		}
+
+		Material materialBelow = world.getBlockState(pos.down()).getMaterial();
+		return materialBelow == Material.SAND ||
+				materialBelow == Material.CLAY ||
+				materialBelow == Material.GROUND ||
+				materialBelow == Material.ROCK;
 	}
 
 	@Override
-	public boolean generate(final World world, final Random random, final BlockPos blockPos) {
-		final Block block = world.getBlockState(blockPos).getBlock();
-		if (block != Blocks.WATER && block != Blocks.FLOWING_WATER) {
-			return false;
-		}
-		final Material materialBlockBelow = world.getBlockState(blockPos.down()).getMaterial();
-		if (materialBlockBelow == Material.SAND ||
-			materialBlockBelow == Material.CLAY ||
-			materialBlockBelow == Material.GROUND ||
-			materialBlockBelow == Material.ROCK) {
-			world.setBlockState(blockPos, ModuleCore.hive.getDefaultState().withProperty(BlockExtraBeeHives.HIVE_TYPE, EnumHiveType.WATER));
-		}
-		return true;
+	public boolean canReplace(IBlockState blockState, World world, BlockPos pos) {
+		return world.getBlockState(pos).getBlock() == Blocks.WATER;
 	}
 }
