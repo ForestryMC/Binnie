@@ -45,7 +45,6 @@ import binnie.core.machines.errors.ErrorStateRegistry;
 import binnie.core.machines.storage.ModuleStorage;
 import binnie.core.models.ModelManager;
 import binnie.core.modules.ModuleContainer;
-import binnie.core.modules.ModuleManager;
 import binnie.core.network.BinnieCorePacketID;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.network.IPacketID;
@@ -166,7 +165,6 @@ public final class BinnieCore extends AbstractMod {
 	@Mod.EventHandler
 	public void preInit(final FMLPreInitializationEvent evt) {
 		MinecraftForge.EVENT_BUS.register(Binnie.LIQUID);
-		MinecraftForge.EVENT_BUS.register(ModuleManager.class);
 		Binnie.CONFIGURATION.registerConfiguration(ConfigurationMods.class, this);
 		for (IModuleContainer container : ForestryAPI.moduleManager.getContainers()) {
 			if (!(container instanceof ModuleContainer)) {

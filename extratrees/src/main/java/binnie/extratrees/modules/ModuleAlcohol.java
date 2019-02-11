@@ -11,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
 
+import forestry.api.core.ForestryAPI;
 import forestry.api.modules.ForestryModule;
 import forestry.api.recipes.ISqueezerRecipe;
 import forestry.api.recipes.RecipeManagers;
@@ -24,7 +25,6 @@ import binnie.core.liquid.FluidType;
 import binnie.core.liquid.IFluidDefinition;
 import binnie.core.modules.BlankModule;
 import binnie.core.modules.ExtraTreesModuleUIDs;
-import binnie.core.modules.ModuleManager;
 import binnie.core.util.OreDictionaryUtil;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.alcohol.GlasswareType;
@@ -77,7 +77,7 @@ public class ModuleAlcohol extends BlankModule {
 		IBreweryManager breweryManager = ExtraTreesRecipeManager.breweryManager;
 		IFruitPressManager fruitPressManager = ExtraTreesRecipeManager.fruitPressManager;
 
-		if (ModuleManager.isModuleEnabled("forestry", "apiculture")) {
+		if (ForestryAPI.moduleManager.isModuleEnabled("forestry", "apiculture")) {
 			ItemStack wax = Mods.Forestry.stack("beeswax");
 			ItemStack waxCast = Mods.Forestry.stackWildcard("wax_cast");
 			for (GlasswareType glasswareType : GlasswareType.values()) {

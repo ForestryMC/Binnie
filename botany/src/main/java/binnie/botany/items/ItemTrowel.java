@@ -25,6 +25,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import forestry.api.core.ForestryAPI;
 import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
 
@@ -37,7 +38,6 @@ import binnie.botany.core.BotanyCore;
 import binnie.botany.modules.ModuleFlowers;
 import binnie.core.Constants;
 import binnie.core.modules.BotanyModuleUIDs;
-import binnie.core.modules.ModuleManager;
 
 public class ItemTrowel extends Item implements IItemModelRegister {
 	protected final ToolMaterial theToolMaterial;
@@ -68,7 +68,7 @@ public class ItemTrowel extends Item implements IItemModelRegister {
 		}
 
 		Block block = worldIn.getBlockState(pos).getBlock();
-		if (facing == EnumFacing.DOWN || (!worldIn.isAirBlock(pos.up()) && ModuleManager.isModuleEnabled(Constants.BOTANY_MOD_ID, BotanyModuleUIDs.FLOWERS) && worldIn.getBlockState(pos.up()).getBlock() != ModuleFlowers.flower) || (block != Blocks.GRASS && block != Blocks.DIRT && block != Blocks.GRASS_PATH)) {
+		if (facing == EnumFacing.DOWN || (!worldIn.isAirBlock(pos.up()) && ForestryAPI.moduleManager.isModuleEnabled(Constants.BOTANY_MOD_ID, BotanyModuleUIDs.FLOWERS) && worldIn.getBlockState(pos.up()).getBlock() != ModuleFlowers.flower) || (block != Blocks.GRASS && block != Blocks.DIRT && block != Blocks.GRASS_PATH)) {
 			return EnumActionResult.PASS;
 		}
 

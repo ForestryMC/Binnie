@@ -6,6 +6,8 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
+import forestry.api.core.ForestryAPI;
+
 import binnie.botany.api.genetics.EnumFlowerChromosome;
 import binnie.botany.genetics.TolerancePh;
 import binnie.botany.genetics.gui.analyst.FlowerAnalystPagePlugin;
@@ -17,7 +19,6 @@ import binnie.core.Constants;
 import binnie.core.gui.IBinnieGUID;
 import binnie.core.modules.BlankModuleContainer;
 import binnie.core.modules.BotanyModuleUIDs;
-import binnie.core.modules.ModuleManager;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.network.IPacketID;
 import binnie.core.proxy.IProxyCore;
@@ -53,7 +54,7 @@ public class Botany extends BlankModuleContainer {
 			analystManager.registerAnalystPagePlugin(new FlowerAnalystPagePlugin());
 		}
 
-		if (ModuleManager.isModuleEnabled(Constants.BOTANY_MOD_ID, BotanyModuleUIDs.FLOWERS)) {
+		if (ForestryAPI.moduleManager.isModuleEnabled(Constants.BOTANY_MOD_ID, BotanyModuleUIDs.FLOWERS)) {
 			IAcclimatiserManager acclimatiserManager = GeneticsApi.acclimatiserManager;
 			if (acclimatiserManager != null) {
 				acclimatiserManager.addTolerance(EnumFlowerChromosome.HUMIDITY_TOLERANCE, acclimatiserManager.getHumidityToleranceType());

@@ -25,6 +25,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
 import forestry.api.apiculture.FlowerManager;
+import forestry.api.core.ForestryAPI;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IChromosomeType;
 import forestry.api.modules.ForestryModule;
@@ -57,7 +58,6 @@ import binnie.core.Constants;
 import binnie.core.api.genetics.IBreedingSystem;
 import binnie.core.modules.BlankModule;
 import binnie.core.modules.BotanyModuleUIDs;
-import binnie.core.modules.ModuleManager;
 import binnie.core.util.RecipeUtil;
 import binnie.core.util.TileUtil;
 
@@ -90,7 +90,7 @@ public class ModuleFlowers extends BlankModule {
 		FlowerDefinition.preInitFlowers();
 
 		IBackpackInterface backpackInterface = BackpackManager.backpackInterface;
-		if (ModuleManager.isModuleEnabled("forestry", "backpacks")) {
+		if (ForestryAPI.moduleManager.isModuleEnabled("forestry", "backpacks")) {
 			Predicate<ItemStack> filter = BackpackManager.backpackInterface.createNaturalistBackpackFilter("rootFlowers");
 			BackpackDefinition definition = new BackpackDefinition(new Color(0xf6e83e), Color.WHITE, filter);
 			BackpackManager.backpackInterface.registerBackpackDefinition("botanist", definition);
@@ -125,12 +125,12 @@ public class ModuleFlowers extends BlankModule {
 
 	@Override
 	public void doInit() {
-		if (!ModuleManager.isModuleEnabled("forestry", "apiculture")) {
+		if (!ForestryAPI.moduleManager.isModuleEnabled("forestry", "apiculture")) {
 			try {
 				Method createAlleles = ReflectionHelper.findMethod(AlleleHelper.class, "createAlleles", null, Class.class, IChromosomeType[].class);
 				createAlleles.invoke(AlleleHelper.getInstance(), EnumAllele.Fertility.class, new EnumFlowerChromosome[]{EnumFlowerChromosome.FERTILITY});
 				createAlleles.invoke(AlleleHelper.getInstance(), EnumAllele.Territory.class, new EnumFlowerChromosome[]{EnumFlowerChromosome.TERRITORY});
-				if (!ModuleManager.isModuleEnabled("forestry", "lepidopterology")) {
+				if (!ForestryAPI.moduleManager.isModuleEnabled("forestry", "lepidopterology")) {
 					createAlleles.invoke(AlleleHelper.getInstance(), EnumAllele.Tolerance.class, new EnumFlowerChromosome[]{EnumFlowerChromosome.TEMPERATURE_TOLERANCE, EnumFlowerChromosome.HUMIDITY_TOLERANCE});
 					createAlleles.invoke(AlleleHelper.getInstance(), EnumAllele.Lifespan.class, new EnumFlowerChromosome[]{EnumFlowerChromosome.LIFESPAN});
 				}
