@@ -26,9 +26,11 @@ public class VillageHopeField extends StructureVillagePieces.Village {
 	private Block cropTypeC;
 	private Block cropTypeD;
 
+	//this is necessary for constructing when loading the world
 	@SuppressWarnings("unused")
 	public VillageHopeField() {
 	}
+
 
 	public VillageHopeField(StructureVillagePieces.Start start, int type, Random rand, StructureBoundingBox boundingBox, EnumFacing facing) {
 		super(start, type);

@@ -21,7 +21,7 @@ public class ConfigurationMain implements IConfigHandler {
 	public void loadConfig() {
 		//TODO: Localise comment
 		//Core Module
-		hopeField = config.getBoolean("village.hopeField", "general", alterLemon, "Adds a hope field to the village generation.");
+		hopeField = config.getBoolean("village.hopeField", "general", hopeField, "Adds a hope field to the village generation.");
 		//Wood Module
 		alterLemon = config.getBoolean("lemon.citrus.family", "general", alterLemon, "Uses reflection to convert the Forestry lemon tree to the Citrus family.");
 		if (config.hasChanged()) {
