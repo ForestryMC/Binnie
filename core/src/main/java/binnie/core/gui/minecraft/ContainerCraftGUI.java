@@ -143,11 +143,14 @@ public class ContainerCraftGUI extends Container {
 		TransferResult transferResult = request.transfer(player, true);
 		if (transferResult.isSuccess()) {
 			NonNullList<ItemStack> results = transferResult.getRemaining();
-			if (results.size() == 1) {
-				final ItemStack itemstack = results.get(0);
+			if (results.size() > 0) {
+				final ItemStack itemstack = results.remove(results.size() - 1);
 				final Slot shiftClickedSlot = this.inventorySlots.get(slotnumber);
 				shiftClickedSlot.putStack(itemstack);
 				shiftClickedSlot.onSlotChanged();
+				for (ItemStack remaining : results) {
+					player.inventory.addItemStackToInventory(remaining);
+				}
 			}
 		}
 		return ItemStack.EMPTY;
@@ -205,9 +208,11 @@ public class ContainerCraftGUI extends Container {
 				if (results.size() > 0) {
 					IItemHandler itemHandler = new InvWrapper(inventory);
 					for (ItemStack remaining : results) {
-						ItemHandlerHelper.insertItemStacked(itemHandler, remaining, false);
+						ItemStack stack = ItemHandlerHelper.insertItemStacked(itemHandler, remaining, false);
+						player.inventory.addItemStackToInventory(stack);
 					}
 				}
+
 			}
 		}
 	}
