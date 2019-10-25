@@ -202,7 +202,7 @@ public enum AlleleETFruitDefinition {
 			addProduct(Food.PEAR.get(1), 1.0f);
 		}
 	},
-	OsangeOsange("osange_osange", 10, 9934674, 10665767, FruitSprite.LARGER, POMES) {
+	OsangeOrange("osange_orange", 10, 9934674, 10665767, FruitSprite.LARGER, POMES) {
 		@Override
 		protected void addProducts() {
 			addProduct(Food.OSANGE_ORANGE.get(1), 1.0f);
@@ -244,10 +244,10 @@ public enum AlleleETFruitDefinition {
 			addProduct(Food.CASHEW.get(1), 1.0f);
 		}
 	},
-	Avacado("avacado", 10, 10272370, 2170640, FruitSprite.PEAR, JUNGLE) {
+	Avocado("avocado", 10, 10272370, 2170640, FruitSprite.PEAR, JUNGLE) {
 		@Override
 		protected void addProducts() {
-			addProduct(Food.AVACADO.get(1), 1.0f);
+			addProduct(Food.AVOCADO.get(1), 1.0f);
 		}
 	},
 	Nutmeg("nutmeg", 9, 14861101, 11305813, FruitSprite.TINY, JUNGLE) {

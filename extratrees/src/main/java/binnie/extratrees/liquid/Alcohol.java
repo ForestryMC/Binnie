@@ -20,67 +20,67 @@ public enum Alcohol implements IFluidDefinition, ICocktailIngredientProvider {
 	Apple("cider.apple", 16432700, 0.3, 0.05F) {
 		@Override
 		protected void init() {
-			addFementation(Juice.Apple);
+			addFermentation(Juice.Apple);
 		}
 	},
 	Apricot("wine.apricot", 15781686, 0.3, 0.1F) {
 		@Override
 		protected void init() {
-			addFementation(Juice.Apricot);
+			addFermentation(Juice.Apricot);
 		}
 	},
 	Banana("wine.banana", 14993485, 0.3, 0.1F) {
 		@Override
 		protected void init() {
-			addFementation(Juice.Banana);
+			addFermentation(Juice.Banana);
 		}
 	},
 	Cherry("wine.cherry", 11207702, 0.3, 0.1F) {
 		@Override
 		protected void init() {
-			addFementation(Juice.Cherry);
+			addFermentation(Juice.Cherry);
 		}
 	},
 	Elderberry("wine.elderberry", 9764865, 0.3, 0.1F) {
 		@Override
 		protected void init() {
-			addFementation(Juice.Elderberry);
+			addFermentation(Juice.Elderberry);
 		}
 	},
 	Peach("cider.peach", 15361563, 0.3, 0.05F) {
 		@Override
 		protected void init() {
-			addFementation(Juice.Peach);
+			addFermentation(Juice.Peach);
 		}
 	},
 	Pear("ciderpear", 15061095, 0.3, 0.05F) {
 		@Override
 		protected void init() {
-			addFementation(Juice.Pear);
+			addFermentation(Juice.Pear);
 		}
 	},
 	Plum("wine.plum", 12063752, 0.3, 0.1F) {
 		@Override
 		protected void init() {
-			addFementation(Juice.Plum);
+			addFermentation(Juice.Plum);
 		}
 	},
 	Carrot("wine.carrot", 16219394, 0.3, 0.1F) {
 		@Override
 		protected void init() {
-			addFementation(Juice.Carrot);
+			addFermentation(Juice.Carrot);
 		}
 	},
 	WhiteWine("wine.white", 15587989, 0.1, 0.1F) {
 		@Override
 		protected void init() {
-			addFementation(Juice.WhiteGrape);
+			addFermentation(Juice.WhiteGrape);
 		}
 	},
 	RedWine("wine.red", 7670539, 0.2, 0.1F) {
 		@Override
 		protected void init() {
-			addFementation(Juice.RedGrape);
+			addFermentation(Juice.RedGrape);
 		}
 	},
 	SparklingWine("wine.sparkling", 16709566, 0.1, 0.1F),
@@ -88,34 +88,34 @@ public enum Alcohol implements IFluidDefinition, ICocktailIngredientProvider {
 	Potato("fermented.potatoes", 12028240, 0.8, 0.1F) {
 		@Override
 		protected void init() {
-			addFementation("cropPotato");
+			addFermentation("cropPotato");
 		}
 	},
 	Citrus("wine.citrus", 16776960, 0.2, 0.1F) {
 		@Override
 		protected void init() {
-			addFementation(Juice.Lemon);
-			addFementation(Juice.Lime);
-			addFementation(Juice.Orange);
-			addFementation(Juice.Grapefruit);
+			addFermentation(Juice.Lemon);
+			addFermentation(Juice.Lime);
+			addFermentation(Juice.Orange);
+			addFermentation(Juice.Grapefruit);
 		}
 	},
 	Cranberry("wine.cranberry", 11599874, 0.2, 0.1F) {
 		@Override
 		protected void init() {
-			addFementation(Juice.Cranberry);
+			addFermentation(Juice.Cranberry);
 		}
 	},
 	Pineapple("wine.pineapple", 14724150, 0.2, 0.1F) {
 		@Override
 		protected void init() {
-			addFementation(Juice.Pineapple);
+			addFermentation(Juice.Pineapple);
 		}
 	},
 	Tomato("wine.tomato", 12458521, 0.2, 0.1F) {
 		@Override
 		protected void init() {
-			addFementation(Juice.Tomato);
+			addFermentation(Juice.Tomato);
 		}
 	},
 	Fruit("juice", 16432700, 0.2, 0.1F),
@@ -164,11 +164,11 @@ public enum Alcohol implements IFluidDefinition, ICocktailIngredientProvider {
 		return fermentationLiquid;
 	}
 
-	protected void addFementation(final Juice juice) {
+	protected void addFermentation(final Juice juice) {
 		this.fermentationLiquid.add(juice.getType().getIdentifier());
 	}
 
-	protected void addFementation(final String oreDict) {
+	protected void addFermentation(final String oreDict) {
 		this.fermentationSolid = oreDict;
 	}
 

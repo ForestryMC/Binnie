@@ -101,7 +101,7 @@ public class GardeningManager implements IGardeningManager {
 
 	@Override
 	public float getBiomeMoisture(World world, BlockPos pos) {
-		IClimateState info = ClimateManager.climateRoot.getState(world, pos);
+		IClimateState info = ClimateManager.climateRoot.getBiomeState(world, pos);
 		double humidity = info.getHumidity();
 		double temperature = info.getTemperature();
 		double moisture = 3.2 * (humidity - 0.5) - 0.4 * (1.0 + temperature + 0.5 * temperature * temperature) + 1.1 - 1.6 * (temperature - 0.9) * (temperature - 0.9) - 0.002 * (pos.getY() - 64);
@@ -110,7 +110,7 @@ public class GardeningManager implements IGardeningManager {
 
 	@Override
 	public float getBiomePH(World world, BlockPos pos) {
-		IClimateState info = ClimateManager.climateRoot.getState(world, pos);
+		IClimateState info = ClimateManager.climateRoot.getBiomeState(world, pos);
 		double humidity = info.getHumidity();
 		double temperature = info.getTemperature();
 		return (float) (-3.0 * (humidity - 0.5) + 0.5 * (temperature - 0.699999988079071) * (temperature - 0.699999988079071) + 0.02f * (pos.getY() - 64) - 0.15000000596046448);

@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import forestry.arboriculture.blocks.BlockSapling;
 import net.minecraft.block.Block;
+import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
@@ -332,7 +334,15 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 				return storedData;
 			}
 			if (ExtraBeesFlowers.SAPLING.isAcceptedFlower(world, position)) {
-				ItemDye.applyBonemeal(new ItemStack(Blocks.DIRT, 1), world, position);
+				IBlockState iBlockState = world.getBlockState(position);
+				if(iBlockState.getBlock() instanceof IGrowable) {
+					IGrowable iGrowable = (IGrowable) iBlockState.getBlock();
+					if(iGrowable.canGrow(world, position, iBlockState, world.isRemote))	{
+						if (!world.isRemote) {
+							iGrowable.grow(world, world.rand, position, iBlockState);
+						}
+					}
+				}
 				return storedData;
 			}
 			return storedData;

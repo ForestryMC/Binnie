@@ -120,7 +120,7 @@ public class SearchDialog extends Dialog {
 		@SideOnly(Side.CLIENT)
 		public void onRenderBackground(int guiWidth, int guiHeight) {
 			RenderUtil.setColour(11184810);
-			CraftGUI.RENDER.texture(CraftGUITexture.OUTLINE, searchDialog.windowCompartment.getArea().inset(new Border(0, 6, 0, 0)));
+			CraftGUI.RENDER.texture(CraftGUITexture.OUTLINE, this.getArea().inset(new Border(0, 6, 0, 0)));
 		}
 	}
 

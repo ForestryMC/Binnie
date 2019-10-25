@@ -1,10 +1,13 @@
 package binnie.extrabees.genetics;
 
+import binnie.core.util.I18N;
+import binnie.extrabees.utils.Utils;
 import com.google.common.collect.ImmutableList;
-
-import java.util.Collections;
-import java.util.List;
-
+import forestry.api.apiculture.EnumBeeChromosome;
+import forestry.api.apiculture.FlowerManager;
+import forestry.api.genetics.*;
+import forestry.arboriculture.ModuleArboriculture;
+import forestry.arboriculture.blocks.BlockRegistryArboriculture;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
@@ -13,21 +16,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-
 import net.minecraftforge.common.EnumPlantType;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
-import forestry.api.apiculture.EnumBeeChromosome;
-import forestry.api.apiculture.FlowerManager;
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IAlleleFlowers;
-import forestry.api.genetics.ICheckPollinatable;
-import forestry.api.genetics.IFlowerProvider;
-import forestry.api.genetics.IFlowerRegistry;
-import forestry.api.genetics.IFruitBearer;
-import forestry.api.genetics.IIndividual;
-
-import binnie.core.util.I18N;
-import binnie.extrabees.utils.Utils;
+import java.util.Collections;
+import java.util.List;
 
 public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers {
 	WATER,
@@ -121,7 +114,7 @@ public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers {
 				return Collections.emptyList(); // TODO: what is this supposed to be? It was Items.APPLE before.
 			}
 			case SAPLING: {
-				return Collections.singletonList(Blocks.SAPLING);
+				return ImmutableList.of(ModuleArboriculture.getBlocks().saplingGE, Blocks.SAPLING);
 			}
 			case MYSTICAL:
 				Block flower = Utils.getBotaniaBlock("flower");

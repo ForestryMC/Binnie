@@ -1420,12 +1420,12 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 	OsangeOrange("maclura", "pomifera", EnumLeafType.JUNGLE, new Color(0x687A50), new Color(0x687A50), EnumSaplingType.Default, EnumETLog.Maclura, new Color(0x8B5734)) {
 		@Override
 		public WorldGenerator getWorldGenerator(ITreeGenData tree) {
-			return new WorldGenJungle.OsangeOsange(tree);
+			return new WorldGenJungle.OsangeOrange(tree);
 		}
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.OsangeOsange.getAllele());
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.OsangeOrange.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.Lower.getAllele());
 		}
 
@@ -2090,7 +2090,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			return true;
 		}
 	},
-	Avacado("persea", "americana", EnumLeafType.JUNGLE, new Color(0x96A375), new Color(0x96A375), EnumSaplingType.Default, EnumVanillaWoodType.JUNGLE, new Color(0x53411A)) {
+	Avocado("persea", "americana", EnumLeafType.JUNGLE, new Color(0x96A375), new Color(0x96A375), EnumSaplingType.Default, EnumVanillaWoodType.JUNGLE, new Color(0x53411A)) {
 		@Override
 		public WorldGenerator getWorldGenerator(ITreeGenData tree) {
 			return new WorldGenLazy.Tree(tree);
@@ -2098,7 +2098,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
-			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Avacado.getAllele());
+			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Avocado.getAllele());
 			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Smallest.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.Average.getAllele());
 		}

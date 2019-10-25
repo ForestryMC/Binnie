@@ -139,7 +139,7 @@ public class ExtraTreeMutation implements ITreeMutation {
 		new ExtraTreeMutation(getVanilla("Teak"), ETTreeDefinition.Rosewood.getSpecies(), ETTreeDefinition.Cinnamon.getSpecies(), 10);
 		new ExtraTreeMutation(getVanilla("Balsa"), ETTreeDefinition.Brazilnut.getSpecies(), ETTreeDefinition.Coconut.getSpecies(), 10);
 		new ExtraTreeMutation(getVanilla("Teak"), getVanilla("Oak"), ETTreeDefinition.Cashew.getSpecies(), 10);
-		new ExtraTreeMutation(getVanilla("Wenge"), getVanilla("Oak"), ETTreeDefinition.Avacado.getSpecies(), 10);
+		new ExtraTreeMutation(getVanilla("Wenge"), getVanilla("Oak"), ETTreeDefinition.Avocado.getSpecies(), 10);
 		new ExtraTreeMutation(getVanilla("Teak"), ETTreeDefinition.Clove.getSpecies(), ETTreeDefinition.Nutmeg.getSpecies(), 10);
 		new ExtraTreeMutation(getVanilla("Teak"), ETTreeDefinition.Clove.getSpecies(), ETTreeDefinition.Allspice.getSpecies(), 10);
 		new ExtraTreeMutation(ETTreeDefinition.Allspice.getSpecies(), ETTreeDefinition.Clove.getSpecies(), ETTreeDefinition.StarAnise.getSpecies(), 10);

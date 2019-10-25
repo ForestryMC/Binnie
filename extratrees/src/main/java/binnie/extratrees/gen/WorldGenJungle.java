@@ -113,8 +113,8 @@ public class WorldGenJungle {
 		}
 	}
 
-	public static class OsangeOsange extends WorldGenTree {
-		public OsangeOsange(ITreeGenData tree) {
+	public static class OsangeOrange extends WorldGenTree {
+		public OsangeOrange(ITreeGenData tree) {
 			super(tree);
 		}
 
