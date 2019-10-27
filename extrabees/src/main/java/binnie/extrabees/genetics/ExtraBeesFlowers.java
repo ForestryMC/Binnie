@@ -105,7 +105,7 @@ public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers {
 				return Collections.singletonList(Blocks.BOOKSHELF);
 			}
 			case REDSTONE: {
-				return ImmutableList.of(Blocks.REDSTONE_TORCH, Blocks.REDSTONE_BLOCK, Blocks.REDSTONE_ORE);
+				return ImmutableList.of(Blocks.REDSTONE_TORCH, Blocks.REDSTONE_BLOCK, Blocks.REDSTONE_ORE, Blocks.LIT_REDSTONE_ORE);
 			}
 			case DEAD: {
 				return Collections.singletonList(Blocks.DEADBUSH);
