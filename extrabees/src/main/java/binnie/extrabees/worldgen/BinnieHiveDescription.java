@@ -1,8 +1,19 @@
 package binnie.extrabees.worldgen;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
+import forestry.api.apiculture.BeeManager;
+import forestry.api.apiculture.IBee;
+import forestry.api.genetics.IIndividual;
+import forestry.apiculture.genetics.Bee;
+import forestry.apiculture.tiles.TileHive;
+import ic2.core.energy.grid.Tile;
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;

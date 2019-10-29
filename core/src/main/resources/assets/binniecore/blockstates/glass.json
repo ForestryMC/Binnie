@@ -4,8 +4,8 @@
         "inventory": {
             "model": "forge:forgebucket",
             "textures": {
-                "base": "forestry:items/liquids/glass.bottle",
-                "fluid": "forestry:items/liquids/glass.contents"
+                "base": "binniecore:items/liquids/glass.bottle",
+                "fluid": "binniecore:items/liquids/glass.contents"
             },
             "transform": "forge:default-item"
         }

@@ -44,6 +44,9 @@ public class FruitPressLogic extends ComponentProcessSetCost implements IProcess
 
 	@Override
 	protected void onFinishTask() {
+		final FluidStack tankFinish = FruitPressRecipeManager.getOutput(this.getUtil().getStack(FruitPressMachine.SLOT_CURRENT));
+		tankFinish.amount /= 25;
+		this.getUtil().fillTank((FruitPressMachine.TANK_OUTPUT), tankFinish);
 		this.getUtil().decreaseStack(FruitPressMachine.SLOT_CURRENT, 1);
 	}
 

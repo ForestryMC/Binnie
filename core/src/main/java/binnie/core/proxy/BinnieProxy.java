@@ -74,13 +74,13 @@ public abstract class BinnieProxy extends BinnieModProxy implements IBinnieProxy
 	}
 
 	@Override
-	public <T extends TileEntity> void registerTileEntity(Class<? extends T> tile, String id, ClientSupplier<TileEntitySpecialRenderer<T>> rendererSupplier) {
-		registerTileEntity(tile, id);
+	public <T extends TileEntity> void registerTileEntity(Class<? extends T> tile, ResourceLocation location, ClientSupplier<TileEntitySpecialRenderer<T>> rendererSupplier) {
+		registerTileEntity(tile, location);
 	}
 
 	@Override
-	public void registerTileEntity(final Class<? extends TileEntity> tile, final String id) {
-		GameRegistry.registerTileEntity(tile, id);
+	public void registerTileEntity(final Class<? extends TileEntity> tile, final ResourceLocation location) {
+		GameRegistry.registerTileEntity(tile, location);
 	}
 
 	public void sendNetworkEntityPacket(final INetworkedEntity entity) {

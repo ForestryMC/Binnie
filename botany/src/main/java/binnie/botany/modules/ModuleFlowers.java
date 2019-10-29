@@ -12,6 +12,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -112,7 +113,7 @@ public class ModuleFlowers extends BlankModule {
 		Botany.proxy.registerItem(pollen);
 		Botany.proxy.registerItem(seed);
 
-		BinnieCore.getBinnieProxy().registerTileEntity(TileEntityFlower.class, "botany.tile.flower");
+		BinnieCore.getBinnieProxy().registerTileEntity(TileEntityFlower.class, new ResourceLocation("botany:tile.flower"));
 	}
 
 	@Override
@@ -176,8 +177,9 @@ public class ModuleFlowers extends BlankModule {
 
 		TileEntityFlower flower = (TileEntityFlower) tile;
 		if (heldItem.getItem() == Items.SHEARS) {
-			flower.onShear();
-			heldItem.damageItem(1, player);
+			if(flower.onShear()) {
+				heldItem.damageItem(1, player);
+			}
 		} else if (heldItem.getItem() == pollen) {
 			IFlower pollen = BotanyCore.getFlowerRoot().getMember(heldItem);
 			if (pollen != null && flower.canMateWith(pollen)) {

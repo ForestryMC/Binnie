@@ -212,13 +212,13 @@ public class Flower extends Individual implements IFlower {
 		IFlowerGenome genome0;
 		IFlowerGenome genome2;
 		if (world.rand.nextBoolean()) {
-			alleleFirst = (IAlleleFlowerSpecies) parentFirst[EnumTreeChromosome.SPECIES.ordinal()].getPrimaryAllele();
-			alleleSecond = (IAlleleFlowerSpecies) parentSecond[EnumTreeChromosome.SPECIES.ordinal()].getSecondaryAllele();
+			alleleFirst = (IAlleleFlowerSpecies) parentFirst[EnumFlowerChromosome.SPECIES.ordinal()].getPrimaryAllele();
+			alleleSecond = (IAlleleFlowerSpecies) parentSecond[EnumFlowerChromosome.SPECIES.ordinal()].getSecondaryAllele();
 			genome0 = genomeFirst;
 			genome2 = genomeSecond;
 		} else {
-			alleleFirst = (IAlleleFlowerSpecies) parentSecond[EnumTreeChromosome.SPECIES.ordinal()].getPrimaryAllele();
-			alleleSecond = (IAlleleFlowerSpecies) parentFirst[EnumTreeChromosome.SPECIES.ordinal()].getSecondaryAllele();
+			alleleFirst = (IAlleleFlowerSpecies) parentSecond[EnumFlowerChromosome.SPECIES.ordinal()].getPrimaryAllele();
+			alleleSecond = (IAlleleFlowerSpecies) parentFirst[EnumFlowerChromosome.SPECIES.ordinal()].getSecondaryAllele();
 			genome0 = genomeSecond;
 			genome2 = genomeFirst;
 		}
@@ -253,10 +253,13 @@ public class Flower extends Individual implements IFlower {
 		}
 
 		IChromosome[] template = null;
-		for (IFlowerMutation mutation2 : BotanyCore.getFlowerRoot().getMutations(true)) {
-			float chance = mutation2.getChance(world, pos, alleleFirst, alleleSecond, genome0, genome2);
-			if (chance > 0.0f && world.rand.nextFloat() * 100.0f < chance && template == null) {
-				template = BotanyCore.getFlowerRoot().templateAsChromosomes(mutation2.getTemplate());
+		for (IFlowerMutation mutation : BotanyCore.getFlowerRoot().getMutations(false)) {
+			if(mutation.getAllele0().equals(alleleFirst) && mutation.getAllele1().equals(alleleSecond)) {
+				float chance = mutation.getChance(world, pos, alleleFirst, alleleSecond, genome0, genome2);
+				if (chance > 0.0f && world.rand.nextFloat() * 100.0f < chance) {
+					template = BotanyCore.getFlowerRoot().templateAsChromosomes(mutation.getTemplate());
+					break;
+				}
 			}
 		}
 

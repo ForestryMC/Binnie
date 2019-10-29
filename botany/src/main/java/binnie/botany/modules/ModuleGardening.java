@@ -9,6 +9,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -102,10 +103,10 @@ public class ModuleGardening extends BlankModule {
 		Botany.proxy.registerItem(trowelGold);
 		Botany.proxy.registerItem(misc);
 
-		BinnieCore.getBinnieProxy().registerTileEntity(TileCeramic.class, "botany.tile.ceramic");
+		BinnieCore.getBinnieProxy().registerTileEntity(TileCeramic.class, new ResourceLocation("botany:tile.ceramic"));
 		//BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(ceramic), new ItemMetadataRenderer());
 		//BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(stained), new ItemMetadataRenderer());
-		BinnieCore.getBinnieProxy().registerTileEntity(TileCeramicBrick.class, "botany.tile.ceramicBrick");
+		BinnieCore.getBinnieProxy().registerTileEntity(TileCeramicBrick.class, new ResourceLocation("botany:tile.ceramicBrick"));
 		//BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(ceramicTile), new MultipassItemRenderer());
 		//BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(ceramicBrick), new MultipassItemRenderer());
 

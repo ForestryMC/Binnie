@@ -6,6 +6,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -191,7 +192,7 @@ public final class BinnieCore extends AbstractMod {
 		for (final AbstractMod mod : getActiveMods()) {
 			NetworkRegistry.INSTANCE.registerGuiHandler(mod.getMod(), new BinnieGUIHandler(mod.getGUIDs()));
 		}
-		GameRegistry.registerTileEntity(TileEntityMetadata.class, "binnie.tile.metadata");
+		GameRegistry.registerTileEntity(TileEntityMetadata.class, new ResourceLocation("binniecore:tile.metadata"));
 	}
 
 	@Mod.EventHandler

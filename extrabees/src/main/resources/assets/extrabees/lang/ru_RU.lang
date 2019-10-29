@@ -143,20 +143,20 @@ extrabees.liquid.glacial=Жидкий азот
 ##################################################
 ## Машины
 
-extrabees.machine.alveay.frame.name=Каркас для рамок
-extrabees.machine.alveay.frame.info=Каркас для рамок может содержать одну рамку, влияющую на работу и жизнь пчелы.
-extrabees.machine.alveay.lighting.name=Освещение ульев
-extrabees.machine.alveay.lighting.info=При включеном освещении пчелы ведут себя как днем.
-extrabees.machine.alveay.mutator.name=Мутатор
-extrabees.machine.alveay.mutator.info=Мутатор использует определенные предметы, чтобы стимулировать мутацию пчел.
-extrabees.machine.alveay.rainshield.name=Защита от дождя
-extrabees.machine.alveay.rainshield.info=Защищает пчел от воздействия дождя.
-extrabees.machine.alveay.stimulator.name=Электростимулятор
-extrabees.machine.alveay.stimulator.info=Стимулирует работу и жизнь пчел, как рамки.
-extrabees.machine.alveay.hatchery.name=Инкубаторий
-extrabees.machine.alveay.hatchery.info=Собирает внутри себя личинки от пчелы-королевы.
-extrabees.machine.alveay.transmission.name=Раздатчик энергии
-extrabees.machine.alveay.transmission.info=Принимает энергию и распределяет ее между всеми другими блоками, которые принимают энергию.
+extrabees.machine.alveary.frame.name=Каркас для рамок
+extrabees.machine.alveary.frame.info=Каркас для рамок может содержать одну рамку, влияющую на работу и жизнь пчелы.
+extrabees.machine.alveary.lighting.name=Освещение ульев
+extrabees.machine.alveary.lighting.info=При включеном освещении пчелы ведут себя как днем.
+extrabees.machine.alveary.mutator.name=Мутатор
+extrabees.machine.alveary.mutator.info=Мутатор использует определенные предметы, чтобы стимулировать мутацию пчел.
+extrabees.machine.alveary.rainshield.name=Защита от дождя
+extrabees.machine.alveary.rainshield.info=Защищает пчел от воздействия дождя.
+extrabees.machine.alveary.stimulator.name=Электростимулятор
+extrabees.machine.alveary.stimulator.info=Стимулирует работу и жизнь пчел, как рамки.
+extrabees.machine.alveary.hatchery.name=Инкубаторий
+extrabees.machine.alveary.hatchery.info=Собирает внутри себя личинки от пчелы-королевы.
+extrabees.machine.alveary.transmission.name=Раздатчик энергии
+extrabees.machine.alveary.transmission.info=Принимает энергию и распределяет ее между всеми другими блоками, которые принимают энергию.
 
 
 
