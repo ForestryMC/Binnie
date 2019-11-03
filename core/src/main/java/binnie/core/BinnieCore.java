@@ -1,5 +1,6 @@
 package binnie.core;
 
+import binnie.core.util.MigrationUtil;
 import com.google.common.base.Preconditions;
 
 import javax.annotation.Nullable;
@@ -183,6 +184,7 @@ public final class BinnieCore extends AbstractMod {
 		for (CoreErrorCode errorCode : CoreErrorCode.values()) {
 			ErrorStateRegistry.registerErrorState(errorCode);
 		}
+		MigrationUtil.RegisterFixable();
 		super.preInit(evt);
 	}
 

@@ -18,7 +18,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.OreDictionary;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -114,7 +116,12 @@ public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers {
 				return Collections.emptyList(); // TODO: what is this supposed to be? It was Items.APPLE before.
 			}
 			case SAPLING: {
-				return ImmutableList.of(ModuleArboriculture.getBlocks().saplingGE, Blocks.SAPLING);
+				ArrayList<Block> saplingBlocks = new ArrayList<Block>();
+				for(ItemStack itemStack : OreDictionary.getOres("treeSapling"))
+				{
+					saplingBlocks.add(Block.getBlockFromItem(itemStack.getItem()));
+				}
+				return saplingBlocks;
 			}
 			case MYSTICAL:
 				Block flower = Utils.getBotaniaBlock("flower");
