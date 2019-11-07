@@ -34,9 +34,9 @@ public interface IBinnieProxy extends IProxyCore {
 
 	boolean needsTagCompoundSynched(Item item);
 
-	void registerTileEntity(final Class<? extends TileEntity> tile, final String id);
+	void registerTileEntity(final Class<? extends TileEntity> tile, final ResourceLocation location);
 
-	<T extends TileEntity> void registerTileEntity(Class<? extends T> tile, String id, ClientSupplier<TileEntitySpecialRenderer<T>> rendererSupplier);
+	<T extends TileEntity> void registerTileEntity(Class<? extends T> tile, ResourceLocation location, ClientSupplier<TileEntitySpecialRenderer<T>> rendererSupplier);
 
 	interface ClientSupplier<T> extends Supplier<T> {
 		@SideOnly(Side.CLIENT)

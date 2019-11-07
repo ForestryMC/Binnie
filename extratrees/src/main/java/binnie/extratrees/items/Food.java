@@ -334,7 +334,7 @@ public enum Food implements IItemMiscProvider {
 			registerCrop("Cashew").registerOre(HARVESTCRAFT_LIST_ALLNUT);
 		}
 	},
-	AVACADO(2) {
+	AVOCADO(2) {
 		@Override
 		protected void registerOreDictEntries() {
 			registerCrop("Avocado").registerOre(HARVESTCRAFT_LIST_ALLFRUIT);

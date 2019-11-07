@@ -15,6 +15,7 @@ public class FruitPressLogic extends ComponentProcessSetCost implements IProcess
 	public static final int PROCESS_LENGTH = 50;
 
 	private int lastProgress;
+	private boolean newItem;
 
 	public FruitPressLogic(final Machine machine) {
 		super(machine, PROCESS_ENERGY, PROCESS_LENGTH);
@@ -55,6 +56,12 @@ public class FruitPressLogic extends ComponentProcessSetCost implements IProcess
 			return;
 		}
 		final int newProgress = (int) this.getProgress();
+		if(this.newItem)
+		{
+			final FluidStack tank = new FluidStack(output, output.amount/25);
+			this.getUtil().fillTank(FruitPressMachine.TANK_OUTPUT, tank);
+			this.newItem = false;
+		}
 		while (this.lastProgress + 4 <= newProgress) {
 			final int change = newProgress - this.lastProgress;
 			final int amount = output.amount * change / 100;
@@ -64,6 +71,7 @@ public class FruitPressLogic extends ComponentProcessSetCost implements IProcess
 		}
 		if (this.lastProgress > newProgress) {
 			this.lastProgress = 0;
+			this.newItem = true;
 		}
 	}
 
@@ -71,5 +79,6 @@ public class FruitPressLogic extends ComponentProcessSetCost implements IProcess
 	protected void onStartTask() {
 		super.onStartTask();
 		this.lastProgress = 0;
+		this.newItem = true;
 	}
 }

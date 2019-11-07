@@ -395,13 +395,13 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 		return (tile instanceof TileEntityFlower) ? ((TileEntityFlower) tile) : null;
 	}
 
-	public void onShear() {
+	public boolean onShear() {
 		if (getRoot() != null) {
 			getRoot().onShear();
 		}
 
 		if (getFlower() == null || getFlower().getAge() <= 1) {
-			return;
+			return false;
 		}
 
 		Random rand = new Random();
@@ -419,10 +419,11 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 			if (rand.nextBoolean()) {
 				getFlower().age();
 				if (checkIfDead(true)) {
-					return;
+					return true;
 				}
 			}
 		}
+		return true;
 	}
 
 	public boolean checkIfDead(boolean wasCut) {

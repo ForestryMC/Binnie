@@ -24,6 +24,7 @@ import binnie.extratrees.machines.distillery.recipes.DistilleryRecipeManager;
 import binnie.extratrees.machines.fruitpress.recipes.FruitPressRecipeManager;
 import binnie.extratrees.machines.lumbermill.recipes.LumbermillRecipeManager;
 import binnie.extratrees.machines.nursery.TileEntityNursery;
+import net.minecraft.util.ResourceLocation;
 
 @ForestryModule(moduleID = ExtraTreesModuleUIDs.MACHINES, containerID = Constants.EXTRA_TREES_MOD_ID, name = "Machines", unlocalizedDescription = "extratrees.module.machines")
 public class ModuleMachine extends BlankModule {
@@ -49,7 +50,7 @@ public class ModuleMachine extends BlankModule {
 		blockMachine = machineGroup.getBlock();
 		// TODO fix rendering
 		Object rendererMachine = null;// BinnieCore.proxy.createObject("binnie.core.machines.RendererMachine");
-		BinnieCore.getBinnieProxy().registerTileEntity(TileEntityNursery.class, "binnie.tile.nursery");
+		BinnieCore.getBinnieProxy().registerTileEntity(TileEntityNursery.class, new ResourceLocation("extratrees:tile.nursery"));
 	}
 
 	@Override

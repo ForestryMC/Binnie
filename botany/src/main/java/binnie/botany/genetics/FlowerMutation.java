@@ -1,5 +1,6 @@
 package binnie.botany.genetics;
 
+import forestry.api.climate.ClimateManager;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -32,7 +33,7 @@ public class FlowerMutation extends Mutation implements IFlowerMutation, IFlower
 
 	@Override
 	public float getChance(World world, BlockPos pos, IAlleleFlowerSpecies allele0, IAlleleFlowerSpecies allele1, IFlowerGenome genome0, IFlowerGenome genome1) {
-		float processedChance = getChance(world, pos, allele0, allele1, genome0, genome1, ForestryAPI.climateManager.getDefaultClimate(world, pos));
+		float processedChance = getChance(world, pos, allele0, allele1, genome0, genome1, ClimateManager.climateRoot.getDefaultClimate(world, pos));
 		if (processedChance <= 0) {
 			return 0;
 		}

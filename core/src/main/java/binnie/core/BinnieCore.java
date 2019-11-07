@@ -1,11 +1,13 @@
 package binnie.core;
 
+import binnie.core.util.MigrationUtil;
 import com.google.common.base.Preconditions;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -182,6 +184,7 @@ public final class BinnieCore extends AbstractMod {
 		for (CoreErrorCode errorCode : CoreErrorCode.values()) {
 			ErrorStateRegistry.registerErrorState(errorCode);
 		}
+		MigrationUtil.RegisterFixable();
 		super.preInit(evt);
 	}
 
@@ -191,7 +194,7 @@ public final class BinnieCore extends AbstractMod {
 		for (final AbstractMod mod : getActiveMods()) {
 			NetworkRegistry.INSTANCE.registerGuiHandler(mod.getMod(), new BinnieGUIHandler(mod.getGUIDs()));
 		}
-		GameRegistry.registerTileEntity(TileEntityMetadata.class, "binnie.tile.metadata");
+		GameRegistry.registerTileEntity(TileEntityMetadata.class, new ResourceLocation("binniecore:tile.metadata"));
 	}
 
 	@Mod.EventHandler

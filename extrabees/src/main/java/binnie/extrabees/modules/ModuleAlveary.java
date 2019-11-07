@@ -22,6 +22,7 @@ import binnie.extrabees.circuit.BinnieCircuitLayout;
 import binnie.extrabees.circuit.BinnieCircuitSocketType;
 import binnie.extrabees.machines.ExtraBeeMachines;
 import binnie.extrabees.machines.TileExtraBeeAlveary;
+import net.minecraft.util.ResourceLocation;
 
 @ForestryModule(moduleID = ExtraBeesModuleUIDs.ALVEARY, containerID = Constants.EXTRA_BEES_MOD_ID, name = "Alveary", unlocalizedDescription = "extrabees.module.alveary")
 public class ModuleAlveary extends BlankModule {
@@ -33,15 +34,15 @@ public class ModuleAlveary extends BlankModule {
 
 	@Override
 	public void preInit() {
-		final MachineGroup machineGroup = new MachineGroup(ExtraBees.instance, "alveay", "alveary", ExtraBeeMachines.values());
+		final MachineGroup machineGroup = new MachineGroup(ExtraBees.instance, "alveary", "alveary", ExtraBeeMachines.values());
 		machineGroup.setCreativeTab(Tabs.tabApiculture);
-		BinnieCore.getBinnieProxy().registerTileEntity(TileExtraBeeAlveary.class, "extrabees.tile.alveary");
+		BinnieCore.getBinnieProxy().registerTileEntity(TileExtraBeeAlveary.class, new ResourceLocation("extrabees:tile.alveary"));
 		ModuleAlveary.blockAlveary = machineGroup.getBlock();
 	}
 
 	@Override
 	public void registerRecipes() {
-		RecipeUtil recipeUtil = new RecipeUtil(Constants.EXTRA_TREES_MOD_ID);
+		RecipeUtil recipeUtil = new RecipeUtil(Constants.EXTRA_BEES_MOD_ID);
 		ItemStack alveary = Mods.Forestry.stack("alveary.plain");
 		Item thermionicTubes = Mods.Forestry.item("thermionic_tubes");
 		Item chipsets = Mods.Forestry.item("chipsets");

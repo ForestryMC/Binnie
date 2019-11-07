@@ -143,8 +143,8 @@ public class ContainerCraftGUI extends Container {
 		TransferResult transferResult = request.transfer(player, true);
 		if (transferResult.isSuccess()) {
 			NonNullList<ItemStack> results = transferResult.getRemaining();
-			if (results.size() == 1) {
-				final ItemStack itemstack = results.get(0);
+			if (results.size() >= 1) {
+				final ItemStack itemstack = results.get(results.size()-1);
 				final Slot shiftClickedSlot = this.inventorySlots.get(slotnumber);
 				shiftClickedSlot.putStack(itemstack);
 				shiftClickedSlot.onSlotChanged();

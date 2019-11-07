@@ -7,7 +7,7 @@ import binnie.extrabees.machines.ExtraBeeMachines;
 
 public class AlvearyRainShield extends ExtraBeeMachines.AlvearyPackage implements IMachineInformation {
 	public AlvearyRainShield() {
-		super("rainShield");
+		super("rainshield");
 	}
 
 	@Override

@@ -104,7 +104,8 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister {
 			player.getFoodStats().addStats(this, stack);
 			world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
 			onFoodEaten(stack, world, player);
-			return this.container.getEmpty();
+			player.inventory.addItemStackToInventory(this.container.getEmpty());
+			stack.shrink(1);
 		}
 		return stack;
 	}

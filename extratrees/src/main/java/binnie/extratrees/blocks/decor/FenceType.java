@@ -44,9 +44,9 @@ public class FenceType {
 	public String getPrefix() {
 		String prefix = "";
 		if (size == 1) {
-			prefix += I18N.localise("extratrees.multifence.low.type");
-		} else if (size == 2) {
 			prefix += I18N.localise("extratrees.multifence.full.type");
+		} else if (size == 2) {
+			prefix += I18N.localise("extratrees.multifence.low.type");
 		}
 		if (solid) {
 			if (!prefix.isEmpty()) {
