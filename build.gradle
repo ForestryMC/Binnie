@@ -14,8 +14,8 @@ buildscript {
 
 plugins {
     id "com.matthewprenger.cursegradle" version "1.1.0"
+    id 'se.bjurr.gitchangelog.git-changelog-gradle-plugin' version '1.64'
 }
-apply plugin: "se.bjurr.gitchangelog.git-changelog-gradle-plugin"
 apply plugin: 'idea'
 apply plugin: 'maven'
 
@@ -147,7 +147,7 @@ uploadArchives {
 }
 
 task makeChangelog(type: se.bjurr.gitchangelog.plugin.gradle.GitChangelogTask) {
-    filePath = "changelog.html"
+    file = new File("changelog.html")
     untaggedName = "Current release ${project.version}"
     fromCommit = "dbc5c1a564c39e4a9c042411d1bdbe450985ce2c"
     toRef =  "HEAD"
