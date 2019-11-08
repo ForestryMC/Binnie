@@ -14,7 +14,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -76,7 +75,6 @@ public abstract class BinnieProxy extends BinnieModProxy implements IBinnieProxy
 
 	@Override
 	public <T extends TileEntity> void registerTileEntity(Class<? extends T> tile, ResourceLocation location, ClientSupplier<TileEntitySpecialRenderer<T>> rendererSupplier) {
-		ClientRegistry.bindTileEntitySpecialRenderer(tile, rendererSupplier.get());
 		registerTileEntity(tile, location);
 	}
 
