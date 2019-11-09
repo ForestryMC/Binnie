@@ -11,17 +11,27 @@ import forestry.arboriculture.worldgen.TreeBlockTypeLeaf;
 import forestry.core.worldgen.WorldGenHelper;
 
 public class WorldGenPalm {
-	public static class Coconut extends forestry.arboriculture.worldgen.WorldGenTree {
+	public static class Coconut extends WorldGenTree {
 		public Coconut(ITreeGenData tree) {
-			super(tree, 6, 1);
+			super(tree);
 		}
 
 		@Override
-		protected void generateLeaves(World world, Random rand, TreeBlockTypeLeaf leaf, List<BlockPos> branchEnds, BlockPos startPos) {
+		public void generate() {
+			generateTreeTrunk(this.height, this.girth);
 			float leafSpawn = this.height + 1;
-			WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, girth - 1, 1, WorldGenHelper.EnumReplaceMode.AIR);
-			WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, girth + 0.5F, 1, WorldGenHelper.EnumReplaceMode.AIR);
-			WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn, 0), girth, girth - 0.6F, 1, WorldGenHelper.EnumReplaceMode.AIR);
+			float width = this.height * this.randBetween(0.15f, 0.2f);
+			if (width < 2.0f) {
+				width = 2.0f;
+			}
+			this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), width - 1.0f, 1, this.leaf, false);
+			this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), width + 0.5f, 1, this.leaf, false);
+			this.generateCylinder(new Vector(0.0f, leafSpawn, 0.0f), width - 0.6f, 1, this.leaf, false);		}
+
+		@Override
+		public void preGenerate() {
+			this.height = this.determineHeight(8, 1);
+			this.girth = this.determineGirth(this.treeGen.getGirth());
 		}
 	}
 }
