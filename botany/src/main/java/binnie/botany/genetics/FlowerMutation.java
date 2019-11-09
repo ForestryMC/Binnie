@@ -4,7 +4,6 @@ import forestry.api.climate.ClimateManager;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import forestry.api.core.ForestryAPI;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IMutation;
 import forestry.core.genetics.mutations.Mutation;
