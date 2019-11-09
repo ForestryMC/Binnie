@@ -63,7 +63,7 @@ public class SplicerLogic extends ComponentProcess implements IProcess {
 				++i;
 			}
 		}
-		return (i < 1) ? 1 : i;
+		return Math.max(i, 1);
 	}
 
 	@Override

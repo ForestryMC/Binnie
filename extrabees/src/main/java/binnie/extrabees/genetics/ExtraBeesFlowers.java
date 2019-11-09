@@ -114,7 +114,7 @@ public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers {
 				return Collections.emptyList(); // TODO: what is this supposed to be? It was Items.APPLE before.
 			}
 			case SAPLING: {
-				ArrayList<Block> saplingBlocks = new ArrayList<Block>();
+				ArrayList<Block> saplingBlocks = new ArrayList<>();
 				for(ItemStack itemStack : OreDictionary.getOres("treeSapling"))
 				{
 					saplingBlocks.add(Block.getBlockFromItem(itemStack.getItem()));

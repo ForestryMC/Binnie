@@ -61,9 +61,9 @@ public class BlockBinnieFluid extends BlockFluidClassic implements IItemModelReg
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
-		double d0 = (double) pos.getX();
-		double d1 = (double) pos.getY();
-		double d2 = (double) pos.getZ();
+		double d0 = pos.getX();
+		double d1 = pos.getY();
+		double d2 = pos.getZ();
 
 		if (this.material == Material.WATER) {
 			int i = stateIn.getValue(LEVEL);

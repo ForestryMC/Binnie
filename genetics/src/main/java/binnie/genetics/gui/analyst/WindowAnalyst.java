@@ -181,7 +181,7 @@ public class WindowAnalyst extends Window {
 				new ControlAnalystButton(tabBar, x, 0, width, tabBar.getHeight(), this, page);
 				x += width;
 			}
-			setPage(leftPage, analystPages.get((oldLeft >= 0) ? oldLeft : 0));
+			setPage(leftPage, analystPages.get(Math.max(oldLeft, 0)));
 			if (analystPages.size() > 1) {
 				setPage(rightPage, analystPages.get((oldRight >= 0) ? oldRight : 1));
 			}

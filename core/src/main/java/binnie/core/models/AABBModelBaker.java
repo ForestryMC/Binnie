@@ -118,13 +118,7 @@ public class AABBModelBaker implements IModelBaker {
 		float maxU;
 		float maxV;
 		switch (face) {
-			case SOUTH: {
-				minU = from.x;
-				minV = from.y;
-				maxU = to.x;
-				maxV = to.y;
-				break;
-			}
+			case SOUTH:
 			case NORTH: {
 				minU = from.x;
 				minV = from.y;
@@ -132,13 +126,7 @@ public class AABBModelBaker implements IModelBaker {
 				maxV = to.y;
 				break;
 			}
-			case WEST: {
-				minU = from.z;
-				minV = from.y;
-				maxU = to.z;
-				maxV = to.y;
-				break;
-			}
+			case WEST:
 			case EAST: {
 				minU = from.z;
 				minV = from.y;
@@ -146,13 +134,7 @@ public class AABBModelBaker implements IModelBaker {
 				maxV = to.y;
 				break;
 			}
-			case UP: {
-				minU = from.x;
-				minV = from.z;
-				maxU = to.x;
-				maxV = to.z;
-				break;
-			}
+			case UP:
 			case DOWN: {
 				minU = from.x;
 				minV = from.z;

@@ -83,12 +83,12 @@ public class WorldGenTree extends WorldGenerator {
 
 	protected int modifyByHeight(final int val, final int min, final int max) {
 		final int determined = Math.round(val * this.treeGen.getHeightModifier());
-		return (determined < min) ? min : ((determined > max) ? max : determined);
+		return (determined < min) ? min : (Math.min(determined, max));
 	}
 
 	protected int determineHeight(final int required, final int variation) {
 		final int determined = Math.round((required + this.rand.nextInt(variation)) * this.treeGen.getHeightModifier());
-		return (determined < this.minHeight) ? this.minHeight : ((determined > this.maxHeight) ? this.maxHeight : determined);
+		return (determined < this.minHeight) ? this.minHeight : (Math.min(determined, this.maxHeight));
 	}
 
 	public WorldGenBlockType getLeaf() {
