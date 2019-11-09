@@ -158,6 +158,12 @@ public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy
 	}
 
 	@Override
+	public <T extends TileEntity> void registerTileEntity(Class<? extends T> tile, ResourceLocation location, ClientSupplier<TileEntitySpecialRenderer<T>> rendererSupplier) {
+		ClientRegistry.bindTileEntitySpecialRenderer(tile, rendererSupplier.get());
+		super.registerTileEntity(tile, location, rendererSupplier);
+	}
+
+	@Override
 	public TextureAtlasSprite getTextureAtlasSprite(ResourceLocation location) {
 		return Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(location.toString());
 	}

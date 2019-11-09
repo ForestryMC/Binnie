@@ -76,7 +76,6 @@ public abstract class BinnieProxy extends BinnieModProxy implements IBinnieProxy
 
 	@Override
 	public <T extends TileEntity> void registerTileEntity(Class<? extends T> tile, ResourceLocation location, ClientSupplier<TileEntitySpecialRenderer<T>> rendererSupplier) {
-		ClientRegistry.bindTileEntitySpecialRenderer(tile, rendererSupplier.get());
 		registerTileEntity(tile, location);
 	}
 
