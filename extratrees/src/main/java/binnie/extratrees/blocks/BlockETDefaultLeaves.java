@@ -70,7 +70,7 @@ public abstract class BlockETDefaultLeaves extends BlockAbstractLeaves {
 			.withProperty(CHECK_DECAY, false)
 			.withProperty(DECAYABLE, true));
 		String name = "leaves.default." + blockNumber;
-		setUnlocalizedName(name);
+		setTranslationKey(name);
 		setRegistryName(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, name));
 	}
 

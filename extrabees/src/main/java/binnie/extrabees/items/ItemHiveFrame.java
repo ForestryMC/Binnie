@@ -37,7 +37,7 @@ public class ItemHiveFrame extends Item implements IHiveFrame, IBeeModifier, IIt
 		this.setMaxDamage(frame.getMaxDamage());
 		this.setCreativeTab(Tabs.tabApiculture);
 		this.setMaxStackSize(1);
-		this.setUnlocalizedName("hive_frame");
+		this.setTranslationKey("hive_frame");
 	}
 
 	@Override
@@ -48,7 +48,7 @@ public class ItemHiveFrame extends Item implements IHiveFrame, IBeeModifier, IIt
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerModel(Item item, IModelManager manager) {
-		ResourceLocation location = new ResourceLocation(Constants.EXTRA_BEES_MOD_ID, "frames/" + getRegistryName().getResourcePath());
+		ResourceLocation location = new ResourceLocation(Constants.EXTRA_BEES_MOD_ID, "frames/" + getRegistryName().getPath());
 		ModelResourceLocation inventory = new ModelResourceLocation(location, "inventory");
 		ModelLoader.setCustomModelResourceLocation(item, 0, inventory);
 	}

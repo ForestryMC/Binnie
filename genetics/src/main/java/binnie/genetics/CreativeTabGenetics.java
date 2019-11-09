@@ -18,7 +18,7 @@ public class CreativeTabGenetics extends CreativeTabs {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public String getTranslatedTabLabel() {
+	public String getTranslationKey() {
 		return getTabLabel();
 	}
 
@@ -30,7 +30,7 @@ public class CreativeTabGenetics extends CreativeTabs {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public ItemStack getTabIconItem() {
+	public ItemStack createIcon() {
 		return GeneticsItems.EMPTY_SERUM.get(1);
 	}
 }

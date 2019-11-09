@@ -19,7 +19,7 @@ public class ItemSetSquare extends Item implements IToolHammer, IItemModelRegist
 	public ItemSetSquare(final EnumSetSquareMode mode) {
 		this.mode = mode;
 		this.setCreativeTab(CreativeTabs.TOOLS);
-		this.setUnlocalizedName("setSquare" + mode);
+		this.setTranslationKey("setSquare" + mode);
 		setRegistryName("setSquare" + mode);
 		this.setMaxStackSize(1);
 	}

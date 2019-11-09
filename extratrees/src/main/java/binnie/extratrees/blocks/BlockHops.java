@@ -32,7 +32,7 @@ public class BlockHops extends BlockCrops {
 
 	public BlockHops() {
 		this.setDefaultState(this.blockState.getBaseState().withProperty(getAgeProperty(), 0).withProperty(HALF, HopsHalf.DOWN));
-		setUnlocalizedName("hops");
+		setTranslationKey("hops");
 		setRegistryName("hops");
 	}
 

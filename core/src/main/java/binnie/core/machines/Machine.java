@@ -261,7 +261,7 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 	public MessageBase getRefreshPacket() {
 		final NBTTagCompound nbt = new NBTTagCompound();
 		this.syncToNBT(nbt);
-		if (nbt.hasNoTags()) {
+		if (nbt.isEmpty()) {
 			return null;
 		}
 		return new MessageSyncTile(BinnieCorePacketID.TILE_DESCRIPTION_SYNC.ordinal(), this.getTileEntity(), nbt);

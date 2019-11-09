@@ -33,7 +33,7 @@ public class ItemBeeDictionary extends Item implements IItemModelRegister, IGuiI
 
 	public ItemBeeDictionary() {
 		this.setCreativeTab(Tabs.tabApiculture);
-		this.setUnlocalizedName("dictionary");
+		this.setTranslationKey("dictionary");
 		this.setMaxStackSize(1);
 		setRegistryName("dictionary");
 		setHasSubtypes(true);

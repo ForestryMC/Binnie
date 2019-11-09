@@ -213,7 +213,7 @@ public class ModuleWood extends BlankModule {
 				BlockForestryStairs<EnumETLog> stair = new BlockForestryStairs<>(false, blockState, woodType);
 				String name = "stairs." + woodType;
 				stair.setRegistryName(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, name));
-				stair.setUnlocalizedName(name);
+				stair.setTranslationKey(name);
 				ExtraTrees.proxy.registerBlock(stair, new ItemBlockETWood<>(stair));
 				stairs.add(stair);
 				registerOreDictWildcard(OreDictUtil.STAIR_WOOD, stair);
@@ -229,7 +229,7 @@ public class ModuleWood extends BlankModule {
 				BlockForestryStairs<EnumETLog> stair = new BlockForestryStairs<>(true, blockState, woodType);
 				String name = "stairs.fireproof." + woodType;
 				stair.setRegistryName(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, name));
-				stair.setUnlocalizedName(name);
+				stair.setTranslationKey(name);
 				ExtraTrees.proxy.registerBlock(stair, new ItemBlockETWood<>(stair));
 				stairsFireproof.add(stair);
 				registerOreDictWildcard(OreDictUtil.STAIR_WOOD, stair);
@@ -263,7 +263,7 @@ public class ModuleWood extends BlankModule {
 			BlockForestryFenceGate<EnumETLog> fenceGate = new BlockForestryFenceGate<>(false, woodType);
 			String name = "fence.gates." + woodType;
 			fenceGate.setRegistryName(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, name));
-			fenceGate.setUnlocalizedName(name);
+			fenceGate.setTranslationKey(name);
 			ExtraTrees.proxy.registerBlock(fenceGate, new ItemBlockETWood<>(fenceGate));
 			registerOreDictWildcard(OreDictUtil.FENCE_GATE_WOOD, fenceGate);
 			fenceGates.add(fenceGate);
@@ -272,7 +272,7 @@ public class ModuleWood extends BlankModule {
 			BlockForestryFenceGate<EnumETLog> fenceGateFireproof = new BlockForestryFenceGate<>(true, woodType);
 			String nameFireproof = "fence.gates.fireproof." + woodType;
 			fenceGateFireproof.setRegistryName(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, nameFireproof));
-			fenceGateFireproof.setUnlocalizedName(nameFireproof);
+			fenceGateFireproof.setTranslationKey(nameFireproof);
 			ExtraTrees.proxy.registerBlock(fenceGateFireproof, new ItemBlockETWood<>(fenceGateFireproof));
 			registerOreDictWildcard(OreDictUtil.FENCE_GATE_WOOD, fenceGateFireproof);
 			fenceGatesFireproof.add(fenceGateFireproof);
@@ -540,8 +540,8 @@ public class ModuleWood extends BlankModule {
 	public void onBakedEvent(ModelBakeEvent e) {
 		//Find all ExtraTrees saplings
 		List<ModelResourceLocation> models = e.getModelRegistry().getKeys().stream()
-			.filter(mrl -> mrl.getResourceDomain().startsWith(Constants.EXTRA_TREES_MOD_ID))
-			.filter(mrl -> mrl.getResourcePath().startsWith("germlings")).collect(Collectors.toList());
+			.filter(mrl -> mrl.getNamespace().startsWith(Constants.EXTRA_TREES_MOD_ID))
+			.filter(mrl -> mrl.getPath().startsWith("germlings")).collect(Collectors.toList());
 		//Replace model
 		Map<String, ETTreeDefinition> map = Arrays.stream(ETTreeDefinition.values()).collect(Collectors.toMap(o -> o.name().toLowerCase(), o -> o));
 		models.forEach(model -> {

@@ -90,11 +90,11 @@ public class FluidType {
 		return I18N.localise(unlocalizedName);
 	}
 
-	public String getUnlocalizedName() {
+	public String getTranslationKey() {
 		return this.unlocalizedName;
 	}
 
-	public FluidType setUnlocalizedName(String unlocalizedName) {
+	public FluidType setTranslationKey(String unlocalizedName) {
 		this.unlocalizedName = unlocalizedName;
 		return this;
 	}

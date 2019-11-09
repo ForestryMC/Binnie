@@ -49,7 +49,7 @@ public class ItemDrink extends ItemFood implements IItemModelRegister {
 	public ItemDrink() {
 		super(0, 0.0f, false);
 		this.setCreativeTab(Tabs.tabArboriculture);
-		this.setUnlocalizedName("drink");
+		this.setTranslationKey("drink");
 		this.setRegistryName("drink");
 		this.setHasSubtypes(true);
 		this.setMaxStackSize(1);

@@ -18,7 +18,7 @@ import binnie.core.util.I18N;
 
 public class ItemPigment extends Item implements IItemModelRegister, IColoredItem {
 	public ItemPigment() {
-		setUnlocalizedName("botany.pigment");
+		setTranslationKey("botany.pigment");
 		setHasSubtypes(true);
 		setCreativeTab(CreativeTabBotany.INSTANCE);
 		setRegistryName("pigment");

@@ -30,7 +30,7 @@ public class ItemHoneyDrop extends ItemProduct<EnumHoneyDrop> implements IColore
 	public ItemHoneyDrop() {
 		super(EnumHoneyDrop.values());
 		this.setCreativeTab(Tabs.tabApiculture);
-		this.setUnlocalizedName("honey_drop");
+		this.setTranslationKey("honey_drop");
 		setRegistryName("honey_drop");
 		BeeManager.beeRoot.setResearchSuitability(new ItemStack(this, 1, OreDictionary.WILDCARD_VALUE), RESEARCH_SUITABILITY);
 		setResearchSuitability(TreeManager.treeRoot);

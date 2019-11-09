@@ -82,7 +82,7 @@ public class BlockShrubLog extends Block implements IWoodTyped, IStateMapperRegi
 			.withProperty(WEST, false)
 			.withProperty(FIREPROOF, false));
 		setRegistryName(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "shrub_log"));
-		setUnlocalizedName("shrub_log");
+		setTranslationKey("shrub_log");
 		setSoundType(SoundType.WOOD);
 		setHardness(EnumShrubLog.INSTANCE.getHardness());
 	}

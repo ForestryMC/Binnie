@@ -46,7 +46,7 @@ public class BlockETDoor extends BlockDoor implements IWoodTyped, IItemModelRegi
 		setHarvestLevel("axe", 0);
 		setCreativeTab(Tabs.tabArboriculture);
 		String name = "doors." + woodType;
-		setUnlocalizedName(name);
+		setTranslationKey(name);
 		setRegistryName(name);
 	}
 

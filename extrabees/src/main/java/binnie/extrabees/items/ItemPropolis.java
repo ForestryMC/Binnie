@@ -12,7 +12,7 @@ public class ItemPropolis extends ItemProduct<EnumPropolis> implements IColoredI
 	public ItemPropolis() {
 		super(EnumPropolis.values());
 		this.setCreativeTab(Tabs.tabApiculture);
-		this.setUnlocalizedName("propolis");
+		this.setTranslationKey("propolis");
 		setRegistryName("propolis");
 	}
 

@@ -35,7 +35,7 @@ public class ItemHoneyComb extends ItemProduct<EnumHoneyComb> implements IColore
 	public ItemHoneyComb() {
 		super(EnumHoneyComb.values());
 		this.setCreativeTab(Tabs.tabApiculture);
-		this.setUnlocalizedName("honey_comb");
+		this.setTranslationKey("honey_comb");
 		setRegistryName("honey_comb");
 		BeeManager.beeRoot.setResearchSuitability(new ItemStack(this, 1, OreDictionary.WILDCARD_VALUE), RESEARCH_SUITABILITY);
 		setResearchSuitability(TreeManager.treeRoot);
