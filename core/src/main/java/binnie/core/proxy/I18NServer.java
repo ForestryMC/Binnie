@@ -32,7 +32,7 @@ public class I18NServer implements I18NProxy {
 	}
 
 	public String localise(ResourceLocation key) {
-		return this.localise(key.getResourceDomain() + '.' + key.getResourcePath());
+		return this.localise(key.getNamespace() + '.' + key.getPath());
 	}
 
 	public boolean canLocalise(String key) {
@@ -51,6 +51,6 @@ public class I18NServer implements I18NProxy {
 	}
 
 	public String localise(ResourceLocation key, Object... format) {
-		return this.localise(key.getResourceDomain() + '.' + key.getResourcePath(), format);
+		return this.localise(key.getNamespace() + '.' + key.getPath(), format);
 	}
 }

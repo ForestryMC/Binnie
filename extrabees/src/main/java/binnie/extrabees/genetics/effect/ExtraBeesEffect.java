@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import forestry.arboriculture.blocks.BlockSapling;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
@@ -273,10 +272,11 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 				double posX = position.getX() - entity.posX;
 				double posY = position.getY() - entity.posY;
 				double posZ = position.getZ() - entity.posZ;
-				if (posX * posX + posY * posY + posZ * posZ < 2.0) {
+				double distSq = posX * posX + posY * posY + posZ * posZ;
+				if (distSq < 2.0) {
 					return storedData;
 				}
-				final double strength = 0.5 / (posX * posX + posY * posY + posZ * posZ) * entityStrength;
+				final double strength = 0.5 / (distSq) * entityStrength;
 				entity.addVelocity(posX * strength, posY * strength, posZ * strength);
 			}
 			return storedData;
@@ -290,10 +290,11 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 				final double posX = position.getX() - player.posX;
 				final double posY = position.getY() - player.posY;
 				final double posZ = position.getZ() - player.posZ;
-				if (posX * posX + posY * posY + posZ * posZ < 2.0) {
+				double distSq = posX * posX + posY * posY + posZ * posZ;
+				if (distSq < 2.0) {
 					return storedData;
 				}
-				final double strength = 0.5 / (posX * posX + posY * posY + posZ * posZ);
+				final double strength = 0.5 / (distSq);
 				player.addVelocity(-posX * strength, -posY * strength, -posZ * strength);
 			}
 			return storedData;

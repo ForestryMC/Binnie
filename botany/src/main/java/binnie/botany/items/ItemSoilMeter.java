@@ -31,7 +31,7 @@ import binnie.core.util.I18N;
 public class ItemSoilMeter extends Item implements IItemModelRegister {
 	public ItemSoilMeter() {
 		setCreativeTab(CreativeTabBotany.INSTANCE);
-		setUnlocalizedName("botany.soil_meter");
+		setTranslationKey("botany.soil_meter");
 		setMaxStackSize(1);
 		setRegistryName("soil_meter");
 	}

@@ -150,7 +150,7 @@ public class BlockHedge extends Block implements IBlockFence, IColoredBlock {
 		if (block != Blocks.BARRIER) {
 			Material blockMaterial = state.getMaterial();
 			if (block instanceof BlockFence || block instanceof BlockFenceGate || block instanceof IBlockFence) {
-				return blockMaterial == this.blockMaterial;
+				return blockMaterial == this.material;
 			}
 			if (blockMaterial.isOpaque() && state.isFullCube() && blockMaterial != Material.GOURD) {
 				return true;

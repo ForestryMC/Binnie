@@ -34,7 +34,7 @@ public class ItemHops extends Item implements net.minecraftforge.common.IPlantab
 	public ItemHops(Block crops, Block soil) {
 		this.crops = crops;
 		this.soil = soil;
-		setUnlocalizedName("hops");
+		setTranslationKey("hops");
 		setRegistryName("hops");
 		this.setCreativeTab(Tabs.tabArboriculture);
 	}

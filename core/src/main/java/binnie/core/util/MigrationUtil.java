@@ -2,7 +2,7 @@ package binnie.core.util;
 
 import binnie.core.Constants;
 import binnie.core.tile.TileEntityDataFixer;
-import net.minecraft.tileentity.TileEntity;
+
 import net.minecraft.util.datafix.FixTypes;
 import net.minecraftforge.common.util.CompoundDataFixer;
 import net.minecraftforge.common.util.ModFixs;
@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class MigrationUtil {
 
-    private static Map<String, String> remappedTiles = new HashMap<String, String>();
+    private static Map<String, String> remappedTiles = new HashMap<>();
 
     static{
         addRemappedTile("botany.tile.flower", "botany:tile.flower");

@@ -18,7 +18,7 @@ import binnie.core.util.I18N;
 public class ItemClay extends ItemBotany implements IColoredItem, IItemModelRegister {
 	public ItemClay() {
 		super("clay");
-		setUnlocalizedName("botany.clay");
+		setTranslationKey("botany.clay");
 		setHasSubtypes(true);
 	}
 

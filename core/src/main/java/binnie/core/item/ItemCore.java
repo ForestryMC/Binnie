@@ -12,7 +12,7 @@ public class ItemCore extends Item implements IItemModelRegister {
 
 	public ItemCore(String registryName) {
 		setRegistryName(registryName);
-		setUnlocalizedName(registryName);
+		setTranslationKey(registryName);
 	}
 
 	@SideOnly(Side.CLIENT)

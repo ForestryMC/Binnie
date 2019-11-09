@@ -69,7 +69,7 @@ public class WorldGenShrub {
 			ITreeModifier treeModifier = TreeManager.treeRoot.getTreekeepingMode(world);
 			int baseHeight = required + rand.nextInt(variation);
 			int height = Math.round(baseHeight * tree.getHeightModifier() * treeModifier.getHeightModifier(tree.getGenome(), 1f));
-			return height < minHeight ? minHeight : height > maxHeight ? maxHeight : height;
+			return height < minHeight ? minHeight : Math.min(height, maxHeight);
 		}
 	}
 }

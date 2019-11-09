@@ -23,7 +23,7 @@ public class ItemMasterRegistry extends ItemCore implements IGuiItem {
 	public ItemMasterRegistry() {
 		super("master_registry");
 		this.setCreativeTab(CreativeTabGenetics.INSTANCE);
-		this.setUnlocalizedName("master_registry");
+		this.setTranslationKey("master_registry");
 		this.setMaxStackSize(1);
 	}
 

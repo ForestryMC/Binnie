@@ -6,6 +6,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -22,15 +23,21 @@ import binnie.botany.tile.TileEntityFlower;
 public class FarmableFlower implements IFarmable {
 	@Override
 	public boolean isSaplingAt(World world, BlockPos pos) {
-		return world.getBlockState(pos) == ModuleFlowers.flower;
+		return world.getBlockState(pos).getBlock() == ModuleFlowers.flower;
+	}
+
+	@Override
+	public boolean isSaplingAt(World world, BlockPos pos, IBlockState blockState) {
+		return blockState.getBlock() == ModuleFlowers.flower;
 	}
 
 	@Nullable
 	@Override
 	public ICrop getCropAt(World world, BlockPos pos, IBlockState blockState) {
 		IFlower flower = null;
-		if (world.getTileEntity(pos) instanceof TileEntityFlower) {
-			flower = ((TileEntityFlower) world.getTileEntity(pos)).getFlower();
+		TileEntity tileEntity = world.getTileEntity(pos);
+		if (tileEntity instanceof TileEntityFlower) {
+			flower = ((TileEntityFlower) tileEntity).getFlower();
 		}
 
 		// TODO Look at TileEntityFlower::onShear logic
@@ -61,7 +68,10 @@ public class FarmableFlower implements IFarmable {
 	public boolean plantSaplingAt(EntityPlayer player, ItemStack germling, World world, BlockPos pos) {
 		IFlowerRoot flowerRoot = BotanyCore.getFlowerRoot();
 		IFlower flower = flowerRoot.getMember(germling);
-		flowerRoot.plant(world, pos, flower, player.getGameProfile());
-		return true;
+		if (flower != null) {
+			flowerRoot.plant(world, pos, flower, player.getGameProfile());
+			return true;
+		}
+		return false;
 	}
 }

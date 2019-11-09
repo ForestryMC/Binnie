@@ -20,7 +20,7 @@ public abstract class BlockETPlank extends BlockForestryPlanks<EnumETLog> {
 		}
 		name += blockNumber;
 		setRegistryName(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, name));
-		setUnlocalizedName(name);
+		setTranslationKey(name);
 	}
 
 	public static List<BlockETPlank> create(boolean fireproof) {

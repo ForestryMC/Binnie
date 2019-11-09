@@ -18,7 +18,7 @@ public class CreativeTabBotany extends CreativeTabs {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public String getTranslatedTabLabel() {
+	public String getTranslationKey() {
 		return getTabLabel();
 	}
 
@@ -30,7 +30,7 @@ public class CreativeTabBotany extends CreativeTabs {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public ItemStack getTabIconItem() {
+	public ItemStack createIcon() {
 		return new ItemStack(Blocks.RED_FLOWER, 1, 5);
 	}
 }

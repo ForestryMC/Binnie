@@ -41,7 +41,7 @@ public class TileEntityMetadata extends TileEntity {
 	}
 
 	public static void setItemDamage(final ItemStack item, final int i) {
-		item.setItemDamage((i < 16387) ? i : 16387);
+		item.setItemDamage(Math.min(i, 16387));
 		final NBTTagCompound tag = new NBTTagCompound();
 		tag.setInteger("meta", i);
 		item.setTagCompound(tag);

@@ -160,7 +160,7 @@ public class ModuleCore extends BlankModule {
 		Food.MANGO.addJuice(10, 400, 20);
 		Food.STARFRUIT.addJuice(10, 300, 10);
 		Food.CANDLENUT.addJuice(20, 50, 10);
-		Food.CRANBERRY.addJuice(10, 50, 5);
+		Food.CRANBERRY.addJuice( 10, 50, 5);
 
 		RecipeUtil recipeUtil = new RecipeUtil(Constants.EXTRA_TREES_MOD_ID);
 		MinecraftForge.addGrassSeed(new ItemStack(itemHops), 5);

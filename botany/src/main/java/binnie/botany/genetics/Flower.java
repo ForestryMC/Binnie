@@ -8,7 +8,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
-import forestry.api.arboriculture.EnumTreeChromosome;
 import forestry.api.genetics.IChromosome;
 import forestry.core.genetics.Chromosome;
 import forestry.core.genetics.Individual;

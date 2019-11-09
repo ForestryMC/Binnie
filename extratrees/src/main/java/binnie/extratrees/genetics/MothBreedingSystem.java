@@ -111,7 +111,8 @@ public class MothBreedingSystem extends BreedingSystem {
 	@Override
 	public void addExtraAlleles(final IChromosomeType chromosome, final TreeSet<IAllele> alleles) {
 		switch ((EnumButterflyChromosome) chromosome) {
-			case FERTILITY: {
+			case FERTILITY:
+			case METABOLISM: {
 				for (final ForestryAllele.Int a : ForestryAllele.Int.values()) {
 					alleles.add(a.getAllele());
 				}
@@ -120,12 +121,6 @@ public class MothBreedingSystem extends BreedingSystem {
 			case LIFESPAN: {
 				for (final ForestryAllele.Lifespan a2 : ForestryAllele.Lifespan.values()) {
 					alleles.add(a2.getAllele());
-				}
-				break;
-			}
-			case METABOLISM: {
-				for (final ForestryAllele.Int a : ForestryAllele.Int.values()) {
-					alleles.add(a.getAllele());
 				}
 				break;
 			}

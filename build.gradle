@@ -25,6 +25,8 @@ allprojects {
     version = version_major + '.' + version_minor + '.' + version_patch
     if (System.getenv("BUILD_NUMBER") != null) {
         version = version + "." + System.getenv("BUILD_NUMBER")
+    } else {
+        version = version + ".9999"
     }
 
     minecraft {

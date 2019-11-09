@@ -95,7 +95,7 @@ public class ModuleFlowers extends BlankModule {
 			Predicate<ItemStack> filter = BackpackManager.backpackInterface.createNaturalistBackpackFilter("rootFlowers");
 			BackpackDefinition definition = new BackpackDefinition(new Color(0xf6e83e), Color.WHITE, filter);
 			BackpackManager.backpackInterface.registerBackpackDefinition("botanist", definition);
-			botanistBackpack = backpackInterface.createNaturalistBackpack("botanist", BotanyAPI.flowerRoot).setRegistryName("botanist_bag").setUnlocalizedName("botany.botanist_bag");
+			botanistBackpack = backpackInterface.createNaturalistBackpack("botanist", BotanyAPI.flowerRoot).setRegistryName("botanist_bag").setTranslationKey("botany.botanist_bag");
 			Botany.proxy.registerItem(botanistBackpack);
 			botanistBackpack.setCreativeTab(CreativeTabBotany.INSTANCE);
 		} else {

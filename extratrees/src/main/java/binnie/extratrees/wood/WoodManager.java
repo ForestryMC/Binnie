@@ -70,7 +70,7 @@ public class WoodManager {
 
 	public static int getPlankTypeIndex(final IPlankType type) {
 		final int index = CarpentryManager.carpentryInterface.getCarpentryWoodIndex(type);
-		return (index < 0) ? 0 : index;
+		return Math.max(index, 0);
 	}
 
 	@Nullable

@@ -9,7 +9,7 @@ public final class Area implements IArea {
 	private IPoint size;
 
 	public Area(final Area area) {
-		this(area.pos().xPos(), area.pos().yPos(), area.size().xPos(), area.size().yPos());
+		this(area.pos(), area.size());
 	}
 
 	public Area(final IPoint pos, final IPoint size) {

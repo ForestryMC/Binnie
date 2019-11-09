@@ -43,7 +43,7 @@ public class ItemHoneyCrystal extends Item implements IElectricItem, IItemHudInf
 		this.setMaxDamage(27);
 		this.setMaxStackSize(16);
 		this.setCreativeTab(Tabs.tabApiculture);
-		this.setUnlocalizedName("honey_crystal");
+		this.setTranslationKey("honey_crystal");
 		this.setRegistryName("honey_crystal");
 	}
 

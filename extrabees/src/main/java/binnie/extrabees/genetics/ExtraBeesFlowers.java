@@ -6,8 +6,7 @@ import com.google.common.collect.ImmutableList;
 import forestry.api.apiculture.EnumBeeChromosome;
 import forestry.api.apiculture.FlowerManager;
 import forestry.api.genetics.*;
-import forestry.arboriculture.ModuleArboriculture;
-import forestry.arboriculture.blocks.BlockRegistryArboriculture;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
@@ -17,7 +16,6 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.ArrayList;
@@ -116,7 +114,7 @@ public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers {
 				return Collections.emptyList(); // TODO: what is this supposed to be? It was Items.APPLE before.
 			}
 			case SAPLING: {
-				ArrayList<Block> saplingBlocks = new ArrayList<Block>();
+				ArrayList<Block> saplingBlocks = new ArrayList<>();
 				for(ItemStack itemStack : OreDictionary.getOres("treeSapling"))
 				{
 					saplingBlocks.add(Block.getBlockFromItem(itemStack.getItem()));

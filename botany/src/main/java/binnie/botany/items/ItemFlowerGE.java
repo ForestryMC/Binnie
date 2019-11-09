@@ -60,7 +60,7 @@ public class ItemFlowerGE extends Item implements IColoredItem, IItemModelRegist
 		this.type = type;
 		this.tag = tag;
 		setCreativeTab(CreativeTabBotany.INSTANCE);
-		setUnlocalizedName(name);
+		setTranslationKey(name);
 		setRegistryName(name);
 		hasSubtypes = true;
 	}

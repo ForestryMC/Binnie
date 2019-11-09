@@ -19,7 +19,7 @@ public class ControlCheckbox extends Control implements IControlValue<Boolean> {
 	private boolean value;
 
 	public ControlCheckbox(final IWidget parent, final int x, final int y, final int w, final String text, final boolean bool) {
-		super(parent, x, y, (w > 16) ? w : 16, 16);
+		super(parent, x, y, Math.max(w, 16), 16);
 		this.value = bool;
 		if (w > 16) {
 			new ControlText(this, new Area(16, 1, w - 16, 16), text, TextJustification.MIDDLE_CENTER).setColor(4473924);

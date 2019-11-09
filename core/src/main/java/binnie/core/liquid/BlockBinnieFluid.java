@@ -61,11 +61,11 @@ public class BlockBinnieFluid extends BlockFluidClassic implements IItemModelReg
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
-		double d0 = (double) pos.getX();
-		double d1 = (double) pos.getY();
-		double d2 = (double) pos.getZ();
+		double d0 = pos.getX();
+		double d1 = pos.getY();
+		double d2 = pos.getZ();
 
-		if (this.blockMaterial == Material.WATER) {
+		if (this.material == Material.WATER) {
 			int i = stateIn.getValue(LEVEL);
 
 			if (i > 0 && i < 8) {
@@ -77,7 +77,7 @@ public class BlockBinnieFluid extends BlockFluidClassic implements IItemModelReg
 			}
 		}
 
-		if (this.blockMaterial == Material.LAVA && worldIn.getBlockState(pos.up()).getMaterial() == Material.AIR && !worldIn.getBlockState(pos.up()).isOpaqueCube()) {
+		if (this.material == Material.LAVA && worldIn.getBlockState(pos.up()).getMaterial() == Material.AIR && !worldIn.getBlockState(pos.up()).isOpaqueCube()) {
 			if (rand.nextInt(100) == 0) {
 				double d8 = d0 + (double) rand.nextFloat();
 				double d4 = d1 + stateIn.getBoundingBox(worldIn, pos).maxY;
@@ -99,7 +99,7 @@ public class BlockBinnieFluid extends BlockFluidClassic implements IItemModelReg
 				double d5 = d1 - 1.05D;
 				double d7 = d2 + (double) rand.nextFloat();
 
-				if (this.blockMaterial == Material.WATER) {
+				if (this.material == Material.WATER) {
 					worldIn.spawnParticle(EnumParticleTypes.DRIP_WATER, d3, d5, d7, 0.0D, 0.0D, 0.0D);
 				} else {
 					worldIn.spawnParticle(EnumParticleTypes.DRIP_LAVA, d3, d5, d7, 0.0D, 0.0D, 0.0D);

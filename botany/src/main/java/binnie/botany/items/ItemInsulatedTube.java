@@ -33,7 +33,7 @@ import binnie.core.util.I18N;
 public class ItemInsulatedTube extends ItemCore implements IColoredItem {
 	public ItemInsulatedTube() {
 		super("insulated_tube");
-		setUnlocalizedName("botany.insulated_tube");
+		setTranslationKey("botany.insulated_tube");
 		setCreativeTab(CreativeTabBotany.INSTANCE);
 		setHasSubtypes(true);
 	}

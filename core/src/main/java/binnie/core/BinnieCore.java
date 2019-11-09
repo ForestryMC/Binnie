@@ -59,7 +59,7 @@ import binnie.core.triggers.ModuleTrigger;
 	name = "Binnie Core",
 	version = "@VERSION@",
 	acceptedMinecraftVersions = Constants.ACCEPTED_MINECRAFT_VERSIONS,
-	dependencies = "required-after:forge@[14.23.1.2594,);" +
+	dependencies = "required-after:forge@[14.23.5.2816,);" +
 		"required-after:forestry@[5.8.2.367,);" +
 		"after:jei@[4.7.8,);"
 )

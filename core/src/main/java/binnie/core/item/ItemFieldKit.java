@@ -32,7 +32,7 @@ public class ItemFieldKit extends ItemCore {
 
 	public ItemFieldKit() {
 		super("field_kit");
-		this.setUnlocalizedName("field_kit");
+		this.setTranslationKey("field_kit");
 		this.setCreativeTab(CreativeTabs.TOOLS);
 		this.setMaxStackSize(1);
 		this.setMaxDamage(64);

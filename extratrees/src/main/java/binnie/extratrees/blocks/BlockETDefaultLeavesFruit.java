@@ -73,7 +73,7 @@ public abstract class BlockETDefaultLeavesFruit extends BlockAbstractLeaves {
 			.withProperty(variant, variant.getFirstType())
 			.withProperty(CHECK_DECAY, false)
 			.withProperty(DECAYABLE, true));
-		setUnlocalizedName("leaves.default." + blockNumber);
+		setTranslationKey("leaves.default." + blockNumber);
 		setRegistryName(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "leaves.default.fruit." + blockNumber));
 	}
 
