@@ -3,14 +3,13 @@ package binnie.extratrees.gen;
 import forestry.api.world.ITreeGenData;
 
 public class WorldGenMaple {
-	public static class RedMaple extends WorldGenTree {
+	public static class RedMaple extends BinnieWorldGenTree {
 		public RedMaple(ITreeGenData tree) {
-			super(tree);
+			super(tree,5,2);
 		}
 
 		@Override
-		public void generate() {
-			this.generateTreeTrunk(this.height, this.girth);
+		protected void generateLeaves() {
 			float leafSpawn = this.height + 2;
 			final float bottom = this.randBetween(1, 2);
 			final float bottom2 = (this.height + bottom) / 2.0f;
@@ -28,12 +27,6 @@ public class WorldGenMaple {
 			if (leafSpawn == bottom) {
 				this.generateCylinder(new Vector(0.0f, leafSpawn, 0.0f), width - 0.6f, 1, this.leaf, false);
 			}
-		}
-
-		@Override
-		public void preGenerate() {
-			this.height = this.determineHeight(5, 2);
-			this.girth = this.determineGirth(this.treeGen.getGirth());
 		}
 	}
 }

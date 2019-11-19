@@ -2,6 +2,7 @@ package binnie.extratrees.genetics;
 
 import binnie.core.Constants;
 import binnie.core.genetics.ForestryAllele;
+import binnie.extratrees.gen.BinnieWorldGenTree;
 import binnie.extratrees.gen.WorldGenAlder;
 import binnie.extratrees.gen.WorldGenApple;
 import binnie.extratrees.gen.WorldGenAsh;
@@ -18,7 +19,6 @@ import binnie.extratrees.gen.WorldGenPalm;
 import binnie.extratrees.gen.WorldGenPoplar;
 import binnie.extratrees.gen.WorldGenShrub;
 import binnie.extratrees.gen.WorldGenSorbus;
-import binnie.extratrees.gen.WorldGenTree;
 import binnie.extratrees.gen.WorldGenTree2;
 import binnie.extratrees.gen.WorldGenTree3;
 import binnie.extratrees.gen.WorldGenTropical;
@@ -767,7 +767,6 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.jungle"));
 		}
-
 	},
 	RedBanana("musa", "rubra", EnumLeafType.PALM, new Color(0xA1CD8E), new Color(0x44E500), EnumSaplingType.Default, EnumETLog.Banana, new Color(0x85924F)) {
 		@Override
@@ -1745,7 +1744,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 	PinkIvory("berchemia", "zeyheri", EnumLeafType.DECIDUOUS, new Color(0x7C9159), new Color(0x7C9159), EnumSaplingType.Default, EnumETLog.PinkIvory, new Color(0x7F6554)) {
 		@Override
 		public WorldGenerator getWorldGenerator(ITreeGenData tree) {
-			return new WorldGenTree(tree);
+			return new BinnieWorldGenTree(tree, 5, 3);
 		}
 
 		@Override
@@ -2051,7 +2050,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
 			template.set(EnumTreeChromosome.FRUITS, AlleleETFruitDefinition.Coconut.getAllele());
-			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Smaller.getAllele());
+			template.set(EnumTreeChromosome.HEIGHT, ForestryAllele.TreeHeight.Small.getAllele());
 			template.set(EnumTreeChromosome.FERTILITY, ForestryAllele.Saplings.Low.getAllele());
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.Average.getAllele());
 			template.set(EnumTreeChromosome.MATURATION, ForestryAllele.Maturation.Fast.getAllele());

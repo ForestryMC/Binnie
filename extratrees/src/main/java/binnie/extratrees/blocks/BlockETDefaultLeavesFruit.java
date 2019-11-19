@@ -88,7 +88,7 @@ public abstract class BlockETDefaultLeavesFruit extends BlockAbstractLeaves {
 			}
 			IFruitProvider fruitProvider = tree.getGenome().getFruitProvider();
 			NonNullList<ItemStack> products = tree.produceStacks(world, pos, fruitProvider.getRipeningPeriod());
-			world.setBlockState(pos, ModuleArboriculture.getBlocks().getDefaultLeaves(tree.getIdent()), 2);
+			world.setBlockState(pos, ModuleArboriculture.getBlocks().getDefaultLeavesFruit(tree.getIdent()), 2);
 			for (ItemStack fruit : products) {
 				ItemHandlerHelper.giveItemToPlayer(player, fruit);
 			}

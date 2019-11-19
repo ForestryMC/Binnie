@@ -52,6 +52,12 @@ public class ETFruitProviderPod extends ETFruitProviderNone {
 		return products;
 	}
 
+	@Override
+	public boolean requiresFruitBlocks()
+	{
+		return true;
+	}
+
 	@Nullable
 	@Override
 	public String getModelName() {
