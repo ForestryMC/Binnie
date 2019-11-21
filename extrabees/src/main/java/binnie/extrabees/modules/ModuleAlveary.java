@@ -1,15 +1,5 @@
 package binnie.extrabees.modules;
 
-import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-
-import forestry.api.circuits.ICircuitLayout;
-import forestry.api.core.Tabs;
-import forestry.api.modules.ForestryModule;
-
 import binnie.core.BinnieCore;
 import binnie.core.Constants;
 import binnie.core.Mods;
@@ -22,6 +12,14 @@ import binnie.extrabees.circuit.BinnieCircuitLayout;
 import binnie.extrabees.circuit.BinnieCircuitSocketType;
 import binnie.extrabees.machines.ExtraBeeMachines;
 import binnie.extrabees.machines.TileExtraBeeAlveary;
+import forestry.api.circuits.ICircuitLayout;
+import forestry.api.core.Tabs;
+import forestry.api.modules.ForestryModule;
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 @ForestryModule(moduleID = ExtraBeesModuleUIDs.ALVEARY, containerID = Constants.EXTRA_BEES_MOD_ID, name = "Alveary", unlocalizedDescription = "extrabees.module.alveary")

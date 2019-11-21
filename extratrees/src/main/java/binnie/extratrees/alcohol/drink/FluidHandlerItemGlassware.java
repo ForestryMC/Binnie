@@ -1,13 +1,11 @@
 package binnie.extratrees.alcohol.drink;
 
+import binnie.core.liquid.DrinkManager;
+import binnie.extratrees.alcohol.GlasswareType;
 import net.minecraft.item.ItemStack;
-
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.templates.FluidHandlerItemStackSimple;
-
-import binnie.core.liquid.DrinkManager;
-import binnie.extratrees.alcohol.GlasswareType;
 
 // TODO implement cocktails and only allow glassware to hold the correct cocktails.
 public class FluidHandlerItemGlassware extends FluidHandlerItemStackSimple {

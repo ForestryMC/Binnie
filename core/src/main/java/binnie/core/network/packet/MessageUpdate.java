@@ -1,14 +1,12 @@
 package binnie.core.network.packet;
 
+import binnie.core.network.INetworkedEntity;
+import io.netty.buffer.ByteBuf;
+import net.minecraft.tileentity.TileEntity;
+
 import javax.annotation.Nullable;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-
-import net.minecraft.tileentity.TileEntity;
-
-import binnie.core.network.INetworkedEntity;
-
-import io.netty.buffer.ByteBuf;
 
 public class MessageUpdate extends MessageCoordinates {
 	@Nullable

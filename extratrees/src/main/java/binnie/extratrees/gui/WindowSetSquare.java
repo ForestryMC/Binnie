@@ -1,15 +1,13 @@
 package binnie.extratrees.gui;
 
-import javax.annotation.Nullable;
-
+import binnie.core.gui.minecraft.Window;
+import binnie.extratrees.ExtraTrees;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.world.World;
-
 import net.minecraftforge.fml.relauncher.Side;
 
-import binnie.core.gui.minecraft.Window;
-import binnie.extratrees.ExtraTrees;
+import javax.annotation.Nullable;
 
 public class WindowSetSquare extends Window {
 	public WindowSetSquare(final EntityPlayer player, @Nullable final IInventory inventory, final Side side) {

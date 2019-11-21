@@ -1,17 +1,15 @@
 package binnie.core.gui.controls;
 
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.item.ItemStack;
-
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IIndividual;
-
 import binnie.core.Binnie;
 import binnie.core.api.genetics.IBreedingSystem;
 import binnie.core.api.gui.IWidget;
 import binnie.core.gui.ITooltip;
 import binnie.core.gui.Tooltip;
 import binnie.core.gui.minecraft.control.ControlItemDisplay;
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.IIndividual;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.item.ItemStack;
 
 public class ControlIndividualDisplay extends ControlItemDisplay implements ITooltip {
 	public ControlIndividualDisplay(IWidget parent, int x, int y, IIndividual ind) {

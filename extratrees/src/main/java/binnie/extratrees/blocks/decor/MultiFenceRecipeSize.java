@@ -1,8 +1,8 @@
 package binnie.extratrees.blocks.decor;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import binnie.core.Constants;
+import binnie.extratrees.wood.WoodManager;
+import binnie.extratrees.wood.planks.IPlankType;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
@@ -10,13 +10,11 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
-import binnie.core.Constants;
-import binnie.extratrees.wood.WoodManager;
-import binnie.extratrees.wood.planks.IPlankType;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MultiFenceRecipeSize extends IForgeRegistryEntry.Impl<IRecipe> implements IRecipe {
 	private ItemStack cached = ItemStack.EMPTY;

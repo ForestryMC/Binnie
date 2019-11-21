@@ -1,9 +1,8 @@
 package binnie.extratrees.alcohol;
 
-import net.minecraftforge.fluids.FluidStack;
-
 import binnie.core.liquid.FluidType;
 import binnie.core.util.I18N;
+import net.minecraftforge.fluids.FluidStack;
 
 public class CocktailLiquid implements ICocktailLiquid {
 	private final FluidType definition;

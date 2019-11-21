@@ -1,12 +1,5 @@
 package binnie.genetics.gui.punnett;
 
-import net.minecraft.client.util.ITooltipFlag;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import forestry.api.genetics.IChromosomeType;
-
 import binnie.core.api.gui.IWidget;
 import binnie.core.gui.Attribute;
 import binnie.core.gui.CraftGUI;
@@ -16,6 +9,10 @@ import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.controls.core.IControlValue;
 import binnie.core.gui.renderer.RenderUtil;
 import binnie.core.gui.resource.textures.PunnettGUITexture;
+import forestry.api.genetics.IChromosomeType;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ControlChromosome extends Control implements IControlValue<IChromosomeType>, ITooltip {
 	private IChromosomeType value;

@@ -1,9 +1,18 @@
 package binnie.extrabees.genetics.effect;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-
+import binnie.core.ModId;
+import binnie.core.util.I18N;
+import binnie.extrabees.genetics.ExtraBeesFlowers;
+import binnie.extrabees.modules.ModuleCore;
+import binnie.extrabees.utils.Utils;
+import forestry.api.apiculture.BeeManager;
+import forestry.api.apiculture.IAlleleBeeEffect;
+import forestry.api.apiculture.IBeeGenome;
+import forestry.api.apiculture.IBeeHousing;
+import forestry.api.apiculture.IBeekeepingLogic;
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.IEffectData;
+import forestry.core.render.ParticleRender;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
@@ -30,31 +39,18 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
-
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import forestry.api.apiculture.BeeManager;
-import forestry.api.apiculture.IAlleleBeeEffect;
-import forestry.api.apiculture.IBeeGenome;
-import forestry.api.apiculture.IBeeHousing;
-import forestry.api.apiculture.IBeekeepingLogic;
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IEffectData;
-import forestry.core.render.ParticleRender;
-
-import binnie.core.ModId;
-import binnie.core.util.I18N;
-import binnie.extrabees.genetics.ExtraBeesFlowers;
-import binnie.extrabees.modules.ModuleCore;
-import binnie.extrabees.utils.Utils;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 public enum ExtraBeesEffect implements IAlleleBeeEffect {
 	ECTOPLASM {

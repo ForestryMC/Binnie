@@ -1,7 +1,5 @@
 package binnie.extratrees.machines.designer;
 
-import net.minecraft.tileentity.TileEntity;
-
 import binnie.core.gui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
 import binnie.core.machines.MachinePackage;
@@ -14,6 +12,7 @@ import binnie.design.gui.SlotValidatorDesignAdhesive;
 import binnie.design.gui.SlotValidatorDesignMaterial;
 import binnie.extratrees.gui.ExtraTreesGUID;
 import binnie.extratrees.machines.ExtraTreeMachine;
+import net.minecraft.tileentity.TileEntity;
 
 public final class PackageDesigner extends MachinePackage implements IMachineInformation {
 	private final IDesignerType type;

@@ -1,19 +1,18 @@
 package binnie.design;
 
-import javax.annotation.Nullable;
-
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
-
 import binnie.core.block.TileEntityMetadata;
 import binnie.design.api.IDesign;
 import binnie.design.api.IDesignMaterial;
 import binnie.design.api.IDesignSystem;
 import binnie.design.blocks.BlockDesign;
 import binnie.design.blocks.DesignBlock;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
+
+import javax.annotation.Nullable;
 
 public final class DesignHelper {
 	private DesignHelper() {

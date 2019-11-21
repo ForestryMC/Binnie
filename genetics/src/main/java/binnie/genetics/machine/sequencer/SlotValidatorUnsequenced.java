@@ -1,12 +1,11 @@
 package binnie.genetics.machine.sequencer;
 
-import net.minecraft.item.ItemStack;
-
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.util.I18N;
 import binnie.genetics.genetics.SequencerItem;
 import binnie.genetics.modules.ModuleCore;
 import binnie.genetics.modules.ModuleMachine;
+import net.minecraft.item.ItemStack;
 
 public class SlotValidatorUnsequenced extends SlotValidator {
 	public SlotValidatorUnsequenced() {

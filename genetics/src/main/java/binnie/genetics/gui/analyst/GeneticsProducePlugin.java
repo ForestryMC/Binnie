@@ -1,17 +1,14 @@
 package binnie.genetics.gui.analyst;
 
+import binnie.core.util.ForestryRecipeUtil;
+import binnie.genetics.api.analyst.IProducePlugin;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.NonNullList;
-
 import net.minecraftforge.fluids.FluidStack;
-
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
-
-import binnie.core.util.ForestryRecipeUtil;
-import binnie.genetics.api.analyst.IProducePlugin;
 
 public class GeneticsProducePlugin implements IProducePlugin {
 	@Override

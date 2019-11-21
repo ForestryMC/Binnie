@@ -1,8 +1,7 @@
 package binnie.core.gui.minecraft;
 
-import net.minecraft.util.text.TextFormatting;
-
 import binnie.core.gui.Tooltip;
+import net.minecraft.util.text.TextFormatting;
 
 public class MinecraftTooltip extends Tooltip {
 	public static int getOutline(ITooltipType type) {

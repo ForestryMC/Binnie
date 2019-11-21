@@ -1,10 +1,5 @@
 package binnie.botany.gui.database;
 
-import net.minecraft.client.util.ITooltipFlag;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import binnie.botany.api.genetics.IColorMix;
 import binnie.core.api.gui.IWidget;
 import binnie.core.gui.Attribute;
@@ -18,6 +13,9 @@ import binnie.core.gui.resource.textures.CraftGUITextureSheet;
 import binnie.core.gui.resource.textures.StandardTexture;
 import binnie.core.gui.resource.textures.Texture;
 import binnie.core.util.I18N;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ControlColorMixSymbol extends Control implements ITooltip {
 	private static final Texture MUTATION_PLUS = new StandardTexture(2, 94, 16, 16, CraftGUITextureSheet.CONTROLS);

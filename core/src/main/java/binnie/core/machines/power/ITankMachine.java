@@ -1,15 +1,13 @@
 package binnie.core.machines.power;
 
-import javax.annotation.Nullable;
-
+import binnie.core.machines.inventory.IValidatedTankContainer;
+import binnie.core.machines.inventory.TankSlot;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
-
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 
-import binnie.core.machines.inventory.IValidatedTankContainer;
-import binnie.core.machines.inventory.TankSlot;
+import javax.annotation.Nullable;
 
 public interface ITankMachine extends IValidatedTankContainer {
 	TankInfo[] getTankInfos();

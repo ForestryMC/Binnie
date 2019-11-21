@@ -1,12 +1,9 @@
 package binnie.extratrees.integration.jei.lumbermill;
 
-import net.minecraft.client.Minecraft;
-
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.integration.jei.ExtraTreesJeiPlugin;
 import binnie.extratrees.integration.jei.RecipeUids;
 import binnie.extratrees.machines.lumbermill.LumbermillMachine;
-
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IDrawableAnimated;
 import mezz.jei.api.gui.IGuiFluidStackGroup;
@@ -14,6 +11,7 @@ import mezz.jei.api.gui.IGuiItemStackGroup;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IRecipeCategory;
+import net.minecraft.client.Minecraft;
 
 public class LumbermillRecipeCategory implements IRecipeCategory<LumbermillRecipeWrapper> {
 	private final IDrawableAnimated arrowAnimated;

@@ -1,15 +1,12 @@
 package binnie.extrabees.items.types;
 
-import net.minecraft.item.ItemStack;
-
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
-
-import forestry.api.recipes.RecipeManagers;
-
 import binnie.core.util.I18N;
 import binnie.extrabees.modules.ModuleCore;
 import binnie.extrabees.utils.Utils;
+import forestry.api.recipes.RecipeManagers;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
 
 public enum EnumHoneyDrop implements IEBEnumItem {
 

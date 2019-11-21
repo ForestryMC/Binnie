@@ -3,8 +3,7 @@
 @MethodsReturnNonnullByDefault
 package binnie.genetics.integration.jei.incubator;
 
-import javax.annotation.ParametersAreNonnullByDefault;
-
+import binnie.core.util.FieldsAreNonnullByDefault;
 import mcp.MethodsReturnNonnullByDefault;
 
-import binnie.core.util.FieldsAreNonnullByDefault;
+import javax.annotation.ParametersAreNonnullByDefault;

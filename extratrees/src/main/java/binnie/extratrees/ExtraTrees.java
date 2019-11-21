@@ -1,16 +1,5 @@
 package binnie.extratrees;
 
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.oredict.OreDictionary;
-
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-
-import forestry.api.lepidopterology.ButterflyManager;
-
 import binnie.core.Binnie;
 import binnie.core.BinnieCore;
 import binnie.core.Constants;
@@ -32,6 +21,14 @@ import binnie.extratrees.modules.ModuleWood;
 import binnie.extratrees.proxy.Proxy;
 import binnie.genetics.api.GeneticsApi;
 import binnie.genetics.api.analyst.IAnalystManager;
+import forestry.api.lepidopterology.ButterflyManager;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.oredict.OreDictionary;
 
 @Mod(
 	modid = Constants.EXTRA_TREES_MOD_ID,

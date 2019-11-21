@@ -1,17 +1,5 @@
 package binnie.extrabees;
 
-import java.io.File;
-
-import net.minecraftforge.common.MinecraftForge;
-
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
-
-import forestry.api.apiculture.BeeManager;
-
 import binnie.core.Binnie;
 import binnie.core.Constants;
 import binnie.core.api.genetics.IBreedingSystem;
@@ -29,6 +17,15 @@ import binnie.extrabees.utils.config.ConfigHandler;
 import binnie.extrabees.utils.config.ConfigurationMain;
 import binnie.genetics.api.GeneticsApi;
 import binnie.genetics.api.analyst.IAnalystManager;
+import forestry.api.apiculture.BeeManager;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
+
+import java.io.File;
 
 @Mod(
 	modid = ExtraBees.MODID,

@@ -1,13 +1,11 @@
 package binnie.genetics;
 
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.ItemStack;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import binnie.core.util.I18N;
 import binnie.genetics.item.GeneticsItems;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class CreativeTabGenetics extends CreativeTabs {
 	public static final CreativeTabs INSTANCE = new CreativeTabGenetics();

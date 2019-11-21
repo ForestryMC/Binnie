@@ -1,14 +1,17 @@
 package binnie.core.machines;
 
+import binnie.core.machines.component.IInteraction;
+import binnie.core.machines.component.IRender;
+import binnie.core.machines.network.INetwork;
+import binnie.core.network.BinnieCorePacketID;
+import binnie.core.network.INetworkedEntity;
+import binnie.core.network.packet.MessageBase;
+import binnie.core.network.packet.MessageSyncTile;
+import binnie.core.network.packet.PacketPayload;
 import com.google.common.base.Preconditions;
-
-import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-
+import com.mojang.authlib.GameProfile;
+import forestry.api.core.INbtReadable;
+import forestry.api.core.INbtWritable;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -18,23 +21,15 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-
-import com.mojang.authlib.GameProfile;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import forestry.api.core.INbtReadable;
-import forestry.api.core.INbtWritable;
-
-import binnie.core.machines.component.IInteraction;
-import binnie.core.machines.component.IRender;
-import binnie.core.machines.network.INetwork;
-import binnie.core.network.BinnieCorePacketID;
-import binnie.core.network.INetworkedEntity;
-import binnie.core.network.packet.MessageBase;
-import binnie.core.network.packet.MessageSyncTile;
-import binnie.core.network.packet.PacketPayload;
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, INetwork.TilePacketSync, IMachine, INetwork.GuiNBT {
 	private final MachinePackage machinePackage;

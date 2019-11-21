@@ -1,7 +1,6 @@
 package binnie.core.triggers;
 
 import binnie.core.IInitializable;
-
 import buildcraft.api.statements.StatementManager;
 
 public class ModuleTrigger implements IInitializable {

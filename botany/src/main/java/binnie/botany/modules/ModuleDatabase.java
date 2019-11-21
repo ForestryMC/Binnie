@@ -1,14 +1,5 @@
 package binnie.botany.modules;
 
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-
-import net.minecraftforge.oredict.OreDictionary;
-
-import forestry.api.modules.ForestryModule;
-import forestry.api.recipes.RecipeManagers;
-
 import binnie.botany.Botany;
 import binnie.botany.items.ItemDatabaseBotany;
 import binnie.core.Binnie;
@@ -16,6 +7,12 @@ import binnie.core.Constants;
 import binnie.core.liquid.ManagerLiquid;
 import binnie.core.modules.BlankModule;
 import binnie.core.modules.BotanyModuleUIDs;
+import forestry.api.modules.ForestryModule;
+import forestry.api.recipes.RecipeManagers;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 
 @ForestryModule(moduleID = BotanyModuleUIDs.DATABASE, containerID = Constants.BOTANY_MOD_ID, name = "Database", unlocalizedDescription = "botany.module.database")
 public class ModuleDatabase extends BlankModule {

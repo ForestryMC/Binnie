@@ -1,11 +1,9 @@
 package binnie.extrabees.items;
 
-import net.minecraft.item.ItemStack;
-
+import binnie.extrabees.items.types.EnumPropolis;
 import forestry.api.core.Tabs;
 import forestry.core.items.IColoredItem;
-
-import binnie.extrabees.items.types.EnumPropolis;
+import net.minecraft.item.ItemStack;
 
 public class ItemPropolis extends ItemProduct<EnumPropolis> implements IColoredItem {
 

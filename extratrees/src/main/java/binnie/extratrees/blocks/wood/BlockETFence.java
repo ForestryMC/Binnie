@@ -1,18 +1,16 @@
 package binnie.extratrees.blocks.wood;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import net.minecraft.util.ResourceLocation;
-
+import binnie.core.Constants;
+import binnie.extratrees.blocks.property.PropertyETWoodType;
+import binnie.extratrees.wood.EnumETLog;
 import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IStateMapperRegister;
 import forestry.arboriculture.IWoodTyped;
 import forestry.arboriculture.blocks.BlockForestryFence;
+import net.minecraft.util.ResourceLocation;
 
-import binnie.core.Constants;
-import binnie.extratrees.blocks.property.PropertyETWoodType;
-import binnie.extratrees.wood.EnumETLog;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class BlockETFence extends BlockForestryFence<EnumETLog> implements IWoodTyped, IItemModelRegister, IStateMapperRegister {
 	private BlockETFence(boolean fireproof, int blockNumber) {

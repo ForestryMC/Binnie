@@ -1,9 +1,8 @@
 package binnie.botany.api.genetics;
 
+import forestry.api.genetics.IMutation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-
-import forestry.api.genetics.IMutation;
 
 public interface IFlowerMutation extends IMutation {
 	@Override

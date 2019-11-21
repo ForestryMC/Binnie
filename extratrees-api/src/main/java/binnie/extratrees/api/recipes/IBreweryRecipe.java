@@ -1,13 +1,11 @@
 package binnie.extratrees.api.recipes;
 
-import javax.annotation.Nullable;
-import java.util.List;
-
+import binnie.core.api.IBinnieRecipe;
 import net.minecraft.item.ItemStack;
-
 import net.minecraftforge.fluids.FluidStack;
 
-import binnie.core.api.IBinnieRecipe;
+import javax.annotation.Nullable;
+import java.util.List;
 
 public interface IBreweryRecipe extends IBinnieRecipe {
 	@Nullable

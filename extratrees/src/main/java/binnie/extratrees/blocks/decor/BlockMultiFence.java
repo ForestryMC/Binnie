@@ -1,7 +1,22 @@
 package binnie.extratrees.blocks.decor;
 
-import javax.annotation.Nullable;
-
+import binnie.core.block.BlockMetadata;
+import binnie.core.block.IBlockMetadata;
+import binnie.core.block.TileEntityMetadata;
+import binnie.core.models.DefaultStateMapper;
+import binnie.core.models.ModelManager;
+import binnie.core.util.I18N;
+import binnie.extratrees.models.ModelMultiFence;
+import binnie.extratrees.wood.WoodManager;
+import binnie.extratrees.wood.planks.IPlankType;
+import binnie.extratrees.wood.planks.VanillaPlanks;
+import forestry.api.core.IItemModelRegister;
+import forestry.api.core.IModelManager;
+import forestry.api.core.IStateMapperRegister;
+import forestry.api.core.Tabs;
+import forestry.core.blocks.properties.UnlistedBlockAccess;
+import forestry.core.blocks.properties.UnlistedBlockPos;
+import forestry.core.models.BlockModelEntry;
 import net.minecraft.block.BlockFence;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
@@ -24,33 +39,14 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.property.ExtendedBlockState;
 import net.minecraftforge.common.property.IExtendedBlockState;
 import net.minecraftforge.common.property.IUnlistedProperty;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import forestry.api.core.IItemModelRegister;
-import forestry.api.core.IModelManager;
-import forestry.api.core.IStateMapperRegister;
-import forestry.api.core.Tabs;
-import forestry.core.blocks.properties.UnlistedBlockAccess;
-import forestry.core.blocks.properties.UnlistedBlockPos;
-import forestry.core.models.BlockModelEntry;
-
-import binnie.core.block.BlockMetadata;
-import binnie.core.block.IBlockMetadata;
-import binnie.core.block.TileEntityMetadata;
-import binnie.core.models.DefaultStateMapper;
-import binnie.core.models.ModelManager;
-import binnie.core.util.I18N;
-import binnie.extratrees.models.ModelMultiFence;
-import binnie.extratrees.wood.WoodManager;
-import binnie.extratrees.wood.planks.IPlankType;
-import binnie.extratrees.wood.planks.VanillaPlanks;
+import javax.annotation.Nullable;
 
 public class BlockMultiFence extends BlockFence implements IBlockMetadata, IStateMapperRegister, IItemModelRegister, IBlockFence {
 	public BlockMultiFence() {

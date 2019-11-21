@@ -1,11 +1,10 @@
 package binnie.design.gui;
 
-import net.minecraft.item.ItemStack;
-
 import binnie.core.machines.ManagerMachine;
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.design.api.IDesignMaterial;
 import binnie.design.api.IDesignerType;
+import net.minecraft.item.ItemStack;
 
 public class SlotValidatorDesignMaterial extends SlotValidator {
 	private final IDesignerType type;

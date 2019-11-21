@@ -1,13 +1,5 @@
 package binnie.genetics.machine.craftgui;
 
-import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IChromosomeType;
-
 import binnie.core.Binnie;
 import binnie.core.api.genetics.IBreedingSystem;
 import binnie.core.api.gui.IWidget;
@@ -18,6 +10,13 @@ import binnie.core.gui.controls.core.IControlValue;
 import binnie.core.gui.geometry.Point;
 import binnie.core.gui.minecraft.Window;
 import binnie.genetics.genetics.GeneTracker;
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IChromosomeType;
+
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class ControlGeneScroll extends Control implements IControlValue<IBreedingSystem> {
 	private String filter;

@@ -1,11 +1,5 @@
 package binnie.genetics.machine.analyser;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import binnie.core.api.gui.Alignment;
 import binnie.core.gui.minecraft.GUIIcon;
 import binnie.core.gui.minecraft.MinecraftGUI;
@@ -24,6 +18,10 @@ import binnie.core.gui.window.WindowMachine;
 import binnie.core.util.I18N;
 import binnie.genetics.Genetics;
 import binnie.genetics.core.GeneticsTexture;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WindowAnalyser extends WindowMachine {
 	private static final Texture PROGRESS_BASE = new StandardTexture(0, 51, 66, 40, GeneticsTexture.GUI_PROCESS);

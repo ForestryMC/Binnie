@@ -1,10 +1,5 @@
 package binnie.extrabees.genetics.gui.database;
 
-import net.minecraft.entity.player.EntityPlayer;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import binnie.core.Constants;
 import binnie.core.gui.database.DatabaseTab;
 import binnie.core.gui.database.PageBranchOverview;
@@ -20,6 +15,9 @@ import binnie.extrabees.ExtraBees;
 import binnie.extrabees.gui.PageSpeciesClimate;
 import binnie.extrabees.gui.PageSpeciesGenome;
 import binnie.extrabees.gui.PageSpeciesProducts;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WindowApiaristDatabase extends WindowAbstractDatabase {
 	public WindowApiaristDatabase(EntityPlayer player, Side side, boolean master) {

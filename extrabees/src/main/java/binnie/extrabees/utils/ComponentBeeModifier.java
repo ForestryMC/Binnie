@@ -1,14 +1,13 @@
 package binnie.extrabees.utils;
 
-import javax.annotation.Nullable;
-
+import binnie.core.machines.Machine;
+import binnie.core.machines.MachineComponent;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeListener;
 import forestry.api.apiculture.IBeeModifier;
 import forestry.api.genetics.IIndividual;
 
-import binnie.core.machines.Machine;
-import binnie.core.machines.MachineComponent;
+import javax.annotation.Nullable;
 
 public class ComponentBeeModifier extends MachineComponent implements IBeeModifier, IBeeListener {
 	public ComponentBeeModifier(final Machine machine) {

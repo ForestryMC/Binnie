@@ -1,10 +1,6 @@
 package binnie.extratrees.genetics;
 
-import java.awt.Color;
-import java.util.Arrays;
-
-import net.minecraft.item.ItemStack;
-
+import binnie.core.Constants;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IClassification;
@@ -21,8 +17,10 @@ import forestry.lepidopterology.genetics.Butterfly;
 import forestry.lepidopterology.genetics.ButterflyDefinition;
 import forestry.lepidopterology.genetics.IButterflyDefinition;
 import forestry.lepidopterology.genetics.MothDefinition;
+import net.minecraft.item.ItemStack;
 
-import binnie.core.Constants;
+import java.awt.Color;
+import java.util.Arrays;
 
 public enum ButterflySpecies implements IButterflyDefinition {
 	White_Admiral("White Admiral", "Limenitis camilla", 16448250),

@@ -1,15 +1,13 @@
 package binnie.core.genetics;
 
+import com.mojang.authlib.GameProfile;
+import forestry.api.core.EnumHumidity;
+import forestry.api.core.EnumTemperature;
+import forestry.api.genetics.IHousing;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-
-import com.mojang.authlib.GameProfile;
-
-import forestry.api.core.EnumHumidity;
-import forestry.api.core.EnumTemperature;
-import forestry.api.genetics.IHousing;
 
 class VirtualHousing implements IHousing {
 	private final EntityPlayer player;

@@ -1,19 +1,5 @@
 package binnie.extratrees.genetics.gui.analyst;
 
-import java.util.Collection;
-
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.TextFormatting;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import forestry.api.arboriculture.EnumTreeChromosome;
-import forestry.api.arboriculture.IAlleleTreeSpecies;
-import forestry.api.arboriculture.ITree;
-import forestry.api.arboriculture.ITreeGenome;
-import forestry.api.genetics.IAlleleBoolean;
-
 import binnie.core.api.gui.IArea;
 import binnie.core.api.gui.ITitledWidget;
 import binnie.core.api.gui.IWidget;
@@ -26,6 +12,17 @@ import binnie.core.util.I18N;
 import binnie.core.util.UniqueItemStackSet;
 import binnie.genetics.api.analyst.AnalystConstants;
 import binnie.genetics.api.analyst.IAnalystManager;
+import forestry.api.arboriculture.EnumTreeChromosome;
+import forestry.api.arboriculture.IAlleleTreeSpecies;
+import forestry.api.arboriculture.ITree;
+import forestry.api.arboriculture.ITreeGenome;
+import forestry.api.genetics.IAlleleBoolean;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.Collection;
 
 @SideOnly(Side.CLIENT)
 public class AnalystPageWood extends Control implements ITitledWidget {

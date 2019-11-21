@@ -1,10 +1,9 @@
 package binnie.extratrees.machines.distillery.window;
 
-import net.minecraftforge.fluids.FluidStack;
-
 import binnie.core.machines.inventory.TankValidator;
 import binnie.core.util.I18N;
 import binnie.extratrees.machines.distillery.recipes.DistilleryRecipeManager;
+import net.minecraftforge.fluids.FluidStack;
 
 public class TankValidatorDistilleryOutput extends TankValidator {
 	@Override

@@ -1,18 +1,15 @@
 package binnie.extratrees.machines.fruitpress.recipes;
 
+import binnie.extratrees.api.recipes.IFruitPressManager;
+import binnie.extratrees.api.recipes.IFruitPressRecipe;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidStack;
 
 import javax.annotation.Nullable;
 import java.util.Collection;
-
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-
-import net.minecraftforge.fluids.FluidStack;
-
-import binnie.extratrees.api.recipes.IFruitPressManager;
-import binnie.extratrees.api.recipes.IFruitPressRecipe;
 
 public class FruitPressRecipeManager implements IFruitPressManager {
 	//Map<input fruit item, Pair<input fruit, output fluid>>

@@ -1,11 +1,23 @@
 package binnie.core.gui.resource.stylesheet;
 
+import binnie.core.gui.geometry.Area;
+import binnie.core.gui.geometry.Border;
+import binnie.core.gui.resource.textures.Texture;
+import binnie.core.resource.IBinnieTexture;
+import binnie.core.util.Log;
 import com.google.common.base.Charsets;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonParser;
+import net.minecraft.client.resources.IResource;
+import net.minecraft.client.resources.IResourceManager;
+import net.minecraft.util.JsonUtils;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import org.apache.commons.io.IOUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,22 +25,6 @@ import java.io.InputStreamReader;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-
-import org.apache.commons.io.IOUtils;
-
-import net.minecraft.client.resources.IResource;
-import net.minecraft.client.resources.IResourceManager;
-import net.minecraft.util.JsonUtils;
-import net.minecraft.util.ResourceLocation;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import binnie.core.gui.geometry.Area;
-import binnie.core.gui.geometry.Border;
-import binnie.core.gui.resource.textures.Texture;
-import binnie.core.resource.IBinnieTexture;
-import binnie.core.util.Log;
 
 public class StyleSheetParser {
 	public static final String SHEETS_KEY = "texture-sheets";

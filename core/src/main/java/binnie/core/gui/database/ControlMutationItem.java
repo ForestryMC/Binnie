@@ -1,14 +1,13 @@
 package binnie.core.gui.database;
 
-import javax.annotation.Nullable;
-
-import forestry.api.genetics.IAlleleSpecies;
-import forestry.api.genetics.IMutation;
-
 import binnie.core.api.genetics.IBreedingSystem;
 import binnie.core.gui.controls.listbox.ControlList;
 import binnie.core.gui.controls.listbox.ControlOption;
 import binnie.core.gui.minecraft.Window;
+import forestry.api.genetics.IAlleleSpecies;
+import forestry.api.genetics.IMutation;
+
+import javax.annotation.Nullable;
 
 class ControlMutationItem extends ControlOption<IMutation> {
 

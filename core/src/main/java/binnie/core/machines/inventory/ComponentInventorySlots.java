@@ -1,11 +1,8 @@
 package binnie.core.machines.inventory;
 
-import javax.annotation.Nullable;
-import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Random;
-
+import binnie.core.Constants;
+import binnie.core.machines.IMachine;
+import binnie.core.util.NBTUtil;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -17,9 +14,11 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 
-import binnie.core.Constants;
-import binnie.core.machines.IMachine;
-import binnie.core.util.NBTUtil;
+import javax.annotation.Nullable;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Random;
 
 public class ComponentInventorySlots extends ComponentInventory implements IInventoryMachine, IInventorySlots {
 	private static final String INVENTORY_KEY = "inventory";

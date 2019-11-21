@@ -1,9 +1,8 @@
 package binnie.genetics.machine.acclimatiser;
 
-import forestry.api.genetics.IChromosomeType;
-
 import binnie.genetics.api.acclimatiser.IAcclimatiserManager;
 import binnie.genetics.api.acclimatiser.IToleranceType;
+import forestry.api.genetics.IChromosomeType;
 
 public class AcclimatiserManager implements IAcclimatiserManager {
 	@Override

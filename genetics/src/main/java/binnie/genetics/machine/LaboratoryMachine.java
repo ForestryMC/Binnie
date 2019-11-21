@@ -1,9 +1,5 @@
 package binnie.genetics.machine;
 
-import java.util.function.Supplier;
-
-import net.minecraft.item.ItemStack;
-
 import binnie.core.machines.IMachineType;
 import binnie.core.machines.MachinePackage;
 import binnie.genetics.machine.acclimatiser.PackageAcclimatiser;
@@ -12,6 +8,9 @@ import binnie.genetics.machine.genepool.PackageGenepool;
 import binnie.genetics.machine.incubator.PackageIncubator;
 import binnie.genetics.machine.lab.PackageLabMachine;
 import binnie.genetics.modules.ModuleMachine;
+import net.minecraft.item.ItemStack;
+
+import java.util.function.Supplier;
 
 public enum LaboratoryMachine implements IMachineType {
 	LabMachine(PackageLabMachine::new),

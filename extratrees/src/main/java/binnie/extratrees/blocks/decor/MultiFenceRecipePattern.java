@@ -1,9 +1,8 @@
 package binnie.extratrees.blocks.decor;
 
-import net.minecraft.item.ItemStack;
-
 import binnie.extratrees.wood.WoodManager;
 import binnie.extratrees.wood.planks.IPlankType;
+import net.minecraft.item.ItemStack;
 
 public class MultiFenceRecipePattern {
 	public static final MultiFenceRecipePattern[] VALUES = new MultiFenceRecipePattern[]{

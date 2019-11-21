@@ -1,27 +1,5 @@
 package binnie.botany;
 
-import javax.annotation.Nullable;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Set;
-
-import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
-
-import forestry.api.climate.ClimateManager;
-import forestry.api.climate.IClimateState;
-import forestry.api.core.EnumTemperature;
-
 import binnie.botany.api.gardening.EnumAcidity;
 import binnie.botany.api.gardening.EnumFertiliserType;
 import binnie.botany.api.gardening.EnumMoisture;
@@ -34,6 +12,26 @@ import binnie.botany.blocks.BlockPlant;
 import binnie.botany.blocks.BlockSoil;
 import binnie.botany.modules.ModuleGardening;
 import binnie.core.util.OreDictionaryUtil;
+import forestry.api.climate.ClimateManager;
+import forestry.api.climate.IClimateState;
+import forestry.api.core.EnumTemperature;
+import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+
+import javax.annotation.Nullable;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Set;
 
 public class GardeningManager implements IGardeningManager {
 	private final Map<EnumFertiliserType, Map<ItemStack, Integer>> fertilisers = new LinkedHashMap<>();

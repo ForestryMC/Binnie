@@ -1,14 +1,5 @@
 package binnie.design.gui;
 
-import javax.annotation.Nullable;
-import java.util.Map;
-
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-
 import binnie.core.machines.Machine;
 import binnie.core.machines.component.ComponentRecipe;
 import binnie.core.machines.component.IComponentRecipe;
@@ -20,6 +11,14 @@ import binnie.design.EnumDesign;
 import binnie.design.api.IDesign;
 import binnie.design.api.IDesignMaterial;
 import binnie.design.api.IDesignerType;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+
+import javax.annotation.Nullable;
+import java.util.Map;
 
 public class ComponentDesignerRecipe extends ComponentRecipe implements IComponentRecipe, INetwork.GuiNBT, IErrorStateSource {
 	private final IDesignerType type;

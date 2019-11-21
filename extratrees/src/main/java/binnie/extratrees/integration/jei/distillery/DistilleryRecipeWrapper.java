@@ -1,18 +1,14 @@
 package binnie.extratrees.integration.jei.distillery;
 
-import net.minecraft.client.Minecraft;
-
-import net.minecraftforge.fluids.FluidStack;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import binnie.core.gui.CraftGUI;
 import binnie.core.gui.geometry.Point;
 import binnie.extratrees.machines.distillery.window.ControlDistilleryProgress;
-
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IRecipeWrapper;
+import net.minecraft.client.Minecraft;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class DistilleryRecipeWrapper implements IRecipeWrapper {
 	private final int level;

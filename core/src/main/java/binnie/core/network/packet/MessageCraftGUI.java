@@ -1,8 +1,7 @@
 package binnie.core.network.packet;
 
-import net.minecraft.nbt.NBTTagCompound;
-
 import binnie.core.network.BinnieCorePacketID;
+import net.minecraft.nbt.NBTTagCompound;
 
 public class MessageCraftGUI extends MessageNBT {
 	public MessageCraftGUI(final MessageBinnie message) {

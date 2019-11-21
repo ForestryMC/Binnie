@@ -1,7 +1,14 @@
 package binnie.extratrees.items;
 
-import javax.annotation.Nullable;
-
+import binnie.core.liquid.AlcoholEffect;
+import binnie.core.liquid.DrinkManager;
+import binnie.core.liquid.IDrinkLiquid;
+import binnie.extratrees.alcohol.GlasswareType;
+import binnie.extratrees.alcohol.drink.FluidHandlerItemGlassware;
+import binnie.extratrees.liquid.Alcohol;
+import forestry.api.core.IItemModelRegister;
+import forestry.api.core.IModelManager;
+import forestry.api.core.Tabs;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -19,27 +26,16 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
-
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import forestry.api.core.IItemModelRegister;
-import forestry.api.core.IModelManager;
-import forestry.api.core.Tabs;
-
-import binnie.core.liquid.AlcoholEffect;
-import binnie.core.liquid.DrinkManager;
-import binnie.core.liquid.IDrinkLiquid;
-import binnie.extratrees.alcohol.GlasswareType;
-import binnie.extratrees.alcohol.drink.FluidHandlerItemGlassware;
-import binnie.extratrees.liquid.Alcohol;
+import javax.annotation.Nullable;
 
 import static net.minecraftforge.fluids.capability.templates.FluidHandlerItemStackSimple.FLUID_NBT_KEY;
 

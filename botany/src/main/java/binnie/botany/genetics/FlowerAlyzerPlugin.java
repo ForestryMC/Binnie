@@ -1,21 +1,5 @@
 package binnie.botany.genetics;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.renderer.RenderItem;
-import net.minecraft.item.ItemStack;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import forestry.api.genetics.IAlleleInteger;
-import forestry.api.genetics.IAlyzerPlugin;
-
 import binnie.botany.Botany;
 import binnie.botany.api.BotanyAPI;
 import binnie.botany.api.genetics.EnumFlowerChromosome;
@@ -24,6 +8,19 @@ import binnie.botany.api.genetics.IFlower;
 import binnie.core.gui.geometry.Area;
 import binnie.core.gui.renderer.RenderUtil;
 import binnie.core.util.I18N;
+import forestry.api.genetics.IAlleleInteger;
+import forestry.api.genetics.IAlyzerPlugin;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.renderer.RenderItem;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 // TODO write flower alyzer plugin
 public class FlowerAlyzerPlugin implements IAlyzerPlugin {

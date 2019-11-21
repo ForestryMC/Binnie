@@ -1,13 +1,5 @@
 package binnie.genetics.modules;
 
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-
-import net.minecraftforge.oredict.OreDictionary;
-
-import forestry.api.modules.ForestryModule;
-
 import binnie.core.Constants;
 import binnie.core.Mods;
 import binnie.core.machines.MachineGroup;
@@ -22,6 +14,11 @@ import binnie.genetics.machine.GeneticMachine;
 import binnie.genetics.machine.LaboratoryMachine;
 import binnie.genetics.machine.acclimatiser.Acclimatiser;
 import binnie.genetics.machine.incubator.Incubator;
+import forestry.api.modules.ForestryModule;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraftforge.oredict.OreDictionary;
 
 @ForestryModule(moduleID = GeneticsModuleUIDs.MACHINES, containerID = Constants.GENETICS_MOD_ID, name = "Machines", unlocalizedDescription = "genetics.module.machines")
 public class ModuleMachine extends BlankModule {

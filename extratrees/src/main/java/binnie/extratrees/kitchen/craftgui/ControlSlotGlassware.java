@@ -1,11 +1,10 @@
 package binnie.extratrees.kitchen.craftgui;
 
-import net.minecraft.item.ItemStack;
-
 import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.core.IControlValue;
 import binnie.core.gui.minecraft.control.ControlSlotBase;
 import binnie.extratrees.alcohol.GlasswareType;
+import net.minecraft.item.ItemStack;
 
 public class ControlSlotGlassware extends ControlSlotBase implements IControlValue<GlasswareType> {
 	private GlasswareType glasswareType;

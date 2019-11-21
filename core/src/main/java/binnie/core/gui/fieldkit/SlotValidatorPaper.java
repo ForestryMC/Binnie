@@ -1,13 +1,12 @@
 package binnie.core.gui.fieldkit;
 
-import javax.annotation.Nullable;
-
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.machines.inventory.ValidatorSprite;
 import binnie.core.util.I18N;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+
+import javax.annotation.Nullable;
 
 public class SlotValidatorPaper extends SlotValidator {
 

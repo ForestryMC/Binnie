@@ -1,14 +1,12 @@
 package binnie.core.machines.inventory;
 
-import javax.annotation.Nullable;
-
+import forestry.api.genetics.AlleleManager;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.ItemStack;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import forestry.api.genetics.AlleleManager;
+import javax.annotation.Nullable;
 
 public abstract class SlotValidator extends Validator<ItemStack> {
 

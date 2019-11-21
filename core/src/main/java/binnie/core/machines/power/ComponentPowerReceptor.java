@@ -1,17 +1,5 @@
 package binnie.core.machines.power;
 
-import javax.annotation.Nonnull;
-import java.util.LinkedList;
-import java.util.List;
-
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.world.World;
-
-import net.minecraftforge.common.MinecraftForge;
-
-import net.minecraftforge.fml.common.Optional;
-
 import binnie.core.Constants;
 import binnie.core.Mods;
 import binnie.core.machines.IMachine;
@@ -21,12 +9,20 @@ import binnie.core.machines.component.IInteraction;
 import binnie.core.triggers.TriggerData;
 import binnie.core.triggers.TriggerPower;
 import binnie.core.util.MjHelper;
-
 import buildcraft.api.mj.IMjConnector;
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergyEmitter;
 import ic2.api.energy.tile.IEnergyTile;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.Optional;
+
+import javax.annotation.Nonnull;
+import java.util.LinkedList;
+import java.util.List;
 
 @Optional.Interface(iface = "binnie.core.machines.component.IBuildcraft.TriggerProvider", modid = Constants.BCLIB_MOD_ID)
 public class ComponentPowerReceptor extends MachineComponent implements IPoweredMachine, IBuildcraft.TriggerProvider, IInteraction.ChunkUnload, IInteraction.Invalidation {

@@ -1,10 +1,5 @@
 package binnie.botany.gui.database;
 
-import net.minecraft.client.util.ITooltipFlag;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import binnie.botany.api.genetics.IFlowerColor;
 import binnie.core.api.gui.IWidget;
 import binnie.core.gui.Attribute;
@@ -13,6 +8,9 @@ import binnie.core.gui.Tooltip;
 import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.controls.core.IControlValue;
 import binnie.core.gui.renderer.RenderUtil;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ControlColorDisplay extends Control implements IControlValue<IFlowerColor>, ITooltip {
 	private IFlowerColor value;

@@ -1,20 +1,5 @@
 package binnie.extratrees.genetics.gui.analyst;
 
-import java.util.List;
-
-import net.minecraft.util.text.TextFormatting;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import forestry.api.genetics.EnumTolerance;
-import forestry.api.genetics.IAlleleTolerance;
-import forestry.api.genetics.IIndividual;
-import forestry.api.lepidopterology.EnumButterflyChromosome;
-import forestry.api.lepidopterology.IAlleleButterflyEffect;
-import forestry.api.lepidopterology.IButterfly;
-import forestry.api.lepidopterology.IButterflyGenome;
-
 import binnie.core.Constants;
 import binnie.core.api.gui.IArea;
 import binnie.core.api.gui.ITitledWidget;
@@ -34,6 +19,18 @@ import binnie.genetics.api.analyst.IAnalystPagePlugin;
 import binnie.genetics.api.analyst.IBehaviourPlugin;
 import binnie.genetics.api.analyst.IBiologyPlugin;
 import binnie.genetics.api.analyst.IClimatePlugin;
+import forestry.api.genetics.EnumTolerance;
+import forestry.api.genetics.IAlleleTolerance;
+import forestry.api.genetics.IIndividual;
+import forestry.api.lepidopterology.EnumButterflyChromosome;
+import forestry.api.lepidopterology.IAlleleButterflyEffect;
+import forestry.api.lepidopterology.IButterfly;
+import forestry.api.lepidopterology.IButterflyGenome;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.List;
 
 public class ButterflyAnalystPagePlugin implements IAnalystPagePlugin<IButterfly> {
 	@Override

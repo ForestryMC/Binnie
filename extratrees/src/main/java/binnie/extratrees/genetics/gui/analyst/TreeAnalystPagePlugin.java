@@ -1,17 +1,5 @@
 package binnie.extratrees.genetics.gui.analyst;
 
-import java.util.List;
-
-import net.minecraft.util.text.TextFormatting;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import forestry.api.arboriculture.EnumTreeChromosome;
-import forestry.api.arboriculture.ITree;
-import forestry.api.arboriculture.TreeManager;
-import forestry.api.genetics.IIndividual;
-
 import binnie.core.Binnie;
 import binnie.core.Constants;
 import binnie.core.api.genetics.IBreedingSystem;
@@ -25,6 +13,15 @@ import binnie.genetics.api.analyst.AnalystConstants;
 import binnie.genetics.api.analyst.IAnalystManager;
 import binnie.genetics.api.analyst.IAnalystPagePlugin;
 import binnie.genetics.api.analyst.IBiologyPlugin;
+import forestry.api.arboriculture.EnumTreeChromosome;
+import forestry.api.arboriculture.ITree;
+import forestry.api.arboriculture.TreeManager;
+import forestry.api.genetics.IIndividual;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.List;
 
 public class TreeAnalystPagePlugin implements IAnalystPagePlugin<ITree> {
 	@Override

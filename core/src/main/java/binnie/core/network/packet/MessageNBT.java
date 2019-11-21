@@ -1,11 +1,10 @@
 package binnie.core.network.packet;
 
-import javax.annotation.Nullable;
-import java.io.IOException;
-
+import io.netty.buffer.ByteBuf;
 import net.minecraft.nbt.NBTTagCompound;
 
-import io.netty.buffer.ByteBuf;
+import javax.annotation.Nullable;
+import java.io.IOException;
 
 public class MessageNBT extends MessageBase {
 	@Nullable

@@ -2,7 +2,6 @@ package binnie.core.util;
 
 import binnie.core.Constants;
 import binnie.core.tile.TileEntityDataFixer;
-
 import net.minecraft.util.datafix.FixTypes;
 import net.minecraftforge.common.util.CompoundDataFixer;
 import net.minecraftforge.common.util.ModFixs;

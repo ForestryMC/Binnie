@@ -1,12 +1,10 @@
 package binnie.core.machines;
 
-import net.minecraft.inventory.IInventory;
-import net.minecraft.nbt.NBTTagCompound;
-
+import binnie.core.Binnie;
 import forestry.api.core.INbtReadable;
 import forestry.api.core.INbtWritable;
-
-import binnie.core.Binnie;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.nbt.NBTTagCompound;
 
 public class MachineComponent implements INbtReadable, INbtWritable {
 	private IMachine machine;

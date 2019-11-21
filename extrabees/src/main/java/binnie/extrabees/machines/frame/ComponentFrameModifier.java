@@ -1,10 +1,9 @@
 package binnie.extrabees.machines.frame;
 
-import javax.annotation.Nullable;
-
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
-
+import binnie.core.machines.Machine;
+import binnie.extrabees.machines.TileExtraBeeAlveary;
+import binnie.extrabees.utils.ComponentBeeModifier;
+import binnie.extrabees.utils.Utils;
 import forestry.api.apiculture.IBee;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeListener;
@@ -13,11 +12,10 @@ import forestry.api.apiculture.IBeeRoot;
 import forestry.api.apiculture.IHiveFrame;
 import forestry.api.multiblock.IAlvearyController;
 import forestry.api.multiblock.IMultiblockLogicAlveary;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
-import binnie.core.machines.Machine;
-import binnie.extrabees.machines.TileExtraBeeAlveary;
-import binnie.extrabees.utils.ComponentBeeModifier;
-import binnie.extrabees.utils.Utils;
+import javax.annotation.Nullable;
 
 public class ComponentFrameModifier extends ComponentBeeModifier implements IBeeModifier, IBeeListener {
 	public ComponentFrameModifier(final Machine machine) {

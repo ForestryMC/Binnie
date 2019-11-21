@@ -1,15 +1,12 @@
 package binnie.botany.items;
 
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import forestry.core.items.IColoredItem;
-
 import binnie.botany.blocks.BlockCeramicBrick;
 import binnie.botany.ceramic.brick.CeramicBrickPair;
+import forestry.core.items.IColoredItem;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemCeramicBrick extends ItemBlock implements IColoredItem {
 	public ItemCeramicBrick(BlockCeramicBrick block) {

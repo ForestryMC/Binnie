@@ -1,8 +1,5 @@
 package binnie.extrabees.init;
 
-import forestry.api.apiculture.IAlleleBeeSpecies;
-import forestry.apiculture.genetics.BeeDefinition;
-
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.blocks.BlockEctoplasm;
 import binnie.extrabees.blocks.BlockExtraBeeHives;
@@ -12,6 +9,8 @@ import binnie.extrabees.modules.ModuleCore;
 import binnie.extrabees.utils.HiveDrop;
 import binnie.extrabees.utils.Utils;
 import binnie.extrabees.utils.config.ConfigurationMain;
+import forestry.api.apiculture.IAlleleBeeSpecies;
+import forestry.apiculture.genetics.BeeDefinition;
 
 public final class BlockRegister {
 

@@ -1,9 +1,5 @@
 package binnie.genetics.machine.polymeriser;
 
-import com.google.common.base.Preconditions;
-
-import net.minecraft.item.ItemStack;
-
 import binnie.core.machines.Machine;
 import binnie.core.machines.errors.ErrorState;
 import binnie.core.machines.power.ComponentProcessSetCost;
@@ -12,6 +8,8 @@ import binnie.core.util.I18N;
 import binnie.genetics.config.ConfigurationMain;
 import binnie.genetics.genetics.Engineering;
 import binnie.genetics.machine.GeneticsErrorCode;
+import com.google.common.base.Preconditions;
+import net.minecraft.item.ItemStack;
 
 public class PolymeriserLogic extends ComponentProcessSetCost implements IProcess {
 	private static final float chargePerProcess = 0.4f;

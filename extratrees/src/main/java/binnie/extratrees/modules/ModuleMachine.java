@@ -1,13 +1,5 @@
 package binnie.extratrees.modules;
 
-import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-
-import forestry.api.core.ForestryAPI;
-import forestry.api.core.Tabs;
-import forestry.api.modules.ForestryModule;
-
 import binnie.core.BinnieCore;
 import binnie.core.Constants;
 import binnie.core.Mods;
@@ -24,6 +16,12 @@ import binnie.extratrees.machines.distillery.recipes.DistilleryRecipeManager;
 import binnie.extratrees.machines.fruitpress.recipes.FruitPressRecipeManager;
 import binnie.extratrees.machines.lumbermill.recipes.LumbermillRecipeManager;
 import binnie.extratrees.machines.nursery.TileEntityNursery;
+import forestry.api.core.ForestryAPI;
+import forestry.api.core.Tabs;
+import forestry.api.modules.ForestryModule;
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.util.ResourceLocation;
 
 @ForestryModule(moduleID = ExtraTreesModuleUIDs.MACHINES, containerID = Constants.EXTRA_TREES_MOD_ID, name = "Machines", unlocalizedDescription = "extratrees.module.machines")

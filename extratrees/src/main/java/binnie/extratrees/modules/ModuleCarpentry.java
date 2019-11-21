@@ -1,9 +1,5 @@
 package binnie.extratrees.modules;
 
-import net.minecraftforge.common.MinecraftForge;
-
-import forestry.api.modules.ForestryModule;
-
 import binnie.core.Constants;
 import binnie.core.modules.BlankModule;
 import binnie.core.modules.ExtraTreesModuleUIDs;
@@ -17,6 +13,8 @@ import binnie.extratrees.blocks.BlockCarpentry;
 import binnie.extratrees.blocks.BlockCarpentryPanel;
 import binnie.extratrees.blocks.BlockStainedDesign;
 import binnie.extratrees.carpentry.CarpentryInterface;
+import forestry.api.modules.ForestryModule;
+import net.minecraftforge.common.MinecraftForge;
 
 @ForestryModule(moduleID = ExtraTreesModuleUIDs.CARPENTRY, containerID = Constants.EXTRA_TREES_MOD_ID, name = "Carpentry", unlocalizedDescription = "extratrees.module.carpentry")
 public class ModuleCarpentry extends BlankModule {

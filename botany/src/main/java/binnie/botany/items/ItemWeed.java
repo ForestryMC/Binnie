@@ -1,11 +1,10 @@
 package binnie.botany.items;
 
+import binnie.botany.blocks.PlantType;
+import binnie.core.util.I18N;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-
-import binnie.botany.blocks.PlantType;
-import binnie.core.util.I18N;
 
 public class ItemWeed extends ItemBlock {
 	public ItemWeed(Block block) {

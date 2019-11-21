@@ -1,15 +1,14 @@
 package binnie.design;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import net.minecraft.util.ResourceLocation;
-
 import binnie.core.Constants;
 import binnie.core.util.I18N;
 import binnie.design.api.IDesign;
 import binnie.design.api.IDesignCategory;
 import binnie.design.api.ILayout;
+import net.minecraft.util.ResourceLocation;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public enum EnumDesign implements IDesign {
 	Blank("blank"),

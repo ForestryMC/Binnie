@@ -1,26 +1,5 @@
 package binnie.extratrees.genetics.gui.analyst;
 
-import java.lang.reflect.Field;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Map;
-
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.TextFormatting;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import forestry.api.arboriculture.EnumTreeChromosome;
-import forestry.api.arboriculture.IAlleleFruit;
-import forestry.api.arboriculture.ITree;
-import forestry.api.arboriculture.ITreeGenome;
-import forestry.api.arboriculture.TreeManager;
-import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IFruitFamily;
-import forestry.arboriculture.FruitProviderPod;
-
 import binnie.core.Binnie;
 import binnie.core.api.genetics.IBreedingSystem;
 import binnie.core.api.gui.IArea;
@@ -34,6 +13,24 @@ import binnie.core.util.I18N;
 import binnie.core.util.UniqueItemStackSet;
 import binnie.genetics.api.analyst.AnalystConstants;
 import binnie.genetics.api.analyst.IAnalystManager;
+import forestry.api.arboriculture.EnumTreeChromosome;
+import forestry.api.arboriculture.IAlleleFruit;
+import forestry.api.arboriculture.ITree;
+import forestry.api.arboriculture.ITreeGenome;
+import forestry.api.arboriculture.TreeManager;
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IFruitFamily;
+import forestry.arboriculture.FruitProviderPod;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.lang.reflect.Field;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Map;
 
 @SideOnly(Side.CLIENT)
 public class AnalystPageFruit extends Control implements ITitledWidget {

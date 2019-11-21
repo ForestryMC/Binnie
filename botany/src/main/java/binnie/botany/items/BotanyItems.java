@@ -1,16 +1,14 @@
 package binnie.botany.items;
 
-import java.util.List;
-import java.util.Locale;
-
-import net.minecraft.item.ItemStack;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import binnie.botany.modules.ModuleGardening;
 import binnie.core.item.IItemMiscProvider;
 import binnie.core.util.I18N;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.List;
+import java.util.Locale;
 
 public enum BotanyItems implements IItemMiscProvider {
 	POWDER_ASH,

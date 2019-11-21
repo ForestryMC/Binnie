@@ -1,14 +1,13 @@
 package binnie.extratrees.kitchen;
 
-import java.util.function.Supplier;
-
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-
 import binnie.core.machines.IMachineType;
 import binnie.core.machines.MachinePackage;
 import binnie.core.machines.TileEntityMachine;
 import binnie.extratrees.modules.ModuleKitchen;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+
+import java.util.function.Supplier;
 
 public enum KitchenMachine implements IMachineType {
 	// TODO implement

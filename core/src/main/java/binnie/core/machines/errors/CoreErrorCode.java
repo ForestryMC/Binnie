@@ -1,9 +1,9 @@
 package binnie.core.machines.errors;
 
-import javax.annotation.Nullable;
-
 import binnie.core.Constants;
 import binnie.core.util.I18N;
+
+import javax.annotation.Nullable;
 
 public enum CoreErrorCode implements IErrorStateDefinition {
 	UNKNOWN("unknown"),

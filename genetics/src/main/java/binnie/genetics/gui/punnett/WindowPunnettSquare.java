@@ -1,13 +1,5 @@
 package binnie.genetics.gui.punnett;
 
-import javax.annotation.Nullable;
-
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import binnie.core.Binnie;
 import binnie.core.Constants;
 import binnie.core.gui.CraftGUI;
@@ -17,6 +9,12 @@ import binnie.core.resource.BinnieResource;
 import binnie.core.resource.IBinnieTexture;
 import binnie.core.resource.ResourceType;
 import binnie.genetics.Genetics;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
 
 public class WindowPunnettSquare extends Window {
 	public WindowPunnettSquare(EntityPlayer player, IInventory inventory, Side side) {

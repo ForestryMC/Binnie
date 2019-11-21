@@ -1,14 +1,12 @@
 package binnie.extratrees.kitchen.craftgui;
 
-import net.minecraft.nbt.NBTTagCompound;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import binnie.core.api.gui.IWidget;
 import binnie.core.gui.events.EventMouse;
 import binnie.core.gui.geometry.Area;
 import binnie.core.gui.minecraft.Window;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ControlTankSlot extends ControlSlotFluid {
 	private final int tankID;

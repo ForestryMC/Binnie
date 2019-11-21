@@ -1,10 +1,9 @@
 package binnie.design.gui;
 
-import net.minecraft.item.ItemStack;
-
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.design.Design;
 import binnie.design.api.IDesignerType;
+import net.minecraft.item.ItemStack;
 
 public class SlotValidatorDesignAdhesive extends SlotValidator {
 	private final IDesignerType type;

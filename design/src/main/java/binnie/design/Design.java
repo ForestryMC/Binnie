@@ -1,18 +1,17 @@
 package binnie.design;
 
-import javax.annotation.Nullable;
-import java.util.Objects;
-
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-
 import binnie.core.Constants;
 import binnie.core.machines.errors.ErrorStateRegistry;
 import binnie.core.machines.inventory.ValidatorSprite;
 import binnie.design.api.DesignAPI;
 import binnie.design.api.IDesignManager;
 import binnie.design.gui.DesignErrorCode;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+
+import javax.annotation.Nullable;
+import java.util.Objects;
 
 @Mod(
 	modid = Constants.DESIGN_MOD_ID,

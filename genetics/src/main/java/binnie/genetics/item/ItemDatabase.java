@@ -1,5 +1,12 @@
 package binnie.genetics.item;
 
+import binnie.core.api.gui.IGuiItem;
+import binnie.core.item.ItemCore;
+import binnie.core.util.I18N;
+import binnie.genetics.CreativeTabGenetics;
+import binnie.genetics.Genetics;
+import binnie.genetics.core.GeneticsGUI;
+import forestry.api.core.IModelManager;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -9,18 +16,8 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import forestry.api.core.IModelManager;
-
-import binnie.core.api.gui.IGuiItem;
-import binnie.core.item.ItemCore;
-import binnie.core.util.I18N;
-import binnie.genetics.CreativeTabGenetics;
-import binnie.genetics.Genetics;
-import binnie.genetics.core.GeneticsGUI;
 
 public class ItemDatabase extends ItemCore implements IGuiItem {
 

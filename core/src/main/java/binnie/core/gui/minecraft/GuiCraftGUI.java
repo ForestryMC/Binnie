@@ -1,12 +1,15 @@
 package binnie.core.gui.minecraft;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Pattern;
-
+import binnie.core.api.gui.IPoint;
+import binnie.core.api.gui.IWidget;
+import binnie.core.gui.KeyBindings;
+import binnie.core.gui.Tooltip;
+import binnie.core.gui.events.EventKey;
+import binnie.core.gui.events.EventMouse;
+import binnie.core.gui.geometry.Point;
+import binnie.core.gui.renderer.RenderUtil;
+import binnie.core.util.EmptyHelper;
+import binnie.core.util.Log;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -19,24 +22,18 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.JsonToNBT;
 import net.minecraft.nbt.NBTException;
 import net.minecraft.nbt.NBTTagCompound;
-
 import net.minecraftforge.fml.client.config.GuiUtils;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import binnie.core.api.gui.IPoint;
-import binnie.core.api.gui.IWidget;
-import binnie.core.gui.KeyBindings;
-import binnie.core.gui.Tooltip;
-import binnie.core.gui.events.EventKey;
-import binnie.core.gui.events.EventMouse;
-import binnie.core.gui.geometry.Point;
-import binnie.core.gui.renderer.RenderUtil;
-import binnie.core.util.EmptyHelper;
-import binnie.core.util.Log;
-
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Pattern;
 
 @SideOnly(Side.CLIENT)
 public class GuiCraftGUI extends GuiContainer {

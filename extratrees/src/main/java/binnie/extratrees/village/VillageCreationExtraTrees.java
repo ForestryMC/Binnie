@@ -1,18 +1,16 @@
 package binnie.extratrees.village;
 
-import javax.annotation.Nullable;
-import java.util.List;
-import java.util.Random;
-
+import binnie.core.Constants;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.StructureVillagePieces;
-
 import net.minecraftforge.fml.common.registry.VillagerRegistry;
 
-import binnie.core.Constants;
+import javax.annotation.Nullable;
+import java.util.List;
+import java.util.Random;
 
 public class VillageCreationExtraTrees implements VillagerRegistry.IVillageCreationHandler {
 

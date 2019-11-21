@@ -1,17 +1,9 @@
 package binnie.extratrees.integration.jei.brewery;
 
-import java.util.List;
-
-import net.minecraft.client.Minecraft;
-import net.minecraft.item.ItemStack;
-
-import net.minecraftforge.fluids.Fluid;
-
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.integration.jei.ExtraTreesJeiPlugin;
 import binnie.extratrees.integration.jei.RecipeUids;
 import binnie.extratrees.machines.brewery.BreweryMachine;
-
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IDrawableAnimated;
 import mezz.jei.api.gui.IGuiFluidStackGroup;
@@ -19,6 +11,11 @@ import mezz.jei.api.gui.IGuiItemStackGroup;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IRecipeCategory;
+import net.minecraft.client.Minecraft;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.Fluid;
+
+import java.util.List;
 
 public class BreweryRecipeCategory implements IRecipeCategory<BreweryRecipeWrapper> {
 	private final IDrawableAnimated arrowAnimated;

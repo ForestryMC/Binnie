@@ -1,22 +1,20 @@
 package binnie.core.util;
 
-import javax.annotation.Nullable;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.util.Locale;
-
+import binnie.core.Constants;
+import binnie.core.ModId;
+import binnie.core.proxy.I18NProxy;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.Language;
 import net.minecraft.client.resources.LanguageManager;
 import net.minecraft.util.ResourceLocation;
-
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.core.Constants;
-import binnie.core.ModId;
-import binnie.core.proxy.I18NProxy;
+import javax.annotation.Nullable;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 public class I18N {
 	@Nullable

@@ -1,14 +1,5 @@
 package binnie.core.machines;
 
-import javax.annotation.Nullable;
-
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SPacketUpdateTileEntity;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import binnie.core.Binnie;
 import binnie.core.machines.base.TileEntityMachineBase;
 import binnie.core.machines.component.IInteraction;
@@ -17,6 +8,13 @@ import binnie.core.machines.inventory.IInventorySlots;
 import binnie.core.machines.inventory.InventorySlot;
 import binnie.core.network.INetworkedEntity;
 import binnie.core.network.packet.PacketPayload;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
 
 public class TileEntityMachine extends TileEntityMachineBase implements INetworkedEntity, IInventorySlots {
 	@Nullable

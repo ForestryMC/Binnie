@@ -1,13 +1,5 @@
 package binnie.extrabees.gui;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-
-import net.minecraftforge.fml.relauncher.Side;
-
 import binnie.core.gui.IBinnieGUID;
 import binnie.core.gui.minecraft.Window;
 import binnie.extrabees.genetics.gui.database.WindowApiaristDatabase;
@@ -15,6 +7,12 @@ import binnie.extrabees.machines.frame.window.WindowAlvearyFrame;
 import binnie.extrabees.machines.hatchery.window.WindowAlvearyHatchery;
 import binnie.extrabees.machines.mutator.window.WindowAlvearyMutator;
 import binnie.extrabees.machines.stimulator.window.WindowAlvearyStimulator;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
 
 public enum ExtraBeesGUID implements IBinnieGUID {
 	ALVEARY_MUTATOR,

@@ -1,25 +1,21 @@
 package binnie.extratrees.items;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Locale;
-
-import net.minecraft.item.ItemStack;
-
-import net.minecraftforge.oredict.OreDictionary;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import forestry.api.recipes.RecipeManagers;
-import forestry.core.fluids.Fluids;
-
 import binnie.core.Mods;
 import binnie.core.item.IItemMiscProvider;
 import binnie.core.util.I18N;
 import binnie.extratrees.liquid.Juice;
 import binnie.extratrees.modules.ModuleCore;
+import forestry.api.recipes.RecipeManagers;
+import forestry.core.fluids.Fluids;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.oredict.OreDictionary;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Locale;
 
 public enum Food implements IItemMiscProvider {
 	CRABAPPLE(2) {

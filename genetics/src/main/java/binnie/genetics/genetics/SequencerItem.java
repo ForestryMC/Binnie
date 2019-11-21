@@ -1,14 +1,12 @@
 package binnie.genetics.genetics;
 
-import javax.annotation.Nullable;
-
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-
-import net.minecraftforge.common.util.Constants;
-
 import binnie.core.api.genetics.IGene;
 import binnie.core.genetics.Gene;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.common.util.Constants;
+
+import javax.annotation.Nullable;
 
 public class SequencerItem extends GeneItem {
 	private int sequenced;

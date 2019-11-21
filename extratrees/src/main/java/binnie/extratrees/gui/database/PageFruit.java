@@ -1,14 +1,5 @@
 package binnie.extratrees.gui.database;
 
-import java.util.Collection;
-
-import net.minecraft.item.ItemStack;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import forestry.api.genetics.IAlleleSpecies;
-
 import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.ControlText;
 import binnie.core.gui.database.ControlSpeciesBox;
@@ -20,6 +11,12 @@ import binnie.core.gui.geometry.TextJustification;
 import binnie.core.gui.minecraft.Window;
 import binnie.core.util.I18N;
 import binnie.genetics.api.ITreeBreedingSystem;
+import forestry.api.genetics.IAlleleSpecies;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.Collection;
 
 @SideOnly(Side.CLIENT)
 public class PageFruit extends PageAbstract<ItemStack> {

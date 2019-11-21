@@ -1,14 +1,13 @@
 package binnie.core.api.gui;
 
-import javax.annotation.Nullable;
-import java.util.List;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import binnie.core.api.gui.events.Event;
 import binnie.core.api.gui.events.EventHandlerOrigin;
 import binnie.core.api.gui.events.OnEventHandler;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public interface IWidget {
 	/**

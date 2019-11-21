@@ -1,17 +1,5 @@
 package binnie.botany.genetics;
 
-import javax.annotation.Nullable;
-import java.util.List;
-
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.World;
-
-import forestry.api.genetics.IChromosome;
-import forestry.core.genetics.Chromosome;
-import forestry.core.genetics.Individual;
-
 import binnie.botany.api.genetics.EnumFlowerChromosome;
 import binnie.botany.api.genetics.IAlleleFlowerSpecies;
 import binnie.botany.api.genetics.IColorMix;
@@ -21,6 +9,16 @@ import binnie.botany.api.genetics.IFlowerGenome;
 import binnie.botany.api.genetics.IFlowerMutation;
 import binnie.botany.core.BotanyCore;
 import binnie.core.util.I18N;
+import forestry.api.genetics.IChromosome;
+import forestry.core.genetics.Chromosome;
+import forestry.core.genetics.Individual;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.World;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class Flower extends Individual implements IFlower {
 	private final IFlowerGenome genome;

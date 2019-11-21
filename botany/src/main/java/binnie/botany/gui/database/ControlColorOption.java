@@ -1,8 +1,5 @@
 package binnie.botany.gui.database;
 
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import binnie.botany.api.genetics.IFlowerColor;
 import binnie.core.gui.Attribute;
 import binnie.core.gui.CraftGUI;
@@ -10,6 +7,8 @@ import binnie.core.gui.controls.listbox.ControlList;
 import binnie.core.gui.controls.listbox.ControlTextOption;
 import binnie.core.gui.geometry.CraftGUIUtil;
 import binnie.core.gui.geometry.Point;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class ControlColorOption extends ControlTextOption<IFlowerColor> {

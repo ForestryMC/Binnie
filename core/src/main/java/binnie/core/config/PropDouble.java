@@ -1,10 +1,10 @@
 package binnie.core.config;
 
+import net.minecraftforge.common.config.Property;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.reflect.Field;
-
-import net.minecraftforge.common.config.Property;
 
 @Retention(RetentionPolicy.RUNTIME)
 @ConfigProperty.Type(propertyClass = PropDouble.PropertyDouble.class)

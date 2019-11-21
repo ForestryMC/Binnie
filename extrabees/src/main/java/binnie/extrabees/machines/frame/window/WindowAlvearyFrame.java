@@ -1,17 +1,15 @@
 package binnie.extrabees.machines.frame.window;
 
-import javax.annotation.Nullable;
-
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-
-import net.minecraftforge.fml.relauncher.Side;
-
 import binnie.core.Constants;
 import binnie.core.gui.minecraft.Window;
 import binnie.core.gui.minecraft.control.ControlPlayerInventory;
 import binnie.core.gui.minecraft.control.ControlSlot;
 import binnie.core.machines.Machine;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraftforge.fml.relauncher.Side;
+
+import javax.annotation.Nullable;
 
 public class WindowAlvearyFrame extends Window {
 

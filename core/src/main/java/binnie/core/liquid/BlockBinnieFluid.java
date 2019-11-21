@@ -1,9 +1,7 @@
 package binnie.core.liquid;
 
-import javax.annotation.Nullable;
-import java.awt.Color;
-import java.util.Random;
-
+import forestry.api.core.IItemModelRegister;
+import forestry.api.core.IModelManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -17,15 +15,14 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import forestry.api.core.IItemModelRegister;
-import forestry.api.core.IModelManager;
+import javax.annotation.Nullable;
+import java.awt.Color;
+import java.util.Random;
 
 public class BlockBinnieFluid extends BlockFluidClassic implements IItemModelRegister {
 

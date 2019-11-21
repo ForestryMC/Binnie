@@ -1,13 +1,17 @@
 package binnie.extrabees.genetics;
 
-import javax.annotation.Nullable;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeSet;
-
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-
+import binnie.core.Binnie;
+import binnie.core.api.genetics.IFieldKitPlugin;
+import binnie.core.api.gui.IPoint;
+import binnie.core.api.gui.ITexture;
+import binnie.core.genetics.BreedingSystem;
+import binnie.core.genetics.ForestryAllele;
+import binnie.core.genetics.Tolerance;
+import binnie.core.genetics.VirtualBeeHousing;
+import binnie.core.gui.geometry.Point;
+import binnie.core.gui.resource.textures.StandardTexture;
+import binnie.core.texture.BinnieCoreTexture;
+import binnie.core.util.I18N;
 import forestry.api.apiculture.BeeManager;
 import forestry.api.apiculture.EnumBeeChromosome;
 import forestry.api.apiculture.EnumBeeType;
@@ -22,19 +26,13 @@ import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.IMutation;
 import forestry.api.genetics.ISpeciesRoot;
 import forestry.api.genetics.ISpeciesType;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 
-import binnie.core.Binnie;
-import binnie.core.api.genetics.IFieldKitPlugin;
-import binnie.core.api.gui.IPoint;
-import binnie.core.api.gui.ITexture;
-import binnie.core.genetics.BreedingSystem;
-import binnie.core.genetics.ForestryAllele;
-import binnie.core.genetics.Tolerance;
-import binnie.core.genetics.VirtualBeeHousing;
-import binnie.core.gui.geometry.Point;
-import binnie.core.gui.resource.textures.StandardTexture;
-import binnie.core.texture.BinnieCoreTexture;
-import binnie.core.util.I18N;
+import javax.annotation.Nullable;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeSet;
 
 public class BeeBreedingSystem extends BreedingSystem {
 

@@ -1,16 +1,15 @@
 package binnie.genetics.core;
 
-import javax.annotation.Nullable;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import binnie.core.Binnie;
 import binnie.core.resource.BinnieResource;
 import binnie.core.resource.BinnieSprite;
 import binnie.core.resource.IBinnieTexture;
 import binnie.core.resource.ResourceType;
 import binnie.genetics.Genetics;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
 
 public enum GeneticsTexture implements IBinnieTexture {
 	GUI_PROCESS(ResourceType.GUI, "process"),

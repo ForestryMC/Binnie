@@ -1,20 +1,17 @@
 package binnie.genetics.integration.jei.polymeriser;
 
+import binnie.genetics.item.GeneticLiquid;
+import binnie.genetics.machine.polymeriser.PolymeriserLogic;
+import mezz.jei.api.ingredients.IIngredients;
+import mezz.jei.api.recipe.IRecipeWrapper;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidStack;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-
-import net.minecraftforge.fluids.FluidStack;
-
-import binnie.genetics.item.GeneticLiquid;
-import binnie.genetics.machine.polymeriser.PolymeriserLogic;
-
-import mezz.jei.api.ingredients.IIngredients;
-import mezz.jei.api.recipe.IRecipeWrapper;
 
 public class PolymeriserRecipeWrapper implements IRecipeWrapper {
 	private final ItemStack input;

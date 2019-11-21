@@ -1,61 +1,5 @@
 package binnie.extratrees.modules;
 
-import com.google.common.base.Preconditions;
-
-import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
-import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.block.model.IBakedModel;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-
-import net.minecraftforge.client.event.ModelBakeEvent;
-import net.minecraftforge.client.event.TextureStitchEvent;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.oredict.OreDictionary;
-
-import net.minecraftforge.fml.common.event.FMLInterModComms;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import forestry.api.arboriculture.EnumVanillaWoodType;
-import forestry.api.arboriculture.IAlleleFruit;
-import forestry.api.arboriculture.ITreeRoot;
-import forestry.api.arboriculture.IWoodAccess;
-import forestry.api.arboriculture.IWoodType;
-import forestry.api.arboriculture.TreeManager;
-import forestry.api.arboriculture.WoodBlockKind;
-import forestry.api.core.ForestryAPI;
-import forestry.api.genetics.AlleleRegisterEvent;
-import forestry.api.genetics.AlleleSpeciesRegisterEvent;
-import forestry.api.lepidopterology.IButterflyRoot;
-import forestry.api.modules.ForestryModule;
-import forestry.api.recipes.RecipeManagers;
-import forestry.arboriculture.IWoodTyped;
-import forestry.arboriculture.ModuleArboriculture;
-import forestry.arboriculture.WoodAccess;
-import forestry.arboriculture.blocks.BlockForestryFenceGate;
-import forestry.arboriculture.blocks.BlockForestryStairs;
-import forestry.arboriculture.items.ItemBlockLeaves;
-import forestry.core.fluids.Fluids;
-import forestry.core.utils.OreDictUtil;
-import forestry.modules.ForestryModuleUids;
-
 import binnie.core.BinnieCore;
 import binnie.core.Constants;
 import binnie.core.Mods;
@@ -100,6 +44,57 @@ import binnie.extratrees.wood.planks.ExtraTreePlanks;
 import binnie.extratrees.wood.planks.ForestryPlanks;
 import binnie.extratrees.wood.planks.IPlankType;
 import binnie.extratrees.wood.planks.VanillaPlanks;
+import com.google.common.base.Preconditions;
+import forestry.api.arboriculture.EnumVanillaWoodType;
+import forestry.api.arboriculture.IAlleleFruit;
+import forestry.api.arboriculture.ITreeRoot;
+import forestry.api.arboriculture.IWoodAccess;
+import forestry.api.arboriculture.IWoodType;
+import forestry.api.arboriculture.TreeManager;
+import forestry.api.arboriculture.WoodBlockKind;
+import forestry.api.core.ForestryAPI;
+import forestry.api.genetics.AlleleRegisterEvent;
+import forestry.api.genetics.AlleleSpeciesRegisterEvent;
+import forestry.api.lepidopterology.IButterflyRoot;
+import forestry.api.modules.ForestryModule;
+import forestry.api.recipes.RecipeManagers;
+import forestry.arboriculture.IWoodTyped;
+import forestry.arboriculture.ModuleArboriculture;
+import forestry.arboriculture.WoodAccess;
+import forestry.arboriculture.blocks.BlockForestryFenceGate;
+import forestry.arboriculture.blocks.BlockForestryStairs;
+import forestry.arboriculture.items.ItemBlockLeaves;
+import forestry.core.fluids.Fluids;
+import forestry.core.utils.OreDictUtil;
+import forestry.modules.ForestryModuleUids;
+import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.block.model.IBakedModel;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.ModelBakeEvent;
+import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fml.common.event.FMLInterModComms;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.oredict.OreDictionary;
+
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @ForestryModule(
 	moduleID = ExtraTreesModuleUIDs.WOOD,

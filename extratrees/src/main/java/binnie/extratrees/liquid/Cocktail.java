@@ -1,15 +1,15 @@
 package binnie.extratrees.liquid;
 
-import javax.annotation.Nullable;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-
 import binnie.core.liquid.DrinkManager;
 import binnie.extratrees.alcohol.GlasswareType;
 import binnie.extratrees.alcohol.ICocktailIngredient;
 import binnie.extratrees.alcohol.ICocktailIngredientProvider;
 import binnie.extratrees.alcohol.drink.DrinkLiquid;
+
+import javax.annotation.Nullable;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 public enum Cocktail {
 	Bellini("Bellini", GlasswareType.FLUTE, 15974764),

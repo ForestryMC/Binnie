@@ -1,22 +1,5 @@
 package binnie.extratrees.modules;
 
-import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-
-import net.minecraft.block.Block;
-import net.minecraft.item.ItemStack;
-
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.oredict.OreDictionary;
-
-import forestry.api.core.ForestryAPI;
-import forestry.api.modules.ForestryModule;
-import forestry.api.recipes.ISqueezerRecipe;
-import forestry.api.recipes.RecipeManagers;
-import forestry.core.fluids.Fluids;
-
 import binnie.core.Binnie;
 import binnie.core.Constants;
 import binnie.core.Mods;
@@ -43,6 +26,20 @@ import binnie.extratrees.liquid.Juice;
 import binnie.extratrees.liquid.Liqueur;
 import binnie.extratrees.liquid.Spirit;
 import binnie.extratrees.machines.distillery.DistilleryLogic;
+import forestry.api.core.ForestryAPI;
+import forestry.api.modules.ForestryModule;
+import forestry.api.recipes.ISqueezerRecipe;
+import forestry.api.recipes.RecipeManagers;
+import forestry.core.fluids.Fluids;
+import net.minecraft.block.Block;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.oredict.OreDictionary;
+
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 @ForestryModule(moduleID = ExtraTreesModuleUIDs.ALCOHOL, containerID = Constants.EXTRA_TREES_MOD_ID, name = "Alcohol", unlocalizedDescription = "extratrees.module.alcohol")
 public class ModuleAlcohol extends BlankModule {

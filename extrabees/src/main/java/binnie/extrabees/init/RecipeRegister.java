@@ -1,19 +1,5 @@
 package binnie.extrabees.init;
 
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-
-import net.minecraftforge.oredict.OreDictionary;
-
-import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
-
-import forestry.api.recipes.RecipeManagers;
-import forestry.core.fluids.Fluids;
-
 import binnie.core.Binnie;
 import binnie.core.Mods;
 import binnie.core.liquid.ManagerLiquid;
@@ -24,6 +10,16 @@ import binnie.extrabees.items.types.EnumHoneyDrop;
 import binnie.extrabees.items.types.EnumPropolis;
 import binnie.extrabees.items.types.ExtraBeeItems;
 import binnie.extrabees.modules.ModuleCore;
+import forestry.api.recipes.RecipeManagers;
+import forestry.core.fluids.Fluids;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import net.minecraftforge.oredict.OreDictionary;
 
 public final class RecipeRegister {
 	private static final RecipeUtil RECIPE_UTIL = new RecipeUtil(ExtraBees.MODID);

@@ -1,5 +1,11 @@
 package binnie.botany.items;
 
+import binnie.botany.Botany;
+import binnie.botany.gui.BotanyGUI;
+import binnie.core.api.gui.IGuiItem;
+import binnie.core.util.I18N;
+import forestry.api.core.IItemModelRegister;
+import forestry.api.core.IModelManager;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -8,17 +14,8 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import forestry.api.core.IItemModelRegister;
-import forestry.api.core.IModelManager;
-
-import binnie.botany.Botany;
-import binnie.botany.gui.BotanyGUI;
-import binnie.core.api.gui.IGuiItem;
-import binnie.core.util.I18N;
 
 public class ItemDatabaseBotany extends ItemBotany implements IItemModelRegister, IGuiItem {
 	public ItemDatabaseBotany() {

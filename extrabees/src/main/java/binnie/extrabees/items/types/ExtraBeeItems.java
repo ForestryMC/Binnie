@@ -1,17 +1,14 @@
 package binnie.extrabees.items.types;
 
-import javax.annotation.Nullable;
-import java.util.List;
-
+import binnie.extrabees.modules.ModuleCore;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
-
-import net.minecraftforge.oredict.OreDictionary;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.oredict.OreDictionary;
 
-import binnie.extrabees.modules.ModuleCore;
+import javax.annotation.Nullable;
+import java.util.List;
 
 public enum ExtraBeeItems implements IEBItemMiscProvider {
 

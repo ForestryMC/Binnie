@@ -1,8 +1,7 @@
 package binnie.extratrees.api.recipes;
 
-import net.minecraftforge.fluids.FluidStack;
-
 import binnie.core.api.IBinnieRecipe;
+import net.minecraftforge.fluids.FluidStack;
 
 public interface IDistilleryRecipe extends IBinnieRecipe {
 

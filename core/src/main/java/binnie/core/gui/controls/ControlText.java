@@ -1,8 +1,5 @@
 package binnie.core.gui.controls;
 
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import binnie.core.api.gui.IArea;
 import binnie.core.api.gui.IPoint;
 import binnie.core.api.gui.IWidget;
@@ -12,6 +9,8 @@ import binnie.core.gui.geometry.Area;
 import binnie.core.gui.geometry.Point;
 import binnie.core.gui.geometry.TextJustification;
 import binnie.core.gui.renderer.RenderUtil;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ControlText extends Control implements IControlValue<String> {
 	private String text;

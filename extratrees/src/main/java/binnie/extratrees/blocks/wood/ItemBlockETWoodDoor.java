@@ -1,5 +1,6 @@
 package binnie.extratrees.blocks.wood;
 
+import forestry.core.items.IColoredItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
@@ -12,11 +13,8 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import forestry.core.items.IColoredItem;
 
 public class ItemBlockETWoodDoor extends ItemBlockETWood<BlockETDoor> implements IColoredItem {
 	public ItemBlockETWoodDoor(BlockETDoor block) {

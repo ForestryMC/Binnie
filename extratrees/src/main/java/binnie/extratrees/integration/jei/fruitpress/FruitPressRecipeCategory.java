@@ -1,12 +1,9 @@
 package binnie.extratrees.integration.jei.fruitpress;
 
-import net.minecraft.client.Minecraft;
-
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.integration.jei.ExtraTreesJeiPlugin;
 import binnie.extratrees.integration.jei.RecipeUids;
 import binnie.extratrees.machines.fruitpress.FruitPressMachine;
-
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IDrawableAnimated;
 import mezz.jei.api.gui.IGuiFluidStackGroup;
@@ -14,6 +11,7 @@ import mezz.jei.api.gui.IGuiItemStackGroup;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IRecipeCategory;
+import net.minecraft.client.Minecraft;
 
 public class FruitPressRecipeCategory implements IRecipeCategory<FruitPressRecipeWrapper> {
 	private final IDrawableAnimated arrowAnimated;

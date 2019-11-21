@@ -1,26 +1,23 @@
 package binnie.core.machines;
 
+import binnie.core.BinnieCore;
+import binnie.core.ManagerBase;
+import binnie.core.machines.inventory.ValidatorSprite;
+import binnie.core.machines.render.RenderTESRMachine;
+import binnie.core.proxy.IBinnieProxy;
+import forestry.api.core.INbtReadable;
+import forestry.api.core.INbtWritable;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import forestry.api.core.INbtReadable;
-import forestry.api.core.INbtWritable;
-
-import binnie.core.BinnieCore;
-import binnie.core.ManagerBase;
-import binnie.core.machines.inventory.ValidatorSprite;
-import binnie.core.machines.render.RenderTESRMachine;
-import binnie.core.proxy.IBinnieProxy;
 
 public class ManagerMachine extends ManagerBase {
 	private static ValidatorSprite spriteBee;

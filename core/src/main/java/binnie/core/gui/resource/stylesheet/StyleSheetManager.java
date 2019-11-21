@@ -1,18 +1,16 @@
 package binnie.core.gui.resource.stylesheet;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import net.minecraft.client.resources.IResourceManager;
-import net.minecraft.client.resources.IResourceManagerReloadListener;
-import net.minecraft.util.ResourceLocation;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import binnie.core.Constants;
 import binnie.core.gui.CraftGUI;
 import binnie.core.gui.resource.textures.Texture;
+import net.minecraft.client.resources.IResourceManager;
+import net.minecraft.client.resources.IResourceManagerReloadListener;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @SideOnly(Side.CLIENT)
 public class StyleSheetManager implements IResourceManagerReloadListener {

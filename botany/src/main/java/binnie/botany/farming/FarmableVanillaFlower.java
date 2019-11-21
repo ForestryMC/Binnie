@@ -1,13 +1,12 @@
 package binnie.botany.farming;
 
+import binnie.botany.api.genetics.IFlower;
+import binnie.botany.api.genetics.IFlowerRoot;
+import binnie.botany.core.BotanyCore;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-
-import binnie.botany.api.genetics.IFlower;
-import binnie.botany.api.genetics.IFlowerRoot;
-import binnie.botany.core.BotanyCore;
 
 public class FarmableVanillaFlower extends FarmableFlower {
 	@Override

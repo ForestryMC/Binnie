@@ -1,10 +1,9 @@
 package binnie.genetics.api;
 
-import javax.annotation.Nullable;
-
+import forestry.api.genetics.ISpeciesRoot;
 import net.minecraft.item.ItemStack;
 
-import forestry.api.genetics.ISpeciesRoot;
+import javax.annotation.Nullable;
 
 public interface IItemChargeable {
 	int getCharges(ItemStack stack);

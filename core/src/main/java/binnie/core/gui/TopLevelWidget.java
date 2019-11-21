@@ -1,13 +1,5 @@
 package binnie.core.gui;
 
-import javax.annotation.Nullable;
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Deque;
-import java.util.List;
-import java.util.ListIterator;
-
 import binnie.core.api.gui.IArea;
 import binnie.core.api.gui.IPoint;
 import binnie.core.api.gui.ITopLevelWidget;
@@ -15,8 +7,15 @@ import binnie.core.api.gui.IWidget;
 import binnie.core.gui.events.EventMouse;
 import binnie.core.gui.events.EventWidget;
 import binnie.core.gui.geometry.Point;
-
 import org.lwjgl.input.Mouse;
+
+import javax.annotation.Nullable;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Deque;
+import java.util.List;
+import java.util.ListIterator;
 
 public abstract class TopLevelWidget extends Widget implements ITopLevelWidget {
 	protected IPoint mousePosition;

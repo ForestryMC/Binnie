@@ -1,17 +1,15 @@
 package binnie.core.machines.inventory;
 
+import binnie.core.ModId;
+import binnie.core.util.I18N;
 import com.google.common.collect.ImmutableList;
+import net.minecraft.util.EnumFacing;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.EnumSet;
 import java.util.List;
-
-import net.minecraft.util.EnumFacing;
-
-import binnie.core.ModId;
-import binnie.core.util.I18N;
 
 public class MachineSide {
 	public static final EnumSet<EnumFacing> TOP_AND_BOTTOM = EnumSet.of(EnumFacing.UP, EnumFacing.DOWN);

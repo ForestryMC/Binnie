@@ -1,12 +1,5 @@
 package binnie.genetics.gui.analyst;
 
-import net.minecraft.util.text.TextFormatting;
-
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IChromosomeType;
-import forestry.api.genetics.IIndividual;
-import forestry.api.genetics.ISpeciesRoot;
-
 import binnie.core.Binnie;
 import binnie.core.api.genetics.IBreedingSystem;
 import binnie.core.api.gui.IArea;
@@ -16,6 +9,11 @@ import binnie.core.gui.controls.ControlTextCentered;
 import binnie.core.gui.controls.core.Control;
 import binnie.core.util.I18N;
 import binnie.genetics.api.analyst.AnalystConstants;
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.IChromosomeType;
+import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.ISpeciesRoot;
+import net.minecraft.util.text.TextFormatting;
 
 public class AnalystPageKaryogram extends Control implements ITitledWidget {
 	public AnalystPageKaryogram(IWidget parent, IArea area, IIndividual ind) {

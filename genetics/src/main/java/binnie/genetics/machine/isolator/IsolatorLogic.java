@@ -1,16 +1,5 @@
 package binnie.genetics.machine.isolator;
 
-import java.util.Random;
-
-import net.minecraft.item.ItemStack;
-
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IChromosomeType;
-import forestry.api.genetics.IGenome;
-import forestry.api.genetics.IIndividual;
-import forestry.api.genetics.ISpeciesRoot;
-
 import binnie.core.genetics.Gene;
 import binnie.core.machines.Machine;
 import binnie.core.machines.MachineUtil;
@@ -21,6 +10,15 @@ import binnie.core.machines.power.IProcess;
 import binnie.genetics.config.ConfigurationMain;
 import binnie.genetics.item.ItemSequence;
 import binnie.genetics.machine.GeneticsErrorCode;
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IChromosomeType;
+import forestry.api.genetics.IGenome;
+import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.ISpeciesRoot;
+import net.minecraft.item.ItemStack;
+
+import java.util.Random;
 
 public class IsolatorLogic extends ComponentProcessSetCost implements IProcess {
 	public static final float ENZYME_PER_PROCESS = 0.5f;

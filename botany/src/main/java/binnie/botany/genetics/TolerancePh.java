@@ -1,11 +1,10 @@
 package binnie.botany.genetics;
 
-import net.minecraft.item.ItemStack;
-
 import binnie.botany.api.BotanyAPI;
 import binnie.botany.api.gardening.EnumFertiliserType;
 import binnie.botany.api.gardening.IGardeningManager;
 import binnie.genetics.api.acclimatiser.IToleranceType;
+import net.minecraft.item.ItemStack;
 
 public class TolerancePh implements IToleranceType {
 	@Override

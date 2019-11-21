@@ -1,12 +1,5 @@
 package binnie.extrabees.init;
 
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemBlock;
-
-import net.minecraftforge.oredict.OreDictionary;
-
-import forestry.api.core.Tabs;
-
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.items.ItemBeeDictionary;
 import binnie.extrabees.items.ItemBeeHive;
@@ -18,6 +11,10 @@ import binnie.extrabees.items.ItemPropolis;
 import binnie.extrabees.items.types.EnumHoneyComb;
 import binnie.extrabees.items.types.ExtraBeeItems;
 import binnie.extrabees.modules.ModuleCore;
+import forestry.api.core.Tabs;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemBlock;
+import net.minecraftforge.oredict.OreDictionary;
 
 public final class ItemRegister {
 

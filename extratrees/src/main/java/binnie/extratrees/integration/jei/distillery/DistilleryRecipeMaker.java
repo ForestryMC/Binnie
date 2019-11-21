@@ -1,13 +1,12 @@
 package binnie.extratrees.integration.jei.distillery;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import net.minecraftforge.fluids.FluidStack;
-
 import binnie.extratrees.api.recipes.ExtraTreesRecipeManager;
 import binnie.extratrees.api.recipes.IDistilleryManager;
 import binnie.extratrees.api.recipes.IDistilleryRecipe;
+import net.minecraftforge.fluids.FluidStack;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DistilleryRecipeMaker {
 	public static List<DistilleryRecipeWrapper> create() {

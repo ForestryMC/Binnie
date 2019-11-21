@@ -1,8 +1,6 @@
 package binnie.core.proxy;
 
-import java.io.File;
-import java.util.function.Supplier;
-
+import binnie.core.AbstractMod;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.player.EntityPlayer;
@@ -11,11 +9,11 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.core.AbstractMod;
+import java.io.File;
+import java.util.function.Supplier;
 
 public interface IBinnieProxy extends IProxyCore {
 	boolean isClient();

@@ -1,12 +1,12 @@
 package binnie.core.machines.errors;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
 import binnie.core.ModId;
 import binnie.core.machines.inventory.Validator;
 import binnie.core.util.I18N;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 public interface IErrorStateDefinition {
 	String getDescription();

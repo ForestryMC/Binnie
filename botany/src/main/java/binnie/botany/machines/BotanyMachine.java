@@ -1,11 +1,5 @@
 package binnie.botany.machines;
 
-import java.util.function.Supplier;
-
-import net.minecraft.item.ItemStack;
-
-import forestry.api.core.ForestryAPI;
-
 import binnie.botany.machines.designer.PackageDesigner;
 import binnie.botany.machines.designer.Tileworker;
 import binnie.botany.modules.ModuleMachine;
@@ -13,6 +7,10 @@ import binnie.core.Constants;
 import binnie.core.machines.IMachineType;
 import binnie.core.machines.MachinePackage;
 import binnie.core.modules.BotanyModuleUIDs;
+import forestry.api.core.ForestryAPI;
+import net.minecraft.item.ItemStack;
+
+import java.util.function.Supplier;
 
 public enum BotanyMachine implements IMachineType {
 	Tileworker(() -> {

@@ -1,14 +1,12 @@
 package binnie.extratrees.integration.crafttweaker.handlers;
 
-import net.minecraft.item.ItemStack;
-
 import binnie.extratrees.api.recipes.ExtraTreesRecipeManager;
 import binnie.extratrees.integration.crafttweaker.CraftTweakerUtil;
 import binnie.extratrees.machines.lumbermill.recipes.LumbermillRecipe;
-
 import crafttweaker.annotations.ZenRegister;
 import crafttweaker.api.item.IIngredient;
 import crafttweaker.api.item.IItemStack;
+import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 

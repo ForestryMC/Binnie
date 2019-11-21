@@ -1,8 +1,5 @@
 package binnie.botany.gui.database;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import binnie.botany.api.genetics.IColorMix;
 import binnie.botany.api.genetics.IFlowerColor;
 import binnie.botany.core.BotanyCore;
@@ -13,6 +10,9 @@ import binnie.core.gui.database.DatabaseConstants;
 import binnie.core.gui.database.DatabaseTab;
 import binnie.core.gui.database.PageAbstract;
 import binnie.core.util.I18N;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PageColorMix extends PageAbstract<IFlowerColor> {
 	private final ControlText title;

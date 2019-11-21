@@ -1,24 +1,5 @@
 package binnie.extratrees.wood;
 
-import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-
-import forestry.api.arboriculture.IWoodType;
-import forestry.api.arboriculture.TreeManager;
-import forestry.api.arboriculture.WoodBlockKind;
-import forestry.arboriculture.IWoodTyped;
-import forestry.core.utils.Translator;
-
 import binnie.core.block.TileEntityMetadata;
 import binnie.design.api.IDesignMaterial;
 import binnie.extratrees.api.CarpentryManager;
@@ -29,6 +10,23 @@ import binnie.extratrees.wood.planks.ExtraTreePlanks;
 import binnie.extratrees.wood.planks.ForestryPlanks;
 import binnie.extratrees.wood.planks.IPlankType;
 import binnie.extratrees.wood.planks.VanillaPlanks;
+import forestry.api.arboriculture.IWoodType;
+import forestry.api.arboriculture.TreeManager;
+import forestry.api.arboriculture.WoodBlockKind;
+import forestry.arboriculture.IWoodTyped;
+import forestry.core.utils.Translator;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class WoodManager {
 	private static List<IPlankType> PLANK_TYPES;

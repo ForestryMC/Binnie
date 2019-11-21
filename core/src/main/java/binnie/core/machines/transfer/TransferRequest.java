@@ -1,14 +1,12 @@
 package binnie.core.machines.transfer;
 
-import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.List;
-
+import binnie.core.machines.inventory.IInventorySlots;
+import binnie.core.machines.inventory.InventorySlot;
+import binnie.core.machines.power.ITankMachine;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
-
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidActionResult;
 import net.minecraftforge.fluids.FluidUtil;
@@ -18,9 +16,9 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
-import binnie.core.machines.inventory.IInventorySlots;
-import binnie.core.machines.inventory.InventorySlot;
-import binnie.core.machines.power.ITankMachine;
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TransferRequest {
 	private ItemStack returnItem;

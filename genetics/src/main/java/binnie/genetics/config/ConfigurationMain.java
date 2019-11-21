@@ -1,9 +1,8 @@
 package binnie.genetics.config;
 
-import net.minecraftforge.common.config.Configuration;
-
 import binnie.core.config.ConfigFile;
 import binnie.core.util.I18N;
+import net.minecraftforge.common.config.Configuration;
 
 @ConfigFile(filename = "/config/forestry/genetics/main.conf")
 public class ConfigurationMain implements IConfigurable {

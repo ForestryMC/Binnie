@@ -1,19 +1,17 @@
 package binnie.genetics.item;
 
+import binnie.core.ModId;
+import binnie.core.api.genetics.IGene;
+import binnie.core.api.genetics.IItemAnalysable;
+import binnie.core.genetics.Gene;
+import binnie.core.item.ItemCore;
+import binnie.core.util.I18N;
+import binnie.genetics.CreativeTabGenetics;
+import binnie.genetics.api.IItemChargeable;
+import binnie.genetics.genetics.GeneItem;
+import binnie.genetics.genetics.SequencerItem;
+import binnie.genetics.modules.ModuleCore;
 import com.google.common.base.Preconditions;
-
-import javax.annotation.Nullable;
-import java.util.List;
-
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
-import net.minecraft.world.World;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import forestry.api.apiculture.BeeManager;
 import forestry.api.apiculture.EnumBeeChromosome;
 import forestry.api.apiculture.IAlleleBeeSpecies;
@@ -26,18 +24,16 @@ import forestry.api.genetics.ISpeciesRoot;
 import forestry.api.lepidopterology.ButterflyManager;
 import forestry.api.lepidopterology.EnumButterflyChromosome;
 import forestry.api.lepidopterology.IAlleleButterflySpecies;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.core.ModId;
-import binnie.core.api.genetics.IGene;
-import binnie.core.api.genetics.IItemAnalysable;
-import binnie.core.genetics.Gene;
-import binnie.core.item.ItemCore;
-import binnie.core.util.I18N;
-import binnie.genetics.CreativeTabGenetics;
-import binnie.genetics.api.IItemChargeable;
-import binnie.genetics.genetics.GeneItem;
-import binnie.genetics.genetics.SequencerItem;
-import binnie.genetics.modules.ModuleCore;
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class ItemSequence extends ItemCore implements IItemAnalysable, IItemChargeable {
 	public ItemSequence() {

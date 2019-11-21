@@ -1,7 +1,6 @@
 package binnie.extrabees.items;
 
-import javax.annotation.Nonnull;
-
+import binnie.extrabees.blocks.type.EnumHiveType;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
@@ -9,13 +8,11 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
-
 import net.minecraftforge.client.model.ModelLoader;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.extrabees.blocks.type.EnumHiveType;
+import javax.annotation.Nonnull;
 
 public class ItemBeeHive extends ItemBlock implements IItemModelProvider {
 

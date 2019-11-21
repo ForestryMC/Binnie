@@ -1,10 +1,10 @@
 package binnie.extratrees.integration.jei.brewery;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import binnie.extratrees.api.recipes.ExtraTreesRecipeManager;
 import binnie.extratrees.api.recipes.IBreweryRecipe;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BreweryRecipeMaker {
 	public static List<BreweryRecipeWrapper> create() {

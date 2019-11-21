@@ -1,9 +1,10 @@
 package binnie.core.proxy;
 
+import binnie.core.AbstractMod;
+import binnie.core.BinnieCore;
+import binnie.core.gui.IBinnieGUID;
+import binnie.core.network.packet.MessageBase;
 import com.google.common.base.Preconditions;
-
-import javax.annotation.Nullable;
-
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
@@ -11,13 +12,9 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.math.BlockPos;
-
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
-import binnie.core.AbstractMod;
-import binnie.core.BinnieCore;
-import binnie.core.gui.IBinnieGUID;
-import binnie.core.network.packet.MessageBase;
+import javax.annotation.Nullable;
 
 public class BinnieModProxy implements IBinnieModProxy {
 	@Nullable

@@ -1,8 +1,6 @@
 package binnie.extratrees.blocks;
 
-import java.util.Locale;
-import java.util.Random;
-
+import binnie.extratrees.modules.ModuleCore;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCrops;
 import net.minecraft.block.properties.PropertyEnum;
@@ -22,10 +20,10 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
 import net.minecraftforge.common.EnumPlantType;
 
-import binnie.extratrees.modules.ModuleCore;
+import java.util.Locale;
+import java.util.Random;
 
 public class BlockHops extends BlockCrops {
 	public static final PropertyEnum<HopsHalf> HALF = PropertyEnum.create("half", HopsHalf.class);

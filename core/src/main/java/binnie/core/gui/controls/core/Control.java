@@ -1,13 +1,5 @@
 package binnie.core.gui.controls.core;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import net.minecraft.client.util.ITooltipFlag;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import binnie.core.api.gui.IArea;
 import binnie.core.api.gui.IWidget;
 import binnie.core.gui.Attribute;
@@ -17,6 +9,12 @@ import binnie.core.gui.Tooltip;
 import binnie.core.gui.Widget;
 import binnie.core.gui.geometry.Point;
 import binnie.core.gui.minecraft.Window;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Control extends Widget implements ITooltipHelp, ITooltip {
 	private final List<String> helpStrings;

@@ -1,15 +1,13 @@
 package binnie.genetics.core;
 
-import net.minecraft.entity.player.EntityPlayer;
-
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import net.minecraftforge.fml.relauncher.Side;
-
 import binnie.core.BinnieCore;
 import binnie.core.network.IPacketID;
 import binnie.core.network.packet.MessageBinnie;
 import binnie.core.network.packet.MessageNBT;
 import binnie.genetics.genetics.GeneTracker;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.relauncher.Side;
 
 public enum GeneticsPacket implements IPacketID {
 	GENE_TRACKER_SYNC;

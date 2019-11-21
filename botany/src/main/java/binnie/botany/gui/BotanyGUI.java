@@ -1,17 +1,15 @@
 package binnie.botany.gui;
 
+import binnie.botany.gui.database.WindowBotanistDatabase;
+import binnie.core.gui.IBinnieGUID;
+import binnie.core.gui.minecraft.Window;
+import binnie.design.gui.WindowDesigner;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-
 import net.minecraftforge.fml.relauncher.Side;
-
-import binnie.botany.gui.database.WindowBotanistDatabase;
-import binnie.core.gui.IBinnieGUID;
-import binnie.core.gui.minecraft.Window;
-import binnie.design.gui.WindowDesigner;
 
 public enum BotanyGUI implements IBinnieGUID {
 	DATABASE,

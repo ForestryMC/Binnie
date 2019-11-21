@@ -1,9 +1,9 @@
 package binnie.botany.api.genetics;
 
-import java.awt.Color;
-
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IClassification;
+
+import java.awt.Color;
 
 public interface IFlowerFactory {
 	IAlleleFlowerSpeciesBuilder createSpecies(String modId, String uid, String unlocalizedName, String authority, String unlocalizedDescription, boolean isDominant, IClassification branch, String binomial, IFlowerType flowerType);

@@ -1,14 +1,5 @@
 package binnie.botany.gui.database;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import net.minecraft.entity.player.EntityPlayer;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import binnie.botany.Botany;
 import binnie.botany.api.genetics.EnumFlowerColor;
 import binnie.botany.api.genetics.IFlowerColor;
@@ -31,6 +22,13 @@ import binnie.core.gui.database.PageSpeciesResultant;
 import binnie.core.gui.database.WindowAbstractDatabase;
 import binnie.core.gui.minecraft.Window;
 import binnie.core.util.I18N;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class WindowBotanistDatabase extends WindowAbstractDatabase {
 	public WindowBotanistDatabase(EntityPlayer player, Side side, boolean nei) {

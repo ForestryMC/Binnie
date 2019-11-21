@@ -1,13 +1,11 @@
 package binnie.botany;
 
+import binnie.core.util.I18N;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import binnie.core.util.I18N;
 
 public class CreativeTabBotany extends CreativeTabs {
 	public static final CreativeTabs INSTANCE = new CreativeTabBotany();

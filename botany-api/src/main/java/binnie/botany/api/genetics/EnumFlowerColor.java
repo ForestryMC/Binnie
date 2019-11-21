@@ -1,11 +1,10 @@
 package binnie.botany.api.genetics;
 
-import java.awt.Color;
-
-import net.minecraft.util.text.TextFormatting;
-
 import binnie.botany.api.BotanyAPI;
 import binnie.botany.api.IBotanyColored;
+import net.minecraft.util.text.TextFormatting;
+
+import java.awt.Color;
 
 public enum EnumFlowerColor implements IBotanyColored {
 	Aquamarine("aquamarine", new Color(8388564)),

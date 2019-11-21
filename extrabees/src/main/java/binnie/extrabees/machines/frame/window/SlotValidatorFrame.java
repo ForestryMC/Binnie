@@ -1,11 +1,9 @@
 package binnie.extrabees.machines.frame.window;
 
-import net.minecraft.item.ItemStack;
-
-import forestry.api.apiculture.IHiveFrame;
-
 import binnie.core.machines.ManagerMachine;
 import binnie.core.machines.inventory.SlotValidator;
+import forestry.api.apiculture.IHiveFrame;
+import net.minecraft.item.ItemStack;
 
 public class SlotValidatorFrame extends SlotValidator {
 	public SlotValidatorFrame() {

@@ -1,19 +1,17 @@
 package binnie.extrabees.worldgen;
 
-import javax.annotation.Nullable;
-import java.util.HashSet;
-import java.util.Set;
-
+import forestry.api.apiculture.hives.IHiveGen;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-
 import net.minecraftforge.oredict.OreDictionary;
 
-import forestry.api.apiculture.hives.IHiveGen;
+import javax.annotation.Nullable;
+import java.util.HashSet;
+import java.util.Set;
 
 public class WorldGenHiveMarble implements IHiveGen {
 	private final Set<Block> validBlocks = new HashSet<>();

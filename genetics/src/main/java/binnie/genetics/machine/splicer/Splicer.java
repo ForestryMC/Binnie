@@ -1,18 +1,15 @@
 package binnie.genetics.machine.splicer;
 
+import binnie.core.api.genetics.IGene;
 import com.google.common.base.Preconditions;
-
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-
 import forestry.api.apiculture.IBee;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IChromosome;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.ISpeciesRoot;
-
-import binnie.core.api.genetics.IGene;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 
 public class Splicer {
 	public static final int SLOT_SERUM_VIAL = 0;

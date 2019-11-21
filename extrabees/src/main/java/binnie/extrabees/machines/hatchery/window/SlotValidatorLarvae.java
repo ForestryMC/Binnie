@@ -1,12 +1,10 @@
 package binnie.extrabees.machines.hatchery.window;
 
-import net.minecraft.item.ItemStack;
-
-import forestry.api.apiculture.EnumBeeType;
-
 import binnie.core.machines.ManagerMachine;
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.extrabees.utils.Utils;
+import forestry.api.apiculture.EnumBeeType;
+import net.minecraft.item.ItemStack;
 
 public class SlotValidatorLarvae extends SlotValidator {
 	public SlotValidatorLarvae() {

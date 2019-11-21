@@ -1,12 +1,10 @@
 package binnie.core.modules;
 
+import binnie.core.AbstractMod;
+import forestry.api.core.ForestryAPI;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-
-import forestry.api.core.ForestryAPI;
-
-import binnie.core.AbstractMod;
 
 public abstract class BlankModuleContainer extends AbstractMod {
 	protected final ModuleContainer container;

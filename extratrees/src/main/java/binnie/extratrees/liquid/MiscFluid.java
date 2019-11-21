@@ -1,15 +1,13 @@
 package binnie.extratrees.liquid;
 
-import net.minecraft.util.ResourceLocation;
-
-import net.minecraftforge.fluids.FluidStack;
-
 import binnie.core.Constants;
 import binnie.core.liquid.FluidContainerType;
 import binnie.core.liquid.FluidType;
 import binnie.core.liquid.IFluidDefinition;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.alcohol.ICocktailLiquid;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fluids.FluidStack;
 
 public enum MiscFluid implements IFluidDefinition, ICocktailLiquid {
 	CarbonatedWater("water.carbonated", 13421823, 0.10000000149011612),

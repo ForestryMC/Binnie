@@ -1,18 +1,5 @@
 package binnie.extratrees.machines;
 
-import java.util.function.Supplier;
-
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-
-import forestry.api.core.ForestryAPI;
-
 import binnie.core.Constants;
 import binnie.core.machines.IMachineType;
 import binnie.core.machines.Machine;
@@ -30,6 +17,17 @@ import binnie.extratrees.machines.distillery.DistilleryMachine;
 import binnie.extratrees.machines.fruitpress.FruitPressMachine;
 import binnie.extratrees.machines.lumbermill.LumbermillMachine;
 import binnie.extratrees.modules.ModuleMachine;
+import forestry.api.core.ForestryAPI;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+
+import java.util.function.Supplier;
 
 public enum ExtraTreeMachine implements IMachineType {
 	Lumbermill(LumbermillMachine::new),

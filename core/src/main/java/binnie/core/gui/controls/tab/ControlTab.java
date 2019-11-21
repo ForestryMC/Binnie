@@ -1,10 +1,5 @@
 package binnie.core.gui.controls.tab;
 
-import net.minecraft.client.util.ITooltipFlag;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import binnie.core.api.gui.Alignment;
 import binnie.core.api.gui.IArea;
 import binnie.core.api.gui.ITexture;
@@ -21,6 +16,9 @@ import binnie.core.gui.minecraft.control.ControlItemDisplay;
 import binnie.core.gui.minecraft.control.ControlTabIcon;
 import binnie.core.gui.renderer.RenderUtil;
 import binnie.core.gui.resource.textures.CraftGUITexture;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ControlTab<T> extends Control implements ITooltip, IControlValue<T> {
 	protected T value;

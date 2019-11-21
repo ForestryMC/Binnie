@@ -1,11 +1,11 @@
 package binnie.extrabees.blocks;
 
-import java.util.Random;
-
 import net.minecraft.block.BlockWeb;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+
+import java.util.Random;
 
 public class BlockEctoplasm extends BlockWeb {
 

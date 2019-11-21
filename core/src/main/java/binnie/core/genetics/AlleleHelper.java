@@ -1,20 +1,18 @@
 package binnie.core.genetics;
 
-import javax.annotation.Nullable;
-import java.util.Locale;
-import java.util.regex.Pattern;
-
-import org.apache.commons.lang3.text.WordUtils;
-
+import binnie.core.util.EmptyHelper;
+import binnie.core.util.I18N;
 import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.EnumTolerance;
 import forestry.api.genetics.IAllele;
 import forestry.core.genetics.alleles.EnumAllele;
+import org.apache.commons.lang3.text.WordUtils;
 
-import binnie.core.util.EmptyHelper;
-import binnie.core.util.I18N;
+import javax.annotation.Nullable;
+import java.util.Locale;
+import java.util.regex.Pattern;
 
 public class AlleleHelper extends forestry.core.genetics.alleles.AlleleHelper {
 	public static IAllele getAllele(EnumTemperature temperature) {

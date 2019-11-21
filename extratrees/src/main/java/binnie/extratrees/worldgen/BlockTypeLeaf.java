@@ -1,13 +1,11 @@
 package binnie.extratrees.worldgen;
 
-import javax.annotation.Nullable;
-
+import com.mojang.authlib.GameProfile;
+import forestry.api.world.ITreeGenData;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import com.mojang.authlib.GameProfile;
-
-import forestry.api.world.ITreeGenData;
+import javax.annotation.Nullable;
 
 public class BlockTypeLeaf implements WorldGenBlockType {
 	@Nullable

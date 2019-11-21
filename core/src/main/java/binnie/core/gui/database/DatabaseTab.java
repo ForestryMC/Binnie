@@ -1,11 +1,10 @@
 package binnie.core.gui.database;
 
-import net.minecraft.client.util.ITooltipFlag;
-
 import binnie.core.AbstractMod;
 import binnie.core.gui.ITooltipHelp;
 import binnie.core.gui.Tooltip;
 import binnie.core.util.I18N;
+import net.minecraft.client.util.ITooltipFlag;
 
 public class DatabaseTab implements ITooltipHelp {
 	private final String modId;

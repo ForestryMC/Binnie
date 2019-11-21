@@ -1,21 +1,5 @@
 package binnie.genetics.gui.analyst;
 
-import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
-
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidUtil;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import forestry.api.genetics.IIndividual;
-
 import binnie.core.api.gui.IArea;
 import binnie.core.api.gui.ITitledWidget;
 import binnie.core.api.gui.IWidget;
@@ -33,6 +17,18 @@ import binnie.genetics.api.analyst.IBiologyPlugin;
 import binnie.genetics.api.analyst.IClimatePlugin;
 import binnie.genetics.api.analyst.IProducePlugin;
 import binnie.genetics.gui.analyst.tree.AnalystPageClimate;
+import forestry.api.genetics.IIndividual;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class AnalystManager implements IAnalystManager {
 	private final Collection<IAnalystPagePlugin> analystPagePlugins = new ArrayList<>();

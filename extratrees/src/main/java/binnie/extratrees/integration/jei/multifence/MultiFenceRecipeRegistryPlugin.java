@@ -1,23 +1,21 @@
 package binnie.extratrees.integration.jei.multifence;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import net.minecraft.item.ItemStack;
-
 import binnie.extratrees.blocks.decor.FenceDescription;
 import binnie.extratrees.blocks.decor.FenceType;
 import binnie.extratrees.blocks.decor.MultiFenceRecipePattern;
 import binnie.extratrees.wood.WoodManager;
 import binnie.extratrees.wood.planks.IPlankType;
-
 import mezz.jei.api.recipe.IFocus;
 import mezz.jei.api.recipe.IFocus.Mode;
 import mezz.jei.api.recipe.IRecipeCategory;
 import mezz.jei.api.recipe.IRecipeRegistryPlugin;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import mezz.jei.api.recipe.VanillaRecipeCategoryUid;
+import net.minecraft.item.ItemStack;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class MultiFenceRecipeRegistryPlugin implements IRecipeRegistryPlugin {
 

@@ -1,15 +1,14 @@
 package binnie.extratrees.alcohol;
 
-import javax.annotation.Nullable;
-import java.util.Locale;
-
+import binnie.core.Constants;
+import binnie.core.util.I18N;
+import binnie.extratrees.modules.ModuleAlcohol;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import binnie.core.Constants;
-import binnie.core.util.I18N;
-import binnie.extratrees.modules.ModuleAlcohol;
+import javax.annotation.Nullable;
+import java.util.Locale;
 
 public enum GlasswareType {
 	BEER_MUG(480, 10, 14, " # ", "   ", "   "),

@@ -1,8 +1,7 @@
 package binnie.extratrees.api.recipes;
 
-import net.minecraft.item.ItemStack;
-
 import binnie.core.api.IBinnieRecipe;
+import net.minecraft.item.ItemStack;
 
 public interface ILumbermillRecipe extends IBinnieRecipe {
 

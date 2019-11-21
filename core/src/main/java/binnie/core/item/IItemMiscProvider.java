@@ -1,9 +1,9 @@
 package binnie.core.item;
 
-import java.util.List;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.List;
 
 public interface IItemMiscProvider extends IItemEnum {
 

@@ -1,5 +1,11 @@
 package binnie.extratrees.blocks;
 
+import binnie.core.block.BlockMetadata;
+import binnie.core.block.TileEntityMetadata;
+import binnie.core.util.I18N;
+import binnie.design.DesignHelper;
+import binnie.design.blocks.DesignBlock;
+import binnie.extratrees.modules.ModuleCarpentry;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
@@ -9,13 +15,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
-import binnie.core.block.BlockMetadata;
-import binnie.core.block.TileEntityMetadata;
-import binnie.core.util.I18N;
-import binnie.design.DesignHelper;
-import binnie.design.blocks.DesignBlock;
-import binnie.extratrees.modules.ModuleCarpentry;
 
 public class BlockCarpentryPanel extends BlockCarpentry {
 	public BlockCarpentryPanel() {

@@ -1,16 +1,14 @@
 package binnie.genetics.machine.incubator;
 
-import javax.annotation.Nullable;
-import java.util.Random;
-
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-
-import net.minecraftforge.fluids.FluidStack;
-
 import binnie.core.machines.MachineUtil;
 import binnie.core.machines.transfer.TransferRequest;
 import binnie.core.machines.transfer.TransferResult;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidStack;
+
+import javax.annotation.Nullable;
+import java.util.Random;
 
 public class IncubatorRecipe implements IIncubatorRecipe {
 	private final FluidStack input;

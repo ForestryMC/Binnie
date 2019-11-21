@@ -1,16 +1,14 @@
 package binnie.core.liquid;
 
-import javax.annotation.Nullable;
-
+import binnie.core.Mods;
+import binnie.core.util.I18N;
 import net.minecraft.item.ItemStack;
-
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 
-import binnie.core.Mods;
-import binnie.core.util.I18N;
+import javax.annotation.Nullable;
 
 public enum FluidContainerType {
 	CAPSULE,

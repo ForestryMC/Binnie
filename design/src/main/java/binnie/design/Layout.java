@@ -1,13 +1,11 @@
 package binnie.design;
 
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import binnie.design.api.IDesignSystem;
 import binnie.design.api.ILayout;
 import binnie.design.api.IPattern;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class Layout implements ILayout {
 	private final IPattern pattern;

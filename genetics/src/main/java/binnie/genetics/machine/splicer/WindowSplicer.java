@@ -1,11 +1,5 @@
 package binnie.genetics.machine.splicer;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import binnie.core.api.gui.Alignment;
 import binnie.core.gui.geometry.CraftGUIUtil;
 import binnie.core.gui.geometry.TextJustification;
@@ -23,6 +17,10 @@ import binnie.core.util.I18N;
 import binnie.genetics.Genetics;
 import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.machine.inoculator.Inoculator;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WindowSplicer extends WindowMachine {
 	// TODO: why are these unused?

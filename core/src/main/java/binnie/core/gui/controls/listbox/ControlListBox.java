@@ -1,12 +1,12 @@
 package binnie.core.gui.controls.listbox;
 
-import java.util.Collection;
-
 import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.core.IControlValue;
 import binnie.core.gui.controls.scroll.ControlScrollableContent;
 import binnie.core.gui.events.EventKey;
 import binnie.core.util.IValidator;
+
+import java.util.Collection;
 
 public class ControlListBox<T> extends ControlScrollableContent<ControlList<T>> implements IControlValue<T> {
 	public ControlListBox(final IWidget parent, final int x, final int y, final int w, final int h, final int scrollBarSize) {

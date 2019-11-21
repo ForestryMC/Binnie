@@ -1,8 +1,7 @@
 package binnie.extratrees.machines.infuser;
 
-import net.minecraftforge.fluids.FluidStack;
-
 import binnie.core.machines.inventory.TankValidator;
+import net.minecraftforge.fluids.FluidStack;
 
 public class TankValidatorInfuserOutput extends TankValidator {
 	@Override

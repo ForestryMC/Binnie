@@ -1,9 +1,5 @@
 package binnie.extratrees.blocks;
 
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
-import net.minecraft.item.ItemStack;
-
 import binnie.core.util.I18N;
 import binnie.design.DesignHelper;
 import binnie.design.api.IDesign;
@@ -13,6 +9,9 @@ import binnie.extratrees.CreativeTabCarpentry;
 import binnie.extratrees.carpentry.DesignSystem;
 import binnie.extratrees.wood.planks.ExtraTreePlanks;
 import binnie.extratrees.wood.planks.VanillaPlanks;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.material.Material;
+import net.minecraft.item.ItemStack;
 
 public class BlockCarpentry extends BlockDesign {
 	public BlockCarpentry(String name) {

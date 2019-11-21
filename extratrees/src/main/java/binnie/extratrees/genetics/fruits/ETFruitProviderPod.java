@@ -1,19 +1,18 @@
 package binnie.extratrees.genetics.fruits;
 
-import javax.annotation.Nullable;
-import java.util.Map;
-import java.util.Random;
-
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-
 import forestry.api.arboriculture.EnumTreeChromosome;
 import forestry.api.arboriculture.IAlleleFruit;
 import forestry.api.arboriculture.ITreeGenome;
 import forestry.api.arboriculture.TreeManager;
 import forestry.api.genetics.IFruitFamily;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+
+import javax.annotation.Nullable;
+import java.util.Map;
+import java.util.Random;
 
 public class ETFruitProviderPod extends ETFruitProviderNone {
 	@Nullable

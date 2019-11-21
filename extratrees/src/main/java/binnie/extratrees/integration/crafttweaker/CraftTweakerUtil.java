@@ -1,11 +1,9 @@
 package binnie.extratrees.integration.crafttweaker;
 
-import net.minecraft.item.ItemStack;
-
-import net.minecraftforge.fluids.FluidStack;
-
 import crafttweaker.CraftTweakerAPI;
 import crafttweaker.api.item.IIngredient;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidStack;
 
 public class CraftTweakerUtil {
 

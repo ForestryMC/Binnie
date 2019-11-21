@@ -1,23 +1,5 @@
 package binnie.extrabees.items.types;
 
-import javax.annotation.Nullable;
-import java.util.List;
-
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import forestry.api.apiculture.IBee;
-import forestry.api.apiculture.IBeeGenome;
-import forestry.api.apiculture.IBeeHousing;
-import forestry.api.apiculture.IBeeModifier;
-import forestry.api.apiculture.IHiveFrame;
-
 import binnie.core.Constants;
 import binnie.core.Mods;
 import binnie.core.util.I18N;
@@ -26,6 +8,21 @@ import binnie.extrabees.items.ItemHiveFrame;
 import binnie.extrabees.utils.BeeModifierLogic;
 import binnie.extrabees.utils.EnumBeeBooleanModifier;
 import binnie.extrabees.utils.EnumBeeModifier;
+import forestry.api.apiculture.IBee;
+import forestry.api.apiculture.IBeeGenome;
+import forestry.api.apiculture.IBeeHousing;
+import forestry.api.apiculture.IBeeModifier;
+import forestry.api.apiculture.IHiveFrame;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public enum EnumHiveFrame implements IHiveFrame, IBeeModifier {
 

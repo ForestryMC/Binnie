@@ -1,13 +1,13 @@
 package binnie.core.machines.inventory;
 
+import net.minecraft.util.EnumFacing;
+
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import net.minecraft.util.EnumFacing;
 
 class SidedAccess {
 	private final Map<EnumFacing, AccessDirection> accesses;

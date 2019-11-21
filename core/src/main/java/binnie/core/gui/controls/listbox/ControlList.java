@@ -1,16 +1,16 @@
 package binnie.core.gui.controls.listbox;
 
-import javax.annotation.Nullable;
-import java.util.Collection;
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.controls.core.IControlValue;
 import binnie.core.gui.events.EventValueChanged;
 import binnie.core.gui.geometry.Point;
 import binnie.core.util.IValidator;
+
+import javax.annotation.Nullable;
+import java.util.Collection;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class ControlList<T> extends Control implements IControlValue<T> {
 	private final ControlListBox<T> parent;

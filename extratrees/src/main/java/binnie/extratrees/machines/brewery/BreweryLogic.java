@@ -1,17 +1,5 @@
 package binnie.extratrees.machines.brewery;
 
-import com.google.common.base.Preconditions;
-
-import javax.annotation.Nullable;
-import java.util.Map;
-
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidStack;
-
 import binnie.core.machines.Machine;
 import binnie.core.machines.errors.CoreErrorCode;
 import binnie.core.machines.errors.ErrorState;
@@ -22,6 +10,15 @@ import binnie.core.util.I18N;
 import binnie.extratrees.machines.ExtraTreesErrorCode;
 import binnie.extratrees.machines.brewery.recipes.BreweryCrafting;
 import binnie.extratrees.machines.brewery.recipes.BreweryRecipeManager;
+import com.google.common.base.Preconditions;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidStack;
+
+import javax.annotation.Nullable;
+import java.util.Map;
 
 public class BreweryLogic extends ComponentProcessSetCost implements IProcess, INetwork.GuiNBT {
 	@Nullable

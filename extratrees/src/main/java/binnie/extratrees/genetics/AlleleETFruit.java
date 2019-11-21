@@ -1,10 +1,10 @@
 package binnie.extratrees.genetics;
 
-import javax.annotation.Nullable;
-
 import forestry.api.arboriculture.IAlleleFruit;
 import forestry.api.arboriculture.IFruitProvider;
 import forestry.core.genetics.alleles.AlleleCategorized;
+
+import javax.annotation.Nullable;
 
 public class AlleleETFruit extends AlleleCategorized implements IAlleleFruit {
 	private final IFruitProvider provider;

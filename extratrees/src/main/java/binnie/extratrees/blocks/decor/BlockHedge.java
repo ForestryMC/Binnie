@@ -1,8 +1,9 @@
 package binnie.extratrees.blocks.decor;
 
-import javax.annotation.Nullable;
-import java.util.List;
-
+import forestry.api.arboriculture.EnumLeafType;
+import forestry.api.core.Tabs;
+import forestry.arboriculture.ModuleArboriculture;
+import forestry.core.blocks.IColoredBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFence;
 import net.minecraft.block.BlockFenceGate;
@@ -19,14 +20,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import forestry.api.arboriculture.EnumLeafType;
-import forestry.api.core.Tabs;
-import forestry.arboriculture.ModuleArboriculture;
-import forestry.core.blocks.IColoredBlock;
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class BlockHedge extends Block implements IBlockFence, IColoredBlock {
 	public BlockHedge() {

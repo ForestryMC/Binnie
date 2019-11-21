@@ -1,9 +1,9 @@
 package binnie.core.triggers;
 
+import buildcraft.api.statements.ITriggerExternal;
+
 import javax.annotation.Nullable;
 import java.util.Map;
-
-import buildcraft.api.statements.ITriggerExternal;
 
 public class TriggerData implements Map.Entry<ITriggerExternal, Boolean> {
 	@Nullable

@@ -1,13 +1,11 @@
 package binnie.genetics.item;
 
-import net.minecraft.util.ResourceLocation;
-
-import net.minecraftforge.fluids.FluidStack;
-
 import binnie.core.liquid.FluidContainerType;
 import binnie.core.liquid.FluidType;
 import binnie.core.liquid.IFluidDefinition;
 import binnie.genetics.Genetics;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fluids.FluidStack;
 
 public enum GeneticLiquid implements IFluidDefinition {
 	GrowthMedium("growth.medium", 15460533),

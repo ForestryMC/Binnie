@@ -1,41 +1,5 @@
 package binnie.botany.modules;
 
-import javax.annotation.Nullable;
-import java.awt.Color;
-import java.lang.reflect.Method;
-import java.util.function.Predicate;
-
-import net.minecraft.block.Block;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.player.BonemealEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.world.BlockEvent;
-
-import net.minecraftforge.fml.common.eventhandler.Event;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.relauncher.ReflectionHelper;
-
-import forestry.api.apiculture.FlowerManager;
-import forestry.api.core.ForestryAPI;
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IChromosomeType;
-import forestry.api.modules.ForestryModule;
-import forestry.api.storage.BackpackManager;
-import forestry.api.storage.IBackpackInterface;
-import forestry.core.genetics.alleles.AlleleHelper;
-import forestry.core.genetics.alleles.EnumAllele;
-import forestry.storage.BackpackDefinition;
-
 import binnie.botany.Botany;
 import binnie.botany.CreativeTabBotany;
 import binnie.botany.api.BotanyAPI;
@@ -61,6 +25,38 @@ import binnie.core.modules.BlankModule;
 import binnie.core.modules.BotanyModuleUIDs;
 import binnie.core.util.RecipeUtil;
 import binnie.core.util.TileUtil;
+import forestry.api.apiculture.FlowerManager;
+import forestry.api.core.ForestryAPI;
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.IChromosomeType;
+import forestry.api.modules.ForestryModule;
+import forestry.api.storage.BackpackManager;
+import forestry.api.storage.IBackpackInterface;
+import forestry.core.genetics.alleles.AlleleHelper;
+import forestry.core.genetics.alleles.EnumAllele;
+import forestry.storage.BackpackDefinition;
+import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.player.BonemealEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.fml.common.eventhandler.Event;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.ReflectionHelper;
+
+import javax.annotation.Nullable;
+import java.awt.Color;
+import java.lang.reflect.Method;
+import java.util.function.Predicate;
 
 @ForestryModule(moduleID = BotanyModuleUIDs.FLOWERS, containerID = Constants.BOTANY_MOD_ID, name = "Flowers", unlocalizedDescription = "botany.module.flowers")
 public class ModuleFlowers extends BlankModule {

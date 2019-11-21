@@ -1,25 +1,22 @@
 package binnie.core.modules;
 
-import java.io.File;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.Set;
-
+import binnie.core.Constants;
+import forestry.api.modules.ForestryModule;
+import forestry.api.modules.IForestryModule;
+import forestry.modules.ForestryPluginUtil;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
-
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-import forestry.api.modules.ForestryModule;
-import forestry.api.modules.IForestryModule;
-import forestry.modules.ForestryPluginUtil;
-
-import binnie.core.Constants;
+import java.io.File;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class ModuleContainer implements forestry.api.modules.IModuleContainer {
 

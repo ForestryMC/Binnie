@@ -1,9 +1,9 @@
 package binnie.genetics.machine.indexer;
 
+import net.minecraft.item.ItemStack;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import net.minecraft.item.ItemStack;
 
 public class SpeciesList {
 	private final List<Integer> drones;

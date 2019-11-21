@@ -1,16 +1,14 @@
 package binnie.core.gui.database;
 
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import forestry.api.genetics.IAlleleSpecies;
-
 import binnie.core.gui.Attribute;
 import binnie.core.gui.CraftGUI;
 import binnie.core.gui.controls.listbox.ControlList;
 import binnie.core.gui.controls.listbox.ControlTextOption;
 import binnie.core.gui.geometry.CraftGUIUtil;
 import binnie.core.gui.geometry.Point;
+import forestry.api.genetics.IAlleleSpecies;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 class ControlSpeciesBoxOption extends ControlTextOption<IAlleleSpecies> {

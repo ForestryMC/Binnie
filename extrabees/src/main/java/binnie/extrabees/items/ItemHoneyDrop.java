@@ -1,11 +1,6 @@
 package binnie.extrabees.items;
 
-import javax.annotation.Nullable;
-
-import net.minecraft.item.ItemStack;
-
-import net.minecraftforge.oredict.OreDictionary;
-
+import binnie.extrabees.items.types.EnumHoneyDrop;
 import forestry.api.apiculture.BeeManager;
 import forestry.api.arboriculture.TreeManager;
 import forestry.api.core.Tabs;
@@ -13,8 +8,10 @@ import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.ISpeciesRoot;
 import forestry.api.lepidopterology.ButterflyManager;
 import forestry.core.items.IColoredItem;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 
-import binnie.extrabees.items.types.EnumHoneyDrop;
+import javax.annotation.Nullable;
 
 public class ItemHoneyDrop extends ItemProduct<EnumHoneyDrop> implements IColoredItem {
 

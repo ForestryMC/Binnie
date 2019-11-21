@@ -1,14 +1,12 @@
 package binnie.extrabees.machines.mutator;
 
-import net.minecraft.item.ItemStack;
-
-import forestry.api.apiculture.IBeeGenome;
-import forestry.api.apiculture.IBeeListener;
-import forestry.api.apiculture.IBeeModifier;
-
 import binnie.core.machines.Machine;
 import binnie.extrabees.utils.AlvearyMutationHandler;
 import binnie.extrabees.utils.ComponentBeeModifier;
+import forestry.api.apiculture.IBeeGenome;
+import forestry.api.apiculture.IBeeListener;
+import forestry.api.apiculture.IBeeModifier;
+import net.minecraft.item.ItemStack;
 
 public class ComponentMutatorModifier extends ComponentBeeModifier implements IBeeModifier, IBeeListener {
 	public ComponentMutatorModifier(final Machine machine) {

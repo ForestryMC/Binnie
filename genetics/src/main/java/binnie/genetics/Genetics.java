@@ -1,18 +1,5 @@
 package binnie.genetics;
 
-import com.google.common.base.Preconditions;
-
-import javax.annotation.Nullable;
-import java.io.File;
-
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-
-import forestry.api.arboriculture.TreeManager;
-
 import binnie.core.Binnie;
 import binnie.core.BinnieCore;
 import binnie.core.Constants;
@@ -39,6 +26,16 @@ import binnie.genetics.machine.GeneticsErrorCode;
 import binnie.genetics.machine.acclimatiser.AcclimatiserManager;
 import binnie.genetics.machine.sequencer.Sequencer;
 import binnie.genetics.proxy.Proxy;
+import com.google.common.base.Preconditions;
+import forestry.api.arboriculture.TreeManager;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+
+import javax.annotation.Nullable;
+import java.io.File;
 
 @Mod(
 	modid = Constants.GENETICS_MOD_ID,

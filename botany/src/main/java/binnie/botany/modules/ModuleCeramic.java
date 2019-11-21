@@ -1,17 +1,5 @@
 package binnie.botany.modules;
 
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-
-import net.minecraftforge.oredict.OreDictionary;
-
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-
-import forestry.api.core.ForestryAPI;
-import forestry.api.modules.ForestryModule;
-
 import binnie.botany.Botany;
 import binnie.botany.CreativeTabBotany;
 import binnie.botany.api.genetics.EnumFlowerColor;
@@ -35,6 +23,14 @@ import binnie.core.modules.BlankModule;
 import binnie.core.modules.BotanyModuleUIDs;
 import binnie.core.util.RecipeUtil;
 import binnie.design.items.ItemDesign;
+import forestry.api.core.ForestryAPI;
+import forestry.api.modules.ForestryModule;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.OreDictionary;
 
 @ForestryModule(moduleID = BotanyModuleUIDs.CERAMIC, containerID = Constants.BOTANY_MOD_ID, name = "Ceramic", unlocalizedDescription = "botany.module.ceramic")
 public class ModuleCeramic extends BlankModule {

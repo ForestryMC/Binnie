@@ -1,13 +1,12 @@
 package binnie.core.network;
 
+import binnie.core.AbstractMod;
+import binnie.core.Constants;
+import binnie.core.network.packet.MessageBinnie;
 import com.google.common.base.Preconditions;
-
-import javax.annotation.Nullable;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.IThreadListener;
-
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
@@ -15,9 +14,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.core.AbstractMod;
-import binnie.core.Constants;
-import binnie.core.network.packet.MessageBinnie;
+import javax.annotation.Nullable;
 
 public abstract class BinniePacketHandler implements IMessageHandler<MessageBinnie, IMessage> {
 	@SuppressWarnings({"unused", "NullableProblems"})

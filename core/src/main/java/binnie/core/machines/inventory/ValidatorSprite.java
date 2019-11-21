@@ -1,11 +1,11 @@
 package binnie.core.machines.inventory;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import binnie.core.AbstractMod;
 import binnie.core.Binnie;
 import binnie.core.resource.BinnieSprite;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ValidatorSprite {
 

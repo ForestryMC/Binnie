@@ -1,9 +1,9 @@
 package binnie.extrabees.items.types;
 
-import java.util.List;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.List;
 
 public interface IEBItemMiscProvider extends IEBEnumItem {
 

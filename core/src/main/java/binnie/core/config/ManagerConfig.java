@@ -1,17 +1,16 @@
 package binnie.core.config;
 
+import binnie.core.AbstractMod;
+import binnie.core.ManagerBase;
+import binnie.core.util.Log;
+import net.minecraftforge.common.config.Configuration;
+
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.LinkedHashMap;
 import java.util.Map;
-
-import net.minecraftforge.common.config.Configuration;
-
-import binnie.core.AbstractMod;
-import binnie.core.ManagerBase;
-import binnie.core.util.Log;
 
 public class ManagerConfig extends ManagerBase {
 	private final Map<Class<?>, Configuration> configurations;

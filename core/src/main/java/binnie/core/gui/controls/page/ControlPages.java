@@ -1,14 +1,14 @@
 package binnie.core.gui.controls.page;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
 import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.controls.core.IControlValue;
 import binnie.core.gui.controls.core.IControlValues;
 import binnie.core.gui.events.EventValueChanged;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 public class ControlPages<T> extends Control implements IControlValues<T>, IControlValue<T> {
 	private T value;

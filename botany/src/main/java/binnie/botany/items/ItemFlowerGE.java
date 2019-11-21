@@ -1,8 +1,26 @@
 package binnie.botany.items;
 
-import javax.annotation.Nullable;
-import java.util.List;
-
+import binnie.botany.CreativeTabBotany;
+import binnie.botany.api.BotanyAPI;
+import binnie.botany.api.genetics.EnumFlowerChromosome;
+import binnie.botany.api.genetics.EnumFlowerStage;
+import binnie.botany.api.genetics.IAlleleFlowerSpecies;
+import binnie.botany.api.genetics.IFlower;
+import binnie.botany.api.genetics.IFlowerGenome;
+import binnie.botany.api.genetics.IFlowerType;
+import binnie.botany.blocks.BlockFlower;
+import binnie.botany.core.BotanyCore;
+import binnie.botany.genetics.Flower;
+import binnie.botany.genetics.FlowerDefinition;
+import binnie.botany.modules.ModuleFlowers;
+import binnie.core.util.I18N;
+import forestry.api.core.IItemModelRegister;
+import forestry.api.core.IModelManager;
+import forestry.api.genetics.IAlleleSpecies;
+import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.IPollinatable;
+import forestry.core.config.Config;
+import forestry.core.items.IColoredItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
@@ -25,32 +43,11 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import forestry.api.core.IItemModelRegister;
-import forestry.api.core.IModelManager;
-import forestry.api.genetics.IAlleleSpecies;
-import forestry.api.genetics.IIndividual;
-import forestry.api.genetics.IPollinatable;
-import forestry.core.config.Config;
-import forestry.core.items.IColoredItem;
-
-import binnie.botany.CreativeTabBotany;
-import binnie.botany.api.BotanyAPI;
-import binnie.botany.api.genetics.EnumFlowerChromosome;
-import binnie.botany.api.genetics.EnumFlowerStage;
-import binnie.botany.api.genetics.IAlleleFlowerSpecies;
-import binnie.botany.api.genetics.IFlower;
-import binnie.botany.api.genetics.IFlowerGenome;
-import binnie.botany.api.genetics.IFlowerType;
-import binnie.botany.blocks.BlockFlower;
-import binnie.botany.core.BotanyCore;
-import binnie.botany.genetics.Flower;
-import binnie.botany.genetics.FlowerDefinition;
-import binnie.botany.modules.ModuleFlowers;
-import binnie.core.util.I18N;
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class ItemFlowerGE extends Item implements IColoredItem, IItemModelRegister {
 	private final EnumFlowerStage type;

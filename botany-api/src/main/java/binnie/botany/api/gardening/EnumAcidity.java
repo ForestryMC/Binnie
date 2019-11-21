@@ -1,10 +1,9 @@
 package binnie.botany.api.gardening;
 
-import javax.annotation.Nullable;
-
+import binnie.botany.api.IBotanyColored;
 import net.minecraft.util.text.TextFormatting;
 
-import binnie.botany.api.IBotanyColored;
+import javax.annotation.Nullable;
 
 public enum EnumAcidity implements IBotanyColored {
 	ACID(TextFormatting.RED),

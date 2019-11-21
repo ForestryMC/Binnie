@@ -1,8 +1,11 @@
 package binnie.extrabees.items;
 
-import java.util.LinkedList;
-import java.util.List;
-
+import binnie.core.Mods;
+import binnie.core.util.I18N;
+import forestry.api.core.Tabs;
+import ic2.api.item.ElectricItem;
+import ic2.api.item.IElectricItem;
+import ic2.api.item.IItemHudInfo;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
@@ -14,21 +17,13 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
-
 import net.minecraftforge.client.model.ModelLoader;
-
 import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import forestry.api.core.Tabs;
-
-import binnie.core.Mods;
-import binnie.core.util.I18N;
-
-import ic2.api.item.ElectricItem;
-import ic2.api.item.IElectricItem;
-import ic2.api.item.IItemHudInfo;
+import java.util.LinkedList;
+import java.util.List;
 
 @Optional.InterfaceList({
 	@Optional.Interface(modid = "ic2", iface = "ic2.api.item.IElectricItem"),

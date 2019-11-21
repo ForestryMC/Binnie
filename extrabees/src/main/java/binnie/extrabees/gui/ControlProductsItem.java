@@ -1,7 +1,5 @@
 package binnie.extrabees.gui;
 
-import java.text.DecimalFormat;
-
 import binnie.core.gui.controls.ControlText;
 import binnie.core.gui.controls.ControlTextCentered;
 import binnie.core.gui.controls.listbox.ControlList;
@@ -11,6 +9,8 @@ import binnie.core.gui.geometry.CraftGUIUtil;
 import binnie.core.gui.geometry.Point;
 import binnie.core.gui.minecraft.control.ControlItemDisplay;
 import binnie.core.util.I18N;
+
+import java.text.DecimalFormat;
 
 public class ControlProductsItem extends ControlOption<ControlProductsBox.Product> {
 	private final ControlItemDisplay item;

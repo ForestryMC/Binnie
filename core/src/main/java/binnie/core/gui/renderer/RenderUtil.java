@@ -1,10 +1,13 @@
 package binnie.core.gui.renderer;
 
+import binnie.core.BinnieCore;
+import binnie.core.api.gui.IArea;
+import binnie.core.api.gui.IPoint;
+import binnie.core.gui.geometry.Area;
+import binnie.core.gui.geometry.Point;
+import binnie.core.gui.geometry.TextJustification;
 import com.google.common.base.Preconditions;
-
-import javax.annotation.Nullable;
-import java.util.List;
-
+import forestry.api.core.ForestryAPI;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -17,22 +20,14 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
-
 import net.minecraftforge.fml.client.config.GuiUtils;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import forestry.api.core.ForestryAPI;
-
-import binnie.core.BinnieCore;
-import binnie.core.api.gui.IArea;
-import binnie.core.api.gui.IPoint;
-import binnie.core.gui.geometry.Area;
-import binnie.core.gui.geometry.Point;
-import binnie.core.gui.geometry.TextJustification;
+import javax.annotation.Nullable;
+import java.util.List;
 
 @SideOnly(Side.CLIENT)
 public class RenderUtil {

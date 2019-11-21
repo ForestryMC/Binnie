@@ -1,28 +1,25 @@
 package binnie.extrabees.machines.stimulator;
 
-import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-import net.minecraft.nbt.NBTTagString;
-
-import net.minecraftforge.common.util.Constants;
-
+import binnie.core.machines.Machine;
+import binnie.core.machines.network.INetwork;
+import binnie.extrabees.circuit.StimulatorCircuit;
+import binnie.extrabees.utils.ComponentBeeModifier;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeListener;
 import forestry.api.apiculture.IBeeModifier;
 import forestry.api.circuits.ChipsetManager;
 import forestry.api.circuits.ICircuit;
 import forestry.api.circuits.ICircuitBoard;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraft.nbt.NBTTagString;
+import net.minecraftforge.common.util.Constants;
 
-import binnie.core.machines.Machine;
-import binnie.core.machines.network.INetwork;
-import binnie.extrabees.circuit.StimulatorCircuit;
-import binnie.extrabees.utils.ComponentBeeModifier;
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 public class ComponentStimulatorModifier extends ComponentBeeModifier implements
 	INetwork.TilePacketSync,

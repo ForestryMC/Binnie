@@ -1,9 +1,8 @@
 package binnie.core.util;
 
+import binnie.core.Constants;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
-
-import binnie.core.Constants;
 
 public class Log {
 	public static void trace(String message, Object... params) {

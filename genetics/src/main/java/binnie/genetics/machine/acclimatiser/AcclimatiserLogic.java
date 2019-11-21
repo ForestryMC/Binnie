@@ -1,16 +1,15 @@
 package binnie.genetics.machine.acclimatiser;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import net.minecraft.item.ItemStack;
-
 import binnie.core.machines.IMachine;
 import binnie.core.machines.MachineUtil;
 import binnie.core.machines.errors.ErrorState;
 import binnie.core.machines.power.ComponentProcessIndefinate;
 import binnie.genetics.config.ConfigurationMain;
 import binnie.genetics.machine.GeneticsErrorCode;
+import net.minecraft.item.ItemStack;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AcclimatiserLogic extends ComponentProcessIndefinate {
 	public AcclimatiserLogic(final IMachine machine) {

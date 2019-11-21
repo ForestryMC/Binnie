@@ -1,16 +1,15 @@
 package binnie.core.util;
 
-import javax.annotation.Nullable;
-import java.util.Collection;
-
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.NonNullList;
-
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
+
+import javax.annotation.Nullable;
+import java.util.Collection;
 
 public class FluidStackUtil {
 

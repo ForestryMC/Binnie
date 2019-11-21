@@ -1,21 +1,18 @@
 package binnie.extratrees.wood.planks;
 
+import binnie.core.Constants;
+import binnie.core.util.I18N;
+import binnie.extratrees.wood.EnumETLog;
+import binnie.extratrees.wood.IFenceProvider;
+import forestry.api.arboriculture.TreeManager;
+import forestry.api.arboriculture.WoodBlockKind;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.ResourceLocation;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import forestry.api.arboriculture.TreeManager;
-import forestry.api.arboriculture.WoodBlockKind;
-
-import binnie.core.Constants;
-import binnie.core.util.I18N;
-import binnie.extratrees.wood.EnumETLog;
-import binnie.extratrees.wood.IFenceProvider;
 
 public enum ExtraTreePlanks implements IPlankType, IFenceProvider, IStringSerializable {
 	Fir(12815444),

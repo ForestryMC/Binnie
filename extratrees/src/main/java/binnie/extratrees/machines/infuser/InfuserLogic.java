@@ -1,16 +1,14 @@
 package binnie.extratrees.machines.infuser;
 
-import javax.annotation.Nullable;
-
-import net.minecraft.item.ItemStack;
-
-import net.minecraftforge.fluids.FluidStack;
-
 import binnie.core.machines.Machine;
 import binnie.core.machines.errors.CoreErrorCode;
 import binnie.core.machines.errors.ErrorState;
 import binnie.core.machines.power.ComponentProcessSetCost;
 import binnie.core.machines.power.IProcess;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidStack;
+
+import javax.annotation.Nullable;
 
 public class InfuserLogic extends ComponentProcessSetCost implements IProcess {
 	private ItemStack infusing;

@@ -1,12 +1,8 @@
 package binnie.extrabees.machines;
 
-import java.util.Collection;
-
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.math.BlockPos;
-
+import binnie.core.machines.IMachine;
+import binnie.core.machines.TileEntityMachine;
 import com.mojang.authlib.GameProfile;
-
 import forestry.api.apiculture.DefaultBeeListener;
 import forestry.api.apiculture.DefaultBeeModifier;
 import forestry.api.apiculture.IBeeListener;
@@ -16,9 +12,10 @@ import forestry.api.multiblock.IMultiblockComponent;
 import forestry.api.multiblock.IMultiblockController;
 import forestry.api.multiblock.IMultiblockLogicAlveary;
 import forestry.api.multiblock.MultiblockManager;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.math.BlockPos;
 
-import binnie.core.machines.IMachine;
-import binnie.core.machines.TileEntityMachine;
+import java.util.Collection;
 
 public class TileExtraBeeAlveary extends TileEntityMachine implements
 	IAlvearyComponent.Active,

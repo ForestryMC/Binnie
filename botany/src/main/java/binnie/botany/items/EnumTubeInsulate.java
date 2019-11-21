@@ -1,9 +1,8 @@
 package binnie.botany.items;
 
+import binnie.core.util.I18N;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-
-import binnie.core.util.I18N;
 
 public enum EnumTubeInsulate {
 	CLAY(0xa1aacc, "clay"),

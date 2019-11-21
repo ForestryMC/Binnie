@@ -1,8 +1,9 @@
 package binnie.extratrees.items;
 
-import javax.annotation.Nullable;
-import java.util.List;
-
+import binnie.core.item.IItemMiscProvider;
+import forestry.api.core.IItemModelRegister;
+import forestry.api.core.IModelManager;
+import forestry.api.core.Tabs;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -10,15 +11,11 @@ import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import forestry.api.core.IItemModelRegister;
-import forestry.api.core.IModelManager;
-import forestry.api.core.Tabs;
-
-import binnie.core.item.IItemMiscProvider;
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class ItemETFood extends ItemFood implements IItemModelRegister {
 	static final IItemMiscProvider[] items = Food.VALUES;

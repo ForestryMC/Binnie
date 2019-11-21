@@ -1,21 +1,18 @@
 package binnie.extratrees.machines.brewery.recipes;
 
-import javax.annotation.Nullable;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
-
-import net.minecraftforge.fluids.FluidStack;
-
-import net.minecraftforge.fml.common.Optional;
-
 import binnie.extratrees.api.recipes.IBreweryManager;
 import binnie.extratrees.api.recipes.IBreweryRecipe;
 import binnie.extratrees.integration.jei.brewery.BreweryRecipeWrapper;
 import binnie.extratrees.items.ExtraTreeItems;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fml.common.Optional;
+
+import javax.annotation.Nullable;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 public class BreweryRecipeManager implements IBreweryManager {
 

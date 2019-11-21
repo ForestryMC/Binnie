@@ -1,15 +1,14 @@
 package binnie.core.util;
 
-import java.util.Map;
-import java.util.function.BiFunction;
-import java.util.function.Consumer;
-
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
+
+import java.util.Map;
+import java.util.function.BiFunction;
+import java.util.function.Consumer;
 
 public class NBTUtil {
 

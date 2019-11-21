@@ -1,11 +1,10 @@
 package binnie.extratrees.machines.brewery.window;
 
-import net.minecraft.item.ItemStack;
-
 import binnie.core.machines.ManagerMachine;
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.util.I18N;
 import binnie.extratrees.machines.brewery.recipes.BreweryRecipeManager;
+import net.minecraft.item.ItemStack;
 
 public class SlotValidatorBreweryYeast extends SlotValidator {
 	public SlotValidatorBreweryYeast() {

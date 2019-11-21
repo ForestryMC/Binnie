@@ -1,14 +1,13 @@
 package binnie.core.gui.database;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
-import forestry.api.genetics.IAlleleSpecies;
-import forestry.api.genetics.IClassification;
-
 import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.ControlText;
 import binnie.core.gui.controls.ControlTextCentered;
+import forestry.api.genetics.IAlleleSpecies;
+import forestry.api.genetics.IClassification;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class PageSpeciesClassification extends PageSpecies {
 	private final Map<IClassification.EnumClassLevel, ControlText> levels;

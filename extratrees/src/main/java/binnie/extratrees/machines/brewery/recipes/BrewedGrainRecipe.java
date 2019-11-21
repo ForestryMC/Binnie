@@ -1,24 +1,21 @@
 package binnie.extratrees.machines.brewery.recipes;
 
-import com.google.common.base.MoreObjects;
-import com.google.common.collect.ImmutableList;
-
-import javax.annotation.Nullable;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-
-import net.minecraft.item.ItemStack;
-
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidStack;
-
 import binnie.core.Binnie;
 import binnie.core.liquid.ManagerLiquid;
 import binnie.core.util.FluidStackUtil;
 import binnie.core.util.OreDictionaryUtil;
 import binnie.extratrees.api.recipes.IBreweryCrafting;
 import binnie.extratrees.api.recipes.IBreweryRecipe;
+import com.google.common.base.MoreObjects;
+import com.google.common.collect.ImmutableList;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidStack;
+
+import javax.annotation.Nullable;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 public class BrewedGrainRecipe implements IBreweryRecipe {
 	public static final FluidStack WATER = Binnie.LIQUID.getFluidStack(ManagerLiquid.WATER, Fluid.BUCKET_VOLUME);

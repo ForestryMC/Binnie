@@ -1,14 +1,13 @@
 package binnie.core.machines.storage;
 
-import java.util.function.Supplier;
-
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-
 import binnie.core.BinnieCore;
 import binnie.core.machines.IMachineType;
 import binnie.core.machines.MachinePackage;
 import binnie.core.machines.TileEntityMachine;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+
+import java.util.function.Supplier;
 
 enum Compartment implements IMachineType {
 	Compartment(StandardCompartment.PackageCompartment::new),

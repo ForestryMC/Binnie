@@ -1,8 +1,7 @@
 package binnie.core.proxy;
 
-import net.minecraft.util.ResourceLocation;
-
 import binnie.core.ModId;
+import net.minecraft.util.ResourceLocation;
 
 
 public interface I18NProxy {

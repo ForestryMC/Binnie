@@ -1,7 +1,5 @@
 package binnie.genetics.machine.genepool;
 
-import net.minecraft.tileentity.TileEntity;
-
 import binnie.core.gui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
 import binnie.core.machines.TileEntityMachine;
@@ -19,6 +17,7 @@ import binnie.genetics.machine.ComponentGeneticGUI;
 import binnie.genetics.machine.EthanolTankValidator;
 import binnie.genetics.machine.GeneticMachine;
 import binnie.genetics.modules.ModuleMachine;
+import net.minecraft.tileentity.TileEntity;
 
 public class PackageGenepool extends GeneticMachine.PackageGeneticBase implements IMachineInformation {
 	public PackageGenepool() {

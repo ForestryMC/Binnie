@@ -1,9 +1,5 @@
 package binnie.design.gui;
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
-
 import binnie.core.api.gui.IWidget;
 import binnie.core.gui.events.EventMouse;
 import binnie.core.gui.minecraft.Window;
@@ -11,6 +7,9 @@ import binnie.core.gui.minecraft.control.ControlSlotBase;
 import binnie.core.machines.Machine;
 import binnie.core.machines.TileEntityMachine;
 import binnie.core.machines.component.IComponentRecipe;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 
 public class ControlRecipeSlot extends ControlSlotBase {
 	public ControlRecipeSlot(final IWidget parent, final int x, final int y) {

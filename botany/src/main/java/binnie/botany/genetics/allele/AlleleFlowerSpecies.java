@@ -1,17 +1,5 @@
 package binnie.botany.genetics.allele;
 
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.item.Item;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import forestry.api.core.IModelManager;
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IClassification;
-import forestry.api.genetics.ISpeciesRoot;
-import forestry.core.genetics.alleles.AlleleSpecies;
-
 import binnie.botany.api.gardening.EnumAcidity;
 import binnie.botany.api.gardening.EnumMoisture;
 import binnie.botany.api.genetics.EnumFlowerChromosome;
@@ -20,6 +8,15 @@ import binnie.botany.api.genetics.IAlleleFlowerSpecies;
 import binnie.botany.api.genetics.IAlleleFlowerSpeciesBuilder;
 import binnie.botany.api.genetics.IFlowerType;
 import binnie.botany.core.BotanyCore;
+import forestry.api.core.IModelManager;
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.IClassification;
+import forestry.api.genetics.ISpeciesRoot;
+import forestry.core.genetics.alleles.AlleleSpecies;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.item.Item;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class AlleleFlowerSpecies extends AlleleSpecies implements IAlleleFlowerSpecies, IAlleleFlowerSpeciesBuilder {
 	private final IFlowerType flowerType;

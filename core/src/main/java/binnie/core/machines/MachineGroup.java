@@ -1,17 +1,16 @@
 package binnie.core.machines;
 
-import javax.annotation.Nullable;
-import java.util.Collection;
-import java.util.LinkedHashMap;
-import java.util.Map;
-
+import binnie.core.AbstractMod;
+import binnie.core.Binnie;
+import binnie.core.BinnieCore;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
-import binnie.core.AbstractMod;
-import binnie.core.Binnie;
-import binnie.core.BinnieCore;
+import javax.annotation.Nullable;
+import java.util.Collection;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class MachineGroup {
 	private final AbstractMod mod;

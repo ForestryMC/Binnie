@@ -1,16 +1,5 @@
 package binnie.extratrees.gui.database;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import forestry.api.arboriculture.TreeManager;
-
 import binnie.core.Binnie;
 import binnie.core.api.gui.IArea;
 import binnie.core.api.gui.IWidget;
@@ -34,6 +23,14 @@ import binnie.design.api.IDesignMaterial;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.wood.WoodManager;
 import binnie.genetics.api.ITreeBreedingSystem;
+import forestry.api.arboriculture.TreeManager;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class WindowArboristDatabase extends WindowAbstractDatabase {
 	public static Window create(EntityPlayer player, Side side, boolean master) {

@@ -1,20 +1,8 @@
 package binnie.extrabees.items;
 
-import javax.annotation.Nullable;
-import java.util.List;
-
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
-
-import net.minecraftforge.client.model.ModelLoader;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
+import binnie.core.Constants;
+import binnie.core.util.I18N;
+import binnie.extrabees.items.types.EnumHiveFrame;
 import forestry.api.apiculture.IBee;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
@@ -23,10 +11,18 @@ import forestry.api.apiculture.IHiveFrame;
 import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
 import forestry.api.core.Tabs;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
+import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.core.Constants;
-import binnie.core.util.I18N;
-import binnie.extrabees.items.types.EnumHiveFrame;
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class ItemHiveFrame extends Item implements IHiveFrame, IBeeModifier, IItemModelRegister {
 

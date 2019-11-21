@@ -1,9 +1,8 @@
 package binnie.core.machines.power;
 
-import net.minecraft.nbt.NBTTagCompound;
-
 import forestry.api.core.INbtReadable;
 import forestry.api.core.INbtWritable;
+import net.minecraft.nbt.NBTTagCompound;
 
 public class PowerInterface implements INbtReadable, INbtWritable {
 	private final int capacity;

@@ -1,9 +1,8 @@
 package binnie.botany.blocks;
 
+import binnie.botany.modules.ModuleGardening;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
-
-import binnie.botany.modules.ModuleGardening;
 
 public enum PlantType implements IStringSerializable {
 	WEEDS("weeds", true),

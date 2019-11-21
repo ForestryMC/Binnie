@@ -1,17 +1,14 @@
 package binnie.core.machines.power;
 
-import net.minecraftforge.energy.IEnergyStorage;
-
-import net.minecraftforge.fml.common.Optional;
-
-import forestry.core.config.Constants;
-
 import buildcraft.api.mj.IMjConnector;
 import buildcraft.api.mj.IMjPassiveProvider;
 import buildcraft.api.mj.IMjReadable;
 import buildcraft.api.mj.IMjReceiver;
 import buildcraft.api.mj.IMjRedstoneReceiver;
+import forestry.core.config.Constants;
 import ic2.api.energy.tile.IEnergySink;
+import net.minecraftforge.energy.IEnergyStorage;
+import net.minecraftforge.fml.common.Optional;
 
 @Optional.InterfaceList({
 	@Optional.Interface(iface = "ic2.api.energy.tile.IEnergySink", modid = "ic2"),

@@ -1,12 +1,10 @@
 package binnie.core.modules;
 
 import com.google.common.collect.ImmutableSet;
-
-import java.util.Set;
-
+import forestry.api.modules.IForestryModule;
 import net.minecraft.util.ResourceLocation;
 
-import forestry.api.modules.IForestryModule;
+import java.util.Set;
 
 public class BlankModule implements IForestryModule {
 

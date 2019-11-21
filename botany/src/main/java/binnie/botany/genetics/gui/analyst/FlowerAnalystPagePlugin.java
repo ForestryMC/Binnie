@@ -1,16 +1,5 @@
 package binnie.botany.genetics.gui.analyst;
 
-import java.util.List;
-
-import net.minecraft.util.text.TextFormatting;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import forestry.api.genetics.EnumTolerance;
-import forestry.api.genetics.IAlleleTolerance;
-import forestry.api.genetics.IIndividual;
-
 import binnie.botany.api.genetics.EnumFlowerChromosome;
 import binnie.botany.api.genetics.IFlower;
 import binnie.botany.api.genetics.IFlowerGenome;
@@ -26,6 +15,14 @@ import binnie.genetics.api.analyst.IAnalystManager;
 import binnie.genetics.api.analyst.IAnalystPagePlugin;
 import binnie.genetics.api.analyst.IBiologyPlugin;
 import binnie.genetics.api.analyst.IClimatePlugin;
+import forestry.api.genetics.EnumTolerance;
+import forestry.api.genetics.IAlleleTolerance;
+import forestry.api.genetics.IIndividual;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.List;
 
 public class FlowerAnalystPagePlugin implements IAnalystPagePlugin<IFlower> {
 	@Override

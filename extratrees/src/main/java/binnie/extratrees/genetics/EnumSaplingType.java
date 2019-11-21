@@ -1,18 +1,16 @@
 package binnie.extratrees.genetics;
 
-import java.awt.Color;
-
+import forestry.api.arboriculture.EnumGermlingType;
+import forestry.api.arboriculture.IGermlingModelProvider;
+import forestry.api.core.IModelManager;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import forestry.api.arboriculture.EnumGermlingType;
-import forestry.api.arboriculture.IGermlingModelProvider;
-import forestry.api.core.IModelManager;
+import java.awt.Color;
 
 public enum EnumSaplingType {
 	Default,

@@ -1,11 +1,11 @@
 package binnie.extratrees.blocks.decor;
 
+import binnie.core.util.I18N;
+
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
-import binnie.core.util.I18N;
 
 public class FenceType {
 	@Nullable

@@ -1,19 +1,16 @@
 package binnie.extratrees.integration.crafttweaker.handlers;
 
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
-
-import net.minecraft.item.ItemStack;
-
-import net.minecraftforge.fluids.FluidStack;
-
 import binnie.core.api.IBinnieRecipe;
 import binnie.core.api.ICraftingManager;
 import binnie.core.util.ItemStackUtil;
-
 import crafttweaker.CraftTweakerAPI;
 import crafttweaker.IAction;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidStack;
+
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
 
 public class GenericRecipeHandler {
 

@@ -1,8 +1,12 @@
 package binnie.extratrees.items;
 
-import javax.annotation.Nullable;
-import java.util.List;
-
+import binnie.core.api.gui.IGuiItem;
+import binnie.core.util.I18N;
+import binnie.extratrees.ExtraTrees;
+import binnie.extratrees.gui.ExtraTreesGUID;
+import forestry.api.core.IItemModelRegister;
+import forestry.api.core.IModelManager;
+import forestry.api.core.Tabs;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,18 +18,11 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import forestry.api.core.IItemModelRegister;
-import forestry.api.core.IModelManager;
-import forestry.api.core.Tabs;
-
-import binnie.core.api.gui.IGuiItem;
-import binnie.core.util.I18N;
-import binnie.extratrees.ExtraTrees;
-import binnie.extratrees.gui.ExtraTreesGUID;
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class ItemArboristDatabase extends Item implements IItemModelRegister, IGuiItem {
 

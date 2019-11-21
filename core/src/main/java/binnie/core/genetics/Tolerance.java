@@ -1,11 +1,10 @@
 package binnie.core.genetics;
 
-import java.util.Locale;
-
-import org.apache.commons.lang3.text.WordUtils;
-
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
+import org.apache.commons.lang3.text.WordUtils;
+
+import java.util.Locale;
 
 public enum Tolerance {
 	NONE(0, 0),

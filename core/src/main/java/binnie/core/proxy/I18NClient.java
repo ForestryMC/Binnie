@@ -1,14 +1,12 @@
 package binnie.core.proxy;
 
+import binnie.core.ModId;
+import binnie.core.util.Log;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraft.util.ResourceLocation;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import binnie.core.ModId;
-import binnie.core.util.Log;
 
 @SideOnly(Side.CLIENT)
 public class I18NClient implements I18NProxy {

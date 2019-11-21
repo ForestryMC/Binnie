@@ -1,10 +1,9 @@
 package binnie.extrabees.machines.mutator.window;
 
-import net.minecraft.item.ItemStack;
-
 import binnie.core.machines.ManagerMachine;
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.extrabees.utils.AlvearyMutationHandler;
+import net.minecraft.item.ItemStack;
 
 public class SlotValidatorMutator extends SlotValidator {
 	public SlotValidatorMutator() {

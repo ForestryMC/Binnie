@@ -3,8 +3,7 @@
 @FieldsAreNonnullByDefault
 package binnie.extratrees.carpentry;
 
-import javax.annotation.ParametersAreNonnullByDefault;
-
+import binnie.core.util.FieldsAreNonnullByDefault;
 import mcp.MethodsReturnNonnullByDefault;
 
-import binnie.core.util.FieldsAreNonnullByDefault;
+import javax.annotation.ParametersAreNonnullByDefault;

@@ -1,14 +1,12 @@
 package binnie.extratrees.items;
 
-import net.minecraft.util.ResourceLocation;
-
-import net.minecraftforge.fluids.FluidStack;
-
 import binnie.core.Constants;
 import binnie.core.liquid.FluidContainerType;
 import binnie.core.liquid.FluidType;
 import binnie.core.liquid.ILiquidDefinition;
 import binnie.extratrees.ExtraTrees;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fluids.FluidStack;
 
 public enum ExtraTreeLiquid implements ILiquidDefinition {
 	Sap("sap", 12481858),

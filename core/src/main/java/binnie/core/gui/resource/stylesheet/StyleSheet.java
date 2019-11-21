@@ -1,12 +1,11 @@
 package binnie.core.gui.resource.stylesheet;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import binnie.core.gui.resource.textures.Texture;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.core.gui.resource.textures.Texture;
+import java.util.HashMap;
+import java.util.Map;
 
 public class StyleSheet implements IStyleSheet {
 	protected final Map<Object, Texture> textures = new HashMap<>();

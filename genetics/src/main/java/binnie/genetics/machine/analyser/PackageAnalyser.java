@@ -1,8 +1,5 @@
 package binnie.genetics.machine.analyser;
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-
 import binnie.core.genetics.ManagerGenetics;
 import binnie.core.gui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
@@ -18,6 +15,8 @@ import binnie.genetics.item.GeneticsItems;
 import binnie.genetics.machine.ComponentGeneticGUI;
 import binnie.genetics.machine.GeneticMachine;
 import binnie.genetics.modules.ModuleMachine;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 
 public class PackageAnalyser extends GeneticMachine.PackageGeneticBase implements IMachineInformation {
 	public PackageAnalyser() {

@@ -1,8 +1,7 @@
 package binnie.extrabees.worldgen;
 
-import forestry.api.apiculture.hives.HiveManager;
-
 import binnie.core.util.Log;
+import forestry.api.apiculture.hives.HiveManager;
 
 public class ExtraBeesWorldGenerator {
 

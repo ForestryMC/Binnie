@@ -1,7 +1,13 @@
 package binnie.botany.farming;
 
-import javax.annotation.Nullable;
-
+import binnie.botany.api.genetics.EnumFlowerStage;
+import binnie.botany.api.genetics.IFlower;
+import binnie.botany.api.genetics.IFlowerRoot;
+import binnie.botany.core.BotanyCore;
+import binnie.botany.modules.ModuleFlowers;
+import binnie.botany.tile.TileEntityFlower;
+import forestry.api.farming.ICrop;
+import forestry.api.farming.IFarmable;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -10,15 +16,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import forestry.api.farming.ICrop;
-import forestry.api.farming.IFarmable;
-
-import binnie.botany.api.genetics.EnumFlowerStage;
-import binnie.botany.api.genetics.IFlower;
-import binnie.botany.api.genetics.IFlowerRoot;
-import binnie.botany.core.BotanyCore;
-import binnie.botany.modules.ModuleFlowers;
-import binnie.botany.tile.TileEntityFlower;
+import javax.annotation.Nullable;
 
 public class FarmableFlower implements IFarmable {
 	@Override

@@ -1,14 +1,5 @@
 package binnie.design.gui;
 
-import javax.annotation.Nullable;
-
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.util.ResourceLocation;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import binnie.core.Constants;
 import binnie.core.api.gui.events.EventHandlerOrigin;
 import binnie.core.gui.controls.ControlText;
@@ -27,6 +18,13 @@ import binnie.core.gui.window.Panel;
 import binnie.core.machines.Machine;
 import binnie.core.util.I18N;
 import binnie.design.api.IDesignerType;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
 
 public class WindowDesigner extends Window {
 	private ControlTextEdit textEdit;

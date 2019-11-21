@@ -1,20 +1,17 @@
 package binnie.botany.models;
 
+import binnie.botany.api.genetics.IFlowerType;
+import binnie.botany.blocks.BlockFlower;
+import binnie.core.Constants;
 import com.google.common.collect.Maps;
-
-import java.util.Map;
-
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.botany.api.genetics.IFlowerType;
-import binnie.botany.blocks.BlockFlower;
-import binnie.core.Constants;
+import java.util.Map;
 
 @SideOnly(Side.CLIENT)
 public class StateMapperFlower extends StateMapperBase {

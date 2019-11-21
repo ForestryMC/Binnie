@@ -1,20 +1,5 @@
 package binnie.extratrees.proxy;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.renderer.block.statemap.StateMapperBase;
-import net.minecraft.item.Item;
-import net.minecraft.util.ResourceLocation;
-
-import net.minecraftforge.client.model.ModelLoader;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import forestry.arboriculture.ModuleArboriculture;
-import forestry.core.models.BlockModelEntry;
-
 import binnie.core.Constants;
 import binnie.core.models.ModelManager;
 import binnie.extratrees.blocks.BlockETDecorativeLeaves;
@@ -25,6 +10,17 @@ import binnie.extratrees.models.ModelDefaultETLeaves;
 import binnie.extratrees.models.ModelDefaultETLeavesFruit;
 import binnie.extratrees.models.ModelETDecorativeLeaves;
 import binnie.extratrees.modules.ModuleWood;
+import forestry.arboriculture.ModuleArboriculture;
+import forestry.core.models.BlockModelEntry;
+import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.statemap.StateMapperBase;
+import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class ProxyClient extends Proxy implements IExtraTreeProxy {

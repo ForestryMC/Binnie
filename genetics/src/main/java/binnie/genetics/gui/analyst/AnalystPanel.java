@@ -1,8 +1,5 @@
 package binnie.genetics.gui.analyst;
 
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import binnie.core.api.gui.IWidget;
 import binnie.core.gui.CraftGUI;
 import binnie.core.gui.controls.scroll.ControlScrollBar;
@@ -12,6 +9,8 @@ import binnie.core.gui.minecraft.MinecraftGUI;
 import binnie.core.gui.renderer.RenderUtil;
 import binnie.core.gui.resource.textures.CraftGUITexture;
 import binnie.core.gui.window.Panel;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class AnalystPanel extends Panel {
 	public AnalystPanel(WindowAnalyst window) {

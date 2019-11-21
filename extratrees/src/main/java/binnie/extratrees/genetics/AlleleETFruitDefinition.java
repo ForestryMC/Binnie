@@ -1,21 +1,5 @@
 package binnie.extratrees.genetics;
 
-import java.awt.Color;
-import java.lang.reflect.Field;
-
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-
-import forestry.api.arboriculture.EnumTreeChromosome;
-import forestry.api.arboriculture.IAlleleFruit;
-import forestry.api.arboriculture.IAlleleTreeSpecies;
-import forestry.api.arboriculture.TreeManager;
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IAlleleSpecies;
-import forestry.api.genetics.IFruitFamily;
-import forestry.arboriculture.FruitProviderNone;
-import forestry.arboriculture.genetics.alleles.AlleleTreeSpecies;
-
 import binnie.core.Binnie;
 import binnie.core.api.genetics.IBreedingSystem;
 import binnie.extratrees.config.ConfigurationMain;
@@ -25,13 +9,24 @@ import binnie.extratrees.genetics.fruits.ETFruitProviderRipening;
 import binnie.extratrees.genetics.fruits.FruitPod;
 import binnie.extratrees.genetics.fruits.FruitSprite;
 import binnie.extratrees.items.Food;
+import forestry.api.arboriculture.EnumTreeChromosome;
+import forestry.api.arboriculture.IAlleleFruit;
+import forestry.api.arboriculture.IAlleleTreeSpecies;
+import forestry.api.arboriculture.TreeManager;
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.IAlleleSpecies;
+import forestry.api.genetics.IFruitFamily;
+import forestry.arboriculture.FruitProviderNone;
+import forestry.arboriculture.genetics.alleles.AlleleTreeSpecies;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+
+import java.awt.Color;
+import java.lang.reflect.Field;
 
 import static binnie.extratrees.genetics.fruits.ETFruitFamily.BERRY;
 import static binnie.extratrees.genetics.fruits.ETFruitFamily.CITRUS;
-import static forestry.api.arboriculture.EnumFruitFamily.JUNGLE;
-import static forestry.api.arboriculture.EnumFruitFamily.NUX;
-import static forestry.api.arboriculture.EnumFruitFamily.POMES;
-import static forestry.api.arboriculture.EnumFruitFamily.PRUNES;
+import static forestry.api.arboriculture.EnumFruitFamily.*;
 
 public enum AlleleETFruitDefinition {
 	Blackthorn("blackthorn", 10, 7180062, 14561129, FruitSprite.SMALL, PRUNES) {

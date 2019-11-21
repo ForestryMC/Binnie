@@ -1,11 +1,10 @@
 package binnie.core.machines.transfer;
 
-import java.util.Collections;
-
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
-
 import net.minecraftforge.fluids.FluidActionResult;
+
+import java.util.Collections;
 
 /**
  * Modeled after {@link FluidActionResult} but for item transfers.

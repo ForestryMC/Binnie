@@ -1,10 +1,5 @@
 package binnie.botany.modules;
 
-import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
-
-import forestry.api.modules.ForestryModule;
-
 import binnie.botany.Botany;
 import binnie.botany.api.gardening.EnumAcidity;
 import binnie.botany.api.gardening.EnumMoisture;
@@ -17,6 +12,9 @@ import binnie.core.Mods;
 import binnie.core.modules.BlankModule;
 import binnie.core.modules.BotanyModuleUIDs;
 import binnie.core.util.RecipeUtil;
+import forestry.api.modules.ForestryModule;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 
 @ForestryModule(moduleID = BotanyModuleUIDs.FARMING, containerID = Constants.BOTANY_MOD_ID, name = "Farming", unlocalizedDescription = "botany.module.farming")
 public class ModuleFarming extends BlankModule {

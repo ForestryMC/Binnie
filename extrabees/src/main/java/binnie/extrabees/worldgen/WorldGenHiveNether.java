@@ -1,7 +1,6 @@
 package binnie.extrabees.worldgen;
 
-import javax.annotation.Nullable;
-
+import forestry.api.apiculture.hives.IHiveGen;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockStateMatcher;
@@ -10,10 +9,9 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-
 import net.minecraftforge.common.BiomeDictionary;
 
-import forestry.api.apiculture.hives.IHiveGen;
+import javax.annotation.Nullable;
 
 public class WorldGenHiveNether implements IHiveGen {
 

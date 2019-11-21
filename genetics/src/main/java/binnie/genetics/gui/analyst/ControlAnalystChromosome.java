@@ -1,14 +1,5 @@
 package binnie.genetics.gui.analyst;
 
-import net.minecraft.client.util.ITooltipFlag;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IChromosomeType;
-import forestry.api.genetics.ISpeciesRoot;
-
 import binnie.core.Binnie;
 import binnie.core.api.genetics.IBreedingSystem;
 import binnie.core.api.gui.IWidget;
@@ -21,6 +12,12 @@ import binnie.core.gui.geometry.Point;
 import binnie.core.gui.resource.textures.StandardTexture;
 import binnie.core.gui.resource.textures.Texture;
 import binnie.core.texture.BinnieCoreTexture;
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IChromosomeType;
+import forestry.api.genetics.ISpeciesRoot;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ControlAnalystChromosome extends Control implements ITooltip {
 	private static final Texture HOMOZYGOUS = new StandardTexture(0, 0, 16, 22, BinnieCoreTexture.GUI_ANALYST);

@@ -1,16 +1,5 @@
 package binnie.extrabees.machines;
 
-import java.util.function.Supplier;
-
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-
 import binnie.core.machines.IMachineType;
 import binnie.core.machines.Machine;
 import binnie.core.machines.MachineComponent;
@@ -26,6 +15,16 @@ import binnie.extrabees.machines.rainshield.AlvearyRainShield;
 import binnie.extrabees.machines.stimulator.AlvearyStimulator;
 import binnie.extrabees.machines.transmission.AlvearyTransmission;
 import binnie.extrabees.modules.ModuleAlveary;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+
+import java.util.function.Supplier;
 
 public enum ExtraBeeMachines implements IMachineType {
 	MUTATOR(AlvearyMutator::new),

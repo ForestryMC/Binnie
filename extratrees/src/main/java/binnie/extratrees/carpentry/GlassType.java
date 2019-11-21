@@ -1,19 +1,17 @@
 package binnie.extratrees.carpentry;
 
-import javax.annotation.Nullable;
-import java.util.LinkedHashMap;
-import java.util.Map;
-
-import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
-
-import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
-
 import binnie.botany.api.genetics.EnumFlowerColor;
 import binnie.core.Constants;
 import binnie.core.block.TileEntityMetadata;
 import binnie.design.api.IDesignMaterial;
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
+
+import javax.annotation.Nullable;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class GlassType implements IDesignMaterial {
 	private static Map<Integer, GlassType> types;

@@ -1,27 +1,12 @@
 package binnie.core.genetics;
 
+import binnie.core.Binnie;
+import binnie.core.ManagerBase;
+import binnie.core.api.genetics.IBreedingSystem;
+import binnie.core.api.genetics.IItemAnalysable;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Iterables;
-
-import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeSet;
-
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.world.World;
-
 import com.mojang.authlib.GameProfile;
-
-import net.minecraftforge.event.world.WorldEvent;
-
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IAlleleFloat;
@@ -32,11 +17,20 @@ import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.IGenome;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.ISpeciesRoot;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.World;
+import net.minecraftforge.event.world.WorldEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-import binnie.core.Binnie;
-import binnie.core.ManagerBase;
-import binnie.core.api.genetics.IBreedingSystem;
-import binnie.core.api.genetics.IItemAnalysable;
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeSet;
 
 public class ManagerGenetics extends ManagerBase {
 	private final Map<ISpeciesRoot, IBreedingSystem> BREEDING_SYSTEMS;

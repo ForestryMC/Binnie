@@ -1,12 +1,5 @@
 package binnie.core.gui.minecraft.control;
 
-import java.text.NumberFormat;
-
-import net.minecraft.client.util.ITooltipFlag;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import binnie.core.ModId;
 import binnie.core.api.gui.Alignment;
 import binnie.core.api.gui.IWidget;
@@ -18,6 +11,11 @@ import binnie.core.gui.resource.textures.CraftGUITexture;
 import binnie.core.machines.Machine;
 import binnie.core.machines.inventory.IChargedSlots;
 import binnie.core.util.I18N;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.text.NumberFormat;
 
 public class ControlSlotCharge extends Control {
 	private final int slot;

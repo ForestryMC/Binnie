@@ -1,10 +1,9 @@
 package binnie.extratrees.api.recipes;
 
-import java.util.Collection;
-
+import binnie.core.api.ICraftingManager;
 import net.minecraftforge.fluids.FluidStack;
 
-import binnie.core.api.ICraftingManager;
+import java.util.Collection;
 
 public interface IDistilleryManager extends ICraftingManager<IDistilleryRecipe> {
 

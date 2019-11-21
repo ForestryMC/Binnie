@@ -1,12 +1,5 @@
 package binnie.botany.genetics.gui.analyst;
 
-import java.util.ArrayList;
-import java.util.EnumSet;
-import java.util.List;
-
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.TextFormatting;
-
 import binnie.botany.EnumHelper;
 import binnie.botany.api.gardening.EnumAcidity;
 import binnie.botany.api.gardening.EnumMoisture;
@@ -26,6 +19,12 @@ import binnie.core.gui.geometry.TextJustification;
 import binnie.core.gui.minecraft.control.ControlItemDisplay;
 import binnie.core.util.I18N;
 import binnie.genetics.api.analyst.AnalystConstants;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.TextFormatting;
+
+import java.util.ArrayList;
+import java.util.EnumSet;
+import java.util.List;
 
 public class AnalystPageSoil extends Control implements ITitledWidget {
 	public AnalystPageSoil(IWidget parent, IArea area, IFlower flower) {

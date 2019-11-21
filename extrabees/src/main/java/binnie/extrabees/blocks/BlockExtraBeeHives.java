@@ -1,11 +1,15 @@
 package binnie.extrabees.blocks;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
-
+import binnie.core.util.TileUtil;
+import binnie.extrabees.blocks.type.EnumHiveType;
+import binnie.extrabees.modules.ModuleCore;
+import forestry.api.apiculture.BeeManager;
+import forestry.api.apiculture.EnumBeeType;
+import forestry.api.apiculture.IBee;
+import forestry.api.apiculture.IHiveDrop;
+import forestry.api.apiculture.IHiveTile;
+import forestry.api.core.Tabs;
+import forestry.apiculture.tiles.TileHive;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.properties.PropertyEnum;
@@ -20,17 +24,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import forestry.api.apiculture.BeeManager;
-import forestry.api.apiculture.EnumBeeType;
-import forestry.api.apiculture.IBee;
-import forestry.api.apiculture.IHiveDrop;
-import forestry.api.apiculture.IHiveTile;
-import forestry.api.core.Tabs;
-import forestry.apiculture.tiles.TileHive;
-
-import binnie.core.util.TileUtil;
-import binnie.extrabees.blocks.type.EnumHiveType;
-import binnie.extrabees.modules.ModuleCore;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
 
 public class BlockExtraBeeHives extends Block implements ITileEntityProvider {
 

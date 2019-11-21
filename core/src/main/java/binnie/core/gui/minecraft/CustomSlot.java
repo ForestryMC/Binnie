@@ -1,7 +1,8 @@
 package binnie.core.gui.minecraft;
 
-import javax.annotation.Nullable;
-
+import binnie.core.machines.Machine;
+import binnie.core.machines.inventory.IInventorySlots;
+import binnie.core.machines.inventory.InventorySlot;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ClickType;
@@ -9,9 +10,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-import binnie.core.machines.Machine;
-import binnie.core.machines.inventory.IInventorySlots;
-import binnie.core.machines.inventory.InventorySlot;
+import javax.annotation.Nullable;
 
 public class CustomSlot extends Slot {
 	public CustomSlot(final IInventory inventory, final int index) {

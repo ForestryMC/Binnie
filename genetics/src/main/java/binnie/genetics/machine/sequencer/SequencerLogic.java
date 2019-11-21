@@ -1,9 +1,5 @@
 package binnie.genetics.machine.sequencer;
 
-import com.google.common.base.Preconditions;
-
-import net.minecraft.item.ItemStack;
-
 import binnie.core.machines.Machine;
 import binnie.core.machines.errors.ErrorState;
 import binnie.core.machines.power.ComponentProcess;
@@ -13,6 +9,8 @@ import binnie.genetics.genetics.GeneTracker;
 import binnie.genetics.genetics.SequencerItem;
 import binnie.genetics.item.GeneticsItems;
 import binnie.genetics.machine.GeneticsErrorCode;
+import com.google.common.base.Preconditions;
+import net.minecraft.item.ItemStack;
 
 public class SequencerLogic extends ComponentProcess implements IProcess {
 	public SequencerLogic(final Machine machine) {

@@ -1,13 +1,11 @@
 package binnie.botany.genetics;
 
-import net.minecraft.entity.player.EntityPlayer;
-
+import binnie.botany.api.BotanyAPI;
+import binnie.botany.api.genetics.IBotanistTracker;
 import forestry.api.genetics.IBreedingTracker;
 import forestry.api.genetics.IIndividual;
 import forestry.core.genetics.BreedingTracker;
-
-import binnie.botany.api.BotanyAPI;
-import binnie.botany.api.genetics.IBotanistTracker;
+import net.minecraft.entity.player.EntityPlayer;
 
 public class BotanistTracker extends BreedingTracker implements IBotanistTracker {
 	public BotanistTracker(String s) {

@@ -1,8 +1,20 @@
 package binnie.botany.blocks;
 
-import javax.annotation.Nullable;
-import java.util.Random;
-
+import binnie.botany.CreativeTabBotany;
+import binnie.botany.EnumHelper;
+import binnie.botany.api.gardening.EnumAcidity;
+import binnie.botany.api.gardening.EnumMoisture;
+import binnie.botany.api.gardening.EnumSoilType;
+import binnie.botany.api.gardening.IBlockSoil;
+import binnie.botany.core.BotanyCore;
+import binnie.botany.modules.ModuleFlowers;
+import binnie.botany.modules.ModuleGardening;
+import binnie.core.Constants;
+import binnie.core.modules.BotanyModuleUIDs;
+import binnie.core.util.I18N;
+import forestry.api.core.ForestryAPI;
+import forestry.api.core.IItemModelRegister;
+import forestry.api.core.IModelManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -20,28 +32,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
 import net.minecraftforge.common.IPlantable;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import forestry.api.core.ForestryAPI;
-import forestry.api.core.IItemModelRegister;
-import forestry.api.core.IModelManager;
-
-import binnie.botany.CreativeTabBotany;
-import binnie.botany.EnumHelper;
-import binnie.botany.api.gardening.EnumAcidity;
-import binnie.botany.api.gardening.EnumMoisture;
-import binnie.botany.api.gardening.EnumSoilType;
-import binnie.botany.api.gardening.IBlockSoil;
-import binnie.botany.core.BotanyCore;
-import binnie.botany.modules.ModuleFlowers;
-import binnie.botany.modules.ModuleGardening;
-import binnie.core.Constants;
-import binnie.core.modules.BotanyModuleUIDs;
-import binnie.core.util.I18N;
+import javax.annotation.Nullable;
+import java.util.Random;
 
 public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 	public static final PropertyEnum<EnumMoisture> MOISTURE = PropertyEnum.create("moisture", EnumMoisture.class);

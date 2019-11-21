@@ -1,13 +1,5 @@
 package binnie.core.gui.minecraft.control;
 
-import java.text.NumberFormat;
-
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.util.text.TextFormatting;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import binnie.core.ModId;
 import binnie.core.api.gui.IWidget;
 import binnie.core.gui.Attribute;
@@ -18,6 +10,12 @@ import binnie.core.machines.Machine;
 import binnie.core.machines.power.IProcess;
 import binnie.core.machines.power.ProcessInfo;
 import binnie.core.util.I18N;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.text.NumberFormat;
 
 public class ControlProgressBase extends Control {
 	protected float progress;

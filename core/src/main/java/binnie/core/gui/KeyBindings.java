@@ -1,19 +1,15 @@
 package binnie.core.gui;
 
 import com.google.common.collect.ImmutableList;
-
-import java.util.List;
-
 import net.minecraft.client.settings.KeyBinding;
-
 import net.minecraftforge.client.settings.KeyConflictContext;
 import net.minecraftforge.client.settings.KeyModifier;
-
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
 import org.lwjgl.input.Keyboard;
+
+import java.util.List;
 
 @SideOnly(Side.CLIENT)
 public final class KeyBindings {

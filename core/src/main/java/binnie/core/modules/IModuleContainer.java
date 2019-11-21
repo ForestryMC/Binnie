@@ -1,11 +1,10 @@
 package binnie.core.modules;
 
+import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.fml.client.event.ConfigChangedEvent;
+
 import java.io.File;
 import java.util.Set;
-
-import net.minecraftforge.common.config.Configuration;
-
-import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 
 public interface IModuleContainer {
 

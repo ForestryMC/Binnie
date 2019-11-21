@@ -1,17 +1,12 @@
 package binnie.extrabees.genetics;
 
+import binnie.core.Constants;
+import binnie.core.Mods;
+import binnie.core.genetics.AlleleHelper;
+import binnie.extrabees.genetics.effect.ExtraBeesEffect;
+import binnie.extrabees.items.ItemHoneyComb;
+import binnie.extrabees.items.types.EnumHoneyComb;
 import com.google.common.base.Preconditions;
-
-import java.awt.Color;
-import java.util.Arrays;
-import java.util.Locale;
-import java.util.Map;
-
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-
-import net.minecraftforge.common.BiomeDictionary;
-
 import forestry.api.apiculture.BeeManager;
 import forestry.api.apiculture.EnumBeeChromosome;
 import forestry.api.apiculture.EnumBeeType;
@@ -30,13 +25,14 @@ import forestry.apiculture.genetics.IBeeDefinition;
 import forestry.apiculture.genetics.alleles.AlleleEffects;
 import forestry.core.genetics.IBranchDefinition;
 import forestry.core.genetics.alleles.EnumAllele;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.BiomeDictionary;
 
-import binnie.core.Constants;
-import binnie.core.Mods;
-import binnie.core.genetics.AlleleHelper;
-import binnie.extrabees.genetics.effect.ExtraBeesEffect;
-import binnie.extrabees.items.ItemHoneyComb;
-import binnie.extrabees.items.types.EnumHoneyComb;
+import java.awt.Color;
+import java.util.Arrays;
+import java.util.Locale;
+import java.util.Map;
 
 public enum ExtraBeeDefinition implements IBeeDefinition {
 	/* BARREN BRANCH */

@@ -1,7 +1,5 @@
 package binnie.extratrees.machines.designer;
 
-import net.minecraft.item.ItemStack;
-
 import binnie.core.util.I18N;
 import binnie.design.DesignHelper;
 import binnie.design.EnumDesign;
@@ -12,6 +10,7 @@ import binnie.design.api.IDesignerType;
 import binnie.design.blocks.BlockDesign;
 import binnie.extratrees.carpentry.DesignSystem;
 import binnie.extratrees.modules.ModuleCarpentry;
+import net.minecraft.item.ItemStack;
 
 public enum DesignerType implements IDesignerType {
 	Woodworker("woodworker"),

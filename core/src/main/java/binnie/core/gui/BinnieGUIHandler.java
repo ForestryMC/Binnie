@@ -1,15 +1,13 @@
 package binnie.core.gui;
 
-import javax.annotation.Nullable;
-
+import binnie.core.gui.minecraft.Window;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
-
 import net.minecraftforge.fml.common.network.IGuiHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.core.gui.minecraft.Window;
+import javax.annotation.Nullable;
 
 public final class BinnieGUIHandler implements IGuiHandler {
 	private final IBinnieGUID[] guiIds;

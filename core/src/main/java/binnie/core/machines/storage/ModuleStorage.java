@@ -1,16 +1,14 @@
 package binnie.core.machines.storage;
 
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-
-import net.minecraftforge.oredict.OreDictionary;
-
 import binnie.core.BinnieCore;
 import binnie.core.Constants;
 import binnie.core.IInitializable;
 import binnie.core.machines.MachineGroup;
 import binnie.core.util.RecipeUtil;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class ModuleStorage implements IInitializable {
 	@Override

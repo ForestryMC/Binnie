@@ -1,5 +1,10 @@
 package binnie.core.models;
 
+import binnie.core.block.IMultipassBlock;
+import forestry.api.core.IModelBaker;
+import forestry.core.blocks.properties.UnlistedBlockAccess;
+import forestry.core.blocks.properties.UnlistedBlockPos;
+import forestry.core.models.ModelBlockCached;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.IBakedModel;
@@ -9,18 +14,9 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
 import net.minecraftforge.common.property.IExtendedBlockState;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import forestry.api.core.IModelBaker;
-import forestry.core.blocks.properties.UnlistedBlockAccess;
-import forestry.core.blocks.properties.UnlistedBlockPos;
-import forestry.core.models.ModelBlockCached;
-
-import binnie.core.block.IMultipassBlock;
 
 @SideOnly(Side.CLIENT)
 public class ModelMutlipass<B extends Block & IMultipassBlock<K>, K> extends ModelBlockCached<B, K> {

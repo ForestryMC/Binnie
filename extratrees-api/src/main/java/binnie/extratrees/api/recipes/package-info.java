@@ -2,6 +2,6 @@
 @MethodsReturnNonnullByDefault
 package binnie.extratrees.api.recipes;
 
-import javax.annotation.ParametersAreNonnullByDefault;
-
 import mcp.MethodsReturnNonnullByDefault;
+
+import javax.annotation.ParametersAreNonnullByDefault;

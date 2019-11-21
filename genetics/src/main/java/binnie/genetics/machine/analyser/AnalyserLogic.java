@@ -1,7 +1,5 @@
 package binnie.genetics.machine.analyser;
 
-import net.minecraft.item.ItemStack;
-
 import binnie.core.genetics.ManagerGenetics;
 import binnie.core.machines.Machine;
 import binnie.core.machines.errors.ErrorState;
@@ -9,6 +7,7 @@ import binnie.core.machines.power.ComponentProcessSetCost;
 import binnie.core.machines.power.IProcess;
 import binnie.genetics.config.ConfigurationMain;
 import binnie.genetics.machine.GeneticsErrorCode;
+import net.minecraft.item.ItemStack;
 
 public class AnalyserLogic extends ComponentProcessSetCost implements IProcess {
 	private static final float DYE_PER_TICK = 0.002f;

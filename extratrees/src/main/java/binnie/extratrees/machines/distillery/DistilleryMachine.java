@@ -1,7 +1,5 @@
 package binnie.extratrees.machines.distillery;
 
-import net.minecraft.tileentity.TileEntity;
-
 import binnie.core.gui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
 import binnie.core.machines.TileEntityMachine;
@@ -13,6 +11,7 @@ import binnie.extratrees.gui.ExtraTreesGUID;
 import binnie.extratrees.machines.ExtraTreeMachine;
 import binnie.extratrees.machines.distillery.window.TankValidatorDistilleryInput;
 import binnie.extratrees.machines.distillery.window.TankValidatorDistilleryOutput;
+import net.minecraft.tileentity.TileEntity;
 
 public class DistilleryMachine extends ExtraTreeMachine.PackageExtraTreeMachine implements IMachineInformation {
 	public static final int TANK_INPUT = 0;

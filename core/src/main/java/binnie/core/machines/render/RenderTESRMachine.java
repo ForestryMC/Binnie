@@ -1,13 +1,11 @@
 package binnie.core.machines.render;
 
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import binnie.core.machines.Machine;
 import binnie.core.machines.TileEntityTESRMachine;
 import binnie.core.machines.component.IRender;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class RenderTESRMachine extends TileEntitySpecialRenderer<TileEntityTESRMachine> {

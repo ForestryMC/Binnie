@@ -1,19 +1,5 @@
 package binnie.extrabees.machines.mutator.window;
 
-import javax.annotation.Nullable;
-import java.text.NumberFormat;
-
-import org.apache.commons.lang3.tuple.Pair;
-
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.TextFormatting;
-
-import net.minecraftforge.client.MinecraftForgeClient;
-
-import net.minecraftforge.fml.relauncher.Side;
-
 import binnie.core.Constants;
 import binnie.core.gui.controls.ControlText;
 import binnie.core.gui.geometry.Area;
@@ -24,6 +10,16 @@ import binnie.core.gui.minecraft.control.ControlPlayerInventory;
 import binnie.core.gui.minecraft.control.ControlSlot;
 import binnie.core.machines.Machine;
 import binnie.extrabees.utils.AlvearyMutationHandler;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.client.MinecraftForgeClient;
+import net.minecraftforge.fml.relauncher.Side;
+import org.apache.commons.lang3.tuple.Pair;
+
+import javax.annotation.Nullable;
+import java.text.NumberFormat;
 
 public class WindowAlvearyMutator extends Window {
 	public WindowAlvearyMutator(final EntityPlayer player, final IInventory inventory, final Side side) {

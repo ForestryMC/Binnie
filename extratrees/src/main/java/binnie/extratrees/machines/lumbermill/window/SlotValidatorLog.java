@@ -1,12 +1,11 @@
 package binnie.extratrees.machines.lumbermill.window;
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
-
 import binnie.core.machines.ManagerMachine;
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.util.I18N;
 import binnie.extratrees.machines.lumbermill.recipes.LumbermillRecipeManager;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 public class SlotValidatorLog extends SlotValidator {
 	private final World world;

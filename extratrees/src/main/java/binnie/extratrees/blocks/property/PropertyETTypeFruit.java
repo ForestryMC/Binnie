@@ -10,9 +10,11 @@
  ******************************************************************************/
 package binnie.extratrees.blocks.property;
 
+import binnie.extratrees.genetics.ETTreeDefinition;
 import com.google.common.base.Optional;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;
+import net.minecraft.block.properties.PropertyHelper;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -21,10 +23,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-
-import net.minecraft.block.properties.PropertyHelper;
-
-import binnie.extratrees.genetics.ETTreeDefinition;
 
 public class PropertyETTypeFruit extends PropertyHelper<PropertyETTypeFruit.LeafVariant> {
 	@Nullable

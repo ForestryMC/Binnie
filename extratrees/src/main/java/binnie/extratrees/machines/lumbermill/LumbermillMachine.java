@@ -1,7 +1,5 @@
 package binnie.extratrees.machines.lumbermill;
 
-import net.minecraft.tileentity.TileEntity;
-
 import binnie.core.gui.minecraft.IMachineInformation;
 import binnie.core.liquid.ManagerLiquid;
 import binnie.core.machines.Machine;
@@ -15,6 +13,7 @@ import binnie.core.machines.power.ComponentPowerReceptor;
 import binnie.extratrees.gui.ExtraTreesGUID;
 import binnie.extratrees.machines.ExtraTreeMachine;
 import binnie.extratrees.machines.lumbermill.window.SlotValidatorLog;
+import net.minecraft.tileentity.TileEntity;
 
 public class LumbermillMachine extends ExtraTreeMachine.PackageExtraTreeMachine implements IMachineInformation {
 	public static final int SLOT_LOG = 0;

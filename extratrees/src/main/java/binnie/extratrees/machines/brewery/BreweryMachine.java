@@ -1,8 +1,5 @@
 package binnie.extratrees.machines.brewery;
 
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
-
 import binnie.core.Constants;
 import binnie.core.gui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
@@ -19,6 +16,8 @@ import binnie.extratrees.machines.brewery.window.SlotValidatorBreweryIngredient;
 import binnie.extratrees.machines.brewery.window.SlotValidatorBreweryYeast;
 import binnie.extratrees.machines.brewery.window.TankValidatorFermentInput;
 import binnie.extratrees.machines.brewery.window.TankValidatorFermentOutput;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
 
 public class BreweryMachine extends ExtraTreeMachine.PackageExtraTreeMachine implements IMachineInformation {
 	public static final int TANK_INPUT = 0;

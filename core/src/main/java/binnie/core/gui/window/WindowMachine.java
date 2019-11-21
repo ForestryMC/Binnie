@@ -1,14 +1,12 @@
 package binnie.core.gui.window;
 
-import javax.annotation.Nullable;
-
+import binnie.core.gui.minecraft.Window;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.core.gui.minecraft.Window;
+import javax.annotation.Nullable;
 
 public abstract class WindowMachine extends Window {
 	public WindowMachine(final int width, final int height, final EntityPlayer player, @Nullable final IInventory inventory, final Side side) {

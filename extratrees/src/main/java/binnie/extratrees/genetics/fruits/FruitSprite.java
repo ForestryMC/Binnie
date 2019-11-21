@@ -1,15 +1,13 @@
 package binnie.extratrees.genetics.fruits;
 
-import java.util.Locale;
-
+import binnie.core.Constants;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.util.ResourceLocation;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.core.Constants;
+import java.util.Locale;
 
 public enum FruitSprite {
 	TINY,

@@ -1,15 +1,13 @@
 package binnie.core.gui.database;
 
-import net.minecraft.util.text.TextFormatting;
-
-import com.mojang.authlib.GameProfile;
-
 import binnie.core.api.genetics.IBreedingSystem;
 import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.ControlTextCentered;
 import binnie.core.gui.controls.page.ControlPage;
 import binnie.core.gui.minecraft.Window;
 import binnie.core.util.I18N;
+import com.mojang.authlib.GameProfile;
+import net.minecraft.util.text.TextFormatting;
 
 public class PageBreeder extends ControlPage<DatabaseTab> {
 	private final GameProfile player;

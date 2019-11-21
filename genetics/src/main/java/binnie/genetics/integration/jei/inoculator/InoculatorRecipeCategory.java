@@ -1,13 +1,5 @@
 package binnie.genetics.integration.jei.inoculator;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.item.ItemStack;
-
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IAlleleSpecies;
-import forestry.api.genetics.IIndividual;
-import forestry.api.genetics.ISpeciesRoot;
-
 import binnie.core.genetics.Gene;
 import binnie.genetics.Genetics;
 import binnie.genetics.integration.jei.GeneticsJeiPlugin;
@@ -15,7 +7,10 @@ import binnie.genetics.integration.jei.RecipeUids;
 import binnie.genetics.item.ItemSerum;
 import binnie.genetics.machine.inoculator.Inoculator;
 import binnie.genetics.machine.inoculator.InoculatorLogic;
-
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.IAlleleSpecies;
+import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.ISpeciesRoot;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IDrawableAnimated;
 import mezz.jei.api.gui.IGuiFluidStackGroup;
@@ -24,6 +19,8 @@ import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IFocus;
 import mezz.jei.api.recipe.IRecipeCategory;
+import net.minecraft.client.Minecraft;
+import net.minecraft.item.ItemStack;
 
 public class InoculatorRecipeCategory implements IRecipeCategory<InoculatorRecipeWrapper> {
 	private final IDrawableAnimated arrowAnimated;

@@ -1,5 +1,10 @@
 package binnie.extratrees.machines.distillery.recipes;
 
+import binnie.extratrees.api.recipes.IDistilleryManager;
+import binnie.extratrees.api.recipes.IDistilleryRecipe;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidStack;
+
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -7,12 +12,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidStack;
-
-import binnie.extratrees.api.recipes.IDistilleryManager;
-import binnie.extratrees.api.recipes.IDistilleryRecipe;
 
 public class DistilleryRecipeManager implements IDistilleryManager {
 	private static final int LEVELS = 3;

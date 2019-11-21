@@ -1,8 +1,11 @@
 package binnie.core.proxy;
 
-import java.io.File;
-import java.io.IOException;
-
+import binnie.core.Constants;
+import binnie.core.gui.KeyBindings;
+import binnie.core.gui.resource.stylesheet.StyleSheetManager;
+import binnie.core.liquid.FluidType;
+import binnie.core.models.ModelManager;
+import binnie.core.util.I18N;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -21,20 +24,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-
 import net.minecraftforge.client.model.ModelLoader;
-
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.core.Constants;
-import binnie.core.gui.KeyBindings;
-import binnie.core.gui.resource.stylesheet.StyleSheetManager;
-import binnie.core.liquid.FluidType;
-import binnie.core.models.ModelManager;
-import binnie.core.util.I18N;
+import java.io.File;
+import java.io.IOException;
 
 @SideOnly(Side.CLIENT)
 public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy {

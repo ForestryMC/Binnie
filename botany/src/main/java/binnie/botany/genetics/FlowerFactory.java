@@ -1,10 +1,5 @@
 package binnie.botany.genetics;
 
-import java.awt.Color;
-
-import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IClassification;
-
 import binnie.botany.api.BotanyAPI;
 import binnie.botany.api.genetics.IAlleleFlowerColor;
 import binnie.botany.api.genetics.IAlleleFlowerSpecies;
@@ -14,6 +9,10 @@ import binnie.botany.api.genetics.IFlowerMutationBuilder;
 import binnie.botany.api.genetics.IFlowerType;
 import binnie.botany.genetics.allele.AlleleFlowerSpecies;
 import binnie.botany.models.FlowerSpriteManager;
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IClassification;
+
+import java.awt.Color;
 
 public class FlowerFactory implements IFlowerFactory {
 	@Override

@@ -1,11 +1,12 @@
 package binnie.extrabees.proxy;
 
+import binnie.core.Constants;
+import binnie.extrabees.items.IItemModelProvider;
+import binnie.extrabees.modules.ModuleCore;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
+import forestry.core.models.BlankModel;
+import forestry.core.models.ModelManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -20,20 +21,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.IRegistry;
 import net.minecraft.world.World;
-
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.model.ModelLoader;
-
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import forestry.core.models.BlankModel;
-import forestry.core.models.ModelManager;
-
-import binnie.core.Constants;
-import binnie.extrabees.items.IItemModelProvider;
-import binnie.extrabees.modules.ModuleCore;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 @SideOnly(Side.CLIENT)
 public class ExtraBeesClientProxy extends ExtraBeesCommonProxy {

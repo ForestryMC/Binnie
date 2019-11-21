@@ -1,24 +1,5 @@
 package binnie.core.gui.minecraft.control;
 
-import javax.annotation.Nullable;
-import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.text.TextFormatting;
-
-import net.minecraftforge.fluids.Fluid;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import binnie.core.BinnieCore;
 import binnie.core.ModId;
 import binnie.core.api.gui.IArea;
@@ -43,8 +24,23 @@ import binnie.core.machines.inventory.TankSlot;
 import binnie.core.machines.power.ITankMachine;
 import binnie.core.machines.power.TankInfo;
 import binnie.core.util.I18N;
-
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.opengl.GL11;
+
+import javax.annotation.Nullable;
+import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 public class ControlLiquidTank extends Control implements ITooltip {
 	public static final List<Integer> tankError = new ArrayList<>();

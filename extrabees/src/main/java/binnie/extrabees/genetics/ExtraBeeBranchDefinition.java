@@ -1,8 +1,7 @@
 package binnie.extrabees.genetics;
 
-import java.util.Arrays;
-import java.util.Locale;
-
+import binnie.core.genetics.AlleleHelper;
+import binnie.extrabees.genetics.effect.ExtraBeesEffect;
 import forestry.api.apiculture.BeeManager;
 import forestry.api.apiculture.EnumBeeChromosome;
 import forestry.api.genetics.AlleleManager;
@@ -12,8 +11,8 @@ import forestry.apiculture.genetics.alleles.AlleleEffects;
 import forestry.core.genetics.IBranchDefinition;
 import forestry.core.genetics.alleles.EnumAllele;
 
-import binnie.core.genetics.AlleleHelper;
-import binnie.extrabees.genetics.effect.ExtraBeesEffect;
+import java.util.Arrays;
+import java.util.Locale;
 
 public enum ExtraBeeBranchDefinition implements IBranchDefinition {
 	BARREN("Vacapis") {

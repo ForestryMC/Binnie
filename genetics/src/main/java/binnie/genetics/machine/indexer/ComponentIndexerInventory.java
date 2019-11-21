@@ -1,17 +1,16 @@
 package binnie.genetics.machine.indexer;
 
-import javax.annotation.Nullable;
-import java.util.List;
-
+import binnie.core.machines.Machine;
+import binnie.core.machines.inventory.ComponentInventory;
+import binnie.core.machines.inventory.SetList;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 
-import binnie.core.machines.Machine;
-import binnie.core.machines.inventory.ComponentInventory;
-import binnie.core.machines.inventory.SetList;
+import javax.annotation.Nullable;
+import java.util.List;
 
 public abstract class ComponentIndexerInventory<T> extends ComponentInventory implements IInventory {
 	protected int guiRefreshCounter;

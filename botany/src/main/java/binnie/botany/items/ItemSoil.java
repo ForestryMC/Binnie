@@ -1,20 +1,18 @@
 package binnie.botany.items;
 
-import javax.annotation.Nullable;
-import java.util.List;
-
+import binnie.botany.api.gardening.EnumSoilType;
+import binnie.botany.blocks.BlockSoil;
+import binnie.core.util.I18N;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.botany.api.gardening.EnumSoilType;
-import binnie.botany.blocks.BlockSoil;
-import binnie.core.util.I18N;
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class ItemSoil extends ItemBlock {
 	private final EnumSoilType type;

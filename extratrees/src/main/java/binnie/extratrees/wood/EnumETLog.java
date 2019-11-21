@@ -1,14 +1,13 @@
 package binnie.extratrees.wood;
 
-import java.util.Locale;
-
-import forestry.api.arboriculture.IWoodType;
-
 import binnie.core.Constants;
 import binnie.extratrees.wood.planks.ExtraTreePlanks;
 import binnie.extratrees.wood.planks.ForestryPlanks;
 import binnie.extratrees.wood.planks.IPlankType;
 import binnie.extratrees.wood.planks.VanillaPlanks;
+import forestry.api.arboriculture.IWoodType;
+
+import java.util.Locale;
 
 public enum EnumETLog implements IWoodType {
 	Apple("Apple", ExtraTreePlanks.Apple),

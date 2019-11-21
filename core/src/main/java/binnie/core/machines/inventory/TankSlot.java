@@ -1,16 +1,14 @@
 package binnie.core.machines.inventory;
 
-import javax.annotation.Nullable;
-
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.ResourceLocation;
-
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidTank;
-
 import binnie.core.Constants;
 import binnie.core.ModId;
 import binnie.core.util.I18N;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidTank;
+
+import javax.annotation.Nullable;
 
 public class TankSlot extends BaseSlot<FluidStack> {
 	private final FluidTank tank;

@@ -1,13 +1,5 @@
 package binnie.extratrees.integration.jei;
 
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidUtil;
-
-import forestry.api.core.ForestryAPI;
-
 import binnie.core.Constants;
 import binnie.core.integration.jei.Drawables;
 import binnie.core.modules.ExtraTreesModuleUIDs;
@@ -26,7 +18,7 @@ import binnie.extratrees.machines.ExtraTreeMachine;
 import binnie.extratrees.modules.ModuleAlcohol;
 import binnie.extratrees.modules.ModuleWood;
 import binnie.extratrees.wood.WoodManager;
-
+import forestry.api.core.ForestryAPI;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.IJeiHelpers;
 import mezz.jei.api.IModPlugin;
@@ -34,6 +26,10 @@ import mezz.jei.api.IModRegistry;
 import mezz.jei.api.ISubtypeRegistry;
 import mezz.jei.api.JEIPlugin;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
 
 @JEIPlugin
 public class ExtraTreesJeiPlugin implements IModPlugin {

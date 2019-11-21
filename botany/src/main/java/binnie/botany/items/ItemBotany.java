@@ -1,14 +1,11 @@
 package binnie.botany.items;
 
-import net.minecraft.item.Item;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
+import binnie.botany.CreativeTabBotany;
 import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
-
-import binnie.botany.CreativeTabBotany;
+import net.minecraft.item.Item;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemBotany extends Item implements IItemModelRegister {
 

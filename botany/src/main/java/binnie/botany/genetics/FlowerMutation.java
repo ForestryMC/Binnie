@@ -1,19 +1,17 @@
 package binnie.botany.genetics;
 
-import forestry.api.climate.ClimateManager;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-
-import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IMutation;
-import forestry.core.genetics.mutations.Mutation;
-
 import binnie.botany.api.genetics.IAlleleFlowerSpecies;
 import binnie.botany.api.genetics.IFlowerGenome;
 import binnie.botany.api.genetics.IFlowerMutation;
 import binnie.botany.api.genetics.IFlowerMutationBuilder;
 import binnie.botany.api.genetics.IFlowerRoot;
 import binnie.botany.core.BotanyCore;
+import forestry.api.climate.ClimateManager;
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IMutation;
+import forestry.core.genetics.mutations.Mutation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 public class FlowerMutation extends Mutation implements IFlowerMutation, IFlowerMutationBuilder {
 	public FlowerMutation(IAlleleFlowerSpecies allele0, IAlleleFlowerSpecies allele1, IAllele[] template, int chance) {

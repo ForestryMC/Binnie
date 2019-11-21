@@ -1,14 +1,12 @@
 package binnie.extratrees.machines.distillery.recipes;
 
+import binnie.core.util.FluidStackUtil;
+import binnie.extratrees.api.recipes.IDistilleryRecipe;
 import com.google.common.base.MoreObjects;
+import net.minecraftforge.fluids.FluidStack;
 
 import java.util.Collection;
 import java.util.Collections;
-
-import net.minecraftforge.fluids.FluidStack;
-
-import binnie.core.util.FluidStackUtil;
-import binnie.extratrees.api.recipes.IDistilleryRecipe;
 
 public class DistilleryRecipe implements IDistilleryRecipe {
 	private final FluidStack input;

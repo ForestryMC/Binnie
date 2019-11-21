@@ -1,18 +1,16 @@
 package binnie.extratrees.machines.nursery;
 
-import javax.annotation.Nullable;
-
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
-
+import binnie.core.machines.TileEntityMachine;
 import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
 import forestry.api.genetics.IIndividual;
 import forestry.api.lepidopterology.IButterfly;
 import forestry.api.lepidopterology.IButterflyNursery;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 
-import binnie.core.machines.TileEntityMachine;
+import javax.annotation.Nullable;
 
 public class TileEntityNursery extends TileEntityMachine implements IButterflyNursery {
 	public TileEntityNursery(final Nursery.PackageNursery pack) {

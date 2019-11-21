@@ -1,17 +1,6 @@
 package binnie.core.genetics;
 
-import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Biomes;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
-
 import com.mojang.authlib.GameProfile;
-
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
 import forestry.api.apiculture.IBeeHousingInventory;
@@ -22,6 +11,15 @@ import forestry.api.core.IErrorLogic;
 import forestry.apiculture.FakeBeekeepingLogic;
 import forestry.apiculture.InventoryBeeHousing;
 import forestry.core.errors.FakeErrorLogic;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Biomes;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.World;
+
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class VirtualBeeHousing extends VirtualHousing implements IBeeHousing, IBeeModifier {
 	private final List<IBeeModifier> beeModifier = new ArrayList<>();

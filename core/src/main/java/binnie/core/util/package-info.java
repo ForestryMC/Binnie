@@ -3,6 +3,6 @@
 @FieldsAreNonnullByDefault
 package binnie.core.util;
 
-import javax.annotation.ParametersAreNonnullByDefault;
-
 import mcp.MethodsReturnNonnullByDefault;
+
+import javax.annotation.ParametersAreNonnullByDefault;

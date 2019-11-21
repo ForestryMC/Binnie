@@ -1,19 +1,16 @@
 package binnie.genetics.recipes;
 
+import binnie.genetics.item.GeneticsItems;
+import forestry.core.utils.ItemStackUtil;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
-
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.OreIngredient;
 import net.minecraftforge.oredict.ShapedOreRecipe;
-
-import forestry.core.utils.ItemStackUtil;
-
-import binnie.genetics.item.GeneticsItems;
 
 public class RegistryRecipe extends ShapedOreRecipe {
 	public static RegistryRecipe create(Item registry, Item itemGenetics) {

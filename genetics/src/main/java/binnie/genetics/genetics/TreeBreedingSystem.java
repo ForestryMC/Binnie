@@ -1,21 +1,18 @@
 package binnie.genetics.genetics;
 
-import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
-
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
-
+import binnie.core.Binnie;
+import binnie.core.api.genetics.IFieldKitPlugin;
+import binnie.core.api.gui.IPoint;
+import binnie.core.api.gui.ITexture;
+import binnie.core.genetics.BreedingSystem;
+import binnie.core.genetics.ForestryAllele;
+import binnie.core.gui.geometry.Point;
+import binnie.core.gui.resource.textures.StandardTexture;
+import binnie.core.texture.BinnieCoreTexture;
+import binnie.core.util.I18N;
+import binnie.core.util.UniqueItemStackSet;
+import binnie.genetics.Genetics;
 import com.mojang.authlib.GameProfile;
-
 import forestry.api.arboriculture.EnumGermlingType;
 import forestry.api.arboriculture.EnumTreeChromosome;
 import forestry.api.arboriculture.IAlleleFruit;
@@ -35,19 +32,19 @@ import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.IMutation;
 import forestry.api.genetics.ISpeciesRoot;
 import forestry.api.genetics.ISpeciesType;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
-import binnie.core.Binnie;
-import binnie.core.api.genetics.IFieldKitPlugin;
-import binnie.core.api.gui.IPoint;
-import binnie.core.api.gui.ITexture;
-import binnie.core.genetics.BreedingSystem;
-import binnie.core.genetics.ForestryAllele;
-import binnie.core.gui.geometry.Point;
-import binnie.core.gui.resource.textures.StandardTexture;
-import binnie.core.texture.BinnieCoreTexture;
-import binnie.core.util.I18N;
-import binnie.core.util.UniqueItemStackSet;
-import binnie.genetics.Genetics;
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class TreeBreedingSystem extends BreedingSystem implements binnie.genetics.api.ITreeBreedingSystem {
 	private final UniqueItemStackSet allFruits;

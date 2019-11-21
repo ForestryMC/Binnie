@@ -1,9 +1,9 @@
 package binnie.genetics.api;
 
-import javax.annotation.Nullable;
-
 import binnie.genetics.api.acclimatiser.IAcclimatiserManager;
 import binnie.genetics.api.analyst.IAnalystManager;
+
+import javax.annotation.Nullable;
 
 public class GeneticsApi {
 	@Nullable

@@ -1,13 +1,12 @@
 package binnie.core.machines.inventory;
 
-import javax.annotation.Nonnull;
-
+import binnie.core.ModId;
+import binnie.core.util.I18N;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 
-import binnie.core.ModId;
-import binnie.core.util.I18N;
+import javax.annotation.Nonnull;
 
 public class InventorySlot extends BaseSlot<ItemStack> {
 	private ItemStack content;

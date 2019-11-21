@@ -1,9 +1,18 @@
 package binnie.extratrees.blocks;
 
-import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.List;
-
+import binnie.core.Constants;
+import binnie.extratrees.blocks.property.PropertyETTypeFruit;
+import binnie.extratrees.genetics.ETTreeDefinition;
+import com.mojang.authlib.GameProfile;
+import forestry.api.arboriculture.EnumGermlingType;
+import forestry.api.arboriculture.IFruitProvider;
+import forestry.api.arboriculture.ILeafSpriteProvider;
+import forestry.api.arboriculture.ITree;
+import forestry.api.arboriculture.ITreeGenome;
+import forestry.api.arboriculture.TreeManager;
+import forestry.api.core.IModelManager;
+import forestry.arboriculture.ModuleArboriculture;
+import forestry.arboriculture.blocks.BlockAbstractLeaves;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -18,28 +27,14 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
-import com.mojang.authlib.GameProfile;
-
 import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.items.ItemHandlerHelper;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.ItemHandlerHelper;
 
-import forestry.api.arboriculture.EnumGermlingType;
-import forestry.api.arboriculture.IFruitProvider;
-import forestry.api.arboriculture.ILeafSpriteProvider;
-import forestry.api.arboriculture.ITree;
-import forestry.api.arboriculture.ITreeGenome;
-import forestry.api.arboriculture.TreeManager;
-import forestry.api.core.IModelManager;
-import forestry.arboriculture.ModuleArboriculture;
-import forestry.arboriculture.blocks.BlockAbstractLeaves;
-
-import binnie.core.Constants;
-import binnie.extratrees.blocks.property.PropertyETTypeFruit;
-import binnie.extratrees.genetics.ETTreeDefinition;
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Genetic leaves with no tile entity, used for worldgen trees.

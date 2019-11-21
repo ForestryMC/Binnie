@@ -1,13 +1,5 @@
 package binnie.botany.genetics.gui.analyst;
 
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.util.text.TextFormatting;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import forestry.api.genetics.IAlleleSpecies;
-
 import binnie.botany.api.genetics.IFlower;
 import binnie.botany.api.genetics.IFlowerGenome;
 import binnie.botany.api.genetics.IFlowerType;
@@ -23,6 +15,11 @@ import binnie.core.gui.minecraft.control.ControlIconDisplay;
 import binnie.core.gui.renderer.RenderUtil;
 import binnie.core.util.I18N;
 import binnie.genetics.api.analyst.AnalystConstants;
+import forestry.api.genetics.IAlleleSpecies;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class AnalystPageAppearance extends Control implements ITitledWidget {

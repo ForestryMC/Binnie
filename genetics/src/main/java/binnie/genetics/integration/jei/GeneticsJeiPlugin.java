@@ -1,14 +1,5 @@
 package binnie.genetics.integration.jei;
 
-import java.util.Arrays;
-import java.util.List;
-
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-
-import forestry.api.core.ForestryAPI;
-import forestry.api.genetics.ISpeciesRoot;
-
 import binnie.core.Constants;
 import binnie.core.integration.jei.Drawables;
 import binnie.genetics.api.IItemChargeable;
@@ -36,7 +27,8 @@ import binnie.genetics.machine.incubator.IIncubatorRecipe;
 import binnie.genetics.machine.incubator.Incubator;
 import binnie.genetics.modules.GeneticsModuleUIDs;
 import binnie.genetics.modules.ModuleCore;
-
+import forestry.api.core.ForestryAPI;
+import forestry.api.genetics.ISpeciesRoot;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.IJeiHelpers;
 import mezz.jei.api.IModPlugin;
@@ -44,6 +36,11 @@ import mezz.jei.api.IModRegistry;
 import mezz.jei.api.ISubtypeRegistry;
 import mezz.jei.api.JEIPlugin;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+
+import java.util.Arrays;
+import java.util.List;
 
 @JEIPlugin
 public class GeneticsJeiPlugin implements IModPlugin {

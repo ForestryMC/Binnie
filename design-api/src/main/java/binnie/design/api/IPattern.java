@@ -1,11 +1,9 @@
 package binnie.design.api;
 
+import forestry.api.core.ISpriteRegister;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import forestry.api.core.ISpriteRegister;
 
 public interface IPattern extends ISpriteRegister {
 	@SideOnly(Side.CLIENT)

@@ -1,21 +1,19 @@
 package binnie.extrabees.machines.hatchery;
 
-import java.util.Random;
-
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-
-import forestry.api.apiculture.EnumBeeType;
-import forestry.api.apiculture.IBee;
-import forestry.api.apiculture.IBeeHousing;
-import forestry.api.apiculture.IBeeListener;
-import forestry.api.apiculture.IBeeModifier;
-
 import binnie.core.machines.Machine;
 import binnie.core.machines.transfer.TransferRequest;
 import binnie.extrabees.machines.TileExtraBeeAlveary;
 import binnie.extrabees.utils.ComponentBeeModifier;
 import binnie.extrabees.utils.Utils;
+import forestry.api.apiculture.EnumBeeType;
+import forestry.api.apiculture.IBee;
+import forestry.api.apiculture.IBeeHousing;
+import forestry.api.apiculture.IBeeListener;
+import forestry.api.apiculture.IBeeModifier;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+
+import java.util.Random;
 
 public class ComponentFrameModifier extends ComponentBeeModifier implements IBeeModifier, IBeeListener {
 	public ComponentFrameModifier(final Machine machine) {

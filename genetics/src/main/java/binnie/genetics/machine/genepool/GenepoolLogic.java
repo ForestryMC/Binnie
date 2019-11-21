@@ -1,11 +1,5 @@
 package binnie.genetics.machine.genepool;
 
-import net.minecraft.item.ItemStack;
-
-import forestry.api.apiculture.BeeManager;
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.ISpeciesRoot;
-
 import binnie.core.machines.Machine;
 import binnie.core.machines.MachineUtil;
 import binnie.core.machines.errors.CoreErrorCode;
@@ -16,6 +10,10 @@ import binnie.core.machines.power.IProcess;
 import binnie.genetics.config.ConfigurationMain;
 import binnie.genetics.item.GeneticLiquid;
 import binnie.genetics.machine.GeneticsErrorCode;
+import forestry.api.apiculture.BeeManager;
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.ISpeciesRoot;
+import net.minecraft.item.ItemStack;
 
 public class GenepoolLogic extends ComponentProcessSetCost implements IProcess {
 	public static final float ENZYME_PER_PROCESS = 0.25f;

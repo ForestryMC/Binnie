@@ -1,20 +1,18 @@
 package binnie.extrabees.gui;
 
-import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import net.minecraft.item.ItemStack;
-
+import binnie.core.BinnieCore;
+import binnie.core.api.gui.IWidget;
+import binnie.core.gui.controls.listbox.ControlListBox;
 import forestry.api.apiculture.BeeManager;
 import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.genetics.IAllele;
+import net.minecraft.item.ItemStack;
 
-import binnie.core.BinnieCore;
-import binnie.core.api.gui.IWidget;
-import binnie.core.gui.controls.listbox.ControlListBox;
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class ControlProductsBox extends ControlListBox<ControlProductsBox.Product> {
 	@Nullable

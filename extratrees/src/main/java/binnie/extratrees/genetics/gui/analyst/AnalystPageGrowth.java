@@ -1,13 +1,5 @@
 package binnie.extratrees.genetics.gui.analyst;
 
-import net.minecraft.util.text.TextFormatting;
-
-import forestry.api.arboriculture.EnumTreeChromosome;
-import forestry.api.arboriculture.ITree;
-import forestry.api.arboriculture.TreeManager;
-import forestry.api.genetics.IAlleleSpecies;
-import forestry.api.genetics.IIndividual;
-
 import binnie.core.Binnie;
 import binnie.core.api.genetics.IBreedingSystem;
 import binnie.core.api.gui.IArea;
@@ -18,6 +10,12 @@ import binnie.core.gui.controls.core.Control;
 import binnie.core.util.I18N;
 import binnie.core.util.TimeUtil;
 import binnie.genetics.api.analyst.AnalystConstants;
+import forestry.api.arboriculture.EnumTreeChromosome;
+import forestry.api.arboriculture.ITree;
+import forestry.api.arboriculture.TreeManager;
+import forestry.api.genetics.IAlleleSpecies;
+import forestry.api.genetics.IIndividual;
+import net.minecraft.util.text.TextFormatting;
 
 public class AnalystPageGrowth extends Control implements ITitledWidget {
 	public AnalystPageGrowth(IWidget parent, IArea area, IIndividual ind) {

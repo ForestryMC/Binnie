@@ -1,19 +1,17 @@
 package binnie.genetics.integration.jei.incubator;
 
+import binnie.genetics.integration.jei.GeneticsJeiPlugin;
+import binnie.genetics.machine.incubator.IncubatorRecipe;
+import binnie.genetics.machine.incubator.IncubatorRecipeLarvae;
+import forestry.api.apiculture.BeeManager;
+import forestry.api.apiculture.EnumBeeType;
+import forestry.api.apiculture.IBee;
+import net.minecraft.item.ItemStack;
+
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import net.minecraft.item.ItemStack;
-
-import forestry.api.apiculture.BeeManager;
-import forestry.api.apiculture.EnumBeeType;
-import forestry.api.apiculture.IBee;
-
-import binnie.genetics.integration.jei.GeneticsJeiPlugin;
-import binnie.genetics.machine.incubator.IncubatorRecipe;
-import binnie.genetics.machine.incubator.IncubatorRecipeLarvae;
 
 public class LarvaeIncubatorRecipeMaker {
 	public static List<LarvaeIncubatorRecipeWrapper> create(@Nullable IncubatorRecipeLarvae recipeLarvae) {

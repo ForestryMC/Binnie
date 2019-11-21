@@ -1,14 +1,5 @@
 package binnie.core.gui;
 
-import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import binnie.core.api.gui.IArea;
 import binnie.core.api.gui.IPoint;
 import binnie.core.api.gui.ITopLevelWidget;
@@ -22,6 +13,14 @@ import binnie.core.gui.events.EventHandler;
 import binnie.core.gui.events.EventWidget;
 import binnie.core.gui.geometry.Area;
 import binnie.core.gui.geometry.Point;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Widget implements IWidget {
 	@Nullable

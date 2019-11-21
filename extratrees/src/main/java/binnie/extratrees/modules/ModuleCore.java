@@ -1,30 +1,5 @@
 package binnie.extratrees.modules;
 
-import com.google.common.collect.ImmutableSet;
-
-import java.util.Set;
-
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.oredict.OreDictionary;
-
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.common.registry.VillagerRegistry;
-
-import forestry.api.core.Tabs;
-import forestry.api.fuels.EngineBronzeFuel;
-import forestry.api.fuels.FuelManager;
-import forestry.api.modules.ForestryModule;
-import forestry.api.recipes.ICarpenterManager;
-import forestry.api.recipes.IStillManager;
-import forestry.api.recipes.RecipeManagers;
-
 import binnie.core.Binnie;
 import binnie.core.Constants;
 import binnie.core.Mods;
@@ -43,6 +18,26 @@ import binnie.extratrees.items.ItemETFood;
 import binnie.extratrees.items.ItemHammer;
 import binnie.extratrees.items.ItemHops;
 import binnie.extratrees.village.VillageCreationExtraTrees;
+import com.google.common.collect.ImmutableSet;
+import forestry.api.core.Tabs;
+import forestry.api.fuels.EngineBronzeFuel;
+import forestry.api.fuels.FuelManager;
+import forestry.api.modules.ForestryModule;
+import forestry.api.recipes.ICarpenterManager;
+import forestry.api.recipes.IStillManager;
+import forestry.api.recipes.RecipeManagers;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.VillagerRegistry;
+import net.minecraftforge.oredict.OreDictionary;
+
+import java.util.Set;
 
 @ForestryModule(moduleID = ExtraTreesModuleUIDs.CORE, containerID = Constants.EXTRA_TREES_MOD_ID, coreModule = true, name = "Core", unlocalizedDescription = "extratrees.module.core")
 public class ModuleCore extends BlankModule {

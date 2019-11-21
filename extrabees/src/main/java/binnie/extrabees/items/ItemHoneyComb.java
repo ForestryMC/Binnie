@@ -1,14 +1,8 @@
 package binnie.extrabees.items;
 
-import javax.annotation.Nullable;
-
-import net.minecraft.item.ItemStack;
-
-import net.minecraftforge.oredict.OreDictionary;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
+import binnie.core.Mods;
+import binnie.extrabees.items.types.EnumHoneyComb;
+import binnie.extrabees.modules.ModuleCore;
 import forestry.api.apiculture.BeeManager;
 import forestry.api.arboriculture.TreeManager;
 import forestry.api.core.Tabs;
@@ -16,10 +10,12 @@ import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.ISpeciesRoot;
 import forestry.api.lepidopterology.ButterflyManager;
 import forestry.core.items.IColoredItem;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.oredict.OreDictionary;
 
-import binnie.core.Mods;
-import binnie.extrabees.items.types.EnumHoneyComb;
-import binnie.extrabees.modules.ModuleCore;
+import javax.annotation.Nullable;
 
 public class ItemHoneyComb extends ItemProduct<EnumHoneyComb> implements IColoredItem {
 

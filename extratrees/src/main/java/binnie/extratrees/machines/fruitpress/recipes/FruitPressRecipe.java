@@ -1,16 +1,13 @@
 package binnie.extratrees.machines.fruitpress.recipes;
 
+import binnie.core.util.FluidStackUtil;
+import binnie.extratrees.api.recipes.IFruitPressRecipe;
 import com.google.common.base.MoreObjects;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidStack;
 
 import java.util.Collection;
 import java.util.Collections;
-
-import net.minecraft.item.ItemStack;
-
-import net.minecraftforge.fluids.FluidStack;
-
-import binnie.core.util.FluidStackUtil;
-import binnie.extratrees.api.recipes.IFruitPressRecipe;
 
 public class FruitPressRecipe implements IFruitPressRecipe {
 	private final ItemStack input;

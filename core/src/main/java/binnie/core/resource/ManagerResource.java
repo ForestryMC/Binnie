@@ -1,13 +1,12 @@
 package binnie.core.resource;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import binnie.core.AbstractMod;
+import binnie.core.BinnieCore;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.core.AbstractMod;
-import binnie.core.BinnieCore;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ManagerResource {
 	private final List<BinnieSprite> sprites;

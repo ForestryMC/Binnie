@@ -1,7 +1,5 @@
 package binnie.extratrees.machines.lumbermill;
 
-import net.minecraft.item.ItemStack;
-
 import binnie.core.machines.Machine;
 import binnie.core.machines.MachineUtil;
 import binnie.core.machines.errors.ErrorState;
@@ -10,6 +8,7 @@ import binnie.core.machines.power.IProcess;
 import binnie.extratrees.items.ExtraTreeItems;
 import binnie.extratrees.machines.ExtraTreesErrorCode;
 import binnie.extratrees.machines.lumbermill.recipes.LumbermillRecipeManager;
+import net.minecraft.item.ItemStack;
 
 public class LumbermillLogic extends ComponentProcessSetCost implements IProcess {
 	public static final int PROCESS_ENERGY = 900;

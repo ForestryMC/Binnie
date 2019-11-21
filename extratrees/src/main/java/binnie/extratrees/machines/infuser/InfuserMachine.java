@@ -1,7 +1,5 @@
 package binnie.extratrees.machines.infuser;
 
-import net.minecraft.tileentity.TileEntity;
-
 import binnie.core.gui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
 import binnie.core.machines.TileEntityMachine;
@@ -11,6 +9,7 @@ import binnie.core.machines.inventory.TankSlot;
 import binnie.core.machines.power.ComponentPowerReceptor;
 import binnie.extratrees.gui.ExtraTreesGUID;
 import binnie.extratrees.machines.ExtraTreeMachine;
+import net.minecraft.tileentity.TileEntity;
 
 public class InfuserMachine extends ExtraTreeMachine.PackageExtraTreeMachine implements IMachineInformation {
 	public InfuserMachine() {

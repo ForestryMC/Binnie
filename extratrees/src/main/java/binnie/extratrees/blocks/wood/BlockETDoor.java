@@ -1,10 +1,18 @@
 package binnie.extratrees.blocks.wood;
 
-import javax.annotation.Nullable;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Random;
-
+import binnie.core.Constants;
+import binnie.extratrees.wood.EnumETLog;
+import forestry.api.arboriculture.IWoodItemMeshDefinition;
+import forestry.api.arboriculture.TreeManager;
+import forestry.api.arboriculture.WoodBlockKind;
+import forestry.api.core.IItemModelRegister;
+import forestry.api.core.IModelManager;
+import forestry.api.core.IStateMapperRegister;
+import forestry.api.core.Tabs;
+import forestry.arboriculture.IWoodTyped;
+import forestry.arboriculture.blocks.WoodTypeStateMapper;
+import forestry.arboriculture.proxy.ProxyArboricultureClient;
+import forestry.core.blocks.IColoredBlock;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -17,24 +25,13 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import forestry.api.arboriculture.IWoodItemMeshDefinition;
-import forestry.api.arboriculture.TreeManager;
-import forestry.api.arboriculture.WoodBlockKind;
-import forestry.api.core.IItemModelRegister;
-import forestry.api.core.IModelManager;
-import forestry.api.core.IStateMapperRegister;
-import forestry.api.core.Tabs;
-import forestry.arboriculture.IWoodTyped;
-import forestry.arboriculture.blocks.WoodTypeStateMapper;
-import forestry.arboriculture.proxy.ProxyArboricultureClient;
-import forestry.core.blocks.IColoredBlock;
-
-import binnie.core.Constants;
-import binnie.extratrees.wood.EnumETLog;
+import javax.annotation.Nullable;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Random;
 
 public class BlockETDoor extends BlockDoor implements IWoodTyped, IItemModelRegister, IStateMapperRegister, IColoredBlock {
 	private final EnumETLog woodType;

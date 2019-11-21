@@ -1,15 +1,12 @@
 package binnie.extratrees.machines.brewery.recipes;
 
-import javax.annotation.Nullable;
-
+import binnie.extratrees.api.recipes.IBreweryCrafting;
+import forestry.api.core.INbtWritable;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-
 import net.minecraftforge.fluids.FluidStack;
 
-import forestry.api.core.INbtWritable;
-
-import binnie.extratrees.api.recipes.IBreweryCrafting;
+import javax.annotation.Nullable;
 
 public class BreweryCrafting implements INbtWritable, IBreweryCrafting {
 	@Nullable

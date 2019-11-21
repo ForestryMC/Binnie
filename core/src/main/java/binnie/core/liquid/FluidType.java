@@ -1,18 +1,16 @@
 package binnie.core.liquid;
 
-import javax.annotation.Nullable;
-import java.awt.Color;
-
+import binnie.core.Binnie;
+import binnie.core.Constants;
+import binnie.core.util.I18N;
 import net.minecraft.block.Block;
 import net.minecraft.util.ResourceLocation;
-
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
-import binnie.core.Binnie;
-import binnie.core.Constants;
-import binnie.core.util.I18N;
+import javax.annotation.Nullable;
+import java.awt.Color;
 
 public class FluidType {
 	private ResourceLocation textureFlowing;

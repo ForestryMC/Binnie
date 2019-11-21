@@ -1,15 +1,13 @@
 package binnie.extratrees.items;
 
-import java.util.List;
-
-import net.minecraft.item.ItemStack;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import binnie.core.item.IItemMiscProvider;
 import binnie.core.util.I18N;
 import binnie.extratrees.modules.ModuleCore;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.List;
 
 public enum ExtraTreeItems implements IItemMiscProvider {
 	SAWDUST("sawdust"),

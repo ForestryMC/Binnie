@@ -1,9 +1,5 @@
 package binnie.extratrees.genetics.gui.analyst;
 
-import net.minecraft.util.text.TextFormatting;
-
-import forestry.api.lepidopterology.IButterfly;
-
 import binnie.core.api.gui.IArea;
 import binnie.core.api.gui.ITitledWidget;
 import binnie.core.api.gui.IWidget;
@@ -12,6 +8,8 @@ import binnie.core.gui.controls.ControlTextCentered;
 import binnie.core.gui.controls.core.Control;
 import binnie.core.util.I18N;
 import binnie.genetics.api.analyst.AnalystConstants;
+import forestry.api.lepidopterology.IButterfly;
+import net.minecraft.util.text.TextFormatting;
 
 public class AnalystPageSpecimen extends Control implements ITitledWidget {
 	public AnalystPageSpecimen(IWidget parent, IArea area, IButterfly ind) {

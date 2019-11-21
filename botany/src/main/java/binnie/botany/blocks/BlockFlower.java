@@ -1,9 +1,25 @@
 package binnie.botany.blocks;
 
-import javax.annotation.Nullable;
-import java.util.List;
-import java.util.Random;
-
+import binnie.botany.Botany;
+import binnie.botany.api.genetics.IFlower;
+import binnie.botany.api.genetics.IFlowerGenome;
+import binnie.botany.api.genetics.IFlowerRoot;
+import binnie.botany.api.genetics.IFlowerType;
+import binnie.botany.blocks.properties.PropertyFlower;
+import binnie.botany.core.BotanyCore;
+import binnie.botany.genetics.EnumFlowerType;
+import binnie.botany.genetics.FlowerDefinition;
+import binnie.botany.models.StateMapperFlower;
+import binnie.botany.modules.ModuleFlowers;
+import binnie.botany.network.PacketID;
+import binnie.botany.tile.FlowerRenderInfo;
+import binnie.botany.tile.TileEntityFlower;
+import binnie.core.BinnieCore;
+import binnie.core.network.packet.MessageNBT;
+import binnie.core.util.TileUtil;
+import com.mojang.authlib.GameProfile;
+import forestry.api.core.IStateMapperRegister;
+import forestry.core.blocks.IColoredBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.SoundType;
@@ -27,34 +43,13 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
-import com.mojang.authlib.GameProfile;
-
 import net.minecraftforge.client.model.ModelLoader;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import forestry.api.core.IStateMapperRegister;
-import forestry.core.blocks.IColoredBlock;
-
-import binnie.botany.Botany;
-import binnie.botany.api.genetics.IFlower;
-import binnie.botany.api.genetics.IFlowerGenome;
-import binnie.botany.api.genetics.IFlowerRoot;
-import binnie.botany.api.genetics.IFlowerType;
-import binnie.botany.blocks.properties.PropertyFlower;
-import binnie.botany.core.BotanyCore;
-import binnie.botany.genetics.EnumFlowerType;
-import binnie.botany.genetics.FlowerDefinition;
-import binnie.botany.models.StateMapperFlower;
-import binnie.botany.modules.ModuleFlowers;
-import binnie.botany.network.PacketID;
-import binnie.botany.tile.FlowerRenderInfo;
-import binnie.botany.tile.TileEntityFlower;
-import binnie.core.BinnieCore;
-import binnie.core.network.packet.MessageNBT;
-import binnie.core.util.TileUtil;
+import javax.annotation.Nullable;
+import java.util.List;
+import java.util.Random;
 
 public class BlockFlower extends BlockContainer implements IColoredBlock, IStateMapperRegister {
 	public static final AxisAlignedBB FLOWER_BLOCK_AABB = new AxisAlignedBB(0.3D, 0.0D, 0.3D, 0.7D, 0.6D, 0.7D);

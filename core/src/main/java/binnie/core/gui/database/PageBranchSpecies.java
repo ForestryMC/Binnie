@@ -1,16 +1,14 @@
 package binnie.core.gui.database;
 
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import forestry.api.genetics.IAlleleSpecies;
-import forestry.api.genetics.IClassification;
-
 import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.ControlText;
 import binnie.core.gui.controls.ControlTextCentered;
 import binnie.core.gui.events.EventValueChanged;
 import binnie.core.util.I18N;
+import forestry.api.genetics.IAlleleSpecies;
+import forestry.api.genetics.IClassification;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class PageBranchSpecies extends PageBranch {

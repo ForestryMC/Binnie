@@ -1,16 +1,16 @@
 package binnie.design;
 
+import binnie.design.api.IDesign;
+import binnie.design.api.IDesignCategory;
+import binnie.design.api.IDesignManager;
+import binnie.design.api.IDesignSystem;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
-import binnie.design.api.IDesign;
-import binnie.design.api.IDesignCategory;
-import binnie.design.api.IDesignManager;
-import binnie.design.api.IDesignSystem;
 
 public final class DesignerManager implements IDesignManager {
 	private static final Map<Integer, IDesign> designMap = new LinkedHashMap<>();

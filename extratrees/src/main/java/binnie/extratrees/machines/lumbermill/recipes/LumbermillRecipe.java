@@ -1,13 +1,11 @@
 package binnie.extratrees.machines.lumbermill.recipes;
 
+import binnie.extratrees.api.recipes.ILumbermillRecipe;
 import com.google.common.base.MoreObjects;
+import net.minecraft.item.ItemStack;
 
 import java.util.Collection;
 import java.util.Collections;
-
-import net.minecraft.item.ItemStack;
-
-import binnie.extratrees.api.recipes.ILumbermillRecipe;
 
 public class LumbermillRecipe implements ILumbermillRecipe {
 	private final ItemStack input;

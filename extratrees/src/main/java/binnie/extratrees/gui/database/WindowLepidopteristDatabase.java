@@ -1,10 +1,5 @@
 package binnie.extratrees.gui.database;
 
-import net.minecraft.entity.player.EntityPlayer;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import binnie.core.gui.database.DatabaseTab;
 import binnie.core.gui.database.PageBranchOverview;
 import binnie.core.gui.database.PageBranchSpecies;
@@ -16,6 +11,9 @@ import binnie.core.gui.database.PageSpeciesResultant;
 import binnie.core.gui.database.WindowAbstractDatabase;
 import binnie.core.gui.minecraft.Window;
 import binnie.extratrees.ExtraTrees;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WindowLepidopteristDatabase extends WindowAbstractDatabase {
 	public WindowLepidopteristDatabase(EntityPlayer player, Side side, boolean master) {

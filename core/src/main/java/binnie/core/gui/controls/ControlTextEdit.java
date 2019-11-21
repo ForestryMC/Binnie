@@ -1,10 +1,5 @@
 package binnie.core.gui.controls;
 
-import net.minecraft.client.gui.GuiTextField;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import binnie.core.api.gui.IWidget;
 import binnie.core.gui.Attribute;
 import binnie.core.gui.CraftGUI;
@@ -15,6 +10,9 @@ import binnie.core.gui.events.EventMouse;
 import binnie.core.gui.events.EventTextEdit;
 import binnie.core.gui.events.EventWidget;
 import binnie.core.gui.resource.textures.CraftGUITexture;
+import net.minecraft.client.gui.GuiTextField;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class ControlTextEdit extends Control implements IControlValue<String> {

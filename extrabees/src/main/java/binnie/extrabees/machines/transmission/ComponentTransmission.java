@@ -1,21 +1,18 @@
 package binnie.extrabees.machines.transmission;
 
-import java.util.LinkedList;
-import java.util.List;
-
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumFacing;
-
-import net.minecraftforge.energy.CapabilityEnergy;
-import net.minecraftforge.energy.IEnergyStorage;
-
-import forestry.api.apiculture.IBeeListener;
-import forestry.api.apiculture.IBeeModifier;
-import forestry.api.multiblock.IMultiblockComponent;
-
 import binnie.core.machines.Machine;
 import binnie.extrabees.machines.TileExtraBeeAlveary;
 import binnie.extrabees.utils.ComponentBeeModifier;
+import forestry.api.apiculture.IBeeListener;
+import forestry.api.apiculture.IBeeModifier;
+import forestry.api.multiblock.IMultiblockComponent;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
+import net.minecraftforge.energy.CapabilityEnergy;
+import net.minecraftforge.energy.IEnergyStorage;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class ComponentTransmission extends ComponentBeeModifier implements IBeeModifier, IBeeListener {
 	public ComponentTransmission(final Machine machine) {

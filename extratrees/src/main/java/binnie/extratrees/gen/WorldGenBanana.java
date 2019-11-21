@@ -1,14 +1,13 @@
 package binnie.extratrees.gen;
 
-import java.util.List;
-import java.util.Random;
-
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-
 import forestry.api.world.ITreeGenData;
 import forestry.arboriculture.worldgen.TreeBlockTypeLeaf;
 import forestry.core.worldgen.WorldGenHelper;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+
+import java.util.List;
+import java.util.Random;
 
 public class WorldGenBanana extends forestry.arboriculture.worldgen.WorldGenTree {
 	public WorldGenBanana(ITreeGenData tree) {

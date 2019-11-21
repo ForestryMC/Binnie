@@ -1,10 +1,5 @@
 package binnie.genetics.gui.analyst;
 
-import net.minecraft.client.util.ITooltipFlag;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import binnie.core.api.genetics.IBreedingSystem;
 import binnie.core.gui.Attribute;
 import binnie.core.gui.CraftGUI;
@@ -14,6 +9,9 @@ import binnie.core.gui.events.EventMouse;
 import binnie.core.gui.geometry.Point;
 import binnie.core.gui.renderer.RenderUtil;
 import binnie.core.gui.resource.textures.CraftGUITexture;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class ControlSystemButton extends Control {

@@ -1,12 +1,12 @@
 package binnie.extratrees.machines;
 
-import javax.annotation.Nullable;
-
 import binnie.core.Constants;
 import binnie.core.machines.errors.CoreErrorCode;
 import binnie.core.machines.errors.EnumErrorType;
 import binnie.core.machines.errors.IErrorStateDefinition;
 import binnie.core.util.I18N;
+
+import javax.annotation.Nullable;
 
 public enum ExtraTreesErrorCode implements IErrorStateDefinition {
 	BREWERY_NO_RECIPE("brewery.no.recipe", CoreErrorCode.NO_RECIPE),

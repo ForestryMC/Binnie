@@ -1,15 +1,5 @@
 package binnie.genetics.modules;
 
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-
-import net.minecraftforge.fml.common.registry.GameRegistry;
-
-import forestry.api.modules.ForestryModule;
-import forestry.api.recipes.RecipeManagers;
-
 import binnie.core.Binnie;
 import binnie.core.Constants;
 import binnie.core.Mods;
@@ -30,6 +20,13 @@ import binnie.genetics.item.ItemSequence;
 import binnie.genetics.item.ItemSerum;
 import binnie.genetics.item.ItemSerumArray;
 import binnie.genetics.recipes.RegistryRecipe;
+import forestry.api.modules.ForestryModule;
+import forestry.api.recipes.RecipeManagers;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @ForestryModule(moduleID = GeneticsModuleUIDs.CORE, containerID = Constants.GENETICS_MOD_ID, name = "Core", unlocalizedDescription = "genetics.module.core", coreModule = true)
 public class ModuleCore extends BlankModule {

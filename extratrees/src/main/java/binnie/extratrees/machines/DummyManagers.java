@@ -1,14 +1,5 @@
 package binnie.extratrees.machines;
 
-import com.google.common.collect.ImmutableSet;
-
-import javax.annotation.Nullable;
-import java.util.Set;
-
-import net.minecraft.item.ItemStack;
-
-import net.minecraftforge.fluids.FluidStack;
-
 import binnie.core.api.IBinnieRecipe;
 import binnie.core.api.ICraftingManager;
 import binnie.extratrees.api.recipes.IBreweryManager;
@@ -19,6 +10,12 @@ import binnie.extratrees.api.recipes.IFruitPressManager;
 import binnie.extratrees.api.recipes.IFruitPressRecipe;
 import binnie.extratrees.api.recipes.ILumbermillManager;
 import binnie.extratrees.api.recipes.ILumbermillRecipe;
+import com.google.common.collect.ImmutableSet;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidStack;
+
+import javax.annotation.Nullable;
+import java.util.Set;
 
 public class DummyManagers {
 

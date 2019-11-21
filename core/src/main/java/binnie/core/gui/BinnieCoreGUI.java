@@ -1,19 +1,17 @@
 package binnie.core.gui;
 
-import javax.annotation.Nullable;
-
+import binnie.core.gui.fieldkit.WindowFieldKit;
+import binnie.core.gui.genesis.WindowGenesis;
+import binnie.core.gui.minecraft.Window;
+import binnie.core.machines.storage.WindowCompartment;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-
 import net.minecraftforge.fml.relauncher.Side;
 
-import binnie.core.gui.fieldkit.WindowFieldKit;
-import binnie.core.gui.genesis.WindowGenesis;
-import binnie.core.gui.minecraft.Window;
-import binnie.core.machines.storage.WindowCompartment;
+import javax.annotation.Nullable;
 
 public enum BinnieCoreGUI implements IBinnieGUID {
 	COMPARTMENT,

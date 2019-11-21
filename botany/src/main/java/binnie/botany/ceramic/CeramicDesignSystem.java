@@ -1,19 +1,5 @@
 package binnie.botany.ceramic;
 
-import javax.annotation.Nullable;
-import java.util.HashMap;
-import java.util.Map;
-
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import binnie.botany.Botany;
 import binnie.botany.api.genetics.EnumFlowerColor;
 import binnie.botany.items.CeramicItems;
@@ -23,6 +9,18 @@ import binnie.design.api.DesignAPI;
 import binnie.design.api.IDesignMaterial;
 import binnie.design.api.IDesignSystem;
 import binnie.design.api.IPattern;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CeramicDesignSystem implements IDesignSystem {
 	public static final CeramicDesignSystem instance = new CeramicDesignSystem();

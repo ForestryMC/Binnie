@@ -1,7 +1,9 @@
 package binnie.extrabees.utils;
 
-import javax.annotation.Nullable;
-
+import forestry.api.apiculture.BeeManager;
+import forestry.api.apiculture.IAlleleBeeSpecies;
+import forestry.api.apiculture.IBeeRoot;
+import forestry.apiculture.genetics.BeeDefinition;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
@@ -9,17 +11,12 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
-
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
-import forestry.api.apiculture.BeeManager;
-import forestry.api.apiculture.IAlleleBeeSpecies;
-import forestry.api.apiculture.IBeeRoot;
-import forestry.apiculture.genetics.BeeDefinition;
+import javax.annotation.Nullable;
 
 public class Utils {
 

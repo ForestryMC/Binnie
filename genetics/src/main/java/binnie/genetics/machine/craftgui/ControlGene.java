@@ -1,12 +1,5 @@
 package binnie.genetics.machine.craftgui;
 
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import binnie.core.Binnie;
 import binnie.core.api.genetics.IBreedingSystem;
 import binnie.core.api.genetics.IGene;
@@ -22,6 +15,11 @@ import binnie.core.gui.minecraft.Window;
 import binnie.core.gui.renderer.RenderUtil;
 import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.genetics.Engineering;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ControlGene extends Control implements IControlValue<IGene>, ITooltip {
 	private IGene gene;

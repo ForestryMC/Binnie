@@ -1,10 +1,9 @@
 package binnie.core.machines;
 
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
-
 import binnie.core.Constants;
 import binnie.core.util.I18N;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
 
 public abstract class MachinePackage {
 	private final String uid;

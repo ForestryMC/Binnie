@@ -1,22 +1,5 @@
 package binnie.core.gui.database;
 
-import javax.annotation.Nullable;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-
-import net.minecraft.entity.player.EntityPlayer;
-
-import com.mojang.authlib.GameProfile;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import forestry.api.genetics.IAlleleSpecies;
-import forestry.api.genetics.IBreedingTracker;
-import forestry.api.genetics.IClassification;
-
 import binnie.core.api.genetics.IBreedingSystem;
 import binnie.core.api.gui.Alignment;
 import binnie.core.api.gui.IWidget;
@@ -37,6 +20,19 @@ import binnie.core.gui.minecraft.Window;
 import binnie.core.gui.minecraft.control.ControlHelp;
 import binnie.core.gui.window.Panel;
 import binnie.core.util.I18N;
+import com.mojang.authlib.GameProfile;
+import forestry.api.genetics.IAlleleSpecies;
+import forestry.api.genetics.IBreedingTracker;
+import forestry.api.genetics.IClassification;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 public abstract class WindowAbstractDatabase extends Window {
 	private final boolean master;

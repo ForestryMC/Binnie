@@ -1,18 +1,5 @@
 package binnie.genetics.gui.analyst;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Objects;
-
-import net.minecraft.util.text.TextFormatting;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import forestry.api.arboriculture.EnumTreeChromosome;
-import forestry.api.genetics.IAlleleSpecies;
-import forestry.api.genetics.IIndividual;
-
 import binnie.core.api.genetics.IBreedingSystem;
 import binnie.core.api.gui.IArea;
 import binnie.core.api.gui.ITitledWidget;
@@ -33,6 +20,16 @@ import binnie.core.gui.renderer.RenderUtil;
 import binnie.core.gui.resource.textures.CraftGUITexture;
 import binnie.core.gui.window.Panel;
 import binnie.core.util.I18N;
+import forestry.api.arboriculture.EnumTreeChromosome;
+import forestry.api.genetics.IAlleleSpecies;
+import forestry.api.genetics.IIndividual;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Objects;
 
 @SideOnly(Side.CLIENT)
 public class AnalystPageDatabase extends Control implements ITitledWidget {

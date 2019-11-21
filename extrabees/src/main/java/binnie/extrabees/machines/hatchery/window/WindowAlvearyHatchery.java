@@ -1,18 +1,16 @@
 package binnie.extrabees.machines.hatchery.window;
 
-import javax.annotation.Nullable;
-
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-
-import net.minecraftforge.fml.relauncher.Side;
-
 import binnie.core.Constants;
 import binnie.core.gui.minecraft.Window;
 import binnie.core.gui.minecraft.control.ControlPlayerInventory;
 import binnie.core.gui.minecraft.control.ControlSlotArray;
 import binnie.core.machines.Machine;
 import binnie.extrabees.machines.hatchery.AlvearyHatchery;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraftforge.fml.relauncher.Side;
+
+import javax.annotation.Nullable;
 
 public class WindowAlvearyHatchery extends Window {
 	public WindowAlvearyHatchery(final EntityPlayer player, final IInventory inventory, final Side side) {

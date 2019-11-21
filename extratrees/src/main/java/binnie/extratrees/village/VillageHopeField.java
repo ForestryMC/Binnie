@@ -1,9 +1,7 @@
 package binnie.extratrees.village;
 
-import javax.annotation.Nullable;
-import java.util.List;
-import java.util.Random;
-
+import binnie.extratrees.blocks.BlockHops;
+import binnie.extratrees.modules.ModuleCore;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCrops;
 import net.minecraft.block.state.IBlockState;
@@ -17,8 +15,9 @@ import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.StructureVillagePieces;
 import net.minecraft.world.gen.structure.template.TemplateManager;
 
-import binnie.extratrees.blocks.BlockHops;
-import binnie.extratrees.modules.ModuleCore;
+import javax.annotation.Nullable;
+import java.util.List;
+import java.util.Random;
 
 public class VillageHopeField extends StructureVillagePieces.Village {
 	private Block cropTypeA;

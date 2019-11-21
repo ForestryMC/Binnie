@@ -1,10 +1,5 @@
 package binnie.genetics.genetics;
 
-import javax.annotation.Nullable;
-
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-
 import binnie.core.api.genetics.IGene;
 import binnie.genetics.api.IItemChargeable;
 import binnie.genetics.api.IItemSerum;
@@ -12,6 +7,10 @@ import binnie.genetics.item.GeneticsItems;
 import binnie.genetics.item.ItemSerum;
 import binnie.genetics.item.ItemSerumArray;
 import binnie.genetics.modules.ModuleCore;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+
+import javax.annotation.Nullable;
 
 public class Engineering {
 	public static boolean isGeneAcceptor(ItemStack stack) {

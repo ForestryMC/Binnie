@@ -1,25 +1,5 @@
 package binnie.extratrees.genetics;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeSet;
-
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-
-import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IAlleleInteger;
-import forestry.api.genetics.IAlleleSpecies;
-import forestry.api.genetics.IBreedingTracker;
-import forestry.api.genetics.IChromosomeType;
-import forestry.api.genetics.IMutation;
-import forestry.api.genetics.ISpeciesRoot;
-import forestry.api.genetics.ISpeciesType;
-import forestry.api.lepidopterology.ButterflyManager;
-import forestry.api.lepidopterology.EnumButterflyChromosome;
-import forestry.api.lepidopterology.EnumFlutterType;
-import forestry.api.lepidopterology.ILepidopteristTracker;
-
 import binnie.core.Binnie;
 import binnie.core.ModId;
 import binnie.core.api.genetics.IFieldKitPlugin;
@@ -33,6 +13,24 @@ import binnie.core.gui.resource.textures.StandardTexture;
 import binnie.core.texture.BinnieCoreTexture;
 import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IAlleleInteger;
+import forestry.api.genetics.IAlleleSpecies;
+import forestry.api.genetics.IBreedingTracker;
+import forestry.api.genetics.IChromosomeType;
+import forestry.api.genetics.IMutation;
+import forestry.api.genetics.ISpeciesRoot;
+import forestry.api.genetics.ISpeciesType;
+import forestry.api.lepidopterology.ButterflyManager;
+import forestry.api.lepidopterology.EnumButterflyChromosome;
+import forestry.api.lepidopterology.EnumFlutterType;
+import forestry.api.lepidopterology.ILepidopteristTracker;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeSet;
 
 public class MothBreedingSystem extends BreedingSystem {
 	public MothBreedingSystem() {

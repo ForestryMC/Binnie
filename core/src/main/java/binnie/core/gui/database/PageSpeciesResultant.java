@@ -1,11 +1,10 @@
 package binnie.core.gui.database;
 
-import forestry.api.genetics.IAlleleSpecies;
-
 import binnie.core.api.gui.IWidget;
 import binnie.core.gui.controls.ControlText;
 import binnie.core.gui.controls.ControlTextCentered;
 import binnie.core.util.I18N;
+import forestry.api.genetics.IAlleleSpecies;
 
 public class PageSpeciesResultant extends PageSpecies {
 	private final ControlText title;

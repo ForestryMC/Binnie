@@ -1,9 +1,6 @@
 package binnie.core.block;
 
 import com.google.common.base.Preconditions;
-
-import javax.annotation.Nullable;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
@@ -14,6 +11,8 @@ import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
+
+import javax.annotation.Nullable;
 
 public class TileEntityMetadata extends TileEntity {
 	private int meta;

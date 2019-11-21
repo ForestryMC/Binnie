@@ -1,21 +1,19 @@
 package binnie.genetics.machine.incubator;
 
-import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.oredict.OreDictionary;
-
 import binnie.core.BinnieCore;
 import binnie.core.Mods;
 import binnie.genetics.item.GeneticLiquid;
 import binnie.genetics.item.GeneticsItems;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.oredict.OreDictionary;
+
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Incubator {
 	public static final int[] SLOT_QUEUE = new int[]{0, 1, 2};

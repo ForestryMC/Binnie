@@ -1,15 +1,13 @@
 package binnie.core.proxy;
 
-import java.util.IllegalFormatException;
-
+import binnie.core.ModId;
+import binnie.core.util.Log;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.translation.I18n;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.core.ModId;
-import binnie.core.util.Log;
+import java.util.IllegalFormatException;
 
 @SideOnly(Side.SERVER)
 public class I18NServer implements I18NProxy {

@@ -1,26 +1,5 @@
 package binnie.extrabees.genetics.gui.analyst;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.text.TextFormatting;
-
-import net.minecraftforge.fluids.FluidStack;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import forestry.api.apiculture.BeeManager;
-import forestry.api.apiculture.EnumBeeChromosome;
-import forestry.api.apiculture.IBee;
-import forestry.api.apiculture.IBeeGenome;
-import forestry.apiculture.ModuleApiculture;
-
 import binnie.core.BinnieCore;
 import binnie.core.api.gui.IArea;
 import binnie.core.api.gui.ITitledWidget;
@@ -41,6 +20,23 @@ import binnie.core.util.UniqueItemStackSet;
 import binnie.extrabees.ExtraBees;
 import binnie.genetics.api.analyst.AnalystConstants;
 import binnie.genetics.api.analyst.IAnalystManager;
+import forestry.api.apiculture.BeeManager;
+import forestry.api.apiculture.EnumBeeChromosome;
+import forestry.api.apiculture.IBee;
+import forestry.api.apiculture.IBeeGenome;
+import forestry.apiculture.ModuleApiculture;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AnalystPageBeeProducts extends Control implements ITitledWidget {
 	public AnalystPageBeeProducts(IWidget parent, IArea area, IBee ind, IAnalystManager analystManager) {

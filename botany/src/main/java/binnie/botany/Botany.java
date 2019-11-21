@@ -1,13 +1,5 @@
 package binnie.botany;
 
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-
-import forestry.api.core.ForestryAPI;
-
 import binnie.botany.api.genetics.EnumFlowerChromosome;
 import binnie.botany.genetics.TolerancePh;
 import binnie.botany.genetics.gui.analyst.FlowerAnalystPagePlugin;
@@ -25,6 +17,12 @@ import binnie.core.proxy.IProxyCore;
 import binnie.genetics.api.GeneticsApi;
 import binnie.genetics.api.acclimatiser.IAcclimatiserManager;
 import binnie.genetics.api.analyst.IAnalystManager;
+import forestry.api.core.ForestryAPI;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 @Mod(
 	modid = Constants.BOTANY_MOD_ID,

@@ -1,11 +1,11 @@
 package binnie.core.liquid;
 
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidStack;
+
 import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
-
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidStack;
 
 public class DrinkManager {
 	private static final Map<String, IDrinkLiquid> DRINK_LIQUIDS = new HashMap<>();

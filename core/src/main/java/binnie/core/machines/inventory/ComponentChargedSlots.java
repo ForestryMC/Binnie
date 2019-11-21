@@ -1,15 +1,14 @@
 package binnie.core.machines.inventory;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import binnie.core.machines.Machine;
+import binnie.core.machines.MachineComponent;
+import binnie.core.machines.network.INetwork;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 
-import binnie.core.machines.Machine;
-import binnie.core.machines.MachineComponent;
-import binnie.core.machines.network.INetwork;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ComponentChargedSlots extends MachineComponent implements INetwork.GuiNBT, IChargedSlots {
 	private final Map<Integer, Float> charges;

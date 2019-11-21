@@ -1,10 +1,5 @@
 package binnie.extratrees.gui.database;
 
-import net.minecraft.item.ItemStack;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import binnie.core.api.gui.IPoint;
 import binnie.core.api.gui.IWidget;
 import binnie.core.gui.CraftGUI;
@@ -22,6 +17,9 @@ import binnie.core.util.I18N;
 import binnie.extratrees.blocks.decor.FenceType;
 import binnie.extratrees.wood.WoodManager;
 import binnie.extratrees.wood.planks.IPlankType;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class PagePlanksOverview extends PageAbstract<ItemStack> {

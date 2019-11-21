@@ -1,11 +1,9 @@
 package binnie.extratrees.blocks.wood;
 
+import binnie.extratrees.wood.WoodManager;
+import forestry.api.arboriculture.IWoodType;
 import net.minecraft.item.ItemSlab;
 import net.minecraft.item.ItemStack;
-
-import forestry.api.arboriculture.IWoodType;
-
-import binnie.extratrees.wood.WoodManager;
 
 public class ItemETSlab extends ItemSlab {
 

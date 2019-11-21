@@ -1,14 +1,12 @@
 package binnie.extrabees.genetics;
 
-import net.minecraft.item.ItemStack;
-
+import binnie.extrabees.items.ItemHoneyComb;
 import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.apiculture.IAlleleBeeSpeciesBuilder;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IClassification;
 import forestry.apiculture.genetics.alleles.AlleleBeeSpecies;
-
-import binnie.extrabees.items.ItemHoneyComb;
+import net.minecraft.item.ItemStack;
 
 public class ExtraBeeSpecies extends AlleleBeeSpecies {
 	private State state;

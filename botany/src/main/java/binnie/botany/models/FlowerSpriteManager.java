@@ -1,18 +1,16 @@
 package binnie.botany.models;
 
-import javax.annotation.Nullable;
-import java.util.HashMap;
-import java.util.Map;
-
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import binnie.botany.Botany;
 import binnie.botany.api.genetics.IFlowerType;
 import binnie.core.Binnie;
 import binnie.core.resource.BinnieSprite;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
+import java.util.HashMap;
+import java.util.Map;
 
 public class FlowerSpriteManager {
 	private static final Map<IFlowerType, FlowerSprites> flowerSprites = new HashMap<>();

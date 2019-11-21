@@ -1,5 +1,10 @@
 package binnie.genetics.machine.lab;
 
+import binnie.core.api.gui.IGuiItem;
+import binnie.core.machines.IMachine;
+import binnie.core.machines.MachineComponent;
+import binnie.core.machines.component.IInteraction;
+import binnie.core.machines.network.INetwork;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -9,12 +14,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-
-import binnie.core.api.gui.IGuiItem;
-import binnie.core.machines.IMachine;
-import binnie.core.machines.MachineComponent;
-import binnie.core.machines.component.IInteraction;
-import binnie.core.machines.network.INetwork;
 
 public class ComponentGUIHolder extends MachineComponent implements INetwork.TilePacketSync, IInteraction.RightClick {
 	public ComponentGUIHolder(final IMachine machine) {

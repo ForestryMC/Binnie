@@ -1,18 +1,15 @@
 package binnie.core.machines.base;
 
-import javax.annotation.Nonnull;
-
-import net.minecraft.util.EnumFacing;
-
-import net.minecraftforge.fml.common.Optional;
-
 import binnie.core.Constants;
 import binnie.core.machines.power.IPoweredMachine;
 import binnie.core.machines.power.PowerInfo;
 import binnie.core.machines.power.PowerInterface;
-
 import buildcraft.api.mj.IMjConnector;
 import ic2.api.energy.tile.IEnergyEmitter;
+import net.minecraft.util.EnumFacing;
+import net.minecraftforge.fml.common.Optional;
+
+import javax.annotation.Nonnull;
 
 class DefaultPower implements IPoweredMachine {
 	public static final DefaultPower INSTANCE = new DefaultPower();

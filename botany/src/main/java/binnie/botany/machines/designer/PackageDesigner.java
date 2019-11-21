@@ -1,8 +1,5 @@
 package binnie.botany.machines.designer;
 
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
-
 import binnie.botany.gui.BotanyGUI;
 import binnie.botany.machines.ComponentBotanyGUI;
 import binnie.core.Constants;
@@ -17,6 +14,8 @@ import binnie.design.gui.ComponentDesignerRecipe;
 import binnie.design.gui.DesignerSlots;
 import binnie.design.gui.SlotValidatorDesignAdhesive;
 import binnie.design.gui.SlotValidatorDesignMaterial;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
 
 public final class PackageDesigner extends MachinePackage implements IMachineInformation {
 	private final IDesignerType type;

@@ -1,13 +1,11 @@
 package binnie.extratrees.blocks.property;
 
+import binnie.extratrees.genetics.ETTreeDefinition;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.Lists;
-
-import java.util.Collection;
-
 import net.minecraft.block.properties.PropertyEnum;
 
-import binnie.extratrees.genetics.ETTreeDefinition;
+import java.util.Collection;
 
 public class PropertyETType extends PropertyEnum<ETTreeDefinition> {
 	protected PropertyETType(String name, Class<ETTreeDefinition> valueClass, Collection<ETTreeDefinition> allowedValues) {

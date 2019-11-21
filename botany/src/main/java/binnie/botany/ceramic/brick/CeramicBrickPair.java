@@ -1,18 +1,15 @@
 package binnie.botany.ceramic.brick;
 
+import binnie.botany.api.genetics.EnumFlowerColor;
+import binnie.botany.modules.ModuleCeramic;
+import binnie.core.util.I18N;
 import com.google.common.base.Preconditions;
-
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagInt;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import binnie.botany.api.genetics.EnumFlowerColor;
-import binnie.botany.modules.ModuleCeramic;
-import binnie.core.util.I18N;
 
 public class CeramicBrickPair {
 	public static final CeramicBrickPair EMPTY = new CeramicBrickPair(EnumFlowerColor.DarkSeaGreen, EnumFlowerColor.DarkSeaGreen, CeramicBrickType.TILE);

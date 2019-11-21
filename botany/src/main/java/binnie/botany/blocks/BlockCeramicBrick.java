@@ -1,10 +1,26 @@
 package binnie.botany.blocks;
 
-import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
+import binnie.botany.CreativeTabBotany;
+import binnie.botany.api.genetics.EnumFlowerColor;
+import binnie.botany.ceramic.brick.CeramicBrickPair;
+import binnie.botany.ceramic.brick.CeramicBrickType;
+import binnie.botany.tile.TileCeramic;
+import binnie.botany.tile.TileCeramicBrick;
+import binnie.core.Constants;
+import binnie.core.block.IMultipassBlock;
+import binnie.core.models.DefaultStateMapper;
+import binnie.core.models.ModelManager;
+import binnie.core.models.ModelMutlipass;
+import binnie.core.util.TileUtil;
+import forestry.api.core.IItemModelRegister;
+import forestry.api.core.IModelManager;
+import forestry.api.core.ISpriteRegister;
+import forestry.api.core.IStateMapperRegister;
+import forestry.api.core.ITextureManager;
+import forestry.core.blocks.IColoredBlock;
+import forestry.core.blocks.properties.UnlistedBlockAccess;
+import forestry.core.blocks.properties.UnlistedBlockPos;
+import forestry.core.models.BlockModelEntry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -31,37 +47,17 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.property.ExtendedBlockState;
 import net.minecraftforge.common.property.IExtendedBlockState;
 import net.minecraftforge.common.property.IUnlistedProperty;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import forestry.api.core.IItemModelRegister;
-import forestry.api.core.IModelManager;
-import forestry.api.core.ISpriteRegister;
-import forestry.api.core.IStateMapperRegister;
-import forestry.api.core.ITextureManager;
-import forestry.core.blocks.IColoredBlock;
-import forestry.core.blocks.properties.UnlistedBlockAccess;
-import forestry.core.blocks.properties.UnlistedBlockPos;
-import forestry.core.models.BlockModelEntry;
-
-import binnie.botany.CreativeTabBotany;
-import binnie.botany.api.genetics.EnumFlowerColor;
-import binnie.botany.ceramic.brick.CeramicBrickPair;
-import binnie.botany.ceramic.brick.CeramicBrickType;
-import binnie.botany.tile.TileCeramic;
-import binnie.botany.tile.TileCeramicBrick;
-import binnie.core.Constants;
-import binnie.core.block.IMultipassBlock;
-import binnie.core.models.DefaultStateMapper;
-import binnie.core.models.ModelManager;
-import binnie.core.models.ModelMutlipass;
-import binnie.core.util.TileUtil;
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicBrickPair>, IColoredBlock, ISpriteRegister, IStateMapperRegister, IItemModelRegister {
 	private static final PropertyEnum<CeramicBrickType> TYPE = PropertyEnum.create("type", CeramicBrickType.class);

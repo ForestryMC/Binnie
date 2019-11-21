@@ -1,12 +1,11 @@
 package binnie.design.api;
 
-import javax.annotation.Nullable;
-
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.ItemStack;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
 
 public interface IDesignSystem {
 	@Nullable

@@ -1,15 +1,14 @@
 package binnie.botany.tile;
 
-import javax.annotation.Nullable;
-
+import binnie.botany.api.genetics.EnumFlowerColor;
+import binnie.botany.modules.ModuleCeramic;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 
-import binnie.botany.api.genetics.EnumFlowerColor;
-import binnie.botany.modules.ModuleCeramic;
+import javax.annotation.Nullable;
 
 public class TileCeramic extends TileEntity {
 	protected EnumFlowerColor color = EnumFlowerColor.Black;

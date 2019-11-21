@@ -1,16 +1,14 @@
 package binnie.core.gui.resource.textures;
 
-import net.minecraft.util.ResourceLocation;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import binnie.core.api.gui.Alignment;
 import binnie.core.api.gui.IBorder;
 import binnie.core.api.gui.ITexture;
 import binnie.core.gui.geometry.Area;
 import binnie.core.gui.geometry.Border;
 import binnie.core.resource.IBinnieTexture;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class Texture implements ITexture {
 	private final Area area;

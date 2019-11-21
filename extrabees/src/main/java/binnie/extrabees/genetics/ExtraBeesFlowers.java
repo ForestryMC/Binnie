@@ -5,8 +5,13 @@ import binnie.extrabees.utils.Utils;
 import com.google.common.collect.ImmutableList;
 import forestry.api.apiculture.EnumBeeChromosome;
 import forestry.api.apiculture.FlowerManager;
-import forestry.api.genetics.*;
-
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.IAlleleFlowers;
+import forestry.api.genetics.ICheckPollinatable;
+import forestry.api.genetics.IFlowerProvider;
+import forestry.api.genetics.IFlowerRegistry;
+import forestry.api.genetics.IFruitBearer;
+import forestry.api.genetics.IIndividual;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;

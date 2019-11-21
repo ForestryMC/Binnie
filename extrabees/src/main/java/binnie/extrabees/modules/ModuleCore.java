@@ -1,22 +1,5 @@
 package binnie.extrabees.modules;
 
-import javax.annotation.Nullable;
-
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-import net.minecraft.item.Item;
-import net.minecraft.util.ResourceLocation;
-
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.RegistryEvent;
-
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
-import forestry.api.apiculture.BeeManager;
-import forestry.api.apiculture.IAlleleBeeSpecies;
-import forestry.api.genetics.AlleleSpeciesRegisterEvent;
-import forestry.api.modules.ForestryModule;
-
 import binnie.core.Constants;
 import binnie.core.modules.BlankModule;
 import binnie.extrabees.genetics.ExtraBeeDefinition;
@@ -31,6 +14,19 @@ import binnie.extrabees.items.types.EnumHoneyComb;
 import binnie.extrabees.utils.AlvearyMutationHandler;
 import binnie.extrabees.utils.MaterialBeehive;
 import binnie.extrabees.worldgen.ExtraBeesWorldGenerator;
+import forestry.api.apiculture.BeeManager;
+import forestry.api.apiculture.IAlleleBeeSpecies;
+import forestry.api.genetics.AlleleSpeciesRegisterEvent;
+import forestry.api.modules.ForestryModule;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
+import javax.annotation.Nullable;
 
 @ForestryModule(moduleID = ExtraBeesModuleUIDs.CORE, containerID = Constants.EXTRA_BEES_MOD_ID, name = "Core", unlocalizedDescription = "extrabees.module.core", coreModule = true)
 public class ModuleCore extends BlankModule {

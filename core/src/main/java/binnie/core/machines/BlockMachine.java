@@ -1,11 +1,9 @@
 package binnie.core.machines;
 
+import binnie.core.machines.component.IRender;
+import binnie.core.util.I18N;
+import binnie.core.util.TileUtil;
 import com.google.common.base.Preconditions;
-
-import javax.annotation.Nullable;
-import java.util.List;
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
@@ -27,15 +25,13 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-
 import net.minecraftforge.fluids.FluidUtil;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.core.machines.component.IRender;
-import binnie.core.util.I18N;
-import binnie.core.util.TileUtil;
+import javax.annotation.Nullable;
+import java.util.List;
+import java.util.Random;
 
 class BlockMachine extends Block implements IBlockMachine, ITileEntityProvider {
 	public static final PropertyInteger MACHINE_TYPE = PropertyInteger.create("machine_type", 0, 15);

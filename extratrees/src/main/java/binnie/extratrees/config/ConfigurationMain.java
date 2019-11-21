@@ -1,11 +1,10 @@
 package binnie.extratrees.config;
 
-import java.io.File;
-
-import net.minecraftforge.common.config.Configuration;
-
 import binnie.core.modules.IConfigHandler;
 import binnie.core.modules.ModuleContainer;
+import net.minecraftforge.common.config.Configuration;
+
+import java.io.File;
 
 public class ConfigurationMain implements IConfigHandler {
 	public static boolean alterLemon = true;

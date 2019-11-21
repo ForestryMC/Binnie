@@ -2,7 +2,6 @@ package binnie.genetics.api.analyst;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
-
 import net.minecraftforge.fluids.FluidStack;
 
 public interface IProducePlugin {

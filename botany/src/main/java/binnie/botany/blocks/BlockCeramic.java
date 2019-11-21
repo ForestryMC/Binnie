@@ -1,10 +1,12 @@
 package binnie.botany.blocks;
 
-import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
+import binnie.botany.CreativeTabBotany;
+import binnie.botany.api.genetics.EnumFlowerColor;
+import binnie.botany.tile.TileCeramic;
+import binnie.core.util.TileUtil;
+import forestry.api.core.IItemModelRegister;
+import forestry.api.core.IModelManager;
+import forestry.core.blocks.IColoredBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -19,18 +21,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import forestry.api.core.IItemModelRegister;
-import forestry.api.core.IModelManager;
-import forestry.core.blocks.IColoredBlock;
-
-import binnie.botany.CreativeTabBotany;
-import binnie.botany.api.genetics.EnumFlowerColor;
-import binnie.botany.tile.TileCeramic;
-import binnie.core.util.TileUtil;
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class BlockCeramic extends Block implements IColoredBlock, IItemModelRegister {
 	public BlockCeramic() {
