@@ -58,13 +58,6 @@ public class ModelDefaultETLeaves extends ModelBlockCached<BlockETDefaultLeaves,
 		// Render the plain leaf block.
 		baker.addBlockModel(null, leafSprite, BlockAbstractLeaves.FOLIAGE_COLOR_INDEX);
 
-		// Render overlay for fruit leaves.
-		ResourceLocation fruitSpriteLocation = genome.getFruitProvider().getDecorativeSprite();
-		if (fruitSpriteLocation != null) {
-			TextureAtlasSprite fruitSprite = map.getAtlasSprite(fruitSpriteLocation.toString());
-			baker.addBlockModel(null, fruitSprite, BlockAbstractLeaves.FRUIT_COLOR_INDEX);
-		}
-
 		// Set the particle sprite
 		baker.setParticleSprite(leafSprite);
 	}

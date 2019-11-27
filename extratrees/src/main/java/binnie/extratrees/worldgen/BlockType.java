@@ -5,6 +5,8 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import java.util.Random;
+
 public class BlockType implements WorldGenBlockType {
 	private final IBlockState blockState;
 
@@ -13,7 +15,7 @@ public class BlockType implements WorldGenBlockType {
 	}
 
 	@Override
-	public void setBlock(World world, ITreeGenData tree, BlockPos pos) {
+	public void setBlock(World world, ITreeGenData tree, BlockPos pos, Random random) {
 		world.setBlockState(pos, blockState, 2);
 	}
 }

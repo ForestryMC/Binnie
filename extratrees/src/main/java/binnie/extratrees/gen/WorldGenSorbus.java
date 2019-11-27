@@ -3,14 +3,13 @@ package binnie.extratrees.gen;
 import forestry.api.world.ITreeGenData;
 
 public class WorldGenSorbus {
-	public static class Whitebeam extends WorldGenTree {
+	public static class Whitebeam extends BinnieWorldGenTree {
 		public Whitebeam(ITreeGenData tree) {
-			super(tree);
+			super(tree,5,3);
 		}
 
 		@Override
-		public void generate() {
-			this.generateTreeTrunk(this.height, this.girth);
+		protected void generateLeaves() {
 			int leafSpawn = this.height + 1;
 			final float bottom = this.randBetween(2, 3);
 			final float width = this.height * this.randBetween(0.5f, 0.6f);
@@ -24,14 +23,13 @@ public class WorldGenSorbus {
 		}
 	}
 
-	public static class Rowan extends WorldGenTree {
+	public static class Rowan extends BinnieWorldGenTree {
 		public Rowan(ITreeGenData tree) {
-			super(tree);
+			super(tree, 5,3);
 		}
 
 		@Override
-		public void generate() {
-			this.generateTreeTrunk(this.height, this.girth);
+		protected void generateLeaves() {
 			int leafSpawn = this.height + 1;
 			final float bottom = this.randBetween(2, 3);
 			final float width = this.height * this.randBetween(0.5f, 0.6f);
@@ -43,14 +41,13 @@ public class WorldGenSorbus {
 		}
 	}
 
-	public static class ServiceTree extends WorldGenTree {
+	public static class ServiceTree extends BinnieWorldGenTree {
 		public ServiceTree(ITreeGenData tree) {
-			super(tree);
+			super(tree, 8,6);
 		}
 
 		@Override
-		public void generate() {
-			this.generateTreeTrunk(this.height, this.girth);
+		protected void generateLeaves() {
 			int leafSpawn = this.height + 1;
 			this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), 1.0f, 1, this.leaf, false);
 			this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), 1.5f, 1, this.leaf, false);
@@ -58,12 +55,6 @@ public class WorldGenSorbus {
 				this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), 2.4f + this.rand.nextFloat() * 0.7f, 1, this.leaf, false);
 			}
 			this.generateCylinder(new Vector(0.0f, leafSpawn, 0.0f), 2.9f, 1, this.leaf, false);
-		}
-
-		@Override
-		public void preGenerate() {
-			this.height = this.determineHeight(8, 6);
-			this.girth = this.determineGirth(this.treeGen.getGirth());
 		}
 	}
 }

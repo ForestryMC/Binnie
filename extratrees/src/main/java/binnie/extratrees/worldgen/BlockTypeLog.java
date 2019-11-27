@@ -5,6 +5,8 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import java.util.Random;
+
 public class BlockTypeLog implements WorldGenBlockType {
 	private final ITreeGenData treeGenData;
 
@@ -13,7 +15,7 @@ public class BlockTypeLog implements WorldGenBlockType {
 	}
 
 	@Override
-	public void setBlock(final World world, final ITreeGenData tree, final BlockPos pos) {
+	public void setBlock(final World world, final ITreeGenData tree, final BlockPos pos, Random random) {
 		treeGenData.setLogBlock(world, pos, EnumFacing.UP);
 	}
 }

@@ -3,14 +3,13 @@ package binnie.extratrees.gen;
 import forestry.api.world.ITreeGenData;
 
 public class WorldGenTree3 {
-	public static class Hazel extends WorldGenTree {
+	public static class Hazel extends BinnieWorldGenTree {
 		public Hazel(ITreeGenData tree) {
-			super(tree);
+			super(tree,5,1);
 		}
 
 		@Override
-		public void generate() {
-			this.generateTreeTrunk(this.height, this.girth);
+		protected void generateLeaves() {
 			float leafSpawn = this.height + 1;
 			final float bottom = 3.0f;
 			float width = this.height * this.randBetween(0.45f, 0.5f);
@@ -25,22 +24,15 @@ public class WorldGenTree3 {
 			this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), width - 0.6f, 1, this.leaf, false);
 			this.generateCylinder(new Vector(0.0f, leafSpawn, 0.0f), width - 1.2f, 1, this.leaf, false);
 		}
-
-		@Override
-		public void preGenerate() {
-			this.height = this.determineHeight(5, 1);
-			this.girth = this.determineGirth(this.treeGen.getGirth());
-		}
 	}
 
-	public static class Sycamore extends WorldGenTree {
+	public static class Sycamore extends BinnieWorldGenTree {
 		public Sycamore(ITreeGenData tree) {
-			super(tree);
+			super(tree,6,2);
 		}
 
 		@Override
-		public void generate() {
-			this.generateTreeTrunk(this.height, this.girth);
+		protected void generateLeaves() {
 			float leafSpawn = this.height;
 			final float bottom = this.randBetween(2, 3);
 			float width = this.height * this.randBetween(0.35f, 0.4f);
@@ -54,22 +46,15 @@ public class WorldGenTree3 {
 			}
 			this.generateCylinder(new Vector(0.0f, leafSpawn, 0.0f), width - 0.8f, 1, this.leaf, false);
 		}
-
-		@Override
-		public void preGenerate() {
-			this.height = this.determineHeight(6, 2);
-			this.girth = this.determineGirth(this.treeGen.getGirth());
-		}
 	}
 
-	public static class Hawthorn extends WorldGenTree {
+	public static class Hawthorn extends BinnieWorldGenTree {
 		public Hawthorn(ITreeGenData tree) {
-			super(tree);
+			super(tree,4,1);
 		}
 
 		@Override
-		public void generate() {
-			this.generateTreeTrunk(this.height, this.girth);
+		protected void generateLeaves() {
 			float leafSpawn = this.height + 1;
 			final float bottom = this.randBetween(1, 2);
 			float width = this.height * this.randBetween(0.4f, 0.45f);
@@ -83,22 +68,15 @@ public class WorldGenTree3 {
 			}
 			this.generateCylinder(new Vector(0.0f, leafSpawn, 0.0f), 0.7f * width, 1, this.leaf, false);
 		}
-
-		@Override
-		public void preGenerate() {
-			this.height = this.determineHeight(4, 1);
-			this.girth = this.determineGirth(this.treeGen.getGirth());
-		}
 	}
 
-	public static class Pecan extends WorldGenTree {
+	public static class Pecan extends BinnieWorldGenTree {
 		public Pecan(ITreeGenData tree) {
-			super(tree);
+			super(tree,6,2);
 		}
 
 		@Override
-		public void generate() {
-			this.generateTreeTrunk(this.height, this.girth);
+		protected void generateLeaves() {
 			float leafSpawn = this.height + 1;
 			final float bottom = 2.0f;
 			float width = this.height * this.randBetween(0.6f, 0.65f);
@@ -114,22 +92,15 @@ public class WorldGenTree3 {
 			}
 			this.generateCylinder(new Vector(0.0f, leafSpawn, 0.0f), 0.6f * width, 1, this.leaf, false);
 		}
-
-		@Override
-		public void preGenerate() {
-			this.height = this.determineHeight(6, 2);
-			this.girth = this.determineGirth(this.treeGen.getGirth());
-		}
 	}
 
-	public static class Elm extends WorldGenTree {
+	public static class Elm extends BinnieWorldGenTree {
 		public Elm(ITreeGenData tree) {
-			super(tree);
+			super(tree,6,2);
 		}
 
 		@Override
-		public void generate() {
-			this.generateTreeTrunk(this.height, this.girth);
+		protected void generateLeaves() {
 			float leafSpawn = this.height + 1;
 			final float bottom = this.randBetween(2, 3);
 			float width = this.height * this.randBetween(0.45f, 0.5f);
@@ -143,22 +114,15 @@ public class WorldGenTree3 {
 			}
 			this.generateCylinder(new Vector(0.0f, leafSpawn, 0.0f), width - 0.5f, 1, this.leaf, false);
 		}
-
-		@Override
-		public void preGenerate() {
-			this.height = this.determineHeight(6, 2);
-			this.girth = this.determineGirth(this.treeGen.getGirth());
-		}
 	}
 
-	public static class Elder extends WorldGenTree {
+	public static class Elder extends BinnieWorldGenTree {
 		public Elder(ITreeGenData tree) {
-			super(tree);
+			super(tree,4,1);
 		}
 
 		@Override
-		public void generate() {
-			this.generateTreeTrunk(this.height, this.girth);
+		protected void generateLeaves() {
 			float leafSpawn = this.height + 1;
 			final float bottom = 3.0f;
 			float width = this.height * this.randBetween(0.55f, 0.6f);
@@ -173,22 +137,15 @@ public class WorldGenTree3 {
 			this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), width - 0.4f, 1, this.leaf, false);
 			this.generateCylinder(new Vector(0.0f, leafSpawn, 0.0f), width - 1.0f, 1, this.leaf, false);
 		}
-
-		@Override
-		public void preGenerate() {
-			this.height = this.determineHeight(4, 1);
-			this.girth = this.determineGirth(this.treeGen.getGirth());
-		}
 	}
 
-	public static class Hornbeam extends WorldGenTree {
+	public static class Hornbeam extends BinnieWorldGenTree {
 		public Hornbeam(ITreeGenData tree) {
-			super(tree);
+			super(tree,5,2);
 		}
 
 		@Override
-		public void generate() {
-			this.generateTreeTrunk(this.height, this.girth);
+		protected void generateLeaves() {
 			float leafSpawn = this.height + 1;
 			final float bottom = 2.0f;
 			float width = this.height * this.randBetween(0.55f, 0.6f);
@@ -201,22 +158,15 @@ public class WorldGenTree3 {
 				this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), width, 1, this.leaf, false);
 			}
 		}
-
-		@Override
-		public void preGenerate() {
-			this.height = this.determineHeight(5, 2);
-			this.girth = this.determineGirth(this.treeGen.getGirth());
-		}
 	}
 
-	public static class Sallow extends WorldGenTree {
+	public static class Sallow extends BinnieWorldGenTree {
 		public Sallow(ITreeGenData tree) {
-			super(tree);
+			super(tree,4,1);
 		}
 
 		@Override
-		public void generate() {
-			this.generateTreeTrunk(this.height, this.girth);
+		protected void generateLeaves() {
 			float leafSpawn = this.height + 1;
 			final float bottom = 2.0f;
 			float width = this.height * this.randBetween(0.6f, 0.65f);
@@ -232,22 +182,15 @@ public class WorldGenTree3 {
 			}
 			this.generateCylinder(new Vector(0.0f, leafSpawn, 0.0f), 0.6f * width, 1, this.leaf, false);
 		}
-
-		@Override
-		public void preGenerate() {
-			this.height = this.determineHeight(4, 1);
-			this.girth = this.determineGirth(this.treeGen.getGirth());
-		}
 	}
 
-	public static class AcornOak extends WorldGenTree {
+	public static class AcornOak extends BinnieWorldGenTree {
 		public AcornOak(ITreeGenData tree) {
-			super(tree);
+			super(tree,6,2);
 		}
 
 		@Override
-		public void generate() {
-			this.generateTreeTrunk(this.height, this.girth);
+		protected void generateLeaves() {
 			float leafSpawn = this.height + 1;
 			final float bottom = 3.0f;
 			float width = this.height * this.randBetween(0.45f, 0.5f);
@@ -261,12 +204,6 @@ public class WorldGenTree3 {
 				this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), width, 1, this.leaf, false);
 			}
 			this.generateCylinder(new Vector(0.0f, leafSpawn, 0.0f), width - 0.5f, 1, this.leaf, false);
-		}
-
-		@Override
-		public void preGenerate() {
-			this.height = this.determineHeight(6, 2);
-			this.girth = this.determineGirth(this.treeGen.getGirth());
 		}
 	}
 }

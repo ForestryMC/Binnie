@@ -1,22 +1,15 @@
 package binnie.extratrees.gen;
 
 import forestry.api.world.ITreeGenData;
-import forestry.arboriculture.worldgen.TreeBlockTypeLeaf;
-import forestry.core.worldgen.WorldGenHelper;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-
-import java.util.List;
-import java.util.Random;
 
 public class WorldGenConifer {
-	public static class WesternHemlock extends forestry.arboriculture.worldgen.WorldGenTree {
+	public static class WesternHemlock extends BinnieWorldGenTree {
 		public WesternHemlock(ITreeGenData tree) {
 			super(tree, 7, 3);
 		}
 
 		@Override
-		protected void generateLeaves(World world, Random rand, TreeBlockTypeLeaf leaf, List<BlockPos> branchEnds, BlockPos startPos) {
+		protected void generateLeaves() {
 			float leafSpawn = this.height + girth * 4;
 			float bottom = WorldGenUtils.randBetween(rand, 2, 3);
 			final float coneHeight = leafSpawn - bottom;
@@ -27,21 +20,20 @@ public class WorldGenConifer {
 			while (leafSpawn > bottom) {
 				float radius = 1.0f - (leafSpawn - bottom) / coneHeight;
 				radius *= width;
-				WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, radius, 1, WorldGenHelper.EnumReplaceMode.AIR);
+				this.generateCylinder(new Vector(0, leafSpawn--,0), radius,1, this.leaf, false);
 			}
-			WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, girth + width * 0.7F, 1, WorldGenHelper.EnumReplaceMode.AIR);
-			WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn, 0), girth, girth + width * 0.4F, 1, WorldGenHelper.EnumReplaceMode.AIR);
+			this.generateCylinder(new Vector(0, leafSpawn--,0), girth + width * 0.7f, 1, this.leaf, false);
+			this.generateCylinder(new Vector(0, leafSpawn,0), girth + width * 0.4f, 1, this.leaf, false);
 		}
 	}
 
-	public static class Cypress extends WorldGenTree {
+	public static class Cypress extends BinnieWorldGenTree {
 		public Cypress(ITreeGenData tree) {
-			super(tree);
+			super(tree, 6, 2);
 		}
 
 		@Override
-		public void generate() {
-			this.generateTreeTrunk(this.height, this.girth);
+		protected void generateLeaves() {
 			float leafSpawn = this.height + 2;
 			final float bottom = 1.0f;
 			float width = this.height * this.randBetween(0.15f, 0.2f);
@@ -58,22 +50,15 @@ public class WorldGenConifer {
 			this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), 0.7f * width, 1, this.leaf, false);
 			this.generateCylinder(new Vector(0.0f, leafSpawn, 0.0f), 0.4f * width, 1, this.leaf, false);
 		}
-
-		@Override
-		public void preGenerate() {
-			this.height = this.determineHeight(6, 2);
-			this.girth = this.determineGirth(this.treeGen.getGirth());
-		}
 	}
 
-	public static class Yew extends WorldGenTree {
+	public static class Yew extends BinnieWorldGenTree {
 		public Yew(ITreeGenData tree) {
-			super(tree);
+			super(tree, 5, 2);
 		}
 
 		@Override
-		public void generate() {
-			this.generateTreeTrunk(this.height, this.girth);
+		protected void generateLeaves() {
 			float leafSpawn = this.height + 2;
 			final float bottom = this.randBetween(1, 2);
 			float width = this.height * this.randBetween(0.7f, 0.75f);
@@ -89,22 +74,15 @@ public class WorldGenConifer {
 			}
 			this.generateCylinder(new Vector(0.0f, leafSpawn, 0.0f), 0.7f * width, 1, this.leaf, false);
 		}
-
-		@Override
-		public void preGenerate() {
-			this.height = this.determineHeight(5, 2);
-			this.girth = this.determineGirth(this.treeGen.getGirth());
-		}
 	}
 
-	public static class Cedar extends WorldGenTree {
+	public static class Cedar extends BinnieWorldGenTree {
 		public Cedar(ITreeGenData tree) {
-			super(tree);
+			super(tree, 6, 2);
 		}
 
 		@Override
-		public void generate() {
-			this.generateTreeTrunk(this.height, this.girth);
+		protected void generateLeaves() {
 			float leafSpawn = this.height + 3;
 			final float bottom = this.randBetween(2, 3);
 			float width = this.height * this.randBetween(0.7f, 0.75f);
@@ -140,22 +118,15 @@ public class WorldGenConifer {
 
 			this.generateCylinder(new Vector(0.0f, leafSpawn, 0.0f), 0.7f * width, 1, this.leaf, false);
 		}
-
-		@Override
-		public void preGenerate() {
-			this.height = this.determineHeight(6, 2);
-			this.girth = this.determineGirth(this.treeGen.getGirth());
-		}
 	}
 
-	public static class LoblollyPine extends WorldGenTree {
+	public static class LoblollyPine extends BinnieWorldGenTree {
 		public LoblollyPine(ITreeGenData tree) {
-			super(tree);
+			super(tree, 6, 2);
 		}
 
 		@Override
-		public void generate() {
-			this.generateTreeTrunk(this.height, this.girth);
+		protected void generateLeaves() {
 			float leafSpawn = this.height + 2;
 			final float bottom = this.height * this.randBetween(0.65f, 0.7f);
 			float width = this.height * this.randBetween(0.25f, 0.3f);
@@ -168,22 +139,15 @@ public class WorldGenConifer {
 			}
 			this.generateCylinder(new Vector(0.0f, leafSpawn, 0.0f), 0.7f * width, 1, this.leaf, false);
 		}
-
-		@Override
-		public void preGenerate() {
-			this.height = this.determineHeight(6, 2);
-			this.girth = this.determineGirth(this.treeGen.getGirth());
-		}
 	}
 
-	public static class MonkeyPuzzle extends WorldGenTree {
+	public static class MonkeyPuzzle extends BinnieWorldGenTree {
 		public MonkeyPuzzle(ITreeGenData tree) {
-			super(tree);
+			super(tree,9,2);
 		}
 
 		@Override
-		public void generate() {
-			this.generateTreeTrunk(this.height, this.girth);
+		protected void generateLeaves() {
 			float leafSpawn = this.height + 2;
 			float width = this.height * this.randBetween(0.4f, 0.45f);
 			if (width > 7.0f) {
@@ -195,12 +159,6 @@ public class WorldGenConifer {
 			this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), 0.9f * width, 1, this.leaf, false);
 			this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), 1.0f * width, 1, this.leaf, false);
 			this.generateCylinder(new Vector(0.0f, leafSpawn, 0.0f), 0.5f * width, 1, this.leaf, false);
-		}
-
-		@Override
-		public void preGenerate() {
-			this.height = this.determineHeight(9, 2);
-			this.girth = this.determineGirth(this.treeGen.getGirth());
 		}
 	}
 }

@@ -2,14 +2,13 @@ package binnie.extratrees.gen;
 
 import forestry.api.arboriculture.ITree;
 
-public class WorldGenPrune extends WorldGenTree {
+public class WorldGenPrune extends BinnieWorldGenTree {
 	public WorldGenPrune(final ITree tree) {
-		super(tree);
+		super(tree,6,2);
 	}
 
 	@Override
-	public void generate() {
-		this.generateTreeTrunk(this.height, this.girth);
+	protected void generateLeaves() {
 		int leafSpawn = this.height;
 		final float width = this.height / this.randBetween(1.7f, 2.1f);
 		final int bottom = this.randBetween(2, 3);
@@ -20,11 +19,5 @@ public class WorldGenPrune extends WorldGenTree {
 		}
 		this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), 0.6f * width, 1, this.leaf, false);
 		this.generateCylinder(new Vector(0.0f, leafSpawn, 0.0f), 0.3f * width, 1, this.leaf, false);
-	}
-
-	@Override
-	public void preGenerate() {
-		this.height = this.determineHeight(6, 2);
-		this.girth = this.determineGirth(this.treeGen.getGirth());
 	}
 }

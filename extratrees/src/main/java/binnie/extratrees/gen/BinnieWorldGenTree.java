@@ -1,6 +1,5 @@
 package binnie.extratrees.gen;
 
-import binnie.core.util.TileUtil;
 import binnie.extratrees.worldgen.BlockType;
 import binnie.extratrees.worldgen.BlockTypeLeaf;
 import binnie.extratrees.worldgen.BlockTypeLog;
@@ -9,25 +8,26 @@ import binnie.extratrees.worldgen.WorldGenBlockType;
 import com.mojang.authlib.GameProfile;
 import forestry.api.world.ITreeGenData;
 import forestry.arboriculture.tiles.TileTreeContainer;
+import forestry.arboriculture.worldgen.WorldGenTree;
+import forestry.core.tiles.TileUtil;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.event.terraingen.TerrainGen;
 
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class WorldGenTree extends WorldGenerator {
+public class BinnieWorldGenTree extends WorldGenTree {
 	protected final ITreeGenData treeGen;
 	protected World world;
 	protected Random rand;
-	protected int startX;
-	protected int startY;
-	protected int startZ;
-	protected int girth;
-	protected int height;
+	protected BlockPos pos;
 	protected final int minHeight;
 	protected final int maxHeight;
+	protected int requiredHeight;
+	protected int heightVariation;
 	protected boolean spawnPods;
 	protected final int minPodHeight;
 	protected WorldGenBlockType leaf;
@@ -36,10 +36,12 @@ public class WorldGenTree extends WorldGenerator {
 	protected final WorldGenBlockType air;
 	protected float bushiness;
 
-	public WorldGenTree(ITreeGenData tree) {
+	public BinnieWorldGenTree(ITreeGenData tree, int requiredHeight, int variation) {
+		super(tree, requiredHeight, variation);
 		this.minHeight = 3;
 		this.maxHeight = 80;
-		this.spawnPods = false;
+		this.requiredHeight = requiredHeight;
+		this.heightVariation = variation;
 		this.minPodHeight = 3;
 		this.vine = new BlockType(Blocks.VINE.getDefaultState());
 		this.air = new BlockTypeVoid();
@@ -56,22 +58,8 @@ public class WorldGenTree extends WorldGenerator {
 		return a + this.rand.nextFloat() * (b - a);
 	}
 
-	public void generate() {
-		this.generateTreeTrunk(this.height, this.girth);
-		int leafSpawn = this.height + 1;
-		this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), 1.0f, 1, this.leaf, false);
-		this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), 1.5f, 1, this.leaf, false);
-		this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), 2.9f, 1, this.leaf, false);
-		this.generateCylinder(new Vector(0.0f, leafSpawn, 0.0f), 2.9f, 1, this.leaf, false);
-	}
-
 	public boolean canGrow() {
-		return this.treeGen.canGrow(this.world, new BlockPos(this.startX, this.startY, this.startZ), this.treeGen.getGirth(), this.height) != null;
-	}
-
-	public void preGenerate() {
-		this.height = this.determineHeight(5, 3);
-		this.girth = this.determineGirth(this.treeGen.getGirth());
+		return this.treeGen.canGrow(this.world, this.pos, this.treeGen.getGirth(), this.height) != null;
 	}
 
 	protected int determineGirth(final int base) {
@@ -92,14 +80,57 @@ public class WorldGenTree extends WorldGenerator {
 		return leaf != null ? leaf : (leaf = new BlockTypeLeaf(null));
 	}
 
+	public WorldGenBlockType getLeaf(GameProfile owner)
+	{
+		return leaf = new BlockTypeLeaf(owner);
+	}
+
 	public WorldGenBlockType getWood() {
 		return new BlockTypeLog(treeGen);
 	}
 
 	@Override
-	public boolean generate(World worldIn, Random rand, BlockPos position) {
-		this.leaf = new BlockTypeLeaf(getOwner(worldIn, position));
-		return generate(worldIn, rand, position.getX(), position.getY(), position.getZ(), false);
+	public final boolean generate(World world, Random random, BlockPos pos, boolean force) {
+		if (!TerrainGen.saplingGrowTree(world, rand, pos)) {
+			return false;
+		}
+
+		GameProfile owner = getOwner(world, pos);
+		this.world = world;
+		this.rand = random;
+		this.leaf = this.getLeaf(owner);
+		this.wood = this.getWood();
+		this.girth = treeGen.getGirth();
+		this.height = determineHeight(requiredHeight, heightVariation);
+		BlockPos genPos;
+		if (force) {
+			genPos = pos;
+		} else {
+			genPos = getValidGrowthPos(world, pos);
+		}
+
+		this.pos = genPos;
+		this.preGenerate(world, random, this.pos);
+
+		if (!force && !this.canGrow()) {
+			return false;
+		}
+		generateTrunk();
+		generateLeaves();
+		if(tree.allowsFruitBlocks()) {
+			generateExtras();
+		}
+		return true;
+	}
+
+	private void generateTrunk() {
+		for(int ty = 0; ty < this.height; ++ty) {
+			for(int tx = 0; tx < girth; ++tx) {
+				for(int tz = 0; tz < girth; ++tz) {
+					this.addBlock(pos.add(tx, this.height - ty - 1, tz), wood, true);
+				}
+			}
+		}
 	}
 
 	@Nullable
@@ -111,68 +142,25 @@ public class WorldGenTree extends WorldGenerator {
 		return tile.getOwnerHandler().getOwner();
 	}
 
-	public final boolean generate(final World world, final Random random, final int x, final int y, final int z, final boolean force) {
-		this.world = world;
-		this.rand = random;
-		this.startX = x;
-		this.startY = y;
-		this.startZ = z;
-		this.leaf = this.getLeaf();
-		this.wood = this.getWood();
-		this.preGenerate();
-		if (!force && !this.canGrow()) {
-			return false;
+	protected void generateLeaves()
+	{
+		float leafSpawn = this.height;
+		float width = this.height * this.randBetween(0.35f, 0.4f);
+		if (width < 1.2) {
+			width = 1.55f;
 		}
-		for (int x2 = 0; x2 < this.girth; ++x2) {
-			for (int y2 = 0; y2 < this.girth; ++y2) {
-				this.addBlock(x2, 0, y2, new BlockTypeVoid(), true);
-			}
-		}
-		this.generate();
-		return true;
+		this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), width - 1.0f, 1, this.leaf, false);
+		this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), width, 1, this.leaf, false);
+		this.generateCylinder(new Vector(0.0f, leafSpawn, 0.0f), width - 0.5f, 1, this.leaf, false);
 	}
 
-	public final Vector getStartVector() {
-		return new Vector(this.startX, this.startY, this.startZ);
-	}
-
-	protected void generateTreeTrunk(final int height, final int width) {
-		this.generateTreeTrunk(height, width, 0.0f);
-	}
-
-	protected void generateTreeTrunk(final int height, final int width, final float vines) {
-		final int offset = (width - 1) / 2;
-		for (int x = 0; x < width; ++x) {
-			for (int y = 0; y < width; ++y) {
-				for (int i = 0; i < height; ++i) {
-					this.addWood(x - offset, i, y - offset, true);
-					if (this.rand.nextFloat() < vines) {
-						this.addVine(x - offset - 1, i, y - offset);
-					}
-					if (this.rand.nextFloat() < vines) {
-						this.addVine(x - offset + 1, i, y - offset);
-					}
-					if (this.rand.nextFloat() < vines) {
-						this.addVine(x - offset, i, y - offset - 1);
-					}
-					if (this.rand.nextFloat() < vines) {
-						this.addVine(x - offset, i, y - offset + 1);
-					}
-				}
-			}
-		}
-		if (!this.spawnPods) {
-			return;
-		}
-		for (int y2 = this.minPodHeight; y2 < height; ++y2) {
-			for (int x2 = 0; x2 < this.girth; ++x2) {
-				for (int z = 0; z < this.girth; ++z) {
-					if (x2 <= 0 || x2 >= this.girth || z <= 0 || z >= this.girth) {
-						treeGen.trySpawnFruitBlock(world, world.rand, new BlockPos(startX + x2 + 1, startY + y2, startZ + z));
-						treeGen.trySpawnFruitBlock(world, world.rand, new BlockPos(startX + x2 - 1, startY + y2, startZ + z));
-						treeGen.trySpawnFruitBlock(world, world.rand, new BlockPos(startX + x2, startY + y2, startZ + z + 1));
-						treeGen.trySpawnFruitBlock(world, world.rand, new BlockPos(startX + x2, startY + y2, startZ + z - 1));
-					}
+	protected void generateExtras()
+	{
+		for(int b = this.minPodHeight; b < this.height; ++b) {
+			for(EnumFacing face : EnumFacing.HORIZONTALS) {
+				BlockPos podPos = this.pos.add(face.getDirectionVec()).add(0,b,0);
+				if(this.world.isAirBlock(podPos)) {
+					this.treeGen.trySpawnFruitBlock(this.world, this.rand, this.pos.add(face.getDirectionVec()).add(0, b, 0));
 				}
 			}
 		}
@@ -188,7 +176,7 @@ public class WorldGenTree extends WorldGenerator {
 								final int stemHeight = this.rand.nextInt(Math.round(height * maxHeight));
 								if (this.rand.nextFloat() < chance) {
 									for (int i = 0; i < stemHeight; ++i) {
-										this.addWood(x, i, z, true);
+										this.addWood(new BlockPos(x,i,z), true);
 									}
 								}
 							}
@@ -200,32 +188,32 @@ public class WorldGenTree extends WorldGenerator {
 	}
 
 	protected final void clearBlock(final int x, final int y, final int z) {
-		this.air.setBlock(this.world, this.treeGen, new BlockPos(this.startX + x, this.startY + y, this.startZ + z));
+		this.air.setBlock(this.world, this.treeGen, this.pos, this.rand);
 	}
 
-	protected final void addBlock(final int x, final int y, final int z, final WorldGenBlockType type, final boolean doReplace) {
-		if (doReplace || this.world.isAirBlock(new BlockPos(this.startX + x, this.startY + y, this.startZ + z))) {
-			type.setBlock(this.world, this.treeGen, new BlockPos(this.startX + x, this.startY + y, this.startZ + z));
+	protected final void addBlock(BlockPos pos, final WorldGenBlockType type, final boolean doReplace) {
+		if (doReplace || this.world.isAirBlock(pos)) {
+			type.setBlock(this.world, this.treeGen, pos, this.rand);
 		}
 	}
 
-	protected final void addWood(final int x, final int y, final int z, final boolean doReplace) {
-		this.addBlock(x, y, z, this.wood, doReplace);
+	protected final void addWood(BlockPos pos, final boolean doReplace) {
+		this.addBlock(pos, this.wood, doReplace);
 	}
 
-	protected final void addLeaf(final int x, final int y, final int z, final boolean doReplace) {
-		this.addBlock(x, y, z, this.leaf, doReplace);
+	protected final void addLeaf(BlockPos pos, final boolean doReplace) {
+		this.addBlock(pos, this.leaf, doReplace);
 	}
 
-	protected final void addVine(final int x, final int y, final int z) {
-		this.addBlock(x, y, z, this.vine, false);
+	protected final void addVine(BlockPos pos) {
+		this.addBlock(pos, this.vine, false);
 	}
 
 	protected final void generateCuboid(final Vector start, final Vector area, final WorldGenBlockType block, final boolean doReplace) {
 		for (int x = (int) start.x; x < (int) start.x + area.x; ++x) {
 			for (int y = (int) start.y; y < (int) start.y + area.y; ++y) {
 				for (int z = (int) start.z; z < (int) start.z + area.z; ++z) {
-					this.addBlock(x, y, z, block, doReplace);
+					this.addBlock(pos, block, doReplace);
 				}
 			}
 		}
@@ -241,7 +229,7 @@ public class WorldGenTree extends WorldGenerator {
 				for (int z = (int) start.z; z < (int) start.z + area.z; ++z) {
 					if (Vector.distance(new Vector(x, y, z), new Vector(center3.x, y, center3.z)) <= radius + 0.01) {
 						if (Vector.distance(new Vector(x, y, z), new Vector(center3.x, y, center3.z)) < radius - 0.5f || this.rand.nextFloat() >= this.bushiness) {
-							this.addBlock(x, y, z, block, doReplace);
+							this.addBlock(this.pos.add(x,y,z), block, doReplace);
 						}
 					}
 				}
@@ -264,7 +252,7 @@ public class WorldGenTree extends WorldGenerator {
 					if (this.rand.nextFloat() <= chance) {
 						final double distance = Vector.distance(new Vector(x, y, z), new Vector(center3.x, y, center3.z));
 						if (radius - width - 0.01 < distance && distance <= radius + 0.01) {
-							this.addBlock(x, y, z, block, doReplace);
+							this.addBlock(new BlockPos(x,y,z), block, doReplace);
 						}
 					}
 				}
@@ -281,7 +269,7 @@ public class WorldGenTree extends WorldGenerator {
 			for (int y = (int) start.y; y < (int) start.y + area.y; ++y) {
 				for (int z = (int) start.z; z < (int) start.z + area.z; ++z) {
 					if (Vector.distance(new Vector(x, y, z), new Vector(center3.x, center3.y, center3.z)) <= radius + 0.01) {
-						this.addBlock(x, y, z, block, doReplace);
+						this.addBlock(new BlockPos(x,y,z), block, doReplace);
 					}
 				}
 			}
