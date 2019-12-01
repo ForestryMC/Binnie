@@ -104,13 +104,21 @@ public class MultiFenceRecipeRegistryPlugin implements IRecipeRegistryPlugin {
 			FenceDescription desc = WoodManager.getFenceDescription(ingredient);
 			if (desc != null) {
 				int size = desc.getFenceType().getSize();
-				recipes.add(new MultiFenceRecipeSizeWrapper(MultiFenceRecipePattern.VALUES[size * 2], desc.getPlankType(), desc.getSecondaryPlankType()));
-				recipes.add(new MultiFenceRecipeSizeWrapper(MultiFenceRecipePattern.VALUES[size * 2 + 1], desc.getPlankType(), desc.getSecondaryPlankType()));
-				if (desc.getFenceType().isEmbossed()) {
-					recipes.add(new MultiFenceRecipeEmbeddedWrapper(desc));
+				if(!desc.getFenceType().isEmbossed() && ! desc.getFenceType().isSolid()) {
+					if(desc.getPlankType() == desc.getSecondaryPlankType()) {
+						recipes.add(new MultiFenceRecipeSizeWrapper(MultiFenceRecipePattern.VALUES[size * 2 + 1], desc.getPlankType(), desc.getSecondaryPlankType()));
+					}
+					else {
+						recipes.add(new MultiFenceRecipeSizeWrapper(MultiFenceRecipePattern.VALUES[size * 2], desc.getPlankType(), desc.getSecondaryPlankType()));
+					}
 				}
-				if (desc.getFenceType().isSolid()) {
-					recipes.add(new MultiFenceRecipeSolidWrapper(desc));
+				else {
+					if (desc.getFenceType().isEmbossed()) {
+						recipes.add(new MultiFenceRecipeEmbeddedWrapper(desc));
+					}
+					if (desc.getFenceType().isSolid()) {
+						recipes.add(new MultiFenceRecipeSolidWrapper(desc));
+					}
 				}
 			}
 		}
