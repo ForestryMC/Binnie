@@ -53,7 +53,7 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 				Collection<IAlleleSpecies> options = new ArrayList<>();
 				getSpecies(system);
 				for (IAlleleSpecies species : getSpecies(system)) {
-					if (value != null && value.isEmpty() && !species.getName().toLowerCase().contains(value.toLowerCase())) {
+					if (value != null && !value.isEmpty() && !species.getName().toLowerCase().contains(value.toLowerCase())) {
 						continue;
 					}
 					options.add(species);
