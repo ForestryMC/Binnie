@@ -1,5 +1,3 @@
-##################################################
-## Machines
 
 extratrees.machine.kitchen.bar=Bar
 extratrees.machine.kitchen.bottleRack=瓶架
@@ -155,17 +153,14 @@ extratrees.block.planks.pinkivory.desc=我能说些什么呢.它的粉色太浓�
 extratrees.block.tooltip.twoColors=%s - %s
 extratrees.block.tooltip.twoMaterials=%s - %s
 
-< %1$s is name of wood used for door >
 extratrees.block.door.name=%1$s木门
 
-< %1$s is name of wood used for door， %2$s is type of door >
 extratrees.block.door.name.adv=%1$s%2$s木门
 extratrees.block.door.type.standard=
 extratrees.block.door.type.solid=Solid
 extratrees.block.door.type.double=Split
 extratrees.block.door.type.full=Full
 
-< %1$s is name of the wood>
 extratrees.block.plank.name=%1$s木板
 extratrees.block.log.name=%1$s原木
 extratrees.block.woodslab.name=%1$s台阶
@@ -173,12 +168,9 @@ extratrees.block.woodstairs.name=%1$s楼梯
 extratrees.block.woodfence.name=%1$s栅栏
 extratrees.block.woodgate.name=%1$s栅栏门
 
-< %1$s is the adjective for the fence type， %2$s is the name of the wood >
 extratrees.block.multifence.name=%2$s %1$s 门
-< %3$s is the name of the second wood >
 extratrees.block.multifence.name2=%2$s %1$s & $3$s 门
 
-< %1$s is name of the design >
 extratrees.block.woodentile.name=%1$s木砖
 extratrees.block.woodenpanel.name=%1$s镶板
 extratrees.block.stainedglass.name=%1$s染色玻璃
@@ -359,7 +351,8 @@ for.extratrees.item.food.elderberry=接骨木浆果
 for.extratrees.item.food.olive=橄榄
 for.extratrees.item.food.gingkonut=白果
 for.extratrees.item.food.coffee=咖啡
-for.extratrees.item.food.osangeorange=桑橙
+for.extratrees.item.food.osangeosange=Osange Orange
+for.extratrees.item.food.osangeorange=Osange Orange
 for.extratrees.item.food.clove=丁香
 for.extratrees.item.food.papayimar=Pahimar牌木瓜
 for.extratrees.item.food.blackcurrant=黑加仑
