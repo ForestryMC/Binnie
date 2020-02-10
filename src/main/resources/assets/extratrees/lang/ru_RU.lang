@@ -1,5 +1,3 @@
-##################################################
-## Machines
 
 extratrees.machine.kitchen.bar=Бар
 extratrees.machine.kitchen.bottleRack=Стойка для бутылок
@@ -8,9 +6,9 @@ extratrees.machine.machine.brewery=Пивоварня
 extratrees.machine.machine.brewery.info=Пивоварня использует дрожжи (Yeast), соки (Juice) и зёрна (Grain), для производства разнообразных видов вина и пива.
 extratrees.machine.machine.distillery=Винокурня
 extratrees.machine.machine.distillery.info=Винокурня посредством двойной, тройной перегонки спирта производит коньяки, ликеры и другие спиртные напитки.
+extratrees.machine.machine.nursery=Питомник
 extratrees.machine.machine.press=Фруктовый пресс
 extratrees.machine.machine.press.info=Фруктовый пресс выжимает из фруктов различные фруктовые соки. Требуется энергия, но может также работать вручную, по правой кнопке мыши.
-extratrees.machine.machine.nursery=Питомник
 
 extratrees.machine.machine.lumbermill=Лесопилка
 extratrees.machine.machine.lumbermill.info=Лесопилка разрезает бревна на доски с повышенной скоростью, а также производит побочные продукты - опилки (sawdust) и кору (bark). Требуется энергия и вода.
@@ -37,7 +35,7 @@ extratrees.machine.tileworker.material=Керамический блок
 
 extratrees.machine.worker.error.glueRequired=Требует клей для работы
 
-#ДОСКИ мода EXTRATREES
+# ДОСКИ мода EXTRATREES
 extratrees.block.planks.fir=пихты
 extratrees.block.planks.cedar=кедра
 extratrees.block.planks.hemlock=тсуги
@@ -76,8 +74,7 @@ extratrees.block.planks.pinkivory=умнини
 extratrees.block.planks.cherry=вишни
 extratrees.block.planks.banana=банана
 extratrees.block.planks.cinnamon=коричника цейлонского
-
-#ДОСКИ "ВАНИЛЬНОГО" minecraft
+# ДОСКИ "ВАНИЛЬНОГО" minecraft
 extratrees.block.planks.vanilla.oak=дуба
 extratrees.block.planks.vanilla.spruce=ели
 extratrees.block.planks.vanilla.birch=берёзы
@@ -85,7 +82,7 @@ extratrees.block.planks.vanilla.jungle=тропического дерева
 extratrees.block.planks.vanilla.darkoak=тёмного дуба
 extratrees.block.planks.vanilla.acacia=акации
 
-#ДОСКИ мода FORESTRY
+# ДОСКИ мода FORESTRY
 extratrees.block.planks.forestry.larch=лиственницы
 extratrees.block.planks.forestry.teak=тикового дерева
 extratrees.block.planks.forestry.acacia=пустынной акации
@@ -160,18 +157,14 @@ extratrees.block.planks.pinkivory.desc=Что я могу сказать, она
 extratrees.block.tooltip.twoColors=%s и %s
 extratrees.block.tooltip.twoMaterials=Из %s и %s
 
-< %1$s is name of wood used for door >
 extratrees.block.door.name=Дверь из %1$s
 
-< %1$s is name of wood used for door, %2$s is type of door >
-extratrees.block.door.name.adv=%2$s дверь из %1$s 
+extratrees.block.door.name.adv=%2$s дверь из %1$s
 extratrees.block.door.type.standard=Обычная
 extratrees.block.door.type.solid=Solid
 extratrees.block.door.type.double=Разделенная
 extratrees.block.door.type.full=Плотная
 
-< %1$s is name of the wood>
-extratrees.block.woodslab.name2=Составной деревянный забор %1$s
 extratrees.block.plank.name=Доски из %1$s
 extratrees.block.log.name=Древесина %1$s
 extratrees.block.woodslab.name=Плита из %1$s
@@ -179,16 +172,12 @@ extratrees.block.woodstairs.name=Ступени из %1$s
 extratrees.block.woodfence.name=Забор из %1$s
 extratrees.block.woodgate.name=Калитка из %1$s
 
-< %1$s is the adjective for the fence type, %2$s is the name of the wood >
 extratrees.block.multifence.name=%1$s ворота из %2$s
-< %3$s is the name of the second wood >
 extratrees.block.multifence.name2=%2$s забор из %1$s и $3$s
 
-< %1$s is name of the design >
 extratrees.block.woodentile.name=Деревянный блок, дизайн %1$s
 extratrees.block.woodenpanel.name=Деревянная панель, дизайн %1$s
 extratrees.block.stainedglass.name=Витражное стекло, дизайн %1$s
-extratrees.block.ceramicBrick.name=%1$s Керамические кирпичи
 
 # ВИДЫ ДЕРЕВЬЕВ
 extratrees.species.orchardapple.name=Яблоня садовая
@@ -317,17 +306,17 @@ extratrees.butterflies.species.marbledWhite=Буддлея Давида
 
 extratrees.genetics.requirements.height=Минимальная высота от бедрока должна быть %d
 extratrees.genetics.unknown=<Неизвестно>
-extratrees.genetics.discoveredBy=Изучено игроком %s 
-extratrees.genetics.complexity=Сложность: %d 
+extratrees.genetics.discoveredBy=Изучено игроком %s
+extratrees.genetics.complexity=Сложность: %d
 
+extratrees.item.carpentryHammer=Master Carpentry Hammer
+extratrees.item.masterCarpentryHammer=Carpentry Hammer
 extratrees.item.sawdust=Опилки
 extratrees.item.bark=Кора
 extratrees.item.provenGear=Проверенная шестерня
 extratrees.item.woodWax=Полироль
 extratrees.item.glassFitting=Стеклянные фитинги
 
-# ПРОДУКТЫ САДОВОДСТВА
-for.extratrees.item.food.osangeosange=Плод маклюра
 for.extratrees.item.food.apple=Яблоко
 for.extratrees.item.food.crabapple=Яблоко-дичка
 for.extratrees.item.food.orange=Апельсин
@@ -367,7 +356,9 @@ for.extratrees.item.food.elderberry=Бузина
 for.extratrees.item.food.olive=Олива
 for.extratrees.item.food.gingkonut=Семена Гинкго
 for.extratrees.item.food.coffee=Кофейные зёрна
-for.extratrees.item.food.osangeorange=Плод маклюра
+# ПРОДУКТЫ САДОВОДСТВА
+for.extratrees.item.food.osangeosange=Плод маклюра
+for.extratrees.item.food.osangeorange=Osange Orange
 for.extratrees.item.food.clove=Гвоздика (пряность)
 for.extratrees.item.food.papayimar=Папайя
 for.extratrees.item.food.blackcurrant=Смородина чёрная
