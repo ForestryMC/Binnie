@@ -375,7 +375,7 @@ public enum ExtraTreeFruitGene implements IAlleleFruit, IFruitProvider {
 
 		float modeYieldMod = 1.0f;
 		for (Map.Entry<ItemStack, Float> entry2 : products.entrySet()) {
-			if (world.rand.nextFloat() <= genome.getYield() * modeYieldMod * entry2.getValue() * 5.0f * stage) {
+			if (world.rand.nextFloat() <= genome.getYield() * modeYieldMod * entry2.getValue() * stage) {
 				product2.add(entry2.getKey().copy());
 			}
 		}
