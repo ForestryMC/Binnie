@@ -17,7 +17,7 @@ import net.minecraft.world.World;
 public class ItemETDoor extends ItemMetadata {
 	public ItemETDoor(Block block) {
 		super(block);
-		maxStackSize = 1;
+		maxStackSize = 8;
 		setCreativeTab(CreativeTabs.tabRedstone);
 	}
 
