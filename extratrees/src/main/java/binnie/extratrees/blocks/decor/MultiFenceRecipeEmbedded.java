@@ -29,7 +29,7 @@ public class MultiFenceRecipeEmbedded extends IForgeRegistryEntry.Impl<IRecipe> 
 			if (!a.isEmpty() && !b.isEmpty() && !c.isEmpty()) {
 				FenceType type = WoodManager.getFenceType(a);
 				FenceType typeSecond = WoodManager.getFenceType(c);
-				if (type != null && type.equals(typeSecond)) {
+				if (type != null && type.equals(typeSecond) && !type.isEmbossed()) {
 					FenceDescription fenceDescription = WoodManager.getFenceDescription(a);
 					if (fenceDescription != null) {
 						IPlankType descPlankType = fenceDescription.getPlankType();
