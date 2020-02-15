@@ -10,7 +10,7 @@ public class MultiFenceRecipePattern {
 		new MultiFenceRecipePattern(0, 1, "000" + "0 0" + "   "),
 		new MultiFenceRecipePattern(1, 2, "010" + "0 0" + " 1 "),
 		new MultiFenceRecipePattern(1, 1, "000" + "0 0" + " 0 "),
-		new MultiFenceRecipePattern(2, 2, " 0 " + "1 1" + "101"),
+		new MultiFenceRecipePattern(2, 2, " 1 " + "0 0" + "010"),
 		new MultiFenceRecipePattern(2, 1, " 0 " + "0 0" + "000")
 	};
 
