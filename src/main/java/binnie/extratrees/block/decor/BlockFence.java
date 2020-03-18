@@ -174,6 +174,13 @@ public class BlockFence extends net.minecraft.block.BlockFence implements IBlock
 	}
 
 	@Override
+	//@SideOnly(Side.CLIENT)
+	public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
+		return BlockMetadata.getPickBlock(world, x, y, z);
+	}
+
+	@Override
+	//@SideOnly(Side.CLIENT)
 	public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z, EntityPlayer player) {
 		return BlockMetadata.getPickBlock(world, x, y, z);
 	}
