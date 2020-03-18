@@ -4,6 +4,7 @@
 /run
 /eclipse
 /out
+/bin
 /classes
 .idea
 *.iml
