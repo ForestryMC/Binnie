@@ -1,23 +1,27 @@
 package binnie.extratrees.gen;
 
+import javax.annotation.Nullable;
+import java.util.Random;
+
+import net.minecraft.init.Blocks;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+
+import com.mojang.authlib.GameProfile;
+
+import net.minecraftforge.event.terraingen.TerrainGen;
+
+import forestry.api.world.ITreeGenData;
+import forestry.arboriculture.tiles.TileTreeContainer;
+import forestry.arboriculture.worldgen.WorldGenTree;
+import forestry.core.tiles.TileUtil;
+
 import binnie.extratrees.worldgen.BlockType;
 import binnie.extratrees.worldgen.BlockTypeLeaf;
 import binnie.extratrees.worldgen.BlockTypeLog;
 import binnie.extratrees.worldgen.BlockTypeVoid;
 import binnie.extratrees.worldgen.WorldGenBlockType;
-import com.mojang.authlib.GameProfile;
-import forestry.api.world.ITreeGenData;
-import forestry.arboriculture.tiles.TileTreeContainer;
-import forestry.arboriculture.worldgen.WorldGenTree;
-import forestry.core.tiles.TileUtil;
-import net.minecraft.init.Blocks;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraftforge.event.terraingen.TerrainGen;
-
-import javax.annotation.Nullable;
-import java.util.Random;
 
 public class BinnieWorldGenTree extends WorldGenTree {
 	protected final ITreeGenData treeGen;
@@ -112,7 +116,7 @@ public class BinnieWorldGenTree extends WorldGenTree {
 		this.pos = genPos;
 		this.preGenerate(world, random, this.pos);
 
-		if (!force && !this.canGrow()) {
+		if (!force && !this.canGrow() || genPos == null) {
 			return false;
 		}
 		generateTrunk();
