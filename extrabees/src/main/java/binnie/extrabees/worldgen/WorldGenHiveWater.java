@@ -20,7 +20,7 @@ public class WorldGenHiveWater implements IHiveGen {
 		// get to the ground
 		final BlockPos topPos = world.getHeight(new BlockPos(x, 0, z));
 		int maxHeight = topPos.getY();
-		if (topPos.getY() == 0) {
+		if (topPos.getY() <= 0) {
 			return null;
 		}
 

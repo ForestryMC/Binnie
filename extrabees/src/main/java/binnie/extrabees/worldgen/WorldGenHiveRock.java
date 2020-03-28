@@ -32,7 +32,7 @@ public class WorldGenHiveRock implements IHiveGen {
 		//get to the ground
 		BlockPos topPos = world.getHeight(new BlockPos(x, 0, z));
 		int worldHeight = topPos.getY();
-		if (topPos.getY() == 0) {
+		if (topPos.getY() <= 0) {
 			return null;
 		}
 
