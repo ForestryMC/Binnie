@@ -113,6 +113,10 @@ public class BinnieWorldGenTree extends WorldGenTree {
 			genPos = getValidGrowthPos(world, pos);
 		}
 
+		if (genPos == null || (!force && !this.canGrow())) {
+			return false;
+		}
+
 		this.pos = genPos;
 
 		if (genPos == null || (!force && !this.canGrow())) {
@@ -120,7 +124,7 @@ public class BinnieWorldGenTree extends WorldGenTree {
 		}
 
 		this.preGenerate(world, random, this.pos);
-
+    
 		generateTrunk();
 		generateLeaves();
 		if(tree.allowsFruitBlocks()) {
