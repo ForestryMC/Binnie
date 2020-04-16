@@ -1,6 +1,7 @@
 package binnie.core.gui.minecraft;
 
 import binnie.core.BinnieCore;
+import binnie.core.gui.fieldkit.WindowFieldKit;
 import binnie.core.gui.minecraft.control.ControlSlot;
 import binnie.core.gui.minecraft.control.EnumHighlighting;
 import binnie.core.machines.IMachine;
@@ -8,12 +9,7 @@ import binnie.core.machines.Machine;
 import binnie.core.machines.errors.ErrorState;
 import binnie.core.machines.errors.IErrorStateSource;
 import binnie.core.machines.network.INetwork;
-import binnie.core.machines.power.IPoweredMachine;
-import binnie.core.machines.power.IProcess;
-import binnie.core.machines.power.ITankMachine;
-import binnie.core.machines.power.PowerInfo;
-import binnie.core.machines.power.ProcessInfo;
-import binnie.core.machines.power.TankInfo;
+import binnie.core.machines.power.*;
 import binnie.core.machines.transfer.TransferRequest;
 import binnie.core.machines.transfer.TransferResult;
 import binnie.core.network.packet.MessageContainerUpdate;
@@ -22,11 +18,7 @@ import com.google.common.collect.Sets;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.inventory.ClickType;
-import net.minecraft.inventory.Container;
-import net.minecraft.inventory.IContainerListener;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Slot;
+import net.minecraft.inventory.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.NonNullList;
@@ -37,12 +29,7 @@ import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 public class ContainerCraftGUI extends Container {
 	private final Set<EntityPlayer> crafters = Sets.newConcurrentHashSet();
@@ -106,6 +93,13 @@ public class ContainerCraftGUI extends Container {
 
 	@Override
 	public ItemStack slotClick(int slotNum, int dragType, ClickType clickType, EntityPlayer player) {
+		ItemStack item = player.getHeldItemMainhand();
+		if(this.window instanceof WindowFieldKit) {
+			if(closeIfNecessary(item, player) || slotNum >= 0 && getSlot(slotNum).getStack() == item) {
+				player.closeScreen();
+				return ItemStack.EMPTY;
+			}
+		}
 		final Slot slot = this.getSlot(slotNum);
 		if (slot instanceof CustomSlot && ((CustomSlot) slot).handleClick()) {
 			((CustomSlot) slot).onSlotClick(this, dragType, clickType, player);
@@ -113,6 +107,14 @@ public class ContainerCraftGUI extends Container {
 		}
 		return super.slotClick(slotNum, dragType, clickType, player);
 	}
+	private boolean closeIfNecessary(ItemStack stack, EntityPlayer player) {
+		if (!stack.getItem().equals(BinnieCore.getFieldKit())) {
+			player.closeScreen();
+			return true;
+		}
+		return false;
+	}
+
 
 	public void sendNBTToClient(final String key, final NBTTagCompound nbt) {
 		this.syncedNBT.put(key, nbt);
