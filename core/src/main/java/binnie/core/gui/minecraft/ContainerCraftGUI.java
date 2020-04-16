@@ -96,7 +96,6 @@ public class ContainerCraftGUI extends Container {
 		ItemStack item = player.getHeldItemMainhand();
 		if(this.window instanceof WindowFieldKit) {
 			if(closeIfNecessary(item, player) || slotNum >= 0 && getSlot(slotNum).getStack() == item) {
-				System.out.println(player.getName() + " This player tried to dupe");
 				player.closeScreen();
 				return ItemStack.EMPTY;
 			}
