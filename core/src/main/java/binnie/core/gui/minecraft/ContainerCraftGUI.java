@@ -1,11 +1,9 @@
 package binnie.core.gui.minecraft;
 
-import binnie.core.Binnie;
 import binnie.core.BinnieCore;
 import binnie.core.gui.fieldkit.WindowFieldKit;
 import binnie.core.gui.minecraft.control.ControlSlot;
 import binnie.core.gui.minecraft.control.EnumHighlighting;
-import binnie.core.item.ItemFieldKit;
 import binnie.core.machines.IMachine;
 import binnie.core.machines.Machine;
 import binnie.core.machines.errors.ErrorState;
