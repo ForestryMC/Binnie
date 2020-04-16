@@ -1,8 +1,11 @@
 package binnie.core.gui.minecraft;
 
+import binnie.core.Binnie;
 import binnie.core.BinnieCore;
+import binnie.core.gui.fieldkit.WindowFieldKit;
 import binnie.core.gui.minecraft.control.ControlSlot;
 import binnie.core.gui.minecraft.control.EnumHighlighting;
+import binnie.core.item.ItemFieldKit;
 import binnie.core.machines.IMachine;
 import binnie.core.machines.Machine;
 import binnie.core.machines.errors.ErrorState;
@@ -93,8 +96,12 @@ public class ContainerCraftGUI extends Container {
 	@Override
 	public ItemStack slotClick(int slotNum, int dragType, ClickType clickType, EntityPlayer player) {
 		ItemStack item = player.getHeldItemMainhand();
-		if(closeIfNecessary(item, player) || slotNum >= 0 && getSlot(slotNum).getStack() == item) {
-			return ItemStack.EMPTY;
+		if(this.window instanceof WindowFieldKit) {
+			if(closeIfNecessary(item, player) || slotNum >= 0 && getSlot(slotNum).getStack() == item) {
+				System.out.println(player.getName() + " This player tried to dupe");
+				player.closeScreen();
+				return ItemStack.EMPTY;
+			}
 		}
 		final Slot slot = this.getSlot(slotNum);
 		if (slot instanceof CustomSlot && ((CustomSlot) slot).handleClick()) {
