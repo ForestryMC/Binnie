@@ -1,5 +1,7 @@
+##################################################
+## Machines
 
-extratrees.machine.kitchen.bar=Bar
+extratrees.machine.kitchen.bar=酒吧
 extratrees.machine.kitchen.bottleRack=瓶架
 
 extratrees.machine.machine.brewery=发酵器
@@ -93,7 +95,7 @@ extratrees.block.planks.forestry.ebony=乌檀树
 extratrees.block.planks.forestry.mahogany=桃心树
 extratrees.block.planks.forestry.balsa=巴尔杉树
 extratrees.block.planks.forestry.willow=柳树
-extratrees.block.planks.forestry.walnut=胡桃树
+extratrees.block.planks.forestry.walnut=核桃树
 extratrees.block.planks.forestry.greenheart=绿樟树
 extratrees.block.planks.forestry.cherry=樱树
 extratrees.block.planks.forestry.mahoe=高槿树
@@ -153,14 +155,17 @@ extratrees.block.planks.pinkivory.desc=我能说些什么呢.它的粉色太浓�
 extratrees.block.tooltip.twoColors=%s - %s
 extratrees.block.tooltip.twoMaterials=%s - %s
 
+< %1$s is name of wood used for door >
 extratrees.block.door.name=%1$s木门
 
+< %1$s is name of wood used for door， %2$s is type of door >
 extratrees.block.door.name.adv=%1$s%2$s木门
 extratrees.block.door.type.standard=
 extratrees.block.door.type.solid=Solid
 extratrees.block.door.type.double=Split
 extratrees.block.door.type.full=Full
 
+< %1$s is name of the wood>
 extratrees.block.plank.name=%1$s木板
 extratrees.block.log.name=%1$s原木
 extratrees.block.woodslab.name=%1$s台阶
@@ -168,9 +173,12 @@ extratrees.block.woodstairs.name=%1$s楼梯
 extratrees.block.woodfence.name=%1$s栅栏
 extratrees.block.woodgate.name=%1$s栅栏门
 
+< %1$s is the adjective for the fence type， %2$s is the name of the wood >
 extratrees.block.multifence.name=%2$s %1$s 门
+< %3$s is the name of the second wood >
 extratrees.block.multifence.name2=%2$s %1$s & $3$s 门
 
+< %1$s is name of the design >
 extratrees.block.woodentile.name=%1$s木砖
 extratrees.block.woodenpanel.name=%1$s镶板
 extratrees.block.stainedglass.name=%1$s染色玻璃
@@ -276,40 +284,40 @@ extratrees.species.starfruit.name=杨桃
 extratrees.species.candlenut.name=石栗
 extratrees.species.dwarfhazel.name=矮榛
 
-extratrees.butterflies.species.whiteAdmiral=White Admiral
-extratrees.butterflies.species.purpleEmperor=Purple Emperor
-extratrees.butterflies.species.redAdmiral=Red Admiral
-extratrees.butterflies.species.paintedLady=Painted Lady
-extratrees.butterflies.species.smallTortoiseshell=Small Tortoiseshell
-extratrees.butterflies.species.camberwellBeauty=Camberwell Beauty
-extratrees.butterflies.species.peacock=Peacock
-extratrees.butterflies.species.wall=Wall
-extratrees.butterflies.species.crimsonRose=Crimson Rose
-extratrees.butterflies.species.kaiserIHind=Kaiser-i-Hind
-extratrees.butterflies.species.goldenBirdwing=Golden Birdwing
-extratrees.butterflies.species.marshFritillary=Marsh Fritillary
-extratrees.butterflies.species.pearlBorderedFritillary=Pearl-bordered Fritillary
-extratrees.butterflies.species.queenOfSpainFritillary=Queen of Spain Fritillary
-extratrees.butterflies.species.speckledWood=Speckled Wood
-extratrees.butterflies.species.scotchAngus=Scotch Angus
-extratrees.butterflies.species.gatekeeper=Gatekeeper
-extratrees.butterflies.species.meadowBrown=Meadow Brown
-extratrees.butterflies.species.smallHeath=Small Heath
-extratrees.butterflies.species.ringlet=Ringlet
-extratrees.butterflies.species.monarch=Monarch
-extratrees.butterflies.species.marbledWhite=Marbled White
+extratrees.butterflies.species.whiteAdmiral=白蛺蝶
+extratrees.butterflies.species.purpleEmperor=紫色帝王蝶
+extratrees.butterflies.species.redAdmiral=红蛺蝶
+extratrees.butterflies.species.paintedLady=姬红蛱蝶
+extratrees.butterflies.species.smallTortoiseshell=小麻蛱蝶
+extratrees.butterflies.species.camberwellBeauty=坎伯韦尔美人蝶
+extratrees.butterflies.species.peacock=孔雀蝶
+extratrees.butterflies.species.wall=棕蛱蝶
+extratrees.butterflies.species.crimsonRose=绯红玫瑰蝶
+extratrees.butterflies.species.kaiserIHind=喙凤蝶
+extratrees.butterflies.species.goldenBirdwing=金裳凤蝶
+extratrees.butterflies.species.marshFritillary=沼泽豹纹蝶
+extratrees.butterflies.species.pearlBorderedFritillary=珍珠豹纹蝶
+extratrees.butterflies.species.queenOfSpainFritillary=西班牙豹纹女王蝶
+extratrees.butterflies.species.speckledWood=帕眼蝶
+extratrees.butterflies.species.scotchAngus=苏格兰百眼蝶
+extratrees.butterflies.species.gatekeeper=链眼蝶
+extratrees.butterflies.species.meadowBrown=草地棕眼蝶
+extratrees.butterflies.species.smallHeath=潘非珍眼蝶
+extratrees.butterflies.species.ringlet=阿芬眼蝶
+extratrees.butterflies.species.monarch=黑脉金斑蝶
+extratrees.butterflies.species.marbledWhite=加勒白眼蝶
 
 extratrees.genetics.requirements.height=最低海拔要求：%d
 extratrees.genetics.unknown=<未知>
 extratrees.genetics.discoveredBy=由 %s 发现
 extratrees.genetics.complexity=复杂度：%d
 
-extratrees.item.carpentryHammer=木工大师的锤子
+extratrees.item.carpentryHammer=木工大师锤
 extratrees.item.masterCarpentryHammer=木工锤
 extratrees.item.sawdust=锯末
 extratrees.item.bark=树皮
 extratrees.item.provenGear=标定齿轮
-extratrees.item.woodWax=Wood Polish
+extratrees.item.woodWax=光泽剂
 extratrees.item.glassFitting=玻璃配件
 
 for.extratrees.item.food.apple=苹果
@@ -351,8 +359,7 @@ for.extratrees.item.food.elderberry=接骨木浆果
 for.extratrees.item.food.olive=橄榄
 for.extratrees.item.food.gingkonut=白果
 for.extratrees.item.food.coffee=咖啡
-for.extratrees.item.food.osangeosange=Osange Orange
-for.extratrees.item.food.osangeorange=Osange Orange
+for.extratrees.item.food.osangeorange=桑橙
 for.extratrees.item.food.clove=丁香
 for.extratrees.item.food.papayimar=Pahimar牌木瓜
 for.extratrees.item.food.blackcurrant=黑加仑
