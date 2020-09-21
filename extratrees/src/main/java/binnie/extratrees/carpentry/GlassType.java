@@ -7,6 +7,8 @@ import binnie.design.api.IDesignMaterial;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 
 import javax.annotation.Nullable;
@@ -28,6 +30,13 @@ public class GlassType implements IDesignMaterial {
 		for (final StandardColor c : StandardColor.values()) {
 			GlassType.types.put(c.ordinal(), new GlassType(c.ordinal(), c.name, c.colour));
 		}
+		if (Loader.isModLoaded(Constants.BOTANY_MOD_ID)) {
+			doBotany();
+		}
+	}
+
+	@Optional.Method(modid = Constants.BOTANY_MOD_ID)
+	private static void doBotany(){
 		for (final EnumFlowerColor c2 : EnumFlowerColor.values()) {
 			GlassType.types.put(128 + c2.ordinal(), new GlassType(128 + c2.ordinal(), c2.getFlowerColorAllele().getColorName(), c2.getFlowerColorAllele().getColor(false)));
 		}
