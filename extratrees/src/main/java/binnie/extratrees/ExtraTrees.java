@@ -1,16 +1,13 @@
 package binnie.extratrees;
 
-import binnie.core.Binnie;
 import binnie.core.BinnieCore;
 import binnie.core.Constants;
-import binnie.core.api.genetics.IBreedingSystem;
 import binnie.core.gui.IBinnieGUID;
 import binnie.core.machines.errors.ErrorStateRegistry;
 import binnie.core.modules.BlankModuleContainer;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.proxy.IProxyCore;
 import binnie.extratrees.config.ConfigurationMain;
-import binnie.extratrees.genetics.MothBreedingSystem;
 import binnie.extratrees.genetics.gui.analyst.ButterflyAnalystPagePlugin;
 import binnie.extratrees.genetics.gui.analyst.TreeAnalystPagePlugin;
 import binnie.extratrees.genetics.gui.analyst.TreeProducePlugin;
@@ -21,7 +18,6 @@ import binnie.extratrees.modules.ModuleWood;
 import binnie.extratrees.proxy.Proxy;
 import binnie.genetics.api.GeneticsApi;
 import binnie.genetics.api.analyst.IAnalystManager;
-import forestry.api.lepidopterology.ButterflyManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -35,7 +31,7 @@ import net.minecraftforge.oredict.OreDictionary;
 	name = "Binnie's Extra Trees",
 	version = "@VERSION@",
 	acceptedMinecraftVersions = Constants.ACCEPTED_MINECRAFT_VERSIONS,
-	dependencies = "required-after:" + Constants.CORE_MOD_ID + ';'
+	dependencies = "required-after:" + Constants.CORE_MOD_ID + ';' + "required-after:" + Constants.GENETICS_MOD_ID + ';'
 		+ "after:" + Constants.DESIGN_MOD_ID + ';'
 )
 public class ExtraTrees extends BlankModuleContainer {
@@ -47,7 +43,6 @@ public class ExtraTrees extends BlankModuleContainer {
 	@SuppressWarnings("NullableProblems")
 	@SidedProxy(clientSide = "binnie.extratrees.proxy.ProxyClient", serverSide = "binnie.extratrees.proxy.ProxyServer")
 	public static Proxy proxy;
-	public static IBreedingSystem mothBreedingSystem;
 
 	public ExtraTrees() {
 		super();
@@ -58,11 +53,6 @@ public class ExtraTrees extends BlankModuleContainer {
 	public void preInit(final FMLPreInitializationEvent evt) {
 		container.registerConfigHandler(new ConfigurationMain(container));
 		super.preInit(evt);
-
-		if (ButterflyManager.butterflyRoot != null) {
-			mothBreedingSystem = new MothBreedingSystem();
-			Binnie.GENETICS.registerBreedingSystem(mothBreedingSystem);
-		}
 
 		IAnalystManager analystManager = GeneticsApi.analystManager;
 		if (analystManager != null) {

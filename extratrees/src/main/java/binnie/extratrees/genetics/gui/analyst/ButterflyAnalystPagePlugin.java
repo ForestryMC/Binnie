@@ -11,7 +11,7 @@ import binnie.core.gui.geometry.TextJustification;
 import binnie.core.gui.minecraft.control.ControlIconDisplay;
 import binnie.core.util.I18N;
 import binnie.core.util.TimeUtil;
-import binnie.extratrees.ExtraTrees;
+import binnie.genetics.api.GeneticsApi;
 import binnie.genetics.api.analyst.AnalystConstants;
 import binnie.genetics.api.analyst.IAnalystIcons;
 import binnie.genetics.api.analyst.IAnalystManager;
@@ -116,7 +116,7 @@ public class ButterflyAnalystPagePlugin implements IAnalystPagePlugin<IButterfly
 		@Override
 		public int addBehaviourPages(IButterfly individual, IWidget parent, int y) {
 			IButterflyGenome genome = individual.getGenome();
-			String metabolismAlleleName = ExtraTrees.mothBreedingSystem.getAlleleName(EnumButterflyChromosome.METABOLISM, genome.getActiveAllele(EnumButterflyChromosome.METABOLISM));
+			String metabolismAlleleName = GeneticsApi.mothBreedingSystem.getAlleleName(EnumButterflyChromosome.METABOLISM, genome.getActiveAllele(EnumButterflyChromosome.METABOLISM));
 			new ControlTextCentered(parent, y, I18N.localise(AnalystConstants.BEHAVIOUR_KEY + ".metabolism", metabolismAlleleName))
 				.setColor(parent.getColor());
 			y += 20;

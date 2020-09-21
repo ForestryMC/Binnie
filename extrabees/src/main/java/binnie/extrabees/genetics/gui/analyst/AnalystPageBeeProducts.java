@@ -17,7 +17,7 @@ import binnie.core.util.ForestryRecipeUtil;
 import binnie.core.util.I18N;
 import binnie.core.util.TimeUtil;
 import binnie.core.util.UniqueItemStackSet;
-import binnie.extrabees.ExtraBees;
+import binnie.genetics.api.GeneticsApi;
 import binnie.genetics.api.analyst.AnalystConstants;
 import binnie.genetics.api.analyst.IAnalystManager;
 import forestry.api.apiculture.BeeManager;
@@ -50,7 +50,7 @@ public class AnalystPageBeeProducts extends Control implements ITitledWidget {
 		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColor(getColor());
 
 		y += 12;
-		new ControlTextCentered(this, y, TextFormatting.ITALIC + I18N.localise(AnalystConstants.PRODUCTS_KEY + ".rate") + ": " + ExtraBees.beeBreedingSystem.getAlleleName(EnumBeeChromosome.SPEED, ind.getGenome().getActiveAllele(EnumBeeChromosome.SPEED))).setColor(getColor());
+		new ControlTextCentered(this, y, TextFormatting.ITALIC + I18N.localise(AnalystConstants.PRODUCTS_KEY + ".rate") + ": " + GeneticsApi.beeBreedingSystem.getAlleleName(EnumBeeChromosome.SPEED, ind.getGenome().getActiveAllele(EnumBeeChromosome.SPEED))).setColor(getColor());
 
 		y += 20;
 		Collection<ItemStack> refinedProducts = new UniqueItemStackSet();

@@ -17,6 +17,8 @@ import binnie.genetics.config.ConfigurationMain;
 import binnie.genetics.core.GeneticsGUI;
 import binnie.genetics.core.GeneticsPacket;
 import binnie.genetics.core.GeneticsTexture;
+import binnie.genetics.genetics.BeeBreedingSystem;
+import binnie.genetics.genetics.MothBreedingSystem;
 import binnie.genetics.genetics.TreeBreedingSystem;
 import binnie.genetics.gui.Icons;
 import binnie.genetics.gui.analyst.AnalystManager;
@@ -27,7 +29,9 @@ import binnie.genetics.machine.acclimatiser.AcclimatiserManager;
 import binnie.genetics.machine.sequencer.Sequencer;
 import binnie.genetics.proxy.Proxy;
 import com.google.common.base.Preconditions;
+import forestry.api.apiculture.BeeManager;
 import forestry.api.arboriculture.TreeManager;
+import forestry.api.lepidopterology.ButterflyManager;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -79,6 +83,16 @@ public class Genetics extends BlankModuleContainer {
 		configHandler = new ConfigHandler(configFile);
 		configHandler.addConfigurable(new ConfigurationMain());
 
+
+		if (BeeManager.beeRoot != null) {
+			GeneticsApi.beeBreedingSystem = new BeeBreedingSystem();
+			Binnie.GENETICS.registerBreedingSystem(GeneticsApi.beeBreedingSystem);
+		}
+
+		if (ButterflyManager.butterflyRoot != null) {
+			GeneticsApi.mothBreedingSystem = new MothBreedingSystem();
+			Binnie.GENETICS.registerBreedingSystem(GeneticsApi.mothBreedingSystem);
+		}
 
 		if (TreeManager.treeRoot != null) {
 			TreeBreedingSystem treeBreedingSystem = new TreeBreedingSystem();

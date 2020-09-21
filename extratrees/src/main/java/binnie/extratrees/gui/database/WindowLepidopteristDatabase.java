@@ -11,13 +11,14 @@ import binnie.core.gui.database.PageSpeciesResultant;
 import binnie.core.gui.database.WindowAbstractDatabase;
 import binnie.core.gui.minecraft.Window;
 import binnie.extratrees.ExtraTrees;
+import binnie.genetics.api.GeneticsApi;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WindowLepidopteristDatabase extends WindowAbstractDatabase {
 	public WindowLepidopteristDatabase(EntityPlayer player, Side side, boolean master) {
-		super(player, side, master, ExtraTrees.mothBreedingSystem, 160);
+		super(player, side, master, GeneticsApi.mothBreedingSystem, 160);
 	}
 
 	public static Window create(EntityPlayer player, Side side, boolean master) {
