@@ -120,7 +120,7 @@ jar {
 }
 
 task coreJar(type: Jar){
-    classifier = 'core'
+    baseName = 'binnies-core'
     mainProjects.subList(0, 2).each {subproject ->
         from subproject.sourceSets.main.output.classesDirs
         from subproject.sourceSets.api.output.classesDirs
@@ -130,7 +130,7 @@ task coreJar(type: Jar){
 }
 
 task botanyJar(type: Jar){
-    classifier = 'botany'
+    baseName = 'binnies-botany'
     mainProjects.subList(2, 4).each {subproject ->
         from subproject.sourceSets.main.output.classesDirs
         from subproject.sourceSets.api.output.classesDirs
@@ -140,7 +140,7 @@ task botanyJar(type: Jar){
 }
 
 task designJar(type: Jar){
-    classifier = 'design'
+    baseName = 'binnies-design'
     mainProjects.subList(4, 6).each {subproject ->
         from subproject.sourceSets.main.output.classesDirs
         from subproject.sourceSets.api.output.classesDirs
@@ -150,7 +150,7 @@ task designJar(type: Jar){
 }
 
 task extraBeesJar(type: Jar){
-    classifier = 'extrabees'
+    baseName = 'binnies-extrabees'
     mainProjects.subList(6, 7).each {subproject ->
         from subproject.sourceSets.main.output.classesDirs
         from subproject.sourceSets.api.output.classesDirs
@@ -160,7 +160,7 @@ task extraBeesJar(type: Jar){
 }
 
 task extraTreesJar(type: Jar){
-    classifier = 'extratrees'
+    baseName = 'binnies-extratrees'
     mainProjects.subList(7, 9).each {subproject ->
         from subproject.sourceSets.main.output.classesDirs
         from subproject.sourceSets.api.output.classesDirs
@@ -170,7 +170,7 @@ task extraTreesJar(type: Jar){
 }
 
 task geneticsJar(type: Jar){
-    classifier = 'genetics'
+    baseName = 'binnies-genetics'
     mainProjects.subList(9, 11).each {subproject ->
         from subproject.sourceSets.main.output.classesDirs
         from subproject.sourceSets.api.output.classesDirs
