@@ -15,13 +15,14 @@ import binnie.extrabees.ExtraBees;
 import binnie.extrabees.gui.PageSpeciesClimate;
 import binnie.extrabees.gui.PageSpeciesGenome;
 import binnie.extrabees.gui.PageSpeciesProducts;
+import binnie.genetics.api.GeneticsApi;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WindowApiaristDatabase extends WindowAbstractDatabase {
 	public WindowApiaristDatabase(EntityPlayer player, Side side, boolean master) {
-		super(player, side, master, ExtraBees.beeBreedingSystem, 110);
+		super(player, side, master, GeneticsApi.beeBreedingSystem, 110);
 	}
 
 	public static Window create(EntityPlayer player, Side side, boolean master) {

@@ -1,4 +1,4 @@
-package binnie.extrabees.genetics;
+package binnie.genetics.genetics;
 
 import binnie.core.Binnie;
 import binnie.core.api.genetics.IFieldKitPlugin;

@@ -1,6 +1,7 @@
-package binnie.extratrees.genetics;
+package binnie.genetics.genetics;
 
 import binnie.core.Binnie;
+import binnie.core.Constants;
 import binnie.core.ModId;
 import binnie.core.api.genetics.IFieldKitPlugin;
 import binnie.core.api.gui.IPoint;
@@ -12,7 +13,6 @@ import binnie.core.gui.geometry.Point;
 import binnie.core.gui.resource.textures.StandardTexture;
 import binnie.core.texture.BinnieCoreTexture;
 import binnie.core.util.I18N;
-import binnie.extratrees.ExtraTrees;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IAlleleInteger;
 import forestry.api.genetics.IAlleleSpecies;
@@ -34,8 +34,8 @@ import java.util.TreeSet;
 
 public class MothBreedingSystem extends BreedingSystem {
 	public MothBreedingSystem() {
-		this.iconUndiscovered = Binnie.RESOURCE.getItemSprite(ExtraTrees.instance, "icon/undiscovered_moth");
-		this.iconDiscovered = Binnie.RESOURCE.getItemSprite(ExtraTrees.instance, "icon/discovered_moth");
+		this.iconUndiscovered = Binnie.RESOURCE.getItemSprite(Constants.EXTRA_TREES_MOD_ID, "icon/undiscovered_moth");
+		this.iconDiscovered = Binnie.RESOURCE.getItemSprite(Constants.EXTRA_TREES_MOD_ID, "icon/discovered_moth");
 	}
 
 	@Override

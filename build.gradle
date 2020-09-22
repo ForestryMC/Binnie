@@ -103,12 +103,75 @@ allprojects {
     }
 }
 
-def mainProjects = [':core', ':core-api', ':botany', ':botany-api', ':design', ':design-api', ':extrabees', ':extratrees', 'extratrees-api', ':genetics', 'genetics-api']
+def mainProjects = [':core', ':core-api', ':botany', ':botany-api', ':design', ':design-api', ':extrabees', ':extratrees', 'extratrees-api', ':genetics', 'genetics-api', 'all']
         .collect{ subproject -> project(subproject) }
 mainProjects.each { subproject -> evaluationDependsOn( subproject.path ) }
 jar.dependsOn mainProjects.tasks['classes']
 jar {
-    mainProjects.each { subproject ->
+    mainProjects.subList(0, 11).each { subproject ->
+        from subproject.sourceSets.main.output.classesDirs
+        from subproject.sourceSets.api.output.classesDirs
+        from (subproject.sourceSets.main.output.resourcesDir) {
+            exclude 'mcmod.info'
+        }
+        from subproject.sourceSets.api.output.resourcesDir
+    }
+    from mainProjects.get(11).sourceSets.main.output.resourcesDir
+}
+
+task coreJar(type: Jar){
+    baseName = 'binnies-core'
+    mainProjects.subList(0, 2).each {subproject ->
+        from subproject.sourceSets.main.output.classesDirs
+        from subproject.sourceSets.api.output.classesDirs
+        from subproject.sourceSets.main.output.resourcesDir
+        from subproject.sourceSets.api.output.resourcesDir
+    }
+}
+
+task botanyJar(type: Jar){
+    baseName = 'binnies-botany'
+    mainProjects.subList(2, 4).each {subproject ->
+        from subproject.sourceSets.main.output.classesDirs
+        from subproject.sourceSets.api.output.classesDirs
+        from subproject.sourceSets.main.output.resourcesDir
+        from subproject.sourceSets.api.output.resourcesDir
+    }
+}
+
+task designJar(type: Jar){
+    baseName = 'binnies-design'
+    mainProjects.subList(4, 6).each {subproject ->
+        from subproject.sourceSets.main.output.classesDirs
+        from subproject.sourceSets.api.output.classesDirs
+        from subproject.sourceSets.main.output.resourcesDir
+        from subproject.sourceSets.api.output.resourcesDir
+    }
+}
+
+task extraBeesJar(type: Jar){
+    baseName = 'binnies-extrabees'
+    mainProjects.subList(6, 7).each {subproject ->
+        from subproject.sourceSets.main.output.classesDirs
+        from subproject.sourceSets.api.output.classesDirs
+        from subproject.sourceSets.main.output.resourcesDir
+        from subproject.sourceSets.api.output.resourcesDir
+    }
+}
+
+task extraTreesJar(type: Jar){
+    baseName = 'binnies-extratrees'
+    mainProjects.subList(7, 9).each {subproject ->
+        from subproject.sourceSets.main.output.classesDirs
+        from subproject.sourceSets.api.output.classesDirs
+        from subproject.sourceSets.main.output.resourcesDir
+        from subproject.sourceSets.api.output.resourcesDir
+    }
+}
+
+task geneticsJar(type: Jar){
+    baseName = 'binnies-genetics'
+    mainProjects.subList(9, 11).each {subproject ->
         from subproject.sourceSets.main.output.classesDirs
         from subproject.sourceSets.api.output.classesDirs
         from subproject.sourceSets.main.output.resourcesDir
@@ -134,6 +197,12 @@ task copyJars(type: Copy) {
 
 artifacts {
     archives sourcesJar
+    archives coreJar
+    archives botanyJar
+    archives designJar
+    archives extraBeesJar
+    archives extraTreesJar
+    archives geneticsJar
 }
 
 uploadArchives {

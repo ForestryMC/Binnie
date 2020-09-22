@@ -1,14 +1,11 @@
 package binnie.extrabees;
 
-import binnie.core.Binnie;
 import binnie.core.Constants;
-import binnie.core.api.genetics.IBreedingSystem;
 import binnie.core.gui.BinnieGUIHandler;
 import binnie.core.gui.IBinnieGUID;
 import binnie.core.modules.BlankModuleContainer;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.proxy.IProxyCore;
-import binnie.extrabees.genetics.BeeBreedingSystem;
 import binnie.extrabees.genetics.gui.analyst.AnalystPagePlugin;
 import binnie.extrabees.gui.ExtraBeesGUID;
 import binnie.extrabees.modules.ModuleCore;
@@ -17,7 +14,6 @@ import binnie.extrabees.utils.config.ConfigHandler;
 import binnie.extrabees.utils.config.ConfigurationMain;
 import binnie.genetics.api.GeneticsApi;
 import binnie.genetics.api.analyst.IAnalystManager;
-import forestry.api.apiculture.BeeManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -32,7 +28,7 @@ import java.io.File;
 	name = "Binnie's Extra Bees",
 	version = "@VERSION@",
 	acceptedMinecraftVersions = Constants.ACCEPTED_MINECRAFT_VERSIONS,
-	dependencies = "required-after:" + Constants.CORE_MOD_ID
+	dependencies = "required-after:" + Constants.CORE_MOD_ID + ';' + "required-after:" + Constants.GENETICS_MOD_ID + ';'
 )
 public class ExtraBees extends BlankModuleContainer {
 
@@ -43,8 +39,6 @@ public class ExtraBees extends BlankModuleContainer {
 
 	@SidedProxy(clientSide = "binnie.extrabees.proxy.ExtraBeesClientProxy", serverSide = "binnie.extrabees.proxy.ExtraBeesCommonProxy")
 	public static ExtraBeesCommonProxy proxy;
-
-	public static IBreedingSystem beeBreedingSystem;
 
 	public ExtraBees() {
 		super();
@@ -61,11 +55,6 @@ public class ExtraBees extends BlankModuleContainer {
 		configHandler.addConfigurable(new ConfigurationMain());
 
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new BinnieGUIHandler(ExtraBeesGUID.values()));
-
-		if (BeeManager.beeRoot != null) {
-			beeBreedingSystem = new BeeBreedingSystem();
-			Binnie.GENETICS.registerBreedingSystem(beeBreedingSystem);
-		}
 
 		IAnalystManager analystManager = GeneticsApi.analystManager;
 		if (analystManager != null) {
