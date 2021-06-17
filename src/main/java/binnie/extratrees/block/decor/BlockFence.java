@@ -1,6 +1,5 @@
 package binnie.extratrees.block.decor;
 
-import binnie.core.Mods;
 import binnie.core.block.BlockMetadata;
 import binnie.core.block.IBlockMetadata;
 import binnie.core.block.TileEntityMetadata;
@@ -19,7 +18,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
@@ -39,15 +37,6 @@ public class BlockFence extends net.minecraft.block.BlockFence implements IBlock
 		setResistance(5.0f);
 		setHardness(2.0f);
 		setStepSound(Block.soundTypeWood);
-	}
-
-	public static boolean canConnect(Block block) {
-		return block == ((ItemBlock) Mods.forestry.item("fences")).field_150939_a
-			|| block == Blocks.fence
-			|| block == Blocks.fence_gate
-			|| block == Blocks.nether_brick_fence
-			|| block instanceof IBlockFence
-			|| block == ExtraTrees.blockGate;
 	}
 
 	@Override
@@ -146,16 +135,10 @@ public class BlockFence extends net.minecraft.block.BlockFence implements IBlock
 
 	@Override
 	public boolean canConnectFenceTo(IBlockAccess world, int x, int y, int z) {
-		if (!isFence(world, x, y, z)) {
-			Block block = world.getBlock(x, y, z);
-			return block != null && block.getMaterial().isOpaque() && block.renderAsNormalBlock();
-		}
-		return true;
-	}
-
-	public boolean isFence(IBlockAccess world, int x, int y, int z) {
 		Block block = world.getBlock(x, y, z);
-		return canConnect(block);
+		Material material = block.getMaterial();
+		return IBlockFence.isFence(block) && material == this.blockMaterial
+			|| material.isOpaque() && block.renderAsNormalBlock() && material != Material.gourd;
 	}
 
 	@Override
@@ -191,6 +174,13 @@ public class BlockFence extends net.minecraft.block.BlockFence implements IBlock
 	}
 
 	@Override
+	//@SideOnly(Side.CLIENT)
+	public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
+		return BlockMetadata.getPickBlock(world, x, y, z);
+	}
+
+	@Override
+	//@SideOnly(Side.CLIENT)
 	public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z, EntityPlayer player) {
 		return BlockMetadata.getPickBlock(world, x, y, z);
 	}

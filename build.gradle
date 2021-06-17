@@ -3,7 +3,7 @@ buildscript {
         mavenCentral()
         maven {
             name = "forge"
-            url = "http://files.minecraftforge.net/maven"
+            url = "https://files.minecraftforge.net/maven"
         }
         maven {
             name = "sonatype"
@@ -25,12 +25,12 @@ plugins {
 apply plugin: "se.bjurr.gitchangelog.git-changelog-gradle-plugin"
 apply plugin: 'forge'
 
-version = "2.0.22"
+version = "2.0.30"
 if (System.getenv("BUILD_NUMBER") != null) {
     version = version + "." + System.getenv("BUILD_NUMBER")
 }
 group = "binnie" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "binnie-mods-1.7.10"
+archivesBaseName = "binnie-mods-1.7.10-gtnh"
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 

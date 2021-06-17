@@ -29,10 +29,6 @@ public class BlockHedge extends Block implements IBlockFence {
 		setBlockName("hedge");
 	}
 
-	public static boolean func_149825_a(Block block) {
-		return BlockFence.canConnect(block);
-	}
-
 	public static int getColor(int meta) {
 		LeafType type = LeafType.values()[meta % 6];
 		if (type == LeafType.CONIFER) {
@@ -130,11 +126,11 @@ public class BlockHedge extends Block implements IBlockFence {
 		return ModuleBlocks.hedgeRenderID;
 	}
 
+	@Override
 	public boolean canConnectFenceTo(IBlockAccess world, int x, int y, int z) {
 		Block block = world.getBlock(x, y, z);
 		return block == this
-			|| block == Blocks.fence_gate
-			|| func_149825_a(block)
+			|| IBlockFence.isFence(block)
 			|| block.isLeaves(world, x, y, z)
 			|| (block.getMaterial().isOpaque() && block.renderAsNormalBlock() && block.getMaterial() != Material.gourd);
 	}

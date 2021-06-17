@@ -4,6 +4,7 @@
 /run
 /eclipse
 /out
+/bin
 /classes
 .idea
 *.iml
@@ -17,3 +18,4 @@
 /usernamecache.json
 
 changelog.html
+*.bat
