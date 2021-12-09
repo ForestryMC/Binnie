@@ -1,0 +1,16 @@
+// Add your dependencies here
+
+dependencies {
+    compile("com.github.GTNewHorizons:ForestryMC:master-SNAPSHOT:dev")
+
+
+    /*compileOnly("net.industrial-craft:industrialcraft-2:2.2.828-experimental:api") {  // Transitive by ForestryMC
+        transitive = false
+    }
+    compileOnly("com.mod-buildcraft:buildcraft:7.1.23:dev") {  // Transitive by ForestryMC
+        transitive = false
+    }
+    compileOnly("curse.maven:cofh-lib-220333:2388748") {  // Transitive by ForestryMC
+        transitive = false
+    }*/
+}
