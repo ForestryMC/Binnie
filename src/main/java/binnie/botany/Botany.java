@@ -55,6 +55,7 @@ import net.minecraftforge.event.world.BlockEvent;
 @Mod(
 	modid = "Botany",
 	name = "Botany",
+	version = BinnieCore.VERSION,
 	useMetadata = true,
 	dependencies = "after:BinnieCore"
 )

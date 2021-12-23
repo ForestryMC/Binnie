@@ -27,6 +27,7 @@ import net.minecraft.item.Item;
 @Mod(
 	modid = "ExtraBees",
 	name = "Extra Bees",
+	version = BinnieCore.VERSION,
 	useMetadata = true,
 	dependencies = "after:BinnieCore"
 )

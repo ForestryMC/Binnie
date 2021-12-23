@@ -25,6 +25,7 @@ import net.minecraft.item.Item;
 @Mod(
 	modid = "Genetics",
 	name = "Genetics",
+	version = BinnieCore.VERSION,
 	useMetadata = true,
 	dependencies = "after:BinnieCore"
 )
