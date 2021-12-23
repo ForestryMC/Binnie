@@ -54,13 +54,13 @@ public class BinnieCore extends AbstractMod {
 	@Mod.Instance("BinnieCore")
 	public static BinnieCore instance;
 	@SidedProxy(clientSide = "binnie.core.proxy.BinnieProxyClient", serverSide = "binnie.core.proxy.BinnieProxyServer")
-	public static final String VERSION = "GRADLETOKEN_VERSION";
 	public static BinnieProxy proxy;
 	public static int multipassRenderID;
 	private static List<AbstractMod> modList = new ArrayList<>();
 	public static MachineGroup packageCompartment;
 	public static ItemGenesis genesis;
 	public static ItemFieldKit fieldKit;
+	public static final String VERSION = "GRADLETOKEN_VERSION";
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent evt) {
