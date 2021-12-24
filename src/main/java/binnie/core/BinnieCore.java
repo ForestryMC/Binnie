@@ -47,7 +47,9 @@ import net.minecraftforge.client.event.TextureStitchEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-@Mod(modid = "BinnieCore", name = "Binnie Core", useMetadata = true, dependencies = "after:Forestry@[4.2,)")
+import static binnie.core.BinnieCore.*;
+
+@Mod(modid = "BinnieCore", name = "Binnie Core", version = VERSION, useMetadata = true, dependencies = "after:Forestry@[4.2,)")
 public class BinnieCore extends AbstractMod {
 	@Mod.Instance("BinnieCore")
 	public static BinnieCore instance;
@@ -58,6 +60,7 @@ public class BinnieCore extends AbstractMod {
 	public static MachineGroup packageCompartment;
 	public static ItemGenesis genesis;
 	public static ItemFieldKit fieldKit;
+	public static final String VERSION = "GRADLETOKEN_VERSION";
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent evt) {
@@ -92,7 +95,7 @@ public class BinnieCore extends AbstractMod {
 
 	@Override
 	public void preInit() {
-		BinnieCore.instance = this;
+		instance = this;
 		for (FluidContainer container : FluidContainer.values()) {
 			Item item = new ItemFluidContainer(container);
 			GameRegistry.registerItem(item, item.getUnlocalizedName().substring(5));
@@ -108,7 +111,7 @@ public class BinnieCore extends AbstractMod {
 			NetworkRegistry.INSTANCE.registerGuiHandler(mod, new BinnieGUIHandler(mod));
 		}
 
-		BinnieCore.multipassRenderID = RenderingRegistry.getNextAvailableRenderId();
+		multipassRenderID = RenderingRegistry.getNextAvailableRenderId();
 		RenderingRegistry.registerBlockHandler(new MultipassBlockRenderer());
 		GameRegistry.registerTileEntity(TileEntityMetadata.class, "binnie.tile.metadata");
 	}
@@ -147,12 +150,12 @@ public class BinnieCore extends AbstractMod {
 	}
 
 	static void registerMod(AbstractMod mod) {
-		BinnieCore.modList.add(mod);
+		modList.add(mod);
 	}
 
 	private static List<AbstractMod> getActiveMods() {
 		List<AbstractMod> list = new ArrayList<>();
-		for (AbstractMod mod : BinnieCore.modList) {
+		for (AbstractMod mod : modList) {
 			if (mod.isActive()) {
 				list.add(mod);
 			}
@@ -183,7 +186,7 @@ public class BinnieCore extends AbstractMod {
 
 	@Override
 	public IBinnieProxy getProxy() {
-		return BinnieCore.proxy;
+		return proxy;
 	}
 
 	@Override
@@ -222,7 +225,7 @@ public class BinnieCore extends AbstractMod {
 
 	public static class PacketHandler extends BinniePacketHandler {
 		public PacketHandler() {
-			super(BinnieCore.instance);
+			super(instance);
 		}
 	}
 }

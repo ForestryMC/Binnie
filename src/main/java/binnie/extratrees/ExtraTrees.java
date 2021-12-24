@@ -30,6 +30,7 @@ import net.minecraft.item.Item;
 @Mod(
 	modid = "ExtraTrees",
 	name = "Extra Trees",
+	version = BinnieCore.VERSION,
 	useMetadata = true,
 	dependencies = "after:BinnieCore"
 )
