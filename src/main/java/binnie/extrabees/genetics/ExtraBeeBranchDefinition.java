@@ -179,6 +179,7 @@ public enum ExtraBeeBranchDefinition implements IBranchDefinition {
 	VOLCANIC("Irrapis") {
 		@Override
 		protected void setBranchProperties(IAllele[] template) {
+			AlleleHelper.instance.set(template, EnumBeeChromosome.NOCTURNAL, true);
 			AlleleHelper.instance.set(template, EnumBeeChromosome.SPEED, EnumAllele.Speed.SLOWER);
 			AlleleHelper.instance.set(template, EnumBeeChromosome.LIFESPAN, EnumAllele.Lifespan.NORMAL);
 			AlleleHelper.instance.set(template, EnumBeeChromosome.EFFECT, AlleleHelper.getAllele(ExtraBeesEffect.METEOR.getUID()));
