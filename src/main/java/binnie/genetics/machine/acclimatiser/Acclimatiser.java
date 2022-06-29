@@ -27,8 +27,8 @@ public class Acclimatiser {
 	public static final int SLOT_TARGET = 4;
 	public static final float ENERGY_PER_TICK = 2.0f;
 
-	protected static Map<ItemStack, Float> temperatureItems = new HashMap<>();
-	protected static Map<ItemStack, Float> humidityItems = new HashMap<>();
+	public static Map<ItemStack, Float> temperatureItems = new HashMap<>();
+	public static Map<ItemStack, Float> humidityItems = new HashMap<>();
 
 	private static List<ToleranceSystem> toleranceSystems = new ArrayList<>();
 

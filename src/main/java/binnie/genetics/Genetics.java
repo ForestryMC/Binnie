@@ -14,6 +14,7 @@ import binnie.genetics.item.ItemDatabase;
 import binnie.genetics.item.ItemSerumArray;
 import binnie.genetics.item.ModuleItem;
 import binnie.genetics.machine.ModuleMachine;
+import binnie.genetics.nei.IMCForNEI;
 import binnie.genetics.proxy.Proxy;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
@@ -60,6 +61,7 @@ public class Genetics extends AbstractMod {
 	public void preInit(FMLPreInitializationEvent event) {
 		addModule(new ModuleItem());
 		addModule(new ModuleMachine());
+		IMCForNEI.IMCSender();
 		preInit();
 	}
 
