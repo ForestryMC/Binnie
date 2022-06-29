@@ -83,7 +83,7 @@ public class AcclimatiserRecipeHandler extends RecipeHandlerBase {
 
     @Override
     public void loadTransferRects() {
-        this.addTransferRect(75, 21, 18, 7);
+        this.addTransferRect(75, 20, 18, 7);
     }
 
     @Override

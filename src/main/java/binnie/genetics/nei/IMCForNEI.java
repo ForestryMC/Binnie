@@ -5,16 +5,16 @@ import net.minecraft.nbt.NBTTagCompound;
 
 public class IMCForNEI {
     public static void IMCSender() {
-        sendHandler("genetics.isolator", "Genetics:machine:0");
-        sendHandler("genetics.sequencer", "Genetics:machine:1");
-        sendHandler("genetics.polymeriser", "Genetics:machine:2");
-        sendHandler("genetics.inoculator", "Genetics:machine:3");
-        sendHandler("genetics.analyser", "Genetics:labMachine:1");
-        sendHandler("genetics.incubator", "Genetics:labMachine:2");
-        sendHandler("genetics.genepool", "Genetics:labMachine:3");
-        sendHandler("genetics.acclimatiser", "Genetics:labMachine:4");
-        sendHandler("genetics.splicer", "Genetics:advMachine:0");
-        sendHandler("genetics.database", "Genetics:database:0");
+        sendHandler("binnie.genetics.nei.IsolatorRecipeHandler", "Genetics:machine:0");
+        sendHandler("binnie.genetics.nei.SequencerRecipeHandler", "Genetics:machine:1");
+        sendHandler("binnie.genetics.nei.PolymeriserRecipeHandler", "Genetics:machine:2");
+        sendHandler("binnie.genetics.nei.InoculatorRecipeHandler", "Genetics:machine:3");
+        sendHandler("binnie.genetics.nei.AnalyserRecipeHandler", "Genetics:labMachine:1");
+        sendHandler("binnie.genetics.nei.IncubatorRecipeHandler", "Genetics:labMachine:2");
+        sendHandler("binnie.genetics.nei.GenepoolRecipeHandler", "Genetics:labMachine:3");
+        sendHandler("binnie.genetics.nei.AcclimatiserRecipeHandler", "Genetics:labMachine:4");
+        sendHandler("binnie.genetics.nei.SplicerRecipeHandler", "Genetics:advMachine:0");
+        sendHandler("binnie.genetics.nei.DatabaseRecipeHandler", "Genetics:database:0");
 
         sendCatalyst("genetics.isolator", "Genetics:machine:0");
         sendCatalyst("genetics.sequencer", "Genetics:machine:1");
