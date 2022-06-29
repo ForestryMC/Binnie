@@ -18,6 +18,7 @@ import binnie.extratrees.core.ModuleCore;
 import binnie.extratrees.genetics.ModuleGenetics;
 import binnie.extratrees.item.ModuleItems;
 import binnie.extratrees.machines.ModuleMachine;
+import binnie.extratrees.nei.IMCForNEI;
 import binnie.extratrees.proxy.Proxy;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
@@ -82,6 +83,7 @@ public class ExtraTrees extends AbstractMod {
 		addModule(new ModuleCarpentry());
 		addModule(new ModuleMachine());
 		addModule(new ModuleCore());
+		IMCForNEI.IMCSender();
 		preInit();
 	}
 

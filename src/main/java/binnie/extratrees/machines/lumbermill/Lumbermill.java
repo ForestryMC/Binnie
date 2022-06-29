@@ -42,7 +42,7 @@ public class Lumbermill {
 		return stack;
 	}
 
-	private static void calculateLumbermillProducts() {
+	public static void calculateLumbermillProducts() {
 		for (IPlankType type : WoodManager.getAllPlankTypes()) {
 			for (ItemStack wood : getRecipeResult(type.getStack())) {
 				Lumbermill.recipes.put(wood, type.getStack());
