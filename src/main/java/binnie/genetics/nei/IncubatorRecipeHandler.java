@@ -9,7 +9,6 @@ import codechicken.lib.gui.GuiDraw;
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -102,34 +101,22 @@ public class IncubatorRecipeHandler extends RecipeHandlerBase {
         public PositionedStack output;
         public String lossChance;
         public String tickChance;
-        public boolean consume = true;
 
         public CachedIncubatorRecipe(IIncubatorRecipe recipe) {
             if (recipe.getInput() != null) {
                 FluidStack fluidStack = recipe.getInput();
 
                 if (fluidStack.amount == 0) {
-                    fluidStack.amount = 1;
-                    consume = false;
-                }
-
-                boolean finalConsume = consume;
-                PositionedFluidTank tank = new PositionedFluidTank(fluidStack, 100, new Rectangle(28, 6, 16, 58)) {
-                    @Override
-                    public List<String> handleTooltip(List<String> currenttip) {
-                        if (this.tank != null && this.tank.getFluid() != null && this.tank.getFluid().getFluid() != null && this.tank.getFluid().amount > 0) {
-                            currenttip.add(this.tank.getFluid().getLocalizedName());
-                            if (this.showAmount) {
-                                currenttip.add(EnumChatFormatting.GRAY.toString() + this.tank.getFluid().amount + (this.perTick ? " mB/t" : " mB"));
-                            }
-                            if (!finalConsume) {
-                                currenttip.add(StatCollector.translateToLocal("genetics.nei.tip.noConsume"));
-                            }
+                    this.tanks.add(new PositionedFluidTank(new FluidStack(fluidStack.getFluid(), 1), 100, new Rectangle(28, 6, 16, 58)) {
+                        @Override
+                        public List<String> handleTooltip(List<String> currenttip) {
+                            List<String> tip = super.handleTooltip(currenttip);
+                            tip.add(StatCollector.translateToLocal("genetics.nei.tip.noConsume"));
+                            return tip;
                         }
-                        return currenttip;
-                    }
-                };
-                this.tanks.add(tank);
+                    });
+                } else
+                    this.tanks.add(new PositionedFluidTank(fluidStack, 100, new Rectangle(28, 6, 16, 58)));
             }
 
             if (recipe.getOutput() != null) {
