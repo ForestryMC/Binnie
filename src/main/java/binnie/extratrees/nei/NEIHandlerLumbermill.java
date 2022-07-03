@@ -9,14 +9,13 @@ import binnie.extratrees.machines.lumbermill.Lumbermill;
 import codechicken.lib.gui.GuiDraw;
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
-import net.minecraftforge.fluids.FluidStack;
-
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
+import net.minecraftforge.fluids.FluidStack;
 
 public class NEIHandlerLumbermill extends RecipeHandlerBase {
 
@@ -58,17 +57,20 @@ public class NEIHandlerLumbermill extends RecipeHandlerBase {
 
     @Override
     public void loadAllRecipes() {
-        Lumbermill.recipes.forEach((wood, plank) -> this.arecipes.add(new CachedLumbermillRecipe(wood, Lumbermill.getPlankProduct(wood))));
+        Lumbermill.recipes.forEach(
+                (wood, plank) -> this.arecipes.add(new CachedLumbermillRecipe(wood, Lumbermill.getPlankProduct(wood))));
     }
 
     @Override
     public void loadCraftingRecipes(ItemStack result) {
-        if (NEIServerUtils.areStacksSameTypeCrafting(ExtraTreeItems.Sawdust.get(1), result) || (NEIServerUtils.areStacksSameTypeCrafting(ExtraTreeItems.Bark.get(1), result))) {
+        if (NEIServerUtils.areStacksSameTypeCrafting(ExtraTreeItems.Sawdust.get(1), result)
+                || (NEIServerUtils.areStacksSameTypeCrafting(ExtraTreeItems.Bark.get(1), result))) {
             this.loadAllRecipes();
         } else {
             for (Map.Entry<ItemStack, ItemStack> entry : Lumbermill.recipes.entrySet()) {
                 if (NEIServerUtils.areStacksSameTypeCrafting(entry.getValue(), result)) {
-                    this.arecipes.add(new CachedLumbermillRecipe(entry.getKey(), Lumbermill.getPlankProduct(entry.getKey())));
+                    this.arecipes.add(
+                            new CachedLumbermillRecipe(entry.getKey(), Lumbermill.getPlankProduct(entry.getKey())));
                 }
             }
         }
@@ -85,20 +87,21 @@ public class NEIHandlerLumbermill extends RecipeHandlerBase {
     public void loadUsageRecipes(ItemStack ingredient) {
         for (Map.Entry<ItemStack, ItemStack> entry : Lumbermill.recipes.entrySet()) {
             if (NEIServerUtils.areStacksSameTypeCrafting(entry.getKey(), ingredient)) {
-                this.arecipes.add(new CachedLumbermillRecipe(entry.getKey(), Lumbermill.getPlankProduct(entry.getKey())));
+                this.arecipes.add(
+                        new CachedLumbermillRecipe(entry.getKey(), Lumbermill.getPlankProduct(entry.getKey())));
             }
         }
     }
 
     public class CachedLumbermillRecipe extends CachedBaseRecipe {
 
-        public PositionedFluidTank waterTank = new PositionedFluidTank(Binnie.Liquid.getLiquidStack("water", 300), 1000, new Rectangle(28, 6, 16, 58));
+        public PositionedFluidTank waterTank =
+                new PositionedFluidTank(Binnie.Liquid.getLiquidStack("water", 300), 1000, new Rectangle(28, 6, 16, 58));
         public PositionedStack bark = new PositionedStack(ExtraTreeItems.Sawdust.get(1), 123, 6);
         public PositionedStack sawDust = new PositionedStack(ExtraTreeItems.Bark.get(1), 123, 48);
         public PositionedStack wood;
         public PositionedStack plank;
         public List<PositionedStack> results = new ArrayList<>();
-
 
         public CachedLumbermillRecipe(ItemStack wood, ItemStack plank) {
             this.plank = new PositionedStack(plank, 105, 27);

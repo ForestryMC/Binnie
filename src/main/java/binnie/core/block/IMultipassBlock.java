@@ -1,7 +1,7 @@
 package binnie.core.block;
 
 public interface IMultipassBlock {
-	int getNumberOfPasses();
+    int getNumberOfPasses();
 
-	int colorMultiplier(int meta);
+    int colorMultiplier(int meta);
 }

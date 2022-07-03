@@ -23,54 +23,55 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 
 public class WindowIncubator extends WindowMachine {
-	protected static Texture progressBase = new StandardTexture(0, 91, 38, 32, GeneticsTexture.GUIProcess);
-	protected static Texture progress = new StandardTexture(38, 91, 38, 32, GeneticsTexture.GUIProcess);
+    protected static Texture progressBase = new StandardTexture(0, 91, 38, 32, GeneticsTexture.GUIProcess);
+    protected static Texture progress = new StandardTexture(38, 91, 38, 32, GeneticsTexture.GUIProcess);
 
-	public WindowIncubator(EntityPlayer player, IInventory inventory, Side side) {
-		super(228, 196, player, inventory, side);
-	}
+    public WindowIncubator(EntityPlayer player, IInventory inventory, Side side) {
+        super(228, 196, player, inventory, side);
+    }
 
-	public static Window create(EntityPlayer player, IInventory inventory, Side side) {
-		return new WindowIncubator(player, inventory, side);
-	}
+    public static Window create(EntityPlayer player, IInventory inventory, Side side) {
+        return new WindowIncubator(player, inventory, side);
+    }
 
-	@Override
-	public void initialiseClient() {
-		super.initialiseClient();
-		int x = 16;
-		int y = 32;
-		new ControlLiquidTank(this, x, y).setTankID(Incubator.TANK_INPUT);
-		x += 26;
-		new ControlSlotArray(this, x, y + 3, 1, 3).create(Incubator.SLOT_QUEUE);
-		x += 20;
-		new ControlIconDisplay(this, x, y + 3 + 10, GUIIcon.ArrowRight.getIcon());
-		x += 18;
-		new ControlMachineProgress(this, x, y + 6, WindowIncubator.progressBase, WindowIncubator.progress, Position.LEFT);
-		new ControlSlot(this, x + 10, y + 3 + 10).assign(Incubator.SLOT_INCUBATOR);
-		x += 40;
-		new ControlIconDisplay(this, x, y + 3 + 10, GUIIcon.ArrowRight.getIcon());
-		x += 18;
-		new ControlSlotArray(this, x, y + 3, 1, 3).create(Incubator.SLOT_OUTPUT);
-		x += 26;
-		new ControlLiquidTank(this, x, y).setTankID(Incubator.TANK_OUTPUT);
-		x += 34;
-		new ControlEnergyBar(this, x, y + 3, 16, 54, Position.BOTTOM);
-		new ControlErrorState(this, 91.0f, 82.0f);
-		new ControlPlayerInventory(this);
-	}
+    @Override
+    public void initialiseClient() {
+        super.initialiseClient();
+        int x = 16;
+        int y = 32;
+        new ControlLiquidTank(this, x, y).setTankID(Incubator.TANK_INPUT);
+        x += 26;
+        new ControlSlotArray(this, x, y + 3, 1, 3).create(Incubator.SLOT_QUEUE);
+        x += 20;
+        new ControlIconDisplay(this, x, y + 3 + 10, GUIIcon.ArrowRight.getIcon());
+        x += 18;
+        new ControlMachineProgress(
+                this, x, y + 6, WindowIncubator.progressBase, WindowIncubator.progress, Position.LEFT);
+        new ControlSlot(this, x + 10, y + 3 + 10).assign(Incubator.SLOT_INCUBATOR);
+        x += 40;
+        new ControlIconDisplay(this, x, y + 3 + 10, GUIIcon.ArrowRight.getIcon());
+        x += 18;
+        new ControlSlotArray(this, x, y + 3, 1, 3).create(Incubator.SLOT_OUTPUT);
+        x += 26;
+        new ControlLiquidTank(this, x, y).setTankID(Incubator.TANK_OUTPUT);
+        x += 34;
+        new ControlEnergyBar(this, x, y + 3, 16, 54, Position.BOTTOM);
+        new ControlErrorState(this, 91.0f, 82.0f);
+        new ControlPlayerInventory(this);
+    }
 
-	@Override
-	public String getTitle() {
-		return I18N.localise("genetics.machine.labMachine.incubator");
-	}
+    @Override
+    public String getTitle() {
+        return I18N.localise("genetics.machine.labMachine.incubator");
+    }
 
-	@Override
-	protected AbstractMod getMod() {
-		return Genetics.instance;
-	}
+    @Override
+    protected AbstractMod getMod() {
+        return Genetics.instance;
+    }
 
-	@Override
-	protected String getName() {
-		return "Incubator";
-	}
+    @Override
+    protected String getName() {
+        return "Incubator";
+    }
 }

@@ -19,14 +19,13 @@ import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.ISpeciesRoot;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
-
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class IsolatorRecipeHandler extends RecipeHandlerBase {
 
@@ -112,7 +111,8 @@ public class IsolatorRecipeHandler extends RecipeHandlerBase {
 
     @Override
     public void loadUsageRecipes(ItemStack ingredient) {
-        if (NEIServerUtils.areStacksSameTypeCrafting(GeneticsItems.EmptySequencer.get(1), ingredient) || NEIServerUtils.areStacksSameTypeCrafting(GeneticsItems.Enzyme.get(1), ingredient)) {
+        if (NEIServerUtils.areStacksSameTypeCrafting(GeneticsItems.EmptySequencer.get(1), ingredient)
+                || NEIServerUtils.areStacksSameTypeCrafting(GeneticsItems.Enzyme.get(1), ingredient)) {
             this.loadAllRecipes();
         } else {
             for (IsolatorRecipe recipe : recipes) {
@@ -156,7 +156,6 @@ public class IsolatorRecipeHandler extends RecipeHandlerBase {
         public ItemStack getEmptySequencer() {
             return GeneticsItems.EmptySequencer.get(1);
         }
-
     }
 
     public class CachedIsolatorRecipe extends CachedBaseRecipe {

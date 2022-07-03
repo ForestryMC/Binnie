@@ -11,12 +11,11 @@ import codechicken.lib.gui.GuiDraw;
 import codechicken.nei.ItemList;
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
+import java.util.ArrayList;
+import java.util.List;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.oredict.OreDictionary;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class AnalyserRecipeHandler extends RecipeHandlerBase {
 
@@ -116,7 +115,6 @@ public class AnalyserRecipeHandler extends RecipeHandlerBase {
         public ItemStack getAnalysable() {
             return this.analysable;
         }
-
     }
 
     public class CachedAnalyser extends CachedBaseRecipe {
@@ -138,7 +136,8 @@ public class AnalyserRecipeHandler extends RecipeHandlerBase {
                         }
                     }
                 } else {
-                    for (ItemStack analysable : ItemList.itemMap.get(recipe.getAnalysable().getItem())) {
+                    for (ItemStack analysable :
+                            ItemList.itemMap.get(recipe.getAnalysable().getItem())) {
                         if (analysable.getTagCompound() != null) {
                             analysableList.add(analysable.copy());
                         }
@@ -163,7 +162,5 @@ public class AnalyserRecipeHandler extends RecipeHandlerBase {
         public PositionedStack getResult() {
             return null;
         }
-
     }
-
 }

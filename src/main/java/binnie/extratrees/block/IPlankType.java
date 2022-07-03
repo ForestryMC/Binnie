@@ -4,7 +4,7 @@ import binnie.extratrees.api.IDesignMaterial;
 import net.minecraft.util.IIcon;
 
 public interface IPlankType extends IDesignMaterial {
-	IIcon getIcon();
+    IIcon getIcon();
 
-	String getDescription();
+    String getDescription();
 }

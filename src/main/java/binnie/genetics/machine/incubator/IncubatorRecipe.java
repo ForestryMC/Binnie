@@ -3,28 +3,36 @@ package binnie.genetics.machine.incubator;
 import binnie.core.machines.MachineUtil;
 import binnie.core.machines.transfer.TransferRequest;
 import binnie.genetics.api.IIncubatorRecipe;
+import java.util.Random;
+import javax.annotation.Nullable;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
-
-import javax.annotation.Nullable;
-import java.util.Random;
 
 public class IncubatorRecipe implements IIncubatorRecipe {
 
     private final FluidStack input;
+
     @Nullable
     private final FluidStack output;
+
     private final float lossChance;
     private final float tickChance;
     private final ItemStack inputStack;
+
     @Nullable
     private ItemStack outputStack;
 
-    public IncubatorRecipe(ItemStack inputStack, final FluidStack input, @Nullable final FluidStack output, final float lossChance) {
+    public IncubatorRecipe(
+            ItemStack inputStack, final FluidStack input, @Nullable final FluidStack output, final float lossChance) {
         this(inputStack, input, output, lossChance, 1.0f);
     }
 
-    public IncubatorRecipe(ItemStack inputStack, final FluidStack input, @Nullable final FluidStack output, final float lossChance, final float chance) {
+    public IncubatorRecipe(
+            ItemStack inputStack,
+            final FluidStack input,
+            @Nullable final FluidStack output,
+            final float lossChance,
+            final float chance) {
         this.inputStack = inputStack;
         this.outputStack = null;
         this.input = input;
@@ -88,7 +96,9 @@ public class IncubatorRecipe implements IIncubatorRecipe {
         this.outputStack = this.getOutputStack(machine);
         if (this.outputStack != null) {
             final ItemStack output = this.outputStack.copy();
-            final TransferRequest product = new TransferRequest(output, machine.getInventory()).setTargetSlots(Incubator.SLOT_OUTPUT).ignoreValidation();
+            final TransferRequest product = new TransferRequest(output, machine.getInventory())
+                    .setTargetSlots(Incubator.SLOT_OUTPUT)
+                    .ignoreValidation();
             product.transfer(true);
         }
         final Random rand = machine.getRandom();

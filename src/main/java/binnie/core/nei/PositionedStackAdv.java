@@ -1,11 +1,7 @@
 package binnie.core.nei;
 
-import codechicken.nei.ItemList;
 import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.GuiRecipe;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
-
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;

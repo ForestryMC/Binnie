@@ -1,5 +1,5 @@
 package binnie.core.util;
 
 public interface IValidator<T> {
-	boolean isValid(T object);
+    boolean isValid(T object);
 }

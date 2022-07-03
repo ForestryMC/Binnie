@@ -15,21 +15,22 @@ import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.ISpeciesRoot;
+import java.util.ArrayList;
+import java.util.List;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class SplicerRecipeHandler extends RecipeHandlerBase {
 
     private static final List<SplicerRecipe> recipes = new ArrayList<>();
 
     private void createInoculatorRecipeForNEI(ItemStack dnaManipulable) {
-        recipes.add(new SplicerRecipe(dnaManipulable, new ItemStack(Genetics.itemSerum, 1, OreDictionary.WILDCARD_VALUE)));
-        recipes.add(new SplicerRecipe(dnaManipulable, new ItemStack(Genetics.itemSerumArray, 1, OreDictionary.WILDCARD_VALUE)));
+        recipes.add(
+                new SplicerRecipe(dnaManipulable, new ItemStack(Genetics.itemSerum, 1, OreDictionary.WILDCARD_VALUE)));
+        recipes.add(new SplicerRecipe(
+                dnaManipulable, new ItemStack(Genetics.itemSerumArray, 1, OreDictionary.WILDCARD_VALUE)));
     }
 
     @Override
@@ -101,7 +102,8 @@ public class SplicerRecipeHandler extends RecipeHandlerBase {
     @Override
     public void loadUsageRecipes(ItemStack ingredient) {
         for (SplicerRecipe recipe : recipes) {
-            if (NEIServerUtils.areStacksSameTypeCrafting(recipe.getDnaManipulable(), ingredient) || NEIServerUtils.areStacksSameTypeCrafting(recipe.getSerum(), ingredient)) {
+            if (NEIServerUtils.areStacksSameTypeCrafting(recipe.getDnaManipulable(), ingredient)
+                    || NEIServerUtils.areStacksSameTypeCrafting(recipe.getSerum(), ingredient)) {
                 this.arecipes.add(new CachedSplicer(recipe));
             }
         }
@@ -123,7 +125,6 @@ public class SplicerRecipeHandler extends RecipeHandlerBase {
         public ItemStack getSerum() {
             return this.serum;
         }
-
     }
 
     public class CachedSplicer extends CachedBaseRecipe {
@@ -139,7 +140,8 @@ public class SplicerRecipeHandler extends RecipeHandlerBase {
                 ISpeciesRoot root1 = AlleleManager.alleleRegistry.getSpeciesRoot(recipe.getDnaManipulable());
                 List<ItemStack> serums = new ArrayList<>();
 
-                for (ItemStack serumStack : ItemList.itemMap.get(recipe.getSerum().getItem())) {
+                for (ItemStack serumStack :
+                        ItemList.itemMap.get(recipe.getSerum().getItem())) {
                     if (serumStack.getTagCompound() != null) {
                         IItemSerum itemSerum = (IItemSerum) serumStack.getItem();
                         ISpeciesRoot root2 = itemSerum.getSpeciesRoot(serumStack);

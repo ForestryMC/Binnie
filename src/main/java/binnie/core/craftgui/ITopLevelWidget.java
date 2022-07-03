@@ -3,25 +3,25 @@ package binnie.core.craftgui;
 import binnie.core.craftgui.geometry.IPoint;
 
 public interface ITopLevelWidget extends IWidget {
-	void setMousePosition(int x, int y);
+    void setMousePosition(int x, int y);
 
-	IPoint getAbsoluteMousePosition();
+    IPoint getAbsoluteMousePosition();
 
-	IWidget getFocusedWidget();
+    IWidget getFocusedWidget();
 
-	IWidget getMousedOverWidget();
+    IWidget getMousedOverWidget();
 
-	IWidget getDraggedWidget();
+    IWidget getDraggedWidget();
 
-	boolean isFocused(IWidget widget);
+    boolean isFocused(IWidget widget);
 
-	boolean isMouseOver(IWidget widget);
+    boolean isMouseOver(IWidget widget);
 
-	boolean isDragged(IWidget widget);
+    boolean isDragged(IWidget widget);
 
-	void updateTopLevel();
+    void updateTopLevel();
 
-	void widgetDeleted(IWidget widget);
+    void widgetDeleted(IWidget widget);
 
-	IPoint getDragDistance();
+    IPoint getDragDistance();
 }

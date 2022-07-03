@@ -13,26 +13,27 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class ItemGenesis extends Item {
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister register) {
-		itemIcon = BinnieCore.proxy.getIcon(register, "genesis");
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IIconRegister register) {
+        itemIcon = BinnieCore.proxy.getIcon(register, "genesis");
+    }
 
-	public ItemGenesis() {
-		setCreativeTab(Tabs.tabApiculture);
-		setUnlocalizedName("genesis");
-		setMaxStackSize(1);
-	}
+    public ItemGenesis() {
+        setCreativeTab(Tabs.tabApiculture);
+        setUnlocalizedName("genesis");
+        setMaxStackSize(1);
+    }
 
-	@Override
-	public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player) {
-		BinnieCore.proxy.openGui(BinnieCoreGUI.Genesis, player, (int) player.posX, (int) player.posY, (int) player.posZ);
-		return itemStack;
-	}
+    @Override
+    public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player) {
+        BinnieCore.proxy.openGui(
+                BinnieCoreGUI.Genesis, player, (int) player.posX, (int) player.posY, (int) player.posZ);
+        return itemStack;
+    }
 
-	@Override
-	public String getItemStackDisplayName(ItemStack itemStack) {
-		return I18N.localise("binniecore.item.genesis.name");
-	}
+    @Override
+    public String getItemStackDisplayName(ItemStack itemStack) {
+        return I18N.localise("binniecore.item.genesis.name");
+    }
 }

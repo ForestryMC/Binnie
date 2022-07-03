@@ -3,9 +3,9 @@ package binnie.botany.api;
 import forestry.api.genetics.IAlleleSpecies;
 
 public interface IAlleleFlowerSpecies extends IAlleleSpecies {
-	IFlowerType getType();
+    IFlowerType getType();
 
-	EnumAcidity getPH();
+    EnumAcidity getPH();
 
-	EnumMoisture getMoisture();
+    EnumMoisture getMoisture();
 }

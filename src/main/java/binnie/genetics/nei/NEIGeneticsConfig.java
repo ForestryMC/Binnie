@@ -35,5 +35,4 @@ public class NEIGeneticsConfig implements IConfigureNEI {
     public String getVersion() {
         return BinnieCore.VERSION;
     }
-
 }

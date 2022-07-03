@@ -1,36 +1,34 @@
 package binnie.genetics.api;
 
 import binnie.core.machines.MachineUtil;
+import javax.annotation.Nullable;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
-import javax.annotation.Nullable;
-
 public interface IIncubatorRecipe {
-	boolean isInputLiquid(FluidStack liquid);
+    boolean isInputLiquid(FluidStack liquid);
 
-	boolean isInputLiquidSufficient(FluidStack liquid);
+    boolean isInputLiquidSufficient(FluidStack liquid);
 
-	@Deprecated
-	boolean isItemStack(ItemStack stack);
+    @Deprecated
+    boolean isItemStack(ItemStack stack);
 
-	void doTask(MachineUtil machine);
+    void doTask(MachineUtil machine);
 
-	float getChance();
+    float getChance();
 
-	boolean roomForOutput(MachineUtil machine);
+    boolean roomForOutput(MachineUtil machine);
 
-	float getLossChance();
+    float getLossChance();
 
-	@Nullable
-	FluidStack getInput();
+    @Nullable
+    FluidStack getInput();
 
-	@Nullable
-	FluidStack getOutput();
+    @Nullable
+    FluidStack getOutput();
 
-	@Nullable
-	ItemStack getInputStack();
+    @Nullable
+    ItemStack getInputStack();
 
-	ItemStack getExpectedOutput();
-
+    ItemStack getExpectedOutput();
 }

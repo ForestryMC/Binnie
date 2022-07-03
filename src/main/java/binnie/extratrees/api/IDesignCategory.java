@@ -3,11 +3,11 @@ package binnie.extratrees.api;
 import java.util.List;
 
 public interface IDesignCategory {
-	String getName();
+    String getName();
 
-	List<IDesign> getDesigns();
+    List<IDesign> getDesigns();
 
-	void addDesign(IDesign design);
+    void addDesign(IDesign design);
 
-	String getId();
+    String getId();
 }

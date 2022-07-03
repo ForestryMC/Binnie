@@ -13,14 +13,13 @@ import codechicken.lib.gui.GuiDraw;
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
 import forestry.api.apiculture.EnumBeeType;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
-
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class GenepoolRecipeHandler extends RecipeHandlerBase {
 
@@ -152,7 +151,6 @@ public class GenepoolRecipeHandler extends RecipeHandlerBase {
         public ItemStack getInput() {
             return this.inputStack;
         }
-
     }
 
     public class CachedGenepoolRecipe extends CachedBaseRecipe {
@@ -172,7 +170,6 @@ public class GenepoolRecipeHandler extends RecipeHandlerBase {
             }
         }
 
-
         @Override
         public List<PositionedStack> getIngredients() {
             return getCycledIngredients(cycleticks / 40, this.ingredients);
@@ -187,7 +184,5 @@ public class GenepoolRecipeHandler extends RecipeHandlerBase {
         public PositionedStack getResult() {
             return null;
         }
-
     }
-
 }

@@ -10,17 +10,17 @@ import binnie.extrabees.core.ExtraBeeGUID;
 import binnie.extrabees.core.ExtraBeeTexture;
 
 public class HatcheryAlvearyPackage extends AlvearyMachine.AlvearyPackage implements IMachineInformation {
-	public HatcheryAlvearyPackage() {
-		super("hatchery", ExtraBeeTexture.AlvearyHatchery.getTexture(), false);
-	}
+    public HatcheryAlvearyPackage() {
+        super("hatchery", ExtraBeeTexture.AlvearyHatchery.getTexture(), false);
+    }
 
-	@Override
-	public void createMachine(Machine machine) {
-		new ComponentExtraBeeGUI(machine, ExtraBeeGUID.AlvearyHatchery);
-		ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
-		for (InventorySlot slot : inventory.addSlotArray(AlvearyHatchery.SLOT_LARVAE, "hatchery")) {
-			slot.setValidator(new LarvaeSlotValidator());
-		}
-		new HatcheryComponentModifier(machine);
-	}
+    @Override
+    public void createMachine(Machine machine) {
+        new ComponentExtraBeeGUI(machine, ExtraBeeGUID.AlvearyHatchery);
+        ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
+        for (InventorySlot slot : inventory.addSlotArray(AlvearyHatchery.SLOT_LARVAE, "hatchery")) {
+            slot.setValidator(new LarvaeSlotValidator());
+        }
+        new HatcheryComponentModifier(machine);
+    }
 }

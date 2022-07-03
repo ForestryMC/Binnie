@@ -5,37 +5,37 @@ import forestry.api.genetics.EnumTolerance;
 import forestry.api.genetics.IGenome;
 
 public interface IFlowerGenome extends IGenome {
-	@Override
-	IAlleleFlowerSpecies getPrimary();
+    @Override
+    IAlleleFlowerSpecies getPrimary();
 
-	@Override
-	IAlleleFlowerSpecies getSecondary();
+    @Override
+    IAlleleFlowerSpecies getSecondary();
 
-	IFlowerColor getPrimaryColor();
+    IFlowerColor getPrimaryColor();
 
-	IFlowerColor getSecondaryColor();
+    IFlowerColor getSecondaryColor();
 
-	IFlowerColor getStemColor();
+    IFlowerColor getStemColor();
 
-	int getFertility();
+    int getFertility();
 
-	int getLifespan();
+    int getLifespan();
 
-	IFlowerType getType();
+    IFlowerType getType();
 
-	EnumTolerance getToleranceTemperature();
+    EnumTolerance getToleranceTemperature();
 
-	EnumTolerance getToleranceMoisture();
+    EnumTolerance getToleranceMoisture();
 
-	EnumTolerance getTolerancePH();
+    EnumTolerance getTolerancePH();
 
-	float getAgeChance();
+    float getAgeChance();
 
-	float getSappiness();
+    float getSappiness();
 
-	boolean canTolerate(EnumAcidity pH);
+    boolean canTolerate(EnumAcidity pH);
 
-	boolean canTolerate(EnumMoisture moisture);
+    boolean canTolerate(EnumMoisture moisture);
 
-	boolean canTolerate(EnumTemperature temp);
+    boolean canTolerate(EnumTemperature temp);
 }

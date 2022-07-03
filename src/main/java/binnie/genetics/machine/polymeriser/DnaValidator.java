@@ -6,13 +6,13 @@ import binnie.genetics.item.GeneticLiquid;
 import net.minecraftforge.fluids.FluidStack;
 
 class DnaValidator extends Validator<FluidStack> {
-	@Override
-	public boolean isValid(FluidStack itemStack) {
-		return GeneticLiquid.RawDNA.get(1).isFluidEqual(itemStack);
-	}
+    @Override
+    public boolean isValid(FluidStack itemStack) {
+        return GeneticLiquid.RawDNA.get(1).isFluidEqual(itemStack);
+    }
 
-	@Override
-	public String getTooltip() {
-		return I18N.localise("fluid.binnie.dna.raw");
-	}
+    @Override
+    public String getTooltip() {
+        return I18N.localise("fluid.binnie.dna.raw");
+    }
 }

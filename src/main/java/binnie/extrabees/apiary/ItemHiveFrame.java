@@ -14,88 +14,88 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class ItemHiveFrame extends Item implements IHiveFrame, IBeeModifier {
-	protected EnumHiveFrame frame;
+    protected EnumHiveFrame frame;
 
-	public ItemHiveFrame(EnumHiveFrame frame) {
-		this.frame = frame;
-		setMaxDamage(frame.maxDamage);
-		setCreativeTab(Tabs.tabApiculture);
-		setMaxStackSize(1);
-		setUnlocalizedName("hiveFrame");
-	}
+    public ItemHiveFrame(EnumHiveFrame frame) {
+        this.frame = frame;
+        setMaxDamage(frame.maxDamage);
+        setCreativeTab(Tabs.tabApiculture);
+        setMaxStackSize(1);
+        setUnlocalizedName("hiveFrame");
+    }
 
-	@Override
-	public String getItemStackDisplayName(ItemStack stack) {
-		return frame.getName();
-	}
+    @Override
+    public String getItemStackDisplayName(ItemStack stack) {
+        return frame.getName();
+    }
 
-	@Override
-	public float getTerritoryModifier(IBeeGenome genome, float currentModifier) {
-		return frame.getTerritoryModifier(genome, currentModifier);
-	}
+    @Override
+    public float getTerritoryModifier(IBeeGenome genome, float currentModifier) {
+        return frame.getTerritoryModifier(genome, currentModifier);
+    }
 
-	@Override
-	public float getMutationModifier(IBeeGenome genome, IBeeGenome mate, float currentModifier) {
-		return frame.getMutationModifier(genome, mate, currentModifier);
-	}
+    @Override
+    public float getMutationModifier(IBeeGenome genome, IBeeGenome mate, float currentModifier) {
+        return frame.getMutationModifier(genome, mate, currentModifier);
+    }
 
-	@Override
-	public float getLifespanModifier(IBeeGenome genome, IBeeGenome mate, float currentModifier) {
-		return frame.getLifespanModifier(genome, mate, currentModifier);
-	}
+    @Override
+    public float getLifespanModifier(IBeeGenome genome, IBeeGenome mate, float currentModifier) {
+        return frame.getLifespanModifier(genome, mate, currentModifier);
+    }
 
-	@Override
-	public float getProductionModifier(IBeeGenome genome, float currentModifier) {
-		return frame.getProductionModifier(genome, currentModifier);
-	}
+    @Override
+    public float getProductionModifier(IBeeGenome genome, float currentModifier) {
+        return frame.getProductionModifier(genome, currentModifier);
+    }
 
-	@Override
-	public ItemStack frameUsed(IBeeHousing housing, ItemStack frame, IBee queen, int wear) {
-		frame.setItemDamage(frame.getItemDamage() + wear);
-		if (frame.getItemDamage() >= frame.getMaxDamage()) {
-			return null;
-		}
-		return frame;
-	}
+    @Override
+    public ItemStack frameUsed(IBeeHousing housing, ItemStack frame, IBee queen, int wear) {
+        frame.setItemDamage(frame.getItemDamage() + wear);
+        if (frame.getItemDamage() >= frame.getMaxDamage()) {
+            return null;
+        }
+        return frame;
+    }
 
-	@Override
-	public float getFloweringModifier(IBeeGenome genome, float currentModifier) {
-		return 1.0f;
-	}
+    @Override
+    public float getFloweringModifier(IBeeGenome genome, float currentModifier) {
+        return 1.0f;
+    }
 
-	@Override
-	public boolean isSealed() {
-		return false;
-	}
+    @Override
+    public boolean isSealed() {
+        return false;
+    }
 
-	@Override
-	public boolean isSelfLighted() {
-		return false;
-	}
+    @Override
+    public boolean isSelfLighted() {
+        return false;
+    }
 
-	@Override
-	public boolean isSunlightSimulated() {
-		return false;
-	}
+    @Override
+    public boolean isSunlightSimulated() {
+        return false;
+    }
 
-	@Override
-	public boolean isHellish() {
-		return false;
-	}
+    @Override
+    public boolean isHellish() {
+        return false;
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister register) {
-		itemIcon = ExtraBees.proxy.getIcon(register, "frame" + frame.toString());
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IIconRegister register) {
+        itemIcon = ExtraBees.proxy.getIcon(register, "frame" + frame.toString());
+    }
 
-	@Override
-	public float getGeneticDecay(IBeeGenome genome, float currentModifier) {
-		return 1.0f;
-	}
+    @Override
+    public float getGeneticDecay(IBeeGenome genome, float currentModifier) {
+        return 1.0f;
+    }
 
-	@Override
-	public IBeeModifier getBeeModifier() {
-		return this;
-	}
+    @Override
+    public IBeeModifier getBeeModifier() {
+        return this;
+    }
 }

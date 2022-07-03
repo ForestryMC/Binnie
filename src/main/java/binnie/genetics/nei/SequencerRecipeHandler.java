@@ -7,11 +7,10 @@ import codechicken.lib.gui.GuiDraw;
 import codechicken.nei.ItemList;
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
-
 import java.util.ArrayList;
 import java.util.List;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
 
 public class SequencerRecipeHandler extends RecipeHandlerBase {
 
@@ -112,5 +111,4 @@ public class SequencerRecipeHandler extends RecipeHandlerBase {
             return this.results;
         }
     }
-
 }

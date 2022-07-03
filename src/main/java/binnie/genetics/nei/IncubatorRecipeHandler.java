@@ -8,13 +8,12 @@ import binnie.genetics.machine.incubator.Incubator;
 import codechicken.lib.gui.GuiDraw;
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
-import net.minecraftforge.fluids.FluidStack;
-
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
+import net.minecraftforge.fluids.FluidStack;
 
 public class IncubatorRecipeHandler extends RecipeHandlerBase {
 
@@ -83,7 +82,6 @@ public class IncubatorRecipeHandler extends RecipeHandlerBase {
                 this.arecipes.add(new CachedIncubatorRecipe(recipe));
             }
         }
-
     }
 
     @Override
@@ -107,16 +105,17 @@ public class IncubatorRecipeHandler extends RecipeHandlerBase {
                 FluidStack fluidStack = recipe.getInput();
 
                 if (fluidStack.amount == 0) {
-                    this.tanks.add(new PositionedFluidTank(new FluidStack(fluidStack.getFluid(), 1), 100, new Rectangle(28, 6, 16, 58)) {
-                        @Override
-                        public List<String> handleTooltip(List<String> currenttip) {
-                            List<String> tip = super.handleTooltip(currenttip);
-                            tip.add(StatCollector.translateToLocal("genetics.nei.tip.noConsume"));
-                            return tip;
-                        }
-                    });
-                } else
-                    this.tanks.add(new PositionedFluidTank(fluidStack, 100, new Rectangle(28, 6, 16, 58)));
+                    this.tanks.add(
+                            new PositionedFluidTank(
+                                    new FluidStack(fluidStack.getFluid(), 1), 100, new Rectangle(28, 6, 16, 58)) {
+                                @Override
+                                public List<String> handleTooltip(List<String> currenttip) {
+                                    List<String> tip = super.handleTooltip(currenttip);
+                                    tip.add(StatCollector.translateToLocal("genetics.nei.tip.noConsume"));
+                                    return tip;
+                                }
+                            });
+                } else this.tanks.add(new PositionedFluidTank(fluidStack, 100, new Rectangle(28, 6, 16, 58)));
             }
 
             if (recipe.getOutput() != null) {
@@ -132,7 +131,6 @@ public class IncubatorRecipeHandler extends RecipeHandlerBase {
             }
 
             this.lossChance = recipe.getLossChance() * 100 + "%";
-
         }
 
         @Override
@@ -149,7 +147,5 @@ public class IncubatorRecipeHandler extends RecipeHandlerBase {
         public PositionedStack getResult() {
             return this.output;
         }
-
     }
-
 }

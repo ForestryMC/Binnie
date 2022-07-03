@@ -1,17 +1,17 @@
 package binnie.extratrees.api;
 
 public interface IDesign {
-	String getName();
+    String getName();
 
-	ILayout getTopPattern();
+    ILayout getTopPattern();
 
-	ILayout getBottomPattern();
+    ILayout getBottomPattern();
 
-	ILayout getNorthPattern();
+    ILayout getNorthPattern();
 
-	ILayout getEastPattern();
+    ILayout getEastPattern();
 
-	ILayout getSouthPattern();
+    ILayout getSouthPattern();
 
-	ILayout getWestPattern();
+    ILayout getWestPattern();
 }

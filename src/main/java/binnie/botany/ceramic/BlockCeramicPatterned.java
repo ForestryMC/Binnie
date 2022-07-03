@@ -8,35 +8,35 @@ import binnie.extratrees.api.IDesign;
 import binnie.extratrees.carpentry.BlockDesign;
 import binnie.extratrees.carpentry.DesignBlock;
 import binnie.extratrees.carpentry.ModuleCarpentry;
+import java.util.List;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 
-import java.util.List;
-
 public class BlockCeramicPatterned extends BlockDesign {
-	public BlockCeramicPatterned() {
-		super(CeramicDesignSystem.instance, Material.rock);
-		setHardness(1.0f);
-		setResistance(5.0f);
-		setCreativeTab(CreativeTabBotany.instance);
-		setBlockName("ceramicPattern");
-	}
+    public BlockCeramicPatterned() {
+        super(CeramicDesignSystem.instance, Material.rock);
+        setHardness(1.0f);
+        setResistance(5.0f);
+        setCreativeTab(CreativeTabBotany.instance);
+        setBlockName("ceramicPattern");
+    }
 
-	@Override
-	public ItemStack getCreativeStack(IDesign design) {
-		return ModuleCarpentry.getItemStack(this, CeramicColor.get(EnumFlowerColor.WHITE), CeramicColor.get(EnumFlowerColor.BLACK), design);
-	}
+    @Override
+    public ItemStack getCreativeStack(IDesign design) {
+        return ModuleCarpentry.getItemStack(
+                this, CeramicColor.get(EnumFlowerColor.WHITE), CeramicColor.get(EnumFlowerColor.BLACK), design);
+    }
 
-	@Override
-	public String getBlockName(DesignBlock design) {
-		return I18N.localise("botany.ceramicBlock");
-	}
+    @Override
+    public String getBlockName(DesignBlock design) {
+        return I18N.localise("botany.ceramicBlock");
+    }
 
-	@Override
-	public void addBlockTooltip(ItemStack stack, List tooltip) {
-		super.addBlockTooltip(stack, tooltip);
-		DesignBlock block = ModuleCarpentry.getDesignBlock(getDesignSystem(), TileEntityMetadata.getItemDamage(stack));
-		tooltip.add(EnumChatFormatting.GRAY + block.getDesign().getName());
-	}
+    @Override
+    public void addBlockTooltip(ItemStack stack, List tooltip) {
+        super.addBlockTooltip(stack, tooltip);
+        DesignBlock block = ModuleCarpentry.getDesignBlock(getDesignSystem(), TileEntityMetadata.getItemDamage(stack));
+        tooltip.add(EnumChatFormatting.GRAY + block.getDesign().getName());
+    }
 }

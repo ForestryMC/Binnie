@@ -12,28 +12,29 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 
 public class ControlRecipeSlot extends ControlSlotBase {
-	public ControlRecipeSlot(IWidget parent, int x, int y) {
-		super(parent, x, y, 50);
-		addSelfEventHandler(new MouseDownHandler());
-		setRotating();
-	}
+    public ControlRecipeSlot(IWidget parent, int x, int y) {
+        super(parent, x, y, 50);
+        addSelfEventHandler(new MouseDownHandler());
+        setRotating();
+    }
 
-	@Override
-	public ItemStack getItemStack() {
-		IComponentRecipe recipe = Machine.getInterface(IComponentRecipe.class, Window.get(this).getInventory());
-		return recipe.isRecipe() ? recipe.getProduct() : null;
-	}
+    @Override
+    public ItemStack getItemStack() {
+        IComponentRecipe recipe =
+                Machine.getInterface(IComponentRecipe.class, Window.get(this).getInventory());
+        return recipe.isRecipe() ? recipe.getProduct() : null;
+    }
 
-	private class MouseDownHandler extends EventMouse.Down.Handler {
-		@Override
-		public void onEvent(EventMouse.Down event) {
-			TileEntity tile = (TileEntity) Window.get(getWidget()).getInventory();
-			if (tile == null || !(tile instanceof TileEntityMachine)) {
-				return;
-			}
+    private class MouseDownHandler extends EventMouse.Down.Handler {
+        @Override
+        public void onEvent(EventMouse.Down event) {
+            TileEntity tile = (TileEntity) Window.get(getWidget()).getInventory();
+            if (tile == null || !(tile instanceof TileEntityMachine)) {
+                return;
+            }
 
-			NBTTagCompound nbt = new NBTTagCompound();
-			Window.get(getWidget()).sendClientAction("recipe", nbt);
-		}
-	}
+            NBTTagCompound nbt = new NBTTagCompound();
+            Window.get(getWidget()).sendClientAction("recipe", nbt);
+        }
+    }
 }

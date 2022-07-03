@@ -26,5 +26,4 @@ public class NEIExtraTreesConfig implements IConfigureNEI {
     public String getVersion() {
         return BinnieCore.VERSION;
     }
-
 }

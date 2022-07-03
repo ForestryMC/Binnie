@@ -24,6 +24,7 @@ public class IncubatorRecipeLarvae extends IncubatorRecipe {
 
     @Override
     public ItemStack getExpectedOutput() {
-        return BeeManager.beeRoot.getMemberStack(BeeManager.beeRoot.getMember(this.getInputStack()), EnumBeeType.DRONE.ordinal());
+        return BeeManager.beeRoot.getMemberStack(
+                BeeManager.beeRoot.getMember(this.getInputStack()), EnumBeeType.DRONE.ordinal());
     }
 }

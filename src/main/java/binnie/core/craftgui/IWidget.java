@@ -4,135 +4,134 @@ import binnie.core.craftgui.events.Event;
 import binnie.core.craftgui.events.EventHandler;
 import binnie.core.craftgui.geometry.IArea;
 import binnie.core.craftgui.geometry.IPoint;
-
 import java.util.List;
 
 public interface IWidget {
-	IWidget getParent();
+    IWidget getParent();
 
-	void deleteChild(IWidget child);
+    void deleteChild(IWidget child);
 
-	void deleteAllChildren();
+    void deleteAllChildren();
 
-	ITopLevelWidget getSuperParent();
+    ITopLevelWidget getSuperParent();
 
-	boolean isTopLevel();
+    boolean isTopLevel();
 
-	IPoint getPosition();
+    IPoint getPosition();
 
-	IPoint pos();
+    IPoint pos();
 
-	void setPosition(IPoint position);
+    void setPosition(IPoint position);
 
-	IPoint getSize();
+    IPoint getSize();
 
-	IPoint size();
+    IPoint size();
 
-	void setSize(IPoint size);
+    void setSize(IPoint size);
 
-	IPoint getOriginalPosition();
+    IPoint getOriginalPosition();
 
-	IPoint getAbsolutePosition();
+    IPoint getAbsolutePosition();
 
-	IPoint getOriginalAbsolutePosition();
+    IPoint getOriginalAbsolutePosition();
 
-	IPoint getOffset();
+    IPoint getOffset();
 
-	IArea getArea();
+    IArea getArea();
 
-	IArea area();
+    IArea area();
 
-	void setOffset(IPoint offset);
+    void setOffset(IPoint offset);
 
-	IPoint getMousePosition();
+    IPoint getMousePosition();
 
-	IPoint getRelativeMousePosition();
+    IPoint getRelativeMousePosition();
 
-	void setColor(int color);
+    void setColor(int color);
 
-	int getColor();
+    int getColor();
 
-	void render();
+    void render();
 
-	void updateClient();
+    void updateClient();
 
-	void enable();
+    void enable();
 
-	void disable();
+    void disable();
 
-	void show();
+    void show();
 
-	void hide();
+    void hide();
 
-	boolean calculateIsMouseOver();
+    boolean calculateIsMouseOver();
 
-	boolean isEnabled();
+    boolean isEnabled();
 
-	boolean isVisible();
+    boolean isVisible();
 
-	boolean isFocused();
+    boolean isFocused();
 
-	boolean isMouseOver();
+    boolean isMouseOver();
 
-	boolean isDragged();
+    boolean isDragged();
 
-	boolean isChildVisible(IWidget child);
+    boolean isChildVisible(IWidget child);
 
-	boolean isChildEnabled(IWidget child);
+    boolean isChildEnabled(IWidget child);
 
-	boolean canMouseOver();
+    boolean canMouseOver();
 
-	boolean canFocus();
+    boolean canFocus();
 
-	IWidget addWidget(IWidget widget);
+    IWidget addWidget(IWidget widget);
 
-	List<IWidget> getWidgets();
+    List<IWidget> getWidgets();
 
-	void callEvent(Event event);
+    void callEvent(Event event);
 
-	void recieveEvent(Event event);
+    void recieveEvent(Event event);
 
-	void onUpdateClient();
+    void onUpdateClient();
 
-	void delete();
+    void delete();
 
-	void onDelete();
+    void onDelete();
 
-	<T> T getWidget(Class<T> p0);
+    <T> T getWidget(Class<T> p0);
 
-	IArea getCroppedZone();
+    IArea getCroppedZone();
 
-	void setCroppedZone(IWidget relative, IArea area);
+    void setCroppedZone(IWidget relative, IArea area);
 
-	boolean isCroppedWidget();
+    boolean isCroppedWidget();
 
-	IWidget getCropWidget();
+    IWidget getCropWidget();
 
-	boolean isMouseOverWidget(IPoint p0);
+    boolean isMouseOverWidget(IPoint p0);
 
-	int getLevel();
+    int getLevel();
 
-	boolean isDescendant(IWidget widget);
+    boolean isDescendant(IWidget widget);
 
-	List<WidgetAttribute> getAttributes();
+    List<WidgetAttribute> getAttributes();
 
-	boolean hasAttribute(WidgetAttribute attribute);
+    boolean hasAttribute(WidgetAttribute attribute);
 
-	boolean addAttribute(WidgetAttribute attribute);
+    boolean addAttribute(WidgetAttribute attribute);
 
-	<E extends Event> void addEventHandler(EventHandler<E> handler);
+    <E extends Event> void addEventHandler(EventHandler<E> handler);
 
-	<E extends Event> void addSelfEventHandler(EventHandler<E> handler);
+    <E extends Event> void addSelfEventHandler(EventHandler<E> handler);
 
-	boolean contains(IPoint p0);
+    boolean contains(IPoint p0);
 
-	float x();
+    float x();
 
-	float y();
+    float y();
 
-	float w();
+    float w();
 
-	float h();
+    float h();
 
-	void onRender(RenderStage stage);
+    void onRender(RenderStage stage);
 }

@@ -22,56 +22,63 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 public class ModuleGenetics implements IInitializable {
-	static AlleleEffectNone alleleEffectNone = new AlleleEffectNone();
+    static AlleleEffectNone alleleEffectNone = new AlleleEffectNone();
 
-	@Override
-	public void preInit() {
-		EnumFlowerColor.setupMutations();
-		Botany.flower = new BlockFlower();
-		Botany.flowerItem = new ItemFlower();
-		Botany.pollen = new ItemPollen();
-		Botany.seed = new ItemSeed();
-		AlleleManager.alleleRegistry.registerSpeciesRoot(BotanyCore.speciesRoot);
-		AlleleManager.alleleRegistry.registerAllele(ModuleGenetics.alleleEffectNone);
-		GameRegistry.registerBlock(Botany.flower, "flower");
-		BinnieCore.proxy.registerTileEntity(TileEntityFlower.class, "botany.tile.flower", null);
-		Botany.database = new ItemDictionary();
-	}
+    @Override
+    public void preInit() {
+        EnumFlowerColor.setupMutations();
+        Botany.flower = new BlockFlower();
+        Botany.flowerItem = new ItemFlower();
+        Botany.pollen = new ItemPollen();
+        Botany.seed = new ItemSeed();
+        AlleleManager.alleleRegistry.registerSpeciesRoot(BotanyCore.speciesRoot);
+        AlleleManager.alleleRegistry.registerAllele(ModuleGenetics.alleleEffectNone);
+        GameRegistry.registerBlock(Botany.flower, "flower");
+        BinnieCore.proxy.registerTileEntity(TileEntityFlower.class, "botany.tile.flower", null);
+        Botany.database = new ItemDictionary();
+    }
 
-	@Override
-	public void init() {
-		for (EnumFlowerColor color : EnumFlowerColor.values()) {
-			AlleleManager.alleleRegistry.registerAllele(color.getAllele());
-		}
+    @Override
+    public void init() {
+        for (EnumFlowerColor color : EnumFlowerColor.values()) {
+            AlleleManager.alleleRegistry.registerAllele(color.getAllele());
+        }
 
-		FlowerSpecies.setupVariants();
-		for (FlowerSpecies species : FlowerSpecies.values()) {
-			AlleleManager.alleleRegistry.registerAllele(species);
-			BotanyCore.getFlowerRoot().registerTemplate(species.getUID(), species.getTemplate());
-			for (IAllele[] variant : species.getVariants()) {
-				BotanyCore.getFlowerRoot().registerTemplate(variant);
-			}
-		}
+        FlowerSpecies.setupVariants();
+        for (FlowerSpecies species : FlowerSpecies.values()) {
+            AlleleManager.alleleRegistry.registerAllele(species);
+            BotanyCore.getFlowerRoot().registerTemplate(species.getUID(), species.getTemplate());
+            for (IAllele[] variant : species.getVariants()) {
+                BotanyCore.getFlowerRoot().registerTemplate(variant);
+            }
+        }
 
-		RendererBotany.renderID = RenderingRegistry.getNextAvailableRenderId();
-		BinnieCore.proxy.registerBlockRenderer(new RendererBotany());
-	}
+        RendererBotany.renderID = RenderingRegistry.getNextAvailableRenderId();
+        BinnieCore.proxy.registerBlockRenderer(new RendererBotany());
+    }
 
-	@Override
-	public void postInit() {
-		FlowerManager.flowerRegistry.registerAcceptableFlower(Botany.flower, "flowersVanilla");
-		RecipeManagers.carpenterManager.addRecipe(
-			100,
-			Binnie.Liquid.getLiquidStack("water", 2000),
-			null,
-			new ItemStack(Botany.database),
-			"X#X", "YEY", "RDR",
-			'#', Blocks.glass_pane,
-			'X', Items.gold_ingot,
-			'Y', Items.gold_nugget,
-			'R', Items.redstone,
-			'D', Items.diamond,
-			'E', Items.emerald
-		);
-	}
+    @Override
+    public void postInit() {
+        FlowerManager.flowerRegistry.registerAcceptableFlower(Botany.flower, "flowersVanilla");
+        RecipeManagers.carpenterManager.addRecipe(
+                100,
+                Binnie.Liquid.getLiquidStack("water", 2000),
+                null,
+                new ItemStack(Botany.database),
+                "X#X",
+                "YEY",
+                "RDR",
+                '#',
+                Blocks.glass_pane,
+                'X',
+                Items.gold_ingot,
+                'Y',
+                Items.gold_nugget,
+                'R',
+                Items.redstone,
+                'D',
+                Items.diamond,
+                'E',
+                Items.emerald);
+    }
 }
