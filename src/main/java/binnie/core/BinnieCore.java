@@ -1,7 +1,5 @@
 package binnie.core;
 
-import static binnie.core.BinnieCore.*;
-
 import binnie.Binnie;
 import binnie.core.block.MultipassBlockRenderer;
 import binnie.core.block.TileEntityMetadata;
@@ -47,6 +45,8 @@ import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.client.event.TextureStitchEvent;
+
+import static binnie.core.BinnieCore.*;
 
 @Mod(
         modid = "BinnieCore",
