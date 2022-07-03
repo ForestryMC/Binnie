@@ -46,12 +46,10 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.client.event.TextureStitchEvent;
 
-import static binnie.core.BinnieCore.*;
-
 @Mod(
         modid = "BinnieCore",
         name = "Binnie Core",
-        version = VERSION,
+        version = BinnieCore.VERSION,
         useMetadata = true,
         dependencies = "after:Forestry@[4.2,)")
 public class BinnieCore extends AbstractMod {
