@@ -6,13 +6,13 @@ import net.minecraftforge.fluids.IFluidHandler;
 import net.minecraftforge.fluids.IFluidTank;
 
 public interface ITankMachine extends IFluidHandler, IValidatedTankContainer {
-	TankInfo[] getTankInfos();
+    TankInfo[] getTankInfos();
 
-	IFluidTank[] getTanks();
+    IFluidTank[] getTanks();
 
-	TankSlot addTank(int index, String name, int capacity);
+    TankSlot addTank(int index, String name, int capacity);
 
-	IFluidTank getTank(int index);
+    IFluidTank getTank(int index);
 
-	TankSlot getTankSlot(int slot);
+    TankSlot getTankSlot(int slot);
 }

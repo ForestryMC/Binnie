@@ -11,29 +11,29 @@ import binnie.genetics.machine.lab.LabMachinePackage;
 import net.minecraft.item.ItemStack;
 
 public enum LaboratoryMachine implements IMachineType {
-	LabMachine(LabMachinePackage.class),
-	Analyser(AnalyserPackage.class),
-	Incubator(IncubatorPackage.class),
-	Genepool(GenepoolPackage.class),
-	Acclimatiser(AcclimatiserPackage.class);
+    LabMachine(LabMachinePackage.class),
+    Analyser(AnalyserPackage.class),
+    Incubator(IncubatorPackage.class),
+    Genepool(GenepoolPackage.class),
+    Acclimatiser(AcclimatiserPackage.class);
 
-	private Class<? extends MachinePackage> clss;
+    private Class<? extends MachinePackage> clss;
 
-	LaboratoryMachine(Class<? extends MachinePackage> clss) {
-		this.clss = clss;
-	}
+    LaboratoryMachine(Class<? extends MachinePackage> clss) {
+        this.clss = clss;
+    }
 
-	@Override
-	public Class<? extends MachinePackage> getPackageClass() {
-		return clss;
-	}
+    @Override
+    public Class<? extends MachinePackage> getPackageClass() {
+        return clss;
+    }
 
-	@Override
-	public boolean isActive() {
-		return true;
-	}
+    @Override
+    public boolean isActive() {
+        return true;
+    }
 
-	public ItemStack get(int i) {
-		return new ItemStack(Genetics.packageLabMachine.getBlock(), i, ordinal());
-	}
+    public ItemStack get(int i) {
+        return new ItemStack(Genetics.packageLabMachine.getBlock(), i, ordinal());
+    }
 }

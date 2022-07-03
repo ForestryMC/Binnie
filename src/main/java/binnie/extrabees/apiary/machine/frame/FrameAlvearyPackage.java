@@ -9,16 +9,16 @@ import binnie.extrabees.core.ExtraBeeGUID;
 import binnie.extrabees.core.ExtraBeeTexture;
 
 public class FrameAlvearyPackage extends AlvearyMachine.AlvearyPackage implements IMachineInformation {
-	public FrameAlvearyPackage() {
-		super("frame", ExtraBeeTexture.AlvearyFrame.getTexture(), false);
-	}
+    public FrameAlvearyPackage() {
+        super("frame", ExtraBeeTexture.AlvearyFrame.getTexture(), false);
+    }
 
-	@Override
-	public void createMachine(Machine machine) {
-		new ComponentExtraBeeGUI(machine, ExtraBeeGUID.AlvearyFrame);
-		ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
-		inventory.addSlot(AlvearyFrame.SLOT_FRAME, "frame");
-		inventory.getSlot(AlvearyFrame.SLOT_FRAME).setValidator(new FrameSlotValidator());
-		new FrameComponentModifier(machine);
-	}
+    @Override
+    public void createMachine(Machine machine) {
+        new ComponentExtraBeeGUI(machine, ExtraBeeGUID.AlvearyFrame);
+        ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
+        inventory.addSlot(AlvearyFrame.SLOT_FRAME, "frame");
+        inventory.getSlot(AlvearyFrame.SLOT_FRAME).setValidator(new FrameSlotValidator());
+        new FrameComponentModifier(machine);
+    }
 }

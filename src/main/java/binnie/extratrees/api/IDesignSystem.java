@@ -5,21 +5,21 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
 public interface IDesignSystem {
-	IIcon getPrimaryIcon(IPattern pattern);
+    IIcon getPrimaryIcon(IPattern pattern);
 
-	IIcon getSecondaryIcon(IPattern pattern);
+    IIcon getSecondaryIcon(IPattern pattern);
 
-	void registerIcons(IIconRegister register);
+    void registerIcons(IIconRegister register);
 
-	IDesignMaterial getDefaultMaterial();
+    IDesignMaterial getDefaultMaterial();
 
-	IDesignMaterial getMaterial(int id);
+    IDesignMaterial getMaterial(int id);
 
-	int getMaterialIndex(IDesignMaterial wood);
+    int getMaterialIndex(IDesignMaterial wood);
 
-	IDesignMaterial getDefaultMaterial2();
+    IDesignMaterial getDefaultMaterial2();
 
-	ItemStack getAdhesive();
+    ItemStack getAdhesive();
 
-	IDesignMaterial getMaterial(ItemStack stack);
+    IDesignMaterial getMaterial(ItemStack stack);
 }

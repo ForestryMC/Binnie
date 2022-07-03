@@ -3,93 +3,139 @@ package binnie.genetics.machine.incubator;
 import binnie.core.machines.MachineUtil;
 import binnie.core.machines.transfer.TransferRequest;
 import binnie.genetics.api.IIncubatorRecipe;
+import java.util.Random;
+import javax.annotation.Nullable;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
-import java.util.Random;
+public class IncubatorRecipe implements IIncubatorRecipe {
 
-public abstract class IncubatorRecipe implements IIncubatorRecipe {
-	protected FluidStack input;
-	protected FluidStack output;
-	protected float lossChance;
-	protected ItemStack outputStack;
-	protected float tickChance;
+    private final FluidStack input;
 
-	public IncubatorRecipe(FluidStack input, FluidStack output, float lossChance) {
-		this(input, output, lossChance, 1.0f);
-	}
+    @Nullable
+    private final FluidStack output;
 
-	public IncubatorRecipe(FluidStack input, FluidStack output, float lossChance, float chance) {
-		this.input = input;
-		this.output = output;
-		this.lossChance = lossChance;
-		tickChance = chance;
-	}
+    private final float lossChance;
+    private final float tickChance;
+    private final ItemStack inputStack;
 
-	@Override
-	public float getChance() {
-		return tickChance;
-	}
+    @Nullable
+    private ItemStack outputStack;
 
-	@Override
-	public boolean isInputLiquid(FluidStack liquid) {
-		return liquid != null && input.isFluidEqual(liquid);
-	}
+    public IncubatorRecipe(
+            ItemStack inputStack, final FluidStack input, @Nullable final FluidStack output, final float lossChance) {
+        this(inputStack, input, output, lossChance, 1.0f);
+    }
 
-	@Override
-	public boolean isInputLiquidSufficient(FluidStack liquid) {
-		return liquid != null && liquid.amount >= 500;
-	}
+    public IncubatorRecipe(
+            ItemStack inputStack,
+            final FluidStack input,
+            @Nullable final FluidStack output,
+            final float lossChance,
+            final float chance) {
+        this.inputStack = inputStack;
+        this.outputStack = null;
+        this.input = input;
+        this.output = output;
+        this.lossChance = lossChance;
+        this.tickChance = chance;
+    }
 
-	@Override
-	public void doTask(MachineUtil machine) {
-		machine.drainTank(Incubator.TANK_INPUT, input.amount);
-		if (output != null) {
-			machine.fillTank(Incubator.TANK_OUTPUT, output);
-		}
+    @Override
+    public float getChance() {
+        return this.tickChance;
+    }
 
-		outputStack = getOutputStack(machine);
-		if (outputStack != null) {
-			ItemStack output = outputStack.copy();
-			TransferRequest product = new TransferRequest(output, machine.getInventory())
-				.setTargetSlots(Incubator.SLOT_OUTPUT)
-				.ignoreValidation();
-			product.transfer(true);
-		}
+    @Override
+    public float getLossChance() {
+        return lossChance;
+    }
 
-		Random rand = machine.getRandom();
-		if (rand.nextFloat() < lossChance) {
-			machine.decreaseStack(Incubator.SLOT_INCUBATOR, 1);
-		}
-	}
+    @Override
+    public boolean isInputLiquid(final FluidStack fluid) {
+        return fluid != null && this.input.isFluidEqual(fluid);
+    }
 
-	public IncubatorRecipe setOutputStack(ItemStack stack) {
-		outputStack = stack;
-		return this;
-	}
+    @Override
+    public boolean isInputLiquidSufficient(final FluidStack fluid) {
+        return fluid != null && fluid.amount >= this.input.amount;
+    }
 
-	protected ItemStack getOutputStack(MachineUtil util) {
-		return outputStack;
-	}
+    @Override
+    public boolean isItemStack(ItemStack stack) {
+        return false;
+    }
 
-	@Override
-	public boolean roomForOutput(MachineUtil machine) {
-		if (output != null && !machine.isTankEmpty(Incubator.TANK_OUTPUT)) {
-			if (!machine.getFluid(Incubator.TANK_OUTPUT).isFluidEqual(output) ||
-				!machine.spaceInTank(Incubator.TANK_OUTPUT, output.amount)) {
-				return false;
-			}
-		}
+    @Override
+    public FluidStack getInput() {
+        return input;
+    }
 
-		ItemStack outputStack = getOutputStack(machine);
-		if (outputStack == null) {
-			return true;
-		}
+    @Override
+    @Nullable
+    public FluidStack getOutput() {
+        return output;
+    }
 
-		ItemStack output = outputStack.copy();
-		TransferRequest product = new TransferRequest(output, machine.getInventory())
-			.setTargetSlots(Incubator.SLOT_OUTPUT)
-			.ignoreValidation();
-		return product.transfer(false) == null;
-	}
+    @Override
+    public ItemStack getInputStack() {
+        return inputStack;
+    }
+
+    @Override
+    public ItemStack getExpectedOutput() {
+        return outputStack;
+    }
+
+    @Override
+    public void doTask(final MachineUtil machine) {
+        machine.drainTank(Incubator.TANK_INPUT, this.input.amount);
+        if (this.output != null) {
+            machine.fillTank(Incubator.TANK_OUTPUT, this.output);
+        }
+        this.outputStack = this.getOutputStack(machine);
+        if (this.outputStack != null) {
+            final ItemStack output = this.outputStack.copy();
+            final TransferRequest product = new TransferRequest(output, machine.getInventory())
+                    .setTargetSlots(Incubator.SLOT_OUTPUT)
+                    .ignoreValidation();
+            product.transfer(true);
+        }
+        final Random rand = machine.getRandom();
+        if (rand.nextFloat() < this.lossChance) {
+            machine.decreaseStack(Incubator.SLOT_INCUBATOR, 1);
+        }
+    }
+
+    public IncubatorRecipe setOutputStack(final ItemStack stack) {
+        this.outputStack = stack;
+        return this;
+    }
+
+    protected ItemStack getOutputStack(final MachineUtil util) {
+        return getExpectedOutput();
+    }
+
+    @Override
+    public boolean roomForOutput(final MachineUtil machine) {
+        if (this.output != null && !machine.isTankEmpty(1)) {
+            if (!this.output.isFluidEqual(machine.getFluid(Incubator.TANK_OUTPUT))) {
+                return false;
+            }
+            if (!machine.spaceInTank(Incubator.TANK_OUTPUT, this.output.amount)) {
+                return false;
+            }
+        }
+
+        ItemStack outputStack = getOutputStack(machine);
+        if (outputStack == null) {
+            return true;
+        }
+
+        ItemStack output = outputStack.copy();
+        TransferRequest product = new TransferRequest(output, machine.getInventory())
+                .setTargetSlots(Incubator.SLOT_OUTPUT)
+                .ignoreValidation();
+        return product.transfer(false) == null;
+    }
 }

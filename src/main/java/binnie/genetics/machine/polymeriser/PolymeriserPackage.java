@@ -20,56 +20,57 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 
 public class PolymeriserPackage extends PackageGeneticBase implements IMachineInformation {
-	public PolymeriserPackage() {
-		super("polymeriser", GeneticsTexture.Polymeriser, 0x00e5c3, true);
-	}
+    public PolymeriserPackage() {
+        super("polymeriser", GeneticsTexture.Polymeriser, 0x00e5c3, true);
+    }
 
-	@Override
-	public void createMachine(Machine machine) {
-		new ComponentGeneticGUI(machine, GeneticsGUI.Replicator);
-		ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
-		InventorySlot goldSlot = inventory.addSlot(Polymeriser.SLOT_GOLD, "catalyst");
-		goldSlot.setValidator(new SlotValidator.Item(new ItemStack(Items.gold_nugget, 1), ModuleMachine.IconNugget));
-		goldSlot.forbidExtraction();
+    @Override
+    public void createMachine(Machine machine) {
+        new ComponentGeneticGUI(machine, GeneticsGUI.Replicator);
+        ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
+        InventorySlot goldSlot = inventory.addSlot(Polymeriser.SLOT_GOLD, "catalyst");
+        goldSlot.setValidator(new SlotValidator.Item(new ItemStack(Items.gold_nugget, 1), ModuleMachine.IconNugget));
+        goldSlot.forbidExtraction();
 
-		InventorySlot serumSlot = inventory.addSlot(Polymeriser.SLOT_SERUM, "process");
-		serumSlot.setValidator(new UnfilledSerumSlotValidator());
-		serumSlot.forbidInteraction();
-		serumSlot.setReadOnly();
+        InventorySlot serumSlot = inventory.addSlot(Polymeriser.SLOT_SERUM, "process");
+        serumSlot.setValidator(new UnfilledSerumSlotValidator());
+        serumSlot.forbidInteraction();
+        serumSlot.setReadOnly();
 
-		for (InventorySlot slot : inventory.addSlotArray(Polymeriser.SLOT_SERUM_RESERVE, "input")) {
-			slot.setValidator(new UnfilledSerumSlotValidator());
-			slot.forbidExtraction();
-		}
+        for (InventorySlot slot : inventory.addSlotArray(Polymeriser.SLOT_SERUM_RESERVE, "input")) {
+            slot.setValidator(new UnfilledSerumSlotValidator());
+            slot.forbidExtraction();
+        }
 
-		for (InventorySlot slot : inventory.addSlotArray(Polymeriser.SLOT_SERUM_FINISHED, "output")) {
-			slot.setReadOnly();
-		}
+        for (InventorySlot slot : inventory.addSlotArray(Polymeriser.SLOT_SERUM_FINISHED, "output")) {
+            slot.setReadOnly();
+        }
 
-		ComponentInventoryTransfer transfer = new ComponentInventoryTransfer(machine);
-		transfer.addRestock(Polymeriser.SLOT_SERUM_RESERVE, Polymeriser.SLOT_SERUM, 1);
-		transfer.addStorage(Polymeriser.SLOT_SERUM, Polymeriser.SLOT_SERUM_FINISHED, new ComponentInventoryTransfer.Condition() {
-			@Override
-			public boolean fufilled(ItemStack stack) {
-				return !stack.isItemDamaged();
-			}
-		});
+        ComponentInventoryTransfer transfer = new ComponentInventoryTransfer(machine);
+        transfer.addRestock(Polymeriser.SLOT_SERUM_RESERVE, Polymeriser.SLOT_SERUM, 1);
+        transfer.addStorage(
+                Polymeriser.SLOT_SERUM, Polymeriser.SLOT_SERUM_FINISHED, new ComponentInventoryTransfer.Condition() {
+                    @Override
+                    public boolean fufilled(ItemStack stack) {
+                        return !stack.isItemDamaged();
+                    }
+                });
 
-		ComponentTankContainer tank = new ComponentTankContainer(machine);
-		tank.addTank(Polymeriser.TANK_BACTERIA, "input", Polymeriser.BACTERIA_TANK_CAPACITY);
-		tank.getTankSlot(Polymeriser.TANK_BACTERIA).setValidator(new PolymerisingBacteriaValidator());
+        ComponentTankContainer tank = new ComponentTankContainer(machine);
+        tank.addTank(Polymeriser.TANK_BACTERIA, "input", Polymeriser.BACTERIA_TANK_CAPACITY);
+        tank.getTankSlot(Polymeriser.TANK_BACTERIA).setValidator(new PolymerisingBacteriaValidator());
 
-		tank.addTank(Polymeriser.TANK_DNA, "input", Polymeriser.DNA_TANK_CAPACITY);
-		tank.getTankSlot(Polymeriser.TANK_DNA).setValidator(new DnaValidator());
+        tank.addTank(Polymeriser.TANK_DNA, "input", Polymeriser.DNA_TANK_CAPACITY);
+        tank.getTankSlot(Polymeriser.TANK_DNA).setValidator(new DnaValidator());
 
-		new ComponentChargedSlots(machine).addCharge(Polymeriser.SLOT_GOLD);
-		new ComponentPowerReceptor(machine, Polymeriser.POWER_CAPACITY);
-		new PolymeriserComponentLogic(machine);
-		new PolymeriserComponentFX(machine);
-	}
+        new ComponentChargedSlots(machine).addCharge(Polymeriser.SLOT_GOLD);
+        new ComponentPowerReceptor(machine, Polymeriser.POWER_CAPACITY);
+        new PolymeriserComponentLogic(machine);
+        new PolymeriserComponentFX(machine);
+    }
 
-	@Override
-	public TileEntity createTileEntity() {
-		return new TileEntityMachine(this);
-	}
+    @Override
+    public TileEntity createTileEntity() {
+        return new TileEntityMachine(this);
+    }
 }

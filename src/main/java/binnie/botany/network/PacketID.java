@@ -17,74 +17,76 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IChatComponent;
 
 public enum PacketID implements IPacketID {
-	FieldKit,
-	FlowerUpdate;
+    FieldKit,
+    FlowerUpdate;
 
-	@Override
-	public void onMessage(MessageBinnie message, MessageContext context) {
-		if (this == PacketID.FieldKit && context.side == Side.CLIENT) {
-			onFieldKitPacket(message);
-		} else if (this == PacketID.FlowerUpdate) {
-			onFlowerUpdatePacket(message);
-		}
-	}
+    @Override
+    public void onMessage(MessageBinnie message, MessageContext context) {
+        if (this == PacketID.FieldKit && context.side == Side.CLIENT) {
+            onFieldKitPacket(message);
+        } else if (this == PacketID.FlowerUpdate) {
+            onFlowerUpdatePacket(message);
+        }
+    }
 
-	private void onFlowerUpdatePacket(MessageBinnie message) {
-		MessageFlowerUpdate packet = new MessageFlowerUpdate(message);
-		TileEntity tile = packet.getTileEntity(BinnieCore.proxy.getWorld());
-		if (tile instanceof TileEntityFlower) {
-			((TileEntityFlower) tile).setRender(packet.render);
-		}
-	}
+    private void onFlowerUpdatePacket(MessageBinnie message) {
+        MessageFlowerUpdate packet = new MessageFlowerUpdate(message);
+        TileEntity tile = packet.getTileEntity(BinnieCore.proxy.getWorld());
+        if (tile instanceof TileEntityFlower) {
+            ((TileEntityFlower) tile).setRender(packet.render);
+        }
+    }
 
-	private void onFieldKitPacket(MessageBinnie message) {
-		MessageNBT packet = new MessageNBT(message);
-		NBTTagCompound data = packet.getTagCompound();
-		EntityPlayer player = BinnieCore.proxy.getPlayer();
-		String info = "";
-		if (data.hasNoTags()) {
-			info += "Flower has not been discovered by you. Breed this flower yourself to discover.";
-		} else {
-			IAlleleFlowerSpecies primary = (IAlleleFlowerSpecies) AlleleManager.alleleRegistry.getAllele(data.getString("Species"));
-			IAlleleFlowerSpecies secondary = (IAlleleFlowerSpecies) AlleleManager.alleleRegistry.getAllele(data.getString("Species2"));
-			float age = data.getFloat("Age");
-			EnumFlowerColor color1 = EnumFlowerColor.get(data.getShort("Colour"));
-			EnumFlowerColor color2 = EnumFlowerColor.get(data.getShort("Colour2"));
-			if (primary == null || secondary == null) {
-				return;
-			}
+    private void onFieldKitPacket(MessageBinnie message) {
+        MessageNBT packet = new MessageNBT(message);
+        NBTTagCompound data = packet.getTagCompound();
+        EntityPlayer player = BinnieCore.proxy.getPlayer();
+        String info = "";
+        if (data.hasNoTags()) {
+            info += "Flower has not been discovered by you. Breed this flower yourself to discover.";
+        } else {
+            IAlleleFlowerSpecies primary =
+                    (IAlleleFlowerSpecies) AlleleManager.alleleRegistry.getAllele(data.getString("Species"));
+            IAlleleFlowerSpecies secondary =
+                    (IAlleleFlowerSpecies) AlleleManager.alleleRegistry.getAllele(data.getString("Species2"));
+            float age = data.getFloat("Age");
+            EnumFlowerColor color1 = EnumFlowerColor.get(data.getShort("Colour"));
+            EnumFlowerColor color2 = EnumFlowerColor.get(data.getShort("Colour2"));
+            if (primary == null || secondary == null) {
+                return;
+            }
 
-			info += "A";
-			if (age == 0.0f) {
-				info += "";
-			} else if (age < 0.25f) {
-				info += " Young";
-			} else if (age < 0.75f) {
-				info += " Mature";
-			} else {
-				info += " Old";
-			}
+            info += "A";
+            if (age == 0.0f) {
+                info += "";
+            } else if (age < 0.25f) {
+                info += " Young";
+            } else if (age < 0.75f) {
+                info += " Mature";
+            } else {
+                info += " Old";
+            }
 
-			if (color1 == color2) {
-				info = info + " " + color1.getName();
-			} else {
-				info = info + " " + color1.getName() + " & " + color2.getName();
-			}
+            if (color1 == color2) {
+                info = info + " " + color1.getName();
+            } else {
+                info = info + " " + color1.getName() + " & " + color2.getName();
+            }
 
-			if (primary == secondary) {
-				info = info + " " + primary.getName();
-			} else {
-				info = info + " " + primary.getName() + "-" + secondary.getName() + " Hybrid";
-			}
+            if (primary == secondary) {
+                info = info + " " + primary.getName();
+            } else {
+                info = info + " " + primary.getName() + "-" + secondary.getName() + " Hybrid";
+            }
 
-			if (age == 0.0f) {
-				info += " Germling";
-			}
-			if (data.getBoolean("Wilting")) {
-				info += ". Shame it is Wilting!";
-			}
-		}
-		IChatComponent chat = new ChatComponentText(info);
-		player.addChatMessage(chat);
-	}
+            if (age == 0.0f) {
+                info += " Germling";
+            }
+            if (data.getBoolean("Wilting")) {
+                info += ". Shame it is Wilting!";
+            }
+        }
+        IChatComponent chat = new ChatComponentText(info);
+        player.addChatMessage(chat);
+    }
 }

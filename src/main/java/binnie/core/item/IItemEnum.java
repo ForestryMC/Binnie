@@ -3,11 +3,11 @@ package binnie.core.item;
 import net.minecraft.item.ItemStack;
 
 public interface IItemEnum {
-	boolean isActive();
+    boolean isActive();
 
-	String getName(ItemStack itemStack);
+    String getName(ItemStack itemStack);
 
-	int ordinal();
+    int ordinal();
 
-	ItemStack get(int count);
+    ItemStack get(int count);
 }

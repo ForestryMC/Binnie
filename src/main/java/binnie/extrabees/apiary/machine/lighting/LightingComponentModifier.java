@@ -6,12 +6,12 @@ import forestry.api.apiculture.IBeeListener;
 import forestry.api.apiculture.IBeeModifier;
 
 public class LightingComponentModifier extends ComponentBeeModifier implements IBeeModifier, IBeeListener {
-	public LightingComponentModifier(Machine machine) {
-		super(machine);
-	}
+    public LightingComponentModifier(Machine machine) {
+        super(machine);
+    }
 
-	@Override
-	public boolean isSelfLighted() {
-		return true;
-	}
+    @Override
+    public boolean isSelfLighted() {
+        return true;
+    }
 }

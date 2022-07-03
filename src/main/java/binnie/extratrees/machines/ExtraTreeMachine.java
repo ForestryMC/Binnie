@@ -24,70 +24,71 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 public enum ExtraTreeMachine implements IMachineType {
-	Lumbermill(LumbermillPackage.class),
-	Woodworker(WoodworkerPackage.class),
-	Panelworker(PanelworkerPackage.class),
-	Glassworker(GlassworkerPackage.class),
-	Tileworker(TileworkerPackage.class);
+    Lumbermill(LumbermillPackage.class),
+    Woodworker(WoodworkerPackage.class),
+    Panelworker(PanelworkerPackage.class),
+    Glassworker(GlassworkerPackage.class),
+    Tileworker(TileworkerPackage.class);
 
-	protected Class<? extends MachinePackage> cls;
+    protected Class<? extends MachinePackage> cls;
 
-	ExtraTreeMachine(Class<? extends MachinePackage> cls) {
-		this.cls = cls;
-	}
+    ExtraTreeMachine(Class<? extends MachinePackage> cls) {
+        this.cls = cls;
+    }
 
-	@Override
-	public Class<? extends MachinePackage> getPackageClass() {
-		return cls;
-	}
+    @Override
+    public Class<? extends MachinePackage> getPackageClass() {
+        return cls;
+    }
 
-	@Override
-	public boolean isActive() {
-		if (this == ExtraTreeMachine.Tileworker) {
-			return BinnieCore.isBotanyActive();
-		}
-		return true;
-	}
+    @Override
+    public boolean isActive() {
+        if (this == ExtraTreeMachine.Tileworker) {
+            return BinnieCore.isBotanyActive();
+        }
+        return true;
+    }
 
-	public ItemStack get(int i) {
-		return new ItemStack(ExtraTrees.blockMachine, i, ordinal());
-	}
+    public ItemStack get(int i) {
+        return new ItemStack(ExtraTrees.blockMachine, i, ordinal());
+    }
 
-	public static class ComponentExtraTreeGUI extends MachineComponent implements IInteraction.RightClick {
-		protected ExtraTreesGUID id;
+    public static class ComponentExtraTreeGUI extends MachineComponent implements IInteraction.RightClick {
+        protected ExtraTreesGUID id;
 
-		public ComponentExtraTreeGUI(Machine machine, ExtraTreesGUID id) {
-			super(machine);
-			this.id = id;
-		}
+        public ComponentExtraTreeGUI(Machine machine, ExtraTreesGUID id) {
+            super(machine);
+            this.id = id;
+        }
 
-		@Override
-		public void onRightClick(World world, EntityPlayer player, int x, int y, int z) {
-			ExtraTrees.proxy.openGui(id, player, x, y, z);
-		}
-	}
+        @Override
+        public void onRightClick(World world, EntityPlayer player, int x, int y, int z) {
+            ExtraTrees.proxy.openGui(id, player, x, y, z);
+        }
+    }
 
-	public abstract static class PackageExtraTreeMachine extends MachinePackage {
-		protected BinnieResource textureName;
+    public abstract static class PackageExtraTreeMachine extends MachinePackage {
+        protected BinnieResource textureName;
 
-		protected PackageExtraTreeMachine(String uid, String textureName, boolean powered) {
-			super(uid, powered);
-			this.textureName = Binnie.Resource.getFile(ExtraTrees.instance, ResourceType.Tile, textureName);
-		}
+        protected PackageExtraTreeMachine(String uid, String textureName, boolean powered) {
+            super(uid, powered);
+            this.textureName = Binnie.Resource.getFile(ExtraTrees.instance, ResourceType.Tile, textureName);
+        }
 
-		protected PackageExtraTreeMachine(String uid, BinnieResource textureName, boolean powered) {
-			super(uid, powered);
-			this.textureName = textureName;
-		}
+        protected PackageExtraTreeMachine(String uid, BinnieResource textureName, boolean powered) {
+            super(uid, powered);
+            this.textureName = textureName;
+        }
 
-		@Override
-		public TileEntity createTileEntity() {
-			return new TileEntityMachine(this);
-		}
+        @Override
+        public TileEntity createTileEntity() {
+            return new TileEntityMachine(this);
+        }
 
-		@Override
-		public void renderMachine(Machine machine, double x, double y, double z, float partialTick, RenderBlocks renderer) {
-			MachineRendererForestry.renderMachine(textureName.getShortPath(), x, y, z, partialTick);
-		}
-	}
+        @Override
+        public void renderMachine(
+                Machine machine, double x, double y, double z, float partialTick, RenderBlocks renderer) {
+            MachineRendererForestry.renderMachine(textureName.getShortPath(), x, y, z, partialTick);
+        }
+    }
 }

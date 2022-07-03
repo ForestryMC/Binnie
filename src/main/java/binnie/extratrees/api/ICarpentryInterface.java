@@ -1,32 +1,31 @@
 package binnie.extratrees.api;
 
-import net.minecraft.item.ItemStack;
-
 import java.util.Collection;
 import java.util.List;
+import net.minecraft.item.ItemStack;
 
 public interface ICarpentryInterface {
-	boolean registerCarpentryWood(int index, IDesignMaterial wood);
+    boolean registerCarpentryWood(int index, IDesignMaterial wood);
 
-	int getCarpentryWoodIndex(IDesignMaterial wood);
+    int getCarpentryWoodIndex(IDesignMaterial wood);
 
-	IDesignMaterial getWoodMaterial(int index);
+    IDesignMaterial getWoodMaterial(int index);
 
-	boolean registerDesign(int index, IDesign wood);
+    boolean registerDesign(int index, IDesign wood);
 
-	int getDesignIndex(IDesign wood);
+    int getDesignIndex(IDesign wood);
 
-	IDesign getDesign(int p0);
+    IDesign getDesign(int p0);
 
-	ILayout getLayout(IPattern pattern, boolean inverted);
+    ILayout getLayout(IPattern pattern, boolean inverted);
 
-	IDesignMaterial getWoodMaterial(ItemStack stack);
+    IDesignMaterial getWoodMaterial(ItemStack stack);
 
-	boolean registerDesignCategory(IDesignCategory category);
+    boolean registerDesignCategory(IDesignCategory category);
 
-	IDesignCategory getDesignCategory(String id);
+    IDesignCategory getDesignCategory(String id);
 
-	Collection<IDesignCategory> getAllDesignCategories();
+    Collection<IDesignCategory> getAllDesignCategories();
 
-	List<IDesign> getSortedDesigns();
+    List<IDesign> getSortedDesigns();
 }

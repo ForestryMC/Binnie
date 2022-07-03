@@ -266,3 +266,12 @@ genetics.gui.analyst.wood.flammable=Flammable
 genetics.gui.analyst.wood.logs=Logs
 genetics.gui.analyst.wood.products=Refined Products
 genetics.gui.analyst.wood.noFruits=This tree has no\nfruits or nuts
+
+genetics.nei.tip.loss=Loss:
+genetics.nei.tip.noConsume=Not Be Consumed
+genetics.nei.tip.effect=Effect: %s
+genetics.nei.tip.temperature=Temperature
+genetics.nei.tip.humidity=Humidity
+genetics.nei.tip.processSpeed=%dx Processing Speed
+genetics.nei.tip.rf=%dx Processing Speed
+genetics.nei.tip.databaseDesc=Open the database and pick up an empty serum. Click the serum on Sequenced gene to apply.

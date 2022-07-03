@@ -18,75 +18,76 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class ControlGene extends Control implements IControlValue<IGene>, ITooltip {
-	protected IGene gene;
+    protected IGene gene;
 
-	protected ControlGene(IWidget parent, float x, float y) {
-		super(parent, x, y, 16.0f, 16.0f);
-		addAttribute(WidgetAttribute.MOUSE_OVER);
-		addSelfEventHandler(new MouseDownHandler());
-	}
+    protected ControlGene(IWidget parent, float x, float y) {
+        super(parent, x, y, 16.0f, 16.0f);
+        addAttribute(WidgetAttribute.MOUSE_OVER);
+        addSelfEventHandler(new MouseDownHandler());
+    }
 
-	@Override
-	public void getTooltip(Tooltip tooltip) {
-		String cName = Binnie.Genetics.getSystem(gene.getSpeciesRoot()).getChromosomeName(gene.getChromosome());
-		tooltip.add(cName + ": " + gene.getName());
-		if (isMouseOver() && canFill(Window.get(this).getHeldItemStack())) {
-			tooltip.add("Left click to assign gene");
-			IGene existingGene = Engineering.getGene(Window.get(this).getHeldItemStack(), gene.getChromosome().ordinal());
-			if (existingGene == null) {
-				return;
-			}
+    @Override
+    public void getTooltip(Tooltip tooltip) {
+        String cName = Binnie.Genetics.getSystem(gene.getSpeciesRoot()).getChromosomeName(gene.getChromosome());
+        tooltip.add(cName + ": " + gene.getName());
+        if (isMouseOver() && canFill(Window.get(this).getHeldItemStack())) {
+            tooltip.add("Left click to assign gene");
+            IGene existingGene = Engineering.getGene(
+                    Window.get(this).getHeldItemStack(), gene.getChromosome().ordinal());
+            if (existingGene == null) {
+                return;
+            }
 
-			String dName = Binnie.Genetics.getSystem(gene.getSpeciesRoot()).getChromosomeName(gene.getChromosome());
-			tooltip.add("Will replace " + dName + ": " + existingGene.getName());
-		}
-	}
+            String dName = Binnie.Genetics.getSystem(gene.getSpeciesRoot()).getChromosomeName(gene.getChromosome());
+            tooltip.add("Will replace " + dName + ": " + existingGene.getName());
+        }
+    }
 
-	private boolean canFill(ItemStack stack) {
-		return stack != null
-			&& stack.stackSize == 1
-			&& Engineering.isGeneAcceptor(stack)
-			&& Engineering.canAcceptGene(stack, getValue());
-	}
+    private boolean canFill(ItemStack stack) {
+        return stack != null
+                && stack.stackSize == 1
+                && Engineering.isGeneAcceptor(stack)
+                && Engineering.canAcceptGene(stack, getValue());
+    }
 
-	@Override
-	public IGene getValue() {
-		return gene;
-	}
+    @Override
+    public IGene getValue() {
+        return gene;
+    }
 
-	@Override
-	public void setValue(IGene value) {
-		gene = value;
-	}
+    @Override
+    public void setValue(IGene value) {
+        gene = value;
+    }
 
-	@Override
-	public void onRenderForeground() {
-		// ignored
-	}
+    @Override
+    public void onRenderForeground() {
+        // ignored
+    }
 
-	@Override
-	public void onRenderBackground() {
-		if (isMouseOver() && canFill(Window.get(this).getHeldItemStack())) {
-			CraftGUI.render.solid(getArea(), 0xffffffff);
-			CraftGUI.render.solid(getArea().inset(1), 0xff444444);
-		}
+    @Override
+    public void onRenderBackground() {
+        if (isMouseOver() && canFill(Window.get(this).getHeldItemStack())) {
+            CraftGUI.render.solid(getArea(), 0xffffffff);
+            CraftGUI.render.solid(getArea().inset(1), 0xff444444);
+        }
 
-		CraftGUI.render.color(0xffffffff);
-		CraftGUI.render.iconItem(IPoint.ZERO, GeneticsTexture.dnaIcon.getIcon());
-	}
+        CraftGUI.render.color(0xffffffff);
+        CraftGUI.render.iconItem(IPoint.ZERO, GeneticsTexture.dnaIcon.getIcon());
+    }
 
-	private class MouseDownHandler extends EventMouse.Down.Handler {
-		@Override
-		public void onEvent(EventMouse.Down event) {
-			if (!canFill(Window.get(getWidget()).getHeldItemStack())) {
-				return;
-			}
+    private class MouseDownHandler extends EventMouse.Down.Handler {
+        @Override
+        public void onEvent(EventMouse.Down event) {
+            if (!canFill(Window.get(getWidget()).getHeldItemStack())) {
+                return;
+            }
 
-			NBTTagCompound action = new NBTTagCompound();
-			NBTTagCompound geneNBT = new NBTTagCompound();
-			getValue().writeToNBT(geneNBT);
-			action.setTag("gene", geneNBT);
-			Window.get(getWidget()).sendClientAction("gene-select", action);
-		}
-	}
+            NBTTagCompound action = new NBTTagCompound();
+            NBTTagCompound geneNBT = new NBTTagCompound();
+            getValue().writeToNBT(geneNBT);
+            action.setTag("gene", geneNBT);
+            Window.get(getWidget()).sendClientAction("gene-select", action);
+        }
+    }
 }

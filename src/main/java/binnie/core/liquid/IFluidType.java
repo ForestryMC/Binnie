@@ -5,23 +5,23 @@ import net.minecraft.util.IIcon;
 import net.minecraftforge.fluids.FluidStack;
 
 public interface IFluidType {
-	IIcon getIcon();
+    IIcon getIcon();
 
-	void registerIcon(IIconRegister register);
+    void registerIcon(IIconRegister register);
 
-	String getName();
+    String getName();
 
-	String getIdentifier();
+    String getIdentifier();
 
-	FluidStack get(int amount);
+    FluidStack get(int amount);
 
-	int getColor();
+    int getColor();
 
-	int getContainerColor();
+    int getContainerColor();
 
-	int getTransparency();
+    int getTransparency();
 
-	boolean canPlaceIn(FluidContainer container);
+    boolean canPlaceIn(FluidContainer container);
 
-	boolean showInCreative(FluidContainer container);
+    boolean showInCreative(FluidContainer container);
 }

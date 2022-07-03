@@ -13,36 +13,36 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 
 public class WindowAlvearyFrame extends Window {
-	protected Machine machine;
-	protected ControlPlayerInventory playerInventory;
+    protected Machine machine;
+    protected ControlPlayerInventory playerInventory;
 
-	public WindowAlvearyFrame(EntityPlayer player, IInventory inventory, Side side) {
-		super(176.0f, 144.0f, player, inventory, side);
-		machine = ((TileEntityMachine) inventory).getMachine();
-	}
+    public WindowAlvearyFrame(EntityPlayer player, IInventory inventory, Side side) {
+        super(176.0f, 144.0f, player, inventory, side);
+        machine = ((TileEntityMachine) inventory).getMachine();
+    }
 
-	public static Window create(EntityPlayer player, IInventory inventory, Side side) {
-		if (player == null || inventory == null) {
-			return null;
-		}
-		return new WindowAlvearyFrame(player, inventory, side);
-	}
+    public static Window create(EntityPlayer player, IInventory inventory, Side side) {
+        if (player == null || inventory == null) {
+            return null;
+        }
+        return new WindowAlvearyFrame(player, inventory, side);
+    }
 
-	@Override
-	public void initialiseClient() {
-		setTitle(I18N.localise("extrabees.machine.alveay.frame"));
-		playerInventory = new ControlPlayerInventory(this);
-		ControlSlot slot = new ControlSlot(this, 79.0f, 30.0f);
-		slot.assign(0);
-	}
+    @Override
+    public void initialiseClient() {
+        setTitle(I18N.localise("extrabees.machine.alveay.frame"));
+        playerInventory = new ControlPlayerInventory(this);
+        ControlSlot slot = new ControlSlot(this, 79.0f, 30.0f);
+        slot.assign(0);
+    }
 
-	@Override
-	public AbstractMod getMod() {
-		return ExtraBees.instance;
-	}
+    @Override
+    public AbstractMod getMod() {
+        return ExtraBees.instance;
+    }
 
-	@Override
-	public String getName() {
-		return "AlvearyFrame";
-	}
+    @Override
+    public String getName() {
+        return "AlvearyFrame";
+    }
 }

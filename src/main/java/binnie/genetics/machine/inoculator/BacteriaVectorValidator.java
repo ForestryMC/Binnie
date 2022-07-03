@@ -5,13 +5,13 @@ import binnie.genetics.item.GeneticLiquid;
 import net.minecraftforge.fluids.FluidStack;
 
 public class BacteriaVectorValidator extends Validator<FluidStack> {
-	@Override
-	public boolean isValid(FluidStack object) {
-		return GeneticLiquid.BacteriaVector.get(1).isFluidEqual(object);
-	}
+    @Override
+    public boolean isValid(FluidStack object) {
+        return GeneticLiquid.BacteriaVector.get(1).isFluidEqual(object);
+    }
 
-	@Override
-	public String getTooltip() {
-		return GeneticLiquid.BacteriaVector.getName();
-	}
+    @Override
+    public String getTooltip() {
+        return GeneticLiquid.BacteriaVector.getName();
+    }
 }

@@ -6,20 +6,20 @@ import binnie.extratrees.ExtraTrees;
 import net.minecraft.item.ItemStack;
 
 public class PolishSlotValidator extends SlotValidator {
-	protected DesignerType type;
+    protected DesignerType type;
 
-	public PolishSlotValidator(DesignerType type) {
-		super(new ValidatorIcon(ExtraTrees.instance, "validator/polish.0", "validator/polish.1"));
-		this.type = type;
-	}
+    public PolishSlotValidator(DesignerType type) {
+        super(new ValidatorIcon(ExtraTrees.instance, "validator/polish.0", "validator/polish.1"));
+        this.type = type;
+    }
 
-	@Override
-	public boolean isValid(ItemStack itemStack) {
-		return type.getSystem().getAdhesive().isItemEqual(itemStack);
-	}
+    @Override
+    public boolean isValid(ItemStack itemStack) {
+        return type.getSystem().getAdhesive().isItemEqual(itemStack);
+    }
 
-	@Override
-	public String getTooltip() {
-		return type.getSystem().getAdhesive().getDisplayName();
-	}
+    @Override
+    public String getTooltip() {
+        return type.getSystem().getAdhesive().getDisplayName();
+    }
 }

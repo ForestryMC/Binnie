@@ -10,37 +10,37 @@ import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.ISpeciesRoot;
 
 public enum EnumFlowerChromosome implements IChromosomeType {
-	SPECIES(IAlleleFlowerSpecies.class),
-	PRIMARY(IAlleleInteger.class),
-	SECONDARY(IAlleleInteger.class),
-	FERTILITY(IAlleleInteger.class),
-	TERRITORY(IAlleleArea.class),
-	EFFECT(IAlleleFlowerEffect.class),
-	LIFESPAN(IAlleleInteger.class),
-	TEMPERATURE_TOLERANCE(IAlleleTolerance.class),
-	HUMIDITY_TOLERANCE(IAlleleTolerance.class),
-	PH_TOLERANCE(IAlleleTolerance.class),
-	SAPPINESS(IAlleleFloat.class),
-	STEM(IAlleleInteger.class);
+    SPECIES(IAlleleFlowerSpecies.class),
+    PRIMARY(IAlleleInteger.class),
+    SECONDARY(IAlleleInteger.class),
+    FERTILITY(IAlleleInteger.class),
+    TERRITORY(IAlleleArea.class),
+    EFFECT(IAlleleFlowerEffect.class),
+    LIFESPAN(IAlleleInteger.class),
+    TEMPERATURE_TOLERANCE(IAlleleTolerance.class),
+    HUMIDITY_TOLERANCE(IAlleleTolerance.class),
+    PH_TOLERANCE(IAlleleTolerance.class),
+    SAPPINESS(IAlleleFloat.class),
+    STEM(IAlleleInteger.class);
 
-	private Class<? extends IAllele> cls;
+    private Class<? extends IAllele> cls;
 
-	EnumFlowerChromosome(Class<? extends IAllele> cls) {
-		this.cls = cls;
-	}
+    EnumFlowerChromosome(Class<? extends IAllele> cls) {
+        this.cls = cls;
+    }
 
-	@Override
-	public Class<? extends IAllele> getAlleleClass() {
-		return cls;
-	}
+    @Override
+    public Class<? extends IAllele> getAlleleClass() {
+        return cls;
+    }
 
-	@Override
-	public String getName() {
-		return toString().toLowerCase();
-	}
+    @Override
+    public String getName() {
+        return toString().toLowerCase();
+    }
 
-	@Override
-	public ISpeciesRoot getSpeciesRoot() {
-		return AlleleManager.alleleRegistry.getSpeciesRoot("rootFlowers");
-	}
+    @Override
+    public ISpeciesRoot getSpeciesRoot() {
+        return AlleleManager.alleleRegistry.getSpeciesRoot("rootFlowers");
+    }
 }

@@ -19,60 +19,60 @@ import binnie.genetics.machine.PackageGeneticBase;
 import net.minecraft.tileentity.TileEntity;
 
 public class IsolatorPackage extends PackageGeneticBase implements IMachineInformation {
-	public IsolatorPackage() {
-		super("isolator", GeneticsTexture.Isolator, 0xff6f0f, true);
-	}
+    public IsolatorPackage() {
+        super("isolator", GeneticsTexture.Isolator, 0xff6f0f, true);
+    }
 
-	@Override
-	public void createMachine(Machine machine) {
-		new ComponentGeneticGUI(machine, GeneticsGUI.Isolator);
-		ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
-		InventorySlot enzymeSlot = inventory.addSlot(Isolator.SLOT_ENZYME, "enzyme");
-		enzymeSlot.setValidator(new SlotValidator.Item(GeneticsItems.Enzyme.get(1), ModuleMachine.IconEnzyme));
-		enzymeSlot.forbidExtraction();
-		
-		InventorySlot vialSlot = inventory.addSlot(Isolator.SLOT_SEQUENCER_VIAL, "sequencervial");
-		vialSlot.setValidator(new SlotValidator.Item(GeneticsItems.EmptySequencer.get(1), ModuleMachine.IconSequencer));
-		vialSlot.forbidExtraction();
+    @Override
+    public void createMachine(Machine machine) {
+        new ComponentGeneticGUI(machine, GeneticsGUI.Isolator);
+        ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
+        InventorySlot enzymeSlot = inventory.addSlot(Isolator.SLOT_ENZYME, "enzyme");
+        enzymeSlot.setValidator(new SlotValidator.Item(GeneticsItems.Enzyme.get(1), ModuleMachine.IconEnzyme));
+        enzymeSlot.forbidExtraction();
 
-		inventory.addSlotArray(Isolator.SLOT_RESERVE, "input");
-		for (InventorySlot slot : inventory.getSlots(Isolator.SLOT_RESERVE)) {
-			slot.setValidator(new SlotValidator.Individual());
-			slot.forbidExtraction();
-		}
+        InventorySlot vialSlot = inventory.addSlot(Isolator.SLOT_SEQUENCER_VIAL, "sequencervial");
+        vialSlot.setValidator(new SlotValidator.Item(GeneticsItems.EmptySequencer.get(1), ModuleMachine.IconSequencer));
+        vialSlot.forbidExtraction();
 
-		InventorySlot targetSlot = inventory.addSlot(Isolator.SLOT_TARGET, "process");
-		targetSlot.setValidator(new SlotValidator.Individual());
-		targetSlot.setReadOnly();
-		targetSlot.forbidInteraction();
+        inventory.addSlotArray(Isolator.SLOT_RESERVE, "input");
+        for (InventorySlot slot : inventory.getSlots(Isolator.SLOT_RESERVE)) {
+            slot.setValidator(new SlotValidator.Individual());
+            slot.forbidExtraction();
+        }
 
-		InventorySlot resultSlot = inventory.addSlot(Isolator.SLOT_RESULT, "output");
-		resultSlot.setReadOnly();
-		resultSlot.forbidInteraction();
+        InventorySlot targetSlot = inventory.addSlot(Isolator.SLOT_TARGET, "process");
+        targetSlot.setValidator(new SlotValidator.Individual());
+        targetSlot.setReadOnly();
+        targetSlot.forbidInteraction();
 
-		inventory.addSlotArray(Isolator.SLOT_FINISHED, "output");
-		for (InventorySlot slot : inventory.getSlots(Isolator.SLOT_FINISHED)) {
-			slot.setReadOnly();
-			slot.forbidInsertion();
-		}
+        InventorySlot resultSlot = inventory.addSlot(Isolator.SLOT_RESULT, "output");
+        resultSlot.setReadOnly();
+        resultSlot.forbidInteraction();
 
-		ComponentTankContainer tanks = new ComponentTankContainer(machine);
-		tanks.addTank(Isolator.TANK_ETHANOL, "input", Isolator.ETHANOL_CAPACITY);
-		tanks.getTankSlot(Isolator.TANK_ETHANOL).setValidator(new EthanolTankValidator());
+        inventory.addSlotArray(Isolator.SLOT_FINISHED, "output");
+        for (InventorySlot slot : inventory.getSlots(Isolator.SLOT_FINISHED)) {
+            slot.setReadOnly();
+            slot.forbidInsertion();
+        }
 
-		ComponentChargedSlots chargedSlots = new ComponentChargedSlots(machine);
-		chargedSlots.addCharge(Isolator.SLOT_ENZYME);
+        ComponentTankContainer tanks = new ComponentTankContainer(machine);
+        tanks.addTank(Isolator.TANK_ETHANOL, "input", Isolator.ETHANOL_CAPACITY);
+        tanks.getTankSlot(Isolator.TANK_ETHANOL).setValidator(new EthanolTankValidator());
 
-		ComponentInventoryTransfer transfer = new ComponentInventoryTransfer(machine);
-		transfer.addRestock(Isolator.SLOT_RESERVE, Isolator.SLOT_TARGET, 1);
-		transfer.addStorage(Isolator.SLOT_RESULT, Isolator.SLOT_FINISHED);
-		new ComponentPowerReceptor(machine, Isolator.POWER_CAPACITY);
-		new IsolatorComponentLogic(machine);
-		new IsolatorComponentFX(machine);
-	}
+        ComponentChargedSlots chargedSlots = new ComponentChargedSlots(machine);
+        chargedSlots.addCharge(Isolator.SLOT_ENZYME);
 
-	@Override
-	public TileEntity createTileEntity() {
-		return new TileEntityMachine(this);
-	}
+        ComponentInventoryTransfer transfer = new ComponentInventoryTransfer(machine);
+        transfer.addRestock(Isolator.SLOT_RESERVE, Isolator.SLOT_TARGET, 1);
+        transfer.addStorage(Isolator.SLOT_RESULT, Isolator.SLOT_FINISHED);
+        new ComponentPowerReceptor(machine, Isolator.POWER_CAPACITY);
+        new IsolatorComponentLogic(machine);
+        new IsolatorComponentFX(machine);
+    }
+
+    @Override
+    public TileEntity createTileEntity() {
+        return new TileEntityMachine(this);
+    }
 }

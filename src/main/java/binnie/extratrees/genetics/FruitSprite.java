@@ -10,32 +10,33 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;
 
 public enum FruitSprite implements IIconProvider {
-	Tiny,
-	Small,
-	Average,
-	Large,
-	Larger,
-	Pear;
+    Tiny,
+    Small,
+    Average,
+    Large,
+    Larger,
+    Pear;
 
-	protected BinnieIcon icon;
+    protected BinnieIcon icon;
 
-	public short getIndex() {
-		return (short) (ordinal() + 4200);
-	}
+    public short getIndex() {
+        return (short) (ordinal() + 4200);
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(short texUID) {
-		int index = texUID - 4200;
-		if (index >= 0 && index < values().length) {
-			return values()[index].icon.getIcon();
-		}
-		return null;
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public IIcon getIcon(short texUID) {
+        int index = texUID - 4200;
+        if (index >= 0 && index < values().length) {
+            return values()[index].icon.getIcon();
+        }
+        return null;
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister register) {
-		icon = Binnie.Resource.getBlockIcon(ExtraTrees.instance, "fruit/" + toString().toLowerCase());
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IIconRegister register) {
+        icon = Binnie.Resource.getBlockIcon(
+                ExtraTrees.instance, "fruit/" + toString().toLowerCase());
+    }
 }

@@ -11,53 +11,53 @@ import binnie.core.craftgui.geometry.TextJustification;
 import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
 
 public class ControlButton extends Control {
-	private ControlText textWidget;
-	private String text;
+    private ControlText textWidget;
+    private String text;
 
-	public ControlButton(IWidget parent, float x, float y, float width, float height) {
-		super(parent, x, y, width, height);
-		addAttribute(WidgetAttribute.MOUSE_OVER);
-		mouseHandler.setOrigin(EventHandler.Origin.Self, this);
-		addEventHandler(mouseHandler);
-	}
+    public ControlButton(IWidget parent, float x, float y, float width, float height) {
+        super(parent, x, y, width, height);
+        addAttribute(WidgetAttribute.MOUSE_OVER);
+        mouseHandler.setOrigin(EventHandler.Origin.Self, this);
+        addEventHandler(mouseHandler);
+    }
 
-	public ControlButton(IWidget parent, float x, float y, float width, float height, String text) {
-		this(parent, x, y, width, height);
-		this.text = text;
-		textWidget = new ControlText(this, getArea(), text, TextJustification.MIDDLE_CENTER);
-	}
-	
-	private EventMouse.Down.Handler mouseHandler = new EventMouse.Down.Handler() {
-		@Override
-		public void onEvent(EventMouse.Down event) {
-			callEvent(new EventButtonClicked(getWidget()));
-			onMouseClick(event);
-		}
-	};
+    public ControlButton(IWidget parent, float x, float y, float width, float height, String text) {
+        this(parent, x, y, width, height);
+        this.text = text;
+        textWidget = new ControlText(this, getArea(), text, TextJustification.MIDDLE_CENTER);
+    }
 
-	protected void onMouseClick(EventMouse.Down event) {
-		// ignored
-	}
+    private EventMouse.Down.Handler mouseHandler = new EventMouse.Down.Handler() {
+        @Override
+        public void onEvent(EventMouse.Down event) {
+            callEvent(new EventButtonClicked(getWidget()));
+            onMouseClick(event);
+        }
+    };
 
-	@Override
-	public void onUpdateClient() {
-		if (textWidget != null) {
-			textWidget.setValue(getText());
-		}
-	}
+    protected void onMouseClick(EventMouse.Down event) {
+        // ignored
+    }
 
-	@Override
-	public void onRenderBackground() {
-		Object texture = CraftGUITexture.ButtonDisabled;
-		if (isMouseOver()) {
-			texture = CraftGUITexture.ButtonHighlighted;
-		} else if (isEnabled()) {
-			texture = CraftGUITexture.Button;
-		}
-		CraftGUI.render.texture(texture, getArea());
-	}
+    @Override
+    public void onUpdateClient() {
+        if (textWidget != null) {
+            textWidget.setValue(getText());
+        }
+    }
 
-	public String getText() {
-		return text;
-	}
+    @Override
+    public void onRenderBackground() {
+        Object texture = CraftGUITexture.ButtonDisabled;
+        if (isMouseOver()) {
+            texture = CraftGUITexture.ButtonHighlighted;
+        } else if (isEnabled()) {
+            texture = CraftGUITexture.Button;
+        }
+        CraftGUI.render.texture(texture, getArea());
+    }
+
+    public String getText() {
+        return text;
+    }
 }

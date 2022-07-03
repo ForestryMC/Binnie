@@ -10,28 +10,28 @@ import binnie.genetics.machine.sequencer.SequencerPackage;
 import net.minecraft.item.ItemStack;
 
 public enum GeneticMachine implements IMachineType {
-	Isolator(IsolatorPackage.class),
-	Sequencer(SequencerPackage.class),
-	Polymeriser(PolymeriserPackage.class),
-	Inoculator(InoculatorPackage.class);
+    Isolator(IsolatorPackage.class),
+    Sequencer(SequencerPackage.class),
+    Polymeriser(PolymeriserPackage.class),
+    Inoculator(InoculatorPackage.class);
 
-	protected Class<? extends MachinePackage> clss;
+    protected Class<? extends MachinePackage> clss;
 
-	GeneticMachine(Class<? extends MachinePackage> clss) {
-		this.clss = clss;
-	}
+    GeneticMachine(Class<? extends MachinePackage> clss) {
+        this.clss = clss;
+    }
 
-	@Override
-	public Class<? extends MachinePackage> getPackageClass() {
-		return clss;
-	}
+    @Override
+    public Class<? extends MachinePackage> getPackageClass() {
+        return clss;
+    }
 
-	@Override
-	public boolean isActive() {
-		return true;
-	}
+    @Override
+    public boolean isActive() {
+        return true;
+    }
 
-	public ItemStack get(int i) {
-		return new ItemStack(Genetics.packageGenetic.getBlock(), i, ordinal());
-	}
+    public ItemStack get(int i) {
+        return new ItemStack(Genetics.packageGenetic.getBlock(), i, ordinal());
+    }
 }

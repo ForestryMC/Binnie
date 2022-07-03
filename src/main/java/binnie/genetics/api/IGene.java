@@ -7,13 +7,13 @@ import forestry.api.genetics.ISpeciesRoot;
 import net.minecraft.nbt.NBTTagCompound;
 
 public interface IGene extends INBTTagable {
-	IChromosomeType getChromosome();
+    IChromosomeType getChromosome();
 
-	String getName();
+    String getName();
 
-	ISpeciesRoot getSpeciesRoot();
+    ISpeciesRoot getSpeciesRoot();
 
-	IAllele getAllele();
+    IAllele getAllele();
 
-	NBTTagCompound getNBTTagCompound();
+    NBTTagCompound getNBTTagCompound();
 }

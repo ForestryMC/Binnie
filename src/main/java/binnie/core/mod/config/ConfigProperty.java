@@ -8,17 +8,17 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.FIELD})
 public @interface ConfigProperty {
-	String key();
+    String key();
 
-	String category() default "";
+    String category() default "";
 
-	String[] comment() default {};
+    String[] comment() default {};
 
-	@Retention(RetentionPolicy.RUNTIME)
-	@Target({ElementType.ANNOTATION_TYPE})
-	@interface Type {
-		Class<? extends PropertyBase> propertyClass();
+    @Retention(RetentionPolicy.RUNTIME)
+    @Target({ElementType.ANNOTATION_TYPE})
+    @interface Type {
+        Class<? extends PropertyBase> propertyClass();
 
-		String category() default "general";
-	}
+        String category() default "general";
+    }
 }

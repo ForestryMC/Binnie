@@ -6,7 +6,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 
 public class WindowGeneBankNEI {
-	public static Window create(EntityPlayer player, IInventory inventory, Side side) {
-		return new WindowGeneBank(player, inventory, side, true);
-	}
+    public static Window create(EntityPlayer player, IInventory inventory, Side side) {
+        return new WindowGeneBank(player, inventory, side, true);
+    }
 }

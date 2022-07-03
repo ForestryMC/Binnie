@@ -13,26 +13,26 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class ItemRegistry extends Item {
-	public ItemRegistry() {
-		setCreativeTab(GeneticsCreativeTab.instance);
-		setUnlocalizedName("registry");
-		setMaxStackSize(1);
-	}
+    public ItemRegistry() {
+        setCreativeTab(GeneticsCreativeTab.instance);
+        setUnlocalizedName("registry");
+        setMaxStackSize(1);
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister register) {
-		itemIcon = Genetics.proxy.getIcon(register, "registry");
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IIconRegister register) {
+        itemIcon = Genetics.proxy.getIcon(register, "registry");
+    }
 
-	@Override
-	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
-		Genetics.proxy.openGui(GeneticsGUI.Registry, player, (int) player.posX, (int) player.posY, (int) player.posZ);
-		return stack;
-	}
+    @Override
+    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
+        Genetics.proxy.openGui(GeneticsGUI.Registry, player, (int) player.posX, (int) player.posY, (int) player.posZ);
+        return stack;
+    }
 
-	@Override
-	public String getItemStackDisplayName(ItemStack i) {
-		return I18N.localise("genetics.item.registry.0.name");
-	}
+    @Override
+    public String getItemStackDisplayName(ItemStack i) {
+        return I18N.localise("genetics.item.registry.0.name");
+    }
 }

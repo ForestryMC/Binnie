@@ -9,35 +9,35 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class GeneticsCreativeTab extends CreativeTabs {
-	public static CreativeTabs instance;
+    public static CreativeTabs instance;
 
-	static {
-		GeneticsCreativeTab.instance = new GeneticsCreativeTab();
-	}
+    static {
+        GeneticsCreativeTab.instance = new GeneticsCreativeTab();
+    }
 
-	public GeneticsCreativeTab() {
-		super("Genetics");
-	}
+    public GeneticsCreativeTab() {
+        super("Genetics");
+    }
 
-	@Override
-	public ItemStack getIconItemStack() {
-		return GeneticsItems.EmptySerum.get(1);
-	}
+    @Override
+    public ItemStack getIconItemStack() {
+        return GeneticsItems.EmptySerum.get(1);
+    }
 
-	@Override
-	public String getTranslatedTabLabel() {
-		return getTabLabel();
-	}
+    @Override
+    public String getTranslatedTabLabel() {
+        return getTabLabel();
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public String getTabLabel() {
-		return I18N.localise("extrabees.tab.genetics");
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public String getTabLabel() {
+        return I18N.localise("extrabees.tab.genetics");
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public Item getTabIconItem() {
-		return null;
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public Item getTabIconItem() {
+        return null;
+    }
 }

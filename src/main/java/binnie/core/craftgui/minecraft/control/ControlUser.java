@@ -10,30 +10,30 @@ import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
 import binnie.core.util.I18N;
 
 public class ControlUser extends Control implements ITooltip {
-	protected String team;
+    protected String team;
 
-	private String username;
+    private String username;
 
-	public ControlUser(IWidget parent, float x, float y, String username) {
-		super(parent, x, y, 16.0f, 16.0f);
-		this.username = username;
-		team = "";
-		addAttribute(WidgetAttribute.MOUSE_OVER);
-	}
+    public ControlUser(IWidget parent, float x, float y, String username) {
+        super(parent, x, y, 16.0f, 16.0f);
+        this.username = username;
+        team = "";
+        addAttribute(WidgetAttribute.MOUSE_OVER);
+    }
 
-	@Override
-	public void onRenderBackground() {
-		CraftGUI.render.texture(CraftGUITexture.UserButton, getArea());
-	}
+    @Override
+    public void onRenderBackground() {
+        CraftGUI.render.texture(CraftGUITexture.UserButton, getArea());
+    }
 
-	@Override
-	public void getTooltip(Tooltip tooltip) {
-		tooltip.setType(Tooltip.Type.USER);
-		tooltip.add(I18N.localise("binniecore.gui.tooltip.owner"));
+    @Override
+    public void getTooltip(Tooltip tooltip) {
+        tooltip.setType(Tooltip.Type.USER);
+        tooltip.add(I18N.localise("binniecore.gui.tooltip.owner"));
 
-		if (!username.isEmpty()) {
-			tooltip.add(username);
-		}
-		tooltip.setMaxWidth(200);
-	}
+        if (!username.isEmpty()) {
+            tooltip.add(username);
+        }
+        tooltip.setMaxWidth(200);
+    }
 }

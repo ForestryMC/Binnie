@@ -1,9 +1,9 @@
 package binnie.core;
 
 public interface IInitializable {
-	void preInit();
+    void preInit();
 
-	void init();
+    void init();
 
-	void postInit();
+    void postInit();
 }

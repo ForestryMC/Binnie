@@ -1,7 +1,7 @@
 package binnie.core.network;
 
 public interface IPacketProvider {
-	String getChannel();
+    String getChannel();
 
-	IPacketID[] getPacketIDs();
+    IPacketID[] getPacketIDs();
 }

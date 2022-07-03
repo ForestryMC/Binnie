@@ -3,21 +3,21 @@ package binnie.extratrees.api;
 import net.minecraft.util.IIcon;
 
 public interface ILayout {
-	IPattern getPattern();
+    IPattern getPattern();
 
-	boolean isInverted();
+    boolean isInverted();
 
-	ILayout rotateRight();
+    ILayout rotateRight();
 
-	ILayout rotateLeft();
+    ILayout rotateLeft();
 
-	ILayout flipHorizontal();
+    ILayout flipHorizontal();
 
-	ILayout flipVertical();
+    ILayout flipVertical();
 
-	ILayout invert();
+    ILayout invert();
 
-	IIcon getPrimaryIcon(IDesignSystem system);
+    IIcon getPrimaryIcon(IDesignSystem system);
 
-	IIcon getSecondaryIcon(IDesignSystem system);
+    IIcon getSecondaryIcon(IDesignSystem system);
 }

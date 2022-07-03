@@ -4,30 +4,30 @@ import forestry.api.genetics.IIndividual;
 import net.minecraft.world.World;
 
 public interface IFlower extends IIndividual {
-	@Override
-	IFlowerGenome getGenome();
+    @Override
+    IFlowerGenome getGenome();
 
-	IFlowerGenome getMate();
+    IFlowerGenome getMate();
 
-	void mate(IFlower other);
+    void mate(IFlower other);
 
-	int getAge();
+    int getAge();
 
-	void setAge(int age);
+    void setAge(int age);
 
-	void age();
+    void age();
 
-	IFlower getOffspring(World world);
+    IFlower getOffspring(World world);
 
-	int getMaxAge();
+    int getMaxAge();
 
-	boolean isWilted();
+    boolean isWilted();
 
-	void setWilted(boolean value);
+    void setWilted(boolean value);
 
-	boolean hasFlowered();
+    boolean hasFlowered();
 
-	void setFlowered(boolean value);
+    void setFlowered(boolean value);
 
-	void removeMate();
+    void removeMate();
 }

@@ -7,59 +7,58 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class MachineComponent implements INBTTagable {
-	private IMachine machine;
+    private IMachine machine;
 
-	public MachineComponent(IMachine machine) {
-		setMachine(machine);
-		machine.addComponent(this);
-	}
+    public MachineComponent(IMachine machine) {
+        setMachine(machine);
+        machine.addComponent(this);
+    }
 
-	public void setMachine(IMachine machine) {
-		this.machine = machine;
-	}
+    public void setMachine(IMachine machine) {
+        this.machine = machine;
+    }
 
-	public IMachine getMachine() {
-		return machine;
-	}
+    public IMachine getMachine() {
+        return machine;
+    }
 
-	@Override
-	public void readFromNBT(NBTTagCompound nbttagcompound) {
-		// ignored
-	}
+    @Override
+    public void readFromNBT(NBTTagCompound nbttagcompound) {
+        // ignored
+    }
 
-	@Override
-	public void writeToNBT(NBTTagCompound nbttagcompound) {
-		// ignored
-	}
+    @Override
+    public void writeToNBT(NBTTagCompound nbttagcompound) {
+        // ignored
+    }
 
-	public void onUpdate() {
-		// ignored
-	}
+    public void onUpdate() {
+        // ignored
+    }
 
-	public Class[] getComponentInterfaces() {
-		return Binnie.Machine.getComponentInterfaces(getClass());
-	}
+    public Class[] getComponentInterfaces() {
+        return Binnie.Machine.getComponentInterfaces(getClass());
+    }
 
-	public void onInventoryUpdate() {
-		// ignored
-	}
+    public void onInventoryUpdate() {
+        // ignored
+    }
 
-	public MachinePayload getPayload() {
-		return new MachinePayload(Binnie.Machine.getNetworkID(getClass()));
-	}
+    public MachinePayload getPayload() {
+        return new MachinePayload(Binnie.Machine.getNetworkID(getClass()));
+    }
 
-	public void recieveData(MachinePayload payload) {
-	}
+    public void recieveData(MachinePayload payload) {}
 
-	public MachineUtil getUtil() {
-		return getMachine().getMachineUtil();
-	}
+    public MachineUtil getUtil() {
+        return getMachine().getMachineUtil();
+    }
 
-	public void onDestruction() {
-		// desctruction
-	}
+    public void onDestruction() {
+        // desctruction
+    }
 
-	public IInventory getInventory() {
-		return getMachine().getInterface(IInventory.class);
-	}
+    public IInventory getInventory() {
+        return getMachine().getInterface(IInventory.class);
+    }
 }
