@@ -74,8 +74,12 @@ public class TileEntityMetadata extends TileEntity {
 	}
 
 	public static ItemStack getItemStack(Block block, int damage) {
+		NBTTagCompound tag = new NBTTagCompound();
+		tag.setInteger("meta", damage);
+
 		ItemStack item = new ItemStack(block, 1, 0);
 		item.setItemDamage(Math.min(damage, 16387));
+		item.setTagCompound(tag);
 		return item;
 	}
 
