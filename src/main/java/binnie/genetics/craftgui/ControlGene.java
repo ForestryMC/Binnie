@@ -11,11 +11,14 @@ import binnie.core.craftgui.controls.core.IControlValue;
 import binnie.core.craftgui.events.EventMouse;
 import binnie.core.craftgui.geometry.IPoint;
 import binnie.core.craftgui.minecraft.Window;
+import binnie.core.util.I18N;
 import binnie.genetics.api.IGene;
 import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.genetics.Engineering;
+import forestry.api.genetics.IAlleleSpecies;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumChatFormatting;
 
 public class ControlGene extends Control implements IControlValue<IGene>, ITooltip {
     protected IGene gene;
@@ -30,6 +33,11 @@ public class ControlGene extends Control implements IControlValue<IGene>, IToolt
     public void getTooltip(Tooltip tooltip) {
         String cName = Binnie.Genetics.getSystem(gene.getSpeciesRoot()).getChromosomeName(gene.getChromosome());
         tooltip.add(cName + ": " + gene.getName());
+        if (gene.getAllele() instanceof IAlleleSpecies) {
+            tooltip.add(I18N.localise(
+                    "binniecore.gui.database.branch.discoveredBy",
+                    ((IAlleleSpecies) gene.getAllele()).getAuthority() + EnumChatFormatting.RESET));
+        }
         if (isMouseOver() && canFill(Window.get(this).getHeldItemStack())) {
             tooltip.add("Left click to assign gene");
             IGene existingGene = Engineering.getGene(
