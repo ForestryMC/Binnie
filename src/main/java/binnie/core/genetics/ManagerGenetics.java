@@ -211,9 +211,9 @@ public class ManagerGenetics extends ManagerBase {
             if (o1 instanceof IAlleleInteger && o2 instanceof IAlleleInteger && !(o1 instanceof AlleleColor)) {
                 return Integer.valueOf(((IAlleleInteger) o1).getValue()).compareTo(((IAlleleInteger) o2).getValue());
             }
-            if (o1.getName() != null && o2.getName() != null) {
-                return o1.getName().compareTo(o2.getName());
-            }
+            //            if (o1.getName() != null && o2.getName() != null) {
+            //                return o1.getName().compareTo(o2.getName());
+            //            }
             return o1.getUID().compareTo(o2.getUID());
         }
     }
