@@ -1638,6 +1638,33 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
             registerMutation(BeeDefinition.ENDED, RELIC, 2).restrictPerson("jadedcat");
         }
     },
+    CHAD(ExtraBeeBranchDefinition.FTB, "merciboocoup", true, new Color(0x2157DB), new Color(0xD2ABD1)) {
+        ItemStack product = new ItemStack(Items.cake, 1);
+
+        @Override
+        protected void setSpeciesProperties(IAlleleBeeSpeciesCustom beeSpecies) {
+            beeSpecies
+                    .addProduct(product, 1f)
+                    .addSpecialty(Mods.forestry.stack("pollenFertile"), 0.50f)
+                    .addSpecialty(EnumHoneyComb.MILK.get(1), 0.55f)
+                    .setIsNotCounted()
+                    .setHasEffect();
+        }
+
+        protected void setAlleles(IAllele[] template) {
+            AlleleHelper.instance.set(template, EnumBeeChromosome.NOCTURNAL, true);
+            AlleleHelper.instance.set(template, EnumBeeChromosome.TEMPERATURE_TOLERANCE, EnumAllele.Tolerance.BOTH_5);
+            AlleleHelper.instance.set(template, EnumBeeChromosome.HUMIDITY_TOLERANCE, EnumAllele.Tolerance.BOTH_5);
+            AlleleHelper.instance.set(
+                    template, EnumBeeChromosome.EFFECT, AlleleHelper.getAllele(ExtraBeesEffect.BIRTHDAY.getUID()));
+        }
+
+        @Override
+        protected void registerMutations() {
+            String[] names = {"Runakai", "boubou_19", "Alastors_Game", "BlueWeabo", "Lewis_Saber", "True_Aurastorm,", "minecraft7771"};
+            registerMutation(BeeDefinition.CULTIVATED, CELEBRATORY, 5).restrictedByGroupOfPersons(names);
+        }
+    },
 
     /* AUSTERE BRANCH */
     HAZARDOUS(BeeBranchDefinition.AUSTERE, "infensus", true, new Color(0xb06c28), new Color(0xffdc16)) {
