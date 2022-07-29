@@ -1661,7 +1661,7 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 
         @Override
         protected void registerMutations() {
-            String[] names = {"Runakai", "boubou_19", "Alastors_Game", "BlueWeabo", "Lewis_Saber", "True_Aurastorm,", "minecraft7771", "mitchej123"};
+            String[] names = {"Runakai", "boubou_19", "Alastors_Game", "BlueWeabo", "Lewis_Saber", "True_Aurastorm,", "minecraft7771", "mitchej123", "_Timbo"};
             registerMutation(BeeDefinition.CULTIVATED, CELEBRATORY, 5).restrictedByGroupOfPersons(names);
         }
     },
