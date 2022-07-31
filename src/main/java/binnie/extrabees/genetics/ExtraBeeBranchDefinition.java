@@ -283,7 +283,7 @@ public enum ExtraBeeBranchDefinition implements IBranchDefinition {
     FTB("Eftebeapis") {
         @Override
         protected void setBranchProperties(IAllele[] template) {
-            AlleleHelper.instance.set(template, EnumBeeChromosome.SPEED, EnumAllele.Speed.SLOWER);
+            AlleleHelper.instance.set(template, EnumBeeChromosome.SPEED, EnumAllele.Speed.FASTEST);
             AlleleHelper.instance.set(template, EnumBeeChromosome.LIFESPAN, EnumAllele.Lifespan.NORMAL);
             AlleleHelper.instance.set(template, EnumBeeChromosome.EFFECT, AlleleEffect.effectBeatific);
             AlleleHelper.instance.set(template, EnumBeeChromosome.FERTILITY, EnumAllele.Fertility.MAXIMUM);

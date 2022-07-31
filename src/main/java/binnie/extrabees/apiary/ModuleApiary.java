@@ -32,13 +32,13 @@ public class ModuleApiary implements IInitializable {
                 BinnieCore.proxy.createObject("binnie.core.machines.RendererMachine"));
         ModuleApiary.blockComponent = machineGroup.getBlock();
         AlvearyMutator.addMutationItem(new ItemStack(Blocks.soul_sand), 1.5f);
-        AlvearyMutator.addMutationItem(Mods.ic2.stack("UranFuel"), 4.0f);
-        AlvearyMutator.addMutationItem(Mods.ic2.stack("MOXFuel"), 10.0f);
-        AlvearyMutator.addMutationItem(Mods.ic2.stack("Plutonium"), 8.0f);
-        AlvearyMutator.addMutationItem(Mods.ic2.stack("smallPlutonium"), 5.0f);
-        AlvearyMutator.addMutationItem(Mods.ic2.stack("Uran235"), 4.0f);
-        AlvearyMutator.addMutationItem(Mods.ic2.stack("smallUran235"), 2.5f);
+        AlvearyMutator.addMutationItem(Mods.ic2.stack("UranFuel"), 8.0f);
+        AlvearyMutator.addMutationItem(Mods.ic2.stack("Plutonium"), 15.0f);
+        AlvearyMutator.addMutationItem(Mods.ic2.stack("smallPlutonium"), 9.0f);
+        AlvearyMutator.addMutationItem(Mods.ic2.stack("Uran235"), 10.0f);
+        AlvearyMutator.addMutationItem(Mods.ic2.stack("smallUran235"), 5.5f);
         AlvearyMutator.addMutationItem(Mods.ic2.stack("Uran238"), 2.0f);
+        AlvearyMutator.addMutationItem(new ItemStack(Items.nether_star), 50.0f);
         AlvearyMutator.addMutationItem(new ItemStack(Items.ender_pearl), 2.0f);
         AlvearyMutator.addMutationItem(new ItemStack(Items.ender_eye), 4.0f);
 

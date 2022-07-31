@@ -1,8 +1,6 @@
 package binnie.extrabees.genetics;
 
-import binnie.extrabees.genetics.requirements.DummyMutationCondition;
-import binnie.extrabees.genetics.requirements.IMutationRequirement;
-import binnie.extrabees.genetics.requirements.RequirementPerson;
+import binnie.extrabees.genetics.requirements.*;
 import forestry.api.apiculture.BeeManager;
 import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.apiculture.IBeeGenome;
@@ -50,5 +48,11 @@ public class ExtraBeeMutation extends BeeMutation implements IBeeMutationCustom 
         RequirementPerson requirement = new RequirementPerson(nickname);
         requirements.add(requirement);
         addMutationCondition(new DummyMutationCondition(requirement));
+    }
+
+    public void restrictedByGroupOfPersons(String[] nicknames) {
+        RequirementGroupOfPersons requirement = new RequirementGroupOfPersons(nicknames);
+        requirements.add(requirement);
+        addMutationCondition(new DummyMutationConditionGroupPersons(requirement));
     }
 }
