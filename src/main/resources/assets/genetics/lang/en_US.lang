@@ -122,7 +122,7 @@ genetics.machine.incubator.error.noLiquid=Not enough incubation liquid
 genetics.machine.incubator.error.noRoom=No room for output
 
 genetics.machine.labMachine.acclimatiser=Acclimatiser
-genetics.machine.labMachine.acclimatiser.info=The Acclimatiser uses acclimatizing items to adjust the temperature and humidity tolerance of individuals.
+genetics.machine.labMachine.acclimatiser.info=The Acclimatiser uses acclimatizing items to adjust the temperature and humidity tolerance of individuals. This process has only a small chance to succeed.
 genetics.machine.acclimatiser.acclimatizingItems=Acclimatizing Items
 genetics.machine.acclimatiser.error.noIndividual=No Individual to Acclimatise
 genetics.machine.acclimatiser.error.noAcclimatizingItems=No Acclimatising Items
