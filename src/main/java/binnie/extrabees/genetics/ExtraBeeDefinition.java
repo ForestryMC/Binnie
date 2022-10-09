@@ -1670,7 +1670,9 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
                 "True_Aurastorm",
                 "minecraft7771",
                 "mitchej123",
-                "_Timbo"
+                "_Timbo",
+                "kuba6000",
+                "DreamMasterXXL"
             };
             registerMutation(BeeDefinition.CULTIVATED, CELEBRATORY, 5).restrictedByGroupOfPersons(names);
         }
