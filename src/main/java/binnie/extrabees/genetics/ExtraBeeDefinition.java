@@ -2,6 +2,7 @@ package binnie.extrabees.genetics;
 
 import binnie.core.Mods;
 import binnie.extrabees.genetics.effect.ExtraBeesEffect;
+import binnie.extrabees.genetics.requirements.RequirementPerson;
 import binnie.extrabees.products.EnumHoneyComb;
 import binnie.extrabees.products.ItemHoneyComb;
 import binnie.genetics.genetics.AlleleHelper;
@@ -29,6 +30,7 @@ import java.util.Locale;
 import java.util.Map;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.common.BiomeDictionary;
 
 public enum ExtraBeeDefinition implements IBeeDefinition {
@@ -1639,12 +1641,10 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
         }
     },
     CHAD(ExtraBeeBranchDefinition.FTB, "merciboocoup", true, new Color(0x2157DB), new Color(0xD2ABD1)) {
-        ItemStack product = new ItemStack(Items.cake, 1);
-
         @Override
         protected void setSpeciesProperties(IAlleleBeeSpeciesCustom beeSpecies) {
             beeSpecies
-                    .addProduct(product, 1f)
+                    .addProduct(new ItemStack(Items.cake, 1), 1f)
                     .addSpecialty(Mods.forestry.stack("pollenFertile"), 0.50f)
                     .addSpecialty(EnumHoneyComb.MILK.get(1), 0.55f)
                     .setIsNotCounted()
@@ -1661,20 +1661,36 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 
         @Override
         protected void registerMutations() {
-            String[] names = {
-                "Runakai",
-                "boubou_19",
-                "Alastors_Game",
-                "BlueWeabo",
-                "Lewis_Saber",
-                "True_Aurastorm",
-                "minecraft7771",
-                "mitchej123",
-                "_Timbo",
-                "kuba6000",
-                "DreamMasterXXL"
-            };
-            registerMutation(BeeDefinition.CULTIVATED, CELEBRATORY, 5).restrictedByGroupOfPersons(names);
+            registerMutation(BeeDefinition.CULTIVATED, CELEBRATORY, 5)
+                    .restrictPerson(new RequirementPerson()
+                            .add(
+                                    name -> ""
+                                            + EnumChatFormatting.DARK_RED
+                                            + EnumChatFormatting.BOLD + "R"
+                                            + EnumChatFormatting.RED
+                                            + EnumChatFormatting.BOLD + "u"
+                                            + EnumChatFormatting.GOLD
+                                            + EnumChatFormatting.BOLD + "n"
+                                            + EnumChatFormatting.YELLOW
+                                            + EnumChatFormatting.BOLD + "a"
+                                            + EnumChatFormatting.DARK_GREEN
+                                            + EnumChatFormatting.BOLD + "k"
+                                            + EnumChatFormatting.GREEN
+                                            + EnumChatFormatting.BOLD + "a"
+                                            + EnumChatFormatting.AQUA
+                                            + EnumChatFormatting.BOLD + "i",
+                                    "Runakai")
+                            .add(
+                                    "boubou_19",
+                                    "Alastors_Game",
+                                    "BlueWeabo",
+                                    "Lewis_Saber",
+                                    "True_Aurastorm",
+                                    "minecraft7771",
+                                    "mitchej123",
+                                    "_Timbo",
+                                    "kuba6000",
+                                    "DreamMasterXXL"));
         }
     },
 
