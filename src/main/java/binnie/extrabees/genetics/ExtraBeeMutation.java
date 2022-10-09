@@ -11,6 +11,7 @@ import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IMutation;
 import forestry.apiculture.genetics.BeeMutation;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ExtraBeeMutation extends BeeMutation implements IBeeMutationCustom {
@@ -44,15 +45,19 @@ public class ExtraBeeMutation extends BeeMutation implements IBeeMutationCustom 
         return super.getChance(housing, allele0, allele1, genome0, genome1);
     }
 
-    public void restrictPerson(String nickname) {
-        RequirementPerson requirement = new RequirementPerson(nickname);
-        requirements.add(requirement);
-        addMutationCondition(new DummyMutationCondition(requirement));
+    public void restrictPerson(String... nicknames) {
+        restrictPerson(new RequirementPerson(nicknames));
     }
 
-    public void restrictedByGroupOfPersons(String[] nicknames) {
-        RequirementGroupOfPersons requirement = new RequirementGroupOfPersons(nicknames);
+    public void restrictPerson(RequirementPerson requirement) {
         requirements.add(requirement);
-        addMutationCondition(new DummyMutationConditionGroupPersons(requirement));
+        addMutationCondition(new DummyMutationCondition(requirement));
+        ArrayList<String> descriptions = (ArrayList<String>) getSpecialConditions();
+        int i = descriptions.size() - 1;
+        String description = descriptions.get(i);
+        if (description.contains("/n")) {
+            descriptions.remove(i);
+            descriptions.addAll(Arrays.asList(description.split("/n")));
+        }
     }
 }
