@@ -1690,7 +1690,9 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
                                     "mitchej123",
                                     "_Timbo",
                                     "kuba6000",
-                                    "DreamMasterXXL"));
+                                    "DreamMasterXXL",
+                                    "YeetYeetDatBoi",
+                                    "Colen"));
         }
     },
 
